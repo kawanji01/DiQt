@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -17,6 +18,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Future _goToCreatePage() async {
+    await Navigator.of(context).pushNamed(flashcardCreatePage);
+  }
+
+  Widget _buildListRow(BuildContext context, int index) {
+    return ListTile(
+      title: const Text('タイトル'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -32,10 +43,19 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('単語帳'),
       ),
       body: Column(
-        children: <Widget>[],
+        children: <Widget>[
+          Expanded(
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemBuilder: _buildListRow,
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: 20,
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => print('pressed'),
+        onPressed: _goToCreatePage,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
