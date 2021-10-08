@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/widgets/flashcard/flashcard_form.dart';
 import 'package:flutter/material.dart';
 
 class CreateFlashcardPage extends StatefulWidget {
@@ -32,18 +33,7 @@ class _CreateFlashcardPageState extends State<CreateFlashcardPage> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    TextFormField(
-                        controller: _nameController,
-                        decoration: const InputDecoration(
-                          labelText: '名前',
-                          hintText: '名前',
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return '入力してください';
-                          }
-                          return null;
-                        }),
+                    FlashcardForm(nameController: _nameController),
                     Container(
                       margin: const EdgeInsets.only(top: 20),
                       child: ElevatedButton(

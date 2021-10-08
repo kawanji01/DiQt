@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'package:booqs_mobile/models/flashcard.dart';
+import 'package:booqs_mobile/pages/flashcard/edit.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -18,13 +22,48 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Flashcard> _flashcards = [];
+
+  // initialize
+  @override
+  void initState() {
+    super.initState();
+
+    _loadFlashcards();
+  }
+
+// async create list
+  Future _loadFlashcards() async {
+    var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/dictionaries');
+    var res =
+        await http.get(url, headers: {"Content-Type": "application/json"});
+    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+    Map<String, dynamic> resMap = json.decode(res.body);
+    var data = resMap['data'];
+    debugPrint('--- ${Flashcard.fromJson(data[0])}');
+    // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
+    data.forEach((e) => _flashcards.add(Flashcard.fromJson(e)));
+    //final flashcards = _flashcards;
+    setState(() {
+      _flashcards;
+    });
+  }
+
   Future _goToCreatePage() async {
     await Navigator.of(context).pushNamed(flashcardCreatePage);
   }
 
+  Future _goToEditPage(Flashcard flashcard) async {
+    await EditFlashcardPage.push(context, flashcard);
+
+    //await _loadFlashcards();
+  }
+
   Widget _buildListRow(BuildContext context, int index) {
+    final flashcard = _flashcards[index];
     return ListTile(
-      title: const Text('タイトル'),
+      title: Text(flashcard.title),
+      onTap: () => _goToEditPage(flashcard),
     );
   }
 
@@ -49,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
               shrinkWrap: true,
               itemBuilder: _buildListRow,
               separatorBuilder: (context, index) => const Divider(),
-              itemCount: 20,
+              itemCount: _flashcards.length,
             ),
           ),
         ],
