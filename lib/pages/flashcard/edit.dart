@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/flashcard.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/flashcard/flashcard_card_form.dart';
 import 'package:booqs_mobile/widgets/flashcard/flashcard_form.dart';
 import 'package:flutter/material.dart';
 
@@ -48,25 +49,35 @@ class _EditFlashcardPageState extends State<EditFlashcardPage> {
       appBar: AppBar(
         title: const Text('単語帳を編集'),
       ),
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    FlashcardForm(nameController: _nameController),
-                    Container(
-                      margin: const EdgeInsets.only(top: 20),
-                      child: ElevatedButton(
-                        onPressed: _save,
-                        child: const Text('更新'),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.all(20),
+          child: Column(
+            children: <Widget>[
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      FlashcardForm(nameController: _nameController),
+                      Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        child: ElevatedButton(
+                          onPressed: _save,
+                          child: const Text('更新'),
+                        ),
                       ),
-                    ),
-                  ],
-                )),
-          ],
+                      Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        child: Text(
+                          'カードを追加',
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ),
+                      FlashcardCardForm(),
+                    ],
+                  )),
+            ],
+          ),
         ),
       ),
     );
