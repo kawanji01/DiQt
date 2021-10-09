@@ -3,8 +3,10 @@ import 'package:booqs_mobile/widgets/flashcard/flashcard_form.dart';
 import 'package:flutter/material.dart';
 
 class FlashcardEditDialog extends StatefulWidget {
-  const FlashcardEditDialog({Key? key, Flashcard? flashcard}) : super(key: key);
-
+  // パラメーターを設定する / https://note.com/ohbashunsuke/n/n48e2d58c3486
+  final String flashcardTitle;
+  const FlashcardEditDialog({Key? key, required this.flashcardTitle})
+      : super(key: key);
   @override
   _FlashcardEditDialogState createState() => _FlashcardEditDialogState();
 }
@@ -21,24 +23,36 @@ class _FlashcardEditDialogState extends State<FlashcardEditDialog> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      // パラメーターをフォームに表示する。
+      _nameController.text = widget.flashcardTitle;
+    });
+  }
+
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('単語帳を編集'),
       content: Form(
-          key: _formKey,
-          child: Column(
-            // なるべくダイアログを小さくする
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              FlashcardForm(nameController: _nameController),
-            ],
-          )),
+        key: _formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FlashcardForm(nameController: _nameController),
+          ],
+        ),
+      ),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
           child: const Text('キャンセル'),
         ),
-        ElevatedButton(onPressed: _save, child: const Text('更新'))
+        ElevatedButton(
+          onPressed: _save,
+          child: const Text('更新'),
+        ),
       ],
     );
   }
