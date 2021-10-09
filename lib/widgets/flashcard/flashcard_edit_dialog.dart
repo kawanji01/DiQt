@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 
 class FlashcardEditDialog extends StatefulWidget {
   // パラメーターを設定する / https://note.com/ohbashunsuke/n/n48e2d58c3486
-  final String flashcardTitle;
-  const FlashcardEditDialog({Key? key, required this.flashcardTitle})
+  //final String flashcardTitle;
+  const FlashcardEditDialog({Key? key, required this.flashcard})
       : super(key: key);
+  final Flashcard flashcard;
   @override
   _FlashcardEditDialogState createState() => _FlashcardEditDialogState();
 }
@@ -28,7 +29,7 @@ class _FlashcardEditDialogState extends State<FlashcardEditDialog> {
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       // パラメーターをフォームに表示する。
-      _nameController.text = widget.flashcardTitle;
+      _nameController.text = widget.flashcard.title;
     });
   }
 
