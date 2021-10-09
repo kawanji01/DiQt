@@ -1,13 +1,21 @@
+import 'package:booqs_mobile/models/flashcard_card.dart';
 import 'package:flutter/material.dart';
 
 class FlashcardCardForm extends StatelessWidget {
   FlashcardCardForm({
     Key? key,
-  }) : super(key: key);
+    this.buttonText = 'カードを追加',
+    FlashcardCard? flashcardCard,
+  })  : _questionController =
+            TextEditingController(text: flashcardCard?.entry ?? ''),
+        _answerController =
+            TextEditingController(text: flashcardCard?.meaning ?? ''),
+        super(key: key);
 
   final _formKey = GlobalKey<FormState>();
-  final _questionController = TextEditingController();
-  final _answerController = TextEditingController();
+  final TextEditingController _questionController;
+  final TextEditingController _answerController;
+  final String buttonText;
 
   Future _save() async {}
 
