@@ -1,7 +1,7 @@
 // model
 class Flashcard {
   final int id;
-  final String title;
+  String title;
 
   Flashcard(this.id, this.title);
 
