@@ -63,7 +63,7 @@ class _EditFlashcardPageState extends State<EditFlashcardPage> {
     final newName = await showDialog<String>(
         context: context,
         builder: (context) {
-          return FlashcardEditDialog(flashcard: _flashcard as Flashcard);
+          return FlashcardEditDialog(flashcard: _flashcard!);
         });
     if (newName == null) {
       return;
