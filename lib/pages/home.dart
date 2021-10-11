@@ -5,6 +5,8 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'flashcard/play.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
@@ -63,7 +65,19 @@ class _MyHomePageState extends State<MyHomePage> {
     final flashcard = _flashcards[index];
     return ListTile(
       title: Text(flashcard.title),
-      onTap: () => _goToEditPage(flashcard),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.play_arrow),
+            onPressed: () => FlashcardPlayPage.push(context, flashcard),
+          ),
+          IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: () => _goToEditPage(flashcard),
+          ),
+        ],
+      ),
     );
   }
 
