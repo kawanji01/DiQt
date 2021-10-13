@@ -30,19 +30,20 @@ class _CreateFlashcardPageState extends State<CreateFlashcardPage> {
         child: Column(
           children: <Widget>[
             Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    FlashcardForm(nameController: _nameController),
-                    Container(
-                      margin: const EdgeInsets.only(top: 20),
-                      child: ElevatedButton(
-                        onPressed: _save,
-                        child: const Text('登録'),
-                      ),
+              key: _formKey,
+              child: Column(
+                children: [
+                  FlashcardForm(nameController: _nameController),
+                  Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    child: ElevatedButton(
+                      onPressed: _save,
+                      child: const Text('登録'),
                     ),
-                  ],
-                )),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
