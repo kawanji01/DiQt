@@ -1,13 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/flashcard.dart';
-import 'package:booqs_mobile/pages/dictionary/search_en_ja.dart';
 import 'package:booqs_mobile/pages/flashcard/edit.dart';
-import 'package:booqs_mobile/pages/notification/index.dart';
-import 'package:booqs_mobile/pages/reminder/index.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/dictionary/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/dictionary/search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,9 +18,6 @@ class MyHomePage extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
-  static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(indexPage);
-  }
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -35,26 +26,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Flashcard> _flashcards = [];
 
-  // form に必要な素材
-  final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-  void _search() {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
-    _goToSearchEnJaPage(_nameController.text);
-  }
-
-  // floatingButtonを押した時にフォームにフォーカスさせるための処理 / https://flutter.dev/docs/cookbook/forms/focus
-  // Define the focus node. To manage the lifecycle, create the FocusNode in
-  // the initState method, and clean it up in the dispose method.（dosposeは定義していない）
-  late FocusNode myFocusNode;
-
   // initialize
   @override
   void initState() {
     super.initState();
-    myFocusNode = FocusNode();
+
     _loadFlashcards();
   }
 
@@ -66,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map<String, dynamic> resMap = json.decode(res.body);
     var data = resMap['data'];
+    debugPrint('--- ${Flashcard.fromJson(data[0])}');
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     data.forEach((e) => _flashcards.add(Flashcard.fromJson(e)));
     //final flashcards = _flashcards;
@@ -80,23 +57,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future _goToEditPage(Flashcard flashcard) async {
     await EditFlashcardPage.push(context, flashcard);
-  }
 
-  Future _goToSearchEnJaPage(keyword) async {
-    //await Navigator.of(context).pushNamed(searchEnJaPage);
-    await SearchEnJaPage.push(context, keyword);
+    //await _loadFlashcards();
   }
 
   Widget _buildListRow(BuildContext context, int index) {
     final flashcard = _flashcards[index];
-
     return ListTile(
       title: Text(flashcard.title),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            icon: const Icon(Icons.arrow_forward_ios_rounded),
+            icon: const Icon(Icons.play_arrow),
+            onPressed: () => FlashcardPlayPage.push(context, flashcard),
+          ),
+          IconButton(
+            icon: const Icon(Icons.edit),
             onPressed: () => _goToEditPage(flashcard),
           ),
         ],
@@ -116,54 +93,24 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: const Text('辞書'),
-        automaticallyImplyLeading: false,
+        title: const Text('単語帳'),
       ),
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  SearchForm(
-                    nameController: _nameController,
-                    focusNode: myFocusNode,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 20, bottom: 40),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity,
-                            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-                      ),
-                      onPressed: _search,
-                      child: const Text(
-                        '辞書を引く',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemBuilder: _buildListRow,
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: _flashcards.length,
             ),
-            Expanded(
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: _buildListRow,
-                separatorBuilder: (context, index) => const Divider(),
-                itemCount: _flashcards.length,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => myFocusNode.requestFocus(),
+        onPressed: _goToCreatePage,
         tooltip: 'Increment',
-        child: const Icon(Icons.search),
+        child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

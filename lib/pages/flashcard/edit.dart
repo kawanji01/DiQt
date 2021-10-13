@@ -10,6 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+// 外部から呼び出せるやつ
 class EditFlashcardPage extends StatefulWidget {
   const EditFlashcardPage({Key? key}) : super(key: key);
 
@@ -22,6 +23,7 @@ class EditFlashcardPage extends StatefulWidget {
   _EditFlashcardPageState createState() => _EditFlashcardPageState();
 }
 
+// 内部でだけ
 class _EditFlashcardPageState extends State<EditFlashcardPage> {
   Flashcard? _flashcard;
   List<FlashcardCard> _flashcardCards = [];
