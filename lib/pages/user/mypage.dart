@@ -1,8 +1,6 @@
-import 'package:booqs_mobile/pages/home.dart';
-import 'package:booqs_mobile/pages/notification/index.dart';
-import 'package:booqs_mobile/pages/reminder/index.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/dictionary/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:flutter/material.dart';
 
 class UserMyPage extends StatefulWidget {
@@ -24,12 +22,7 @@ class _UserMyPageState extends State<UserMyPage> {
         title: const Text('マイページ'),
         automaticallyImplyLeading: false,
       ),
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[],
-        ),
-      ),
+      body: const Entrance(),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 3),
     );
   }
