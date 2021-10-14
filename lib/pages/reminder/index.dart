@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/dictionary/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:flutter/material.dart';
 
 class ReminderIndexPage extends StatefulWidget {
@@ -21,12 +22,7 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
         title: const Text('復習'),
         automaticallyImplyLeading: false,
       ),
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[],
-        ),
-      ),
+      body: const Entrance(),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 1),
     );
   }

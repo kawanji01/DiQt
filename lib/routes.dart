@@ -6,7 +6,9 @@ import 'package:booqs_mobile/pages/flashcard/play.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notification/index.dart';
 import 'package:booqs_mobile/pages/reminder/index.dart';
+import 'package:booqs_mobile/pages/user/login.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/pages/user/sign_up.dart';
 
 const indexPage = '/';
 const flashcardCreatePage = '/flashcard/create';
@@ -19,6 +21,8 @@ const searchEnJaPage = '/dictionary/search_en_ja';
 const reminderIndexPage = '/reminder/index';
 const notificationIndexPage = '/notification/index';
 const userMyPage = '/user/mypage';
+const signUpPage = '/user/sign_up';
+const loginPage = '/user/login';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -31,4 +35,6 @@ final routes = {
   reminderIndexPage: (context) => const ReminderIndexPage(),
   notificationIndexPage: (context) => const NotificationIndexPage(),
   userMyPage: (context) => const UserMyPage(),
+  signUpPage: (context) => const SignUpPage(),
+  loginPage: (context) => const LoginPage(),
 };
