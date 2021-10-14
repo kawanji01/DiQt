@@ -2,16 +2,11 @@ import 'dart:convert';
 import 'package:booqs_mobile/models/flashcard.dart';
 import 'package:booqs_mobile/pages/dictionary/search_en_ja.dart';
 import 'package:booqs_mobile/pages/flashcard/edit.dart';
-import 'package:booqs_mobile/pages/notification/index.dart';
-import 'package:booqs_mobile/pages/reminder/index.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/dictionary/search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-import 'flashcard/play.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
