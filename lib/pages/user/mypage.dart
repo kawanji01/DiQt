@@ -29,7 +29,7 @@ class _UserMyPageState extends State<UserMyPage> {
   Future _logout() async {
     // トークンを削除
     const storage = FlutterSecureStorage();
-    await storage.delete(key: 'token');
+    await storage.deleteAll();
     const snackBar = SnackBar(content: Text('ログアウトしました。'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
     UserMyPage.push(context);
@@ -39,16 +39,19 @@ class _UserMyPageState extends State<UserMyPage> {
   Future _loadUser() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
-    debugPrint(token);
     var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/users/my_page');
     var res = await http.post(url, body: {'token': '$token'});
-    debugPrint('${res.statusCode}');
     if (res.statusCode == 200) {
       // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
       Map resMap = json.decode(res.body);
+      const storage = FlutterSecureStorage();
+      await storage.write(
+          key: 'remindersCount', value: resMap['reminders_count']);
+      await storage.write(
+          key: 'notificationsCount', value: resMap['notifications_count']);
       // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
       setState(() {
-        _user = User.fromJson(resMap['data']);
+        _user = User.fromJson(resMap['user']);
       });
     }
   }

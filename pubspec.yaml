@@ -32,13 +32,14 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  http: ^0.13.4
-  google_fonts: ^2.1.0
-  flutter_secure_storage: ^4.2.1
+  http: ^0.13.4 # APIへのアクセス
+  google_fonts: ^2.1.0 # フォント
+  flutter_secure_storage: ^4.2.1 # アプリ側のセキュアなストレージ
+  url_launcher: ^6.0.12 # ブラウザを開く
+  badges: ^2.0.1 # バッジの表示
 
 dev_dependencies:
   flutter_test:
