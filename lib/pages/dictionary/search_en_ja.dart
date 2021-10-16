@@ -35,19 +35,19 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
 
   // async load cards API
   Future _loadSearchResults(keyword) async {
-    var url = Uri.parse(
-        'http://localhost:3000/ja/api/v1/mobile/dictionaries/search_en_ja?keyword=${keyword}');
-    var res =
-        await http.get(url, headers: {"Content-Type": "application/json"});
+    var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/dictionaries/search_en_ja');
+    var res = await http.post(url, body: {'keyword': '$keyword'});
+    if (res.statusCode == 200) {
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map<String, dynamic> resMap = json.decode(res.body);
     var data = resMap['data'];
-    // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
+// Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     data.forEach((e) => _words.add(Word.fromJson(e)));
     //final flashcards = _flashcards;
     setState(() {
       _words;
     });
+    }
   }
 
   @override

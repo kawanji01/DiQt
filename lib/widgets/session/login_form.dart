@@ -26,15 +26,22 @@ class LoginForm extends StatelessWidget {
       if (res.statusCode == 200) {
         Map resMap = json.decode(res.body);
         //debugPrint(resMap);
-        var data = resMap['data'];
-        debugPrint("${data['token']}");
+        debugPrint("${resMap['token']}");
         // トークンを格納
         const storage = FlutterSecureStorage();
-        await storage.write(key: 'token', value: data['token']);
+        await storage.write(key: 'token', value: resMap['token']);
+        await storage.write(
+            key: 'remindersCount', value: resMap['reminders_count']);
+        await storage.write(
+            key: 'notificationsCount', value: resMap['notifications_count']);
+        const snackBar = SnackBar(content: Text('ログインしました。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
       } else {
         _idController.text = '';
         _passwordController.text = '';
+        const snackBar = SnackBar(content: Text('メールアドレスまたはパスワードが違います。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
 
