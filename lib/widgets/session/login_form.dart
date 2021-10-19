@@ -45,7 +45,7 @@ class LoginForm extends StatelessWidget {
       }
     }
 
-    // IDとパスワードのフォーム
+    // IDとパスワードのフォーム https://flutterawesome.com/basic-login-and-signup-screen-designed-in-flutter/
     Widget _entryField(String title, controller, {bool isPassword = false}) {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
