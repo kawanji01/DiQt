@@ -87,7 +87,7 @@ class _UserMyPageState extends State<UserMyPage> {
       final profile = Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
-          '${_user!.profile}',
+          _user?.profile ?? '',
           style: const TextStyle(fontSize: 16.0, color: Colors.black54),
         ),
       );
