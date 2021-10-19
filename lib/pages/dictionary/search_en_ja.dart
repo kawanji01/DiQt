@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/dictionary/word_list.dart';
+import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:http/http.dart' as http;
@@ -35,18 +36,19 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
 
   // async load cards API
   Future _loadSearchResults(keyword) async {
-    var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/dictionaries/search_en_ja');
+    var url = Uri.parse(
+        'http://localhost:3000/ja/api/v1/mobile/dictionaries/search_en_ja');
     var res = await http.post(url, body: {'keyword': '$keyword'});
     if (res.statusCode == 200) {
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map<String, dynamic> resMap = json.decode(res.body);
-    var data = resMap['data'];
+      // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+      Map<String, dynamic> resMap = json.decode(res.body);
+      var data = resMap['data'];
 // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
-    data.forEach((e) => _words.add(Word.fromJson(e)));
-    //final flashcards = _flashcards;
-    setState(() {
-      _words;
-    });
+      data.forEach((e) => _words.add(Word.fromJson(e)));
+      //final flashcards = _flashcards;
+      setState(() {
+        _words;
+      });
     }
   }
 
@@ -60,12 +62,16 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
         margin: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
+            const SizedBox(
+              height: 10,
+            ),
             Expanded(
               child: WordList(words: _words),
             ),
           ],
         ),
       ),
+      bottomNavigationBar: const BottomNavbar(selectedIndex: 2),
     );
   }
 }

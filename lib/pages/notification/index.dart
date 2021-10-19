@@ -31,11 +31,9 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
   Future _loadUser() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
-    debugPrint(token);
     var url =
         Uri.parse('http://localhost:3000/ja/api/v1/mobile/notifications/list');
     var res = await http.post(url, body: {'token': '$token'});
-    debugPrint('${res.statusCode}');
     if (res.statusCode == 200) {
       // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
       Map resMap = json.decode(res.body);
