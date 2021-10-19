@@ -52,6 +52,15 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
     }
   }
 
+  Widget _buildResults() {
+    if (_words.isEmpty) {
+      return Text('"$_keyword"は辞書に登録されていません。',
+          style: const TextStyle(fontSize: 16));
+    } else {
+      return WordList(words: _words);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +75,7 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
               height: 10,
             ),
             Expanded(
-              child: WordList(words: _words),
+              child: _buildResults(),
             ),
           ],
         ),

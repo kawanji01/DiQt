@@ -175,27 +175,55 @@ class _WordPageState extends State<WordPage> {
       );
     }
 
+    Widget _explanationPart() {
+      return Column(children: [
+        Text(_word?.explanation ?? '',
+            style: const TextStyle(fontSize: 16, height: 1.6))
+      ]);
+    }
+
+    Widget _sentencePart() {
+      return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text('【例文】'),
+        Text(_sentence?.text ?? '',
+            style: const TextStyle(fontSize: 16, height: 1.6)),
+        const SizedBox(height: 8),
+        Text(_sentence?.translation ?? '',
+            style: const TextStyle(fontSize: 16, height: 1.6)),
+      ]);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(entry),
       ),
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            const SizedBox(
-              height: 10,
-            ),
-            _entryPart(),
-            const SizedBox(
-              height: 16,
-            ),
-            _meaningPart(),
-            const SizedBox(
-              height: 24,
-            ),
-            _reminderButton(),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.all(20),
+          child: Column(
+            children: <Widget>[
+              const SizedBox(
+                height: 10,
+              ),
+              _entryPart(),
+              const SizedBox(
+                height: 16,
+              ),
+              _meaningPart(),
+              const SizedBox(
+                height: 24,
+              ),
+              _reminderButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              _explanationPart(),
+              const SizedBox(
+                height: 32,
+              ),
+              _sentencePart(),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 2),

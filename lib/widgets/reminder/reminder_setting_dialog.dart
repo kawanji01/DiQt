@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/models/reminder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -137,7 +136,7 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
             dropdownValue = newValue!;
           });
         },
-        items: <String>['0', '1', '2', '3', '4']
+        items: <String>['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
             .map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
