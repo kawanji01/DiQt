@@ -25,8 +25,7 @@ class LoginForm extends StatelessWidget {
       });
       if (res.statusCode == 200) {
         Map resMap = json.decode(res.body);
-        //debugPrint(resMap);
-        debugPrint("${resMap['token']}");
+
         // トークンを格納
         const storage = FlutterSecureStorage();
         await storage.write(key: 'token', value: resMap['token']);

@@ -42,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map<String, dynamic> resMap = json.decode(res.body);
     var data = resMap['data'];
-    debugPrint('--- ${Flashcard.fromJson(data[0])}');
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     data.forEach((e) => _flashcards.add(Flashcard.fromJson(e)));
     //final flashcards = _flashcards;

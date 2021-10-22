@@ -27,8 +27,6 @@ class SignUpForm extends StatelessWidget {
       });
       if (res.statusCode == 200) {
         Map resMap = json.decode(res.body);
-        //debugPrint(resMap);
-        debugPrint("${resMap['token']}");
         // トークンを格納
         const storage = FlutterSecureStorage();
         await storage.write(key: 'token', value: resMap['token']);
@@ -103,7 +101,7 @@ class SignUpForm extends StatelessWidget {
                   end: Alignment.centerRight,
                   colors: [Color(0xfffbb448), Color(0xfff7892b)])),
           child: const Text(
-            'ログインする',
+            '登録する',
             style: TextStyle(
                 fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
           ),

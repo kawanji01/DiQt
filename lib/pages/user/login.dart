@@ -1,8 +1,11 @@
 import 'package:booqs_mobile/pages/user/sign_up.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/session/divider_widget.dart';
 import 'package:booqs_mobile/widgets/session/login_form.dart';
+import 'package:booqs_mobile/widgets/session/twitter_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,35 +19,31 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  Widget _divider() {
+  Future _moveToInitPasswordPage() async {
+    const url = "https://www.booqs.net/ja/password_resets/new";
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+      );
+    }
+  }
+
+  Widget _forgotPassword() {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      child: Row(
-        children: const <Widget>[
-          SizedBox(
-            width: 20,
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          textStyle: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
           ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Divider(
-                thickness: 1,
-              ),
-            ),
-          ),
-          Text('or'),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Divider(
-                thickness: 1,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-        ],
+        ),
+        onPressed: () => _moveToInitPasswordPage(),
+        child: const Text('パスワードを忘れましたか?',
+            style: TextStyle(color: Colors.black87)),
       ),
     );
   }
@@ -137,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text('ログイン'),
       ),
-      body: Container(
+      body: SizedBox(
         height: height,
         child: Stack(
           children: <Widget>[
@@ -150,16 +149,11 @@ class _LoginPageState extends State<LoginPage> {
                   children: <Widget>[
                     const SizedBox(height: 48),
                     LoginForm(),
-                    //Container(
-                    //  padding: const EdgeInsets.symmetric(vertical: 10),
-                    //  alignment: Alignment.centerRight,
-                    //  child: const Text('Forgot Password ?',
-                    //      style: TextStyle(
-                    //          fontSize: 14, fontWeight: FontWeight.w500)),
-                    //),
-                    //_divider(),
-                    //_facebookButton(),
-                    SizedBox(height: height * .055),
+                    _forgotPassword(),
+                    const DividerWidget(),
+                    const TwitterButton(type: 'ログイン'),
+                    _facebookButton(),
+                    const SizedBox(height: 24),
                     _createAccountLabel(),
                   ],
                 ),
