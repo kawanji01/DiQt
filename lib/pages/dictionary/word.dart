@@ -41,28 +41,28 @@ class _WordPageState extends State<WordPage> {
   Future _loadWord(word) async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
-    var url =
-        Uri.parse('http://localhost:3000/ja/api/v1/mobile/dictionaries/word');
+    var url = Uri.parse(
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/dictionaries/word');
     var res = await http
         .post(url, body: {'token': '$token', 'word_id': '${word.id}'});
-    if (res.statusCode == 200) {
-      // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-      Map resMap = json.decode(res.body);
-      // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
-      setState(() {
-        _userId = resMap['user_id'];
-        if (resMap['quiz'] != null) {
-          _quiz = Quiz.fromJson(resMap['quiz']);
-        }
-        if (resMap['reminder'] != null) {
-          _reminder = Reminder.fromJson(resMap['reminder']);
-        }
-        if (resMap['sentence'] != null) {
-          _sentence = Sentence.fromJson(resMap['sentence']);
-        }
-        _word = Word.fromJson(resMap['word']);
-      });
-    }
+    if (res.statusCode != 200) return;
+
+    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+    Map resMap = json.decode(res.body);
+    // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
+    setState(() {
+      _userId = resMap['user_id'];
+      if (resMap['quiz'] != null) {
+        _quiz = Quiz.fromJson(resMap['quiz']);
+      }
+      if (resMap['reminder'] != null) {
+        _reminder = Reminder.fromJson(resMap['reminder']);
+      }
+      if (resMap['sentence'] != null) {
+        _sentence = Sentence.fromJson(resMap['sentence']);
+      }
+      _word = Word.fromJson(resMap['word']);
+    });
   }
 
   @override
@@ -104,9 +104,8 @@ class _WordPageState extends State<WordPage> {
             return ReminderSettingDialog(
                 reminder: _reminder, quizId: _quiz!.id);
           });
-      if (newReminder == null) {
-        return;
-      }
+
+      if (newReminder == null) return;
 
       setState(() {
         if (newReminder.reviewDay == 'deleted') {
@@ -226,7 +225,7 @@ class _WordPageState extends State<WordPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 2),
+      bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
     );
   }
 }

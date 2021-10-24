@@ -20,7 +20,6 @@ class WordList extends StatelessWidget {
     }
 
     Future _showReminderDialog(word) async {
-      // 一蘭の時は、ここで一度リクエストを飛ばせばいい。
       Reminder? reminder;
       Quiz? quiz;
       const storage = FlutterSecureStorage();

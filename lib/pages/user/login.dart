@@ -2,7 +2,6 @@ import 'package:booqs_mobile/pages/user/sign_up.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/session/divider_widget.dart';
 import 'package:booqs_mobile/widgets/session/login_form.dart';
-import 'package:booqs_mobile/widgets/session/twitter_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
