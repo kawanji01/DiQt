@@ -8,7 +8,6 @@ import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 
 class ReminderIndexPage extends StatefulWidget {
   const ReminderIndexPage({Key? key}) : super(key: key);
@@ -99,7 +98,12 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
         child: Column(
           children: <Widget>[
             const SizedBox(
-              height: 80,
+              height: 40,
+            ),
+            const Text('復習を設定した辞書の項目を、問題形式で復習できます。',
+                style: TextStyle(fontSize: 16)),
+            const SizedBox(
+              height: 40,
             ),
             _remindersPageButton(),
           ],
