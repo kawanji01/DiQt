@@ -27,7 +27,7 @@ class TwitterButton extends StatelessWidget {
       switch (authResult.status) {
         case TwitterLoginStatus.loggedIn:
           var url = Uri.parse(
-              '${const String.fromEnvironment("ROOT_URL")}/ja/api/v1/mobile/sessions/twitter');
+              '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/twitter');
           var res = await http.post(url, body: {
             'uid': '${authResult.user!.id}',
             'name': authResult.user!.name,

@@ -52,7 +52,7 @@ class _FlashcardPlayPageState extends State<FlashcardPlayPage> {
     _flashcard = flashcard;
     //final flashcardCards = await FlashcardCard
     var url = Uri.parse(
-        'http://localhost:3000/ja/api/v1/mobile/dictionaries/${_flashcard?.id}');
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/dictionaries/${_flashcard?.id}');
     var res =
         await http.get(url, headers: {"Content-Type": "application/json"});
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2

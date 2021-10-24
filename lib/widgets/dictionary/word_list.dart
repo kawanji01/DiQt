@@ -25,7 +25,7 @@ class WordList extends StatelessWidget {
       const storage = FlutterSecureStorage();
       String? token = await storage.read(key: 'token');
       var url = Uri.parse(
-          'http://localhost:3000/ja/api/v1/mobile/words/${word.id}/load_quiz_and_reminder');
+          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/words/${word.id}/load_quiz_and_reminder');
       var res = await http.post(url, body: {'token': '$token'});
       if (res.statusCode != 200) {
         return;

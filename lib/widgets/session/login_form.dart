@@ -18,7 +18,8 @@ class LoginForm extends StatelessWidget {
       if (!_formKey.currentState!.validate()) {
         return;
       }
-      var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/sessions');
+      var url = Uri.parse(
+          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions');
       var res = await http.post(url, body: {
         'email': _idController.text,
         'password': _passwordController.text
@@ -29,6 +30,8 @@ class LoginForm extends StatelessWidget {
         // トークンを格納
         const storage = FlutterSecureStorage();
         await storage.write(key: 'token', value: resMap['token']);
+        await storage.write(
+            key: 'publicUid', value: resMap['user']['public_uid']);
         await storage.write(
             key: 'remindersCount', value: resMap['reminders_count']);
         await storage.write(

@@ -37,7 +37,7 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
   // async load cards API
   Future _loadSearchResults(keyword) async {
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/ja/api/v1/mobile/dictionaries/search_en_ja');
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/dictionaries/search_en_ja');
     var res = await http.post(url, body: {'keyword': '$keyword'});
     if (res.statusCode == 200) {
       // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2

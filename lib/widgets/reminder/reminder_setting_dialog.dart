@@ -44,7 +44,8 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
     http.Response res;
     // Save
     if (_reminder == null) {
-      var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/reminders');
+      var url = Uri.parse(
+          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reminders');
       res = await http.post(url, body: {
         'token': '$token',
         'quiz_id': '$_quizId',
@@ -52,8 +53,8 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
       });
     } else {
       // Update
-      var url =
-          Uri.parse('http://localhost:3000/ja/api/v1/mobile/reminders/change');
+      var url = Uri.parse(
+          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reminders/change');
       res = await http.post(url, body: {
         'token': token,
         'reminder_id': '${_reminder!.id}',
@@ -77,8 +78,8 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
     String? token = await storage.read(key: 'token');
 
     http.Response res;
-    var url =
-        Uri.parse('http://localhost:3000/ja/api/v1/mobile/reminders/delete');
+    var url = Uri.parse(
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reminders/delete');
     res = await http.post(url, body: {
       'token': token,
       'reminder_id': '${_reminder!.id}',

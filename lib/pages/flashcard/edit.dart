@@ -47,7 +47,7 @@ class _EditFlashcardPageState extends State<EditFlashcardPage> {
   // async load cards API
   Future _loadFlashcardCards(flashcard) async {
     var url = Uri.parse(
-        'http://localhost:3000/ja/api/v1/mobile/dictionaries/${flashcard.id}');
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/dictionaries/${flashcard.id}');
     var res =
         await http.get(url, headers: {"Content-Type": "application/json"});
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2

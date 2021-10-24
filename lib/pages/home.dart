@@ -50,12 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     myFocusNode = FocusNode();
-    _loadFlashcards();
+    _loadDictionaries();
   }
 
 // async create list
-  Future _loadFlashcards() async {
-    var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/dictionaries');
+  Future _loadDictionaries() async {
+    var url = Uri.parse(
+        '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/dictionaries');
     var res =
         await http.get(url, headers: {"Content-Type": "application/json"});
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
@@ -89,12 +90,12 @@ class _MyHomePageState extends State<MyHomePage> {
       title: Text(flashcard.title),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_forward_ios_rounded),
-            onPressed: () => _goToEditPage(flashcard),
-          ),
-        ],
+        //children: [
+        //  IconButton(
+        //    icon: const Icon(Icons.arrow_forward_ios_rounded),
+        //    onPressed: () => _goToEditPage(flashcard),
+        //  ),
+        //],
       ),
     );
   }

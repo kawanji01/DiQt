@@ -19,7 +19,8 @@ class SignUpForm extends StatelessWidget {
       if (!_formKey.currentState!.validate()) {
         return;
       }
-      var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/users');
+      var url = Uri.parse(
+          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users');
       var res = await http.post(url, body: {
         'name': _nameController.text,
         'email': _idController.text,
@@ -30,6 +31,8 @@ class SignUpForm extends StatelessWidget {
         // トークンを格納
         const storage = FlutterSecureStorage();
         await storage.write(key: 'token', value: resMap['token']);
+        await storage.write(
+            key: 'publicUid', value: resMap['user']['public_uid']);
         await storage.write(key: 'remindersCount', value: '0');
         await storage.write(key: 'notificationsCount', value: '0');
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
