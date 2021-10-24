@@ -102,8 +102,6 @@ class _LoginPageState extends State<LoginPage> {
                     LoginForm(),
                     _forgotPassword(),
                     const DividerWidget(),
-                    //const TwitterButton(type: 'ログイン'),
-                    //_facebookButton(),
                     const SizedBox(height: 24),
                     _createAccountLabel(),
                   ],

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,18 @@ class _UserMyPageState extends State<UserMyPage> {
     _loadUser();
   }
 
+  Future _moveToUserSetting() async {
+    const storage = FlutterSecureStorage();
+    String? uid = await storage.read(key: 'publicUid');
+// 外部リンクダイアログを表示
+    await showDialog(
+        context: context,
+        builder: (context) {
+          // ./locale/ を取り除いたpathを指定する
+          return ExternalLinkDialog(redirectPath: 'users/$uid/edit');
+        });
+  }
+
   Future _logout() async {
     // トークンを削除
     const storage = FlutterSecureStorage();
@@ -45,6 +58,8 @@ class _UserMyPageState extends State<UserMyPage> {
       // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
       Map resMap = json.decode(res.body);
       const storage = FlutterSecureStorage();
+      await storage.write(
+          key: 'publicUid', value: resMap['user']['public_uid']);
       await storage.write(
           key: 'remindersCount', value: resMap['reminders_count']);
       await storage.write(
@@ -92,6 +107,36 @@ class _UserMyPageState extends State<UserMyPage> {
         ),
       );
 
+      Widget _userSettinButton() {
+        return InkWell(
+          onTap: () {
+            _moveToUserSetting();
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.symmetric(vertical: 13),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: const Color(0xff84bf53).withAlpha(100),
+                      offset: const Offset(2, 4),
+                      blurRadius: 8,
+                      spreadRadius: 2)
+                ],
+                color: Colors.green),
+            child: const Text(
+              'ユーザー設定',
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        );
+      }
+
       Widget _logoutButton() {
         return InkWell(
           onTap: () {
@@ -132,6 +177,10 @@ class _UserMyPageState extends State<UserMyPage> {
             profile,
             const SizedBox(
               height: 80,
+            ),
+            _userSettinButton(),
+            const SizedBox(
+              height: 24,
             ),
             _logoutButton()
           ],

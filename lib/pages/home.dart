@@ -89,12 +89,12 @@ class _MyHomePageState extends State<MyHomePage> {
       title: Text(flashcard.title),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_forward_ios_rounded),
-            onPressed: () => _goToEditPage(flashcard),
-          ),
-        ],
+        //children: [
+        //  IconButton(
+        //    icon: const Icon(Icons.arrow_forward_ios_rounded),
+        //    onPressed: () => _goToEditPage(flashcard),
+        //  ),
+        //],
       ),
     );
   }

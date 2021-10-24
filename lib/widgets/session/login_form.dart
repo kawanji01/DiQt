@@ -30,6 +30,8 @@ class LoginForm extends StatelessWidget {
         const storage = FlutterSecureStorage();
         await storage.write(key: 'token', value: resMap['token']);
         await storage.write(
+            key: 'publicUid', value: resMap['user']['public_uid']);
+        await storage.write(
             key: 'remindersCount', value: resMap['reminders_count']);
         await storage.write(
             key: 'notificationsCount', value: resMap['notifications_count']);

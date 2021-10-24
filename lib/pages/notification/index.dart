@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 
 class NotificationIndexPage extends StatefulWidget {
   const NotificationIndexPage({Key? key}) : super(key: key);
@@ -46,15 +46,13 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
   }
 
   Future _moveToNotifications() async {
-    // トークンを削除
-    const url = "https://www.booqs.net/ja/notifications";
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-      );
-    }
+    // 外部リンクダイアログを表示
+    await showDialog(
+        context: context,
+        builder: (context) {
+          // ./locale/ を取り除いたpathを指定する
+          return const ExternalLinkDialog(redirectPath: 'notifications');
+        });
   }
 
   Widget _notificationsPageButton() {
