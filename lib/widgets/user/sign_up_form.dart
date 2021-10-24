@@ -19,7 +19,8 @@ class SignUpForm extends StatelessWidget {
       if (!_formKey.currentState!.validate()) {
         return;
       }
-      var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/users');
+      var url = Uri.parse(
+          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users');
       var res = await http.post(url, body: {
         'name': _nameController.text,
         'email': _idController.text,

@@ -52,7 +52,8 @@ class _UserMyPageState extends State<UserMyPage> {
   Future _loadUser() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
-    var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/users/my_page');
+    var url = Uri.parse(
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/my_page');
     var res = await http.post(url, body: {'token': '$token'});
     if (res.statusCode == 200) {
       // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2

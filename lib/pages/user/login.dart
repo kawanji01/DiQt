@@ -19,7 +19,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   Future _moveToInitPasswordPage() async {
-    const url = "https://www.booqs.net/ja/password_resets/new";
+    final String url =
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/password_resets/new';
     if (await canLaunch(url)) {
       await launch(
         url,
