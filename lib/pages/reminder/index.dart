@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:flutter/material.dart';
@@ -29,22 +30,20 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
   }
 
   Future _moveToReminders() async {
-    // トークンを削除
-    final url = "https://www.booqs.net/ja/reminders";
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-      );
-    }
+    // 外部リンクダイアログを表示
+    await showDialog(
+        context: context,
+        builder: (context) {
+          // ./locale/ を取り除いたpathを指定する
+          return const ExternalLinkDialog(redirectPath: 'reminders');
+        });
   }
 
   Future _loadReminders() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
-    var url =
-        Uri.parse('http://localhost:3000/ja/api/v1/mobile/reminders/list');
+    var url = Uri.parse(
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reminders/list');
     var res = await http.post(url, body: {'token': '$token'});
     if (res.statusCode == 200) {
       // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
@@ -113,7 +112,7 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('復習'),
+        title: const Text('復習'),
         automaticallyImplyLeading: false,
       ),
       body: _remindersOrEntrance(),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/reminder.dart';
+import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -32,13 +33,20 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
   Future _saveOrUpdate() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
+    // ログインしていないユーザーはマイページにリダイレクト
+    if (token == null) {
+      const snackBar = SnackBar(content: Text('復習を設定するためには、ログインが必要です。'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      UserMyPage.push(context);
+      return;
+    }
 
     http.Response res;
     // Save
     if (_reminder == null) {
       var url = Uri.parse('http://localhost:3000/ja/api/v1/mobile/reminders');
       res = await http.post(url, body: {
-        'token': token,
+        'token': '$token',
         'quiz_id': '$_quizId',
         'setting': dropdownValue
       });

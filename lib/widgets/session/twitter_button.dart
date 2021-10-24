@@ -1,11 +1,11 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:twitter_login/twitter_login.dart';
 import 'package:http/http.dart' as http;
+import 'package:twitter_login/twitter_login.dart';
 
+// Web/Mobile/ExtensionでSign in with Appleを導入できるようになるまでSNS認証の導入を見送る。
 class TwitterButton extends StatelessWidget {
   const TwitterButton({Key? key, this.type}) : super(key: key);
 
@@ -27,7 +27,7 @@ class TwitterButton extends StatelessWidget {
       switch (authResult.status) {
         case TwitterLoginStatus.loggedIn:
           var url = Uri.parse(
-              'http://localhost:3000/ja/api/v1/mobile/sessions/twitter');
+              '${const String.fromEnvironment("ROOT_URL")}/ja/api/v1/mobile/sessions/twitter');
           var res = await http.post(url, body: {
             'uid': '${authResult.user!.id}',
             'name': authResult.user!.name,
