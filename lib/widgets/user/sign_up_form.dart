@@ -1,13 +1,17 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
-class SignUpForm extends StatelessWidget {
-  SignUpForm({Key? key}) : super(key: key);
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({Key? key}) : super(key: key);
 
+  @override
+  _SignUpFormState createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _idController = TextEditingController();

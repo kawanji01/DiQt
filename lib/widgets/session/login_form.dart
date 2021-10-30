@@ -1,13 +1,17 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
-class LoginForm extends StatelessWidget {
-  LoginForm({Key? key}) : super(key: key);
+class LoginForm extends StatefulWidget {
+  const LoginForm({Key? key}) : super(key: key);
 
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();

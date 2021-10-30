@@ -1,24 +1,109 @@
 PODS:
+  - Firebase/CoreOnly (8.8.0):
+    - FirebaseCore (= 8.8.0)
+  - Firebase/Messaging (8.8.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 8.8.0)
+  - firebase_core (1.8.0):
+    - Firebase/CoreOnly (= 8.8.0)
+    - Flutter
+  - firebase_messaging (10.0.9):
+    - Firebase/Messaging (= 8.8.0)
+    - firebase_core
+    - Flutter
+  - FirebaseCore (8.8.0):
+    - FirebaseCoreDiagnostics (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/Logger (~> 7.4)
+  - FirebaseCoreDiagnostics (8.8.0):
+    - GoogleDataTransport (~> 9.0)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/Logger (~> 7.4)
+    - nanopb (~> 2.30908.0)
+  - FirebaseInstallations (8.8.0):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/UserDefaults (~> 7.4)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - FirebaseMessaging (8.8.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleDataTransport (~> 9.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/Reachability (~> 7.4)
+    - GoogleUtilities/UserDefaults (~> 7.4)
+    - nanopb (~> 2.30908.0)
   - Flutter (1.0.0)
+  - flutter_local_notifications (0.0.1):
+    - Flutter
   - flutter_secure_storage (3.3.1):
     - Flutter
+  - GoogleDataTransport (9.1.2):
+    - GoogleUtilities/Environment (~> 7.2)
+    - nanopb (~> 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/AppDelegateSwizzler (7.6.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (7.6.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.6.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/Network (7.6.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.6.0)"
+  - GoogleUtilities/Reachability (7.6.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.6.0):
+    - GoogleUtilities/Logger
+  - nanopb (2.30908.0):
+    - nanopb/decode (= 2.30908.0)
+    - nanopb/encode (= 2.30908.0)
+  - nanopb/decode (2.30908.0)
+  - nanopb/encode (2.30908.0)
   - path_provider (0.0.1):
     - Flutter
+  - PromisesObjC (2.0.0)
   - twitter_login (0.0.1):
     - Flutter
   - url_launcher (0.0.1):
     - Flutter
 
 DEPENDENCIES:
+  - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
+  - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
+  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - twitter_login (from `.symlinks/plugins/twitter_login/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
+SPEC REPOS:
+  trunk:
+    - Firebase
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseInstallations
+    - FirebaseMessaging
+    - GoogleDataTransport
+    - GoogleUtilities
+    - nanopb
+    - PromisesObjC
+
 EXTERNAL SOURCES:
+  firebase_core:
+    :path: ".symlinks/plugins/firebase_core/ios"
+  firebase_messaging:
+    :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
     :path: Flutter
+  flutter_local_notifications:
+    :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
   path_provider:
@@ -29,12 +114,24 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
+  Firebase: 629510f1a9ddb235f3a7c5c8ceb23ba887f0f814
+  firebase_core: 3b4c707f5a8eff38f52fd5580895bcd89357bf42
+  firebase_messaging: c2570c4b5aeb1b9dc1b40a3b4a246e246cd583a8
+  FirebaseCore: 98b29e3828f0a53651c363937a7f7d92a19f1ba2
+  FirebaseCoreDiagnostics: fe77f42da6329d6d83d21fd9d621a6b704413bfc
+  FirebaseInstallations: 2563cb18a723ef9c6ef18318a49519b75dce613c
+  FirebaseMessaging: 419b5c9d84f294a753c6501d8cfb9ced1ce37304
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
+  GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
+  GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
+  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   path_provider: d1e9807085df1f9cc9318206cd649dc0b76be3de
+  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   twitter_login: 2794db69b7640681171b17b3c2c84ad9dfb4a57f
   url_launcher: b6e016d912f04be9f5bf6e8e82dc599b7ba59649
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: 9dead85be96bd877acb9ba7514a7aad89b7d82b1
 
 COCOAPODS: 1.10.2

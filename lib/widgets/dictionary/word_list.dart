@@ -78,9 +78,12 @@ class WordList extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Text(word.meaning,
-              style:
-                  const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+          SizedBox(
+            width: double.infinity,
+            child: Text(word.meaning,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+          ),
           const SizedBox(
             height: 24,
           ),

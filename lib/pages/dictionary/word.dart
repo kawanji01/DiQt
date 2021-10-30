@@ -7,6 +7,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/reminder/reminder_setting_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -28,6 +29,7 @@ class _WordPageState extends State<WordPage> {
   Quiz? _quiz;
   Reminder? _reminder;
   Sentence? _sentence;
+  bool _initDone = false;
 
   void initState() {
     super.initState();
@@ -45,7 +47,12 @@ class _WordPageState extends State<WordPage> {
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/dictionaries/word');
     var res = await http
         .post(url, body: {'token': '$token', 'word_id': '${word.id}'});
-    if (res.statusCode != 200) return;
+
+    if (res.statusCode != 200) {
+      setState(() {
+        _initDone = true;
+      });
+    }
 
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
@@ -62,6 +69,7 @@ class _WordPageState extends State<WordPage> {
         _sentence = Sentence.fromJson(resMap['sentence']);
       }
       _word = Word.fromJson(resMap['word']);
+      _initDone = true;
     });
   }
 
@@ -87,12 +95,17 @@ class _WordPageState extends State<WordPage> {
     }
 
     Widget _meaningPart() {
-      return Text(
-        meaning,
-        style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-          height: 1.5,
+      if (_initDone == false) return const LoadingSpinner();
+
+      return SizedBox(
+        width: double.infinity,
+        child: Text(
+          meaning,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            height: 1.5,
+          ),
         ),
       );
     }
@@ -117,6 +130,8 @@ class _WordPageState extends State<WordPage> {
     }
 
     Widget _reminderButton() {
+      if (_initDone == false) return Container();
+
       final int settingNumber = _reminder?.setting ?? 100;
       String settingText = '復習する';
 
@@ -175,15 +190,23 @@ class _WordPageState extends State<WordPage> {
     }
 
     Widget _explanationPart() {
-      return Column(children: [
-        Text(_word?.explanation ?? '',
-            style: const TextStyle(fontSize: 16, height: 1.6))
-      ]);
+      if (_initDone == false) return Container();
+
+      return SizedBox(
+        width: double.infinity,
+        child: Text(
+          _word?.explanation ?? '',
+          textAlign: TextAlign.left,
+          style: const TextStyle(fontSize: 16, height: 1.6),
+        ),
+      );
     }
 
     Widget _sentencePart() {
+      if (_initDone == false) return Container();
+
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('【例文】'),
+        const Text('【例文】'),
         Text(_sentence?.text ?? '',
             style: const TextStyle(fontSize: 16, height: 1.6)),
         const SizedBox(height: 8),

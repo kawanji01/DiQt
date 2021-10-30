@@ -41,6 +41,10 @@ dependencies:
   url_launcher: ^6.0.12 # ブラウザを開く
   badges: ^2.0.1 # バッジの表示
   twitter_login: ^4.0.1 # Twitter認証 
+  firebase_core: ^1.8.0 # Push通知の実装に利用。参考：https://zuma-lab.com/posts/flutter-fcm-push-notify-development
+  firebase_messaging: ^10.0.9 # Push通知の実装に利用
+  flutter_local_notifications: ^9.0.1 # Push通知の実装に利用。Androidでpush通知を送るために必要。参照：https://zenn.dev/rafekun/articles/ef8a22f9fe90bd
+  flutter_spinkit: ^5.1.0 # 読み込み時のスピナーを表示する。
 
 dev_dependencies:
   flutter_test:

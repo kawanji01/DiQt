@@ -5,6 +5,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -23,6 +24,8 @@ class NotificationIndexPage extends StatefulWidget {
 class _NotificationIndexPageState extends State<NotificationIndexPage> {
   User? _user;
   int _notifications_count = 0;
+  bool _initDone = false;
+
   void initState() {
     super.initState();
     _loadUser();
@@ -34,15 +37,21 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/notifications/list');
     var res = await http.post(url, body: {'token': '$token'});
-    if (res.statusCode == 200) {
-      // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-      Map resMap = json.decode(res.body);
-      // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
+
+    if (res.statusCode != 200) {
       setState(() {
-        _user = User.fromJson(resMap['user']);
-        _notifications_count = resMap['notifications_count'];
+        _initDone = true;
       });
     }
+
+    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+    Map resMap = json.decode(res.body);
+    // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
+    setState(() {
+      _user = User.fromJson(resMap['user']);
+      _notifications_count = resMap['notifications_count'];
+      _initDone = true;
+    });
   }
 
   Future _moveToNotifications() async {
@@ -83,23 +92,23 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
     );
   }
 
-  Widget _notificationsOrEntrance() {
-    if (_user == null) {
-      return const Entrance();
-    } else {
-      return Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.all(28.0),
-        child: Column(
-          children: <Widget>[
-            const SizedBox(
-              height: 80,
-            ),
-            _notificationsPageButton(),
-          ],
-        ),
-      );
-    }
+  Widget _notificationsOrEntrance(user) {
+    if (_initDone == false) return const LoadingSpinner();
+
+    if (_user == null) return const Entrance();
+
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.all(28.0),
+      child: Column(
+        children: <Widget>[
+          const SizedBox(
+            height: 80,
+          ),
+          _notificationsPageButton(),
+        ],
+      ),
+    );
   }
 
   @override
@@ -109,7 +118,7 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
         title: const Text('通知'),
         automaticallyImplyLeading: false,
       ),
-      body: _notificationsOrEntrance(),
+      body: _notificationsOrEntrance(_user),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 2),
     );
   }
