@@ -78,12 +78,9 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
         title: const Text('検索結果'),
       ),
       body: Container(
-        margin: const EdgeInsets.all(20),
+        margin: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
           children: <Widget>[
-            const SizedBox(
-              height: 10,
-            ),
             Expanded(
               child: _buildResults(),
             ),

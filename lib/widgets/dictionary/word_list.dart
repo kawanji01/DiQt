@@ -72,6 +72,7 @@ class WordList extends StatelessWidget {
       final word = words[index];
 
       return ListTile(
+        contentPadding: const EdgeInsets.symmetric(vertical: 24),
         title: Text(word.entry,
             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800)),
         subtitle: Column(children: <Widget>[
