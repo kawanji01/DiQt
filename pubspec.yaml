@@ -41,7 +41,11 @@ dependencies:
   url_launcher: ^6.0.12 # ブラウザを開く
   badges: ^2.0.1 # バッジの表示
   twitter_login: ^4.0.1 # Twitter認証 
-
+  firebase_core: ^1.8.0 # Push通知の実装に利用。参考：https://zuma-lab.com/posts/flutter-fcm-push-notify-development
+  firebase_messaging: ^10.0.9 # Push通知の実装に利用
+  flutter_local_notifications: ^9.0.1 # Push通知の実装に利用。Androidでpush通知を送るために必要。参照：https://zenn.dev/rafekun/articles/ef8a22f9fe90bd
+  flutter_spinkit: ^5.1.0 # 読み込み時のスピナーを表示する。
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -52,6 +56,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  flutter_launcher_icons: ^0.9.2 # アイコンの設定。参照：https://zenn.dev/dala/books/flutter-basic-app/viewer/appinfo
+flutter_icons:
+  android: "ic_launcher"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icon/BooQs_icon.png"
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -6,6 +6,7 @@ import 'package:booqs_mobile/pages/flashcard/edit_card.dart';
 import 'package:booqs_mobile/pages/flashcard/play.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notification/index.dart';
+import 'package:booqs_mobile/pages/notification/push_test.dart';
 import 'package:booqs_mobile/pages/reminder/index.dart';
 import 'package:booqs_mobile/pages/user/login.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
@@ -16,6 +17,7 @@ const flashcardCreatePage = '/flashcard/create';
 const flashcardEditPage = '/flashcard/edit';
 const flashcardCardEditPage = '/flashcard/edit-card';
 const flashcardPlayPage = '/flashcard/play';
+const pushTestPage = '/notifications/push_text';
 
 // new
 const searchEnJaPage = '/dictionary/search_en_ja';
@@ -32,6 +34,7 @@ final routes = {
   flashcardEditPage: (context) => const EditFlashcardPage(),
   flashcardCardEditPage: (context) => const EditFlashcardCardPage(),
   flashcardPlayPage: (context) => const FlashcardPlayPage(),
+  pushTestPage: (context) => const PushTestPage(),
   // New
   searchEnJaPage: (context) => const SearchEnJaPage(),
   reminderIndexPage: (context) => const ReminderIndexPage(),

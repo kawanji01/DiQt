@@ -12,8 +12,12 @@ class Entrance extends StatelessWidget {
     Widget _submitButton() {
       return InkWell(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const LoginPage()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginPage(),
+            ),
+          );
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -64,21 +68,22 @@ class Entrance extends StatelessWidget {
 
     Widget _label() {
       return Container(
-          margin: const EdgeInsets.only(top: 40, bottom: 20),
-          child: Column(
-            children: <Widget>[
-              Text(
-                'この機能を利用するにはログインが必要です。',
-                style: GoogleFonts.notoSans(
-                    color: Colors.grey,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w100),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-            ],
-          ));
+        margin: const EdgeInsets.only(top: 40, bottom: 20),
+        child: Column(
+          children: <Widget>[
+            Text(
+              'この機能を利用するにはログインが必要です。',
+              style: GoogleFonts.notoSans(
+                  color: Colors.grey,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w100),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
+      );
     }
 
     return Container(
