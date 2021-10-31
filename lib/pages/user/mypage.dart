@@ -186,7 +186,7 @@ class _UserMyPageState extends State<UserMyPage> {
         onPressed: () {
           _goToFCM();
         },
-        child: const Text('Gradient'),
+        child: const Text('FCM'),
       );
     }
 
