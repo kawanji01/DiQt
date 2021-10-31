@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:booqs_mobile/models/flashcard.dart';
 import 'package:booqs_mobile/pages/dictionary/search_en_ja.dart';
 import 'package:booqs_mobile/pages/flashcard/edit.dart';
-import 'package:booqs_mobile/pages/notification/push_test.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/dictionary/search_form.dart';
@@ -30,16 +29,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Flashcard> _flashcards = [];
-
-  // form に必要な素材
-  final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-  void _search() {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
-    _goToSearchEnJaPage(_nameController.text);
-  }
 
   // floatingButtonを押した時にフォームにフォーカスさせるための処理 / https://flutter.dev/docs/cookbook/forms/focus
   // Define the focus node. To manage the lifecycle, create the FocusNode in
@@ -79,11 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
     await EditFlashcardPage.push(context, flashcard);
   }
 
-  Future _goToSearchEnJaPage(keyword) async {
-    //await Navigator.of(context).pushNamed(searchEnJaPage);
-    await SearchEnJaPage.push(context, keyword);
-  }
-
   Widget _buildListRow(BuildContext context, int index) {
     final flashcard = _flashcards[index];
 
@@ -120,31 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
         margin: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  SearchForm(
-                    nameController: _nameController,
-                    focusNode: myFocusNode,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 20, bottom: 40),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity,
-                            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-                      ),
-                      onPressed: _search,
-                      child: const Text(
-                        '辞書を引く',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            SearchForm(focusNode: myFocusNode),
             Expanded(
               child: ListView.separated(
                 shrinkWrap: true,

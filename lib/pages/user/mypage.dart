@@ -190,10 +190,11 @@ class _UserMyPageState extends State<UserMyPage> {
       );
     }
 
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.all(28.0),
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 24),
+        color: Colors.transparent,
         child: Column(
           children: <Widget>[
             icon,
