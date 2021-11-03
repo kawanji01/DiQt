@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/notification/push_test.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/device_indentifier.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
@@ -43,8 +44,14 @@ class _UserMyPageState extends State<UserMyPage> {
   }
 
   Future _logout() async {
-    // トークンを削除
     const storage = FlutterSecureStorage();
+    String? token = await storage.read(key: 'token');
+    String deviceIdentifier = await DeviceIndentifier.get(context);
+    var url = Uri.parse(
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/logout');
+    var res = await http.post(url,
+        body: {'token': '$token', 'device_identifier': deviceIdentifier});
+    // トークンをローカルストレージから削除
     await storage.deleteAll();
     const snackBar = SnackBar(content: Text('ログアウトしました。'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
