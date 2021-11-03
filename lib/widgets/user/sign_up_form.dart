@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -23,13 +25,35 @@ class _SignUpFormState extends State<SignUpForm> {
       if (!_formKey.currentState!.validate()) {
         return;
       }
+
+      // デバイスの識別IDなどを取得する
+      String deviceIdentifier = "unknown";
+      String platform = "unknown";
+      String deviceName = "unknown";
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      if (Platform.isAndroid) {
+        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+        deviceIdentifier = androidInfo.androidId!;
+        deviceName = androidInfo.model!;
+        platform = 'android';
+      } else if (Platform.isIOS) {
+        IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+        deviceIdentifier = iosInfo.identifierForVendor!;
+        deviceName = iosInfo.utsname.machine!;
+        platform = 'ios';
+      }
+      // リクエスト
       var url = Uri.parse(
           '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users');
       var res = await http.post(url, body: {
         'name': _nameController.text,
         'email': _idController.text,
-        'password': _passwordController.text
+        'password': _passwordController.text,
+        'device_identifier': deviceIdentifier,
+        'device_name': deviceName,
+        'platform': platform,
       });
+      // レスポンスに対する処理
       if (res.statusCode == 200) {
         Map resMap = json.decode(res.body);
         // トークンを格納

@@ -1,4 +1,6 @@
 PODS:
+  - device_info_plus (0.0.1):
+    - Flutter
   - Firebase/CoreOnly (8.8.0):
     - FirebaseCore (= 8.8.0)
   - Firebase/Messaging (8.8.0):
@@ -74,6 +76,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
@@ -96,6 +99,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  device_info_plus:
+    :path: ".symlinks/plugins/device_info_plus/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_messaging:
@@ -114,6 +119,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
+  device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   Firebase: 629510f1a9ddb235f3a7c5c8ceb23ba887f0f814
   firebase_core: 3b4c707f5a8eff38f52fd5580895bcd89357bf42
   firebase_messaging: c2570c4b5aeb1b9dc1b40a3b4a246e246cd583a8
