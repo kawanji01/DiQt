@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
@@ -29,6 +30,7 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
   void initState() {
     super.initState();
     _loadUser();
+    PushNotification.initialize(context);
   }
 
   Future _loadUser() async {

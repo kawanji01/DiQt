@@ -2,12 +2,11 @@ import 'dart:convert';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/device_indentifier.dart';
+import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -31,7 +30,7 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
   void initState() {
     super.initState();
     _loadReminders();
-    _requiestNotificationPermission();
+    PushNotification.initialize(context);
     //_rquestPushTest();
   }
 
@@ -70,51 +69,6 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
       _reminders_count = int.parse(resMap['reminders_count']);
       _initDone = true;
     });
-  }
-
-  Future _requiestNotificationPermission() async {
-    await Firebase.initializeApp();
-    final NotificationSettings settings =
-        await FirebaseMessaging.instance.requestPermission(
-      announcement: true,
-      carPlay: true,
-      criticalAlert: true,
-      sound: true,
-    );
-    // フォアグラウンドで受け取れるようにする。参照： https://zenn.dev/rafekun/articles/ef8a22f9fe90bd
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
-      alert: true, // Required to display a heads up notification
-      badge: true,
-      sound: true,
-    );
-    const storage = FlutterSecureStorage();
-    final String? token = await storage.read(key: 'token');
-    if (token == null) return;
-
-    final String? fcmToken = await FirebaseMessaging.instance.getToken();
-    final String deviceIdentifier = await DeviceIndentifier.get(context);
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/update_fcm_token');
-    var res = await http.post(url, body: {
-      'token': token,
-      'fcm_token': '$fcmToken',
-      'device_identifier': deviceIdentifier
-    });
-
-    print('${res.statusCode}');
-    print('$fcmToken');
-
-    // final NotificationSettings settings =
-    //    await FirebaseMessaging.instance.requestPermission();
-    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('User granted permission');
-    } else if (settings.authorizationStatus ==
-        AuthorizationStatus.provisional) {
-      print('User granted provisional permission');
-    } else {
-      print('User declined or has not accepted permission');
-    }
   }
 
   Future _rquestPushTest() async {
