@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/flashcard.dart';
 import 'package:booqs_mobile/pages/dictionary/search_en_ja.dart';
 import 'package:booqs_mobile/pages/flashcard/edit.dart';
@@ -6,6 +7,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/dictionary/search_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class MyHomePage extends StatefulWidget {
@@ -28,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Flashcard> _flashcards = [];
+  List<Dictionary> _dictionaries = [];
 
   // floatingButtonを押した時にフォームにフォーカスさせるための処理 / https://flutter.dev/docs/cookbook/forms/focus
   // Define the focus node. To manage the lifecycle, create the FocusNode in
@@ -41,6 +43,28 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     myFocusNode = FocusNode();
     _loadDictionaries();
+    _loadBadgeCount();
+  }
+
+  // 復習と通知のカウントを更新する
+  Future _loadBadgeCount() async {
+    const storage = FlutterSecureStorage();
+    String? token = await storage.read(key: 'token');
+    if (token == null) return;
+
+    var url = Uri.parse(
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/my_page');
+    var res = await http.post(url, body: {'token': '$token'});
+
+    if (res.statusCode != 200) return;
+
+    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+    Map resMap = json.decode(res.body);
+    await storage.write(key: 'publicUid', value: resMap['user']['public_uid']);
+    await storage.write(
+        key: 'remindersCount', value: resMap['reminders_count']);
+    await storage.write(
+        key: 'notificationsCount', value: resMap['notifications_count']);
   }
 
 // async create list
@@ -51,28 +75,26 @@ class _MyHomePageState extends State<MyHomePage> {
         await http.get(url, headers: {"Content-Type": "application/json"});
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map<String, dynamic> resMap = json.decode(res.body);
-    var data = resMap['data'];
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
-    data.forEach((e) => _flashcards.add(Flashcard.fromJson(e)));
-    //final flashcards = _flashcards;
+    resMap['data'].forEach((e) => _dictionaries.add(Dictionary.fromJson(e)));
     setState(() {
-      _flashcards;
+      _dictionaries;
     });
   }
 
-  Future _goToCreatePage() async {
-    await Navigator.of(context).pushNamed(flashcardCreatePage);
-  }
+  //Future _goToCreatePage() async {
+  //  await Navigator.of(context).pushNamed(flashcardCreatePage);
+  //}
 
-  Future _goToEditPage(Flashcard flashcard) async {
-    await EditFlashcardPage.push(context, flashcard);
-  }
+  //Future _goToEditPage(Flashcard flashcard) async {
+  //  await EditFlashcardPage.push(context, flashcard);
+  //}
 
   Widget _buildListRow(BuildContext context, int index) {
-    final flashcard = _flashcards[index];
+    final dictionary = _dictionaries[index];
 
     return ListTile(
-      title: Text(flashcard.title),
+      title: Text(dictionary.title),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         //children: [
@@ -87,16 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: const Text('辞書'),
         automaticallyImplyLeading: false,
       ),
@@ -110,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 shrinkWrap: true,
                 itemBuilder: _buildListRow,
                 separatorBuilder: (context, index) => const Divider(),
-                itemCount: _flashcards.length,
+                itemCount: _dictionaries.length,
               ),
             ),
           ],

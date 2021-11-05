@@ -11,6 +11,7 @@ import 'package:booqs_mobile/pages/reminder/index.dart';
 import 'package:booqs_mobile/pages/user/login.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/pages/user/sign_up.dart';
+import 'package:booqs_mobile/pages/word/edit.dart';
 
 const indexPage = '/';
 const flashcardCreatePage = '/flashcard/create';
@@ -27,6 +28,7 @@ const userMyPage = '/user/mypage';
 const signUpPage = '/user/sign_up';
 const loginPage = '/user/login';
 const wordPage = '/dictionary/word';
+const wordEditPage = '/word/edit';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -43,4 +45,5 @@ final routes = {
   signUpPage: (context) => const SignUpPage(),
   loginPage: (context) => const LoginPage(),
   wordPage: (context) => const WordPage(),
+  wordEditPage: (context) => const WordEditPage(),
 };

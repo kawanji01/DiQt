@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/widgets/dictionary/no_results_found.dart';
 import 'package:booqs_mobile/widgets/dictionary/word_list.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -20,6 +22,7 @@ class SearchEnJaPage extends StatefulWidget {
 
 class _SearchEnJaPageState extends State<SearchEnJaPage> {
   List<Word> _words = [];
+  Dictionary? _dictionary;
   String? _keyword;
   bool _initDone = false;
 
@@ -42,20 +45,15 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/dictionaries/search_en_ja');
     var res = await http.post(url, body: {'keyword': '$keyword'});
 
-    if (res.statusCode != 200) {
-      setState(() {
-        _initDone = true;
-      });
-    }
-
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map<String, dynamic> resMap = json.decode(res.body);
-    var data = resMap['data'];
-    // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
-    data.forEach((e) => _words.add(Word.fromJson(e)));
-    //final flashcards = _flashcards;
+    if (resMap['data'] != null) {
+      // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
+      resMap['data'].forEach((e) => _words.add(Word.fromJson(e)));
+    }
     setState(() {
       _words;
+      _dictionary = Dictionary.fromJson(resMap['dictionary']);
       _initDone = true;
     });
   }
@@ -64,8 +62,7 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
     if (_initDone == false) return const LoadingSpinner();
 
     if (_words.isEmpty) {
-      return Text('"$_keyword"は辞書に登録されていません。',
-          style: const TextStyle(fontSize: 16));
+      return NoResultsFound(keyword: _keyword, dictionary: _dictionary);
     }
 
     return WordList(words: _words);
