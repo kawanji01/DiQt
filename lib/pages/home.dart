@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     myFocusNode = FocusNode();
     _loadDictionaries();
-    //_loadBadgeCount();
+    _loadBadgeCount();
   }
 
   // 復習と通知のカウントを更新する

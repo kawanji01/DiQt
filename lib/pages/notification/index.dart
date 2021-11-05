@@ -46,6 +46,9 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
     }
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
+    await storage.write(
+        key: 'notificationsCount',
+        value: resMap['notifications_count'].toString());
 
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     setState(() {
