@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/reminder.dart';
 import 'package:booqs_mobile/models/sentence.dart';
@@ -8,6 +7,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/reminder/reminder_setting_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -34,7 +34,6 @@ class _WordPageState extends State<WordPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      // パラメーターを受け取る。型をFlashcardにキャスト。
       final word = ModalRoute.of(context)!.settings.arguments as Word;
       _loadWord(word);
     });
@@ -180,10 +179,25 @@ class _WordPageState extends State<WordPage> {
             borderRadius: const BorderRadius.all(Radius.circular(50)),
             border: Border.all(color: Colors.green, width: 2),
           ),
-          child: Text(
-            settingText,
-            style: const TextStyle(
-                fontSize: 18, color: Colors.green, fontWeight: FontWeight.w600),
+          child: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.green,
+                  fontWeight: FontWeight.w600),
+              children: [
+                const WidgetSpan(
+                  child: Icon(
+                    Icons.access_alarm,
+                    size: 22,
+                    color: Colors.green,
+                  ),
+                ),
+                TextSpan(
+                  text: " $settingText",
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -244,6 +258,10 @@ class _WordPageState extends State<WordPage> {
                 height: 32,
               ),
               _sentencePart(),
+              const SizedBox(
+                height: 32,
+              ),
+              WordEditButton(word: _word),
             ],
           ),
         ),
