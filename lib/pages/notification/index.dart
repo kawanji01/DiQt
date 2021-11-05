@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
@@ -29,11 +28,11 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
 
   void initState() {
     super.initState();
-    _loadUser();
+    _loadCount();
     PushNotification.initialize(context);
   }
 
-  Future _loadUser() async {
+  Future _loadCount() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
     var url = Uri.parse(
@@ -41,13 +40,13 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
     var res = await http.post(url, body: {'token': '$token'});
 
     if (res.statusCode != 200) {
-      setState(() {
+      return setState(() {
         _initDone = true;
       });
     }
-
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
+
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     setState(() {
       _user = User.fromJson(resMap['user']);

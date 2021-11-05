@@ -28,7 +28,7 @@ class _UserMyPageState extends State<UserMyPage> {
 
   void initState() {
     super.initState();
-    _loadUser();
+    _loadMyPage();
   }
 
   Future _moveToUserSetting() async {
@@ -59,7 +59,7 @@ class _UserMyPageState extends State<UserMyPage> {
   }
 
   // async create list
-  Future _loadUser() async {
+  Future _loadMyPage() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
     var url = Uri.parse(

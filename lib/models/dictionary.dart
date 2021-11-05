@@ -1,7 +1,7 @@
 class Dictionary {
   Dictionary(
       {this.id,
-      this.title,
+      this.title = '',
       this.introduction,
       this.image,
       this.publicUid,
@@ -24,7 +24,7 @@ class Dictionary {
       this.updatedAt});
 
   int? id;
-  String? title;
+  String title;
   String? introduction;
   String? image;
   String? publicUid;
