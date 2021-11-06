@@ -4,12 +4,14 @@ import 'package:booqs_mobile/models/reminder.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/tts_button.dart';
 import 'package:booqs_mobile/widgets/reminder/reminder_setting_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:http/http.dart' as http;
 
 class WordPage extends StatefulWidget {
@@ -75,20 +77,26 @@ class _WordPageState extends State<WordPage> {
   @override
   Widget build(BuildContext context) {
     final entry = _word?.entry ?? '';
+    final langNumberOfEntry = _word?.langNumberOfEntry ?? 21;
     final meaning = _word?.meaning ?? '';
 
     Widget _entryPart() {
       // 左寄せできない問題の解決策としてdouble.infinityを設定する。https://techsmeme.com/flutter-text-left-right/
       return SizedBox(
         width: double.infinity,
-        child: Text(
-          entry,
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.w600,
-            color: Colors.green.shade600,
-          ),
+        child: Wrap(
+          children: <Widget>[
+            Text(
+              entry,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.w600,
+                color: Colors.green.shade600,
+              ),
+            ),
+            TtsButton(speechText: entry, langNumber: langNumberOfEntry)
+          ],
         ),
       );
     }
