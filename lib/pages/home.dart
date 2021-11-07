@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/flashcard.dart';
-import 'package:booqs_mobile/pages/dictionary/search_en_ja.dart';
+import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
 import 'package:booqs_mobile/pages/flashcard/edit.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
         key: 'notificationsCount', value: resMap['notifications_count']);
   }
 
-// async create list
+  // async create list
   Future _loadDictionaries() async {
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/dictionaries');
@@ -86,9 +86,9 @@ class _MyHomePageState extends State<MyHomePage> {
   //  await Navigator.of(context).pushNamed(flashcardCreatePage);
   //}
 
-  //Future _goToEditPage(Flashcard flashcard) async {
-  //  await EditFlashcardPage.push(context, flashcard);
-  //}
+  Future _goToDictionaryPage(Dictionary dictionary) async {
+    await DictionaryPage.push(context, dictionary);
+  }
 
   Widget _buildListRow(BuildContext context, int index) {
     final dictionary = _dictionaries[index];
@@ -97,12 +97,12 @@ class _MyHomePageState extends State<MyHomePage> {
       title: Text(dictionary.title),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
-        //children: [
-        //  IconButton(
-        //    icon: const Icon(Icons.arrow_forward_ios_rounded),
-        //    onPressed: () => _goToEditPage(flashcard),
-        //  ),
-        //],
+        children: [
+          IconButton(
+            icon: const Icon(Icons.arrow_forward_ios_rounded),
+            onPressed: () => _goToDictionaryPage(dictionary),
+          ),
+        ],
       ),
     );
   }

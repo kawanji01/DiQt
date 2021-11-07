@@ -10,6 +10,7 @@ class Dictionary {
       this.requestScreened = false,
       this.wordsCount = 0,
       this.acceptedRequestsCount = 0,
+      this.pendingRequestsCount = 0,
       this.usersAuthorizedToCreate = 4,
       this.createScreened = false,
       this.usersAuthorizedToUpdate = 4,
@@ -33,6 +34,7 @@ class Dictionary {
   bool requestScreened;
   int wordsCount;
   int acceptedRequestsCount;
+  int pendingRequestsCount;
   int usersAuthorizedToCreate;
   bool createScreened;
   int usersAuthorizedToUpdate;
@@ -57,6 +59,7 @@ class Dictionary {
         requestScreened = json['request_screened'],
         wordsCount = json['words_count'],
         acceptedRequestsCount = json['accepted_requests_count'],
+        pendingRequestsCount = json['pending_requests_count'],
         usersAuthorizedToCreate = json['users_authorized_to_create'],
         createScreened = json['create_screened'],
         usersAuthorizedToUpdate = json['users_authorized_to_update'],
@@ -81,6 +84,7 @@ class Dictionary {
         'requestScreened': requestScreened,
         'wordsCount': wordsCount,
         'acceptedRequestsCount': acceptedRequestsCount,
+        'pendingRequestsCount': pendingRequestsCount,
         'usersAuthorizedToCreate': usersAuthorizedToCreate,
         'createScreened': createScreened,
         'usersAuthorizedToUpdate': usersAuthorizedToUpdate,

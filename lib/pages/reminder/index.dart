@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/device_indentifier.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/large_button.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -24,14 +24,14 @@ class ReminderIndexPage extends StatefulWidget {
 
 class _ReminderIndexPageState extends State<ReminderIndexPage> {
   User? _user;
-  int _reminders_count = 0;
+  int _remindersCount = 0;
   bool _initDone = false;
 
+  @override
   void initState() {
     super.initState();
     _loadReminders();
     PushNotification.initialize(context);
-    //_rquestPushTest();
   }
 
   Future _moveToReminders() async {
@@ -66,59 +66,25 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
         key: 'notificationsCount', value: resMap['notifications_count']);
     setState(() {
       _user = User.fromJson(resMap['user']);
-      _reminders_count = int.parse(resMap['reminders_count']);
+      _remindersCount = int.parse(resMap['reminders_count']);
       _initDone = true;
     });
   }
 
-  Future _rquestPushTest() async {
-    const storage = FlutterSecureStorage();
-    final String? token = await storage.read(key: 'token');
-    if (token == null) return;
-
-    String deviceIdentifier = await DeviceIndentifier.get(context);
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/push_test');
-    var res = await http.post(url,
-        body: {'token': '$token', 'device_identifier': deviceIdentifier});
-
-    print('${res.statusCode}');
-  }
-
   Widget _remindersPageButton() {
+    final String btnText = '$_remindersCount問を復習する';
     return InkWell(
       onTap: () {
         _moveToReminders();
       },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(vertical: 13),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(5)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: const Color(0xff84bf53).withAlpha(100),
-                  offset: const Offset(2, 4),
-                  blurRadius: 8,
-                  spreadRadius: 2)
-            ],
-            color: Colors.green),
-        child: Text(
-          '$_reminders_count問を復習する',
-          style: const TextStyle(
-              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      ),
+      child: LargeButton(btnText: btnText),
     );
   }
 
   Widget _remindersOrEntrance() {
     if (_initDone == false) return const LoadingSpinner();
-
     if (_user == null) return const Entrance();
 
-    //requireNotificationPermission();
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.all(28.0),
