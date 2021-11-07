@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/search_en_ja.dart';
 import 'package:booqs_mobile/pages/dictionary/word.dart';
 import 'package:booqs_mobile/pages/flashcard/create.dart';
@@ -27,6 +28,7 @@ const notificationIndexPage = '/notification/index';
 const userMyPage = '/user/mypage';
 const signUpPage = '/user/sign_up';
 const loginPage = '/user/login';
+const dictionaryPage = '/dictionary/dictionary';
 const wordPage = '/dictionary/word';
 const wordEditPage = '/word/edit';
 
@@ -44,6 +46,7 @@ final routes = {
   userMyPage: (context) => const UserMyPage(),
   signUpPage: (context) => const SignUpPage(),
   loginPage: (context) => const LoginPage(),
+  dictionaryPage: (context) => const DictionaryPage(),
   wordPage: (context) => const WordPage(),
   wordEditPage: (context) => const WordEditPage(),
 };
