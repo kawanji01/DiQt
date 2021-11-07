@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:booqs_mobile/utils/device_indentifier.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -16,6 +17,7 @@ class ExternalLinkDialog extends StatefulWidget {
 class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
   String? _redirectPath;
   String? _onetimePasscode;
+  bool _initDone = false;
 
   void initState() {
     super.initState();
@@ -39,6 +41,7 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
     Map resMap = json.decode(res.body);
     setState(() {
       _onetimePasscode = resMap['onetime_passcode'];
+      _initDone = true;
     });
   }
 
@@ -61,22 +64,28 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
     return const Text('Web版BooQsに移動します。よろしいですか？');
   }
 
+  Widget _linkButton() {
+    if (_initDone == false) return const LoadingSpinner();
+
+    return Container(
+      margin: const EdgeInsets.only(left: 12, right: 12, bottom: 24),
+      width: MediaQuery.of(context).size.width,
+      height: 40,
+      child: ElevatedButton(
+        onPressed: () => _moveToExternalPage(),
+        child: const Text('OK',
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('外部リンク'),
       content: _buildExternalLinkDialog(),
       actions: [
-        Container(
-          margin: const EdgeInsets.only(left: 12, right: 12, bottom: 24),
-          width: MediaQuery.of(context).size.width,
-          height: 40,
-          child: ElevatedButton(
-            onPressed: () => _moveToExternalPage(),
-            child: const Text('OK',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-          ),
-        ),
+        _linkButton(),
       ],
     );
   }
