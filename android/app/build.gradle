@@ -26,6 +26,14 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.google.gms.google-services'
 
+// 参考： https://zenn.dev/dala/books/flutter-basic-app/viewer/production-build#android-%E7%94%A8%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%83%93%E3%83%AB%E3%83%89%E3%82%92%E8%A1%8C%E3%81%86
+def keystoreProperties = new Properties()
+   def keystorePropertiesFile = rootProject.file('key.properties')
+   if (keystorePropertiesFile.exists()) {
+       keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+   }
+   // 参考： https://zenn.dev/dala/books/flutter-basic-app/viewer/production-build#android-%E7%94%A8%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%83%93%E3%83%AB%E3%83%89%E3%82%92%E8%A1%8C%E3%81%86
+
 android {
     compileSdkVersion 30
 
@@ -51,11 +59,23 @@ android {
         versionName flutterVersionName
     }
 
+    // 追加：参考　https://zenn.dev/dala/books/flutter-basic-app/viewer/production-build#android-%E7%94%A8%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%83%93%E3%83%AB%E3%83%89%E3%82%92%E8%A1%8C%E3%81%86
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+    // 追加：参考： https://zenn.dev/dala/books/flutter-basic-app/viewer/production-build#android-%E7%94%A8%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%83%93%E3%83%AB%E3%83%89%E3%82%92%E8%A1%8C%E3%81%86
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            // releaseに書き換えた。参考： https://zenn.dev/dala/books/flutter-basic-app/viewer/production-build#android-%E7%94%A8%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%83%93%E3%83%AB%E3%83%89%E3%82%92%E8%A1%8C%E3%81%86
+            signingConfig signingConfigs.release
         }
     }
 }
