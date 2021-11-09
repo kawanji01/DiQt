@@ -60,10 +60,11 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   flutter_launcher_icons: ^0.9.2 # アイコンの設定。参照：https://zenn.dev/dala/books/flutter-basic-app/viewer/appinfo
 flutter_icons:
-  android: "ic_launcher"
+  android: true
   ios: true
-  remove_alpha_ios: true
   image_path: "assets/icon/BooQs_icon.png"
+  adaptive_icon_background: '#273132'
+  adaptive_icon_foreground: "assets/icon/BooQs_icon.png"
 
 
 # For information on the generic Dart part of this file, see the
