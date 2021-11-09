@@ -1,7 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.booqs_mobile">
    <application
-        android:name=".Application"
         android:label="booqs_mobile"
         android:icon="@mipmap/ic_launcher">
         <activity
