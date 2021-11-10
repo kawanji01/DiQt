@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:874138930661:android:57037ea919faf9eefdb30c",
         "android_client_info": {
-          "package_name": "com.example.booqs_mobile"
+          "package_name": "com.booqs.booqs_mobile"
         }
       },
       "oauth_client": [
