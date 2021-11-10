@@ -79,6 +79,14 @@ class _WordPageState extends State<WordPage> {
     final langNumberOfEntry = _word?.langNumberOfEntry ?? 21;
     final meaning = _word?.meaning ?? '';
 
+    // 読み上げボタン
+    Widget _ttsButton() {
+      if (_initDone == false) return Container();
+
+      return TtsButton(speechText: entry, langNumber: langNumberOfEntry);
+    }
+
+    // 項目
     Widget _entryPart() {
       // 左寄せできない問題の解決策としてdouble.infinityを設定する。https://techsmeme.com/flutter-text-left-right/
       return SizedBox(
@@ -94,12 +102,13 @@ class _WordPageState extends State<WordPage> {
                 color: Colors.green.shade600,
               ),
             ),
-            TtsButton(speechText: entry, langNumber: langNumberOfEntry)
+            _ttsButton(),
           ],
         ),
       );
     }
 
+    // 意味
     Widget _meaningPart() {
       if (_initDone == false) return const LoadingSpinner();
 
@@ -236,6 +245,12 @@ class _WordPageState extends State<WordPage> {
       ]);
     }
 
+    Widget _wordEditButton() {
+      if (_initDone == false) return Container();
+
+      return WordEditButton(word: _word);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(entry),
@@ -268,7 +283,7 @@ class _WordPageState extends State<WordPage> {
               const SizedBox(
                 height: 32,
               ),
-              WordEditButton(word: _word),
+              _wordEditButton(),
             ],
           ),
         ),
