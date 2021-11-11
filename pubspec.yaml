@@ -47,6 +47,7 @@ dependencies:
   flutter_spinkit: ^5.1.0 # 読み込み時のスピナーを表示する。
   device_info_plus: ^3.1.0 # デバイスのユニークIDやデバイスの名前、OSを取得する。
   flutter_tts: ^3.2.2 # 読み上げ
+  flutter_dotenv: ^5.0.2 # 環境変数の管理
   
 dev_dependencies:
   flutter_test:
@@ -84,6 +85,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
    - assets/images/
+   - .env.development
+   - .env.production
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

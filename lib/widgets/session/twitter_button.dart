@@ -4,24 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:twitter_login/twitter_login.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Web/Mobile/ExtensionでSign in with Appleを導入できるようになるまでSNS認証の導入を見送る。
 class TwitterButton extends StatelessWidget {
   const TwitterButton({Key? key, this.type}) : super(key: key);
-
   final String? type;
   @override
   Widget build(BuildContext context) {
+    final String? _apiKey = dotenv.env['TWITTER_CONSUMER_KEY'];
+    final String? _apiSecretKey = dotenv.env['TWITTER_CONSUMER_SECRET'];
+    final String? _aredirectURI = dotenv.env['TWITTER_CALLBACK_URL'];
+    // 必要な情報が揃ってないなら、空のWidgetを返す。
+    if (_apiKey == null || _apiSecretKey == null || _aredirectURI == null)
+      return Container();
+
     Future _twitterAuth() async {
       final twitterLogin = TwitterLogin(
         // Consumer API keys
-        apiKey: const String.fromEnvironment("TWITTER_CONSUMER_KEY"),
+        apiKey: _apiKey,
         // Consumer API Secret keys
-        apiSecretKey: const String.fromEnvironment("TWITTER_CONSUMER_SECRET"),
+        apiSecretKey: _apiSecretKey,
         // Registered Callback URLs in TwitterApp
         // Android is a deeplink
         // iOS is a URLScheme
-        redirectURI: const String.fromEnvironment("TWITTER_CALLBACK_URL"),
+        redirectURI: _aredirectURI,
       );
       final authResult = await twitterLogin.login();
       switch (authResult.status) {
