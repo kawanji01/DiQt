@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -15,11 +17,30 @@ class TwitterButton extends StatelessWidget {
     final String? _apiKey = dotenv.env['TWITTER_CONSUMER_KEY'];
     final String? _apiSecretKey = dotenv.env['TWITTER_CONSUMER_SECRET'];
     final String? _aredirectURI = dotenv.env['TWITTER_CALLBACK_URL'];
+
     // 必要な情報が揃ってないなら、空のWidgetを返す。
     if (_apiKey == null || _apiSecretKey == null || _aredirectURI == null)
       return Container();
 
     Future _twitterAuth() async {
+      // 認証時のリクエストに含めるデバイスの識別IDなどを取得する
+      String deviceIdentifier = "unknown";
+      String platform = "unknown";
+      String deviceName = "unknown";
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      if (Platform.isAndroid) {
+        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+        deviceIdentifier = androidInfo.androidId!;
+        deviceName = androidInfo.model!;
+        platform = 'android';
+      } else if (Platform.isIOS) {
+        IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+        deviceIdentifier = iosInfo.identifierForVendor!;
+        deviceName = iosInfo.utsname.machine!;
+        platform = 'ios';
+      }
+
+      // Twitterログイン
       final twitterLogin = TwitterLogin(
         // Consumer API keys
         apiKey: _apiKey,
@@ -40,21 +61,25 @@ class TwitterButton extends StatelessWidget {
             'name': authResult.user!.name,
             'email': authResult.user!.email,
             'image': authResult.user!.thumbnailImage,
+            'device_identifier': deviceIdentifier,
+            'device_name': platform,
+            'platform': deviceName,
           });
-          if (res.statusCode == 200) {
-            Map resMap = json.decode(res.body);
-            // トークンを格納
-            const storage = FlutterSecureStorage();
-            await storage.write(key: 'token', value: resMap['token']);
-            await storage.write(
-                key: 'remindersCount', value: resMap['reminders_count']);
-            await storage.write(
-                key: 'notificationsCount',
-                value: resMap['notifications_count']);
-            final snackBar = SnackBar(content: Text('$typeしました。'));
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            UserMyPage.push(context);
-          }
+
+          if (res.statusCode != 200) return;
+
+          Map resMap = json.decode(res.body);
+          // トークンを格納
+          const storage = FlutterSecureStorage();
+          await storage.write(key: 'token', value: resMap['token']);
+          await storage.write(
+              key: 'remindersCount', value: resMap['reminders_count']);
+          await storage.write(
+              key: 'notificationsCount', value: resMap['notifications_count']);
+          final snackBar = SnackBar(content: Text('$typeしました。'));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          UserMyPage.push(context);
+
           break;
         case TwitterLoginStatus.cancelledByUser:
           // cancel
