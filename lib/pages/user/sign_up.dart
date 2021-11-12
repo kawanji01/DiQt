@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/pages/user/login.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/session/apple_button.dart';
 import 'package:booqs_mobile/widgets/session/divider_widget.dart';
 import 'package:booqs_mobile/widgets/session/twitter_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -78,6 +79,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const DividerWidget(),
                     const TwitterButton(type: '登録する'),
+                    const AppleButton(),
                     _loginAccountLabel(),
                   ],
                 ),

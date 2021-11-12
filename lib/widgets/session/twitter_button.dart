@@ -19,8 +19,9 @@ class TwitterButton extends StatelessWidget {
     final String? _aredirectURI = dotenv.env['TWITTER_CALLBACK_URL'];
 
     // 必要な情報が揃ってないなら、空のWidgetを返す。
-    if (_apiKey == null || _apiSecretKey == null || _aredirectURI == null)
+    if (_apiKey == null || _apiSecretKey == null || _aredirectURI == null) {
       return Container();
+    }
 
     Future _twitterAuth() async {
       // 認証時のリクエストに含めるデバイスの識別IDなどを取得する
