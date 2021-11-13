@@ -49,6 +49,7 @@ dependencies:
   flutter_tts: ^3.2.2 # 読み上げ
   flutter_dotenv: ^5.0.2 # 環境変数の管理
   sign_in_with_apple: ^3.2.0 # Apple認証
+  nonce: ^1.2.0 # 英数両用の乱数を生成する
   
 dev_dependencies:
   flutter_test:

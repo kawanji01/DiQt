@@ -77,7 +77,7 @@ class TwitterButton extends StatelessWidget {
               key: 'remindersCount', value: resMap['reminders_count']);
           await storage.write(
               key: 'notificationsCount', value: resMap['notifications_count']);
-          final snackBar = SnackBar(content: Text('$typeしました。'));
+          const snackBar = SnackBar(content: Text('ログインしました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           UserMyPage.push(context);
 

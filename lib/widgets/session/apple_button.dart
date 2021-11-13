@@ -1,18 +1,22 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:http/http.dart' as http;
+import 'package:crypto/crypto.dart';
+import 'package:nonce/nonce.dart';
 
 class AppleButton extends StatelessWidget {
   const AppleButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final rawNonce = Nonce.generate();
+    final state = Nonce.generate();
+
     return SignInWithAppleButton(
       onPressed: () async {
         final appleCredential = await SignInWithApple.getAppleIDCredential(
@@ -27,8 +31,11 @@ class AppleButton extends StatelessWidget {
               'https://www.booqs.net/auth/apple/callback',
             ),
           ),
+          // nonce : リプレイアタック対策。　参考： https://medium.com/flutter-jp/sign-in-with-apple-d0d123cbbe17
+          nonce: sha256.convert(utf8.encode(rawNonce)).toString(),
+          // state: CSRF対策
+          state: state,
         );
-        //logger.info(credential);
         print('appleCredential: $appleCredential');
         print('.state: ${appleCredential.state}');
         print('.givenName: ${appleCredential.givenName}');
@@ -75,20 +82,6 @@ class AppleButton extends StatelessWidget {
         const snackBar = SnackBar(content: Text('ログインしました。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
-
-        //final credential = OAuthProvider('apple.com').credential(
-        //  idToken: appleCredential.identityToken,
-        //  accessToken: appleCredential.authorizationCode,
-        //);
-        //final auth = FirebaseAuth.instance;
-        //final userCredential = await auth.signInWithCredential(credential);
-        //final user = userCredential.user;
-        //if (appleCredential.givenName != null) {
-        //  await user.updateProfile(
-        //    displayName:
-        //        '${appleCredential.givenName} ${appleCredential.familyName}',
-        //  );
-        //}
 
         // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
         // after they have been validated with Apple (see `Integration` section for more information on how to do this)
