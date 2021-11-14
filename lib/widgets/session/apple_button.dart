@@ -21,75 +21,80 @@ class AppleButton extends StatelessWidget {
     // AndroidとWebではService IDがclientIdとなる。
     if (Platform.isAndroid) clientId = dotenv.env['ANDROID_SERVICE_ID'];
 
-    return SignInWithAppleButton(
-      text: 'Appleで続ける',
-      onPressed: () async {
-        final appleCredential = await SignInWithApple.getAppleIDCredential(
-          scopes: [
-            AppleIDAuthorizationScopes.email,
-            AppleIDAuthorizationScopes.fullName,
-          ],
-          webAuthenticationOptions: WebAuthenticationOptions(
-            clientId: clientId!,
-            redirectUri: Uri.parse(
-              '${const String.fromEnvironment("ROOT_URL")}/auth/apple/callback_on_android',
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: SignInWithAppleButton(
+        text: 'Appleで続ける',
+        height: 44,
+        onPressed: () async {
+          final appleCredential = await SignInWithApple.getAppleIDCredential(
+            scopes: [
+              AppleIDAuthorizationScopes.email,
+              AppleIDAuthorizationScopes.fullName,
+            ],
+            webAuthenticationOptions: WebAuthenticationOptions(
+              clientId: clientId!,
+              redirectUri: Uri.parse(
+                '${const String.fromEnvironment("ROOT_URL")}/auth/apple/callback_on_android',
+              ),
             ),
-          ),
-          // nonce : リプレイアタック対策。　参考： https://medium.com/flutter-jp/sign-in-with-apple-d0d123cbbe17
-          nonce: sha256.convert(utf8.encode(rawNonce)).toString(),
-          // state: CSRF対策
-          state: state,
-        );
+            // nonce : リプレイアタック対策。　参考： https://medium.com/flutter-jp/sign-in-with-apple-d0d123cbbe17
+            nonce: sha256.convert(utf8.encode(rawNonce)).toString(),
+            // state: CSRF対策
+            state: state,
+          );
 
-        print('appleCredential: $appleCredential');
-        print('.state: ${appleCredential.state}');
-        print('idToken: ${appleCredential.identityToken}');
-        print('authorizationCode: ${appleCredential.authorizationCode}');
+          print('appleCredential: $appleCredential');
+          print('.state: ${appleCredential.state}');
+          print('idToken: ${appleCredential.identityToken}');
+          print('authorizationCode: ${appleCredential.authorizationCode}');
 
-        // 認証時のリクエストに含めるデバイスの識別IDなどを取得する
-        String deviceIdentifier = "unknown";
-        String platform = "unknown";
-        String deviceName = "unknown";
-        DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-        if (Platform.isAndroid) {
-          AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-          deviceIdentifier = androidInfo.androidId!;
-          deviceName = androidInfo.model!;
-          platform = 'android';
-        } else if (Platform.isIOS) {
-          IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-          deviceIdentifier = iosInfo.identifierForVendor!;
-          deviceName = iosInfo.utsname.machine!;
-          platform = 'ios';
-        }
+          ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
+          String deviceIdentifier = "unknown";
+          String platform = "unknown";
+          String deviceName = "unknown";
+          DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+          if (Platform.isAndroid) {
+            AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+            deviceIdentifier = androidInfo.androidId!;
+            deviceName = androidInfo.model!;
+            platform = 'android';
+          } else if (Platform.isIOS) {
+            IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+            deviceIdentifier = iosInfo.identifierForVendor!;
+            deviceName = iosInfo.utsname.machine!;
+            platform = 'ios';
+          }
+          ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する(END) ////
 
-        var url = Uri.parse(
-            '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/apple');
-        var res = await http.post(url, body: {
-          'identity_token': appleCredential.identityToken,
-          'authorization_code': appleCredential.authorizationCode,
-          'device_identifier': deviceIdentifier,
-          'platform': platform,
-          'device_name': deviceName,
-        });
+          var url = Uri.parse(
+              '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/apple');
+          var res = await http.post(url, body: {
+            'identity_token': appleCredential.identityToken,
+            'authorization_code': appleCredential.authorizationCode,
+            'device_identifier': deviceIdentifier,
+            'platform': platform,
+            'device_name': deviceName,
+          });
 
-        if (res.statusCode != 200) return;
+          if (res.statusCode != 200) return;
 
-        Map resMap = json.decode(res.body);
-        // トークンを格納
-        const storage = FlutterSecureStorage();
-        await storage.write(key: 'token', value: resMap['token']);
-        await storage.write(
-            key: 'remindersCount', value: resMap['reminders_count']);
-        await storage.write(
-            key: 'notificationsCount', value: resMap['notifications_count']);
-        const snackBar = SnackBar(content: Text('ログインしました。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
+          Map resMap = json.decode(res.body);
+          // トークンを格納
+          const storage = FlutterSecureStorage();
+          await storage.write(key: 'token', value: resMap['token']);
+          await storage.write(
+              key: 'remindersCount', value: resMap['reminders_count']);
+          await storage.write(
+              key: 'notificationsCount', value: resMap['notifications_count']);
+          const snackBar = SnackBar(content: Text('ログインしました。'));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          UserMyPage.push(context);
 
-        // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
-        // after they have been validated with Apple (see `Integration` section for more information on how to do this)
-      },
+          // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
+          // after they have been validated with Apple (see `Integration` section for more information on how to do this)
+        },
+      ),
     );
   }
 }

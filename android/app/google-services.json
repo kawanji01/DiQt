@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:874138930661:android:57037ea919faf9eefdb30c",
+        "mobilesdk_app_id": "1:874138930661:android:112985d27b83b23dfdb30c",
         "android_client_info": {
           "package_name": "com.booqs.booqs_mobile"
         }
@@ -31,7 +31,7 @@
               "client_type": 3
             },
             {
-              "client_id": "874138930661-she3pd1jblmd63l2dlgm68h061vh50bv.apps.googleusercontent.com",
+              "client_id": "874138930661-08qjbhrovv58l61b8f72gf83tt7j3h2v.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.booqs.booqsMobile"

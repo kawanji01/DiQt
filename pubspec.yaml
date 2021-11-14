@@ -35,7 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  http: ^0.13.4 # APIへのアクセス
+  http: ^0.13.4 # APIへのリクエスト
   google_fonts: ^2.1.0 # フォント
   flutter_secure_storage: ^4.2.1 # クライアント側のセキュアなストレージ
   url_launcher: ^6.0.12 # ブラウザを開く
@@ -49,7 +49,8 @@ dependencies:
   flutter_tts: ^3.2.2 # 読み上げ
   flutter_dotenv: ^5.0.2 # 環境変数の管理
   sign_in_with_apple: ^3.2.0 # Apple認証
-  nonce: ^1.2.0 # 英数両用の乱数を生成する
+  nonce: ^1.2.0 # 英数両用の乱数を生成する（Apple認証で利用）
+  google_sign_in: ^5.2.1 # Google認証
   
 dev_dependencies:
   flutter_test:

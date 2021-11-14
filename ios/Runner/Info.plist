@@ -29,7 +29,9 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>example</string>
+				<!-- Google認証 -->
+				<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+				<string>com.googleusercontent.apps.874138930661-08qjbhrovv58l61b8f72gf83tt7j3h2v</string>
 			</array>
 		</dict>
 	</array>
