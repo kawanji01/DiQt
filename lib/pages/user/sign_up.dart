@@ -1,6 +1,8 @@
 import 'package:booqs_mobile/pages/user/login.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/session/apple_button.dart';
 import 'package:booqs_mobile/widgets/session/divider_widget.dart';
+import 'package:booqs_mobile/widgets/session/twitter_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/user/sign_up_form.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +78,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       height: 24,
                     ),
                     const DividerWidget(),
-                    //const TwitterButton(type: '登録する'),
+                    const TwitterButton(),
+                    const AppleButton(),
                     _loginAccountLabel(),
                   ],
                 ),

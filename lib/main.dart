@@ -1,10 +1,12 @@
-import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+Future main() async {
+  // 環境変数を読み込む。参考： https://pub.dev/packages/flutter_dotenv
+  await dotenv.load(fileName: ".env.development");
   runApp(const MyApp());
 }
 
