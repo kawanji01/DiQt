@@ -78,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       height: 24,
                     ),
                     const DividerWidget(),
-                    const TwitterButton(type: '登録する'),
+                    const TwitterButton(),
                     const AppleButton(),
                     _loginAccountLabel(),
                   ],

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:http/http.dart' as http;
@@ -16,8 +17,12 @@ class AppleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final rawNonce = Nonce.generate();
     final state = Nonce.generate();
+    String? clientId = dotenv.env['IOS_BUNDLE_ID'];
+    // AndroidとWebではService IDがclientIdとなる。
+    if (Platform.isAndroid) clientId = dotenv.env['ANDROID_SERVICE_ID'];
 
     return SignInWithAppleButton(
+      text: 'Appleで続ける',
       onPressed: () async {
         final appleCredential = await SignInWithApple.getAppleIDCredential(
           scopes: [
@@ -25,10 +30,9 @@ class AppleButton extends StatelessWidget {
             AppleIDAuthorizationScopes.fullName,
           ],
           webAuthenticationOptions: WebAuthenticationOptions(
-            // Service ID
-            clientId: 'com.booqs.booqsMobile',
+            clientId: clientId!,
             redirectUri: Uri.parse(
-              'https://www.booqs.net/auth/apple/callback',
+              '${const String.fromEnvironment("ROOT_URL")}/auth/apple/callback_on_android',
             ),
           ),
           // nonce : リプレイアタック対策。　参考： https://medium.com/flutter-jp/sign-in-with-apple-d0d123cbbe17
@@ -36,10 +40,9 @@ class AppleButton extends StatelessWidget {
           // state: CSRF対策
           state: state,
         );
+
         print('appleCredential: $appleCredential');
         print('.state: ${appleCredential.state}');
-        print('.givenName: ${appleCredential.givenName}');
-        print('.familyName: ${appleCredential.familyName}');
         print('idToken: ${appleCredential.identityToken}');
         print('authorizationCode: ${appleCredential.authorizationCode}');
 
@@ -67,6 +70,7 @@ class AppleButton extends StatelessWidget {
           'authorization_code': appleCredential.authorizationCode,
           'device_identifier': deviceIdentifier,
           'platform': platform,
+          'device_name': deviceName,
         });
 
         if (res.statusCode != 200) return;

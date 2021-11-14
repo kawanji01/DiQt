@@ -10,8 +10,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Web/Mobile/ExtensionでSign in with Appleを導入できるようになるまでSNS認証の導入を見送る。
 class TwitterButton extends StatelessWidget {
-  const TwitterButton({Key? key, this.type}) : super(key: key);
-  final String? type;
+  const TwitterButton({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final String? _apiKey = dotenv.env['TWITTER_CONSUMER_KEY'];
@@ -63,8 +62,8 @@ class TwitterButton extends StatelessWidget {
             'email': authResult.user!.email,
             'image': authResult.user!.thumbnailImage,
             'device_identifier': deviceIdentifier,
-            'device_name': platform,
-            'platform': deviceName,
+            'platform': platform,
+            'device_name': deviceName,
           });
 
           if (res.statusCode != 200) return;
@@ -132,8 +131,8 @@ class TwitterButton extends StatelessWidget {
                       topRight: Radius.circular(5)),
                 ),
                 alignment: Alignment.center,
-                child: Text('Twitterで$type',
-                    style: const TextStyle(
+                child: const Text('Twitterで続ける',
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.w400)),
