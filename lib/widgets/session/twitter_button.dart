@@ -97,8 +97,8 @@ class TwitterButton extends StatelessWidget {
     return TextButton(
       onPressed: () => {_twitterAuth()},
       child: Container(
-        height: 50,
-        margin: const EdgeInsets.symmetric(vertical: 20),
+        height: 48,
+        margin: const EdgeInsets.only(top: 16, bottom: 24),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
@@ -135,7 +135,7 @@ class TwitterButton extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
-                        fontWeight: FontWeight.w400)),
+                        fontWeight: FontWeight.bold)),
               ),
             ),
           ],
