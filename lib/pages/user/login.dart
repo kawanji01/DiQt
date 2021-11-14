@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/pages/user/sign_up.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/session/apple_button.dart';
 import 'package:booqs_mobile/widgets/session/divider_widget.dart';
 import 'package:booqs_mobile/widgets/session/login_form.dart';
 import 'package:booqs_mobile/widgets/session/twitter_button.dart';
@@ -104,7 +105,8 @@ class _LoginPageState extends State<LoginPage> {
                     const LoginForm(),
                     _forgotPassword(),
                     const DividerWidget(),
-                    const TwitterButton(type: 'ログインする'),
+                    const TwitterButton(),
+                    const AppleButton(),
                     const SizedBox(height: 24),
                     _createAccountLabel(),
                   ],
