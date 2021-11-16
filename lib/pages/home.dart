@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/models/flashcard.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
-import 'package:booqs_mobile/pages/flashcard/edit.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/dictionary/search_form.dart';
