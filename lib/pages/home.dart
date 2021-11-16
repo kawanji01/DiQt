@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/models/flashcard.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
-import 'package:booqs_mobile/pages/flashcard/edit.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/dictionary/search_form.dart';
@@ -54,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/my_page');
-    var res = await http.post(url, body: {'token': '$token'});
+    var res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) return;
 

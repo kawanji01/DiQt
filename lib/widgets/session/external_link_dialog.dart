@@ -18,6 +18,7 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
   String? _onetimePasscode;
   bool _initDone = false;
 
+  @override
   void initState() {
     super.initState();
     setState(() {

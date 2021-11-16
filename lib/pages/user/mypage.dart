@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/notification/push_test.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/device_indentifier.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
@@ -26,6 +25,7 @@ class _UserMyPageState extends State<UserMyPage> {
   User? _user;
   bool _initDone = false;
 
+  @override
   void initState() {
     super.initState();
     _loadMyPage();
@@ -49,7 +49,7 @@ class _UserMyPageState extends State<UserMyPage> {
     String deviceIdentifier = await DeviceIndentifier.get(context);
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/logout');
-    var res = await http.post(url,
+    await http.post(url,
         body: {'token': '$token', 'device_identifier': deviceIdentifier});
     // トークンをローカルストレージから削除
     await storage.deleteAll();
@@ -84,10 +84,6 @@ class _UserMyPageState extends State<UserMyPage> {
       _user = User.fromJson(resMap['user']);
       _initDone = true;
     });
-  }
-
-  Future _goToFCM() async {
-    await PushTestPage.push(context);
   }
 
   Widget _mypage_or_entrance() {
@@ -181,22 +177,6 @@ class _UserMyPageState extends State<UserMyPage> {
       );
     }
 
-    Widget _FCMButton() {
-      if (_user!.id != 1) return Container();
-
-      return TextButton(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.all(16.0),
-          primary: Colors.green,
-          textStyle: const TextStyle(fontSize: 20),
-        ),
-        onPressed: () {
-          _goToFCM();
-        },
-        child: const Text('FCM'),
-      );
-    }
-
     return SingleChildScrollView(
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -215,7 +195,6 @@ class _UserMyPageState extends State<UserMyPage> {
               height: 24,
             ),
             _logoutButton(),
-            _FCMButton(),
           ],
         ),
       ),

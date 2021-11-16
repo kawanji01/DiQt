@@ -32,6 +32,7 @@ class _WordPageState extends State<WordPage> {
   Sentence? _sentence;
   bool _initDone = false;
 
+  @override
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {

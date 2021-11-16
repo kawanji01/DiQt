@@ -27,6 +27,7 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
   bool _initDone = false;
 
   // 初期化
+  @override
   void initState() {
     super.initState();
     // initialize

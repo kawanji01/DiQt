@@ -26,6 +26,7 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
   int _notifications_count = 0;
   bool _initDone = false;
 
+  @override
   void initState() {
     super.initState();
     _loadCount();

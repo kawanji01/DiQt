@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -24,10 +23,10 @@ class _WordEditPageState extends State<WordEditPage> {
   String? _entry;
   String? _meaning;
   String? _explanation;
-
   Sentence? _sentence;
   bool _initDone = false;
 
+  @override
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
@@ -72,8 +71,8 @@ class _WordEditPageState extends State<WordEditPage> {
         child: Container(
           margin: const EdgeInsets.all(20),
           child: Column(
-            children: <Widget>[
-              const SizedBox(
+            children: const <Widget>[
+              SizedBox(
                 height: 10,
               ),
             ],
