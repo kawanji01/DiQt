@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
