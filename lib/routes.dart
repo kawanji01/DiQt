@@ -3,7 +3,6 @@ import 'package:booqs_mobile/pages/dictionary/search_en_ja.dart';
 import 'package:booqs_mobile/pages/dictionary/word.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notification/index.dart';
-import 'package:booqs_mobile/pages/notification/push_test.dart';
 import 'package:booqs_mobile/pages/reminder/index.dart';
 import 'package:booqs_mobile/pages/user/login.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';

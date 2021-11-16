@@ -35,7 +35,7 @@ class PushNotification {
     // デバイスの識別IDを取得する
     final String deviceIdentifier = await DeviceIndentifier.get(context);
     // DB側のユーザー（token）とデバイス（device_identifier）と通知用のトークン（fcm_token）の紐付けを更新する。
-    // アプリを削除したときなどにFCMトークンはリセットされるので、こまめな更新が必要。参照：https://qiita.com/unsoluble_sugar/items/bca933735c9d3a2d60c2
+    // アプリをアンインストールしたときなどにFCMトークンはリセットされるので、こまめな更新が必要。参照：https://qiita.com/unsoluble_sugar/items/bca933735c9d3a2d60c2
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/update_fcm_token');
     var res = await http.post(url, body: {
@@ -43,9 +43,6 @@ class PushNotification {
       'fcm_token': '$fcmToken',
       'device_identifier': deviceIdentifier
     });
-
-    print('${res.statusCode}');
-    print('$fcmToken');
 
     // final NotificationSettings settings =
     //    await FirebaseMessaging.instance.requestPermission();
