@@ -19,6 +19,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   int _remindersCounter = 0;
   int _notificationsCounter = 0;
 
+  @override
   void initState() {
     super.initState();
     _selectedIndex = widget.selectedIndex;

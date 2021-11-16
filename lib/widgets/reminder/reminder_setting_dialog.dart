@@ -20,6 +20,7 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
   int? _quizId;
   String dropdownValue = '0';
 
+  @override
   void initState() {
     super.initState();
     _reminder = widget.reminder;
@@ -47,7 +48,7 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
       var url = Uri.parse(
           '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reminders');
       res = await http.post(url, body: {
-        'token': '$token',
+        'token': token,
         'quiz_id': '$_quizId',
         'setting': dropdownValue
       });

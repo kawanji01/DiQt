@@ -5,7 +5,6 @@ import 'package:booqs_mobile/models/reminder.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/dictionary/word.dart';
 import 'package:booqs_mobile/widgets/reminder/reminder_setting_dialog.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

@@ -16,8 +16,7 @@ class PushNotification {
     // Firebaseを初期化
     await Firebase.initializeApp();
     // 通知の許可を求める。
-    final NotificationSettings settings =
-        await FirebaseMessaging.instance.requestPermission(
+    await FirebaseMessaging.instance.requestPermission(
       announcement: true,
       carPlay: true,
       criticalAlert: true,
@@ -38,22 +37,20 @@ class PushNotification {
     // アプリをアンインストールしたときなどにFCMトークンはリセットされるので、こまめな更新が必要。参照：https://qiita.com/unsoluble_sugar/items/bca933735c9d3a2d60c2
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/update_fcm_token');
-    var res = await http.post(url, body: {
+    await http.post(url, body: {
       'token': token,
       'fcm_token': '$fcmToken',
       'device_identifier': deviceIdentifier
     });
 
-    // final NotificationSettings settings =
-    //    await FirebaseMessaging.instance.requestPermission();
-    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('User granted permission');
-    } else if (settings.authorizationStatus ==
-        AuthorizationStatus.provisional) {
-      print('User granted provisional permission');
-    } else {
-      print('User declined or has not accepted permission');
-    }
+    //if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+    //  print('User granted permission');
+    // } else if (settings.authorizationStatus ==
+    //     AuthorizationStatus.provisional) {
+    //   print('User granted provisional permission');
+    // } else {
+    //   print('User declined or has not accepted permission');
+    //}
     return true;
   }
 }

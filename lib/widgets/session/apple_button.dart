@@ -44,11 +44,6 @@ class AppleButton extends StatelessWidget {
             state: state,
           );
 
-          print('appleCredential: $appleCredential');
-          print('.state: ${appleCredential.state}');
-          print('idToken: ${appleCredential.identityToken}');
-          print('authorizationCode: ${appleCredential.authorizationCode}');
-
           ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
           String deviceIdentifier = "unknown";
           String platform = "unknown";

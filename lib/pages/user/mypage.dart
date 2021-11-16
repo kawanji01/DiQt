@@ -25,6 +25,7 @@ class _UserMyPageState extends State<UserMyPage> {
   User? _user;
   bool _initDone = false;
 
+  @override
   void initState() {
     super.initState();
     _loadMyPage();

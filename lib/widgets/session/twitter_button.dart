@@ -91,6 +91,10 @@ class TwitterButton extends StatelessWidget {
           const snackBar = SnackBar(content: Text('エラーが発生しました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           break;
+        default:
+          // error
+          const snackBar = SnackBar(content: Text('エラーが発生しました。'));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
 

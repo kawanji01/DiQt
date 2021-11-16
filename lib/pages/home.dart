@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/my_page');
-    var res = await http.post(url, body: {'token': '$token'});
+    var res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) return;
 

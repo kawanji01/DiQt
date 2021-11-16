@@ -19,13 +19,9 @@ class GoogleButton extends StatelessWidget {
     ]);
 
     Future _googleAuth() async {
-      final GoogleSignInAccount? googleUser =
-          await _googleSignin.signIn().catchError((onError) => print(onError));
+      final GoogleSignInAccount? googleUser = await _googleSignin.signIn();
       final GoogleSignInAuthentication googleAuth =
           await googleUser!.authentication;
-
-      print('accessToken: ${googleAuth.accessToken}');
-      print('idToken: ${googleAuth.idToken}');
 
       ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
       String deviceIdentifier = "unknown";
