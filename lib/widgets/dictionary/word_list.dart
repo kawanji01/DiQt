@@ -4,6 +4,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/reminder.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/dictionary/word.dart';
+import 'package:booqs_mobile/utils/tts_button.dart';
 import 'package:booqs_mobile/widgets/reminder/reminder_setting_dialog.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:flutter/material.dart';
@@ -87,10 +88,31 @@ class WordList extends StatelessWidget {
     Widget _buildRow(int index) {
       final word = words[index];
 
+      // 項目
+      Widget _entryPart() {
+        // 左寄せできない問題の解決策としてdouble.infinityを設定する。https://techsmeme.com/flutter-text-left-right/
+        return SizedBox(
+          width: double.infinity,
+          child: Wrap(
+            children: <Widget>[
+              Text(
+                word.entry,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              TtsButton(
+                  speechText: word.entry, langNumber: word.langNumberOfEntry),
+            ],
+          ),
+        );
+      }
+
       return ListTile(
         contentPadding: const EdgeInsets.symmetric(vertical: 24),
-        title: Text(word.entry,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800)),
+        title: _entryPart(),
         subtitle: Column(children: <Widget>[
           const SizedBox(
             height: 10,

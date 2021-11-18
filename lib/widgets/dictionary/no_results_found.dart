@@ -47,7 +47,6 @@ class NoResultsFound extends StatelessWidget {
       Future _serchOnGoogle() async {
         final String url = Uri.encodeFull(
             "https://www.google.com/search?q=$keyword+意味&oq=$keyword+意味");
-        print(url);
         if (await canLaunch(url)) {
           await launch(
             url,
