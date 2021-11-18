@@ -98,7 +98,7 @@ class _WordPageState extends State<WordPage> {
               entry,
               textAlign: TextAlign.left,
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 32,
                 fontWeight: FontWeight.w600,
                 color: Colors.green.shade600,
               ),
