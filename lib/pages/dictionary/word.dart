@@ -6,6 +6,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/tts_button.dart';
 import 'package:booqs_mobile/widgets/reminder/reminder_setting_dialog.dart';
+import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
@@ -320,9 +321,48 @@ class _WordPageState extends State<WordPage> {
       return WordEditButton(word: _word);
     }
 
+    Future _moveToPage(number) async {
+      int? id = _word!.id;
+      switch (number) {
+        // 「項目を改善する」
+        case 0:
+          await showDialog(
+              context: context,
+              builder: (context) {
+                return ExternalLinkDialog(redirectPath: 'words/$id/edit');
+              });
+          break;
+        // 「Webで見る」
+        case 1:
+          await showDialog(
+              context: context,
+              builder: (context) {
+                return ExternalLinkDialog(redirectPath: 'words/$id');
+              });
+          break;
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(entry),
+        actions: <Widget>[
+          PopupMenuButton(
+            onSelected: (newValue) {
+              _moveToPage(newValue);
+            },
+            itemBuilder: (BuildContext context) => [
+              const PopupMenuItem(
+                child: Text('項目を改善する'),
+                value: 0,
+              ),
+              const PopupMenuItem(
+                child: Text('Webで見る'),
+                value: 1,
+              )
+            ],
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
