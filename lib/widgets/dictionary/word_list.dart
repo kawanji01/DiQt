@@ -6,6 +6,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/dictionary/word.dart';
 import 'package:booqs_mobile/utils/tts_button.dart';
 import 'package:booqs_mobile/widgets/reminder/reminder_setting_dialog.dart';
+import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -88,6 +89,15 @@ class WordList extends StatelessWidget {
     Widget _buildRow(int index) {
       final word = words[index];
 
+      // タグ
+      Widget _tags() {
+        if (word.tags == null) {
+          return Container();
+        }
+        List tagsList = word.tags!.split(',');
+        return TagButtons(tagsList: tagsList);
+      }
+
       // 項目
       Widget _entryPart() {
         // 左寄せできない問題の解決策としてdouble.infinityを設定する。https://techsmeme.com/flutter-text-left-right/
@@ -110,9 +120,17 @@ class WordList extends StatelessWidget {
         );
       }
 
+      Widget _title() {
+        return Column(children: <Widget>[
+          _tags(),
+          const SizedBox(height: 10),
+          _entryPart(),
+        ]);
+      }
+
       return ListTile(
         contentPadding: const EdgeInsets.symmetric(vertical: 24),
-        title: _entryPart(),
+        title: _title(),
         subtitle: Column(children: <Widget>[
           const SizedBox(
             height: 10,

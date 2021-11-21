@@ -8,6 +8,7 @@ import 'package:booqs_mobile/utils/tts_button.dart';
 import 'package:booqs_mobile/widgets/reminder/reminder_setting_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -79,6 +80,17 @@ class _WordPageState extends State<WordPage> {
     final entry = _word?.entry ?? '';
     final langNumberOfEntry = _word?.langNumberOfEntry ?? 21;
     final meaning = _word?.meaning ?? '';
+
+    // タグ
+    Widget _tags() {
+      if (_word == null || _word!.tags == null) {
+        return Container();
+      }
+
+      List tagsList = _word!.tags!.split(',');
+
+      return TagButtons(tagsList: tagsList);
+    }
 
     // 読み上げボタン
     Widget _ttsButton() {
@@ -263,6 +275,10 @@ class _WordPageState extends State<WordPage> {
             children: <Widget>[
               const SizedBox(
                 height: 10,
+              ),
+              _tags(),
+              const SizedBox(
+                height: 8,
               ),
               _entryPart(),
               const SizedBox(
