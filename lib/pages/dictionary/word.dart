@@ -88,7 +88,6 @@ class _WordPageState extends State<WordPage> {
       }
 
       List tagsList = _word!.tags!.split(',');
-
       return TagButtons(tagsList: tagsList);
     }
 
@@ -232,30 +231,87 @@ class _WordPageState extends State<WordPage> {
       );
     }
 
-    Widget _explanationPart() {
-      if (_initDone == false) return Container();
+    Widget _heading(text) {
+      return Container(
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black87),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Text(text,
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold)));
+    }
 
-      return SizedBox(
-        width: double.infinity,
-        child: Text(
-          _word?.explanation ?? '',
-          textAlign: TextAlign.left,
-          style: const TextStyle(fontSize: 16, height: 1.6),
-        ),
+    Widget _pronunciationPart() {
+      if (_word!.ipa == null || _word!.ipa == '') return Container();
+
+      return Row(
+        children: <Widget>[
+          _heading('発音記号（IPA）'),
+          const SizedBox(
+            width: 12,
+          ),
+          Text('${_word!.ipa}', style: const TextStyle(fontSize: 16)),
+        ],
       );
+    }
+
+    Widget _explanationPart() {
+      return Column(
+          // 左寄せ
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _heading('解説'),
+            const SizedBox(height: 8),
+            Text(
+              _word?.explanation ?? '',
+              textAlign: TextAlign.left,
+              style: const TextStyle(fontSize: 16, height: 1.6),
+            ),
+          ]);
     }
 
     Widget _sentencePart() {
       if (_initDone == false) return Container();
 
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('【例文】'),
+        _heading('例文'),
+        const SizedBox(height: 8),
         Text(_sentence?.text ?? '',
             style: const TextStyle(fontSize: 16, height: 1.6)),
         const SizedBox(height: 8),
         Text(_sentence?.translation ?? '',
             style: const TextStyle(fontSize: 16, height: 1.6)),
       ]);
+    }
+
+    Widget _contentsPart() {
+      if (_initDone == false) return Container();
+
+      return SizedBox(
+        // 幅を画面全体に広げる。これを設定しておかないと、Columnの左寄せが画面端から始まらない。
+        width: double.infinity,
+        child: Column(
+          // columnの場合、左寄せになる。
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            // 発音
+            _pronunciationPart(),
+            const SizedBox(
+              height: 24,
+            ),
+            // 解説文
+            _explanationPart(),
+            const SizedBox(
+              height: 32,
+            ),
+            _sentencePart(),
+          ],
+        ),
+      );
     }
 
     Widget _wordEditButton() {
@@ -292,11 +348,7 @@ class _WordPageState extends State<WordPage> {
               const SizedBox(
                 height: 32,
               ),
-              _explanationPart(),
-              const SizedBox(
-                height: 32,
-              ),
-              _sentencePart(),
+              _contentsPart(),
               const SizedBox(
                 height: 32,
               ),
