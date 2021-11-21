@@ -61,7 +61,7 @@ class TagButtons extends StatelessWidget {
             text: TextSpan(
               style: const TextStyle(
                   fontSize: 12,
-                  color: Colors.black54,
+                  color: Colors.black87,
                   fontWeight: FontWeight.w500),
               children: [
                 const WidgetSpan(
