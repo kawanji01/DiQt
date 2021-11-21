@@ -231,13 +231,29 @@ class _WordPageState extends State<WordPage> {
       );
     }
 
+    Widget _heading(text) {
+      return Container(
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black87),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Text(text,
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold)));
+    }
+
     Widget _pronunciationPart() {
-      if (_word!.ipa == null) return Container();
+      if (_word!.ipa == null || _word!.ipa == '') return Container();
 
       return Row(
         children: <Widget>[
-          const Text('【IPA】',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          _heading('発音記号（IPA）'),
+          const SizedBox(
+            width: 12,
+          ),
           Text('${_word!.ipa}', style: const TextStyle(fontSize: 16)),
         ],
       );
@@ -248,8 +264,8 @@ class _WordPageState extends State<WordPage> {
           // 左寄せ
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('【解説】',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            _heading('解説'),
+            const SizedBox(height: 8),
             Text(
               _word?.explanation ?? '',
               textAlign: TextAlign.left,
@@ -262,8 +278,8 @@ class _WordPageState extends State<WordPage> {
       if (_initDone == false) return Container();
 
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('【例文】',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        _heading('例文'),
+        const SizedBox(height: 8),
         Text(_sentence?.text ?? '',
             style: const TextStyle(fontSize: 16, height: 1.6)),
         const SizedBox(height: 8),
