@@ -12,6 +12,7 @@ class Word {
       this.reading,
       this.phrase,
       this.frequency,
+      this.tags,
       this.initial});
 
   int? id;
@@ -26,6 +27,7 @@ class Word {
   String? reading;
   bool? phrase;
   int? frequency;
+  String? tags;
   String? initial;
 
   Word.fromJson(Map<String, dynamic> json)
@@ -41,6 +43,7 @@ class Word {
         reading = json['reading'],
         phrase = json['phrase'],
         frequency = json['frequency'],
+        tags = json['tags'],
         initial = json['initial'];
 
   Map<String, dynamic> toJson() => {
@@ -56,6 +59,7 @@ class Word {
         'reading': reading,
         'phrase': phrase,
         'frequency': frequency,
+        'tags': tags,
         'initial': initial,
       };
 }
