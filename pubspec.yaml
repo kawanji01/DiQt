@@ -50,6 +50,7 @@ dependencies:
   sign_in_with_apple: ^3.2.0 # Apple認証
   nonce: ^1.2.0 # 英数両用の乱数を生成する（Apple認証で利用）
   google_sign_in: ^5.2.1 # Google認証
+  flutter_easyloading: ^3.0.3 # 画面全体にローディングを表示する
   
 dev_dependencies:
   flutter_test:
