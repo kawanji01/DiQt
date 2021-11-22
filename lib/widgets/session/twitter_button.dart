@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:twitter_login/twitter_login.dart';
@@ -52,6 +53,10 @@ class TwitterButton extends StatelessWidget {
         redirectURI: _aredirectURI,
       );
       final authResult = await twitterLogin.login();
+
+      // 画面全体にローディングを表示
+      EasyLoading.show(status: 'loading...');
+
       switch (authResult.status) {
         case TwitterLoginStatus.loggedIn:
           var url = Uri.parse(
@@ -96,6 +101,8 @@ class TwitterButton extends StatelessWidget {
           const snackBar = SnackBar(content: Text('エラーが発生しました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
+      // ローディングを消す
+      EasyLoading.dismiss();
     }
 
     return TextButton(

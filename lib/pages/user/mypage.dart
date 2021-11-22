@@ -7,6 +7,7 @@ import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -44,6 +45,8 @@ class _UserMyPageState extends State<UserMyPage> {
   }
 
   Future _logout() async {
+    // 画面全体にローディングを表示
+    EasyLoading.show(status: 'loading...');
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
     String deviceIdentifier = await DeviceIndentifier.get(context);
@@ -53,6 +56,8 @@ class _UserMyPageState extends State<UserMyPage> {
         body: {'token': '$token', 'device_identifier': deviceIdentifier});
     // トークンをローカルストレージから削除
     await storage.deleteAll();
+    // ローディングを消す
+    EasyLoading.dismiss();
     const snackBar = SnackBar(content: Text('ログアウトしました。'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
     UserMyPage.push(context);

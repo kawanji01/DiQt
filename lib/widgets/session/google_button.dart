@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
@@ -23,6 +24,8 @@ class GoogleButton extends StatelessWidget {
       final GoogleSignInAuthentication googleAuth =
           await googleUser!.authentication;
 
+      // 画面全体にローディングを表示
+      EasyLoading.show(status: 'loading...');
       ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
       String deviceIdentifier = "unknown";
       String platform = "unknown";
@@ -49,6 +52,9 @@ class GoogleButton extends StatelessWidget {
         'platform': platform,
         'device_name': deviceName,
       });
+
+      // 画面全体のローディングを消す。
+      EasyLoading.dismiss();
 
       if (res.statusCode != 200) return;
 

@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,6 +22,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'BooQs',
       locale: locale,
+      // 画面全体に被さるローディングの初期化。参考： https://pub.dev/packages/flutter_easyloading
+      builder: EasyLoading.init(),
       theme: ThemeData(
         primarySwatch: Colors.green,
         brightness: Brightness.light,
