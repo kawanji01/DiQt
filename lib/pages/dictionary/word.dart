@@ -9,7 +9,7 @@ import 'package:booqs_mobile/widgets/reminder/reminder_setting_dialog.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
-import 'package:booqs_mobile/widgets/word/explanation_text.dart';
+import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:flutter/material.dart';
@@ -262,6 +262,8 @@ class _WordPageState extends State<WordPage> {
     }
 
     Widget _explanationPart() {
+      if (_initDone == false) return Container();
+
       final expText = _word?.explanation ?? '';
       return Column(
           // 左寄せ
@@ -269,21 +271,21 @@ class _WordPageState extends State<WordPage> {
           children: [
             _heading('解説'),
             const SizedBox(height: 8),
-            ExplanationText(expText: expText),
+            TextWithLink(text: expText, autoLinkEnabled: false),
           ]);
     }
 
     Widget _sentencePart() {
       if (_initDone == false) return Container();
+      final original = _sentence?.text ?? '';
+      final translation = _sentence?.translation ?? '';
 
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         _heading('例文'),
         const SizedBox(height: 8),
-        Text(_sentence?.text ?? '',
-            style: const TextStyle(fontSize: 16, height: 1.6)),
+        TextWithLink(text: original, autoLinkEnabled: true),
         const SizedBox(height: 8),
-        Text(_sentence?.translation ?? '',
-            style: const TextStyle(fontSize: 16, height: 1.6)),
+        Text(translation, style: const TextStyle(fontSize: 16, height: 1.6)),
       ]);
     }
 
@@ -307,6 +309,7 @@ class _WordPageState extends State<WordPage> {
             const SizedBox(
               height: 32,
             ),
+            // 例文
             _sentencePart(),
           ],
         ),
