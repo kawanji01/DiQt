@@ -29,6 +29,14 @@ class TagButtons extends StatelessWidget {
           tagText = 'ビジネス頻出';
           redirectPath = 'chapters/4d46ce7f';
           break;
+        case 'phrase':
+          tagText = '頻出英熟語';
+          redirectPath = 'chapters/c112b566';
+          break;
+        case 'phave':
+          tagText = '頻出句動詞';
+          redirectPath = 'chapters/3623e0d5';
+          break;
         default:
           // 該当するタグがなければリターン
           return Container();
