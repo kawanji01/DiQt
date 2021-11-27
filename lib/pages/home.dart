@@ -73,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         await http.get(url, headers: {"Content-Type": "application/json"});
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map<String, dynamic> resMap = json.decode(res.body);
+    print("${resMap['data'][0]['drill']['public_uid']}");
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     resMap['data'].forEach((e) => _dictionaries.add(Dictionary.fromJson(e)));
     setState(() {
@@ -90,6 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildListRow(BuildContext context, int index) {
     final dictionary = _dictionaries[index];
+    print(dictionary.drillAcceptedRequestsCount);
 
     return ListTile(
       title: Text(dictionary.title),
