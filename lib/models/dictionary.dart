@@ -22,7 +22,11 @@ class Dictionary {
       this.sameEntryScreened = false,
       this.changingEntryScreened = false,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      // eager_loadでキャッシュしたdrillの情報
+      this.drillUid,
+      this.drillAcceptedRequestsCount,
+      this.drillPendingRequestsCount});
 
   int? id;
   String title;
@@ -47,6 +51,10 @@ class Dictionary {
   bool changingEntryScreened;
   String? createdAt;
   String? updatedAt;
+  // テーブルを結合してキャッシュしたdrillの情報
+  String? drillUid;
+  int? drillAcceptedRequestsCount;
+  int? drillPendingRequestsCount;
 
   Dictionary.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -71,7 +79,11 @@ class Dictionary {
         sameEntryScreened = json['same_entry_screened'],
         changingEntryScreened = json['changing_entry_screened'],
         createdAt = json['created_at'],
-        updatedAt = json['updated_at'];
+        updatedAt = json['updated_at'],
+        // テーブルを結合してキャッシュしたdrillの情報,
+        drillUid = json['drill']['public_uid'],
+        drillAcceptedRequestsCount = json['drill']['accepted_requests_count'],
+        drillPendingRequestsCount = json['drill']['pending_requests_count'];
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -97,5 +109,9 @@ class Dictionary {
         'changingEntryScreened': changingEntryScreened,
         'createdAt': createdAt,
         'updatedAt': updatedAt,
+        // テーブルを結合してキャッシュしたdrillの情報,
+        'drillUid': drillUid,
+        'drillAcceptedRequestsCount': drillAcceptedRequestsCount,
+        'drillPendingRequestsCount': drillPendingRequestsCount,
       };
 }

@@ -52,8 +52,32 @@ class _DictionaryPageState extends State<DictionaryPage> {
           });
     }
 
+    Future _goToDrillAcceptedRequests() async {
+      final String redirectPath =
+          'drills/${_dictionary.drillUid}/accepted_requests';
+      // 外部リンクダイアログを表示
+      await showDialog(
+          context: context,
+          builder: (context) {
+            // ./locale/ を取り除いたpathを指定する
+            return ExternalLinkDialog(redirectPath: redirectPath);
+          });
+    }
+
+    Future _goToDrillPendingRequests() async {
+      final String redirectPath =
+          'drills/${_dictionary.drillUid}/pending_requests';
+      // 外部リンクダイアログを表示
+      await showDialog(
+          context: context,
+          builder: (context) {
+            // ./locale/ を取り除いたpathを指定する
+            return ExternalLinkDialog(redirectPath: redirectPath);
+          });
+    }
+
     Widget _requestHistoriesButton() {
-      final String btnText = '変更履歴(${_dictionary.acceptedRequestsCount})';
+      final String btnText = '辞書の変更履歴(${_dictionary.acceptedRequestsCount})';
       return InkWell(
         onTap: () {
           _goToRequestHistories();
@@ -72,6 +96,27 @@ class _DictionaryPageState extends State<DictionaryPage> {
       );
     }
 
+    Widget _drillAcceptedRequestsButton() {
+      final String btnText =
+          '問題の変更履歴(${_dictionary.drillAcceptedRequestsCount})';
+      return InkWell(
+        onTap: () {
+          _goToDrillAcceptedRequests();
+        },
+        child: LargeButton(btnText: btnText),
+      );
+    }
+
+    Widget _driilPendingRequestsButton() {
+      final String btnText = '審査中の変更（${_dictionary.drillPendingRequestsCount}）';
+      return InkWell(
+        onTap: () {
+          _goToDrillPendingRequests();
+        },
+        child: LargeButton(btnText: btnText),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_dictionary.title),
@@ -84,6 +129,10 @@ class _DictionaryPageState extends State<DictionaryPage> {
             _requestHistoriesButton(),
             const SizedBox(height: 32),
             _pendingRequestsButton(),
+            const SizedBox(height: 48),
+            _drillAcceptedRequestsButton(),
+            const SizedBox(height: 32),
+            _driilPendingRequestsButton(),
           ],
         ),
       ),
