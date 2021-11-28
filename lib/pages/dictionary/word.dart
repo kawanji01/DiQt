@@ -12,6 +12,7 @@ import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
+import 'package:booqs_mobile/widgets/word/word_reminder_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -160,77 +161,11 @@ class _WordPageState extends State<WordPage> {
 
     Widget _reminderButton() {
       if (_initDone == false) return Container();
+      //final quizId = _quiz!.id;
+      //final reminder = _reminder;
+      //if (quizId == null) return Container();
 
-      final int settingNumber = _reminder?.setting ?? 100;
-      String settingText = '復習する';
-
-      switch (settingNumber) {
-        case 0:
-          settingText = '明日に復習する';
-          break;
-        case 1:
-          settingText = '3日後に復習する';
-          break;
-        case 2:
-          settingText = '１週間後に復習する';
-          break;
-        case 3:
-          settingText = '２週間後に復習する';
-          break;
-        case 4:
-          settingText = '３週間後に復習する';
-          break;
-        case 5:
-          settingText = '１ヶ月後に復習する';
-          break;
-        case 6:
-          settingText = '２ヶ月後に復習する';
-          break;
-        case 7:
-          settingText = '３ヶ月後に復習する';
-          break;
-        case 8:
-          settingText = '６ヶ月後に復習する';
-          break;
-        case 9:
-          settingText = '１年後に復習する';
-          break;
-      }
-
-      return InkWell(
-        onTap: () {
-          _showReminderDialog();
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 13),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.green, width: 2),
-          ),
-          child: RichText(
-            text: TextSpan(
-              style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.green,
-                  fontWeight: FontWeight.w600),
-              children: [
-                const WidgetSpan(
-                  child: Icon(
-                    Icons.access_alarm,
-                    size: 22,
-                    color: Colors.green,
-                  ),
-                ),
-                TextSpan(
-                  text: " $settingText",
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
+      return WordReminderButton(word: _word!);
     }
 
     Widget _heading(text) {
@@ -277,7 +212,7 @@ class _WordPageState extends State<WordPage> {
 
     Widget _sentencePart() {
       if (_initDone == false) return Container();
-      final original = _sentence?.text ?? '';
+      final original = _sentence?.original ?? '';
       final translation = _sentence?.translation ?? '';
 
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

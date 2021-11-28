@@ -13,7 +13,10 @@ class Word {
       this.phrase,
       this.frequency,
       this.tags,
-      this.initial});
+      this.initial,
+      // 結合したsentence
+      originalOfSentence,
+      translationOfSentence});
 
   int? id;
   int? dictionaryId;
@@ -29,6 +32,9 @@ class Word {
   int? frequency;
   String? tags;
   String? initial;
+  // 結合したsentence
+  String? originalOfSentence;
+  String? translationOfSentence;
 
   Word.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -44,7 +50,10 @@ class Word {
         phrase = json['phrase'],
         frequency = json['frequency'],
         tags = json['tags'],
-        initial = json['initial'];
+        initial = json['initial'],
+        // 結合したsentence
+        originalOfSentence = json['sentence']?['original'] ?? '',
+        translationOfSentence = json['sentence']?['translation'] ?? '';
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -61,5 +70,8 @@ class Word {
         'frequency': frequency,
         'tags': tags,
         'initial': initial,
+        // 結合したsentence
+        'originalOfSentence': originalOfSentence,
+        'translationOfSentence': translationOfSentence,
       };
 }

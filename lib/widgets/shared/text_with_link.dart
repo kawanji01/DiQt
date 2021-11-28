@@ -66,10 +66,14 @@ class TextWithLink extends StatelessWidget {
                   color: Colors.green, fontSize: 16, height: 1.6)),
         );
       }
-      return Text('$word ', style: const TextStyle(fontSize: 16, height: 1.6));
+      return Text('$word ',
+          style: const TextStyle(
+              fontSize: 16, height: 1.6, color: Colors.black87));
     }
 
+    // テキストウィジェットを生成する。
     Widget _wordWidget(String word) {
+      // 普通のテキスト
       if (RegExp(r'(\[{2}.*?\]{2})').hasMatch(word) == false) {
         return _wordWithAutoLink(word);
       }
