@@ -47,6 +47,20 @@ class _ReminderAndExplanationState extends State<ReminderAndExplanation> {
                   fontWeight: FontWeight.bold)));
     }
 
+    Widget _pronunciationPart() {
+      if (_word!.ipa == null || _word!.ipa == '') return Container();
+
+      return Row(
+        children: <Widget>[
+          _heading('発音記号（IPA）'),
+          const SizedBox(
+            width: 12,
+          ),
+          Text('${_word!.ipa}', style: const TextStyle(fontSize: 16)),
+        ],
+      );
+    }
+
     Widget _explanation() {
       final expText = _word!.explanation;
       return Column(
@@ -77,6 +91,8 @@ class _ReminderAndExplanationState extends State<ReminderAndExplanation> {
     return Column(
       children: <Widget>[
         _reminderButton(_word),
+        const SizedBox(height: 24),
+        _pronunciationPart(),
         const SizedBox(height: 24),
         _explanation(),
         const SizedBox(height: 24),
