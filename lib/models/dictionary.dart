@@ -81,9 +81,11 @@ class Dictionary {
         createdAt = json['created_at'],
         updatedAt = json['updated_at'],
         // テーブルを結合してキャッシュしたdrillの情報,
-        drillUid = json['drill']['public_uid'],
-        drillAcceptedRequestsCount = json['drill']['accepted_requests_count'],
-        drillPendingRequestsCount = json['drill']['pending_requests_count'];
+        drillUid = json['drill']?['public_uid'] ?? '',
+        drillAcceptedRequestsCount =
+            json['drill']?['accepted_requests_count'] ?? 0,
+        drillPendingRequestsCount =
+            json['drill']?['pending_requests_count'] ?? 0;
 
   Map<String, dynamic> toJson() => {
         'id': id,
