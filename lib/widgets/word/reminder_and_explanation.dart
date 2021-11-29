@@ -1,5 +1,3 @@
-import 'package:booqs_mobile/models/reminder.dart';
-import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
@@ -16,7 +14,7 @@ class ReminderAndExplanation extends StatefulWidget {
 }
 
 class _ReminderAndExplanationState extends State<ReminderAndExplanation> {
-  bool _initDone = false;
+  //bool _initDone = false;
   Word? _word;
   //Sentence? _sentence;
 
@@ -62,6 +60,8 @@ class _ReminderAndExplanationState extends State<ReminderAndExplanation> {
     }
 
     Widget _explanation() {
+      if (_word!.explanation == '') return Container();
+
       final expText = _word!.explanation;
       return Column(
           // 左寄せ
