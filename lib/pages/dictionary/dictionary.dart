@@ -28,7 +28,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
 
     final _dictionary = getDictionary();
 
-    Future _goToRequestHistories() async {
+    Future _goToAcceptedRequests() async {
       final String redirectPath =
           'dictionaries/${_dictionary.publicUid}/accepted_requests';
       // 外部リンクダイアログを表示
@@ -76,18 +76,18 @@ class _DictionaryPageState extends State<DictionaryPage> {
           });
     }
 
-    Widget _requestHistoriesButton() {
-      final String btnText = '辞書の変更履歴(${_dictionary.acceptedRequestsCount})';
+    Widget _acceptedRequestsButton() {
+      final String btnText = '承認済（${_dictionary.acceptedRequestsCount}）';
       return InkWell(
         onTap: () {
-          _goToRequestHistories();
+          _goToAcceptedRequests();
         },
         child: LargeButton(btnText: btnText),
       );
     }
 
     Widget _pendingRequestsButton() {
-      final String btnText = '審査中の変更（${_dictionary.pendingRequestsCount}）';
+      final String btnText = '審査中（${_dictionary.pendingRequestsCount}）';
       return InkWell(
         onTap: () {
           _goToPendingRequests();
@@ -97,8 +97,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
     }
 
     Widget _drillAcceptedRequestsButton() {
-      final String btnText =
-          '問題の変更履歴(${_dictionary.drillAcceptedRequestsCount})';
+      final String btnText = '承認済（${_dictionary.drillAcceptedRequestsCount}）';
       return InkWell(
         onTap: () {
           _goToDrillAcceptedRequests();
@@ -108,7 +107,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
     }
 
     Widget _driilPendingRequestsButton() {
-      final String btnText = '審査中の変更（${_dictionary.drillPendingRequestsCount}）';
+      final String btnText = '審査中（${_dictionary.drillPendingRequestsCount}）';
       return InkWell(
         onTap: () {
           _goToDrillPendingRequests();
@@ -126,10 +125,30 @@ class _DictionaryPageState extends State<DictionaryPage> {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 32),
-            _requestHistoriesButton(),
+            const Text(
+              '項目の改善履歴',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w800,
+                color: Colors.black54,
+              ),
+            ),
+            const SizedBox(height: 24),
+            _acceptedRequestsButton(),
             const SizedBox(height: 32),
             _pendingRequestsButton(),
             const SizedBox(height: 48),
+            const Text(
+              '問題の改善履歴',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w800,
+                color: Colors.black54,
+              ),
+            ),
+            const SizedBox(height: 24),
             _drillAcceptedRequestsButton(),
             const SizedBox(height: 32),
             _driilPendingRequestsButton(),
