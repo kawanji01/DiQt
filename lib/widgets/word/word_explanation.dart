@@ -1,36 +1,14 @@
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
-import 'package:booqs_mobile/widgets/word/word_reminder_button.dart';
 import 'package:flutter/material.dart';
 
-class ReminderAndExplanation extends StatefulWidget {
-  const ReminderAndExplanation({Key? key, required this.word})
-      : super(key: key);
+class WordExplanation extends StatelessWidget {
+  const WordExplanation({Key? key, required this.word}) : super(key: key);
   final Word word;
 
   @override
-  _ReminderAndExplanationState createState() => _ReminderAndExplanationState();
-}
-
-class _ReminderAndExplanationState extends State<ReminderAndExplanation> {
-  //bool _initDone = false;
-  Word? _word;
-  //Sentence? _sentence;
-
-  @override
-  void initState() {
-    super.initState();
-    _word = widget.word;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // 　リマインダー設定ボタン
-    Widget _reminderButton(word) {
-      return WordReminderButton(word: word);
-    }
-
     Widget _heading(text) {
       return Container(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
@@ -46,7 +24,7 @@ class _ReminderAndExplanationState extends State<ReminderAndExplanation> {
     }
 
     Widget _pronunciationPart() {
-      if (_word!.ipa == null || _word!.ipa == '') return Container();
+      if (word.ipa == null || word.ipa == '') return Container();
 
       return Row(
         children: <Widget>[
@@ -54,15 +32,15 @@ class _ReminderAndExplanationState extends State<ReminderAndExplanation> {
           const SizedBox(
             width: 12,
           ),
-          Text('${_word!.ipa}', style: const TextStyle(fontSize: 16)),
+          Text('${word.ipa}', style: const TextStyle(fontSize: 16)),
         ],
       );
     }
 
     Widget _explanation() {
-      if (_word!.explanation == '') return Container();
+      if (word.explanation == '') return Container();
 
-      final expText = _word!.explanation;
+      final expText = word.explanation;
       return Column(
           // 左寄せ
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,8 +52,10 @@ class _ReminderAndExplanationState extends State<ReminderAndExplanation> {
     }
 
     Widget _sentence() {
-      final original = _word?.originalOfSentence ?? '';
-      final translation = _word?.translationOfSentence ?? '';
+      final String original = word.originalOfSentence ?? '';
+      final String translation = word.translationOfSentence ?? '';
+
+      if (original == '') return Container();
 
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         _heading('例文'),
@@ -90,7 +70,6 @@ class _ReminderAndExplanationState extends State<ReminderAndExplanation> {
 
     return Column(
       children: <Widget>[
-        _reminderButton(_word),
         const SizedBox(height: 24),
         _pronunciationPart(),
         const SizedBox(height: 24),
@@ -98,7 +77,7 @@ class _ReminderAndExplanationState extends State<ReminderAndExplanation> {
         const SizedBox(height: 24),
         _sentence(),
         const SizedBox(height: 24),
-        WordEditButton(word: _word),
+        WordEditButton(word: word),
       ],
     );
   }
