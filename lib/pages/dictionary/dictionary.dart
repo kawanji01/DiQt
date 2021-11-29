@@ -120,39 +120,42 @@ class _DictionaryPageState extends State<DictionaryPage> {
       appBar: AppBar(
         title: Text(_dictionary.title),
       ),
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            const SizedBox(height: 32),
-            const Text(
-              '項目の改善履歴',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w800,
-                color: Colors.black54,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.all(20),
+          child: Column(
+            children: <Widget>[
+              const SizedBox(height: 32),
+              const Text(
+                '項目の改善履歴',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.black54,
+                ),
               ),
-            ),
-            const SizedBox(height: 24),
-            _acceptedRequestsButton(),
-            const SizedBox(height: 32),
-            _pendingRequestsButton(),
-            const SizedBox(height: 48),
-            const Text(
-              '問題の改善履歴',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w800,
-                color: Colors.black54,
+              const SizedBox(height: 24),
+              _acceptedRequestsButton(),
+              const SizedBox(height: 32),
+              _pendingRequestsButton(),
+              const SizedBox(height: 48),
+              const Text(
+                '問題の改善履歴',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.black54,
+                ),
               ),
-            ),
-            const SizedBox(height: 24),
-            _drillAcceptedRequestsButton(),
-            const SizedBox(height: 32),
-            _driilPendingRequestsButton(),
-          ],
+              const SizedBox(height: 24),
+              _drillAcceptedRequestsButton(),
+              const SizedBox(height: 32),
+              _driilPendingRequestsButton(),
+              const SizedBox(height: 48),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 0),

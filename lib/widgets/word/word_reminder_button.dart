@@ -145,8 +145,8 @@ class _WordReminderButtonState extends State<WordReminderButton> {
 
     //// リマインダーボタン ////
     Widget _reminderButton() {
-      if (_initDone == false) {
-        _disabledReminderButton();
+      if (_initDone == false || _quizId == null) {
+        return _disabledReminderButton();
       }
 
       final int settingNumber = _reminder?.setting ?? 100;

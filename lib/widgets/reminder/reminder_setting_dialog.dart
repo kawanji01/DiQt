@@ -6,7 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class ReminderSettingDialog extends StatefulWidget {
-  const ReminderSettingDialog({Key? key, this.reminder, this.quizId})
+  const ReminderSettingDialog({Key? key, this.reminder, required this.quizId})
       : super(key: key);
 
   final Reminder? reminder;

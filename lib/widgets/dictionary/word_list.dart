@@ -1,8 +1,9 @@
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/dictionary/word.dart';
 import 'package:booqs_mobile/utils/tts_button.dart';
-import 'package:booqs_mobile/widgets/word/reminder_and_explanation.dart';
 import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
+import 'package:booqs_mobile/widgets/word/word_explanation.dart';
+import 'package:booqs_mobile/widgets/word/word_reminder_button.dart';
 import 'package:flutter/material.dart';
 
 class WordList extends StatelessWidget {
@@ -77,7 +78,8 @@ class WordList extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          ReminderAndExplanation(word: word),
+          WordReminderButton(word: word),
+          WordExplanation(word: word),
         ]),
         // onTap: () => _moveToWordPage(word),
         onTap: () => print('click'),
