@@ -53,10 +53,7 @@ class GoogleButton extends StatelessWidget {
         'device_name': deviceName,
       });
 
-      // 画面全体のローディングを消す。
-      EasyLoading.dismiss();
-
-      if (res.statusCode != 200) return;
+      if (res.statusCode != 200) return EasyLoading.dismiss();
 
       Map resMap = json.decode(res.body);
       // トークンを格納
@@ -66,6 +63,8 @@ class GoogleButton extends StatelessWidget {
           key: 'remindersCount', value: resMap['reminders_count']);
       await storage.write(
           key: 'notificationsCount', value: resMap['notifications_count']);
+      // 画面全体のローディングを消す。
+      EasyLoading.dismiss();
       const snackBar = SnackBar(content: Text('ログインしました。'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       UserMyPage.push(context);
