@@ -19,6 +19,8 @@ class ReminderIndexPage extends StatefulWidget {
     return Navigator.pushReplacement(
       context,
       PageRouteBuilder(
+        // 画面遷移のログを送信するために、settings.nameを設定する。
+        settings: const RouteSettings(name: reminderIndexPage),
         pageBuilder: (context, animation1, animation2) =>
             const ReminderIndexPage(),
         transitionDuration: Duration.zero,

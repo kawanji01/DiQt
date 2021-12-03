@@ -20,6 +20,8 @@ class UserMyPage extends StatefulWidget {
     return Navigator.pushReplacement(
       context,
       PageRouteBuilder(
+        // 画面遷移のログを送信するために、settings.nameを設定する。
+        settings: const RouteSettings(name: userMyPage),
         pageBuilder: (context, animation1, animation2) => const UserMyPage(),
         transitionDuration: Duration.zero,
       ),
