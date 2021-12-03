@@ -19,6 +19,8 @@ class NotificationIndexPage extends StatefulWidget {
     return Navigator.pushReplacement(
       context,
       PageRouteBuilder(
+        // 画面遷移のログを送信するために、settings.nameを設定する。
+        settings: const RouteSettings(name: notificationIndexPage),
         pageBuilder: (context, animation1, animation2) =>
             const NotificationIndexPage(),
         transitionDuration: Duration.zero,
