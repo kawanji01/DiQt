@@ -20,7 +20,15 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(indexPage);
+    //return Navigator.of(context).pushNamed(indexPage);
+    // アニメーションなしで画面遷移させる。 参考： https://stackoverflow.com/questions/49874272/how-to-navigate-to-other-page-without-animation-flutter
+    return Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation1, animation2) => const MyHomePage(),
+        transitionDuration: Duration.zero,
+      ),
+    );
   }
 
   @override

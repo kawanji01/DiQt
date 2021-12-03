@@ -14,7 +14,16 @@ class NotificationIndexPage extends StatefulWidget {
   const NotificationIndexPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(notificationIndexPage);
+    // return Navigator.of(context).pushNamed(notificationIndexPage);
+    // アニメーションなしで画面遷移させる。 参考： https://stackoverflow.com/questions/49874272/how-to-navigate-to-other-page-without-animation-flutter
+    return Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation1, animation2) =>
+            const NotificationIndexPage(),
+        transitionDuration: Duration.zero,
+      ),
+    );
   }
 
   @override

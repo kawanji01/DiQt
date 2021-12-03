@@ -15,7 +15,15 @@ class ReminderIndexPage extends StatefulWidget {
   const ReminderIndexPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(reminderIndexPage);
+    //return Navigator.of(context).pushNamed(reminderIndexPage);
+    return Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation1, animation2) =>
+            const ReminderIndexPage(),
+        transitionDuration: Duration.zero,
+      ),
+    );
   }
 
   @override
