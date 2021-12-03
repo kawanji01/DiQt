@@ -16,7 +16,7 @@ class GoogleButton extends StatelessWidget {
     // Google 認証
     final _googleSignin = GoogleSignIn(scopes: [
       'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
+      //'https://www.googleapis.com/auth/contacts.readonly',
     ]);
 
     Future _googleAuth() async {
