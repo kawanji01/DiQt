@@ -19,19 +19,25 @@ class PushNotification {
     // Firebaseを初期化
     await Firebase.initializeApp();
     // 通知の許可を求める。
-    await FirebaseMessaging.instance.requestPermission(
-      announcement: true,
-      carPlay: true,
-      criticalAlert: true,
-      sound: true,
-    );
+    //await FirebaseMessaging.instance.requestPermission(
+    //  announcement: true,
+    //  carPlay: true,
+    //  criticalAlert: true,
+    //  sound: true,
+    //);
     // 通知をフォアグラウンドで受け取れるようにする。参照： https://zenn.dev/rafekun/articles/ef8a22f9fe90bd
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
-      alert: true, // Required to display a heads up notification
-      badge: true,
-      sound: true,
-    );
+    //await FirebaseMessaging.instance
+    //    .setForegroundNotificationPresentationOptions(
+    //  alert: true, // Required to display a heads up notification
+    //  badge: true,
+    //  sound: true,
+    //);
+    await FirebaseMessaging.instance.requestPermission();
+    if (Platform.isIOS) {
+      await FirebaseMessaging.instance
+          .setForegroundNotificationPresentationOptions(
+              alert: true, badge: true, sound: true);
+    }
     // プッシュ通知に必要なFCMtoken（デバイスごとに発行されるトークン）を取得。
     final String? fcmToken = await FirebaseMessaging.instance.getToken();
 
