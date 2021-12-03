@@ -10,10 +10,35 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:http/http.dart' as http;
 
 class SearchEnJaPage extends StatefulWidget {
-  const SearchEnJaPage({Key? key}) : super(key: key);
+  const SearchEnJaPage({Key? key, this.keyword}) : super(key: key);
+  final String? keyword;
 
+  // 通常の画面遷移（モーダルの画面遷移との引数の受け取りの互換性を保つために、pushNamedを使わない）
   static Future push(BuildContext context, String keyword) async {
-    return Navigator.of(context).pushNamed(searchEnJaPage, arguments: keyword);
+    //return Navigator.of(context).pushNamed(searchEnJaPage, arguments: keyword);
+    return Navigator.push(
+      context,
+      MaterialPageRoute(
+        // 画面遷移のログを送信するために、settings.nameを設定する。
+        settings: const RouteSettings(name: searchEnJaPage),
+        builder: (BuildContext context) {
+          return SearchEnJaPage(keyword: keyword);
+        },
+      ),
+    );
+  }
+
+// モーダルによる画面遷移
+  static Future pushModal(BuildContext context, String keyword) async {
+    return Navigator.push(
+        context,
+        MaterialPageRoute(
+            // 画面遷移のログを送信するために、settings.nameを設定する。
+            settings: const RouteSettings(name: searchEnJaPage),
+            builder: (BuildContext context) {
+              return SearchEnJaPage(keyword: keyword);
+            },
+            fullscreenDialog: true));
   }
 
   @override
@@ -30,9 +55,11 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
   @override
   void initState() {
     super.initState();
+
     // initialize
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      final keyword = ModalRoute.of(context)!.settings.arguments as String;
+      //final keyword = ModalRoute.of(context)!.settings.arguments as String;
+      final keyword = widget.keyword ?? '';
       setState(() {
         _keyword = keyword;
       });

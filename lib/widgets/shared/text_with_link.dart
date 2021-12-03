@@ -46,7 +46,8 @@ class TextWithLink extends StatelessWidget {
 
     Future _goToSearchEnJaPage(keyword) async {
       //await Navigator.of(context).pushNamed(searchEnJaPage);
-      await SearchEnJaPage.push(context, keyword);
+      //await SearchEnJaPage.push(context, keyword);
+      await SearchEnJaPage.pushModal(context, keyword);
     }
 
     // 自動でリンクをつけるならtrue, Wiki記法でのみリンクをつける場合はfalse
