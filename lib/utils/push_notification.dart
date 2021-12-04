@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 
 class PushNotification {
@@ -33,13 +34,65 @@ class PushNotification {
     //  sound: true,
     //);
     await FirebaseMessaging.instance.requestPermission();
+
+    // プッシュ通知に必要なFCMtoken（デバイスごとに発行されるトークン）を取得。
+    final String? fcmToken = await FirebaseMessaging.instance.getToken();
+
     if (Platform.isIOS) {
       await FirebaseMessaging.instance
           .setForegroundNotificationPresentationOptions(
               alert: true, badge: true, sound: true);
+    } else {
+      // Androidでプッシュ通知をフォアグラウンドで受け取るには、送信されたプッシュ通知を捕捉して、local notificationとして表示する必要がある。
+      final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+          FlutterLocalNotificationsPlugin();
+      // local notificationの初期化： 参考：　https://zenn.dev/tomon9086/articles/d2624f6ab37c4c
+      await flutterLocalNotificationsPlugin.initialize(
+        const InitializationSettings(
+          android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+        ),
+      );
+
+      // Create a new AndroidNotificationChannel instance 参考： https://firebase.flutter.dev/docs/messaging/notifications/#foreground-notifications
+      const AndroidNotificationChannel channel = AndroidNotificationChannel(
+        'high_importance_channel', // id
+        'High Importance Notifications', // title
+        'This channel is used for important notifications.', // description
+        importance: Importance.max,
+      );
+
+      await flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.createNotificationChannel(channel);
+
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        print("フォアグラウンドでメッセージを受け取りました");
+        RemoteNotification? notification = message.notification;
+        AndroidNotification? android = message.notification?.android;
+
+        // If `onMessage` is triggered with a notification, construct our own
+        // local notification to show to users using the created channel.
+        if (notification != null && android != null) {
+          flutterLocalNotificationsPlugin.show(
+              notification.hashCode,
+              notification.title,
+              notification.body,
+              NotificationDetails(
+                android: AndroidNotificationDetails(
+                  channel.id,
+                  channel.name,
+                  channel.description,
+                  icon: android.smallIcon,
+                  // バナーを表示　https://zenn.dev/tomon9086/articles/d2624f6ab37c4c
+                  importance: Importance.max,
+                  priority: Priority.high,
+                  // other properties...
+                ),
+              ));
+        }
+      });
     }
-    // プッシュ通知に必要なFCMtoken（デバイスごとに発行されるトークン）を取得。
-    final String? fcmToken = await FirebaseMessaging.instance.getToken();
 
     // デバイスの識別IDなどを取得する
     String deviceIdentifier = "unknown";
