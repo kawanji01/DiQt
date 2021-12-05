@@ -100,7 +100,7 @@ class _SearchEnJaPageState extends State<SearchEnJaPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('検索結果'),
+        title: Text('$_keyword'),
       ),
       body: Container(
         margin: const EdgeInsets.only(left: 20, right: 20),
