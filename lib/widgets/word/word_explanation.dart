@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/widgets/sentence/sentence_reminder_button.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +66,8 @@ class WordExplanation extends StatelessWidget {
         Text(translation,
             style: const TextStyle(
                 fontSize: 16, height: 1.6, color: Colors.black87)),
+        const SizedBox(height: 24),
+        SentenceReminderButton(sentenceId: word.sentenceId!)
       ]);
     }
 

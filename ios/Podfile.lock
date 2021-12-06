@@ -1,4 +1,6 @@
 PODS:
+  - app_review (1.0.1):
+    - Flutter
   - AppAuth (1.4.0):
     - AppAuth/Core (= 1.4.0)
     - AppAuth/ExternalUserAgent (= 1.4.0)
@@ -85,6 +87,8 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - package_info (0.0.1):
+    - Flutter
   - path_provider (0.0.1):
     - Flutter
   - PromisesObjC (2.0.0)
@@ -96,6 +100,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - app_review (from `.symlinks/plugins/app_review/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
@@ -104,6 +109,7 @@ DEPENDENCIES:
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
+  - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - twitter_login (from `.symlinks/plugins/twitter_login/ios`)
@@ -126,6 +132,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  app_review:
+    :path: ".symlinks/plugins/app_review/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   firebase_core:
@@ -142,6 +150,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_tts/ios"
   google_sign_in:
     :path: ".symlinks/plugins/google_sign_in/ios"
+  package_info:
+    :path: ".symlinks/plugins/package_info/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   sign_in_with_apple:
@@ -152,6 +162,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
+  app_review: 6f51001269c59a2f4a5b5ae68b7d106401152764
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   Firebase: 13d8d96499e2635428d5bf0ec675df21f95d9a95
@@ -172,6 +183,7 @@ SPEC CHECKSUMS:
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider: d1e9807085df1f9cc9318206cd649dc0b76be3de
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
@@ -180,4 +192,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9dead85be96bd877acb9ba7514a7aad89b7d82b1
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.2
