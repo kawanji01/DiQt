@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:app_review/app_review.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/device_indentifier.dart';
@@ -192,6 +193,20 @@ class _UserMyPageState extends State<UserMyPage> {
       );
     }
 
+    Widget _reviewButton() {
+      return TextButton(
+        style: TextButton.styleFrom(
+          textStyle: const TextStyle(fontSize: 20),
+        ),
+        onPressed: () {
+          AppReview.requestReview.then((onValue) {
+            print(onValue);
+          });
+        },
+        child: const Text('レビューする'),
+      );
+    }
+
     return SingleChildScrollView(
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -210,6 +225,10 @@ class _UserMyPageState extends State<UserMyPage> {
               height: 24,
             ),
             _logoutButton(),
+            const SizedBox(
+              height: 48,
+            ),
+            _reviewButton()
           ],
         ),
       ),
