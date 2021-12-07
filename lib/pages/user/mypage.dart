@@ -121,7 +121,7 @@ class _UserMyPageState extends State<UserMyPage> {
           children: <Widget>[
             UserStatus(user: _user!),
             const SizedBox(
-              height: 40,
+              height: 48,
             ),
             _contactButton(),
             const SizedBox(
