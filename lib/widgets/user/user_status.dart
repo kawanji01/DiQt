@@ -132,7 +132,7 @@ class UserStatus extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 24),
+      padding: const EdgeInsets.symmetric(vertical: 16),
       color: Colors.transparent,
       child: Column(
         children: <Widget>[
