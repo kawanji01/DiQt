@@ -20,6 +20,10 @@
 
 このリポジトリは、クライアントサイドのFlutterのソースコードです。
 
-Flutterはまだまだ初心者なので、気軽にプルリクいただければ嬉しいです！
+Flutterはまだまだ初心者なので、気軽にissueやPullRequestいただければ嬉しいです！
 
-また「このアプリをローカル環境で動かすための環境変数が欲しい」「Railsのサーバーサイドも改善してあげたい」という方がいらっしゃいましたら、kawanji01@gmail.comまでご連絡いただければ、コラボレーターにご招待するので気兼ねなくご連絡くださいませ。
+また「このアプリをローカル環境で動かすための環境変数が欲しい」「Railsのサーバーサイドも改善してあげたい」という方がいらっしゃいましたら、aikawa@booqs.net までご連絡いただければ、コラボレーターにご招待するので気兼ねなくご連絡くださいませ。
+
+# Others
+- [Tasks](https://github.com/kawanji01/BooQs_on_mobiles/projects/1)
+- [Wiki](https://github.com/kawanji01/BooQs_on_mobiles/wiki)
