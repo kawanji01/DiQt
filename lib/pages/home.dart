@@ -1,12 +1,16 @@
 import 'dart:convert';
+import 'package:app_review/app_review.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
+import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/dictionary/search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -90,9 +94,16 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  //Future _goToCreatePage() async {
-  //  await Navigator.of(context).pushNamed(flashcardCreatePage);
-  //}
+  // 問い合わせページへの移動
+  Future _moveToContactPage() async {
+    // 外部リンクダイアログを表示
+    await showDialog(
+        context: context,
+        builder: (context) {
+          // ./locale/ を取り除いたpathを指定する
+          return const ExternalLinkDialog(redirectPath: 'contact');
+        });
+  }
 
   Future _goToDictionaryPage(Dictionary dictionary) async {
     await DictionaryPage.push(context, dictionary);
@@ -117,11 +128,78 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Widget _drawer() {
+      return Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.green,
+              ),
+              child: Text(
+                'BooQs',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            ListTile(
+              title: const Text('お問い合わせ', style: TextStyle(fontSize: 16)),
+              onTap: () {
+                _moveToContactPage();
+              },
+            ),
+            ListTile(
+              title: const Text('レビュー', style: TextStyle(fontSize: 16)),
+              onTap: () {
+                AppReview.requestReview.then((onValue) {
+                  print(onValue);
+                });
+              },
+            ),
+            ListTile(
+              title: const Text('利用規約', style: TextStyle(fontSize: 16)),
+              onTap: () {
+                WebPageLauncher.open(
+                    'https://www.booqs.net/ja/terms_of_service');
+              },
+            ),
+            ListTile(
+              title: const Text('プライバシーポリシー', style: TextStyle(fontSize: 16)),
+              onTap: () {
+                WebPageLauncher.open('https://www.booqs.net/ja/privacy_policy');
+              },
+            ),
+            ListTile(
+              title: const Text('特定商取引法に基づく表記', style: TextStyle(fontSize: 16)),
+              onTap: () {
+                WebPageLauncher.open('https://www.booqs.net/ja/legal');
+              },
+            ),
+            ListTile(
+              title: const Text('運営会社', style: TextStyle(fontSize: 16)),
+              onTap: () {
+                WebPageLauncher.open('https://www.booqs.net/ja/about');
+              },
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('辞書'),
-        automaticallyImplyLeading: false,
+        // 主に戻るボタンを消すために使う。ただしDrawerも消えてしまうため、Drawerを設置する場合は、コメントアウトしておく。
+        // automaticallyImplyLeading: false,
       ),
+
       body: Container(
         margin: const EdgeInsets.all(20),
         child: Column(
@@ -143,7 +221,9 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () => myFocusNode.requestFocus(),
         tooltip: 'Increment',
         child: const Icon(Icons.search),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      drawer: _drawer(),
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
