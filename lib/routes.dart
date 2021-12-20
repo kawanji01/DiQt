@@ -8,6 +8,7 @@ import 'package:booqs_mobile/pages/user/login.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/pages/user/sign_up.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
+import 'package:booqs_mobile/pages/word/word_search.dart';
 
 const indexPage = '/';
 const searchEnJaPage = '/dictionary/search_en_ja';
@@ -19,6 +20,7 @@ const loginPage = '/user/login';
 const dictionaryPage = '/dictionary/dictionary';
 const wordPage = '/dictionary/word';
 const wordEditPage = '/word/edit';
+const wordSearchPage = '/word/search';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -31,4 +33,5 @@ final routes = {
   dictionaryPage: (context) => const DictionaryPage(),
   wordPage: (context) => const WordPage(),
   wordEditPage: (context) => const WordEditPage(),
+  wordSearchPage: (context) => const WordSearchPage(),
 };
