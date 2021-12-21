@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:http/http.dart' as http;
 
-class SearchEnJaPage extends StatefulWidget {
-  const SearchEnJaPage({Key? key, this.keyword}) : super(key: key);
+class WordSearchPage extends StatefulWidget {
+  const WordSearchPage({Key? key, this.keyword}) : super(key: key);
   final String? keyword;
 
   // 通常の画面遷移（モーダルの画面遷移との引数の受け取りの互換性を保つために、pushNamedを使わない）
@@ -20,9 +20,9 @@ class SearchEnJaPage extends StatefulWidget {
       context,
       MaterialPageRoute(
         // 画面遷移のログを送信するために、settings.nameを設定する。
-        settings: const RouteSettings(name: searchEnJaPage),
+        settings: const RouteSettings(name: wordSearchPage),
         builder: (BuildContext context) {
-          return SearchEnJaPage(keyword: keyword);
+          return WordSearchPage(keyword: keyword);
         },
       ),
     );
@@ -34,18 +34,18 @@ class SearchEnJaPage extends StatefulWidget {
         context,
         MaterialPageRoute(
             // 画面遷移のログを送信するために、settings.nameを設定する。
-            settings: const RouteSettings(name: searchEnJaPage),
+            settings: const RouteSettings(name: wordSearchPage),
             builder: (BuildContext context) {
-              return SearchEnJaPage(keyword: keyword);
+              return WordSearchPage(keyword: keyword);
             },
             fullscreenDialog: true));
   }
 
   @override
-  _SearchEnJaPageState createState() => _SearchEnJaPageState();
+  _WordSearchPageState createState() => _WordSearchPageState();
 }
 
-class _SearchEnJaPageState extends State<SearchEnJaPage> {
+class _WordSearchPageState extends State<WordSearchPage> {
   List<Word> _words = [];
   Dictionary? _dictionary;
   String? _keyword;
