@@ -7,6 +7,7 @@ import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/dictionary/search_form.dart';
+import 'package:booqs_mobile/widgets/word/word_search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -204,7 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
         margin: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
-            SearchForm(focusNode: myFocusNode),
+            WordSearchForm(focusNode: myFocusNode),
             Expanded(
               child: ListView.separated(
                 shrinkWrap: true,

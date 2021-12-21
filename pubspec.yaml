@@ -52,6 +52,7 @@ dependencies:
   google_sign_in: ^5.2.1 # Google認証
   flutter_easyloading: ^3.0.3 # 画面全体にローディングを表示する
   app_review: ^2.1.1+1 # アプリ内でレビューできるようにする。
+  flutter_typeahead: ^3.2.4 # 検索時のautocomplete
   
 dev_dependencies:
   flutter_test:

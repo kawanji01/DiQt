@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/pages/dictionary/search_en_ja.dart';
+import 'package:booqs_mobile/pages/word/word_search.dart';
 import 'package:flutter/material.dart';
 
 class TextWithLink extends StatelessWidget {
@@ -44,10 +44,10 @@ class TextWithLink extends StatelessWidget {
       return list;
     }
 
-    Future _goToSearchEnJaPage(keyword) async {
+    Future _goToWordSearchPage(keyword) async {
       //await Navigator.of(context).pushNamed(searchEnJaPage);
       //await SearchEnJaPage.push(context, keyword);
-      await SearchEnJaPage.pushModal(context, keyword);
+      await WordSearchPage.pushModal(context, keyword);
     }
 
     // 自動でリンクをつけるならtrue, Wiki記法でのみリンクをつける場合はfalse
@@ -60,7 +60,7 @@ class TextWithLink extends StatelessWidget {
             minimumSize: MaterialStateProperty.all(Size.zero),
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
-          onPressed: () => _goToSearchEnJaPage(word),
+          onPressed: () => _goToWordSearchPage(word),
           // splitで削除した空白を追加する
           child: Text('$word ',
               style: const TextStyle(
@@ -92,7 +92,7 @@ class TextWithLink extends StatelessWidget {
             minimumSize: MaterialStateProperty.all(Size.zero),
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
-          onPressed: () => _goToSearchEnJaPage(searchedWord),
+          onPressed: () => _goToWordSearchPage(searchedWord),
           child: Text(displayedWord,
               style: const TextStyle(
                   color: Colors.green, fontSize: 16, height: 1.6)),
@@ -107,7 +107,7 @@ class TextWithLink extends StatelessWidget {
           minimumSize: MaterialStateProperty.all(Size.zero),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
-        onPressed: () => _goToSearchEnJaPage(linkedWord),
+        onPressed: () => _goToWordSearchPage(linkedWord),
         child: Text(linkedWord,
             style: const TextStyle(
                 color: Colors.green, fontSize: 16, height: 1.6)),
