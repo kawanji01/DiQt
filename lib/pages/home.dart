@@ -45,16 +45,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // floatingButtonを押した時にフォームにフォーカスさせるための処理 / https://flutter.dev/docs/cookbook/forms/focus
   // Define the focus node. To manage the lifecycle, create the FocusNode in
-  // the initState method, and clean it up in the dispose method.（dosposeは定義していない）
-  late FocusNode myFocusNode;
+  // the initState method, and clean it up in the dispose method.
+  late FocusNode searchFocusNode;
+  final searchController = TextEditingController();
 
-  // initialize
   @override
   void initState() {
     super.initState();
-    myFocusNode = FocusNode();
+    searchFocusNode = FocusNode();
     _loadDictionaries();
     _loadBadgeCount();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed. きちんと破棄しよう。
+    searchFocusNode.dispose();
+    searchController.dispose();
+    super.dispose();
   }
 
   // 復習と通知のカウントを更新する
@@ -203,7 +211,8 @@ class _MyHomePageState extends State<MyHomePage> {
         margin: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
-            WordSearchForm(focusNode: myFocusNode),
+            WordSearchForm(
+                searchController: searchController, focusNode: searchFocusNode),
             Expanded(
               child: ListView.separated(
                 shrinkWrap: true,
@@ -217,7 +226,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => myFocusNode.requestFocus(),
+        onPressed: () => searchFocusNode.requestFocus(),
         tooltip: 'Increment',
         child: const Icon(Icons.search),
       ),

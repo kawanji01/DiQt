@@ -14,7 +14,6 @@ class WordTypeahead {
       print('Query needs to be at least 3 chars');
       return Future.value([]);
     }
-    //var url = Uri.https('api.datamuse.com', '/sug', {'s': query});
 
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/words/autocomplete');

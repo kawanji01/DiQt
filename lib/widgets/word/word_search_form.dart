@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class WordSearchForm extends StatelessWidget {
-  const WordSearchForm({Key? key, required this.focusNode}) : super(key: key);
+  const WordSearchForm(
+      {Key? key, required this.searchController, required this.focusNode})
+      : super(key: key);
+  final TextEditingController searchController;
   final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
-    //final _nameController = TextEditingController();
 
-    final _typeAheadController = TextEditingController();
     String _selectedEntry;
-
     Future _goToWordSearchPage(keyword) async {
       await WordSearchResultsPage.push(context, keyword);
     }
@@ -23,7 +23,7 @@ class WordSearchForm extends StatelessWidget {
       if (!_formKey.currentState!.validate()) {
         return;
       }
-      _goToWordSearchPage(_typeAheadController.text);
+      _goToWordSearchPage(searchController.text);
     }
 
     return Form(
@@ -32,10 +32,17 @@ class WordSearchForm extends StatelessWidget {
         children: [
           TypeAheadFormField(
             textFieldConfiguration: TextFieldConfiguration(
-                controller: _typeAheadController,
-                decoration: const InputDecoration(
+                controller: searchController,
+                focusNode: focusNode,
+                decoration: InputDecoration(
                   labelText: '検索ワード',
                   hintText: '調べたい単語・熟語を入力してください',
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.clear),
+                    onPressed: () {
+                      searchController.clear();
+                    },
+                  ),
                 )),
             suggestionsCallback: (pattern) {
               return WordTypeahead.getSuggestions(pattern, 1);
@@ -49,7 +56,7 @@ class WordSearchForm extends StatelessWidget {
               return suggestionsBox;
             },
             onSuggestionSelected: (suggestion) {
-              _typeAheadController.text = "$suggestion";
+              searchController.text = "$suggestion";
             },
             validator: (value) {
               if (value!.isEmpty) {
