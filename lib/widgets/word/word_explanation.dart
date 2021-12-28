@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 
 class WordExplanation extends StatelessWidget {
   const WordExplanation({Key? key, required this.word}) : super(key: key);
-  final Word word;
+  final Word? word;
 
   @override
   Widget build(BuildContext context) {
+    if (word == null) return Container();
+
     Widget _heading(text) {
       return Container(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
@@ -25,7 +27,7 @@ class WordExplanation extends StatelessWidget {
     }
 
     Widget _pronunciationPart() {
-      if (word.ipa == null || word.ipa == '') return Container();
+      if (word!.ipa == null || word!.ipa == '') return Container();
 
       return Row(
         children: <Widget>[
@@ -33,15 +35,15 @@ class WordExplanation extends StatelessWidget {
           const SizedBox(
             width: 12,
           ),
-          Text('${word.ipa}', style: const TextStyle(fontSize: 16)),
+          Text('${word!.ipa}', style: const TextStyle(fontSize: 16)),
         ],
       );
     }
 
     Widget _explanation() {
-      if (word.explanation == '') return Container();
+      if (word!.explanation == '') return Container();
 
-      final expText = word.explanation;
+      final expText = word!.explanation;
       return Column(
           // 左寄せ
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,8 +55,8 @@ class WordExplanation extends StatelessWidget {
     }
 
     Widget _sentence() {
-      final String original = word.originalOfSentence ?? '';
-      final String translation = word.translationOfSentence ?? '';
+      final String original = word!.originalOfSentence ?? '';
+      final String translation = word!.translationOfSentence ?? '';
 
       if (original == '') return Container();
 
@@ -67,7 +69,7 @@ class WordExplanation extends StatelessWidget {
             style: const TextStyle(
                 fontSize: 16, height: 1.6, color: Colors.black87)),
         const SizedBox(height: 24),
-        SentenceReminderButton(sentenceId: word.sentenceId!)
+        SentenceReminderButton(sentenceId: word!.sentenceId!)
       ]);
     }
 

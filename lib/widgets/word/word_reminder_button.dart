@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 class WordReminderButton extends StatefulWidget {
   const WordReminderButton({Key? key, required this.word}) : super(key: key);
-  final Word word;
+  final Word? word;
 
   @override
   _WordReminderButtonState createState() => _WordReminderButtonState();

@@ -2,27 +2,26 @@ import 'dart:convert';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/dictionary/no_results_found.dart';
-import 'package:booqs_mobile/widgets/dictionary/word_list.dart';
+import 'package:booqs_mobile/widgets/dictionary/search_results.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:http/http.dart' as http;
 
-class WordSearchPage extends StatefulWidget {
-  const WordSearchPage({Key? key, this.keyword}) : super(key: key);
+class WordSearchResultsPage extends StatefulWidget {
+  const WordSearchResultsPage({Key? key, this.keyword}) : super(key: key);
   final String? keyword;
 
   // 通常の画面遷移（モーダルの画面遷移との引数の受け取りの互換性を保つために、pushNamedを使わない）
   static Future push(BuildContext context, String keyword) async {
-    //return Navigator.of(context).pushNamed(searchEnJaPage, arguments: keyword);
     return Navigator.push(
       context,
       MaterialPageRoute(
         // 画面遷移のログを送信するために、settings.nameを設定する。
-        settings: const RouteSettings(name: wordSearchPage),
+        settings: const RouteSettings(name: wordSearchResultsPage),
         builder: (BuildContext context) {
-          return WordSearchPage(keyword: keyword);
+          return WordSearchResultsPage(keyword: keyword);
         },
       ),
     );
@@ -34,18 +33,18 @@ class WordSearchPage extends StatefulWidget {
         context,
         MaterialPageRoute(
             // 画面遷移のログを送信するために、settings.nameを設定する。
-            settings: const RouteSettings(name: wordSearchPage),
+            settings: const RouteSettings(name: wordSearchResultsPage),
             builder: (BuildContext context) {
-              return WordSearchPage(keyword: keyword);
+              return WordSearchResultsPage(keyword: keyword);
             },
             fullscreenDialog: true));
   }
 
   @override
-  _WordSearchPageState createState() => _WordSearchPageState();
+  _WordSearchResultsPageState createState() => _WordSearchResultsPageState();
 }
 
-class _WordSearchPageState extends State<WordSearchPage> {
+class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
   List<Word> _words = [];
   Dictionary? _dictionary;
   String? _keyword;
@@ -71,8 +70,8 @@ class _WordSearchPageState extends State<WordSearchPage> {
   Future _loadSearchResults(keyword) async {
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/words/search');
-    var res =
-        await http.post(url, body: {'keyword': '$keyword', 'dictionary_id': '1'});
+    var res = await http
+        .post(url, body: {'keyword': '$keyword', 'dictionary_id': '1'});
 
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map<String, dynamic> resMap = json.decode(res.body);
@@ -94,7 +93,7 @@ class _WordSearchPageState extends State<WordSearchPage> {
       return NoResultsFound(keyword: _keyword, dictionary: _dictionary);
     }
 
-    return WordList(words: _words);
+    return SearchResults(words: _words);
   }
 
   @override

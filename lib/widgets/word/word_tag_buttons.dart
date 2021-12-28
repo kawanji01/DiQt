@@ -1,12 +1,16 @@
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 
-class TagButtons extends StatelessWidget {
-  const TagButtons({Key? key, required this.tagsList}) : super(key: key);
-  final List tagsList;
+class WordTagButtons extends StatelessWidget {
+  const WordTagButtons({Key? key, required this.tags}) : super(key: key);
+  final String? tags;
 
   @override
   Widget build(BuildContext context) {
+    if (tags == null) return Container();
+
+    List tagsList = tags!.split(',');
+
     // タグボタン
     Widget _tagButton(tagName) {
       String? tagText;

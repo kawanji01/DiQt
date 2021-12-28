@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/pages/word/word_search.dart';
+import 'package:booqs_mobile/pages/word/search_results.dart';
 import 'package:flutter/material.dart';
 
 class TextWithLink extends StatelessWidget {
@@ -45,9 +45,7 @@ class TextWithLink extends StatelessWidget {
     }
 
     Future _goToWordSearchPage(keyword) async {
-      //await Navigator.of(context).pushNamed(searchEnJaPage);
-      //await SearchEnJaPage.push(context, keyword);
-      await WordSearchPage.pushModal(context, keyword);
+      await WordSearchResultsPage.pushModal(context, keyword);
     }
 
     // 自動でリンクをつけるならtrue, Wiki記法でのみリンクをつける場合はfalse

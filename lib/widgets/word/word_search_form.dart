@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/pages/word/word_search.dart';
+import 'package:booqs_mobile/pages/word/search_results.dart';
 import 'package:booqs_mobile/utils/word_typeahead.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -16,7 +16,7 @@ class WordSearchForm extends StatelessWidget {
     String _selectedEntry;
 
     Future _goToWordSearchPage(keyword) async {
-      await WordSearchPage.push(context, keyword);
+      await WordSearchResultsPage.push(context, keyword);
     }
 
     void _search() {
@@ -38,7 +38,6 @@ class WordSearchForm extends StatelessWidget {
                   hintText: '調べたい単語・熟語を入力してください',
                 )),
             suggestionsCallback: (pattern) {
-              print(pattern);
               return WordTypeahead.getSuggestions(pattern, 1);
             },
             itemBuilder: (context, String suggestion) {

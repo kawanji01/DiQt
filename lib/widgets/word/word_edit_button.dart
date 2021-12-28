@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -9,15 +10,15 @@ class WordEditButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 編集ページへの遷移
-    Future _moveToWordEdit(wordId) async {
-      final int id = wordId;
+    Future _moveToWordEdit(word) async {
+      final int id = word.id;
       // 外部リンクダイアログを表示
       await showDialog(
           context: context,
           builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
             return ExternalLinkDialog(redirectPath: 'words/$id/edit');
           });
+      //await WordEditPage.push(context, word);
     }
 
     return Container(
@@ -30,7 +31,7 @@ class WordEditButton extends StatelessWidget {
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {
-          _moveToWordEdit(word!.id);
+          _moveToWordEdit(word);
         },
         child: const Text(
           'この項目を改善する',
