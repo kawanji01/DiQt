@@ -14,7 +14,6 @@ class WordTypeahead {
       print('Query needs to be at least 3 chars');
       return Future.value([]);
     }
-    //var url = Uri.https('api.datamuse.com', '/sug', {'s': query});
 
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/words/autocomplete');
@@ -22,7 +21,6 @@ class WordTypeahead {
         .post(url, body: {'dictionary_id': '$dictionaryId', 'query': query});
 
     if (res.statusCode == 200) {
-      print(res.body);
       // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
       Map<String, dynamic> resMap = json.decode(res.body);
       if (resMap['data'] != null) {
@@ -33,7 +31,6 @@ class WordTypeahead {
     } else {
       print('Request failed with status: ${res.statusCode}.');
     }
-    print(_words);
 
     return Future.value(_words.map((e) => e.entry).toList());
   }

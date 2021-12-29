@@ -10,7 +10,7 @@ import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
-import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
+import 'package:booqs_mobile/widgets/word/word_tag_buttons.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:booqs_mobile/widgets/word/word_reminder_button.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class WordPage extends StatefulWidget {
   const WordPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context, Word word) async {
-    return Navigator.of(context).pushNamed(wordPage, arguments: word);
+    return Navigator.of(context).pushNamed(wordShowPage, arguments: word);
   }
 
   @override
@@ -90,8 +90,7 @@ class _WordPageState extends State<WordPage> {
         return Container();
       }
 
-      List tagsList = _word!.tags!.split(',');
-      return TagButtons(tagsList: tagsList);
+      return WordTagButtons(tags: _word!.tags);
     }
 
     // 読み上げボタン

@@ -19,6 +19,13 @@ class _LoginFormState extends State<LoginForm> {
   final _passwordController = TextEditingController();
 
   @override
+  void dispose() {
+    _idController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Future _submit() async {
       if (!_formKey.currentState!.validate()) {
