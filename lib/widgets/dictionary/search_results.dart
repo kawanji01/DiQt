@@ -13,6 +13,7 @@ class SearchResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     Future _moveToWordPage(word) async {
       await WordPage.push(context, word);
     }
