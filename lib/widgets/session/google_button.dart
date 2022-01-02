@@ -17,7 +17,7 @@ class GoogleButton extends StatelessWidget {
     final _googleSignin = GoogleSignIn(scopes: [
       'email',
       // contacts apiは廃止されて、people APIへ移行している。
-      //'https://www.googleapis.com/auth/contacts.readonly',
+      // 'https://www.googleapis.com/auth/contacts.readonly',
     ]);
 
     Future _googleAuth() async {
