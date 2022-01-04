@@ -31,40 +31,44 @@ class WordSearchForm extends StatelessWidget {
       child: Column(
         children: [
           TypeAheadFormField(
-            textFieldConfiguration: TextFieldConfiguration(
-                controller: searchController,
-                focusNode: focusNode,
-                decoration: InputDecoration(
-                  labelText: '検索ワード',
-                  hintText: '調べたい単語・熟語を入力してください',
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: () {
-                      searchController.clear();
-                    },
-                  ),
-                )),
-            suggestionsCallback: (pattern) {
-              return WordTypeahead.getSuggestions(pattern, 1);
-            },
-            itemBuilder: (context, String suggestion) {
-              return ListTile(
-                title: Text(suggestion),
-              );
-            },
-            transitionBuilder: (context, suggestionsBox, controller) {
-              return suggestionsBox;
-            },
-            onSuggestionSelected: (suggestion) {
-              searchController.text = "$suggestion";
-            },
-            validator: (value) {
-              if (value!.isEmpty) {
-                return '入力してください。';
-              }
-            },
-            onSaved: (value) => _selectedEntry = value!,
-          ),
+              textFieldConfiguration: TextFieldConfiguration(
+                  controller: searchController,
+                  focusNode: focusNode,
+                  decoration: InputDecoration(
+                    labelText: '検索ワード',
+                    hintText: '調べたい単語・熟語を入力してください',
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.clear),
+                      onPressed: () {
+                        searchController.clear();
+                      },
+                    ),
+                  )),
+              suggestionsCallback: (pattern) {
+                return WordTypeahead.getSuggestions(pattern, 1);
+              },
+              itemBuilder: (context, String suggestion) {
+                // 候補をタップしたときに検索画面に遷移する。参考： https://stackoverflow.com/questions/68375774/use-the-typeaheadformfield-inside-a-form-flutter
+                return ListTile(
+                  title: Text(suggestion),
+                  onTap: () {
+                    searchController.text = suggestion;
+                    _goToWordSearchPage(suggestion);
+                  },
+                );
+              },
+              transitionBuilder: (context, suggestionsBox, controller) {
+                return suggestionsBox;
+              },
+              onSuggestionSelected: (suggestion) {
+                searchController.text = "$suggestion";
+              },
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return '入力してください。';
+                }
+              },
+              onSaved: (value) => {_selectedEntry = value!}),
           Container(
             margin: const EdgeInsets.only(top: 20, bottom: 40),
             child: ElevatedButton.icon(

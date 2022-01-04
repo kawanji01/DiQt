@@ -206,7 +206,6 @@ class _MyHomePageState extends State<MyHomePage> {
         // 主に戻るボタンを消すために使う。ただしDrawerも消えてしまうため、Drawerを設置する場合は、コメントアウトしておく。
         // automaticallyImplyLeading: false,
       ),
-
       body: Container(
         margin: const EdgeInsets.all(20),
         child: Column(
