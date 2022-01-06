@@ -6,14 +6,14 @@ import 'package:booqs_mobile/widgets/word/word_search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class HomeSearchPage extends StatefulWidget {
+  const HomeSearchPage({Key? key}) : super(key: key);
 
   @override
-  _SearchPageState createState() => _SearchPageState();
+  _HomeSearchPageState createState() => _HomeSearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _HomeSearchPageState extends State<HomeSearchPage> {
   List<Dictionary> _dictionaries = [];
 
   // floatingButtonを押した時にフォームにフォーカスさせるための処理 / https://flutter.dev/docs/cookbook/forms/focus

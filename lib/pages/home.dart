@@ -4,8 +4,8 @@ import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
-import 'package:booqs_mobile/widgets/home/drills_page.dart';
-import 'package:booqs_mobile/widgets/home/search_page.dart';
+import 'package:booqs_mobile/widgets/home/home_chapters_page.dart';
+import 'package:booqs_mobile/widgets/home/home_search_page.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/word/word_search_form.dart';
@@ -71,8 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<TabInfo> _tabs = [
-    TabInfo("辞書", const SearchPage()),
-    TabInfo("単語帳", const DrillsPage()),
+    TabInfo("辞書", const HomeSearchPage()),
+    TabInfo("単語帳", const HomeChaptersPage()),
   ];
 
   //double getProportionWidth(double inputWidth) {
@@ -82,15 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
     List<Widget> _tabBars() {
+      SizeConfig().init(context);
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
       double width = grid * 40;
-
       return [
-        SizedBox(width: width, child: Tab(text: '検索')),
-        SizedBox(width: width, child: Tab(text: '単語帳')),
+        SizedBox(width: width, child: const Tab(text: '検索')),
+        SizedBox(width: width, child: const Tab(text: '単語帳')),
       ];
     }
 
