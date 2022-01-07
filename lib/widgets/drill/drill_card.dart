@@ -1,21 +1,27 @@
-import 'package:booqs_mobile/models/chapter.dart';
-import 'package:booqs_mobile/pages/chapter/show.dart';
+import 'package:booqs_mobile/models/drill.dart';
+import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class ChapterCard extends StatelessWidget {
-  const ChapterCard({Key? key, required this.chapter}) : super(key: key);
-  final Chapter chapter;
+class DrillCard extends StatelessWidget {
+  const DrillCard({Key? key, required this.drill}) : super(key: key);
+  final Drill drill;
 
   @override
   Widget build(BuildContext context) {
     // 1,000のようなdelimiterを使って解答数を整形する。参考： https://stackoverflow.com/questions/62580280/how-to-format-numbers-as-thousands-separators-in-dart
     final formatter = NumberFormat('#,###,000');
-    final answerHistoriesCount = formatter.format(chapter.answerHistoriesCount);
+    final answerHistoriesCount = formatter.format(drill.answerHistoriesCount);
 
-    // Chapterページに遷移
-    Future _moveToChapterPage(chapter) async {
-      await ChapterShowPage.push(context, chapter.publicUid);
+    // Drillページに遷移
+    Future _moveToDrillPage(drill) async {
+      final String id = drill.publicUid;
+      // 外部リンクダイアログを表示
+      await showDialog(
+          context: context,
+          builder: (context) {
+            return ExternalLinkDialog(redirectPath: 'drills/$id/unsolved');
+          });
     }
 
     // カードデザインの参考： https://material.io/components/cards/flutter
@@ -25,13 +31,13 @@ class ChapterCard extends StatelessWidget {
       child: InkWell(
         splashColor: Colors.green.withAlpha(30),
         onTap: () {
-          _moveToChapterPage(chapter);
+          _moveToDrillPage(drill);
         },
         child: Column(
           children: [
             ListTile(
               //leading: Image(image: NetworkImage('${chapter.iconUrl}')),
-              title: Text(chapter.name,
+              title: Text(drill.title,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 18)),
               subtitle: Text(
@@ -39,12 +45,12 @@ class ChapterCard extends StatelessWidget {
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ),
-            Image(image: NetworkImage('${chapter.imageUrl}')),
+            Image(image: NetworkImage('${drill.imageUrl}')),
             Padding(
               padding: const EdgeInsets.only(
                   right: 16.0, left: 16, top: 16, bottom: 32),
               child: Text(
-                chapter.introduction,
+                drill.introduction,
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ),
