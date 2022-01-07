@@ -4,6 +4,7 @@ import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/drill/drill_card.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -65,11 +66,28 @@ class _ChapterShowPageState extends State<ChapterShowPage> {
       return Text(_chapter!.name);
     }
 
-    Widget _buildList() {
+    Widget _buildCards() {
       if (_initDone == false) return Container();
 
       return Column(
         children: _drills.map((drill) => DrillCard(drill: drill)).toList(),
+      );
+    }
+
+    Widget _buildPage() {
+      if (_initDone == false) return const LoadingSpinner();
+
+      return Column(
+        children: <Widget>[
+          SizedBox(
+              width: double.infinity,
+              child: Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(16),
+                child: Text(_chapter!.introduction),
+              )),
+          _buildCards(),
+        ],
       );
     }
 
@@ -80,7 +98,7 @@ class _ChapterShowPageState extends State<ChapterShowPage> {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(20),
-          child: _buildList(),
+          child: _buildPage(),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
