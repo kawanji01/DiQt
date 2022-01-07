@@ -1,5 +1,5 @@
+import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
-import 'package:booqs_mobile/pages/dictionary/word.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notification/index.dart';
 import 'package:booqs_mobile/pages/reminder/index.dart';
@@ -20,6 +20,7 @@ const dictionaryPage = '/dictionary/dictionary';
 const wordShowPage = '/words/show';
 const wordEditPage = '/word/edit';
 const wordSearchResultsPage = '/word/search';
+const chapterShowPage = '/chapters/show';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -32,4 +33,5 @@ final routes = {
   wordShowPage: (context) => const WordShowPage(),
   wordEditPage: (context) => const WordEditPage(),
   wordSearchResultsPage: (context) => const WordSearchResultsPage(),
+  chapterShowPage: (context) => const ChapterShowPage(),
 };

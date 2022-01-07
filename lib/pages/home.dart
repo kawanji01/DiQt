@@ -1,11 +1,13 @@
 import 'dart:convert';
-import 'package:app_review/app_review.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/web_page_launcher.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
+import 'package:booqs_mobile/utils/size_config.dart';
+import 'package:booqs_mobile/widgets/home/home_chapters_page.dart';
+import 'package:booqs_mobile/widgets/home/home_search_page.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/word/word_search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -41,28 +43,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Dictionary> _dictionaries = [];
-
-  // floatingButtonを押した時にフォームにフォーカスさせるための処理 / https://flutter.dev/docs/cookbook/forms/focus
-  // Define the focus node. To manage the lifecycle, create the FocusNode in
-  // the initState method, and clean it up in the dispose method.
-  late FocusNode searchFocusNode;
-  final searchController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
-    searchFocusNode = FocusNode();
-    _loadDictionaries();
     _loadBadgeCount();
-  }
-
-  @override
-  void dispose() {
-    // Clean up the focus node when the Form is disposed. きちんと破棄しよう。
-    searchFocusNode.dispose();
-    searchController.dispose();
-    super.dispose();
   }
 
   // 復習と通知のカウントを更新する
@@ -86,151 +70,52 @@ class _MyHomePageState extends State<MyHomePage> {
         key: 'notificationsCount', value: resMap['notifications_count']);
   }
 
-  // async create list
-  Future _loadDictionaries() async {
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/dictionaries');
-    var res =
-        await http.get(url, headers: {"Content-Type": "application/json"});
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map<String, dynamic> resMap = json.decode(res.body);
-    // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
-    resMap['data'].forEach((e) => _dictionaries.add(Dictionary.fromJson(e)));
-    setState(() {
-      _dictionaries;
-    });
-  }
+  final List<TabInfo> _tabs = [
+    TabInfo("辞書", const HomeSearchPage()),
+    TabInfo("単語帳", const HomeChaptersPage()),
+  ];
 
-  // 問い合わせページへの移動
-  Future _moveToContactPage() async {
-    // 外部リンクダイアログを表示
-    await showDialog(
-        context: context,
-        builder: (context) {
-          // ./locale/ を取り除いたpathを指定する
-          return const ExternalLinkDialog(redirectPath: 'contact');
-        });
-  }
-
-  Future _goToDictionaryPage(Dictionary dictionary) async {
-    await DictionaryPage.push(context, dictionary);
-  }
-
-  Widget _buildListRow(BuildContext context, int index) {
-    final dictionary = _dictionaries[index];
-
-    return ListTile(
-      title: Text(dictionary.title),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_forward_ios_rounded),
-            onPressed: () => _goToDictionaryPage(dictionary),
-          ),
-        ],
-      ),
-    );
-  }
+  //double getProportionWidth(double inputWidth) {
+  //final screenWidth = SizeConfig.screenWidth;
+  //return (inputWidth / 375.0) * screenWidth;
+//}
 
   @override
   Widget build(BuildContext context) {
-    Widget _drawer() {
-      return Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.green,
-              ),
-              child: Text(
-                'BooQs',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            ListTile(
-              title: const Text('お問い合わせ', style: TextStyle(fontSize: 16)),
-              onTap: () {
-                _moveToContactPage();
-              },
-            ),
-            ListTile(
-              title: const Text('レビュー', style: TextStyle(fontSize: 16)),
-              onTap: () {
-                AppReview.requestReview.then((onValue) {
-                  print(onValue);
-                });
-              },
-            ),
-            ListTile(
-              title: const Text('利用規約', style: TextStyle(fontSize: 16)),
-              onTap: () {
-                WebPageLauncher.open(
-                    'https://www.booqs.net/ja/terms_of_service');
-              },
-            ),
-            ListTile(
-              title: const Text('プライバシーポリシー', style: TextStyle(fontSize: 16)),
-              onTap: () {
-                WebPageLauncher.open('https://www.booqs.net/ja/privacy_policy');
-              },
-            ),
-            ListTile(
-              title: const Text('特定商取引法に基づく表記', style: TextStyle(fontSize: 16)),
-              onTap: () {
-                WebPageLauncher.open('https://www.booqs.net/ja/legal');
-              },
-            ),
-            ListTile(
-              title: const Text('運営会社', style: TextStyle(fontSize: 16)),
-              onTap: () {
-                WebPageLauncher.open('https://www.booqs.net/ja/about');
-              },
-            ),
-          ],
-        ),
-      );
+    List<Widget> _tabBars() {
+      SizeConfig().init(context);
+      double grid = SizeConfig.blockSizeHorizontal ?? 0;
+      double width = grid * 40;
+      return [
+        SizedBox(width: width, child: const Tab(text: '検索')),
+        SizedBox(width: width, child: const Tab(text: '単語帳')),
+      ];
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('辞書'),
-        // 主に戻るボタンを消すために使う。ただしDrawerも消えてしまうため、Drawerを設置する場合は、コメントアウトしておく。
-        // automaticallyImplyLeading: false,
-      ),
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            WordSearchForm(
-                searchController: searchController, focusNode: searchFocusNode),
-            Expanded(
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: _buildListRow,
-                separatorBuilder: (context, index) => const Divider(),
-                itemCount: _dictionaries.length,
-              ),
-            ),
-          ],
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 2,
+      //length: _tabs.length,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('辞書'),
+          bottom: TabBar(
+            isScrollable: true,
+            tabs: _tabBars(),
+          ),
+          //preferredSize: const Size.fromHeight(30.0),
         ),
+        body: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
+        bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
+        //floatingActionButton: FloatingActionButton(
+        //  onPressed: () => {
+        //searchFocusNode.requestFocus();
+        //  },
+        //  tooltip: 'Increment',
+        //  child: const Icon(Icons.search),
+        //),
+        drawer: const DrawerMenu(),
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => searchFocusNode.requestFocus(),
-        tooltip: 'Increment',
-        child: const Icon(Icons.search),
-      ),
-      drawer: _drawer(),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
