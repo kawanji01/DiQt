@@ -69,7 +69,7 @@ class NoResultsFound extends StatelessWidget {
           onPressed: () => {_serchOnGoogle()},
           icon: const Icon(Icons.search, color: Colors.white),
           label: const Text(
-            'Googleで検索する',
+            'Webで検索する',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
         ),
