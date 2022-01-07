@@ -89,11 +89,13 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
   Widget _buildResults() {
     if (_initDone == false) return const LoadingSpinner();
 
+    // 検索結果がない。
     if (_words.isEmpty) {
       return NoResultsFound(keyword: _keyword, dictionary: _dictionary);
     }
 
-    return SearchResults(words: _words);
+    return SearchResults(
+        words: _words, keyword: _keyword!, dictionary: _dictionary!);
   }
 
   @override
@@ -104,13 +106,7 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
       ),
       body: Container(
         margin: const EdgeInsets.only(left: 20, right: 20),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: _buildResults(),
-            ),
-          ],
-        ),
+        child: _buildResults(),
       ),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
     );
