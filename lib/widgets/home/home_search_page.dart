@@ -76,7 +76,7 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
     }
 
     return Container(
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.symmetric(vertical: 32, horizontal: 20),
       child: Column(
         children: <Widget>[
           WordSearchForm(
