@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/widgets/chapter/chapter_card.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,6 +15,7 @@ class HomeChaptersPage extends StatefulWidget {
 
 class _HomeChaptersPageState extends State<HomeChaptersPage> {
   List<Chapter> _chapters = [];
+  bool _initDone = false;
 
   @override
   void initState() {
@@ -33,18 +35,25 @@ class _HomeChaptersPageState extends State<HomeChaptersPage> {
     resMap['data'].forEach((e) => _chapters.add(Chapter.fromJson(e)));
     setState(() {
       _chapters;
+      _initDone = true;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget _chapterList() {
+      if (_initDone == false) return const LoadingSpinner();
+
+      return Column(
+          children: _chapters
+              .map((chapter) => ChapterCard(chapter: chapter))
+              .toList());
+    }
+
     return SingleChildScrollView(
       child: Container(
         margin: const EdgeInsets.all(20),
-        child: Column(
-            children: _chapters
-                .map((chapter) => ChapterCard(chapter: chapter))
-                .toList()),
+        child: _chapterList(),
       ),
     );
   }
