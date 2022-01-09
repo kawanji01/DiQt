@@ -28,8 +28,8 @@ class _WordEditPageState extends State<WordEditPage> {
   final _explanationController = TextEditingController();
   final _sentenceIdController = TextEditingController();
 
-  Future _goToWordSearchPage(word) async {
-    await WordShowPage.push(context, word.id);
+  Future _goToWordPage(word) async {
+    await WordShowPage.pushReplacement(context, word.id);
   }
 
   // validatorを利用するために必要なkey
@@ -62,11 +62,15 @@ class _WordEditPageState extends State<WordEditPage> {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
 
+      const storage = FlutterSecureStorage();
+      String? token = await storage.read(key: 'token');
+
       // リクエスト
       var url = Uri.parse(
           '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/words/${word.id}');
 
       Response response = await patch(url, body: {
+        'token': token,
         'entry': _entryController.text,
         'meaning': _meaningController.text,
         'explanation': _explanationController.text,
@@ -78,7 +82,7 @@ class _WordEditPageState extends State<WordEditPage> {
         EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('辞書を更新しました。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        _goToWordSearchPage(word);
+        _goToWordPage(word);
       } else {
         EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
@@ -163,8 +167,8 @@ class _WordEditPageState extends State<WordEditPage> {
                         ),
                       ),
                       SentenceSettingForm(
-                          sentenceIdController: _sentenceIdController),
-
+                          sentenceIdController: _sentenceIdController,
+                          keyword: _entryController.text),
                       const SizedBox(height: 40),
                       _submitButton(),
                       const SizedBox(height: 40),

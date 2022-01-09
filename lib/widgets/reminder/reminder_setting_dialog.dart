@@ -70,6 +70,7 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
     Reminder reminder = Reminder.fromJson(resMap['reminder']);
     final snackBar = SnackBar(content: Text('${resMap['message']}'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    // ダイアログを閉じて、reminderを返り値にする。
     Navigator.of(context).pop(reminder);
   }
 
@@ -93,6 +94,7 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
     // 削除が完了したことを伝えるモデルを作成する。
     Reminder reminder = Reminder(reviewDay: 'deleted');
+    // ダイアログを閉じて、reminderを返り値にする。
     Navigator.of(context).pop(reminder);
   }
 
