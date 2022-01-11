@@ -91,7 +91,7 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
 
     // 検索結果がない。
     if (_words.isEmpty) {
-      return NoResultsFound(keyword: _keyword, dictionary: _dictionary);
+      return NoResultsFound(keyword: _keyword!, dictionary: _dictionary!);
     }
 
     return SearchResults(

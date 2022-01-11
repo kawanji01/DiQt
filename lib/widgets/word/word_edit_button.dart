@@ -11,14 +11,14 @@ class WordEditButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // 編集ページへの遷移
     Future _moveToWordEdit(word) async {
-      final int id = word.id;
+      // final int id = word.id;
       // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            return ExternalLinkDialog(redirectPath: 'words/$id/edit');
-          });
-      //await WordEditPage.push(context, word);
+      // await showDialog(
+      //    context: context,
+      //    builder: (context) {
+      //      return ExternalLinkDialog(redirectPath: 'words/$id/edit');
+      //    });
+      await WordEditPage.push(context, word);
     }
 
     return Container(
