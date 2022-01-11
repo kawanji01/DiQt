@@ -1,27 +1,30 @@
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NoResultsFound extends StatelessWidget {
-  const NoResultsFound({Key? key, required this.keyword, this.dictionary})
+  const NoResultsFound(
+      {Key? key, required this.keyword, required this.dictionary})
       : super(key: key);
-  final String? keyword;
-  final Dictionary? dictionary;
+  final String keyword;
+  final Dictionary dictionary;
 
   @override
   Widget build(BuildContext context) {
 // 項目の新規作成ページへ移動
     Future _moveToNewWord() async {
       // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
-            return ExternalLinkDialog(
-                redirectPath:
-                    'words/new?dict_uid=${dictionary!.publicUid}&text=$keyword');
-          });
+      //await showDialog(
+      //    context: context,
+      //    builder: (context) {
+      // ./locale/ を取り除いたpathを指定する
+      //      return ExternalLinkDialog(
+      //          redirectPath:
+      //              'words/new?dict_uid=${dictionary!.publicUid}&text=$keyword');
+      //    });
+      WordNewPage.push(context, dictionary, keyword);
     }
 
     Widget wordRegistrationButton() {

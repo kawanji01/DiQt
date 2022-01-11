@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 
 class SentenceSettingForm extends StatefulWidget {
   const SentenceSettingForm(
-      {Key? key, required this.sentenceIdController, this.keyword})
+      {Key? key, required this.sentenceIdController, required this.keyword})
       : super(key: key);
   final TextEditingController sentenceIdController;
-  final String? keyword;
+  final String keyword;
 
   @override
   _SentenceSettingFormState createState() => _SentenceSettingFormState();
@@ -19,20 +19,18 @@ class SentenceSettingForm extends StatefulWidget {
 
 class _SentenceSettingFormState extends State<SentenceSettingForm> {
   TextEditingController? _sentenceIdController;
-  String? _keyword;
   Sentence? _sentence;
 
   @override
   void initState() {
     super.initState();
     _sentenceIdController = widget.sentenceIdController;
-    _keyword = widget.keyword;
     _loadSentence();
   }
 
   Future _loadSentence() async {
     final String sentenceId = _sentenceIdController!.text;
-    if (sentenceId == 'null') return;
+    if (sentenceId == 'null' || sentenceId == '') return;
 
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/sentences/$sentenceId');
@@ -45,12 +43,14 @@ class _SentenceSettingFormState extends State<SentenceSettingForm> {
 
     return setState(() {
       _sentence = sentence;
-      _keyword;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // initStateでkeywordをセットすると、WordFormでの再ビルドに対応しない。
+    final keyword = widget.keyword;
+
     // sentenceIDを格納する隠れフィールド
     Widget _hiddenField() {
       return Visibility(
@@ -96,11 +96,10 @@ class _SentenceSettingFormState extends State<SentenceSettingForm> {
 
     //// 例文を設定する ////
     Future _setSentence() async {
-      final searchKeyword = _keyword ?? '';
       final Sentence? newSentence = await showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
-          return WordSentenceSearchModal(keyword: searchKeyword);
+          return WordSentenceSearchModal(keyword: keyword);
         },
       );
 

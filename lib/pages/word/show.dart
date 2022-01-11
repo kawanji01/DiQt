@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/pages/home.dart';
+import 'package:booqs_mobile/pages/word/search_results.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/word/word_tile.dart';
@@ -70,34 +72,43 @@ class _WordShowPageState extends State<WordShowPage> {
       return WordTile(word: _word!);
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(entry),
-        //actions: <Widget>[
-        //  PopupMenuButton(
-        //    onSelected: (newValue) {
-        //_moveToPage(newValue);
-        //    },
-        //    itemBuilder: (BuildContext context) => [
-        //      const PopupMenuItem(
-        //        child: Text('項目を改善する'),
-        //        value: 0,
-        //      ),
-        //      const PopupMenuItem(
-        //        child: Text('Webで見る'),
-        //        value: 1,
-        //      )
-        //    ],
-        //  ),
-        //],
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(20),
-          child: _wordPage(),
+    // 戻ったときに再描画する処理。参考： https://www.choge-blog.com/programming/flutterappbar%E3%81%AE%E6%88%BB%E3%82%8B%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%AB%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF%EF%BC%9F/
+    // 参考: https://tech-rise.net/return-data-on-click-back-button/
+    return WillPopScope(
+      onWillPop: () {
+        // 戻る際には、検索結果を再描画して、項目の更新を反映させる。
+        Navigator.of(context).popUntil(ModalRoute.withName(indexPage));
+        return Future.value(false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(entry),
+          //actions: <Widget>[
+          //  PopupMenuButton(
+          //    onSelected: (newValue) {
+          //_moveToPage(newValue);
+          //    },
+          //    itemBuilder: (BuildContext context) => [
+          //      const PopupMenuItem(
+          //        child: Text('項目を改善する'),
+          //        value: 0,
+          //      ),
+          //      const PopupMenuItem(
+          //        child: Text('Webで見る'),
+          //        value: 1,
+          //      )
+          //    ],
+          //  ),
+          //],
         ),
+        body: SingleChildScrollView(
+          child: Container(
+            margin: const EdgeInsets.all(20),
+            child: _wordPage(),
+          ),
+        ),
+        bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
     );
   }
 }

@@ -1,9 +1,11 @@
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/dictionary/word.dart';
+import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:booqs_mobile/widgets/word/word_entry.dart';
 import 'package:booqs_mobile/widgets/word/word_explanation.dart';
 import 'package:booqs_mobile/widgets/word/word_meaning.dart';
 import 'package:booqs_mobile/widgets/word/word_reminder_button.dart';
+import 'package:booqs_mobile/widgets/word/word_sentence.dart';
 import 'package:booqs_mobile/widgets/word/word_tag_buttons.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +37,9 @@ class WordTile extends StatelessWidget {
           height: 24,
         ),
         WordReminderButton(word: word),
-        WordExplanation(word: word)
+        WordExplanation(word: word),
+        WordSentence(word: word),
+        WordEditButton(word: word),
       ]);
     }
 

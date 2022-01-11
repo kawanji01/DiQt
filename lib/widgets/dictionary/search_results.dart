@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/pages/dictionary/word.dart';
 import 'package:booqs_mobile/widgets/dictionary/no_results_found.dart';
 import 'package:booqs_mobile/widgets/word/word_tile.dart';
 import 'package:flutter/material.dart';
