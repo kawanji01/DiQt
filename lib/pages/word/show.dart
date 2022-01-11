@@ -72,11 +72,11 @@ class _WordShowPageState extends State<WordShowPage> {
       return WordTile(word: _word!);
     }
 
-    // 戻ったときに再描画する処理。参考： https://www.choge-blog.com/programming/flutterappbar%E3%81%AE%E6%88%BB%E3%82%8B%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%AB%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF%EF%BC%9F/
+    // 戻るとき(pop)の処理。参考： https://www.choge-blog.com/programming/flutterappbar%E3%81%AE%E6%88%BB%E3%82%8B%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%AB%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF%EF%BC%9F/
     // 参考: https://tech-rise.net/return-data-on-click-back-button/
     return WillPopScope(
       onWillPop: () {
-        // 戻る際には、検索結果を再描画して、項目の更新を反映させる。
+        // 検索フォームまで戻る。参考： https://qiita.com/fujit33/items/09dc5bfcd6cab8d6698e
         Navigator.of(context).popUntil(ModalRoute.withName(indexPage));
         return Future.value(false);
       },
