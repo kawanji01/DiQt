@@ -73,6 +73,21 @@ class UserExpIndicator extends StatelessWidget {
       );
     }
 
+    Widget _status() {
+      const textStyle = TextStyle(color: Colors.black87, fontSize: 16);
+      return Container(
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text('獲得経験値：${exp}EXP', style: textStyle),
+              Text('解答回数：${user.answerHistoriesCount}回', style: textStyle),
+              Text('解答日数：${user.answerDaysCount}日', style: textStyle),
+            ]),
+      );
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(
@@ -80,6 +95,7 @@ class UserExpIndicator extends StatelessWidget {
           _levelLabel(),
           _expIndicator(),
           _expForNextLevel(),
+          _status(),
         ],
       ),
     );
