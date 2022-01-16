@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
-import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/widgets/home/home_chapters_page.dart';

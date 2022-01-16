@@ -4,6 +4,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/large_button.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -119,10 +120,11 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('復習'),
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
       ),
       body: _remindersOrEntrance(),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 1),
+      drawer: const DrawerMenu(),
     );
   }
 }
