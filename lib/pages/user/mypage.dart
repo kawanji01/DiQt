@@ -4,6 +4,7 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/user/user_status.dart';
@@ -86,48 +87,14 @@ class _UserMyPageState extends State<UserMyPage> {
     // ログインしていないなら、ログイン・登録画面へ誘導する。
     if (_user == null) return const Entrance();
 
-    Widget _contactButton() {
-      return TextButton(
-        style: TextButton.styleFrom(
-          textStyle: const TextStyle(fontSize: 20),
-        ),
-        onPressed: () {
-          _moveToContactPage();
-        },
-        child: const Text('お問い合わせ'),
-      );
-    }
-
-    Widget _reviewButton() {
-      return TextButton(
-        style: TextButton.styleFrom(
-          textStyle: const TextStyle(fontSize: 20),
-        ),
-        onPressed: () {
-          AppReview.requestReview.then((onValue) {
-            print(onValue);
-          });
-        },
-        child: const Text('BooQsをレビューする'),
-      );
-    }
-
     return SingleChildScrollView(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 24),
+        padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 28),
         color: Colors.transparent,
         child: Column(
           children: <Widget>[
             UserStatus(user: _user!),
-            const SizedBox(
-              height: 48,
-            ),
-            _contactButton(),
-            const SizedBox(
-              height: 8,
-            ),
-            _reviewButton(),
             const SizedBox(
               height: 48,
             ),
@@ -142,10 +109,11 @@ class _UserMyPageState extends State<UserMyPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('マイページ'),
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
       ),
       body: _mypageOrEntrance(),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 3),
+      drawer: const DrawerMenu(),
     );
   }
 }

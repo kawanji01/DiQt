@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/pages/dictionary/word.dart';
+import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/widgets/word/word_edit_button.dart';
 import 'package:booqs_mobile/widgets/word/word_entry.dart';
 import 'package:booqs_mobile/widgets/word/word_explanation.dart';
@@ -16,7 +16,7 @@ class WordTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future _moveToWordPage(word) async {
-      await WordPage.push(context, word);
+      await WordShowPage.push(context, word);
     }
 
     Widget _title() {

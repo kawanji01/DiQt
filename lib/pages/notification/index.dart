@@ -4,6 +4,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -132,10 +133,11 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('通知'),
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
       ),
       body: _notificationsOrEntrance(_user),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 2),
+      drawer: const DrawerMenu(),
     );
   }
 }
