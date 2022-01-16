@@ -1,11 +1,9 @@
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/utils/device_indentifier.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
+import 'package:booqs_mobile/widgets/user/logout_button.dart';
+import 'package:booqs_mobile/widgets/user/user_exp_indicator.dart';
+import 'package:booqs_mobile/widgets/user/user_setting_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class UserStatus extends StatelessWidget {
   const UserStatus({Key? key, required this.user}) : super(key: key);
@@ -13,37 +11,6 @@ class UserStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future _moveToUserSetting() async {
-      const storage = FlutterSecureStorage();
-      String? uid = await storage.read(key: 'publicUid');
-      // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
-            return ExternalLinkDialog(redirectPath: 'users/$uid/edit');
-          });
-    }
-
-    Future _logout() async {
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
-      const storage = FlutterSecureStorage();
-      String? token = await storage.read(key: 'token');
-      String deviceIdentifier = await DeviceIndentifier.get(context);
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/logout');
-      await http.post(url,
-          body: {'token': '$token', 'device_identifier': deviceIdentifier});
-      // トークンをローカルストレージから削除
-      await storage.deleteAll();
-      // ローディングを消す
-      EasyLoading.dismiss();
-      const snackBar = SnackBar(content: Text('ログアウトしました。'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      UserMyPage.push(context);
-    }
-
     // 参考：https://github.com/putraxor/flutter-login-ui/blob/master/lib/home_page.dart
     final icon = Hero(
       tag: 'icon',
@@ -74,62 +41,6 @@ class UserStatus extends StatelessWidget {
       ),
     );
 
-    Widget _userSettinButton() {
-      return InkWell(
-        onTap: () {
-          _moveToUserSetting();
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 13),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: const Color(0xff84bf53).withAlpha(100),
-                    offset: const Offset(2, 4),
-                    blurRadius: 8,
-                    spreadRadius: 2)
-              ],
-              color: Colors.green),
-          child: const Text(
-            'ユーザー設定',
-            style: TextStyle(
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      );
-    }
-
-    Widget _logoutButton() {
-      return InkWell(
-        onTap: () {
-          _logout();
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 13),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: const Color(0xff84bf53).withAlpha(100),
-                    offset: const Offset(2, 4),
-                    blurRadius: 8,
-                    spreadRadius: 2)
-              ],
-              color: Colors.green),
-          child: const Text(
-            'ログアウト',
-            style: TextStyle(
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      );
-    }
-
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.symmetric(vertical: 16),
@@ -139,14 +50,15 @@ class UserStatus extends StatelessWidget {
           icon,
           userName,
           profile,
+          UserExpIndicator(user: user),
           const SizedBox(
             height: 80,
           ),
-          _userSettinButton(),
+          const UserSettingButton(),
           const SizedBox(
             height: 24,
           ),
-          _logoutButton(),
+          const LogoutButton(),
         ],
       ),
     );
