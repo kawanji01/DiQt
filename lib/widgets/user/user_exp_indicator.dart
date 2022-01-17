@@ -77,7 +77,7 @@ class UserExpIndicator extends StatelessWidget {
       const textStyle = TextStyle(color: Colors.black87, fontSize: 16);
       return Container(
         alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.symmetric(vertical: 24),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
