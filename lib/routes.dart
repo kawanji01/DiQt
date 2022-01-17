@@ -3,6 +3,7 @@ import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notification/index.dart';
 import 'package:booqs_mobile/pages/reminder/index.dart';
+import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/user/login.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/pages/user/sign_up.dart';
@@ -23,6 +24,7 @@ const wordNewPage = '/words/new';
 const wordEditPage = '/word/edit';
 const wordSearchResultsPage = '/word/search';
 const chapterShowPage = '/chapters/show';
+const userAchievementsPage = '/user/achievements';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -37,4 +39,5 @@ final routes = {
   wordEditPage: (context) => const WordEditPage(),
   wordSearchResultsPage: (context) => const WordSearchResultsPage(),
   chapterShowPage: (context) => const ChapterShowPage(),
+  userAchievementsPage: (context) => const UserAchievementsPage(),
 };

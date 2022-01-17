@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/widgets/user/achievements_button.dart';
 import 'package:booqs_mobile/widgets/user/logout_button.dart';
 import 'package:booqs_mobile/widgets/user/user_exp_indicator.dart';
 import 'package:booqs_mobile/widgets/user/user_setting_button.dart';
@@ -51,6 +52,7 @@ class UserStatus extends StatelessWidget {
           userName,
           profile,
           UserExpIndicator(user: user),
+          UserAchievementsButton(user: user),
           const SizedBox(
             height: 80,
           ),

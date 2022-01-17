@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'package:app_review/app_review.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
@@ -69,16 +67,6 @@ class _UserMyPageState extends State<UserMyPage> {
       _user = User.fromJson(resMap['user']);
       _initDone = true;
     });
-  }
-
-  Future _moveToContactPage() async {
-    // 外部リンクダイアログを表示
-    await showDialog(
-        context: context,
-        builder: (context) {
-          // ./locale/ を取り除いたpathを指定する
-          return const ExternalLinkDialog(redirectPath: 'contact');
-        });
   }
 
   Widget _mypageOrEntrance() {

@@ -27,7 +27,7 @@ class WordSearchResultsPage extends StatefulWidget {
     );
   }
 
-// モーダルによる画面遷移
+  // モーダルによる画面遷移
   static Future pushModal(BuildContext context, String keyword) async {
     return Navigator.push(
         context,
@@ -57,7 +57,6 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
 
     // initialize
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      //final keyword = ModalRoute.of(context)!.settings.arguments as String;
       final keyword = widget.keyword ?? '';
       setState(() {
         _keyword = keyword;
