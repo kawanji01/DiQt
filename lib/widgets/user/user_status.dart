@@ -1,9 +1,9 @@
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/widgets/user/achievements_button.dart';
 import 'package:booqs_mobile/widgets/user/logout_button.dart';
 import 'package:booqs_mobile/widgets/user/user_exp_indicator.dart';
 import 'package:booqs_mobile/widgets/user/user_setting_button.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class UserStatus extends StatelessWidget {
   const UserStatus({Key? key, required this.user}) : super(key: key);
@@ -51,14 +51,15 @@ class UserStatus extends StatelessWidget {
           userName,
           profile,
           UserExpIndicator(user: user),
+          UserAchievementsButton(user: user),
           const SizedBox(
             height: 80,
           ),
-          const UserSettingButton(),
+          // const UserSettingButton(),
           const SizedBox(
             height: 24,
           ),
-          const LogoutButton(),
+          // const LogoutButton(),
         ],
       ),
     );

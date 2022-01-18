@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/pages/home.dart';
-import 'package:booqs_mobile/pages/word/search_results.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/word/word_tile.dart';

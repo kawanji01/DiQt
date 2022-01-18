@@ -29,14 +29,6 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
     _loadDictionaries();
   }
 
-  @override
-  void dispose() {
-    // Clean up the focus node when the Form is disposed. きちんと破棄しよう。
-    searchFocusNode.dispose();
-    searchController.dispose();
-    super.dispose();
-  }
-
   // async create list
   Future _loadDictionaries() async {
     var url = Uri.parse(
@@ -50,6 +42,14 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
     setState(() {
       _dictionaries;
     });
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed. きちんと破棄しよう。
+    searchFocusNode.dispose();
+    searchController.dispose();
+    super.dispose();
   }
 
   Future _goToDictionaryPage(Dictionary dictionary) async {
