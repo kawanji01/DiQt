@@ -1,14 +1,17 @@
 import 'dart:convert';
 
 import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class WordSentenceSearchModal extends StatefulWidget {
-  const WordSentenceSearchModal({Key? key, required this.keyword})
+  const WordSentenceSearchModal(
+      {Key? key, required this.keyword, required this.dictionaryId})
       : super(key: key);
   final String keyword;
+  final int? dictionaryId;
 
   @override
   _WordSentenceSearchModalState createState() =>
@@ -18,6 +21,7 @@ class WordSentenceSearchModal extends StatefulWidget {
 class _WordSentenceSearchModalState extends State<WordSentenceSearchModal> {
   String? _keyword;
   Sentence? _sentence;
+  int? _dictionaryId;
   List<Sentence> _sentences = [];
   bool _initDone = false;
 
@@ -25,6 +29,7 @@ class _WordSentenceSearchModalState extends State<WordSentenceSearchModal> {
   void initState() {
     super.initState();
     _keyword = widget.keyword;
+    _dictionaryId = widget.dictionaryId;
     // initStateがcompleteしてから_searchSentences()を実行する。参考：https://stackoverflow.com/questions/56395081/unhandled-exception-inheritfromwidgetofexacttype-localizationsscope-or-inheri
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       _searchSentences();
@@ -34,10 +39,10 @@ class _WordSentenceSearchModalState extends State<WordSentenceSearchModal> {
   Future _searchSentences() async {
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sentences/search');
-    var res = await http.post(url, body: {'keyword': '$_keyword'});
+    var res = await http.post(url,
+        body: {'keyword': '$_keyword', 'dictionary_id': '$_dictionaryId'});
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map<String, dynamic> resMap = json.decode(res.body);
-    print(resMap);
     if (resMap['data'] != null) {
       // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
       resMap['data'].forEach((e) => _sentences.add(Sentence.fromJson(e)));
@@ -51,6 +56,7 @@ class _WordSentenceSearchModalState extends State<WordSentenceSearchModal> {
 
   @override
   Widget build(BuildContext context) {
+    // 例文選択処理
     Future _selectSentence(sentence) async {
       if (sentence != null) {
         Navigator.of(context).pop(sentence);
@@ -58,6 +64,43 @@ class _WordSentenceSearchModalState extends State<WordSentenceSearchModal> {
         final removeSentence = Sentence();
         Navigator.of(context).pop(removeSentence);
       }
+    }
+
+    // 例文追加ボタン
+    Widget _buttonToAddSentence() {
+      final String redirectPath = '/sentences/new?dictionary_id=$_dictionaryId';
+      return SizedBox(
+        height: 40,
+        child: ElevatedButton.icon(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size(double.infinity,
+                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+          ),
+          onPressed: () => {
+            BooQsOnWeb.open(context, redirectPath),
+          },
+          icon: const Icon(Icons.add, color: Colors.white),
+          label: const Text(
+            '例文を追加する',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+        ),
+      );
+    }
+
+    // 最後のリストに表示する例文追加ボタン
+    Widget _lastList(int index) {
+      final lastNumber = _sentences.length - 1;
+
+      if (lastNumber != index) return Container();
+
+      return Column(
+        children: <Widget>[
+          const SizedBox(height: 40),
+          _buttonToAddSentence(),
+          const SizedBox(height: 40),
+        ],
+      );
     }
 
     // 検索結果の例文
@@ -91,6 +134,7 @@ class _WordSentenceSearchModalState extends State<WordSentenceSearchModal> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
               ),
+              _lastList(index),
             ]),
       );
     }
@@ -98,8 +142,16 @@ class _WordSentenceSearchModalState extends State<WordSentenceSearchModal> {
     // 検索結果
     Widget _searchResults() {
       if (_sentences.isEmpty) {
-        return const Text('例文が見つかりませんでした。',
-            style: TextStyle(fontSize: 16, height: 1.6, color: Colors.black87));
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(children: <Widget>[
+            const Text('例文が見つかりませんでした。',
+                style: TextStyle(
+                    fontSize: 16, height: 1.6, color: Colors.black87)),
+            const SizedBox(height: 40),
+            _buttonToAddSentence(),
+          ]),
+        );
       }
 
       return Expanded(

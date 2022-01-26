@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/large_button.dart';
@@ -28,15 +29,15 @@ class _DictionaryPageState extends State<DictionaryPage> {
 
     final _dictionary = getDictionary();
 
-    Future _goToExternalLink(redirectPath) async {
-// 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
-            return ExternalLinkDialog(redirectPath: redirectPath);
-          });
-    }
+    //Future _goToExternalLink(redirectPath) async {
+    // 外部リンクダイアログを表示
+    //  await showDialog(
+    //      context: context,
+    //      builder: (context) {
+    // ./locale/ を取り除いたpathを指定する
+    //        return ExternalLinkDialog(redirectPath: redirectPath);
+    //      });
+    //}
 
     Widget _acceptedWordRequestsButton() {
       final String btnText = '承認済（${_dictionary.acceptedWordRequestsCount}）';
@@ -44,7 +45,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
           'dictionaries/${_dictionary.publicUid}/accepted_word_requests';
       return InkWell(
         onTap: () {
-          _goToExternalLink(redirectPath);
+          BooQsOnWeb.open(context, redirectPath);
         },
         child: LargeButton(btnText: btnText),
       );
@@ -56,7 +57,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
           'dictionaries/${_dictionary.publicUid}/pending_word_requests';
       return InkWell(
         onTap: () {
-          _goToExternalLink(redirectPath);
+          BooQsOnWeb.open(context, redirectPath);
         },
         child: LargeButton(btnText: btnText),
       );
@@ -69,7 +70,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
           'dictionaries/${_dictionary.publicUid}/accepted_sentence_requests';
       return InkWell(
         onTap: () {
-          _goToExternalLink(redirectPath);
+          BooQsOnWeb.open(context, redirectPath);
         },
         child: LargeButton(btnText: btnText),
       );
@@ -81,7 +82,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
           'dictionaries/${_dictionary.publicUid}/pending_sentence_requests';
       return InkWell(
         onTap: () {
-          _goToExternalLink(redirectPath);
+          BooQsOnWeb.open(context, redirectPath);
         },
         child: LargeButton(btnText: btnText),
       );
@@ -93,7 +94,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
           'dictionaries/${_dictionary.publicUid}/accepted_quiz_requests';
       return InkWell(
         onTap: () {
-          _goToExternalLink(redirectPath);
+          BooQsOnWeb.open(context, redirectPath);
         },
         child: LargeButton(btnText: btnText),
       );
@@ -105,7 +106,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
           'dictionaries/${_dictionary.publicUid}/pending_quiz_requests';
       return InkWell(
         onTap: () {
-          _goToExternalLink(redirectPath);
+          BooQsOnWeb.open(context, redirectPath);
         },
         child: LargeButton(btnText: btnText),
       );
