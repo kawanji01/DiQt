@@ -28,10 +28,8 @@ class _DictionaryPageState extends State<DictionaryPage> {
 
     final _dictionary = getDictionary();
 
-    Future _goToAcceptedRequests() async {
-      final String redirectPath =
-          'dictionaries/${_dictionary.publicUid}/accepted_requests';
-      // 外部リンクダイアログを表示
+    Future _goToExternalLink(redirectPath) async {
+// 外部リンクダイアログを表示
       await showDialog(
           context: context,
           builder: (context) {
@@ -40,77 +38,74 @@ class _DictionaryPageState extends State<DictionaryPage> {
           });
     }
 
-    Future _goToPendingRequests() async {
+    Widget _acceptedWordRequestsButton() {
+      final String btnText = '承認済（${_dictionary.acceptedWordRequestsCount}）';
       final String redirectPath =
-          'dictionaries/${_dictionary.publicUid}/pending_requests';
-      // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
-            return ExternalLinkDialog(redirectPath: redirectPath);
-          });
-    }
-
-    Future _goToDrillAcceptedRequests() async {
-      final String redirectPath =
-          'drills/${_dictionary.drillUid}/accepted_requests';
-      // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
-            return ExternalLinkDialog(redirectPath: redirectPath);
-          });
-    }
-
-    Future _goToDrillPendingRequests() async {
-      final String redirectPath =
-          'drills/${_dictionary.drillUid}/pending_requests';
-      // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
-            return ExternalLinkDialog(redirectPath: redirectPath);
-          });
-    }
-
-    Widget _acceptedRequestsButton() {
-      final String btnText = '承認済（${_dictionary.acceptedRequestsCount}）';
+          'dictionaries/${_dictionary.publicUid}/accepted_word_requests';
       return InkWell(
         onTap: () {
-          _goToAcceptedRequests();
+          _goToExternalLink(redirectPath);
         },
         child: LargeButton(btnText: btnText),
       );
     }
 
-    Widget _pendingRequestsButton() {
-      final String btnText = '審査中（${_dictionary.pendingRequestsCount}）';
+    Widget _pendingWordRequestsButton() {
+      final String btnText = '審査中（${_dictionary.pendingWordRequestsCount}）';
+      final String redirectPath =
+          'dictionaries/${_dictionary.publicUid}/pending_word_requests';
       return InkWell(
         onTap: () {
-          _goToPendingRequests();
+          _goToExternalLink(redirectPath);
         },
         child: LargeButton(btnText: btnText),
       );
     }
 
-    Widget _drillAcceptedRequestsButton() {
-      final String btnText = '承認済（${_dictionary.drillAcceptedRequestsCount}）';
+    Widget _acceptedSentenceRequestsButton() {
+      final String btnText =
+          '承認済（${_dictionary.acceptedSentenceRequestsCount}）';
+      final String redirectPath =
+          'dictionaries/${_dictionary.publicUid}/accepted_sentence_requests';
       return InkWell(
         onTap: () {
-          _goToDrillAcceptedRequests();
+          _goToExternalLink(redirectPath);
         },
         child: LargeButton(btnText: btnText),
       );
     }
 
-    Widget _driilPendingRequestsButton() {
-      final String btnText = '審査中（${_dictionary.drillPendingRequestsCount}）';
+    Widget _pendingSentenceRequestsButton() {
+      final String btnText = '審査中（${_dictionary.pendingSentenceRequestsCount}）';
+      final String redirectPath =
+          'dictionaries/${_dictionary.publicUid}/pending_sentence_requests';
       return InkWell(
         onTap: () {
-          _goToDrillPendingRequests();
+          _goToExternalLink(redirectPath);
+        },
+        child: LargeButton(btnText: btnText),
+      );
+    }
+
+    Widget _acceptedQuizRequestsButton() {
+      final String btnText = '承認済（${_dictionary.acceptedQuizRequestsCount}）';
+      final String redirectPath =
+          'dictionaries/${_dictionary.publicUid}/accepted_quiz_requests';
+      return InkWell(
+        onTap: () {
+          _goToExternalLink(redirectPath);
+        },
+        child: LargeButton(btnText: btnText),
+      );
+    }
+
+    Widget _pendingQuizRequestsButton() {
+      final String btnText = '審査中（${_dictionary.pendingQuizRequestsCount}）';
+      final String redirectPath =
+          'dictionaries/${_dictionary.publicUid}/pending_quiz_requests';
+      return InkWell(
+        onTap: () {
+          _goToExternalLink(redirectPath);
         },
         child: LargeButton(btnText: btnText),
       );
@@ -136,9 +131,23 @@ class _DictionaryPageState extends State<DictionaryPage> {
                 ),
               ),
               const SizedBox(height: 24),
-              _acceptedRequestsButton(),
+              _acceptedWordRequestsButton(),
               const SizedBox(height: 32),
-              _pendingRequestsButton(),
+              _pendingWordRequestsButton(),
+              const SizedBox(height: 48),
+              const Text(
+                '例文の改善履歴',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.black54,
+                ),
+              ),
+              const SizedBox(height: 24),
+              _acceptedSentenceRequestsButton(),
+              const SizedBox(height: 32),
+              _pendingSentenceRequestsButton(),
               const SizedBox(height: 48),
               const Text(
                 '問題の改善履歴',
@@ -150,9 +159,9 @@ class _DictionaryPageState extends State<DictionaryPage> {
                 ),
               ),
               const SizedBox(height: 24),
-              _drillAcceptedRequestsButton(),
+              _acceptedQuizRequestsButton(),
               const SizedBox(height: 32),
-              _driilPendingRequestsButton(),
+              _pendingQuizRequestsButton(),
               const SizedBox(height: 48),
             ],
           ),
