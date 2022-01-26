@@ -88,7 +88,7 @@ class _WordNewPageState extends State<WordNewPage> {
         'meaning': _meaningController.text,
         'explanation': _explanationController.text,
         'sentence_id': _sentenceIdController.text,
-        'dictionary_id': _dictionaryId,
+        'dictionary_id': '$_dictionaryId',
       });
 
       if (response.statusCode == 200) {
