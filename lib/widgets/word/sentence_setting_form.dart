@@ -8,10 +8,14 @@ import 'package:flutter/material.dart';
 
 class SentenceSettingForm extends StatefulWidget {
   const SentenceSettingForm(
-      {Key? key, required this.sentenceIdController, required this.keyword})
+      {Key? key,
+      required this.sentenceIdController,
+      required this.keyword,
+      this.dictionaryId})
       : super(key: key);
   final TextEditingController sentenceIdController;
   final String keyword;
+  final int? dictionaryId;
 
   @override
   _SentenceSettingFormState createState() => _SentenceSettingFormState();
@@ -20,6 +24,7 @@ class SentenceSettingForm extends StatefulWidget {
 class _SentenceSettingFormState extends State<SentenceSettingForm> {
   TextEditingController? _sentenceIdController;
   Sentence? _sentence;
+  int? _dictionaryId;
 
   @override
   void initState() {
@@ -48,8 +53,9 @@ class _SentenceSettingFormState extends State<SentenceSettingForm> {
 
   @override
   Widget build(BuildContext context) {
-    // initStateでkeywordをセットすると、WordFormでの再ビルドに対応しない。
+    // initStateでkeywordやdictionaryIdをセットすると、WordFormの再ビルドに対応しない。
     final keyword = widget.keyword;
+    final _dictionaryId = widget.dictionaryId;
 
     // sentenceIDを格納する隠れフィールド
     Widget _hiddenField() {
@@ -99,7 +105,8 @@ class _SentenceSettingFormState extends State<SentenceSettingForm> {
       final Sentence? newSentence = await showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
-          return WordSentenceSearchModal(keyword: keyword);
+          return WordSentenceSearchModal(
+              keyword: keyword, dictionaryId: _dictionaryId);
         },
       );
 

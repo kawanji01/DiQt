@@ -1,17 +1,14 @@
-import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/pages/word/edit.dart';
+import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:flutter/material.dart';
 
-class WordEditButton extends StatelessWidget {
-  const WordEditButton({Key? key, required this.word}) : super(key: key);
-  final Word? word;
+class SentenceEditButton extends StatelessWidget {
+  const SentenceEditButton({Key? key, required this.sentenceId})
+      : super(key: key);
+  final int sentenceId;
 
   @override
   Widget build(BuildContext context) {
-    // 編集ページへの遷移
-    Future _moveToWordEdit(word) async {
-      await WordEditPage.push(context, word);
-    }
+    final String redirectPath = '/sentences/$sentenceId/edit';
 
     return Container(
       // 左寄せ
@@ -20,13 +17,13 @@ class WordEditButton extends StatelessWidget {
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           primary: Colors.black54,
-          textStyle: const TextStyle(fontSize: 16),
+          textStyle: const TextStyle(fontSize: 14),
         ),
         onPressed: () {
-          _moveToWordEdit(word);
+          BooQsOnWeb.open(context, redirectPath);
         },
         child: const Text(
-          'この項目を改善する',
+          'この例文を改善する',
           style: TextStyle(
             decoration: TextDecoration.underline,
           ),

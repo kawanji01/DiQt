@@ -4,7 +4,6 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/word/sentence_setting_form.dart';
 import 'package:booqs_mobile/widgets/word/word_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -53,6 +52,7 @@ class _WordEditPageState extends State<WordEditPage> {
     _meaningController.text = _word.meaning;
     _explanationController.text = _word.explanation;
     _sentenceIdController.text = _word.sentenceId.toString();
+    int? _dictionaryId = _word.dictionaryId;
 
     Future _save(word) async {
       // 各Fieldのvalidatorを呼び出す
@@ -125,10 +125,12 @@ class _WordEditPageState extends State<WordEditPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       WordForm(
-                          entryController: _entryController,
-                          meaningController: _meaningController,
-                          explanationController: _explanationController,
-                          sentenceIdController: _sentenceIdController),
+                        entryController: _entryController,
+                        meaningController: _meaningController,
+                        explanationController: _explanationController,
+                        sentenceIdController: _sentenceIdController,
+                        dictionaryId: _dictionaryId,
+                      ),
                       const SizedBox(height: 40),
                       _submitButton(),
                       const SizedBox(height: 40),

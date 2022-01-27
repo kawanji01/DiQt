@@ -13,17 +13,8 @@ class NoResultsFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-// 項目の新規作成ページへ移動
+    // 項目の新規作成ページへ移動
     Future _moveToNewWord() async {
-      // 外部リンクダイアログを表示
-      //await showDialog(
-      //    context: context,
-      //    builder: (context) {
-      // ./locale/ を取り除いたpathを指定する
-      //      return ExternalLinkDialog(
-      //          redirectPath:
-      //              'words/new?dict_uid=${dictionary!.publicUid}&text=$keyword');
-      //    });
       WordNewPage.push(context, dictionary, keyword);
     }
 

@@ -2,18 +2,20 @@ import 'package:booqs_mobile/widgets/word/sentence_setting_form.dart';
 import 'package:flutter/material.dart';
 
 class WordForm extends StatefulWidget {
-  const WordForm(
-      {Key? key,
-      required this.entryController,
-      required this.meaningController,
-      required this.explanationController,
-      required this.sentenceIdController})
-      : super(key: key);
+  const WordForm({
+    Key? key,
+    required this.entryController,
+    required this.meaningController,
+    required this.explanationController,
+    required this.sentenceIdController,
+    required this.dictionaryId,
+  }) : super(key: key);
 
   final TextEditingController entryController;
   final TextEditingController meaningController;
   final TextEditingController explanationController;
   final TextEditingController sentenceIdController;
+  final int? dictionaryId;
 
   @override
   _WordFormState createState() => _WordFormState();
@@ -25,6 +27,7 @@ class _WordFormState extends State<WordForm> {
   TextEditingController? _explanationController;
   TextEditingController? _sentenceIdController;
   String? _keyword;
+  int? _dictionaryId;
 
   @override
   void initState() {
@@ -34,6 +37,7 @@ class _WordFormState extends State<WordForm> {
     _explanationController = widget.explanationController;
     _sentenceIdController = widget.sentenceIdController;
     _keyword = _entryController!.text;
+    _dictionaryId = widget.dictionaryId;
   }
 
   @override
@@ -42,6 +46,8 @@ class _WordFormState extends State<WordForm> {
     if (_keyword == '') {
       _keyword = _entryController!.text;
     }
+    _dictionaryId ??= widget.dictionaryId;
+    print('word-form-dictionary_id: $_dictionaryId');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +97,9 @@ class _WordFormState extends State<WordForm> {
           ),
         ),
         SentenceSettingForm(
-            sentenceIdController: _sentenceIdController!, keyword: _keyword!),
+            sentenceIdController: _sentenceIdController!,
+            keyword: _keyword!,
+            dictionaryId: _dictionaryId),
       ],
     );
   }

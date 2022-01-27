@@ -79,6 +79,12 @@ class TextWithLink extends StatelessWidget {
 
       final linkedWord = word.replaceFirst('[[', '').replaceFirst(']]', '');
 
+      Color wikiedTextColor = Colors.green;
+      // オートリンクの場合は、オートリンクとwiki記法のリンクの区別がつかないので、wiki記法のリンクの色をオレンジにする。
+      if (autoLinkEnabled) {
+        wikiedTextColor = Colors.orange;
+      }
+
       // [[diplayedWord|searchedWord]]の場合
       if (linkedWord.contains('|')) {
         final displayedWord = linkedWord.split('|')[0];
@@ -92,8 +98,8 @@ class TextWithLink extends StatelessWidget {
           ),
           onPressed: () => _goToWordSearchPage(searchedWord),
           child: Text(displayedWord,
-              style: const TextStyle(
-                  color: Colors.green, fontSize: 16, height: 1.6)),
+              style:
+                  TextStyle(color: wikiedTextColor, fontSize: 16, height: 1.6)),
         );
       }
 
@@ -107,8 +113,8 @@ class TextWithLink extends StatelessWidget {
         ),
         onPressed: () => _goToWordSearchPage(linkedWord),
         child: Text(linkedWord,
-            style: const TextStyle(
-                color: Colors.green, fontSize: 16, height: 1.6)),
+            style:
+                TextStyle(color: wikiedTextColor, fontSize: 16, height: 1.6)),
       );
     }
 

@@ -26,6 +26,7 @@ class WordNewPage extends StatefulWidget {
 
 class _WordNewPageState extends State<WordNewPage> {
   Dictionary? _dictionary;
+  int? _dictionaryId;
   String? _keyword;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
@@ -43,6 +44,7 @@ class _WordNewPageState extends State<WordNewPage> {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       setState(() {
         _dictionary = arguments['dictionary'] as Dictionary;
+        _dictionaryId = _dictionary?.id;
         _keyword = arguments['keyword'].toString();
         _entryController.text = _keyword!;
       });
@@ -62,6 +64,7 @@ class _WordNewPageState extends State<WordNewPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('dictionary_id: $_dictionaryId');
     Future _goToWordPage(word) async {
       await WordShowPage.pushReplacement(context, word.id);
     }
@@ -85,7 +88,7 @@ class _WordNewPageState extends State<WordNewPage> {
         'meaning': _meaningController.text,
         'explanation': _explanationController.text,
         'sentence_id': _sentenceIdController.text,
-        'dictionary_id': "${_dictionary!.id}",
+        'dictionary_id': '$_dictionaryId',
       });
 
       if (response.statusCode == 200) {
@@ -140,10 +143,12 @@ class _WordNewPageState extends State<WordNewPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       WordForm(
-                          entryController: _entryController,
-                          meaningController: _meaningController,
-                          explanationController: _explanationController,
-                          sentenceIdController: _sentenceIdController),
+                        entryController: _entryController,
+                        meaningController: _meaningController,
+                        explanationController: _explanationController,
+                        sentenceIdController: _sentenceIdController,
+                        dictionaryId: _dictionaryId,
+                      ),
                       const SizedBox(height: 40),
                       _submitButton(),
                       const SizedBox(height: 40),
