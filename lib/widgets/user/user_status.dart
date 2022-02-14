@@ -1,9 +1,9 @@
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/widgets/shared/premium_plan_button.dart';
 import 'package:booqs_mobile/widgets/user/achievements_button.dart';
-import 'package:booqs_mobile/widgets/user/logout_button.dart';
 import 'package:booqs_mobile/widgets/user/user_exp_indicator.dart';
-import 'package:booqs_mobile/widgets/user/user_setting_button.dart';
 import 'package:flutter/material.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 class UserStatus extends StatelessWidget {
   const UserStatus({Key? key, required this.user}) : super(key: key);
@@ -19,7 +19,7 @@ class UserStatus extends StatelessWidget {
         child: CircleAvatar(
           radius: 72.0,
           backgroundColor: Colors.transparent,
-          backgroundImage: NetworkImage('${user.icon}'),
+          backgroundImage: NetworkImage('${user.iconImageUrl}'),
         ),
       ),
     );
@@ -55,11 +55,10 @@ class UserStatus extends StatelessWidget {
           const SizedBox(
             height: 80,
           ),
-          // const UserSettingButton(),
           const SizedBox(
             height: 24,
           ),
-          // const LogoutButton(),
+          PremiumPlanButton(user: user),
         ],
       ),
     );
