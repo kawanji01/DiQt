@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/device_indentifier.dart';
+import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
@@ -48,11 +49,19 @@ class _UserMyPageState extends State<UserMyPage> {
   Future _loadMyPage() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
+
+    if (token == null) {
+      return setState(() {
+        _initDone = true;
+      });
+    }
+
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/my_page');
-    var res = await http.post(url, body: {'token': '$token'});
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v2/mobile/users/status');
+    var res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) {
+      UserSetup.logOut();
       return setState(() {
         _initDone = true;
       });
@@ -60,12 +69,7 @@ class _UserMyPageState extends State<UserMyPage> {
 
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
-    await storage.write(key: 'publicUid', value: resMap['user']['public_uid']);
-    await storage.write(
-        key: 'remindersCount', value: resMap['reminders_count']);
-    await storage.write(
-        key: 'notificationsCount', value: resMap['notifications_count']);
-    // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
+    UserSetup.signIn(resMap);
     setState(() {
       _user = User.fromJson(resMap['user']);
       _initDone = true;
@@ -85,8 +89,7 @@ class _UserMyPageState extends State<UserMyPage> {
           '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/logout');
       await http.post(url,
           body: {'token': '$token', 'device_identifier': deviceIdentifier});
-      // トークンをローカルストレージから削除
-      await storage.deleteAll();
+      UserSetup.logOut();
       // ローディングを消す
       EasyLoading.dismiss();
       const snackBar = SnackBar(content: Text('ログアウトしました。'));

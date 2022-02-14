@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
+import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/home/home_chapters_page.dart';
 import 'package:booqs_mobile/widgets/home/home_search_page.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -53,18 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
     if (token == null) return;
 
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/my_page');
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v2/mobile/users/status');
     var res = await http.post(url, body: {'token': token});
 
-    if (res.statusCode != 200) return;
+    if (res.statusCode != 200) return UserSetup.logOut();
 
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
-    await storage.write(key: 'publicUid', value: resMap['user']['public_uid']);
-    await storage.write(
-        key: 'remindersCount', value: resMap['reminders_count']);
-    await storage.write(
-        key: 'notificationsCount', value: resMap['notifications_count']);
+    UserSetup.signIn(resMap);
   }
 
   final List<TabInfo> _tabs = [

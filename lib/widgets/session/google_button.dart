@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -57,13 +58,7 @@ class GoogleButton extends StatelessWidget {
       if (res.statusCode != 200) return EasyLoading.dismiss();
 
       Map resMap = json.decode(res.body);
-      // トークンを格納
-      const storage = FlutterSecureStorage();
-      await storage.write(key: 'token', value: resMap['token']);
-      await storage.write(
-          key: 'remindersCount', value: resMap['reminders_count']);
-      await storage.write(
-          key: 'notificationsCount', value: resMap['notifications_count']);
+      UserSetup.signIn(resMap);
       // 画面全体のローディングを消す。
       EasyLoading.dismiss();
       const snackBar = SnackBar(content: Text('ログインしました。'));

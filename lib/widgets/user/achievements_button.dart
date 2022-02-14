@@ -21,7 +21,7 @@ class UserAchievementsButton extends StatelessWidget {
               40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
         ),
         onPressed: () => {_moveToAchievementsPage()},
-        icon: const Icon(Icons.star, color: Colors.white),
+        icon: const Icon(Icons.emoji_events, color: Colors.white),
         label: Text(
           '獲得メダルをみる(${user.achievementMapsCount}/39)',
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),

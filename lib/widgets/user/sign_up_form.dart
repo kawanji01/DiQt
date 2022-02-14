@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -65,13 +66,7 @@ class _SignUpFormState extends State<SignUpForm> {
       // レスポンスに対する処理
       if (res.statusCode == 200) {
         Map resMap = json.decode(res.body);
-        // トークンを格納
-        const storage = FlutterSecureStorage();
-        await storage.write(key: 'token', value: resMap['token']);
-        await storage.write(
-            key: 'publicUid', value: resMap['user']['public_uid']);
-        await storage.write(key: 'remindersCount', value: '0');
-        await storage.write(key: 'notificationsCount', value: '0');
+        UserSetup.signIn(resMap);
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);

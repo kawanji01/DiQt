@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/utils/tts_button.dart';
+import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 
 class WordEntry extends StatelessWidget {

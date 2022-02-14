@@ -10,6 +10,8 @@ class User {
     answerHistoriesCount = 0,
     answerDaysCount = 0,
     achievementMapsCount = 0,
+    premium = false,
+    paidViaNativeApp = false,
   });
 
   int? id;
@@ -22,6 +24,8 @@ class User {
   int? answerHistoriesCount;
   int? answerDaysCount;
   int? achievementMapsCount;
+  bool? premium;
+  bool? paidViaNativeApp;
 
   User.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -33,7 +37,9 @@ class User {
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         answerDaysCount = json['answer_days_count'],
-        achievementMapsCount = json['achievement_maps_count'];
+        achievementMapsCount = json['achievement_maps_count'],
+        premium = json['premium'] as bool,
+        paidViaNativeApp = json['paid_via_native_app'] as bool;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -46,5 +52,7 @@ class User {
         'answerHistoriesCount': answerHistoriesCount,
         'answerDaysCount': answerDaysCount,
         'achievementMapsCount': achievementMapsCount,
+        'premium': premium,
+        'paidViaNativeApp': paidViaNativeApp,
       };
 }

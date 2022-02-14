@@ -46,8 +46,7 @@ app.*.map.json
 /android/app/release
 
 # Environmental variables
-.env.development
-.env.production
+.env
 
 # Hide GoogleService-info.plist and google-service.json because of anoying of GitGurdian, just in case. ref: https://qiita.com/hoshymo/items/e9c14ed157200b36eaa5
 /ios/Runner/GoogleService-info.plist
