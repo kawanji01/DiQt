@@ -52,10 +52,12 @@ class RevenueCat {
     return product.identifier;
   }
 
-  // 購入処理（購入が完了したらtrueを返す）
+  // 購入処理。
+  // 購入が完了したらtrueを返す。購入がキャンセルされればfalseを返す。
   Future<bool> subscribe(String productID) async {
     try {
-      print(".subscribe");
+      isExecuting = true;
+      //print(".subscribe");
       final info = await Purchases.purchaseProduct(productID);
       final isSubscribed = await syncSubscription(info);
       isExecuting = false;
@@ -69,18 +71,27 @@ class RevenueCat {
 
   // RailsのDB側も同期して課金ユーザーとして設定する。
   Future<bool> syncSubscription(PurchaserInfo info) async {
-    print(".syncSubscription");
+    isExecuting = true;
     bool isSubscribed = false;
+
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
-    if (token == null) return isSubscribed;
+    // tokenがないならそもそもリクエストを飛ばさない。
+    if (token == null) {
+      isExecuting = false;
+      print(".syncSubscription: token not found");
+      return isSubscribed;
+    }
 
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/users/sync_subscription');
     var res = await http.post(url, body: {'token': token});
-    print("response");
-    print('${res.statusCode}');
-    if (res.statusCode != 200) return false;
+    //print(".syncSubscription: response");
+    print('.syncSubscription: response ${res.statusCode}');
+    if (res.statusCode != 200) {
+      isExecuting = false;
+      return isSubscribed;
+    }
 
     Map resMap = json.decode(res.body);
     print('premium:' + resMap['user']['premium']);
