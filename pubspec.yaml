@@ -56,7 +56,7 @@ dependencies:
   percent_indicator: ^3.4.0 # 経験値のインジケーター
   eval_ex: ^1.1.0 # レベル実装のために、log10（ 10 を底とした対数を返すメソッド）が必要なため。
   purchases_flutter: ^3.9.3 # 課金実装
-  catcher: ^0.6.9 # エラーやクラッシュのログを取得する
+  # catcher: ^0.6.9 # エラーやクラッシュのログを取得する
   
 dev_dependencies:
   flutter_test:
