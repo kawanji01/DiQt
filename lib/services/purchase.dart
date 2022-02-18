@@ -16,7 +16,7 @@ class PurchaseService {
   // RevenueCatの初期化するメソッド（呼んだ回数分コールバックが呼ばれるようになるのでMainで１度だけ実行する）。 参照：https://docs.revenuecat.com/docs/getting-started#7-configure-the-purchases-sdk
   Future<void> initPlatformState() async {
     // デバック用のログを表示する
-    await Purchases.setDebugLogsEnabled(true);
+    // await Purchases.setDebugLogsEnabled(true);
 
     if (Platform.isAndroid) {
       // await Purchases.setup("public_google_sdk_key");
