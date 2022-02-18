@@ -61,19 +61,19 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
     var res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) {
-      UserSetup.logOut();
+      await UserSetup.logOut();
       return setState(() {
         _initDone = true;
       });
     }
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
-    UserSetup.signIn(resMap);
+    await UserSetup.signIn(resMap);
 
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     setState(() {
       _user = User.fromJson(resMap['user']);
-      _notifications_count = resMap['notifications_count'];
+      _notifications_count = resMap['user']['notifications_count'];
       _initDone = true;
     });
   }

@@ -6,6 +6,7 @@ import 'package:booqs_mobile/pages/reminder/index.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/user/login.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/pages/user/premium_menu.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/pages/user/sign_up.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
@@ -27,6 +28,7 @@ const wordSearchResultsPage = '/word/search';
 const chapterShowPage = '/chapters/show';
 const userAchievementsPage = '/user/achievements';
 const premiumPlanPage = '/user/premium_plan';
+const premiumMenuPage = '/user/premium_menu';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -43,4 +45,5 @@ final routes = {
   chapterShowPage: (context) => const ChapterShowPage(),
   userAchievementsPage: (context) => const UserAchievementsPage(),
   premiumPlanPage: (context) => const PremiumPlanPage(),
+  premiumMenuPage: (context) => const PremiumMenuPage(),
 };

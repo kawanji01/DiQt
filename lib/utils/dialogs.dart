@@ -9,11 +9,14 @@ class Dialogs {
     final result = await showDialog<bool>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(title),
+        title: Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
         content: Text(message),
         actions: <Widget>[
           SimpleDialogOption(
-            child: const Text('Cancel'),
+            child: const Text('キャンセル'),
             onPressed: () => Navigator.pop(context, false),
           ),
           SimpleDialogOption(

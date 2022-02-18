@@ -6,7 +6,6 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:http/http.dart' as http;
 import 'package:crypto/crypto.dart';
@@ -83,7 +82,7 @@ class AppleButton extends StatelessWidget {
 
           Map resMap = json.decode(res.body);
           // トークンを格納
-          UserSetup.signIn(resMap);
+          await UserSetup.signIn(resMap);
           const snackBar = SnackBar(content: Text('ログインしました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           UserMyPage.push(context);

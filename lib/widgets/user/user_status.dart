@@ -3,7 +3,6 @@ import 'package:booqs_mobile/widgets/shared/premium_plan_button.dart';
 import 'package:booqs_mobile/widgets/user/achievements_button.dart';
 import 'package:booqs_mobile/widgets/user/user_exp_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
 
 class UserStatus extends StatelessWidget {
   const UserStatus({Key? key, required this.user}) : super(key: key);

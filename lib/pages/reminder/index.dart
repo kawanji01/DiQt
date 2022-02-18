@@ -71,7 +71,7 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
     var res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) {
-      UserSetup.logOut();
+      await UserSetup.logOut();
       return setState(() {
         _initDone = true;
       });
@@ -79,10 +79,10 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
 
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
-    UserSetup.signIn(resMap);
+    await UserSetup.signIn(resMap);
     setState(() {
       _user = User.fromJson(resMap['user']);
-      _remindersCount = resMap['reminders_count'];
+      _remindersCount = resMap['user']['reminders_count'];
       _initDone = true;
     });
   }

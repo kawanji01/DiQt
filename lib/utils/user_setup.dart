@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/utils/revenue_cat.dart';
+import 'package:booqs_mobile/services/purchase.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserSetup {
@@ -17,7 +17,7 @@ class UserSetup {
         value: user['notifications_count'].toString());
 
     // RevenueCatの認証 参考：https://docs.revenuecat.com/docs/user-ids#logging-back-in
-    await RevenueCat.identify(user['id']);
+    await PurchaseService.identify(user['id'].toString());
   }
 
   // ログアウトしたときや認証用のtokenが無効だった場合にストレージをリセットしたり、RevenueCatからログアウトする。
@@ -27,6 +27,7 @@ class UserSetup {
     // await Purchases.logOut();
     // トークンをローカルストレージから削除
     const storage = FlutterSecureStorage();
+    await PurchaseService.logOut();
     await storage.deleteAll();
   }
 }

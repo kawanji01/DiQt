@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/revenue_cat.dart';
+import 'package:booqs_mobile/services/purchase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -10,8 +10,8 @@ Future main() async {
   // 環境変数を読み込む。参考： https://pub.dev/packages/flutter_dotenv
   await dotenv.load(fileName: ".env");
   // RevenueCatの初期化。
-  final revenueCat = RevenueCat();
-  revenueCat.initPlatformState();
+  final purchase = PurchaseService();
+  purchase.initPlatformState();
   runApp(const MyApp());
 }
 

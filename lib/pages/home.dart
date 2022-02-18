@@ -57,11 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v2/mobile/users/status');
     var res = await http.post(url, body: {'token': token});
 
-    if (res.statusCode != 200) return UserSetup.logOut();
+    if (res.statusCode != 200) return await UserSetup.logOut();
 
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
-    UserSetup.signIn(resMap);
+    await UserSetup.signIn(resMap);
   }
 
   final List<TabInfo> _tabs = [

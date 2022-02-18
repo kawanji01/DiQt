@@ -1,9 +1,8 @@
-import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/revenue_cat.dart';
+import 'package:booqs_mobile/widgets/purchase/subscription_button.dart';
+import 'package:booqs_mobile/widgets/purchase/restore_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PremiumPlanPage extends StatefulWidget {
   const PremiumPlanPage({Key? key}) : super(key: key);
@@ -19,8 +18,6 @@ class PremiumPlanPage extends StatefulWidget {
 class _PremiumPlanPageState extends State<PremiumPlanPage> {
   @override
   Widget build(BuildContext context) {
-    // 決済関連のクラスのインスタンス化
-    final revenueCat = RevenueCat();
     // 説明
     Widget _explanation() {
       // 太字
@@ -95,66 +92,6 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
       );
     }
 
-    // 購入ボタン
-    Widget _purchaseButton() {
-      Future _test() async {
-        // 画面全体にローディングを表示
-        EasyLoading.show(status: 'loading...');
-        // 製品IDを取得して契約
-        final String? productID = await revenueCat.fetchProductID();
-        await revenueCat.subscribe(productID!);
-        // 画面全体のローディングを消す。
-        EasyLoading.dismiss();
-        const snackBar = SnackBar(content: Text('プレミアム会員になりました！'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
-      }
-
-      return SizedBox(
-        height: 40,
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity,
-                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-          ),
-          onPressed: () => {_test()},
-          icon: const Icon(Icons.grade, color: Colors.white),
-          label: const Text(
-            '登録する',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-        ),
-      );
-    }
-
-    // リストアボタン
-    Widget _restoreButton() {
-      final revenueCat = RevenueCat();
-      return GestureDetector(
-        onTap: () async {
-          final shouldShowSnackbar = await revenueCat.restore();
-          if (shouldShowSnackbar) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                duration: Duration(
-                  seconds: 2,
-                ),
-                content: Text("購入情報を復元しました"),
-              ),
-            );
-          }
-        },
-        child: const Text(
-          '以前購入した方はこちら',
-          style: TextStyle(
-            decoration: TextDecoration.underline,
-            fontWeight: FontWeight.w400,
-            fontSize: 12,
-          ),
-        ),
-      );
-    }
-
     Widget _body() {
       return SingleChildScrollView(
         child: Container(
@@ -167,11 +104,11 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
               const SizedBox(
                 height: 48,
               ),
-              _purchaseButton(),
+              const PurchaseSubscriptionButton(),
               const SizedBox(
                 height: 32,
               ),
-              _restoreButton(),
+              const PurchaseRestoreButton(),
               const SizedBox(
                 height: 80,
               ),
