@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/services/purchase.dart';
 import 'package:booqs_mobile/utils/device_indentifier.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
@@ -19,7 +20,7 @@ class UserMyPage extends StatefulWidget {
 
   static Future push(BuildContext context) async {
     //return Navigator.of(context).pushNamed(userMyPage);
-    // アニメーションなしで画面遷移させる。 参考： https://stackoverflow.com/questions/49874272/how-to-navigate-to-other-page-without-animation-flutter
+    // アニメーションなしで画面遷移させる。 ref： https://stackoverflow.com/questions/49874272/how-to-navigate-to-other-page-without-animation-flutter
     return Navigator.pushReplacement(
       context,
       PageRouteBuilder(
@@ -61,7 +62,7 @@ class _UserMyPageState extends State<UserMyPage> {
     var res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) {
-      UserSetup.logOut();
+      await UserSetup.logOut();
       return setState(() {
         _initDone = true;
       });
@@ -69,7 +70,7 @@ class _UserMyPageState extends State<UserMyPage> {
 
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
-    UserSetup.signIn(resMap);
+    await UserSetup.signIn(resMap);
     setState(() {
       _user = User.fromJson(resMap['user']);
       _initDone = true;
@@ -89,7 +90,7 @@ class _UserMyPageState extends State<UserMyPage> {
           '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/logout');
       await http.post(url,
           body: {'token': '$token', 'device_identifier': deviceIdentifier});
-      UserSetup.logOut();
+      await UserSetup.logOut();
       // ローディングを消す
       EasyLoading.dismiss();
       const snackBar = SnackBar(content: Text('ログアウトしました。'));

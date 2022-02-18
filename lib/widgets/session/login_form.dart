@@ -62,7 +62,7 @@ class _LoginFormState extends State<LoginForm> {
       // レスポンスに対する処理
       if (res.statusCode == 200) {
         Map resMap = json.decode(res.body);
-        UserSetup.signIn(resMap);
+        await UserSetup.signIn(resMap);
         const snackBar = SnackBar(content: Text('ログインしました。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);

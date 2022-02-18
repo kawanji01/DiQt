@@ -66,7 +66,7 @@ class _SignUpFormState extends State<SignUpForm> {
       // レスポンスに対する処理
       if (res.statusCode == 200) {
         Map resMap = json.decode(res.body);
-        UserSetup.signIn(resMap);
+        await UserSetup.signIn(resMap);
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);

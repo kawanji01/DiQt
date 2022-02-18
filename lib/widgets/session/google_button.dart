@@ -58,7 +58,7 @@ class GoogleButton extends StatelessWidget {
       if (res.statusCode != 200) return EasyLoading.dismiss();
 
       Map resMap = json.decode(res.body);
-      UserSetup.signIn(resMap);
+      await UserSetup.signIn(resMap);
       // 画面全体のローディングを消す。
       EasyLoading.dismiss();
       const snackBar = SnackBar(content: Text('ログインしました。'));
