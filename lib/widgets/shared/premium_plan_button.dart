@@ -54,8 +54,6 @@ class PremiumPlanButton extends StatelessWidget {
 
     // ボタンの表示
     Widget _button(user) {
-      if (Platform.isIOS == false) return Container();
-
       if (user.premium) {
         return _premiumMenuButton(user);
       }

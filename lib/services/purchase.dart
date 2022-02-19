@@ -19,7 +19,8 @@ class PurchaseService {
     // await Purchases.setDebugLogsEnabled(true);
 
     if (Platform.isAndroid) {
-      // await Purchases.setup("public_google_sdk_key");
+      final publicAndroidSdkKey = dotenv.env['REVENUECAT_ANDROID_PUBLIC_KEY'];
+      await Purchases.setup('$publicAndroidSdkKey');
     } else if (Platform.isIOS) {
       final publicIosSdkKey = dotenv.env['REVENUECAT_IOS_PUBLIC_KEY'];
       await Purchases.setup('$publicIosSdkKey');
