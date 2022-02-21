@@ -20,7 +20,7 @@ class PurchaseIntroductionFooter extends StatelessWidget {
             color: Colors.black54,
           ),
           children: [
-            const TextSpan(text: "・プレミアム契約期間は開始日から起算して1ヶ月または1年ごとの自動更新となります\n"),
+            const TextSpan(text: "・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります\n"),
             const TextSpan(text: "・"),
             TextSpan(
               text: "プライバシーポリシー",
