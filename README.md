@@ -15,7 +15,7 @@
 # Details
 モバイル版では、以下の構成図のように、サーバーにRuby on Rails, クライアントサイドにFlutterを使っています。
 
-![BooQs system configuration](https://user-images.githubusercontent.com/44082240/145335890-1a0d4255-bb33-4d00-ba5f-d1df3a1b0c37.png)
+![BooQs system configuration (1)](https://user-images.githubusercontent.com/44082240/155314532-80bddcb4-117e-467d-bd56-6cd99400d9d5.png)
 
 
 このリポジトリは、クライアントサイドのFlutterのソースコードです。
