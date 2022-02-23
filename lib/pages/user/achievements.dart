@@ -95,7 +95,6 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
     Widget _medal(achievement) {
       Image image;
       Text name;
-      print(_gotMedalIds);
 
       if (_gotMedalIds.contains(achievement.id)) {
         image = Image(image: NetworkImage('${achievement.imageUrl}'));

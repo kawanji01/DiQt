@@ -32,7 +32,7 @@ class PurchaseIntroductionFooter extends StatelessWidget {
               // テキスト内リンクの実装方法：ref: https://qiita.com/chooyan_eng/items/9e8f6ca2af55ea0e683a
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  launch("https://www.booqs.net/ja/privacy_policy",
+                  launch("https://www.diqt.net/ja/privacy_policy",
                       forceSafariVC: true);
                 },
             ),
@@ -44,7 +44,7 @@ class PurchaseIntroductionFooter extends StatelessWidget {
               style: const TextStyle(decoration: TextDecoration.underline),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  launch("https://www.booqs.net/ja/terms_of_service",
+                  launch("https://www.diqt.net/ja/terms_of_service",
                       forceSafariVC: true);
                 },
             ),
@@ -56,7 +56,7 @@ class PurchaseIntroductionFooter extends StatelessWidget {
               style: const TextStyle(decoration: TextDecoration.underline),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  launch("https://www.booqs.net/ja/legal", forceSafariVC: true);
+                  launch("https://www.diqt.net/ja/legal", forceSafariVC: true);
                 },
             ),
             const TextSpan(
