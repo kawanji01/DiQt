@@ -26,20 +26,29 @@ class PurchaseSubscriptionButton extends StatelessWidget {
       }
     }
 
-    return SizedBox(
-      height: 40,
-      child: ElevatedButton.icon(
-        style: ElevatedButton.styleFrom(
-          minimumSize: const Size(double.infinity,
-              40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-        ),
-        onPressed: () => {_test()},
-        icon: const Icon(Icons.grade, color: Colors.white),
-        label: const Text(
-          '登録する',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+    return Column(children: <Widget>[
+      Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: const Text(
+            '2週間の無料お試しを始める',
+            style: TextStyle(
+                fontSize: 16, color: Colors.green, fontWeight: FontWeight.bold),
+          )),
+      SizedBox(
+        height: 48,
+        child: ElevatedButton.icon(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size(double.infinity,
+                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+          ),
+          onPressed: () => {_test()},
+          icon: const Icon(Icons.grade, color: Colors.white),
+          label: const Text(
+            '¥500 / 月',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
         ),
       ),
-    );
+    ]);
   }
 }

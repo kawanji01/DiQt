@@ -78,14 +78,6 @@ class PurchaseIntroduction extends StatelessWidget {
 　プランには''',
                   style: _textStyleNormal,
                 ),
-                TextSpan(
-                  text: '''２週間の無料お試し期間''',
-                  style: _textStyleBold,
-                ),
-                TextSpan(
-                  text: '''があり、いつでもご自由に解約いただけます''',
-                  style: _textStyleNormal,
-                ),
               ],
             ),
           ),
