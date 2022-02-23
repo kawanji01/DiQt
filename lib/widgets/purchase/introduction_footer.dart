@@ -16,11 +16,15 @@ class PurchaseIntroductionFooter extends StatelessWidget {
         text: TextSpan(
           style: const TextStyle(
             fontWeight: FontWeight.w400,
-            fontSize: 10,
+            fontSize: 12,
             color: Colors.black54,
           ),
           children: [
-            const TextSpan(text: "・プレミアム契約期間は開始日から起算して1ヶ月または1年ごとの自動更新となります\n"),
+            const TextSpan(text: "・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n"),
+            const TextSpan(text: "・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n"),
+            const TextSpan(
+              text: "・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n",
+            ),
             const TextSpan(text: "・"),
             TextSpan(
               text: "プライバシーポリシー",
@@ -69,10 +73,7 @@ class PurchaseIntroductionFooter extends StatelessWidget {
                 },
             ),
             const TextSpan(
-              text: "をご確認のうえ登録してください\n",
-            ),
-            const TextSpan(
-              text: "・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が自動更新されます\n",
+              text: "をご確認のうえ登録してください。\n",
             ),
           ],
         ),

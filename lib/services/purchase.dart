@@ -26,7 +26,7 @@ class PurchaseService {
       await Purchases.setup('$publicIosSdkKey');
     }
 
-    // コルバック時に実行し、契約状況を同期する。
+    // コールバック時に実行し、契約状況を同期する。
     Future<void> _purchaserInfoUpdated(PurchaserInfo info) async {
       print('purchaserInfoUpdated: $isExecuting');
       if (isExecuting) return;
