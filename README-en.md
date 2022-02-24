@@ -1,8 +1,8 @@
 [日本語](./README.md) | English
 
-# BooQs on Mobiles.
+# DiQt on Mobiles.
 
-This is the source code of dictionary app "[BooQs](https://www.diqt.net/)".
+This is the source code of dictionary app "[DiQt](https://www.diqt.net/)".
 
 -  [iOS version](https://apps.apple.com/jp/app/booqs/id1594559036?ign-itsct=apps_box_link&ign-itscg=30200)
 -  [Android version](https://play.google.com/store/apps/details?id=com.booqs.booqs_mobile)
