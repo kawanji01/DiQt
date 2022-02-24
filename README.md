@@ -1,8 +1,8 @@
 日本語 | [English](./README-en.md)
 
-# BooQs on Mobiles.
+# DiQt on Mobiles.
 
-絶対に忘れない英和辞書＆英単語帳アプリ[BooQs](https://www.booqs.net/)のモバイル版のソースコードです。
+絶対に忘れない英和辞書＆英単語帳アプリ[DiQt](https://www.diqt.net/)のモバイル版のソースコードです。
 
 -  [iOS版](https://apps.apple.com/jp/app/booqs/id1594559036?ign-itsct=apps_box_link&ign-itscg=30200)
 -  [Android版](https://play.google.com/store/apps/details?id=com.booqs.booqs_mobile)
