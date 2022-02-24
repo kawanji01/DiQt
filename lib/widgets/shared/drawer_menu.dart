@@ -32,7 +32,7 @@ class DrawerMenu extends StatelessWidget {
               color: Colors.green,
             ),
             child: Text(
-              'BooQs',
+              'DiQt',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 32,

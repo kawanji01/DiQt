@@ -146,7 +146,7 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
 
       return SingleChildScrollView(
         child: Column(children: <Widget>[
-          _heading('チュートリアルメダル', 'BooQsの基本的操作を達成することで手に入るメダルです。'),
+          _heading('チュートリアルメダル', 'DiQtの基本的操作を達成することで手に入るメダルです。'),
           _medalTile(_tutorialMedals),
           _heading('解答数メダル', '累計の解答数に応じて手に入るメダルです。'),
           _medalTile(_answerMedals),

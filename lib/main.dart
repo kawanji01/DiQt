@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     const locale = Locale("ja", "JP");
 
     return MaterialApp(
-      title: 'BooQs',
+      title: 'DiQt',
       locale: locale,
       // navigatorKey: Catcher.navigatorKey,
       // 画面全体に被さるローディングの初期化。参考： https://pub.dev/packages/flutter_easyloading
