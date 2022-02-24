@@ -67,7 +67,7 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
 
   // ダイアログの中身を生成する
   Widget _buildExternalLinkDialog() {
-    return const Text('Web版BooQsに移動します。よろしいですか？');
+    return const Text('Web版DiQtに移動します。よろしいですか？');
   }
 
   Widget _linkButton() {

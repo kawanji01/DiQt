@@ -64,7 +64,6 @@ class _WordNewPageState extends State<WordNewPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('dictionary_id: $_dictionaryId');
     Future _goToWordPage(word) async {
       await WordShowPage.pushReplacement(context, word.id);
     }

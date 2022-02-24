@@ -48,7 +48,7 @@ class PurchaseIntroduction extends StatelessWidget {
               children: <TextSpan>[
                 TextSpan(text: "\n\n"),
                 TextSpan(
-                  text: '''BooQsのすべての機能がご利用いただけるようになる有料プランです。
+                  text: '''DiQtのすべての機能がご利用いただけるようになる有料プランです。
 　プレミアムプランにご加入いただくと、Web版BooQにて、''',
                   style: _textStyleNormal,
                 ),
@@ -66,7 +66,7 @@ class PurchaseIntroduction extends StatelessWidget {
                 ),
                 TextSpan(
                   text: '''といった新たな機能がご利用いただけるようになります。
- 　Chrome拡張版BooQsでも、''',
+ 　Chrome拡張版DiQtでも、''',
                   style: _textStyleNormal,
                 ),
                 TextSpan(

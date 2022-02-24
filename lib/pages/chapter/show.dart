@@ -23,8 +23,7 @@ class ChapterShowPage extends StatefulWidget {
 
 class _ChapterShowPageState extends State<ChapterShowPage> {
   Chapter? _chapter;
-  List<Drill> _drills = [];
-  String? _publicUid;
+  final List<Drill> _drills = [];
   bool _initDone = false;
 
   @override
