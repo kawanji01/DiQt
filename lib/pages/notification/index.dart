@@ -57,7 +57,7 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
     }
 
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v2/mobile/notifications/list');
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/notifications/list');
     var res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) {
