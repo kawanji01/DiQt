@@ -58,7 +58,7 @@ class _UserMyPageState extends State<UserMyPage> {
     }
 
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v2/mobile/users/status');
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/status');
     var res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) {
