@@ -34,8 +34,6 @@ class PurchaseService {
       await syncSubscription(info);
     }
 
-    // 解約時のイベントを捕捉するリスナー ref: ??
-    Purchases.removePurchaserInfoUpdateListener(_purchaserInfoUpdated);
     // 契約情報更新時のイベントを捕捉するリスナー ref: https://docs.revenuecat.com/docs/purchaserinfo#listening-for-purchaser-info-updates
     Purchases.addPurchaserInfoUpdateListener(_purchaserInfoUpdated);
   }
@@ -51,11 +49,12 @@ class PurchaseService {
       Purchases.logOut();
     } catch (e) {
       print('error: $e');
+      rethrow;
     }
   }
 
   // プレミアムプランのIDを取得。
-  Future<String?> fetchProductID() async {
+  Future<String> fetchProductID() async {
     Offerings offerings = await Purchases.getOfferings();
     final product = offerings.current!.monthly!.product;
     return product.identifier;
@@ -76,13 +75,14 @@ class PurchaseService {
       const storage = FlutterSecureStorage();
       String? token = await storage.read(key: 'token');
       final isSubscribed = await getOrCreateSubscriber(token);
-      isExecuting = false;
       return isSubscribed;
     } catch (e) {
       // TODO: エラーハンドリング
       print('.subscribe: $e');
-      isExecuting = false;
       return false;
+    } finally {
+      // errorであれreturnで外部コードに抜ける前であれ、常に実行する。ref: https://ja.javascript.info/try-catch#ref-1685
+      isExecuting = false;
     }
   }
 
