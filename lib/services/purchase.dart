@@ -75,13 +75,14 @@ class PurchaseService {
       const storage = FlutterSecureStorage();
       String? token = await storage.read(key: 'token');
       final isSubscribed = await getOrCreateSubscriber(token);
-      isExecuting = false;
       return isSubscribed;
     } catch (e) {
       // TODO: エラーハンドリング
       print('.subscribe: $e');
-      isExecuting = false;
       return false;
+    } finally {
+      // errorであれreturnで外部コードに抜ける前であれ、常に実行する。ref: https://ja.javascript.info/try-catch#ref-1685
+      isExecuting = false;
     }
   }
 
