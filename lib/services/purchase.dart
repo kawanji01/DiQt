@@ -49,6 +49,7 @@ class PurchaseService {
       Purchases.logOut();
     } catch (e) {
       print('error: $e');
+      rethrow;
     }
   }
 
