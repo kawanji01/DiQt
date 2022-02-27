@@ -34,8 +34,6 @@ class PurchaseService {
       await syncSubscription(info);
     }
 
-    // 解約時のイベントを捕捉するリスナー ref: ??
-    Purchases.removePurchaserInfoUpdateListener(_purchaserInfoUpdated);
     // 契約情報更新時のイベントを捕捉するリスナー ref: https://docs.revenuecat.com/docs/purchaserinfo#listening-for-purchaser-info-updates
     Purchases.addPurchaserInfoUpdateListener(_purchaserInfoUpdated);
   }
