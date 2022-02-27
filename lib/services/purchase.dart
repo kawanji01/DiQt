@@ -54,7 +54,7 @@ class PurchaseService {
   }
 
   // プレミアムプランのIDを取得。
-  Future<String?> fetchProductID() async {
+  Future<String> fetchProductID() async {
     Offerings offerings = await Purchases.getOfferings();
     final product = offerings.current!.monthly!.product;
     return product.identifier;
