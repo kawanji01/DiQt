@@ -45,7 +45,7 @@ class WordSearchResultsPage extends StatefulWidget {
 }
 
 class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
-  List<Word> _words = [];
+  final List<Word> _words = [];
   Dictionary? _dictionary;
   String? _keyword;
   bool _initDone = false;
