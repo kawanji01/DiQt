@@ -92,12 +92,12 @@
 
         <!-- AdMob START ref: https://zenn.dev/dala/books/flutter-basic-app/viewer/admob , https://developers.google.com/admob/android/quick-start?hl=ja#import_the_mobile_ads_sdk-->
         <manifest>
-    <application>
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9489251797522277~9865846180"/>
-    </application>
-</manifest>
+            <application>
+                <meta-data
+                    android:name="com.google.android.gms.ads.APPLICATION_ID"
+                    android:value="ca-app-pub-9489251797522277~9865846180"/>
+            </application>
+        </manifest>
         <!-- AdMob END -->
 
     </application>
