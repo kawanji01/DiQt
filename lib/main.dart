@@ -5,13 +5,18 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 Future main() async {
   // 環境変数を読み込む。参考： https://pub.dev/packages/flutter_dotenv
   await dotenv.load(fileName: ".env");
-  // RevenueCatの初期化。
+  // RevenueCatの初期化
   final purchase = PurchaseService();
   purchase.initPlatformState();
+  // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
+
   runApp(const MyApp());
 }
 

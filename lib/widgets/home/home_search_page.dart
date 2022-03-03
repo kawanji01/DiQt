@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
+import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/widgets/word/word_search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -14,7 +15,7 @@ class HomeSearchPage extends StatefulWidget {
 }
 
 class _HomeSearchPageState extends State<HomeSearchPage> {
-  List<Dictionary> _dictionaries = [];
+  final List<Dictionary> _dictionaries = [];
 
   // floatingButtonを押した時にフォームにフォーカスさせるための処理 / https://flutter.dev/docs/cookbook/forms/focus
   // Define the focus node. To manage the lifecycle, create the FocusNode in

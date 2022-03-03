@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/word/new.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
+import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -80,7 +80,9 @@ class NoResultsFound extends StatelessWidget {
         const SizedBox(height: 40),
         wordRegistrationButton(),
         const SizedBox(height: 16),
-        serachGoogleButton(keyword)
+        serachGoogleButton(keyword),
+        const SizedBox(height: 80),
+        const AppBanner(),
       ],
     );
   }

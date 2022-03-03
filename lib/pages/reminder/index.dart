@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
@@ -115,6 +116,10 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
             height: 40,
           ),
           _remindersPageButton(),
+          const SizedBox(
+            height: 80,
+          ),
+          const AppBanner(),
         ],
       ),
     );

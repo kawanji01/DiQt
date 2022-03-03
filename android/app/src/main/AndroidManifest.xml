@@ -91,6 +91,7 @@
         <!-- Local notification END -->
 
         <!-- AdMob START ref: https://zenn.dev/dala/books/flutter-basic-app/viewer/admob , https://developers.google.com/admob/android/quick-start?hl=ja#import_the_mobile_ads_sdk-->
+        <!-- バナー広告 -->
         <manifest>
             <application>
                 <meta-data

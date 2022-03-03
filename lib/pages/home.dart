@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/home/home_chapters_page.dart';
@@ -101,13 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
         bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
-        //floatingActionButton: FloatingActionButton(
-        //  onPressed: () => {
-        //searchFocusNode.requestFocus();
-        //  },
-        //  tooltip: 'Increment',
-        //  child: const Icon(Icons.search),
-        //),
+        // bottomNavigationBar: const AppBanner(),
         drawer: const DrawerMenu(),
       ),
     );
