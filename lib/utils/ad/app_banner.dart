@@ -49,6 +49,7 @@ class _AppBannerState extends State<AppBanner> {
       String? iosBannerAdID = dotenv.env['IOS_BANNER_AD_ID'];
       return '$iosBannerAdID';
     }
+    print('Android');
     String? androidBannerAdID = dotenv.env['ANDROID_BANNER_AD_ID'];
     return '$androidBannerAdID';
   }
