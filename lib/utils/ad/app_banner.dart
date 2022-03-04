@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AppBanner extends StatefulWidget {
@@ -22,6 +23,13 @@ class _AppBannerState extends State<AppBanner> {
   @override
   void initState() {
     super.initState();
+    _setAd();
+  }
+
+  Future _setAd() async {
+    final bool isPremium = await _isPremium();
+    if (isPremium) return;
+
     BannerAd(
       adUnitId: getAdUnitId(),
       size: widget.adSize ?? AdSize.largeBanner,
@@ -34,6 +42,14 @@ class _AppBannerState extends State<AppBanner> {
     ).load();
   }
 
+  // ユーザーがプレミアム会員か確認する。
+  Future<bool> _isPremium() async {
+    const storage = FlutterSecureStorage();
+    String? premium = await storage.read(key: 'premium');
+    return premium == 'true';
+  }
+
+  // 広告IDを取得する
   String getAdUnitId() {
     if (widget.adUnitId != '') {
       return widget.adUnitId;
@@ -56,6 +72,7 @@ class _AppBannerState extends State<AppBanner> {
 
   @override
   Widget build(BuildContext context) {
+    // プレミアム会員なら広告を表示しない。（initState時点で広告を読み込まない）
     if (bannerAd == null) {
       return Container(height: 0);
     }
