@@ -66,18 +66,17 @@ class PurchaseService {
     try {
       isExecuting = true;
       // 購入処理
-      final info = await Purchases.purchaseProduct(productID);
       // パスワードの入力の不要なキャッシュから購入（Vending PurchaserInfo from cache.）された場合、
-      // isActive: falseのinfoが引き渡されることによって、
+      // syncSubscription(info)で契約処理を行なってしまうと、isActive: falseのinfoが引き渡されることによって、
       // syncSubscription(info)内のinfo.entitlements.active.isNotEmptyをすり抜けて、契約処理ではなく、解約処理が実行されてしまう。
       // そのため、あらかじめ購入とわかっている場合には、syncSubscriptionではなく、getOrCreateSubscriberを使う。
+      // final info = await Purchases.purchaseProduct(productID);
       // final isSubscribed = await syncSubscription(info);
       const storage = FlutterSecureStorage();
       String? token = await storage.read(key: 'token');
       final isSubscribed = await getOrCreateSubscriber(token);
       return isSubscribed;
     } catch (e) {
-      // TODO: エラーハンドリング
       print('.subscribe: $e');
       return false;
     } finally {
@@ -141,17 +140,9 @@ class PurchaseService {
   // DB側の解約処理
   // サーバー側でSubscriptionを削除して、解約をDBと同期する。
   Future<bool> deleteSubscriber(token) async {
-    String? platform;
-    if (Platform.isAndroid) {
-      platform = 'android';
-    } else if (Platform.isIOS) {
-      platform = 'ios';
-    }
-
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/users/delete_subscriber');
-    var res =
-        await http.post(url, body: {'token': token, 'platform': platform});
+    var res = await http.post(url, body: {'token': token});
     print('.deleteSubscriber: response ${res.statusCode}');
     if (res.statusCode != 200) {
       return false;
