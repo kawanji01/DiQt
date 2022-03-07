@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/pages/user/sign_up.dart';
+import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/session/apple_button.dart';
 import 'package:booqs_mobile/widgets/session/divider_widget.dart';
@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     const SizedBox(height: 48),
-                    const LoginForm(),
+                    LoginForm(),
                     _forgotPassword(),
                     const DividerWidget(),
                     const GoogleButton(),

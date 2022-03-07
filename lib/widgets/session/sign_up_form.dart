@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
-import 'package:device_info_plus/device_info_plus.dart';
+import 'package:booqs_mobile/widgets/session/form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 
 class SignUpForm extends StatefulWidget {
@@ -22,36 +22,32 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   void dispose() {
-    // きちんと破棄しよう。
+    // Clean up the controller when the widget is removed from the widget tree.
     _nameController.dispose();
     _idController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
+  // Note: Remember to dispose of the TextEditingController when it’s no longer needed. This ensures that you discard any resources used by the object.
+  // ref: https://docs.flutter.dev/cookbook/forms/text-field-changes
 
   @override
   Widget build(BuildContext context) {
+    // 送信
     Future _submit() async {
+      // 画面全体にローディングを表示
+      EasyLoading.show(status: 'loading...');
       if (!_formKey.currentState!.validate()) {
+        // ローディングを消去
+        EasyLoading.dismiss();
         return;
       }
 
       // デバイスの識別IDなどを取得する
-      String deviceIdentifier = "unknown";
-      String platform = "unknown";
-      String deviceName = "unknown";
-      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-      if (Platform.isAndroid) {
-        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-        deviceIdentifier = androidInfo.androidId!;
-        deviceName = androidInfo.model!;
-        platform = 'android';
-      } else if (Platform.isIOS) {
-        IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-        deviceIdentifier = iosInfo.identifierForVendor!;
-        deviceName = iosInfo.utsname.machine!;
-        platform = 'ios';
-      }
+      final deviceInfo = DeviceInfoService();
+      String platform = deviceInfo.getPlatform();
+      String deviceIdentifier = await deviceInfo.getIndentifier();
+      String deviceName = await deviceInfo.getName();
       // リクエスト
       var url = Uri.parse(
           '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users');
@@ -71,46 +67,12 @@ class _SignUpFormState extends State<SignUpForm> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
       } else {
-        _nameController.text = '';
-        _idController.text = '';
         _passwordController.text = '';
         const snackBar = SnackBar(
             content: Text('登録できませんでした。指定メールアドレスのユーザーはすでに存在しているか、パスワードが短すぎます。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
-    }
-
-    // IDとパスワードのフォーム https://flutterawesome.com/basic-login-and-signup-screen-designed-in-flutter/
-    Widget _entryField(String title, controller, {bool isPassword = false}) {
-      return Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              controller: controller,
-              obscureText: isPassword,
-              decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
-                  filled: true),
-              validator: (String? value) {
-                if (value == null || value.isEmpty) {
-                  return '入力してください。';
-                }
-                return null;
-              },
-            )
-          ],
-        ),
-      );
+      EasyLoading.dismiss();
     }
 
     Widget _submitButton() {
@@ -148,9 +110,14 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formKey,
       child: Column(
         children: <Widget>[
-          _entryField("ユーザー名", _nameController),
-          _entryField("メールアドレス", _idController),
-          _entryField("パスワード", _passwordController, isPassword: true),
+          SessionFormField(
+              label: "ユーザー名", controller: _nameController, isPassword: false),
+          SessionFormField(
+              label: "メールアドレス", controller: _idController, isPassword: false),
+          SessionFormField(
+              label: "パスワード（６文字以上）",
+              controller: _passwordController,
+              isPassword: true),
           const SizedBox(height: 20),
           _submitButton(),
         ],

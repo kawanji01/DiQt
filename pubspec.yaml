@@ -57,6 +57,7 @@ dependencies:
   eval_ex: ^1.1.0 # レベル実装のために、log10（ 10 を底とした対数を返すメソッド）が必要なため。
   purchases_flutter: ^3.9.3 # 課金実装
   google_mobile_ads: ^0.13.6 # 広告
+  flutter_riverpod: ^1.0.3 # 状態管理
   
 dev_dependencies:
   flutter_test:

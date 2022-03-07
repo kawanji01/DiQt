@@ -1,5 +1,5 @@
-import 'package:booqs_mobile/pages/user/login.dart';
-import 'package:booqs_mobile/pages/user/sign_up.dart';
+import 'package:booqs_mobile/pages/session/login.dart';
+import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
