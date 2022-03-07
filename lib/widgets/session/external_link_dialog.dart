@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:booqs_mobile/utils/device_indentifier.dart';
+import 'package:booqs_mobile/services/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -30,7 +30,8 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
   Future _retrivePasscode() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
-    String deviceIdentifier = await DeviceIndentifier.get(context);
+    final deviceInfo = DeviceInfoService();
+    final String deviceIdentifier = await deviceInfo.getIndentifier();
     var url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/onetime_passcode');
     http.Response res = await http.post(url, body: {

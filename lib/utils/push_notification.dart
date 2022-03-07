@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:booqs_mobile/services/device_info.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -93,21 +94,10 @@ class PushNotification {
     }
 
     // デバイスの識別IDなどを取得する
-    String deviceIdentifier = "unknown";
-    String platform = "unknown";
-    String deviceName = "unknown";
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    if (Platform.isAndroid) {
-      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      deviceIdentifier = androidInfo.androidId!;
-      deviceName = androidInfo.model!;
-      platform = 'android';
-    } else if (Platform.isIOS) {
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      deviceIdentifier = iosInfo.identifierForVendor!;
-      deviceName = iosInfo.utsname.machine!;
-      platform = 'ios';
-    }
+    final deviceInfo = DeviceInfoService();
+    final String platform = deviceInfo.getPlatform();
+    final String deviceIdentifier = await deviceInfo.getIndentifier();
+    final String deviceName = await deviceInfo.getName();
     // DB側のユーザー（token）とデバイス（device_identifier）と通知用のトークン（fcm_token）の紐付けを更新する。
     // アプリをアンインストールしたときなどにFCMトークンはリセットされるので、こまめな更新が必要。参照：https://qiita.com/unsoluble_sugar/items/bca933735c9d3a2d60c2
     var url = Uri.parse(

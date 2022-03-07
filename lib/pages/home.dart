@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/home/home_chapters_page.dart';
@@ -69,11 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
     TabInfo("辞書", const HomeSearchPage()),
     TabInfo("単語帳", const HomeChaptersPage()),
   ];
-
-  //double getProportionWidth(double inputWidth) {
-  //final screenWidth = SizeConfig.screenWidth;
-  //return (inputWidth / 375.0) * screenWidth;
-//}
 
   @override
   Widget build(BuildContext context) {

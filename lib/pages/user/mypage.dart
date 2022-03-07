@@ -3,7 +3,7 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/services/purchase.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
-import 'package:booqs_mobile/utils/device_indentifier.dart';
+import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -11,6 +11,7 @@ import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/user/user_status.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -86,7 +87,8 @@ class _UserMyPageState extends State<UserMyPage> {
       EasyLoading.show(status: 'loading...');
       const storage = FlutterSecureStorage();
       String? token = await storage.read(key: 'token');
-      String deviceIdentifier = await DeviceIndentifier.get(context);
+      final deviceInfo = DeviceInfoService();
+      final String deviceIdentifier = await deviceInfo.getIndentifier();
       var url = Uri.parse(
           '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/logout');
       await http.post(url,

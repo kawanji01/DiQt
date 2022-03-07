@@ -1,11 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
@@ -29,21 +27,10 @@ class GoogleButton extends StatelessWidget {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
-      String deviceIdentifier = "unknown";
-      String platform = "unknown";
-      String deviceName = "unknown";
-      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-      if (Platform.isAndroid) {
-        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-        deviceIdentifier = androidInfo.androidId!;
-        deviceName = androidInfo.model!;
-        platform = 'android';
-      } else if (Platform.isIOS) {
-        IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-        deviceIdentifier = iosInfo.identifierForVendor!;
-        deviceName = iosInfo.utsname.machine!;
-        platform = 'ios';
-      }
+      final deviceInfo = DeviceInfoService();
+      final String platform = deviceInfo.getPlatform();
+      final String deviceIdentifier = await deviceInfo.getIndentifier();
+      final String deviceName = await deviceInfo.getName();
       ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する(END) ////
 
       var url = Uri.parse(
