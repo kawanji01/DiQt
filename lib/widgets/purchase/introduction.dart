@@ -49,7 +49,7 @@ class PurchaseIntroduction extends StatelessWidget {
                 TextSpan(text: "\n\n"),
                 TextSpan(
                   text: '''DiQtのすべての機能がご利用いただけるようになる有料プランです。
-　プレミアムプランにご加入いただくと、Web版BooQにて、''',
+　プレミアムプランにご加入いただくと、Web版DiQtにて、''',
                   style: _textStyleNormal,
                 ),
                 TextSpan(
@@ -66,7 +66,7 @@ class PurchaseIntroduction extends StatelessWidget {
                 ),
                 TextSpan(
                   text: '''といった新たな機能がご利用いただけるようになります。
- 　Chrome拡張版DiQtでも、''',
+ Chrome拡張版DiQtでも、''',
                   style: _textStyleNormal,
                 ),
                 TextSpan(
@@ -75,7 +75,7 @@ class PurchaseIntroduction extends StatelessWidget {
                 ),
                 TextSpan(
                   text: '''などお得な特典があります。
-　プランには''',
+プランには''',
                   style: _textStyleNormal,
                 ),
               ],
