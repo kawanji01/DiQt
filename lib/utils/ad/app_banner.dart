@@ -21,8 +21,9 @@ class _AppBannerState extends State<AppBanner> {
   BannerAd? bannerAd;
 
   @override
-  void initState() {
-    super.initState();
+  // build を実行する前に実行されるメソッド ref: https://zenn.dev/sugitlab/articles/c38ef8d3035289
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _setAd();
   }
 
