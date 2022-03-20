@@ -32,10 +32,10 @@ class UserAchievementsPage extends StatefulWidget {
 
 class _UserAchievementsPageState extends State<UserAchievementsPage> {
   User? _user;
-  List<Achievement> _tutorialMedals = [];
-  List<Achievement> _answerMedals = [];
-  List<Achievement> _continuationMedals = [];
-  List<Achievement> _masterMedals = [];
+  final List<Achievement> _tutorialMedals = [];
+  final List<Achievement> _answerMedals = [];
+  final List<Achievement> _continuationMedals = [];
+  final List<Achievement> _masterMedals = [];
   List<dynamic> _gotMedalIds = [];
   bool _initDone = false;
 
@@ -154,11 +154,11 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
           _medalTile(_continuationMedals),
           _heading('マスターメダル', '偉業を成し遂げたときに獲得できるメダルです。'),
           _medalTile(_masterMedals),
-          //const SizedBox(height: 48),
-          //Text(
-          //  '獲得メダル数：39個中${_user!.achievementMapsCount}個',
-          //  style: const TextStyle(fontSize: 16, color: Colors.black87),
-          //),
+          const SizedBox(height: 80),
+          Text(
+            '獲得メダル数：39個中${_user!.achievementMapsCount}個',
+            style: const TextStyle(fontSize: 16, color: Colors.black87),
+          ),
           const SizedBox(height: 80),
         ]),
       );

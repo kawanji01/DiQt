@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     const SizedBox(height: 48),
-                    LoginForm(),
+                    const LoginForm(),
                     _forgotPassword(),
                     const DividerWidget(),
                     const GoogleButton(),
