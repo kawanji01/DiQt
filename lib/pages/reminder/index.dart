@@ -83,7 +83,7 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
     await UserSetup.signIn(resMap);
     setState(() {
       _user = User.fromJson(resMap['user']);
-      _remindersCount = resMap['user']['reminders_count'];
+      _remindersCount = resMap['user']['unread_reminders_count'];
       _initDone = true;
     });
   }

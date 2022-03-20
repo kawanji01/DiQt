@@ -74,7 +74,7 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     setState(() {
       _user = User.fromJson(resMap['user']);
-      _notificationsCount = resMap['user']['notifications_count'];
+      _notificationsCount = resMap['user']['unread_notifications_count'];
       _initDone = true;
     });
   }
