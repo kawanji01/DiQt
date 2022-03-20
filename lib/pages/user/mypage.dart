@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/services/purchase.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
@@ -11,7 +11,6 @@ import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/user/user_status.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -117,7 +116,8 @@ class _UserMyPageState extends State<UserMyPage> {
     Future _pushPopup(value) async {
       switch (value) {
         case 0:
-          _moveToAccountSetting();
+          //_moveToAccountSetting();
+          UserEditPage.push(context, _user!);
           break;
         case 1:
           _logout();
