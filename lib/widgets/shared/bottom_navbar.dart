@@ -1,7 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notification/index.dart';
-import 'package:booqs_mobile/pages/reminder/index.dart';
+import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -16,8 +16,8 @@ class BottomNavbar extends StatefulWidget {
 
 class _BottomNavbarState extends State<BottomNavbar> {
   int? _selectedIndex;
-  int _remindersCounter = 0;
-  int _notificationsCounter = 0;
+  int _unsolvedReviewsCount = 0;
+  int _unreadNotificationsCount = 0;
 
   @override
   void initState() {
@@ -29,35 +29,37 @@ class _BottomNavbarState extends State<BottomNavbar> {
   // 復習と通知アイコンに表示するバッジのカウントを初期化する。
   Future _setCountToBadge() async {
     const storage = FlutterSecureStorage();
-    String? remindersCounter = await storage.read(key: 'remindersCount');
-    String? notificationsCounter =
-        await storage.read(key: 'notificationsCount');
+    String? unsolvedReviewsCount =
+        await storage.read(key: 'unsolvedReviewsCount');
+    String? unreadNotificationsCount =
+        await storage.read(key: 'unreadNotificationsCount');
 
     setState(() {
-      if (remindersCounter == 'null' || remindersCounter == null) {
-        _remindersCounter = 0;
+      if (unsolvedReviewsCount == 'null' || unsolvedReviewsCount == null) {
+        _unsolvedReviewsCount = 0;
       } else {
-        _remindersCounter = int.parse(remindersCounter);
+        _unsolvedReviewsCount = int.parse(unsolvedReviewsCount);
       }
-      if (notificationsCounter == 'null' || notificationsCounter == null) {
-        _notificationsCounter = 0;
+      if (unreadNotificationsCount == 'null' ||
+          unreadNotificationsCount == null) {
+        _unreadNotificationsCount = 0;
       } else {
-        _notificationsCounter = int.parse(notificationsCounter);
+        _unreadNotificationsCount = int.parse(unreadNotificationsCount);
       }
     });
   }
 
   // 通知アイコンの生成
   Widget _buildNotificationIcon() {
-    if (_notificationsCounter == 0) {
+    if (_unreadNotificationsCount == 0) {
       return const Icon(Icons.notifications);
     }
 
     String counter;
-    if (_notificationsCounter > 99) {
+    if (_unreadNotificationsCount > 99) {
       counter = '+99';
     } else {
-      counter = '$_notificationsCounter';
+      counter = '$_unreadNotificationsCount';
     }
 
     return Badge(
@@ -70,16 +72,16 @@ class _BottomNavbarState extends State<BottomNavbar> {
   }
 
   // 復習アイコンの生成
-  Widget _buildReminderIcon() {
-    if (_remindersCounter == 0) {
+  Widget _buildReviewIcon() {
+    if (_unsolvedReviewsCount == 0) {
       return const Icon(Icons.access_alarm);
     }
 
     String counter;
-    if (_remindersCounter > 999) {
-      counter = '999';
+    if (_unsolvedReviewsCount > 99) {
+      counter = '+99';
     } else {
-      counter = '$_remindersCounter';
+      counter = '$_unsolvedReviewsCount';
     }
     return Badge(
       badgeContent: Text(
@@ -103,7 +105,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
         MyHomePage.push(context);
         break;
       case 1:
-        ReminderIndexPage.push(context);
+        ReviewIndexPage.push(context);
         break;
       case 2:
         NotificationIndexPage.push(context);
@@ -123,7 +125,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
           label: '辞書',
         ),
         BottomNavigationBarItem(
-          icon: _buildReminderIcon(),
+          icon: _buildReviewIcon(),
           label: '復習',
         ),
         BottomNavigationBarItem(

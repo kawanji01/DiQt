@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/pages/chapter/show.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 
 class WordTagButtons extends StatelessWidget {
@@ -15,39 +14,39 @@ class WordTagButtons extends StatelessWidget {
     // タグボタン
     Widget _tagButton(tagName) {
       String? tagText;
-      String? redirectPath;
+      //String? redirectPath;
       String? chapterUid;
 
       switch (tagName) {
         case 'ngsl':
           tagText = '基礎英単語';
           chapterUid = 'c63ab6e5';
-          redirectPath = 'chapters/c63ab6e5';
+          // redirectPath = 'chapters/c63ab6e5';
           break;
         case 'nawl':
           tagText = '学術頻出';
           chapterUid = '5cedf1da';
-          redirectPath = 'chapters/5cedf1da';
+          // redirectPath = 'chapters/5cedf1da';
           break;
         case 'tsl':
           tagText = 'TOEIC頻出';
           chapterUid = '26c399f0';
-          redirectPath = 'chapters/26c399f0';
+          // redirectPath = 'chapters/26c399f0';
           break;
         case 'bsl':
           tagText = 'ビジネス頻出';
           chapterUid = '4d46ce7f';
-          redirectPath = 'chapters/4d46ce7f';
+          // redirectPath = 'chapters/4d46ce7f';
           break;
         case 'phrase':
           tagText = '頻出英熟語';
           chapterUid = 'c112b566';
-          redirectPath = 'chapters/c112b566';
+          // redirectPath = 'chapters/c112b566';
           break;
         case 'phave':
           tagText = '頻出句動詞';
           chapterUid = '3623e0d5';
-          redirectPath = 'chapters/3623e0d5';
+          // redirectPath = 'chapters/3623e0d5';
           break;
         default:
           // 該当するタグがなければリターン

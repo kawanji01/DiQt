@@ -14,50 +14,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
-class ReminderIndexPage extends StatefulWidget {
-  const ReminderIndexPage({Key? key}) : super(key: key);
+class ReviewIndexPage extends StatefulWidget {
+  const ReviewIndexPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
-    //return Navigator.of(context).pushNamed(reminderIndexPage);
+    //return Navigator.of(context).pushNamed(reviewIndexPage);
     return Navigator.pushReplacement(
       context,
       PageRouteBuilder(
         // 画面遷移のログを送信するために、settings.nameを設定する。
-        settings: const RouteSettings(name: reminderIndexPage),
+        settings: const RouteSettings(name: reviewIndexPage),
         pageBuilder: (context, animation1, animation2) =>
-            const ReminderIndexPage(),
+            const ReviewIndexPage(),
         transitionDuration: Duration.zero,
       ),
     );
   }
 
   @override
-  _ReminderIndexPageState createState() => _ReminderIndexPageState();
+  _ReviewIndexPageState createState() => _ReviewIndexPageState();
 }
 
-class _ReminderIndexPageState extends State<ReminderIndexPage> {
+class _ReviewIndexPageState extends State<ReviewIndexPage> {
   User? _user;
-  int _remindersCount = 0;
+  int _unsolvedReviewsCount = 0;
   bool _initDone = false;
 
   @override
   void initState() {
     super.initState();
-    _loadReminders();
+    _loadReviews();
     PushNotification.initialize(context);
   }
 
-  Future _moveToReminders() async {
+  Future _moveToReviews() async {
     // 外部リンクダイアログを表示
     await showDialog(
         context: context,
         builder: (context) {
           // ./locale/ を取り除いたpathを指定する
-          return const ExternalLinkDialog(redirectPath: 'reminders');
+          return const ExternalLinkDialog(redirectPath: 'reviews');
         });
   }
 
-  Future _loadReminders() async {
+  Future _loadReviews() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
 
@@ -68,8 +68,8 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
     }
 
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reminders/list');
-    var res = await http.post(url, body: {'token': token});
+        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reviews?token=$token');
+    var res = await http.get(url);
 
     if (res.statusCode != 200) {
       await UserSetup.logOut();
@@ -83,22 +83,22 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
     await UserSetup.signIn(resMap);
     setState(() {
       _user = User.fromJson(resMap['user']);
-      _remindersCount = resMap['user']['unread_reminders_count'];
+      _unsolvedReviewsCount = resMap['user']['unsolved_reviews_count'];
       _initDone = true;
     });
   }
 
-  Widget _remindersPageButton() {
-    final String btnText = '$_remindersCount問を復習する';
+  Widget _reviewsPageButton() {
+    final String btnText = '$_unsolvedReviewsCount問を復習する';
     return InkWell(
       onTap: () {
-        _moveToReminders();
+        _moveToReviews();
       },
       child: LargeButton(btnText: btnText),
     );
   }
 
-  Widget _remindersOrEntrance() {
+  Widget _reviewsOrEntrance() {
     if (_initDone == false) return const LoadingSpinner();
     if (_user == null) return const Entrance();
 
@@ -115,7 +115,7 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
           const SizedBox(
             height: 40,
           ),
-          _remindersPageButton(),
+          _reviewsPageButton(),
           const SizedBox(
             height: 80,
           ),
@@ -132,7 +132,7 @@ class _ReminderIndexPageState extends State<ReminderIndexPage> {
         title: const Text('復習'),
         //automaticallyImplyLeading: false,
       ),
-      body: _remindersOrEntrance(),
+      body: _reviewsOrEntrance(),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 1),
       drawer: const DrawerMenu(),
     );

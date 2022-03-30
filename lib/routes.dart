@@ -2,7 +2,7 @@ import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notification/index.dart';
-import 'package:booqs_mobile/pages/reminder/index.dart';
+import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
@@ -16,7 +16,7 @@ import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/pages/word/search_results.dart';
 
 const indexPage = '/';
-const reminderIndexPage = '/reminder/index';
+const reviewIndexPage = '/review/index';
 const notificationIndexPage = '/notification/index';
 const userMyPage = '/user/mypage';
 const signUpPage = '/session/sign_up';
@@ -34,7 +34,7 @@ const premiumMenuPage = '/user/premium_menu';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
-  reminderIndexPage: (context) => const ReminderIndexPage(),
+  reviewIndexPage: (context) => const ReviewIndexPage(),
   notificationIndexPage: (context) => const NotificationIndexPage(),
   userMyPage: (context) => const UserMyPage(),
   signUpPage: (context) => const SignUpPage(),

@@ -13,8 +13,8 @@ class User {
     premium = false,
     paidViaNativeApp = false,
     unreadNotificationsCount = 0,
-    unreadRemindersCount = 0,
-    weaknessCount = 0,
+    unsolvedReviewsCount = 0,
+    weaknessesCount = 0,
   });
 
   int? id;
@@ -30,8 +30,8 @@ class User {
   bool? premium;
   bool? paidViaNativeApp;
   int? unreadNotificationsCount;
-  int? unreadRemindersCount;
-  int? weaknessCount;
+  int? unsolvedReviewsCount;
+  int? weaknessesCount;
   bool? rewardRemained;
 
   User.fromJson(Map<String, dynamic> json)
@@ -48,8 +48,8 @@ class User {
         premium = json['premium'] as bool,
         paidViaNativeApp = json['paid_via_native_app'] as bool,
         unreadNotificationsCount = json['unread_notifications_count'],
-        unreadRemindersCount = json['unread_reminders_count'],
-        weaknessCount = json['weakness_count'],
+        unsolvedReviewsCount = json['unsolved_reviews_count'],
+        weaknessesCount = json['weaknesses_count'],
         rewardRemained = json['reward_remained'];
 
   Map<String, dynamic> toJson() => {
@@ -66,5 +66,6 @@ class User {
         'premium': premium,
         'paid_via_native_app': paidViaNativeApp,
         'reward_remained': rewardRemained,
+        'unsolved_reviews_count': unsolvedReviewsCount,
       };
 }

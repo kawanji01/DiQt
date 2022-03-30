@@ -37,7 +37,7 @@ class NotificationIndexPage extends StatefulWidget {
 
 class _NotificationIndexPageState extends State<NotificationIndexPage> {
   User? _user;
-  int _notificationsCount = 0;
+  int _unreadNotificationsCount = 0;
   bool _initDone = false;
 
   @override
@@ -74,7 +74,7 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     setState(() {
       _user = User.fromJson(resMap['user']);
-      _notificationsCount = resMap['user']['unread_notifications_count'];
+      _unreadNotificationsCount = resMap['user']['unread_notifications_count'];
       _initDone = true;
     });
   }
@@ -109,7 +109,7 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
             ],
             color: Colors.green),
         child: Text(
-          '$_notificationsCount件の通知を見る',
+          '$_unreadNotificationsCount件の通知を見る',
           style: const TextStyle(
               fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
         ),

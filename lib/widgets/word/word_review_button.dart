@@ -1,40 +1,45 @@
 import 'dart:convert';
-
-import 'package:booqs_mobile/models/reminder.dart';
+import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/widgets/reminder/reminder_setting_dialog.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/widgets/review/review_setting_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
-class SentenceReminderButton extends StatefulWidget {
-  const SentenceReminderButton({Key? key, required this.sentenceId})
-      : super(key: key);
-  final int sentenceId;
+class WordReviewButton extends StatefulWidget {
+  const WordReviewButton({Key? key, required this.word}) : super(key: key);
+  final Word? word;
 
   @override
-  _SentenceReminderButtonState createState() => _SentenceReminderButtonState();
+  _WordReviewButtonState createState() => _WordReviewButtonState();
 }
 
-class _SentenceReminderButtonState extends State<SentenceReminderButton> {
-  int? _sentenceId;
-  Reminder? _reminder;
+class _WordReviewButtonState extends State<WordReviewButton> {
+  Word? _word;
+  Review? _review;
   int? _quizId;
   bool _initDone = false;
 
   @override
   void initState() {
     super.initState();
-    _sentenceId = widget.sentenceId;
-    _loadReminder();
+    _word = widget.word;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadReview();
   }
 
   // 初期化：リマインダーを設定するために必要な情報を取得して、setStateで再描画する。
-  Future _loadReminder() async {
+  Future _loadReview() async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sentences/$_sentenceId/reminder');
+        '${DiQtURL.root(context)}/api/v1/mobile/words/${_word!.id}/review');
     var res = await http.post(url, body: {'token': '$token'});
     if (res.statusCode != 200) return;
 
@@ -42,8 +47,8 @@ class _SentenceReminderButtonState extends State<SentenceReminderButton> {
 
     return setState(() {
       _quizId = resMap['quiz_id'];
-      if (resMap['reminder'] != null) {
-        _reminder = Reminder.fromJson(resMap['reminder']);
+      if (resMap['review'] != null) {
+        _review = Review.fromJson(resMap['review']);
       }
       _initDone = true;
     });
@@ -51,10 +56,8 @@ class _SentenceReminderButtonState extends State<SentenceReminderButton> {
 
   @override
   Widget build(BuildContext context) {
-
-
     //// 復習を設定する。
-    Future _createReminder() async {
+    Future _createReview() async {
       const storage = FlutterSecureStorage();
       String? token = await storage.read(key: 'token');
       // ログインしていないユーザーはマイページにリダイレクト
@@ -65,9 +68,8 @@ class _SentenceReminderButtonState extends State<SentenceReminderButton> {
         return;
       }
       http.Response res;
-      // Create
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reminders');
+      // reviews#create
+      var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews');
       res = await http.post(url, body: {
         'token': token,
         'quiz_id': '$_quizId',
@@ -76,36 +78,36 @@ class _SentenceReminderButtonState extends State<SentenceReminderButton> {
         return;
       }
       Map resMap = json.decode(res.body);
-      Reminder newReminder = Reminder.fromJson(resMap['reminder']);
+      Review newReview = Review.fromJson(resMap['review']);
       final snackBar = SnackBar(content: Text('${resMap['message']}'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       setState(() {
-          _reminder = newReminder;
+        _review = newReview;
       });
     }
 
-    //// リマインダー設定ダイアログを表示する＆ダイアログから設定されたreminderを使ってsetStateで再描画する。 ////
-    Future _updateReminder() async {
-      final Reminder? newReminder = await showDialog(
+    //// 復習設定の間隔変更や削除： リマインダー設定ダイアログを表示する＆ダイアログから設定されたreviewを使ってsetStateで再描画する。 ////
+    Future _editReview() async {
+      final Review? newReview = await showDialog(
           context: context,
           builder: (context) {
-            return ReminderSettingDialog(reminder: _reminder, quizId: _quizId);
+            return ReviewSettingDialog(review: _review, quizId: _quizId);
           });
 
-      if (newReminder == null) return;
+      if (newReview == null) return;
 
       setState(() {
-        if (newReminder.reviewDay == 'deleted') {
-          _reminder = null;
+        if (newReview.scheduledDate == 'deleted') {
+          _review = null;
         } else {
-          _reminder = newReminder;
+          _review = newReview;
         }
       });
     }
 
     String _settingText(int number) {
       final int settingNumber = number;
-      String settingText = '例文を覚える';
+      String settingText = '覚える';
 
       switch (settingNumber) {
         case 0:
@@ -142,33 +144,34 @@ class _SentenceReminderButtonState extends State<SentenceReminderButton> {
       return settingText;
     }
 
-    Widget _disabledReminderButton() {
+    // ロード前の押せないボタン
+    Widget _disabledReviewButton() {
       return InkWell(
         onTap: () {},
         child: Container(
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 11),
+          padding: const EdgeInsets.symmetric(vertical: 13),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.black54, width: 1),
+            border: Border.all(color: Colors.black54, width: 2),
           ),
           child: RichText(
             text: const TextSpan(
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   color: Colors.black54,
                   fontWeight: FontWeight.w600),
               children: [
                 WidgetSpan(
                   child: Icon(
                     Icons.access_alarm,
-                    size: 20,
+                    size: 22,
                     color: Colors.black54,
                   ),
                 ),
                 TextSpan(
-                  text: " 例文を覚える",
+                  text: " 覚える",
                 ),
               ],
             ),
@@ -178,71 +181,71 @@ class _SentenceReminderButtonState extends State<SentenceReminderButton> {
     }
 
     // 復習設定ボタン
-    Widget _reminderCreateButton() {
+    Widget _reviewCreateButton() {
       return InkWell(
         onTap: () {
-          _createReminder();
+          _createReview();
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 11),
+          padding: const EdgeInsets.symmetric(vertical: 13),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.green, width: 1),
+            border: Border.all(color: Colors.green, width: 2),
           ),
           child: RichText(
             text: const TextSpan(
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   color: Colors.green,
                   fontWeight: FontWeight.w600),
               children: [
                 WidgetSpan(
                   child: Icon(
                     Icons.access_alarm,
-                    size: 20,
+                    size: 22,
                     color: Colors.green,
                   ),
                 ),
                 TextSpan(
-                  text: " 例文を覚える",
+                  text: " 覚える",
                 ),
               ],
             ),
           ),
         ),
       );
-
     }
 
     // 復習設定変更ボタン
-    Widget _reminderUpdateButton(settingNumber) {
+    Widget _reviewUpdateButton(settingNumber) {
       final String settingText = _settingText(settingNumber);
+
       return InkWell(
         onTap: () {
-          _updateReminder();
+          _editReview();
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 11),
+          padding: const EdgeInsets.symmetric(vertical: 13),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.green, width: 1),
+            border: Border.all(color: Colors.green, width: 2),
             color: Colors.green,
           ),
           child: RichText(
             text: TextSpan(
               style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.w600),
               children: [
                 const WidgetSpan(
                   child: Icon(
                     Icons.access_alarm,
-                    size: 20,
+                    size: 22,
                     color: Colors.white,
                   ),
                 ),
@@ -257,21 +260,21 @@ class _SentenceReminderButtonState extends State<SentenceReminderButton> {
     }
 
     //// リマインダーボタン ////
-    Widget _reminderButton() {
+    Widget _reviewButton() {
       if (_initDone == false || _quizId == null) {
-        return _disabledReminderButton();
+        return _disabledReviewButton();
       }
+      int settingNumber = _review?.intervalSetting ?? 100;
 
-      final int settingNumber = _reminder?.setting ?? 100;
       // 復習設定ボタン
       if (settingNumber == 100) {
-        return _reminderCreateButton();
+        return _reviewCreateButton();
       }
-      // 復習設定更新ボタン
-      return _reminderUpdateButton(settingNumber);
+      // 復習設定変更ボタン
+      return _reviewUpdateButton(settingNumber);
     }
 
     // 最終結果
-    return _reminderButton();
+    return _reviewButton();
   }
 }
