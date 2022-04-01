@@ -58,15 +58,15 @@ class _AppBannerState extends State<AppBanner> {
 
     if (Platform.isIOS) {
       if (kDebugMode) {
-        print('debug');
+        // print('debug');
         // テスト用の広告
         return 'ca-app-pub-3940256099942544/2934735716';
       }
-      print('not debug');
+      // print('not debug');
       String? iosBannerAdID = dotenv.env['IOS_BANNER_AD_ID'];
       return '$iosBannerAdID';
     }
-    print('Android');
+    // print('Android');
     String? androidBannerAdID = dotenv.env['ANDROID_BANNER_AD_ID'];
     return '$androidBannerAdID';
   }

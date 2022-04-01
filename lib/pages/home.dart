@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/home/home_chapters_page.dart';
@@ -44,6 +45,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _loadBadgeCount();
   }
 
@@ -53,8 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
     String? token = await storage.read(key: 'token');
     if (token == null) return;
 
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/status');
+    var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/users/status');
     var res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) return await UserSetup.logOut();

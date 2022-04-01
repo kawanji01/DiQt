@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -20,9 +19,9 @@ class WordSentenceSearchModal extends StatefulWidget {
 
 class _WordSentenceSearchModalState extends State<WordSentenceSearchModal> {
   String? _keyword;
-  Sentence? _sentence;
+  // Sentence? _sentence;
   int? _dictionaryId;
-  List<Sentence> _sentences = [];
+  final List<Sentence> _sentences = [];
   bool _initDone = false;
 
   @override

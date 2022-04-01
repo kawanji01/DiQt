@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/widgets/word/word_search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -27,13 +27,20 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
   void initState() {
     super.initState();
     searchFocusNode = FocusNode();
+  }
+
+  // didChangeDependencies は、initStateのあとに呼び出される処理。ref: https://tech-rise.net/what-is-lifecycle-of-state/
+  // initState では context にアクセスできないので、localeをもつURLの生成（DiQtURL.root(context) ）が必要な処理では、
+  // didChangeDependenciesを使う。
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _loadDictionaries();
   }
 
   // async create list
   Future _loadDictionaries() async {
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/dictionaries');
+    var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/dictionaries');
     var res =
         await http.get(url, headers: {"Content-Type": "application/json"});
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2

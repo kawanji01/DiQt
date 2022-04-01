@@ -11,10 +11,10 @@ class UserSetup {
     await storage.write(key: 'premium', value: user['premium'].toString());
     await storage.write(key: 'token', value: user['token_for_native_app']);
     await storage.write(
-        key: 'remindersCount',
-        value: user['unread_reminders_count'].toString());
+        key: 'unsolvedReviewsCount',
+        value: user['unsolved_reviews_count'].toString());
     await storage.write(
-        key: 'notificationsCount',
+        key: 'unreadNotificationsCount',
         value: user['unread_notifications_count'].toString());
 
     // RevenueCatの認証 参考：https://docs.revenuecat.com/docs/user-ids#logging-back-in

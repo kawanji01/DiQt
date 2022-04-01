@@ -5,7 +5,6 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
@@ -101,17 +100,17 @@ class _UserMyPageState extends State<UserMyPage> {
     }
 
     // Webのアカウント設定に飛ぶ
-    Future _moveToAccountSetting() async {
-      const storage = FlutterSecureStorage();
-      String? uid = await storage.read(key: 'publicUid');
-      // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
-            return ExternalLinkDialog(redirectPath: 'users/$uid/edit');
-          });
-    }
+    //Future _moveToAccountSetting() async {
+    //  const storage = FlutterSecureStorage();
+    //  String? uid = await storage.read(key: 'publicUid');
+    // 外部リンクダイアログを表示
+    //  await showDialog(
+    //      context: context,
+    //      builder: (context) {
+    // ./locale/ を取り除いたpathを指定する
+    //        return ExternalLinkDialog(redirectPath: 'users/$uid/edit');
+    //      });
+    //}
 
     Future _pushPopup(value) async {
       switch (value) {

@@ -1,32 +1,33 @@
 import 'dart:convert';
-import 'package:booqs_mobile/models/reminder.dart';
+import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
-class ReminderSettingDialog extends StatefulWidget {
-  const ReminderSettingDialog({Key? key, this.reminder, required this.quizId})
+class ReviewSettingDialog extends StatefulWidget {
+  const ReviewSettingDialog({Key? key, this.review, required this.quizId})
       : super(key: key);
 
-  final Reminder? reminder;
+  final Review? review;
   final int? quizId;
   @override
-  _ReminderSettingDialogState createState() => _ReminderSettingDialogState();
+  _ReviewSettingDialogState createState() => _ReviewSettingDialogState();
 }
 
-class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
-  Reminder? _reminder;
+class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
+  Review? _review;
   int? _quizId;
   String dropdownValue = '0';
 
   @override
   void initState() {
     super.initState();
-    _reminder = widget.reminder;
+    _review = widget.review;
     _quizId = widget.quizId;
-    if (_reminder != null) {
-      dropdownValue = '${_reminder!.setting}';
+    if (_review != null) {
+      dropdownValue = '${_review!.intervalSetting}';
     }
   }
 
@@ -43,35 +44,31 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
     }
 
     http.Response res;
-    // Save
-    if (_reminder == null) {
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reminders');
+    // reviews#create
+    if (_review == null) {
+      var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews');
       res = await http.post(url, body: {
         'token': token,
         'quiz_id': '$_quizId',
-        'setting': dropdownValue
+        'interval_setting': dropdownValue
       });
     } else {
-      // Update
+      // reviews#update
       var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reminders/change');
-      res = await http.post(url, body: {
-        'token': token,
-        'reminder_id': '${_reminder!.id}',
-        'setting': dropdownValue
-      });
+          '${DiQtURL.root(context)}/api/v1/mobile/reviews/${_review!.id}');
+      res = await http.patch(url,
+          body: {'token': token, 'interval_setting': dropdownValue});
     }
 
     if (res.statusCode != 200) {
       return;
     }
     Map resMap = json.decode(res.body);
-    Reminder reminder = Reminder.fromJson(resMap['reminder']);
+    Review review = Review.fromJson(resMap['review']);
     final snackBar = SnackBar(content: Text('${resMap['message']}'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    // ダイアログを閉じて、reminderを返り値にする。
-    Navigator.of(context).pop(reminder);
+    // ダイアログを閉じて、reviewを返り値にする。
+    Navigator.of(context).pop(review);
   }
 
   // 復習設定を削除する
@@ -81,10 +78,9 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
 
     http.Response res;
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reminders/delete');
-    res = await http.post(url, body: {
+        '${DiQtURL.root(context)}/api/v1/mobile/reviews/${_review!.id}');
+    res = await http.delete(url, body: {
       'token': token,
-      'reminder_id': '${_reminder!.id}',
     });
     if (res.statusCode != 200) {
       return;
@@ -93,19 +89,19 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
     final snackBar = SnackBar(content: Text('${resMap['message']}'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
     // 削除が完了したことを伝えるモデルを作成する。
-    Reminder reminder = Reminder(reviewDay: 'deleted');
-    // ダイアログを閉じて、reminderを返り値にする。
-    Navigator.of(context).pop(reminder);
+    Review review = Review(scheduledDate: 'deleted');
+    // ダイアログを閉じて、reviewを返り値にする。
+    Navigator.of(context).pop(review);
   }
 
   // 復習設定の状態と削除ボタンの生成
-  Widget _buildReminderStatus() {
-    if (_reminder == null) {
+  Widget _buildReviewStatus() {
+    if (_review == null) {
       return Container();
     }
-    final String reviewDayText = '復習予定日：${_reminder!.reviewDay}';
-    final String reviewSetingStr = '${_reminder!.setting}';
-    final String reviewSettingText = '復習間隔：${_reminderText(reviewSetingStr)}';
+    final String reviewDayText = '復習予定日：${_review!.scheduledDate}';
+    final String reviewSetingStr = '${_review!.scheduledDate}';
+    final String reviewSettingText = '復習間隔：${_reviewText(reviewSetingStr)}';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,7 +148,7 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
             .map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(_reminderText(value),
+            child: Text(_reviewText(value),
                 style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -164,15 +160,15 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
   }
 
 // ダイアログの中身を生成する
-  Widget _buildReminderDialog() {
+  Widget _buildReviewDialog() {
     return Column(
       // アラートが縦に伸びてしまうのを防ぐ、
       mainAxisSize: MainAxisSize.min,
-      children: <Widget>[_buildReminderStatus(), _buildDropDown()],
+      children: <Widget>[_buildReviewStatus(), _buildDropDown()],
     );
   }
 
-  String _reminderText(numberStr) {
+  String _reviewText(numberStr) {
     String settingText = '復習する';
 
     switch (numberStr) {
@@ -214,7 +210,7 @@ class _ReminderSettingDialogState extends State<ReminderSettingDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       //title: const Icon(Icons.access_alarm),
-      content: _buildReminderDialog(),
+      content: _buildReviewDialog(),
       actions: [
         Container(
           margin: const EdgeInsets.only(left: 12, right: 12, bottom: 24),

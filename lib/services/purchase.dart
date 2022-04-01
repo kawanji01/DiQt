@@ -28,8 +28,8 @@ class PurchaseService {
 
     // アプリ起動時などのコールバック時に実行され、契約状況をDBと同期する。
     Future<void> _purchaserInfoUpdated(PurchaserInfo info) async {
-      print('purchaserInfoUpdated: $isExecuting');
-      print('_purchaserInfoUpdated: ${info.entitlements}');
+      //print('purchaserInfoUpdated: $isExecuting');
+      //print('_purchaserInfoUpdated: ${info.entitlements}');
       if (isExecuting) return;
       await syncSubscription(info);
     }
@@ -48,7 +48,7 @@ class PurchaseService {
     try {
       Purchases.logOut();
     } catch (e) {
-      print('error: $e');
+      //print('error: $e');
       rethrow;
     }
   }
@@ -77,7 +77,7 @@ class PurchaseService {
       final isSubscribed = await getOrCreateSubscriber(token);
       return isSubscribed;
     } catch (e) {
-      print('.subscribe: $e');
+      // print('.subscribe: $e');
       return false;
     } finally {
       // errorであれreturnで外部コードに抜ける前であれ、常に実行する。ref: https://ja.javascript.info/try-catch#ref-1685
@@ -91,24 +91,24 @@ class PurchaseService {
   Future<bool> syncSubscription(PurchaserInfo info) async {
     isExecuting = true;
     bool isSubscribed = false;
-    print('syncSubscription: ${info.entitlements}');
+    // print('syncSubscription: ${info.entitlements}');
 
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
     // ログインしてない（トークンがない）ならそもそもリクエストを飛ばさない。
     if (token == null) {
       isExecuting = false;
-      print(".syncSubscription: token not found");
+      // print(".syncSubscription: token not found");
       return isSubscribed;
     }
     // DBの購入状況を同期する。
     // if文は１つでもプレミアムプランがアクティブなら、trueを返す処理 ref: https://docs.revenuecat.com/docs/purchaserinfo#checking-if-a-user-is-subscribed
     // 現状はプランによって提供機能を変えていないためこれで十分
     if (info.entitlements.active.isNotEmpty) {
-      print(".syncSubscription: NotEmpty / 購入する");
+      // print(".syncSubscription: NotEmpty / 購入する");
       isSubscribed = await getOrCreateSubscriber(token);
     } else {
-      print(".syncSubscription: Empty / 解約する");
+      // print(".syncSubscription: Empty / 解約する");
       isSubscribed = await deleteSubscriber(token);
     }
     isExecuting = false;
@@ -132,7 +132,7 @@ class PurchaseService {
         await http.post(url, body: {'token': token, 'platform': platform});
 
     if (res.statusCode != 200) {
-      print('.getOrCreateSubscriber: response ${res.statusCode}');
+      // print('.getOrCreateSubscriber: response ${res.statusCode}');
       return false;
     }
 
@@ -149,12 +149,12 @@ class PurchaseService {
     var res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) {
-      print('.deleteSubscriber: response ${res.statusCode}');
+      // print('.deleteSubscriber: response ${res.statusCode}');
       return false;
     }
 
     Map resMap = json.decode(res.body);
-    print('.deleteSubscriber: ${resMap['message']}');
+    // print('.deleteSubscriber: ${resMap['message']}');
     await UserSetup.signIn(resMap);
     return true;
   }
@@ -170,7 +170,7 @@ class PurchaseService {
       bool result = await syncSubscription(restoredInfo);
       return result;
     } on PlatformException catch (e) {
-      print('.restore: $e');
+      // print('.restore: $e');
       return false;
     } finally {
       isExecuting = false;

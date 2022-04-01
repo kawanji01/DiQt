@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/sentence/sentence_edit_button.dart';
-import 'package:booqs_mobile/widgets/sentence/sentence_reminder_button.dart';
+import 'package:booqs_mobile/widgets/sentence/sentence_review_button.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:booqs_mobile/widgets/word/word_label.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class WordSentence extends StatelessWidget {
             style: const TextStyle(
                 fontSize: 16, height: 1.6, color: Colors.black87)),
         const SizedBox(height: 24),
-        SentenceReminderButton(sentenceId: word.sentenceId!),
+        SentenceReviewButton(sentenceId: word.sentenceId!),
         SentenceEditButton(sentenceId: word.sentenceId!),
         const SizedBox(height: 24),
       ]);
