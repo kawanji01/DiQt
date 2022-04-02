@@ -19,13 +19,13 @@ class SearchResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _buildRow(int index) {
-      final _word = words[index];
+      final word = words[index];
 
       // 最後の項目の表示
       if (words.length == index + 1 && words[0].entry != keyword) {
         // 検索条件と完全一致する検索結果がなければ、「項目の作成ボタン」と「Webでの検索ボタン」を表示する。
         return Column(children: [
-          WordTile(word: _word),
+          WordTile(word: word),
           NoResultsFound(keyword: keyword, dictionary: dictionary),
           const SizedBox(height: 64),
           const AppBanner(),
@@ -33,11 +33,11 @@ class SearchResults extends StatelessWidget {
       } else if (words.length == index + 1) {
         // 最後の項目の下に広告を表示する。
         return Column(children: [
-          WordTile(word: _word),
+          WordTile(word: word),
           const AppBanner(),
         ]);
       }
-      return WordTile(word: _word);
+      return WordTile(word: word);
     }
 
     return ListView.separated(

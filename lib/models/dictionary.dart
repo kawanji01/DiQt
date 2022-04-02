@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/models/drill.dart';
+
 class Dictionary {
   Dictionary(
       {this.id,
@@ -24,16 +26,14 @@ class Dictionary {
       this.updateScreened = false,
       this.usersAuthorizedToDestroy = 1,
       this.destroyScreened = false,
-      this.usersAuthorizedToReview = 3,
-      this.reviewCountToCloseRequest = 3,
+      this.usersAuthorizedToVote = 3,
+      this.votesCountToCloseRequest = 3,
       this.sameEntryScreened = false,
       this.changingEntryScreened = false,
       this.createdAt,
       this.updatedAt,
       // eager_loadでキャッシュしたdrillの情報
-      this.drillUid,
-      this.drillAcceptedRequestsCount,
-      this.drillPendingRequestsCount});
+      this.drill});
 
   int? id;
   String title;
@@ -59,16 +59,14 @@ class Dictionary {
   bool updateScreened;
   int usersAuthorizedToDestroy;
   bool destroyScreened;
-  int usersAuthorizedToReview;
-  int reviewCountToCloseRequest;
+  int usersAuthorizedToVote;
+  int votesCountToCloseRequest;
   bool sameEntryScreened;
   bool changingEntryScreened;
   String? createdAt;
   String? updatedAt;
   // テーブルを結合してキャッシュしたdrillの情報
-  String? drillUid;
-  int? drillAcceptedRequestsCount;
-  int? drillPendingRequestsCount;
+  Drill? drill;
 
   Dictionary.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -96,18 +94,14 @@ class Dictionary {
         updateScreened = json['update_screened'],
         usersAuthorizedToDestroy = json['users_authorized_to_destroy'],
         destroyScreened = json['destroy_screened'],
-        usersAuthorizedToReview = json['users_authorized_to_review'],
-        reviewCountToCloseRequest = json['review_count_to_close_request'],
+        usersAuthorizedToVote = json['users_authorized_to_vote'],
+        votesCountToCloseRequest = json['votes_count_to_close_request'],
         sameEntryScreened = json['same_entry_screened'],
         changingEntryScreened = json['changing_entry_screened'],
         createdAt = json['created_at'],
         updatedAt = json['updated_at'],
         // テーブルを結合してキャッシュしたdrillの情報,
-        drillUid = json['drill']?['public_uid'] ?? '',
-        drillAcceptedRequestsCount =
-            json['drill']?['accepted_requests_count'] ?? 0,
-        drillPendingRequestsCount =
-            json['drill']?['pending_requests_count'] ?? 0;
+        drill = json['drill'] == null ? null : Drill.fromJson(json['drill']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -134,15 +128,13 @@ class Dictionary {
         'update_screened': updateScreened,
         'users_authorized_to_destroy': usersAuthorizedToDestroy,
         'destroy_screened': destroyScreened,
-        'users_authorized_to_review': usersAuthorizedToReview,
-        'review_count_to_close_request': reviewCountToCloseRequest,
+        'users_authorized_to_vote': usersAuthorizedToVote,
+        'votes_count_to_close_request': votesCountToCloseRequest,
         'same_entry_screened': sameEntryScreened,
         'changing_entry_screened': changingEntryScreened,
         'created_at': createdAt,
         'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,
-        'drill_uid': drillUid,
-        'drill_accepted_requests_count': drillAcceptedRequestsCount,
-        'drill_pending_requests_count': drillPendingRequestsCount,
+        'drill': drill,
       };
 }

@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/services/review_helper.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
-import 'package:booqs_mobile/widgets/review/review_setting_dialog.dart';
+import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -26,12 +27,12 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
   @override
   void initState() {
     super.initState();
-    _sentenceId = widget.sentenceId;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _sentenceId = widget.sentenceId;
     _loadReview();
   }
 
@@ -47,6 +48,7 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
     Map resMap = json.decode(res.body);
 
     return setState(() {
+      _sentenceId;
       _quizId = resMap['quiz_id'];
       if (resMap['review'] != null) {
         _review = Review.fromJson(resMap['review']);
@@ -107,41 +109,7 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
     }
 
     String _settingText(int number) {
-      final int settingNumber = number;
-      String settingText = '例文を覚える';
-
-      switch (settingNumber) {
-        case 0:
-          settingText = '翌日に復習する';
-          break;
-        case 1:
-          settingText = '3日後に復習する';
-          break;
-        case 2:
-          settingText = '１週間後に復習する';
-          break;
-        case 3:
-          settingText = '２週間後に復習する';
-          break;
-        case 4:
-          settingText = '３週間後に復習する';
-          break;
-        case 5:
-          settingText = '１ヶ月後に復習する';
-          break;
-        case 6:
-          settingText = '２ヶ月後に復習する';
-          break;
-        case 7:
-          settingText = '３ヶ月後に復習する';
-          break;
-        case 8:
-          settingText = '６ヶ月後に復習する';
-          break;
-        case 9:
-          settingText = '１年後に復習する';
-          break;
-      }
+      String settingText = ReviewHelperService.intervalSetting(number);
       return settingText;
     }
 

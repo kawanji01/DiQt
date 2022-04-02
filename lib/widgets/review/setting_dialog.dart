@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/services/review_helper.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -100,7 +101,7 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
       return Container();
     }
     final String reviewDayText = '復習予定日：${_review!.scheduledDate}';
-    final String reviewSetingStr = '${_review!.scheduledDate}';
+    final String reviewSetingStr = '${_review!.intervalSetting}';
     final String reviewSettingText = '復習間隔：${_reviewText(reviewSetingStr)}';
 
     return Column(
@@ -168,41 +169,11 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
     );
   }
 
+  // 間隔設定のテキストを返す
   String _reviewText(numberStr) {
-    String settingText = '復習する';
-
-    switch (numberStr) {
-      case '0':
-        settingText = '明日に復習する';
-        break;
-      case '1':
-        settingText = '3日後に復習する';
-        break;
-      case '2':
-        settingText = '１週間後に復習する';
-        break;
-      case '3':
-        settingText = '２週間後に復習する';
-        break;
-      case '4':
-        settingText = '３週間後に復習する';
-        break;
-      case '5':
-        settingText = '１ヶ月後に復習する';
-        break;
-      case '6':
-        settingText = '２ヶ月後に復習する';
-        break;
-      case '7':
-        settingText = '３ヶ月後に復習する';
-        break;
-      case '8':
-        settingText = '６ヶ月後に復習する';
-        break;
-      case '9':
-        settingText = '１年後に復習する';
-        break;
-    }
+    print(numberStr);
+    final settingNumber = int.parse(numberStr);
+    String settingText = ReviewHelperService.intervalSetting(settingNumber);
     return settingText;
   }
 

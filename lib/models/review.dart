@@ -1,3 +1,6 @@
+import 'package:booqs_mobile/models/drill.dart';
+import 'package:booqs_mobile/models/quiz.dart';
+
 class Review {
   Review({
     this.id,
@@ -7,6 +10,7 @@ class Review {
     this.intervalSetting,
     this.reviewed,
     this.spacing,
+    this.quiz,
   });
 
   int? id;
@@ -17,6 +21,7 @@ class Review {
   int? intervalSetting;
   int? spacing;
   bool? reviewed;
+  Quiz? quiz;
 
   Review.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -25,7 +30,8 @@ class Review {
         scheduledDate = json['scheduled_date'],
         intervalSetting = json['interval_setting'],
         spacing = json['spacing'],
-        reviewed = json['reviewed'];
+        reviewed = json['reviewed'],
+        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -34,6 +40,7 @@ class Review {
         'scheduled_date': scheduledDate,
         'interval_setting': intervalSetting,
         'spacing': spacing,
-        'reviewed': reviewed
+        'reviewed': reviewed,
+        'quiz': quiz,
       };
 }

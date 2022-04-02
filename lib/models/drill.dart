@@ -7,7 +7,7 @@ class Drill {
       this.sentenceDictionaryId,
       this.title = '',
       this.introduction = '',
-      this.imageUrl,
+      this.imageUrl = '',
       this.referenceUrl,
       this.publicUid,
       this.createdAt,
@@ -22,7 +22,7 @@ class Drill {
   int? sentenceDictionaryId;
   String title;
   String introduction;
-  String? imageUrl;
+  String imageUrl;
   String? referenceUrl;
   String? publicUid;
   String? createdAt;

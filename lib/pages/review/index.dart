@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
+import 'package:booqs_mobile/widgets/review/feed.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
@@ -38,13 +41,19 @@ class ReviewIndexPage extends StatefulWidget {
 class _ReviewIndexPageState extends State<ReviewIndexPage> {
   User? _user;
   int _unsolvedReviewsCount = 0;
+  final List<Review> _reviews = [];
   bool _initDone = false;
 
   @override
   void initState() {
     super.initState();
-    _loadReviews();
     PushNotification.initialize(context);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadReviews();
   }
 
   Future _moveToReviews() async {
@@ -68,7 +77,7 @@ class _ReviewIndexPageState extends State<ReviewIndexPage> {
     }
 
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/reviews?token=$token');
+        '${DiQtURL.root(context)}/api/v1/mobile/reviews?token=$token');
     var res = await http.get(url);
 
     if (res.statusCode != 200) {
@@ -81,9 +90,11 @@ class _ReviewIndexPageState extends State<ReviewIndexPage> {
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
     await UserSetup.signIn(resMap);
+    resMap['reviews'].forEach((e) => _reviews.add(Review.fromJson(e)));
     setState(() {
       _user = User.fromJson(resMap['user']);
       _unsolvedReviewsCount = resMap['user']['unsolved_reviews_count'];
+      _reviews;
       _initDone = true;
     });
   }
@@ -123,6 +134,11 @@ class _ReviewIndexPageState extends State<ReviewIndexPage> {
         ],
       ),
     );
+    /* return Container(
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.all(24.0),
+      child: ReviewFeed(reviews: _reviews),
+    ); */
   }
 
   @override
