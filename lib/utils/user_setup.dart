@@ -10,6 +10,7 @@ class UserSetup {
     await storage.write(key: 'publicUid', value: user['public_uid']);
     await storage.write(key: 'premium', value: user['premium'].toString());
     await storage.write(key: 'token', value: user['token_for_native_app']);
+
     await storage.write(
         key: 'unsolvedReviewsCount',
         value: user['unsolved_reviews_count'].toString());

@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/widgets/review/unsolved_quiz.dart';
+import 'package:booqs_mobile/widgets/review/unsolved_wrapper.dart';
 import 'package:flutter/material.dart';
 
 class ReviewFeed extends StatefulWidget {
@@ -26,15 +26,15 @@ class _ReviewsFeedState extends State<ReviewFeed> {
 
   @override
   Widget build(BuildContext context) {
-    //
+    // 問題を解くたびにProviderに解いたreviewのidを追加して、表示を検証する
     Widget _buildRow(index) {
       final Review review = _reviews[index];
-      return ReviewUnsolvedQuiz(review: review);
+      return ReviewUnsolvedWrapper(review: review);
     }
 
-    return ListView.separated(
+    // 問題を解くたびに消えるのでbuilderを使う。 ref: https://qiita.com/emaame/items/191f30ac97670c396873
+    return ListView.builder(
       itemBuilder: (context, index) => _buildRow(index),
-      separatorBuilder: (context, index) => const Divider(),
       itemCount: _reviews.length,
     );
   }

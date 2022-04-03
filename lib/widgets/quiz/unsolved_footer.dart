@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/widgets/component/small_outline_gray_button.dart';
 import 'package:booqs_mobile/widgets/component/small_outline_green_button.dart';
 import 'package:booqs_mobile/widgets/review/small_buttton.dart';
 import 'package:flutter/material.dart';

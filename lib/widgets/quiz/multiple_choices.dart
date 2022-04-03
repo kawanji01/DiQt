@@ -1,43 +1,50 @@
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/notification/answer.dart';
+import 'package:booqs_mobile/widgets/quiz/choice_button.dart';
 import 'package:flutter/material.dart';
 
-class QuizMultipleChoices extends StatelessWidget {
-  const QuizMultipleChoices({Key? key, required this.quiz}) : super(key: key);
+class QuizMultipleChoices extends StatefulWidget {
+  const QuizMultipleChoices(
+      {Key? key, required this.quiz, required this.answerTextList})
+      : super(key: key);
   final Quiz quiz;
+  final List<String> answerTextList;
+
+  @override
+  State<QuizMultipleChoices> createState() => _QuizMultipleChoicesState();
+}
+
+class _QuizMultipleChoicesState extends State<QuizMultipleChoices> {
+  String? _selectedAnswer;
 
   @override
   Widget build(BuildContext context) {
-    List<String> choiceTextList = quiz.distractors!.split('\n');
-    final correctAnswer = quiz.correctAnswer!;
-    // 選択肢に正解を含めてシャッフルする
-    choiceTextList.add(correctAnswer);
-    choiceTextList.shuffle();
+    final Quiz _quiz = widget.quiz;
+    final String? _correctAnswer = _quiz.correctAnswer;
+    final List<String> _answerTextList = widget.answerTextList;
 
-    Widget _greenOutlineButton(answerText) {
-      return Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-        margin: const EdgeInsets.symmetric(vertical: 4),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.green, width: 1),
-          borderRadius: const BorderRadius.all(Radius.circular(5)),
-        ),
-        child: Text(
-          answerText,
-          style: const TextStyle(
-              fontSize: 15, color: Colors.green, fontWeight: FontWeight.bold),
-        ),
-      );
-    }
-
+    // 解答ボタン
     Widget _answerButton(answerText) {
+      final bool selected = _selectedAnswer == answerText;
+
       return InkWell(
-        onTap: () {},
-        child: _greenOutlineButton(answerText),
+        onTap: () {
+          _selectedAnswer = answerText;
+          final bool correct = _selectedAnswer == _correctAnswer;
+          AnswerNotification(answerText, correct, _quiz, true, null)
+              .dispatch(context);
+          setState(() {
+            _selectedAnswer;
+          });
+        },
+        child: QuizChoiceButton(
+          answerText: answerText,
+          selected: selected,
+        ),
       );
     }
 
+    // 解答ボタンのリストを生成する
     List<Widget> _choiceButtons(textList) {
       List<Widget> buttonList = [];
       textList
@@ -46,7 +53,7 @@ class QuizMultipleChoices extends StatelessWidget {
     }
 
     return Column(
-      children: _choiceButtons(choiceTextList),
+      children: _choiceButtons(_answerTextList),
     );
   }
 }

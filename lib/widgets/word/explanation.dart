@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
-import 'package:booqs_mobile/widgets/word/word_label.dart';
+import 'package:booqs_mobile/widgets/word/label.dart';
 import 'package:flutter/material.dart';
 
 class WordExplanation extends StatelessWidget {

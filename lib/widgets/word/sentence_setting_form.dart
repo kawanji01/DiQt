@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
-import 'package:booqs_mobile/widgets/word/word_sentence_search_modal.dart';
+import 'package:booqs_mobile/widgets/word/sentence_search_modal.dart';
 import 'package:http/http.dart' as http;
 import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/widgets/word/word_label.dart';
+import 'package:booqs_mobile/widgets/word/label.dart';
 import 'package:flutter/material.dart';
 
 class SentenceSettingForm extends StatefulWidget {

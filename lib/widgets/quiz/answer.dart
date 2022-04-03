@@ -10,7 +10,16 @@ class QuizAnswer extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget _answerForm() {
       if (quiz.distractors != '') {
-        return QuizMultipleChoices(quiz: quiz);
+        final List<String> answerTextList = quiz.distractors!.split('\n');
+        final correctAnswer = quiz.correctAnswer!;
+        // 選択肢に正解を含めてシャッフルする
+        answerTextList.add(correctAnswer);
+        answerTextList.shuffle();
+        // リビルド時に選択肢がシャッフルし直されるのを防ぐために、外部からリストを渡す。
+        return QuizMultipleChoices(
+          quiz: quiz,
+          answerTextList: answerTextList,
+        );
       } else {
         return Container();
       }

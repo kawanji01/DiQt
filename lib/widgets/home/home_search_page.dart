@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
-import 'package:booqs_mobile/widgets/word/word_search_form.dart';
+import 'package:booqs_mobile/widgets/word/search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

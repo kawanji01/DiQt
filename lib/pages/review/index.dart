@@ -113,7 +113,7 @@ class _ReviewIndexPageState extends State<ReviewIndexPage> {
     if (_initDone == false) return const LoadingSpinner();
     if (_user == null) return const Entrance();
 
-    return Container(
+    /* return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.all(28.0),
       child: Column(
@@ -133,12 +133,12 @@ class _ReviewIndexPageState extends State<ReviewIndexPage> {
           const AppBanner(),
         ],
       ),
-    );
-    /* return Container(
+    ); */
+    return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.all(24.0),
       child: ReviewFeed(reviews: _reviews),
-    ); */
+    );
   }
 
   @override
