@@ -68,7 +68,7 @@ class _QuizUnsolvedContentState extends State<QuizUnsolvedContent> {
             ),
             child: Column(
               children: [
-                const SizedBox(height: 8),
+                const SizedBox(height: 24),
                 widget.header,
                 widget.question,
                 const SizedBox(height: 16),

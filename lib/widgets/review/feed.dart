@@ -27,6 +27,7 @@ class _ReviewsFeedState extends State<ReviewFeed> {
   @override
   Widget build(BuildContext context) {
     // 問題を解くたびにProviderに解いたreviewのidを追加して、表示を検証する
+    // 表示はするがinvisibleにする。
     Widget _buildRow(index) {
       final Review review = _reviews[index];
       return ReviewUnsolvedWrapper(review: review);

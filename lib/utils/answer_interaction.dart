@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/notification/answer.dart';
+import 'package:booqs_mobile/widgets/quiz/answer_interaction.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -14,8 +15,13 @@ class AnswerInteraction {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       // SnackBarの背景色
       backgroundColor: color,
-      content: Text(notification.usersAnswer),
+      duration: const Duration(days: 1),
+      content: QuizAnswerInteraction(
+        notification: notification,
+      ),
     ));
+    // 紙吹雪を表示する。
+
     /* Fluttertoast.showToast(
         msg:
             "This is Center \n Short Toast aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",

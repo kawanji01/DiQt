@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/widgets/shared/premium_plan_button.dart';
 import 'package:booqs_mobile/widgets/user/achievements_button.dart';
-import 'package:booqs_mobile/widgets/user/user_exp_indicator.dart';
+import 'package:booqs_mobile/widgets/user/exp_indicator.dart';
 import 'package:flutter/material.dart';
 
 class UserStatus extends StatelessWidget {

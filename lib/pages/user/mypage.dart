@@ -9,7 +9,7 @@ import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
-import 'package:booqs_mobile/widgets/user/user_status.dart';
+import 'package:booqs_mobile/widgets/user/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

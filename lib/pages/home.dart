@@ -101,7 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
         bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
-        // bottomNavigationBar: const AppBanner(),
         drawer: const DrawerMenu(),
       ),
     );

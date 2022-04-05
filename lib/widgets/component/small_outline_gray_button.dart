@@ -15,6 +15,7 @@ class SmallOutlineGrayButton extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black54, width: 1),
         borderRadius: const BorderRadius.all(Radius.circular(5)),
+        color: Colors.white,
       ),
       child: richText,
     );

@@ -136,7 +136,7 @@ class _ReviewIndexPageState extends State<ReviewIndexPage> {
     ); */
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: ReviewFeed(reviews: _reviews),
     );
   }
