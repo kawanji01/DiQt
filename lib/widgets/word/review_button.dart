@@ -68,10 +68,11 @@ class _WordReviewButtonState extends State<WordReviewButton> {
         UserMyPage.push(context);
         return;
       }
-      http.Response res;
+
       // reviews#create
-      var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews');
-      res = await http.post(url, body: {
+      final Uri url =
+          Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews');
+      final http.Response res = await http.post(url, body: {
         'token': token,
         'quiz_id': '$_quizId',
       });

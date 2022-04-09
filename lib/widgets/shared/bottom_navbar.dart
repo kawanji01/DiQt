@@ -94,8 +94,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   // 参考：https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
   void _onItemTapped(int index) {
-    // 現在のページのボタンを押した場合には、画面遷移せずreturnする。
-    //if (_selectedIndex == index) return;
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
     setState(() {
       _selectedIndex = index;

@@ -2,7 +2,7 @@ import 'package:booqs_mobile/models/drill.dart';
 
 class Quiz {
   Quiz({
-    this.id,
+    this.id = 0,
     this.quizId,
     this.drillId,
     this.wordId,
@@ -19,7 +19,7 @@ class Quiz {
     this.drill,
   });
 
-  int? id;
+  int id;
   int? quizId;
   int? drillId;
   int? wordId;

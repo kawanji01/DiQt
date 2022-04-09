@@ -9,7 +9,7 @@ class QuizAnswer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _answerForm() {
-      if (quiz.distractors != '') {
+      if (quiz.distractors != '' && quiz.distractors != null) {
         final List<String> answerTextList = quiz.distractors!.split('\n');
         final correctAnswer = quiz.correctAnswer!;
         // 選択肢に正解を含めてシャッフルする

@@ -3,9 +3,9 @@ import 'package:booqs_mobile/models/quiz.dart';
 
 class Review {
   Review({
-    this.id,
-    this.userId,
-    this.quizId,
+    this.id = 0,
+    this.userId = 0,
+    this.quizId = 0,
     this.scheduledDate,
     this.intervalSetting,
     this.reviewed,
@@ -13,9 +13,9 @@ class Review {
     this.quiz,
   });
 
-  int? id;
-  int? userId;
-  int? quizId;
+  int id;
+  int userId;
+  int quizId;
   // ReviewSettingDialog で削除時に"deleted"を格納するのでString
   String? scheduledDate;
   int? intervalSetting;

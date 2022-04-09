@@ -3,21 +3,21 @@ import 'package:booqs_mobile/utils/level_up_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class QuizExpIndicator extends StatefulWidget {
-  const QuizExpIndicator(
+class ExpGainedExpIndicator extends StatefulWidget {
+  const ExpGainedExpIndicator(
       {Key? key, required this.initialExp, required this.gainedExp})
       : super(key: key);
+
   final int initialExp;
   final int gainedExp;
 
   @override
-  State<QuizExpIndicator> createState() => _QuizExpIndicatorState();
+  State<ExpGainedExpIndicator> createState() => _ExpGainedExpIndicatorState();
 }
 
-class _QuizExpIndicatorState extends State<QuizExpIndicator> {
+class _ExpGainedExpIndicatorState extends State<ExpGainedExpIndicator> {
   int? _exp;
   int? _initialLevel;
-  bool _isVisible = true;
 
   @override
   void initState() {
@@ -37,12 +37,19 @@ class _QuizExpIndicatorState extends State<QuizExpIndicator> {
     final int progress = _exp! - digestedExp;
     // 次のレベルアップまでの獲得経験値のパーセンテージ
     double percent = progress / requiredExp;
-    //int percentInt = (percent * 100.0).floor();
+    // int percentInt = (percent * 100.0).floor();
+    // 次のレベルアップに必要な経験値
+    int expForNextLevel = requiredExp - progress;
+    // 小数点以下の微妙な差で、レベルアップに必要な残り経験値が０になってしまう問題への対処。
+    if (expForNextLevel == 0) {
+      expForNextLevel = 1;
+    }
     // 小数点以下の微妙な差で、表示レベルが繰り上がってしまう問題の対処。
     final digestedExpOnTheNextLevel = LevelCalculator.digestedExp(level + 1);
     if (_exp == digestedExpOnTheNextLevel.toInt() &&
         _exp! < digestedExpOnTheNextLevel) {
       percent = 0.99;
+      expForNextLevel = 1;
     }
 
     // レベルアップしていた場合、パーセンテージを100%にする
@@ -56,13 +63,17 @@ class _QuizExpIndicatorState extends State<QuizExpIndicator> {
       LevelUpDialog.show(context, _exp!);
     }
 
-    Future<void> _afterAnimation() async {
-      // インジケーターを消す前に1秒待つ
-      await Future.delayed(const Duration(seconds: 1));
-      _levelUp(percent);
-      setState(() {
-        _isVisible = false;
-      });
+    // レベルのラベル
+    Widget _gainedExpLabel() {
+      return Container(
+        padding: const EdgeInsets.only(bottom: 10),
+        alignment: Alignment.center,
+        child: Text(
+          '+${widget.gainedExp}EXP',
+          style: const TextStyle(
+              color: Colors.orange, fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      );
     }
 
     // 初期値の経験値インジケーター
@@ -74,7 +85,7 @@ class _QuizExpIndicatorState extends State<QuizExpIndicator> {
         animationDuration: 1,
         percent: percent,
         center: Text(
-          'Lv.$level',
+          'Lv.$_initialLevel',
           style: const TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         ),
@@ -107,8 +118,20 @@ class _QuizExpIndicatorState extends State<QuizExpIndicator> {
         progressColor: Colors.orange,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         onAnimationEnd: () {
-          _afterAnimation();
+          _levelUp(percent);
         },
+      );
+    }
+
+    // 次のレベルに上がるまでに必要な経験値量
+    Widget _expForNextLevel() {
+      if (percent == 1) return Container();
+
+      return Container(
+        padding: const EdgeInsets.only(top: 16),
+        alignment: Alignment.centerLeft,
+        child: Text('次のレベルまであと${expForNextLevel}EXP',
+            style: const TextStyle(color: Colors.black87, fontSize: 14)),
       );
     }
 
@@ -119,11 +142,13 @@ class _QuizExpIndicatorState extends State<QuizExpIndicator> {
       return _gainedExpIndicator();
     }
 
-    return Visibility(
-      visible: _isVisible,
-      child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: _expIndicator()),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Column(children: <Widget>[
+        _gainedExpLabel(),
+        _expIndicator(),
+        _expForNextLevel()
+      ]),
     );
   }
 }

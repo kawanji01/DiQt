@@ -1,5 +1,8 @@
 import 'dart:convert';
+import 'package:booqs_mobile/data/provider/answer_setting_provider.dart';
+import 'package:booqs_mobile/data/provider/logged_in_user_provider.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
@@ -9,10 +12,11 @@ import 'package:booqs_mobile/widgets/home/home_search_page.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -38,10 +42,10 @@ class MyHomePage extends StatefulWidget {
   }
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   void initState() {
     super.initState();
@@ -59,14 +63,17 @@ class _MyHomePageState extends State<MyHomePage> {
     String? token = await storage.read(key: 'token');
     if (token == null) return;
 
-    var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/users/status');
-    var res = await http.post(url, body: {'token': token});
+    Uri url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/users/status');
+    http.Response res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) return await UserSetup.logOut();
 
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
     await UserSetup.signIn(resMap);
+    User user = User.fromJson(resMap['user']);
+    ref.read(loggedInUserProvider.notifier).state = user;
+    ref.read(answerSettingProvider.notifier).state = user.answerSetting;
   }
 
   final List<TabInfo> _tabs = [

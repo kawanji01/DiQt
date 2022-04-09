@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/notification/answer.dart';
+import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/answer_interaction.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

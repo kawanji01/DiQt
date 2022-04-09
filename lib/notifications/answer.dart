@@ -10,8 +10,5 @@ class AnswerNotification extends Notification {
   final Quiz quiz;
   // 問題をフェイドアウトさせるか否か
   final bool fadeOut;
-  // 解答リクエストの結果
-  final Map? resMap;
-  AnswerNotification(
-      this.usersAnswer, this.correct, this.quiz, this.fadeOut, this.resMap);
+  AnswerNotification(this.usersAnswer, this.correct, this.quiz, this.fadeOut);
 }

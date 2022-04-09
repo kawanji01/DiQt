@@ -1,11 +1,12 @@
+import 'package:booqs_mobile/data/provider/current_exp_provider.dart';
+import 'package:booqs_mobile/data/provider/logged_in_user_provider.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/notification/answer.dart';
+import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/exp_indicator.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final counterProvider = StateProvider((ref) => 0);
 
 class QuizAnswerInteraction extends ConsumerWidget {
   const QuizAnswerInteraction({Key? key, required this.notification})
@@ -71,8 +72,9 @@ class QuizAnswerInteraction extends ConsumerWidget {
 
     Widget _expIndicator() {
       if (_correct == false) return Container();
-      //final counter = ref.watch(counterProvider);
-      return QuizExpIndicator(initialExp: 9, gainedExp: 3);
+      final User? currentUser = ref.watch(loggedInUserProvider);
+      final int initialExp = currentUser == null ? 0 : currentUser.amountOfExp;
+      return QuizExpIndicator(initialExp: initialExp, gainedExp: 3);
     }
 
     return InkWell(

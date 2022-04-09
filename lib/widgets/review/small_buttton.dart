@@ -1,17 +1,20 @@
 import 'dart:convert';
+import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/review_helper.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
-import 'package:booqs_mobile/widgets/component/small_outline_gray_button.dart';
-import 'package:booqs_mobile/widgets/component/small_green_button.dart';
+import 'package:booqs_mobile/widgets/button/small_green_button.dart';
+import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class ReviewSmallButton extends StatefulWidget {
-  const ReviewSmallButton({Key? key, required this.review}) : super(key: key);
+  const ReviewSmallButton({Key? key, required this.quiz, this.review})
+      : super(key: key);
+  final Quiz quiz;
   final Review? review;
 
   @override
@@ -32,7 +35,7 @@ class _ReviewSmallButtonState extends State<ReviewSmallButton> {
 
   @override
   Widget build(BuildContext context) {
-    final int? _quizId = _review!.quizId;
+    final Quiz quiz = widget.quiz;
     //// 復習を設定する。
     Future _createReview() async {
       const storage = FlutterSecureStorage();
@@ -44,12 +47,13 @@ class _ReviewSmallButtonState extends State<ReviewSmallButton> {
         UserMyPage.push(context);
         return;
       }
-      http.Response res;
+
       // reviews#create
-      var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews');
-      res = await http.post(url, body: {
+      final Uri url =
+          Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews');
+      final Response res = await post(url, body: {
         'token': token,
-        'quiz_id': '$_quizId',
+        'quiz_id': '${quiz.id}',
       });
       if (res.statusCode != 200) {
         return;
@@ -68,7 +72,7 @@ class _ReviewSmallButtonState extends State<ReviewSmallButton> {
       final Review? newReview = await showDialog(
           context: context,
           builder: (context) {
-            return ReviewSettingDialog(review: _review, quizId: _quizId);
+            return ReviewSettingDialog(review: _review, quizId: quiz.id);
           });
 
       if (newReview == null) return;
@@ -90,7 +94,7 @@ class _ReviewSmallButtonState extends State<ReviewSmallButton> {
         WidgetSpan(
           child: Icon(
             Icons.alarm,
-            color: Colors.white,
+            color: Colors.black45,
             size: 18.0,
           ),
         ),

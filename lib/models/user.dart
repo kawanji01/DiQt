@@ -1,38 +1,45 @@
+import 'package:booqs_mobile/models/answer_setting.dart';
+
 class User {
   User({
-    this.id,
-    this.publicUid,
+    this.id = 0,
+    this.publicUid = '',
     this.name = '',
     this.icon = '',
     this.profile = '',
-    iconImageUrl = '',
-    amountOfExp = 0,
-    answerHistoriesCount = 0,
-    answerDaysCount = 0,
-    achievementMapsCount = 0,
-    premium = false,
-    paidViaNativeApp = false,
-    unreadNotificationsCount = 0,
-    unsolvedReviewsCount = 0,
-    weaknessesCount = 0,
+    this.iconImageUrl = '',
+    this.amountOfExp = 0,
+    this.answerHistoriesCount = 0,
+    this.answerDaysCount = 0,
+    this.achievementMapsCount = 0,
+    this.premium = false,
+    this.paidViaNativeApp = false,
+    this.unreadNotificationsCount = 0,
+    this.unsolvedReviewsCount = 0,
+    this.weaknessesCount = 0,
+    this.rewardRemained = false,
+    this.authToken,
+    this.answerSetting,
   });
 
-  int? id;
-  String? publicUid;
-  String? name;
+  int id;
+  String publicUid;
+  String name;
   String? icon;
   String? profile;
   String? iconImageUrl;
-  int? amountOfExp;
-  int? answerHistoriesCount;
-  int? answerDaysCount;
-  int? achievementMapsCount;
-  bool? premium;
-  bool? paidViaNativeApp;
-  int? unreadNotificationsCount;
-  int? unsolvedReviewsCount;
-  int? weaknessesCount;
-  bool? rewardRemained;
+  int amountOfExp;
+  int answerHistoriesCount;
+  int answerDaysCount;
+  int achievementMapsCount;
+  bool premium;
+  bool paidViaNativeApp;
+  int unreadNotificationsCount;
+  int unsolvedReviewsCount;
+  int weaknessesCount;
+  bool rewardRemained;
+  String? authToken;
+  AnswerSetting? answerSetting;
 
   User.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -45,12 +52,16 @@ class User {
         answerHistoriesCount = json['answer_histories_count'],
         answerDaysCount = json['answer_days_count'],
         achievementMapsCount = json['achievement_maps_count'],
-        premium = json['premium'] as bool,
-        paidViaNativeApp = json['paid_via_native_app'] as bool,
+        premium = json['premium'],
+        paidViaNativeApp = json['paid_via_native_app'],
         unreadNotificationsCount = json['unread_notifications_count'],
         unsolvedReviewsCount = json['unsolved_reviews_count'],
         weaknessesCount = json['weaknesses_count'],
-        rewardRemained = json['reward_remained'];
+        rewardRemained = json['reward_remained'],
+        authToken = json['token_for_native_app'],
+        answerSetting = json['answer_setting'] == null
+            ? null
+            : AnswerSetting.fromJson(json['answer_setting']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -67,5 +78,7 @@ class User {
         'paid_via_native_app': paidViaNativeApp,
         'reward_remained': rewardRemained,
         'unsolved_reviews_count': unsolvedReviewsCount,
+        'token_for_native_app': authToken,
+        'answer_setting': answerSetting,
       };
 }

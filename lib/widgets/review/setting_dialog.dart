@@ -171,7 +171,6 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
 
   // 間隔設定のテキストを返す
   String _reviewText(numberStr) {
-    print(numberStr);
     final settingNumber = int.parse(numberStr);
     String settingText = ReviewHelperService.intervalSetting(settingNumber);
     return settingText;

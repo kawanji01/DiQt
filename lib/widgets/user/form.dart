@@ -34,7 +34,7 @@ class _UserFormState extends State<UserForm> {
   @override
   Widget build(BuildContext context) {
     final User _user = ModalRoute.of(context)!.settings.arguments as User;
-    _nameController.text = _user.name!;
+    _nameController.text = _user.name;
     _profileController.text = _user.profile!;
 
     // 画像
