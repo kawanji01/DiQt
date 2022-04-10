@@ -1,6 +1,5 @@
-import 'package:booqs_mobile/data/provider/solved_quiz_ids_provider.dart';
+import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
 import 'package:booqs_mobile/widgets/review/unsolved_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

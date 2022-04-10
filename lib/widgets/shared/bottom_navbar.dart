@@ -1,5 +1,5 @@
 import 'package:badges/badges.dart';
-import 'package:booqs_mobile/data/provider/current_user_provider.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notification/index.dart';
@@ -75,23 +75,26 @@ class _BottomNavbarState extends ConsumerState<BottomNavbar> {
   void _onItemTapped(int index) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
-    setState(() {
-      _selectedIndex = index;
-    });
     switch (index) {
       case 0:
         MyHomePage.push(context);
         break;
       case 1:
+        if (_selectedIndex == index) return;
         ReviewIndexPage.push(context);
         break;
       case 2:
+        if (_selectedIndex == index) return;
         NotificationIndexPage.push(context);
         break;
       case 3:
+        if (_selectedIndex == index) return;
         UserMyPage.push(context);
         break;
     }
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override

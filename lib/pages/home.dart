@@ -1,12 +1,10 @@
-import 'dart:convert';
-import 'package:booqs_mobile/data/provider/answer_setting_provider.dart';
-import 'package:booqs_mobile/data/provider/current_user_provider.dart';
-import 'package:booqs_mobile/data/provider/todays_answers_count_provider.dart';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/home/home_chapters_page.dart';
@@ -15,8 +13,6 @@ import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
 
 class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);

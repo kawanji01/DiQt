@@ -90,7 +90,11 @@ class _SentenceSettingFormState extends State<SentenceSettingForm> {
         children: <Widget>[
           const WordLabel(text: '例文'),
           const SizedBox(height: 8),
-          TextWithLink(text: original, autoLinkEnabled: true),
+          TextWithLink(
+            text: original,
+            autoLinkEnabled: true,
+            crossAxisAlignment: CrossAxisAlignment.start,
+          ),
           const SizedBox(height: 8),
           Text(translation,
               style: const TextStyle(

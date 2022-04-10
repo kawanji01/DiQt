@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
-import 'package:booqs_mobile/data/provider/solved_quiz_ids_provider.dart';
-import 'package:booqs_mobile/data/provider/todays_answers_count_provider.dart';
+import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
+import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';

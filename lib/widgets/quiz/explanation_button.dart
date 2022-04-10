@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/widgets/quiz/explanation.dart';
+import 'package:booqs_mobile/widgets/quiz/explanation/screen.dart';
 import 'package:flutter/material.dart';
 
 class QuizExplanationButton extends StatelessWidget {
@@ -16,7 +16,7 @@ class QuizExplanationButton extends StatelessWidget {
           isScrollControlled: true,
           context: context,
           // showModalBottomSheetで表示される中身
-          builder: (context) => QuizExplanation(quiz: quiz),
+          builder: (context) => QuizExplanationScreen(quiz: quiz),
         );
       },
     );

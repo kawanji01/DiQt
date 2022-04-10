@@ -42,7 +42,11 @@ class WordExplanation extends StatelessWidget {
             const SizedBox(height: 24),
             const WordLabel(text: '解説'),
             const SizedBox(height: 8),
-            TextWithLink(text: expText, autoLinkEnabled: false),
+            TextWithLink(
+              text: expText,
+              autoLinkEnabled: false,
+              crossAxisAlignment: CrossAxisAlignment.start,
+            ),
           ]);
     }
 

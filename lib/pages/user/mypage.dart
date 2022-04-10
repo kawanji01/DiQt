@@ -1,6 +1,6 @@
-import 'package:booqs_mobile/data/provider/answer_setting_provider.dart';
-import 'package:booqs_mobile/data/provider/current_user_provider.dart';
-import 'package:booqs_mobile/data/provider/todays_answers_count_provider.dart';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/user.dart';
