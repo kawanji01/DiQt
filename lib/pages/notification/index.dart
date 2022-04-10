@@ -1,4 +1,6 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/remote/notifications.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
@@ -10,10 +12,9 @@ import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NotificationIndexPage extends StatefulWidget {
+class NotificationIndexPage extends ConsumerStatefulWidget {
   const NotificationIndexPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
@@ -35,7 +36,7 @@ class NotificationIndexPage extends StatefulWidget {
   _NotificationIndexPageState createState() => _NotificationIndexPageState();
 }
 
-class _NotificationIndexPageState extends State<NotificationIndexPage> {
+class _NotificationIndexPageState extends ConsumerState<NotificationIndexPage> {
   User? _user;
   int _unreadNotificationsCount = 0;
   bool _initDone = false;
@@ -48,28 +49,17 @@ class _NotificationIndexPageState extends State<NotificationIndexPage> {
   }
 
   Future _loadCount() async {
-    const storage = FlutterSecureStorage();
-    String? token = await storage.read(key: 'token');
-
-    if (token == null) {
+    Map? resMap = await RemoteNotifications.index(context);
+    if (resMap == null) {
+      await UserSetup.logOut(null);
       return setState(() {
         _initDone = true;
       });
     }
-
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/notifications/list');
-    var res = await http.post(url, body: {'token': token});
-
-    if (res.statusCode != 200) {
-      await UserSetup.logOut();
-      return setState(() {
-        _initDone = true;
-      });
-    }
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
-    await UserSetup.signIn(resMap);
+    User user = User.fromJson(resMap['user']);
+    await UserSetup.signIn(user);
+    ref.read(currentUserProvider.notifier).state = user;
+    ref.read(answerSettingProvider.notifier).state = user.answerSetting;
 
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     setState(() {

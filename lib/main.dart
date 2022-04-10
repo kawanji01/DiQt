@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:intl/intl.dart';
 
 Future<void> main() async {
   // 環境変数の読み込み　ref： https://pub.dev/packages/flutter_dotenv
@@ -33,7 +34,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // locale : https://zenn.dev/dala/books/flutter-basic-app/viewer/create-flashcard-edit
-    const locale = Locale("ja", "JP");
+    String? defaultLocale = Intl.defaultLocale;
+    print(defaultLocale);
+    defaultLocale ??= 'ja';
+    Intl.defaultLocale = defaultLocale;
+    final locale = Locale(defaultLocale, '');
 
     return MaterialApp(
       title: 'DiQt',
@@ -55,7 +60,8 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        locale,
+        Locale("ja", ""),
+        Locale('en', ''),
       ],
       routes: routes,
     );

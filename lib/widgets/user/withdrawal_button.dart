@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
@@ -18,22 +19,17 @@ class UserWithdrawalButton extends StatelessWidget {
     // 退会リクエスト
     Future _withdrawal() async {
       EasyLoading.show(status: 'loading...');
-      const storage = FlutterSecureStorage();
-      final String? token = await storage.read(key: 'token');
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/${user.publicUid}?token=$token');
-      var res = await http.delete(url);
-      if (res.statusCode == 200) {
-        Map resMap = json.decode(res.body);
-        await UserSetup.logOut();
+      final Map? resMap = await RemoteUsers.withdrawal(context);
+      if (resMap == null) {
+        EasyLoading.dismiss();
+        const snackBar = SnackBar(content: Text('エラーが発生しました。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        await UserSetup.logOut(user);
         EasyLoading.dismiss();
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
-      } else {
-        EasyLoading.dismiss();
-        const snackBar = SnackBar(content: Text('エラーが発生しました。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
 

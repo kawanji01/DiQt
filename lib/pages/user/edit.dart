@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/user/user_form.dart';
+import 'package:booqs_mobile/widgets/user/form.dart';
 import 'package:flutter/material.dart';
 
 class UserEditPage extends StatefulWidget {

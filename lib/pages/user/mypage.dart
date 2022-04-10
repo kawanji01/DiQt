@@ -1,21 +1,22 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
+import 'package:booqs_mobile/data/remote/sessions.dart';
+import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
-import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
-import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
-import 'package:booqs_mobile/widgets/user/user_status.dart';
+import 'package:booqs_mobile/widgets/user/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserMyPage extends StatefulWidget {
+class UserMyPage extends ConsumerStatefulWidget {
   const UserMyPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
@@ -36,81 +37,57 @@ class UserMyPage extends StatefulWidget {
   _UserMyPageState createState() => _UserMyPageState();
 }
 
-class _UserMyPageState extends State<UserMyPage> {
-  User? _user;
+class _UserMyPageState extends ConsumerState<UserMyPage> {
   bool _initDone = false;
 
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _loadMyPage();
   }
 
   // async create list
   Future _loadMyPage() async {
-    const storage = FlutterSecureStorage();
-    String? token = await storage.read(key: 'token');
-
-    if (token == null) {
+    Map? resMap = await RemoteUsers.status(context);
+    if (resMap == null) {
       return setState(() {
         _initDone = true;
       });
     }
 
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/status');
-    var res = await http.post(url, body: {'token': token});
-
-    if (res.statusCode != 200) {
-      await UserSetup.logOut();
-      return setState(() {
-        _initDone = true;
-      });
-    }
-
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
-    await UserSetup.signIn(resMap);
+    User user = User.fromJson(resMap['user']);
+    await UserSetup.signIn(user);
+    ref.read(currentUserProvider.notifier).state = user;
+    ref.read(answerSettingProvider.notifier).state = user.answerSetting;
     setState(() {
-      _user = User.fromJson(resMap['user']);
       _initDone = true;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    User? _user = ref.watch(currentUserProvider);
+
     // ログアウト
     Future _logout() async {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      const storage = FlutterSecureStorage();
-      String? token = await storage.read(key: 'token');
-      final deviceInfo = DeviceInfoService();
-      final String deviceIdentifier = await deviceInfo.getIndentifier();
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/logout');
-      await http.post(url,
-          body: {'token': '$token', 'device_identifier': deviceIdentifier});
-      await UserSetup.logOut();
+      await RemoteSessions.logout(context);
+      await UserSetup.logOut(_user);
+      ref.read(currentUserProvider.notifier).state = null;
+      ref.read(answerSettingProvider.notifier).state = null;
+      ref.read(todaysAnswersCountProvider.notifier).state = 0;
       // ローディングを消す
       EasyLoading.dismiss();
       const snackBar = SnackBar(content: Text('ログアウトしました。'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       UserMyPage.push(context);
     }
-
-    // Webのアカウント設定に飛ぶ
-    //Future _moveToAccountSetting() async {
-    //  const storage = FlutterSecureStorage();
-    //  String? uid = await storage.read(key: 'publicUid');
-    // 外部リンクダイアログを表示
-    //  await showDialog(
-    //      context: context,
-    //      builder: (context) {
-    // ./locale/ を取り除いたpathを指定する
-    //        return ExternalLinkDialog(redirectPath: 'users/$uid/edit');
-    //      });
-    //}
 
     Future _pushPopup(value) async {
       switch (value) {
@@ -125,10 +102,6 @@ class _UserMyPageState extends State<UserMyPage> {
     }
 
     Widget _settingButton() {
-      if (_initDone == false) {
-        return Container();
-      }
-
       if (_user == null) return Container();
 
       // PopupMenuButton 参考： https://api.flutter.dev/flutter/material/PopupMenuButton-class.html
@@ -157,9 +130,9 @@ class _UserMyPageState extends State<UserMyPage> {
 
     // マイページを表示するか、ログインしてなければログインボタンを表示する。
     Widget _mypageOrEntrance() {
-      if (_initDone == false) return const LoadingSpinner();
-
-      // ログインしていないなら、ログイン・登録画面へ誘導する。
+      // ユーザーが存在せず、かつinitializeも終わっていないなら空画面を表示。
+      if (_user == null && _initDone == false) return Container();
+      // initializeが終わっているのにユーザーが存在していないなら、ログイン・登録画面へ誘導する。
       if (_user == null) return const Entrance();
 
       return SingleChildScrollView(
@@ -169,7 +142,7 @@ class _UserMyPageState extends State<UserMyPage> {
           color: Colors.transparent,
           child: Column(
             children: <Widget>[
-              UserStatus(user: _user!),
+              UserStatus(user: _user),
               const SizedBox(
                 height: 48,
               ),

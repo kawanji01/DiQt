@@ -1,34 +1,30 @@
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/services/purchase.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserSetup {
   // SignInしたあとに、必要なユーザー情報をローカルストレージに保存したり、RevenueCatで認証する。
-  static Future<void> signIn(Map resMap) async {
-    final user = resMap['user'];
-    if (user == null) return;
+  static Future<void> signIn(User user) async {
+    // Providerが利用できないサービスクラスでも利用できるように、
+    // サーバーへのリクエストに必要なパラメーターなどはローカルストレージに保存しておく。
     const storage = FlutterSecureStorage();
-    await storage.write(key: 'publicUid', value: user['public_uid']);
-    await storage.write(key: 'premium', value: user['premium'].toString());
-    await storage.write(key: 'token', value: user['token_for_native_app']);
-    await storage.write(
-        key: 'unsolvedReviewsCount',
-        value: user['unsolved_reviews_count'].toString());
-    await storage.write(
-        key: 'unreadNotificationsCount',
-        value: user['unread_notifications_count'].toString());
+    await storage.write(key: 'token', value: user.authToken);
+    await storage.write(key: 'publicUid', value: user.publicUid);
+    await storage.write(key: 'premium', value: user.premium.toString());
 
     // RevenueCatの認証 参考：https://docs.revenuecat.com/docs/user-ids#logging-back-in
-    await PurchaseService.identify(user['id'].toString());
+    await PurchaseService.identify(user.id.toString());
   }
 
   // ログアウトしたときや認証用のtokenが無効だった場合にストレージをリセットしたり、RevenueCatからログアウトする。
-  static Future<void> logOut() async {
+  static Future<void> logOut(User? user) async {
     // RevenueCatからもログアウトする。参照：　https://docs.revenuecat.com/docs/user-ids#logging-out
     // String? userUid = await storage.read(key: 'public_uid');
     // await Purchases.logOut();
     // トークンをローカルストレージから削除
     const storage = FlutterSecureStorage();
-    await PurchaseService.logOut();
     await storage.deleteAll();
+    if (user == null) return;
+    await PurchaseService.logOut(user.id);
   }
 }

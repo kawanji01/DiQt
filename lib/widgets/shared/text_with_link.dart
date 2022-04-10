@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 
 class TextWithLink extends StatelessWidget {
   const TextWithLink(
-      {Key? key, required this.text, required this.autoLinkEnabled})
+      {Key? key,
+      required this.text,
+      required this.autoLinkEnabled,
+      required this.crossAxisAlignment})
       : super(key: key);
   final String text;
   final bool autoLinkEnabled;
+  final CrossAxisAlignment crossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +158,7 @@ class TextWithLink extends StatelessWidget {
       // Columnにすることで文字列の改行に対応する。
       child: Column(
         // 左寄せ。
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: crossAxisAlignment,
         children: _textWithLinkWidgetList(text),
       ),
     );

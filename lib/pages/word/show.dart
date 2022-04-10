@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/word/word_tile.dart';
+import 'package:booqs_mobile/widgets/word/tile.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';

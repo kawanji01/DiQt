@@ -1,12 +1,12 @@
-import 'dart:convert';
-
+import 'package:booqs_mobile/data/local/user_info.dart';
+import 'package:booqs_mobile/data/remote/reviews.dart';
+import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/utils/diqt_url.dart';
-import 'package:booqs_mobile/widgets/review/review_setting_dialog.dart';
+import 'package:booqs_mobile/services/review_helper.dart';
+import 'package:booqs_mobile/utils/toasts.dart';
+import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
 
 class SentenceReviewButton extends StatefulWidget {
   const SentenceReviewButton({Key? key, required this.sentenceId})
@@ -26,27 +26,23 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
   @override
   void initState() {
     super.initState();
-    _sentenceId = widget.sentenceId;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _sentenceId = widget.sentenceId;
     _loadReview();
   }
 
   // 初期化：リマインダーを設定するために必要な情報を取得して、setStateで再描画する。
   Future _loadReview() async {
-    const storage = FlutterSecureStorage();
-    String? token = await storage.read(key: 'token');
-    var url = Uri.parse(
-        '${DiQtURL.root(context)}/api/v1/mobile/sentences/$_sentenceId/review');
-    var res = await http.post(url, body: {'token': '$token'});
-    if (res.statusCode != 200) return;
+    Map? resMap = await RemoteSentences.review(context, _sentenceId!);
 
-    Map resMap = json.decode(res.body);
+    if (resMap == null) return;
 
     return setState(() {
+      _sentenceId;
       _quizId = resMap['quiz_id'];
       if (resMap['review'] != null) {
         _review = Review.fromJson(resMap['review']);
@@ -59,8 +55,7 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
   Widget build(BuildContext context) {
     //// 復習を設定する。
     Future _createReview() async {
-      const storage = FlutterSecureStorage();
-      String? token = await storage.read(key: 'token');
+      String? token = await LocalUserInfo.authToken();
       // ログインしていないユーザーはマイページにリダイレクト
       if (token == null) {
         const snackBar = SnackBar(content: Text('復習を設定するためには、ログインが必要です。'));
@@ -68,20 +63,14 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
         UserMyPage.push(context);
         return;
       }
-      http.Response res;
-      // Create
-      var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews');
-      res = await http.post(url, body: {
-        'token': token,
-        'quiz_id': '$_quizId',
-      });
-      if (res.statusCode != 200) {
-        return;
-      }
-      Map resMap = json.decode(res.body);
+
+      Map? resMap = await RemoteReviews.create(context, _quizId!, null);
+      if (resMap == null) return;
+
       Review newReview = Review.fromJson(resMap['review']);
-      final snackBar = SnackBar(content: Text('${resMap['message']}'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      await Toasts.reviewSetting(context, resMap['message']);
+      /* final snackBar = SnackBar(content: Text('${resMap['message']}'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar); */
       setState(() {
         _review = newReview;
       });
@@ -107,41 +96,7 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
     }
 
     String _settingText(int number) {
-      final int settingNumber = number;
-      String settingText = '例文を覚える';
-
-      switch (settingNumber) {
-        case 0:
-          settingText = '翌日に復習する';
-          break;
-        case 1:
-          settingText = '3日後に復習する';
-          break;
-        case 2:
-          settingText = '１週間後に復習する';
-          break;
-        case 3:
-          settingText = '２週間後に復習する';
-          break;
-        case 4:
-          settingText = '３週間後に復習する';
-          break;
-        case 5:
-          settingText = '１ヶ月後に復習する';
-          break;
-        case 6:
-          settingText = '２ヶ月後に復習する';
-          break;
-        case 7:
-          settingText = '３ヶ月後に復習する';
-          break;
-        case 8:
-          settingText = '６ヶ月後に復習する';
-          break;
-        case 9:
-          settingText = '１年後に復習する';
-          break;
-      }
+      String settingText = ReviewHelperService.intervalSetting(number);
       return settingText;
     }
 

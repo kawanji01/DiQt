@@ -1,7 +1,10 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
+import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/home/home_chapters_page.dart';
@@ -9,10 +12,9 @@ import 'package:booqs_mobile/widgets/home/home_search_page.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -38,10 +40,10 @@ class MyHomePage extends StatefulWidget {
   }
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   void initState() {
     super.initState();
@@ -50,23 +52,27 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _loadBadgeCount();
+    _loadCurrentUser();
   }
 
-  // 復習と通知のカウントを更新する
-  Future _loadBadgeCount() async {
-    const storage = FlutterSecureStorage();
-    String? token = await storage.read(key: 'token');
-    if (token == null) return;
+  // 現在のユーザー情報を更新する
+  Future _loadCurrentUser() async {
+    Map? resMap = await RemoteUsers.status(context);
 
-    var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/users/status');
-    var res = await http.post(url, body: {'token': token});
+    if (resMap == null) {
+      await UserSetup.logOut(null);
+      ref.read(currentUserProvider.notifier).state = null;
+      ref.read(answerSettingProvider.notifier).state = null;
+      ref.read(todaysAnswersCountProvider.notifier).state = 0;
+      return;
+    }
 
-    if (res.statusCode != 200) return await UserSetup.logOut();
-
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
-    await UserSetup.signIn(resMap);
+    User user = User.fromJson(resMap['user']);
+    await UserSetup.signIn(user);
+    ref.read(currentUserProvider.notifier).state = user;
+    ref.read(answerSettingProvider.notifier).state = user.answerSetting;
+    ref.read(todaysAnswersCountProvider.notifier).state =
+        user.todaysAnswerHistoriesCount;
   }
 
   final List<TabInfo> _tabs = [
@@ -101,7 +107,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
         bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
-        // bottomNavigationBar: const AppBanner(),
         drawer: const DrawerMenu(),
       ),
     );

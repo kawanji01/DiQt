@@ -2,7 +2,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/sentence/sentence_edit_button.dart';
 import 'package:booqs_mobile/widgets/sentence/sentence_review_button.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
-import 'package:booqs_mobile/widgets/word/word_label.dart';
+import 'package:booqs_mobile/widgets/word/label.dart';
 import 'package:flutter/material.dart';
 
 class WordSentence extends StatelessWidget {
@@ -21,7 +21,11 @@ class WordSentence extends StatelessWidget {
         const SizedBox(height: 24),
         const WordLabel(text: '例文'),
         const SizedBox(height: 8),
-        TextWithLink(text: original, autoLinkEnabled: true),
+        TextWithLink(
+          text: original,
+          autoLinkEnabled: true,
+          crossAxisAlignment: CrossAxisAlignment.start,
+        ),
         const SizedBox(height: 8),
         Text(translation,
             style: const TextStyle(

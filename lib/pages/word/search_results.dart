@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/widgets/dictionary/no_results_found.dart';
 import 'package:booqs_mobile/widgets/dictionary/search_results.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -54,21 +55,21 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
   @override
   void initState() {
     super.initState();
+  }
 
-    // initialize
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      final keyword = widget.keyword ?? '';
-      setState(() {
-        _keyword = keyword;
-      });
-      _loadSearchResults(_keyword);
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final keyword = widget.keyword ?? '';
+    setState(() {
+      _keyword = keyword;
     });
+    _loadSearchResults(_keyword);
   }
 
   // async load cards API
   Future _loadSearchResults(keyword) async {
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/words/search');
+    var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/words/search');
     var res = await http
         .post(url, body: {'keyword': '$keyword', 'dictionary_id': '1'});
 

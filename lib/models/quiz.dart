@@ -1,6 +1,8 @@
+import 'package:booqs_mobile/models/drill.dart';
+
 class Quiz {
   Quiz({
-    this.id,
+    this.id = 0,
     this.quizId,
     this.drillId,
     this.wordId,
@@ -14,9 +16,10 @@ class Quiz {
     this.distractors,
     this.explanation,
     this.hint,
+    this.drill,
   });
 
-  int? id;
+  int id;
   int? quizId;
   int? drillId;
   int? wordId;
@@ -30,6 +33,7 @@ class Quiz {
   String? distractors;
   String? explanation;
   String? hint;
+  Drill? drill;
 
   Quiz.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -43,20 +47,22 @@ class Quiz {
         answerReadAloud = json['answer_read_aloud'],
         distractors = json['distractors'],
         explanation = json['explanation'],
-        hint = json['hint'];
+        hint = json['hint'],
+        drill = json['drill'] == null ? null : Drill.fromJson(json['drill']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'quizId': quizId,
-        'drillId': drillId,
+        'quiz_id': quizId,
+        'drill_id': drillId,
         'question': question,
-        'langNumberOfQuestion': langNumberOfQuestion,
-        'questionReadAloud': questionReadAloud,
-        'correctAnswer': correctAnswer,
-        'langNumberOfAnswer': langNumberOfAnswer,
-        'answerReadAloud': answerReadAloud,
+        'lang_number_of_question': langNumberOfQuestion,
+        'question_read_aloud': questionReadAloud,
+        'correct_answer': correctAnswer,
+        'lang_number_of_answer': langNumberOfAnswer,
+        'answer_read_aloud': answerReadAloud,
         'distractors': distractors,
         'explanation': explanation,
         'hint': hint,
+        'drill': drill,
       };
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
@@ -45,7 +46,8 @@ class GoogleButton extends StatelessWidget {
       if (res.statusCode != 200) return EasyLoading.dismiss();
 
       Map resMap = json.decode(res.body);
-      await UserSetup.signIn(resMap);
+      User user = User.fromJson(resMap['user']);
+      await UserSetup.signIn(user);
       // 画面全体のローディングを消す。
       EasyLoading.dismiss();
       const snackBar = SnackBar(content: Text('ログインしました。'));
