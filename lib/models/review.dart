@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 
 class Review {

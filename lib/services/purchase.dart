@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io' show Platform;
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -44,7 +45,7 @@ class PurchaseService {
     await Purchases.logIn(userId);
   }
 
-  static Future<void> logOut() async {
+  static Future<void> logOut(int id) async {
     try {
       Purchases.logOut();
     } catch (e) {
@@ -137,7 +138,8 @@ class PurchaseService {
     }
 
     Map resMap = json.decode(res.body);
-    await UserSetup.signIn(resMap);
+    User user = User.fromJson(resMap['user']);
+    await UserSetup.signIn(user);
     return true;
   }
 
@@ -154,8 +156,8 @@ class PurchaseService {
     }
 
     Map resMap = json.decode(res.body);
-    // print('.deleteSubscriber: ${resMap['message']}');
-    await UserSetup.signIn(resMap);
+    User user = User.fromJson(resMap['user']);
+    await UserSetup.signIn(user);
     return true;
   }
 

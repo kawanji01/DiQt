@@ -1,11 +1,10 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/local/user_info.dart';
+import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/review_helper.dart';
-import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
 
 class ReviewSettingDialog extends StatefulWidget {
   const ReviewSettingDialog({Key? key, this.review, required this.quizId})
@@ -34,8 +33,7 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
 
   // 復習設定を作成するか更新する
   Future _saveOrUpdate() async {
-    const storage = FlutterSecureStorage();
-    String? token = await storage.read(key: 'token');
+    final String? token = await LocalUserInfo.authToken();
     // ログインしていないユーザーはマイページにリダイレクト
     if (token == null) {
       const snackBar = SnackBar(content: Text('復習を設定するためには、ログインが必要です。'));
@@ -44,51 +42,33 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
       return;
     }
 
-    http.Response res;
+    Map? resMap;
     // reviews#create
     if (_review == null) {
-      var url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews');
-      res = await http.post(url, body: {
-        'token': token,
-        'quiz_id': '$_quizId',
-        'interval_setting': dropdownValue
-      });
+      resMap = await RemoteReviews.create(context, _quizId!, dropdownValue);
     } else {
       // reviews#update
-      var url = Uri.parse(
-          '${DiQtURL.root(context)}/api/v1/mobile/reviews/${_review!.id}');
-      res = await http.patch(url,
-          body: {'token': token, 'interval_setting': dropdownValue});
+      resMap = await RemoteReviews.update(context, _review!.id, dropdownValue);
     }
 
-    if (res.statusCode != 200) {
-      return;
-    }
-    Map resMap = json.decode(res.body);
-    Review review = Review.fromJson(resMap['review']);
-    final snackBar = SnackBar(content: Text('${resMap['message']}'));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    if (resMap == null) return;
+
+    final Review review = Review.fromJson(resMap['review']);
+    await Toasts.reviewSetting(context, resMap['message']);
+    //final snackBar = SnackBar(content: Text('${resMap['message']}'));
+    //ScaffoldMessenger.of(context).showSnackBar(snackBar);
     // ダイアログを閉じて、reviewを返り値にする。
     Navigator.of(context).pop(review);
   }
 
   // 復習設定を削除する
   Future _delete() async {
-    const storage = FlutterSecureStorage();
-    String? token = await storage.read(key: 'token');
+    Map? resMap = await RemoteReviews.destroy(context, _review!.id);
 
-    http.Response res;
-    var url = Uri.parse(
-        '${DiQtURL.root(context)}/api/v1/mobile/reviews/${_review!.id}');
-    res = await http.delete(url, body: {
-      'token': token,
-    });
-    if (res.statusCode != 200) {
-      return;
-    }
-    Map resMap = json.decode(res.body);
-    final snackBar = SnackBar(content: Text('${resMap['message']}'));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    if (resMap == null) return;
+    //final snackBar = SnackBar(content: Text('${resMap['message']}'));
+    //ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    await Toasts.reviewSetting(context, resMap['message']);
     // 削除が完了したことを伝えるモデルを作成する。
     Review review = Review(scheduledDate: 'deleted');
     // ダイアログを閉じて、reviewを返り値にする。
@@ -160,7 +140,7 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
     );
   }
 
-// ダイアログの中身を生成する
+  // ダイアログの中身を生成する
   Widget _buildReviewDialog() {
     return Column(
       // アラートが縦に伸びてしまうのを防ぐ、

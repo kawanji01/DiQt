@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:booqs_mobile/data/provider/answer_setting_provider.dart';
-import 'package:booqs_mobile/data/provider/logged_in_user_provider.dart';
+import 'package:booqs_mobile/data/provider/current_user_provider.dart';
+import 'package:booqs_mobile/data/provider/todays_answers_count_provider.dart';
+import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -54,26 +56,27 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _loadBadgeCount();
+    _loadCurrentUser();
   }
 
-  // 復習と通知のカウントを更新する
-  Future _loadBadgeCount() async {
-    const storage = FlutterSecureStorage();
-    String? token = await storage.read(key: 'token');
-    if (token == null) return;
+  // 現在のユーザー情報を更新する
+  Future _loadCurrentUser() async {
+    Map? resMap = await RemoteUsers.status(context);
 
-    Uri url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/users/status');
-    http.Response res = await http.post(url, body: {'token': token});
+    if (resMap == null) {
+      await UserSetup.logOut(null);
+      ref.read(currentUserProvider.notifier).state = null;
+      ref.read(answerSettingProvider.notifier).state = null;
+      ref.read(todaysAnswersCountProvider.notifier).state = 0;
+      return;
+    }
 
-    if (res.statusCode != 200) return await UserSetup.logOut();
-
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
-    await UserSetup.signIn(resMap);
     User user = User.fromJson(resMap['user']);
-    ref.read(loggedInUserProvider.notifier).state = user;
+    await UserSetup.signIn(user);
+    ref.read(currentUserProvider.notifier).state = user;
     ref.read(answerSettingProvider.notifier).state = user.answerSetting;
+    ref.read(todaysAnswersCountProvider.notifier).state =
+        user.todaysAnswerHistoriesCount;
   }
 
   final List<TabInfo> _tabs = [

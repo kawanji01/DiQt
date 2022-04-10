@@ -59,7 +59,7 @@ dependencies:
   google_mobile_ads: ^0.13.6 # 広告
   flutter_riverpod: ^1.0.3 # 状態管理
   intl: ^0.17.0 # 多言語化
-  fluttertoast: ^8.0.9 # トースト
+  flash: ^2.0.3+2 # トースト
   flutter_animated_dialog: ^2.0.1 # アニメーションするダイアログ
   confetti: ^0.6.0 # 紙吹雪
 

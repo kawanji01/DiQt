@@ -1,8 +1,13 @@
+import 'package:booqs_mobile/data/provider/current_user_provider.dart';
+import 'package:booqs_mobile/data/provider/todays_answers_count_provider.dart';
+import 'package:booqs_mobile/data/remote/quizzes.dart';
+import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
-import 'package:booqs_mobile/utils/answer/answer_request.dart';
+import 'package:booqs_mobile/utils/answer/answer_reward.dart';
 import 'package:booqs_mobile/widgets/quiz/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/question.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_content.dart';
@@ -37,9 +42,24 @@ class ReviewUnsolvedWrapper extends ConsumerWidget {
     final answer = QuizAnswer(quiz: quiz);
     final footer = QuizUnsolvedFooter(quiz: quiz, review: review);
 
+    // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。
+    Future<void> _requestReview(notification) async {
+      Map? resMap = await RemoteQuizzes.answer(context, notification, 'review');
+      if (resMap == null) return;
+      final User user = User.fromJson(resMap['user']);
+      final AnswerCreator answerCreator =
+          AnswerCreator.fromJson(resMap['answer_creator']);
+      // 報酬を表示する
+      await AnswerReward.call(context, answerCreator);
+      // ユーザー情報を更新する
+      ref.read(currentUserProvider.notifier).state = user;
+      ref.read(todaysAnswersCountProvider.notifier).state =
+          user.todaysAnswerHistoriesCount;
+    }
+
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
-        AnswerRequest.call(context, notification, 'review');
+        _requestReview(notification);
         // trueを返すことで通知がこれ以上遡らない
         return true;
       },

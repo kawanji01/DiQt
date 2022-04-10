@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
@@ -58,7 +59,8 @@ class _LoginFormState extends State<LoginForm> {
       // レスポンスに対する処理
       if (res.statusCode == 200) {
         Map resMap = json.decode(res.body);
-        await UserSetup.signIn(resMap);
+        User user = User.fromJson(resMap['user']);
+        await UserSetup.signIn(user);
         const snackBar = SnackBar(content: Text('ログインしました。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);

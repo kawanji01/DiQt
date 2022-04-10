@@ -1,6 +1,9 @@
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/answer_history.dart';
+import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/services/review_helper.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
+import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:booqs_mobile/widgets/answer/answer_days_screen.dart';
 import 'package:booqs_mobile/widgets/answer/complete_review_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuation_all_month_screen.dart';
@@ -12,6 +15,98 @@ import 'package:booqs_mobile/widgets/answer/goal_achievement_screen.dart';
 import 'package:flutter/material.dart';
 
 class AnswerReward {
+  static Future<void> call(
+      BuildContext context, AnswerCreator answerCreator) async {
+    // 復習の新規作成
+    await AnswerReward.reviewCreated(context, answerCreator);
+    // 復習の間隔伸長
+    await AnswerReward.reviewIntervalStepUp(context, answerCreator);
+    // 復習の解除
+    await AnswerReward.reviewReleased(context, answerCreator);
+    // 同じ間違い
+    await AnswerReward.sameMistakeCount(context, answerCreator);
+    // TODO: 弱点分析
+    // TODO: 問題集周回
+    // 解答日数報酬
+    await AnswerReward.answerDays(context, answerCreator);
+    // 連日解答報酬
+    await AnswerReward.continuousAnswerDays(context, answerCreator);
+    // 連続週解答報酬
+    await AnswerReward.continuationAllWeek(context, answerCreator);
+    // 連続月解答報酬
+    await AnswerReward.continuationAllMonth(context, answerCreator);
+    // 復習達成
+    await AnswerReward.completeReview(context, answerCreator);
+    // 連続復習達成
+    await AnswerReward.continuousCompleteReview(context, answerCreator);
+    // 目標達成
+    await AnswerReward.goalAchievement(context, answerCreator);
+    // 連続目標達成
+    await AnswerReward.continuousGoalAvhievement(context, answerCreator);
+  }
+
+  // 復習が新規で設定された通知
+  static Future<void> reviewCreated(
+      BuildContext context, AnswerCreator answerCreator) async {
+    final Review? review = answerCreator.review;
+    if (review != null && answerCreator.reviewCreated == true) {
+      final String interval =
+          ReviewHelperService.intervalSetting(review.intervalSetting);
+
+      await Toasts.reviewSetting(context, interval);
+
+      //await Toasts.showBlack(context, richText);
+      await Future.delayed(const Duration(seconds: 1));
+    }
+  }
+
+  // 復習の間隔が伸長した通知
+  static Future<void> reviewIntervalStepUp(
+      BuildContext context, AnswerCreator answerCreator) async {
+    final AnswerHistory? answerHistory = answerCreator.answerHistory;
+    final Review? review = answerCreator.review;
+    if (review != null && answerHistory!.intervalStepUp) {
+      final String interval =
+          ReviewHelperService.intervalSetting(review.intervalSetting);
+      await Toasts.reviewSetting(context, '繰り上がりで$interval');
+      // await Toasts.showBlack(context, richText);
+      await Future.delayed(const Duration(seconds: 1));
+    }
+  }
+
+  // 復習設定が解除された通知
+  static Future<void> reviewReleased(
+      BuildContext context, AnswerCreator answerCreator) async {
+    if (answerCreator.reviewReleased == true) {
+      await Toasts.reviewSetting(context, '復習が解除されました');
+      await Future.delayed(const Duration(seconds: 1));
+    }
+  }
+
+  // 同じ間違いの通知
+  static Future<void> sameMistakeCount(
+      BuildContext context, AnswerCreator answerCreator) async {
+    int? sameMistakeCount = answerCreator.sameMistakeCount;
+    if (sameMistakeCount != null && sameMistakeCount > 1) {
+      final richText = RichText(
+          text: TextSpan(children: [
+        const WidgetSpan(
+          child: Icon(
+            Icons.close,
+            color: Colors.white,
+            size: 18.0,
+          ),
+        ),
+        TextSpan(
+            text: ' この間違いは$sameMistakeCount回目です',
+            style: const TextStyle(
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
+      ]));
+      await Toasts.showBlack(context, richText);
+      await Future.delayed(const Duration(seconds: 1));
+    }
+  }
+
   // 解答日数報酬
   static Future<void> answerDays(
       BuildContext context, AnswerCreator answerCreator) async {

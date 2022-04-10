@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
@@ -71,7 +72,8 @@ class AppleButton extends StatelessWidget {
 
           Map resMap = json.decode(res.body);
           // トークンを格納
-          await UserSetup.signIn(resMap);
+          User user = User.fromJson(resMap['user']);
+          await UserSetup.signIn(user);
           const snackBar = SnackBar(content: Text('ログインしました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           UserMyPage.push(context);

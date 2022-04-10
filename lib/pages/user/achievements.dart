@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/achivement.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -7,7 +6,6 @@ import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class UserAchievementsPage extends StatefulWidget {
   const UserAchievementsPage({Key? key, this.user}) : super(key: key);
@@ -44,25 +42,18 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
     super.initState();
     // exeception回避
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      final User user = widget.user as User;
-      _loadAchievements(user);
+      _loadAchievements(widget.user);
     });
   }
 
   Future _loadAchievements(user) async {
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/${user.publicUid}/achievements');
-    var res =
-        await http.get(url, headers: {"Content-Type": "application/json"});
-
-    if (res.statusCode != 200) {
-      setState(() {
-        _user = user;
+    Map? resMap = await RemoteUsers.achievements(context);
+    if (resMap == null) {
+      return setState(() {
         _initDone = true;
       });
     }
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
+
     resMap['tutorial_medals']
         .forEach((e) => _tutorialMedals.add(Achievement.fromJson(e)));
     resMap['answer_medals']

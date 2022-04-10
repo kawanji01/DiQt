@@ -1,25 +1,15 @@
-import 'dart:convert';
-import 'package:booqs_mobile/data/provider/current_exp_provider.dart';
-import 'package:booqs_mobile/data/provider/logged_in_user_provider.dart';
+import 'package:booqs_mobile/data/provider/current_user_provider.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids_provider.dart';
-import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
-import 'package:booqs_mobile/widgets/review/unsolved_feed.dart';
 import 'package:booqs_mobile/widgets/review/index.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
-import 'package:booqs_mobile/widgets/shared/large_button.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
-import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
 
 class ReviewIndexPage extends ConsumerStatefulWidget {
   const ReviewIndexPage({Key? key}) : super(key: key);
@@ -43,11 +33,6 @@ class ReviewIndexPage extends ConsumerStatefulWidget {
 }
 
 class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
-  User? _user;
-  int _unsolvedReviewsCount = 0;
-  final List<Review> _reviews = [];
-  bool _initDone = false;
-
   @override
   void initState() {
     super.initState();
@@ -59,15 +44,13 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    //_loadReviews();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final loggedInUser = ref.watch(loggedInUserProvider);
-    print(loggedInUser!.amountOfExp);
+    // 更新を限定的にする。 ref: https://riverpod.dev/ja/docs/concepts/reading/#select%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E6%9B%B4%E6%96%B0%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%82%92%E9%99%90%E5%AE%9A%E3%81%99%E3%82%8B
+    final User? currentUser = ref.watch(currentUserProvider);
+    final int unsolvedReviewsCount = currentUser == null
+        ? 0
+        : ref.watch(
+            currentUserProvider.select((user) => user!.unsolvedReviewsCount));
 
     Future _moveToReviews() async {
       // 外部リンクダイアログを表示
@@ -79,53 +62,51 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
           });
     }
 
-    Widget _reviewsPageButton() {
-      final String btnText = '${loggedInUser.unsolvedReviewsCount}問を復習する';
-      return InkWell(
-        onTap: () {
-          _moveToReviews();
+    Future _pushPopup(value) async {
+      switch (value) {
+        case 0:
+          //_moveToAccountSetting();
+          await _moveToReviews();
+          break;
+      }
+    }
+
+    Widget _settingButton() {
+      if (currentUser == null) return Container();
+
+      // PopupMenuButton 参考： https://api.flutter.dev/flutter/material/PopupMenuButton-class.html
+      return PopupMenuButton(
+        onSelected: (newValue) {
+          _pushPopup(newValue);
         },
-        child: LargeButton(btnText: btnText),
+        itemBuilder: (BuildContext context) => [
+          const PopupMenuItem(
+            child: Text(
+              'Webで解く',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            value: 0,
+          ),
+          /* const PopupMenuItem(
+            child: Text(
+              '解答設定',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            value: 1,
+          ) */
+        ],
       );
     }
 
     Widget _reviewsOrEntrance() {
-      if (loggedInUser == null) return const Entrance();
-
-      /* return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.all(28.0),
-      child: Column(
-        children: <Widget>[
-          const SizedBox(
-            height: 40,
-          ),
-          const Text('復習を設定した辞書の項目を、問題形式で復習できます。',
-              style: TextStyle(fontSize: 16)),
-          const SizedBox(
-            height: 40,
-          ),
-          _reviewsPageButton(),
-          const SizedBox(
-            height: 80,
-          ),
-          const AppBanner(),
-        ],
-      ),
-    ); */
-
-      /* return Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: ReviewFeed(reviews: _reviews),
-      ); */
+      if (currentUser == null) return const Entrance();
       return const ReviewIndex();
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('復習'),
-        //automaticallyImplyLeading: false,
+        title: Text('復習（$unsolvedReviewsCount）'),
+        actions: <Widget>[_settingButton()],
       ),
       body: _reviewsOrEntrance(),
       bottomNavigationBar: const BottomNavbar(selectedIndex: 1),

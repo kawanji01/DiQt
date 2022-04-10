@@ -19,7 +19,7 @@ class AnswerCompleteReviewScreen extends StatelessWidget {
         answerCreator.continuationAllWeekPoint +
         answerCreator.continuationAllMonthPoint;
     // 獲得経験値
-    final int gainedExp = answerCreator.continuationAllMonthPoint;
+    final int gainedExp = answerCreator.completeReviewPoint;
 
     Widget _heading() {
       return const Text('復習達成',

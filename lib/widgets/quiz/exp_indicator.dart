@@ -58,7 +58,7 @@ class _QuizExpIndicatorState extends State<QuizExpIndicator> {
 
     Future<void> _afterAnimation() async {
       // インジケーターを消す前に1秒待つ
-      await Future.delayed(const Duration(seconds: 1));
+      // await Future.delayed(const Duration(seconds: 1));
       _levelUp(percent);
       setState(() {
         _isVisible = false;

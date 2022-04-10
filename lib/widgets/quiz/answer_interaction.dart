@@ -1,8 +1,8 @@
-import 'package:booqs_mobile/data/provider/current_exp_provider.dart';
-import 'package:booqs_mobile/data/provider/logged_in_user_provider.dart';
+import 'package:booqs_mobile/data/provider/current_user_provider.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
+import 'package:booqs_mobile/widgets/quiz/answers_count.dart';
 import 'package:booqs_mobile/widgets/quiz/exp_indicator.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation_button.dart';
 import 'package:flutter/material.dart';
@@ -72,8 +72,10 @@ class QuizAnswerInteraction extends ConsumerWidget {
 
     Widget _expIndicator() {
       if (_correct == false) return Container();
-      final User? currentUser = ref.watch(loggedInUserProvider);
-      final int initialExp = currentUser == null ? 0 : currentUser.amountOfExp;
+
+      final int initialExp =
+          ref.watch(currentUserProvider.select((user) => user!.amountOfExp)) ??
+              0;
       return QuizExpIndicator(initialExp: initialExp, gainedExp: 3);
     }
 
@@ -88,6 +90,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
             _correctAnswerWidget(),
             _incorrectFeedback(),
             _expIndicator(),
+            const QuizAnswersCount(),
             QuizExplanationButton(quiz: _quiz),
             const SizedBox(height: 8),
           ]),

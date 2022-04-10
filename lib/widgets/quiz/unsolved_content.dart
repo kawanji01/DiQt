@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids_provider.dart';
+import 'package:booqs_mobile/data/provider/todays_answers_count_provider.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
@@ -44,6 +45,10 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
         final fadeOut = notification.fadeOut;
+        // 今日の解答数のカウンターを+1して、解答インタラクションを表示する
+        ref
+            .read(todaysAnswersCountProvider.notifier)
+            .update((state) => state + 1);
         AnswerInteraction.show(notification, context);
         if (fadeOut) {
           // 解答した問題が再描画されないように、問題のIDをproviderに追加する。

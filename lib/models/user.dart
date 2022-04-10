@@ -10,6 +10,7 @@ class User {
     this.iconImageUrl = '',
     this.amountOfExp = 0,
     this.answerHistoriesCount = 0,
+    this.todaysAnswerHistoriesCount = 0,
     this.answerDaysCount = 0,
     this.achievementMapsCount = 0,
     this.premium = false,
@@ -30,6 +31,7 @@ class User {
   String? iconImageUrl;
   int amountOfExp;
   int answerHistoriesCount;
+  int todaysAnswerHistoriesCount;
   int answerDaysCount;
   int achievementMapsCount;
   bool premium;
@@ -50,6 +52,7 @@ class User {
         iconImageUrl = json['icon_image_url'],
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
+        todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
         answerDaysCount = json['answer_days_count'],
         achievementMapsCount = json['achievement_maps_count'],
         premium = json['premium'],
@@ -72,6 +75,7 @@ class User {
         'icon_image_url': iconImageUrl,
         'amount_of_exp': amountOfExp,
         'answer_histories_count': answerHistoriesCount,
+        'todays_answer_histories_count': todaysAnswerHistoriesCount,
         'answer_days_count': answerDaysCount,
         'achievement_maps_count': achievementMapsCount,
         'premium': premium,

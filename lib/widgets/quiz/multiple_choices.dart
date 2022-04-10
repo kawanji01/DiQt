@@ -1,9 +1,12 @@
+import 'package:booqs_mobile/data/provider/current_user_provider.dart';
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/choice_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizMultipleChoices extends StatefulWidget {
+class QuizMultipleChoices extends ConsumerStatefulWidget {
   const QuizMultipleChoices(
       {Key? key, required this.quiz, required this.answerTextList})
       : super(key: key);
@@ -11,14 +14,15 @@ class QuizMultipleChoices extends StatefulWidget {
   final List<String> answerTextList;
 
   @override
-  State<QuizMultipleChoices> createState() => _QuizMultipleChoicesState();
+  _QuizMultipleChoicesState createState() => _QuizMultipleChoicesState();
 }
 
-class _QuizMultipleChoicesState extends State<QuizMultipleChoices> {
+class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
   String? _selectedAnswer;
 
   @override
   Widget build(BuildContext context) {
+    final User? user = ref.watch(currentUserProvider);
     final Quiz _quiz = widget.quiz;
     final String? _correctAnswer = _quiz.correctAnswer;
     final List<String> _answerTextList = widget.answerTextList;
@@ -31,7 +35,7 @@ class _QuizMultipleChoicesState extends State<QuizMultipleChoices> {
         onTap: () {
           _selectedAnswer = answerText;
           final bool correct = _selectedAnswer == _correctAnswer;
-          AnswerNotification(answerText, correct, _quiz, true)
+          AnswerNotification(answerText, correct, _quiz, user!, true)
               .dispatch(context);
           setState(() {
             _selectedAnswer;

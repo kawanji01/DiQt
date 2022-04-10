@@ -1,67 +1,67 @@
 import 'dart:convert';
+import 'package:booqs_mobile/data/local/user_info.dart';
+import 'package:booqs_mobile/data/provider/current_user_provider.dart';
+import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/review_helper.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 
-class ReviewSmallButton extends StatefulWidget {
+class ReviewSmallButton extends ConsumerStatefulWidget {
   const ReviewSmallButton({Key? key, required this.quiz, this.review})
       : super(key: key);
   final Quiz quiz;
   final Review? review;
 
   @override
-  State<ReviewSmallButton> createState() => _ReviewSmallButtonState();
+  _ReviewSmallButtonState createState() => _ReviewSmallButtonState();
 }
 
-class _ReviewSmallButtonState extends State<ReviewSmallButton> {
+class _ReviewSmallButtonState extends ConsumerState<ReviewSmallButton> {
   Review? _review;
 
   @override
   void initState() {
     super.initState();
-    _review = widget.review;
     setState(() {
-      _review;
+      _review = widget.review;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final Quiz quiz = widget.quiz;
+    final int quizId = quiz.id;
+
     //// 復習を設定する。
     Future _createReview() async {
-      const storage = FlutterSecureStorage();
-      String? token = await storage.read(key: 'token');
-      // ログインしていないユーザーはマイページにリダイレクト
-      if (token == null) {
+      final String? authToken = await LocalUserInfo.authToken();
+      // ログインしていない場合（トークンがない場合）ユーザーはマイページにリダイレクト
+      if (authToken == null) {
         const snackBar = SnackBar(content: Text('復習を設定するためには、ログインが必要です。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
         return;
       }
 
-      // reviews#create
-      final Uri url =
-          Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews');
-      final Response res = await post(url, body: {
-        'token': token,
-        'quiz_id': '${quiz.id}',
-      });
-      if (res.statusCode != 200) {
-        return;
-      }
-      Map resMap = json.decode(res.body);
+      Map? resMap = await RemoteReviews.create(context, quizId, null);
+      if (resMap == null) return;
+
       Review newReview = Review.fromJson(resMap['review']);
-      final snackBar = SnackBar(content: Text('${resMap['message']}'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      await Toasts.reviewSetting(context, resMap['message']);
+
+      //final snackBar = SnackBar(content: Text('${resMap['message']}'));
+      //ScaffoldMessenger.of(context).showSnackBar(snackBar);
       setState(() {
         _review = newReview;
       });
