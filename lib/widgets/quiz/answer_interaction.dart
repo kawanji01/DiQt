@@ -3,7 +3,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/answers_count.dart';
 import 'package:booqs_mobile/widgets/quiz/exp_indicator.dart';
-import 'package:booqs_mobile/widgets/quiz/explanation_button.dart';
+import 'package:booqs_mobile/widgets/quiz/explanation/open_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -90,7 +90,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
             _incorrectFeedback(),
             _expIndicator(),
             const QuizAnswersCount(),
-            QuizExplanationButton(quiz: _quiz),
+            QuizExplanationOpenButton(quiz: _quiz),
             const SizedBox(height: 8),
           ]),
     );

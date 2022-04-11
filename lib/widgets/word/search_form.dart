@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class WordSearchForm extends StatelessWidget {
-  const WordSearchForm(
-      {Key? key, required this.searchController, required this.focusNode})
+  const WordSearchForm({Key? key, required this.searchController})
       : super(key: key);
   final TextEditingController searchController;
-  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,6 @@ class WordSearchForm extends StatelessWidget {
           TypeAheadFormField(
               textFieldConfiguration: TextFieldConfiguration(
                   controller: searchController,
-                  focusNode: focusNode,
                   decoration: InputDecoration(
                     labelText: '検索ワード',
                     hintText: '調べたい単語・熟語を入力してください',

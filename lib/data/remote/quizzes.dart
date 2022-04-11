@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -24,6 +25,18 @@ class RemoteQuizzes {
       'correct': '${notification.correct}',
       'answer_type': answerType,
     });
+
+    if (res.statusCode != 200) return null;
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // 問題の解説表示
+  static Future<Map?> explanation(int quizId) async {
+    final String? token = await LocalUserInfo.authToken();
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/$quizId/explanation?token=$token');
+    final Response res = await get(url);
 
     if (res.statusCode != 200) return null;
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2

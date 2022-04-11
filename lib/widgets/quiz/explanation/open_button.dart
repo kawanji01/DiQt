@@ -2,8 +2,9 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/screen.dart';
 import 'package:flutter/material.dart';
 
-class QuizExplanationButton extends StatelessWidget {
-  const QuizExplanationButton({Key? key, required this.quiz}) : super(key: key);
+class QuizExplanationOpenButton extends StatelessWidget {
+  const QuizExplanationOpenButton({Key? key, required this.quiz})
+      : super(key: key);
   final Quiz quiz;
 
   @override
@@ -12,6 +13,9 @@ class QuizExplanationButton extends StatelessWidget {
       child: const Text('解説をみる',
           style: TextStyle(fontWeight: FontWeight.w700, color: Colors.grey)),
       onPressed: () {
+        // 解説モーダル内の辞書リンクで遷移後のページでも解答インタラクションが表示されてしまうので、
+        // bottomSheetを表示するときにインタラクションも消しておく
+        ScaffoldMessenger.of(context).removeCurrentSnackBar();
         showModalBottomSheet(
           isScrollControlled: true,
           context: context,
