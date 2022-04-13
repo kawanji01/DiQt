@@ -39,7 +39,19 @@ class RemoteQuizzes {
     final Response res = await get(url);
 
     if (res.statusCode != 200) return null;
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // 問題の詳細を取得
+  static Future<Map?> show(int quizId) async {
+    final String? token = await LocalUserInfo.authToken();
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/$quizId?token=$token');
+    final Response res = await get(url);
+
+    if (res.statusCode != 200) return null;
+
     final Map resMap = json.decode(res.body);
     return resMap;
   }

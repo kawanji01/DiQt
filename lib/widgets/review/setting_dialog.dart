@@ -66,8 +66,6 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
     Map? resMap = await RemoteReviews.destroy(context, _review!.id);
 
     if (resMap == null) return;
-    //final snackBar = SnackBar(content: Text('${resMap['message']}'));
-    //ScaffoldMessenger.of(context).showSnackBar(snackBar);
     await Toasts.reviewSetting(context, resMap['message']);
     // 削除が完了したことを伝えるモデルを作成する。
     Review review = Review(scheduledDate: 'deleted');
@@ -168,8 +166,16 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
           height: 40,
           child: ElevatedButton(
             onPressed: () => _saveOrUpdate(),
-            child: const Text('設定する',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+            child: const Text(
+              '設定する',
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Colors.white),
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.green, //ボタンの背景色
+            ),
           ),
         ),
       ],

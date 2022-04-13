@@ -1,49 +1,42 @@
-import 'dart:convert';
 import 'package:booqs_mobile/data/local/user_info.dart';
-import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/review_helper.dart';
-import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
-import 'package:booqs_mobile/widgets/button/small_green_button.dart';
-import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
+import 'package:booqs_mobile/widgets/review/large_green_button.dart';
+import 'package:booqs_mobile/widgets/review/large_outline_button.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart';
 
-class ReviewSmallButton extends ConsumerStatefulWidget {
-  const ReviewSmallButton({Key? key, required this.quiz, this.review})
+class ReviewLargeSettingButton extends StatefulWidget {
+  const ReviewLargeSettingButton(
+      {Key? key, required this.quizId, required this.review})
       : super(key: key);
-  final Quiz quiz;
+  final int quizId;
   final Review? review;
 
   @override
-  _ReviewSmallButtonState createState() => _ReviewSmallButtonState();
+  State<ReviewLargeSettingButton> createState() =>
+      _ReviewLargeSettingButtonState();
 }
 
-class _ReviewSmallButtonState extends ConsumerState<ReviewSmallButton> {
+class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
+  int? _quizId;
   Review? _review;
 
   @override
   void initState() {
+    _quizId = widget.quizId;
+    _review = widget.review;
     super.initState();
-    setState(() {
-      _review = widget.review;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final Quiz quiz = widget.quiz;
-    final int quizId = quiz.id;
-
-    //// 復習を設定する。
+    //// 復習を設定する。 ////
     Future _createReview() async {
       final String? authToken = await LocalUserInfo.authToken();
       // ログインしていない場合（トークンがない場合）ユーザーはマイページにリダイレクト
@@ -54,14 +47,12 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallButton> {
         return;
       }
 
-      Map? resMap = await RemoteReviews.create(context, quizId, null);
+      Map? resMap = await RemoteReviews.create(context, _quizId!, null);
       if (resMap == null) return;
 
       Review newReview = Review.fromJson(resMap['review']);
       await Toasts.reviewSetting(context, resMap['message']);
 
-      //final snackBar = SnackBar(content: Text('${resMap['message']}'));
-      //ScaffoldMessenger.of(context).showSnackBar(snackBar);
       setState(() {
         _review = newReview;
       });
@@ -72,7 +63,7 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallButton> {
       final Review? newReview = await showDialog(
           context: context,
           builder: (context) {
-            return ReviewSettingDialog(review: _review, quizId: quiz.id);
+            return ReviewSettingDialog(review: _review, quizId: _quizId);
           });
 
       if (newReview == null) return;
@@ -89,27 +80,11 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallButton> {
     // 復習の作成ボタン
     Widget _createButton() {
       const String label = '覚える';
-      final richText = RichText(
-          text: const TextSpan(children: [
-        WidgetSpan(
-          child: Icon(
-            Icons.alarm,
-            color: Colors.black45,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' $label',
-            style: TextStyle(
-                color: Colors.black45,
-                fontSize: 14,
-                fontWeight: FontWeight.bold))
-      ]));
       return InkWell(
         onTap: () {
           _createReview();
         },
-        child: SmallOutlineGrayButton(richText: richText),
+        child: const ReviewLargeOutlineButton(label: label),
       );
     }
 
@@ -117,37 +92,23 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallButton> {
     Widget _editButton(review) {
       final String label =
           ReviewHelperService.intervalSetting(review.intervalSetting);
-      final richText = RichText(
-          text: TextSpan(children: [
-        const WidgetSpan(
-          child: Icon(
-            Icons.alarm,
-            color: Colors.white,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' $label',
-            style: const TextStyle(
-                color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold))
-      ]));
-
       return InkWell(
         onTap: () {
           _editReview();
         },
-        child: SmallGreenButton(richText: richText),
+        child: ReviewLargeGreenButton(
+          label: label,
+        ),
       );
     }
 
-    Widget _reviewButton(review) {
-      if (review != null) {
-        return _editButton(review);
-      } else {
+    Widget _reviewButton() {
+      if (_review == null) {
         return _createButton();
       }
+      return _editButton(_review);
     }
 
-    return _reviewButton(_review);
+    return _reviewButton();
   }
 }
