@@ -6,6 +6,8 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/review_helper.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
+import 'package:booqs_mobile/widgets/review/large_green_button.dart';
+import 'package:booqs_mobile/widgets/review/large_outline_button.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -140,39 +142,10 @@ class _WordReviewButtonState extends State<WordReviewButton> {
     // 復習設定ボタン
     Widget _reviewCreateButton() {
       return InkWell(
-        onTap: () {
-          _createReview();
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 13),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.green, width: 2),
-          ),
-          child: RichText(
-            text: const TextSpan(
-              style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.green,
-                  fontWeight: FontWeight.w600),
-              children: [
-                WidgetSpan(
-                  child: Icon(
-                    Icons.access_alarm,
-                    size: 22,
-                    color: Colors.green,
-                  ),
-                ),
-                TextSpan(
-                  text: " 覚える",
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
+          onTap: () {
+            _createReview();
+          },
+          child: const ReviewLargeOutlineButton(label: '覚える'));
     }
 
     // 復習設定変更ボタン
@@ -183,35 +156,8 @@ class _WordReviewButtonState extends State<WordReviewButton> {
         onTap: () {
           _editReview();
         },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 13),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.green, width: 2),
-            color: Colors.green,
-          ),
-          child: RichText(
-            text: TextSpan(
-              style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600),
-              children: [
-                const WidgetSpan(
-                  child: Icon(
-                    Icons.access_alarm,
-                    size: 22,
-                    color: Colors.white,
-                  ),
-                ),
-                TextSpan(
-                  text: " $settingText",
-                ),
-              ],
-            ),
-          ),
+        child: ReviewLargeGreenButton(
+          label: settingText,
         ),
       );
     }

@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/answers_count.dart';
 import 'package:booqs_mobile/widgets/quiz/exp_indicator.dart';
@@ -14,10 +14,12 @@ class QuizAnswerInteraction extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Quiz _quiz = notification.quiz;
     final bool _correct = notification.correct;
-    final String? _correctAnswer = _quiz.correctAnswer;
+    final String? _correctAnswer =
+        ref.watch(quizProvider.select((quiz) => quiz!.correctAnswer));
     final String? _usersAnswer = notification.usersAnswer;
+    final int initialExp =
+        ref.watch(currentUserProvider.select((user) => user!.amountOfExp)) ?? 0;
 
     Widget _correctAnswerWidget() {
       return Container(
@@ -71,10 +73,6 @@ class QuizAnswerInteraction extends ConsumerWidget {
 
     Widget _expIndicator() {
       if (_correct == false) return Container();
-
-      final int initialExp =
-          ref.watch(currentUserProvider.select((user) => user!.amountOfExp)) ??
-              0;
       return QuizExpIndicator(initialExp: initialExp, gainedExp: 3);
     }
 
@@ -90,7 +88,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
             _incorrectFeedback(),
             _expIndicator(),
             const QuizAnswersCount(),
-            QuizExplanationOpenButton(quiz: _quiz),
+            const QuizExplanationOpenButton(),
             const SizedBox(height: 8),
           ]),
     );

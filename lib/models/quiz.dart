@@ -1,4 +1,8 @@
+import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/drill.dart';
+import 'package:booqs_mobile/models/note.dart';
+import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/models/weakness.dart';
 
 class Quiz {
   Quiz({
@@ -17,6 +21,10 @@ class Quiz {
     this.explanation,
     this.hint,
     this.drill,
+    this.review,
+    this.note,
+    this.answerAnalysis,
+    this.weakness,
   });
 
   int id;
@@ -34,6 +42,10 @@ class Quiz {
   String? explanation;
   String? hint;
   Drill? drill;
+  Review? review;
+  Note? note;
+  AnswerAnalysis? answerAnalysis;
+  Weakness? weakness;
 
   Quiz.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -48,7 +60,16 @@ class Quiz {
         distractors = json['distractors'],
         explanation = json['explanation'],
         hint = json['hint'],
-        drill = json['drill'] == null ? null : Drill.fromJson(json['drill']);
+        drill = json['drill'] == null ? null : Drill.fromJson(json['drill']),
+        review =
+            json['review'] == null ? null : Review.fromJson(json['review']),
+        note = json['note'] == null ? null : Note.fromJson(json['note']),
+        answerAnalysis = json['answer_analysis'] == null
+            ? null
+            : AnswerAnalysis.fromJson(json['answer_analysis']),
+        weakness = json['weakness'] == null
+            ? null
+            : Weakness.fromJson(json['weakness']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -64,5 +85,9 @@ class Quiz {
         'explanation': explanation,
         'hint': hint,
         'drill': drill,
+        'review': review,
+        'note': note,
+        'answer_analysis': answerAnalysis,
+        'weakness': weakness,
       };
 }

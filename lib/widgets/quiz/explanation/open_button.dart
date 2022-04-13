@@ -1,14 +1,12 @@
-import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizExplanationOpenButton extends StatelessWidget {
-  const QuizExplanationOpenButton({Key? key, required this.quiz})
-      : super(key: key);
-  final Quiz quiz;
+class QuizExplanationOpenButton extends ConsumerWidget {
+  const QuizExplanationOpenButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
       child: const Text('解説をみる',
           style: TextStyle(fontWeight: FontWeight.w700, color: Colors.grey)),
@@ -20,7 +18,7 @@ class QuizExplanationOpenButton extends StatelessWidget {
           isScrollControlled: true,
           context: context,
           // showModalBottomSheetで表示される中身
-          builder: (context) => QuizExplanationScreen(quiz: quiz),
+          builder: (context) => const QuizExplanationScreen(),
         );
       },
     );
