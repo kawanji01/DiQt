@@ -1,3 +1,5 @@
+import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
 import 'package:booqs_mobile/utils/level_up_dialog.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +56,11 @@ class _QuizExpIndicatorState extends State<QuizExpIndicator> {
     void _levelUp(percent) {
       if (percent != 1) return;
       LevelUpDialog.show(context, _exp!);
+      // AudioCacheを用いて再生
+      final AudioCache _cache = AudioCache(
+        fixedPlayer: AudioPlayer(),
+      );
+      _cache.play(levelUpSound);
     }
 
     Future<void> _afterAnimation() async {

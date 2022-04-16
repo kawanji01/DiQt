@@ -6,6 +6,8 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
+  - audioplayers (0.0.1):
+    - Flutter
   - device_info_plus (0.0.1):
     - Flutter
   - Firebase/CoreOnly (8.9.0):
@@ -140,6 +142,7 @@ PODS:
 
 DEPENDENCIES:
   - app_review (from `.symlinks/plugins/app_review/ios`)
+  - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
@@ -182,6 +185,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   app_review:
     :path: ".symlinks/plugins/app_review/ios"
+  audioplayers:
+    :path: ".symlinks/plugins/audioplayers/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   firebase_core:
@@ -218,6 +223,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   app_review: 6f51001269c59a2f4a5b5ae68b7d106401152764
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  audioplayers: 455322b54050b30ea4b1af7cd9e9d105f74efa8c
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   Firebase: 13d8d96499e2635428d5bf0ec675df21f95d9a95
   firebase_core: f770e033e790657b3505f04be4cb24c482912f11

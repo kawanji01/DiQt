@@ -1,3 +1,5 @@
+import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
@@ -18,6 +20,13 @@ class AnswerDrillLapClearScreen extends StatelessWidget {
     final int gainedExp = answerCreator.lapClearPoint;
     // 周回情報
     final DrillLap drillLap = answerCreator.drillLap!;
+
+    // AudioCacheを用いて再生
+    final AudioCache _cache = AudioCache(
+      fixedPlayer: AudioPlayer(),
+    );
+    _cache.loadAll([achievementSound]);
+    _cache.play(achievementSound);
 
     Widget _heading() {
       return Text('${drillLap.numberOfLaps}周クリア',

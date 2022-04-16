@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/widgets/quiz/input_form.dart';
 import 'package:booqs_mobile/widgets/quiz/multiple_choices.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class QuizAnswer extends StatelessWidget {
           answerTextList: answerTextList,
         );
       } else {
-        return Container();
+        return QuizInputForm(quiz: quiz);
       }
     }
 
