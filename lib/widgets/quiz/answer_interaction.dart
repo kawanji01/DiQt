@@ -18,8 +18,8 @@ class QuizAnswerInteraction extends ConsumerWidget {
     final Quiz _quiz = notification.quiz;
     final String? _correctAnswer = _quiz.correctAnswer;
     final String? _usersAnswer = notification.usersAnswer;
-    final int initialExp =
-        ref.watch(currentUserProvider.select((user) => user!.amountOfExp)) ?? 0;
+    // initialExpにProviderを使うと、サーバーのレスポンス速度によっては解答報酬獲得後の総合経験値が入ってしまう
+    final int initialExp = notification.user.amountOfExp;
 
     Widget _correctAnswerWidget() {
       return Container(

@@ -46,12 +46,13 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
 
     // プロバイダーを更新する
     void _updateProvider(notification) {
+      final Quiz quiz = notification.quiz;
       // 今日の解答数のカウンターを+1する。
       ref
           .read(todaysAnswersCountProvider.notifier)
           .update((state) => state + 1);
       // インタラクション内で対象とする問題を更新する（解説画面でFutureProviderで非同期でquizの情報の更新するため）
-      ref.read(quizProvider.notifier).state = notification.quiz;
+      ref.read(quizProvider.notifier).state = quiz;
     }
 
     // 正解を読み上げる

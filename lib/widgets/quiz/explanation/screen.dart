@@ -11,11 +11,23 @@ import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizExplanationScreen extends ConsumerWidget {
+class QuizExplanationScreen extends ConsumerStatefulWidget {
   const QuizExplanationScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _QuizExplanationScreenState createState() => _QuizExplanationScreenState();
+}
+
+class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
+  @override
+  void initState() {
+    super.initState();
+    //  `ref` は StatefulWidget のすべてのライフサイクルメソッド内で使用可能です。
+    ref.refresh(asyncQuizProvider);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     Quiz? _quiz = ref.watch(quizProvider);
 
     SizeConfig().init(context);

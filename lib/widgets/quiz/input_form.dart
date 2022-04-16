@@ -16,8 +16,7 @@ class QuizInputForm extends ConsumerWidget {
 
     // ユーザーの答えが正解かどうかを検証する
     bool _verifyAnswer(String? usersAnswer) {
-      String? correctAnswer = quiz.correctAnswer;
-      if (correctAnswer == null) return false;
+      String correctAnswer = quiz.correctAnswer;
       if (usersAnswer == null || usersAnswer == '') return false;
       usersAnswer = usersAnswer.trim().toLowerCase();
       correctAnswer = correctAnswer.trim().toLowerCase();
@@ -28,7 +27,7 @@ class QuizInputForm extends ConsumerWidget {
     void _answer() {
       String? usersAnswer = answerController.text;
       bool isCorrect = _verifyAnswer(usersAnswer);
-      AnswerNotification(usersAnswer, isCorrect, quiz, user, true)
+      AnswerNotification(usersAnswer, isCorrect, quiz, user!, true)
           .dispatch(context);
     }
 
