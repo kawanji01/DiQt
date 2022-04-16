@@ -14,11 +14,11 @@ class QuizExplanationAnswer extends StatelessWidget {
       if (quiz.langNumberOfAnswer == languageCodeMap['en']) {
         const center = CrossAxisAlignment.center;
         return TextWithLink(
-            text: quiz.correctAnswer!,
+            text: quiz.correctAnswer,
             autoLinkEnabled: true,
             crossAxisAlignment: center);
       }
-      return Text(quiz.correctAnswer!, style: const TextStyle(fontSize: 16));
+      return Text(quiz.correctAnswer, style: const TextStyle(fontSize: 16));
     }
 
     return Column(children: <Widget>[

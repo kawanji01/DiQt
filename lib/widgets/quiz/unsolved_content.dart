@@ -6,6 +6,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
 import 'package:booqs_mobile/utils/answer/answer_interaction.dart';
+import 'package:booqs_mobile/utils/text_to_speech.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -43,16 +44,34 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
     Quiz quiz = widget.quiz;
     final List<int> loadedQuizIds = ref.watch(loadedQuizIdsProvider);
 
+    // プロバイダーを更新する
+    void _updateProvider(notification) {
+      // 今日の解答数のカウンターを+1する。
+      ref
+          .read(todaysAnswersCountProvider.notifier)
+          .update((state) => state + 1);
+      // インタラクション内で対象とする問題を更新する（解説画面でFutureProviderで非同期でquizの情報の更新するため）
+      ref.read(quizProvider.notifier).state = notification.quiz;
+    }
+
+    // 正解を読み上げる
+    void _speakCorrectAnswer(notification) {
+      final Quiz quiz = notification.quiz;
+      if (quiz.answerReadAloud) {
+        final int? langNumber = quiz.langNumberOfAnswer;
+        final String speechText = quiz.correctAnswer;
+        TextToSpeech.speak(langNumber, speechText);
+      }
+    }
+
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
         final fadeOut = notification.fadeOut;
-        // 今日の解答数のカウンターを+1する。
-        ref
-            .read(todaysAnswersCountProvider.notifier)
-            .update((state) => state + 1);
-        // インタラクション内で対象とする問題を更新する（解説画面でFutureProviderで非同期でquizの情報の更新するため）
-        ref.read(quizProvider.notifier).state = notification.quiz;
-        // 必要な情報を更新したら解答インタラクションを表示する
+        // Providerを更新する
+        _updateProvider(notification);
+        // 正解を読み上げる
+        _speakCorrectAnswer(notification);
+        // 解答インタラクションを表示する
         AnswerInteraction.show(notification, context);
         if (fadeOut) {
           // 解答した問題が再描画されないように、問題のIDをproviderに追加する。

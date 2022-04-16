@@ -38,6 +38,7 @@ class QuizInputForm extends ConsumerWidget {
             controller: answerController,
             decoration: InputDecoration(
               hintText: '答えを入力してください',
+              // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
               filled: true,
               fillColor: Colors.grey.shade200,
               border: OutlineInputBorder(

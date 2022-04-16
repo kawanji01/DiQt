@@ -1,5 +1,5 @@
+import 'package:booqs_mobile/utils/text_to_speech.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 
 class TtsButton extends StatelessWidget {
   const TtsButton({Key? key, required this.speechText, this.langNumber})
@@ -10,7 +10,7 @@ class TtsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String _getLangCode() {
+    /* String _getLangCode() {
       switch (langNumber) {
         case 21:
           return 'en-US';
@@ -28,7 +28,7 @@ class TtsButton extends StatelessWidget {
       await flutterTts.setVolume(1.0);
       await flutterTts.setPitch(1.0);
       await flutterTts.speak(speechText);
-    }
+    } */
 
     return ElevatedButton(
       child: const Icon(Icons.volume_up),
@@ -43,7 +43,7 @@ class TtsButton extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: () => {_speak()},
+      onPressed: () => {TextToSpeech.speak(langNumber, speechText)},
     );
   }
 }

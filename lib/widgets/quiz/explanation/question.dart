@@ -14,12 +14,12 @@ class QuizExplanationQuestion extends StatelessWidget {
     Widget _question() {
       if (quiz.langNumberOfQuestion == languageCodeMap['en']) {
         return TextWithLink(
-          text: quiz.question!,
+          text: quiz.question,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.center,
         );
       }
-      return Text(quiz.question!, style: const TextStyle(fontSize: 16));
+      return Text(quiz.question, style: const TextStyle(fontSize: 16));
     }
 
     return Column(

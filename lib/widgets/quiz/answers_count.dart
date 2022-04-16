@@ -62,7 +62,6 @@ class QuizAnswersCount extends ConsumerWidget {
     }
 
     return Container(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: _answersCount());
+        padding: const EdgeInsets.only(bottom: 8), child: _answersCount());
   }
 }

@@ -12,7 +12,7 @@ class QuizAnswer extends StatelessWidget {
     Widget _answerForm() {
       if (quiz.distractors != '' && quiz.distractors != null) {
         final List<String> answerTextList = quiz.distractors!.split('\n');
-        final correctAnswer = quiz.correctAnswer!;
+        final correctAnswer = quiz.correctAnswer;
         // 選択肢に正解を含めてシャッフルする
         answerTextList.add(correctAnswer);
         answerTextList.shuffle();
