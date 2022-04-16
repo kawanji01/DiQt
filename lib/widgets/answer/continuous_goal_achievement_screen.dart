@@ -1,3 +1,5 @@
+import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/gained_exp_indicator.dart';
@@ -24,6 +26,13 @@ class AnswerContinuousGoalAchievementScreen extends StatelessWidget {
         answerCreator.goalAchievementPoint;
     // 獲得経験値
     final int gainedExp = answerCreator.continuousGoalAchievementPoint;
+
+    // AudioCacheを用いて再生
+    final AudioCache _cache = AudioCache(
+      fixedPlayer: AudioPlayer(),
+    );
+    _cache.loadAll([achievementSound]);
+    _cache.play(achievementSound);
 
     Widget _heading() {
       return Text('${answerCreator.continuousGoalAchievementCount}日連続目標達成',

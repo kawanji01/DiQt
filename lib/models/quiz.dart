@@ -8,15 +8,15 @@ class Quiz {
   Quiz({
     this.id = 0,
     this.quizId,
-    this.drillId,
+    this.drillId = 0,
     this.wordId,
     this.referenceWordId,
-    this.question,
+    this.question = '',
     this.langNumberOfQuestion,
-    this.questionReadAloud,
-    this.correctAnswer,
+    this.questionReadAloud = false,
+    this.correctAnswer = '',
     this.langNumberOfAnswer,
-    this.answerReadAloud,
+    this.answerReadAloud = false,
     this.distractors,
     this.explanation,
     this.hint,
@@ -29,15 +29,15 @@ class Quiz {
 
   int id;
   int? quizId;
-  int? drillId;
+  int drillId;
   int? wordId;
   int? referenceWordId;
-  String? question;
+  String question;
   int? langNumberOfQuestion;
-  bool? questionReadAloud;
-  String? correctAnswer;
+  bool questionReadAloud;
+  String correctAnswer;
   int? langNumberOfAnswer;
-  bool? answerReadAloud;
+  bool answerReadAloud;
   String? distractors;
   String? explanation;
   String? hint;

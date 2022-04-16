@@ -1,3 +1,5 @@
+import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/gained_exp_indicator.dart';
@@ -20,6 +22,13 @@ class AnswerCompleteReviewScreen extends StatelessWidget {
         answerCreator.continuationAllMonthPoint;
     // 獲得経験値
     final int gainedExp = answerCreator.completeReviewPoint;
+
+    // AudioCacheを用いて再生
+    final AudioCache _cache = AudioCache(
+      fixedPlayer: AudioPlayer(),
+    );
+    _cache.loadAll([achievementSound]);
+    _cache.play(achievementSound);
 
     Widget _heading() {
       return const Text('復習達成',

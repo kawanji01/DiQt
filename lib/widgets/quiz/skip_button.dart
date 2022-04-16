@@ -52,7 +52,7 @@ class _QuizSkipButtonState extends ConsumerState<QuizSkipButton> {
 
     return InkWell(
       onTap: () {
-        AnswerNotification('わからない', false, quiz, user, true).dispatch(context);
+        AnswerNotification('わからない', false, quiz, user!, true).dispatch(context);
         setState(() {
           _selected = true;
         });

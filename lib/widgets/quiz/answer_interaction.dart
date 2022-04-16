@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/data/provider/quiz.dart';
+import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/answers_count.dart';
 import 'package:booqs_mobile/widgets/quiz/exp_indicator.dart';
@@ -15,11 +15,11 @@ class QuizAnswerInteraction extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bool _correct = notification.correct;
-    final String? _correctAnswer =
-        ref.watch(quizProvider.select((quiz) => quiz!.correctAnswer));
+    final Quiz _quiz = notification.quiz;
+    final String? _correctAnswer = _quiz.correctAnswer;
     final String? _usersAnswer = notification.usersAnswer;
-    final int initialExp =
-        ref.watch(currentUserProvider.select((user) => user!.amountOfExp)) ?? 0;
+    // initialExpにProviderを使うと、サーバーのレスポンス速度によっては解答報酬獲得後の総合経験値が入ってしまう
+    final int initialExp = notification.user.amountOfExp;
 
     Widget _correctAnswerWidget() {
       return Container(
