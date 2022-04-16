@@ -14,14 +14,14 @@ import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReviewIndex extends ConsumerStatefulWidget {
-  const ReviewIndex({Key? key}) : super(key: key);
+class ReviewUnsolvedScreen extends ConsumerStatefulWidget {
+  const ReviewUnsolvedScreen({Key? key}) : super(key: key);
 
   @override
   _ReviewIndexState createState() => _ReviewIndexState();
 }
 
-class _ReviewIndexState extends ConsumerState<ReviewIndex> {
+class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
   final List<Review> _reviews = [];
   bool _initDone = false;
 

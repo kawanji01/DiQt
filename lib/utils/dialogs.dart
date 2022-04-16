@@ -31,9 +31,9 @@ class Dialogs {
     return result == true;
   }
 
-  // アニメーションのついた報酬モーダルの表示
+  // 拡大するアニメーションのついた報酬モーダルの表示
   static Future<void> reward(BuildContext context, Widget screen) async {
-    showAnimatedDialog(
+    await showAnimatedDialog(
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
@@ -45,6 +45,26 @@ class Dialogs {
         );
       },
       animationType: DialogTransitionType.scale,
+      curve: Curves.fastOutSlowIn,
+      duration: const Duration(milliseconds: 700),
+    );
+  }
+
+  //
+  static Future<void> slideFromBottomFade(
+      BuildContext context, Widget screen) async {
+    await showAnimatedDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return CustomDialog(
+          child: screen,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        );
+      },
+      animationType: DialogTransitionType.slideFromBottomFade,
       curve: Curves.fastOutSlowIn,
       duration: const Duration(milliseconds: 700),
     );

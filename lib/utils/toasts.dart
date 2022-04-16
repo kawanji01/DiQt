@@ -5,8 +5,8 @@ class Toasts {
   static Future<void> showBlack(BuildContext context, Widget child) async {
     showFlash(
       context: context,
-      duration: const Duration(seconds: 3),
-      builder: (context, controller) {
+      duration: const Duration(seconds: 4),
+      builder: (dialogContext, controller) {
         // ref: https://resocoder.com/2021/01/30/snackbar-toast-dialog-in-flutter-flash-package/
         // ref: https://itnext.io/highly-customizable-toast-dialog-snackbar-in-flutter-2c27e533dd63
         return Flash(
@@ -16,10 +16,12 @@ class Toasts {
           borderRadius: BorderRadius.circular(12),
           backgroundColor: Colors.black87,
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            child: child,
-          ),
+          child: Builder(builder: (context) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              child: child,
+            );
+          }),
         );
       },
     );
@@ -40,6 +42,17 @@ class Toasts {
           style: const TextStyle(
               color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
     ]));
-    await Toasts.showBlack(context, richText);
+    Toasts.showBlack(context, richText);
+  }
+
+  static Future<void> showSimple(BuildContext context, String text) async {
+    final richText = RichText(
+      text: TextSpan(
+        text: ' $text',
+        style: const TextStyle(
+            color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+      ),
+    );
+    Toasts.showBlack(context, richText);
   }
 }

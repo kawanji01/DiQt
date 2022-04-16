@@ -80,17 +80,19 @@ class QuizAnswerInteraction extends ConsumerWidget {
       onTap: () {
         ScaffoldMessenger.of(context).removeCurrentSnackBar();
       },
-      child: Column(
-          // 画面一杯にSnackbarが広がるのを防ぐ ref: https://stackoverflow.com/questions/61790405/how-to-avoid-that-a-column-inside-a-snackbar-occupies-100-of-the-height
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            _correctAnswerWidget(),
-            _incorrectFeedback(),
-            _expIndicator(),
-            const QuizAnswersCount(),
-            const QuizExplanationOpenButton(),
-            const SizedBox(height: 8),
-          ]),
+      child: SingleChildScrollView(
+        child: Column(
+            // 画面一杯にSnackbarが広がるのを防ぐ ref: https://stackoverflow.com/questions/61790405/how-to-avoid-that-a-column-inside-a-snackbar-occupies-100-of-the-height
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              _correctAnswerWidget(),
+              _incorrectFeedback(),
+              _expIndicator(),
+              const QuizAnswersCount(),
+              const QuizExplanationOpenButton(),
+              const SizedBox(height: 8),
+            ]),
+      ),
     );
   }
 }

@@ -3,8 +3,8 @@ import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
-import 'package:booqs_mobile/widgets/review/index.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
+import 'package:booqs_mobile/widgets/review/unsolved_screen.dart';
+import 'package:booqs_mobile/widgets/review/setting_action.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
@@ -52,65 +52,30 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
         : ref.watch(
             currentUserProvider.select((user) => user!.unsolvedReviewsCount));
 
-    Future _moveToReviews() async {
-      // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
-            return const ExternalLinkDialog(redirectPath: 'reviews');
-          });
-    }
-
-    Future _pushPopup(value) async {
-      switch (value) {
-        case 0:
-          //_moveToAccountSetting();
-          await _moveToReviews();
-          break;
-      }
-    }
-
-    Widget _settingButton() {
-      if (currentUser == null) return Container();
-
-      // PopupMenuButton 参考： https://api.flutter.dev/flutter/material/PopupMenuButton-class.html
-      return PopupMenuButton(
-        onSelected: (newValue) {
-          _pushPopup(newValue);
-        },
-        itemBuilder: (BuildContext context) => [
-          const PopupMenuItem(
-            child: Text(
-              'Webで解く',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            value: 0,
-          ),
-          /* const PopupMenuItem(
-            child: Text(
-              '解答設定',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            value: 1,
-          ) */
-        ],
-      );
-    }
-
     Widget _reviewsOrEntrance() {
       if (currentUser == null) return const Entrance();
-      return const ReviewIndex();
+      return const ReviewUnsolvedScreen();
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('復習（$unsolvedReviewsCount）'),
-        actions: <Widget>[_settingButton()],
+    Future<bool> _closeSnackBar() async {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      Navigator.of(context).pop();
+      return true;
+    }
+
+    return WillPopScope(
+      onWillPop: () {
+        return _closeSnackBar();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('復習（$unsolvedReviewsCount）'),
+          actions: const <Widget>[ReviewSettingAction()],
+        ),
+        body: _reviewsOrEntrance(),
+        bottomNavigationBar: const BottomNavbar(selectedIndex: 1),
+        drawer: const DrawerMenu(),
       ),
-      body: _reviewsOrEntrance(),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 1),
-      drawer: const DrawerMenu(),
     );
   }
 }

@@ -1,12 +1,11 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/remote/chapters.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/drill/drill_card.dart';
+import 'package:booqs_mobile/widgets/drill/card.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class ChapterShowPage extends StatefulWidget {
   const ChapterShowPage({Key? key}) : super(key: key);
@@ -36,18 +35,14 @@ class _ChapterShowPageState extends State<ChapterShowPage> {
   }
 
   Future _loadChapter(publicUid) async {
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/chapters/$publicUid');
-    var res =
-        await http.get(url, headers: {"Content-Type": "application/json"});
+    Map? resMap = await RemoteChapters.show(publicUid);
 
-    if (res.statusCode != 200) {
-      setState(() {
+    if (resMap == null) {
+      return setState(() {
         _initDone = true;
       });
     }
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
+
     resMap['drills'].forEach((e) => _drills.add(Drill.fromJson(e)));
     // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
     setState(() {
