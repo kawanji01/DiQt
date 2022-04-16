@@ -80,7 +80,7 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
                 .removeWhere((int quizId) => solvedQuizIds.contains(quizId));
             print('displayedQuizIDs');
             print(loadedQuizIds);
-            // 画面に表示されている問題がなければ、次の問題を読み込む
+            // 画面に表示されている問題がなければ、次の問題を読み込むために親（reviewやdrillのscreen）に通知する。
             if (loadedQuizIds.isEmpty) {
               LoadingUnsolvedQuizzesNotification(true).dispatch(context);
             }

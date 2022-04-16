@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/models/drill_lap.dart';
+
 class Drill {
   Drill(
       {this.id,
@@ -13,7 +15,8 @@ class Drill {
       this.createdAt,
       this.updatedAt,
       this.answerHistoriesCount,
-      this.quizzesCount});
+      this.quizzesCount,
+      this.drillLap});
 
   int? id;
   int? userId;
@@ -29,6 +32,7 @@ class Drill {
   String? updatedAt;
   int? answerHistoriesCount;
   int? quizzesCount;
+  DrillLap? drillLap;
 
   Drill.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -44,7 +48,10 @@ class Drill {
         createdAt = json['created_at'],
         updatedAt = json['updated_at'],
         answerHistoriesCount = json['answer_histories_count'] ?? 0,
-        quizzesCount = json['quizzes_count'] ?? 0;
+        quizzesCount = json['quizzes_count'] ?? 0,
+        drillLap = json['drill_lap'] == null
+            ? null
+            : DrillLap.fromJson(json['drill_lap']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -61,5 +68,6 @@ class Drill {
         'updatedAt': updatedAt,
         'answerHistoriesCount': answerHistoriesCount,
         'quizzesCount': quizzesCount,
+        'drill_lap': drillLap,
       };
 }

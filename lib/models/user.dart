@@ -17,6 +17,7 @@ class User {
     this.paidViaNativeApp = false,
     this.unreadNotificationsCount = 0,
     this.unsolvedReviewsCount = 0,
+    this.reviewsCount = 0,
     this.weaknessesCount = 0,
     this.rewardRemained = false,
     this.authToken,
@@ -38,6 +39,7 @@ class User {
   bool paidViaNativeApp;
   int unreadNotificationsCount;
   int unsolvedReviewsCount;
+  int reviewsCount;
   int weaknessesCount;
   bool rewardRemained;
   String? authToken;
@@ -59,6 +61,7 @@ class User {
         paidViaNativeApp = json['paid_via_native_app'],
         unreadNotificationsCount = json['unread_notifications_count'],
         unsolvedReviewsCount = json['unsolved_reviews_count'],
+        reviewsCount = json['reviews_count'],
         weaknessesCount = json['weaknesses_count'],
         rewardRemained = json['reward_remained'],
         authToken = json['token_for_native_app'],
@@ -82,6 +85,7 @@ class User {
         'paid_via_native_app': paidViaNativeApp,
         'reward_remained': rewardRemained,
         'unsolved_reviews_count': unsolvedReviewsCount,
+        'reviews_count': reviewsCount,
         'token_for_native_app': authToken,
         'answer_setting': answerSetting,
       };

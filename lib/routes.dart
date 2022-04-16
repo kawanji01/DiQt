@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
+import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notification/index.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
@@ -18,19 +19,25 @@ import 'package:booqs_mobile/pages/word/search_results.dart';
 const indexPage = '/';
 const reviewIndexPage = '/review/index';
 const notificationIndexPage = '/notification/index';
-const userMyPage = '/user/mypage';
+
 const signUpPage = '/session/sign_up';
 const loginPage = '/session/login';
 const dictionaryPage = '/dictionary/show';
+
 const wordShowPage = '/word/show';
 const wordNewPage = '/word/new';
 const wordEditPage = '/word/edit';
 const wordSearchResultsPage = '/word/search';
+
 const chapterShowPage = '/chapter/show';
+
+const userMyPage = '/user/mypage';
 const userAchievementsPage = '/user/achievements';
 const userEditPage = '/user/edit';
 const premiumPlanPage = '/user/premium_plan';
 const premiumMenuPage = '/user/premium_menu';
+
+const drillUnsolvedPage = '/drill/unsolved';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -49,4 +56,5 @@ final routes = {
   userEditPage: (context) => const UserEditPage(),
   premiumPlanPage: (context) => const PremiumPlanPage(),
   premiumMenuPage: (context) => const PremiumMenuPage(),
+  drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
 };

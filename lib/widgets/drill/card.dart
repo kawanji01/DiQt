@@ -1,27 +1,49 @@
+import 'package:booqs_mobile/data/local/user_info.dart';
+import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/models/drill.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
+import 'package:booqs_mobile/models/drill_lap.dart';
+import 'package:booqs_mobile/pages/drill/unsolved.dart';
+import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class DrillCard extends StatelessWidget {
+class DrillCard extends ConsumerWidget {
   const DrillCard({Key? key, required this.drill}) : super(key: key);
   final Drill drill;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // 1,000のようなdelimiterを使って解答数を整形する。参考： https://stackoverflow.com/questions/62580280/how-to-format-numbers-as-thousands-separators-in-dart
     final formatter = NumberFormat('#,###,000');
     final answerHistoriesCount = formatter.format(drill.answerHistoriesCount);
+    final DrillLap? drillLap = drill.drillLap;
 
     // Drillページに遷移
     Future _moveToDrillPage(drill) async {
-      final String id = drill.publicUid;
-      // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            return ExternalLinkDialog(redirectPath: 'drills/$id/unsolved');
-          });
+      final String? token = await LocalUserInfo.authToken();
+
+      if (token == null) {
+        const snackBar = SnackBar(content: Text('問題を解くにはログインが必要です。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        UserMyPage.push(context);
+      } else {
+        ref.read(drillProvider.notifier).state = drill;
+        DrillUnsolvedPage.push(context);
+      }
+    }
+
+    Widget _subtitle() {
+      if (drillLap == null) {
+        return Text(
+          '$answerHistoriesCount解答',
+          style: TextStyle(color: Colors.black.withOpacity(0.6)),
+        );
+      }
+      return Text(
+        '$answerHistoriesCount解答 / ${drillLap.numberOfLaps}周クリア',
+        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+      );
     }
 
     // カードデザインの参考： https://material.io/components/cards/flutter
@@ -40,12 +62,9 @@ class DrillCard extends StatelessWidget {
               title: Text(drill.title,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 18)),
-              subtitle: Text(
-                '$answerHistoriesCount解答',
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
-              ),
+              subtitle: _subtitle(),
             ),
-            Image(image: NetworkImage('${drill.imageUrl}')),
+            Image(image: NetworkImage(drill.imageUrl)),
             Padding(
               padding: const EdgeInsets.only(
                   right: 16.0, left: 16, top: 16, bottom: 32),

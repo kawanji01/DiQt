@@ -1,65 +1,63 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/drill.dart';
+import 'package:booqs_mobile/data/provider/drill_lap.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/quizzes.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/drill.dart';
+import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/answer/answer_feeback.dart';
 import 'package:booqs_mobile/utils/answer/answer_reward.dart';
+import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:booqs_mobile/widgets/quiz/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/question.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_content.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_footer.dart';
-import 'package:booqs_mobile/widgets/review/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReviewUnsolvedWrapper extends ConsumerWidget {
-  const ReviewUnsolvedWrapper({Key? key, required this.review})
-      : super(key: key);
-  final Review review;
+class DrillUnsolvedWrapper extends ConsumerWidget {
+  const DrillUnsolvedWrapper({Key? key, required this.quiz}) : super(key: key);
+  final Quiz quiz;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Quiz? quiz = review.quiz;
-    if (quiz == null) {
-      return Container(
-          padding: const EdgeInsets.all(24),
-          child: Text('エラー: quiz-${review.quizId}は存在しません。review-${review.id}'));
-    }
-
     final Drill? drill = quiz.drill;
-    if (drill == null) {
-      return Container(
-          padding: const EdgeInsets.all(24),
-          child: Text('エラー: drill-${quiz.drillId}が存在しない。review-${review.id}'));
-    }
+    final Review? review = quiz.review;
 
-    final header = ReviewHeader(review: review);
-    final question = QuizQuestion(quiz: quiz, drill: drill, covering: false);
+    final header = Container();
+    final question = QuizQuestion(quiz: quiz, drill: drill!, covering: false);
     final answer = QuizAnswer(quiz: quiz);
     final footer = QuizUnsolvedFooter(quiz: quiz, review: review);
 
-    // サーバーからのレスポンスをもとにProviderを更新する
-    void _updateProviders(resMap) {
-      // ユーザー情報を更新する
+    // サーバーからのレスポンスをもとに、providerを更新する。
+    void _updateProviders(resMap) async {
+      final AnswerCreator answerCreator =
+          AnswerCreator.fromJson(resMap['answer_creator']);
+      // ユーザー情報と今日の解答数を更新する
       final User user = User.fromJson(resMap['user']);
       ref.read(currentUserProvider.notifier).state = user;
       ref.read(todaysAnswersCountProvider.notifier).state =
           user.todaysAnswerHistoriesCount;
+      // 解答済の問題数を更新する
+      ref.read(drillSolvedQuizzesCountProvider.notifier).state =
+          answerCreator.solvedQuizzesCount!;
+      final DrillLap? drillLap = answerCreator.drillLap;
+      ref.read(drillLapProvider.notifier).state = drillLap;
     }
 
     // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。
     Future<void> _requestReview(notification) async {
-      Map? resMap = await RemoteQuizzes.answer(context, notification, 'review');
+      Map? resMap = await RemoteQuizzes.answer(context, notification, 'drill');
       if (resMap == null) return;
       _updateProviders(resMap);
       final AnswerCreator answerCreator =
           AnswerCreator.fromJson(resMap['answer_creator']);
-      // awaitをつけるとAnswerRewardを表示が重なった時にLooking up a deactivated widget's ancestorエラーが起きる
+      // await をつけるとLooking up a deactivated widget's ancestor〜エラーが発生してしまう。 ref: https://zenn.dev/ryouhei_furugen/articles/2fa82ba62c88da
       AnswerFeedback.call(context, answerCreator);
       // 報酬を表示する
       await AnswerReward.call(context, answerCreator);

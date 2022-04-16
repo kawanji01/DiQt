@@ -10,6 +10,7 @@ class AnswerCreator {
     this.review,
     this.drillLap,
     this.todaysAnswerHistoriesCount,
+    this.solvedQuizzesCount,
     this.unsolvedReviewsCount,
     this.answerDaysCount,
     this.continuousAnswerDaysCount,
@@ -43,6 +44,7 @@ class AnswerCreator {
   Review? review;
   DrillLap? drillLap;
   int? todaysAnswerHistoriesCount;
+  int? solvedQuizzesCount;
   int? unsolvedReviewsCount;
   int? answerDaysCount;
   int? continuousAnswerDaysCount;
@@ -83,6 +85,7 @@ class AnswerCreator {
             ? null
             : DrillLap.fromJson(json['drill_lap']),
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
+        solvedQuizzesCount = json['solved_quizzes_count'],
         unsolvedReviewsCount = json['unsolved_reviews_count'],
         answerDaysCount = json['answer_days_count'],
         continuousAnswerDaysCount = json['continuous_answer_days_count'],
@@ -120,6 +123,7 @@ class AnswerCreator {
         'review': review,
         'drillLap': drillLap,
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
+        'solved_quizzes_count': solvedQuizzesCount,
         'unsolved_reviews_count': unsolvedReviewsCount,
         'answer_days_count': answerDaysCount,
         'continuous_answer_days_count': continuousAnswerDaysCount,
