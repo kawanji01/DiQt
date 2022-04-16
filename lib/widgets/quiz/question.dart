@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:booqs_mobile/widgets/drill/icon.dart';
 import 'package:booqs_mobile/widgets/quiz/drill_title.dart';
+import 'package:booqs_mobile/widgets/quiz/hint_button.dart';
 import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,8 @@ class QuizQuestion extends StatelessWidget {
           question,
           style: const TextStyle(fontSize: 16),
         ),
-        _ttsBtn()
+        _ttsBtn(),
+        QuizHintButton(quiz: quiz),
       ]);
     }
 

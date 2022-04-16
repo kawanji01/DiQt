@@ -50,7 +50,7 @@ class Dialogs {
     );
   }
 
-  //
+  // 下からふわっと表示されるダイアログ
   static Future<void> slideFromBottomFade(
       BuildContext context, Widget screen) async {
     await showAnimatedDialog(
