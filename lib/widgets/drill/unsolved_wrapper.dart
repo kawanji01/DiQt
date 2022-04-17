@@ -12,9 +12,8 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/answer/answer_feeback.dart';
 import 'package:booqs_mobile/utils/answer/answer_reward.dart';
-import 'package:booqs_mobile/utils/toasts.dart';
-import 'package:booqs_mobile/widgets/quiz/answer.dart';
-import 'package:booqs_mobile/widgets/quiz/question.dart';
+import 'package:booqs_mobile/widgets/quiz/answer_part.dart';
+import 'package:booqs_mobile/widgets/quiz/question_part.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_content.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_footer.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +29,9 @@ class DrillUnsolvedWrapper extends ConsumerWidget {
     final Review? review = quiz.review;
 
     final header = Container();
-    final question = QuizQuestion(quiz: quiz, drill: drill!, covering: false);
-    final answer = QuizAnswer(quiz: quiz);
+    final question =
+        QuizQuestionPart(quiz: quiz, drill: drill!, covering: false);
+    final answer = QuizAnswerPart(quiz: quiz);
     final footer = QuizUnsolvedFooter(quiz: quiz, review: review);
 
     // サーバーからのレスポンスをもとに、providerを更新する。
@@ -60,7 +60,7 @@ class DrillUnsolvedWrapper extends ConsumerWidget {
       // await をつけるとLooking up a deactivated widget's ancestor〜エラーが発生してしまう。 ref: https://zenn.dev/ryouhei_furugen/articles/2fa82ba62c88da
       AnswerFeedback.call(context, answerCreator);
       // 報酬を表示する
-      await AnswerReward.call(context, answerCreator);
+      await AnswerReward.call(answerCreator);
     }
 
     return NotificationListener<AnswerNotification>(

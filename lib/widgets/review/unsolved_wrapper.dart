@@ -9,8 +9,8 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/answer/answer_feeback.dart';
 import 'package:booqs_mobile/utils/answer/answer_reward.dart';
-import 'package:booqs_mobile/widgets/quiz/answer.dart';
-import 'package:booqs_mobile/widgets/quiz/question.dart';
+import 'package:booqs_mobile/widgets/quiz/answer_part.dart';
+import 'package:booqs_mobile/widgets/quiz/question_part.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_content.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_footer.dart';
 import 'package:booqs_mobile/widgets/review/header.dart';
@@ -39,8 +39,9 @@ class ReviewUnsolvedWrapper extends ConsumerWidget {
     }
 
     final header = ReviewHeader(review: review);
-    final question = QuizQuestion(quiz: quiz, drill: drill, covering: false);
-    final answer = QuizAnswer(quiz: quiz);
+    final question =
+        QuizQuestionPart(quiz: quiz, drill: drill, covering: false);
+    final answer = QuizAnswerPart(quiz: quiz);
     final footer = QuizUnsolvedFooter(quiz: quiz, review: review);
 
     // サーバーからのレスポンスをもとにProviderを更新する
@@ -60,9 +61,9 @@ class ReviewUnsolvedWrapper extends ConsumerWidget {
       final AnswerCreator answerCreator =
           AnswerCreator.fromJson(resMap['answer_creator']);
       // awaitをつけるとAnswerRewardを表示が重なった時にLooking up a deactivated widget's ancestorエラーが起きる
-      AnswerFeedback.call(context, answerCreator);
+      AnswerFeedback.call(answerCreator);
       // 報酬を表示する
-      await AnswerReward.call(context, answerCreator);
+      await AnswerReward.call(answerCreator);
     }
 
     return NotificationListener<AnswerNotification>(

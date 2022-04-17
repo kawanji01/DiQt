@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/drill/answer_setting_action.dart';
 import 'package:booqs_mobile/widgets/drill/unsolved_screen.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class DrillUnsolvedPage extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(drill!.title),
+          actions: const <Widget>[DrillAnswerSettingAction()],
         ),
         body: SingleChildScrollView(
           child: Container(

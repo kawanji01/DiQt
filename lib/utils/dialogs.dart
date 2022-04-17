@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
@@ -32,9 +33,9 @@ class Dialogs {
   }
 
   // 拡大するアニメーションのついた報酬モーダルの表示
-  static Future<void> reward(BuildContext context, Widget screen) async {
+  static Future<void> reward(Widget screen) async {
     await showAnimatedDialog(
-      context: context,
+      context: navigatorKey.currentContext!,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return CustomDialog(

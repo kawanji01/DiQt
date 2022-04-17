@@ -103,7 +103,10 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('外部リンク'),
+      title: const Text(
+        '外部リンク',
+        style: TextStyle(fontWeight: FontWeight.w800),
+      ),
       content: _buildExternalLinkDialog(),
       actions: [
         _linkButton(),

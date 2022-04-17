@@ -28,7 +28,7 @@ class AnswerFeedback {
       mainAxisSize: MainAxisSize.min,
       children: messageList,
     );
-    Toasts.showBlack(context, child);
+    Toasts.showBlack(child);
 
     /*  // 復習の新規作成
     await AnswerFeedback.reviewCreated(context, answerCreator);
@@ -138,7 +138,7 @@ class AnswerFeedback {
             style: const TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
       ]));
-      Toasts.showBlack(context, richText);
+      Toasts.showBlack(richText);
       await Future.delayed(const Duration(seconds: 1));
     }
   }

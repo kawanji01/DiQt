@@ -3,13 +3,14 @@ import 'package:booqs_mobile/widgets/quiz/input_form.dart';
 import 'package:booqs_mobile/widgets/quiz/multiple_choices.dart';
 import 'package:flutter/material.dart';
 
-class QuizAnswer extends StatelessWidget {
-  const QuizAnswer({Key? key, required this.quiz}) : super(key: key);
+class QuizAnswerPart extends StatelessWidget {
+  const QuizAnswerPart({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
 
   @override
   Widget build(BuildContext context) {
     Widget _answerForm() {
+      // 多肢選択型
       if (quiz.distractors != '' && quiz.distractors != null) {
         final List<String> answerTextList = quiz.distractors!.split('\n');
         final correctAnswer = quiz.correctAnswer;
@@ -22,6 +23,7 @@ class QuizAnswer extends StatelessWidget {
           answerTextList: answerTextList,
         );
       } else {
+        // 入力型
         return QuizInputForm(quiz: quiz);
       }
     }
