@@ -1,13 +1,5 @@
-import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
-import 'package:booqs_mobile/data/remote/users.dart';
-import 'package:booqs_mobile/models/tab_info.dart';
-import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/size_config.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
-import 'package:booqs_mobile/widgets/home/home_chapters_page.dart';
 import 'package:booqs_mobile/widgets/home/home_search_page.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
@@ -46,10 +38,13 @@ class MyHomePage extends ConsumerStatefulWidget {
 class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   void initState() {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      ref.refresh(asyncCurrentUserProvider);
+    });
     super.initState();
   }
 
-  @override
+  /* @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _loadCurrentUser();
@@ -73,16 +68,17 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
     ref.read(answerSettingProvider.notifier).state = user.answerSetting;
     ref.read(todaysAnswersCountProvider.notifier).state =
         user.todaysAnswerHistoriesCount;
-  }
+  } */
 
-  final List<TabInfo> _tabs = [
+  /* final List<TabInfo> _tabs = [
     TabInfo("辞書", const HomeSearchPage()),
     TabInfo("単語帳", const HomeChaptersPage()),
-  ];
+  ]; */
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _tabBars() {
+    final future = ref.watch(asyncCurrentUserProvider);
+    /* List<Widget> _tabBars() {
       SizeConfig().init(context);
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
       double width = grid * 40;
@@ -90,25 +86,15 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         SizedBox(width: width, child: const Tab(text: '検索')),
         SizedBox(width: width, child: const Tab(text: '単語帳')),
       ];
-    }
+    } */
 
-    return DefaultTabController(
-      initialIndex: 0,
-      length: 2,
-      //length: _tabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('辞書'),
-          bottom: TabBar(
-            isScrollable: true,
-            tabs: _tabBars(),
-          ),
-          //preferredSize: const Size.fromHeight(30.0),
-        ),
-        body: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
-        bottomNavigationBar: const BottomNavbar(),
-        drawer: const DrawerMenu(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('辞書'),
       ),
+      body: const HomeSearchPage(),
+      bottomNavigationBar: const BottomNavbar(),
+      drawer: const DrawerMenu(),
     );
   }
 }

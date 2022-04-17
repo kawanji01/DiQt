@@ -1,6 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
-import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/home.dart';
@@ -99,7 +99,7 @@ class BottomNavbar extends ConsumerWidget {
         ),
         const BottomNavigationBarItem(
           icon: Icon(Icons.check),
-          label: '問題集',
+          label: '単語帳',
         ),
         BottomNavigationBarItem(
           icon: _buildReviewIcon(_user),

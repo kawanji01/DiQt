@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 
 class RemoteUsers {
   // ログインユーザーの取得　　　users/:id/status
+  // こっちは削除しよう
   static Future<Map?> status(BuildContext context) async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
@@ -14,6 +15,23 @@ class RemoteUsers {
     if (token == null) return null;
 
     Uri url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/users/status');
+    Response res = await post(url, body: {'token': token});
+
+    if (res.statusCode != 200) return null;
+    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+    Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // ログインユーザーの取得　　　users/:id/status
+  static Future<Map?> currentUser() async {
+    const storage = FlutterSecureStorage();
+    String? token = await storage.read(key: 'token');
+
+    if (token == null) return null;
+
+    Uri url =
+        Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/status');
     Response res = await post(url, body: {'token': token});
 
     if (res.statusCode != 200) return null;
