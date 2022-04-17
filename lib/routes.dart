@@ -36,6 +36,7 @@ const userAchievementsPage = '/user/achievements';
 const userEditPage = '/user/edit';
 const premiumPlanPage = '/user/premium_plan';
 const premiumMenuPage = '/user/premium_menu';
+const answerSettingEdit = '/answer_setting/edit';
 
 const drillUnsolvedPage = '/drill/unsolved';
 

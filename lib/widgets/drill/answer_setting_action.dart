@@ -1,16 +1,22 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/drill.dart';
+import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReviewSettingAction extends ConsumerWidget {
-  const ReviewSettingAction({Key? key}) : super(key: key);
+class DrillAnswerSettingAction extends ConsumerWidget {
+  const DrillAnswerSettingAction({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? currentUser = ref.watch(currentUserProvider);
-    if (currentUser == null) return Container();
+    final Drill? drill = ref.watch(drillProvider);
+    final User? user = ref.watch(currentUserProvider);
+    if (drill == null) return Container();
+    if (user == null) return Container();
 
     Future _moveToAnswerSetting() async {
       // 外部リンクダイアログを表示
@@ -19,7 +25,7 @@ class ReviewSettingAction extends ConsumerWidget {
           builder: (context) {
             // ./locale/ を取り除いたpathを指定する
             return ExternalLinkDialog(
-                redirectPath: 'users/${currentUser.publicUid}/answer_setting');
+                redirectPath: 'users/${user.publicUid}/answer_setting');
           });
     }
 
@@ -29,7 +35,8 @@ class ReviewSettingAction extends ConsumerWidget {
           context: context,
           builder: (context) {
             // ./locale/ を取り除いたpathを指定する
-            return const ExternalLinkDialog(redirectPath: 'reviews');
+            return ExternalLinkDialog(
+                redirectPath: 'drills/${drill.publicUid}/unsolved');
           });
     }
 

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -19,6 +20,18 @@ class QuizMultipleChoices extends ConsumerStatefulWidget {
 
 class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
   String? _selectedAnswer;
+  bool _isCovered = false;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      setState(() {
+        _isCovered = ref.watch(
+            answerSettingProvider.select((setting) => setting!.choicesCovered));
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +69,48 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
       return buttonList;
     }
 
-    return Column(
+    // 多肢選択肢
+    final Widget multipleChoices = Column(
       children: _choiceButtons(_answerTextList),
     );
+
+    // 選択肢カバー
+    final Widget cover = InkWell(
+      onTap: () {
+        setState(() {
+          _isCovered = false;
+        });
+      },
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 8),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.green, width: 1),
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+        ),
+        child: RichText(
+            text: const TextSpan(children: [
+          WidgetSpan(
+            child: Icon(
+              Icons.lock,
+              color: Colors.green,
+              size: 18.0,
+            ),
+          ),
+          TextSpan(
+              text: ' タップして選択肢を表示',
+              style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold))
+        ])),
+      ),
+    );
+
+    if (_isCovered) {
+      return cover;
+    }
+    return multipleChoices;
   }
 }

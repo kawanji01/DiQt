@@ -13,8 +13,8 @@ import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/answer/answer_feeback.dart';
 import 'package:booqs_mobile/utils/answer/answer_reward.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
-import 'package:booqs_mobile/widgets/quiz/answer.dart';
-import 'package:booqs_mobile/widgets/quiz/question.dart';
+import 'package:booqs_mobile/widgets/quiz/answer_part.dart';
+import 'package:booqs_mobile/widgets/quiz/question_part.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_content.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_footer.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +30,9 @@ class DrillUnsolvedWrapper extends ConsumerWidget {
     final Review? review = quiz.review;
 
     final header = Container();
-    final question = QuizQuestion(quiz: quiz, drill: drill!, covering: false);
-    final answer = QuizAnswer(quiz: quiz);
+    final question =
+        QuizQuestionPart(quiz: quiz, drill: drill!, covering: false);
+    final answer = QuizAnswerPart(quiz: quiz);
     final footer = QuizUnsolvedFooter(quiz: quiz, review: review);
 
     // サーバーからのレスポンスをもとに、providerを更新する。
