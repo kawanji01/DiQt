@@ -1,11 +1,13 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
 import 'package:booqs_mobile/utils/level_up_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class QuizExpIndicator extends StatefulWidget {
+class QuizExpIndicator extends ConsumerStatefulWidget {
   const QuizExpIndicator(
       {Key? key, required this.initialExp, required this.gainedExp})
       : super(key: key);
@@ -13,10 +15,10 @@ class QuizExpIndicator extends StatefulWidget {
   final int gainedExp;
 
   @override
-  State<QuizExpIndicator> createState() => _QuizExpIndicatorState();
+  _QuizExpIndicatorState createState() => _QuizExpIndicatorState();
 }
 
-class _QuizExpIndicatorState extends State<QuizExpIndicator> {
+class _QuizExpIndicatorState extends ConsumerState<QuizExpIndicator> {
   int? _exp;
   int? _initialLevel;
   bool _isVisible = true;
@@ -56,11 +58,16 @@ class _QuizExpIndicatorState extends State<QuizExpIndicator> {
     void _levelUp(percent) {
       if (percent != 1) return;
       LevelUpDialog.show(context, _exp!);
-      // AudioCacheを用いて再生
-      final AudioCache _cache = AudioCache(
-        fixedPlayer: AudioPlayer(),
-      );
-      _cache.play(levelUpSound);
+      // 効果音
+      final bool seEnabled = ref
+          .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
+      if (seEnabled) {
+        final AudioCache _cache = AudioCache(
+          fixedPlayer: AudioPlayer(),
+        );
+        _cache.loadAll([levelUpSound]);
+        _cache.play(levelUpSound);
+      }
     }
 
     Future<void> _afterAnimation() async {

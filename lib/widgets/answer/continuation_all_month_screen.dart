@@ -1,19 +1,21 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/gained_exp_indicator.dart';
 import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerContinuationAllMonthScreen extends StatelessWidget {
+class AnswerContinuationAllMonthScreen extends ConsumerWidget {
   const AnswerContinuationAllMonthScreen(
       {Key? key, required this.answerCreator})
       : super(key: key);
   final AnswerCreator answerCreator;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬）
     final int initialExp = answerCreator.startPoint +
         answerCreator.lapClearPoint +
@@ -23,12 +25,16 @@ class AnswerContinuationAllMonthScreen extends StatelessWidget {
     // 獲得経験値
     final int gainedExp = answerCreator.continuationAllMonthPoint;
 
-    // AudioCacheを用いて再生
-    final AudioCache _cache = AudioCache(
-      fixedPlayer: AudioPlayer(),
-    );
-    _cache.loadAll([achievementSound]);
-    _cache.play(achievementSound);
+    final bool seEnabled = ref
+        .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
+    // 効果音
+    if (seEnabled) {
+      final AudioCache _cache = AudioCache(
+        fixedPlayer: AudioPlayer(),
+      );
+      _cache.loadAll([achievementSound]);
+      _cache.play(achievementSound);
+    }
 
     Widget _heading() {
       return Text('${answerCreator.continuationAllMonthCount}ヶ月連続解答',

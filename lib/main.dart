@@ -27,6 +27,16 @@ Future<void> main() async {
   );
 }
 
+// Dialogs や Toasts の表示に親Widgetから渡したcontextを使ってしまうと、
+// 親がdisposeされた後にその処理を実行しようとした際（たとえば１０問解いた後の次の問題の読み込み（dispose）と報酬の表示が被ってしまった場合）に
+// Unhandled Exception: Looking up a deactivated widget's ancestor is unsafe. At this point the state of the widget's element tree is no longer stable.
+// が発生してしまう。
+// これを防ぐためには、disposeされないWidgetのcontextを渡す必要がある。
+// そのために　navigatorKey　をグローバルに定義する。
+// Dialogで利用するdisposeされないWidgetのcontextとして、navigatorKey.currentContext を利用する。
+// ref: https://stackoverflow.com/questions/56280736/alertdialog-without-context-in-flutter
+final navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application.
@@ -43,7 +53,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DiQt',
       locale: locale,
-      // navigatorKey: Catcher.navigatorKey,
+      // 上述のUnhandled Exception: Looking up a deactivated widget's ancestor is unsafe.対策
+      navigatorKey: navigatorKey,
       // 画面全体に被さるローディングの初期化　参考： https://pub.dev/packages/flutter_easyloading
       builder: EasyLoading.init(),
       theme: ThemeData(

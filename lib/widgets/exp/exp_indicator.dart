@@ -17,11 +17,12 @@ class ExpExpIndicator extends StatelessWidget {
     final int progress = exp - digestedExp;
     // 次のレベルアップまでの獲得経験値のパーセンテージ
     double percent = progress / requiredExp;
-    int percentInt = (percent * 100.0).floor();
+
     // 次のレベルアップに必要な経験値
     int expForNextLevel = requiredExp - progress;
     // 小数点以下の微妙な差で、レベルアップに必要な残り経験値が０になってしまう問題への対処。
     if (expForNextLevel == 0) {
+      percent = 0.99;
       expForNextLevel = 1;
     }
     // 小数点以下の微妙な差で、表示レベルが繰り上がってしまう問題の対処。
@@ -31,6 +32,8 @@ class ExpExpIndicator extends StatelessWidget {
       percent = 0.99;
       expForNextLevel = 1;
     }
+    // インジケーターに表示するパーセンテージ
+    int percentInt = (percent * 100.0).floor();
 
     // レベル表示
     Widget _levelLabel() {

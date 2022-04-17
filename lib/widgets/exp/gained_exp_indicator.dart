@@ -1,11 +1,13 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
 import 'package:booqs_mobile/utils/level_up_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class ExpGainedExpIndicator extends StatefulWidget {
+class ExpGainedExpIndicator extends ConsumerStatefulWidget {
   const ExpGainedExpIndicator(
       {Key? key, required this.initialExp, required this.gainedExp})
       : super(key: key);
@@ -14,10 +16,10 @@ class ExpGainedExpIndicator extends StatefulWidget {
   final int gainedExp;
 
   @override
-  State<ExpGainedExpIndicator> createState() => _ExpGainedExpIndicatorState();
+  _ExpGainedExpIndicatorState createState() => _ExpGainedExpIndicatorState();
 }
 
-class _ExpGainedExpIndicatorState extends State<ExpGainedExpIndicator> {
+class _ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
   int? _exp;
   int? _initialLevel;
 
@@ -63,11 +65,16 @@ class _ExpGainedExpIndicatorState extends State<ExpGainedExpIndicator> {
     void _levelUp(percent) {
       if (percent != 1) return;
       LevelUpDialog.show(context, _exp!);
-      // AudioCacheを用いて再生
-      final AudioCache _cache = AudioCache(
-        fixedPlayer: AudioPlayer(),
-      );
-      _cache.play(levelUpSound);
+      // 効果音
+      final bool seEnabled = ref
+          .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
+      if (seEnabled) {
+        final AudioCache _cache = AudioCache(
+          fixedPlayer: AudioPlayer(),
+        );
+        _cache.loadAll([levelUpSound]);
+        _cache.play(levelUpSound);
+      }
     }
 
     // レベルのラベル

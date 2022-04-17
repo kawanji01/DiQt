@@ -61,9 +61,9 @@ class ReviewUnsolvedWrapper extends ConsumerWidget {
       final AnswerCreator answerCreator =
           AnswerCreator.fromJson(resMap['answer_creator']);
       // awaitをつけるとAnswerRewardを表示が重なった時にLooking up a deactivated widget's ancestorエラーが起きる
-      AnswerFeedback.call(context, answerCreator);
+      AnswerFeedback.call(answerCreator);
       // 報酬を表示する
-      await AnswerReward.call(context, answerCreator);
+      await AnswerReward.call(answerCreator);
     }
 
     return NotificationListener<AnswerNotification>(

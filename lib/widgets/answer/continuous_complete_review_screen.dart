@@ -1,19 +1,21 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/gained_exp_indicator.dart';
 import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerContinuousCompleteReviewScreen extends StatelessWidget {
+class AnswerContinuousCompleteReviewScreen extends ConsumerWidget {
   const AnswerContinuousCompleteReviewScreen(
       {Key? key, required this.answerCreator})
       : super(key: key);
   final AnswerCreator answerCreator;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬 + 復習達成報酬）
     final int initialExp = answerCreator.startPoint +
         answerCreator.lapClearPoint +
@@ -25,12 +27,16 @@ class AnswerContinuousCompleteReviewScreen extends StatelessWidget {
     // 獲得経験値
     final int gainedExp = answerCreator.continuousCompleteReviewPoint;
 
-    // AudioCacheを用いて再生
-    final AudioCache _cache = AudioCache(
-      fixedPlayer: AudioPlayer(),
-    );
-    _cache.loadAll([achievementSound]);
-    _cache.play(achievementSound);
+    // 効果音
+    final bool seEnabled = ref
+        .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
+    if (seEnabled) {
+      final AudioCache _cache = AudioCache(
+        fixedPlayer: AudioPlayer(),
+      );
+      _cache.loadAll([achievementSound]);
+      _cache.play(achievementSound);
+    }
 
     Widget _heading() {
       return Text('${answerCreator.continuousCompleteReviewCount}日連続復習達成',
