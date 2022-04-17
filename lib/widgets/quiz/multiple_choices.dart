@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';

@@ -6,8 +6,7 @@ import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:flutter/material.dart';
 
 class AnswerFeedback {
-  static Future<void> call(
-      BuildContext context, AnswerCreator answerCreator) async {
+  static Future<void> call(AnswerCreator answerCreator) async {
     List<Widget> messageList = [];
     Widget? reviewCreated = messageForReviewCreated(answerCreator);
     if (reviewCreated != null) messageList.add(reviewCreated);

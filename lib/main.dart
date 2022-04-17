@@ -45,7 +45,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // locale : https://zenn.dev/dala/books/flutter-basic-app/viewer/create-flashcard-edit
     String? defaultLocale = Intl.defaultLocale;
-    print(defaultLocale);
     defaultLocale ??= 'ja';
     Intl.defaultLocale = defaultLocale;
     final locale = Locale(defaultLocale, '');

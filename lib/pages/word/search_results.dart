@@ -108,7 +108,7 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
         margin: const EdgeInsets.only(left: 20, right: 20),
         child: _buildResults(),
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

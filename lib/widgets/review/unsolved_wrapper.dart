@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/quizzes.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';

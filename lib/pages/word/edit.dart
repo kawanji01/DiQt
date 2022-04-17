@@ -136,7 +136,7 @@ class _WordEditPageState extends State<WordEditPage> {
                       const SizedBox(height: 40),
                     ]))),
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

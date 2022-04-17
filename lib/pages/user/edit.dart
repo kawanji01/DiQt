@@ -37,7 +37,7 @@ class _UserEditPageState extends State<UserEditPage> {
         title: const Text('アカウント設定'),
       ),
       body: _body(),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 3),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

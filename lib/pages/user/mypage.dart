@@ -1,8 +1,7 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
-import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -38,40 +37,18 @@ class UserMyPage extends ConsumerStatefulWidget {
 }
 
 class _UserMyPageState extends ConsumerState<UserMyPage> {
-  bool _initDone = false;
-
   @override
   void initState() {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      ref.refresh(asyncCurrentUserProvider);
+    });
     super.initState();
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _loadMyPage();
-  }
-
-  // async create list
-  Future _loadMyPage() async {
-    Map? resMap = await RemoteUsers.status(context);
-    if (resMap == null) {
-      return setState(() {
-        _initDone = true;
-      });
-    }
-
-    User user = User.fromJson(resMap['user']);
-    await UserSetup.signIn(user);
-    ref.read(currentUserProvider.notifier).state = user;
-    ref.read(answerSettingProvider.notifier).state = user.answerSetting;
-    setState(() {
-      _initDone = true;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    User? _user = ref.watch(currentUserProvider);
+    final User? _user = ref.watch(currentUserProvider);
+    final future = ref.watch(asyncCurrentUserProvider);
 
     // ログアウト
     Future _logout() async {
@@ -129,11 +106,9 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
     }
 
     // マイページを表示するか、ログインしてなければログインボタンを表示する。
-    Widget _mypageOrEntrance() {
-      // ユーザーが存在せず、かつinitializeも終わっていないなら空画面を表示。
-      if (_user == null && _initDone == false) return Container();
+    Widget _mypageOrEntrance(User? user) {
       // initializeが終わっているのにユーザーが存在していないなら、ログイン・登録画面へ誘導する。
-      if (_user == null) return const Entrance();
+      if (user == null) return const Entrance();
 
       return SingleChildScrollView(
         child: Container(
@@ -142,7 +117,7 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
           color: Colors.transparent,
           child: Column(
             children: <Widget>[
-              UserStatus(user: _user),
+              UserStatus(user: user),
               const SizedBox(
                 height: 48,
               ),
@@ -160,8 +135,12 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
         //automaticallyImplyLeading: false,
         actions: <Widget>[_settingButton()],
       ),
-      body: _mypageOrEntrance(),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 3),
+      body: future.when(
+        loading: () => _mypageOrEntrance(_user),
+        error: (err, stack) => Text('Error: $err'),
+        data: (data) => _mypageOrEntrance(data),
+      ),
+      bottomNavigationBar: const BottomNavbar(),
       drawer: const DrawerMenu(),
     );
   }

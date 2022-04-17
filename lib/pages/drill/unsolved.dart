@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -18,7 +17,6 @@ class DrillUnsolvedPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final Drill? drill = ref.watch(drillProvider);
-    final int selectedIndex = ref.read(bottomNavbarState);
 
     Future<bool> _closeSnackBar() async {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -41,7 +39,7 @@ class DrillUnsolvedPage extends ConsumerWidget {
             child: const DrillUnsolvedScreen(),
           ),
         ),
-        bottomNavigationBar: BottomNavbar(selectedIndex: selectedIndex),
+        bottomNavigationBar: const BottomNavbar(),
       ),
     );
   }
