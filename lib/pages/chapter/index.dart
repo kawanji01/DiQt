@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/chapter/index.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class ChapterIndexPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(20),
-          child: Container(),
+          child: const ChapterIndex(),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),
