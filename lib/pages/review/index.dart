@@ -73,7 +73,7 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
           actions: const <Widget>[ReviewSettingAction()],
         ),
         body: _reviewsOrEntrance(),
-        bottomNavigationBar: const BottomNavbar(selectedIndex: 1),
+        bottomNavigationBar: const BottomNavbar(),
         drawer: const DrawerMenu(),
       ),
     );

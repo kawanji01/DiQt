@@ -160,7 +160,7 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
         title: const Text('獲得メダル'),
       ),
       body: _bodyWidget(),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 3),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

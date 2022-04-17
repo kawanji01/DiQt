@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 3),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

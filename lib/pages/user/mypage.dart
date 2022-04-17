@@ -161,7 +161,7 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
         actions: <Widget>[_settingButton()],
       ),
       body: _mypageOrEntrance(),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 3),
+      bottomNavigationBar: const BottomNavbar(),
       drawer: const DrawerMenu(),
     );
   }

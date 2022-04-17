@@ -58,7 +58,7 @@ class DrillUnsolvedWrapper extends ConsumerWidget {
       final AnswerCreator answerCreator =
           AnswerCreator.fromJson(resMap['answer_creator']);
       // await をつけるとLooking up a deactivated widget's ancestor〜エラーが発生してしまう。 ref: https://zenn.dev/ryouhei_furugen/articles/2fa82ba62c88da
-      AnswerFeedback.call(context, answerCreator);
+      AnswerFeedback.call(answerCreator);
       // 報酬を表示する
       await AnswerReward.call(answerCreator);
     }

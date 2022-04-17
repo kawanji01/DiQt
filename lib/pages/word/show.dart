@@ -105,7 +105,7 @@ class _WordShowPageState extends State<WordShowPage> {
             child: _wordPage(),
           ),
         ),
-        bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
+        bottomNavigationBar: const BottomNavbar(),
       ),
     );
   }

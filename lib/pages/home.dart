@@ -106,7 +106,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           //preferredSize: const Size.fromHeight(30.0),
         ),
         body: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
-        bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
+        bottomNavigationBar: const BottomNavbar(),
         drawer: const DrawerMenu(),
       ),
     );

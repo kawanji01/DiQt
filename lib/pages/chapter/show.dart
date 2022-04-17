@@ -95,7 +95,7 @@ class _ChapterShowPageState extends State<ChapterShowPage> {
           child: _buildPage(),
         ),
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

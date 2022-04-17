@@ -153,7 +153,7 @@ class _WordNewPageState extends State<WordNewPage> {
                       const SizedBox(height: 40),
                     ]))),
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

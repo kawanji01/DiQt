@@ -158,7 +158,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 0),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

@@ -138,7 +138,7 @@ class _NotificationIndexPageState extends ConsumerState<NotificationIndexPage> {
         //automaticallyImplyLeading: false,
       ),
       body: _notificationsOrEntrance(_user),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 2),
+      bottomNavigationBar: const BottomNavbar(),
       drawer: const DrawerMenu(),
     );
   }

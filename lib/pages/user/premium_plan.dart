@@ -57,7 +57,7 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
         //automaticallyImplyLeading: false,
       ),
       body: _body(),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 3),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

@@ -116,7 +116,7 @@ class _PremiumMenuPageState extends State<PremiumMenuPage> {
         title: const Text('プレミアムメニュー'),
       ),
       body: _body(),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 3),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

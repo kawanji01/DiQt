@@ -90,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavbar(selectedIndex: 3),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }
