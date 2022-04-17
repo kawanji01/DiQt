@@ -1,14 +1,10 @@
-import 'dart:convert';
-
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
-import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
 
 class HomeSearchPage extends ConsumerStatefulWidget {
   const HomeSearchPage({Key? key}) : super(key: key);
@@ -74,6 +70,7 @@ class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
       margin: const EdgeInsets.symmetric(vertical: 32, horizontal: 20),
       child: Column(
         children: <Widget>[
+          const SizedBox(height: 16),
           WordSearchForm(searchController: searchController),
           Expanded(
             child: future.when(

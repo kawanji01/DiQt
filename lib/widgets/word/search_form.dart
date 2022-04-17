@@ -32,8 +32,15 @@ class WordSearchForm extends StatelessWidget {
               textFieldConfiguration: TextFieldConfiguration(
                   controller: searchController,
                   decoration: InputDecoration(
-                    labelText: '検索ワード',
-                    hintText: '調べたい単語・熟語を入力してください',
+                    labelText: 'キーワード',
+                    hintText: '調べたい単語・熟語を入力',
+                    // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
+                    filled: true,
+                    fillColor: Colors.grey.shade200,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.clear),
                       onPressed: () {
@@ -76,8 +83,8 @@ class WordSearchForm extends StatelessWidget {
               onPressed: _search,
               icon: const Icon(Icons.search, color: Colors.white),
               label: const Text(
-                '辞書を引く',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                '検索する',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
           ),
