@@ -26,7 +26,7 @@ class UserStatus extends StatelessWidget {
     final userName = Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text(
-        '${user.name}',
+        user.name,
         style: const TextStyle(
             fontSize: 28.0, color: Colors.black54, fontWeight: FontWeight.w800),
       ),

@@ -1,3 +1,8 @@
+import 'package:booqs_mobile/models/answer_analysis.dart';
+import 'package:booqs_mobile/models/drill.dart';
+import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/models/user.dart';
+
 class AnswerHistory {
   AnswerHistory({
     this.id,
@@ -23,6 +28,10 @@ class AnswerHistory {
     this.holiday = false,
     this.createdAt,
     this.updatedAt,
+    this.user,
+    this.quiz,
+    this.drill,
+    this.answerAnalysis,
   });
 
   int? id;
@@ -48,6 +57,10 @@ class AnswerHistory {
   bool holiday;
   String? createdAt;
   String? updatedAt;
+  User? user;
+  Quiz? quiz;
+  Drill? drill;
+  AnswerAnalysis? answerAnalysis;
 
   AnswerHistory.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -71,7 +84,13 @@ class AnswerHistory {
         continuationAllYear = json['continuation_all_year'],
         holiday = json['holiday'],
         createdAt = json['created_at'],
-        updatedAt = json['updated_at'];
+        updatedAt = json['updated_at'],
+        user = json['user'] == null ? null : User.fromJson(json['user']),
+        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
+        drill = json['drill'] == null ? null : Drill.fromJson(json['drill']),
+        answerAnalysis = json['answer_analysis'] == null
+            ? null
+            : AnswerAnalysis.fromJson(json['answer_analysis']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -96,5 +115,9 @@ class AnswerHistory {
         'holiday': holiday,
         'created_at': createdAt,
         'updated_at': updatedAt,
+        'user': user,
+        'quiz': quiz,
+        'drill': drill,
+        'answer_analysis': answerAnalysis,
       };
 }

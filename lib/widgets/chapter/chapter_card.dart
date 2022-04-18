@@ -1,20 +1,23 @@
+import 'package:booqs_mobile/data/provider/chapter.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class ChapterCard extends StatelessWidget {
+class ChapterCard extends ConsumerWidget {
   const ChapterCard({Key? key, required this.chapter}) : super(key: key);
   final Chapter chapter;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // 1,000のようなdelimiterを使って解答数を整形する。参考： https://stackoverflow.com/questions/62580280/how-to-format-numbers-as-thousands-separators-in-dart
     final formatter = NumberFormat('#,###,000');
     final answerHistoriesCount = formatter.format(chapter.answerHistoriesCount);
 
     // Chapterページに遷移
     Future _moveToChapterPage(chapter) async {
+      // TODO: タグによる経由のページ遷移のために、一応publidUidは渡しておく（タグを改善したら修正する）
       await ChapterShowPage.push(context, chapter.publicUid);
     }
 

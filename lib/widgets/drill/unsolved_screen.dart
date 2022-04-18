@@ -1,7 +1,8 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
-import 'package:booqs_mobile/widgets/drill/unsolved_feed.dart';
+import 'package:booqs_mobile/widgets/drill/unsolved_quizzes.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/widgets/user/drill_in_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,7 +28,15 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
     Widget _unsolvedFeed(quizzes) {
       return SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: DrillUnsolvedFeed(quizzes: quizzes),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              DrillUnsolvedQuizzes(quizzes: quizzes),
+              const SizedBox(height: 48),
+              const UserDrillInProgress(),
+            ],
+          ),
+        ),
       );
     }
 

@@ -1,12 +1,13 @@
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/drill/lap_update_button.dart';
 import 'package:booqs_mobile/widgets/drill/status_tabs.dart';
-import 'package:booqs_mobile/widgets/drill/unsolved_wrapper.dart';
+import 'package:booqs_mobile/widgets/drill/unsolved_quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DrillUnsolvedFeed extends ConsumerWidget {
-  const DrillUnsolvedFeed({Key? key, required this.quizzes}) : super(key: key);
+class DrillUnsolvedQuizzes extends ConsumerWidget {
+  const DrillUnsolvedQuizzes({Key? key, required this.quizzes})
+      : super(key: key);
   final List<Quiz>? quizzes;
 
   @override
@@ -18,7 +19,7 @@ class DrillUnsolvedFeed extends ConsumerWidget {
 
       final List<Widget> list = [];
       for (Quiz quiz in quizzes!) {
-        list.add(DrillUnsolvedWrapper(quiz: quiz));
+        list.add(DrillUnsolvedQuizWrapper(quiz: quiz));
       }
       return Column(
         children: list,
@@ -26,13 +27,11 @@ class DrillUnsolvedFeed extends ConsumerWidget {
     }
 
     // ListViewはスクロールによって再ビルドされたりするので、Columnを使う。
-    return SingleChildScrollView(
-      child: Column(children: [
-        const SizedBox(height: 32),
-        const DrillStatusTabs(),
-        const SizedBox(height: 8),
-        _quizItems(quizzes),
-      ]),
-    );
+    return Column(children: [
+      const SizedBox(height: 32),
+      const DrillStatusTabs(),
+      const SizedBox(height: 8),
+      _quizItems(quizzes),
+    ]);
   }
 }

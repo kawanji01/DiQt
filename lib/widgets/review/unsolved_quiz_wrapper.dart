@@ -17,8 +17,8 @@ import 'package:booqs_mobile/widgets/review/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReviewUnsolvedWrapper extends ConsumerWidget {
-  const ReviewUnsolvedWrapper({Key? key, required this.review})
+class ReviewUnsolvedQuizWrapper extends ConsumerWidget {
+  const ReviewUnsolvedQuizWrapper({Key? key, required this.review})
       : super(key: key);
   final Review review;
 

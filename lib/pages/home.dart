@@ -52,7 +52,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
 
   // 現在のユーザー情報を更新する
   Future _loadCurrentUser() async {
-    Map? resMap = await RemoteUsers.status(context);
+    Map? resMap = await RemoteUsers.currentUser();
 
     if (resMap == null) {
       await UserSetup.logOut(null);

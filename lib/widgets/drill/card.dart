@@ -48,7 +48,7 @@ class DrillCard extends ConsumerWidget {
 
     // カードデザインの参考： https://material.io/components/cards/flutter
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 24),
+      margin: const EdgeInsets.only(bottom: 24),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         splashColor: Colors.green.withAlpha(30),

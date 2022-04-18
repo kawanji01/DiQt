@@ -10,6 +10,7 @@ import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
+import 'package:booqs_mobile/widgets/user/drill_in_progress.dart';
 import 'package:booqs_mobile/widgets/user/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -113,10 +114,11 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
       return SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 28),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 28),
           color: Colors.transparent,
           child: Column(
             children: <Widget>[
+              const UserDrillInProgress(),
               UserStatus(user: user),
               const SizedBox(
                 height: 48,

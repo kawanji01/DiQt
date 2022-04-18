@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/widgets/review/unsolved_wrapper.dart';
+import 'package:booqs_mobile/widgets/review/unsolved_quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +20,7 @@ class ReviewItem extends ConsumerWidget {
     // 解答済の問題を消す。
     // ReviewUnsolvedWrapper でも隠す処理はあるが、ListViewではスクロールするとステートがリセットされて再描画されてしまうので、ここでも隠す。
     return Visibility(
-      child: ReviewUnsolvedWrapper(review: review),
+      child: ReviewUnsolvedQuizWrapper(review: review),
       visible: isvisible,
     );
   }

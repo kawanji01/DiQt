@@ -6,12 +6,12 @@ import 'package:http/http.dart';
 
 class RemoteReviews {
   // 復習問題一覧
-  static Future<Map?> index(BuildContext context) async {
+  static Future<Map?> index() async {
     final String? token = await LocalUserInfo.authToken();
     if (token == null) return null;
 
     final Uri url = Uri.parse(
-        '${DiQtURL.root(context)}/api/v1/mobile/reviews?token=$token');
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews?token=$token');
     final Response res = await get(url);
 
     if (res.statusCode != 200) return null;
