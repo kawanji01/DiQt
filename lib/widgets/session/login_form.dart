@@ -1,21 +1,21 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/session/form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginForm extends StatefulWidget {
+class LoginForm extends ConsumerStatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _LoginFormState extends ConsumerState<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -39,35 +39,21 @@ class _LoginFormState extends State<LoginForm> {
         EasyLoading.dismiss();
         return;
       }
+      final String email = _idController.text;
+      final String password = _passwordController.text;
+      Map? resMap = await RemoteSessions.login(email, password);
 
-      // デバイスの識別IDなどを取得する
-      final deviceInfo = DeviceInfoService();
-      String platform = deviceInfo.getPlatform();
-      String deviceIdentifier = await deviceInfo.getIndentifier();
-      String deviceName = await deviceInfo.getName();
-
-      // リクエスト
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions');
-      var res = await http.post(url, body: {
-        'email': _idController.text,
-        'password': _passwordController.text,
-        'device_identifier': deviceIdentifier,
-        'device_name': deviceName,
-        'platform': platform,
-      });
-      // レスポンスに対する処理
-      if (res.statusCode == 200) {
-        Map resMap = json.decode(res.body);
-        User user = User.fromJson(resMap['user']);
-        await UserSetup.signIn(user);
-        const snackBar = SnackBar(content: Text('ログインしました。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
-      } else {
+      if (resMap == null) {
         _passwordController.clear();
         const snackBar = SnackBar(content: Text('メールアドレスまたはパスワードが違います。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        User user = User.fromJson(resMap['user']);
+        await UserSetup.signIn(user);
+        ref.read(currentUserProvider.notifier).state = user;
+        const snackBar = SnackBar(content: Text('ログインしました。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        await UserMyPage.push(context);
       }
       EasyLoading.dismiss();
     }

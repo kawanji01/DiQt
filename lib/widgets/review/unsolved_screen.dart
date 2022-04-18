@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/review.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
 import 'package:booqs_mobile/widgets/review/introduction.dart';
+import 'package:booqs_mobile/widgets/review/status_tabs.dart';
 import 'package:booqs_mobile/widgets/review/unsolved_quizzes.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/user/drill_in_progress.dart';
@@ -31,22 +32,39 @@ class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
 
     Widget _reviewFeed(reviews) {
       if (reviews.isEmpty) {
-        return const ReviewIntroduction();
+        return const Text('復習すべき問題はありません',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: Colors.black87));
       }
-      return Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ReviewUnsolvedQuizzes(reviews: reviews),
-              const SizedBox(height: 48),
-              const UserDrillInProgress(),
-            ],
-          ),
-        ),
+      return ReviewUnsolvedQuizzes(reviews: reviews);
+    }
+
+    Widget _unsolvedQuizzes() {
+      return future.when(
+        data: (data) => _reviewFeed(data),
+        error: (err, stack) => Text('Error: $err'),
+        loading: () => const LoadingSpinner(),
       );
     }
+
+    /* Widget _reviewScreen(reviews) {
+      if (reviews.isEmpty) {
+        return const ReviewIntroduction();
+      }
+      return Column(
+        children: [
+          const SizedBox(height: 32),
+          const ReviewStatusTabs(),
+          const SizedBox(height: 8),
+          ReviewUnsolvedQuizzes(reviews: reviews),
+          const SizedBox(height: 48),
+          const UserDrillInProgress(),
+        ],
+      );
+    } */
 
     return NotificationListener<LoadingUnsolvedQuizzesNotification>(
       onNotification: (notification) {
@@ -57,10 +75,16 @@ class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
         // trueを返すことで通知がこれ以上遡らない
         return true;
       },
-      child: future.when(
-        data: (data) => _reviewFeed(data),
-        error: (err, stack) => Text('Error: $err'),
-        loading: () => const LoadingSpinner(),
+      child: Column(
+        children: [
+          const ReviewIntroduction(),
+          const SizedBox(height: 32),
+          const ReviewStatusTabs(),
+          const SizedBox(height: 8),
+          _unsolvedQuizzes(),
+          const SizedBox(height: 48),
+          const UserDrillInProgress(),
+        ],
       ),
     );
   }

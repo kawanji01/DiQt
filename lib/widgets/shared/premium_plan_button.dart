@@ -2,7 +2,6 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/premium_menu.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:flutter/material.dart';
-import 'dart:io' show Platform;
 
 class PremiumPlanButton extends StatelessWidget {
   const PremiumPlanButton({Key? key, required this.user}) : super(key: key);

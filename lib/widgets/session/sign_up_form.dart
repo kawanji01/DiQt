@@ -1,21 +1,21 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/session/form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpForm extends StatefulWidget {
+class SignUpForm extends ConsumerStatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
 
   @override
   _SignUpFormState createState() => _SignUpFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
+class _SignUpFormState extends ConsumerState<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _idController = TextEditingController();
@@ -44,7 +44,7 @@ class _SignUpFormState extends State<SignUpForm> {
         return;
       }
 
-      // デバイスの識別IDなどを取得する
+      /* // デバイスの識別IDなどを取得する
       final deviceInfo = DeviceInfoService();
       String platform = deviceInfo.getPlatform();
       String deviceIdentifier = await deviceInfo.getIndentifier();
@@ -59,20 +59,25 @@ class _SignUpFormState extends State<SignUpForm> {
         'device_identifier': deviceIdentifier,
         'device_name': deviceName,
         'platform': platform,
-      });
+      }); */
+      final String name = _nameController.text;
+      final String email = _idController.text;
+      final String password = _passwordController.text;
+      final Map? resMap = await RemoteSessions.signUp(name, email, password);
+
       // レスポンスに対する処理
-      if (res.statusCode == 200) {
-        Map resMap = json.decode(res.body);
-        User user = User.fromJson(resMap['user']);
-        await UserSetup.signIn(user);
-        final snackBar = SnackBar(content: Text('${resMap['message']}'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
-      } else {
+      if (resMap == null) {
         _passwordController.text = '';
         const snackBar = SnackBar(
             content: Text('登録できませんでした。指定メールアドレスのユーザーはすでに存在しているか、パスワードが短すぎます。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        User user = User.fromJson(resMap['user']);
+        await UserSetup.signIn(user);
+        ref.read(currentUserProvider.notifier).state = user;
+        final snackBar = SnackBar(content: Text('${resMap['message']}'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        UserMyPage.push(context);
       }
       EasyLoading.dismiss();
     }

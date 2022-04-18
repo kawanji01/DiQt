@@ -1,18 +1,18 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart' as http;
 
-class GoogleButton extends StatelessWidget {
+class GoogleButton extends ConsumerWidget {
   const GoogleButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // Google 認証
     final _googleSignin = GoogleSignIn(scopes: [
       'email',
@@ -27,7 +27,7 @@ class GoogleButton extends StatelessWidget {
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
+      /* ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
       final deviceInfo = DeviceInfoService();
       final String platform = deviceInfo.getPlatform();
       final String deviceIdentifier = await deviceInfo.getIndentifier();
@@ -41,13 +41,16 @@ class GoogleButton extends StatelessWidget {
         'device_identifier': deviceIdentifier,
         'platform': platform,
         'device_name': deviceName,
-      });
+      }); */
 
-      if (res.statusCode != 200) return EasyLoading.dismiss();
+      /*  if (res.statusCode != 200) return EasyLoading.dismiss(); */
 
-      Map resMap = json.decode(res.body);
+      Map? resMap = await RemoteSessions.google(googleAuth);
+      if (resMap == null) return EasyLoading.dismiss();
+
       User user = User.fromJson(resMap['user']);
       await UserSetup.signIn(user);
+      ref.read(currentUserProvider.notifier).state = user;
       // 画面全体のローディングを消す。
       EasyLoading.dismiss();
       const snackBar = SnackBar(content: Text('ログインしました。'));

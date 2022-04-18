@@ -21,7 +21,7 @@ class QuizExplanationExplanation extends StatelessWidget {
           const SizedBox(height: 16),
           TextWithLink(
             text: quiz.explanation!,
-            autoLinkEnabled: true,
+            autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
           ),
           const SizedBox(height: 24),

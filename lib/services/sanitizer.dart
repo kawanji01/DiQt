@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Sanitizer {
   static String removeDiQtLink(String text) {
     // テキストを、正規表現でキャプチャーして置き換える。

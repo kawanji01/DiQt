@@ -1,22 +1,23 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:http/http.dart' as http;
 import 'package:crypto/crypto.dart';
 import 'package:nonce/nonce.dart';
 
-class AppleButton extends StatelessWidget {
+class AppleButton extends ConsumerWidget {
   const AppleButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final rawNonce = Nonce.generate();
     final state = Nonce.generate();
     String? clientId = dotenv.env['IOS_BUNDLE_ID'];
@@ -29,6 +30,7 @@ class AppleButton extends StatelessWidget {
         text: 'Appleで続ける',
         height: 44,
         onPressed: () async {
+          // 認証処理
           final appleCredential = await SignInWithApple.getAppleIDCredential(
             scopes: [
               AppleIDAuthorizationScopes.email,
@@ -49,7 +51,7 @@ class AppleButton extends StatelessWidget {
           // 画面全体にローディングを表示
           EasyLoading.show(status: 'loading...');
 
-          ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
+          /* ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
           final deviceInfo = DeviceInfoService();
           final String platform = deviceInfo.getPlatform();
           final String deviceIdentifier = await deviceInfo.getIndentifier();
@@ -64,18 +66,17 @@ class AppleButton extends StatelessWidget {
             'device_identifier': deviceIdentifier,
             'platform': platform,
             'device_name': deviceName,
-          });
+          }); */
+          final Map? resMap = await RemoteSessions.apple(appleCredential);
 
-          EasyLoading.dismiss();
+          if (resMap == null) return EasyLoading.dismiss();
 
-          if (res.statusCode != 200) return;
-
-          Map resMap = json.decode(res.body);
-          // トークンを格納
-          User user = User.fromJson(resMap['user']);
+          final User user = User.fromJson(resMap['user']);
           await UserSetup.signIn(user);
+          ref.read(currentUserProvider.notifier).state = user;
           const snackBar = SnackBar(content: Text('ログインしました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          EasyLoading.dismiss();
           UserMyPage.push(context);
 
           // Now send the credential (especially `credential.authorizationCode`) to your server to create a session

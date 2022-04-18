@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
-import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/review_helper.dart';
@@ -9,7 +8,6 @@ import 'package:booqs_mobile/widgets/review/large_green_button.dart';
 import 'package:booqs_mobile/widgets/review/large_outline_button.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewLargeSettingButton extends StatefulWidget {
   const ReviewLargeSettingButton(

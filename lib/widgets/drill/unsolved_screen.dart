@@ -1,5 +1,7 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
+import 'package:booqs_mobile/widgets/drill/introduction.dart';
+import 'package:booqs_mobile/widgets/drill/status_tabs.dart';
 import 'package:booqs_mobile/widgets/drill/unsolved_quizzes.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/user/drill_in_progress.dart';
@@ -25,18 +27,18 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
   Widget build(BuildContext context) {
     final future = ref.watch(asyncDrillUnsolvedQuizzesProvider);
 
-    Widget _unsolvedFeed(quizzes) {
-      return SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              DrillUnsolvedQuizzes(quizzes: quizzes),
-              const SizedBox(height: 48),
-              const UserDrillInProgress(),
-            ],
-          ),
-        ),
+    Widget _unsolvedScreen(quizzes) {
+      return Column(
+        children: [
+          const SizedBox(height: 40),
+          const DrillIntroduction(),
+          const SizedBox(height: 32),
+          const DrillStatusTabs(),
+          const SizedBox(height: 8),
+          DrillUnsolvedQuizzes(quizzes: quizzes),
+          const SizedBox(height: 48),
+          const UserDrillInProgress(),
+        ],
       );
     }
 
@@ -51,7 +53,7 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
         return true;
       },
       child: future.when(
-        data: (data) => _unsolvedFeed(data),
+        data: (data) => _unsolvedScreen(data),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       ),

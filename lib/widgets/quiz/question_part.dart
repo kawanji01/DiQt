@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:booqs_mobile/widgets/drill/icon.dart';
 import 'package:booqs_mobile/widgets/quiz/drill_title.dart';
 import 'package:booqs_mobile/widgets/quiz/hint_button.dart';
