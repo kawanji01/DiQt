@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:booqs_mobile/data/remote/chapters.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/widgets/chapter/chapter_card.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class HomeChaptersPage extends StatefulWidget {
   const HomeChaptersPage({Key? key}) : super(key: key);

@@ -11,7 +11,7 @@ class UserDrillInProgress extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final Drill? drill =
-        ref.watch(currentUserProvider.select((user) => user!.drillInProgress));
+        ref.watch(currentUserProvider.select((user) => user?.drillInProgress));
     if (drill == null) return Container();
 
     final heading = RichText(

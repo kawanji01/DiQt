@@ -1,9 +1,5 @@
-import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/drill_lap.dart';
-import 'package:booqs_mobile/data/remote/drills.dart';
-import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
-import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/widgets/button/large_button.dart';
 import 'package:booqs_mobile/widgets/drill/lap_update_screen.dart';
@@ -15,7 +11,6 @@ class DrillLapUpdateButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Drill? drill = ref.watch(drillProvider);
     final DrillLap? drillLap = ref.watch(drillLapProvider);
     final int newLapNumber = drillLap!.numberOfLaps! + 1;
 

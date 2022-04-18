@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/answers_count.dart';

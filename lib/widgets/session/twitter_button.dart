@@ -1,19 +1,19 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_login/twitter_login.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Web/Mobile/ExtensionでSign in with Appleを導入できるようになるまでSNS認証の導入を見送る。
-class TwitterButton extends StatelessWidget {
+class TwitterButton extends ConsumerWidget {
   const TwitterButton({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final String? _apiKey = dotenv.env['TWITTER_CONSUMER_KEY'];
     final String? _apiSecretKey = dotenv.env['TWITTER_CONSUMER_SECRET'];
     final String? _aredirectURI = dotenv.env['TWITTER_CALLBACK_URL'];
@@ -24,12 +24,6 @@ class TwitterButton extends StatelessWidget {
     }
 
     Future _twitterAuth() async {
-      // デバイスの識別IDなどを取得する
-      final deviceInfo = DeviceInfoService();
-      final String platform = deviceInfo.getPlatform();
-      final String deviceIdentifier = await deviceInfo.getIndentifier();
-      final String deviceName = await deviceInfo.getName();
-
       // Twitterログイン
       final twitterLogin = TwitterLogin(
         // Consumer API keys
@@ -48,45 +42,40 @@ class TwitterButton extends StatelessWidget {
 
       switch (authResult.status) {
         case TwitterLoginStatus.loggedIn:
-          var url = Uri.parse(
-              '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/twitter');
-          var res = await http.post(url, body: {
-            'uid': '${authResult.user!.id}',
-            'name': authResult.user!.name,
-            'email': authResult.user!.email,
-            'image': authResult.user!.thumbnailImage,
-            'device_identifier': deviceIdentifier,
-            'platform': platform,
-            'device_name': deviceName,
-          });
+          final Map? resMap = await RemoteSessions.twitter(authResult);
+          if (resMap == null) {
+            const snackBar = SnackBar(content: Text('エラーが発生しました。'));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            EasyLoading.dismiss();
+            return;
+          }
 
-          if (res.statusCode != 200) return;
-
-          Map resMap = json.decode(res.body);
-          User user = User.fromJson(resMap['user']);
+          final User user = User.fromJson(resMap['user']);
           await UserSetup.signIn(user);
+          ref.read(currentUserProvider.notifier).state = user;
           const snackBar = SnackBar(content: Text('ログインしました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           UserMyPage.push(context);
-
+          EasyLoading.dismiss();
           break;
         case TwitterLoginStatus.cancelledByUser:
           // cancel
           const snackBar = SnackBar(content: Text('キャンセルしました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          EasyLoading.dismiss();
           break;
         case TwitterLoginStatus.error:
           // error
           const snackBar = SnackBar(content: Text('エラーが発生しました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          EasyLoading.dismiss();
           break;
         default:
           // error
           const snackBar = SnackBar(content: Text('エラーが発生しました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          EasyLoading.dismiss();
       }
-      // ローディングを消す
-      EasyLoading.dismiss();
     }
 
     return TextButton(

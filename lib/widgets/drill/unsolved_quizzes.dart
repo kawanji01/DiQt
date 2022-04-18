@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/drill/lap_update_button.dart';
-import 'package:booqs_mobile/widgets/drill/status_tabs.dart';
 import 'package:booqs_mobile/widgets/drill/unsolved_quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

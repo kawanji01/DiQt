@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/widgets/review/status_tabs.dart';
 import 'package:booqs_mobile/widgets/review/unsolved_quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/chapter.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:flutter/material.dart';

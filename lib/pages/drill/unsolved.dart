@@ -1,7 +1,4 @@
-import 'package:booqs_mobile/data/provider/drill.dart';
-import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/drill/answer_setting_action.dart';
 import 'package:booqs_mobile/widgets/drill/unsolved_screen.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +13,6 @@ class DrillUnsolvedPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Drill? drill = ref.watch(drillProvider);
-
     Future<bool> _closeSnackBar() async {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       Navigator.of(context).pop();
