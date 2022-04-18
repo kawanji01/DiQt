@@ -2,7 +2,7 @@ import 'package:booqs_mobile/data/remote/chapters.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/drill/card.dart';
+import 'package:booqs_mobile/widgets/drill/feed.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -63,9 +63,7 @@ class _ChapterShowPageState extends State<ChapterShowPage> {
     Widget _buildCards() {
       if (_initDone == false) return Container();
 
-      return Column(
-        children: _drills.map((drill) => DrillCard(drill: drill)).toList(),
-      );
+      return DrillFeed(drills: _drills);
     }
 
     Widget _buildPage() {
@@ -73,13 +71,13 @@ class _ChapterShowPageState extends State<ChapterShowPage> {
 
       return Column(
         children: <Widget>[
-          SizedBox(
-              width: double.infinity,
-              child: Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(16),
-                child: Text(_chapter!.introduction),
-              )),
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(bottom: 24),
+            color: Colors.white,
+            padding: const EdgeInsets.all(16),
+            child: Text(_chapter!.introduction),
+          ),
           _buildCards(),
         ],
       );

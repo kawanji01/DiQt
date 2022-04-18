@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/answer_setting.dart';
+import 'package:booqs_mobile/models/drill.dart';
 
 class User {
   User({
@@ -22,6 +23,7 @@ class User {
     this.rewardRemained = false,
     this.authToken,
     this.answerSetting,
+    this.drillInProgress,
   });
 
   int id;
@@ -44,6 +46,7 @@ class User {
   bool rewardRemained;
   String? authToken;
   AnswerSetting? answerSetting;
+  Drill? drillInProgress;
 
   User.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -67,7 +70,10 @@ class User {
         authToken = json['token_for_native_app'],
         answerSetting = json['answer_setting'] == null
             ? null
-            : AnswerSetting.fromJson(json['answer_setting']);
+            : AnswerSetting.fromJson(json['answer_setting']),
+        drillInProgress = json['drill_in_progress'] == null
+            ? null
+            : Drill.fromJson(json['drill_in_progress']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -88,5 +94,6 @@ class User {
         'reviews_count': reviewsCount,
         'token_for_native_app': authToken,
         'answer_setting': answerSetting,
+        'drill_in_progress': drillInProgress,
       };
 }

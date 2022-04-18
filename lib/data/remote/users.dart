@@ -6,8 +6,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 
 class RemoteUsers {
-  // ログインユーザーの取得　　　users/:id/status
-  // こっちは削除しよう
+  // ログインユーザーの取得　　　users/status
+  // （次のアップデートで削除予定）
   static Future<Map?> status(BuildContext context) async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
@@ -23,20 +23,37 @@ class RemoteUsers {
     return resMap;
   }
 
-  // ログインユーザーの取得　　　users/:id/status
+  // 現在のログインユーザーの取得　　　users/current_user
   static Future<Map?> currentUser() async {
     const storage = FlutterSecureStorage();
-    String? token = await storage.read(key: 'token');
+    final String? token = await storage.read(key: 'token');
 
     if (token == null) return null;
 
-    Uri url =
-        Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/status');
-    Response res = await post(url, body: {'token': token});
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/current?token=$token');
+    final Response res = await get(url);
 
     if (res.statusCode != 200) return null;
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // 解答中の問題集の取得
+  static Future<Map?> drillsInProgress() async {
+    const storage = FlutterSecureStorage();
+    final String? token = await storage.read(key: 'token');
+
+    if (token == null) return null;
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/drills_in_progress?token=$token');
+    final Response res = await get(url);
+
+    if (res.statusCode != 200) return null;
+    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+    final Map resMap = json.decode(res.body);
     return resMap;
   }
 
@@ -59,6 +76,7 @@ class RemoteUsers {
     return resMap;
   }
 
+  // 退会
   static Future<Map?> withdrawal(BuildContext context) async {
     const storage = FlutterSecureStorage();
     final String? token = await storage.read(key: 'token');

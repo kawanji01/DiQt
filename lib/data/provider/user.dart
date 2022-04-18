@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
+import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,4 +29,14 @@ final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
         user.todaysAnswerHistoriesCount;
     return user;
   }
+});
+
+// 非同期でユーザーが解答中の問題集のリストを取得する
+final asyncDrillsInProgress = FutureProvider<List<Drill>>((ref) async {
+  final List<Drill> drills = [];
+  final Map? resMap = await RemoteUsers.drillsInProgress();
+  if (resMap == null) return drills;
+
+  resMap['drills'].forEach((e) => drills.add(Drill.fromJson(e)));
+  return drills;
 });

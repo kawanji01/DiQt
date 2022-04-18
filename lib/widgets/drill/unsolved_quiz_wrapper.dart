@@ -19,8 +19,9 @@ import 'package:booqs_mobile/widgets/quiz/unsolved_footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DrillUnsolvedWrapper extends ConsumerWidget {
-  const DrillUnsolvedWrapper({Key? key, required this.quiz}) : super(key: key);
+class DrillUnsolvedQuizWrapper extends ConsumerWidget {
+  const DrillUnsolvedQuizWrapper({Key? key, required this.quiz})
+      : super(key: key);
   final Quiz quiz;
 
   @override
