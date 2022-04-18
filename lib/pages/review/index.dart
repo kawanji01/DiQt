@@ -4,7 +4,6 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/widgets/review/unsolved_screen.dart';
-import 'package:booqs_mobile/widgets/review/setting_action.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
@@ -45,17 +44,7 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    // 更新を限定的にする。 ref: https://riverpod.dev/ja/docs/concepts/reading/#select%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E6%9B%B4%E6%96%B0%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%82%92%E9%99%90%E5%AE%9A%E3%81%99%E3%82%8B
     final User? currentUser = ref.watch(currentUserProvider);
-    final int unsolvedReviewsCount = currentUser == null
-        ? 0
-        : ref.watch(
-            currentUserProvider.select((user) => user!.unsolvedReviewsCount));
-
-    Widget _reviewsOrEntrance() {
-      if (currentUser == null) return const Entrance();
-      return const ReviewUnsolvedScreen();
-    }
 
     Future<bool> _closeSnackBar() async {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -63,15 +52,26 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
       return true;
     }
 
+    Widget _reviewsOrEntrance() {
+      if (currentUser == null) return const Entrance();
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: const SingleChildScrollView(
+          child: ReviewUnsolvedScreen(),
+        ),
+      );
+    }
+
     return WillPopScope(
       onWillPop: () {
         return _closeSnackBar();
       },
       child: Scaffold(
-        appBar: AppBar(
+        /* appBar: AppBar(
           title: Text('復習（$unsolvedReviewsCount）'),
           actions: const <Widget>[ReviewSettingAction()],
-        ),
+        ), */
         body: _reviewsOrEntrance(),
         bottomNavigationBar: const BottomNavbar(),
         drawer: const DrawerMenu(),

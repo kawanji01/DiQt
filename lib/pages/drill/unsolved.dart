@@ -29,13 +29,10 @@ class DrillUnsolvedPage extends ConsumerWidget {
         return _closeSnackBar();
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(drill!.title),
-          actions: const <Widget>[DrillAnswerSettingAction()],
-        ),
         body: SingleChildScrollView(
           child: Container(
-            margin: const EdgeInsets.all(20),
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.all(20),
             child: const DrillUnsolvedScreen(),
           ),
         ),

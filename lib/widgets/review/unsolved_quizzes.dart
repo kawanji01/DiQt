@@ -11,25 +11,14 @@ class ReviewUnsolvedQuizzes extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //
-    Widget _reviewItems() {
-      final List<Widget> list = [];
-      for (Review review in reviews) {
-        list.add(ReviewUnsolvedQuizWrapper(review: review));
-      }
-      return Column(
-        children: list,
-      );
+    final List<Widget> list = [];
+    for (Review review in reviews) {
+      list.add(ReviewUnsolvedQuizWrapper(review: review));
     }
 
     // ListViewはスクロールによって再ビルドされたりするので、Columnを使う。
     return Column(
-      children: [
-        const SizedBox(height: 32),
-        const ReviewStatusTabs(),
-        const SizedBox(height: 8),
-        _reviewItems(),
-      ],
+      children: list,
     );
   }
 }

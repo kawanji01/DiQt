@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class DrillUnsolvedQuizzes extends ConsumerWidget {
   const DrillUnsolvedQuizzes({Key? key, required this.quizzes})
       : super(key: key);
-  final List<Quiz>? quizzes;
+  final List<Quiz> quizzes;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,11 +27,6 @@ class DrillUnsolvedQuizzes extends ConsumerWidget {
     }
 
     // ListViewはスクロールによって再ビルドされたりするので、Columnを使う。
-    return Column(children: [
-      const SizedBox(height: 32),
-      const DrillStatusTabs(),
-      const SizedBox(height: 8),
-      _quizItems(quizzes),
-    ]);
+    return _quizItems(quizzes);
   }
 }

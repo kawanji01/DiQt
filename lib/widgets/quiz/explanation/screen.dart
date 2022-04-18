@@ -104,6 +104,7 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
               _answer(),
               _distractors(),
               _reviewButton(),
+              const SizedBox(height: 40),
               _explanation(),
               const SizedBox(height: 40),
               _answerAnalysis(),
