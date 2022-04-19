@@ -63,19 +63,19 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
       );
     }
 
-    return WillPopScope(
-      onWillPop: () {
-        return _closeSnackBar();
-      },
-      child: Scaffold(
-        /* appBar: AppBar(
+    return Scaffold(
+      /* appBar: AppBar(
           title: Text('復習（$unsolvedReviewsCount）'),
           actions: const <Widget>[ReviewSettingAction()],
         ), */
-        body: _reviewsOrEntrance(),
-        bottomNavigationBar: const BottomNavbar(),
-        drawer: const DrawerMenu(),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
+      extendBodyBehindAppBar: true,
+      body: _reviewsOrEntrance(),
+      bottomNavigationBar: const BottomNavbar(),
+      drawer: const DrawerMenu(),
     );
   }
 }

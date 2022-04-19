@@ -16,7 +16,8 @@ class QuizExplanationDistractors extends StatelessWidget {
     }
 
     Widget _distractor(distractor) {
-      Widget child;
+      Widget child = Text(distractor,
+          style: const TextStyle(fontSize: 16, color: Colors.red));
       if (quiz.langNumberOfAnswer! == languageCodeMap['en']) {
         child = TextWithLink(
           text: distractor,
@@ -24,8 +25,6 @@ class QuizExplanationDistractors extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
         );
       }
-      child = Text(distractor,
-          style: const TextStyle(fontSize: 16, color: Colors.red));
 
       return Row(
         mainAxisSize: MainAxisSize.min,

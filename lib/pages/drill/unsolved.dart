@@ -13,26 +13,27 @@ class DrillUnsolvedPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Future<bool> _closeSnackBar() async {
+    // TODO: RouteObserverなりを使って、画面遷移時にインタラクションを消すようにしたい。 ref: https://417.run/pg/flutter-dart/flutter-route-aware/
+    /* Future<bool> _closeSnackBar() async {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       Navigator.of(context).pop();
       return true;
-    }
+    } */
 
-    return WillPopScope(
-      onWillPop: () {
-        return _closeSnackBar();
-      },
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.all(20),
-            child: const DrillUnsolvedScreen(),
-          ),
-        ),
-        bottomNavigationBar: const BottomNavbar(),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
+      extendBodyBehindAppBar: true,
+      body: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.all(20),
+          child: const DrillUnsolvedScreen(),
+        ),
+      ),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/drill.dart';
+import 'package:booqs_mobile/pages/answer_setting/edit.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,7 +42,10 @@ class DrillIntroduction extends ConsumerWidget {
         minimumSize: const Size(double.infinity, 40),
         primary: const Color(0xfff3f3f4),
       ),
-      onPressed: () => {_moveToAnswerSetting()},
+      onPressed: () => {
+        _moveToAnswerSetting()
+        //AnswerSettingEdit.pushModal(context)
+      },
       icon: const Icon(
         Icons.settings,
         color: Colors.black54,

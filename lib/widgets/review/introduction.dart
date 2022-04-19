@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/pages/answer_setting/edit.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,18 +25,15 @@ class ReviewIntroduction extends ConsumerWidget {
           });
     }
 
-    const title = Text(
-      '復習',
-      style: TextStyle(
-          fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
-    );
-
     final settingButton = ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 40),
         primary: const Color(0xfff3f3f4),
       ),
-      onPressed: () => {_moveToAnswerSetting()},
+      onPressed: () => {
+        //AnswerSettingEdit.pushModal(context)
+        _moveToAnswerSetting()
+      },
       icon: const Icon(
         Icons.settings,
         color: Colors.black54,
