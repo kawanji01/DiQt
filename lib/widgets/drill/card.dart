@@ -59,9 +59,12 @@ class DrillCard extends ConsumerWidget {
           children: [
             ListTile(
               //leading: Image(image: NetworkImage('${chapter.iconUrl}')),
-              title: Text(drill.title,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18)),
+              title: Container(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(drill.title,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18)),
+              ),
               subtitle: _subtitle(),
             ),
             Image(image: NetworkImage(drill.imageUrl)),

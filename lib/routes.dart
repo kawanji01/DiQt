@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/pages/answer_setting/edit.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
@@ -60,5 +61,6 @@ final routes = {
   userEditPage: (context) => const UserEditPage(),
   premiumPlanPage: (context) => const PremiumPlanPage(),
   premiumMenuPage: (context) => const PremiumMenuPage(),
+  answerSettingEdit: (context) => const AnswerSettingEdit(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
 };

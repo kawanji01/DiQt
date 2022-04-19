@@ -6,7 +6,7 @@ class Toasts {
   static Future<void> showBlack(Widget child) async {
     showFlash(
       context: navigatorKey.currentContext!,
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 2),
       builder: (dialogContext, controller) {
         // ref: https://resocoder.com/2021/01/30/snackbar-toast-dialog-in-flutter-flash-package/
         // ref: https://itnext.io/highly-customizable-toast-dialog-snackbar-in-flutter-2c27e533dd63

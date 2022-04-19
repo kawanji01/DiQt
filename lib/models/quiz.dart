@@ -18,6 +18,7 @@ class Quiz {
     this.langNumberOfAnswer,
     this.answerReadAloud = false,
     this.distractors,
+    this.flashcard = false,
     this.explanation,
     this.hint,
     this.drill,
@@ -39,6 +40,7 @@ class Quiz {
   int? langNumberOfAnswer;
   bool answerReadAloud;
   String? distractors;
+  bool flashcard;
   String? explanation;
   String? hint;
   Drill? drill;
@@ -58,6 +60,7 @@ class Quiz {
         langNumberOfAnswer = json['lang_number_of_answer'],
         answerReadAloud = json['answer_read_aloud'],
         distractors = json['distractors'],
+        flashcard = json['flashcard'],
         explanation = json['explanation'],
         hint = json['hint'],
         drill = json['drill'] == null ? null : Drill.fromJson(json['drill']),
@@ -82,6 +85,7 @@ class Quiz {
         'lang_number_of_answer': langNumberOfAnswer,
         'answer_read_aloud': answerReadAloud,
         'distractors': distractors,
+        'flashcard': flashcard,
         'explanation': explanation,
         'hint': hint,
         'drill': drill,

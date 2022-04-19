@@ -40,6 +40,7 @@ class QuizInputForm extends ConsumerWidget {
               // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
               filled: true,
               fillColor: Colors.grey.shade200,
+              //fillColor: const Color(0xfff3f3f4),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,

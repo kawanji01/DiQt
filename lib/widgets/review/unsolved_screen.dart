@@ -37,7 +37,8 @@ class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
-                color: Colors.black87));
+                color: Colors.black54,
+                height: 4));
       }
       return ReviewUnsolvedQuizzes(reviews: reviews);
     }
@@ -49,22 +50,6 @@ class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
         loading: () => const LoadingSpinner(),
       );
     }
-
-    /* Widget _reviewScreen(reviews) {
-      if (reviews.isEmpty) {
-        return const ReviewIntroduction();
-      }
-      return Column(
-        children: [
-          const SizedBox(height: 32),
-          const ReviewStatusTabs(),
-          const SizedBox(height: 8),
-          ReviewUnsolvedQuizzes(reviews: reviews),
-          const SizedBox(height: 48),
-          const UserDrillInProgress(),
-        ],
-      );
-    } */
 
     return NotificationListener<LoadingUnsolvedQuizzesNotification>(
       onNotification: (notification) {
@@ -82,7 +67,7 @@ class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
           const ReviewStatusTabs(),
           const SizedBox(height: 8),
           _unsolvedQuizzes(),
-          const SizedBox(height: 48),
+          const SizedBox(height: 80),
           const UserDrillInProgress(),
         ],
       ),
