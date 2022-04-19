@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:booqs_mobile/widgets/shared/tts_button.dart';
@@ -25,11 +26,14 @@ class QuizExplanationQuestion extends StatelessWidget {
 
     Widget _ttsBtn() {
       if (quiz.questionReadAloud) {
+        // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す
+        final String questionPlainText =
+            Sanitizer.removeDiQtLink(quiz.question);
         return Container(
           margin: const EdgeInsets.only(top: 4),
           alignment: Alignment.center,
           child: TtsButton(
-            speechText: quiz.question,
+            speechText: questionPlainText,
             langNumber: quiz.langNumberOfQuestion,
           ),
         );
