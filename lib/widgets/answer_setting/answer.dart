@@ -33,7 +33,7 @@ class AnswerSettingAnswer extends ConsumerWidget {
     final dailyGoalForm = TextField(
       controller: dailyGoalController,
       decoration: const InputDecoration(labelText: "１日の目標解答数を入力"),
-      keyboardType: TextInputType.number,
+      keyboardType: const TextInputType.numberWithOptions(signed: true),
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.digitsOnly
       ],

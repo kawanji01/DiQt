@@ -3,7 +3,7 @@ import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
-import 'package:booqs_mobile/widgets/review/unsolved_screen.dart';
+import 'package:booqs_mobile/widgets/review/unsolved_screen_wrapper.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
@@ -46,28 +46,13 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
   Widget build(BuildContext context) {
     final User? currentUser = ref.watch(currentUserProvider);
 
-    Future<bool> _closeSnackBar() async {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      Navigator.of(context).pop();
-      return true;
-    }
-
     Widget _reviewsOrEntrance() {
       if (currentUser == null) return const Entrance();
-      return Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: const SingleChildScrollView(
-          child: ReviewUnsolvedScreen(),
-        ),
-      );
+
+      return const ReviewUnsolvedScreenWrapper();
     }
 
     return Scaffold(
-      /* appBar: AppBar(
-          title: Text('復習（$unsolvedReviewsCount）'),
-          actions: const <Widget>[ReviewSettingAction()],
-        ), */
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
