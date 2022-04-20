@@ -1,7 +1,8 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/drill.dart';
-import 'package:booqs_mobile/pages/answer_setting/edit.dart';
+import 'package:booqs_mobile/utils/dialogs.dart';
+import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,7 +16,7 @@ class DrillIntroduction extends ConsumerWidget {
     if (drill == null) return Container();
 
     Future<void> _moveToAnswerSetting() async {
-      final String? publicUid =
+      /* final String? publicUid =
           ref.watch(currentUserProvider.select((user) => user?.publicUid));
       if (publicUid == null) return;
 
@@ -26,7 +27,24 @@ class DrillIntroduction extends ConsumerWidget {
             // ./locale/ を取り除いたpathを指定する
             return ExternalLinkDialog(
                 redirectPath: 'users/$publicUid/answer_setting');
-          });
+          }); */
+
+      //await Dialogs.slideFromBottomFade(screen);
+      // bottomSheetを表示するときにインタラクションも消しておく
+      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+      await showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        // 丸み ref: https://www.codegrepper.com/code-examples/whatever/showmodalbottomsheet+rounded+corners
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
+        ),
+        // showModalBottomSheetで表示される中身
+        builder: (context) => const AnswerSettingScreen(),
+      );
+      //print('end');
+      ref.refresh(asyncDrillUnsolvedQuizzesProvider);
     }
 
     final title = Text(

@@ -52,10 +52,9 @@ class Dialogs {
   }
 
   // 下からふわっと表示されるダイアログ
-  static Future<void> slideFromBottomFade(
-      BuildContext context, Widget screen) async {
+  static Future<void> slideFromBottomFade(Widget screen) async {
     await showAnimatedDialog(
-      context: context,
+      context: navigatorKey.currentContext!,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return CustomDialog(

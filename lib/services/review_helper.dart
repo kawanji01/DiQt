@@ -3,7 +3,7 @@ class ReviewHelperService {
     String intervalSetting = '';
     switch (number) {
       case 0:
-        intervalSetting = '明日に復習する';
+        intervalSetting = '翌日に復習する';
         break;
       case 1:
         intervalSetting = '３日後に復習する';
