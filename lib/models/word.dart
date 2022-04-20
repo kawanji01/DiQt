@@ -1,3 +1,6 @@
+import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/models/sentence.dart';
+
 class Word {
   Word(
       {this.id,
@@ -14,9 +17,9 @@ class Word {
       this.frequency,
       this.tags,
       this.initial,
-      // 結合したsentence
-      originalOfSentence,
-      translationOfSentence});
+      // 結合したテーブル
+      this.sentence,
+      this.dictionary});
 
   int? id;
   int? dictionaryId;
@@ -33,8 +36,8 @@ class Word {
   String? tags;
   String? initial;
   // 結合したsentence
-  String? originalOfSentence;
-  String? translationOfSentence;
+  Sentence? sentence;
+  Dictionary? dictionary;
 
   Word.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -51,9 +54,12 @@ class Word {
         frequency = json['frequency'],
         tags = json['tags'],
         initial = json['initial'],
-        // 結合したsentence
-        originalOfSentence = json['sentence']?['original'] ?? '',
-        translationOfSentence = json['sentence']?['translation'] ?? '';
+        sentence = json['sentence'] == null
+            ? null
+            : Sentence.fromJson(json['sentence']),
+        dictionary = json['dictionary'] == null
+            ? null
+            : Dictionary.fromJson(json['dictionary']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -70,8 +76,7 @@ class Word {
         'frequency': frequency,
         'tags': tags,
         'initial': initial,
-        // 結合したsentence
-        'originalOfSentence': originalOfSentence,
-        'translationOfSentence': translationOfSentence,
+        'sentence': sentence,
+        'dictionary': dictionary,
       };
 }
