@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/sentence/sentence_edit_button.dart';
 import 'package:booqs_mobile/widgets/sentence/sentence_review_button.dart';
@@ -12,22 +13,20 @@ class WordSentence extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _sentence() {
-      final String original = word.originalOfSentence ?? '';
-      final String translation = word.translationOfSentence ?? '';
-
-      if (original == '') return Container();
+      final Sentence? sentence = word.sentence;
+      if (sentence == null) return Container();
 
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const SizedBox(height: 24),
         const WordLabel(text: '例文'),
         const SizedBox(height: 8),
         TextWithLink(
-          text: original,
+          text: sentence.original,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
         ),
         const SizedBox(height: 8),
-        Text(translation,
+        Text(sentence.translation,
             style: const TextStyle(
                 fontSize: 16, height: 1.6, color: Colors.black87)),
         const SizedBox(height: 24),

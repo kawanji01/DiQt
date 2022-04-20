@@ -1,15 +1,16 @@
 import 'package:booqs_mobile/pages/word/search_results.dart';
 import 'package:booqs_mobile/utils/word_typeahead.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-class WordSearchForm extends StatelessWidget {
+class WordSearchForm extends ConsumerWidget {
   const WordSearchForm({Key? key, required this.searchController})
       : super(key: key);
   final TextEditingController searchController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final _formKey = GlobalKey<FormState>();
 
     String _selectedEntry;

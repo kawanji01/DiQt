@@ -105,8 +105,8 @@ class _WordSentenceSearchModalState extends State<WordSentenceSearchModal> {
     // 検索結果の例文
     Widget _buildListRow(BuildContext context, int index) {
       final sentence = _sentences[index];
-      final original = sentence.original ?? '';
-      final translation = sentence.translation ?? '';
+      final original = sentence.original;
+      final translation = sentence.translation;
 
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
