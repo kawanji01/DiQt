@@ -27,7 +27,7 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
   Widget build(BuildContext context) {
     final future = ref.watch(asyncDrillUnsolvedQuizzesProvider);
 
-    Widget _unsolvedScreen(quizzes) {
+    /* Widget _unsolvedScreen(quizzes) {
       return Column(
         children: [
           const SizedBox(height: 40),
@@ -35,10 +35,17 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
           const SizedBox(height: 32),
           const DrillStatusTabs(),
           const SizedBox(height: 8),
-          DrillUnsolvedQuizzes(quizzes: quizzes),
           const SizedBox(height: 48),
           const UserDrillInProgress(),
         ],
+      );
+    } */
+
+    Widget _unsolvedQuizzes() {
+      return future.when(
+        data: (data) => DrillUnsolvedQuizzes(quizzes: data),
+        error: (err, stack) => Text('Error: $err'),
+        loading: () => const LoadingSpinner(),
       );
     }
 
@@ -52,10 +59,16 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
         // trueを返すことで通知がこれ以上遡らない
         return true;
       },
-      child: future.when(
-        data: (data) => _unsolvedScreen(data),
-        error: (err, stack) => Text('Error: $err'),
-        loading: () => const LoadingSpinner(),
+      child: Column(
+        children: [
+          const SizedBox(height: 40),
+          const DrillIntroduction(),
+          const SizedBox(height: 32),
+          _unsolvedQuizzes(),
+          const SizedBox(height: 8),
+          const SizedBox(height: 48),
+          const UserDrillInProgress(),
+        ],
       ),
     );
   }

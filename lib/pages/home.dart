@@ -38,10 +38,10 @@ class MyHomePage extends ConsumerStatefulWidget {
 class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   void initState() {
+    super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       ref.refresh(asyncCurrentUserProvider);
     });
-    super.initState();
   }
 
   /* @override

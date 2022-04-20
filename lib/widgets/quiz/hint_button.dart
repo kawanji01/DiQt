@@ -80,7 +80,7 @@ class QuizHintButton extends StatelessWidget {
           children: [_hint(), const SizedBox(height: 40), _note()],
         )),
       );
-      Dialogs.slideFromBottomFade(context, screen);
+      Dialogs.slideFromBottomFade(screen);
     }
 
     return ElevatedButton.icon(

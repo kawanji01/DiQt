@@ -42,7 +42,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
       final String email = _idController.text;
       final String password = _passwordController.text;
       Map? resMap = await RemoteSessions.login(email, password);
-
+      EasyLoading.dismiss();
       if (resMap == null) {
         _passwordController.clear();
         const snackBar = SnackBar(content: Text('メールアドレスまたはパスワードが違います。'));
@@ -55,7 +55,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         await UserMyPage.push(context);
       }
-      EasyLoading.dismiss();
     }
 
     Widget _submitButton() {

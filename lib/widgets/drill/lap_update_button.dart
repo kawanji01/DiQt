@@ -29,7 +29,7 @@ class DrillLapUpdateButton extends ConsumerWidget {
       InkWell(
         onTap: () {
           const screen = DrillLapUpdateScreen();
-          Dialogs.slideFromBottomFade(context, screen);
+          Dialogs.slideFromBottomFade(screen);
         },
         child: LargeButton(btnText: '$newLapNumber周目を始める'),
       ),
