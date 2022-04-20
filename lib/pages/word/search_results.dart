@@ -70,9 +70,9 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
     final Map? resMap = await RemoteWords.search(keyword);
     if (resMap == null) return;
 
-    if (resMap['data'] != null) {
+    if (resMap['words'] != null) {
       // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
-      resMap['data'].forEach((e) => _words.add(Word.fromJson(e)));
+      resMap['words'].forEach((e) => _words.add(Word.fromJson(e)));
     }
     setState(() {
       _words;
