@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/pages/answer_setting/edit.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
@@ -39,7 +38,6 @@ const userAchievementsPage = '/user/achievements';
 const userEditPage = '/user/edit';
 const premiumPlanPage = '/user/premium_plan';
 const premiumMenuPage = '/user/premium_menu';
-const answerSettingEdit = '/answer_setting/edit';
 
 const drillUnsolvedPage = '/drill/unsolved';
 
@@ -61,6 +59,5 @@ final routes = {
   userEditPage: (context) => const UserEditPage(),
   premiumPlanPage: (context) => const PremiumPlanPage(),
   premiumMenuPage: (context) => const PremiumMenuPage(),
-  answerSettingEdit: (context) => const AnswerSettingEdit(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
 };

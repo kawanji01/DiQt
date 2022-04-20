@@ -27,20 +27,6 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
   Widget build(BuildContext context) {
     final future = ref.watch(asyncDrillUnsolvedQuizzesProvider);
 
-    /* Widget _unsolvedScreen(quizzes) {
-      return Column(
-        children: [
-          const SizedBox(height: 40),
-          const DrillIntroduction(),
-          const SizedBox(height: 32),
-          const DrillStatusTabs(),
-          const SizedBox(height: 8),
-          const SizedBox(height: 48),
-          const UserDrillInProgress(),
-        ],
-      );
-    } */
-
     Widget _unsolvedQuizzes() {
       return future.when(
         data: (data) => DrillUnsolvedQuizzes(quizzes: data),
@@ -64,9 +50,10 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
           const SizedBox(height: 40),
           const DrillIntroduction(),
           const SizedBox(height: 32),
+          const DrillStatusTabs(),
+          const SizedBox(height: 32),
           _unsolvedQuizzes(),
-          const SizedBox(height: 8),
-          const SizedBox(height: 48),
+          const SizedBox(height: 80),
           const UserDrillInProgress(),
         ],
       ),

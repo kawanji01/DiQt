@@ -84,7 +84,6 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
             _isOpaque = false;
           });
         }
-        // trueを返すことで通知がこれ以上遡らない
         return false;
       },
       // FadeOutで問題を隠す & 高さも消失させる ref: https://stackoverflow.com/questions/58493886/animated-opacity-and-hiding-the-widget-so-its-not-clickable

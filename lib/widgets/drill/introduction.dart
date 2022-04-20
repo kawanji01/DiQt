@@ -16,20 +16,6 @@ class DrillIntroduction extends ConsumerWidget {
     if (drill == null) return Container();
 
     Future<void> _moveToAnswerSetting() async {
-      /* final String? publicUid =
-          ref.watch(currentUserProvider.select((user) => user?.publicUid));
-      if (publicUid == null) return;
-
-      // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
-            return ExternalLinkDialog(
-                redirectPath: 'users/$publicUid/answer_setting');
-          }); */
-
-      //await Dialogs.slideFromBottomFade(screen);
       // bottomSheetを表示するときにインタラクションも消しておく
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
       await showModalBottomSheet(
