@@ -3,24 +3,24 @@ import 'package:booqs_mobile/models/drill.dart';
 
 class User {
   User({
-    this.id = 0,
-    this.publicUid = '',
-    this.name = '',
-    this.icon = '',
+    required this.id,
+    required this.publicUid,
+    required this.name,
+    //this.icon, carrierWaveを利用しているので、'_InternalLinkedHashMap<String, dynamic>' is not a subtype of type 'String?'が発生する
     this.profile = '',
     this.iconImageUrl = '',
-    this.amountOfExp = 0,
-    this.answerHistoriesCount = 0,
-    this.todaysAnswerHistoriesCount = 0,
-    this.answerDaysCount = 0,
-    this.achievementMapsCount = 0,
-    this.premium = false,
-    this.paidViaNativeApp = false,
-    this.unreadNotificationsCount = 0,
-    this.unsolvedReviewsCount = 0,
-    this.reviewsCount = 0,
-    this.weaknessesCount = 0,
-    this.rewardRemained = false,
+    required this.amountOfExp,
+    required this.answerHistoriesCount,
+    required this.todaysAnswerHistoriesCount,
+    required this.answerDaysCount,
+    required this.achievementMapsCount,
+    required this.premium,
+    required this.paidViaNativeApp,
+    required this.unreadNotificationsCount,
+    required this.unsolvedReviewsCount,
+    required this.reviewsCount,
+    required this.weaknessesCount,
+    required this.rewardRemained,
     this.authToken,
     this.answerSetting,
     this.drillInProgress,
@@ -29,7 +29,7 @@ class User {
   int id;
   String publicUid;
   String name;
-  String? icon;
+  //String? icon;
   String? profile;
   String? iconImageUrl;
   int amountOfExp;
@@ -52,7 +52,7 @@ class User {
       : id = json['id'],
         publicUid = json['public_uid'],
         name = json['name'],
-        icon = json['icon'],
+        //icon = json['icon'],
         profile = json['profile'],
         iconImageUrl = json['icon_image_url'],
         amountOfExp = json['amount_of_exp'],
@@ -79,7 +79,7 @@ class User {
         'id': id,
         'public_uid': publicUid,
         'name': name,
-        'icon': icon,
+        //'icon': icon,
         'profile': profile,
         'icon_image_url': iconImageUrl,
         'amount_of_exp': amountOfExp,

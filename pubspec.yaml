@@ -63,6 +63,11 @@ dependencies:
   flutter_animated_dialog: ^2.0.1 # アニメーションするダイアログ
   confetti: ^0.6.0 # 紙吹雪
   audioplayers: ^0.20.1 # 音声の再生
+  infinite_scroll_pagination: ^3.1.0 # 無限スクロール
+  visibility_detector: ^0.2.2 # 無限スクロールで、次のアイテムを読み込むためにページの下端への到達を検知する
+  timeago: ^3.2.2 # ~分前などのタイムスタンプを実装する
+  path: ^1.8.0 # Achievementの獲得時の画像で。cloudinaryの画像合成を利用するためにimageのURLからファイル名を取得するために利用
+  
 
 dev_dependencies:
   flutter_test:

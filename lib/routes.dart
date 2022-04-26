@@ -3,7 +3,8 @@ import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/home.dart';
-import 'package:booqs_mobile/pages/notification/index.dart';
+import 'package:booqs_mobile/pages/notice/home.dart';
+import 'package:booqs_mobile/pages/notice/index.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
@@ -19,7 +20,8 @@ import 'package:booqs_mobile/pages/word/search_results.dart';
 
 const indexPage = '/';
 const reviewIndexPage = '/review/index';
-const notificationIndexPage = '/notification/index';
+const noticeIndexPage = '/notice/index';
+const noticeHomePage = '/notice/home';
 
 const signUpPage = '/session/sign_up';
 const loginPage = '/session/login';
@@ -44,7 +46,8 @@ const drillUnsolvedPage = '/drill/unsolved';
 final routes = {
   indexPage: (context) => const MyHomePage(),
   reviewIndexPage: (context) => const ReviewIndexPage(),
-  notificationIndexPage: (context) => const NotificationIndexPage(),
+  noticeIndexPage: (context) => const NoticeIndexPage(),
+  noticeHomePage: (context) => const NoticeHomePage(),
   userMyPage: (context) => const UserMyPage(),
   signUpPage: (context) => const SignUpPage(),
   loginPage: (context) => const LoginPage(),
