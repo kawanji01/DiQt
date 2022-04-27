@@ -1,7 +1,9 @@
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
+import 'package:booqs_mobile/widgets/relationship/follow_button.dart';
 import 'package:booqs_mobile/widgets/relationship/lazy_follow_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -31,12 +33,14 @@ class _UserShowPageState extends ConsumerState<UserShowPage> {
 
   @override
   Widget build(BuildContext context) {
-    final User? _user = ref.watch(userProvider);
-    final String _title = _user == null ? 'ユーザーページ' : _user.name;
+    // final User? _user = ref.watch(userProvider);
+    // final String _title = _user == null ? 'ユーザーページ' : _user.name;
     final future = ref.watch(asyncUserProvider);
 
     Widget _userPage(user) {
       if (user == null) return const LoadingSpinner();
+
+      final Relationship? relationship = user.relationship;
 
       return SingleChildScrollView(
         child: Container(
@@ -46,9 +50,10 @@ class _UserShowPageState extends ConsumerState<UserShowPage> {
           child: Column(
             children: <Widget>[
               UserProfile(user: user),
-              RelationshipLazyFollowButton(
+              /* RelationshipLazyFollowButton(
                 user: user,
-              ),
+              ), */
+              RelationshipFollowButton(user: user, relationship: relationship),
               UserExpIndicator(user: user),
               UserAchievementsButton(user: user),
               const SizedBox(
@@ -67,10 +72,10 @@ class _UserShowPageState extends ConsumerState<UserShowPage> {
     // 最終的なアウトプット
     return Scaffold(
       appBar: AppBar(
-        title: Text(_title),
+        title: const Text('ユーザーページ'),
       ),
       body: future.when(
-        loading: () => _userPage(_user),
+        loading: () => const LoadingSpinner(),
         error: (err, stack) => Text('Error: $err'),
         data: (data) => _userPage(data),
       ),
