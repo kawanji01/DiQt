@@ -1,21 +1,15 @@
-import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/data/remote/notifications.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
+import 'package:booqs_mobile/widgets/notice/item_list_view.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
-import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NotificationIndexPage extends ConsumerStatefulWidget {
-  const NotificationIndexPage({Key? key}) : super(key: key);
+class NoticeIndexPage extends ConsumerStatefulWidget {
+  const NoticeIndexPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
     // return Navigator.of(context).pushNamed(notificationIndexPage);
@@ -24,31 +18,31 @@ class NotificationIndexPage extends ConsumerStatefulWidget {
       context,
       PageRouteBuilder(
         // 画面遷移のログを送信するために、settings.nameを設定する。
-        settings: const RouteSettings(name: notificationIndexPage),
+        settings: const RouteSettings(name: noticeIndexPage),
         pageBuilder: (context, animation1, animation2) =>
-            const NotificationIndexPage(),
+            const NoticeIndexPage(),
         transitionDuration: Duration.zero,
       ),
     );
   }
 
   @override
-  _NotificationIndexPageState createState() => _NotificationIndexPageState();
+  _NoticeIndexPageState createState() => _NoticeIndexPageState();
 }
 
-class _NotificationIndexPageState extends ConsumerState<NotificationIndexPage> {
+class _NoticeIndexPageState extends ConsumerState<NoticeIndexPage> {
   User? _user;
-  int _unreadNotificationsCount = 0;
-  bool _initDone = false;
+  /* int _unreadNotificationsCount = 0;
+  bool _initDone = false; */
 
   @override
   void initState() {
     super.initState();
-    _loadCount();
+    //_loadCount();
     PushNotification.initialize(context);
   }
 
-  Future _loadCount() async {
+  /* Future _loadCount() async {
     Map? resMap = await RemoteNotifications.index(context);
     if (resMap == null) {
       await UserSetup.logOut(null);
@@ -77,12 +71,12 @@ class _NotificationIndexPageState extends ConsumerState<NotificationIndexPage> {
           // ./locale/ を取り除いたpathを指定する
           return const ExternalLinkDialog(redirectPath: 'notifications');
         });
-  }
+  } */
 
-  Widget _notificationsPageButton() {
+  /* Widget _notificationsPageButton() {
     return InkWell(
       onTap: () {
-        _moveToNotifications();
+        //_moveToNotifications();
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -105,41 +99,29 @@ class _NotificationIndexPageState extends ConsumerState<NotificationIndexPage> {
         ),
       ),
     );
-  }
-
-  Widget _notificationsOrEntrance(user) {
-    if (_initDone == false) return const LoadingSpinner();
-
-    if (_user == null) return const Entrance();
-
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.all(28.0),
-      child: Column(
-        children: <Widget>[
-          const SizedBox(
-            height: 80,
-          ),
-          _notificationsPageButton(),
-          const SizedBox(
-            height: 80,
-          ),
-          const AppBanner(),
-        ],
-      ),
-    );
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('通知'),
-        //automaticallyImplyLeading: false,
+    _user = ref.watch(currentUserProvider);
+
+    if (_user == null) return const Entrance();
+
+    return SingleChildScrollView(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.all(28.0),
+        child: Column(
+          children: const <Widget>[
+            //_notificationsPageButton(),
+            NoticeItemListView(),
+            SizedBox(
+              height: 80,
+            ),
+            AppBanner(),
+          ],
+        ),
       ),
-      body: _notificationsOrEntrance(_user),
-      bottomNavigationBar: const BottomNavbar(),
-      drawer: const DrawerMenu(),
     );
   }
 }

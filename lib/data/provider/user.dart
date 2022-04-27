@@ -40,3 +40,22 @@ final asyncDrillsInProgress = FutureProvider<List<Drill>>((ref) async {
   resMap['drills'].forEach((e) => drills.add(Drill.fromJson(e)));
   return drills;
 });
+
+// ユーザーページなどで表示する他のuser
+final userProvider = StateProvider<User?>((ref) => null);
+// 上のuserのpublic_uid
+final userUidProvider = StateProvider<String?>((ref) => null);
+// IDをもとに非同期でユーザーを取得する
+final asyncUserProvider = FutureProvider<User?>((ref) async {
+  String? publicUid = ref.watch(userUidProvider);
+  if (publicUid == null) return null;
+
+  final Map? resMap = await RemoteUsers.show(publicUid);
+  if (resMap == null) return null;
+
+  // ログインしている場合
+  User user = User.fromJson(resMap['user']);
+  ref.read(userProvider.notifier).state = user;
+
+  return user;
+});

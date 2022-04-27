@@ -31,8 +31,12 @@ class TtsButton extends StatelessWidget {
     } */
 
     return ElevatedButton(
-      child: const Icon(Icons.volume_up),
+      child: const Icon(
+        Icons.volume_up,
+        size: 28.0,
+      ),
       style: ElevatedButton.styleFrom(
+        minimumSize: const Size(48, 48),
         primary: Colors.green,
         onPrimary: Colors.white,
         shape: const CircleBorder(

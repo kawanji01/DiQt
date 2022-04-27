@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/data/remote/answer_setting.dart';
+import 'package:booqs_mobile/data/remote/answer_settings.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/widgets/answer_setting/answer.dart';
 import 'package:booqs_mobile/widgets/answer_setting/review.dart';

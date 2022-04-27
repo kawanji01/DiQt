@@ -4,7 +4,7 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/home.dart';
-import 'package:booqs_mobile/pages/notification/index.dart';
+import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class BottomNavbar extends ConsumerWidget {
     // 通知アイコンの生成
     Widget _buildNotificationIcon(User? user) {
       final int counter = user == null ? 0 : user.unreadNotificationsCount;
-      if (counter == 0) {
+      if (user == null) {
         return const Icon(Icons.notifications);
       }
 
@@ -30,6 +30,21 @@ class BottomNavbar extends ConsumerWidget {
         counterStr = '+99';
       } else {
         counterStr = '$counter';
+      }
+
+      // 未受領の実績メダルがあるなら、それを伝える
+      if (user.rewardRemained) {
+        return Badge(
+          badgeContent: const Icon(
+            Icons.emoji_events,
+            color: Colors.white,
+          ),
+          child: const Icon(Icons.notifications),
+        );
+      }
+
+      if (counter == 0) {
+        return const Icon(Icons.notifications);
       }
 
       return Badge(
@@ -81,7 +96,7 @@ class BottomNavbar extends ConsumerWidget {
           break;
         case 3:
           if (_selectedIndex == index) return;
-          NotificationIndexPage.push(context);
+          NoticeHomePage.push(context);
           break;
         case 4:
           if (_selectedIndex == index) return;

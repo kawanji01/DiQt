@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_tts/flutter_tts.dart';
 
 class TextToSpeech {
@@ -17,6 +19,16 @@ class TextToSpeech {
   static Future<void> speak(int? langNumber, String speechText) async {
     final FlutterTts flutterTts = FlutterTts();
     final String langCode = TextToSpeech.getLangCode(langNumber);
+    // earphoneから音が出ない問題の対処 ref: https://github.com/dlutton/flutter_tts/issues/106
+    if (Platform.isIOS) {
+      await flutterTts
+          .setIosAudioCategory(IosTextToSpeechAudioCategory.playback, [
+        IosTextToSpeechAudioCategoryOptions.allowBluetooth,
+        IosTextToSpeechAudioCategoryOptions.allowBluetoothA2DP,
+        IosTextToSpeechAudioCategoryOptions.mixWithOthers,
+        IosTextToSpeechAudioCategoryOptions.defaultToSpeaker
+      ]);
+    }
     await flutterTts.setLanguage(langCode);
     await flutterTts.setSpeechRate(0.5);
     await flutterTts.setVolume(1.0);

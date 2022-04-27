@@ -10,8 +10,11 @@ import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
+import 'package:booqs_mobile/widgets/shared/premium_plan_button.dart';
+import 'package:booqs_mobile/widgets/user/achievements_button.dart';
 import 'package:booqs_mobile/widgets/user/drill_in_progress.dart';
-import 'package:booqs_mobile/widgets/user/status.dart';
+import 'package:booqs_mobile/widgets/user/exp_indicator.dart';
+import 'package:booqs_mobile/widgets/user/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -119,7 +122,13 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
           child: Column(
             children: <Widget>[
               const UserDrillInProgress(),
-              UserStatus(user: user),
+              UserProfile(user: user),
+              UserExpIndicator(user: user),
+              UserAchievementsButton(user: user),
+              const SizedBox(
+                height: 80,
+              ),
+              PremiumPlanButton(user: user),
               const SizedBox(
                 height: 48,
               ),

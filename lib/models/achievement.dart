@@ -1,35 +1,35 @@
 class Achievement {
   Achievement({
-    this.id,
-    this.orderNumber,
-    this.name = '',
+    required this.id,
+    required this.orderNumber,
+    required this.name,
     this.introduction,
     this.praiseText,
-    this.exp,
-    this.imageUrl,
-    this.lockedImageUrl,
-    this.tutorial = false,
-    this.numberOfAnswers = false,
-    this.daysAnswered = false,
-    this.master = false,
-    this.createdAt,
-    this.updatedAt,
+    required this.exp,
+    required this.imageUrl,
+    required this.lockedImageUrl,
+    required this.tutorial,
+    required this.numberOfAnswers,
+    required this.daysAnswered,
+    required this.master,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
-  int? id;
-  int? orderNumber;
+  int id;
+  int orderNumber;
   String name;
   String? introduction;
   String? praiseText;
-  int? exp;
-  String? imageUrl;
-  String? lockedImageUrl;
+  int exp;
+  String imageUrl;
+  String lockedImageUrl;
   bool tutorial;
   bool numberOfAnswers;
   bool daysAnswered;
   bool master;
-  String? createdAt;
-  String? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   Achievement.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -44,8 +44,8 @@ class Achievement {
         numberOfAnswers = json['number_of_answers'],
         daysAnswered = json['days_answered'],
         master = json['master'],
-        createdAt = json['created_at'],
-        updatedAt = json['updated_at'];
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']);
 
   Map<String, dynamic> toJson() => {
         'id': id,

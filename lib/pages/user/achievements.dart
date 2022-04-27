@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/data/remote/users.dart';
-import 'package:booqs_mobile/models/achivement.dart';
+import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
