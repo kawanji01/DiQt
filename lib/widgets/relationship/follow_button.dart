@@ -31,11 +31,13 @@ class _RelationshipFollowButton
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      setState(() {
-        _user = widget.user;
-        _currentUser = ref.watch(currentUserProvider);
-        _relationship = widget.relationship;
-      });
+      if (mounted) {
+        setState(() {
+          _user = widget.user;
+          _currentUser = ref.watch(currentUserProvider);
+          _relationship = widget.relationship;
+        });
+      }
     });
   }
 

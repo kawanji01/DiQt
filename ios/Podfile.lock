@@ -54,6 +54,9 @@ PODS:
     - Flutter
   - flutter_tts (0.0.1):
     - Flutter
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - Google-Mobile-Ads-SDK (8.11.0):
     - GoogleAppMeasurement (< 9.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
@@ -135,6 +138,9 @@ PODS:
     - Purchases (= 3.13.2)
   - sign_in_with_apple (0.0.1):
     - Flutter
+  - sqflite (0.0.2):
+    - Flutter
+    - FMDB (>= 2.7.5)
   - twitter_login (0.0.1):
     - Flutter
   - url_launcher (0.0.1):
@@ -157,6 +163,7 @@ DEPENDENCIES:
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - purchases_flutter (from `.symlinks/plugins/purchases_flutter/ios`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - twitter_login (from `.symlinks/plugins/twitter_login/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
@@ -168,6 +175,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
     - FirebaseMessaging
+    - FMDB
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -215,6 +223,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/purchases_flutter/ios"
   sign_in_with_apple:
     :path: ".symlinks/plugins/sign_in_with_apple/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
   twitter_login:
     :path: ".symlinks/plugins/twitter_login/ios"
   url_launcher:
@@ -237,6 +247,7 @@ SPEC CHECKSUMS:
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   flutter_tts: 0f492aab6accf87059b72354fcb4ba934304771d
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   Google-Mobile-Ads-SDK: be2192b51b74d74a6ed70590c2e8275412f1b71e
   google_mobile_ads: baafda8d037dcea9f51cfa503ab537fc1ed0aaa7
   google_sign_in: c5cecea71f3be43282263550556e311c4cc03582
@@ -256,9 +267,10 @@ SPEC CHECKSUMS:
   PurchasesCoreSwift: 2ea4b33e5cece5c8a0751594ef7c6cbfcbd747a9
   PurchasesHybridCommon: 56ef42d85c3e930d49aff4ac5fa027373d2e1bb8
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
+  sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   twitter_login: 2794db69b7640681171b17b3c2c84ad9dfb4a57f
   url_launcher: b6e016d912f04be9f5bf6e8e82dc599b7ba59649
 
 PODFILE CHECKSUM: 9dead85be96bd877acb9ba7514a7aad89b7d82b1
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.2

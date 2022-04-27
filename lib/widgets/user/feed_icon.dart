@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/pages/user/show.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -26,15 +27,30 @@ class UserFeedIcon extends ConsumerWidget {
     }
 
     Widget _image() {
+      final String imageUrl = '${user.iconImageUrl}';
+      // const String notFoundIconName = 'assets/images/not_found_icon.png';
+      final image = CachedNetworkImage(
+        imageUrl: imageUrl,
+        placeholder: (context, url) => const CircularProgressIndicator(),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+        height: 56,
+        width: 56,
+      );
+
       // ref: https://www.codegrepper.com/code-examples/dart/fit+image+in+circle+avatar+flutter
-      return ClipRRect(
-          child: Image.network('${user.iconImageUrl}'),
-          borderRadius: BorderRadius.circular(50.0));
+      return CircleAvatar(
+        radius: 16.0,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(50.0),
+          child: image,
+        ),
+      );
     }
 
     return InkWell(
       onTap: () => {_moveToUserPage(user)},
       child: Container(
+          height: 56,
           padding: EdgeInsets.only(right: paddingRight),
           child: _image(),
           width: width),

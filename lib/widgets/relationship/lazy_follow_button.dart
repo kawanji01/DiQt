@@ -2,8 +2,6 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/relationships.dart';
 import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/widgets/button/small_green_button.dart';
-import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
 import 'package:booqs_mobile/widgets/relationship/follow_button.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -43,11 +41,14 @@ class _RelationShipLazyFollowButtonState
     final Relationship? relationship = resMap['relationship'] == null
         ? null
         : Relationship.fromJson(resMap['relationship']);
-    setState(() {
-      _user = user;
-      _currentUser = currentUser;
-      _relationship = relationship;
-    });
+    // 画面間を素早く行き来すると発生するエラーの解決 ref: https://blog.mrym.tv/2019/12/traps-on-calling-setstate-inside-initstate/
+    if (mounted) {
+      setState(() {
+        _user = user;
+        _currentUser = currentUser;
+        _relationship = relationship;
+      });
+    }
   }
 
   @override
