@@ -5,7 +5,6 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
-import 'package:booqs_mobile/pages/notice/index.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +32,7 @@ class BottomNavbar extends ConsumerWidget {
         counterStr = '$counter';
       }
 
+      // 未受領の実績メダルがあるなら、それを伝える
       if (user.rewardRemained) {
         return Badge(
           badgeContent: const Icon(

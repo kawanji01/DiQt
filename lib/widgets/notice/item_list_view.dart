@@ -38,7 +38,7 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
     if (achievementMapJson == null) return;
     final AchievementMap map = AchievementMap.fromJson(achievementMapJson);
     final screen = NoticeUnreceivedAchievement(achievementMap: map);
-    Dialogs.slideFromBottomFade(screen);
+    Dialogs.reward(screen);
   }
 
   // ページに合わせてアイテムを読み込む

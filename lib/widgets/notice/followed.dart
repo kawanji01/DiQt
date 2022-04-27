@@ -1,11 +1,12 @@
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/widgets/notice/timestamp.dart';
+import 'package:booqs_mobile/widgets/relationship/lazy_follow_button.dart';
 import 'package:booqs_mobile/widgets/user/feed_icon.dart';
 import 'package:flutter/material.dart';
 
-class NoticeFollow extends StatelessWidget {
-  const NoticeFollow({Key? key, required this.notice}) : super(key: key);
+class NoticeFollowed extends StatelessWidget {
+  const NoticeFollowed({Key? key, required this.notice}) : super(key: key);
   final Notice notice;
 
   @override
@@ -43,7 +44,7 @@ class NoticeFollow extends StatelessWidget {
               fontWeight: FontWeight.normal)),
     ]));
 
-    final Widget notifying = Container(
+    final Widget message = Container(
       padding: const EdgeInsets.only(top: 16, bottom: 24),
       child: Row(
         children: [
@@ -55,10 +56,51 @@ class NoticeFollow extends StatelessWidget {
       ),
     );
 
+    // referenceの中のユーザー情報＆フォローバックボタン
+    final userInfo = Container(
+      padding: const EdgeInsets.only(top: 16, bottom: 24),
+      child: Row(
+        children: [
+          UserFeedIcon(user: user),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  user.name,
+                  style: const TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+                Text(
+                  user.profile ?? '',
+                  style: const TextStyle(color: Colors.black87, fontSize: 14),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                RelationshipLazyFollowButton(user: user),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+
+    final Widget reference = Container(
+      padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          border: Border.all(color: Colors.black26)),
+      child: userInfo,
+    );
+
     return Column(
       children: [
         NoticeTimestamp(notice: notice),
-        notifying,
+        message,
+        reference,
         const SizedBox(height: 48),
       ],
     );
