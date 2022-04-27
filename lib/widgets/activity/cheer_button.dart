@@ -1,9 +1,9 @@
 import 'package:booqs_mobile/data/remote/cheers.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/cheer.dart';
-import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/button/small_outline_green_button.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 
 class ActivityCheerButton extends StatefulWidget {
@@ -17,22 +17,25 @@ class ActivityCheerButton extends StatefulWidget {
 }
 
 class _ActivityCheerButtonState extends State<ActivityCheerButton> {
+  Activity? _activity;
   Cheer? _cheer;
-  bool tapped = false;
+  bool _tapped = false;
 
   @override
   void initState() {
     super.initState();
     setState(() {
+      _activity = widget.activity;
       _cheer = widget.cheer;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_activity == null) return const LoadingSpinner();
+
     Future<void> _createCheer() async {
-      final Activity activity = widget.activity;
-      final Map? resMap = await RemoteCheers.create(activity.id);
+      final Map? resMap = await RemoteCheers.create(_activity!.id);
       if (resMap == null) return;
       final Cheer cheer = Cheer.fromJson(resMap['cheer']);
       setState(() {
@@ -58,6 +61,9 @@ class _ActivityCheerButtonState extends State<ActivityCheerButton> {
 
       return InkWell(
         onTap: () {
+          setState(() {
+            _tapped = true;
+          });
           _createCheer();
         },
         child: SmallOutlineGreenButton(
@@ -88,7 +94,7 @@ class _ActivityCheerButtonState extends State<ActivityCheerButton> {
 
     Widget _button() {
       // 楽観的UI
-      if (_cheer != null || tapped == true) {
+      if (_cheer != null || _tapped == true) {
         return _cheeredBtn();
       }
       return _cheerBtn();

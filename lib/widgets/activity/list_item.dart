@@ -20,7 +20,8 @@ class ActivityListItem extends StatelessWidget {
         ActivityCheerButton(
           activity: activity,
           cheer: cheer,
-        )
+        ),
+        const SizedBox(height: 48),
       ],
     );
   }
