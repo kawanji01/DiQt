@@ -1,9 +1,6 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/drill.dart';
-import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

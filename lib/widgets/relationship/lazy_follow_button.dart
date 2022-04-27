@@ -13,11 +13,11 @@ class RelationshipLazyFollowButton extends ConsumerStatefulWidget {
   final User user;
 
   @override
-  _RelationShipLazyFollowButtonState createState() =>
-      _RelationShipLazyFollowButtonState();
+  _RelationshipLazyFollowButtonState createState() =>
+      _RelationshipLazyFollowButtonState();
 }
 
-class _RelationShipLazyFollowButtonState
+class _RelationshipLazyFollowButtonState
     extends ConsumerState<RelationshipLazyFollowButton> {
   User? _user;
   User? _currentUser;
