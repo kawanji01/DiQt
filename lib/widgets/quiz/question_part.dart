@@ -48,6 +48,7 @@ class QuizQuestionPart extends StatelessWidget {
             QuizQuestionText(
               quiz: quiz,
             ),
+            const SizedBox(height: 8),
             _ttsBtn(),
             QuizHintButton(quiz: quiz),
           ]),

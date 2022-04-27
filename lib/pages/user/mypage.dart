@@ -15,7 +15,6 @@ import 'package:booqs_mobile/widgets/user/achievements_button.dart';
 import 'package:booqs_mobile/widgets/user/drill_in_progress.dart';
 import 'package:booqs_mobile/widgets/user/exp_indicator.dart';
 import 'package:booqs_mobile/widgets/user/profile.dart';
-import 'package:booqs_mobile/widgets/user/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
