@@ -4,6 +4,8 @@ import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
+import 'package:booqs_mobile/widgets/relationship/follow_button.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,9 +52,14 @@ class _RelationShipLazyFollowButtonState
 
   @override
   Widget build(BuildContext context) {
-    if (_user == null || _currentUser == null) return Container();
+    if (_user == null || _currentUser == null) return const LoadingSpinner();
 
-    // フォロー
+    return RelationshipFollowButton(
+      user: _user!,
+      relationship: _relationship,
+    );
+
+    /* // フォロー
     Future<void> _follow() async {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteRelationships.create(_user!.publicUid);
@@ -134,6 +141,6 @@ class _RelationShipLazyFollowButtonState
       return _followButton();
     }
 
-    return _removeButton(_relationship);
+    return _removeButton(_relationship); */
   }
 }

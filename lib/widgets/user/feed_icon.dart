@@ -1,13 +1,16 @@
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/pages/user/show.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserFeedIcon extends StatelessWidget {
+class UserFeedIcon extends ConsumerWidget {
   const UserFeedIcon({Key? key, required this.user}) : super(key: key);
   final User user;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     SizeConfig().init(context);
     double grid = SizeConfig.blockSizeHorizontal ?? 0;
     // 画面の20%
@@ -16,17 +19,9 @@ class UserFeedIcon extends StatelessWidget {
 
     // Drillページに遷移
     Future _moveToUserPage(user) async {
-      /* final String? token = await LocalUserInfo.authToken();
-
-      if (token == null) {
-        const snackBar = SnackBar(content: Text('問題を解くにはログインが必要です。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
-      } else {
-        ref.read(drillProvider.notifier).state = drill;
-        DrillUnsolvedPage.push(context);
-      } */
-      print('tap');
+      ref.read(userProvider.notifier).state = user;
+      ref.read(userUidProvider.notifier).state = user.publicUid;
+      UserShowPage.push(context);
     }
 
     Widget _image() {
@@ -36,9 +31,12 @@ class UserFeedIcon extends StatelessWidget {
           borderRadius: BorderRadius.circular(50.0));
     }
 
-    return Container(
-        padding: EdgeInsets.only(right: paddingRight),
-        child: _image(),
-        width: width);
+    return InkWell(
+      onTap: () => {_moveToUserPage(user)},
+      child: Container(
+          padding: EdgeInsets.only(right: paddingRight),
+          child: _image(),
+          width: width),
+    );
   }
 }

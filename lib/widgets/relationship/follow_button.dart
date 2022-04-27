@@ -1,24 +1,28 @@
+import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/relationships.dart';
 import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserFollowButton extends ConsumerStatefulWidget {
-  const UserFollowButton({Key? key, required this.user, this.relationship})
+class RelationshipFollowButton extends ConsumerStatefulWidget {
+  const RelationshipFollowButton(
+      {Key? key, required this.user, required this.relationship})
       : super(key: key);
   final User user;
   final Relationship? relationship;
 
   @override
-  _UserFollowButtonState createState() => _UserFollowButtonState();
+  _RelationshipFollowButton createState() => _RelationshipFollowButton();
 }
 
-class _UserFollowButtonState extends ConsumerState<UserFollowButton> {
+class _RelationshipFollowButton
+    extends ConsumerState<RelationshipFollowButton> {
   User? _user;
   User? _currentUser;
   Relationship? _relationship;
@@ -41,6 +45,10 @@ class _UserFollowButtonState extends ConsumerState<UserFollowButton> {
 
     // フォロー
     Future<void> _follow() async {
+      // ログインしていないならマイページ（ログイン画面）に飛ばす
+      final String? token = await LocalUserInfo.authToken();
+      if (token == null) return UserMyPage.push(context);
+
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteRelationships.create(_user!.publicUid);
       EasyLoading.dismiss();
@@ -98,16 +106,14 @@ class _UserFollowButtonState extends ConsumerState<UserFollowButton> {
         WidgetSpan(
           child: Icon(
             Icons.person,
-            color: Colors.black87,
+            color: Colors.white,
             size: 18.0,
           ),
         ),
         TextSpan(
             text: ' フォロー中',
             style: TextStyle(
-                color: Colors.black87,
-                fontSize: 16,
-                fontWeight: FontWeight.bold))
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
       ]));
       return InkWell(
         onTap: () {
@@ -119,10 +125,14 @@ class _UserFollowButtonState extends ConsumerState<UserFollowButton> {
       );
     }
 
-    if (_relationship == null) {
-      return _followButton();
+    Widget _button(relationship) {
+      if (relationship == null) {
+        return _followButton();
+      } else {
+        return _removeButton(relationship);
+      }
     }
 
-    return _removeButton(_relationship);
+    return _button(_relationship);
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -8,7 +9,7 @@ import 'package:http/http.dart';
 class RemoteUsers {
   // ログインユーザーの取得　　　users/status
   // （次のアップデートで削除予定）
-  static Future<Map?> status(BuildContext context) async {
+  /* static Future<Map?> status(BuildContext context) async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
 
@@ -21,7 +22,7 @@ class RemoteUsers {
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
     return resMap;
-  }
+  } */
 
   // 現在のログインユーザーの取得　　　users/current_user
   static Future<Map?> currentUser() async {
@@ -36,6 +37,18 @@ class RemoteUsers {
 
     if (res.statusCode != 200) return null;
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // 特定のユーザー情報を取得
+  static Future<Map?> show(String publicUid) async {
+    final String token = await LocalUserInfo.authToken() ?? '';
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid?token=$token');
+    final Response res = await get(url);
+
+    if (res.statusCode != 200) return null;
     final Map resMap = json.decode(res.body);
     return resMap;
   }

@@ -1,10 +1,8 @@
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/widgets/user/achievements_button.dart';
-import 'package:booqs_mobile/widgets/user/exp_indicator.dart';
 import 'package:flutter/material.dart';
 
-class UserStatus extends StatelessWidget {
-  const UserStatus({Key? key, required this.user}) : super(key: key);
+class UserProfile extends StatelessWidget {
+  const UserProfile({Key? key, required this.user}) : super(key: key);
   final User user;
 
   @override
@@ -22,21 +20,15 @@ class UserStatus extends StatelessWidget {
       ),
     );
 
-    final userName = Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        user.name,
-        style: const TextStyle(
-            fontSize: 28.0, color: Colors.black54, fontWeight: FontWeight.w800),
-      ),
+    final userName = Text(
+      user.name,
+      style: const TextStyle(
+          fontSize: 28.0, color: Colors.black54, fontWeight: FontWeight.w800),
     );
 
-    final profile = Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        user.profile ?? '',
-        style: const TextStyle(fontSize: 16.0, color: Colors.black54),
-      ),
+    final profile = Text(
+      user.profile ?? '',
+      style: const TextStyle(fontSize: 16.0, color: Colors.black54),
     );
 
     return Container(
@@ -47,9 +39,8 @@ class UserStatus extends StatelessWidget {
         children: <Widget>[
           icon,
           userName,
+          const SizedBox(height: 8),
           profile,
-          UserExpIndicator(user: user),
-          UserAchievementsButton(user: user),
         ],
       ),
     );

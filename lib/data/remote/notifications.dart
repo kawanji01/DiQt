@@ -7,7 +7,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 
 class RemoteNotifications {
-  // 通知の取得　　　users/:id/status
+  // 通知の取得（削除予定）
   static Future<Map?> list(BuildContext context) async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
