@@ -32,6 +32,7 @@ class _UserShowPageState extends ConsumerState<UserShowPage> {
   @override
   Widget build(BuildContext context) {
     final User? _user = ref.watch(userProvider);
+    final String _title = _user == null ? 'ユーザーページ' : _user.name;
     final future = ref.watch(asyncUserProvider);
 
     Widget _userPage(user) {
@@ -66,7 +67,7 @@ class _UserShowPageState extends ConsumerState<UserShowPage> {
     // 最終的なアウトプット
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ユーザーページ'),
+        title: Text(_title),
       ),
       body: future.when(
         loading: () => _userPage(_user),

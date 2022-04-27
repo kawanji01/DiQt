@@ -7,7 +7,6 @@ import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
 import 'package:booqs_mobile/widgets/relationship/follow_button.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RelationshipLazyFollowButton extends ConsumerStatefulWidget {
@@ -41,8 +40,9 @@ class _RelationShipLazyFollowButtonState
   Future<void> _loadRelationship(User user, User currentUser) async {
     final Map? resMap = await RemoteRelationships.find(_user!.publicUid);
     if (resMap == null) return;
-    final Relationship relationship =
-        Relationship.fromJson(resMap['relationship']);
+    final Relationship? relationship = resMap['relationship'] == null
+        ? null
+        : Relationship.fromJson(resMap['relationship']);
     setState(() {
       _user = user;
       _currentUser = currentUser;
@@ -53,94 +53,12 @@ class _RelationShipLazyFollowButtonState
   @override
   Widget build(BuildContext context) {
     if (_user == null || _currentUser == null) return const LoadingSpinner();
+    // 自分ならフォローボタンを表示しない
+    if (_user?.id == _currentUser?.id) return Container();
 
     return RelationshipFollowButton(
       user: _user!,
       relationship: _relationship,
     );
-
-    /* // フォロー
-    Future<void> _follow() async {
-      EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteRelationships.create(_user!.publicUid);
-      EasyLoading.dismiss();
-      if (resMap == null) return;
-
-      final Relationship relationship =
-          Relationship.fromJson(resMap['relationship']);
-      setState(() {
-        _relationship = relationship;
-      });
-    }
-
-    // フォロー解除
-    Future<void> _remove() async {
-      if (_relationship == null) return;
-      EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteRelationships.destroy(_relationship!);
-      EasyLoading.dismiss();
-      if (resMap == null) return;
-      setState(() {
-        _relationship = null;
-      });
-    }
-
-    Widget _followButton() {
-      final richText = RichText(
-          text: const TextSpan(children: [
-        WidgetSpan(
-          child: Icon(
-            Icons.person_add,
-            color: Colors.black87,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' フォローする',
-            style: TextStyle(
-                color: Colors.black87,
-                fontSize: 16,
-                fontWeight: FontWeight.bold))
-      ]));
-      return InkWell(
-        onTap: () {
-          _follow();
-        },
-        child: SmallOutlineGrayButton(
-          richText: richText,
-        ),
-      );
-    }
-
-    Widget _removeButton(relationship) {
-      final richText = RichText(
-          text: const TextSpan(children: [
-        WidgetSpan(
-          child: Icon(
-            Icons.person,
-            color: Colors.white,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' フォロー中',
-            style: TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
-      ]));
-      return InkWell(
-        onTap: () {
-          _remove();
-        },
-        child: SmallGreenButton(
-          richText: richText,
-        ),
-      );
-    }
-
-    if (_relationship == null) {
-      return _followButton();
-    }
-
-    return _removeButton(_relationship); */
   }
 }
