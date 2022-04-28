@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/drill/unsolved_screen_wrapper.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,14 +21,11 @@ class DrillUnsolvedPage extends ConsumerWidget {
       return true;
     } */
 
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+    return const Scaffold(
+      appBar: EmptyAppBar(),
       extendBodyBehindAppBar: true,
-      body: const DrillUnsolvedScreenWrapper(),
-      bottomNavigationBar: const BottomNavbar(),
+      body: DrillUnsolvedScreenWrapper(),
+      bottomNavigationBar: BottomNavbar(),
     );
   }
 }

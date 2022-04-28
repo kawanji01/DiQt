@@ -6,6 +6,7 @@ import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/widgets/review/unsolved_screen_wrapper.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
+import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -53,10 +54,7 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+      appBar: const EmptyAppBar(),
       extendBodyBehindAppBar: true,
       body: _reviewsOrEntrance(),
       bottomNavigationBar: const BottomNavbar(),
