@@ -15,6 +15,7 @@ class ActivityItemListView extends StatefulWidget {
 
 class _ActivityItemListViewState extends State<ActivityItemListView> {
   bool _reachedLast = true;
+  bool _isLoading = false;
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const _pageSize = 10;
@@ -30,15 +31,20 @@ class _ActivityItemListViewState extends State<ActivityItemListView> {
 
   // ページに合わせてアイテムを読み込む
   Future<void> _fetchPage(int pageKey) async {
+    if (_isLoading) return;
     print('nextPageKey: $_nextPagekey');
     if (_reachedLast == false) return;
     _reachedLast = false;
-    // try {
+    _isLoading = true;
+
     final Map? resMap = await RemoteActivities.index(pageKey, _pageSize);
-    if (resMap == null) return;
+    if (resMap == null) {
+      _isLoading = false;
+      return;
+    }
     final List<Activity> activities = [];
     resMap['activities'].forEach((e) => activities.add(Activity.fromJson(e)));
-    print(activities.length);
+    // print(activities.length);
     final isLastPage = activities.length < _pageSize;
     if (isLastPage) {
       _pagingController.appendLastPage(activities);
@@ -48,10 +54,7 @@ class _ActivityItemListViewState extends State<ActivityItemListView> {
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(activities, _nextPagekey);
     }
-    /* } catch (error) {
-      print(error);
-      //_pagingController.error = error;
-    } */
+    _isLoading = false;
   }
 
   @override
