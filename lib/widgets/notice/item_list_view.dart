@@ -18,6 +18,7 @@ class NoticeItemListView extends StatefulWidget {
 }
 
 class _NoticeItemListViewState extends State<NoticeItemListView> {
+  bool _isLoading = false;
   bool _reachedLast = true;
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
@@ -43,15 +44,19 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
 
   // ページに合わせてアイテムを読み込む
   Future<void> _fetchPage(int pageKey) async {
+    if (_isLoading) return;
     print('nextPageKey: $_nextPagekey');
     if (_reachedLast == false) return;
     _reachedLast = false;
-    // try {
+    _isLoading = true;
     final Map? resMap = await RemoteNotifications.index(pageKey, _pageSize);
-    if (resMap == null) return;
+    if (resMap == null) {
+      _isLoading = false;
+      return;
+    }
     final List<Notice> notices = [];
     resMap['notifications'].forEach((e) => notices.add(Notice.fromJson(e)));
-    print(notices.length);
+    //print(notices.length);
     // 未受領の実績メダルをモーダル表示
     _displayUnreceivedAchievement(resMap);
     final isLastPage = notices.length < _pageSize;
@@ -63,10 +68,7 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(notices, _nextPagekey);
     }
-    /* } catch (error) {
-      print(error);
-      //_pagingController.error = error;
-    } */
+    _isLoading = false;
   }
 
   @override
