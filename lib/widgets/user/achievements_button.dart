@@ -1,15 +1,18 @@
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserAchievementsButton extends StatelessWidget {
+class UserAchievementsButton extends ConsumerWidget {
   const UserAchievementsButton({Key? key, required this.user})
       : super(key: key);
   final User user;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     Future _moveToAchievementsPage() async {
+      ref.read(userProvider.notifier).state = user;
       await UserAchievementsPage.pushDialog(context, user);
     }
 

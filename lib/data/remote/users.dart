@@ -71,21 +71,17 @@ class RemoteUsers {
   }
 
   // 実績メダルの取得
-  static Future<Map?> achievements(BuildContext context) async {
-    const storage = FlutterSecureStorage();
-    String? uid = await storage.read(key: 'publicUid');
-    if (uid == null) return null;
-
-    Uri url = Uri.parse(
-        '${DiQtURL.root(context)}/api/v1/mobile/users/$uid/achievements');
-    Response res =
+  static Future<Map?> achievements(String publicUid) async {
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid/achievements');
+    final Response res =
         await get(url, headers: {"Content-Type": "application/json"});
 
     if (res.statusCode != 200) {
       return null;
     }
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
+    final Map resMap = json.decode(res.body);
     return resMap;
   }
 
