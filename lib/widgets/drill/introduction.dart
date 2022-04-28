@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,7 +37,11 @@ class DrillIntroduction extends ConsumerWidget {
           fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
     );
 
-    final image = Image(image: NetworkImage(drill.imageUrl));
+    final image = CachedNetworkImage(
+      imageUrl: drill.imageUrl,
+      placeholder: (context, url) => const CircularProgressIndicator(),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+    );
 
     final settingButton = ElevatedButton.icon(
       style: ElevatedButton.styleFrom(

@@ -5,6 +5,7 @@ import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/widgets/user/feed_icon.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
@@ -78,7 +79,11 @@ class ActivityAchievement extends StatelessWidget {
         onTap: () {
           UserAchievementsPage.pushDialog(context, user);
         },
-        child: Image.network(achievementImageUrl),
+        child: CachedNetworkImage(
+          imageUrl: achievementImageUrl,
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
       );
     }
 

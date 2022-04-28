@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -19,6 +20,12 @@ class ChapterCard extends ConsumerWidget {
       // TODO: タグによる経由のページ遷移のために、一応publidUidは渡しておく（タグを改善したら修正する）
       await ChapterShowPage.push(context, chapter.publicUid);
     }
+
+    final image = CachedNetworkImage(
+      imageUrl: chapter.imageUrl,
+      placeholder: (context, url) => const CircularProgressIndicator(),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+    );
 
     // カードデザインの参考： https://material.io/components/cards/flutter
     return Card(
@@ -41,7 +48,7 @@ class ChapterCard extends ConsumerWidget {
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ),
-            Image(image: NetworkImage('${chapter.imageUrl}')),
+            image,
             Padding(
               padding: const EdgeInsets.only(
                   right: 16.0, left: 16, top: 16, bottom: 32),
@@ -50,25 +57,6 @@ class ChapterCard extends ConsumerWidget {
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ),
-            //ButtonBar(
-            //  alignment: MainAxisAlignment.start,
-            //  children: [
-            //    FlatButton(
-            //      textColor: const Color(0xFF6200EE),
-            //      onPressed: () {
-            // Perform some action
-            //      },
-            //      child: const Text('ACTION 1'),
-            //   ),
-            //    FlatButton(
-            //      textColor: const Color(0xFF6200EE),
-            //      onPressed: () {
-            // Perform some action
-            //      },
-            //      child: const Text('ACTION 2'),
-            //    ),
-            //  ],
-            //),
           ],
         ),
       ),

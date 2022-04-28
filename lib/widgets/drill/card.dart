@@ -4,6 +4,7 @@ import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -46,6 +47,12 @@ class DrillCard extends ConsumerWidget {
       );
     }
 
+    final image = CachedNetworkImage(
+      imageUrl: drill.imageUrl,
+      placeholder: (context, url) => const CircularProgressIndicator(),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+    );
+
     // カードデザインの参考： https://material.io/components/cards/flutter
     return Card(
       margin: const EdgeInsets.only(bottom: 24),
@@ -58,7 +65,6 @@ class DrillCard extends ConsumerWidget {
         child: Column(
           children: [
             ListTile(
-              //leading: Image(image: NetworkImage('${chapter.iconUrl}')),
               title: Container(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(drill.title,
@@ -67,7 +73,7 @@ class DrillCard extends ConsumerWidget {
               ),
               subtitle: _subtitle(),
             ),
-            Image(image: NetworkImage(drill.imageUrl)),
+            image,
             Padding(
               padding: const EdgeInsets.only(
                   right: 16.0, left: 16, top: 16, bottom: 32),
@@ -76,25 +82,6 @@ class DrillCard extends ConsumerWidget {
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ),
-            //ButtonBar(
-            //  alignment: MainAxisAlignment.start,
-            //  children: [
-            //    FlatButton(
-            //      textColor: const Color(0xFF6200EE),
-            //      onPressed: () {
-            // Perform some action
-            //      },
-            //      child: const Text('ACTION 1'),
-            //   ),
-            //    FlatButton(
-            //      textColor: const Color(0xFF6200EE),
-            //      onPressed: () {
-            // Perform some action
-            //      },
-            //      child: const Text('ACTION 2'),
-            //    ),
-            //  ],
-            //),
           ],
         ),
       ),
