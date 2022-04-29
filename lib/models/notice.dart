@@ -4,6 +4,7 @@ import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/cheer.dart';
 import 'package:booqs_mobile/models/monthly_report.dart';
+import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/models/weekly_report.dart';
 
@@ -32,6 +33,7 @@ class Notice {
     this.achievement,
     this.activity,
     this.cheer,
+    this.relationship,
   });
 
   int id;
@@ -57,6 +59,7 @@ class Notice {
   Achievement? achievement;
   Activity? activity;
   Cheer? cheer;
+  Relationship? relationship;
 
   Notice.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -91,7 +94,10 @@ class Notice {
         activity = json['activity'] == null
             ? null
             : Activity.fromJson(json['activity']),
-        cheer = json['cheer'] == null ? null : Cheer.fromJson(json['cheer']);
+        cheer = json['cheer'] == null ? null : Cheer.fromJson(json['cheer']),
+        relationship = json['relationship'] == null
+            ? null
+            : Relationship.fromJson(json['relationship']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -117,5 +123,6 @@ class Notice {
         'achievement': achievement,
         'activity': activity,
         'cheer': cheer,
+        'relationship': relationship,
       };
 }

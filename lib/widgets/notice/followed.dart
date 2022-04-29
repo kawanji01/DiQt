@@ -1,7 +1,8 @@
 import 'package:booqs_mobile/models/notice.dart';
+import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/widgets/notice/timestamp.dart';
-import 'package:booqs_mobile/widgets/relationship/lazy_follow_button.dart';
+import 'package:booqs_mobile/widgets/relationship/follow_button.dart';
 import 'package:booqs_mobile/widgets/user/feed_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ class NoticeFollowed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final User user = notice.notifying!;
+    final Relationship? relationship = notice.relationship;
 
     final Widget information = RichText(
         text: TextSpan(children: [
@@ -80,7 +82,10 @@ class NoticeFollowed extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                RelationshipLazyFollowButton(user: user),
+                RelationshipFollowButton(
+                  user: user,
+                  relationship: relationship,
+                ),
               ],
             ),
           ),
