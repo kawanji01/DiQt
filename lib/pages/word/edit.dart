@@ -1,5 +1,5 @@
-import 'dart:convert';
-
+import 'package:booqs_mobile/data/provider/word.dart';
+import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -7,21 +7,22 @@ import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/word/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordEditPage extends StatefulWidget {
+class WordEditPage extends ConsumerStatefulWidget {
   const WordEditPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context, Word word) async {
-    return Navigator.of(context).pushNamed(wordEditPage, arguments: word);
+  static Future push(BuildContext context) async {
+    return Navigator.of(context).pushNamed(wordEditPage);
   }
 
   @override
   _WordEditPageState createState() => _WordEditPageState();
 }
 
-class _WordEditPageState extends State<WordEditPage> {
+class _WordEditPageState extends ConsumerState<WordEditPage> {
+  Word? _word;
+  int? _dictionaryId;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _entryController = TextEditingController();
@@ -29,8 +30,20 @@ class _WordEditPageState extends State<WordEditPage> {
   final _explanationController = TextEditingController();
   final _sentenceIdController = TextEditingController();
 
-  Future _goToWordPage(word) async {
-    await WordShowPage.pushReplacement(context, word.id);
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      _word = ref.watch(wordProvider);
+      _entryController.text = _word!.entry;
+      _meaningController.text = _word!.meaning;
+      _explanationController.text = _word!.explanation ?? '';
+      _sentenceIdController.text = _word!.sentenceId.toString();
+      _dictionaryId = _word!.dictionaryId;
+      setState(() {
+        _word;
+      });
+    });
   }
 
   @override
@@ -46,13 +59,12 @@ class _WordEditPageState extends State<WordEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    // 項目の取得
-    final Word _word = ModalRoute.of(context)!.settings.arguments as Word;
-    _entryController.text = _word.entry;
-    _meaningController.text = _word.meaning;
-    _explanationController.text = _word.explanation;
-    _sentenceIdController.text = _word.sentenceId.toString();
-    int? _dictionaryId = _word.dictionaryId;
+    if (_word == null) return Container();
+
+    Future _goToWordPage(word) async {
+      ref.read(wordProvider.notifier).state = word;
+      await WordShowPage.pushReplacement(context);
+    }
 
     Future _save(word) async {
       // 各Fieldのvalidatorを呼び出す
@@ -61,7 +73,7 @@ class _WordEditPageState extends State<WordEditPage> {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
 
-      const storage = FlutterSecureStorage();
+      /* const storage = FlutterSecureStorage();
       String? token = await storage.read(key: 'token');
 
       // リクエスト
@@ -74,9 +86,27 @@ class _WordEditPageState extends State<WordEditPage> {
         'meaning': _meaningController.text,
         'explanation': _explanationController.text,
         'sentence_id': _sentenceIdController.text,
-      });
+      }); */
+      Map<String, dynamic> params = word.toJson();
+      params['entry'] = _entryController.text;
+      params['meaning'] = _meaningController.text;
+      params['explanation'] = _explanationController.text;
+      params['sentence_id'] = _sentenceIdController.text;
+      final Map? resMap = await RemoteWords.update(params);
 
-      if (response.statusCode == 200) {
+      if (resMap == null) {
+        EasyLoading.dismiss();
+        const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        word = Word.fromJson(resMap['word']);
+        final snackBar = SnackBar(content: Text('${resMap['message']}'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        _goToWordPage(word);
+      }
+      EasyLoading.dismiss();
+
+      /* if (response.statusCode == 200) {
         // 画面全体のローディングを消す。
         EasyLoading.dismiss();
         Map<String, dynamic> resMap = json.decode(response.body);
@@ -88,7 +118,7 @@ class _WordEditPageState extends State<WordEditPage> {
         EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
+      } */
     }
 
     // 更新ボタン
@@ -114,7 +144,7 @@ class _WordEditPageState extends State<WordEditPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${_word.entry}の編集'),
+        title: Text('${_word!.entry}の編集'),
       ),
       body: SingleChildScrollView(
         child: Container(

@@ -9,6 +9,7 @@ import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewSmallSettingButton extends ConsumerStatefulWidget {
@@ -48,7 +49,9 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
         return;
       }
 
+      EasyLoading.show(status: 'loading...');
       Map? resMap = await RemoteReviews.create(context, quizId, null);
+      EasyLoading.dismiss();
       if (resMap == null) return;
 
       Review newReview = Review.fromJson(resMap['review']);

@@ -4,12 +4,12 @@ import 'package:booqs_mobile/models/sentence.dart';
 class Word {
   Word(
       {this.id,
-      this.dictionaryId,
+      required this.dictionaryId,
       this.sentenceId,
-      this.entry = '',
-      this.langNumberOfEntry,
-      this.meaning = '',
-      this.langNumberOfMeaning,
+      required this.entry,
+      required this.langNumberOfEntry,
+      required this.meaning,
+      required this.langNumberOfMeaning,
       this.explanation = '',
       this.ipa,
       this.reading,
@@ -22,13 +22,13 @@ class Word {
       this.dictionary});
 
   int? id;
-  int? dictionaryId;
+  int dictionaryId;
   int? sentenceId;
   String entry;
-  int? langNumberOfEntry;
+  int langNumberOfEntry;
   String meaning;
-  int? langNumberOfMeaning;
-  String explanation;
+  int langNumberOfMeaning;
+  String? explanation;
   String? ipa;
   String? reading;
   bool? phrase;
@@ -63,12 +63,12 @@ class Word {
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'dictionaryId': dictionaryId,
-        'sentenceId': sentenceId,
+        'dictionary_id': dictionaryId,
+        'sentence_id': sentenceId,
         'entry': entry,
-        'langNumberOfEntry': langNumberOfEntry,
+        'lang_number_of_entry': langNumberOfEntry,
         'meaning': meaning,
-        'langNumberOfMeaning': langNumberOfMeaning,
+        'lang_number_of_meaning': langNumberOfMeaning,
         'explanation': explanation,
         'ipa': ipa,
         'reading': reading,

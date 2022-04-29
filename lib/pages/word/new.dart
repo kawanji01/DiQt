@@ -1,4 +1,5 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/provider/word.dart';
+import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/home.dart';
@@ -8,10 +9,9 @@ import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/word/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordNewPage extends StatefulWidget {
+class WordNewPage extends ConsumerStatefulWidget {
   const WordNewPage({Key? key}) : super(key: key);
 
   static Future push(
@@ -24,7 +24,7 @@ class WordNewPage extends StatefulWidget {
   _WordNewPageState createState() => _WordNewPageState();
 }
 
-class _WordNewPageState extends State<WordNewPage> {
+class _WordNewPageState extends ConsumerState<WordNewPage> {
   Dictionary? _dictionary;
   int? _dictionaryId;
   String? _keyword;
@@ -65,47 +65,43 @@ class _WordNewPageState extends State<WordNewPage> {
   @override
   Widget build(BuildContext context) {
     Future _goToWordPage(word) async {
-      await WordShowPage.pushReplacement(context, word.id);
+      // 項目の追加に審査が必要ならホームに遷移
+      if (word.id == null) return MyHomePage.push(context);
+      // 項目が作成されていれば項目ページに遷移。
+      ref.read(wordProvider.notifier).state = word;
+      await WordShowPage.pushReplacement(context);
     }
 
     Future _create() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
+      final Word word = Word(
+        dictionaryId: 1,
+        entry: _entryController.text,
+        meaning: _meaningController.text,
+        langNumberOfEntry: 22,
+        langNumberOfMeaning: 44,
+        sentenceId: _sentenceIdController.text == ''
+            ? null
+            : int.parse(_sentenceIdController.text),
+      );
+      final Map<String, dynamic> params = word.toJson();
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      const storage = FlutterSecureStorage();
-      String? token = await storage.read(key: 'token');
-
-      // リクエスト
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/words');
-
-      Response response = await post(url, body: {
-        'token': token,
-        'entry': _entryController.text,
-        'meaning': _meaningController.text,
-        'explanation': _explanationController.text,
-        'sentence_id': _sentenceIdController.text,
-        'dictionary_id': '$_dictionaryId',
-      });
-
-      if (response.statusCode == 200) {
-        // 画面全体のローディングを消す。
-        EasyLoading.dismiss();
-        Map<String, dynamic> resMap = json.decode(response.body);
-        Word word = Word.fromJson(resMap['data']);
-        final snackBar = SnackBar(content: Text('${resMap['message']}'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        // 項目の追加に審査が必要ならホームに遷移
-        if (word.id == null) return MyHomePage.push(context);
-        // 項目が作成されていれば項目ページに遷移。
-        _goToWordPage(word);
-      } else {
+      final Map? resMap = await RemoteWords.create(params);
+      if (resMap == null) {
         EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        final Word word = Word.fromJson(resMap['data']);
+        final snackBar = SnackBar(content: Text('${resMap['message']}'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        _goToWordPage(word);
       }
+      // 画面全体のローディングを消す。
+      EasyLoading.dismiss();
     }
 
     // 更新ボタン
