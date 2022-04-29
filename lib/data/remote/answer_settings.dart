@@ -5,6 +5,8 @@ import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:http/http.dart';
 
 class RemoteAnswerSettings {
+  // 更新
+  // 引数は、answerSetting.toJson で生成する
   static Future<Map?> update(Map<String, dynamic> params) async {
     final String? token = await LocalUserInfo.authToken();
     if (token == null) return null;

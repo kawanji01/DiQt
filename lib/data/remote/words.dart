@@ -6,13 +6,54 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class RemoteWords {
+  // 新規作成
+  static Future<Map?> create(Map<String, dynamic> params) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
+    final String encodedData = json.encode({'word': params, 'token': token});
+    final Map<String, String> headers = {'content-type': 'application/json'};
+
+    final Uri url =
+        Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words');
+    final Response res = await post(
+      url,
+      headers: headers,
+      body: encodedData,
+    );
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // 更新
+  static Future<Map?> update(Map<String, dynamic> params) async {
+    final String? token = await LocalUserInfo.authToken();
+    // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
+    final String encodedData = json.encode({'word': params, 'token': token});
+    final Map<String, String> headers = {'content-type': 'application/json'};
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/${params['id']}');
+    final Response res = await patch(
+      url,
+      headers: headers,
+      body: encodedData,
+    );
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 検索
   static Future<Map?> search(String? keyword) async {
     if (keyword == null) return null;
     final Uri url =
         Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/search');
     final Response res =
-        await post(url, body: {'keyword': '$keyword', 'dictionary_id': '1'});
+        await post(url, body: {'keyword': keyword, 'dictionary_id': '1'});
     if (res.statusCode != 200) return null;
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);

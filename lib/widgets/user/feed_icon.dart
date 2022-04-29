@@ -32,14 +32,15 @@ class UserFeedIcon extends ConsumerWidget {
       final image = CachedNetworkImage(
         imageUrl: imageUrl,
         placeholder: (context, url) => const CircularProgressIndicator(),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
-        height: 56,
-        width: 56,
+        errorWidget: (context, url, error) =>
+            Image.asset('assets/images/not_found_icon.png'),
+        fit: BoxFit.cover,
       );
 
       // ref: https://www.codegrepper.com/code-examples/dart/fit+image+in+circle+avatar+flutter
       return CircleAvatar(
-        radius: 16.0,
+        radius: 72.0,
+        backgroundColor: Colors.transparent,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(50.0),
           child: image,
@@ -50,10 +51,11 @@ class UserFeedIcon extends ConsumerWidget {
     return InkWell(
       onTap: () => {_moveToUserPage(user)},
       child: Container(
-          height: 56,
-          padding: EdgeInsets.only(right: paddingRight),
-          child: _image(),
-          width: width),
+        height: 56,
+        width: width,
+        padding: EdgeInsets.only(right: paddingRight),
+        child: _image(),
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/models/monthly_report.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/widgets/notice/timestamp.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -75,8 +76,11 @@ class NoticeMonthlyReport extends StatelessWidget {
       final String rankImageUrl =
           "https://res.cloudinary.com/hkbyf3jop/image/upload/l_text:Sawarabi%20Gothic_56_bold:${report.rank}位,co_rgb:faf0a2,w_360,y_-32/v1589085558/ranking_monthly_gold.png";
       //if (report.rank == null || report.rank! > 100) return Container();
-
-      return Image.network(rankImageUrl);
+      return CachedNetworkImage(
+        imageUrl: rankImageUrl,
+        placeholder: (context, url) => const CircularProgressIndicator(),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+      );
     }
 
     Widget _rankInfo() {
@@ -96,7 +100,7 @@ class NoticeMonthlyReport extends StatelessWidget {
         const SizedBox(height: 8),
         _rankInfo(),
         _information('解答数', '${report.numberOfAnswers}回'),
-        _information('解答日数：', '${report.daysAnswered}日'),
+        _information('解答日数', '${report.daysAnswered}日'),
         const SizedBox(height: 48),
       ],
     );

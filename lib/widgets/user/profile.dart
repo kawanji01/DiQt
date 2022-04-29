@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/user.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class UserProfile extends StatelessWidget {
@@ -8,14 +9,23 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 参考：https://github.com/putraxor/flutter-login-ui/blob/master/lib/home_page.dart
-    final icon = Hero(
-      tag: 'icon',
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: CircleAvatar(
-          radius: 72.0,
-          backgroundColor: Colors.transparent,
-          backgroundImage: NetworkImage('${user.iconImageUrl}'),
+    final CachedNetworkImage image = CachedNetworkImage(
+      imageUrl: '${user.iconImageUrl}',
+      placeholder: (context, url) => const CircularProgressIndicator(),
+      errorWidget: (context, url, error) =>
+          Image.asset('assets/images/not_found_icon.png'),
+      fit: BoxFit.cover,
+      width: 200,
+      height: 200,
+    );
+    final icon = Container(
+      padding: const EdgeInsets.all(16.0),
+      child: CircleAvatar(
+        radius: 72.0,
+        backgroundColor: Colors.transparent,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(50.0),
+          child: image,
         ),
       ),
     );

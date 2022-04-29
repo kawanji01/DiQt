@@ -1,16 +1,19 @@
+import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordEditButton extends StatelessWidget {
+class WordEditButton extends ConsumerWidget {
   const WordEditButton({Key? key, required this.word}) : super(key: key);
   final Word? word;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // 編集ページへの遷移
     Future _moveToWordEdit(word) async {
-      await WordEditPage.push(context, word);
+      ref.read(wordProvider.notifier).state = word;
+      await WordEditPage.push(context);
     }
 
     return Container(

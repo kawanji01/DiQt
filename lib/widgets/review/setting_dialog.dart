@@ -5,6 +5,7 @@ import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/review_helper.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ReviewSettingDialog extends StatefulWidget {
   const ReviewSettingDialog({Key? key, this.review, required this.quizId})
@@ -42,6 +43,7 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
       return;
     }
 
+    EasyLoading.show(status: 'loading...');
     Map? resMap;
     // reviews#create
     if (_review == null) {
@@ -50,20 +52,21 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
       // reviews#update
       resMap = await RemoteReviews.update(context, _review!.id, dropdownValue);
     }
+    EasyLoading.dismiss();
 
     if (resMap == null) return;
 
     final Review review = Review.fromJson(resMap['review']);
     await Toasts.reviewSetting(context, resMap['message']);
-    //final snackBar = SnackBar(content: Text('${resMap['message']}'));
-    //ScaffoldMessenger.of(context).showSnackBar(snackBar);
     // ダイアログを閉じて、reviewを返り値にする。
     Navigator.of(context).pop(review);
   }
 
   // 復習設定を削除する
   Future _delete() async {
+    EasyLoading.show(status: 'loading...');
     Map? resMap = await RemoteReviews.destroy(context, _review!.id);
+    EasyLoading.dismiss();
 
     if (resMap == null) return;
     await Toasts.reviewSetting(context, resMap['message']);

@@ -77,7 +77,7 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
           ref.watch(reviewNotificationEnabledProvider);
       params['review_notification_timer'] =
           ref.watch(reviewNotificationTimerProvider);
-      print(params);
+
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteAnswerSettings.update(params);
       if (resMap == null) {

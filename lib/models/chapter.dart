@@ -1,26 +1,26 @@
 class Chapter {
   Chapter(
-      {this.id,
-      this.name = '',
-      this.introduction = '',
-      this.imageUrl,
+      {required this.id,
+      required this.name,
+      required this.introduction,
+      required this.imageUrl,
       this.iconUrl,
       this.groupType,
-      this.publicUid,
-      this.createdAt,
-      this.updatedAt,
+      required this.publicUid,
+      required this.createdAt,
+      required this.updatedAt,
       // eager_loadでキャッシュしたdrillの情報
       this.answerHistoriesCount});
 
-  int? id;
+  int id;
   String name;
   String introduction;
-  String? imageUrl;
+  String imageUrl;
   String? iconUrl;
   String? groupType;
   String? publicUid;
-  String? createdAt;
-  String? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
   // テーブルを結合してキャッシュしたdrillの情報
   int? answerHistoriesCount;
 
@@ -32,8 +32,8 @@ class Chapter {
         iconUrl = json['icon_image_url'] ?? '',
         groupType = json['group_type'].toString(),
         publicUid = json['public_uid'],
-        createdAt = json['created_at'],
-        updatedAt = json['updated_at'],
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']),
         // テーブルを結合してキャッシュしたdrillの情報,
         answerHistoriesCount = json['answer_histories_count'] ?? 0;
 

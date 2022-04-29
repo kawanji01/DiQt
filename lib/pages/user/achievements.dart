@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -5,11 +6,12 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserAchievementsPage extends StatefulWidget {
-  const UserAchievementsPage({Key? key, this.user}) : super(key: key);
-  final User? user;
+class UserAchievementsPage extends ConsumerStatefulWidget {
+  const UserAchievementsPage({Key? key}) : super(key: key);
 
   // モーダルによる画面遷移
   static Future pushDialog(BuildContext context, User user) async {
@@ -19,7 +21,7 @@ class UserAchievementsPage extends StatefulWidget {
             // 画面遷移のログを送信するために、settings.nameを設定する。
             settings: const RouteSettings(name: userAchievementsPage),
             builder: (BuildContext context) {
-              return UserAchievementsPage(user: user);
+              return const UserAchievementsPage();
             },
             fullscreenDialog: true));
   }
@@ -28,7 +30,7 @@ class UserAchievementsPage extends StatefulWidget {
   _UserAchievementsPageState createState() => _UserAchievementsPageState();
 }
 
-class _UserAchievementsPageState extends State<UserAchievementsPage> {
+class _UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
   User? _user;
   final List<Achievement> _tutorialMedals = [];
   final List<Achievement> _answerMedals = [];
@@ -42,12 +44,15 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
     super.initState();
     // exeception回避
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      _loadAchievements(widget.user);
+      _loadAchievements();
     });
   }
 
-  Future _loadAchievements(user) async {
-    Map? resMap = await RemoteUsers.achievements(context);
+  Future _loadAchievements() async {
+    final User? user = ref.watch(userProvider);
+    if (user == null) return;
+
+    Map? resMap = await RemoteUsers.achievements(user.publicUid);
     if (resMap == null) {
       return setState(() {
         _initDone = true;
@@ -63,16 +68,18 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
     resMap['master_medals']
         .forEach((e) => _masterMedals.add(Achievement.fromJson(e)));
     _gotMedalIds = resMap['got_medal_ids'];
-    // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
-    setState(() {
-      _tutorialMedals;
-      _answerMedals;
-      _continuationMedals;
-      _masterMedals;
-      _gotMedalIds;
-      _user = user;
-      _initDone = true;
-    });
+
+    if (mounted) {
+      setState(() {
+        _tutorialMedals;
+        _answerMedals;
+        _continuationMedals;
+        _masterMedals;
+        _gotMedalIds;
+        _user = user;
+        _initDone = true;
+      });
+    }
   }
 
   @override
@@ -83,18 +90,28 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
     // メダルの幅
     final double width = gridWidth * 33;
 
+    // メダル一つ一つのデザイン
     Widget _medal(achievement) {
-      Image image;
+      //Image image;
+      String imageUrl;
       Text name;
 
       if (_gotMedalIds.contains(achievement.id)) {
-        image = Image(image: NetworkImage('${achievement.imageUrl}'));
+        imageUrl = achievement.imageUrl;
+        // image = Image(image: NetworkImage('${achievement.imageUrl}'));
         name = Text(achievement.name,
             style: const TextStyle(fontWeight: FontWeight.bold));
       } else {
-        image = Image(image: NetworkImage('${achievement.lockedImageUrl}'));
+        imageUrl = achievement.lockedImageUrl;
+        //image = Image(image: NetworkImage('${achievement.lockedImageUrl}'));
         name = Text(achievement.name);
       }
+
+      final CachedNetworkImage image = CachedNetworkImage(
+        imageUrl: imageUrl,
+        placeholder: (context, url) => const CircularProgressIndicator(),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+      );
 
       return Container(
         width: width,
@@ -103,6 +120,7 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
       );
     }
 
+    // _medal() を並べたもの
     Widget _medalTile(achievements) {
       List<Widget> medalWidgetList = <Widget>[];
 
@@ -113,6 +131,7 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
       return Wrap(alignment: WrapAlignment.center, children: medalWidgetList);
     }
 
+    // _medakTile() の説明 / メダルの種類の説明
     Widget _heading(String title, String introduction) {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -132,6 +151,7 @@ class _UserAchievementsPageState extends State<UserAchievementsPage> {
       );
     }
 
+    // メダル一覧画面
     Widget _bodyWidget() {
       if (_initDone == false) return const LoadingSpinner();
 

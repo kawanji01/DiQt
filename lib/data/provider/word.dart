@@ -5,6 +5,10 @@ final wordSearchKeywordProvider = StateProvider<String?>((ref) => null);
 
 final wordsProvider = StateProvider<List<Word>>((ref) => []);
 
+final wordProvider = StateProvider<Word?>((ref) => null);
+
+// 
+
 /* final asyncSearchWordsProvider = FutureProvider<List<Word>>((ref) async {
   final List<Word> words = [];
   final String? keyword = ref.watch(wordSearchKeywordProvider);

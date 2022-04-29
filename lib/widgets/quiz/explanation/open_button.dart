@@ -17,6 +17,12 @@ class QuizExplanationOpenButton extends ConsumerWidget {
         showModalBottomSheet(
           isScrollControlled: true,
           context: context,
+          // 丸める
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15.0),
+                topRight: Radius.circular(15.0)),
+          ),
           // showModalBottomSheetで表示される中身
           builder: (context) => const QuizExplanationScreen(),
         );

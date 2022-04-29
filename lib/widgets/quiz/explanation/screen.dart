@@ -22,7 +22,6 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
   @override
   void initState() {
     super.initState();
-    //  `ref` は StatefulWidget のすべてのライフサイクルメソッド内で使用可能です。
     ref.refresh(asyncQuizProvider);
   }
 
@@ -96,10 +95,13 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
     // 80%の高さで表示させる
     return Container(
         height: height,
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
+              const SizedBox(
+                height: 24,
+              ),
               _question(),
               _answer(),
               _distractors(),
