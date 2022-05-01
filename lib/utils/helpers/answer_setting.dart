@@ -145,4 +145,38 @@ class AnswerSettingHelper {
     }
     return condition;
   }
+
+  // 弱点に指定する条件
+  static String weaknessCondition(int settingNumber) {
+    switch (settingNumber) {
+      case 0:
+        return '自動で設定しない';
+      case 1:
+        return '１回以上間違える';
+      case 2:
+        return '２回以上間違える';
+      case 3:
+        return '３回以上間違える';
+      case 4:
+        return '４回以上間違える';
+      case 5:
+        return '５回以上間違える';
+      default:
+        return '';
+    }
+  }
+
+  // 克服する条件
+  static String overcomingCondition(int settingNumber) {
+    switch (settingNumber) {
+      case 0:
+        return '解答時に克服する';
+      case 1:
+        return '正解時に克服する';
+      case 120:
+        return '自動で克服しない';
+      default:
+        return '正答率$settingNumber％以上';
+    }
+  }
 }

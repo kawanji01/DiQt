@@ -14,6 +14,7 @@ import 'package:booqs_mobile/pages/user/premium_menu.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/pages/user/show.dart';
+import 'package:booqs_mobile/pages/weakness/index.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
@@ -44,6 +45,7 @@ const premiumPlanPage = '/user/premium_plan';
 const premiumMenuPage = '/user/premium_menu';
 
 const drillUnsolvedPage = '/drill/unsolved';
+const weaknessIndexPage = '/weakness/index';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -66,4 +68,5 @@ final routes = {
   premiumPlanPage: (context) => const PremiumPlanPage(),
   premiumMenuPage: (context) => const PremiumMenuPage(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
+  weaknessIndexPage: (context) => const WeaknessIndexPage(),
 };

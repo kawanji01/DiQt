@@ -53,16 +53,8 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
     final keyword = widget.keyword ?? '';
-    setState(() {
-      _keyword = keyword;
-    });
-    _loadSearchResults(_keyword);
+    _loadSearchResults(keyword);
   }
 
   // async load cards API
@@ -74,11 +66,14 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
       // Convert map to list. ref: https://qiita.com/7_asupara/items/01c29c006556e89f5b17
       resMap['words'].forEach((e) => _words.add(Word.fromJson(e)));
     }
-    setState(() {
-      _words;
-      _dictionary = Dictionary.fromJson(resMap['dictionary']);
-      _initDone = true;
-    });
+    if (mounted) {
+      setState(() {
+        _keyword = keyword;
+        _words;
+        _dictionary = Dictionary.fromJson(resMap['dictionary']);
+        _initDone = true;
+      });
+    }
   }
 
   Widget _buildResults() {

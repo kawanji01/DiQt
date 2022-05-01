@@ -36,7 +36,7 @@ class BottomNavbar extends ConsumerWidget {
       if (user.rewardRemained) {
         return Badge(
           badgeContent: const Icon(
-            Icons.emoji_events,
+            Icons.military_tech,
             color: Colors.white,
           ),
           child: const Icon(Icons.notifications),

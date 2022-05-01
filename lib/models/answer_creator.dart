@@ -23,6 +23,7 @@ class AnswerCreator {
     this.reviewReleased = false,
     this.sameMistakeCount,
     this.overcoming = false,
+    this.weaknessClear = false,
     this.basePoint = 0,
     this.answerPoint = 0,
     this.startPoint = 0,
@@ -57,6 +58,7 @@ class AnswerCreator {
   bool? reviewReleased;
   int? sameMistakeCount;
   bool? overcoming;
+  bool? weaknessClear;
   int basePoint;
   int answerPoint;
   int startPoint;
@@ -100,6 +102,7 @@ class AnswerCreator {
         reviewReleased = json['review_released'],
         sameMistakeCount = json['same_mistake_count'],
         overcoming = json['overcoming'],
+        weaknessClear = json['weakness_clear'],
         basePoint = json['base_point'],
         answerPoint = json['answer_point'],
         startPoint = json['start_point'],
@@ -136,6 +139,7 @@ class AnswerCreator {
         'review_released': reviewReleased,
         'same_mistake_count': sameMistakeCount,
         'overcoming': overcoming,
+        'weakness_clear': weaknessClear,
         'base_point': basePoint,
         'answer_point': answerPoint,
         'start_point': startPoint,

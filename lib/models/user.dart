@@ -20,6 +20,7 @@ class User {
     required this.unreadNotificationsCount,
     required this.unsolvedReviewsCount,
     required this.reviewsCount,
+    required this.unsolvedWeaknessesCount,
     required this.weaknessesCount,
     required this.rewardRemained,
     this.authToken,
@@ -44,6 +45,7 @@ class User {
   int unreadNotificationsCount;
   int unsolvedReviewsCount;
   int reviewsCount;
+  int unsolvedWeaknessesCount;
   int weaknessesCount;
   bool rewardRemained;
   String? authToken;
@@ -68,6 +70,7 @@ class User {
         unreadNotificationsCount = json['unread_notifications_count'],
         unsolvedReviewsCount = json['unsolved_reviews_count'],
         reviewsCount = json['reviews_count'],
+        unsolvedWeaknessesCount = json['unsolved_weaknesses_count'],
         weaknessesCount = json['weaknesses_count'],
         rewardRemained = json['reward_remained'],
         authToken = json['token_for_native_app'],
@@ -98,6 +101,8 @@ class User {
         'reward_remained': rewardRemained,
         'unsolved_reviews_count': unsolvedReviewsCount,
         'reviews_count': reviewsCount,
+        'unsolved_weaknesses_count': unsolvedWeaknessesCount,
+        'weaknesses_count': weaknessesCount,
         'token_for_native_app': authToken,
         'answer_setting': answerSetting,
         'drill_in_progress': drillInProgress,

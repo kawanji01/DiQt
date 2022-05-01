@@ -11,6 +11,10 @@ class RemoteAnswerSettings {
     final String? token = await LocalUserInfo.authToken();
     if (token == null) return null;
 
+    // 更新する必要がない＆encode errorの発生するエントリーは消しておく。
+    params.removeWhere((dynamic key, dynamic value) =>
+        key == 'created_at' || key == 'updated_at');
+
     // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
     final String encodedData =
         json.encode({'answer_setting': params, 'token': token});

@@ -1,31 +1,31 @@
 class AnswerAnalysis {
   AnswerAnalysis({
-    this.id,
-    this.userId,
-    this.quizId,
-    this.drillId,
-    this.answerHistoriesCount = 0,
-    this.incorrectAnswerHistoriesCount = 0,
-    this.correctAnswerRate = 0,
-    this.lastAnsweredAt,
-    this.lastAnswerCorrect = false,
-    this.solvedAtDrill = false,
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.userId,
+    required this.quizId,
+    required this.drillId,
+    required this.answerHistoriesCount,
+    required this.incorrectAnswerHistoriesCount,
+    required this.correctAnswerRate,
+    required this.lastAnsweredAt,
+    required this.lastAnswerCorrect,
+    required this.solvedAtDrill,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
-  int? id;
-  int? userId;
-  int? quizId;
-  int? drillId;
+  int id;
+  int userId;
+  int quizId;
+  int drillId;
   int answerHistoriesCount;
   int incorrectAnswerHistoriesCount;
   double correctAnswerRate;
-  String? lastAnsweredAt;
+  DateTime lastAnsweredAt;
   bool lastAnswerCorrect;
   bool solvedAtDrill;
-  String? createdAt;
-  String? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   AnswerAnalysis.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -36,11 +36,11 @@ class AnswerAnalysis {
         incorrectAnswerHistoriesCount =
             json['incorrect_answer_histories_count'],
         correctAnswerRate = json['correct_answer_rate'],
-        lastAnsweredAt = json['last_answered_at'],
+        lastAnsweredAt = DateTime.parse(json['last_answered_at']),
         lastAnswerCorrect = json['last_answer_correct'],
         solvedAtDrill = json['solved_at_drill'],
-        createdAt = json['created_at'],
-        updatedAt = json['updated_at'];
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']);
 
   Map<String, dynamic> toJson() => {
         'id': id,

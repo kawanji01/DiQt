@@ -25,7 +25,9 @@ class DrillIntroduction extends ConsumerWidget {
               topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
         ),
         // showModalBottomSheetで表示される中身
-        builder: (context) => const AnswerSettingScreen(),
+        builder: (context) => const AnswerSettingScreen(
+          primary: 'answerSetting',
+        ),
       );
       //print('end');
       ref.refresh(asyncDrillUnsolvedQuizzesProvider);

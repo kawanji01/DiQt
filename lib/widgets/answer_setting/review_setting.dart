@@ -5,8 +5,8 @@ import 'package:booqs_mobile/widgets/answer_setting/review_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerSettingReview extends ConsumerWidget {
-  const AnswerSettingReview({Key? key}) : super(key: key);
+class AnswerSettingReviewSetting extends ConsumerWidget {
+  const AnswerSettingReviewSetting({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
