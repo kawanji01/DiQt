@@ -1,14 +1,19 @@
+import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/models/user.dart';
+
 class Weakness {
   Weakness({
-    this.id = 0,
-    this.userId = 0,
-    this.quizId = 0,
-    this.solved = false,
-    this.incorrectAnswersCount = 0,
-    this.answersCount = 0,
-    this.correctAnswerRate = 0,
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.userId,
+    required this.quizId,
+    required this.solved,
+    required this.incorrectAnswersCount,
+    required this.answersCount,
+    required this.correctAnswerRate,
+    required this.createdAt,
+    required this.updatedAt,
+    this.quiz,
+    this.user,
   });
 
   int id;
@@ -18,8 +23,10 @@ class Weakness {
   int incorrectAnswersCount;
   int answersCount;
   double correctAnswerRate;
-  String? createdAt;
-  String? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
+  Quiz? quiz;
+  User? user;
 
   Weakness.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -29,8 +36,10 @@ class Weakness {
         incorrectAnswersCount = json['incorrect_answers_count'],
         answersCount = json['answers_count'],
         correctAnswerRate = json['correct_answer_rate'],
-        createdAt = json['created_at'],
-        updatedAt = json['updated_at'];
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']),
+        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
+        user = json['user'] == null ? null : User.fromJson(json['user']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -42,5 +51,7 @@ class Weakness {
         'correct_answer_rate': correctAnswerRate,
         'created_at': createdAt,
         'updated_at': updatedAt,
+        'quiz': quiz,
+        'user': user,
       };
 }

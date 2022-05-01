@@ -113,7 +113,7 @@ class _NoticeUnreceivedAchievementState
                   56), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
             ),
             onPressed: () => {_receive()},
-            icon: const Icon(Icons.emoji_events, color: Colors.white),
+            icon: const Icon(Icons.military_tech, color: Colors.white),
             label: const Text(
               ' 報酬を受け取る',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),

@@ -40,7 +40,7 @@ class ActivityAchievement extends StatelessWidget {
                   fontWeight: FontWeight.normal)),
           const WidgetSpan(
             child: Icon(
-              Icons.emoji_events,
+              Icons.military_tech,
               color: Colors.green,
               size: 18.0,
             ),

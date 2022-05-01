@@ -1,22 +1,22 @@
 class AnswerSetting {
   AnswerSetting({
-    this.id = 0,
-    this.userId = 0,
-    this.intervalStepUpCondition = 1,
-    this.initialInterval = 1,
-    this.dailyGoal = 30,
-    this.choicesCovered = false,
-    this.questionCovered = false,
-    this.reviewNotificationTimer = 6,
-    this.reviewNotificationTimerSet = false,
-    this.reviewNotificationEnabled = true,
-    this.seEnabled = true,
-    this.speechRate = 1,
-    this.reviewDeleteCondition = 0,
-    this.weaknessCondition = 2,
-    this.overcomingCondition = 2,
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.userId,
+    required this.intervalStepUpCondition,
+    required this.initialInterval,
+    required this.dailyGoal,
+    required this.choicesCovered,
+    required this.questionCovered,
+    required this.reviewNotificationTimer,
+    required this.reviewNotificationTimerSet,
+    required this.reviewNotificationEnabled,
+    required this.seEnabled,
+    required this.speechRate,
+    required this.reviewDeleteCondition,
+    required this.weaknessCondition,
+    required this.overcomingCondition,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   int id;
@@ -34,8 +34,8 @@ class AnswerSetting {
   int reviewDeleteCondition;
   int weaknessCondition;
   int overcomingCondition;
-  String? createdAt;
-  String? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   AnswerSetting.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -53,8 +53,8 @@ class AnswerSetting {
         reviewDeleteCondition = json['review_delete_condition'],
         weaknessCondition = json['weakness_condition'],
         overcomingCondition = json['overcoming_condition'],
-        createdAt = json['created_at'],
-        updatedAt = json['updated_at'];
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']);
 
   Map<String, dynamic> toJson() => {
         'id': id,

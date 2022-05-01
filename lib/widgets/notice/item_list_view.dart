@@ -33,6 +33,12 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
+  }
+
   // 未受領の実績メダルをモーダル表示
   void _displayUnreceivedAchievement(Map resMap) {
     final achievementMapJson = resMap['achievement_map'];
@@ -69,12 +75,6 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
       _pagingController.appendPage(notices, _nextPagekey);
     }
     _isLoading = false;
-  }
-
-  @override
-  void dispose() {
-    _pagingController.dispose();
-    super.dispose();
   }
 
   @override

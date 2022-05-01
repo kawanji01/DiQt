@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/cheer.dart';
-import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
 
 class Activity {

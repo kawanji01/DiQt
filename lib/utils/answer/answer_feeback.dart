@@ -21,6 +21,9 @@ class AnswerFeedback {
     Widget? sameMistakeCount = massageForSameMistakeCount(answerCreator);
     if (sameMistakeCount != null) messageList.add(sameMistakeCount);
 
+    Widget? overcoming = messageForOvercoming(answerCreator);
+    if (overcoming != null) messageList.add(overcoming);
+
     if (messageList.isEmpty) return;
 
     Widget child = Column(
@@ -28,30 +31,9 @@ class AnswerFeedback {
       children: messageList,
     );
     Toasts.showBlack(child);
-
-    /*  // 復習の新規作成
-    await AnswerFeedback.reviewCreated(context, answerCreator);
-    // 復習の間隔伸長
-    await AnswerFeedback.reviewIntervalStepUp(context, answerCreator);
-    // 復習の解除
-    await AnswerFeedback.reviewReleased(context, answerCreator);
-    // 同じ間違い
-    await AnswerFeedback.sameMistakeCount(context, answerCreator); */
   }
 
   // 復習が新規で設定された通知
-  static Future<void> reviewCreated(
-      BuildContext context, AnswerCreator answerCreator) async {
-    final Review? review = answerCreator.review;
-    if (review != null && answerCreator.reviewCreated == true) {
-      final String interval =
-          ReviewHelperService.intervalSetting(review.intervalSetting);
-
-      Toasts.reviewSetting(context, interval);
-      await Future.delayed(const Duration(seconds: 1));
-    }
-  }
-
   static Widget? messageForReviewCreated(AnswerCreator answerCreator) {
     final Review? review = answerCreator.review;
     if (review != null && answerCreator.reviewCreated == true) {
@@ -79,18 +61,6 @@ class AnswerFeedback {
   }
 
   // 復習の間隔が伸長した通知
-  static Future<void> reviewIntervalStepUp(
-      BuildContext context, AnswerCreator answerCreator) async {
-    final AnswerHistory? answerHistory = answerCreator.answerHistory;
-    final Review? review = answerCreator.review;
-    if (review != null && answerHistory!.intervalStepUp) {
-      final String interval =
-          ReviewHelperService.intervalSetting(review.intervalSetting);
-      Toasts.reviewSetting(context, '繰り上がりで$interval');
-      await Future.delayed(const Duration(seconds: 1));
-    }
-  }
-
   static Widget? messageForReviewIntervalStepUp(AnswerCreator answerCreator) {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final Review? review = answerCreator.review;
@@ -103,14 +73,6 @@ class AnswerFeedback {
   }
 
   // 復習設定が解除された通知
-  static Future<void> reviewReleased(
-      BuildContext context, AnswerCreator answerCreator) async {
-    if (answerCreator.reviewReleased == true) {
-      Toasts.reviewSetting(context, '復習が解除されました');
-      await Future.delayed(const Duration(seconds: 1));
-    }
-  }
-
   static Widget? messageForReviewReleased(AnswerCreator answerCreator) {
     if (answerCreator.reviewReleased == true) {
       String text = '復習が解除されました';
@@ -119,29 +81,6 @@ class AnswerFeedback {
   }
 
   // 同じ間違いの通知
-  static Future<void> sameMistakeCount(
-      BuildContext context, AnswerCreator answerCreator) async {
-    int? sameMistakeCount = answerCreator.sameMistakeCount;
-    if (sameMistakeCount != null && sameMistakeCount > 1) {
-      final richText = RichText(
-          text: TextSpan(children: [
-        const WidgetSpan(
-          child: Icon(
-            Icons.close,
-            color: Colors.white,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' この間違いは$sameMistakeCount回目です',
-            style: const TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
-      ]));
-      Toasts.showBlack(richText);
-      await Future.delayed(const Duration(seconds: 1));
-    }
-  }
-
   static Widget? massageForSameMistakeCount(AnswerCreator answerCreator) {
     int? sameMistakeCount = answerCreator.sameMistakeCount;
     if (sameMistakeCount != null && sameMistakeCount > 1) {
@@ -157,6 +96,27 @@ class AnswerFeedback {
         TextSpan(
             text: ' この間違いは$sameMistakeCount回目です',
             style: const TextStyle(
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
+      ]));
+    }
+  }
+
+  // 弱点の克服
+  static Widget? messageForOvercoming(AnswerCreator answerCreator) {
+    if (answerCreator.overcoming == null) return null;
+    if (answerCreator.overcoming == true) {
+      return RichText(
+          text: const TextSpan(children: [
+        WidgetSpan(
+          child: Icon(
+            Icons.check_circle_outline,
+            color: Colors.white,
+            size: 18.0,
+          ),
+        ),
+        TextSpan(
+            text: ' 弱点を克服しました',
+            style: TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
       ]));
     }

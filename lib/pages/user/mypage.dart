@@ -4,6 +4,7 @@ import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
+import 'package:booqs_mobile/widgets/user/weakness_button.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
@@ -122,6 +123,7 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
           child: Column(
             children: <Widget>[
               const UserDrillInProgress(),
+              const UserWeaknessButton(),
               UserProfile(user: user),
               UserExpIndicator(user: user),
               UserAchievementsButton(user: user),

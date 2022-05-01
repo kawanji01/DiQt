@@ -1,25 +1,17 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/remote/answer_settings.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
-import 'package:booqs_mobile/widgets/answer_setting/answer.dart';
-import 'package:booqs_mobile/widgets/answer_setting/review.dart';
+import 'package:booqs_mobile/widgets/answer_setting/answer_setting.dart';
+import 'package:booqs_mobile/widgets/answer_setting/review_setting.dart';
+import 'package:booqs_mobile/widgets/answer_setting/weakness_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// 解答設定用
-final questionCoveredProvider = StateProvider<bool>((ref) => false);
-final choicesCoveredProvider = StateProvider<bool>((ref) => false);
-final seEnabledProvider = StateProvider<bool>((ref) => false);
-// 復習設定用
-final initialIntervalProvider = StateProvider<int>((ref) => 1);
-final intervalStepUpConditionProvider = StateProvider<int>((ref) => 1);
-final reviewDeleteConditionProvider = StateProvider<int>((ref) => 9);
-final reviewNotificationEnabledProvider = StateProvider<bool>((ref) => true);
-final reviewNotificationTimerProvider = StateProvider<int>((ref) => 6);
-
 class AnswerSettingScreen extends ConsumerStatefulWidget {
-  const AnswerSettingScreen({Key? key}) : super(key: key);
+  const AnswerSettingScreen({Key? key, required this.primary})
+      : super(key: key);
+  final String primary;
 
   @override
   _AnswerSettingScreenState createState() => _AnswerSettingScreenState();
@@ -42,7 +34,7 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
 
     _dailyGoalController.text = '${_answerSetting.dailyGoal}';
     // 初期値の設定
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    /*    WidgetsBinding.instance?.addPostFrameCallback((_) {
       // 解答設定
       ref.read(questionCoveredProvider.notifier).state =
           _answerSetting.questionCovered;
@@ -60,7 +52,9 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
           _answerSetting.reviewNotificationEnabled;
       ref.read(reviewNotificationTimerProvider.notifier).state =
           _answerSetting.reviewNotificationTimer;
-    });
+      // 弱点設定
+      //ref.read()
+    }); */
 
     Future<void> _update() async {
       Map<String, dynamic> params = _answerSetting.toJson();
@@ -77,6 +71,8 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
           ref.watch(reviewNotificationEnabledProvider);
       params['review_notification_timer'] =
           ref.watch(reviewNotificationTimerProvider);
+      params['weakness_condition'] = ref.watch(weaknessConditionProvider);
+      params['overcoming_condition'] = ref.watch(overcomingConditionProvider);
 
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteAnswerSettings.update(params);
@@ -116,6 +112,69 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
       );
     }
 
+    // primaryに応じて、設定を並べ替える
+    Widget _column() {
+      final String primary = widget.primary;
+      switch (primary) {
+        case 'AnswerSetting':
+          return Column(
+            children: [
+              const SizedBox(height: 24),
+              AnswerSettingAnswerSetting(
+                dailyGoalController: _dailyGoalController,
+              ),
+              const SizedBox(height: 48),
+              const AnswerSettingReviewSetting(),
+              const SizedBox(height: 48),
+              const AnswerSettingWeaknessSetting(),
+              const SizedBox(height: 200),
+            ],
+          );
+        case 'reviewSetting':
+          return Column(
+            children: [
+              const SizedBox(height: 24),
+              const AnswerSettingReviewSetting(),
+              const SizedBox(height: 48),
+              AnswerSettingAnswerSetting(
+                dailyGoalController: _dailyGoalController,
+              ),
+              const SizedBox(height: 48),
+              const AnswerSettingWeaknessSetting(),
+              const SizedBox(height: 200),
+            ],
+          );
+        case 'weaknessSetting':
+          return Column(
+            children: [
+              const SizedBox(height: 24),
+              const AnswerSettingWeaknessSetting(),
+              const SizedBox(height: 48),
+              AnswerSettingAnswerSetting(
+                dailyGoalController: _dailyGoalController,
+              ),
+              const SizedBox(height: 48),
+              const AnswerSettingReviewSetting(),
+              const SizedBox(height: 200),
+            ],
+          );
+        default:
+          return Column(
+            children: [
+              const SizedBox(height: 24),
+              AnswerSettingAnswerSetting(
+                dailyGoalController: _dailyGoalController,
+              ),
+              const SizedBox(height: 48),
+              const AnswerSettingReviewSetting(),
+              const SizedBox(height: 48),
+              const AnswerSettingWeaknessSetting(),
+              const SizedBox(height: 200),
+            ],
+          );
+      }
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       width: double.infinity,
@@ -123,17 +182,7 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
       child: Stack(
         children: [
           SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(height: 24),
-                AnswerSettingAnswer(
-                  dailyGoalController: _dailyGoalController,
-                ),
-                const SizedBox(height: 48),
-                const AnswerSettingReview(),
-                const SizedBox(height: 200),
-              ],
-            ),
+            child: _column(),
           ),
           _submitButton(),
         ],

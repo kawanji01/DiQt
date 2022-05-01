@@ -1,12 +1,12 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
-import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerSettingAnswer extends ConsumerWidget {
-  const AnswerSettingAnswer({Key? key, required this.dailyGoalController})
+class AnswerSettingAnswerSetting extends ConsumerWidget {
+  const AnswerSettingAnswerSetting(
+      {Key? key, required this.dailyGoalController})
       : super(key: key);
   final TextEditingController dailyGoalController;
 

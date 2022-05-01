@@ -1,16 +1,16 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/services/review_helper.dart';
+import 'package:booqs_mobile/utils/helpers/answer_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerSettingInitialInterval extends ConsumerWidget {
-  const AnswerSettingInitialInterval({Key? key}) : super(key: key);
+class AnswerSettingWeaknessCondition extends ConsumerWidget {
+  const AnswerSettingWeaknessCondition({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const heading = Text('初期間隔の設定',
+    const heading = Text('苦手にする条件',
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold));
-    const explanation = Text('「覚える」ボタンを押したり、問題に間違えたときに、自動で設定される復習の間隔を設定します。',
+    const explanation = Text('自動で苦手な問題に追加する条件を決めます。',
         style: TextStyle(fontSize: 14, color: Colors.black54));
 
     // ドロップダウンボタンの生成
@@ -24,17 +24,17 @@ class AnswerSettingInitialInterval extends ConsumerWidget {
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(color: Colors.black87)),
         child: DropdownButton<int>(
-          value: ref.watch(initialIntervalProvider),
+          value: ref.watch(weaknessConditionProvider),
           iconSize: 24,
           elevation: 16,
           onChanged: (int? newValue) {
-            ref.read(initialIntervalProvider.notifier).state = newValue!;
+            ref.read(weaknessConditionProvider.notifier).state = newValue!;
           },
-          items: <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-              .map<DropdownMenuItem<int>>((int value) {
+          items:
+              <int>[0, 1, 2, 3, 4, 5].map<DropdownMenuItem<int>>((int value) {
             return DropdownMenuItem<int>(
               value: value,
-              child: Text(ReviewHelperService.intervalSetting(value),
+              child: Text(AnswerSettingHelper.weaknessCondition(value),
                   style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,

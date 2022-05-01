@@ -11,6 +11,7 @@ import 'package:booqs_mobile/widgets/answer/continuous_complete_review_screen.da
 import 'package:booqs_mobile/widgets/answer/continuous_goal_achievement_screen.dart';
 import 'package:booqs_mobile/widgets/answer/drill_lap_clear_screen.dart';
 import 'package:booqs_mobile/widgets/answer/goal_achievement_screen.dart';
+import 'package:booqs_mobile/widgets/answer/weakness_clear_screen.dart';
 import 'package:flutter/material.dart';
 
 class AnswerReward {
@@ -33,6 +34,8 @@ class AnswerReward {
     await AnswerReward.goalAchievement(answerCreator);
     // 連続目標達成
     await AnswerReward.continuousGoalAvhievement(answerCreator);
+    // 苦手な問題をすべて解答
+    await AnswerReward.allWeaknessesSolved(answerCreator);
   }
 
   // 問題集周回報酬
@@ -145,6 +148,15 @@ class AnswerReward {
         continuousGoalAchievementCount! > 1) {
       final Widget screen =
           AnswerContinuousGoalAchievementScreen(answerCreator: answerCreator);
+      Dialogs.reward(screen);
+      await Future.delayed(const Duration(seconds: 2));
+    }
+  }
+
+  // 苦手な問題をすべて解答
+  static Future<void> allWeaknessesSolved(AnswerCreator answerCreator) async {
+    if (answerCreator.weaknessClear == true) {
+      const Widget screen = AnswerWeaknessClearScreen();
       Dialogs.reward(screen);
       await Future.delayed(const Duration(seconds: 2));
     }

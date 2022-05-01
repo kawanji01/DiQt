@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/quizzes.dart';
@@ -6,15 +7,12 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/answer/answer_feeback.dart';
 import 'package:booqs_mobile/utils/answer/answer_reward.dart';
-import 'package:booqs_mobile/widgets/review/unsolved_screen.dart';
+import 'package:booqs_mobile/widgets/weakness/unsolved_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// 報酬をきちんと表示させるためのWidget
-// ReviewUnsolvedScreenよりも下で報酬を表示しようとすると、次の１０問の読み込みと重なったときに、
-// Looking up a deactivated widget's ancestor〜 になる。
-class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
-  const ReviewUnsolvedScreenWrapper({Key? key}) : super(key: key);
+class WeaknessUnsolvedScreenWrapper extends ConsumerWidget {
+  const WeaknessUnsolvedScreenWrapper({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,8 +26,9 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
     }
 
     // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。
-    Future<void> _requestReview(notification) async {
-      Map? resMap = await RemoteQuizzes.answer(context, notification, 'review');
+    Future<void> _requestReview(AnswerNotification notification) async {
+      Map? resMap =
+          await RemoteQuizzes.answer(context, notification, 'weakness');
       if (resMap == null) return;
       _updateProviders(resMap);
       final AnswerCreator answerCreator =
@@ -40,6 +39,8 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
       await AnswerReward.call(answerCreator);
     }
 
+    // unsolvedScreenの親でインタラクションを処理することで、
+    // ref.refreshでunsolvedScreenが再描画されたときに発生するLooking up a deactivated widget's ancestor... を防ぐ
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
         _requestReview(notification);
@@ -50,7 +51,7 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: const SingleChildScrollView(
-          child: ReviewUnsolvedScreen(),
+          child: WeaknessUnsolvedScreen(),
         ),
       ),
     );
