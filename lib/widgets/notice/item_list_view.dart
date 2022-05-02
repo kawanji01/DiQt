@@ -19,7 +19,7 @@ class NoticeItemListView extends StatefulWidget {
 
 class _NoticeItemListViewState extends State<NoticeItemListView> {
   bool _isLoading = false;
-  bool _reachedLast = true;
+
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const _pageSize = 10;
@@ -33,12 +33,6 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    _pagingController.dispose();
-    super.dispose();
-  }
-
   // 未受領の実績メダルをモーダル表示
   void _displayUnreceivedAchievement(Map resMap) {
     final achievementMapJson = resMap['achievement_map'];
@@ -50,19 +44,18 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
 
   // ページに合わせてアイテムを読み込む
   Future<void> _fetchPage(int pageKey) async {
-    if (_isLoading) return;
     print('nextPageKey: $_nextPagekey');
-    if (_reachedLast == false) return;
-    _reachedLast = false;
+
     _isLoading = true;
     final Map? resMap = await RemoteNotifications.index(pageKey, _pageSize);
     if (resMap == null) {
-      _isLoading = false;
+      setState(() {
+        _isLoading = false;
+      });
       return;
     }
     final List<Notice> notices = [];
     resMap['notifications'].forEach((e) => notices.add(Notice.fromJson(e)));
-    //print(notices.length);
     // 未受領の実績メダルをモーダル表示
     _displayUnreceivedAchievement(resMap);
     final isLastPage = notices.length < _pageSize;
@@ -74,7 +67,17 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(notices, _nextPagekey);
     }
-    _isLoading = false;
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
   }
 
   @override
@@ -87,7 +90,10 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
         onVisibilityChanged: (info) {
           // [visibleFraction] 0で非表示、１で完全表示。0.1は上部が少し表示されている状態 ref: https://pub.dev/documentation/visibility_detector/latest/visibility_detector/VisibilityInfo/visibleFraction.html
           if (info.visibleFraction > 0.1) {
-            _reachedLast = true;
+            if (_isLoading) return;
+            setState(() {
+              _isLoading = true;
+            });
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
             _pagingController.notifyPageRequestListeners(_nextPagekey);
           }

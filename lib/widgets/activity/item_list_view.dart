@@ -15,7 +15,7 @@ class ActivityItemListView extends ConsumerStatefulWidget {
 }
 
 class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
-  bool _loading = false;
+  bool _isLoading = false;
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const _pageSize = 10;
@@ -36,7 +36,7 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
     final Map? resMap = await RemoteActivities.index(pageKey, _pageSize);
     if (resMap == null) {
       setState(() {
-        _loading = false;
+        _isLoading = false;
       });
       return;
     }
@@ -54,7 +54,7 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
     }
     if (mounted) {
       setState(() {
-        _loading = false;
+        _isLoading = false;
       });
     }
   }
@@ -75,9 +75,9 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
         onVisibilityChanged: (info) {
           // [visibleFraction] 0で非表示、１で完全表示。0.1は上部が少し表示されている状態 ref: https://pub.dev/documentation/visibility_detector/latest/visibility_detector/VisibilityInfo/visibleFraction.html
           if (info.visibleFraction > 0.1) {
-            if (_loading) return;
+            if (_isLoading) return;
             setState(() {
-              _loading = true;
+              _isLoading = true;
             });
 
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
