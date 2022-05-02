@@ -7,6 +7,7 @@ import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class SentenceReviewButton extends StatefulWidget {
   const SentenceReviewButton({Key? key, required this.sentenceId})
@@ -64,13 +65,15 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
         return;
       }
 
-      Map? resMap = await RemoteReviews.create(context, _quizId!, null);
+      EasyLoading.show(status: 'loading...');
+      final Map? resMap = await RemoteReviews.create(context, _quizId!, null);
+      EasyLoading.dismiss();
+
       if (resMap == null) return;
 
       Review newReview = Review.fromJson(resMap['review']);
       await Toasts.reviewSetting(context, resMap['message']);
-      /* final snackBar = SnackBar(content: Text('${resMap['message']}'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar); */
+
       setState(() {
         _review = newReview;
       });
