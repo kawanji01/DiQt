@@ -1,6 +1,9 @@
-import 'package:booqs_mobile/data/provider/review.dart';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
+import 'package:booqs_mobile/models/answer_setting.dart';
+import 'package:booqs_mobile/utils/helpers/answer_setting.dart';
+import 'package:booqs_mobile/utils/helpers/review.dart';
+import 'package:booqs_mobile/widgets/review/answer_setting_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,24 +12,8 @@ class ReviewIntroduction extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //
-    Future<void> _moveToAnswerSetting() async {
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
-      await showModalBottomSheet(
-        isScrollControlled: true,
-        context: context,
-        // 丸み ref: https://www.codegrepper.com/code-examples/whatever/showmodalbottomsheet+rounded+corners
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
-        ),
-        // showModalBottomSheetで表示される中身
-        builder: (context) => const AnswerSettingScreen(
-          primary: 'reviewSetting',
-        ),
-      );
-      ref.refresh(asyncUnsolvedReviewsProvider);
-    }
+    final AnswerSetting? answerSetting = ref.watch(answerSettingProvider);
+    if (answerSetting == null) return const Text('Error:解答設定がありません。');
 
     final heading = RichText(
         text: TextSpan(children: [
@@ -44,25 +31,59 @@ class ReviewIntroduction extends ConsumerWidget {
               color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold))
     ]));
 
-    final settingButton = ElevatedButton.icon(
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size(double.infinity, 40),
-        primary: const Color(0xfff3f3f4),
+    const textStyle = TextStyle(
+        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.normal);
+
+    final initialSettingText = RichText(
+        text: TextSpan(children: [
+      const TextSpan(text: '間違えた問題を', style: textStyle),
+      const WidgetSpan(
+        child: Icon(
+          Icons.alarm,
+          color: Colors.green,
+          size: 18.0,
+        ),
       ),
-      onPressed: () => {
-        //AnswerSettingEdit.pushModal(context)
-        _moveToAnswerSetting()
-      },
-      icon: const Icon(
-        Icons.settings,
-        color: Colors.black54,
+      TextSpan(
+          text: '${ReviewHelper.interval(answerSetting.initialInterval)} ',
+          style: const TextStyle(
+              color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold)),
+      const TextSpan(text: 'に復習します。', style: textStyle),
+    ]));
+
+    final stepUpConditionText = RichText(
+        text: TextSpan(children: [
+      const WidgetSpan(
+        child: Icon(
+          Icons.circle_outlined,
+          color: Colors.green,
+          size: 18.0,
+        ),
       ),
-      label: const Text(
-        ' 解答・復習設定',
-        style: TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54),
+      TextSpan(
+          text:
+              '${AnswerSettingHelper.intervalStepUpConditionText(answerSetting.intervalStepUpCondition)} ',
+          style: const TextStyle(
+              color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold)),
+      const TextSpan(text: ' ことで、復習の間隔が繰り上がります。', style: textStyle),
+    ]));
+
+    final reviewDeleteConditionText = RichText(
+        text: TextSpan(children: [
+      const WidgetSpan(
+        child: Icon(
+          Icons.circle_outlined,
+          color: Colors.green,
+          size: 18.0,
+        ),
       ),
-    );
+      TextSpan(
+          text:
+              '${AnswerSettingHelper.reviewDeleteConditionText(answerSetting.reviewDeleteCondition)} ',
+          style: const TextStyle(
+              color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold)),
+      const TextSpan(text: ' ことで、復習を解除します。', style: textStyle),
+    ]));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +91,13 @@ class ReviewIntroduction extends ConsumerWidget {
         const SizedBox(height: 40),
         heading,
         const SizedBox(height: 16),
-        settingButton,
+        initialSettingText,
+        const SizedBox(height: 8),
+        stepUpConditionText,
+        const SizedBox(height: 8),
+        reviewDeleteConditionText,
+        const SizedBox(height: 16),
+        const ReviewAnswerSettingButton(),
       ],
     );
   }

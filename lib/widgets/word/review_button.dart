@@ -4,7 +4,7 @@ import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/services/review_helper.dart';
+import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:booqs_mobile/widgets/review/large_green_button.dart';
 import 'package:booqs_mobile/widgets/review/large_outline_button.dart';
@@ -99,7 +99,7 @@ class _WordReviewButtonState extends State<WordReviewButton> {
     }
 
     String _settingText(int number) {
-      final String settingText = ReviewHelperService.intervalSetting(number);
+      final String settingText = ReviewHelper.intervalSetting(number);
       return settingText;
     }
 

@@ -25,29 +25,17 @@ class _QuizSkipButtonState extends ConsumerState<QuizSkipButton> {
 
     Widget _button() {
       const String label = 'わからない';
-      Color color = Colors.green;
-      if (_selected) {
-        color = Colors.white;
-      }
 
-      final richText = RichText(
-          text: TextSpan(children: [
-        WidgetSpan(
-          child: Icon(
-            Icons.close,
-            color: color,
-            size: 16.0,
-          ),
-        ),
-        TextSpan(
-            text: label,
-            style: TextStyle(
-                color: color, fontSize: 14, fontWeight: FontWeight.bold))
-      ]));
       if (_selected) {
-        return SmallGreenButton(richText: richText);
+        return const SmallGreenButton(
+          label: label,
+          icon: Icons.close,
+        );
       }
-      return SmallOutlineGreenButton(richText: richText);
+      return const SmallOutlineGreenButton(
+        label: label,
+        icon: Icons.close,
+      );
     }
 
     return InkWell(

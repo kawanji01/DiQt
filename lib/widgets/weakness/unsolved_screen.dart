@@ -1,9 +1,7 @@
-import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/provider/weakness.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/weakness/introduction.dart';
-import 'package:booqs_mobile/widgets/weakness/new_lap_button.dart';
 import 'package:booqs_mobile/widgets/weakness/order_select_form.dart';
 import 'package:booqs_mobile/widgets/weakness/status_tab.dart';
 import 'package:booqs_mobile/widgets/weakness/unsolved_quizzes.dart';

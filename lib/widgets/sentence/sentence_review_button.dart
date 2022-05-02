@@ -3,7 +3,7 @@ import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/services/review_helper.dart';
+import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
@@ -96,7 +96,7 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
     }
 
     String _settingText(int number) {
-      String settingText = ReviewHelperService.intervalSetting(number);
+      String settingText = ReviewHelper.intervalSetting(number);
       return settingText;
     }
 

@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
@@ -35,11 +34,9 @@ class WeaknessUnsolvedQuizWrapper extends StatelessWidget {
     }
 
     final Review? review = quiz.review;
-    final AnswerAnalysis? answerAnalysis = quiz.answerAnalysis;
 
     final header = WeaknessHeader(
       weakness: weakness,
-      answerAnalysis: answerAnalysis,
     );
     final question =
         QuizQuestionPart(quiz: quiz, drill: drill, covering: false);

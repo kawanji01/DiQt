@@ -75,63 +75,24 @@ class _RelationshipFollowButton
       });
     }
 
-    Widget _followButton() {
-      final richText = RichText(
-          text: const TextSpan(children: [
-        WidgetSpan(
-          child: Icon(
-            Icons.person_add,
-            color: Colors.black87,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' フォローする',
-            style: TextStyle(
-                color: Colors.black87,
-                fontSize: 16,
-                fontWeight: FontWeight.bold))
-      ]));
-      return InkWell(
-        onTap: () {
-          _follow();
-        },
-        child: SmallOutlineGrayButton(
-          richText: richText,
-        ),
-      );
-    }
-
-    Widget _removeButton(relationship) {
-      final richText = RichText(
-          text: const TextSpan(children: [
-        WidgetSpan(
-          child: Icon(
-            Icons.person,
-            color: Colors.white,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' フォロー中',
-            style: TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
-      ]));
-      return InkWell(
-        onTap: () {
-          _remove();
-        },
-        child: SmallGreenButton(
-          richText: richText,
-        ),
-      );
-    }
-
     Widget _button(relationship) {
       if (relationship == null) {
-        return _followButton();
+        return InkWell(
+          onTap: () {
+            _follow();
+          },
+          child: const SmallOutlineGrayButton(
+            label: 'フォローする',
+            icon: Icons.person_add,
+          ),
+        );
       } else {
-        return _removeButton(relationship);
+        return InkWell(
+          onTap: () {
+            _remove();
+          },
+          child: const SmallGreenButton(label: 'フォロー中', icon: Icons.person),
+        );
       }
     }
 

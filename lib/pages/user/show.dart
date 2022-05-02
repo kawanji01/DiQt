@@ -1,10 +1,8 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/relationship.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/widgets/relationship/follow_button.dart';
-import 'package:booqs_mobile/widgets/relationship/lazy_follow_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/user/achievements_button.dart';

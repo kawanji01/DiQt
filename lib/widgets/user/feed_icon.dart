@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/pages/user/show.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:cached_network_image/cached_network_image.dart';

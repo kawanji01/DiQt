@@ -2,7 +2,7 @@ import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/services/review_helper.dart';
+import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:booqs_mobile/widgets/review/large_green_button.dart';
 import 'package:booqs_mobile/widgets/review/large_outline_button.dart';
@@ -88,8 +88,7 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
 
     // 復習の更新ボタン
     Widget _editButton(review) {
-      final String label =
-          ReviewHelperService.intervalSetting(review.intervalSetting);
+      final String label = ReviewHelper.intervalSetting(review.intervalSetting);
       return InkWell(
         onTap: () {
           _editReview();

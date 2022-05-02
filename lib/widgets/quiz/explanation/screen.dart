@@ -45,7 +45,7 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
 
     Widget _answer() {
       return future.when(
-        data: (data) => QuizExplanationAnswer(quiz: data!),
+        data: (quiz) => QuizExplanationAnswer(quiz: quiz!),
         error: (err, stack) => Text('Error: $err'),
         loading: () => QuizExplanationAnswer(quiz: _quiz!),
       );
@@ -53,7 +53,7 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
 
     Widget _distractors() {
       return future.when(
-        data: (data) => QuizExplanationDistractors(quiz: data!),
+        data: (quiz) => QuizExplanationDistractors(quiz: quiz!),
         error: (err, stack) => Text('Error: $err'),
         loading: () => QuizExplanationDistractors(quiz: _quiz!),
       );
@@ -62,8 +62,8 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
     // 復習
     Widget _reviewButton() {
       return future.when(
-        data: (data) =>
-            ReviewLargeSettingButton(quizId: _quiz!.id, review: data!.review),
+        data: (quiz) =>
+            ReviewLargeSettingButton(quizId: _quiz!.id, review: quiz!.review),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       );
@@ -72,7 +72,7 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
     // 解説
     Widget _explanation() {
       return future.when(
-        data: (data) => QuizExplanationExplanation(quiz: data!),
+        data: (quiz) => QuizExplanationExplanation(quiz: quiz!),
         error: (err, stack) => Text('Error: $err'),
         loading: () => QuizExplanationExplanation(quiz: _quiz!),
       );
@@ -81,8 +81,7 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
     // 解答分析と弱点設定
     Widget _answerAnalysis() {
       return future.when(
-        data: (data) => QuizExplanationAnswerAnalysis(
-            answerAnalysis: data!.answerAnalysis!),
+        data: (quiz) => QuizExplanationAnswerAnalysis(quiz: quiz!),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       );
