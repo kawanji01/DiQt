@@ -1,15 +1,16 @@
-import 'package:booqs_mobile/data/provider/review.dart';
+import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReviewAnswerSettingButton extends ConsumerWidget {
-  const ReviewAnswerSettingButton({Key? key}) : super(key: key);
+class DrillAnswerSettingButton extends ConsumerWidget {
+  const DrillAnswerSettingButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 解答設定を開く
+    // 解答設定
     Future<void> _moveToAnswerSetting() async {
+      // bottomSheetを表示するときにインタラクションも消しておく
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
       await showModalBottomSheet(
         isScrollControlled: true,
@@ -21,10 +22,10 @@ class ReviewAnswerSettingButton extends ConsumerWidget {
         ),
         // showModalBottomSheetで表示される中身
         builder: (context) => const AnswerSettingScreen(
-          primary: 'reviewSetting',
+          primary: 'answerSetting',
         ),
       );
-      ref.refresh(asyncUnsolvedReviewsProvider);
+      ref.refresh(asyncDrillUnsolvedQuizzesProvider);
     }
 
     return ElevatedButton.icon(
@@ -38,7 +39,7 @@ class ReviewAnswerSettingButton extends ConsumerWidget {
         color: Colors.black54,
       ),
       label: const Text(
-        ' 設定を変更する',
+        ' 解答設定',
         style: TextStyle(
             fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54),
       ),
