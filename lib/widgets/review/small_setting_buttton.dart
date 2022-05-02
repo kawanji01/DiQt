@@ -114,26 +114,15 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
     Widget _editButton(review) {
       final String label =
           ReviewHelperService.intervalSetting(review.intervalSetting);
-      final richText = RichText(
-          text: TextSpan(children: [
-        const WidgetSpan(
-          child: Icon(
-            Icons.alarm,
-            color: Colors.white,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' $label',
-            style: const TextStyle(
-                color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold))
-      ]));
 
       return InkWell(
         onTap: () {
           _editReview();
         },
-        child: SmallGreenButton(richText: richText),
+        child: SmallGreenButton(
+          label: label,
+          icon: Icons.alarm,
+        ),
       );
     }
 

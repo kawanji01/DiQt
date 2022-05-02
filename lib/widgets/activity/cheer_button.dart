@@ -43,22 +43,14 @@ class _ActivityCheerButtonState extends State<ActivityCheerButton> {
       });
     }
 
-    Widget _cheerBtn() {
-      final text = RichText(
-          text: const TextSpan(children: [
-        WidgetSpan(
-          child: Icon(
-            Icons.favorite,
-            color: Colors.green,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' 応援する！',
-            style: TextStyle(
-                color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold))
-      ]));
-
+    Widget _button() {
+      // 楽観的UI
+      if (_cheer != null || _tapped == true) {
+        return const SmallGreenButton(
+          label: '応援しました！',
+          icon: Icons.favorite,
+        );
+      }
       return InkWell(
         onTap: () {
           setState(() {
@@ -66,38 +58,11 @@ class _ActivityCheerButtonState extends State<ActivityCheerButton> {
           });
           _createCheer();
         },
-        child: SmallOutlineGreenButton(
-          richText: text,
+        child: const SmallOutlineGreenButton(
+          label: '応援する！',
+          icon: Icons.favorite,
         ),
       );
-    }
-
-    Widget _cheeredBtn() {
-      final text = RichText(
-          text: const TextSpan(children: [
-        WidgetSpan(
-          child: Icon(
-            Icons.favorite,
-            color: Colors.white,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' 応援しました！',
-            style: TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
-      ]));
-      return SmallGreenButton(
-        richText: text,
-      );
-    }
-
-    Widget _button() {
-      // 楽観的UI
-      if (_cheer != null || _tapped == true) {
-        return _cheeredBtn();
-      }
-      return _cheerBtn();
     }
 
     return _button();
