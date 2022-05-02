@@ -3,19 +3,19 @@ import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/widgets/activity/list_item.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class ActivityItemListView extends StatefulWidget {
+class ActivityItemListView extends ConsumerStatefulWidget {
   const ActivityItemListView({Key? key}) : super(key: key);
 
   @override
-  State<ActivityItemListView> createState() => _ActivityItemListViewState();
+  _ActivityItemListViewState createState() => _ActivityItemListViewState();
 }
 
-class _ActivityItemListViewState extends State<ActivityItemListView> {
-  bool _reachedLast = true;
-  bool _isLoading = false;
+class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
+  bool _loading = false;
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const _pageSize = 10;
@@ -31,15 +31,13 @@ class _ActivityItemListViewState extends State<ActivityItemListView> {
 
   // ページに合わせてアイテムを読み込む
   Future<void> _fetchPage(int pageKey) async {
-    if (_isLoading) return;
     print('nextPageKey: $_nextPagekey');
-    if (_reachedLast == false) return;
-    _reachedLast = false;
-    _isLoading = true;
 
     final Map? resMap = await RemoteActivities.index(pageKey, _pageSize);
     if (resMap == null) {
-      _isLoading = false;
+      setState(() {
+        _loading = false;
+      });
       return;
     }
     final List<Activity> activities = [];
@@ -54,7 +52,11 @@ class _ActivityItemListViewState extends State<ActivityItemListView> {
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(activities, _nextPagekey);
     }
-    _isLoading = false;
+    if (mounted) {
+      setState(() {
+        _loading = false;
+      });
+    }
   }
 
   @override
@@ -73,7 +75,11 @@ class _ActivityItemListViewState extends State<ActivityItemListView> {
         onVisibilityChanged: (info) {
           // [visibleFraction] 0で非表示、１で完全表示。0.1は上部が少し表示されている状態 ref: https://pub.dev/documentation/visibility_detector/latest/visibility_detector/VisibilityInfo/visibleFraction.html
           if (info.visibleFraction > 0.1) {
-            _reachedLast = true;
+            if (_loading) return;
+            setState(() {
+              _loading = true;
+            });
+
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
             _pagingController.notifyPageRequestListeners(_nextPagekey);
           }
