@@ -19,18 +19,19 @@ class NoticeItemListView extends StatefulWidget {
 
 class _NoticeItemListViewState extends State<NoticeItemListView> {
   bool _isLoading = false;
+  bool _isReached = true;
 
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const _pageSize = 10;
-  final PagingController<int, Notice> _pagingController = PagingController(
-      firstPageKey: 0, invisibleItemsThreshold: 100); // pageのパラメーターの初期値
+  final PagingController<int, Notice> _pagingController =
+      PagingController(firstPageKey: 0); // pageのパラメーターの初期値
   @override
   void initState() {
+    super.initState();
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
-    super.initState();
   }
 
   // 未受領の実績メダルをモーダル表示
@@ -45,13 +46,19 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
   // ページに合わせてアイテムを読み込む
   Future<void> _fetchPage(int pageKey) async {
     print('nextPageKey: $_nextPagekey');
-
+    if (_isLoading) return;
+    if (_isReached == false) return;
+    print('_fetchPage isLoading: false');
     _isLoading = true;
+
     final Map? resMap = await RemoteNotifications.index(pageKey, _pageSize);
     if (resMap == null) {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _isReached = false;
+        });
+      }
       return;
     }
     final List<Notice> notices = [];
@@ -67,8 +74,10 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(notices, _nextPagekey);
     }
+
     if (mounted) {
       setState(() {
+        _isReached = false;
         _isLoading = false;
       });
     }
@@ -90,9 +99,10 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
         onVisibilityChanged: (info) {
           // [visibleFraction] 0で非表示、１で完全表示。0.1は上部が少し表示されている状態 ref: https://pub.dev/documentation/visibility_detector/latest/visibility_detector/VisibilityInfo/visibleFraction.html
           if (info.visibleFraction > 0.1) {
-            if (_isLoading) return;
+            if (_isLoading) return print('_isLoading: true');
+            print('_isLoading: false');
             setState(() {
-              _isLoading = true;
+              _isReached = true;
             });
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
             _pagingController.notifyPageRequestListeners(_nextPagekey);

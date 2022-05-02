@@ -16,6 +16,7 @@ class ActivityItemListView extends ConsumerStatefulWidget {
 
 class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
   bool _isLoading = false;
+  bool _isReached = true;
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const _pageSize = 10;
@@ -23,21 +24,28 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
       firstPageKey: 0, invisibleItemsThreshold: 100); // pageのパラメーターの初期値
   @override
   void initState() {
+    super.initState();
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
-    super.initState();
   }
 
   // ページに合わせてアイテムを読み込む
   Future<void> _fetchPage(int pageKey) async {
     print('nextPageKey: $_nextPagekey');
+    if (_isLoading) return;
+    if (_isReached == false) return;
+    print('_fetchPage isLoading: false');
+    _isLoading = true;
 
     final Map? resMap = await RemoteActivities.index(pageKey, _pageSize);
     if (resMap == null) {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _isReached = false;
+        });
+      }
       return;
     }
     final List<Activity> activities = [];
@@ -54,6 +62,7 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
     }
     if (mounted) {
       setState(() {
+        _isReached = false;
         _isLoading = false;
       });
     }
@@ -75,9 +84,10 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
         onVisibilityChanged: (info) {
           // [visibleFraction] 0で非表示、１で完全表示。0.1は上部が少し表示されている状態 ref: https://pub.dev/documentation/visibility_detector/latest/visibility_detector/VisibilityInfo/visibleFraction.html
           if (info.visibleFraction > 0.1) {
-            if (_isLoading) return;
+            if (_isLoading) return print('visibleFraction _isLoading: true');
+            print('visibleFraction _isLoading: false');
             setState(() {
-              _isLoading = true;
+              _isReached = true;
             });
 
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
