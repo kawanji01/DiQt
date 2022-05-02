@@ -7,16 +7,16 @@ class AnswerSettingHelper {
         condition = '正解する';
         break;
       case 2:
-        condition = '2回連続で正解する';
+        condition = '２回連続で正解する';
         break;
       case 3:
-        condition = '3回連続で正解する';
+        condition = '３回連続で正解する';
         break;
       case 4:
-        condition = '4回連続で正解する';
+        condition = '４回連続で正解する';
         break;
       case 5:
-        condition = '5回連続で正解する';
+        condition = '５回連続で正解する';
         break;
       default:
         condition = '正解する';

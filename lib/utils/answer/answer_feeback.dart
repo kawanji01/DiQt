@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/answer_history.dart';
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/services/review_helper.dart';
+import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +38,7 @@ class AnswerFeedback {
     final Review? review = answerCreator.review;
     if (review != null && answerCreator.reviewCreated == true) {
       final String interval =
-          ReviewHelperService.intervalSetting(review.intervalSetting);
+          ReviewHelper.intervalSetting(review.intervalSetting);
       return reviewMessage(interval);
     }
   }
@@ -66,7 +66,7 @@ class AnswerFeedback {
     final Review? review = answerCreator.review;
     if (review != null && answerHistory!.intervalStepUp) {
       final String interval =
-          ReviewHelperService.intervalSetting(review.intervalSetting);
+          ReviewHelper.intervalSetting(review.intervalSetting);
       final String text = '繰り上がりで$interval';
       return reviewMessage(text);
     }

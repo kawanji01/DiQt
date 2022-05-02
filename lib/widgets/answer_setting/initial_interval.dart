@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/services/review_helper.dart';
+import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -34,7 +34,7 @@ class AnswerSettingInitialInterval extends ConsumerWidget {
               .map<DropdownMenuItem<int>>((int value) {
             return DropdownMenuItem<int>(
               value: value,
-              child: Text(ReviewHelperService.intervalSetting(value),
+              child: Text(ReviewHelper.intervalSetting(value),
                   style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,

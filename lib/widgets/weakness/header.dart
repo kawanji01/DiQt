@@ -1,27 +1,20 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/weakness.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessHeader extends ConsumerWidget {
-  const WeaknessHeader(
-      {Key? key, required this.weakness, required this.answerAnalysis})
-      : super(key: key);
+  const WeaknessHeader({Key? key, required this.weakness}) : super(key: key);
   final Weakness weakness;
-  final AnswerAnalysis? answerAnalysis;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final int overcomingRate = ref.watch(answerSettingProvider.select(
         (setting) => setting == null ? 80 : setting.overcomingCondition));
 
-    final double correctRate =
-        answerAnalysis == null ? 0 : answerAnalysis!.correctAnswerRate;
-    final int incorrectAnswersCount = answerAnalysis == null
-        ? 0
-        : answerAnalysis!.incorrectAnswerHistoriesCount;
+    final double correctRate = weakness.correctAnswerRate;
+    final int incorrectAnswersCount = weakness.incorrectAnswersCount;
 
     Color colors = Colors.blue;
     if (correctRate < overcomingRate) colors = Colors.red;

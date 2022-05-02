@@ -2,7 +2,7 @@ import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/services/review_helper.dart';
+import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -153,7 +153,7 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
   // 間隔設定のテキストを返す
   String _reviewText(numberStr) {
     final settingNumber = int.parse(numberStr);
-    String settingText = ReviewHelperService.intervalSetting(settingNumber);
+    String settingText = ReviewHelper.intervalSetting(settingNumber);
     return settingText;
   }
 
