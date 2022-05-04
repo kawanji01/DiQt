@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/widgets/drill/quiz_header.dart';
 import 'package:booqs_mobile/widgets/quiz/answer_part.dart';
 import 'package:booqs_mobile/widgets/quiz/question_part.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_content.dart';
@@ -18,9 +19,8 @@ class DrillUnsolvedQuizWrapper extends ConsumerWidget {
     final Drill? drill = quiz.drill;
     final Review? review = quiz.review;
 
-    final header = Container();
-    final question =
-        QuizQuestionPart(quiz: quiz, drill: drill!, covering: false);
+    final header = DrillQuizHeader(quiz: quiz);
+    final question = QuizQuestionPart(quiz: quiz, drill: drill!);
     final answer = QuizAnswerPart(quiz: quiz);
     final footer = QuizUnsolvedFooter(quiz: quiz, review: review);
 

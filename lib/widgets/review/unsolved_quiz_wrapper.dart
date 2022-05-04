@@ -5,7 +5,7 @@ import 'package:booqs_mobile/widgets/quiz/answer_part.dart';
 import 'package:booqs_mobile/widgets/quiz/question_part.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_content.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_footer.dart';
-import 'package:booqs_mobile/widgets/review/header.dart';
+import 'package:booqs_mobile/widgets/review/quiz_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,9 +30,8 @@ class ReviewUnsolvedQuizWrapper extends ConsumerWidget {
           child: Text('エラー: drill-${quiz.drillId}が存在しない。review-${review.id}'));
     }
 
-    final header = ReviewHeader(review: review);
-    final question =
-        QuizQuestionPart(quiz: quiz, drill: drill, covering: false);
+    final header = ReviewQuizHeader(review: review);
+    final question = QuizQuestionPart(quiz: quiz, drill: drill);
     final answer = QuizAnswerPart(quiz: quiz);
     final footer = QuizUnsolvedFooter(quiz: quiz, review: review);
 

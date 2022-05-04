@@ -1,29 +1,28 @@
+import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:flutter/material.dart';
 
-class SentenceEditButton extends StatelessWidget {
-  const SentenceEditButton({Key? key, required this.sentenceId})
-      : super(key: key);
-  final int sentenceId;
+class QuizEditButton extends StatelessWidget {
+  const QuizEditButton({Key? key, required this.quiz}) : super(key: key);
+  final Quiz quiz;
 
   @override
   Widget build(BuildContext context) {
-    final String redirectPath = '/sentences/$sentenceId/edit';
-
+    final String redirectPath = '/quizzes/${quiz.id}/edit';
     return Container(
       // 左寄せ
-      alignment: Alignment.topLeft,
+      alignment: Alignment.centerLeft,
       child: TextButton(
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           primary: Colors.black54,
-          textStyle: const TextStyle(fontSize: 14),
+          textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {
           BooQsOnWeb.open(context, redirectPath);
         },
         child: const Text(
-          'この例文を改善する',
+          'この問題を改善する',
           style: TextStyle(
             decoration: TextDecoration.underline,
           ),

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,20 +7,13 @@ final wordSearchKeywordProvider = StateProvider<String?>((ref) => null);
 final wordsProvider = StateProvider<List<Word>>((ref) => []);
 
 final wordProvider = StateProvider<Word?>((ref) => null);
-
-// 
-
-/* final asyncSearchWordsProvider = FutureProvider<List<Word>>((ref) async {
-  final List<Word> words = [];
-  final String? keyword = ref.watch(wordSearchKeywordProvider);
-  if (keyword == null) return words;
-  final Map? resMap = await RemoteWords.search(keyword);
-  if (resMap == null) return words;
-  resMap['words'].forEach((e) => words.add(Word.fromJson(e)));
-  final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
-  // providerの更新
-  ref.read(wordsProvider.notifier).state = words;
-  ref.read(dictionaryProvider.notifier).state = dictionary;
-  return words;
+final wordIdProvider = StateProvider<int?>((ref) => null);
+final asyncWordProvider = FutureProvider<Word?>((ref) async {
+  final int? id = ref.watch(wordIdProvider);
+  if (id == null) return null;
+  final Map? resMap = await RemoteWords.show(id);
+  if (resMap == null) return null;
+  final Word word = Word.fromJson(resMap['word']);
+  ref.read(wordProvider.notifier).state = word;
+  return word;
 });
- */

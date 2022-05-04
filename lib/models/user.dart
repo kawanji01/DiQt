@@ -13,6 +13,7 @@ class User {
     required this.amountOfExp,
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
+    required this.todaysIncorrectAnswerHistoriesCount,
     required this.answerDaysCount,
     required this.achievementMapsCount,
     required this.premium,
@@ -24,6 +25,7 @@ class User {
     required this.weaknessesCount,
     required this.rewardRemained,
     this.authToken,
+    this.dateCurrent,
     this.answerSetting,
     this.drillInProgress,
     this.relationship,
@@ -38,6 +40,7 @@ class User {
   int amountOfExp;
   int answerHistoriesCount;
   int todaysAnswerHistoriesCount;
+  int todaysIncorrectAnswerHistoriesCount;
   int answerDaysCount;
   int achievementMapsCount;
   bool premium;
@@ -49,6 +52,7 @@ class User {
   int weaknessesCount;
   bool rewardRemained;
   String? authToken;
+  DateTime? dateCurrent;
   AnswerSetting? answerSetting;
   Drill? drillInProgress;
   Relationship? relationship;
@@ -63,6 +67,8 @@ class User {
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
+        todaysIncorrectAnswerHistoriesCount =
+            json['todays_incorrect_answer_histories_count'],
         answerDaysCount = json['answer_days_count'],
         achievementMapsCount = json['achievement_maps_count'],
         premium = json['premium'],
@@ -74,6 +80,9 @@ class User {
         weaknessesCount = json['weaknesses_count'],
         rewardRemained = json['reward_remained'],
         authToken = json['token_for_native_app'],
+        dateCurrent = json['date_current'] == null
+            ? null
+            : DateTime.parse(json['date_current']),
         answerSetting = json['answer_setting'] == null
             ? null
             : AnswerSetting.fromJson(json['answer_setting']),
@@ -94,6 +103,8 @@ class User {
         'amount_of_exp': amountOfExp,
         'answer_histories_count': answerHistoriesCount,
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
+        'todays_incorrect_answer_histories_count':
+            todaysIncorrectAnswerHistoriesCount,
         'answer_days_count': answerDaysCount,
         'achievement_maps_count': achievementMapsCount,
         'premium': premium,
@@ -104,6 +115,7 @@ class User {
         'unsolved_weaknesses_count': unsolvedWeaknessesCount,
         'weaknesses_count': weaknessesCount,
         'token_for_native_app': authToken,
+        'date_current': dateCurrent,
         'answer_setting': answerSetting,
         'drill_in_progress': drillInProgress,
         'relationship': relationship,

@@ -1,6 +1,8 @@
 import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
+import 'package:booqs_mobile/widgets/quiz/detail_button.dart';
+import 'package:booqs_mobile/widgets/quiz/edit_button.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/answer_analysis.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/distractors.dart';
@@ -78,6 +80,17 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
       );
     }
 
+    Widget _editButtons() {
+      return future.when(
+        data: (quiz) => Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [QuizEditButton(quiz: quiz!), QuizDetailButton(quiz: quiz)],
+        ),
+        error: (err, stack) => Text('Error: $err'),
+        loading: () => const LoadingSpinner(),
+      );
+    }
+
     // 解答分析と弱点設定
     Widget _answerAnalysis() {
       return future.when(
@@ -105,8 +118,9 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
               _answer(),
               _distractors(),
               _reviewButton(),
-              const SizedBox(height: 40),
+              const SizedBox(height: 16),
               _explanation(),
+              _editButtons(),
               const SizedBox(height: 40),
               _answerAnalysis(),
               const SizedBox(height: 40),

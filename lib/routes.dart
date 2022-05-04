@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
@@ -20,32 +21,39 @@ import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/pages/word/search_results.dart';
 
+// ホーム
 const indexPage = '/';
+// 復習
 const reviewIndexPage = '/review/index';
+// 通知
 const noticeIndexPage = '/notice/index';
 const noticeHomePage = '/notice/home';
-
+// セッション
 const signUpPage = '/session/sign_up';
 const loginPage = '/session/login';
+// 辞書
 const dictionaryPage = '/dictionary/show';
-
+// ワード
 const wordShowPage = '/word/show';
 const wordNewPage = '/word/new';
 const wordEditPage = '/word/edit';
 const wordSearchResultsPage = '/word/search';
-
+// チャプター
 const chapterIndexPage = '/chapter/index';
 const chapterShowPage = '/chapter/show';
-
+// ユーザー
 const userMyPage = '/user/mypage';
 const userShowPage = '/user/show';
 const userAchievementsPage = '/user/achievements';
 const userEditPage = '/user/edit';
 const premiumPlanPage = '/user/premium_plan';
 const premiumMenuPage = '/user/premium_menu';
-
+// 問題集
 const drillUnsolvedPage = '/drill/unsolved';
+// 苦手な問題
 const weaknessIndexPage = '/weakness/index';
+// 解答履歴
+const answerHistoryTodaysIncorrectPage = '/answer_history/todays_mistakes';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -69,4 +77,6 @@ final routes = {
   premiumMenuPage: (context) => const PremiumMenuPage(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   weaknessIndexPage: (context) => const WeaknessIndexPage(),
+  answerHistoryTodaysIncorrectPage: (context) =>
+      const AnswerHistoryTodaysMistakesPage(),
 };

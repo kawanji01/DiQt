@@ -1,18 +1,21 @@
+import 'package:booqs_mobile/models/quiz.dart';
+
 class Sentence {
   Sentence({
-    this.id = 0,
-    this.dictionaryId = 0,
+    this.id,
+    required this.dictionaryId,
     this.sentenceSourceId,
-    this.original = '',
-    this.langNumberOfOriginal = 0,
-    this.translation = '',
-    this.langNumberOfTranslation = 0,
+    required this.original,
+    required this.langNumberOfOriginal,
+    required this.translation,
+    required this.langNumberOfTranslation,
     this.explanation,
-    this.createdAt,
-    this.updatedAt,
+    required this.createdAt,
+    required this.updatedAt,
+    this.quiz,
   });
 
-  int id;
+  int? id;
   int dictionaryId;
   int? sentenceSourceId;
   String original;
@@ -20,8 +23,9 @@ class Sentence {
   String translation;
   int langNumberOfTranslation;
   String? explanation;
-  String? createdAt;
-  String? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
+  Quiz? quiz;
 
   Sentence.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -30,7 +34,11 @@ class Sentence {
         original = json['original'],
         langNumberOfOriginal = json['lang_number_of_original'],
         translation = json['translation'],
-        langNumberOfTranslation = json['lang_number_of_translation'];
+        langNumberOfTranslation = json['lang_number_of_translation'],
+        explanation = json['explanation'],
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']),
+        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -40,5 +48,8 @@ class Sentence {
         'lang_number_of_original': langNumberOfOriginal,
         'translation': translation,
         'lang_number_of_translation': langNumberOfTranslation,
+        'created_at': createdAt,
+        'updated_at': updatedAt,
+        'quiz': quiz,
       };
 }

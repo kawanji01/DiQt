@@ -60,8 +60,15 @@ class _WordSentenceSearchModalState extends State<WordSentenceSearchModal> {
       if (sentence != null) {
         Navigator.of(context).pop(sentence);
       } else {
-        final removeSentence = Sentence();
-        Navigator.of(context).pop(removeSentence);
+        final newSentence = Sentence(
+            dictionaryId: 0,
+            original: 'aaa',
+            langNumberOfOriginal: 0,
+            translation: 'aaa',
+            langNumberOfTranslation: 0,
+            createdAt: DateTime.now(),
+            updatedAt: DateTime.now());
+        Navigator.of(context).pop(newSentence);
       }
     }
 

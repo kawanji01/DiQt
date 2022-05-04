@@ -6,6 +6,23 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class RemoteWords {
+  // 取得
+  static Future<Map?> show(int id) async {
+    final String? token = await LocalUserInfo.authToken();
+    final Map<String, String> headers = {'content-type': 'application/json'};
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$id?token=$token');
+    final Response res = await get(
+      url,
+      headers: headers,
+    );
+
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 新規作成
   static Future<Map?> create(Map<String, dynamic> params) async {
     final String? token = await LocalUserInfo.authToken();

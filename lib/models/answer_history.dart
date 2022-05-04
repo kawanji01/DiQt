@@ -5,46 +5,46 @@ import 'package:booqs_mobile/models/user.dart';
 
 class AnswerHistory {
   AnswerHistory({
-    this.id,
-    this.userId,
-    this.quizId,
-    this.drillId,
-    this.answerAnalysisId,
-    this.correct = false,
-    this.atDrillPage = false,
-    this.atReviewPage = false,
-    this.atWeknessPage = false,
-    this.intervalStepUp = false,
-    this.answerDate,
-    this.firstOfTheDay = false,
+    required this.id,
+    required this.userId,
+    required this.quizId,
+    required this.drillId,
+    required this.answerAnalysisId,
+    required this.correct,
+    required this.atDrillPage,
+    required this.atReviewPage,
+    required this.atWeknessPage,
+    required this.intervalStepUp,
+    required this.answerDate,
+    required this.firstOfTheDay,
     this.answer,
     //this.solved = false,
-    this.dailyGoalAchievement = false,
-    this.completeReview = false,
-    this.continuation = false,
-    this.continuationAllWeek = false,
-    this.continuationAllMonth = false,
-    this.continuationAllYear = false,
-    this.holiday = false,
-    this.createdAt,
-    this.updatedAt,
+    required this.dailyGoalAchievement,
+    required this.completeReview,
+    required this.continuation,
+    required this.continuationAllWeek,
+    required this.continuationAllMonth,
+    required this.continuationAllYear,
+    required this.holiday,
+    required this.createdAt,
+    required this.updatedAt,
     this.user,
     this.quiz,
     this.drill,
     this.answerAnalysis,
   });
 
-  int? id;
-  int? userId;
-  int? quizId;
-  int? drillId;
-  int? answerAnalysisId;
+  int id;
+  int userId;
+  int quizId;
+  int drillId;
+  int answerAnalysisId;
   bool correct;
   bool atDrillPage;
   bool atReviewPage;
   bool atWeknessPage;
   bool intervalStepUp;
-  String? answerDate;
+  DateTime answerDate;
   bool firstOfTheDay;
   String? answer;
   // bool solved;
@@ -55,8 +55,8 @@ class AnswerHistory {
   bool continuationAllMonth;
   bool continuationAllYear;
   bool holiday;
-  String? createdAt;
-  String? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
   User? user;
   Quiz? quiz;
   Drill? drill;
@@ -73,7 +73,7 @@ class AnswerHistory {
         atReviewPage = json['at_review_page'],
         atWeknessPage = json['at_weakness_page'],
         intervalStepUp = json['interval_step_up'],
-        answerDate = json['answer_date'],
+        answerDate = DateTime.parse(json['answer_date']),
         firstOfTheDay = json['first_of_the_day'],
         answer = json['answer'],
         dailyGoalAchievement = json['daily_goal_achievement'],
@@ -83,8 +83,8 @@ class AnswerHistory {
         continuationAllMonth = json['continuation_all_month'],
         continuationAllYear = json['continuation_all_year'],
         holiday = json['holiday'],
-        createdAt = json['created_at'],
-        updatedAt = json['updated_at'],
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']),
         user = json['user'] == null ? null : User.fromJson(json['user']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
         drill = json['drill'] == null ? null : Drill.fromJson(json['drill']),

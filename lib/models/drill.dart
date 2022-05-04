@@ -2,23 +2,24 @@ import 'package:booqs_mobile/models/drill_lap.dart';
 
 class Drill {
   Drill(
-      {this.id,
+      {required this.id,
       this.userId,
       this.chapterId,
       this.dictionaryId,
       this.sentenceDictionaryId,
-      this.title = '',
-      this.introduction = '',
+      required this.title,
+      required this.introduction,
       this.imageUrl = '',
       this.referenceUrl,
-      this.publicUid,
-      this.createdAt,
-      this.updatedAt,
-      this.answerHistoriesCount,
-      this.quizzesCount,
+      required this.thumbnailUrl,
+      required this.publicUid,
+      required this.answerHistoriesCount,
+      required this.quizzesCount,
+      required this.createdAt,
+      required this.updatedAt,
       this.drillLap});
 
-  int? id;
+  int id;
   int? userId;
   int? chapterId;
   int? dictionaryId;
@@ -27,11 +28,12 @@ class Drill {
   String introduction;
   String imageUrl;
   String? referenceUrl;
-  String? publicUid;
-  String? createdAt;
-  String? updatedAt;
-  int? answerHistoriesCount;
-  int? quizzesCount;
+  String thumbnailUrl;
+  String publicUid;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int answerHistoriesCount;
+  int quizzesCount;
   DrillLap? drillLap;
 
   Drill.fromJson(Map<String, dynamic> json)
@@ -44,11 +46,12 @@ class Drill {
         introduction = json['introduction'] ?? '',
         imageUrl = json['cover_image_url'] ?? '',
         referenceUrl = json['reference_url'] ?? '',
+        thumbnailUrl = json['thumbnail_url'],
         publicUid = json['public_uid'],
-        createdAt = json['created_at'],
-        updatedAt = json['updated_at'],
-        answerHistoriesCount = json['answer_histories_count'] ?? 0,
-        quizzesCount = json['quizzes_count'] ?? 0,
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']),
+        answerHistoriesCount = json['answer_histories_count'],
+        quizzesCount = json['quizzes_count'],
         drillLap = json['drill_lap'] == null
             ? null
             : DrillLap.fromJson(json['drill_lap']);
@@ -63,6 +66,7 @@ class Drill {
         'introduction': introduction,
         'imageUrl': imageUrl,
         'referenceUrl': referenceUrl,
+        'thumbnail_url': thumbnailUrl,
         'publicUid': publicUid,
         'createdAt': createdAt,
         'updatedAt': updatedAt,

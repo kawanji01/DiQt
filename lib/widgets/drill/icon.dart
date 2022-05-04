@@ -38,7 +38,7 @@ class DrillIcon extends ConsumerWidget {
         onTap: () {
           _moveToDrillPage(drill);
         },
-        child: Image.network(drill.imageUrl),
+        child: Image.network(drill.thumbnailUrl),
       );
     }
 

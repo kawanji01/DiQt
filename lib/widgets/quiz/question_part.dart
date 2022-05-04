@@ -9,15 +9,13 @@ import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 
 class QuizQuestionPart extends StatelessWidget {
-  const QuizQuestionPart(
-      {Key? key,
-      required this.quiz,
-      required this.drill,
-      required this.covering})
-      : super(key: key);
+  const QuizQuestionPart({
+    Key? key,
+    required this.quiz,
+    required this.drill,
+  }) : super(key: key);
   final Quiz quiz;
   final Drill drill;
-  final bool covering;
 
   @override
   Widget build(BuildContext context) {

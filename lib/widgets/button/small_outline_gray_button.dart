@@ -44,7 +44,7 @@ class SmallOutlineGrayButton extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black54, width: 1),
+        border: Border.all(color: Colors.black45, width: 1),
         borderRadius: const BorderRadius.all(Radius.circular(5)),
         color: Colors.white,
       ),

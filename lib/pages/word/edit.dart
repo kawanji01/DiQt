@@ -63,6 +63,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
 
     Future _goToWordPage(word) async {
       ref.read(wordProvider.notifier).state = word;
+      ref.read(wordIdProvider.notifier).state = word!.id;
       await WordShowPage.pushReplacement(context);
     }
 

@@ -23,7 +23,7 @@ final asyncDrillUnsolvedQuizzesProvider =
   if (drill == null) return quizzes;
 
   final Map? resMap =
-      await RemoteDrills.unsolved(drill.publicUid!, 'random', 'desc');
+      await RemoteDrills.unsolved(drill.publicUid, 'random', 'desc');
 
   if (resMap == null) return quizzes;
 

@@ -45,13 +45,15 @@ class _WordReviewButtonState extends State<WordReviewButton> {
 
     if (resMap == null) return;
 
-    return setState(() {
-      _quizId = resMap['quiz_id'];
-      if (resMap['review'] != null) {
-        _review = Review.fromJson(resMap['review']);
-      }
-      _initDone = true;
-    });
+    if (mounted) {
+      setState(() {
+        _quizId = resMap['quiz_id'];
+        if (resMap['review'] != null) {
+          _review = Review.fromJson(resMap['review']);
+        }
+        _initDone = true;
+      });
+    }
   }
 
   @override
