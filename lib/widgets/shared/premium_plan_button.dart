@@ -8,7 +8,7 @@ class PremiumPlanButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (user.premium = true) return Container();
+    if (user.premium == true) return Container();
 
     // プレミアムプランの紹介ページへ遷移するボタン
     Widget _premiumPlanButton() {

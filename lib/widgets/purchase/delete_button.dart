@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/purchase.dart';
@@ -5,13 +6,16 @@ import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class PurchaseDeleteButton extends StatelessWidget {
-  const PurchaseDeleteButton({Key? key, required this.user}) : super(key: key);
-  final User user;
+class PurchaseDeleteButton extends ConsumerWidget {
+  const PurchaseDeleteButton({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final User? user = ref.watch(currentUserProvider);
+    if (user == null) return Container();
     if (user.premium == false) return Container();
 
     final purchase = PurchaseService();

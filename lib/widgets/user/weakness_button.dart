@@ -14,6 +14,7 @@ class UserWeaknessButton extends ConsumerWidget {
     if (user.weaknessesCount == 0) return Container();
 
     return Container(
+      margin: const EdgeInsets.only(bottom: 32),
       padding: const EdgeInsets.only(left: 16),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -58,7 +59,7 @@ class UserWeaknessButton extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 12),
                     const Text(
                       '苦手な問題',
                       style: TextStyle(
@@ -75,7 +76,7 @@ class UserWeaknessButton extends ConsumerWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 12),
                   ]),
             ],
           ),
