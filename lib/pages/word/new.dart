@@ -69,6 +69,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       if (word.id == null) return MyHomePage.push(context);
       // 項目が作成されていれば項目ページに遷移。
       ref.read(wordProvider.notifier).state = word;
+      ref.read(wordIdProvider.notifier).state = word!.id;
       await WordShowPage.pushReplacement(context);
     }
 
@@ -76,15 +77,17 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
       final Word word = Word(
-        dictionaryId: 1,
-        entry: _entryController.text,
-        meaning: _meaningController.text,
-        langNumberOfEntry: 22,
-        langNumberOfMeaning: 44,
-        sentenceId: _sentenceIdController.text == ''
-            ? null
-            : int.parse(_sentenceIdController.text),
-      );
+          dictionaryId: 1,
+          entry: _entryController.text,
+          meaning: _meaningController.text,
+          langNumberOfEntry: 22,
+          langNumberOfMeaning: 44,
+          sentenceId: _sentenceIdController.text == ''
+              ? null
+              : int.parse(_sentenceIdController.text),
+          wordRequestsCount: 0,
+          acceptedWordRequestsCount: 0,
+          pendingWordRequestsCount: 0);
       final Map<String, dynamic> params = word.toJson();
 
       // 画面全体にローディングを表示

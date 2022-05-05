@@ -2,7 +2,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/button/large_button.dart';
+import 'package:booqs_mobile/widgets/button/large_green_button.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryPage extends StatefulWidget {
@@ -10,7 +10,7 @@ class DictionaryPage extends StatefulWidget {
 
   static Future push(BuildContext context, Dictionary dictionary) async {
     return Navigator.of(context).pushNamed(
-      dictionaryPage,
+      dictionaryShowPage,
       arguments: dictionary,
     );
   }
@@ -37,7 +37,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
         },
-        child: LargeButton(btnText: btnText),
+        child: LargeGreenButton(label: btnText, icon: null),
       );
     }
 
@@ -49,7 +49,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
         },
-        child: LargeButton(btnText: btnText),
+        child: LargeGreenButton(label: btnText, icon: null),
       );
     }
 
@@ -62,7 +62,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
         },
-        child: LargeButton(btnText: btnText),
+        child: LargeGreenButton(label: btnText, icon: null),
       );
     }
 
@@ -74,7 +74,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
         },
-        child: LargeButton(btnText: btnText),
+        child: LargeGreenButton(label: btnText, icon: null),
       );
     }
 
@@ -86,7 +86,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
         },
-        child: LargeButton(btnText: btnText),
+        child: LargeGreenButton(label: btnText, icon: null),
       );
     }
 
@@ -98,7 +98,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
         },
-        child: LargeButton(btnText: btnText),
+        child: LargeGreenButton(label: btnText, icon: null),
       );
     }
 

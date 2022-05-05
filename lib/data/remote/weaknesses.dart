@@ -20,6 +20,21 @@ class RemoteWeaknesses {
     return resMap;
   }
 
+  // 移行用あとでindexに書き換え
+  static Future<Map?> list(String order) async {
+    final String? token = await LocalUserInfo.authToken();
+    if (token == null) return null;
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses/list?order=$order&token=$token');
+    final Response res = await get(url);
+
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 苦手な問題に追加
   static Future<Map?> create(int quizId) async {
     final String? token = await LocalUserInfo.authToken();

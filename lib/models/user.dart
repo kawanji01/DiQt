@@ -7,13 +7,17 @@ class User {
     required this.id,
     required this.publicUid,
     required this.name,
-    //this.icon, carrierWaveを利用しているので、'_InternalLinkedHashMap<String, dynamic>' is not a subtype of type 'String?'が発生する
+    // this.icon, carrierWave を利用しているので、'_InternalLinkedHashMap<String, dynamic>' is not a subtype of type 'String?' が発生する
     this.profile = '',
     this.iconImageUrl = '',
     required this.amountOfExp,
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
+    required this.todaysIncorrectAnswerHistoriesCount,
     required this.answerDaysCount,
+    required this.continuousAnswerDaysCount,
+    required this.continuousGoalAchievementCount,
+    required this.continuousCompleteReviewCount,
     required this.achievementMapsCount,
     required this.premium,
     required this.paidViaNativeApp,
@@ -24,6 +28,7 @@ class User {
     required this.weaknessesCount,
     required this.rewardRemained,
     this.authToken,
+    this.dateCurrent,
     this.answerSetting,
     this.drillInProgress,
     this.relationship,
@@ -32,13 +37,18 @@ class User {
   int id;
   String publicUid;
   String name;
-  //String? icon;
   String? profile;
   String? iconImageUrl;
   int amountOfExp;
   int answerHistoriesCount;
   int todaysAnswerHistoriesCount;
+  int todaysIncorrectAnswerHistoriesCount;
   int answerDaysCount;
+
+  int continuousAnswerDaysCount;
+  int continuousGoalAchievementCount;
+  int continuousCompleteReviewCount;
+
   int achievementMapsCount;
   bool premium;
   bool paidViaNativeApp;
@@ -49,6 +59,7 @@ class User {
   int weaknessesCount;
   bool rewardRemained;
   String? authToken;
+  DateTime? dateCurrent;
   AnswerSetting? answerSetting;
   Drill? drillInProgress;
   Relationship? relationship;
@@ -57,13 +68,20 @@ class User {
       : id = json['id'],
         publicUid = json['public_uid'],
         name = json['name'],
-        //icon = json['icon'],
+        // icon = json['icon'],
         profile = json['profile'],
         iconImageUrl = json['icon_image_url'],
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
+        todaysIncorrectAnswerHistoriesCount =
+            json['todays_incorrect_answer_histories_count'],
         answerDaysCount = json['answer_days_count'],
+        continuousAnswerDaysCount = json['continuous_answer_days_count'],
+        continuousGoalAchievementCount =
+            json['continuous_goal_achievement_count'],
+        continuousCompleteReviewCount =
+            json['continuous_complete_review_count'],
         achievementMapsCount = json['achievement_maps_count'],
         premium = json['premium'],
         paidViaNativeApp = json['paid_via_native_app'],
@@ -74,6 +92,9 @@ class User {
         weaknessesCount = json['weaknesses_count'],
         rewardRemained = json['reward_remained'],
         authToken = json['token_for_native_app'],
+        dateCurrent = json['date_current'] == null
+            ? null
+            : DateTime.parse(json['date_current']),
         answerSetting = json['answer_setting'] == null
             ? null
             : AnswerSetting.fromJson(json['answer_setting']),
@@ -94,7 +115,14 @@ class User {
         'amount_of_exp': amountOfExp,
         'answer_histories_count': answerHistoriesCount,
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
+        'todays_incorrect_answer_histories_count':
+            todaysIncorrectAnswerHistoriesCount,
+
         'answer_days_count': answerDaysCount,
+        'continuous_answer_days_count': continuousAnswerDaysCount,
+        'continuous_goal_achievement_count': continuousGoalAchievementCount,
+        'continuous_complete_review_count': continuousCompleteReviewCount,
+
         'achievement_maps_count': achievementMapsCount,
         'premium': premium,
         'paid_via_native_app': paidViaNativeApp,
@@ -104,6 +132,7 @@ class User {
         'unsolved_weaknesses_count': unsolvedWeaknessesCount,
         'weaknesses_count': weaknessesCount,
         'token_for_native_app': authToken,
+        'date_current': dateCurrent,
         'answer_setting': answerSetting,
         'drill_in_progress': drillInProgress,
         'relationship': relationship,

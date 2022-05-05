@@ -10,6 +10,7 @@ import 'package:booqs_mobile/widgets/review/large_green_button.dart';
 import 'package:booqs_mobile/widgets/review/large_outline_button.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class WordReviewButton extends StatefulWidget {
   const WordReviewButton({Key? key, required this.word}) : super(key: key);
@@ -44,13 +45,15 @@ class _WordReviewButtonState extends State<WordReviewButton> {
 
     if (resMap == null) return;
 
-    return setState(() {
-      _quizId = resMap['quiz_id'];
-      if (resMap['review'] != null) {
-        _review = Review.fromJson(resMap['review']);
-      }
-      _initDone = true;
-    });
+    if (mounted) {
+      setState(() {
+        _quizId = resMap['quiz_id'];
+        if (resMap['review'] != null) {
+          _review = Review.fromJson(resMap['review']);
+        }
+        _initDone = true;
+      });
+    }
   }
 
   @override
@@ -66,14 +69,14 @@ class _WordReviewButtonState extends State<WordReviewButton> {
         return;
       }
 
+      EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteReviews.create(context, _quizId!, null);
+      EasyLoading.dismiss();
 
       if (resMap == null) return;
 
-      Review newReview = Review.fromJson(resMap['review']);
+      final Review newReview = Review.fromJson(resMap['review']);
       await Toasts.reviewSetting(context, resMap['message']);
-      /* final snackBar = SnackBar(content: Text('${resMap['message']}'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar); */
       setState(() {
         _review = newReview;
       });

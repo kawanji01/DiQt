@@ -1,25 +1,31 @@
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 
 class Word {
-  Word(
-      {this.id,
-      required this.dictionaryId,
-      this.sentenceId,
-      required this.entry,
-      required this.langNumberOfEntry,
-      required this.meaning,
-      required this.langNumberOfMeaning,
-      this.explanation = '',
-      this.ipa,
-      this.reading,
-      this.phrase,
-      this.frequency,
-      this.tags,
-      this.initial,
-      // 結合したテーブル
-      this.sentence,
-      this.dictionary});
+  Word({
+    this.id,
+    required this.dictionaryId,
+    this.sentenceId,
+    required this.entry,
+    required this.langNumberOfEntry,
+    required this.meaning,
+    required this.langNumberOfMeaning,
+    this.explanation = '',
+    this.ipa,
+    this.reading,
+    this.phrase,
+    this.frequency,
+    this.tags,
+    this.initial,
+    required this.wordRequestsCount,
+    required this.acceptedWordRequestsCount,
+    required this.pendingWordRequestsCount,
+    // 結合したテーブル
+    this.sentence,
+    this.dictionary,
+    this.quiz,
+  });
 
   int? id;
   int dictionaryId;
@@ -35,9 +41,13 @@ class Word {
   int? frequency;
   String? tags;
   String? initial;
+  int wordRequestsCount;
+  int acceptedWordRequestsCount;
+  int pendingWordRequestsCount;
   // 結合したsentence
   Sentence? sentence;
   Dictionary? dictionary;
+  Quiz? quiz;
 
   Word.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -54,12 +64,16 @@ class Word {
         frequency = json['frequency'],
         tags = json['tags'],
         initial = json['initial'],
+        wordRequestsCount = json['word_requests_count'],
+        acceptedWordRequestsCount = json['accepted_word_requests_count'],
+        pendingWordRequestsCount = json['pending_word_requests_count'],
         sentence = json['sentence'] == null
             ? null
             : Sentence.fromJson(json['sentence']),
         dictionary = json['dictionary'] == null
             ? null
-            : Dictionary.fromJson(json['dictionary']);
+            : Dictionary.fromJson(json['dictionary']),
+        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -76,7 +90,11 @@ class Word {
         'frequency': frequency,
         'tags': tags,
         'initial': initial,
+        'word_requests_count': wordRequestsCount,
+        'accepted_word_requests_count': acceptedWordRequestsCount,
+        'pending_word_requests_count': pendingWordRequestsCount,
         'sentence': sentence,
         'dictionary': dictionary,
+        'quiz': quiz,
       };
 }

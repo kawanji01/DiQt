@@ -22,7 +22,7 @@ class DrillLapUpdateScreen extends ConsumerWidget {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      Map? resMap = await RemoteDrills.newLap(drill!.publicUid!);
+      Map? resMap = await RemoteDrills.newLap(drill!.publicUid);
       EasyLoading.dismiss();
       if (resMap == null) return;
       final snackBar = SnackBar(content: Text('${resMap['message']}'));

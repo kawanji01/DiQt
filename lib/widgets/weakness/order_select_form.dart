@@ -7,13 +7,6 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 値
-    String _value() {
-      final sort = ref.watch(weaknessSortProvider);
-      final order = ref.watch(weaknessOrderProvider);
-      return '$sort-$order';
-    }
-
     // 値に対応するフォームのラベル
     String _label(String value) {
       switch (value) {
@@ -36,15 +29,6 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
       }
     }
 
-    // 値をProviderにセットして表示する問題を更新する
-    void _set(String? newValue) {
-      if (newValue == null) return;
-      final List list = newValue.split('-');
-      ref.read(weaknessSortProvider.notifier).state = list[0];
-      ref.read(weaknessOrderProvider.notifier).state = list[1];
-      ref.refresh(asyncUnsolvedWeaknessesProvider);
-    }
-
     // ドロップダウンボタンの生成
     Widget _buildDropDown() {
       return Container(
@@ -56,11 +40,13 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(color: Colors.black87)),
         child: DropdownButton<String>(
-          value: _value(),
+          value: ref.watch(weaknessOrderProvider),
           iconSize: 24,
           elevation: 16,
           onChanged: (String? newValue) {
-            _set(newValue);
+            if (newValue == null) return;
+            ref.read(weaknessOrderProvider.notifier).state = newValue;
+            ref.refresh(asyncUnsolvedWeaknessesProvider);
           },
           items: <String>[
             'correct_answer_rate-asc',

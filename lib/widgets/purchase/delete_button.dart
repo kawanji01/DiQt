@@ -12,6 +12,8 @@ class PurchaseDeleteButton extends StatelessWidget {
   final User user;
   @override
   Widget build(BuildContext context) {
+    if (user.premium == false) return Container();
+
     final purchase = PurchaseService();
 
     // 解約処理

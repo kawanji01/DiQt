@@ -11,6 +11,7 @@ import 'package:booqs_mobile/utils/text_to_speech.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+// 必要なWidgetは外から渡す。そうしないとコンテンツが解かれて消えるまでにコンテンツがリビルドされて、選択肢が一瞬ランダムに表示されるなど不細工なことになる。ref: https://qiita.com/chooyan_eng/items/ec11f6dcf714f7a2fa3d
 class QuizUnsolvedContent extends ConsumerStatefulWidget {
   const QuizUnsolvedContent(
       {Key? key,

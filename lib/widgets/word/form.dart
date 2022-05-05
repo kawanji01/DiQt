@@ -47,7 +47,6 @@ class _WordFormState extends State<WordForm> {
       _keyword = _entryController!.text;
     }
     _dictionaryId ??= widget.dictionaryId;
-    print('word-form-dictionary_id: $_dictionaryId');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

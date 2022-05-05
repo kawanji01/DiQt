@@ -36,7 +36,6 @@ class QuizHintButton extends StatelessWidget {
           heading,
           const SizedBox(height: 16),
           Text(quiz.hint!,
-              textAlign: TextAlign.left,
               style: const TextStyle(fontSize: 16, color: Colors.black87)),
         ],
       );
@@ -73,10 +72,13 @@ class QuizHintButton extends StatelessWidget {
 
     void _showDialog() {
       final Widget screen = Container(
+        width: double.infinity,
         height: 400,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: SingleChildScrollView(
             child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [_hint(), const SizedBox(height: 40), _note()],
         )),
       );

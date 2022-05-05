@@ -20,7 +20,6 @@ class ActivityIndexPage extends ConsumerWidget {
         padding: const EdgeInsets.all(28.0),
         child: Column(
           children: const <Widget>[
-            //_notificationsPageButton(),
             ActivityItemListView(),
             SizedBox(
               height: 80,

@@ -19,7 +19,7 @@ class WeaknessHeader extends ConsumerWidget {
     Color colors = Colors.blue;
     if (correctRate < overcomingRate) colors = Colors.red;
 
-    // 弱点追加日
+    // 追加日
     final String timeAgo = createTimeAgoString(weakness.createdAt);
 
     final correctRateText = Text(

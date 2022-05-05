@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/data/provider/drill_lap.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
-import 'package:booqs_mobile/widgets/button/large_button.dart';
+import 'package:booqs_mobile/widgets/button/large_green_button.dart';
 import 'package:booqs_mobile/widgets/drill/lap_update_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,7 +31,7 @@ class DrillLapUpdateButton extends ConsumerWidget {
           const screen = DrillLapUpdateScreen();
           Dialogs.slideFromBottomFade(screen);
         },
-        child: LargeButton(btnText: '$newLapNumber周目を始める'),
+        child: LargeGreenButton(label: '$newLapNumber周目を始める', icon: null),
       ),
     ]);
   }

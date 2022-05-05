@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/pages/answer_analysis/index.dart';
+import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
@@ -9,8 +11,8 @@ import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
+import 'package:booqs_mobile/pages/user/menu.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/pages/user/premium_menu.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/pages/user/show.dart';
@@ -20,32 +22,42 @@ import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/pages/word/search_results.dart';
 
+// ホーム
 const indexPage = '/';
+// 復習
 const reviewIndexPage = '/review/index';
+// 通知
 const noticeIndexPage = '/notice/index';
 const noticeHomePage = '/notice/home';
-
+// セッション
 const signUpPage = '/session/sign_up';
 const loginPage = '/session/login';
-const dictionaryPage = '/dictionary/show';
-
+// 辞書
+const dictionaryShowPage = '/dictionary/show';
+// ワード
 const wordShowPage = '/word/show';
 const wordNewPage = '/word/new';
 const wordEditPage = '/word/edit';
 const wordSearchResultsPage = '/word/search';
-
+// チャプター
 const chapterIndexPage = '/chapter/index';
 const chapterShowPage = '/chapter/show';
-
+// ユーザー
 const userMyPage = '/user/mypage';
 const userShowPage = '/user/show';
 const userAchievementsPage = '/user/achievements';
 const userEditPage = '/user/edit';
-const premiumPlanPage = '/user/premium_plan';
-const premiumMenuPage = '/user/premium_menu';
-
+const userMenuPage = '/user/menu';
+const userPremiumPlanPage = '/user/premium_plan';
+// 問題集
 const drillUnsolvedPage = '/drill/unsolved';
+const drillSolvedPage = '/drill/solved';
+// 苦手な問題
 const weaknessIndexPage = '/weakness/index';
+// 解答履歴
+const answerHistoryTodaysMistakesPage = '/answer_history/todays_mistakes';
+// 解答分析
+const answerAnalysisIndexPage = 'answer_analysis/index';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -55,7 +67,7 @@ final routes = {
   userMyPage: (context) => const UserMyPage(),
   signUpPage: (context) => const SignUpPage(),
   loginPage: (context) => const LoginPage(),
-  dictionaryPage: (context) => const DictionaryPage(),
+  dictionaryShowPage: (context) => const DictionaryPage(),
   wordShowPage: (context) => const WordShowPage(),
   wordNewPage: (context) => const WordNewPage(),
   wordEditPage: (context) => const WordEditPage(),
@@ -65,8 +77,11 @@ final routes = {
   userShowPage: (context) => const UserShowPage(),
   userAchievementsPage: (context) => const UserAchievementsPage(),
   userEditPage: (context) => const UserEditPage(),
-  premiumPlanPage: (context) => const PremiumPlanPage(),
-  premiumMenuPage: (context) => const PremiumMenuPage(),
+  userMenuPage: (context) => const UserMenuPage(),
+  userPremiumPlanPage: (context) => const PremiumPlanPage(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   weaknessIndexPage: (context) => const WeaknessIndexPage(),
+  answerHistoryTodaysMistakesPage: (context) =>
+      const AnswerHistoryTodaysMistakesPage(),
+  answerAnalysisIndexPage: (context) => const AnswerAnalysisIndexPage(),
 };

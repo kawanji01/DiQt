@@ -38,7 +38,10 @@ class WordTile extends StatelessWidget {
         WordReviewButton(word: word),
         WordExplanation(word: word),
         WordSentence(word: word),
-        WordEditButton(word: word),
+        WordEditButton(
+          word: word,
+          isShow: false,
+        ),
       ]);
     }
 

@@ -8,6 +8,7 @@ import 'package:booqs_mobile/widgets/review/large_green_button.dart';
 import 'package:booqs_mobile/widgets/review/large_outline_button.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ReviewLargeSettingButton extends StatefulWidget {
   const ReviewLargeSettingButton(
@@ -45,7 +46,10 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
         return;
       }
 
-      Map? resMap = await RemoteReviews.create(context, _quizId!, null);
+      EasyLoading.show(status: 'loading...');
+      final Map? resMap = await RemoteReviews.create(context, _quizId!, null);
+      EasyLoading.dismiss();
+
       if (resMap == null) return;
 
       Review newReview = Review.fromJson(resMap['review']);

@@ -38,8 +38,7 @@ class WeaknessUnsolvedQuizWrapper extends StatelessWidget {
     final header = WeaknessHeader(
       weakness: weakness,
     );
-    final question =
-        QuizQuestionPart(quiz: quiz, drill: drill, covering: false);
+    final question = QuizQuestionPart(quiz: quiz, drill: drill);
     final answer = QuizAnswerPart(quiz: quiz);
     final footer = QuizUnsolvedFooter(quiz: quiz, review: review);
 

@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/models/quiz.dart';
+
 class AnswerAnalysis {
   AnswerAnalysis({
     required this.id,
@@ -12,6 +14,7 @@ class AnswerAnalysis {
     required this.solvedAtDrill,
     required this.createdAt,
     required this.updatedAt,
+    this.quiz,
   });
 
   int id;
@@ -26,6 +29,7 @@ class AnswerAnalysis {
   bool solvedAtDrill;
   DateTime createdAt;
   DateTime updatedAt;
+  Quiz? quiz;
 
   AnswerAnalysis.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -40,7 +44,8 @@ class AnswerAnalysis {
         lastAnswerCorrect = json['last_answer_correct'],
         solvedAtDrill = json['solved_at_drill'],
         createdAt = DateTime.parse(json['created_at']),
-        updatedAt = DateTime.parse(json['updated_at']);
+        updatedAt = DateTime.parse(json['updated_at']),
+        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -55,5 +60,6 @@ class AnswerAnalysis {
         'solved_at_drill': solvedAtDrill,
         'created_at': createdAt,
         'updated_at': updatedAt,
+        'quiz': quiz,
       };
 }
