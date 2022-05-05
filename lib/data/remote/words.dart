@@ -27,6 +27,14 @@ class RemoteWords {
   static Future<Map?> create(Map<String, dynamic> params) async {
     final String? token = await LocalUserInfo.authToken();
 
+    // 更新する必要がない＆encode errorの発生するエントリーは消しておく。
+    params.removeWhere((dynamic key, dynamic value) =>
+        key == 'created_at' ||
+        key == 'updated_at' ||
+        key == 'sentence' ||
+        key == 'quiz' ||
+        key == 'dictionary');
+
     // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
     final String encodedData = json.encode({'word': params, 'token': token});
     final Map<String, String> headers = {'content-type': 'application/json'};
@@ -47,6 +55,14 @@ class RemoteWords {
   // 更新
   static Future<Map?> update(Map<String, dynamic> params) async {
     final String? token = await LocalUserInfo.authToken();
+
+    // 更新する必要がない＆encode errorの発生するエントリーは消しておく。
+    params.removeWhere((dynamic key, dynamic value) =>
+        key == 'created_at' ||
+        key == 'updated_at' ||
+        key == 'sentence' ||
+        key == 'quiz' ||
+        key == 'dictionary');
     // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
     final String encodedData = json.encode({'word': params, 'token': token});
     final Map<String, String> headers = {'content-type': 'application/json'};

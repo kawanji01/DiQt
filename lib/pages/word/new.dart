@@ -98,7 +98,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        final Word word = Word.fromJson(resMap['data']);
+        final Word word = Word.fromJson(resMap['word']);
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         _goToWordPage(word);
