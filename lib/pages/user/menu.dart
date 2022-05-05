@@ -6,17 +6,17 @@ import 'package:booqs_mobile/pages/weakness/index.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
+import 'package:booqs_mobile/widgets/button/large_green_button.dart';
 import 'package:booqs_mobile/widgets/purchase/delete_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/button/large_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserPremiumMenuPage extends ConsumerWidget {
-  const UserPremiumMenuPage({Key? key}) : super(key: key);
+class UserMenuPage extends ConsumerWidget {
+  const UserMenuPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(userPremiumMenuPage);
+    return Navigator.of(context).pushNamed(userMenuPage);
   }
 
   @override
@@ -31,7 +31,8 @@ class UserPremiumMenuPage extends ConsumerWidget {
         onTap: () {
           WeaknessIndexPage.push(context);
         },
-        child: LargeButton(btnText: btnText),
+        child: LargeGreenButton(
+            label: btnText, icon: Icons.check_circle_outline_outlined),
       );
     }
 
@@ -43,7 +44,20 @@ class UserPremiumMenuPage extends ConsumerWidget {
               'last_answered_at-desc';
           AnswerAnalysisIndexPage.push(context);
         },
-        child: const LargeButton(btnText: btnText),
+        child: const LargeGreenButton(label: btnText, icon: Icons.history),
+      );
+    }
+
+    Widget _answerAnalysesButton() {
+      const String btnText = '解答分析';
+      return InkWell(
+        onTap: () {
+          ref.read(answerAnalysisOrderProvider.notifier).state =
+              'correct_answer_rate-asc';
+          AnswerAnalysisIndexPage.push(context);
+        },
+        child: const LargeGreenButton(
+            label: btnText, icon: Icons.analytics_outlined),
       );
     }
 
@@ -54,7 +68,8 @@ class UserPremiumMenuPage extends ConsumerWidget {
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
         },
-        child: const LargeButton(btnText: btnText),
+        child: const LargeGreenButton(
+            label: btnText, icon: Icons.note_alt_outlined),
       );
     }
 
@@ -78,7 +93,7 @@ class UserPremiumMenuPage extends ConsumerWidget {
             ),
           );
         },
-        child: const LargeButton(btnText: btnText),
+        child: const LargeGreenButton(label: btnText, icon: Icons.settings),
       );
     }
 
@@ -98,6 +113,10 @@ class UserPremiumMenuPage extends ConsumerWidget {
                 height: 32,
               ),
               _answerHistoriesButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              _answerAnalysesButton(),
               const SizedBox(
                 height: 32,
               ),
@@ -121,7 +140,7 @@ class UserPremiumMenuPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('プレミアムメニュー'),
+        title: const Text('メニュー'),
       ),
       body: _body(),
       bottomNavigationBar: const BottomNavbar(),

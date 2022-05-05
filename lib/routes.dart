@@ -11,8 +11,8 @@ import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
+import 'package:booqs_mobile/pages/user/menu.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/pages/user/premium_menu.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/pages/user/show.dart';
@@ -47,8 +47,8 @@ const userMyPage = '/user/mypage';
 const userShowPage = '/user/show';
 const userAchievementsPage = '/user/achievements';
 const userEditPage = '/user/edit';
+const userMenuPage = '/user/menu';
 const userPremiumPlanPage = '/user/premium_plan';
-const userPremiumMenuPage = '/user/premium_menu';
 // 問題集
 const drillUnsolvedPage = '/drill/unsolved';
 const drillSolvedPage = '/drill/solved';
@@ -77,8 +77,8 @@ final routes = {
   userShowPage: (context) => const UserShowPage(),
   userAchievementsPage: (context) => const UserAchievementsPage(),
   userEditPage: (context) => const UserEditPage(),
+  userMenuPage: (context) => const UserMenuPage(),
   userPremiumPlanPage: (context) => const PremiumPlanPage(),
-  userPremiumMenuPage: (context) => const UserPremiumMenuPage(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   weaknessIndexPage: (context) => const WeaknessIndexPage(),
   answerHistoryTodaysMistakesPage: (context) =>

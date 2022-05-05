@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
-import 'package:booqs_mobile/widgets/button/large_button.dart';
+import 'package:booqs_mobile/widgets/button/large_green_button.dart';
 import 'package:booqs_mobile/widgets/weakness/new_lap_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,7 +31,7 @@ class WeaknessNewLapButton extends ConsumerWidget {
           const screen = WeaknessNewLapScreen();
           Dialogs.slideFromBottomFade(screen);
         },
-        child: const LargeButton(btnText: btnText),
+        child: const LargeGreenButton(label: btnText, icon: null),
       ),
     );
   }

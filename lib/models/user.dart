@@ -7,7 +7,7 @@ class User {
     required this.id,
     required this.publicUid,
     required this.name,
-    //this.icon, carrierWaveを利用しているので、'_InternalLinkedHashMap<String, dynamic>' is not a subtype of type 'String?'が発生する
+    // this.icon, carrierWave を利用しているので、'_InternalLinkedHashMap<String, dynamic>' is not a subtype of type 'String?' が発生する
     this.profile = '',
     this.iconImageUrl = '',
     required this.amountOfExp,
@@ -15,6 +15,9 @@ class User {
     required this.todaysAnswerHistoriesCount,
     required this.todaysIncorrectAnswerHistoriesCount,
     required this.answerDaysCount,
+    required this.continuousAnswerDaysCount,
+    required this.continuousGoalAchievementCount,
+    required this.continuousCompleteReviewCount,
     required this.achievementMapsCount,
     required this.premium,
     required this.paidViaNativeApp,
@@ -34,7 +37,6 @@ class User {
   int id;
   String publicUid;
   String name;
-  //String? icon;
   String? profile;
   String? iconImageUrl;
   int amountOfExp;
@@ -42,6 +44,11 @@ class User {
   int todaysAnswerHistoriesCount;
   int todaysIncorrectAnswerHistoriesCount;
   int answerDaysCount;
+
+  int continuousAnswerDaysCount;
+  int continuousGoalAchievementCount;
+  int continuousCompleteReviewCount;
+
   int achievementMapsCount;
   bool premium;
   bool paidViaNativeApp;
@@ -61,7 +68,7 @@ class User {
       : id = json['id'],
         publicUid = json['public_uid'],
         name = json['name'],
-        //icon = json['icon'],
+        // icon = json['icon'],
         profile = json['profile'],
         iconImageUrl = json['icon_image_url'],
         amountOfExp = json['amount_of_exp'],
@@ -70,6 +77,11 @@ class User {
         todaysIncorrectAnswerHistoriesCount =
             json['todays_incorrect_answer_histories_count'],
         answerDaysCount = json['answer_days_count'],
+        continuousAnswerDaysCount = json['continuous_answer_days_count'],
+        continuousGoalAchievementCount =
+            json['continuous_goal_achievement_count'],
+        continuousCompleteReviewCount =
+            json['continuous_complete_review_count'],
         achievementMapsCount = json['achievement_maps_count'],
         premium = json['premium'],
         paidViaNativeApp = json['paid_via_native_app'],
@@ -105,7 +117,12 @@ class User {
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
         'todays_incorrect_answer_histories_count':
             todaysIncorrectAnswerHistoriesCount,
+
         'answer_days_count': answerDaysCount,
+        'continuous_answer_days_count': continuousAnswerDaysCount,
+        'continuous_goal_achievement_count': continuousGoalAchievementCount,
+        'continuous_complete_review_count': continuousCompleteReviewCount,
+
         'achievement_maps_count': achievementMapsCount,
         'premium': premium,
         'paid_via_native_app': paidViaNativeApp,
