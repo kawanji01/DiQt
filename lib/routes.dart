@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
@@ -32,7 +33,7 @@ const noticeHomePage = '/notice/home';
 const signUpPage = '/session/sign_up';
 const loginPage = '/session/login';
 // 辞書
-const dictionaryPage = '/dictionary/show';
+const dictionaryShowPage = '/dictionary/show';
 // ワード
 const wordShowPage = '/word/show';
 const wordNewPage = '/word/new';
@@ -46,14 +47,17 @@ const userMyPage = '/user/mypage';
 const userShowPage = '/user/show';
 const userAchievementsPage = '/user/achievements';
 const userEditPage = '/user/edit';
-const premiumPlanPage = '/user/premium_plan';
-const premiumMenuPage = '/user/premium_menu';
+const userPremiumPlanPage = '/user/premium_plan';
+const userPremiumMenuPage = '/user/premium_menu';
 // 問題集
 const drillUnsolvedPage = '/drill/unsolved';
+const drillSolvedPage = '/drill/solved';
 // 苦手な問題
 const weaknessIndexPage = '/weakness/index';
 // 解答履歴
-const answerHistoryTodaysIncorrectPage = '/answer_history/todays_mistakes';
+const answerHistoryTodaysMistakesPage = '/answer_history/todays_mistakes';
+// 解答分析
+const answerAnalysisIndexPage = 'answer_analysis/index';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -63,7 +67,7 @@ final routes = {
   userMyPage: (context) => const UserMyPage(),
   signUpPage: (context) => const SignUpPage(),
   loginPage: (context) => const LoginPage(),
-  dictionaryPage: (context) => const DictionaryPage(),
+  dictionaryShowPage: (context) => const DictionaryPage(),
   wordShowPage: (context) => const WordShowPage(),
   wordNewPage: (context) => const WordNewPage(),
   wordEditPage: (context) => const WordEditPage(),
@@ -73,10 +77,11 @@ final routes = {
   userShowPage: (context) => const UserShowPage(),
   userAchievementsPage: (context) => const UserAchievementsPage(),
   userEditPage: (context) => const UserEditPage(),
-  premiumPlanPage: (context) => const PremiumPlanPage(),
-  premiumMenuPage: (context) => const PremiumMenuPage(),
+  userPremiumPlanPage: (context) => const PremiumPlanPage(),
+  userPremiumMenuPage: (context) => const UserPremiumMenuPage(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   weaknessIndexPage: (context) => const WeaknessIndexPage(),
-  answerHistoryTodaysIncorrectPage: (context) =>
+  answerHistoryTodaysMistakesPage: (context) =>
       const AnswerHistoryTodaysMistakesPage(),
+  answerAnalysisIndexPage: (context) => const AnswerAnalysisIndexPage(),
 };

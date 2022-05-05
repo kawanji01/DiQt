@@ -1,58 +1,53 @@
+import 'package:booqs_mobile/data/provider/answer_analysis.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/pages/answer_analysis/index.dart';
+import 'package:booqs_mobile/pages/weakness/index.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
+import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
 import 'package:booqs_mobile/widgets/purchase/delete_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/button/large_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PremiumMenuPage extends StatefulWidget {
-  const PremiumMenuPage({Key? key}) : super(key: key);
+class UserPremiumMenuPage extends ConsumerWidget {
+  const UserPremiumMenuPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context, User user) async {
-    return Navigator.of(context).pushNamed(
-      premiumMenuPage,
-      arguments: user,
-    );
+  static Future push(BuildContext context) async {
+    return Navigator.of(context).pushNamed(userPremiumMenuPage);
   }
 
   @override
-  _PremiumMenuPageState createState() => _PremiumMenuPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final User? user = ref.watch(currentUserProvider);
+    if (user == null) return Container();
 
-class _PremiumMenuPageState extends State<PremiumMenuPage> {
-  @override
-  Widget build(BuildContext context) {
-    // 引数のユーザーを取得
-    User getUser() {
-      return ModalRoute.of(context)!.settings.arguments as User;
-    }
+    Widget _weaknessAnalysisButton() {
+      final String btnText = '苦手な問題（${user.unsolvedWeaknessesCount}）';
 
-    final _user = getUser();
-
-    Widget _weaknessAnalysisButton(user) {
-      const String btnText = '弱点分析';
-      final String redirectPath = 'users/${user.publicUid}/weakness_analysis';
       return InkWell(
         onTap: () {
-          BooQsOnWeb.open(context, redirectPath);
+          WeaknessIndexPage.push(context);
         },
-        child: const LargeButton(btnText: btnText),
+        child: LargeButton(btnText: btnText),
       );
     }
 
-    Widget _answerHistoriesButton(user) {
+    Widget _answerHistoriesButton() {
       const String btnText = '解答履歴';
-      final String redirectPath = 'users/${user.publicUid}/answer_histories';
       return InkWell(
         onTap: () {
-          BooQsOnWeb.open(context, redirectPath);
+          ref.read(answerAnalysisOrderProvider.notifier).state =
+              'last_answered_at-desc';
+          AnswerAnalysisIndexPage.push(context);
         },
         child: const LargeButton(btnText: btnText),
       );
     }
 
-    Widget _noteListButton(user) {
+    Widget _noteListButton() {
       const String btnText = 'ノート一覧';
       final String redirectPath = 'users/${user.publicUid}/memos';
       return InkWell(
@@ -63,12 +58,25 @@ class _PremiumMenuPageState extends State<PremiumMenuPage> {
       );
     }
 
-    Widget _answerSettingButton(user) {
+    Widget _answerSettingButton() {
       const String btnText = '解答・復習設定';
-      final String redirectPath = 'users/${user.publicUid}/answer_setting';
       return InkWell(
         onTap: () {
-          BooQsOnWeb.open(context, redirectPath);
+          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+          showModalBottomSheet(
+            isScrollControlled: true,
+            context: context,
+            // 丸み ref: https://www.codegrepper.com/code-examples/whatever/showmodalbottomsheet+rounded+corners
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15.0),
+                  topRight: Radius.circular(15.0)),
+            ),
+            // showModalBottomSheetで表示される中身
+            builder: (context) => const AnswerSettingScreen(
+              primary: 'answerSetting',
+            ),
+          );
         },
         child: const LargeButton(btnText: btnText),
       );
@@ -85,23 +93,23 @@ class _PremiumMenuPageState extends State<PremiumMenuPage> {
               const SizedBox(
                 height: 32,
               ),
-              _weaknessAnalysisButton(_user),
+              _weaknessAnalysisButton(),
               const SizedBox(
                 height: 32,
               ),
-              _answerHistoriesButton(_user),
+              _answerHistoriesButton(),
               const SizedBox(
                 height: 32,
               ),
-              _answerSettingButton(_user),
+              _answerSettingButton(),
               const SizedBox(
                 height: 32,
               ),
-              _noteListButton(_user),
+              _noteListButton(),
               const SizedBox(
                 height: 64,
               ),
-              PurchaseDeleteButton(user: _user),
+              PurchaseDeleteButton(user: user),
               const SizedBox(
                 height: 80,
               ),

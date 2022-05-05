@@ -11,7 +11,7 @@ class AnswerHistoryTodaysMistakesPage extends ConsumerStatefulWidget {
   const AnswerHistoryTodaysMistakesPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(answerHistoryTodaysIncorrectPage);
+    return Navigator.of(context).pushNamed(answerHistoryTodaysMistakesPage);
   }
 
   @override

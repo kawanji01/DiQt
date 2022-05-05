@@ -11,7 +11,7 @@ class PremiumPlanPage extends StatefulWidget {
   const PremiumPlanPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(premiumPlanPage);
+    return Navigator.of(context).pushNamed(userPremiumPlanPage);
   }
 
   @override

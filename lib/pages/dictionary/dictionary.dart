@@ -10,7 +10,7 @@ class DictionaryPage extends StatefulWidget {
 
   static Future push(BuildContext context, Dictionary dictionary) async {
     return Navigator.of(context).pushNamed(
-      dictionaryPage,
+      dictionaryShowPage,
       arguments: dictionary,
     );
   }
