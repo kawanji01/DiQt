@@ -13,6 +13,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final drillProvider = StateProvider<Drill?>((ref) => null);
 
+final drillOrderProvider = StateProvider<String>((ref) => 'random-random');
+
 final drillSolvedQuizzesCountProvider = StateProvider<int>((ref) => 0);
 
 final asyncDrillUnsolvedQuizzesProvider =
@@ -21,9 +23,8 @@ final asyncDrillUnsolvedQuizzesProvider =
 
   Drill? drill = ref.read(drillProvider);
   if (drill == null) return quizzes;
-
-  final Map? resMap =
-      await RemoteDrills.unsolved(drill.publicUid, 'random', 'desc');
+  final String order = ref.watch(drillOrderProvider);
+  final Map? resMap = await RemoteDrills.unsolved(drill.publicUid, order);
 
   if (resMap == null) return quizzes;
 

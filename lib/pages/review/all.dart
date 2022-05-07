@@ -29,7 +29,7 @@ class _ReviewAllPageState extends ConsumerState<ReviewAllPage> {
   Widget build(BuildContext context) {
     final body = Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
         child: Column(
           children: const [

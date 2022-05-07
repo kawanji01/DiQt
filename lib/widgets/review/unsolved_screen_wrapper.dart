@@ -48,7 +48,7 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: const SingleChildScrollView(
           child: ReviewUnsolvedScreen(),
         ),

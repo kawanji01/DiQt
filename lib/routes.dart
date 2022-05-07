@@ -3,6 +3,8 @@ import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
+import 'package:booqs_mobile/pages/drill/show.dart';
+import 'package:booqs_mobile/pages/drill/solved.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
@@ -54,6 +56,7 @@ const userPremiumPlanPage = '/user/premium_plan';
 // 問題集
 const drillUnsolvedPage = '/drill/unsolved';
 const drillSolvedPage = '/drill/solved';
+const drillShowPage = '/drill/show';
 // 復習
 const reviewIndexPage = '/review/index';
 const reviewScheduledPage = '/review/scheduled';
@@ -87,6 +90,8 @@ final routes = {
   userMenuPage: (context) => const UserMenuPage(),
   userPremiumPlanPage: (context) => const PremiumPlanPage(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
+  drillSolvedPage: (context) => const DrillSolvedPage(),
+  drillShowPage: (context) => const DrillShowPage(),
   reviewIndexPage: (context) => const ReviewIndexPage(),
   reviewScheduledPage: (context) => const ReviewScheduledPage(),
   reviewAllPage: (context) => const ReviewAllPage(),
