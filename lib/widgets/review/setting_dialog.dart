@@ -71,9 +71,9 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
     if (resMap == null) return;
     await Toasts.reviewSetting(context, resMap['message']);
     // 削除が完了したことを伝えるモデルを作成する。
-    Review review = Review(scheduledDate: 'deleted');
+    _review!.scheduledDate = 'deleted';
     // ダイアログを閉じて、reviewを返り値にする。
-    Navigator.of(context).pop(review);
+    Navigator.of(context).pop(_review);
   }
 
   // 復習設定の状態と削除ボタンの生成

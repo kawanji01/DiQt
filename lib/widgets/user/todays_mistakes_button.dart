@@ -14,6 +14,7 @@ class UserTodaysMistakesButton extends ConsumerWidget {
     if (user.todaysIncorrectAnswerHistoriesCount == 0) return Container();
 
     return Container(
+      margin: const EdgeInsets.only(bottom: 48),
       padding: const EdgeInsets.only(left: 16),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -50,7 +51,7 @@ class UserTodaysMistakesButton extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 12),
                     const Text(
                       '今日間違えた問題',
                       style: TextStyle(
@@ -67,7 +68,9 @@ class UserTodaysMistakesButton extends ConsumerWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(
+                      height: 12,
+                    ),
                   ]),
             ],
           ),

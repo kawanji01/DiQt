@@ -8,6 +8,7 @@ class AnswerAnalysis {
     required this.drillId,
     required this.answerHistoriesCount,
     required this.incorrectAnswerHistoriesCount,
+    this.lastAnswer,
     required this.correctAnswerRate,
     required this.lastAnsweredAt,
     required this.lastAnswerCorrect,
@@ -23,6 +24,7 @@ class AnswerAnalysis {
   int drillId;
   int answerHistoriesCount;
   int incorrectAnswerHistoriesCount;
+  String? lastAnswer;
   double correctAnswerRate;
   DateTime lastAnsweredAt;
   bool lastAnswerCorrect;
@@ -40,6 +42,7 @@ class AnswerAnalysis {
         incorrectAnswerHistoriesCount =
             json['incorrect_answer_histories_count'],
         correctAnswerRate = json['correct_answer_rate'],
+        lastAnswer = json['last_answer'],
         lastAnsweredAt = DateTime.parse(json['last_answered_at']),
         lastAnswerCorrect = json['last_answer_correct'],
         solvedAtDrill = json['solved_at_drill'],
@@ -55,6 +58,7 @@ class AnswerAnalysis {
         'answer_histories_count': answerHistoriesCount,
         'incorrect_answer_histories_count': incorrectAnswerHistoriesCount,
         'correct_answer_rate': correctAnswerRate,
+        'last_answer': lastAnswer,
         'last_answered_at': lastAnsweredAt,
         'last_answer_correct': lastAnswerCorrect,
         'solved_at_drill': solvedAtDrill,

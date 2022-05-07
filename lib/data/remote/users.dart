@@ -7,25 +7,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 
 class RemoteUsers {
-  // ログインユーザーの取得　　　users/status
-  // （次のアップデートで削除予定）
-  /* static Future<Map?> status(BuildContext context) async {
-    const storage = FlutterSecureStorage();
-    String? token = await storage.read(key: 'token');
-
-    if (token == null) return null;
-
-    Uri url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/users/status');
-    Response res = await post(url, body: {'token': token});
-
-    if (res.statusCode != 200) return null;
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
-    return resMap;
-  } */
-
-  // 現在のログインユーザーの取得　　　users/current_user
-  static Future<Map?> currentUser() async {
+  // 現在のログインユーザーの取得　　　users/current
+  static Future<Map?> current() async {
     const storage = FlutterSecureStorage();
     final String? token = await storage.read(key: 'token');
 

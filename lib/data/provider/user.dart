@@ -11,7 +11,7 @@ final currentUserProvider = StateProvider<User?>((ref) => null);
 
 // 非同期でログイン済ユーザーを取得する
 final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
-  Map? resMap = await RemoteUsers.currentUser();
+  Map? resMap = await RemoteUsers.current();
   if (resMap == null) {
     // ログインしていない場合
     await UserSetup.logOut(null);

@@ -47,10 +47,8 @@ class UserMyPage extends ConsumerStatefulWidget {
 class _UserMyPageState extends ConsumerState<UserMyPage> {
   @override
   void initState() {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      ref.refresh(asyncCurrentUserProvider);
-    });
     super.initState();
+    ref.refresh(asyncCurrentUserProvider);
   }
 
   @override
@@ -127,13 +125,7 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
             children: <Widget>[
               const UserDrillInProgress(),
               const UserWeaknessButton(),
-              const SizedBox(
-                height: 32,
-              ),
               const UserTodaysMistakesButton(),
-              const SizedBox(
-                height: 48,
-              ),
               UserProfile(user: user),
               const SizedBox(
                 height: 24,

@@ -7,9 +7,8 @@ class User {
     required this.id,
     required this.publicUid,
     required this.name,
-    // this.icon, carrierWave を利用しているので、'_InternalLinkedHashMap<String, dynamic>' is not a subtype of type 'String?' が発生する
-    this.profile = '',
-    this.iconImageUrl = '',
+    this.profile,
+    this.iconImageUrl,
     required this.amountOfExp,
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
@@ -44,11 +43,9 @@ class User {
   int todaysAnswerHistoriesCount;
   int todaysIncorrectAnswerHistoriesCount;
   int answerDaysCount;
-
   int continuousAnswerDaysCount;
   int continuousGoalAchievementCount;
   int continuousCompleteReviewCount;
-
   int achievementMapsCount;
   bool premium;
   bool paidViaNativeApp;
@@ -68,7 +65,6 @@ class User {
       : id = json['id'],
         publicUid = json['public_uid'],
         name = json['name'],
-        // icon = json['icon'],
         profile = json['profile'],
         iconImageUrl = json['icon_image_url'],
         amountOfExp = json['amount_of_exp'],

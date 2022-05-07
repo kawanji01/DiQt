@@ -128,7 +128,7 @@ class UserMenuPage extends ConsumerWidget {
               const SizedBox(
                 height: 64,
               ),
-              PurchaseDeleteButton(user: user),
+              const PurchaseDeleteButton(),
               const SizedBox(
                 height: 80,
               ),

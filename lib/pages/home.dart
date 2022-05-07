@@ -44,49 +44,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
     });
   }
 
-  /* @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _loadCurrentUser();
-  }
-
-  // 現在のユーザー情報を更新する
-  Future _loadCurrentUser() async {
-    Map? resMap = await RemoteUsers.currentUser();
-
-    if (resMap == null) {
-      await UserSetup.logOut(null);
-      ref.read(currentUserProvider.notifier).state = null;
-      ref.read(answerSettingProvider.notifier).state = null;
-      ref.read(todaysAnswersCountProvider.notifier).state = 0;
-      return;
-    }
-
-    User user = User.fromJson(resMap['user']);
-    await UserSetup.signIn(user);
-    ref.read(currentUserProvider.notifier).state = user;
-    ref.read(answerSettingProvider.notifier).state = user.answerSetting;
-    ref.read(todaysAnswersCountProvider.notifier).state =
-        user.todaysAnswerHistoriesCount;
-  } */
-
-  /* final List<TabInfo> _tabs = [
-    TabInfo("辞書", const HomeSearchPage()),
-    TabInfo("単語帳", const HomeChaptersPage()),
-  ]; */
-
   @override
   Widget build(BuildContext context) {
-    final future = ref.watch(asyncCurrentUserProvider);
-    /* List<Widget> _tabBars() {
-      SizeConfig().init(context);
-      double grid = SizeConfig.blockSizeHorizontal ?? 0;
-      double width = grid * 40;
-      return [
-        SizedBox(width: width, child: const Tab(text: '検索')),
-        SizedBox(width: width, child: const Tab(text: '単語帳')),
-      ];
-    } */
+    // final future = ref.watch(asyncCurrentUserProvider);
 
     return Scaffold(
       appBar: AppBar(

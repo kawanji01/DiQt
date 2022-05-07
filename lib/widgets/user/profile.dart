@@ -30,11 +30,32 @@ class UserProfile extends StatelessWidget {
       ),
     );
 
-    final userName = Text(
-      user.name,
-      style: const TextStyle(
-          fontSize: 28.0, color: Colors.black54, fontWeight: FontWeight.w800),
-    );
+    Widget userName;
+
+    if (user.premium) {
+      userName = RichText(
+          text: TextSpan(children: [
+        const WidgetSpan(
+          child: Icon(
+            Icons.star,
+            color: Colors.black54,
+            size: 30.0,
+          ),
+        ),
+        TextSpan(
+            text: ' ${user.name}',
+            style: const TextStyle(
+                fontSize: 28.0,
+                color: Colors.black54,
+                fontWeight: FontWeight.w800))
+      ]));
+    } else {
+      userName = Text(
+        user.name,
+        style: const TextStyle(
+            fontSize: 28.0, color: Colors.black54, fontWeight: FontWeight.w800),
+      );
+    }
 
     final profile = Text(
       user.profile ?? '',
