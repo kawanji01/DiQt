@@ -17,6 +17,8 @@ import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/pages/user/show.dart';
 import 'package:booqs_mobile/pages/weakness/index.dart';
+import 'package:booqs_mobile/pages/weakness/solved.dart';
+import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
@@ -54,6 +56,8 @@ const drillUnsolvedPage = '/drill/unsolved';
 const drillSolvedPage = '/drill/solved';
 // 苦手な問題
 const weaknessIndexPage = '/weakness/index';
+const weaknessUnsolvedPage = '/weakness/unsolved';
+const weaknessSolvedPage = '/weakness/solved';
 // 解答履歴
 const answerHistoryTodaysMistakesPage = '/answer_history/todays_mistakes';
 // 解答分析
@@ -81,6 +85,8 @@ final routes = {
   userPremiumPlanPage: (context) => const PremiumPlanPage(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   weaknessIndexPage: (context) => const WeaknessIndexPage(),
+  weaknessUnsolvedPage: (context) => const WeaknessUnsolvedPage(),
+  weaknessSolvedPage: (context) => const WeaknessSolvedPage(),
   answerHistoryTodaysMistakesPage: (context) =>
       const AnswerHistoryTodaysMistakesPage(),
   answerAnalysisIndexPage: (context) => const AnswerAnalysisIndexPage(),

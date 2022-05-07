@@ -1,12 +1,31 @@
 import 'package:booqs_mobile/data/provider/weakness.dart';
+import 'package:booqs_mobile/pages/weakness/index.dart';
+import 'package:booqs_mobile/pages/weakness/solved.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessOrderSelectForm extends ConsumerWidget {
-  const WeaknessOrderSelectForm({Key? key}) : super(key: key);
+  const WeaknessOrderSelectForm({Key? key, required this.type})
+      : super(key: key);
+  final String type;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // ページに合わせて問題を更新する
+    void _refresh() {
+      switch (type) {
+        case 'unsolved':
+          ref.refresh(asyncUnsolvedWeaknessesProvider);
+          break;
+        case 'solved':
+          WeaknessSolvedPage.pushReplacement(context);
+          break;
+        case 'all':
+          WeaknessIndexPage.pushReplacement(context);
+          break;
+      }
+    }
+
     // 値に対応するフォームのラベル
     String _label(String value) {
       switch (value) {
@@ -46,7 +65,7 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
           onChanged: (String? newValue) {
             if (newValue == null) return;
             ref.read(weaknessOrderProvider.notifier).state = newValue;
-            ref.refresh(asyncUnsolvedWeaknessesProvider);
+            _refresh();
           },
           items: <String>[
             'correct_answer_rate-asc',

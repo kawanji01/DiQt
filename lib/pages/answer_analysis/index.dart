@@ -16,18 +16,19 @@ class AnswerAnalysisIndexPage extends ConsumerStatefulWidget {
 
   // 戻らせない画面遷移
   static Future pushReplacement(BuildContext context) async {
+    return Navigator.of(context).pushReplacementNamed(answerAnalysisIndexPage);
     // return Navigator.of(context).pushNamed(notificationIndexPage);
     // アニメーションなしで画面遷移させる。 参考： https://stackoverflow.com/questions/49874272/how-to-navigate-to-other-page-without-animation-flutter
-    return Navigator.pushReplacement(
+    /*  return Navigator.pushReplacement(
       context,
       PageRouteBuilder(
         // 画面遷移のログを送信するために、settings.nameを設定する。
-        settings: const RouteSettings(name: noticeIndexPage),
+        settings: const RouteSettings(name: answerAnalysisIndexPage),
         pageBuilder: (context, animation1, animation2) =>
             const AnswerAnalysisIndexPage(),
         transitionDuration: Duration.zero,
       ),
-    );
+    ); */
   }
 
   @override

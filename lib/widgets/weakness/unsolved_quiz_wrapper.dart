@@ -6,7 +6,7 @@ import 'package:booqs_mobile/widgets/quiz/answer_part.dart';
 import 'package:booqs_mobile/widgets/quiz/question_part.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_content.dart';
 import 'package:booqs_mobile/widgets/quiz/unsolved_footer.dart';
-import 'package:booqs_mobile/widgets/weakness/header.dart';
+import 'package:booqs_mobile/widgets/weakness/quiz_header.dart';
 import 'package:flutter/material.dart';
 
 class WeaknessUnsolvedQuizWrapper extends StatelessWidget {
@@ -35,7 +35,7 @@ class WeaknessUnsolvedQuizWrapper extends StatelessWidget {
 
     final Review? review = quiz.review;
 
-    final header = WeaknessHeader(
+    final header = WeaknessQuizHeader(
       weakness: weakness,
     );
     final question = QuizQuestionPart(quiz: quiz, drill: drill);

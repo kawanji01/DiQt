@@ -5,22 +5,21 @@ import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:http/http.dart';
 
 class RemoteWeaknesses {
-  // 未解答の苦手な問題を取得する
-  static Future<Map?> index(String sort, String order) async {
+  // すべての苦手な問題を取得する
+  static Future<Map?> index(int pageKey, int pageSize, String order) async {
     final String? token = await LocalUserInfo.authToken();
     if (token == null) return null;
 
     final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses?order=$order&sort=$sort&token=$token');
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses?order=$order&page=$pageKey&size=$pageSize&token=$token');
     final Response res = await get(url);
-
     if (res.statusCode != 200) return null;
 
     final Map resMap = json.decode(res.body);
     return resMap;
   }
 
-  // 移行用あとでindexに書き換え
+  // 移行用あとでunsolvedに書き換え
   static Future<Map?> list(String order) async {
     final String? token = await LocalUserInfo.authToken();
     if (token == null) return null;
@@ -29,6 +28,34 @@ class RemoteWeaknesses {
         '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses/list?order=$order&token=$token');
     final Response res = await get(url);
 
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // 未解答の弱点を取得する
+  static Future<Map?> unsolved(String order) async {
+    final String? token = await LocalUserInfo.authToken();
+    if (token == null) return null;
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses/unsolved?order=$order&token=$token');
+    final Response res = await get(url);
+
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  static Future<Map?> solved(int pageKey, int pageSize, String order) async {
+    final String? token = await LocalUserInfo.authToken();
+    if (token == null) return null;
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses/solved?order=$order&page=$pageKey&size=$pageSize&token=$token');
+    final Response res = await get(url);
     if (res.statusCode != 200) return null;
 
     final Map resMap = json.decode(res.body);

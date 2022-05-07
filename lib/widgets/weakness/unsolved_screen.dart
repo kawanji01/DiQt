@@ -3,7 +3,7 @@ import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/weakness/introduction.dart';
 import 'package:booqs_mobile/widgets/weakness/order_select_form.dart';
-import 'package:booqs_mobile/widgets/weakness/status_tab.dart';
+import 'package:booqs_mobile/widgets/weakness/status_tabs.dart';
 import 'package:booqs_mobile/widgets/weakness/unsolved_quizzes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,9 +52,13 @@ class _WeaknessUnsolvedScreenState
         children: [
           const SizedBox(height: 32),
           const WeaknessIntroduction(),
-          const WeaknessOrderSelectForm(),
+          const WeaknessOrderSelectForm(
+            type: 'unsolved',
+          ),
           const SizedBox(height: 32),
-          const WeaknessStatusTab(),
+          const WeaknessStatusTabs(
+            selected: 'unsolved',
+          ),
           const SizedBox(height: 8),
           _unsolvedQuizzes(),
           const SizedBox(height: 240),

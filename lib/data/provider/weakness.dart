@@ -17,12 +17,12 @@ final asyncUnsolvedWeaknessesProvider =
   final List<Weakness> weaknesses = [];
 
   final String order = ref.watch(weaknessOrderProvider);
-  final Map? resMap = await RemoteWeaknesses.list(
+  final Map? resMap = await RemoteWeaknesses.unsolved(
     order,
   );
   if (resMap == null) return weaknesses;
 
-  User user = User.fromJson(resMap['user']);
+  final User user = User.fromJson(resMap['user']);
   await UserSetup.signIn(user);
   ref.read(currentUserProvider.notifier).state = user;
   ref.read(answerSettingProvider.notifier).state = user.answerSetting;
