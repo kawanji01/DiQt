@@ -2,12 +2,12 @@ import 'package:booqs_mobile/models/quiz.dart';
 
 class Review {
   Review({
-    this.id = 0,
-    this.userId = 0,
-    this.quizId = 0,
-    this.scheduledDate,
-    this.intervalSetting,
-    this.reviewed,
+    required this.id,
+    required this.userId,
+    required this.quizId,
+    required this.scheduledDate,
+    required this.intervalSetting,
+    required this.reviewed,
     this.spacing,
     this.quiz,
   });

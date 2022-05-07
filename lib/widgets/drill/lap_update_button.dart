@@ -12,7 +12,8 @@ class DrillLapUpdateButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final DrillLap? drillLap = ref.watch(drillLapProvider);
-    final int newLapNumber = drillLap!.numberOfLaps! + 1;
+    if (drillLap == null) return Container();
+    final int newLapNumber = drillLap.numberOfLaps! + 1;
 
     Widget _lapInfo() {
       return Text(
