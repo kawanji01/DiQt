@@ -15,6 +15,10 @@ class ReviewIndexPage extends ConsumerStatefulWidget {
   const ReviewIndexPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
+    return Navigator.of(context).pushNamed(reviewIndexPage);
+  }
+
+  static Future pushReplacement(BuildContext context) async {
     //return Navigator.of(context).pushNamed(reviewIndexPage);
     return Navigator.pushReplacement(
       context,
@@ -55,7 +59,7 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
 
     return Scaffold(
       appBar: const EmptyAppBar(),
-      extendBodyBehindAppBar: true,
+      //extendBodyBehindAppBar: true,
       body: _reviewsOrEntrance(),
       bottomNavigationBar: const BottomNavbar(),
       drawer: const DrawerMenu(),

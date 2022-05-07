@@ -7,7 +7,9 @@ import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/notice/index.dart';
+import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
+import 'package:booqs_mobile/pages/review/scheduled.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
@@ -26,8 +28,6 @@ import 'package:booqs_mobile/pages/word/search_results.dart';
 
 // ホーム
 const indexPage = '/';
-// 復習
-const reviewIndexPage = '/review/index';
 // 通知
 const noticeIndexPage = '/notice/index';
 const noticeHomePage = '/notice/home';
@@ -54,6 +54,10 @@ const userPremiumPlanPage = '/user/premium_plan';
 // 問題集
 const drillUnsolvedPage = '/drill/unsolved';
 const drillSolvedPage = '/drill/solved';
+// 復習
+const reviewIndexPage = '/review/index';
+const reviewScheduledPage = '/review/scheduled';
+const reviewAllPage = '/review/all';
 // 苦手な問題
 const weaknessIndexPage = '/weakness/index';
 const weaknessUnsolvedPage = '/weakness/unsolved';
@@ -65,7 +69,6 @@ const answerAnalysisIndexPage = 'answer_analysis/index';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
-  reviewIndexPage: (context) => const ReviewIndexPage(),
   noticeIndexPage: (context) => const NoticeIndexPage(),
   noticeHomePage: (context) => const NoticeHomePage(),
   userMyPage: (context) => const UserMyPage(),
@@ -84,6 +87,9 @@ final routes = {
   userMenuPage: (context) => const UserMenuPage(),
   userPremiumPlanPage: (context) => const PremiumPlanPage(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
+  reviewIndexPage: (context) => const ReviewIndexPage(),
+  reviewScheduledPage: (context) => const ReviewScheduledPage(),
+  reviewAllPage: (context) => const ReviewAllPage(),
   weaknessIndexPage: (context) => const WeaknessIndexPage(),
   weaknessUnsolvedPage: (context) => const WeaknessUnsolvedPage(),
   weaknessSolvedPage: (context) => const WeaknessSolvedPage(),

@@ -92,7 +92,7 @@ class BottomNavbar extends ConsumerWidget {
           break;
         case 2:
           if (_selectedIndex == index) return;
-          ReviewIndexPage.push(context);
+          ReviewIndexPage.pushReplacement(context);
           break;
         case 3:
           if (_selectedIndex == index) return;
