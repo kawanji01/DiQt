@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -7,15 +8,16 @@ import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/widgets/user/feed_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';
 
-class ActivityAchievement extends StatelessWidget {
+class ActivityAchievement extends ConsumerWidget {
   const ActivityAchievement({Key? key, required this.activity})
       : super(key: key);
   final Activity activity;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final User user = activity.user!;
     final Achievement achievement = activity.achievement!;
     final File file = File(achievement.imageUrl);
@@ -77,7 +79,8 @@ class ActivityAchievement extends StatelessWidget {
     Widget _achievementImage() {
       return InkWell(
         onTap: () {
-          UserAchievementsPage.pushDialog(context, user);
+          ref.read(userProvider.notifier).state = user;
+          UserAchievementsPage.pushDialog(context);
         },
         child: CachedNetworkImage(
           imageUrl: achievementImageUrl,
