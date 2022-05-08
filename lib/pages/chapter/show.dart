@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/remote/chapters.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/chapter/introduction.dart';
 import 'package:booqs_mobile/widgets/drill/feed.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -71,13 +72,7 @@ class _ChapterShowPageState extends State<ChapterShowPage> {
 
       return Column(
         children: <Widget>[
-          Container(
-            width: double.infinity,
-            margin: const EdgeInsets.only(bottom: 24),
-            color: Colors.white,
-            padding: const EdgeInsets.all(16),
-            child: Text(_chapter!.introduction),
-          ),
+          ChapterIntrodiction(chapter: _chapter!),
           _buildCards(),
         ],
       );

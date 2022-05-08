@@ -65,7 +65,7 @@ class _ReviewSettingDialogState extends State<ReviewSettingDialog> {
   // 復習設定を削除する
   Future _delete() async {
     EasyLoading.show(status: 'loading...');
-    Map? resMap = await RemoteReviews.destroy(context, _review!.id);
+    final Map? resMap = await RemoteReviews.destroy(context, _review!.id);
     EasyLoading.dismiss();
 
     if (resMap == null) return;

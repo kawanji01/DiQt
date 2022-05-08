@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
 import 'package:booqs_mobile/widgets/drill/introduction.dart';
+import 'package:booqs_mobile/widgets/drill/order_select_form.dart';
 import 'package:booqs_mobile/widgets/drill/status_tabs.dart';
 import 'package:booqs_mobile/widgets/drill/unsolved_quizzes.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -47,10 +48,13 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
       },
       child: Column(
         children: [
-          const SizedBox(height: 40),
-          const DrillIntroduction(),
           const SizedBox(height: 32),
-          const DrillStatusTabs(),
+          const DrillIntroduction(),
+          const DrillOrderSelectForm(type: 'unsolved'),
+          const SizedBox(height: 40),
+          const DrillStatusTabs(
+            selected: 'unsolved',
+          ),
           const SizedBox(height: 32),
           _unsolvedQuizzes(),
           const SizedBox(height: 80),

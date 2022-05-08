@@ -3,28 +3,28 @@ import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
 import 'package:booqs_mobile/widgets/weakness/introduction.dart';
 import 'package:booqs_mobile/widgets/weakness/order_select_form.dart';
-import 'package:booqs_mobile/widgets/weakness/quiz_list_view.dart';
+import 'package:booqs_mobile/widgets/weakness/solved_quiz_list_view.dart';
 import 'package:booqs_mobile/widgets/weakness/status_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WeaknessIndexPage extends ConsumerStatefulWidget {
-  const WeaknessIndexPage({Key? key}) : super(key: key);
+class WeaknessSolvedPage extends ConsumerStatefulWidget {
+  const WeaknessSolvedPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(weaknessIndexPage);
+    return Navigator.of(context).pushNamed(weaknessSolvedPage);
   }
 
   // 戻らせない画面遷移
   static Future pushReplacement(BuildContext context) async {
-    return Navigator.of(context).pushReplacementNamed(weaknessIndexPage);
+    return Navigator.of(context).pushReplacementNamed(weaknessSolvedPage);
   }
 
   @override
-  _WeaknessIndexPageState createState() => _WeaknessIndexPageState();
+  _WeaknessSolvedPageState createState() => _WeaknessSolvedPageState();
 }
 
-class _WeaknessIndexPageState extends ConsumerState<WeaknessIndexPage> {
+class _WeaknessSolvedPageState extends ConsumerState<WeaknessSolvedPage> {
   @override
   Widget build(BuildContext context) {
     final _body = Container(
@@ -36,14 +36,14 @@ class _WeaknessIndexPageState extends ConsumerState<WeaknessIndexPage> {
             SizedBox(height: 32),
             WeaknessIntroduction(),
             WeaknessOrderSelectForm(
-              type: 'all',
+              type: 'solved',
             ),
             SizedBox(height: 32),
             WeaknessStatusTabs(
-              selected: 'all',
+              selected: 'solved',
             ),
             SizedBox(height: 8),
-            WeaknessQuizListView(),
+            WeaknessSolvedQuizListView(),
             SizedBox(height: 240),
           ],
         ),

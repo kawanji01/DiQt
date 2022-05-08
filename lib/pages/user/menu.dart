@@ -2,7 +2,7 @@ import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
-import 'package:booqs_mobile/pages/weakness/index.dart';
+import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
@@ -29,7 +29,7 @@ class UserMenuPage extends ConsumerWidget {
 
       return InkWell(
         onTap: () {
-          WeaknessIndexPage.push(context);
+          WeaknessUnsolvedPage.push(context);
         },
         child: LargeGreenButton(
             label: btnText, icon: Icons.check_circle_outline_outlined),

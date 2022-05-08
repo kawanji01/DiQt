@@ -23,7 +23,7 @@ class DrillUnsolvedPage extends ConsumerWidget {
 
     return const Scaffold(
       appBar: EmptyAppBar(),
-      extendBodyBehindAppBar: true,
+      //extendBodyBehindAppBar: true,
       body: DrillUnsolvedScreenWrapper(),
       bottomNavigationBar: BottomNavbar(),
     );

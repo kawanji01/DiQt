@@ -12,34 +12,38 @@ import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerAnswerDaysScreen extends ConsumerWidget {
-  const AnswerAnswerDaysScreen({Key? key, required this.answerCreator})
+class AnswerContinuationAllYearScreen extends ConsumerWidget {
+  const AnswerContinuationAllYearScreen({Key? key, required this.answerCreator})
       : super(key: key);
   final AnswerCreator answerCreator;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final int counter = answerCreator.answerDaysCount ?? 0;
+    // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬）
+    final int initialExp = answerCreator.startPoint +
+        answerCreator.lapClearPoint +
+        answerCreator.answerDaysPoint +
+        answerCreator.continuousAnswerDaysPoint +
+        answerCreator.continuationAllWeekPoint +
+        answerCreator.continuationAllMonthPoint;
+    // 獲得経験値
+    final int gainedExp = answerCreator.continuationAllYearPoint;
+    // 記録
+    final int counter = answerCreator.continuationAllYearCount ?? 0;
 
     final bool seEnabled = ref
         .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
-    // 開始経験値（基準 + 問題集周回報酬）
-    final int initialExp =
-        answerCreator.startPoint + answerCreator.lapClearPoint;
-    // 獲得経験値
-    final int gainedExp = answerCreator.answerDaysPoint;
-
+    // 効果音
     if (seEnabled) {
-      // 効果音
       final AudioCache _cache = AudioCache(
         fixedPlayer: AudioPlayer(),
       );
-      _cache.loadAll([continousSound]);
-      _cache.play(continousSound);
+      _cache.loadAll([achievementSound]);
+      _cache.play(achievementSound);
     }
 
     Widget _heading() {
-      return Text('${answerCreator.answerDaysCount}日解答',
+      return Text('$counter年間連続解答',
           style: const TextStyle(
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
     }
@@ -48,9 +52,9 @@ class AnswerAnswerDaysScreen extends ConsumerWidget {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
-      final String tweet = '$counter日、問題を解きました！！';
+      final String tweet = '$counter年間連続で問題を解きました！！';
       final String url =
-          '${DiQtURL.root(context)}/users/${user.publicUid}?daily_bonus=$counter';
+          '${DiQtURL.root(context)}/users/${user.publicUid}?yearly_bonus=$counter';
 
       return AnswerTwitterShareButton(text: tweet, url: url);
     }
@@ -69,7 +73,7 @@ class AnswerAnswerDaysScreen extends ConsumerWidget {
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton(),
+            _twitterShareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

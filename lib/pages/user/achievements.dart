@@ -14,7 +14,7 @@ class UserAchievementsPage extends ConsumerStatefulWidget {
   const UserAchievementsPage({Key? key}) : super(key: key);
 
   // モーダルによる画面遷移
-  static Future pushDialog(BuildContext context, User user) async {
+  static Future pushDialog(BuildContext context) async {
     return Navigator.push(
         context,
         MaterialPageRoute(

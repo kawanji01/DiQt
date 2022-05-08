@@ -1,10 +1,14 @@
 import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
+import 'package:booqs_mobile/pages/weakness/index.dart';
+import 'package:booqs_mobile/pages/weakness/solved.dart';
+import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WeaknessStatusTab extends ConsumerWidget {
-  const WeaknessStatusTab({Key? key}) : super(key: key);
+class WeaknessStatusTabs extends ConsumerWidget {
+  const WeaknessStatusTabs({Key? key, required this.selected})
+      : super(key: key);
+  final String selected;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,43 +19,34 @@ class WeaknessStatusTab extends ConsumerWidget {
 
     final int solvedWeaknessesCount = weaknessesCount - unsolvedWeaknessesCount;
 
+    const selectedStyle = TextStyle(
+        color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold);
+    const normalStyle = TextStyle(
+        color: Colors.black54, fontSize: 16, fontWeight: FontWeight.bold);
+
     Widget _unsolved() {
+      final style = selected == 'unsolved' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(
-            text: '未正解\n($unsolvedWeaknessesCount)',
-            style: const TextStyle(
-                color: Colors.green,
-                fontSize: 16,
-                fontWeight: FontWeight.bold)),
+        text: TextSpan(text: '未正解\n($unsolvedWeaknessesCount)', style: style),
       );
       return InkWell(
         onTap: () {
-          print("");
+          WeaknessUnsolvedPage.push(context);
         },
         child: Container(alignment: Alignment.center, child: text),
       );
     }
 
     Widget _solved() {
+      final style = selected == 'solved' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(
-            text: '正解済\n($solvedWeaknessesCount)',
-            style: const TextStyle(
-                color: Colors.black54,
-                fontSize: 16,
-                fontWeight: FontWeight.bold)),
+        text: TextSpan(text: '正解済\n($solvedWeaknessesCount)', style: style),
       );
       return InkWell(
         onTap: () {
-          // 外部リンクダイアログを表示
-          showDialog(
-              context: context,
-              builder: (context) {
-                return const ExternalLinkDialog(
-                    redirectPath: 'weaknesses/solved');
-              });
+          WeaknessSolvedPage.push(context);
         },
         child: Container(
             alignment: Alignment.center,
@@ -66,23 +61,14 @@ class WeaknessStatusTab extends ConsumerWidget {
     }
 
     Widget _all() {
+      final style = selected == 'all' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(
-            text: 'すべて\n($weaknessesCount)',
-            style: const TextStyle(
-                color: Colors.black54,
-                fontSize: 16,
-                fontWeight: FontWeight.bold)),
+        text: TextSpan(text: 'すべて\n($weaknessesCount)', style: style),
       );
       return InkWell(
         onTap: () {
-          // 外部リンクダイアログを表示
-          showDialog(
-              context: context,
-              builder: (context) {
-                return const ExternalLinkDialog(redirectPath: 'weaknesses/all');
-              });
+          WeaknessIndexPage.push(context);
         },
         child: Container(alignment: Alignment.center, child: text),
       );

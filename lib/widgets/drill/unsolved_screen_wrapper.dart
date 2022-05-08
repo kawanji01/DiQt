@@ -52,11 +52,11 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
         // trueを返すことで通知がこれ以上遡らない
         return true;
       },
-      child: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.all(20),
-          child: const DrillUnsolvedScreen(),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: const SingleChildScrollView(
+          child: DrillUnsolvedScreen(),
         ),
       ),
     );

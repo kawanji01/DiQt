@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/weakness/index.dart';
+import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -43,7 +43,7 @@ class UserWeaknessButton extends ConsumerWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
           splashColor: const Color(0x30f010f0),
-          onTap: () => WeaknessIndexPage.push(context),
+          onTap: () => WeaknessUnsolvedPage.push(context),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[

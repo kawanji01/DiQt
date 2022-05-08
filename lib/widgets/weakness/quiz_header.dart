@@ -4,8 +4,9 @@ import 'package:booqs_mobile/utils/date_time_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WeaknessHeader extends ConsumerWidget {
-  const WeaknessHeader({Key? key, required this.weakness}) : super(key: key);
+class WeaknessQuizHeader extends ConsumerWidget {
+  const WeaknessQuizHeader({Key? key, required this.weakness})
+      : super(key: key);
   final Weakness weakness;
 
   @override
@@ -23,7 +24,7 @@ class WeaknessHeader extends ConsumerWidget {
     final String timeAgo = createTimeAgoString(weakness.createdAt);
 
     final correctRateText = Text(
-      '正答率：${correctRate.floor()}% / 不正解：$incorrectAnswersCount回  - $timeAgoに追加',
+      '正答率：${correctRate.floor()}% / 不正解：$incorrectAnswersCount回 / $timeAgoに追加',
       style: TextStyle(color: colors, fontWeight: FontWeight.bold),
     );
 

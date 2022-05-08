@@ -1,11 +1,14 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
+import 'package:booqs_mobile/pages/review/all.dart';
+import 'package:booqs_mobile/pages/review/index.dart';
+import 'package:booqs_mobile/pages/review/scheduled.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewStatusTabs extends ConsumerWidget {
-  const ReviewStatusTabs({Key? key}) : super(key: key);
+  const ReviewStatusTabs({Key? key, required this.selected}) : super(key: key);
+  final String selected;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,43 +19,34 @@ class ReviewStatusTabs extends ConsumerWidget {
     final int solvedReviewsCount =
         user == null ? 0 : reviewsCount - unsolvedReviewsCount;
 
-    Widget _unsolved() {
+    const selectedStyle = TextStyle(
+        color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold);
+    const normalStyle = TextStyle(
+        color: Colors.black54, fontSize: 16, fontWeight: FontWeight.bold);
+
+    Widget _unreviewed() {
+      final style = selected == 'unreviewed' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(
-            text: '未解答\n($unsolvedReviewsCount)',
-            style: const TextStyle(
-                color: Colors.green,
-                fontSize: 16,
-                fontWeight: FontWeight.bold)),
+        text: TextSpan(text: '未解答\n($unsolvedReviewsCount)', style: style),
       );
       return InkWell(
         onTap: () {
-          print("");
+          ReviewIndexPage.push(context);
         },
         child: Container(alignment: Alignment.center, child: text),
       );
     }
 
-    Widget _solved() {
+    Widget _scheduled() {
+      final style = selected == 'scheduled' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(
-            text: '予定\n($solvedReviewsCount)',
-            style: const TextStyle(
-                color: Colors.black54,
-                fontSize: 16,
-                fontWeight: FontWeight.bold)),
+        text: TextSpan(text: '予定\n($solvedReviewsCount)', style: style),
       );
       return InkWell(
         onTap: () {
-          // 外部リンクダイアログを表示
-          showDialog(
-              context: context,
-              builder: (context) {
-                return const ExternalLinkDialog(
-                    redirectPath: 'reviews/scheduled');
-              });
+          ReviewScheduledPage.push(context);
         },
         child: Container(
             alignment: Alignment.center,
@@ -67,23 +61,14 @@ class ReviewStatusTabs extends ConsumerWidget {
     }
 
     Widget _all() {
+      final style = selected == 'all' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(
-            text: 'すべて\n($reviewsCount)',
-            style: const TextStyle(
-                color: Colors.black54,
-                fontSize: 16,
-                fontWeight: FontWeight.bold)),
+        text: TextSpan(text: 'すべて\n($reviewsCount)', style: style),
       );
       return InkWell(
         onTap: () {
-          // 外部リンクダイアログを表示
-          showDialog(
-              context: context,
-              builder: (context) {
-                return const ExternalLinkDialog(redirectPath: 'reviews/all');
-              });
+          ReviewAllPage.push(context);
         },
         child: Container(alignment: Alignment.center, child: text),
       );
@@ -93,9 +78,9 @@ class ReviewStatusTabs extends ConsumerWidget {
       children: [
         Expanded(
           flex: 1,
-          child: _unsolved(),
+          child: _unreviewed(),
         ),
-        Expanded(flex: 1, child: _solved()),
+        Expanded(flex: 1, child: _scheduled()),
         Expanded(flex: 1, child: _all()),
       ],
     );

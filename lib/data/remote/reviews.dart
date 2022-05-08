@@ -20,6 +20,34 @@ class RemoteReviews {
     return resMap;
   }
 
+  // 予定
+  static Future<Map?> scheduled(int pageKey, int pageSize, String order) async {
+    final String? token = await LocalUserInfo.authToken();
+    if (token == null) return null;
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews/scheduled?order=$order&page=$pageKey&size=$pageSize&token=$token');
+    final Response res = await get(url);
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // すべて
+  static Future<Map?> all(int pageKey, int pageSize, String order) async {
+    final String? token = await LocalUserInfo.authToken();
+    if (token == null) return null;
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews/all?order=$order&page=$pageKey&size=$pageSize&token=$token');
+    final Response res = await get(url);
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 復習設定の新規作成
   static Future<Map?> create(
       BuildContext context, int quizId, String? intervalSetting) async {

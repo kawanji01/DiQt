@@ -1,12 +1,11 @@
-import 'package:booqs_mobile/data/provider/weakness.dart';
-import 'package:booqs_mobile/pages/weakness/index.dart';
-import 'package:booqs_mobile/pages/weakness/solved.dart';
+import 'package:booqs_mobile/data/provider/review.dart';
+import 'package:booqs_mobile/pages/review/all.dart';
+import 'package:booqs_mobile/pages/review/scheduled.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WeaknessOrderSelectForm extends ConsumerWidget {
-  const WeaknessOrderSelectForm({Key? key, required this.type})
-      : super(key: key);
+class ReviewOrderSelectForm extends ConsumerWidget {
+  const ReviewOrderSelectForm({Key? key, required this.type}) : super(key: key);
   final String type;
 
   @override
@@ -14,14 +13,14 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
     // ページに合わせて問題を更新する
     void _refresh() {
       switch (type) {
-        case 'unsolved':
-          ref.refresh(asyncUnsolvedWeaknessesProvider);
+        case 'unreviewed':
+          ref.refresh(asyncUnsolvedReviewsProvider);
           break;
-        case 'solved':
-          WeaknessSolvedPage.pushReplacement(context);
+        case 'scheduled':
+          ReviewScheduledPage.pushReplacement(context);
           break;
         case 'all':
-          WeaknessIndexPage.pushReplacement(context);
+          ReviewAllPage.pushReplacement(context);
           break;
       }
     }
@@ -29,18 +28,10 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
     // 値に対応するフォームのラベル
     String _label(String value) {
       switch (value) {
-        case 'correct_answer_rate-asc':
-          return '正答率が低い順';
-        case 'correct_answer_rate-desc':
-          return '正答率が高い順';
-        case 'incorrect_answers_count-desc':
-          return '不正解が多い順';
-        case 'incorrect_answers_count-asc':
-          return '不正解が少ない順';
-        case 'created_at-desc':
-          return '追加日が新しい順';
-        case 'created_at-asc':
-          return '追加日が古い順';
+        case 'scheduled_date-desc':
+          return '予定日が新しい順';
+        case 'scheduled_date-asc':
+          return '予定日が古い順';
         case 'random-random':
           return 'ランダム';
         default:
@@ -59,21 +50,17 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(color: Colors.black87)),
         child: DropdownButton<String>(
-          value: ref.watch(weaknessOrderProvider),
+          value: ref.watch(reviewOrderProvider),
           iconSize: 24,
           elevation: 16,
           onChanged: (String? newValue) {
             if (newValue == null) return;
-            ref.read(weaknessOrderProvider.notifier).state = newValue;
+            ref.read(reviewOrderProvider.notifier).state = newValue;
             _refresh();
           },
           items: <String>[
-            'correct_answer_rate-asc',
-            'correct_answer_rate-desc',
-            'incorrect_answers_count-desc',
-            'incorrect_answers_count-asc',
-            'created_at-desc',
-            'created_at-asc',
+            'scheduled_date-desc',
+            'scheduled_date-asc',
             'random-random',
           ].map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(

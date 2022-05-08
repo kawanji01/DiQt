@@ -13,7 +13,7 @@ class UserAchievementsButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Future _moveToAchievementsPage() async {
       ref.read(userProvider.notifier).state = user;
-      await UserAchievementsPage.pushDialog(context, user);
+      await UserAchievementsPage.pushDialog(context);
     }
 
     return SizedBox(
