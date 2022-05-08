@@ -65,13 +65,21 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 
-  <!-- AdMob, START ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
-  ref: https://developers.google.com/admob/ios/quick-start?hl=ja#import_the_mobile_ads_sdk -->
+  	<!-- AdMob, START ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
+  	ref: https://developers.google.com/admob/ios/quick-start?hl=ja#import_the_mobile_ads_sdk -->
     <!-- バナー広告 -->
     <key>GADApplicationIdentifier</key>
     <string>ca-app-pub-9489251797522277~6073978820</string>
-    
-      <!-- AdMob, END -->
+	<!-- AdMob, END -->
+
+	<!-- TwitterのURLスキームを開くために必要 ref: https://yasai.dev/posts/2021-04-08-flutter%E3%81%A7twitter%E3%81%AB%E5%85%B1%E6%9C%89%E3%81%99%E3%82%8B%E3%83%9C%E3%82%BF%E3%83%B3%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F/ -->
+	<key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>https</string>
+        <string>http</string>
+        <string>twitter</string>
+    </array>
+
 </dict>
 
 
