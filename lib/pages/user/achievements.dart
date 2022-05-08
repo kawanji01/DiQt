@@ -6,6 +6,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/widgets/user/feed_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -151,12 +152,37 @@ class _UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
       );
     }
 
+    Widget _userInfo() {
+      final User? user = ref.watch(userProvider);
+      if (user == null) return Container();
+
+      return Container(
+        margin: const EdgeInsets.only(top: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Row(
+          children: [
+            UserFeedIcon(user: user),
+            Expanded(
+              child: Text(
+                user.name,
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     // メダル一覧画面
     Widget _bodyWidget() {
       if (_initDone == false) return const LoadingSpinner();
 
       return SingleChildScrollView(
         child: Column(children: <Widget>[
+          _userInfo(),
           _heading('チュートリアルメダル', 'DiQtの基本的操作を達成することで手に入るメダルです。'),
           _medalTile(_tutorialMedals),
           _heading('解答数メダル', '累計の解答数に応じて手に入るメダルです。'),

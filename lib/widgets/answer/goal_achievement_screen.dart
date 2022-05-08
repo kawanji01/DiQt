@@ -6,7 +6,7 @@ import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
-import 'package:booqs_mobile/widgets/answer/twitter_share_button.dart';
+import 'package:booqs_mobile/widgets/answer/share_button.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/gained_exp_indicator.dart';
 import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
@@ -61,7 +61,7 @@ class AnswerGoalAchievementScreen extends ConsumerWidget {
       final String url =
           '${DiQtURL.root(context)}/users/${user.publicUid}?goal=$counter';
 
-      return AnswerTwitterShareButton(text: tweet, url: url);
+      return AnswerShareButton(text: tweet, url: url);
     }
 
     return Container(
