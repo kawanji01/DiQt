@@ -12,33 +12,28 @@ import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerContinuousGoalAchievementScreen extends ConsumerWidget {
-  const AnswerContinuousGoalAchievementScreen(
-      {Key? key, required this.answerCreator})
+class AnswerContinuationAllYearScreen extends ConsumerWidget {
+  const AnswerContinuationAllYearScreen({Key? key, required this.answerCreator})
       : super(key: key);
   final AnswerCreator answerCreator;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬 + 連続年解答報酬 + 復習達成報酬 + 連続復習達成報酬 + 目標達成報酬）
+    // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬）
     final int initialExp = answerCreator.startPoint +
         answerCreator.lapClearPoint +
         answerCreator.answerDaysPoint +
         answerCreator.continuousAnswerDaysPoint +
         answerCreator.continuationAllWeekPoint +
-        answerCreator.continuationAllMonthPoint +
-        answerCreator.continuationAllYearPoint +
-        answerCreator.completeReviewPoint +
-        answerCreator.continuousCompleteReviewPoint +
-        answerCreator.goalAchievementPoint;
+        answerCreator.continuationAllMonthPoint;
     // 獲得経験値
-    final int gainedExp = answerCreator.continuousGoalAchievementPoint;
+    final int gainedExp = answerCreator.continuationAllYearPoint;
     // 記録
-    final int counter = answerCreator.continuousGoalAchievementCount ?? 0;
+    final int counter = answerCreator.continuationAllYearCount ?? 0;
 
-    // 効果音
     final bool seEnabled = ref
         .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
+    // 効果音
     if (seEnabled) {
       final AudioCache _cache = AudioCache(
         fixedPlayer: AudioPlayer(),
@@ -48,7 +43,7 @@ class AnswerContinuousGoalAchievementScreen extends ConsumerWidget {
     }
 
     Widget _heading() {
-      return Text('$counter日連続目標達成',
+      return Text('$counter年間連続解答',
           style: const TextStyle(
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
     }
@@ -57,9 +52,10 @@ class AnswerContinuousGoalAchievementScreen extends ConsumerWidget {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
-      final String tweet = '$counter日連続で目標を達成しました！！';
+      final String tweet = '$counter年間連続で問題を解きました！！';
       final String url =
-          '${DiQtURL.root(context)}/users/${user.publicUid}?continuous_goal_achievement=$counter';
+          '${DiQtURL.root(context)}/users/${user.publicUid}?yearly_bonus=$counter';
+
       return AnswerTwitterShareButton(text: tweet, url: url);
     }
 

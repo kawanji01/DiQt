@@ -21,13 +21,14 @@ class AnswerCompleteReviewScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bool seEnabled = ref
         .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
-    // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬）
+    // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬 + 連続年報酬）
     final int initialExp = answerCreator.startPoint +
         answerCreator.lapClearPoint +
         answerCreator.answerDaysPoint +
         answerCreator.continuousAnswerDaysPoint +
         answerCreator.continuationAllWeekPoint +
-        answerCreator.continuationAllMonthPoint;
+        answerCreator.continuationAllMonthPoint +
+        answerCreator.continuationAllYearPoint;
     // 獲得経験値
     final int gainedExp = answerCreator.completeReviewPoint;
 

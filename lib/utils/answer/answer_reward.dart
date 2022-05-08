@@ -6,6 +6,7 @@ import 'package:booqs_mobile/widgets/answer/answer_days_screen.dart';
 import 'package:booqs_mobile/widgets/answer/complete_review_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuation_all_month_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuation_all_week_screen.dart';
+import 'package:booqs_mobile/widgets/answer/continuation_all_year_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuous_answer_days_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuous_complete_review_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuous_goal_achievement_screen.dart';
@@ -26,6 +27,8 @@ class AnswerReward {
     await AnswerReward.continuationAllWeek(answerCreator);
     // 連続月解答報酬
     await AnswerReward.continuationAllMonth(answerCreator);
+    // 連続年解答報酬
+    await AnswerReward.continuationAllYear(answerCreator);
     // 復習達成
     await AnswerReward.completeReview(answerCreator);
     // 連続復習達成
@@ -97,6 +100,19 @@ class AnswerReward {
     if (answerHistory!.continuationAllMonth && continuationAllMonthCount! > 0) {
       final Widget screen =
           AnswerContinuationAllMonthScreen(answerCreator: answerCreator);
+      Dialogs.reward(screen);
+      await Future.delayed(const Duration(seconds: 2));
+    }
+  }
+
+  // 連続年解答報酬
+  static Future<void> continuationAllYear(AnswerCreator answerCreator) async {
+    final AnswerHistory? answerHistory = answerCreator.answerHistory;
+    final int? continuationAllYearCount =
+        answerCreator.continuationAllYearCount;
+    if (answerHistory!.continuationAllYear && continuationAllYearCount! > 0) {
+      final Widget screen =
+          AnswerContinuationAllYearScreen(answerCreator: answerCreator);
       Dialogs.reward(screen);
       await Future.delayed(const Duration(seconds: 2));
     }
