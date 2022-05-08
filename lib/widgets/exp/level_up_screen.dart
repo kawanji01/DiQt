@@ -1,13 +1,19 @@
+import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/level_calculator.dart';
 import 'package:booqs_mobile/widgets/exp/exp_indicator.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:booqs_mobile/widgets/answer/share_button.dart';
 
-class ExpLevelUpScreen extends StatelessWidget {
+class ExpLevelUpScreen extends ConsumerWidget {
   const ExpLevelUpScreen({Key? key, required this.totalExp}) : super(key: key);
   final int totalExp;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ConfettiController _confettiController =
         ConfettiController(duration: const Duration(seconds: 1));
     _confettiController.play();
@@ -16,6 +22,17 @@ class ExpLevelUpScreen extends StatelessWidget {
       return const Text('レベルアップ',
           style: TextStyle(
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
+    }
+
+    Widget _shareButton() {
+      final int level = LevelCalculator.levelForExp(totalExp).floor();
+      final User? user = ref.watch(currentUserProvider);
+      if (user == null) return Container();
+
+      final String tweet = 'Lv.$levelに上がりました！！';
+      final String url =
+          '${DiQtURL.root(context)}/users/${user.publicUid}?level_up=$level';
+      return AnswerShareButton(text: tweet, url: url);
     }
 
     Widget _closeButton() {
@@ -66,6 +83,8 @@ class ExpLevelUpScreen extends StatelessWidget {
               ExpExpIndicator(
                 exp: totalExp,
               ),
+              const SizedBox(height: 16),
+              _shareButton()
             ]),
             _closeButton(),
             // 紙吹雪
