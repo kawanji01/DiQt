@@ -25,7 +25,8 @@ class AnswerShareButton extends StatelessWidget {
       icon: const Icon(Icons.share, color: Colors.white),
       label: const Text(
         '記録をシェアする',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        style: TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
       ),
     );
   }
