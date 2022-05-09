@@ -1,162 +1,71 @@
+import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
+import 'package:booqs_mobile/widgets/dictionary/introduction.dart';
+import 'package:booqs_mobile/widgets/dictionary/quiz_requests_button.dart';
+import 'package:booqs_mobile/widgets/dictionary/sentence_requests_button.dart';
+import 'package:booqs_mobile/widgets/dictionary/word_requests_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/button/large_green_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DictionaryPage extends StatefulWidget {
+class DictionaryPage extends ConsumerStatefulWidget {
   const DictionaryPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context, Dictionary dictionary) async {
-    return Navigator.of(context).pushNamed(
-      dictionaryShowPage,
-      arguments: dictionary,
-    );
+  static Future push(BuildContext context) async {
+    return Navigator.of(context).pushNamed(dictionaryShowPage);
   }
 
   @override
   _DictionaryPageState createState() => _DictionaryPageState();
 }
 
-class _DictionaryPageState extends State<DictionaryPage> {
+class _DictionaryPageState extends ConsumerState<DictionaryPage> {
+  @override
+  void initState() {
+    super.initState();
+    ref.refresh(asyncDictionaryProvider);
+  }
+
   @override
   Widget build(BuildContext context) {
-    // 辞書の取得
-    Dictionary getDictionary() {
-      return ModalRoute.of(context)!.settings.arguments as Dictionary;
-    }
+    final Dictionary? _dictionary = ref.watch(dictionaryProvider);
+    final future = ref.watch(asyncDictionaryProvider);
 
-    final _dictionary = getDictionary();
+    Widget _page(Dictionary? dictionary) {
+      if (dictionary == null) return Container();
 
-    Widget _acceptedWordRequestsButton() {
-      final String btnText = '承認済（${_dictionary.acceptedWordRequestsCount}）';
-      final String redirectPath =
-          'dictionaries/${_dictionary.publicUid}/accepted_word_requests';
-      return InkWell(
-        onTap: () {
-          BooQsOnWeb.open(context, redirectPath);
-        },
-        child: LargeGreenButton(label: btnText, icon: null),
-      );
-    }
-
-    Widget _pendingWordRequestsButton() {
-      final String btnText = '審査中（${_dictionary.pendingWordRequestsCount}）';
-      final String redirectPath =
-          'dictionaries/${_dictionary.publicUid}/pending_word_requests';
-      return InkWell(
-        onTap: () {
-          BooQsOnWeb.open(context, redirectPath);
-        },
-        child: LargeGreenButton(label: btnText, icon: null),
-      );
-    }
-
-    Widget _acceptedSentenceRequestsButton() {
-      final String btnText =
-          '承認済（${_dictionary.acceptedSentenceRequestsCount}）';
-      final String redirectPath =
-          'dictionaries/${_dictionary.publicUid}/accepted_sentence_requests';
-      return InkWell(
-        onTap: () {
-          BooQsOnWeb.open(context, redirectPath);
-        },
-        child: LargeGreenButton(label: btnText, icon: null),
-      );
-    }
-
-    Widget _pendingSentenceRequestsButton() {
-      final String btnText = '審査中（${_dictionary.pendingSentenceRequestsCount}）';
-      final String redirectPath =
-          'dictionaries/${_dictionary.publicUid}/pending_sentence_requests';
-      return InkWell(
-        onTap: () {
-          BooQsOnWeb.open(context, redirectPath);
-        },
-        child: LargeGreenButton(label: btnText, icon: null),
-      );
-    }
-
-    Widget _acceptedQuizRequestsButton() {
-      final String btnText = '承認済（${_dictionary.acceptedQuizRequestsCount}）';
-      final String redirectPath =
-          'dictionaries/${_dictionary.publicUid}/accepted_quiz_requests';
-      return InkWell(
-        onTap: () {
-          BooQsOnWeb.open(context, redirectPath);
-        },
-        child: LargeGreenButton(label: btnText, icon: null),
-      );
-    }
-
-    Widget _pendingQuizRequestsButton() {
-      final String btnText = '審査中（${_dictionary.pendingQuizRequestsCount}）';
-      final String redirectPath =
-          'dictionaries/${_dictionary.publicUid}/pending_quiz_requests';
-      return InkWell(
-        onTap: () {
-          BooQsOnWeb.open(context, redirectPath);
-        },
-        child: LargeGreenButton(label: btnText, icon: null),
-      );
-    }
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_dictionary.title),
-      ),
-      body: SingleChildScrollView(
+      return SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(20),
           child: Column(
             children: <Widget>[
-              const SizedBox(height: 32),
-              const Text(
-                '項目の改善履歴',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.black54,
-                ),
-              ),
               const SizedBox(height: 24),
-              _acceptedWordRequestsButton(),
-              const SizedBox(height: 32),
-              _pendingWordRequestsButton(),
-              const SizedBox(height: 48),
-              const Text(
-                '例文の改善履歴',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.black54,
-                ),
-              ),
+              DictionaryIntroduction(dictionary: dictionary),
+              DictionaryWordRequestsButton(dictionary: dictionary),
               const SizedBox(height: 24),
-              _acceptedSentenceRequestsButton(),
-              const SizedBox(height: 32),
-              _pendingSentenceRequestsButton(),
-              const SizedBox(height: 48),
-              const Text(
-                '問題の改善履歴',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.black54,
-                ),
-              ),
+              DictionarySentenceRequestsButton(dictionary: dictionary),
               const SizedBox(height: 24),
-              _acceptedQuizRequestsButton(),
-              const SizedBox(height: 32),
-              _pendingQuizRequestsButton(),
+              DictionaryQuizRequestsButton(dictionary: dictionary),
               const SizedBox(height: 48),
             ],
           ),
         ),
+      );
+    }
+
+    final String title = _dictionary == null ? '' : _dictionary.title;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: future.when(
+        loading: () => _page(_dictionary),
+        error: (err, stack) => Text('Error: $err'),
+        data: (dictionary) => _page(dictionary),
       ),
       bottomNavigationBar: const BottomNavbar(),
     );

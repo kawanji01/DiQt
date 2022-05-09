@@ -35,7 +35,7 @@ def keystoreProperties = new Properties()
    // 参考： https://zenn.dev/dala/books/flutter-basic-app/viewer/production-build#android-%E7%94%A8%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%83%93%E3%83%AB%E3%83%89%E3%82%92%E8%A1%8C%E3%81%86
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     namespace 'com.booqs.booqs_mobile'
 
     compileOptions {

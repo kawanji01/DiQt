@@ -2,18 +2,17 @@ import 'package:booqs_mobile/models/drill.dart';
 
 class Dictionary {
   Dictionary(
-      {this.id,
-      this.title = '',
+      {required this.id,
+      required this.title,
       this.introduction,
       this.image,
-      this.publicUid,
-      this.langNumberOfEntry,
-      this.langNumberOfMeaning,
+      this.thumbnailUrl,
+      required this.publicUid,
+      required this.langNumberOfEntry,
+      required this.langNumberOfMeaning,
       this.requestScreened = false,
       this.wordsCount = 0,
       this.sentencesCount = 0,
-      this.acceptedRequestsCount = 0,
-      this.pendingRequestsCount = 0,
       this.acceptedWordRequestsCount = 0,
       this.pendingWordRequestsCount = 0,
       this.acceptedSentenceRequestsCount = 0,
@@ -30,23 +29,22 @@ class Dictionary {
       this.votesCountToCloseRequest = 3,
       this.sameEntryScreened = false,
       this.changingEntryScreened = false,
-      this.createdAt,
-      this.updatedAt,
+      required this.createdAt,
+      required this.updatedAt,
       // eager_loadでキャッシュしたdrillの情報
       this.drill});
 
-  int? id;
+  int id;
   String title;
   String? introduction;
   String? image;
-  String? publicUid;
-  int? langNumberOfEntry;
-  int? langNumberOfMeaning;
+  String? thumbnailUrl;
+  String publicUid;
+  int langNumberOfEntry;
+  int langNumberOfMeaning;
   bool requestScreened;
   int wordsCount;
   int sentencesCount;
-  int acceptedRequestsCount;
-  int pendingRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
   int acceptedSentenceRequestsCount;
@@ -63,8 +61,8 @@ class Dictionary {
   int votesCountToCloseRequest;
   bool sameEntryScreened;
   bool changingEntryScreened;
-  String? createdAt;
-  String? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
   // テーブルを結合してキャッシュしたdrillの情報
   Drill? drill;
 
@@ -72,6 +70,7 @@ class Dictionary {
       : id = json['id'],
         title = json['title'],
         introduction = json['introduction'],
+        thumbnailUrl = json['thumbnail_url'],
         image = json['image'].toString(),
         publicUid = json['public_uid'],
         langNumberOfEntry = json['lang_number_of_entry'],
@@ -79,8 +78,6 @@ class Dictionary {
         requestScreened = json['request_screened'],
         wordsCount = json['words_count'],
         sentencesCount = json['sentences_count'],
-        acceptedRequestsCount = json['accepted_requests_count'],
-        pendingRequestsCount = json['pending_requests_count'],
         acceptedWordRequestsCount = json['accepted_word_requests_count'],
         pendingWordRequestsCount = json['pending_word_requests_count'],
         acceptedSentenceRequestsCount =
@@ -98,8 +95,8 @@ class Dictionary {
         votesCountToCloseRequest = json['votes_count_to_close_request'],
         sameEntryScreened = json['same_entry_screened'],
         changingEntryScreened = json['changing_entry_screened'],
-        createdAt = json['created_at'],
-        updatedAt = json['updated_at'],
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']),
         // テーブルを結合してキャッシュしたdrillの情報,
         drill = json['drill'] == null ? null : Drill.fromJson(json['drill']);
 
@@ -108,14 +105,13 @@ class Dictionary {
         'title': title,
         'introduction': introduction,
         'image': image,
+        'thumbnail_url': thumbnailUrl,
         'public_uid': publicUid,
         'lang_number_of_entry': langNumberOfEntry,
         'lang_number_of_meaning': langNumberOfMeaning,
         'request_screened': requestScreened,
         'words_count': wordsCount,
         'sentences_count': sentencesCount,
-        'accepted_requests_count': acceptedRequestsCount,
-        'pending_requests_count': pendingRequestsCount,
         'accepted_word_requests_count': acceptedWordRequestsCount,
         'pending_word_requests_count': pendingWordRequestsCount,
         'accepted_sentence_requests_count': acceptedSentenceRequestsCount,
