@@ -5,6 +5,7 @@ import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/word/form.dart';
+import 'package:booqs_mobile/widgets/word/sentence_setting_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,6 +39,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       _entryController.text = _word!.entry;
       _meaningController.text = _word!.meaning;
       _explanationController.text = _word!.explanation ?? '';
+      //ref.read(wordSentenceProvider.notifier).state = _word!.sentence;
       _sentenceIdController.text = _word!.sentenceId.toString();
       _dictionaryId = _word!.dictionaryId;
       setState(() {
@@ -73,21 +75,6 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-
-      /* const storage = FlutterSecureStorage();
-      String? token = await storage.read(key: 'token');
-
-      // リクエスト
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/words/${word.id}');
-
-      Response response = await patch(url, body: {
-        'token': token,
-        'entry': _entryController.text,
-        'meaning': _meaningController.text,
-        'explanation': _explanationController.text,
-        'sentence_id': _sentenceIdController.text,
-      }); */
       Map<String, dynamic> params = word.toJson();
       params['entry'] = _entryController.text;
       params['meaning'] = _meaningController.text;
@@ -106,20 +93,6 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
         _goToWordPage(word);
       }
       EasyLoading.dismiss();
-
-      /* if (response.statusCode == 200) {
-        // 画面全体のローディングを消す。
-        EasyLoading.dismiss();
-        Map<String, dynamic> resMap = json.decode(response.body);
-        word = Word.fromJson(resMap['data']);
-        final snackBar = SnackBar(content: Text('${resMap['message']}'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        _goToWordPage(word);
-      } else {
-        EasyLoading.dismiss();
-        const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } */
     }
 
     // 更新ボタン
@@ -159,9 +132,11 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                         entryController: _entryController,
                         meaningController: _meaningController,
                         explanationController: _explanationController,
-                        sentenceIdController: _sentenceIdController,
-                        dictionaryId: _dictionaryId,
                       ),
+                      WordSentenceSettingForm(
+                          sentenceIdController: _sentenceIdController,
+                          entryController: _entryController,
+                          dictionaryId: _dictionaryId),
                       const SizedBox(height: 40),
                       _submitButton(),
                       const SizedBox(height: 40),

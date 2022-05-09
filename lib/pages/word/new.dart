@@ -7,6 +7,7 @@ import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/word/form.dart';
+import 'package:booqs_mobile/widgets/word/sentence_setting_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -144,9 +145,11 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
                         entryController: _entryController,
                         meaningController: _meaningController,
                         explanationController: _explanationController,
-                        sentenceIdController: _sentenceIdController,
-                        dictionaryId: _dictionaryId,
                       ),
+                      WordSentenceSettingForm(
+                          sentenceIdController: _sentenceIdController,
+                          entryController: _entryController,
+                          dictionaryId: _dictionaryId),
                       const SizedBox(height: 40),
                       _submitButton(),
                       const SizedBox(height: 40),

@@ -6,6 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class RemoteSentences {
+  // 例文の読み込み
+  static Future<Map?> show(int sentenceId) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/$sentenceId?token=$token');
+    final Response res = await get(url);
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // 例文検索
+
   // 復習の読み込み
   static Future<Map?> review(BuildContext context, int sentenceId) async {
     final String? token = await LocalUserInfo.authToken();
