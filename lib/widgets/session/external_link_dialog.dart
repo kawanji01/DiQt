@@ -81,7 +81,10 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
           child: ElevatedButton(
             onPressed: null,
             child: const Text('OK',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.white)),
             style: ElevatedButton.styleFrom(
               primary: Colors.black45, //ボタンの背景色
             ),
@@ -94,8 +97,16 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
           height: 40,
           child: ElevatedButton(
             onPressed: () => _moveToExternalPage(),
-            child: const Text('OK',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+            child: const Text(
+              'OK',
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Colors.white),
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.green, //ボタンの背景色
+            ),
           ),
         );
       }
