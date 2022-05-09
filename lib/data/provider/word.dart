@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/remote/words.dart';
+import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,3 +18,6 @@ final asyncWordProvider = FutureProvider<Word?>((ref) async {
   ref.read(wordProvider.notifier).state = word;
   return word;
 });
+
+// 辞書編集画面の例文
+final wordSentenceProvider = StateProvider<Sentence?>((ref) => null);

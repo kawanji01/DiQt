@@ -90,9 +90,11 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final String title = _keyword ?? '';
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('$_keyword'),
+        title: Text(title),
       ),
       body: Container(
         margin: const EdgeInsets.only(left: 20, right: 20),

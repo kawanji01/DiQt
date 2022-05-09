@@ -30,7 +30,8 @@ class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
   }
 
   Future _goToDictionaryPage(Dictionary dictionary) async {
-    await DictionaryPage.push(context, dictionary);
+    ref.read(dictionaryProvider.notifier).state = dictionary;
+    await DictionaryPage.push(context);
   }
 
   @override

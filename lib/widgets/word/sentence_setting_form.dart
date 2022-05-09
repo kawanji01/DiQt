@@ -1,28 +1,31 @@
-import 'dart:convert';
+import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:booqs_mobile/widgets/word/sentence_search_modal.dart';
-import 'package:http/http.dart' as http;
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/widgets/word/label.dart';
 import 'package:flutter/material.dart';
 
-class SentenceSettingForm extends StatefulWidget {
-  const SentenceSettingForm(
+// 項目の例文設定フォーム。
+// 検索条件はentryControllerを利用する
+class WordSentenceSettingForm extends StatefulWidget {
+  const WordSentenceSettingForm(
       {Key? key,
       required this.sentenceIdController,
-      required this.keyword,
+      required this.entryController,
       this.dictionaryId})
       : super(key: key);
   final TextEditingController sentenceIdController;
-  final String keyword;
+  final TextEditingController entryController;
   final int? dictionaryId;
 
   @override
-  _SentenceSettingFormState createState() => _SentenceSettingFormState();
+  _WordSentenceSettingFormState createState() =>
+      _WordSentenceSettingFormState();
 }
 
-class _SentenceSettingFormState extends State<SentenceSettingForm> {
+class _WordSentenceSettingFormState extends State<WordSentenceSettingForm> {
   TextEditingController? _sentenceIdController;
+  TextEditingController? _entryController;
   Sentence? _sentence;
   int? _dictionaryId;
 
@@ -30,19 +33,16 @@ class _SentenceSettingFormState extends State<SentenceSettingForm> {
   void initState() {
     super.initState();
     _sentenceIdController = widget.sentenceIdController;
+    _entryController = widget.entryController;
     _loadSentence();
   }
 
   Future _loadSentence() async {
     final String sentenceId = _sentenceIdController!.text;
     if (sentenceId == 'null' || sentenceId == '') return;
+    final Map? resMap = await RemoteSentences.show(int.parse(sentenceId));
+    if (resMap == null) return Container();
 
-    var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/sentences/$sentenceId');
-    var res =
-        await http.get(url, headers: {"Content-Type": "application/json"});
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map<String, dynamic> resMap = json.decode(res.body);
     final Sentence sentence = Sentence.fromJson(resMap['sentence']);
     if (sentence.id == null) return;
 
@@ -53,8 +53,6 @@ class _SentenceSettingFormState extends State<SentenceSettingForm> {
 
   @override
   Widget build(BuildContext context) {
-    // initStateでkeywordやdictionaryIdをセットすると、WordFormの再ビルドに対応しない。
-    final keyword = widget.keyword;
     final _dictionaryId = widget.dictionaryId;
 
     // sentenceIDを格納する隠れフィールド
@@ -110,7 +108,7 @@ class _SentenceSettingFormState extends State<SentenceSettingForm> {
         context: context,
         builder: (BuildContext context) {
           return WordSentenceSearchModal(
-              keyword: keyword, dictionaryId: _dictionaryId);
+              keyword: _entryController!.text, dictionaryId: _dictionaryId);
         },
       );
 
