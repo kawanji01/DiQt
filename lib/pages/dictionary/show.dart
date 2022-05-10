@@ -3,7 +3,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/dictionary/introduction.dart';
 import 'package:booqs_mobile/widgets/dictionary/quiz_requests_button.dart';
-import 'package:booqs_mobile/widgets/dictionary/sentence_requests_button.dart';
+import 'package:booqs_mobile/widgets/dictionary/sentence_part.dart';
 import 'package:booqs_mobile/widgets/dictionary/word_requests_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,7 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
               DictionaryIntroduction(dictionary: dictionary),
               DictionaryWordRequestsButton(dictionary: dictionary),
               const SizedBox(height: 24),
-              DictionarySentenceRequestsButton(dictionary: dictionary),
+              DictionarySentencePart(dictionary: dictionary),
               const SizedBox(height: 24),
               DictionaryQuizRequestsButton(dictionary: dictionary),
               const SizedBox(height: 48),

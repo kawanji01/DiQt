@@ -13,6 +13,7 @@ import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/review/scheduled.dart';
 import 'package:booqs_mobile/pages/sentence/edit.dart';
+import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
@@ -46,6 +47,7 @@ const wordNewPage = '/word/new';
 const wordEditPage = '/word/edit';
 const wordSearchResultsPage = '/word/search';
 // 例文
+const sentenceNewPage = '/sentence/new';
 const sentenceEditPage = '/sentence/edit';
 const sentenceShowPage = '/sentence/show';
 
@@ -88,6 +90,7 @@ final routes = {
   wordNewPage: (context) => const WordNewPage(),
   wordEditPage: (context) => const WordEditPage(),
   wordSearchResultsPage: (context) => const WordSearchResultsPage(),
+  sentenceNewPage: (context) => const SentenceNewPage(),
   sentenceEditPage: (context) => const SentenceEditPage(),
   sentenceShowPage: (context) => const SentenceShowPage(),
   chapterIndexPage: (context) => const ChapterIndexPage(),

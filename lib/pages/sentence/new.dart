@@ -11,19 +11,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceEditPage extends ConsumerStatefulWidget {
-  const SentenceEditPage({Key? key}) : super(key: key);
+class SentenceNewPage extends ConsumerStatefulWidget {
+  const SentenceNewPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(sentenceEditPage);
+    return Navigator.of(context).pushNamed(sentenceNewPage);
   }
 
   @override
-  _SentenceEditPageState createState() => _SentenceEditPageState();
+  _SentenceNewPageState createState() => _SentenceNewPageState();
 }
 
-class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
-  Sentence? _sentence;
+class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   Dictionary? _dictionary;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
@@ -35,11 +34,8 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      _sentence = ref.watch(sentenceProvider);
       _dictionary = ref.watch(dictionaryProvider);
-      ref.refresh(asyncSentenceProvider);
       setState(() {
-        _sentence;
         _dictionary;
       });
     });
@@ -57,26 +53,27 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    final future = ref.watch(asyncSentenceProvider);
-
     Future _moveToSentencePage(sentence) async {
       ref.read(sentenceProvider.notifier).state = sentence;
       await SentenceShowPage.pushReplacement(context);
     }
 
-    Future _save(sentence) async {
+    Future _save() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       Map<String, dynamic> params = {
-        'id': sentence.id,
         'original': _originalController.text,
+        'lang_number_of_original': _dictionary!.langNumberOfEntry,
         'translation': _translationController.text,
-        'explanation': _explanationController.text
+        'lang_number_of_tranlsation': _dictionary!.langNumberOfMeaning,
+        'explanation': _explanationController.text,
+        'dictionary_id': _dictionary!.id
       };
-      final Map? resMap = await RemoteSentences.update(params);
+
+      final Map? resMap = await RemoteSentences.create(params);
 
       if (resMap == null) {
         EasyLoading.dismiss();
@@ -101,23 +98,18 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
           onPressed: () => {
-            _save(_sentence),
+            _save(),
           },
           icon: const Icon(Icons.update, color: Colors.white),
           label: const Text(
-            '更新する',
+            '作成する',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
         ),
       );
     }
 
-    Widget _body(Sentence? sentence) {
-      if (sentence == null) return const Text('Sentence does not exists.');
-      _originalController.text = sentence.original;
-      _translationController.text = sentence.translation;
-      _explanationController.text = sentence.explanation ?? '';
-
+    Widget _body() {
       return SingleChildScrollView(
         child: Container(
             margin: const EdgeInsets.all(20),
@@ -139,13 +131,9 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('例文の編集'),
+        title: const Text('例文の追加'),
       ),
-      body: future.when(
-        loading: () => _body(_sentence),
-        error: (err, stack) => Text('Error: $err'),
-        data: (sentence) => _body(sentence),
-      ),
+      body: _body(),
       bottomNavigationBar: const BottomNavbar(),
     );
   }
