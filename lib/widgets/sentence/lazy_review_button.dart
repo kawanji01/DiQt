@@ -9,16 +9,17 @@ import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class SentenceReviewButton extends StatefulWidget {
-  const SentenceReviewButton({Key? key, required this.sentenceId})
+class SentenceLazyReviewButton extends StatefulWidget {
+  const SentenceLazyReviewButton({Key? key, required this.sentenceId})
       : super(key: key);
   final int sentenceId;
 
   @override
-  _SentenceReviewButtonState createState() => _SentenceReviewButtonState();
+  _SentenceLazyReviewButtonState createState() =>
+      _SentenceLazyReviewButtonState();
 }
 
-class _SentenceReviewButtonState extends State<SentenceReviewButton> {
+class _SentenceLazyReviewButtonState extends State<SentenceLazyReviewButton> {
   int? _sentenceId;
   Review? _review;
   int? _quizId;
