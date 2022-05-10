@@ -1,7 +1,9 @@
 import 'package:booqs_mobile/data/provider/sentence.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/dictionary/icon.dart';
 import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
 import 'package:booqs_mobile/widgets/sentence/edit_button.dart';
 import 'package:booqs_mobile/widgets/sentence/item.dart';
@@ -40,12 +42,17 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
       if (sentence == null) return const Text('Sentence does not exist.');
       final Quiz? quiz = sentence.quiz;
       if (quiz == null) return const Text('Quiz does not exist.');
+      final Dictionary? dictionary = sentence.dictionary;
+      if (dictionary == null) return const Text('Dictionary does not exist.');
       return SingleChildScrollView(
           child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 24),
+                  DictionaryIcon(dictionary: dictionary),
+                  const SizedBox(height: 24),
                   SentenceItem(sentence: sentence),
                   const SizedBox(height: 24),
                   SentenceEditButton(sentence: sentence, isShow: true),
@@ -62,7 +69,7 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('例文の編集'),
+        title: const Text('例文'),
       ),
       body: future.when(
         loading: () => _body(_sentence),

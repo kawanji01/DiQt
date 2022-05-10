@@ -2,7 +2,7 @@ import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
-import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
+import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/pages/drill/show.dart';
 import 'package:booqs_mobile/pages/drill/solved.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
@@ -83,7 +83,7 @@ final routes = {
   userMyPage: (context) => const UserMyPage(),
   signUpPage: (context) => const SignUpPage(),
   loginPage: (context) => const LoginPage(),
-  dictionaryShowPage: (context) => const DictionaryPage(),
+  dictionaryShowPage: (context) => const DictionaryShowPage(),
   wordShowPage: (context) => const WordShowPage(),
   wordNewPage: (context) => const WordNewPage(),
   wordEditPage: (context) => const WordEditPage(),
