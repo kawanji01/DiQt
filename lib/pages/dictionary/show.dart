@@ -3,24 +3,24 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/dictionary/introduction.dart';
 import 'package:booqs_mobile/widgets/dictionary/quiz_requests_button.dart';
-import 'package:booqs_mobile/widgets/dictionary/sentence_requests_button.dart';
+import 'package:booqs_mobile/widgets/dictionary/sentence_part.dart';
 import 'package:booqs_mobile/widgets/dictionary/word_requests_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DictionaryPage extends ConsumerStatefulWidget {
-  const DictionaryPage({Key? key}) : super(key: key);
+class DictionaryShowPage extends ConsumerStatefulWidget {
+  const DictionaryShowPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(dictionaryShowPage);
   }
 
   @override
-  _DictionaryPageState createState() => _DictionaryPageState();
+  _DictionaryShowPageState createState() => _DictionaryShowPageState();
 }
 
-class _DictionaryPageState extends ConsumerState<DictionaryPage> {
+class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
   @override
   void initState() {
     super.initState();
@@ -44,7 +44,7 @@ class _DictionaryPageState extends ConsumerState<DictionaryPage> {
               DictionaryIntroduction(dictionary: dictionary),
               DictionaryWordRequestsButton(dictionary: dictionary),
               const SizedBox(height: 24),
-              DictionarySentenceRequestsButton(dictionary: dictionary),
+              DictionarySentencePart(dictionary: dictionary),
               const SizedBox(height: 24),
               DictionaryQuizRequestsButton(dictionary: dictionary),
               const SizedBox(height: 48),

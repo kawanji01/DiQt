@@ -19,6 +19,50 @@ class RemoteSentences {
     return resMap;
   }
 
+  // 例文の作成
+  static Future<Map?> create(Map<String, dynamic> params) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
+    final String encodedData =
+        json.encode({'sentence': params, 'token': token});
+    final Map<String, String> headers = {'content-type': 'application/json'};
+
+    final Uri url =
+        Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences');
+    final Response res = await post(
+      url,
+      headers: headers,
+      body: encodedData,
+    );
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // 例文の更新
+  static Future<Map?> update(Map<String, dynamic> params) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
+    final String encodedData =
+        json.encode({'sentence': params, 'token': token});
+    final Map<String, String> headers = {'content-type': 'application/json'};
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/${params['id']}');
+    final Response res = await patch(
+      url,
+      headers: headers,
+      body: encodedData,
+    );
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 例文検索
 
   // 復習の読み込み
