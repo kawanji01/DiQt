@@ -8,18 +8,21 @@ import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
 import 'package:booqs_mobile/widgets/sentence/edit_button.dart';
 import 'package:booqs_mobile/widgets/sentence/item.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SentenceShowPage extends ConsumerStatefulWidget {
   const SentenceShowPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(sentenceShowPage);
+  static Future push(BuildContext context, int sentenceId) async {
+    return Navigator.of(context)
+        .pushNamed(sentenceShowPage, arguments: {'sentenceId': sentenceId});
   }
 
-  static Future pushReplacement(BuildContext context) async {
-    return Navigator.of(context).pushReplacementNamed(sentenceShowPage);
+  static Future pushReplacement(BuildContext context, int sentenceId) async {
+    return Navigator.of(context).pushReplacementNamed(sentenceShowPage,
+        arguments: {'sentenceId': sentenceId});
   }
 
   @override
@@ -30,13 +33,13 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
   @override
   void initState() {
     super.initState();
-    ref.refresh(asyncSentenceProvider);
   }
 
   @override
   Widget build(BuildContext context) {
-    final Sentence? _sentence = ref.watch(sentenceProvider);
-    final future = ref.watch(asyncSentenceProvider);
+    final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    final int sentenceId = arguments['sentenceId'];
+    final future = ref.watch(asyncSentenceFamily(sentenceId));
 
     Widget _body(Sentence? sentence) {
       if (sentence == null) return const Text('Sentence does not exist.');
@@ -72,7 +75,7 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
         title: const Text('例文'),
       ),
       body: future.when(
-        loading: () => _body(_sentence),
+        loading: () => const LoadingSpinner(),
         error: (err, stack) => Text('Error: $err'),
         data: (sentence) => _body(sentence),
       ),

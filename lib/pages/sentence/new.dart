@@ -53,10 +53,10 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future _moveToSentencePage(sentence) async {
+    /* Future _moveToSentencePage(sentence) async {
       ref.read(sentenceProvider.notifier).state = sentence;
       await SentenceShowPage.pushReplacement(context);
-    }
+    } */
 
     Future _save() async {
       // 各Fieldのvalidatorを呼び出す
@@ -83,7 +83,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
         final sentence = Sentence.fromJson(resMap['sentence']);
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        _moveToSentencePage(sentence);
+        SentenceShowPage.pushReplacement(context, sentence.id);
       }
       EasyLoading.dismiss();
     }
