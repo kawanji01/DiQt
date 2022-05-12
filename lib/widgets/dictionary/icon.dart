@@ -20,11 +20,11 @@ class DictionaryIcon extends ConsumerWidget {
         size: 16,
         color: Colors.black54,
       ),
-      label: Text('${dictionary.title}',
+      label: Text(dictionary.title,
           style: const TextStyle(
               fontSize: 14,
               color: Colors.black54,
-              fontWeight: FontWeight.bold)),
+              fontWeight: FontWeight.normal)),
       style: TextButton.styleFrom(
         padding: const EdgeInsets.only(left: 0),
       ),

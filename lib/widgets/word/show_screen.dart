@@ -1,6 +1,8 @@
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/widgets/dictionary/icon.dart';
 import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
 import 'package:booqs_mobile/widgets/word/edit_button.dart';
 import 'package:booqs_mobile/widgets/word/entry.dart';
@@ -18,12 +20,17 @@ class WordShowScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Dictionary? dictionary = word.dictionary;
     final Quiz? quiz = word.quiz;
     final Sentence? sentence = word.sentence;
 
     Widget _word() {
+      if (dictionary == null) return const Text('Dictionary does not exist.');
+
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          DictionaryIcon(dictionary: dictionary),
           WordTagButtons(tags: word.tags),
           const SizedBox(height: 10),
           WordEntry(word: word),
@@ -58,11 +65,8 @@ class WordShowScreen extends StatelessWidget {
       );
     }
 
+    // 問題がなければ早期リターン
     if (quiz == null) return _word();
-
-    const heading = Text('確認問題',
-        style: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.green, fontSize: 24));
 
     Widget _sentenceQuiz() {
       if (sentence == null) return Container();

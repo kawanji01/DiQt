@@ -23,6 +23,21 @@ class RemoteWords {
     return resMap;
   }
 
+  static Future<Map?> newWord(int dictionaryId, String keyword) async {
+    final String? token = await LocalUserInfo.authToken();
+    final Map<String, String> headers = {'content-type': 'application/json'};
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/new?dictionary_id=$dictionaryId&keyword=$keyword&token=$token');
+    final Response res = await get(
+      url,
+      headers: headers,
+    );
+
+    if (res.statusCode != 200) return null;
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 編集
   static Future<Map?> edit(int wordId) async {
     final String? token = await LocalUserInfo.authToken();

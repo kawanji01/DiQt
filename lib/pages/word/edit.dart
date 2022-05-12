@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
@@ -79,12 +78,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
     if (_word == null) return const Text('Word does not exist.');
     if (_dictionary == null) return const Text('Dictionary does not exist.');
 
-    /* Future _goToWordPage(word) async {
-      ref.read(wordProvider.notifier).state = word;
-      ref.read(wordIdProvider.notifier).state = word!.id;
-      await WordShowPage.pushReplacement(context);
-    } */
-
+    //
     Future _save(word) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
@@ -137,11 +131,11 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('${_word!.entry}の編集'),
-      ),
-      body: SingleChildScrollView(
+    Widget _body() {
+      if (isLoading) return const LoadingSpinner();
+      if (_word == null) return const Text('Word does not exist.');
+      if (_dictionary == null) return const Text('Dictionary does not exist.');
+      return SingleChildScrollView(
         child: Container(
             margin: const EdgeInsets.all(20),
             child: Form(
@@ -163,7 +157,14 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                       _submitButton(),
                       const SizedBox(height: 40),
                     ]))),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('${_entryController.text}の編集'),
       ),
+      body: _body(),
       bottomNavigationBar: const BottomNavbar(),
     );
   }
