@@ -22,8 +22,7 @@ class DictionarySentencePart extends ConsumerWidget {
     Widget _newSentenceButton() {
       return InkWell(
         onTap: () {
-          ref.read(dictionaryProvider.notifier).state = dictionary;
-          SentenceNewPage.push(context);
+          SentenceNewPage.push(context, dictionary.id);
         },
         child: const SmallGreenButton(label: '例文を追加する', icon: Icons.add),
       );
