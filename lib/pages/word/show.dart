@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/data/provider/word.dart';
-import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/word/show_screen.dart';
@@ -11,13 +10,15 @@ class WordShowPage extends ConsumerStatefulWidget {
   const WordShowPage({Key? key}) : super(key: key);
 
   // メモ：遷移の処理は、いちいち描き直す必要はないので、createStateの上に置く。
-  static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(wordShowPage);
+  static Future push(BuildContext context, int wordId) async {
+    return Navigator.of(context)
+        .pushNamed(wordShowPage, arguments: {'wordId': wordId});
   }
 
   // 戻らせない画面遷移
-  static Future pushReplacement(BuildContext context) async {
-    return Navigator.of(context).pushReplacementNamed(wordShowPage);
+  static Future pushReplacement(BuildContext context, int wordId) async {
+    return Navigator.of(context)
+        .pushReplacementNamed(wordShowPage, arguments: {'wordId': wordId});
   }
 
   @override
@@ -25,38 +26,42 @@ class WordShowPage extends ConsumerStatefulWidget {
 }
 
 class _WordShowPageState extends ConsumerState<WordShowPage> {
-  Word? _word;
-  String _entry = '';
-
   @override
   void initState() {
     super.initState();
-    ref.refresh(asyncWordProvider);
   }
 
   @override
   Widget build(BuildContext context) {
-    _word = ref.watch(wordProvider);
-    if (_word != null) _entry = _word!.entry;
-
-    final future = ref.watch(asyncWordProvider);
+    final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    final int wordId = arguments['wordId'];
+    final future = ref.watch(asyncWordFamily(wordId));
 
     Widget _screen(word) {
-      if (word == null) return const LoadingSpinner();
+      if (word == null) return const Text('Word does not exist.');
       return WordShowScreen(word: word);
+    }
+
+    Widget _title() {
+      return future.when(
+        data: (word) => Text(word!.entry),
+        error: (err, stack) => const Text('Error'),
+        loading: () => const Text(''),
+      );
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_entry),
+        title: _title(),
       ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(20),
           child: future.when(
-              data: (word) => _screen(word),
-              error: (err, stack) => Text('Error: $err'),
-              loading: () => _screen(_word)),
+            data: (word) => _screen(word),
+            error: (err, stack) => Text('Error: $err'),
+            loading: () => const LoadingSpinner(),
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

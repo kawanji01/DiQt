@@ -41,7 +41,7 @@ class _WordReviewButtonState extends State<WordReviewButton> {
   // 初期化：リマインダーを設定するために必要な情報を取得して、setStateで再描画する。
   Future _loadReview() async {
     final Word word = widget.word;
-    final Map? resMap = await RemoteWords.review(context, word.id!);
+    final Map? resMap = await RemoteWords.review(context, word.id);
 
     if (resMap == null) return;
 

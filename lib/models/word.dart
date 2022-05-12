@@ -4,7 +4,7 @@ import 'package:booqs_mobile/models/sentence.dart';
 
 class Word {
   Word({
-    this.id,
+    required this.id,
     required this.dictionaryId,
     this.sentenceId,
     required this.entry,
@@ -27,7 +27,7 @@ class Word {
     this.quiz,
   });
 
-  int? id;
+  int id;
   int dictionaryId;
   int? sentenceId;
   String entry;

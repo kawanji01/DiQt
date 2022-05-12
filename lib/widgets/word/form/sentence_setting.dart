@@ -1,33 +1,34 @@
 import 'package:booqs_mobile/data/remote/sentences.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
-import 'package:booqs_mobile/widgets/word/sentence_search_modal.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/widgets/button/small_green_button.dart';
+import 'package:booqs_mobile/widgets/sentence/item.dart';
+import 'package:booqs_mobile/widgets/word/form/sentence_search_modal.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/widgets/word/label.dart';
 import 'package:flutter/material.dart';
 
 // 項目の例文設定フォーム。
 // 検索条件はentryControllerを利用する
-class WordSentenceSettingForm extends StatefulWidget {
-  const WordSentenceSettingForm(
+class WordFormSentenceSetting extends StatefulWidget {
+  const WordFormSentenceSetting(
       {Key? key,
       required this.sentenceIdController,
       required this.entryController,
-      this.dictionaryId})
+      required this.dictionary})
       : super(key: key);
   final TextEditingController sentenceIdController;
   final TextEditingController entryController;
-  final int? dictionaryId;
+  final Dictionary dictionary;
 
   @override
-  _WordSentenceSettingFormState createState() =>
-      _WordSentenceSettingFormState();
+  _WordFormSentenceSettingState createState() =>
+      _WordFormSentenceSettingState();
 }
 
-class _WordSentenceSettingFormState extends State<WordSentenceSettingForm> {
+class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
   TextEditingController? _sentenceIdController;
   TextEditingController? _entryController;
   Sentence? _sentence;
-  int? _dictionaryId;
 
   @override
   void initState() {
@@ -53,8 +54,7 @@ class _WordSentenceSettingFormState extends State<WordSentenceSettingForm> {
 
   @override
   Widget build(BuildContext context) {
-    final _dictionaryId = widget.dictionaryId;
-
+    final dictionary = widget.dictionary;
     // sentenceIDを格納する隠れフィールド
     Widget _hiddenField() {
       return Visibility(
@@ -81,69 +81,46 @@ class _WordSentenceSettingFormState extends State<WordSentenceSettingForm> {
           ],
         );
       }
-      final String original = _sentence?.original ?? "";
-      final String translation = _sentence?.translation ?? "";
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const WordLabel(text: '例文'),
-          const SizedBox(height: 8),
-          TextWithLink(
-            text: original,
-            autoLinkEnabled: true,
-            crossAxisAlignment: CrossAxisAlignment.start,
-          ),
-          const SizedBox(height: 8),
-          Text(translation,
-              style: const TextStyle(
-                  fontSize: 16, height: 1.6, color: Colors.black87)),
-          const SizedBox(height: 24),
-        ],
-      );
+      return SentenceItem(sentence: _sentence!);
     }
 
-    //// 例文を設定する ////
-    Future _setSentence() async {
-      final Sentence? newSentence = await showModalBottomSheet(
+    //// 例文を検索して設定する ////
+    Future _searchSentence(String keyword, Dictionary dictionary) async {
+      // settingはnullで戻る
+      // { 'set': null } で削除
+      // { 'set': sentence } で設定
+      final Map<String, Sentence?>? setting = await showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
-          return WordSentenceSearchModal(
-              keyword: _entryController!.text, dictionaryId: _dictionaryId);
+          return WordFormSentenceSearchModal(
+              keyword: _entryController!.text, dictionary: dictionary);
         },
       );
 
-      if (newSentence == null) return;
+      if (setting == null) return;
 
       // 更新
       setState(() {
         // sentence.idがnullなら、設定されている例文を取り消す。
-        if (newSentence.id == null) {
+        if (setting['set'] == null) {
           _sentence = null;
           _sentenceIdController!.text = '';
         } else {
-          _sentence = newSentence;
-          _sentenceIdController!.text = newSentence.id.toString();
+          _sentence = setting['set'];
+          _sentenceIdController!.text = _sentence!.id.toString();
         }
       });
     }
 
     // 設定ボタン
     Widget _settingButton() {
-      return SizedBox(
-        height: 40,
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity,
-                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-          ),
-          onPressed: () => {
-            _setSentence(),
-          },
-          icon: const Icon(Icons.settings, color: Colors.white),
-          label: const Text(
-            '設定する',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
+      return InkWell(
+        onTap: () {
+          _searchSentence(widget.entryController.text, dictionary);
+        },
+        child: const SmallGreenButton(
+          label: '設定する',
+          icon: Icons.settings,
         ),
       );
     }
@@ -154,6 +131,7 @@ class _WordSentenceSettingFormState extends State<WordSentenceSettingForm> {
           _hiddenField(),
           const SizedBox(height: 24),
           _sentencePreview(),
+          const SizedBox(height: 16),
           _settingButton(),
         ]);
   }
