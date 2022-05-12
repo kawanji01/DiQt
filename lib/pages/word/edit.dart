@@ -1,11 +1,14 @@
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/dictionary/icon.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/word/form.dart';
-import 'package:booqs_mobile/widgets/word/sentence_setting_form.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/widgets/word/form/form.dart';
+import 'package:booqs_mobile/widgets/word/form/sentence_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,8 +16,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class WordEditPage extends ConsumerStatefulWidget {
   const WordEditPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(wordEditPage);
+  static Future push(BuildContext context, int wordId) async {
+    return Navigator.of(context)
+        .pushNamed(wordEditPage, arguments: {'wordId': wordId});
   }
 
   @override
@@ -23,7 +27,8 @@ class WordEditPage extends ConsumerStatefulWidget {
 
 class _WordEditPageState extends ConsumerState<WordEditPage> {
   Word? _word;
-  int? _dictionaryId;
+  Dictionary? _dictionary;
+  bool isLoading = true;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _entryController = TextEditingController();
@@ -35,16 +40,25 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      _word = ref.watch(wordProvider);
-      _entryController.text = _word!.entry;
-      _meaningController.text = _word!.meaning;
-      _explanationController.text = _word!.explanation ?? '';
-      //ref.read(wordSentenceProvider.notifier).state = _word!.sentence;
-      _sentenceIdController.text = _word!.sentenceId.toString();
-      _dictionaryId = _word!.dictionaryId;
-      setState(() {
-        _word;
-      });
+      final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+      final int wordId = arguments['wordId'];
+      _loadWord(wordId);
+    });
+  }
+
+  Future _loadWord(int wordId) async {
+    final Map? resMap = await RemoteWords.edit(wordId);
+    if (resMap == null) return;
+    final Word word = Word.fromJson(resMap['word']);
+    _entryController.text = word.entry;
+    _meaningController.text = word.meaning;
+    _explanationController.text = word.explanation ?? '';
+    _sentenceIdController.text = word.sentenceId.toString();
+    final dictionary = word.dictionary;
+    setState(() {
+      _word = word;
+      _dictionary = dictionary;
+      isLoading = false;
     });
   }
 
@@ -61,13 +75,15 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (_word == null) return Container();
+    if (isLoading) return const LoadingSpinner();
+    if (_word == null) return const Text('Word does not exist.');
+    if (_dictionary == null) return const Text('Dictionary does not exist.');
 
-    Future _goToWordPage(word) async {
+    /* Future _goToWordPage(word) async {
       ref.read(wordProvider.notifier).state = word;
       ref.read(wordIdProvider.notifier).state = word!.id;
       await WordShowPage.pushReplacement(context);
-    }
+    } */
 
     Future _save(word) async {
       // 各Fieldのvalidatorを呼び出す
@@ -75,11 +91,16 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      Map<String, dynamic> params = word.toJson();
-      params['entry'] = _entryController.text;
-      params['meaning'] = _meaningController.text;
-      params['explanation'] = _explanationController.text;
-      params['sentence_id'] = _sentenceIdController.text;
+
+      final Map<String, dynamic> params = {
+        'id': word.id,
+        'entry': _entryController.text,
+        'meaning': _meaningController.text,
+        'explanation': _explanationController.text,
+        'sentence_id': _sentenceIdController.text,
+        'dictionary_id': _dictionary!.id,
+      };
+
       final Map? resMap = await RemoteWords.update(params);
 
       if (resMap == null) {
@@ -87,10 +108,10 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        word = Word.fromJson(resMap['word']);
+        final int wordId = resMap['word']['id'];
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        _goToWordPage(word);
+        WordShowPage.pushReplacement(context, wordId);
       }
       EasyLoading.dismiss();
     }
@@ -110,7 +131,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
           icon: const Icon(Icons.update, color: Colors.white),
           label: const Text(
             '更新する',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
         ),
       );
@@ -128,15 +149,16 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      DictionaryIcon(dictionary: _dictionary!),
                       WordForm(
                         entryController: _entryController,
                         meaningController: _meaningController,
                         explanationController: _explanationController,
                       ),
-                      WordSentenceSettingForm(
+                      WordFormSentenceSetting(
                           sentenceIdController: _sentenceIdController,
                           entryController: _entryController,
-                          dictionaryId: _dictionaryId),
+                          dictionary: _dictionary!),
                       const SizedBox(height: 40),
                       _submitButton(),
                       const SizedBox(height: 40),

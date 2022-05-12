@@ -23,17 +23,26 @@ class RemoteWords {
     return resMap;
   }
 
+  // 編集
+  static Future<Map?> edit(int wordId) async {
+    final String? token = await LocalUserInfo.authToken();
+    final Map<String, String> headers = {'content-type': 'application/json'};
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId/edit?token=$token');
+    final Response res = await get(
+      url,
+      headers: headers,
+    );
+
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 新規作成
   static Future<Map?> create(Map<String, dynamic> params) async {
     final String? token = await LocalUserInfo.authToken();
-
-    // 更新する必要がない＆encode errorの発生するエントリーは消しておく。
-    params.removeWhere((dynamic key, dynamic value) =>
-        key == 'created_at' ||
-        key == 'updated_at' ||
-        key == 'sentence' ||
-        key == 'quiz' ||
-        key == 'dictionary');
 
     // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
     final String encodedData = json.encode({'word': params, 'token': token});
@@ -56,13 +65,6 @@ class RemoteWords {
   static Future<Map?> update(Map<String, dynamic> params) async {
     final String? token = await LocalUserInfo.authToken();
 
-    // 更新する必要がない＆encode errorの発生するエントリーは消しておく。
-    params.removeWhere((dynamic key, dynamic value) =>
-        key == 'created_at' ||
-        key == 'updated_at' ||
-        key == 'sentence' ||
-        key == 'quiz' ||
-        key == 'dictionary');
     // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
     final String encodedData = json.encode({'word': params, 'token': token});
     final Map<String, String> headers = {'content-type': 'application/json'};

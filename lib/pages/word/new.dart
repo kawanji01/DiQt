@@ -6,8 +6,8 @@ import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/word/form.dart';
-import 'package:booqs_mobile/widgets/word/sentence_setting_form.dart';
+import 'package:booqs_mobile/widgets/word/form/form.dart';
+import 'package:booqs_mobile/widgets/word/form/sentence_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,7 +27,6 @@ class WordNewPage extends ConsumerStatefulWidget {
 
 class _WordNewPageState extends ConsumerState<WordNewPage> {
   Dictionary? _dictionary;
-  int? _dictionaryId;
   String? _keyword;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
@@ -45,7 +44,6 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       setState(() {
         _dictionary = arguments['dictionary'] as Dictionary;
-        _dictionaryId = _dictionary?.id;
         _keyword = arguments['keyword'].toString();
         _entryController.text = _keyword!;
       });
@@ -65,32 +63,28 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future _goToWordPage(word) async {
+    if (_dictionary == null) return const Text('Dictionary does not exist.');
+
+    /* Future _goToWordPage(word) async {
       // 項目の追加に審査が必要ならホームに遷移
       if (word.id == null) return MyHomePage.push(context);
       // 項目が作成されていれば項目ページに遷移。
       ref.read(wordProvider.notifier).state = word;
       ref.read(wordIdProvider.notifier).state = word!.id;
       await WordShowPage.pushReplacement(context);
-    }
+    } */
 
     Future _create() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
-      final Word word = Word(
-          dictionaryId: 1,
-          entry: _entryController.text,
-          meaning: _meaningController.text,
-          langNumberOfEntry: 22,
-          langNumberOfMeaning: 44,
-          sentenceId: _sentenceIdController.text == ''
-              ? null
-              : int.parse(_sentenceIdController.text),
-          wordRequestsCount: 0,
-          acceptedWordRequestsCount: 0,
-          pendingWordRequestsCount: 0);
-      final Map<String, dynamic> params = word.toJson();
 
+      final Map<String, dynamic> params = {
+        'entry': _entryController.text,
+        'meaning': _meaningController.text,
+        'explanation': _explanationController.text,
+        'sentence_id': _sentenceIdController.text,
+        'dictionary_id': _dictionary!.id,
+      };
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWords.create(params);
@@ -99,10 +93,11 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        final Word word = Word.fromJson(resMap['word']);
+        final int? wordId = resMap['word']['id'];
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        _goToWordPage(word);
+        if (wordId == null) return MyHomePage.push(context);
+        WordShowPage.pushReplacement(context, wordId);
       }
       // 画面全体のローディングを消す。
       EasyLoading.dismiss();
@@ -146,10 +141,10 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
                         meaningController: _meaningController,
                         explanationController: _explanationController,
                       ),
-                      WordSentenceSettingForm(
+                      WordFormSentenceSetting(
                           sentenceIdController: _sentenceIdController,
                           entryController: _entryController,
-                          dictionaryId: _dictionaryId),
+                          dictionary: _dictionary!),
                       const SizedBox(height: 40),
                       _submitButton(),
                       const SizedBox(height: 40),

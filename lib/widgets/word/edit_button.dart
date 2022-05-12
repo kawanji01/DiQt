@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
@@ -8,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class WordEditButton extends ConsumerWidget {
   const WordEditButton({Key? key, required this.word, required this.isShow})
       : super(key: key);
-  final Word? word;
+  final Word word;
   final bool isShow;
 
   @override
@@ -24,8 +23,7 @@ class WordEditButton extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 16),
           ),
           onPressed: () {
-            ref.read(wordProvider.notifier).state = word;
-            WordEditPage.push(context);
+            WordEditPage.push(context, word.id);
           },
           child: const Text(
             'この項目を改善する',
@@ -50,9 +48,7 @@ class WordEditButton extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 16),
           ),
           onPressed: () {
-            ref.read(wordProvider.notifier).state = word;
-            ref.read(wordIdProvider.notifier).state = word!.id;
-            WordShowPage.push(context);
+            WordShowPage.push(context, word.id);
           },
           child: const Text(
             '詳細',
