@@ -2,20 +2,20 @@ import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:flutter/material.dart';
 
-class SentencePreviewScreen extends StatelessWidget {
-  const SentencePreviewScreen(
+class WordFormPreviewScreen extends StatelessWidget {
+  const WordFormPreviewScreen(
       {Key? key,
-      required this.original,
-      required this.translation,
+      required this.entry,
+      required this.meaning,
       required this.explanation})
       : super(key: key);
-  final String original;
-  final String translation;
+  final String entry;
+  final String meaning;
   final String explanation;
 
   @override
   Widget build(BuildContext context) {
-    const heading = Text('例文のプレビュー',
+    const heading = Text('項目のプレビュー',
         style: TextStyle(
             fontSize: 24, color: Colors.black87, fontWeight: FontWeight.bold));
 
@@ -33,24 +33,27 @@ class SentencePreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          const SharedItemLabel(text: '例文'),
+          const SharedItemLabel(text: '項目'),
           const SizedBox(
             height: 16,
           ),
-          TextWithLink(
-            text: original,
-            autoLinkEnabled: true,
-            crossAxisAlignment: CrossAxisAlignment.start,
-          ),
+          Text(entry,
+              style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold)),
           const SizedBox(
             height: 32,
           ),
-          const SharedItemLabel(text: '訳'),
+          const SharedItemLabel(text: '意味'),
           const SizedBox(
             height: 16,
           ),
-          Text(translation,
-              style: const TextStyle(fontSize: 16, color: Colors.black87)),
+          Text(meaning,
+              style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold)),
           const SizedBox(
             height: 32,
           ),
