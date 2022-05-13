@@ -60,7 +60,7 @@ class RemoteWords {
     final String? token = await LocalUserInfo.authToken();
 
     // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
-    final String encodedData = json.encode({'word': params, 'token': token});
+    final String encodedData = json.encode({'word': params, 'token': '$token'});
     final Map<String, String> headers = {'content-type': 'application/json'};
 
     final Uri url =
@@ -81,7 +81,7 @@ class RemoteWords {
     final String? token = await LocalUserInfo.authToken();
 
     // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
-    final String encodedData = json.encode({'word': params, 'token': token});
+    final String encodedData = json.encode({'word': params, 'token': '$token'});
     final Map<String, String> headers = {'content-type': 'application/json'};
 
     final Uri url = Uri.parse(
@@ -105,7 +105,7 @@ class RemoteWords {
     final Uri url =
         Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/search');
     final Response res = await post(url,
-        body: {'dictionary_id': '1', 'keyword': keyword, 'token': token});
+        body: {'dictionary_id': '1', 'keyword': keyword, 'token': '$token'});
     if (res.statusCode != 200) return null;
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
     Map resMap = json.decode(res.body);
@@ -122,7 +122,7 @@ class RemoteWords {
     final Response res = await post(url, body: {
       'dictionary_id': '$dictionaryId',
       'keyword': keyword,
-      'token': token
+      'token': '$token'
     });
     if (res.statusCode != 200) return null;
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2

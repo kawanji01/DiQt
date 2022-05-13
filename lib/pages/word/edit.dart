@@ -27,7 +27,7 @@ class WordEditPage extends ConsumerStatefulWidget {
 class _WordEditPageState extends ConsumerState<WordEditPage> {
   Word? _word;
   Dictionary? _dictionary;
-  bool isLoading = true;
+  bool _isLoading = true;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _entryController = TextEditingController();
@@ -57,7 +57,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
     setState(() {
       _word = word;
       _dictionary = dictionary;
-      isLoading = false;
+      _isLoading = false;
     });
   }
 
@@ -74,10 +74,6 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) return const LoadingSpinner();
-    if (_word == null) return const Text('Word does not exist.');
-    if (_dictionary == null) return const Text('Dictionary does not exist.');
-
     //
     Future _save(word) async {
       // 各Fieldのvalidatorを呼び出す
@@ -132,7 +128,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
     }
 
     Widget _body() {
-      if (isLoading) return const LoadingSpinner();
+      if (_isLoading) return const LoadingSpinner();
       if (_word == null) return const Text('Word does not exist.');
       if (_dictionary == null) return const Text('Dictionary does not exist.');
       return SingleChildScrollView(
