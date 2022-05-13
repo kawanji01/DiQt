@@ -122,7 +122,7 @@ class RemoteWords {
     final Response res = await post(url, body: {
       'dictionary_id': '$dictionaryId',
       'keyword': keyword,
-      'token': token
+      'token': '$token'
     });
     if (res.statusCode != 200) return null;
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2

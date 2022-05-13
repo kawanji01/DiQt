@@ -53,7 +53,7 @@ class RemoteSentences {
 
     // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
     final String encodedData =
-        json.encode({'sentence': params, 'token': token});
+        json.encode({'sentence': params, 'token': '$token'});
     final Map<String, String> headers = {'content-type': 'application/json'};
 
     final Uri url =
@@ -75,7 +75,7 @@ class RemoteSentences {
 
     // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
     final String encodedData =
-        json.encode({'sentence': params, 'token': token});
+        json.encode({'sentence': params, 'token': '$token'});
     final Map<String, String> headers = {'content-type': 'application/json'};
 
     final Uri url = Uri.parse(
@@ -96,8 +96,11 @@ class RemoteSentences {
     final String? token = await LocalUserInfo.authToken();
 
     // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
-    final String encodedData = json.encode(
-        {'keyword': keyword, 'dictionary_id': '$dictionaryId', 'token': token});
+    final String encodedData = json.encode({
+      'keyword': keyword,
+      'dictionary_id': '$dictionaryId',
+      'token': '$token'
+    });
     final Map<String, String> headers = {'content-type': 'application/json'};
 
     final Uri url = Uri.parse(
