@@ -97,8 +97,8 @@ class _WordFormSentenceSearchModalState
     }
 
     return Container(
-      padding: const EdgeInsets.only(top: 8),
-      //height: 640,
+      padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
+      height: 640,
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -109,7 +109,8 @@ class _WordFormSentenceSearchModalState
             //_searchResults(),
             WordFormSentenceListView(
                 keyword: widget.keyword, dictionary: widget.dictionary),
-            _buttonToAddSentence()
+            _buttonToAddSentence(),
+            const SizedBox(height: 120),
           ],
         ),
       ),
