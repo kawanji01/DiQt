@@ -1,12 +1,12 @@
-import 'package:booqs_mobile/data/provider/dictionary.dart';
-import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/dictionary/icon.dart';
 import 'package:booqs_mobile/widgets/sentence/form.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,8 +14,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class SentenceEditPage extends ConsumerStatefulWidget {
   const SentenceEditPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(sentenceEditPage);
+  static Future push(BuildContext context, int sentenceId) async {
+    return Navigator.of(context)
+        .pushNamed(sentenceEditPage, arguments: {'sentenceId': sentenceId});
   }
 
   @override
@@ -24,7 +25,7 @@ class SentenceEditPage extends ConsumerStatefulWidget {
 
 class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
   Sentence? _sentence;
-  Dictionary? _dictionary;
+  bool _isLoading = true;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _originalController = TextEditingController();
@@ -35,13 +36,19 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      _sentence = ref.watch(sentenceProvider);
-      _dictionary = ref.watch(dictionaryProvider);
-      ref.refresh(asyncSentenceProvider);
-      setState(() {
-        _sentence;
-        _dictionary;
-      });
+      final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+      final int sentenceId = arguments['sentenceId'];
+      _loadSentence(sentenceId);
+    });
+  }
+
+  Future _loadSentence(int sentenceId) async {
+    final Map? resMap = await RemoteSentences.edit(sentenceId);
+    if (resMap == null) return;
+    final Sentence sentence = Sentence.fromJson(resMap['sentence']);
+    setState(() {
+      _sentence = sentence;
+      _isLoading = false;
     });
   }
 
@@ -57,13 +64,6 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    final future = ref.watch(asyncSentenceProvider);
-
-    Future _moveToSentencePage(sentence) async {
-      ref.read(sentenceProvider.notifier).state = sentence;
-      await SentenceShowPage.pushReplacement(context);
-    }
-
     Future _save(sentence) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
@@ -86,7 +86,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
         final sentence = Sentence.fromJson(resMap['sentence']);
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        _moveToSentencePage(sentence);
+        SentenceShowPage.pushReplacement(context, sentence.id);
       }
       EasyLoading.dismiss();
     }
@@ -113,7 +113,10 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
     }
 
     Widget _body(Sentence? sentence) {
+      if (_isLoading) return const LoadingSpinner();
       if (sentence == null) return const Text('Sentence does not exists.');
+      final Dictionary? dictionary = sentence.dictionary;
+      if (dictionary == null) return const Text('Dictionary does not exists.');
       _originalController.text = sentence.original;
       _translationController.text = sentence.translation;
       _explanationController.text = sentence.explanation ?? '';
@@ -126,6 +129,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      DictionaryIcon(dictionary: dictionary),
                       SentenceForm(
                           originalController: _originalController,
                           translationController: _translationController,
@@ -141,11 +145,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
       appBar: AppBar(
         title: const Text('例文の編集'),
       ),
-      body: future.when(
-        loading: () => _body(_sentence),
-        error: (err, stack) => Text('Error: $err'),
-        data: (sentence) => _body(sentence),
-      ),
+      body: _body(_sentence),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

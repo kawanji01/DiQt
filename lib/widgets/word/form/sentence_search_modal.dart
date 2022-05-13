@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/widgets/word/form/sentence_list_view.dart';
@@ -36,8 +35,7 @@ class _WordFormSentenceSearchModalState
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
           onPressed: () {
-            ref.read(dictionaryProvider.notifier).state = widget.dictionary;
-            SentenceNewPage.push(context);
+            SentenceNewPage.push(context, widget.dictionary.id);
           },
           icon: const Icon(Icons.add, color: Colors.white),
           label: const Text(
@@ -48,76 +46,6 @@ class _WordFormSentenceSearchModalState
       );
     }
 
-    // 最後のリストに表示する例文追加ボタン
-    /* Widget _lastList(int index) {
-      final lastNumber = _sentences.length - 1;
-
-      if (lastNumber != index) return Container();
-
-      return Column(
-        children: <Widget>[
-          const SizedBox(height: 40),
-          _buttonToAddSentence(),
-          const SizedBox(height: 40),
-        ],
-      );
-    } */
-
-    // 検索結果の例文
-    /* Widget _buildListRow(BuildContext context, int index) {
-      final sentence = _sentences[index];
-      final original = sentence.original;
-      final translation = sentence.translation;
-
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(original,
-                  style: const TextStyle(
-                      fontSize: 16, height: 1.6, color: Colors.black87)),
-              const SizedBox(height: 8),
-              Text(translation,
-                  style: const TextStyle(
-                      fontSize: 16, height: 1.6, color: Colors.black87)),
-              const SizedBox(height: 10),
-              InkWell(
-                  onTap: () {
-                    return Navigator.of(context).pop({'set': sentence});
-                  },
-                  child:
-                      const SmallGreenButton(label: '選ぶ', icon: Icons.check)),
-              _lastList(index),
-            ]),
-      );
-    } */
-
-    // 検索結果
-    /* Widget _searchResults() {
-      if (_sentences.isEmpty) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(children: <Widget>[
-            const Text('例文が見つかりませんでした。',
-                style: TextStyle(
-                    fontSize: 16, height: 1.6, color: Colors.black87)),
-            const SizedBox(height: 40),
-            _buttonToAddSentence(),
-          ]),
-        );
-      }
-
-      return Expanded(
-        child: ListView.separated(
-          shrinkWrap: true,
-          itemBuilder: _buildListRow,
-          separatorBuilder: (context, index) => const Divider(),
-          itemCount: _sentences.length,
-        ),
-      );
-    }
- */
     // 例文の取り消しボタン
     Widget _removeButton() {
       return TextButton(
@@ -149,8 +77,7 @@ class _WordFormSentenceSearchModalState
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: () {
-          ref.read(dictionaryProvider.notifier).state = widget.dictionary;
-          SentenceNewPage.push(context);
+          SentenceNewPage.push(context, widget.dictionary.id);
         },
         child: const Text(' / 例文を追加する',
             style: TextStyle(

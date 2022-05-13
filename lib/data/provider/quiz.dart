@@ -11,3 +11,12 @@ final asyncQuizProvider = FutureProvider<Quiz?>((ref) async {
   if (resMap == null) return null;
   return Quiz.fromJson(resMap['quiz']);
 });
+
+// 非同期で取得する
+final asyncQuizFamily =
+    FutureProvider.autoDispose.family<Quiz?, int>((ref, quizId) async {
+  final Map? resMap = await RemoteQuizzes.show(quizId);
+  if (resMap == null) return null;
+  final Quiz quiz = Quiz.fromJson(resMap['quiz']);
+  return quiz;
+});

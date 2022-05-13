@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/pages/sentence/edit.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
@@ -25,8 +24,7 @@ class SentenceEditButton extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 14),
           ),
           onPressed: () {
-            ref.read(sentenceProvider.notifier).state = sentence;
-            SentenceEditPage.push(context);
+            SentenceEditPage.push(context, sentence.id);
           },
           child: const Text(
             'この例文を改善する',
@@ -51,8 +49,7 @@ class SentenceEditButton extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 14),
           ),
           onPressed: () {
-            ref.read(sentenceProvider.notifier).state = sentence;
-            SentenceShowPage.push(context);
+            SentenceShowPage.push(context, sentence.id);
           },
           child: const Text(
             '詳細',

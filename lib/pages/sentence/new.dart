@@ -1,5 +1,3 @@
-import 'package:booqs_mobile/data/provider/dictionary.dart';
-import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
@@ -7,6 +5,7 @@ import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/sentence/form.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,8 +13,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class SentenceNewPage extends ConsumerStatefulWidget {
   const SentenceNewPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(sentenceNewPage);
+  static Future push(BuildContext context, int dictionaryId) async {
+    return Navigator.of(context)
+        .pushNamed(sentenceNewPage, arguments: {'dictionaryId': dictionaryId});
   }
 
   @override
@@ -24,6 +24,7 @@ class SentenceNewPage extends ConsumerStatefulWidget {
 
 class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   Dictionary? _dictionary;
+  bool _isLoading = true;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _originalController = TextEditingController();
@@ -34,10 +35,19 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      _dictionary = ref.watch(dictionaryProvider);
-      setState(() {
-        _dictionary;
-      });
+      final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+      final int dictionaryId = arguments['dictionaryId'];
+      _loadDictionary(dictionaryId);
+    });
+  }
+
+  Future _loadDictionary(int dictionaryId) async {
+    final Map? resMap = await RemoteSentences.newSentence(dictionaryId);
+    if (resMap == null) return;
+    final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
+    setState(() {
+      _dictionary = dictionary;
+      _isLoading = false;
     });
   }
 
@@ -53,11 +63,6 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future _moveToSentencePage(sentence) async {
-      ref.read(sentenceProvider.notifier).state = sentence;
-      await SentenceShowPage.pushReplacement(context);
-    }
-
     Future _save() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
@@ -83,7 +88,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
         final sentence = Sentence.fromJson(resMap['sentence']);
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        _moveToSentencePage(sentence);
+        SentenceShowPage.pushReplacement(context, sentence.id);
       }
       EasyLoading.dismiss();
     }
@@ -110,6 +115,9 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
     }
 
     Widget _body() {
+      if (_isLoading) return const LoadingSpinner();
+      if (_dictionary == null) return const Text('Dictionary does not exist.');
+
       return SingleChildScrollView(
         child: Container(
             margin: const EdgeInsets.all(20),

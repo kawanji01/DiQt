@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/widgets/word/form/preview_button.dart';
 import 'package:flutter/material.dart';
 
 class WordForm extends StatefulWidget {
@@ -73,6 +74,10 @@ class _WordFormState extends State<WordForm> {
             hintText: '【空欄可】解説があれば入力してください。',
           ),
         ),
+        WordFormPreviewButton(
+            entryController: _entryController!,
+            meaningController: _meaningController!,
+            explanationController: _explanationController!)
       ],
     );
   }

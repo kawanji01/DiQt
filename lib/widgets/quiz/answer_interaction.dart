@@ -88,7 +88,9 @@ class QuizAnswerInteraction extends ConsumerWidget {
               _incorrectFeedback(),
               _expIndicator(),
               const QuizAnswersCount(),
-              const QuizExplanationOpenButton(),
+              QuizExplanationOpenButton(
+                answerNotification: notification,
+              ),
               const SizedBox(height: 8),
             ]),
       ),

@@ -3,7 +3,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 
 class Sentence {
   Sentence({
-    this.id,
+    required this.id,
     required this.dictionaryId,
     this.sentenceSourceId,
     required this.original,
@@ -17,7 +17,7 @@ class Sentence {
     this.dictionary,
   });
 
-  int? id;
+  int id;
   int dictionaryId;
   int? sentenceSourceId;
   String original;

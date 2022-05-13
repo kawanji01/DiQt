@@ -9,10 +9,38 @@ class RemoteSentences {
   // 例文の読み込み
   static Future<Map?> show(int sentenceId) async {
     final String? token = await LocalUserInfo.authToken();
-
+    final Map<String, String> headers = {'content-type': 'application/json'};
     final Uri url = Uri.parse(
         '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/$sentenceId?token=$token');
-    final Response res = await get(url);
+    final Response res = await get(url, headers: headers);
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  //
+  static Future<Map?> newSentence(int dictionaryId) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    final Map<String, String> headers = {'content-type': 'application/json'};
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/new?dictionary_id=$dictionaryId&token=$token');
+    final Response res = await get(url, headers: headers);
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  //
+  static Future<Map?> edit(int sentenceId) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    final Map<String, String> headers = {'content-type': 'application/json'};
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/$sentenceId/edit?token=$token');
+    final Response res = await get(url, headers: headers);
     if (res.statusCode != 200) return null;
 
     final Map resMap = json.decode(res.body);
