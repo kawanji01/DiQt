@@ -27,7 +27,6 @@ class QuizContent extends ConsumerWidget {
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
         // 解説を表示する
-        // ref.read(quizProvider.notifier).state = notification.quiz;
         // 解説モーダル内の辞書リンクで遷移後のページでも解答インタラクションが表示されてしまうので、
         // bottomSheetを表示するときにインタラクションも消しておく
         ScaffoldMessenger.of(context).removeCurrentSnackBar();
