@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/widgets/dictionary/icon.dart';
 import 'package:booqs_mobile/widgets/sentence/form.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -126,6 +127,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      DictionaryIcon(dictionary: _dictionary!),
                       SentenceForm(
                           originalController: _originalController,
                           translationController: _translationController,
