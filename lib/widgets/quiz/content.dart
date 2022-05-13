@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
@@ -28,7 +27,7 @@ class QuizContent extends ConsumerWidget {
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
         // 解説を表示する
-        ref.read(quizProvider.notifier).state = notification.quiz;
+        // ref.read(quizProvider.notifier).state = notification.quiz;
         // 解説モーダル内の辞書リンクで遷移後のページでも解答インタラクションが表示されてしまうので、
         // bottomSheetを表示するときにインタラクションも消しておく
         ScaffoldMessenger.of(context).removeCurrentSnackBar();
@@ -42,7 +41,9 @@ class QuizContent extends ConsumerWidget {
                 topRight: Radius.circular(15.0)),
           ),
           // showModalBottomSheetで表示される中身
-          builder: (context) => const QuizExplanationScreen(),
+          builder: (context) => QuizExplanationScreen(
+            answerNotification: notification,
+          ),
         );
         return true;
       },
