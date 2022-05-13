@@ -7,6 +7,7 @@ import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/button/small_outline_green_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessSettingButton extends ConsumerStatefulWidget {
@@ -39,7 +40,10 @@ class _WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         return UserMyPage.push(context);
       }
+      EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWeaknesses.create(widget.quizId);
+      EasyLoading.dismiss();
+
       if (resMap == null) return;
       final Weakness weakness = Weakness.fromJson(resMap['weakness']);
       final User user = User.fromJson(resMap['user']);
@@ -52,8 +56,9 @@ class _WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
     Future<void> _destroy() async {
       final String? token = await LocalUserInfo.authToken();
       if (token == null) return;
-
+      EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWeaknesses.destroy(_weakness!.id);
+      EasyLoading.dismiss();
       if (resMap == null) return;
       final User user = User.fromJson(resMap['user']);
       ref.watch(currentUserProvider.notifier).state = user;
