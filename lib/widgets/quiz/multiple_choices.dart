@@ -64,8 +64,11 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
     // 解答ボタンのリストを生成する
     List<Widget> _choiceButtons(textList) {
       List<Widget> buttonList = [];
-      textList
-          .forEach((answerText) => buttonList.add(_answerButton(answerText)));
+      textList.forEach((answerText) {
+        // 空文字の改行は選択肢にしない
+        if (answerText == '') return;
+        buttonList.add(_answerButton(answerText));
+      });
       return buttonList;
     }
 
