@@ -12,15 +12,15 @@ import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class WordReviewButton extends StatefulWidget {
-  const WordReviewButton({Key? key, required this.word}) : super(key: key);
+class WordLazyReviewButton extends StatefulWidget {
+  const WordLazyReviewButton({Key? key, required this.word}) : super(key: key);
   final Word word;
 
   @override
-  _WordReviewButtonState createState() => _WordReviewButtonState();
+  _WordLazyReviewButtonState createState() => _WordLazyReviewButtonState();
 }
 
-class _WordReviewButtonState extends State<WordReviewButton> {
+class _WordLazyReviewButtonState extends State<WordLazyReviewButton> {
   Word? _word;
   Review? _review;
   int? _quizId;

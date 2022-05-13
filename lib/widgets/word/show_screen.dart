@@ -1,14 +1,16 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/dictionary/icon.dart';
 import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
+import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/word/edit_button.dart';
 import 'package:booqs_mobile/widgets/word/entry.dart';
 import 'package:booqs_mobile/widgets/word/explanation.dart';
 import 'package:booqs_mobile/widgets/word/meaning.dart';
-import 'package:booqs_mobile/widgets/word/review_button.dart';
+import 'package:booqs_mobile/widgets/word/lazy_review_button.dart';
 import 'package:booqs_mobile/widgets/word/sentence.dart';
 import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
 import 'package:booqs_mobile/widgets/word/word_requests_button.dart';
@@ -22,7 +24,14 @@ class WordShowScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Dictionary? dictionary = word.dictionary;
     final Quiz? quiz = word.quiz;
+
     final Sentence? sentence = word.sentence;
+
+    Widget _reviewButton() {
+      if (quiz == null) return const Text('Quiz does not exist.');
+      final Review? review = quiz.review;
+      return ReviewLargeSettingButton(quizId: quiz.id, review: review);
+    }
 
     Widget _word() {
       if (dictionary == null) return const Text('Dictionary does not exist.');
@@ -41,7 +50,8 @@ class WordShowScreen extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          WordReviewButton(word: word),
+          //WordReviewButton(word: word),
+          _reviewButton(),
           WordExplanation(word: word),
           WordSentence(word: word),
           WordEditButton(
