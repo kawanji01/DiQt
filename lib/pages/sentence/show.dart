@@ -5,8 +5,8 @@ import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/dictionary/icon.dart';
 import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
-import 'package:booqs_mobile/widgets/sentence/edit_button.dart';
-import 'package:booqs_mobile/widgets/sentence/item.dart';
+import 'package:booqs_mobile/widgets/sentence/item_with_review_button.dart';
+import 'package:booqs_mobile/widgets/sentence/sentence_requests_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -61,9 +61,11 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
                   const SizedBox(height: 24),
                   DictionaryIcon(dictionary: dictionary),
                   const SizedBox(height: 24),
-                  SentenceItem(sentence: sentence),
-                  const SizedBox(height: 24),
-                  SentenceEditButton(sentence: sentence, isShow: true),
+                  SentenceItemWithReviewButton(
+                    sentence: sentence,
+                    isShow: true,
+                  ),
+                  SentenceSentenceRequestsButton(sentence: sentence),
                   const SizedBox(height: 24),
                   const Divider(
                     thickness: 1,

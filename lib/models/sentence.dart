@@ -11,6 +11,9 @@ class Sentence {
     required this.translation,
     required this.langNumberOfTranslation,
     this.explanation,
+    required this.acceptedSentenceRequestsCount,
+    required this.pendingSentenceRequestsCount,
+    required this.sentenceRequestsCount,
     required this.createdAt,
     required this.updatedAt,
     this.quiz,
@@ -25,6 +28,9 @@ class Sentence {
   String translation;
   int langNumberOfTranslation;
   String? explanation;
+  int acceptedSentenceRequestsCount;
+  int pendingSentenceRequestsCount;
+  int sentenceRequestsCount;
   DateTime createdAt;
   DateTime updatedAt;
   Quiz? quiz;
@@ -39,6 +45,10 @@ class Sentence {
         translation = json['translation'],
         langNumberOfTranslation = json['lang_number_of_translation'],
         explanation = json['explanation'],
+        acceptedSentenceRequestsCount =
+            json['accepted_sentence_requests_count'],
+        pendingSentenceRequestsCount = json['pending_sentence_requests_count'],
+        sentenceRequestsCount = json['sentence_requests_count'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
@@ -54,6 +64,9 @@ class Sentence {
         'lang_number_of_original': langNumberOfOriginal,
         'translation': translation,
         'lang_number_of_translation': langNumberOfTranslation,
+        'accepted_sentence_requests_count': acceptedSentenceRequestsCount,
+        'pending_sentence_requests_count': pendingSentenceRequestsCount,
+        'sentence_requests_count': sentenceRequestsCount,
         'created_at': createdAt,
         'updated_at': updatedAt,
         'quiz': quiz,

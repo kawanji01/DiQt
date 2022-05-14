@@ -21,6 +21,9 @@ class Quiz {
     required this.flashcard,
     this.explanation,
     this.hint,
+    required this.acceptedQuizRequestsCount,
+    required this.pendingQuizRequestsCount,
+    required this.quizRequestsCount,
     this.drill,
     this.review,
     this.note,
@@ -43,6 +46,9 @@ class Quiz {
   bool flashcard;
   String? explanation;
   String? hint;
+  int acceptedQuizRequestsCount;
+  int pendingQuizRequestsCount;
+  int quizRequestsCount;
   Drill? drill;
   Review? review;
   Note? note;
@@ -65,6 +71,9 @@ class Quiz {
         flashcard = json['flashcard'],
         explanation = json['explanation'],
         hint = json['hint'],
+        acceptedQuizRequestsCount = json['accepted_quiz_requests_count'],
+        pendingQuizRequestsCount = json['pending_quiz_requests_count'],
+        quizRequestsCount = json['quiz_requests_count'],
         drill = json['drill'] == null ? null : Drill.fromJson(json['drill']),
         review =
             json['review'] == null ? null : Review.fromJson(json['review']),
@@ -92,6 +101,9 @@ class Quiz {
         'flashcard': flashcard,
         'explanation': explanation,
         'hint': hint,
+        'accepted_quiz_requests_count': acceptedQuizRequestsCount,
+        'pending_quiz_requests_count': pendingQuizRequestsCount,
+        'quiz_requests_count': quizRequestsCount,
         'drill': drill,
         'review': review,
         'note': note,

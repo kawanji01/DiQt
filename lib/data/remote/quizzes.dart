@@ -31,11 +31,11 @@ class RemoteQuizzes {
     return resMap;
   }
 
-  // 問題の解説表示
-  static Future<Map?> explanation(int quizId) async {
+  // 問題のソース（辞書の項目、例文）を取得する
+  static Future<Map?> source(int quizId) async {
     final String? token = await LocalUserInfo.authToken();
     final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/$quizId/explanation?token=$token');
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/$quizId/source?token=$token');
     final Response res = await get(url);
 
     if (res.statusCode != 200) return null;

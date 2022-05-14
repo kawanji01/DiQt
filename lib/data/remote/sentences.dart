@@ -107,7 +107,7 @@ class RemoteSentences {
     final Map<String, String> headers = {'content-type': 'application/json'};
 
     final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/search_2');
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/search');
     // 検索条件が長い場合に、getだとURLの文字数制限に引っかかる可能性があるのでpostを使う。
     final Response res = await post(
       url,

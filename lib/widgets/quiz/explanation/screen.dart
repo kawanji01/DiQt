@@ -8,6 +8,7 @@ import 'package:booqs_mobile/widgets/quiz/explanation/answer_analysis.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/distractors.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/explanation.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/question.dart';
+import 'package:booqs_mobile/widgets/quiz/source.dart';
 import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -125,6 +126,7 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
               const SizedBox(height: 40),
               _answerAnalysis(),
               const SizedBox(height: 40),
+              QuizSource(quiz: _quiz),
             ],
           ),
         ));
