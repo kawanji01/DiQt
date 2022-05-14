@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/utils/booqs_on_web.dart';
+import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:flutter/material.dart';
 
 class QuizDetailButton extends StatelessWidget {
@@ -8,7 +8,6 @@ class QuizDetailButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String redirectPath = '/quizzes/${quiz.id}';
     return Container(
       // 左寄せ
       alignment: Alignment.centerRight,
@@ -19,7 +18,7 @@ class QuizDetailButton extends StatelessWidget {
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {
-          BooQsOnWeb.open(context, redirectPath);
+          QuizShowPage.push(context, quiz.id);
         },
         child: const Text(
           '詳細',

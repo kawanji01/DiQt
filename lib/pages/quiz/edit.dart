@@ -1,66 +1,65 @@
-import 'package:booqs_mobile/data/remote/words.dart';
-import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/pages/word/show.dart';
+import 'package:booqs_mobile/data/remote/quizzes.dart';
+import 'package:booqs_mobile/models/drill.dart';
+import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/dictionary/icon.dart';
+import 'package:booqs_mobile/widgets/drill/name.dart';
+import 'package:booqs_mobile/widgets/quiz/form/form.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
-import 'package:booqs_mobile/widgets/word/form/form.dart';
-import 'package:booqs_mobile/widgets/word/form/sentence_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordEditPage extends ConsumerStatefulWidget {
-  const WordEditPage({Key? key}) : super(key: key);
+class QuizEditPage extends StatefulWidget {
+  const QuizEditPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context, int wordId) async {
+  static Future push(BuildContext context, int quizId) async {
     return Navigator.of(context)
-        .pushNamed(wordEditPage, arguments: {'wordId': wordId});
+        .pushNamed(quizEditPage, arguments: {'quizId': quizId});
   }
 
   @override
-  _WordEditPageState createState() => _WordEditPageState();
+  State<QuizEditPage> createState() => _QuizEditPageState();
 }
 
-class _WordEditPageState extends ConsumerState<WordEditPage> {
-  Word? _word;
-  Dictionary? _dictionary;
+class _QuizEditPageState extends State<QuizEditPage> {
+  Quiz? _quiz;
   bool _isLoading = true;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
-  final _entryController = TextEditingController();
-  final _meaningController = TextEditingController();
+  final _questionController = TextEditingController();
+  final _correctAnswerController = TextEditingController();
+  final _distractorsController = TextEditingController();
+  final _hintController = TextEditingController();
   final _explanationController = TextEditingController();
-  final _sentenceIdController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-      final int wordId = arguments['wordId'];
-      _loadWord(wordId);
+      final int quizId = arguments['quizId'];
+      _loadQuiz(quizId);
     });
   }
 
-  Future _loadWord(int wordId) async {
-    final Map? resMap = await RemoteWords.edit(wordId);
+  Future _loadQuiz(int quizId) async {
+    final Map? resMap = await RemoteQuizzes.edit(quizId);
     _isLoading = false;
     if (resMap == null) {
       return setState(() => _isLoading);
     }
-    final Word word = Word.fromJson(resMap['word']);
-    _entryController.text = word.entry;
-    _meaningController.text = word.meaning;
-    _explanationController.text = word.explanation ?? '';
-    _sentenceIdController.text = word.sentenceId.toString();
-    final dictionary = word.dictionary;
+    final Quiz? quiz = Quiz.fromJson(resMap['quiz']);
+    if (quiz == null) {
+      return setState(() => _isLoading);
+    }
+    _questionController.text = quiz.question;
+    _correctAnswerController.text = quiz.correctAnswer;
+    _distractorsController.text = quiz.distractors ?? '';
+    _hintController.text = quiz.hint ?? '';
+    _explanationController.text = quiz.explanation ?? '';
     setState(() {
-      _word = word;
-      _dictionary = dictionary;
-      _isLoading;
+      _quiz = quiz;
     });
   }
 
@@ -68,43 +67,43 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
   // widgetの破棄時にコントローラも破棄する。Controllerを使うなら必ず必要。
   // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
   void dispose() {
-    _entryController.dispose();
-    _meaningController.dispose();
+    _questionController.dispose();
+    _correctAnswerController.dispose();
+    _distractorsController.dispose();
+    _hintController.dispose();
     _explanationController.dispose();
-    _sentenceIdController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     //
-    Future _save(word) async {
+    Future _save(quiz) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-
       final Map<String, dynamic> params = {
-        'id': word.id,
-        'entry': _entryController.text,
-        'meaning': _meaningController.text,
+        'id': quiz.id,
+        'question': _questionController.text,
+        'correct_answer': _correctAnswerController.text,
+        'distractors': _distractorsController.text,
         'explanation': _explanationController.text,
-        'sentence_id': _sentenceIdController.text,
-        'dictionary_id': _dictionary!.id,
+        'hint': _hintController.text,
       };
 
-      final Map? resMap = await RemoteWords.update(params);
+      final Map? resMap = await RemoteQuizzes.update(params);
 
       if (resMap == null) {
         EasyLoading.dismiss();
-        const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
+        const snackBar = SnackBar(content: Text('問題を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        final int wordId = resMap['word']['id'];
+        final int quizId = resMap['quiz']['id'];
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        WordShowPage.pushReplacement(context, wordId);
+        QuizShowPage.pushReplacement(context, quizId);
       }
       EasyLoading.dismiss();
     }
@@ -119,7 +118,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
           onPressed: () => {
-            _save(_word),
+            _save(_quiz),
           },
           icon: const Icon(Icons.update, color: Colors.white),
           label: const Text(
@@ -130,10 +129,13 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       );
     }
 
-    Widget _body() {
+    //
+    Widget _body(Quiz? quiz) {
       if (_isLoading) return const LoadingSpinner();
-      if (_word == null) return const Text('Word does not exist.');
-      if (_dictionary == null) return const Text('Dictionary does not exist.');
+      if (quiz == null) return const Text('Quiz does not exist.');
+      final Drill? drill = quiz.drill;
+      if (drill == null) return const Text('Drill does not exist.');
+
       return SingleChildScrollView(
         child: Container(
             margin: const EdgeInsets.all(20),
@@ -142,16 +144,15 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      DictionaryIcon(dictionary: _dictionary!),
-                      WordForm(
-                        entryController: _entryController,
-                        meaningController: _meaningController,
-                        explanationController: _explanationController,
-                      ),
-                      WordFormSentenceSetting(
-                          sentenceIdController: _sentenceIdController,
-                          entryController: _entryController,
-                          dictionary: _dictionary!),
+                      DrillName(drill: drill),
+                      const SizedBox(height: 32),
+                      QuizForm(
+                          questionController: _questionController,
+                          correctAnswerController: _correctAnswerController,
+                          distractorsController: _distractorsController,
+                          explanationController: _explanationController,
+                          hintController: _hintController,
+                          quiz: quiz),
                       const SizedBox(height: 40),
                       _submitButton(),
                       const SizedBox(height: 40),
@@ -161,9 +162,9 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${_entryController.text}の編集'),
+        title: const Text('問題の編集'),
       ),
-      body: _body(),
+      body: _body(_quiz),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

@@ -9,6 +9,7 @@ import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/notice/index.dart';
+import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/review/scheduled.dart';
@@ -30,6 +31,8 @@ import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/pages/word/search_results.dart';
+
+import 'pages/quiz/edit.dart';
 
 // ホーム
 const indexPage = '/';
@@ -65,6 +68,9 @@ const userPremiumPlanPage = '/user/premium_plan';
 const drillUnsolvedPage = '/drill/unsolved';
 const drillSolvedPage = '/drill/solved';
 const drillShowPage = '/drill/show';
+// 問題
+const quizEditPage = '/quiz/edit';
+const quizShowPage = '/quiz/show';
 // 復習
 const reviewIndexPage = '/review/index';
 const reviewScheduledPage = '/review/scheduled';
@@ -103,6 +109,8 @@ final routes = {
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   drillSolvedPage: (context) => const DrillSolvedPage(),
   drillShowPage: (context) => const DrillShowPage(),
+  quizEditPage: (context) => const QuizEditPage(),
+  quizShowPage: (context) => const QuizShowPage(),
   reviewIndexPage: (context) => const ReviewIndexPage(),
   reviewScheduledPage: (context) => const ReviewScheduledPage(),
   reviewAllPage: (context) => const ReviewAllPage(),

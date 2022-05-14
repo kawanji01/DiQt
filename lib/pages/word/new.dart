@@ -27,6 +27,7 @@ class WordNewPage extends ConsumerStatefulWidget {
 
 class _WordNewPageState extends ConsumerState<WordNewPage> {
   Dictionary? _dictionary;
+  bool _isLoading = true;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _entryController = TextEditingController();
@@ -49,12 +50,16 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
     final int dictionaryId = arguments['dictionaryId'];
     final String keyword = arguments['keyword'];
     final Map? resMap = await RemoteWords.newWord(dictionaryId, keyword);
-    if (resMap == null) return;
+    _isLoading = false;
+    if (resMap == null) {
+      return setState(() => _isLoading);
+    }
     final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
     _entryController.text = keyword;
     _meaningController.text = resMap['translation'];
     setState(() {
       _dictionary = dictionary;
+      _isLoading;
     });
   }
 
@@ -71,8 +76,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (_dictionary == null) return const LoadingSpinner();
-
+    // 項目の作成
     Future _create() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
@@ -124,7 +128,8 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
     }
 
     Widget _body() {
-      if (_dictionary == null) return const LoadingSpinner();
+      if (_isLoading) return const LoadingSpinner();
+      if (_dictionary == null) return const Text('Dictionary does not exist.');
       return SingleChildScrollView(
         child: Container(
             margin: const EdgeInsets.all(20),
@@ -152,7 +157,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${_entryController.text}の作成'),
+        title: const Text('項目の作成'),
       ),
       body: _body(),
       bottomNavigationBar: const BottomNavbar(),

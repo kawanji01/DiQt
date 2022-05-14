@@ -10,7 +10,6 @@ import 'package:booqs_mobile/widgets/word/edit_button.dart';
 import 'package:booqs_mobile/widgets/word/entry.dart';
 import 'package:booqs_mobile/widgets/word/explanation.dart';
 import 'package:booqs_mobile/widgets/word/meaning.dart';
-import 'package:booqs_mobile/widgets/word/lazy_review_button.dart';
 import 'package:booqs_mobile/widgets/word/sentence.dart';
 import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
 import 'package:booqs_mobile/widgets/word/word_requests_button.dart';
@@ -84,6 +83,7 @@ class WordShowScreen extends StatelessWidget {
       if (sentenceQuiz == null) return Container();
       return DrillListQuiz(
         quiz: sentenceQuiz,
+        isShow: false,
       );
     }
 
@@ -91,6 +91,7 @@ class WordShowScreen extends StatelessWidget {
       _word(),
       DrillListQuiz(
         quiz: quiz,
+        isShow: false,
       ),
       _sentenceQuiz(),
       const SizedBox(

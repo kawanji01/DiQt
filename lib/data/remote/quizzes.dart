@@ -55,4 +55,36 @@ class RemoteQuizzes {
     final Map resMap = json.decode(res.body);
     return resMap;
   }
+
+  static Future<Map?> edit(int quizId) async {
+    final String? token = await LocalUserInfo.authToken();
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/$quizId/edit?token=$token');
+    final Response res = await get(url);
+
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  static Future<Map?> update(Map params) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
+    final String encodedData = json.encode({'quiz': params, 'token': '$token'});
+    final Map<String, String> headers = {'content-type': 'application/json'};
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/${params['id']}');
+    final Response res = await patch(
+      url,
+      headers: headers,
+      body: encodedData,
+    );
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
 }

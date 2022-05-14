@@ -44,11 +44,14 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
 
   Future _loadDictionary(int dictionaryId) async {
     final Map? resMap = await RemoteSentences.newSentence(dictionaryId);
-    if (resMap == null) return;
+    _isLoading = false;
+    if (resMap == null) {
+      return setState(() => _isLoading);
+    }
     final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
     setState(() {
       _dictionary = dictionary;
-      _isLoading = false;
+      _isLoading;
     });
   }
 

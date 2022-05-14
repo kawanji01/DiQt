@@ -2,7 +2,6 @@ import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
-import 'package:booqs_mobile/widgets/quiz/detail_button.dart';
 import 'package:booqs_mobile/widgets/quiz/edit_button.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/answer_analysis.dart';
@@ -84,9 +83,9 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
 
     Widget _editButtons() {
       return future.when(
-        data: (quiz) => Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [QuizEditButton(quiz: quiz!), QuizDetailButton(quiz: quiz)],
+        data: (quiz) => QuizEditButton(
+          quiz: quiz!,
+          isShow: false,
         ),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
