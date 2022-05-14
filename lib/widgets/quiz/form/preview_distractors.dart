@@ -1,31 +1,18 @@
-import 'package:booqs_mobile/consts/language.dart';
-import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:flutter/material.dart';
 
-class QuizExplanationDistractors extends StatelessWidget {
-  const QuizExplanationDistractors({Key? key, required this.quiz})
+class QuizFormPreviewDistractors extends StatelessWidget {
+  const QuizFormPreviewDistractors({Key? key, required this.distractors})
       : super(key: key);
-  final Quiz quiz;
+  final String distractors;
 
   @override
   Widget build(BuildContext context) {
-    if (quiz.distractors == '' || quiz.distractors == null) {
+    if (distractors == '') {
       return Container();
     }
 
-    Widget _distractor(distractor) {
-      Widget child = Text(distractor,
-          style: const TextStyle(fontSize: 16, color: Colors.red));
-      if (quiz.langNumberOfAnswer == languageCodeMap['en']) {
-        child = TextWithLink(
-          text: distractor,
-          autoLinkEnabled: true,
-          crossAxisAlignment: CrossAxisAlignment.start,
-        );
-      }
-
+    Widget _distractor(String distractor) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -36,14 +23,15 @@ class QuizExplanationDistractors extends StatelessWidget {
           ),
           // Expandedを使うと短い文章でも幅全体を埋めてしまい、結果的に左寄せになってしまうので Flexible を使う。
           Flexible(
-            child: child,
+            child: Text(distractor,
+                style: const TextStyle(fontSize: 16, color: Colors.red)),
           ),
         ],
       );
     }
 
     // 選択肢（distracorsWidget）を作成する
-    final List<String> answerTextList = quiz.distractors!.split('\n');
+    final List<String> answerTextList = distractors.split('\n');
     List<Widget> widgetList = [];
     answerTextList.asMap().forEach((int i, String value) {
       // 空文字の改行は選択肢にしない

@@ -44,11 +44,14 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
 
   Future _loadSentence(int sentenceId) async {
     final Map? resMap = await RemoteSentences.edit(sentenceId);
-    if (resMap == null) return;
+    _isLoading = false;
+    if (resMap == null) {
+      return setState(() => _isLoading);
+    }
     final Sentence sentence = Sentence.fromJson(resMap['sentence']);
     setState(() {
       _sentence = sentence;
-      _isLoading = false;
+      _isLoading;
     });
   }
 

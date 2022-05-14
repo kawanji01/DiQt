@@ -10,10 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizContent extends ConsumerWidget {
-  const QuizContent({Key? key, required this.quiz, required this.header})
+  const QuizContent(
+      {Key? key,
+      required this.quiz,
+      required this.header,
+      required this.isShow})
       : super(key: key);
   final Quiz quiz;
   final Widget header;
+  final bool isShow;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,12 +27,15 @@ class QuizContent extends ConsumerWidget {
     final Review? review = quiz.review;
     final question = QuizQuestionPart(quiz: quiz, drill: drill);
     final answer = QuizAnswerPart(quiz: quiz);
-    final footer = QuizFooter(quiz: quiz, review: review);
+    final footer = QuizFooter(
+      quiz: quiz,
+      review: review,
+      isShow: isShow,
+    );
 
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
         // 解説を表示する
-        // ref.read(quizProvider.notifier).state = notification.quiz;
         // 解説モーダル内の辞書リンクで遷移後のページでも解答インタラクションが表示されてしまうので、
         // bottomSheetを表示するときにインタラクションも消しておく
         ScaffoldMessenger.of(context).removeCurrentSnackBar();

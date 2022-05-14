@@ -44,8 +44,8 @@ class _WordFormSentenceListViewState extends State<WordFormSentenceListView> {
 
     final int dictionaryId = widget.dictionary.id;
     final String keyword = widget.keyword;
-    final Map? resMap = await RemoteSentences.search2(
-        keyword, dictionaryId, pageKey, _pageSize);
+    final Map? resMap =
+        await RemoteSentences.search(keyword, dictionaryId, pageKey, _pageSize);
     if (resMap == null) {
       if (mounted) {
         setState(() {

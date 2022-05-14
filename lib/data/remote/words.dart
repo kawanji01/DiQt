@@ -97,28 +97,13 @@ class RemoteWords {
     return resMap;
   }
 
-  // 検索
-  static Future<Map?> search(String? keyword) async {
+  //
+  static Future<Map?> search(int dictionaryId, String? keyword) async {
     final String? token = await LocalUserInfo.authToken();
 
     if (keyword == null) return null;
     final Uri url =
         Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/search');
-    final Response res = await post(url,
-        body: {'dictionary_id': '1', 'keyword': keyword, 'token': '$token'});
-    if (res.statusCode != 200) return null;
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
-    return resMap;
-  }
-
-  //
-  static Future<Map?> search2(int dictionaryId, String? keyword) async {
-    final String? token = await LocalUserInfo.authToken();
-
-    if (keyword == null) return null;
-    final Uri url =
-        Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/search2');
     final Response res = await post(url, body: {
       'dictionary_id': '$dictionaryId',
       'keyword': keyword,

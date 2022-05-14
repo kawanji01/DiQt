@@ -33,6 +33,11 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+      final int sentenceId = arguments['sentenceId'];
+      ref.refresh(asyncSentenceFamily(sentenceId));
+    });
   }
 
   @override
@@ -64,7 +69,10 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
                     thickness: 1,
                   ),
                   const SizedBox(height: 16),
-                  DrillListQuiz(quiz: quiz),
+                  DrillListQuiz(
+                    quiz: quiz,
+                    isShow: false,
+                  ),
                   const SizedBox(height: 48),
                 ],
               )));

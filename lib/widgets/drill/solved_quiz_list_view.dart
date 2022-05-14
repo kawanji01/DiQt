@@ -115,6 +115,7 @@ class _DrillSolvedQuizListViewState
       builderDelegate: PagedChildBuilderDelegate<Quiz>(
         itemBuilder: (context, item, index) => DrillListQuiz(
           quiz: item,
+          isShow: false,
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
         newPageProgressIndicatorBuilder: (_) => _loader(),

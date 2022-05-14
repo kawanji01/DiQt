@@ -59,7 +59,7 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
 
   // async load cards API
   Future _loadSearchResults(String? keyword) async {
-    final Map? resMap = await RemoteWords.search2(1, keyword);
+    final Map? resMap = await RemoteWords.search(1, keyword);
     if (resMap == null) return;
 
     if (resMap['words'] != null) {

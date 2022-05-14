@@ -14,6 +14,10 @@ class WeaknessListQuiz extends StatelessWidget {
     if (quiz == null) return const Text('Quiz does not exist.');
 
     final header = WeaknessQuizHeader(weakness: weakness);
-    return QuizContent(quiz: quiz, header: header);
+    return QuizContent(
+      quiz: quiz,
+      header: header,
+      isShow: false,
+    );
   }
 }

@@ -29,6 +29,11 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+      final int wordId = arguments['wordId'];
+      ref.refresh(asyncWordFamily(wordId));
+    });
   }
 
   @override
