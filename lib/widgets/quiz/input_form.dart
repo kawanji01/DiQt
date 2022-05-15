@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizInputForm extends ConsumerWidget {
@@ -27,6 +28,7 @@ class QuizInputForm extends ConsumerWidget {
     void _answer() {
       String? usersAnswer = answerController.text;
       bool isCorrect = _verifyAnswer(usersAnswer);
+      HapticFeedback.mediumImpact();
       AnswerNotification(usersAnswer, isCorrect, quiz, user!, true)
           .dispatch(context);
     }

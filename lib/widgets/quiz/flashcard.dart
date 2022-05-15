@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizFlashcard extends ConsumerWidget {
@@ -14,6 +15,7 @@ class QuizFlashcard extends ConsumerWidget {
     final User? user = ref.watch(currentUserProvider);
 
     void _answer(bool correct) {
+      HapticFeedback.mediumImpact();
       AnswerNotification('', correct, quiz, user!, true).dispatch(context);
     }
 
