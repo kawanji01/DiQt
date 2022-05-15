@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
+import 'package:booqs_mobile/pages/note/index.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
@@ -63,10 +64,9 @@ class UserMenuPage extends ConsumerWidget {
 
     Widget _noteListButton() {
       const String btnText = 'ノート一覧';
-      final String redirectPath = 'users/${user.publicUid}/memos';
       return InkWell(
         onTap: () {
-          BooQsOnWeb.open(context, redirectPath);
+          NoteIndexPage.push(context);
         },
         child: const LargeGreenButton(
             label: btnText, icon: Icons.note_alt_outlined),
@@ -120,11 +120,11 @@ class UserMenuPage extends ConsumerWidget {
               const SizedBox(
                 height: 32,
               ),
-              _answerSettingButton(),
+              _noteListButton(),
               const SizedBox(
                 height: 32,
               ),
-              _noteListButton(),
+              _answerSettingButton(),
               const SizedBox(
                 height: 64,
               ),

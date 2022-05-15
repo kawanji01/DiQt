@@ -7,8 +7,10 @@ import 'package:booqs_mobile/pages/drill/show.dart';
 import 'package:booqs_mobile/pages/drill/solved.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/home.dart';
+import 'package:booqs_mobile/pages/note/index.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/notice/index.dart';
+import 'package:booqs_mobile/pages/quiz/edit.dart';
 import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
@@ -31,8 +33,6 @@ import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/pages/word/search_results.dart';
-
-import 'pages/quiz/edit.dart';
 
 // ホーム
 const indexPage = '/';
@@ -83,6 +83,8 @@ const weaknessSolvedPage = '/weakness/solved';
 const answerHistoryTodaysMistakesPage = '/answer_history/todays_mistakes';
 // 解答分析
 const answerAnalysisIndexPage = 'answer_analysis/index';
+// ノート
+const noteIndexPage = 'note/index';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -120,4 +122,5 @@ final routes = {
   answerHistoryTodaysMistakesPage: (context) =>
       const AnswerHistoryTodaysMistakesPage(),
   answerAnalysisIndexPage: (context) => const AnswerAnalysisIndexPage(),
+  noteIndexPage: (context) => const NoteIndexPage(),
 };

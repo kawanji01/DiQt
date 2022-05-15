@@ -1,27 +1,32 @@
+import 'package:booqs_mobile/models/quiz.dart';
+
 class Note {
   Note({
-    this.id = 0,
-    this.userId = 0,
-    this.quizId = 0,
-    this.content = '',
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.userId,
+    required this.quizId,
+    required this.content,
+    required this.createdAt,
+    required this.updatedAt,
+    this.quiz,
   });
 
   int id;
   int userId;
   int quizId;
   String content;
-  String? createdAt;
-  String? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
+  Quiz? quiz;
 
   Note.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         userId = json['user_id'],
         quizId = json['quiz_id'],
         content = json['content'],
-        createdAt = json['created_at'],
-        updatedAt = json['updated_at'];
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']),
+        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -30,5 +35,6 @@ class Note {
         'content': content,
         'created_at': createdAt,
         'updated_at': updatedAt,
+        'quiz': quiz,
       };
 }

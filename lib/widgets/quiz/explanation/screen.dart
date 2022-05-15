@@ -8,6 +8,7 @@ import 'package:booqs_mobile/widgets/quiz/explanation/answer_analysis.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/distractors.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/explanation.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/question.dart';
+import 'package:booqs_mobile/widgets/quiz/note.dart';
 import 'package:booqs_mobile/widgets/quiz/source.dart';
 import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -27,6 +28,10 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      final Quiz quiz = widget.answerNotification.quiz;
+      ref.refresh(asyncQuizFamily(quiz.id));
+    });
   }
 
   @override
@@ -103,6 +108,13 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
     }
 
     // ノート
+    Widget _note() {
+      return future.when(
+        data: (quiz) => QuizNote(quiz: quiz!),
+        error: (err, stack) => Text('Error: $err'),
+        loading: () => const LoadingSpinner(),
+      );
+    }
 
     // 出典（辞書と例文）
 
@@ -125,6 +137,7 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
               _editButtons(),
               const SizedBox(height: 40),
               _answerAnalysis(),
+              _note(),
               const SizedBox(height: 40),
               QuizSource(quiz: _quiz),
             ],
