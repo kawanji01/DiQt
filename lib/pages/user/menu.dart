@@ -5,7 +5,6 @@ import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
 import 'package:booqs_mobile/widgets/button/large_green_button.dart';
 import 'package:booqs_mobile/widgets/purchase/delete_button.dart';

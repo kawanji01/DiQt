@@ -143,7 +143,24 @@ class _QuizFormState extends State<QuizForm> {
       children: <Widget>[
         _questionAndAnswer(),
         const SizedBox(height: 40),
-        // ヒントフォーム
+        // 誤りの選択肢
+        TextFormField(
+          minLines: 5,
+          keyboardType: TextInputType.multiline,
+          maxLines: null,
+          controller: _distractorsController,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: '誤りの選択肢',
+            hintText: '【空欄可】誤りの選択肢があれば入力してください。',
+          ),
+        ),
+        const Text(
+          '改行によって選択肢を増やします。',
+          style: TextStyle(color: Colors.black54),
+        ),
+        const SizedBox(height: 40),
+        // ヒント
         TextFormField(
           minLines: 5,
           keyboardType: TextInputType.multiline,
@@ -156,7 +173,7 @@ class _QuizFormState extends State<QuizForm> {
           ),
         ),
         const SizedBox(height: 32),
-        // 解説フォーム
+        // 解説
         TextFormField(
           minLines: 8,
           keyboardType: TextInputType.multiline,
