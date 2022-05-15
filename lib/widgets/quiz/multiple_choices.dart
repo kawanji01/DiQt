@@ -5,6 +5,7 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/choice_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizMultipleChoices extends ConsumerStatefulWidget {
@@ -50,6 +51,8 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
           final bool correct = _selectedAnswer == _correctAnswer;
           AnswerNotification(answerText, correct, _quiz, user, true)
               .dispatch(context);
+          // 振動フィードバック
+          HapticFeedback.mediumImpact();
           setState(() {
             _selectedAnswer;
           });
