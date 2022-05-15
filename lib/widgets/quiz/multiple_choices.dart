@@ -5,6 +5,7 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/choice_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizMultipleChoices extends ConsumerStatefulWidget {
@@ -26,8 +27,8 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
   void initState() {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       setState(() {
-        _isCovered = ref.watch(
-            answerSettingProvider.select((setting) => setting!.choicesCovered));
+        _isCovered = ref.watch(answerSettingProvider.select(
+            (setting) => setting == null ? false : setting.choicesCovered));
       });
     });
     super.initState();
@@ -48,8 +49,10 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
         onTap: () {
           _selectedAnswer = answerText;
           final bool correct = _selectedAnswer == _correctAnswer;
-          AnswerNotification(answerText, correct, _quiz, user!, true)
+          AnswerNotification(answerText, correct, _quiz, user, true)
               .dispatch(context);
+          // 振動フィードバック
+          HapticFeedback.mediumImpact();
           setState(() {
             _selectedAnswer;
           });
@@ -64,8 +67,11 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
     // 解答ボタンのリストを生成する
     List<Widget> _choiceButtons(textList) {
       List<Widget> buttonList = [];
-      textList
-          .forEach((answerText) => buttonList.add(_answerButton(answerText)));
+      textList.forEach((answerText) {
+        // 空文字の改行は選択肢にしない
+        if (answerText == '') return;
+        buttonList.add(_answerButton(answerText));
+      });
       return buttonList;
     }
 

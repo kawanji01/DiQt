@@ -59,7 +59,7 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
 
   // async load cards API
   Future _loadSearchResults(String? keyword) async {
-    final Map? resMap = await RemoteWords.search(keyword);
+    final Map? resMap = await RemoteWords.search(1, keyword);
     if (resMap == null) return;
 
     if (resMap['words'] != null) {
@@ -90,9 +90,11 @@ class _WordSearchResultsPageState extends State<WordSearchResultsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final String title = _keyword ?? '';
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('$_keyword'),
+        title: Text(title),
       ),
       body: Container(
         margin: const EdgeInsets.only(left: 20, right: 20),

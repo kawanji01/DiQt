@@ -12,7 +12,7 @@ class AnswerNotification extends Notification {
   // Providerから初期経験値を取得してしまうと、サーバーのレスポンスの速度によっては、
   // AnswerInterationの経験値インジケーターに必要な初期経験値に、解答報酬獲得後の経験値が利用されてしまうので
   // notificationからUserを取得することで防ぐ。
-  final User user;
+  final User? user;
   // 問題をフェイドアウトさせるか否か
   final bool fadeOut;
   AnswerNotification(

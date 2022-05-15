@@ -2,16 +2,22 @@ import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
-import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
+import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/pages/drill/show.dart';
 import 'package:booqs_mobile/pages/drill/solved.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/home.dart';
+import 'package:booqs_mobile/pages/note/index.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/notice/index.dart';
+import 'package:booqs_mobile/pages/quiz/edit.dart';
+import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/review/scheduled.dart';
+import 'package:booqs_mobile/pages/sentence/edit.dart';
+import 'package:booqs_mobile/pages/sentence/new.dart';
+import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
@@ -38,11 +44,16 @@ const signUpPage = '/session/sign_up';
 const loginPage = '/session/login';
 // 辞書
 const dictionaryShowPage = '/dictionary/show';
-// ワード
+// 単語
 const wordShowPage = '/word/show';
 const wordNewPage = '/word/new';
 const wordEditPage = '/word/edit';
 const wordSearchResultsPage = '/word/search';
+// 例文
+const sentenceNewPage = '/sentence/new';
+const sentenceEditPage = '/sentence/edit';
+const sentenceShowPage = '/sentence/show';
+
 // チャプター
 const chapterIndexPage = '/chapter/index';
 const chapterShowPage = '/chapter/show';
@@ -57,6 +68,9 @@ const userPremiumPlanPage = '/user/premium_plan';
 const drillUnsolvedPage = '/drill/unsolved';
 const drillSolvedPage = '/drill/solved';
 const drillShowPage = '/drill/show';
+// 問題
+const quizEditPage = '/quiz/edit';
+const quizShowPage = '/quiz/show';
 // 復習
 const reviewIndexPage = '/review/index';
 const reviewScheduledPage = '/review/scheduled';
@@ -69,6 +83,8 @@ const weaknessSolvedPage = '/weakness/solved';
 const answerHistoryTodaysMistakesPage = '/answer_history/todays_mistakes';
 // 解答分析
 const answerAnalysisIndexPage = 'answer_analysis/index';
+// ノート
+const noteIndexPage = 'note/index';
 
 final routes = {
   indexPage: (context) => const MyHomePage(),
@@ -77,11 +93,14 @@ final routes = {
   userMyPage: (context) => const UserMyPage(),
   signUpPage: (context) => const SignUpPage(),
   loginPage: (context) => const LoginPage(),
-  dictionaryShowPage: (context) => const DictionaryPage(),
+  dictionaryShowPage: (context) => const DictionaryShowPage(),
   wordShowPage: (context) => const WordShowPage(),
   wordNewPage: (context) => const WordNewPage(),
   wordEditPage: (context) => const WordEditPage(),
   wordSearchResultsPage: (context) => const WordSearchResultsPage(),
+  sentenceNewPage: (context) => const SentenceNewPage(),
+  sentenceEditPage: (context) => const SentenceEditPage(),
+  sentenceShowPage: (context) => const SentenceShowPage(),
   chapterIndexPage: (context) => const ChapterIndexPage(),
   chapterShowPage: (context) => const ChapterShowPage(),
   userShowPage: (context) => const UserShowPage(),
@@ -92,6 +111,8 @@ final routes = {
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   drillSolvedPage: (context) => const DrillSolvedPage(),
   drillShowPage: (context) => const DrillShowPage(),
+  quizEditPage: (context) => const QuizEditPage(),
+  quizShowPage: (context) => const QuizShowPage(),
   reviewIndexPage: (context) => const ReviewIndexPage(),
   reviewScheduledPage: (context) => const ReviewScheduledPage(),
   reviewAllPage: (context) => const ReviewAllPage(),
@@ -101,4 +122,5 @@ final routes = {
   answerHistoryTodaysMistakesPage: (context) =>
       const AnswerHistoryTodaysMistakesPage(),
   answerAnalysisIndexPage: (context) => const AnswerAnalysisIndexPage(),
+  noteIndexPage: (context) => const NoteIndexPage(),
 };

@@ -1,9 +1,12 @@
+import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizExplanationOpenButton extends ConsumerWidget {
-  const QuizExplanationOpenButton({Key? key}) : super(key: key);
+  const QuizExplanationOpenButton({Key? key, required this.answerNotification})
+      : super(key: key);
+  final AnswerNotification answerNotification;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,7 +27,9 @@ class QuizExplanationOpenButton extends ConsumerWidget {
                 topRight: Radius.circular(15.0)),
           ),
           // showModalBottomSheetで表示される中身
-          builder: (context) => const QuizExplanationScreen(),
+          builder: (context) => QuizExplanationScreen(
+            answerNotification: answerNotification,
+          ),
         );
       },
     );

@@ -2,12 +2,11 @@ import 'package:booqs_mobile/data/remote/quizzes.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final quizProvider = StateProvider<Quiz?>((ref) => null);
-
-// 非同期で取得する Quiz
-final asyncQuizProvider = FutureProvider<Quiz?>((ref) async {
-  final Quiz? quiz = ref.read(quizProvider);
-  final Map? resMap = await RemoteQuizzes.show(quiz!.id);
+// 非同期で取得する
+final asyncQuizFamily =
+    FutureProvider.autoDispose.family<Quiz?, int>((ref, quizId) async {
+  final Map? resMap = await RemoteQuizzes.show(quizId);
   if (resMap == null) return null;
-  return Quiz.fromJson(resMap['quiz']);
+  final Quiz quiz = Quiz.fromJson(resMap['quiz']);
+  return quiz;
 });

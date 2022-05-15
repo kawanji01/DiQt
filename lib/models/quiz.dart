@@ -6,21 +6,24 @@ import 'package:booqs_mobile/models/weakness.dart';
 
 class Quiz {
   Quiz({
-    this.id = 0,
-    this.quizId,
-    this.drillId = 0,
+    required this.id,
+    required this.drillId,
     this.wordId,
     this.referenceWordId,
-    this.question = '',
-    this.langNumberOfQuestion,
-    this.questionReadAloud = false,
-    this.correctAnswer = '',
-    this.langNumberOfAnswer,
-    this.answerReadAloud = false,
+    this.sentenceId,
+    required this.question,
+    required this.langNumberOfQuestion,
+    required this.questionReadAloud,
+    required this.correctAnswer,
+    required this.langNumberOfAnswer,
+    required this.answerReadAloud,
     this.distractors,
-    this.flashcard = false,
+    required this.flashcard,
     this.explanation,
     this.hint,
+    required this.acceptedQuizRequestsCount,
+    required this.pendingQuizRequestsCount,
+    required this.quizRequestsCount,
     this.drill,
     this.review,
     this.note,
@@ -29,20 +32,23 @@ class Quiz {
   });
 
   int id;
-  int? quizId;
   int drillId;
   int? wordId;
   int? referenceWordId;
+  int? sentenceId;
   String question;
-  int? langNumberOfQuestion;
+  int langNumberOfQuestion;
   bool questionReadAloud;
   String correctAnswer;
-  int? langNumberOfAnswer;
+  int langNumberOfAnswer;
   bool answerReadAloud;
   String? distractors;
   bool flashcard;
   String? explanation;
   String? hint;
+  int acceptedQuizRequestsCount;
+  int pendingQuizRequestsCount;
+  int quizRequestsCount;
   Drill? drill;
   Review? review;
   Note? note;
@@ -51,8 +57,10 @@ class Quiz {
 
   Quiz.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        quizId = json['quiz_id'],
         drillId = json['drill_id'],
+        wordId = json['word_id'],
+        referenceWordId = json['reference_word_id'],
+        sentenceId = json['sentence_id'],
         question = json['question'],
         langNumberOfQuestion = json['lang_number_of_question'],
         questionReadAloud = json['question_read_aloud'],
@@ -63,6 +71,9 @@ class Quiz {
         flashcard = json['flashcard'],
         explanation = json['explanation'],
         hint = json['hint'],
+        acceptedQuizRequestsCount = json['accepted_quiz_requests_count'],
+        pendingQuizRequestsCount = json['pending_quiz_requests_count'],
+        quizRequestsCount = json['quiz_requests_count'],
         drill = json['drill'] == null ? null : Drill.fromJson(json['drill']),
         review =
             json['review'] == null ? null : Review.fromJson(json['review']),
@@ -76,8 +87,10 @@ class Quiz {
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'quiz_id': quizId,
         'drill_id': drillId,
+        'word_id': wordId,
+        'reference_word_id': referenceWordId,
+        'sentence_id': sentenceId,
         'question': question,
         'lang_number_of_question': langNumberOfQuestion,
         'question_read_aloud': questionReadAloud,
@@ -88,6 +101,9 @@ class Quiz {
         'flashcard': flashcard,
         'explanation': explanation,
         'hint': hint,
+        'accepted_quiz_requests_count': acceptedQuizRequestsCount,
+        'pending_quiz_requests_count': pendingQuizRequestsCount,
+        'quiz_requests_count': quizRequestsCount,
         'drill': drill,
         'review': review,
         'note': note,

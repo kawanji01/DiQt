@@ -19,8 +19,6 @@ class AnswerCompleteReviewScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bool seEnabled = ref
-        .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
     // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬 + 連続年報酬）
     final int initialExp = answerCreator.startPoint +
         answerCreator.lapClearPoint +
@@ -33,6 +31,7 @@ class AnswerCompleteReviewScreen extends ConsumerWidget {
     final int gainedExp = answerCreator.completeReviewPoint;
 
     // 効果音
+    final bool seEnabled = ref.watch(seEnabledProvider);
     if (seEnabled) {
       final AudioCache _cache = AudioCache(
         fixedPlayer: AudioPlayer(),

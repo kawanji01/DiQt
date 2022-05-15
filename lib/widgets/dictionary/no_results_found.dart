@@ -15,7 +15,7 @@ class NoResultsFound extends StatelessWidget {
   Widget build(BuildContext context) {
     // 項目の新規作成ページへ移動
     Future _moveToNewWord() async {
-      WordNewPage.push(context, dictionary, keyword);
+      WordNewPage.push(context, dictionary.id, keyword);
     }
 
     Widget wordRegistrationButton() {

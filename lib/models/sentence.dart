@@ -1,8 +1,9 @@
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 
 class Sentence {
   Sentence({
-    this.id,
+    required this.id,
     required this.dictionaryId,
     this.sentenceSourceId,
     required this.original,
@@ -10,12 +11,16 @@ class Sentence {
     required this.translation,
     required this.langNumberOfTranslation,
     this.explanation,
+    required this.acceptedSentenceRequestsCount,
+    required this.pendingSentenceRequestsCount,
+    required this.sentenceRequestsCount,
     required this.createdAt,
     required this.updatedAt,
     this.quiz,
+    this.dictionary,
   });
 
-  int? id;
+  int id;
   int dictionaryId;
   int? sentenceSourceId;
   String original;
@@ -23,9 +28,13 @@ class Sentence {
   String translation;
   int langNumberOfTranslation;
   String? explanation;
+  int acceptedSentenceRequestsCount;
+  int pendingSentenceRequestsCount;
+  int sentenceRequestsCount;
   DateTime createdAt;
   DateTime updatedAt;
   Quiz? quiz;
+  Dictionary? dictionary;
 
   Sentence.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -36,9 +45,16 @@ class Sentence {
         translation = json['translation'],
         langNumberOfTranslation = json['lang_number_of_translation'],
         explanation = json['explanation'],
+        acceptedSentenceRequestsCount =
+            json['accepted_sentence_requests_count'],
+        pendingSentenceRequestsCount = json['pending_sentence_requests_count'],
+        sentenceRequestsCount = json['sentence_requests_count'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
-        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']);
+        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
+        dictionary = json['dictionary'] == null
+            ? null
+            : Dictionary.fromJson(json['dictionary']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -48,8 +64,12 @@ class Sentence {
         'lang_number_of_original': langNumberOfOriginal,
         'translation': translation,
         'lang_number_of_translation': langNumberOfTranslation,
+        'accepted_sentence_requests_count': acceptedSentenceRequestsCount,
+        'pending_sentence_requests_count': pendingSentenceRequestsCount,
+        'sentence_requests_count': sentenceRequestsCount,
         'created_at': createdAt,
         'updated_at': updatedAt,
         'quiz': quiz,
+        'dictionary': dictionary,
       };
 }

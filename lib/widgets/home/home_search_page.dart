@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/pages/dictionary/dictionary.dart';
+import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/search_form.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,8 @@ class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
   }
 
   Future _goToDictionaryPage(Dictionary dictionary) async {
-    await DictionaryPage.push(context, dictionary);
+    ref.read(dictionaryProvider.notifier).state = dictionary;
+    await DictionaryShowPage.push(context);
   }
 
   @override

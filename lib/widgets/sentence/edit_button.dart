@@ -1,15 +1,19 @@
-import 'package:booqs_mobile/utils/booqs_on_web.dart';
+import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/pages/sentence/edit.dart';
+import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceEditButton extends StatelessWidget {
-  const SentenceEditButton({Key? key, required this.sentenceId})
+class SentenceEditButton extends ConsumerWidget {
+  const SentenceEditButton(
+      {Key? key, required this.sentence, required this.isShow})
       : super(key: key);
-  final int sentenceId;
+  final Sentence sentence;
+  final bool isShow;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     Widget _editButton() {
-      final String redirectPath = '/sentences/$sentenceId/edit';
       return Container(
         // 左寄せ
         alignment: Alignment.topLeft,
@@ -20,7 +24,7 @@ class SentenceEditButton extends StatelessWidget {
             textStyle: const TextStyle(fontSize: 14),
           ),
           onPressed: () {
-            BooQsOnWeb.open(context, redirectPath);
+            SentenceEditPage.push(context, sentence.id);
           },
           child: const Text(
             'この例文を改善する',
@@ -33,7 +37,8 @@ class SentenceEditButton extends StatelessWidget {
     }
 
     Widget _deatailButton() {
-      final String redirectPath = '/sentences/$sentenceId';
+      if (isShow) return Container();
+
       return Container(
         // 左寄せ
         alignment: Alignment.topRight,
@@ -44,7 +49,7 @@ class SentenceEditButton extends StatelessWidget {
             textStyle: const TextStyle(fontSize: 14),
           ),
           onPressed: () {
-            BooQsOnWeb.open(context, redirectPath);
+            SentenceShowPage.push(context, sentence.id);
           },
           child: const Text(
             '詳細',

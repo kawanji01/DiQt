@@ -1,25 +1,27 @@
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
-import 'package:booqs_mobile/data/remote/sentences.dart';
+import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
+import 'package:booqs_mobile/widgets/review/large_green_button.dart';
+import 'package:booqs_mobile/widgets/review/large_outline_button.dart';
 import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class SentenceReviewButton extends StatefulWidget {
-  const SentenceReviewButton({Key? key, required this.sentenceId})
-      : super(key: key);
-  final int sentenceId;
+class WordLazyReviewButton extends StatefulWidget {
+  const WordLazyReviewButton({Key? key, required this.word}) : super(key: key);
+  final Word word;
 
   @override
-  _SentenceReviewButtonState createState() => _SentenceReviewButtonState();
+  _WordLazyReviewButtonState createState() => _WordLazyReviewButtonState();
 }
 
-class _SentenceReviewButtonState extends State<SentenceReviewButton> {
-  int? _sentenceId;
+class _WordLazyReviewButtonState extends State<WordLazyReviewButton> {
+  Word? _word;
   Review? _review;
   int? _quizId;
   bool _initDone = false;
@@ -27,36 +29,38 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
   @override
   void initState() {
     super.initState();
+    _word = widget.word;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _sentenceId = widget.sentenceId;
     _loadReview();
   }
 
   // 初期化：リマインダーを設定するために必要な情報を取得して、setStateで再描画する。
   Future _loadReview() async {
-    Map? resMap = await RemoteSentences.review(context, _sentenceId!);
+    final Word word = widget.word;
+    final Map? resMap = await RemoteWords.review(context, word.id);
 
     if (resMap == null) return;
 
-    return setState(() {
-      _sentenceId;
-      _quizId = resMap['quiz_id'];
-      if (resMap['review'] != null) {
-        _review = Review.fromJson(resMap['review']);
-      }
-      _initDone = true;
-    });
+    if (mounted) {
+      setState(() {
+        _quizId = resMap['quiz_id'];
+        if (resMap['review'] != null) {
+          _review = Review.fromJson(resMap['review']);
+        }
+        _initDone = true;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     //// 復習を設定する。
     Future _createReview() async {
-      String? token = await LocalUserInfo.authToken();
+      final String? token = await LocalUserInfo.authToken();
       // ログインしていないユーザーはマイページにリダイレクト
       if (token == null) {
         const snackBar = SnackBar(content: Text('復習を設定するためには、ログインが必要です。'));
@@ -71,16 +75,15 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
 
       if (resMap == null) return;
 
-      Review newReview = Review.fromJson(resMap['review']);
+      final Review newReview = Review.fromJson(resMap['review']);
       await Toasts.reviewSetting(context, resMap['message']);
-
       setState(() {
         _review = newReview;
       });
     }
 
-    //// リマインダー設定ダイアログを表示する＆ダイアログから設定されたReviewを使ってsetStateで再描画する。 ////
-    Future _updateReview() async {
+    //// 復習設定の間隔変更や削除： リマインダー設定ダイアログを表示する＆ダイアログから設定されたreviewを使ってsetStateで再描画する。 ////
+    Future _editReview() async {
       final Review? newReview = await showDialog(
           context: context,
           builder: (context) {
@@ -99,37 +102,38 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
     }
 
     String _settingText(int number) {
-      String settingText = ReviewHelper.intervalSetting(number);
+      final String settingText = ReviewHelper.intervalSetting(number);
       return settingText;
     }
 
+    // ロード前の押せないボタン
     Widget _disabledReviewButton() {
       return InkWell(
         onTap: () {},
         child: Container(
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 11),
+          padding: const EdgeInsets.symmetric(vertical: 13),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.black54, width: 1),
+            border: Border.all(color: Colors.black54, width: 2),
           ),
           child: RichText(
             text: const TextSpan(
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   color: Colors.black54,
                   fontWeight: FontWeight.w600),
               children: [
                 WidgetSpan(
                   child: Icon(
                     Icons.access_alarm,
-                    size: 20,
+                    size: 22,
                     color: Colors.black54,
                   ),
                 ),
                 TextSpan(
-                  text: " 例文を覚える",
+                  text: " 覚える",
                 ),
               ],
             ),
@@ -141,77 +145,22 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
     // 復習設定ボタン
     Widget _reviewCreateButton() {
       return InkWell(
-        onTap: () {
-          _createReview();
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 11),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.green, width: 1),
-          ),
-          child: RichText(
-            text: const TextSpan(
-              style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.green,
-                  fontWeight: FontWeight.w600),
-              children: [
-                WidgetSpan(
-                  child: Icon(
-                    Icons.access_alarm,
-                    size: 20,
-                    color: Colors.green,
-                  ),
-                ),
-                TextSpan(
-                  text: " 例文を覚える",
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
+          onTap: () {
+            _createReview();
+          },
+          child: const ReviewLargeOutlineButton(label: '覚える'));
     }
 
     // 復習設定変更ボタン
     Widget _reviewUpdateButton(settingNumber) {
       final String settingText = _settingText(settingNumber);
+
       return InkWell(
         onTap: () {
-          _updateReview();
+          _editReview();
         },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 11),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.green, width: 1),
-            color: Colors.green,
-          ),
-          child: RichText(
-            text: TextSpan(
-              style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600),
-              children: [
-                const WidgetSpan(
-                  child: Icon(
-                    Icons.access_alarm,
-                    size: 20,
-                    color: Colors.white,
-                  ),
-                ),
-                TextSpan(
-                  text: " $settingText",
-                ),
-              ],
-            ),
-          ),
+        child: ReviewLargeGreenButton(
+          label: settingText,
         ),
       );
     }
@@ -221,13 +170,13 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
       if (_initDone == false || _quizId == null) {
         return _disabledReviewButton();
       }
+      int settingNumber = _review?.intervalSetting ?? 100;
 
-      final int settingNumber = _review?.intervalSetting ?? 100;
       // 復習設定ボタン
       if (settingNumber == 100) {
         return _reviewCreateButton();
       }
-      // 復習設定更新ボタン
+      // 復習設定変更ボタン
       return _reviewUpdateButton(settingNumber);
     }
 

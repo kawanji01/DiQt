@@ -15,6 +15,6 @@ class AnswerHistoryListQuiz extends StatelessWidget {
     if (quiz == null) return const Text('Quiz does not exist.');
 
     final header = AnswerHistoryQuizHeader(answerHistory: answerHistory);
-    return QuizContent(quiz: quiz, header: header);
+    return QuizContent(quiz: quiz, header: header, isShow: false);
   }
 }

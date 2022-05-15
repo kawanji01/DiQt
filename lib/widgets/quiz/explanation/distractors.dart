@@ -18,7 +18,7 @@ class QuizExplanationDistractors extends StatelessWidget {
     Widget _distractor(distractor) {
       Widget child = Text(distractor,
           style: const TextStyle(fontSize: 16, color: Colors.red));
-      if (quiz.langNumberOfAnswer! == languageCodeMap['en']) {
+      if (quiz.langNumberOfAnswer == languageCodeMap['en']) {
         child = TextWithLink(
           text: distractor,
           autoLinkEnabled: true,
@@ -42,9 +42,12 @@ class QuizExplanationDistractors extends StatelessWidget {
       );
     }
 
+    // 選択肢（distracorsWidget）を作成する
     final List<String> answerTextList = quiz.distractors!.split('\n');
     List<Widget> widgetList = [];
     answerTextList.asMap().forEach((int i, String value) {
+      // 空文字の改行は選択肢にしない
+      if (value == '') return;
       widgetList.add(
         Container(
             padding: const EdgeInsets.only(bottom: 8),

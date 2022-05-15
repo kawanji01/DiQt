@@ -34,8 +34,7 @@ class AnswerGoalAchievementScreen extends ConsumerWidget {
     final int gainedExp = answerCreator.goalAchievementPoint;
 
     // 効果音
-    final bool seEnabled = ref
-        .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
+    final bool seEnabled = ref.watch(seEnabledProvider);
     if (seEnabled) {
       final AudioCache _cache = AudioCache(
         fixedPlayer: AudioPlayer(),

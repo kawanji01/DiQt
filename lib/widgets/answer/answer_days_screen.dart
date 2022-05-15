@@ -21,14 +21,13 @@ class AnswerAnswerDaysScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final int counter = answerCreator.answerDaysCount ?? 0;
 
-    final bool seEnabled = ref
-        .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
     // 開始経験値（基準 + 問題集周回報酬）
     final int initialExp =
         answerCreator.startPoint + answerCreator.lapClearPoint;
     // 獲得経験値
     final int gainedExp = answerCreator.answerDaysPoint;
 
+    final bool seEnabled = ref.watch(seEnabledProvider);
     if (seEnabled) {
       // 効果音
       final AudioCache _cache = AudioCache(

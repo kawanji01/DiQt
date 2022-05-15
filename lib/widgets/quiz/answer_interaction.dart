@@ -18,7 +18,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
     final String? _correctAnswer = _quiz.correctAnswer;
     final String? _usersAnswer = notification.usersAnswer;
     // initialExpにProviderを使うと、サーバーのレスポンス速度によっては解答報酬獲得後の総合経験値が入ってしまう
-    final int initialExp = notification.user.amountOfExp;
+    final int initialExp = notification.user!.amountOfExp;
 
     Widget _correctAnswerWidget() {
       return Container(
@@ -88,7 +88,9 @@ class QuizAnswerInteraction extends ConsumerWidget {
               _incorrectFeedback(),
               _expIndicator(),
               const QuizAnswersCount(),
-              const QuizExplanationOpenButton(),
+              QuizExplanationOpenButton(
+                answerNotification: notification,
+              ),
               const SizedBox(height: 8),
             ]),
       ),
