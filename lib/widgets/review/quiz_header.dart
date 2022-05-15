@@ -21,7 +21,7 @@ class ReviewQuizHeader extends StatelessWidget {
         child: Text(
           '${review.scheduledDate}に復習予定',
           style: const TextStyle(
-              fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black54),
+              fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black87),
         ),
       );
     }
