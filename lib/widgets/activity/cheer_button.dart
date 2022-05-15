@@ -5,6 +5,7 @@ import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/button/small_outline_green_button.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ActivityCheerButton extends StatefulWidget {
   const ActivityCheerButton({Key? key, required this.activity, this.cheer})
@@ -53,6 +54,7 @@ class _ActivityCheerButtonState extends State<ActivityCheerButton> {
       }
       return InkWell(
         onTap: () {
+          HapticFeedback.mediumImpact();
           setState(() {
             _tapped = true;
           });
