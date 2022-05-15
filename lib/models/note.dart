@@ -1,27 +1,27 @@
 class Note {
   Note({
-    this.id = 0,
-    this.userId = 0,
-    this.quizId = 0,
-    this.content = '',
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.userId,
+    required this.quizId,
+    required this.content,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   int id;
   int userId;
   int quizId;
   String content;
-  String? createdAt;
-  String? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   Note.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         userId = json['user_id'],
         quizId = json['quiz_id'],
         content = json['content'],
-        createdAt = json['created_at'],
-        updatedAt = json['updated_at'];
+        createdAt = DateTime.parse(json['created_at']),
+        updatedAt = DateTime.parse(json['updated_at']);
 
   Map<String, dynamic> toJson() => {
         'id': id,

@@ -48,7 +48,7 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
         onTap: () {
           _selectedAnswer = answerText;
           final bool correct = _selectedAnswer == _correctAnswer;
-          AnswerNotification(answerText, correct, _quiz, user!, true)
+          AnswerNotification(answerText, correct, _quiz, user, true)
               .dispatch(context);
           setState(() {
             _selectedAnswer;
