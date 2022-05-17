@@ -29,11 +29,6 @@ class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
     super.dispose();
   }
 
-  Future _goToDictionaryPage(Dictionary dictionary) async {
-    ref.read(dictionaryProvider.notifier).state = dictionary;
-    await DictionaryShowPage.push(context);
-  }
-
   @override
   Widget build(BuildContext context) {
     final future = ref.watch(asyncDictionariesProvider);
@@ -48,7 +43,7 @@ class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
           children: [
             IconButton(
               icon: const Icon(Icons.arrow_forward_ios_rounded),
-              onPressed: () => _goToDictionaryPage(dictionary),
+              onPressed: () => DictionaryShowPage.push(context, dictionary.id),
             ),
           ],
         ),

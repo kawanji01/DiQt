@@ -127,4 +127,15 @@ class RemoteWords {
     final Map resMap = json.decode(res.body);
     return resMap;
   }
+
+  static Future<Map?> autocomplete(int dictionaryId, String query) async {
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/autocomplete');
+    final Response res = await post(url,
+        body: {'dictionary_id': '$dictionaryId', 'query': query});
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
 }

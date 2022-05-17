@@ -3,6 +3,7 @@ import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
+import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
 import 'package:booqs_mobile/pages/drill/show.dart';
 import 'package:booqs_mobile/pages/drill/solved.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
@@ -44,6 +45,7 @@ const signUpPage = '/session/sign_up';
 const loginPage = '/session/login';
 // 辞書
 const dictionaryShowPage = '/dictionary/show';
+const dictionaryWordSearchResultsPage = '/dictionary/word_search_results';
 // 単語
 const wordShowPage = '/word/show';
 const wordNewPage = '/word/new';
@@ -94,6 +96,8 @@ final routes = {
   signUpPage: (context) => const SignUpPage(),
   loginPage: (context) => const LoginPage(),
   dictionaryShowPage: (context) => const DictionaryShowPage(),
+  dictionaryWordSearchResultsPage: (context) =>
+      const DictionaryWordSearchResultsPage(),
   wordShowPage: (context) => const WordShowPage(),
   wordNewPage: (context) => const WordNewPage(),
   wordEditPage: (context) => const WordEditPage(),

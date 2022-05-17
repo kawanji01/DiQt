@@ -25,3 +25,16 @@ final asyncDictionariesProvider =
 
   return dictionaries;
 });
+
+// 非同期で引数の辞書を取得する
+// ref: https://riverpod.dev/ja/docs/concepts/modifiers/family
+// 【重要】 オブジェクトが一定ではない場合は autoDispose 修飾子との併用が望ましい
+// family を使って検索フィールドの入力値をプロバイダに渡す場合、その入力値は頻繁に変わる上に同じ値が再利用されることはありません。
+// おまけにプロバイダは参照されなくなっても破棄されないのがデフォルトの動作であるため、この場合はメモリリークにつながります。
+final asyncDictionaryFamily = FutureProvider.autoDispose
+    .family<Dictionary?, int>((ref, dictionaryId) async {
+  final Map? resMap = await RemoteDictionaries.show2(dictionaryId);
+  if (resMap == null) return null;
+  final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
+  return dictionary;
+});

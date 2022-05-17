@@ -3,7 +3,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/home.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/dictionary/icon.dart';
+import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/form/form.dart';
@@ -56,7 +56,8 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
     }
     final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
     _entryController.text = keyword;
-    _meaningController.text = resMap['translation'];
+    _meaningController.text =
+        resMap['translation'] == null ? '' : resMap['translation'];
     setState(() {
       _dictionary = dictionary;
       _isLoading;
@@ -138,7 +139,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      DictionaryIcon(dictionary: _dictionary!),
+                      DictionaryName(dictionary: _dictionary!),
                       WordForm(
                         entryController: _entryController,
                         meaningController: _meaningController,

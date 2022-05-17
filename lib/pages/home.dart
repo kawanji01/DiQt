@@ -46,8 +46,6 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // final future = ref.watch(asyncCurrentUserProvider);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('辞書'),

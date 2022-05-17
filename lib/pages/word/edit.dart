@@ -3,7 +3,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/dictionary/icon.dart';
+import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/form/form.dart';
@@ -142,7 +142,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      DictionaryIcon(dictionary: _dictionary!),
+                      DictionaryName(dictionary: _dictionary!),
                       WordForm(
                         entryController: _entryController,
                         meaningController: _meaningController,

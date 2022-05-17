@@ -3,7 +3,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/widgets/dictionary/icon.dart';
+import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
 import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/word/edit_button.dart';
@@ -38,7 +38,7 @@ class WordShowScreen extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DictionaryIcon(dictionary: dictionary),
+          DictionaryName(dictionary: dictionary),
           WordTagButtons(tags: word.tags),
           const SizedBox(height: 10),
           WordEntry(word: word),
