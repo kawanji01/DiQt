@@ -16,8 +16,7 @@ class DictionaryNewWordButton extends StatelessWidget {
         onTap: () {
           WordNewPage.push(context, dictionaryId, '');
         },
-        child:
-            const SmallOutlineGrayButton(label: '項目を辞書に追加する', icon: Icons.add),
+        child: const SmallOutlineGrayButton(label: '項目を追加する', icon: Icons.add),
       );
     }
 

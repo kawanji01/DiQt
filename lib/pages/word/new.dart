@@ -56,8 +56,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
     }
     final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
     _entryController.text = keyword;
-    _meaningController.text =
-        resMap['translation'] == null ? '' : resMap['translation'];
+    _meaningController.text = resMap['translation'] ?? '';
     setState(() {
       _dictionary = dictionary;
       _isLoading;

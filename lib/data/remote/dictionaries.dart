@@ -64,5 +64,28 @@ class RemoteDictionaries {
   }
 
   // 例文の検索
-  static Future<Map?> sentenceSearch(int dictionaryId, String keyword) async {}
+  static Future<Map?> sentenceSearch(
+      int dictionaryId, String keyword, int pageKey, int pageSize) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    final String encodedData = json.encode({
+      'keyword': keyword,
+      'page': pageKey,
+      'size': pageSize,
+      'token': '$token'
+    });
+    final Map<String, String> headers = {'content-type': 'application/json'};
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$dictionaryId/sentence_search');
+    final Response res = await post(
+      url,
+      headers: headers,
+      body: encodedData,
+    );
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
 }

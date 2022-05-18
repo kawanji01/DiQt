@@ -19,8 +19,9 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
   final _wordSearchController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
+  void dispose() {
+    _wordSearchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -44,8 +45,7 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
             textFieldConfiguration: TextFieldConfiguration(
                 controller: _wordSearchController,
                 decoration: InputDecoration(
-                  labelText: 'キーワード',
-                  hintText: '調べたい単語・熟語を入力',
+                  labelText: '単語や熟語を入力してください',
                   // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
                   filled: true,
                   fillColor: Colors.grey.shade200,
@@ -70,7 +70,6 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
                 onTap: () {
                   _wordSearchController.text = suggestion;
                   _search();
-                  //_goToWordSearchPage(suggestion);
                 },
               );
             },
