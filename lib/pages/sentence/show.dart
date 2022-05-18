@@ -5,7 +5,7 @@ import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
-import 'package:booqs_mobile/widgets/sentence/item_with_review_button.dart';
+import 'package:booqs_mobile/widgets/sentence/list_item.dart';
 import 'package:booqs_mobile/widgets/sentence/sentence_requests_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -61,7 +61,7 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
                   const SizedBox(height: 24),
                   DictionaryName(dictionary: dictionary),
                   const SizedBox(height: 24),
-                  SentenceItemWithReviewButton(
+                  SentenceListItem(
                     sentence: sentence,
                     isShow: true,
                   ),

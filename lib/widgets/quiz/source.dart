@@ -2,7 +2,7 @@ import 'package:booqs_mobile/data/remote/quizzes.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/widgets/sentence/item_with_review_button.dart';
+import 'package:booqs_mobile/widgets/sentence/list_item.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/tile.dart';
@@ -73,7 +73,7 @@ class _QuizSourceState extends State<QuizSource> {
       return Column(children: [
         const SharedItemLabel(text: '例文'),
         const SizedBox(height: 16),
-        SentenceItemWithReviewButton(
+        SentenceListItem(
           sentence: _sentence!,
           isShow: false,
         ),
