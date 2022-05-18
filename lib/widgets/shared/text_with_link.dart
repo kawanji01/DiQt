@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
 import 'package:booqs_mobile/pages/word/search_results.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +50,8 @@ class TextWithLink extends StatelessWidget {
     }
 
     Future _goToWordSearchPage(keyword) async {
-      await WordSearchResultsPage.pushModal(context, keyword);
+      //await WordSearchResultsPage.pushModal(context, keyword);
+      await DictionaryWordSearchResultsPage.push(context, 1, keyword);
     }
 
     // 自動でリンクをつけるならtrue, Wiki記法でのみリンクをつける場合はfalse

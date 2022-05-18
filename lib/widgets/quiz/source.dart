@@ -5,6 +5,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/sentence/list_item.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/widgets/word/list_item.dart';
 import 'package:booqs_mobile/widgets/word/tile.dart';
 import 'package:flutter/material.dart';
 
@@ -63,7 +64,7 @@ class _QuizSourceState extends State<QuizSource> {
       return Column(children: [
         const SharedItemLabel(text: '辞書'),
         const SizedBox(height: 16),
-        WordTile(word: _word!),
+        WordListItem(word: _word!),
         const SizedBox(height: 40),
       ]);
     }

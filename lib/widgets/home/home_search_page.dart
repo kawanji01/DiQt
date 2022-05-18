@@ -24,7 +24,6 @@ class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
   @override
   void dispose() {
     // Clean up the focus node when the Form is disposed. きちんと破棄しよう。
-    //searchFocusNode.dispose();
     searchController.dispose();
     super.dispose();
   }
