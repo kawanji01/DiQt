@@ -3,7 +3,6 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/widgets/dictionary/no_results_found.dart';
 import 'package:booqs_mobile/widgets/word/list_item.dart';
-import 'package:booqs_mobile/widgets/word/tile.dart';
 import 'package:flutter/material.dart';
 
 class SearchResults extends StatelessWidget {

@@ -35,10 +35,8 @@ class _WeaknessSolvedQuizListViewState
 
   // ページに合わせてアイテムを読み込む
   Future<void> _fetchPage(int pageKey) async {
-    print('nextPageKey: $_nextPagekey');
     if (_isLoading) return;
     if (_isReached == false) return;
-    print('_fetchPage isLoading: false');
     _isLoading = true;
 
     final String order = ref.watch(weaknessOrderProvider);
