@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class RemoteWords {
@@ -115,13 +113,12 @@ class RemoteWords {
     return resMap;
   }
 
-  // 復習の取得
-  static Future<Map?> review(BuildContext context, int wordId) async {
-    final String? token = await LocalUserInfo.authToken();
-
+  // 自動補完
+  static Future<Map?> autocomplete(int dictionaryId, String query) async {
     final Uri url = Uri.parse(
-        '${DiQtURL.root(context)}/api/v1/mobile/words/$wordId/review');
-    final Response res = await post(url, body: {'token': '$token'});
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/autocomplete');
+    final Response res = await post(url,
+        body: {'dictionary_id': '$dictionaryId', 'query': query});
     if (res.statusCode != 200) return null;
 
     final Map resMap = json.decode(res.body);

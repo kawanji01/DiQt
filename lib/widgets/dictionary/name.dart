@@ -1,19 +1,17 @@
-import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DictionaryIcon extends ConsumerWidget {
-  const DictionaryIcon({Key? key, required this.dictionary}) : super(key: key);
+class DictionaryName extends ConsumerWidget {
+  const DictionaryName({Key? key, required this.dictionary}) : super(key: key);
   final Dictionary dictionary;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return TextButton.icon(
       onPressed: () {
-        ref.read(dictionaryProvider.notifier).state = dictionary;
-        DictionaryShowPage.push(context);
+        DictionaryShowPage.push(context, dictionary.id);
       },
       icon: const Icon(
         Icons.book,

@@ -1,30 +1,36 @@
-import 'package:booqs_mobile/data/provider/weakness.dart';
-import 'package:booqs_mobile/data/remote/weaknesses.dart';
-import 'package:booqs_mobile/models/weakness.dart';
+import 'package:booqs_mobile/data/remote/dictionaries.dart';
+import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/widgets/dictionary/no_more_sentences.dart';
+import 'package:booqs_mobile/widgets/dictionary/no_sentences_found.dart';
+import 'package:booqs_mobile/widgets/sentence/list_item.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
-import 'package:booqs_mobile/widgets/weakness/list_quiz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class WeaknessSolvedQuizListView extends ConsumerStatefulWidget {
-  const WeaknessSolvedQuizListView({Key? key}) : super(key: key);
+class DictionarySentenceListView extends StatefulWidget {
+  const DictionarySentenceListView(
+      {Key? key, required this.dictionaryId, required this.keyword})
+      : super(key: key);
+
+  final int dictionaryId;
+  final String keyword;
 
   @override
-  _WeaknessSolvedQuizListViewState createState() =>
-      _WeaknessSolvedQuizListViewState();
+  State<DictionarySentenceListView> createState() =>
+      _DictionarySentenceListViewState();
 }
 
-class _WeaknessSolvedQuizListViewState
-    extends ConsumerState<WeaknessSolvedQuizListView> {
+class _DictionarySentenceListViewState
+    extends State<DictionarySentenceListView> {
   bool _isLoading = false;
   bool _isReached = true;
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const _pageSize = 10;
-  final PagingController<int, Weakness> _pagingController = PagingController(
-      firstPageKey: 0, invisibleItemsThreshold: 100); // pageのパラメーターの初期値
+  // pageのパラメーターの初期値
+  final PagingController<int, Sentence> _pagingController =
+      PagingController(firstPageKey: 0);
   @override
   void initState() {
     super.initState();
@@ -39,9 +45,8 @@ class _WeaknessSolvedQuizListViewState
     if (_isReached == false) return;
     _isLoading = true;
 
-    final String order = ref.watch(weaknessOrderProvider);
-    final Map? resMap =
-        await RemoteWeaknesses.solved(pageKey, _pageSize, order);
+    final Map? resMap = await RemoteDictionaries.sentenceSearch(
+        widget.dictionaryId, widget.keyword, pageKey, _pageSize);
     if (resMap == null) {
       if (mounted) {
         setState(() {
@@ -51,16 +56,16 @@ class _WeaknessSolvedQuizListViewState
       }
       return;
     }
-    final List<Weakness> weaknesses = [];
-    resMap['weaknesses'].forEach((e) => weaknesses.add(Weakness.fromJson(e)));
-    final isLastPage = weaknesses.length < _pageSize;
+    final List<Sentence> sentences = [];
+    resMap['sentences'].forEach((e) => sentences.add(Sentence.fromJson(e)));
+    final isLastPage = sentences.length < _pageSize;
     if (isLastPage) {
-      _pagingController.appendLastPage(weaknesses);
+      _pagingController.appendLastPage(sentences);
     } else {
-      _nextPagekey = pageKey + weaknesses.length;
-      //_pagingController.appendLastPage(notices);
+      _nextPagekey = pageKey + sentences.length;
+      // _pagingController.appendLastPage(notices);
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
-      _pagingController.appendPage(weaknesses, _nextPagekey);
+      _pagingController.appendPage(sentences, _nextPagekey);
     }
     if (mounted) {
       setState(() {
@@ -78,6 +83,8 @@ class _WeaknessSolvedQuizListViewState
 
   @override
   Widget build(BuildContext context) {
+    final int _dictionaryId = widget.dictionaryId;
+    final String _keyword = widget.keyword;
     //
     Widget _loader() {
       // ref: https://qiita.com/kikuchy/items/07d10394a4f7aa2a3836
@@ -87,11 +94,10 @@ class _WeaknessSolvedQuizListViewState
           // [visibleFraction] 0で非表示、１で完全表示。0.1は上部が少し表示されている状態 ref: https://pub.dev/documentation/visibility_detector/latest/visibility_detector/VisibilityInfo/visibleFraction.html
           if (info.visibleFraction > 0.1) {
             if (_isLoading) return print('visibleFraction _isLoading: true');
-            print('visibleFraction _isLoading: false');
+
             setState(() {
               _isReached = true;
             });
-
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
             _pagingController.notifyPageRequestListeners(_nextPagekey);
           }
@@ -103,18 +109,36 @@ class _WeaknessSolvedQuizListViewState
       );
     }
 
-    return PagedListView<int, Weakness>(
+    // 区切り線
+    Widget _divider() {
+      return Container(
+        padding: const EdgeInsets.only(bottom: 40),
+        child: const Divider(
+          thickness: 1,
+        ),
+      );
+    }
+
+    return PagedListView.separated(
       pagingController: _pagingController,
+      separatorBuilder: (context, index) => _divider(),
+      padding: const EdgeInsets.only(top: 40),
       // Vertical viewport was given unbounded heightの解決 ref: https://qiita.com/code-cutlass/items/3a8b759056db1e8f7639
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      builderDelegate: PagedChildBuilderDelegate<Weakness>(
-        itemBuilder: (context, item, index) => WeaknessListQuiz(
-          weakness: item,
-        ),
-        // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
-        newPageProgressIndicatorBuilder: (_) => _loader(),
-      ),
+      builderDelegate: PagedChildBuilderDelegate<Sentence>(
+          itemBuilder: (context, item, index) => SentenceListItem(
+                sentence: item,
+                isShow: false,
+              ),
+          // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
+          newPageProgressIndicatorBuilder: (_) => _loader(),
+          // 検索結果なし
+          noItemsFoundIndicatorBuilder: (_) => DictionaryNoSentencesFound(
+              dictionaryId: _dictionaryId, keyword: _keyword),
+          // すべての検索結果の読み込み完了
+          noMoreItemsIndicatorBuilder: (_) =>
+              DictionaryNoMoreSentences(dictionaryId: _dictionaryId)),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
-import 'package:booqs_mobile/widgets/button/small_green_button.dart';
+import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryQuizRequestsButton extends StatelessWidget {
@@ -18,7 +18,7 @@ class DictionaryQuizRequestsButton extends StatelessWidget {
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
         },
-        child: SmallGreenButton(label: btnText, icon: Icons.history),
+        child: SmallOutlineGrayButton(label: btnText, icon: Icons.history),
       );
     }
 
@@ -30,6 +30,9 @@ class DictionaryQuizRequestsButton extends StatelessWidget {
       final String redirectPath =
           'dictionaries/${dictionary.publicUid}/pending_quiz_requests';
       return TextButton(
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.only(left: 0),
+          ),
           onPressed: () {
             BooQsOnWeb.open(context, redirectPath);
           },

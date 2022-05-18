@@ -10,8 +10,8 @@ import 'package:booqs_mobile/widgets/word/sentence.dart';
 import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
 import 'package:flutter/material.dart';
 
-class WordTile extends StatelessWidget {
-  const WordTile({Key? key, required this.word}) : super(key: key);
+class WordListItem extends StatelessWidget {
+  const WordListItem({Key? key, required this.word}) : super(key: key);
   final Word word;
 
   @override
@@ -23,16 +23,11 @@ class WordTile extends StatelessWidget {
       return ReviewLargeSettingButton(quizId: quiz.id, review: review);
     }
 
-    Widget _title() {
+    Widget _content() {
       return Column(children: <Widget>[
         WordTagButtons(tags: word.tags),
         const SizedBox(height: 10),
         WordEntry(word: word),
-      ]);
-    }
-
-    Widget _subtitle() {
-      return Column(children: <Widget>[
         const SizedBox(
           height: 10,
         ),
@@ -50,12 +45,7 @@ class WordTile extends StatelessWidget {
       ]);
     }
 
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(vertical: 24),
-      title: _title(),
-      subtitle: _subtitle(),
-      // onTap: () => _moveToWordPage(word),
-      onTap: () => print('click'),
-    );
+    return Container(
+        padding: const EdgeInsets.symmetric(vertical: 24), child: _content());
   }
 }

@@ -24,14 +24,8 @@ class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
   @override
   void dispose() {
     // Clean up the focus node when the Form is disposed. きちんと破棄しよう。
-    //searchFocusNode.dispose();
     searchController.dispose();
     super.dispose();
-  }
-
-  Future _goToDictionaryPage(Dictionary dictionary) async {
-    ref.read(dictionaryProvider.notifier).state = dictionary;
-    await DictionaryShowPage.push(context);
   }
 
   @override
@@ -48,7 +42,7 @@ class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
           children: [
             IconButton(
               icon: const Icon(Icons.arrow_forward_ios_rounded),
-              onPressed: () => _goToDictionaryPage(dictionary),
+              onPressed: () => DictionaryShowPage.push(context, dictionary.id),
             ),
           ],
         ),

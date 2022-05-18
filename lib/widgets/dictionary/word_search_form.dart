@@ -1,30 +1,40 @@
-import 'package:booqs_mobile/data/provider/dictionary.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
 import 'package:booqs_mobile/utils/word_typeahead.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-class WordSearchForm extends ConsumerWidget {
-  const WordSearchForm({Key? key, required this.searchController})
+class DictionaryWordSearchForm extends StatefulWidget {
+  const DictionaryWordSearchForm({Key? key, required this.dictionary})
       : super(key: key);
-  final TextEditingController searchController;
+  final Dictionary dictionary;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final _formKey = GlobalKey<FormState>();
-    final int _dictionaryId = ref.watch(dictionaryIdProvider);
+  State<DictionaryWordSearchForm> createState() =>
+      _DictionaryWordSearchFormState();
+}
 
-    Future _moveToSearchResults(keyword) async {
-      await DictionaryWordSearchResultsPage.push(
-          context, _dictionaryId, keyword);
-    }
+class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
+  final _formKey = GlobalKey<FormState>();
+  final _wordSearchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _wordSearchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Dictionary _dictionary = widget.dictionary;
+    final int _dictionaryId = _dictionary.id;
 
     void _search() {
       if (!_formKey.currentState!.validate()) {
         return;
       }
-      _moveToSearchResults(searchController.text);
+      final String keyword = _wordSearchController.text;
+      DictionaryWordSearchResultsPage.push(context, _dictionaryId, keyword);
     }
 
     return Form(
@@ -33,9 +43,9 @@ class WordSearchForm extends ConsumerWidget {
         children: [
           TypeAheadFormField(
             textFieldConfiguration: TextFieldConfiguration(
-                controller: searchController,
+                controller: _wordSearchController,
                 decoration: InputDecoration(
-                  labelText: '単語・熟語を入力してください',
+                  labelText: '単語や熟語を入力してください',
                   // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
                   filled: true,
                   fillColor: Colors.grey.shade200,
@@ -46,7 +56,7 @@ class WordSearchForm extends ConsumerWidget {
                   suffixIcon: IconButton(
                     icon: const Icon(Icons.clear),
                     onPressed: () {
-                      searchController.clear();
+                      _wordSearchController.clear();
                     },
                   ),
                 )),
@@ -58,8 +68,8 @@ class WordSearchForm extends ConsumerWidget {
               return ListTile(
                 title: Text(suggestion),
                 onTap: () {
-                  searchController.text = suggestion;
-                  _moveToSearchResults(suggestion);
+                  _wordSearchController.text = suggestion;
+                  _search();
                 },
               );
             },
@@ -67,11 +77,11 @@ class WordSearchForm extends ConsumerWidget {
               return suggestionsBox;
             },
             onSuggestionSelected: (suggestion) {
-              searchController.text = "$suggestion";
+              _wordSearchController.text = "$suggestion";
             },
             validator: (value) {
               if (value!.isEmpty) {
-                return 'キーワードを入力してください。';
+                return '入力してください。';
               }
             },
           ),

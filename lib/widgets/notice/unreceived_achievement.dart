@@ -4,6 +4,8 @@ import 'package:booqs_mobile/data/remote/achievement_maps.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/achievement_map.dart';
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/widgets/answer/share_button.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/gained_exp_indicator.dart';
 import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
@@ -123,6 +125,18 @@ class _NoticeUnreceivedAchievementState
       );
     }
 
+    Widget _shareButton() {
+      final User? user = ref.watch(currentUserProvider);
+      if (user == null) return Container();
+      if (_achievement == null) return Container();
+
+      const String text = '実績メダルを獲得しました！！';
+      final String url =
+          '${DiQtURL.root(context)}/users/${user.publicUid}?achievement=${_achievement?.id}';
+
+      return AnswerShareButton(text: text, url: url);
+    }
+
     return SizedBox(
       height: 500,
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
@@ -135,6 +149,7 @@ class _NoticeUnreceivedAchievementState
                 _medalImage(),
                 const SizedBox(height: 16),
                 _explanation(),
+                _shareButton()
               ],
             ),
           ),

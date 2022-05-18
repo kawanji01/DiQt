@@ -14,18 +14,9 @@ class UserStudyRecords extends ConsumerWidget {
     const textStyle = TextStyle(
         fontSize: 28, color: Colors.orange, fontWeight: FontWeight.bold);
 
-    Widget _answerDays() {
-      final int answerDays = user.answerDaysCount;
-      if (answerDays == 0) return Container();
-      return Text(
-        '$answerDays日解答中！！',
-        style: textStyle,
-      );
-    }
-
     Widget _continuousAnswerDays() {
       final int continuousAnswers = user.continuousAnswerDaysCount;
-      if (continuousAnswers == 0) return Container();
+      if (continuousAnswers < 2) return Container();
 
       return Text(
         '$continuousAnswers日連続解答中！！',
@@ -35,7 +26,7 @@ class UserStudyRecords extends ConsumerWidget {
 
     Widget _continuousGoalAchievement() {
       final int continuousGoalAchievement = user.continuousGoalAchievementCount;
-      if (continuousGoalAchievement == 0) return Container();
+      if (continuousGoalAchievement < 2) return Container();
       return Text(
         '$continuousGoalAchievement日連続目標達成中！！',
         style: textStyle,
@@ -44,7 +35,7 @@ class UserStudyRecords extends ConsumerWidget {
 
     Widget _continuousCompleteReview() {
       final int continuousCompleteReview = user.continuousCompleteReviewCount;
-      if (continuousCompleteReview == 0) return Container();
+      if (continuousCompleteReview < 2) return Container();
       return Text(
         '$continuousCompleteReview日連続復習達成中！！',
         style: textStyle,
