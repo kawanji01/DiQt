@@ -2,14 +2,15 @@ import 'package:booqs_mobile/consts/level.dart';
 import 'package:eval_ex/built_ins.dart';
 import 'dart:math';
 
-// 経験値とレベル周りの計算。
-// Web版BooQsのJSで書いた同名の処理をそのままDartで書き直したもの。
+// 経験値とレベル周りの計算。ref: https://qiita.com/yuji_yasuhara/items/83a67a784d4d6152a2de
+// Web版DiQtのJSやRubyで書いた同名の処理をそのままDartで書き直したもの。
 
 class LevelCalculator {
   // 引数の経験値に対応するレベルの算出。
   static double levelForExp(int exp) {
     const double i = expInitialValue;
     const double m = expMagnification;
+    // # dartでは1.1を底数として利用できないので、底の変換公式を使う。http://www.geisya.or.jp/~mwm48961/kou2/log2.html
     final double log = log10(1 - (exp * (1 - m) / i)) / log10(m);
     return log + 1;
   }
