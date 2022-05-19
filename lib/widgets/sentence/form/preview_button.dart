@@ -1,8 +1,8 @@
-import 'package:booqs_mobile/widgets/sentence/preview_screen.dart';
+import 'package:booqs_mobile/widgets/sentence/form/preview_screen.dart';
 import 'package:flutter/material.dart';
 
-class SentencePreviewButton extends StatelessWidget {
-  const SentencePreviewButton(
+class SentenceFormPreviewButton extends StatelessWidget {
+  const SentenceFormPreviewButton(
       {Key? key,
       required this.originalController,
       required this.translationController,
@@ -32,7 +32,7 @@ class SentencePreviewButton extends StatelessWidget {
                   topRight: Radius.circular(15.0)),
             ),
             // showModalBottomSheetで表示される中身
-            builder: (context) => SentencePreviewScreen(
+            builder: (context) => SentenceFormPreviewScreen(
                 original: originalController.text,
                 translation: translationController.text,
                 explanation: explanationController.text));

@@ -6,6 +6,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/widgets/word/form/destroy_button.dart';
 import 'package:booqs_mobile/widgets/word/form/form.dart';
 import 'package:booqs_mobile/widgets/word/form/sentence_setting.dart';
 import 'package:flutter/material.dart';
@@ -154,7 +155,9 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                           dictionary: _dictionary!),
                       const SizedBox(height: 40),
                       _submitButton(),
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 64),
+                      WordFormDestroyButton(word: _word!),
+                      const SizedBox(height: 160),
                     ]))),
       );
     }

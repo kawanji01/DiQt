@@ -4,7 +4,8 @@ import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
-import 'package:booqs_mobile/widgets/sentence/form.dart';
+import 'package:booqs_mobile/widgets/sentence/form/form.dart';
+import 'package:booqs_mobile/widgets/sentence/form/destroy_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -139,7 +140,9 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
                           explanationController: _explanationController),
                       const SizedBox(height: 40),
                       _submitButton(),
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 64),
+                      SentenceFormDestroyButton(sentence: sentence),
+                      const SizedBox(height: 160),
                     ]))),
       );
     }

@@ -30,7 +30,7 @@ class WordWordRequestsButton extends StatelessWidget {
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           primary: Colors.green,
-          textStyle: const TextStyle(fontSize: 10),
+          textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {
           BooQsOnWeb.open(context, redirectPath);

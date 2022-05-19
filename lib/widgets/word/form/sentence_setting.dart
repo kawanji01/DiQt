@@ -45,7 +45,6 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
     if (resMap == null) return Container();
 
     final Sentence sentence = Sentence.fromJson(resMap['sentence']);
-    if (sentence.id == null) return;
 
     return setState(() {
       _sentence = sentence;

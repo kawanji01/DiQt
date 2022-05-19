@@ -93,12 +93,27 @@ class _NoticeUnreceivedAchievementState
       final String praiseText = _achievement!.praiseText ?? '';
 
       return Container(
-        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 120),
+        padding: const EdgeInsets.only(left: 16, right: 16),
         child: Text(
-          praiseText,
+          praiseText.trim(),
           style: const TextStyle(
               fontSize: 16, color: Colors.black87, fontWeight: FontWeight.bold),
         ),
+      );
+    }
+
+    Widget _shareButton() {
+      final User? user = ref.watch(currentUserProvider);
+      if (user == null) return Container();
+      if (_achievement == null) return Container();
+
+      const String text = '実績メダルを獲得しました！！';
+      final String url =
+          '${DiQtURL.root(context)}/users/${user.publicUid}?achievement=${_achievement?.id}';
+
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: AnswerShareButton(text: text, url: url),
       );
     }
 
@@ -125,18 +140,6 @@ class _NoticeUnreceivedAchievementState
       );
     }
 
-    Widget _shareButton() {
-      final User? user = ref.watch(currentUserProvider);
-      if (user == null) return Container();
-      if (_achievement == null) return Container();
-
-      const String text = '実績メダルを獲得しました！！';
-      final String url =
-          '${DiQtURL.root(context)}/users/${user.publicUid}?achievement=${_achievement?.id}';
-
-      return AnswerShareButton(text: text, url: url);
-    }
-
     return SizedBox(
       height: 500,
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
@@ -149,7 +152,9 @@ class _NoticeUnreceivedAchievementState
                 _medalImage(),
                 const SizedBox(height: 16),
                 _explanation(),
-                _shareButton()
+                const SizedBox(height: 24),
+                _shareButton(),
+                const SizedBox(height: 120),
               ],
             ),
           ),

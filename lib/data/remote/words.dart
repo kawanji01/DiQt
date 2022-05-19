@@ -5,11 +5,11 @@ import 'package:http/http.dart';
 
 class RemoteWords {
   // 取得
-  static Future<Map?> show(int id) async {
+  static Future<Map?> show(int wordId) async {
     final String? token = await LocalUserInfo.authToken();
     final Map<String, String> headers = {'content-type': 'application/json'};
     final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$id?token=$token');
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId?token=$token');
     final Response res = await get(
       url,
       headers: headers,
@@ -89,6 +89,23 @@ class RemoteWords {
       headers: headers,
       body: encodedData,
     );
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // 削除
+  static Future<Map?> destroy(int wordId) async {
+    final String? token = await LocalUserInfo.authToken();
+    final Map<String, String> headers = {'content-type': 'application/json'};
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId?token=$token');
+    final Response res = await delete(
+      url,
+      headers: headers,
+    );
+
     if (res.statusCode != 200) return null;
 
     final Map? resMap = json.decode(res.body);
