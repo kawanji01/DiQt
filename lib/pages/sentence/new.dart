@@ -4,7 +4,7 @@ import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
-import 'package:booqs_mobile/widgets/sentence/form.dart';
+import 'package:booqs_mobile/widgets/sentence/form/form.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
