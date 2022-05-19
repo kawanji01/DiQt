@@ -15,7 +15,7 @@ class UserWithdrawalButton extends StatelessWidget {
     // 退会リクエスト
     Future _withdrawal() async {
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteUsers.withdrawal(context);
+      final Map? resMap = await RemoteUsers.withdrawal();
       if (resMap == null) {
         EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('エラーが発生しました。'));
