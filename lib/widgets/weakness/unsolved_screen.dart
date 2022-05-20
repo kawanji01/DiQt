@@ -1,6 +1,8 @@
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/provider/weakness.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/widgets/shared/premium_recommendation.dart';
 import 'package:booqs_mobile/widgets/weakness/introduction.dart';
 import 'package:booqs_mobile/widgets/weakness/order_select_form.dart';
 import 'package:booqs_mobile/widgets/weakness/status_tabs.dart';
@@ -30,8 +32,13 @@ class _WeaknessUnsolvedScreenState
   @override
   Widget build(BuildContext context) {
     final future = ref.watch(asyncUnsolvedWeaknessesProvider);
+    final bool premiumEnabled = ref.watch(premiumEnabledProvider);
 
     Widget _unsolvedQuizzes() {
+      if (premiumEnabled == false) {
+        return const SharedPremiumRecommendation(
+            explanationText: '『苦手な問題』を解くには、プレミアムプランへの登録が必要です。');
+      }
       return future.when(
         data: (weaknesses) => WeaknessUnsolvedQuizzes(weaknesses: weaknesses),
         error: (err, stack) => Text('Error: $err'),
