@@ -29,7 +29,7 @@ class PurchaseIntroduction extends StatelessWidget {
             'プレミアムプラン',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 32,
               fontWeight: FontWeight.w800,
               color: Colors.green,
             ),
@@ -38,7 +38,7 @@ class PurchaseIntroduction extends StatelessWidget {
             '500円 / 月',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 32,
               fontWeight: FontWeight.w800,
               color: Colors.green,
             ),
