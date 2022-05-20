@@ -48,12 +48,12 @@ class PurchaseIntroduction extends StatelessWidget {
               children: <TextSpan>[
                 TextSpan(text: "\n\n"),
                 TextSpan(
-                  text: '''DiQtのすべての機能がご利用いただけるようになる有料プランです。
-　プレミアムプランにご加入いただくと、Web版DiQtにて、''',
+                  text: '''　DiQtのすべての機能がご利用いただけるようになる有料プランです。
+　プレミアムプランにご加入いただくと、''',
                   style: _textStyleNormal,
                 ),
                 TextSpan(
-                  text: '''「広告削除」「1日の解答数の制限解除」「復習設定の制限解除」「ノート作成の制限解除」''',
+                  text: '''「広告削除」「1日の解答数の制限解除」「復習設定の制限解除」''',
                   style: _textStyleBold,
                 ),
                 TextSpan(
@@ -66,7 +66,7 @@ class PurchaseIntroduction extends StatelessWidget {
                 ),
                 TextSpan(
                   text: '''といった新たな機能がご利用いただけるようになります。
- Chrome拡張版DiQtでも、''',
+　Chrome拡張版DiQtでも、''',
                   style: _textStyleNormal,
                 ),
                 TextSpan(

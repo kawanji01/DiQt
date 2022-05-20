@@ -1,12 +1,15 @@
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:booqs_mobile/utils/answer/answer_interaction.dart';
+import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/text_to_speech.dart';
+import 'package:booqs_mobile/widgets/answer/paywall_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -45,15 +48,6 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
     Quiz quiz = widget.quiz;
     final List<int> loadedQuizIds = ref.watch(loadedQuizIdsProvider);
 
-    // プロバイダーを更新する
-    /* void _updateProvider(notification) {
-      final Quiz quiz = notification.quiz;
-      // 今日の解答数のカウンターを+1する。
-      ref
-          .read(todaysAnswersCountProvider.notifier)
-          .update((state) => state + 1);
-    } */
-
     // 正解を読み上げる
     void _speakCorrectAnswer(notification) {
       final Quiz quiz = notification.quiz;
@@ -67,23 +61,29 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
 
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
-        final fadeOut = notification.fadeOut;
+        final int todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
+        final bool premiumEnabled = ref.watch(premiumEnabledProvider);
+        // 無料ユーザーで１００問以上解いたユーザーにはペイウォールを表示する
+        if (todaysAnswersCount > 99 && premiumEnabled == false) {
+          Dialogs.slideFromBottomFade(const AnswerPaywallScreen());
+          // trueを返すことで通知がこれ以上親に伝わらない。
+          return true;
+        }
         // 今日の解答数のカウンターを+1する。
-        ref
-            .read(todaysAnswersCountProvider.notifier)
-            .update((state) => state + 1);
+        ref.read(todaysAnswersCountProvider.notifier).state =
+            todaysAnswersCount + 1;
         // 正解を読み上げる
         _speakCorrectAnswer(notification);
         // 解答インタラクションを表示する
         AnswerInteraction.show(notification, context);
-        if (fadeOut) {
-          // 解答した問題が再描画されないように、問題のIDをproviderに追加する。
-          ref.read(solvedQuizIdsProvider.notifier).state.add(quiz.id);
-          // setStateするとともにプロバイダーも更新してonEndで利用できるようにする
-          setState(() {
-            _isOpaque = false;
-          });
-        }
+
+        // 解答した問題が再描画されないように、問題のIDをproviderに追加する。
+        ref.read(solvedQuizIdsProvider.notifier).state.add(quiz.id);
+        // setStateするとともにプロバイダーも更新してonEndで利用できるようにする
+        setState(() {
+          _isOpaque = false;
+        });
+        // falseを返すことで通知がさらに親のWidgetに伝わる。
         return false;
       },
       // FadeOutで問題を隠す & 高さも消失させる ref: https://stackoverflow.com/questions/58493886/animated-opacity-and-hiding-the-widget-so-its-not-clickable
