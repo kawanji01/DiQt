@@ -1,4 +1,6 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/utils/helpers/answer_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +14,42 @@ class AnswerSettingIntervalStepUpCondition extends ConsumerWidget {
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold));
     const explanation = Text('復習の間隔を繰り上げるための条件を設定します。',
         style: TextStyle(fontSize: 14, color: Colors.black54));
+
+    final bool _premiumEnabled = ref.watch(premiumEnabledProvider);
+
+    Widget _premiumRecommendation() {
+      if (_premiumEnabled) return Container();
+      return TextButton.icon(
+        onPressed: () {
+          PremiumPlanPage.push(context);
+        },
+        icon: const Icon(
+          Icons.lock,
+          size: 16,
+          color: Colors.green,
+        ),
+        label: const Text('この設定を変更するにはプレミアムプランへの登録が必要です。',
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.green,
+                fontWeight: FontWeight.bold)),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.only(left: 0, top: 16),
+        ),
+      );
+    }
+
+    Future _change(int? newValue) async {
+      if (newValue == null) return;
+
+      if (_premiumEnabled == false) {
+        const snackBar =
+            SnackBar(content: Text('この設定を変更するにはプレミアムプランへの登録が必要です。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        return PremiumPlanPage.push(context);
+      }
+      ref.read(intervalStepUpConditionProvider.notifier).state = newValue;
+    }
 
     // ドロップダウンボタンの生成
     Widget _buildDropDown() {
@@ -28,8 +66,7 @@ class AnswerSettingIntervalStepUpCondition extends ConsumerWidget {
           iconSize: 24,
           elevation: 16,
           onChanged: (int? newValue) {
-            ref.read(intervalStepUpConditionProvider.notifier).state =
-                newValue!;
+            _change(newValue);
           },
           items: <int>[
             1,
@@ -58,7 +95,8 @@ class AnswerSettingIntervalStepUpCondition extends ConsumerWidget {
         heading,
         const SizedBox(height: 4),
         explanation,
-        _buildDropDown()
+        _buildDropDown(),
+        _premiumRecommendation(),
       ],
     );
   }

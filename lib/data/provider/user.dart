@@ -16,17 +16,17 @@ final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
     // ログインしていない場合
     await UserSetup.logOut(null);
     ref.read(currentUserProvider.notifier).state = null;
-    ref.read(answerSettingProvider.notifier).state = null;
     ref.read(todaysAnswersCountProvider.notifier).state = 0;
+    ref.read(answerSettingProvider.notifier).state = null;
     return null;
   } else {
     // ログインしている場合
     User user = User.fromJson(resMap['user']);
     await UserSetup.signIn(user);
     ref.read(currentUserProvider.notifier).state = user;
-    ref.read(answerSettingProvider.notifier).state = user.answerSetting;
     ref.read(todaysAnswersCountProvider.notifier).state =
         user.todaysAnswerHistoriesCount;
+    ref.read(answerSettingProvider.notifier).state = user.answerSetting;
     return user;
   }
 });
@@ -56,6 +56,9 @@ final asyncUserProvider = FutureProvider<User?>((ref) async {
   // ログインしている場合
   User user = User.fromJson(resMap['user']);
   ref.read(userProvider.notifier).state = user;
-
   return user;
 });
+
+// プレミアムユーザーの検証
+final premiumEnabledProvider = StateProvider<bool>((ref) => ref.watch(
+    currentUserProvider.select((user) => user == null ? false : user.premium)));
