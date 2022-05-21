@@ -22,6 +22,20 @@ class RemoteUsers {
     return resMap;
   }
 
+  // ユーザーの検索
+  static Future<Map?> index(String keyword, int pageKey, int pageSize) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users?keyword=$keyword&page=$pageKey&size=$pageSize&token=$token');
+    final Response res =
+        await get(url, headers: {"Content-Type": "application/json"});
+
+    if (res.statusCode != 200) return null;
+    final Map<String, dynamic> resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 特定のユーザー情報を取得
   static Future<Map?> show(String publicUid) async {
     final String token = await LocalUserInfo.authToken() ?? '';
