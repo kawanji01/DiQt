@@ -3,6 +3,7 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
+import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
@@ -72,6 +73,16 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
+    Widget _userSearch() {
+      const String btnText = 'ユーザーを探す';
+      return InkWell(
+        onTap: () {
+          UserSearchPage.push(context, '');
+        },
+        child: const LargeGreenButton(label: btnText, icon: Icons.search),
+      );
+    }
+
     Widget _answerSettingButton() {
       const String btnText = '解答・復習設定';
       return InkWell(
@@ -120,6 +131,10 @@ class UserMenuPage extends ConsumerWidget {
                 height: 32,
               ),
               _noteListButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              _userSearch(),
               const SizedBox(
                 height: 32,
               ),

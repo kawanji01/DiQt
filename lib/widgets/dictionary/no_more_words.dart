@@ -10,14 +10,8 @@ class DictionaryNoMoreWords extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const loadedStatusText = Text('All loaded',
-        style: TextStyle(
-            fontSize: 24, color: Colors.black54, fontWeight: FontWeight.bold));
-
     return Column(children: [
-      const SizedBox(height: 32),
-      loadedStatusText,
-      const SizedBox(height: 24),
+      const SizedBox(height: 48),
       DictionaryNewWordButton(dictionaryId: dictionaryId, keyword: keyword),
       const SizedBox(height: 120),
     ]);

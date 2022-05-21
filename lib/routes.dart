@@ -27,6 +27,7 @@ import 'package:booqs_mobile/pages/user/menu.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/pages/session/sign_up.dart';
+import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:booqs_mobile/pages/user/show.dart';
 import 'package:booqs_mobile/pages/weakness/index.dart';
 import 'package:booqs_mobile/pages/weakness/solved.dart';
@@ -58,7 +59,6 @@ const wordSearchResultsPage = '/word/search';
 const sentenceNewPage = '/sentence/new';
 const sentenceEditPage = '/sentence/edit';
 const sentenceShowPage = '/sentence/show';
-
 // チャプター
 const chapterIndexPage = '/chapter/index';
 const chapterShowPage = '/chapter/show';
@@ -68,6 +68,7 @@ const userShowPage = '/user/show';
 const userAchievementsPage = '/user/achievements';
 const userEditPage = '/user/edit';
 const userMenuPage = '/user/menu';
+const userSearchPage = '/user/search';
 const userPremiumPlanPage = '/user/premium_plan';
 // 問題集
 const drillUnsolvedPage = '/drill/unsolved';
@@ -116,6 +117,7 @@ final routes = {
   userAchievementsPage: (context) => const UserAchievementsPage(),
   userEditPage: (context) => const UserEditPage(),
   userMenuPage: (context) => const UserMenuPage(),
+  userSearchPage: (context) => const UserSearchPage(),
   userPremiumPlanPage: (context) => const PremiumPlanPage(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   drillSolvedPage: (context) => const DrillSolvedPage(),

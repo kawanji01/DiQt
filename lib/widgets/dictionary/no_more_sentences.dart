@@ -9,10 +9,6 @@ class DictionaryNoMoreSentences extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const loadedStatusText = Text('All loaded',
-        style: TextStyle(
-            fontSize: 24, color: Colors.black54, fontWeight: FontWeight.bold));
-
     // 例文の新規作成ボタン
     Widget _newSentenceButton() {
       return InkWell(
@@ -24,9 +20,7 @@ class DictionaryNoMoreSentences extends StatelessWidget {
     }
 
     return Column(children: [
-      const SizedBox(height: 32),
-      loadedStatusText,
-      const SizedBox(height: 24),
+      const SizedBox(height: 48),
       _newSentenceButton(),
       const SizedBox(height: 120),
     ]);
