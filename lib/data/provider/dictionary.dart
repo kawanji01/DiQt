@@ -23,7 +23,7 @@ final asyncDictionariesProvider =
 // おまけにプロバイダは参照されなくなっても破棄されないのがデフォルトの動作であるため、この場合はメモリリークにつながります。
 final asyncDictionaryFamily = FutureProvider.autoDispose
     .family<Dictionary?, int>((ref, dictionaryId) async {
-  final Map? resMap = await RemoteDictionaries.show2(dictionaryId);
+  final Map? resMap = await RemoteDictionaries.show(dictionaryId);
   if (resMap == null) return null;
   final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
   return dictionary;

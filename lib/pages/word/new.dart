@@ -143,6 +143,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
                         entryController: _entryController,
                         meaningController: _meaningController,
                         explanationController: _explanationController,
+                        dictionary: _dictionary!,
                       ),
                       WordFormSentenceSetting(
                           sentenceIdController: _sentenceIdController,

@@ -15,20 +15,10 @@ class RemoteDictionaries {
     return resMap;
   }
 
-  static Future<Map?> show(String publicUid) async {
+  // 辞書情報
+  static Future<Map?> show(int dictionaryId) async {
     final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$publicUid');
-    final Response res =
-        await get(url, headers: {"Content-Type": "application/json"});
-
-    if (res.statusCode != 200) return null;
-    final Map<String, dynamic> resMap = json.decode(res.body);
-    return resMap;
-  }
-
-  static Future<Map?> show2(int dictionaryId) async {
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$dictionaryId/show2');
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$dictionaryId');
     final Response res =
         await get(url, headers: {"Content-Type": "application/json"});
 

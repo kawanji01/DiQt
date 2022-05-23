@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/widgets/sentence/form/preview_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -6,11 +7,13 @@ class SentenceFormPreviewButton extends StatelessWidget {
       {Key? key,
       required this.originalController,
       required this.translationController,
-      required this.explanationController})
+      required this.explanationController,
+      required this.dictionary})
       : super(key: key);
   final TextEditingController originalController;
   final TextEditingController translationController;
   final TextEditingController explanationController;
+  final Dictionary dictionary;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,8 @@ class SentenceFormPreviewButton extends StatelessWidget {
             builder: (context) => SentenceFormPreviewScreen(
                 original: originalController.text,
                 translation: translationController.text,
-                explanation: explanationController.text));
+                explanation: explanationController.text,
+                dictionary: dictionary));
       },
       child: const Text('プレビューを見る', style: TextStyle(color: Colors.green)),
     );

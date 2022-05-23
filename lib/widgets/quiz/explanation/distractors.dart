@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/consts/language.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
@@ -18,11 +19,14 @@ class QuizExplanationDistractors extends StatelessWidget {
     Widget _distractor(distractor) {
       Widget child = Text(distractor,
           style: const TextStyle(fontSize: 16, color: Colors.red));
-      if (quiz.langNumberOfAnswer == languageCodeMap['en']) {
+      final Dictionary? dictionary = quiz.dictionary;
+      final int langNumberOfEntry = dictionary?.langNumberOfEntry ?? 0;
+      if (quiz.langNumberOfAnswer == langNumberOfEntry) {
         child = TextWithLink(
           text: distractor,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
+          dictionaryId: quiz.dictionaryId,
         );
       }
 

@@ -135,9 +135,11 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
                     children: <Widget>[
                       DictionaryName(dictionary: dictionary),
                       SentenceForm(
-                          originalController: _originalController,
-                          translationController: _translationController,
-                          explanationController: _explanationController),
+                        originalController: _originalController,
+                        translationController: _translationController,
+                        explanationController: _explanationController,
+                        dictionary: sentence.dictionary!,
+                      ),
                       const SizedBox(height: 40),
                       _submitButton(),
                       const SizedBox(height: 64),

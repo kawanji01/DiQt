@@ -134,7 +134,8 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
                       SentenceForm(
                           originalController: _originalController,
                           translationController: _translationController,
-                          explanationController: _explanationController),
+                          explanationController: _explanationController,
+                          dictionary: _dictionary!),
                       const SizedBox(height: 40),
                       _submitButton(),
                       const SizedBox(height: 40),

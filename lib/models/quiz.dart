@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/answer_analysis.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/review.dart';
@@ -8,6 +9,7 @@ class Quiz {
   Quiz({
     required this.id,
     required this.drillId,
+    required this.dictionaryId,
     this.wordId,
     this.referenceWordId,
     this.sentenceId,
@@ -33,6 +35,7 @@ class Quiz {
 
   int id;
   int drillId;
+  int dictionaryId;
   int? wordId;
   int? referenceWordId;
   int? sentenceId;
@@ -50,6 +53,7 @@ class Quiz {
   int pendingQuizRequestsCount;
   int quizRequestsCount;
   Drill? drill;
+  Dictionary? dictionary;
   Review? review;
   Note? note;
   AnswerAnalysis? answerAnalysis;
@@ -58,6 +62,7 @@ class Quiz {
   Quiz.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         drillId = json['drill_id'],
+        dictionaryId = json['dictionary_id'],
         wordId = json['word_id'],
         referenceWordId = json['reference_word_id'],
         sentenceId = json['sentence_id'],
@@ -75,6 +80,9 @@ class Quiz {
         pendingQuizRequestsCount = json['pending_quiz_requests_count'],
         quizRequestsCount = json['quiz_requests_count'],
         drill = json['drill'] == null ? null : Drill.fromJson(json['drill']),
+        dictionary = json['dictionary'] == null
+            ? null
+            : Dictionary.fromJson(json['dictionary']),
         review =
             json['review'] == null ? null : Review.fromJson(json['review']),
         note = json['note'] == null ? null : Note.fromJson(json['note']),
@@ -88,6 +96,7 @@ class Quiz {
   Map<String, dynamic> toJson() => {
         'id': id,
         'drill_id': drillId,
+        'dictionary_id': dictionaryId,
         'word_id': wordId,
         'reference_word_id': referenceWordId,
         'sentence_id': sentenceId,
@@ -105,6 +114,7 @@ class Quiz {
         'pending_quiz_requests_count': pendingQuizRequestsCount,
         'quiz_requests_count': quizRequestsCount,
         'drill': drill,
+        'dictionary': dictionary,
         'review': review,
         'note': note,
         'answer_analysis': answerAnalysis,
