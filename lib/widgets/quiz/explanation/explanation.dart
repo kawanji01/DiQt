@@ -23,6 +23,7 @@ class QuizExplanationExplanation extends StatelessWidget {
             text: quiz.explanation!,
             autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
+            dictionaryId: quiz.dictionaryId,
           ),
           const SizedBox(height: 24),
         ],

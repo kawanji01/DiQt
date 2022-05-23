@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -5,16 +6,22 @@ class QuizFormPreviewButton extends StatelessWidget {
   const QuizFormPreviewButton(
       {Key? key,
       required this.questionController,
+      required this.langNumberOfQuestion,
       required this.correctAnswerController,
+      required this.langNumberOfAnswer,
       required this.distractorsController,
       required this.hintController,
-      required this.explanationController})
+      required this.explanationController,
+      required this.dictionary})
       : super(key: key);
   final TextEditingController questionController;
+  final int langNumberOfQuestion;
   final TextEditingController correctAnswerController;
+  final int langNumberOfAnswer;
   final TextEditingController distractorsController;
   final TextEditingController hintController;
   final TextEditingController explanationController;
+  final Dictionary dictionary;
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +45,13 @@ class QuizFormPreviewButton extends StatelessWidget {
             // showModalBottomSheetで表示される中身
             builder: (context) => QuizFormPreviewScreen(
                 question: questionController.text,
+                langNumberOfQuestion: langNumberOfQuestion,
                 correctAnswer: correctAnswerController.text,
+                langNumberOfAnswer: langNumberOfAnswer,
                 distractors: distractorsController.text,
                 hint: hintController.text,
-                explanation: explanationController.text));
+                explanation: explanationController.text,
+                dictionary: dictionary));
       },
       child: const Text('プレビューを見る', style: TextStyle(color: Colors.green)),
     );

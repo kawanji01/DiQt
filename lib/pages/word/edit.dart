@@ -148,6 +148,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                         entryController: _entryController,
                         meaningController: _meaningController,
                         explanationController: _explanationController,
+                        dictionary: _dictionary!,
                       ),
                       WordFormSentenceSetting(
                           sentenceIdController: _sentenceIdController,

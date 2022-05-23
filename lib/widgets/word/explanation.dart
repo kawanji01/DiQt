@@ -46,6 +46,7 @@ class WordExplanation extends StatelessWidget {
               text: expText!,
               autoLinkEnabled: false,
               crossAxisAlignment: CrossAxisAlignment.start,
+              dictionaryId: word!.dictionaryId,
             ),
           ]);
     }

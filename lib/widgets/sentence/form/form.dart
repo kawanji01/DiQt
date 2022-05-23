@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/widgets/sentence/form/preview_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,11 +8,13 @@ class SentenceForm extends ConsumerStatefulWidget {
       {Key? key,
       required this.originalController,
       required this.translationController,
-      required this.explanationController})
+      required this.explanationController,
+      required this.dictionary})
       : super(key: key);
   final TextEditingController originalController;
   final TextEditingController translationController;
   final TextEditingController explanationController;
+  final Dictionary dictionary;
 
   @override
   _SentenceFormState createState() => _SentenceFormState();
@@ -83,7 +86,8 @@ class _SentenceFormState extends ConsumerState<SentenceForm> {
         SentenceFormPreviewButton(
             originalController: _originalController!,
             translationController: _translationController!,
-            explanationController: _explanationController!)
+            explanationController: _explanationController!,
+            dictionary: widget.dictionary)
       ],
     );
   }
