@@ -16,6 +16,9 @@ final asyncDictionariesProvider =
   return dictionaries;
 });
 
+//
+final dictionaryProvider = StateProvider<Dictionary?>((ref) => null);
+
 // 非同期で引数の辞書を取得する
 // ref: https://riverpod.dev/ja/docs/concepts/modifiers/family
 // 【重要】 オブジェクトが一定ではない場合は autoDispose 修飾子との併用が望ましい

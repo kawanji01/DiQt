@@ -48,7 +48,7 @@ class _DictionaryWordSearchResultsPageState
 
     Widget _heading() {
       return future.when(
-        loading: () => const LoadingSpinner(),
+        loading: () => Container(),
         error: (err, stack) => Text('Error: $err'),
         data: (dictionary) => _dictionaryName(dictionary),
       );
@@ -64,6 +64,7 @@ class _DictionaryWordSearchResultsPageState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 16),
                 _heading(),
                 DictionaryWordListView(
                   dictionaryId: _dictionaryId,
