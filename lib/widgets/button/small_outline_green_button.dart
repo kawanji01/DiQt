@@ -16,7 +16,7 @@ class SmallOutlineGreenButton extends StatelessWidget {
       richText = RichText(
           text: TextSpan(children: [
         TextSpan(
-            text: ' $label',
+            text: label,
             style: const TextStyle(
                 color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold))
       ]));
@@ -31,7 +31,7 @@ class SmallOutlineGreenButton extends StatelessWidget {
           ),
         ),
         TextSpan(
-            text: ' $label',
+            text: label,
             style: const TextStyle(
                 color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold))
       ]));
