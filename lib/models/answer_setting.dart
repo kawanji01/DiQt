@@ -11,6 +11,7 @@ class AnswerSetting {
     required this.reviewNotificationTimerSet,
     required this.reviewNotificationEnabled,
     required this.seEnabled,
+    required this.effectEnabled,
     required this.speechRate,
     required this.reviewDeleteCondition,
     required this.weaknessCondition,
@@ -30,6 +31,7 @@ class AnswerSetting {
   bool reviewNotificationTimerSet;
   bool reviewNotificationEnabled;
   bool seEnabled;
+  bool effectEnabled;
   int speechRate;
   int reviewDeleteCondition;
   int weaknessCondition;
@@ -49,6 +51,7 @@ class AnswerSetting {
         reviewNotificationTimerSet = json['review_notification_timer_set'],
         reviewNotificationEnabled = json['review_notification_enabled'],
         seEnabled = json['se_enabled'],
+        effectEnabled = json['effect_enabled'],
         speechRate = json['speech_rate'],
         reviewDeleteCondition = json['review_delete_condition'],
         weaknessCondition = json['weakness_condition'],
@@ -68,6 +71,7 @@ class AnswerSetting {
         'review_notification_timer_set': reviewNotificationTimerSet,
         'review_notification_enabled': reviewNotificationEnabled,
         'se_enabled': seEnabled,
+        'effect_enabled': effectEnabled,
         'speech_rate': speechRate,
         'review_delete_condition': reviewDeleteCondition,
         'weakness_condition': weaknessCondition,

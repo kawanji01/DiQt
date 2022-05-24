@@ -64,13 +64,24 @@ class AnswerSettingAnswerSetting extends ConsumerWidget {
 
     Widget _seEnabled() {
       return SwitchListTile(
-          title:
-              const Text('効果音', style: TextStyle(fontWeight: FontWeight.bold)),
+          title: const Text('効果音を鳴らす',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           value: ref.watch(seEnabledProvider),
           onChanged: (bool value) {
             ref.read(seEnabledProvider.notifier).state = value;
           },
           secondary: const Icon(Icons.volume_up));
+    }
+
+    Widget _effectEnabled() {
+      return SwitchListTile(
+          title: const Text('解答時の報酬を表示する',
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          value: ref.watch(effectEnabledProvider),
+          onChanged: (bool value) {
+            ref.read(effectEnabledProvider.notifier).state = value;
+          },
+          secondary: const Icon(Icons.wysiwyg));
     }
 
     return Column(
@@ -84,7 +95,9 @@ class AnswerSettingAnswerSetting extends ConsumerWidget {
         const SizedBox(height: 8),
         _choicesCovered(),
         const SizedBox(height: 8),
-        _seEnabled()
+        _seEnabled(),
+        const SizedBox(height: 8),
+        _effectEnabled()
       ],
     );
   }

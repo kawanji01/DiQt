@@ -33,46 +33,24 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
     if (_answerSetting == null) return Container();
 
     _dailyGoalController.text = '${_answerSetting.dailyGoal}';
-    // 初期値の設定
-    /*    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      // 解答設定
-      ref.read(questionCoveredProvider.notifier).state =
-          _answerSetting.questionCovered;
-      ref.read(choicesCoveredProvider.notifier).state =
-          _answerSetting.choicesCovered;
-      ref.read(seEnabledProvider.notifier).state = _answerSetting.seEnabled;
-      // 復習設定
-      ref.read(initialIntervalProvider.notifier).state =
-          _answerSetting.initialInterval;
-      ref.read(intervalStepUpConditionProvider.notifier).state =
-          _answerSetting.intervalStepUpCondition;
-      ref.read(reviewDeleteConditionProvider.notifier).state =
-          _answerSetting.reviewDeleteCondition;
-      ref.read(reviewNotificationEnabledProvider.notifier).state =
-          _answerSetting.reviewNotificationEnabled;
-      ref.read(reviewNotificationTimerProvider.notifier).state =
-          _answerSetting.reviewNotificationTimer;
-      // 弱点設定
-      //ref.read()
-    }); */
 
     Future<void> _update() async {
-      Map<String, dynamic> params = _answerSetting.toJson();
-      params['daily_goal'] = _dailyGoalController.text;
-      params['question_covered'] = ref.watch(questionCoveredProvider);
-      params['choices_covered'] = ref.watch(choicesCoveredProvider);
-      params['se_enabled'] = ref.watch(seEnabledProvider);
-      params['initial_interval'] = ref.watch(initialIntervalProvider);
-      params['interval_step_up_condition'] =
-          ref.watch(intervalStepUpConditionProvider);
-      params['review_delete_condition'] =
-          ref.watch(reviewDeleteConditionProvider);
-      params['review_notification_enabled'] =
-          ref.watch(reviewNotificationEnabledProvider);
-      params['review_notification_timer'] =
-          ref.watch(reviewNotificationTimerProvider);
-      params['weakness_condition'] = ref.watch(weaknessConditionProvider);
-      params['overcoming_condition'] = ref.watch(overcomingConditionProvider);
+      Map<String, dynamic> params = {
+        'daily_goal': _dailyGoalController.text,
+        'question_covered': ref.watch(questionCoveredProvider),
+        'choices_covered': ref.watch(choicesCoveredProvider),
+        'se_enabled': ref.watch(seEnabledProvider),
+        'effect_enabled': ref.watch(effectEnabledProvider),
+        'initial_interval': ref.watch(initialIntervalProvider),
+        'interval_step_up_condition':
+            ref.watch(intervalStepUpConditionProvider),
+        'review_delete_condition': ref.watch(intervalStepUpConditionProvider),
+        'review_notification_enabled':
+            ref.watch(reviewNotificationEnabledProvider),
+        'review_notification_timer': ref.watch(reviewNotificationTimerProvider),
+        'weakness_condition': ref.watch(weaknessConditionProvider),
+        'overcoming_condition': ref.watch(overcomingConditionProvider),
+      };
 
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteAnswerSettings.update(params);
