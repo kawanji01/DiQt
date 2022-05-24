@@ -62,7 +62,7 @@ class Quiz {
   Quiz.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         drillId = json['drill_id'],
-        dictionaryId = json['dictionary_id'],
+        dictionaryId = json['dictionary_id'] ?? 1,
         wordId = json['word_id'],
         referenceWordId = json['reference_word_id'],
         sentenceId = json['sentence_id'],
