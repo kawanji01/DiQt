@@ -13,7 +13,7 @@ class DictionaryQuizRequestsButton extends StatelessWidget {
     Widget _acceptedQuizRequestsButton() {
       final String btnText = '問題の改善履歴（${dictionary.acceptedQuizRequestsCount}）';
       final String redirectPath =
-          'dictionaries/${dictionary.publicUid}/accepted_quiz_requests';
+          'dictionaries/${dictionary.id}/accepted_quiz_requests';
       return InkWell(
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
@@ -28,7 +28,7 @@ class DictionaryQuizRequestsButton extends StatelessWidget {
 
       final String btnText = '$requestsCount件の審査中の編集';
       final String redirectPath =
-          'dictionaries/${dictionary.publicUid}/pending_quiz_requests';
+          'dictionaries/${dictionary.id}/pending_quiz_requests';
       return TextButton(
           style: TextButton.styleFrom(
             padding: const EdgeInsets.only(left: 0),
