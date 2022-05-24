@@ -35,7 +35,6 @@ import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
-import 'package:booqs_mobile/pages/word/search_results.dart';
 
 // ホーム
 const indexPage = '/';
@@ -107,7 +106,6 @@ final routes = {
   wordShowPage: (context) => const WordShowPage(),
   wordNewPage: (context) => const WordNewPage(),
   wordEditPage: (context) => const WordEditPage(),
-  wordSearchResultsPage: (context) => const WordSearchResultsPage(),
   sentenceNewPage: (context) => const SentenceNewPage(),
   sentenceEditPage: (context) => const SentenceEditPage(),
   sentenceShowPage: (context) => const SentenceShowPage(),

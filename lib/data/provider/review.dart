@@ -13,7 +13,8 @@ final reviewOrderProvider =
 
 final asyncUnsolvedReviewsProvider = FutureProvider<List<Review>>((ref) async {
   final List<Review> reviews = [];
-  final Map? resMap = await RemoteReviews.index();
+  final String order = ref.watch(reviewOrderProvider);
+  final Map? resMap = await RemoteReviews.index(order);
   if (resMap == null) return reviews;
 
   User user = User.fromJson(resMap['user']);

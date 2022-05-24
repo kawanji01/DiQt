@@ -9,23 +9,39 @@ class DictionaryName extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return TextButton.icon(
-      onPressed: () {
+    final button = InkWell(
+      onTap: () {
         DictionaryShowPage.push(context, dictionary.id);
       },
-      icon: const Icon(
-        Icons.book,
-        size: 16,
-        color: Colors.black54,
-      ),
-      label: Text(dictionary.title,
-          style: const TextStyle(
-              fontSize: 14,
-              color: Colors.black54,
-              fontWeight: FontWeight.normal)),
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.only(left: 0),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+        alignment: Alignment.topLeft,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          border: Border.all(color: Colors.green, width: 1),
+        ),
+        child: RichText(
+          text: TextSpan(
+            style: const TextStyle(
+                fontSize: 14, color: Colors.green, fontWeight: FontWeight.bold),
+            children: [
+              const WidgetSpan(
+                child: Icon(
+                  Icons.search,
+                  size: 16,
+                  color: Colors.green,
+                ),
+              ),
+              TextSpan(
+                text: dictionary.title,
+              ),
+            ],
+          ),
+        ),
       ),
     );
+
+    //return button;
+    return Row(mainAxisAlignment: MainAxisAlignment.start, children: [button]);
   }
 }

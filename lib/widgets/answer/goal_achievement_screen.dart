@@ -39,7 +39,7 @@ class AnswerGoalAchievementScreen extends ConsumerWidget {
       final AudioCache _cache = AudioCache(
         fixedPlayer: AudioPlayer(),
       );
-      _cache.loadAll([achievementSound]);
+      // _cache.loadAll([achievementSound]);
       _cache.play(achievementSound);
     }
 

@@ -4,7 +4,6 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/dictionary/word_list_view.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -48,7 +47,7 @@ class _DictionaryWordSearchResultsPageState
 
     Widget _heading() {
       return future.when(
-        loading: () => const LoadingSpinner(),
+        loading: () => Container(),
         error: (err, stack) => Text('Error: $err'),
         data: (dictionary) => _dictionaryName(dictionary),
       );
@@ -64,6 +63,7 @@ class _DictionaryWordSearchResultsPageState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 16),
                 _heading(),
                 DictionaryWordListView(
                   dictionaryId: _dictionaryId,
