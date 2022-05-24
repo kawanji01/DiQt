@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/quizzes.dart';
@@ -36,7 +37,9 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
           AnswerCreator.fromJson(resMap['answer_creator']);
       // awaitをつけるとAnswerRewardを表示が重なった時にLooking up a deactivated widget's ancestorエラーが起きる
       AnswerFeedback.call(answerCreator);
-      // 報酬を表示する
+      final bool effectEnabled = ref.watch(effectEnabledProvider);
+      if (effectEnabled == false) return;
+      // 効果設定が有効なら報酬を表示する
       await AnswerReward.call(answerCreator);
     }
 

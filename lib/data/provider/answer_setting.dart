@@ -17,7 +17,11 @@ final choicesCoveredProvider = StateProvider<bool>((ref) => ref.watch(
 final seEnabledProvider = StateProvider<bool>((ref) => ref.watch(
     answerSettingProvider
         .select((setting) => setting == null ? false : setting.seEnabled)));
-
+// 解答時の報酬モーダルの表示設定（OFFでモーダルからポップアップに変更する）
+final effectEnabledProvider = StateProvider<bool>((ref) => ref.watch(
+    answerSettingProvider
+        .select((setting) => setting == null ? false : setting.effectEnabled)));
+//
 //// 復習設定用 ////
 // 自動復習の初期設定
 final initialIntervalProvider = StateProvider<int>((ref) => ref.watch(

@@ -14,7 +14,7 @@ class DictionaryWordRequestsButton extends StatelessWidget {
     Widget _acceptedWordRequestsButton() {
       final String btnText = '辞書の改善履歴（${dictionary.acceptedWordRequestsCount}）';
       final String redirectPath =
-          'dictionaries/${dictionary.publicUid}/accepted_word_requests';
+          'dictionaries/${dictionary.id}/accepted_word_requests';
       return InkWell(
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
@@ -29,7 +29,7 @@ class DictionaryWordRequestsButton extends StatelessWidget {
       if (pendingRequestsCount == 0) return Container();
       final String btnText = '$pendingRequestsCount件の審査中の編集';
       final String redirectPath =
-          'dictionaries/${dictionary.publicUid}/pending_word_requests';
+          'dictionaries/${dictionary.id}/pending_word_requests';
       return TextButton(
           style: TextButton.styleFrom(
             padding: const EdgeInsets.only(left: 0),
