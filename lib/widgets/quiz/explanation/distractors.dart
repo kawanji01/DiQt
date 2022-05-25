@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';

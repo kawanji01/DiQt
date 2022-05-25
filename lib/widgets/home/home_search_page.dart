@@ -1,8 +1,4 @@
-import 'package:booqs_mobile/data/provider/dictionary.dart';
-import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/widgets/dictionary/item_list.dart';
-import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
