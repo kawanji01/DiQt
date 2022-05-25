@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/consts/language.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
@@ -14,11 +14,14 @@ class QuizExplanationQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _question() {
-      if (quiz.langNumberOfQuestion == languageCodeMap['en']) {
+      final Dictionary? dictionary = quiz.dictionary;
+      final int langNumberOfEntry = dictionary?.langNumberOfEntry ?? 0;
+      if (quiz.langNumberOfQuestion == langNumberOfEntry) {
         return TextWithLink(
           text: quiz.question,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.center,
+          dictionaryId: quiz.dictionaryId,
         );
       }
       return Text(quiz.question, style: const TextStyle(fontSize: 16));

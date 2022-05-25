@@ -1,16 +1,19 @@
-import 'package:booqs_mobile/widgets/sentence/preview_screen.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/widgets/sentence/form/preview_screen.dart';
 import 'package:flutter/material.dart';
 
-class SentencePreviewButton extends StatelessWidget {
-  const SentencePreviewButton(
+class SentenceFormPreviewButton extends StatelessWidget {
+  const SentenceFormPreviewButton(
       {Key? key,
       required this.originalController,
       required this.translationController,
-      required this.explanationController})
+      required this.explanationController,
+      required this.dictionary})
       : super(key: key);
   final TextEditingController originalController;
   final TextEditingController translationController;
   final TextEditingController explanationController;
+  final Dictionary dictionary;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +35,11 @@ class SentencePreviewButton extends StatelessWidget {
                   topRight: Radius.circular(15.0)),
             ),
             // showModalBottomSheetで表示される中身
-            builder: (context) => SentencePreviewScreen(
+            builder: (context) => SentenceFormPreviewScreen(
                 original: originalController.text,
                 translation: translationController.text,
-                explanation: explanationController.text));
+                explanation: explanationController.text,
+                dictionary: dictionary));
       },
       child: const Text('プレビューを見る', style: TextStyle(color: Colors.green)),
     );

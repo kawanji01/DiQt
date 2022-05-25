@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/pages/sentence/edit.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
@@ -12,7 +13,8 @@ class QuizForm extends StatefulWidget {
       required this.distractorsController,
       required this.explanationController,
       required this.hintController,
-      required this.quiz})
+      required this.quiz,
+      required this.dictionary})
       : super(key: key);
   final TextEditingController questionController;
   final TextEditingController correctAnswerController;
@@ -20,6 +22,7 @@ class QuizForm extends StatefulWidget {
   final TextEditingController explanationController;
   final TextEditingController hintController;
   final Quiz? quiz;
+  final Dictionary dictionary;
 
   @override
   State<QuizForm> createState() => _QuizFormState();
@@ -29,6 +32,10 @@ class _QuizFormState extends State<QuizForm> {
   @override
   Widget build(BuildContext context) {
     final Quiz? _quiz = widget.quiz;
+    final int langNumberOfQuestion = _quiz?.langNumberOfQuestion ?? 0;
+    final int langNumberOfAnswer = _quiz?.langNumberOfAnswer ?? 0;
+    final Dictionary _dictionary = widget.dictionary;
+
     bool _isConnectedToWord;
     bool _isConnectedToSentence;
     if (_quiz == null) {
@@ -187,11 +194,15 @@ class _QuizFormState extends State<QuizForm> {
         ),
         // プレビューボタン
         QuizFormPreviewButton(
-            questionController: _questionController,
-            correctAnswerController: _correctAnswerController,
-            distractorsController: _distractorsController,
-            hintController: _hintController,
-            explanationController: _explanationController)
+          questionController: _questionController,
+          langNumberOfQuestion: langNumberOfQuestion,
+          correctAnswerController: _correctAnswerController,
+          langNumberOfAnswer: langNumberOfAnswer,
+          distractorsController: _distractorsController,
+          hintController: _hintController,
+          explanationController: _explanationController,
+          dictionary: _dictionary,
+        )
       ],
     );
   }

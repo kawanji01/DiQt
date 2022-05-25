@@ -4,6 +4,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/widgets/answer_history/incorrect_quiz_list_view.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/premium_recommendation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,6 +31,15 @@ class _AnswerHistoryTodaysMistakesPageState
   Widget build(BuildContext context) {
     final User? user = ref.watch(currentUserProvider);
     if (user == null) return const Text('Not logged in');
+    final bool premiumEnabled = ref.watch(premiumEnabledProvider);
+
+    Widget _feed() {
+      if (premiumEnabled == false) {
+        return const SharedPremiumRecommendation(
+            explanationText: '『今日間違えた問題』を確認するには、プレミアムプランへの登録が必要です。');
+      }
+      return const AnswerHistoryIncorrectQuizListView();
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -39,12 +49,12 @@ class _AnswerHistoryTodaysMistakesPageState
         child: Container(
           margin: const EdgeInsets.all(20),
           child: Column(
-            children: const <Widget>[
-              AnswerHistoryIncorrectQuizListView(),
-              SizedBox(
+            children: <Widget>[
+              _feed(),
+              const SizedBox(
                 height: 80,
               ),
-              AppBanner(),
+              const AppBanner(),
             ],
           ),
         ),

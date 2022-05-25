@@ -64,10 +64,13 @@ class _ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
     // レベルアップ処理
     void _levelUp(percent) {
       if (percent != 1) return;
+      // 報酬表示がOFFなら表示をスキップ
+      final bool effectEnabled = ref.watch(effectEnabledProvider);
+      if (effectEnabled == false) return;
+
       LevelUpDialog.show(context, _exp!);
       // 効果音
-      final bool seEnabled = ref
-          .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
+      final bool seEnabled = ref.watch(seEnabledProvider);
       if (seEnabled) {
         final AudioCache _cache = AudioCache(
           fixedPlayer: AudioPlayer(),

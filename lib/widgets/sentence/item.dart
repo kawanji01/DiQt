@@ -18,6 +18,7 @@ class SentenceItem extends StatelessWidget {
           text: sentence.original,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
+          dictionaryId: sentence.dictionaryId,
         ),
         const SizedBox(height: 32),
         const SharedItemLabel(text: '訳'),

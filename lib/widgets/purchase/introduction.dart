@@ -29,7 +29,7 @@ class PurchaseIntroduction extends StatelessWidget {
             'プレミアムプラン',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 32,
               fontWeight: FontWeight.w800,
               color: Colors.green,
             ),
@@ -38,7 +38,7 @@ class PurchaseIntroduction extends StatelessWidget {
             '500円 / 月',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 32,
               fontWeight: FontWeight.w800,
               color: Colors.green,
             ),
@@ -48,12 +48,12 @@ class PurchaseIntroduction extends StatelessWidget {
               children: <TextSpan>[
                 TextSpan(text: "\n\n"),
                 TextSpan(
-                  text: '''DiQtのすべての機能がご利用いただけるようになる有料プランです。
-　プレミアムプランにご加入いただくと、Web版DiQtにて、''',
+                  text: '''　DiQtのすべての機能がご利用いただけるようになる有料プランです。
+　プレミアムプランにご加入いただくと、''',
                   style: _textStyleNormal,
                 ),
                 TextSpan(
-                  text: '''「広告削除」「1日の解答数の制限解除」「復習設定の制限解除」「ノート作成の制限解除」''',
+                  text: '''『広告削除』『1日の解答数の制限解除』『復習設定の制限解除』''',
                   style: _textStyleBold,
                 ),
                 TextSpan(
@@ -61,12 +61,12 @@ class PurchaseIntroduction extends StatelessWidget {
                   style: _textStyleNormal,
                 ),
                 TextSpan(
-                  text: '''「弱点分析」「解答履歴」''',
+                  text: '''『苦手な問題』『解答分析』『解答履歴』『今日間違えた問題』''',
                   style: _textStyleBold,
                 ),
                 TextSpan(
-                  text: '''といった新たな機能がご利用いただけるようになります。
- Chrome拡張版DiQtでも、''',
+                  text: '''といった便利な機能もご利用いただけるようになります。
+　Chrome拡張版DiQtでも、''',
                   style: _textStyleNormal,
                 ),
                 TextSpan(
@@ -74,8 +74,7 @@ class PurchaseIntroduction extends StatelessWidget {
                   style: _textStyleBold,
                 ),
                 TextSpan(
-                  text: '''などお得な特典があります。
-プランには''',
+                  text: '''などお得な特典があります。''',
                   style: _textStyleNormal,
                 ),
               ],

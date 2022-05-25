@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/pages/word/search_results.dart';
+import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
 import 'package:flutter/material.dart';
 
 class TextWithLink extends StatelessWidget {
@@ -6,14 +6,17 @@ class TextWithLink extends StatelessWidget {
       {Key? key,
       required this.text,
       required this.autoLinkEnabled,
-      required this.crossAxisAlignment})
+      required this.crossAxisAlignment,
+      required this.dictionaryId})
       : super(key: key);
   final String text;
   final bool autoLinkEnabled;
   final CrossAxisAlignment crossAxisAlignment;
+  final int? dictionaryId;
 
   @override
   Widget build(BuildContext context) {
+    final int _dictionaryId = dictionaryId ?? 1;
     // 記法が使われたテキストと、そうでないテキストを分ける。
     // セパレーターを含んでテキストを分割する。参考： https://stackoverflow.com/questions/59547040/dart-split-string-using-regular-expression-and-include-delimiters?rq=1
     List<String> allMatchesWithSep(String text, RegExp exp, [int start = 0]) {
@@ -49,7 +52,8 @@ class TextWithLink extends StatelessWidget {
     }
 
     Future _goToWordSearchPage(keyword) async {
-      await WordSearchResultsPage.pushModal(context, keyword);
+      await DictionaryWordSearchResultsPage.push(
+          context, _dictionaryId, keyword);
     }
 
     // 自動でリンクをつけるならtrue, Wiki記法でのみリンクをつける場合はfalse

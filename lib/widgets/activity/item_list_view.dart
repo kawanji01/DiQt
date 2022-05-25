@@ -20,8 +20,8 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const _pageSize = 10;
-  final PagingController<int, Activity> _pagingController = PagingController(
-      firstPageKey: 0, invisibleItemsThreshold: 100); // pageのパラメーターの初期値
+  final PagingController<int, Activity> _pagingController =
+      PagingController(firstPageKey: 0); // pageのパラメーターの初期値
   @override
   void initState() {
     super.initState();

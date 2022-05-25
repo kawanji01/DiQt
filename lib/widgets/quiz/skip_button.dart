@@ -24,16 +24,16 @@ class _QuizSkipButtonState extends ConsumerState<QuizSkipButton> {
     final quiz = widget.quiz;
 
     Widget _button() {
-      const String label = 'わからない';
+      //const String label = 'わからない';
 
       if (_selected) {
         return const SmallGreenButton(
-          label: label,
+          label: '',
           icon: Icons.close,
         );
       }
       return const SmallOutlineGreenButton(
-        label: label,
+        label: '',
         icon: Icons.close,
       );
     }

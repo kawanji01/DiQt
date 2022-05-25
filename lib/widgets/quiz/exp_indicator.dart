@@ -57,6 +57,10 @@ class _QuizExpIndicatorState extends ConsumerState<QuizExpIndicator> {
     // レベルアップ処理
     void _levelUp(percent) {
       if (percent != 1) return;
+      // 報酬表示がOFFなら表示をスキップ
+      final bool effectEnabled = ref.watch(effectEnabledProvider);
+      if (effectEnabled == false) return;
+
       LevelUpDialog.show(context, _exp!);
       // 効果音
       final bool seEnabled = ref

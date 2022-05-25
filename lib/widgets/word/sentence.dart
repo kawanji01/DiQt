@@ -32,6 +32,7 @@ class WordSentence extends StatelessWidget {
         text: sentence.original,
         autoLinkEnabled: true,
         crossAxisAlignment: CrossAxisAlignment.start,
+        dictionaryId: sentence.dictionaryId,
       ),
       const SizedBox(height: 8),
       Text(sentence.translation,

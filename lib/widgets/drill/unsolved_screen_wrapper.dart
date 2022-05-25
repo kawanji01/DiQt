@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/drill_lap.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
@@ -42,7 +43,9 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
       final AnswerCreator answerCreator =
           AnswerCreator.fromJson(resMap['answer_creator']);
       AnswerFeedback.call(answerCreator);
-      // 報酬を表示する
+      final bool effectEnabled = ref.watch(effectEnabledProvider);
+      if (effectEnabled == false) return;
+      // 効果設定が有効なら報酬を表示する
       await AnswerReward.call(answerCreator);
     }
 

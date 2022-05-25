@@ -31,8 +31,6 @@ class _AnswerHistoryIncorrectQuizListViewState
 
   // ページに合わせてアイテムを読み込む
   Future<void> _fetchPage(int pageKey) async {
-    print('nextPageKey: $_nextPagekey');
-
     final Map? resMap =
         await RemoteAnswerHistories.todaysMistakes(pageKey, _pageSize);
     if (resMap == null) return;

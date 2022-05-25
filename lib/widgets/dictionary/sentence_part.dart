@@ -1,8 +1,8 @@
-import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
-import 'package:booqs_mobile/widgets/button/small_green_button.dart';
+import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
 import 'package:booqs_mobile/widgets/dictionary/sentence_requests_button.dart';
+import 'package:booqs_mobile/widgets/dictionary/sentence_search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,9 +13,9 @@ class DictionarySentencePart extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const heading = Text(
-      '例文',
-      style: TextStyle(
+    final heading = Text(
+      '例文（${dictionary.sentencesCount}）',
+      style: const TextStyle(
           fontSize: 24, color: Colors.black87, fontWeight: FontWeight.bold),
     );
 
@@ -24,7 +24,7 @@ class DictionarySentencePart extends ConsumerWidget {
         onTap: () {
           SentenceNewPage.push(context, dictionary.id);
         },
-        child: const SmallGreenButton(label: '例文を追加する', icon: Icons.add),
+        child: const SmallOutlineGrayButton(label: '例文を追加する', icon: Icons.add),
       );
     }
 
@@ -32,6 +32,8 @@ class DictionarySentencePart extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         heading,
+        const SizedBox(height: 16),
+        DictionarySentenceSearchForm(dictionary: dictionary),
         _newSentenceButton(),
         DictionarySentenceRequestsButton(dictionary: dictionary),
       ],

@@ -36,7 +36,7 @@ class AnswerCompleteReviewScreen extends ConsumerWidget {
       final AudioCache _cache = AudioCache(
         fixedPlayer: AudioPlayer(),
       );
-      _cache.loadAll([achievementSound]);
+      // _cache.loadAll([achievementSound]);
       _cache.play(achievementSound);
     }
 
@@ -46,7 +46,7 @@ class AnswerCompleteReviewScreen extends ConsumerWidget {
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
     }
 
-    Widget _twitterShareButton() {
+    Widget _shareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
@@ -71,7 +71,7 @@ class AnswerCompleteReviewScreen extends ConsumerWidget {
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton()
+            _shareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

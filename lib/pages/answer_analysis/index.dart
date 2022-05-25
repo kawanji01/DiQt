@@ -1,9 +1,11 @@
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/widgets/answer_analysis/order_select_form.dart';
 import 'package:booqs_mobile/widgets/answer_analysis/quiz_list_view.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/shared/premium_recommendation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,18 +19,6 @@ class AnswerAnalysisIndexPage extends ConsumerStatefulWidget {
   // 戻らせない画面遷移
   static Future pushReplacement(BuildContext context) async {
     return Navigator.of(context).pushReplacementNamed(answerAnalysisIndexPage);
-    // return Navigator.of(context).pushNamed(notificationIndexPage);
-    // アニメーションなしで画面遷移させる。 参考： https://stackoverflow.com/questions/49874272/how-to-navigate-to-other-page-without-animation-flutter
-    /*  return Navigator.pushReplacement(
-      context,
-      PageRouteBuilder(
-        // 画面遷移のログを送信するために、settings.nameを設定する。
-        settings: const RouteSettings(name: answerAnalysisIndexPage),
-        pageBuilder: (context, animation1, animation2) =>
-            const AnswerAnalysisIndexPage(),
-        transitionDuration: Duration.zero,
-      ),
-    ); */
   }
 
   @override
@@ -41,9 +31,19 @@ class _AnswerAnalysisIndexPageState
   @override
   Widget build(BuildContext context) {
     final String order = ref.watch(answerAnalysisOrderProvider);
+    final bool premiumEnabled = ref.watch(premiumEnabledProvider);
 
     String title = '解答分析';
     if (order.split('-')[0] == 'last_answered_at') title = '解答履歴';
+
+    Widget _feed() {
+      if (premiumEnabled) {
+        return const AnswerAnalysisQuizListView();
+      } else {
+        return const SharedPremiumRecommendation(
+            explanationText: '解答分析・解答履歴を利用するには、プレミアムプランへの登録が必要です。');
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -53,16 +53,16 @@ class _AnswerAnalysisIndexPageState
         child: Container(
           margin: const EdgeInsets.all(20),
           child: Column(
-            children: const <Widget>[
-              AnswerAnalysisOrderSelectForm(),
-              SizedBox(
+            children: <Widget>[
+              const AnswerAnalysisOrderSelectForm(),
+              const SizedBox(
                 height: 24,
               ),
-              AnswerAnalysisQuizListView(),
-              SizedBox(
+              _feed(),
+              const SizedBox(
                 height: 80,
               ),
-              AppBanner(),
+              const AppBanner(),
             ],
           ),
         ),

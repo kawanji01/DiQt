@@ -1,12 +1,12 @@
 import 'dart:io';
-
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class AppBanner extends StatefulWidget {
+class AppBanner extends ConsumerStatefulWidget {
   const AppBanner({Key? key, this.adSize, this.adUnitId = ''})
       : super(key: key);
 
@@ -14,10 +14,10 @@ class AppBanner extends StatefulWidget {
   final String adUnitId;
 
   @override
-  State<AppBanner> createState() => _AppBannerState();
+  _AppBannerState createState() => _AppBannerState();
 }
 
-class _AppBannerState extends State<AppBanner> {
+class _AppBannerState extends ConsumerState<AppBanner> {
   BannerAd? bannerAd;
 
   @override
@@ -28,7 +28,7 @@ class _AppBannerState extends State<AppBanner> {
   }
 
   Future _setAd() async {
-    final bool isPremium = await _isPremium();
+    final bool isPremium = ref.watch(premiumEnabledProvider);
     if (isPremium) return;
 
     BannerAd(
@@ -41,13 +41,6 @@ class _AppBannerState extends State<AppBanner> {
         });
       }),
     ).load();
-  }
-
-  // ユーザーがプレミアム会員か確認する。
-  Future<bool> _isPremium() async {
-    const storage = FlutterSecureStorage();
-    String? premium = await storage.read(key: 'premium');
-    return premium == 'true';
   }
 
   // 広告IDを取得する

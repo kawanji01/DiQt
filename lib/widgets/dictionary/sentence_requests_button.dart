@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
-import 'package:booqs_mobile/widgets/button/small_green_button.dart';
+import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
 class DictionarySentenceRequestsButton extends StatelessWidget {
@@ -15,12 +15,12 @@ class DictionarySentenceRequestsButton extends StatelessWidget {
       final String btnText =
           '例文の改善履歴（${dictionary.acceptedSentenceRequestsCount}）';
       final String redirectPath =
-          'dictionaries/${dictionary.publicUid}/accepted_sentence_requests';
+          'dictionaries/${dictionary.id}/accepted_sentence_requests';
       return InkWell(
         onTap: () {
           BooQsOnWeb.open(context, redirectPath);
         },
-        child: SmallGreenButton(label: btnText, icon: Icons.history),
+        child: SmallOutlineGrayButton(label: btnText, icon: Icons.history),
       );
     }
 
@@ -30,8 +30,11 @@ class DictionarySentenceRequestsButton extends StatelessWidget {
       if (requestsCount == 0) return Container();
       final String btnText = '$requestsCount件の審査中の編集';
       final String redirectPath =
-          'dictionaries/${dictionary.publicUid}/pending_sentence_requests';
+          'dictionaries/${dictionary.id}/pending_sentence_requests';
       return TextButton(
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.only(left: 0),
+          ),
           onPressed: () {
             BooQsOnWeb.open(context, redirectPath);
           },

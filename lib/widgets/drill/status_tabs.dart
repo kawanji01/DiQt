@@ -2,7 +2,6 @@ import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/pages/drill/show.dart';
 import 'package:booqs_mobile/pages/drill/solved.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

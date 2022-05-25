@@ -34,19 +34,16 @@ class PurchaseSubscriptionButton extends StatelessWidget {
             style: TextStyle(
                 fontSize: 16, color: Colors.green, fontWeight: FontWeight.bold),
           )),
-      SizedBox(
-        height: 48,
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity,
-                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-          ),
-          onPressed: () => {_test()},
-          icon: const Icon(Icons.grade, color: Colors.white),
-          label: const Text(
-            '¥500 / 月',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
+      ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size(double.infinity,
+              48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+        ),
+        onPressed: () => {_test()},
+        icon: const Icon(Icons.grade, color: Colors.white),
+        label: const Text(
+          '¥500 / 月',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
     ]);

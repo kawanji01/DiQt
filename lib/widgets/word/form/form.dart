@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/widgets/word/form/preview_button.dart';
 import 'package:flutter/material.dart';
 
@@ -7,11 +8,13 @@ class WordForm extends StatefulWidget {
     required this.entryController,
     required this.meaningController,
     required this.explanationController,
+    required this.dictionary,
   }) : super(key: key);
 
   final TextEditingController entryController;
   final TextEditingController meaningController;
   final TextEditingController explanationController;
+  final Dictionary dictionary;
 
   @override
   _WordFormState createState() => _WordFormState();
@@ -77,7 +80,8 @@ class _WordFormState extends State<WordForm> {
         WordFormPreviewButton(
             entryController: _entryController!,
             meaningController: _meaningController!,
-            explanationController: _explanationController!)
+            explanationController: _explanationController!,
+            dictionary: widget.dictionary)
       ],
     );
   }

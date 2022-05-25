@@ -14,7 +14,7 @@ class SmallGreenButton extends StatelessWidget {
       richText = RichText(
           text: TextSpan(children: [
         TextSpan(
-            text: ' $label',
+            text: label,
             style: const TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
       ]));
@@ -29,7 +29,7 @@ class SmallGreenButton extends StatelessWidget {
           ),
         ),
         TextSpan(
-            text: ' $label',
+            text: label,
             style: const TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
       ]));

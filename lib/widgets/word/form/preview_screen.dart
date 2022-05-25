@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:flutter/material.dart';
@@ -7,11 +8,13 @@ class WordFormPreviewScreen extends StatelessWidget {
       {Key? key,
       required this.entry,
       required this.meaning,
-      required this.explanation})
+      required this.explanation,
+      required this.dictionary})
       : super(key: key);
   final String entry;
   final String meaning;
   final String explanation;
+  final Dictionary dictionary;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +65,7 @@ class WordFormPreviewScreen extends StatelessWidget {
             text: explanation,
             autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
+            dictionaryId: dictionary.id,
           ),
           const SizedBox(
             height: 32,
