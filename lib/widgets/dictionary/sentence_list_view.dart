@@ -93,7 +93,7 @@ class _DictionarySentenceListViewState
         onVisibilityChanged: (info) {
           // [visibleFraction] 0で非表示、１で完全表示。0.1は上部が少し表示されている状態 ref: https://pub.dev/documentation/visibility_detector/latest/visibility_detector/VisibilityInfo/visibleFraction.html
           if (info.visibleFraction > 0.1) {
-            if (_isLoading) return print('visibleFraction _isLoading: true');
+            if (_isLoading) return;
 
             setState(() {
               _isReached = true;

@@ -94,9 +94,9 @@ class TextWithLink extends StatelessWidget {
       }
 
       // [[diplayedWord|searchedWord]]の場合
-      if (linkedWord.contains('|')) {
-        final displayedWord = linkedWord.split('|')[0];
-        final searchedWord = linkedWord.split('|')[1];
+      if (linkedWord.contains('>')) {
+        final displayedWord = linkedWord.split('>')[0];
+        final searchedWord = linkedWord.split('>')[1];
         return TextButton(
           style: ButtonStyle(
             // paddingを消す

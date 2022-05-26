@@ -32,10 +32,8 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
 
   // ページに合わせてアイテムを読み込む
   Future<void> _fetchPage(int pageKey) async {
-    print('nextPageKey: $_nextPagekey');
     if (_isLoading) return;
     if (_isReached == false) return;
-    print('_fetchPage isLoading: false');
     _isLoading = true;
 
     final Map? resMap = await RemoteActivities.index(pageKey, _pageSize);
@@ -84,8 +82,7 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
         onVisibilityChanged: (info) {
           // [visibleFraction] 0で非表示、１で完全表示。0.1は上部が少し表示されている状態 ref: https://pub.dev/documentation/visibility_detector/latest/visibility_detector/VisibilityInfo/visibleFraction.html
           if (info.visibleFraction > 0.1) {
-            if (_isLoading) return print('visibleFraction _isLoading: true');
-            print('visibleFraction _isLoading: false');
+            if (_isLoading) return;
             setState(() {
               _isReached = true;
             });
