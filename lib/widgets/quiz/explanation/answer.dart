@@ -22,9 +22,10 @@ class QuizExplanationAnswer extends StatelessWidget {
         const center = CrossAxisAlignment.center;
         return TextWithLink(
           text: quiz.correctAnswer,
+          langNumber: quiz.langNumberOfAnswer,
+          dictionaryId: dictionary.id,
           autoLinkEnabled: true,
           crossAxisAlignment: center,
-          dictionaryId: dictionary.id,
         );
       }
       return Text(quiz.correctAnswer, style: const TextStyle(fontSize: 16));
