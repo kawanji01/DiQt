@@ -44,6 +44,7 @@ class WordExplanation extends StatelessWidget {
             const SizedBox(height: 8),
             TextWithLink(
               text: expText!,
+              langNumber: word!.langNumberOfEntry,
               autoLinkEnabled: false,
               crossAxisAlignment: CrossAxisAlignment.start,
               dictionaryId: word!.dictionaryId,

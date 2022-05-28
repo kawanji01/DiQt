@@ -5,17 +5,20 @@ class TextWithLink extends StatelessWidget {
   const TextWithLink(
       {Key? key,
       required this.text,
+      required this.langNumber,
       required this.autoLinkEnabled,
       required this.crossAxisAlignment,
       required this.dictionaryId})
       : super(key: key);
   final String text;
+  final int? langNumber;
+  final int? dictionaryId;
   final bool autoLinkEnabled;
   final CrossAxisAlignment crossAxisAlignment;
-  final int? dictionaryId;
 
   @override
   Widget build(BuildContext context) {
+    final int _langNumber = langNumber ?? 21;
     final int _dictionaryId = dictionaryId ?? 1;
     // 記法が使われたテキストと、そうでないテキストを分ける。
     // セパレーターを含んでテキストを分割する。参考： https://stackoverflow.com/questions/59547040/dart-split-string-using-regular-expression-and-include-delimiters?rq=1

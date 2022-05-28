@@ -63,6 +63,7 @@ class WordFormPreviewScreen extends StatelessWidget {
           const SharedItemLabel(text: '解説'),
           TextWithLink(
             text: explanation,
+            langNumber: dictionary.langNumberOfEntry,
             autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
             dictionaryId: dictionary.id,

@@ -17,6 +17,7 @@ class SentenceItem extends StatelessWidget {
         const SizedBox(height: 16),
         TextWithLink(
           text: sentence.original,
+          langNumber: sentence.langNumberOfOriginal,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
           dictionaryId: sentence.dictionaryId,

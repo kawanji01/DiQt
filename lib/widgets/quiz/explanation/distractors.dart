@@ -23,9 +23,10 @@ class QuizExplanationDistractors extends StatelessWidget {
       if (quiz.langNumberOfAnswer == langNumberOfEntry) {
         child = TextWithLink(
           text: distractor,
+          langNumber: quiz.langNumberOfAnswer,
+          dictionaryId: quiz.dictionaryId,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
-          dictionaryId: quiz.dictionaryId,
         );
       }
 

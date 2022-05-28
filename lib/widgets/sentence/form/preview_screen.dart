@@ -42,9 +42,10 @@ class SentenceFormPreviewScreen extends StatelessWidget {
           ),
           TextWithLink(
             text: original,
+            langNumber: dictionary.langNumberOfEntry,
+            dictionaryId: dictionary.id,
             autoLinkEnabled: true,
             crossAxisAlignment: CrossAxisAlignment.start,
-            dictionaryId: dictionary.id,
           ),
           const SizedBox(
             height: 32,
@@ -61,9 +62,10 @@ class SentenceFormPreviewScreen extends StatelessWidget {
           const SharedItemLabel(text: '解説'),
           TextWithLink(
             text: explanation,
+            langNumber: dictionary.langNumberOfEntry,
+            dictionaryId: dictionary.id,
             autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
-            dictionaryId: dictionary.id,
           ),
           const SizedBox(
             height: 32,

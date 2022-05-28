@@ -35,9 +35,10 @@ class QuizFormPreviewScreen extends StatelessWidget {
       if (dictionary.langNumberOfEntry == langNumberOfQuestion) {
         return TextWithLink(
           text: question,
+          langNumber: langNumberOfQuestion,
+          dictionaryId: dictionary.id,
           autoLinkEnabled: false,
           crossAxisAlignment: CrossAxisAlignment.start,
-          dictionaryId: dictionary.id,
         );
       } else {
         return Text(question,
@@ -52,9 +53,10 @@ class QuizFormPreviewScreen extends StatelessWidget {
       if (dictionary.langNumberOfEntry == langNumberOfAnswer) {
         return TextWithLink(
           text: correctAnswer,
+          langNumber: langNumberOfAnswer,
+          dictionaryId: dictionary.id,
           autoLinkEnabled: false,
           crossAxisAlignment: CrossAxisAlignment.start,
-          dictionaryId: dictionary.id,
         );
       } else {
         return Text(correctAnswer,
@@ -99,9 +101,10 @@ class QuizFormPreviewScreen extends StatelessWidget {
           const SharedItemLabel(text: 'ヒント'),
           TextWithLink(
             text: hint,
+            langNumber: null,
+            dictionaryId: dictionary.id,
             autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
-            dictionaryId: dictionary.id,
           ),
           const SizedBox(
             height: 32,
@@ -109,9 +112,10 @@ class QuizFormPreviewScreen extends StatelessWidget {
           const SharedItemLabel(text: '解説'),
           TextWithLink(
             text: explanation,
+            langNumber: null,
+            dictionaryId: dictionary.id,
             autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
-            dictionaryId: dictionary.id,
           ),
           const SizedBox(
             height: 80,
