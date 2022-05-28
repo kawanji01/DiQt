@@ -34,7 +34,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
     Widget _questionText() {
       if (dictionary.langNumberOfEntry == langNumberOfQuestion) {
         return TextWithLink(
-          text: hint,
+          text: question,
           autoLinkEnabled: false,
           crossAxisAlignment: CrossAxisAlignment.start,
           dictionaryId: dictionary.id,
@@ -51,7 +51,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
     Widget _answerText() {
       if (dictionary.langNumberOfEntry == langNumberOfAnswer) {
         return TextWithLink(
-          text: hint,
+          text: correctAnswer,
           autoLinkEnabled: false,
           crossAxisAlignment: CrossAxisAlignment.start,
           dictionaryId: dictionary.id,
