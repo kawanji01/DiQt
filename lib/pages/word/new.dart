@@ -59,6 +59,8 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
     _meaningController.text = resMap['translation'] ?? '';
     setState(() {
       _dictionary = dictionary;
+      _entryController;
+      _meaningController;
       _isLoading;
     });
   }
