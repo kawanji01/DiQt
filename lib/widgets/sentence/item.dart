@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/widgets/sentence/tts_button.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,9 @@ class SentenceItem extends StatelessWidget {
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
           dictionaryId: sentence.dictionaryId,
+        ),
+        SentenceTTSButton(
+          sentence: sentence,
         ),
         const SizedBox(height: 32),
         const SharedItemLabel(text: '訳'),
