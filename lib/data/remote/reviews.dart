@@ -49,8 +49,7 @@ class RemoteReviews {
   }
 
   // 復習設定の新規作成
-  static Future<Map?> create(
-      BuildContext context, int quizId, String? intervalSetting) async {
+  static Future<Map?> create(BuildContext context, int quizId) async {
     final String? token = await LocalUserInfo.authToken();
     if (token == null) return null;
 
@@ -59,9 +58,6 @@ class RemoteReviews {
       'token': token,
       'quiz_id': '$quizId',
     };
-    if (intervalSetting != null) {
-      boby['interval_setting'] = intervalSetting;
-    }
 
     final Response res = await post(url, body: boby);
     if (res.statusCode != 200) return null;
@@ -72,14 +68,14 @@ class RemoteReviews {
 
   // 復習設定の更新
   static Future<Map?> update(
-      BuildContext context, int reviewId, String intervalSetting) async {
+      BuildContext context, int reviewId, int intervalSetting) async {
     final String? token = await LocalUserInfo.authToken();
     if (token == null) return null;
 
     final Uri url =
         Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews/$reviewId');
     final Response res = await patch(url,
-        body: {'token': token, 'interval_setting': intervalSetting});
+        body: {'token': token, 'interval_setting': '$intervalSetting'});
 
     if (res.statusCode != 200) return null;
 
