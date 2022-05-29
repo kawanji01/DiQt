@@ -12,6 +12,7 @@ class SentenceTTSButton extends StatelessWidget {
     // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す
     final String originalPlainText =
         Sanitizer.removeDiQtLink(sentence.original);
+
     return Container(
       margin: const EdgeInsets.only(top: 4),
       alignment: Alignment.center,
