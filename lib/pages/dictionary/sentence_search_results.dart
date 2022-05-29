@@ -64,6 +64,7 @@ class _DictionarySentenceSearchResultsPageState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 24),
                 _heading(),
                 DictionarySentenceListView(
                   dictionaryId: _dictionaryId,
