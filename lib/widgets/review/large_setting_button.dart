@@ -6,7 +6,7 @@ import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:booqs_mobile/widgets/review/large_green_button.dart';
 import 'package:booqs_mobile/widgets/review/large_outline_button.dart';
-import 'package:booqs_mobile/widgets/review/setting_dialog.dart';
+import 'package:booqs_mobile/widgets/review/form/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -47,7 +47,7 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
       }
 
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteReviews.create(context, _quizId!, null);
+      final Map? resMap = await RemoteReviews.create(context, _quizId!);
       EasyLoading.dismiss();
 
       if (resMap == null) return;
@@ -65,7 +65,7 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
       final Review? newReview = await showDialog(
           context: context,
           builder: (context) {
-            return ReviewSettingDialog(review: _review, quizId: _quizId);
+            return ReviewFormDialog(review: _review);
           });
 
       if (newReview == null) return;
