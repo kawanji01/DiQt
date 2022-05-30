@@ -6,6 +6,7 @@ import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_login/twitter_login.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -78,52 +79,38 @@ class TwitterButton extends ConsumerWidget {
       }
     }
 
-    return TextButton(
-      onPressed: () => {_twitterAuth()},
+    const color = Color(0xff1da1f2);
+
+    final richText = RichText(
+        text: const TextSpan(children: [
+      WidgetSpan(
+        child: FaIcon(
+          FontAwesomeIcons.twitter,
+          size: 20,
+          color: Colors.white,
+        ),
+      ),
+      TextSpan(
+          text: ' Twitterで続ける',
+          style: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal))
+    ]));
+
+    return InkWell(
+      onTap: () {
+        _twitterAuth();
+      },
       child: Container(
         height: 48,
-        margin: const EdgeInsets.only(top: 16, bottom: 24),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+        margin: const EdgeInsets.symmetric(vertical: 24),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          border: Border.all(color: color, width: 1),
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          color: color,
         ),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xff1A91DA),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(5),
-                      topLeft: Radius.circular(5)),
-                ),
-                alignment: Alignment.center,
-                child: const Text('t',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w400)),
-              ),
-            ),
-            Expanded(
-              flex: 5,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xff1da1f2),
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(5),
-                      topRight: Radius.circular(5)),
-                ),
-                alignment: Alignment.center,
-                child: const Text('Twitterで続ける',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ),
-          ],
-        ),
+        child: richText,
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/word/show_screen.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,9 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.all(20),
+          margin: EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: ResponsiveValues.horizontalMargin(context)),
           child: future.when(
             data: (word) => _screen(word),
             error: (err, stack) => Text('Error: $err'),

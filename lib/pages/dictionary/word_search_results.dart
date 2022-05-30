@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/dictionary/word_list_view.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -59,11 +60,12 @@ class _DictionaryWordSearchResultsPageState
       ),
       body: SingleChildScrollView(
         child: Container(
-            margin: const EdgeInsets.only(left: 20, right: 20),
+            margin: EdgeInsets.symmetric(
+                horizontal: ResponsiveValues.horizontalMargin(context)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
                 _heading(),
                 DictionaryWordListView(
                   dictionaryId: _dictionaryId,

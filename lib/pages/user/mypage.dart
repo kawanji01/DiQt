@@ -4,6 +4,7 @@ import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/user/menu_button.dart';
 import 'package:booqs_mobile/widgets/user/study_records.dart';
 import 'package:booqs_mobile/widgets/user/todays_mistakes_button.dart';
@@ -119,7 +120,7 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
       return SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 28),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           color: Colors.transparent,
           child: Column(
             children: <Widget>[
@@ -158,13 +159,17 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('マイページ'),
-        //automaticallyImplyLeading: false,
         actions: <Widget>[_settingButton()],
       ),
-      body: future.when(
-        loading: () => _mypageOrEntrance(_user),
-        error: (err, stack) => Text('Error: $err'),
-        data: (data) => _mypageOrEntrance(data),
+      body: Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: ResponsiveValues.horizontalMargin(context),
+        ),
+        child: future.when(
+          loading: () => _mypageOrEntrance(_user),
+          error: (err, stack) => Text('Error: $err'),
+          data: (data) => _mypageOrEntrance(data),
+        ),
       ),
       bottomNavigationBar: const BottomNavbar(),
       drawer: const DrawerMenu(),

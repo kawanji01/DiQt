@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/item_list.dart';
 import 'package:booqs_mobile/widgets/word/search_form.dart';
 import 'package:flutter/material.dart';
@@ -28,14 +29,12 @@ class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 32),
+      margin: EdgeInsets.symmetric(
+          vertical: 32, horizontal: ResponsiveValues.horizontalMargin(context)),
       child: Column(
         children: <Widget>[
           const SizedBox(height: 16),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: WordSearchForm(searchController: searchController),
-          ),
+          WordSearchForm(searchController: searchController),
           const DictionaryRadioList(),
         ],
       ),

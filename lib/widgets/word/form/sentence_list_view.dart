@@ -56,7 +56,10 @@ class _WordFormSentenceListViewState extends State<WordFormSentenceListView> {
       return;
     }
     final List<Sentence> sentences = [];
-    resMap['sentences'].forEach((e) => sentences.add(Sentence.fromJson(e)));
+    if (resMap['sentences'] != null) {
+      resMap['sentences'].forEach((e) => sentences.add(Sentence.fromJson(e)));
+    }
+
     // print(activities.length);
     final isLastPage = sentences.length < _pageSize;
     if (isLastPage) {

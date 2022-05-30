@@ -69,6 +69,8 @@ dependencies:
   path: ^1.8.0 # Achievementの獲得時の画像で。cloudinaryの画像合成を利用するためにimageのURLからファイル名を取得するために利用
   cached_network_image: ^3.2.0 # ネットワーク経由で画像を表示し、画像をキャッシュディレクトリに保持する。
   share_plus: ^4.0.4 # 連続解答記録のシェアなど
+  responsive_builder: ^0.4.2 # 画面幅に合わせたレスポンシブデザイン
+  font_awesome_flutter: ^10.1.0 # font awesome
   
 
 dev_dependencies:

@@ -36,7 +36,6 @@ class _NoticeIndexPageState extends ConsumerState<NoticeIndexPage> {
   @override
   void initState() {
     super.initState();
-    //_loadCount();
     PushNotification.initialize(context);
   }
 

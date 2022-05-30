@@ -24,65 +24,45 @@ class AppleButton extends ConsumerWidget {
     // AndroidとWebではService IDがclientIdとなる。
     if (Platform.isAndroid) clientId = dotenv.env['ANDROID_SERVICE_ID'];
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: SignInWithAppleButton(
-        text: 'Appleで続ける',
-        height: 44,
-        onPressed: () async {
-          // 認証処理
-          final appleCredential = await SignInWithApple.getAppleIDCredential(
-            scopes: [
-              AppleIDAuthorizationScopes.email,
-              AppleIDAuthorizationScopes.fullName,
-            ],
-            webAuthenticationOptions: WebAuthenticationOptions(
-              clientId: clientId!,
-              redirectUri: Uri.parse(
-                '${const String.fromEnvironment("ROOT_URL")}/auth/apple/callback_on_android',
-              ),
+    return SignInWithAppleButton(
+      text: 'Appleで続ける',
+      height: 48,
+      onPressed: () async {
+        // 認証処理
+        final appleCredential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+          webAuthenticationOptions: WebAuthenticationOptions(
+            clientId: clientId!,
+            redirectUri: Uri.parse(
+              '${const String.fromEnvironment("ROOT_URL")}/auth/apple/callback_on_android',
             ),
-            // nonce : リプレイアタック対策。　参考： https://medium.com/flutter-jp/sign-in-with-apple-d0d123cbbe17
-            nonce: sha256.convert(utf8.encode(rawNonce)).toString(),
-            // state: CSRF対策
-            state: state,
-          );
+          ),
+          // nonce : リプレイアタック対策。　参考： https://medium.com/flutter-jp/sign-in-with-apple-d0d123cbbe17
+          nonce: sha256.convert(utf8.encode(rawNonce)).toString(),
+          // state: CSRF対策
+          state: state,
+        );
 
-          // 画面全体にローディングを表示
-          EasyLoading.show(status: 'loading...');
+        // 画面全体にローディングを表示
+        EasyLoading.show(status: 'loading...');
+        final Map? resMap = await RemoteSessions.apple(appleCredential);
 
-          /* ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
-          final deviceInfo = DeviceInfoService();
-          final String platform = deviceInfo.getPlatform();
-          final String deviceIdentifier = await deviceInfo.getIndentifier();
-          final String deviceName = await deviceInfo.getName();
-          ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する(END) ////
+        if (resMap == null) return EasyLoading.dismiss();
 
-          var url = Uri.parse(
-              '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/apple');
-          var res = await http.post(url, body: {
-            'identity_token': appleCredential.identityToken,
-            'authorization_code': appleCredential.authorizationCode,
-            'device_identifier': deviceIdentifier,
-            'platform': platform,
-            'device_name': deviceName,
-          }); */
-          final Map? resMap = await RemoteSessions.apple(appleCredential);
+        final User user = User.fromJson(resMap['user']);
+        await UserSetup.signIn(user);
+        ref.read(currentUserProvider.notifier).state = user;
+        const snackBar = SnackBar(content: Text('ログインしました。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        EasyLoading.dismiss();
+        UserMyPage.push(context);
 
-          if (resMap == null) return EasyLoading.dismiss();
-
-          final User user = User.fromJson(resMap['user']);
-          await UserSetup.signIn(user);
-          ref.read(currentUserProvider.notifier).state = user;
-          const snackBar = SnackBar(content: Text('ログインしました。'));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          EasyLoading.dismiss();
-          UserMyPage.push(context);
-
-          // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
-          // after they have been validated with Apple (see `Integration` section for more information on how to do this)
-        },
-      ),
+        // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
+        // after they have been validated with Apple (see `Integration` section for more information on how to do this)
+      },
     );
   }
 }

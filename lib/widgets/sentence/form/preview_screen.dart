@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,8 @@ class SentenceFormPreviewScreen extends StatelessWidget {
 
     return Container(
       height: 560,
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: EdgeInsets.symmetric(
+          horizontal: ResponsiveValues.horizontalMargin(context)),
       child: SingleChildScrollView(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

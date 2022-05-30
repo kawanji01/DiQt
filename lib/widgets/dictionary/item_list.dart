@@ -34,6 +34,7 @@ class _DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
       return RadioListTile(
         title: Text(dictionary.title),
         value: dictionary.id,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         groupValue: ref.watch(dictionaryIdProvider),
         onChanged: (value) {
           final int dictionaryId = int.parse('$value');

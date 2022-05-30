@@ -3,6 +3,7 @@ import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/review/unsolved_screen_wrapper.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
@@ -59,8 +60,11 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
 
     return Scaffold(
       appBar: const EmptyAppBar(),
-      //extendBodyBehindAppBar: true,
-      body: _reviewsOrEntrance(),
+      body: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: ResponsiveValues.horizontalMargin(context),
+          ),
+          child: _reviewsOrEntrance()),
       bottomNavigationBar: const BottomNavbar(),
       drawer: const DrawerMenu(),
     );

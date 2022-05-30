@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
 import 'package:booqs_mobile/widgets/quiz/edit_button.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/answer_analysis.dart';
@@ -72,7 +73,9 @@ class _QuizShowPageState extends ConsumerState<QuizShowPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.all(20),
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context),
+              vertical: 24),
           child: future.when(
             data: (quiz) => _screen(quiz),
             error: (err, stack) => Text('Error: $err'),

@@ -13,12 +13,7 @@ class Entrance extends StatelessWidget {
     Widget _submitButton() {
       return InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const LoginPage(),
-            ),
-          );
+          LoginPage.push(context);
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -47,8 +42,7 @@ class Entrance extends StatelessWidget {
     Widget _signUpButton() {
       return InkWell(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const SignUpPage()));
+          SignUpPage.push(context);
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -88,7 +82,7 @@ class Entrance extends StatelessWidget {
     }
 
     return Container(
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: <Widget>[
           const SizedBox(

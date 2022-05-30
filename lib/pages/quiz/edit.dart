@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/drill/name.dart';
 import 'package:booqs_mobile/widgets/quiz/form/form.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -136,28 +137,26 @@ class _QuizEditPageState extends State<QuizEditPage> {
       final Drill? drill = quiz.drill;
       if (drill == null) return const Text('Drill does not exist.');
 
-      return SingleChildScrollView(
-        child: Container(
-            margin: const EdgeInsets.all(20),
-            child: Form(
-                key: _formKey,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      DrillName(drill: drill),
-                      const SizedBox(height: 32),
-                      QuizForm(
-                          questionController: _questionController,
-                          correctAnswerController: _correctAnswerController,
-                          distractorsController: _distractorsController,
-                          explanationController: _explanationController,
-                          hintController: _hintController,
-                          quiz: quiz,
-                          dictionary: quiz.dictionary!),
-                      const SizedBox(height: 40),
-                      _submitButton(),
-                      const SizedBox(height: 40),
-                    ]))),
+      return Form(
+        key: _formKey,
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(height: 24),
+              DrillName(drill: drill),
+              const SizedBox(height: 32),
+              QuizForm(
+                  questionController: _questionController,
+                  correctAnswerController: _correctAnswerController,
+                  distractorsController: _distractorsController,
+                  explanationController: _explanationController,
+                  hintController: _hintController,
+                  quiz: quiz,
+                  dictionary: quiz.dictionary!),
+              const SizedBox(height: 40),
+              _submitButton(),
+              const SizedBox(height: 40),
+            ]),
       );
     }
 
@@ -165,7 +164,13 @@ class _QuizEditPageState extends State<QuizEditPage> {
       appBar: AppBar(
         title: const Text('問題の編集'),
       ),
-      body: _body(_quiz),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: _body(_quiz),
+        ),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }
