@@ -21,7 +21,7 @@ class DialogCloseButton extends StatelessWidget {
             Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
-            minimumSize: const Size(264, 40),
+            minimumSize: const Size(double.infinity, 40),
             primary: Colors.green,
           ),
         ),

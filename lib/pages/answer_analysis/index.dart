@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/answer_analysis/order_select_form.dart';
 import 'package:booqs_mobile/widgets/answer_analysis/quiz_list_view.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -51,7 +52,9 @@ class _AnswerAnalysisIndexPageState
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.all(20),
+          margin: EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: ResponsiveValues.horizontalMargin(context)),
           child: Column(
             children: <Widget>[
               const AnswerAnalysisOrderSelectForm(),

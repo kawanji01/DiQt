@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/quiz/answers_count.dart';
 import 'package:booqs_mobile/widgets/quiz/exp_indicator.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/open_button.dart';
@@ -80,19 +81,23 @@ class QuizAnswerInteraction extends ConsumerWidget {
         ScaffoldMessenger.of(context).removeCurrentSnackBar();
       },
       child: SingleChildScrollView(
-        child: Column(
-            // 画面一杯にSnackbarが広がるのを防ぐ ref: https://stackoverflow.com/questions/61790405/how-to-avoid-that-a-column-inside-a-snackbar-occupies-100-of-the-height
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              _correctAnswerWidget(),
-              _incorrectFeedback(),
-              _expIndicator(),
-              const QuizAnswersCount(),
-              QuizExplanationOpenButton(
-                answerNotification: notification,
-              ),
-              const SizedBox(height: 8),
-            ]),
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: Column(
+              // 画面一杯にSnackbarが広がるのを防ぐ ref: https://stackoverflow.com/questions/61790405/how-to-avoid-that-a-column-inside-a-snackbar-occupies-100-of-the-height
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                _correctAnswerWidget(),
+                _incorrectFeedback(),
+                _expIndicator(),
+                const QuizAnswersCount(),
+                QuizExplanationOpenButton(
+                  answerNotification: notification,
+                ),
+                const SizedBox(height: 8),
+              ]),
+        ),
       ),
     );
   }

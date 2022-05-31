@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/relationship/follow_button.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -40,30 +41,23 @@ class _UserShowPageState extends ConsumerState<UserShowPage> {
 
       final Relationship? relationship = user.relationship;
 
-      return SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 28),
-          color: Colors.transparent,
-          child: Column(
-            children: <Widget>[
-              UserProfile(user: user),
-              /* RelationshipLazyFollowButton(
+      return Column(
+        children: <Widget>[
+          UserProfile(user: user),
+          /* RelationshipLazyFollowButton(
                 user: user,
               ), */
-              RelationshipFollowButton(user: user, relationship: relationship),
-              UserExpIndicator(user: user),
-              UserAchievementsButton(user: user),
-              const SizedBox(
-                height: 80,
-              ),
-              const SizedBox(
-                height: 48,
-              ),
-              const AppBanner(),
-            ],
+          RelationshipFollowButton(user: user, relationship: relationship),
+          UserExpIndicator(user: user),
+          UserAchievementsButton(user: user),
+          const SizedBox(
+            height: 80,
           ),
-        ),
+          const SizedBox(
+            height: 48,
+          ),
+          const AppBanner(),
+        ],
       );
     }
 
@@ -72,10 +66,17 @@ class _UserShowPageState extends ConsumerState<UserShowPage> {
       appBar: AppBar(
         title: const Text('ユーザーページ'),
       ),
-      body: future.when(
-        loading: () => const LoadingSpinner(),
-        error: (err, stack) => Text('Error: $err'),
-        data: (data) => _userPage(data),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: future.when(
+            loading: () => const LoadingSpinner(),
+            error: (err, stack) => Text('Error: $err'),
+            data: (data) => _userPage(data),
+          ),
+        ),
       ),
       bottomNavigationBar: const BottomNavbar(),
     );

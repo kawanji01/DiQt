@@ -63,6 +63,7 @@ class DrillCard extends ConsumerWidget {
           _moveToDrillPage(drill);
         },
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
               title: Container(

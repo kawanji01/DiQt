@@ -49,13 +49,7 @@ class WeaknessUnsolvedScreenWrapper extends ConsumerWidget {
         // trueを返すことで通知がこれ以上遡らない
         return true;
       },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: const SingleChildScrollView(
-          child: WeaknessUnsolvedScreen(),
-        ),
-      ),
+      child: const WeaknessUnsolvedScreen(),
     );
   }
 }

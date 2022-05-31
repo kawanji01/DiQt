@@ -62,6 +62,7 @@ class ChapterIntrodiction extends StatelessWidget {
       color: Colors.white,
       padding: const EdgeInsets.all(16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [introduction, _reference()],
       ),
     );

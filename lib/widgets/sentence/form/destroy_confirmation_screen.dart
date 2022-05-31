@@ -56,7 +56,6 @@ class SentenceFormDestroyConfirmationScreen extends StatelessWidget {
 
     return Container(
       width: ResponsiveValues.dialogWidth(context),
-      //height: 320,
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
       child: SingleChildScrollView(
           child: Column(
