@@ -77,7 +77,7 @@ class WeaknessIntroduction extends ConsumerWidget {
         ),
         overComingConditionText,
         const SizedBox(
-          height: 8,
+          height: 16,
         ),
         const WeaknessAnswerSettingButton(),
       ],

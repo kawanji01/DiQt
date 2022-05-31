@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/drill/feed.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -53,8 +54,10 @@ class _UserDrillsInProgressScreenState
     }
 
     return Container(
-      height: 600,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      height: ResponsiveValues.dialogHeight(context),
+      margin: EdgeInsets.symmetric(
+          horizontal: ResponsiveValues.horizontalMargin(context)),
+      padding: const EdgeInsets.symmetric(vertical: 24),
       child: SingleChildScrollView(
           child: Column(
         children: [

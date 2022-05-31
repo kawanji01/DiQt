@@ -37,6 +37,7 @@ class ChapterCard extends ConsumerWidget {
           _moveToChapterPage(chapter);
         },
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
               //leading: Image(image: NetworkImage('${chapter.iconUrl}')),

@@ -5,6 +5,7 @@ import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/achievement_map.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/answer/share_button.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/gained_exp_indicator.dart';
@@ -68,8 +69,10 @@ class _NoticeUnreceivedAchievementState
     final heading = Container(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       child: Text('${_achievement!.name}メダル獲得！！',
-          style: const TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.orange)),
+          style: TextStyle(
+              fontSize: ResponsiveValues.achievementHeadingFontSize(context),
+              fontWeight: FontWeight.bold,
+              color: Colors.orange)),
     );
 
     Widget _medalImage() {
@@ -118,9 +121,15 @@ class _NoticeUnreceivedAchievementState
     }
 
     Widget _receiveButton() {
-      if (_isreceived == true) return const DialogCloseButton();
+      if (_isreceived == true) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: const DialogCloseButton(),
+        );
+      }
       return Container(
-        padding: const EdgeInsets.only(bottom: 16, right: 8, left: 8),
+        margin: const EdgeInsets.only(bottom: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Align(
           alignment: Alignment.bottomCenter,
           child: ElevatedButton.icon(
@@ -141,7 +150,8 @@ class _NoticeUnreceivedAchievementState
     }
 
     return SizedBox(
-      height: 500,
+      height: ResponsiveValues.dialogHeight(context),
+      width: ResponsiveValues.dialogWidth(context),
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
       child: Stack(
         children: [

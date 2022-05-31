@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/sentence/form/form.dart';
 import 'package:booqs_mobile/widgets/sentence/form/destroy_button.dart';
@@ -125,27 +126,25 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
       _translationController.text = sentence.translation;
       _explanationController.text = sentence.explanation ?? '';
 
-      return SingleChildScrollView(
-        child: Container(
-            margin: const EdgeInsets.all(20),
-            child: Form(
-                key: _formKey,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      DictionaryName(dictionary: dictionary),
-                      SentenceForm(
-                        originalController: _originalController,
-                        translationController: _translationController,
-                        explanationController: _explanationController,
-                        dictionary: sentence.dictionary!,
-                      ),
-                      const SizedBox(height: 40),
-                      _submitButton(),
-                      const SizedBox(height: 64),
-                      SentenceFormDestroyButton(sentence: sentence),
-                      const SizedBox(height: 160),
-                    ]))),
+      return Form(
+        key: _formKey,
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              DictionaryName(dictionary: dictionary),
+              const SizedBox(height: 32),
+              SentenceForm(
+                originalController: _originalController,
+                translationController: _translationController,
+                explanationController: _explanationController,
+                dictionary: sentence.dictionary!,
+              ),
+              const SizedBox(height: 40),
+              _submitButton(),
+              const SizedBox(height: 64),
+              SentenceFormDestroyButton(sentence: sentence),
+              const SizedBox(height: 160),
+            ]),
       );
     }
 
@@ -153,7 +152,14 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
       appBar: AppBar(
         title: const Text('例文の編集'),
       ),
-      body: _body(_sentence),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: _body(_sentence),
+        ),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

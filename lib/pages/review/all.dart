@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/review/introduction.dart';
 import 'package:booqs_mobile/widgets/review/order_select_form.dart';
 import 'package:booqs_mobile/widgets/review/quiz_list_view.dart';
@@ -27,28 +28,28 @@ class ReviewAllPage extends ConsumerStatefulWidget {
 class _ReviewAllPageState extends ConsumerState<ReviewAllPage> {
   @override
   Widget build(BuildContext context) {
-    final body = Container(
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: SingleChildScrollView(
-        child: Column(
-          children: const [
-            ReviewIntroduction(),
-            ReviewOrderSelectForm(type: 'all'),
-            SizedBox(height: 40),
-            ReviewStatusTabs(
-              selected: 'all',
-            ),
-            SizedBox(height: 8),
-            ReviewQuizListView(),
-            SizedBox(height: 120),
-          ],
+    final body = Column(
+      children: const [
+        ReviewIntroduction(),
+        ReviewOrderSelectForm(type: 'all'),
+        SizedBox(height: 40),
+        ReviewStatusTabs(
+          selected: 'all',
         ),
-      ),
+        SizedBox(height: 8),
+        ReviewQuizListView(),
+        SizedBox(height: 120),
+      ],
     );
     return Scaffold(
       appBar: const EmptyAppBar(),
-      body: body,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: body,
+        ),
+      ),
       bottomNavigationBar: const BottomNavbar(),
       drawer: const DrawerMenu(),
     );

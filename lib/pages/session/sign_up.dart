@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/pages/session/login.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/session/apple_button.dart';
 import 'package:booqs_mobile/widgets/session/divider_widget.dart';
 import 'package:booqs_mobile/widgets/session/google_button.dart';
@@ -23,8 +24,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _loginAccountLabel() {
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const LoginPage()));
+        LoginPage.push(context);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 20),
@@ -55,39 +55,32 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text('新規登録'),
       ),
-      body: SizedBox(
-        height: height,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    const SignUpForm(),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const DividerWidget(),
-                    const GoogleButton(),
-                    const TwitterButton(),
-                    const AppleButton(),
-                    _loginAccountLabel(),
-                  ],
-                ),
+      body: Container(
+        margin: EdgeInsets.symmetric(
+            horizontal: ResponsiveValues.horizontalMargin(context)),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(
+                height: 50,
               ),
-            ),
-          ],
+              const SignUpForm(),
+              const SizedBox(
+                height: 24,
+              ),
+              const DividerWidget(),
+              const GoogleButton(),
+              const TwitterButton(),
+              const AppleButton(),
+              _loginAccountLabel(),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

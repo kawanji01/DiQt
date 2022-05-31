@@ -19,6 +19,7 @@ class DictionaryIntroduction extends StatelessWidget {
         style: const TextStyle(fontSize: 16, color: Colors.black87));
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         image,
         const SizedBox(height: 16),

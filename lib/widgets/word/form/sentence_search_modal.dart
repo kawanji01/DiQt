@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/word/form/sentence_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -97,13 +98,15 @@ class _WordFormSentenceSearchModalState
     }
 
     return Container(
-      padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
+      padding: EdgeInsets.symmetric(
+          horizontal: ResponsiveValues.horizontalMargin(context)),
       height: 640,
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            const SizedBox(height: 16),
             _heading(),
             const SizedBox(height: 16),
             //_searchResults(),

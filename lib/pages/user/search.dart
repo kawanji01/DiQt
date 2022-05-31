@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/user/item_list_view.dart';
 import 'package:booqs_mobile/widgets/user/search_form.dart';
@@ -30,16 +31,14 @@ class _UserSearchPageState extends State<UserSearchPage> {
     }
 
     Widget _page() {
-      return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              const SizedBox(height: 40),
-              UserSearchForm(keyword: keyword),
-              _results(),
-              const SizedBox(height: 120),
-            ],
-          ));
+      return Column(
+        children: [
+          const SizedBox(height: 40),
+          UserSearchForm(keyword: keyword),
+          _results(),
+          const SizedBox(height: 120),
+        ],
+      );
     }
 
     // 最終的なアウトプット
@@ -48,7 +47,11 @@ class _UserSearchPageState extends State<UserSearchPage> {
         title: const Text('ユーザーを探す'),
       ),
       body: SingleChildScrollView(
-        child: _page(),
+        child: Container(
+          padding: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: _page(),
+        ),
       ),
       bottomNavigationBar: const BottomNavbar(),
     );

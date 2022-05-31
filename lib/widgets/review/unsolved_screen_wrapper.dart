@@ -7,6 +7,7 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/answer/answer_feeback.dart';
 import 'package:booqs_mobile/utils/answer/answer_reward.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/review/unsolved_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,12 +50,8 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
         // trueを返すことで通知がこれ以上遡らない
         return true;
       },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: const SingleChildScrollView(
-          child: ReviewUnsolvedScreen(),
-        ),
+      child: const SingleChildScrollView(
+        child: ReviewUnsolvedScreen(),
       ),
     );
   }

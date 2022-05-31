@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/remote/chapters.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/chapter/introduction.dart';
 import 'package:booqs_mobile/widgets/drill/feed.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -84,7 +85,9 @@ class _ChapterShowPageState extends State<ChapterShowPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.all(20),
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context),
+              vertical: 24),
           child: _buildPage(),
         ),
       ),

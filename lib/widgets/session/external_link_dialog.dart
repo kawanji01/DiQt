@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
@@ -75,8 +76,8 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
     Widget _linkButton() {
       if (_initDone == false) {
         return Container(
-          margin: const EdgeInsets.only(left: 12, right: 12, bottom: 24),
           width: MediaQuery.of(context).size.width,
+          margin: const EdgeInsets.only(left: 12, right: 12, bottom: 24),
           height: 40,
           child: ElevatedButton(
             onPressed: null,
@@ -113,6 +114,8 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
     }
 
     return AlertDialog(
+      insetPadding: EdgeInsets.symmetric(
+          horizontal: ResponsiveValues.horizontalMargin(context)),
       title: const Text(
         '外部リンク',
         style: TextStyle(fontWeight: FontWeight.w800),

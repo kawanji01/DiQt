@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
 import 'package:booqs_mobile/widgets/shared/premium_recommendation.dart';
@@ -38,32 +39,32 @@ class _WeaknessIndexPageState extends ConsumerState<WeaknessIndexPage> {
       return const WeaknessQuizListView();
     }
 
-    final _body = Container(
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 32),
-            const WeaknessIntroduction(),
-            const WeaknessOrderSelectForm(
-              type: 'all',
-            ),
-            const SizedBox(height: 32),
-            const WeaknessStatusTabs(
-              selected: 'all',
-            ),
-            const SizedBox(height: 8),
-            _quizzes(),
-            const SizedBox(height: 240),
-          ],
+    final _body = Column(
+      children: [
+        const SizedBox(height: 32),
+        const WeaknessIntroduction(),
+        const WeaknessOrderSelectForm(
+          type: 'all',
         ),
-      ),
+        const SizedBox(height: 32),
+        const WeaknessStatusTabs(
+          selected: 'all',
+        ),
+        const SizedBox(height: 8),
+        _quizzes(),
+        const SizedBox(height: 240),
+      ],
     );
 
     return Scaffold(
       appBar: const EmptyAppBar(),
-      body: _body,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: _body,
+        ),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

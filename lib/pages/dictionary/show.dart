@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/drill_part.dart';
 import 'package:booqs_mobile/widgets/dictionary/introduction.dart';
 import 'package:booqs_mobile/widgets/dictionary/sentence_part.dart';
@@ -72,7 +73,9 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.all(20),
+          margin: EdgeInsets.symmetric(
+              vertical: 20,
+              horizontal: ResponsiveValues.horizontalMargin(context)),
           child: future.when(
             loading: () => const LoadingSpinner(),
             error: (err, stack) => Text('Error: $err'),

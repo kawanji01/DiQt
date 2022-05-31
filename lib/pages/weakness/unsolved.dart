@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
 import 'package:booqs_mobile/widgets/weakness/unsolved_screen_wrapper.dart';
@@ -29,10 +30,17 @@ class _WeaknessUnsolvedPageState extends ConsumerState<WeaknessUnsolvedPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: EmptyAppBar(),
-      body: WeaknessUnsolvedScreenWrapper(),
-      bottomNavigationBar: BottomNavbar(),
+    return Scaffold(
+      appBar: const EmptyAppBar(),
+      body: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: const WeaknessUnsolvedScreenWrapper(),
+        ),
+      ),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

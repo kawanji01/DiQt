@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -54,9 +55,8 @@ class SentenceFormDestroyConfirmationScreen extends StatelessWidget {
     );
 
     return Container(
-      width: double.infinity,
-      height: 320,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      width: ResponsiveValues.dialogWidth(context),
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
       child: SingleChildScrollView(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

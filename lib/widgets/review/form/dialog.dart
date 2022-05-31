@@ -5,6 +5,7 @@ import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:booqs_mobile/widgets/review/form/status.dart';
 import 'package:flutter/material.dart';
@@ -120,6 +121,8 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
     }
 
     return AlertDialog(
+      insetPadding: EdgeInsets.symmetric(
+          horizontal: ResponsiveValues.horizontalMargin(context)),
       content: _buildReviewDialog(),
       actions: [
         Container(

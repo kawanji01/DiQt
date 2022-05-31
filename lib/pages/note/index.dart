@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/note/introduction.dart';
 import 'package:booqs_mobile/widgets/note/order_select_form.dart';
 import 'package:booqs_mobile/widgets/note/quiz_list_view.dart';
@@ -25,10 +26,11 @@ class NoteIndexPage extends StatefulWidget {
 class _NoteIndexPageState extends State<NoteIndexPage> {
   @override
   Widget build(BuildContext context) {
-    final _body = Container(
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: SingleChildScrollView(
+    final _body = SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.symmetric(
+            vertical: 24,
+            horizontal: ResponsiveValues.horizontalMargin(context)),
         child: Column(
           children: const [
             SizedBox(height: 32),

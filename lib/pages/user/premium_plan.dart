@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/purchase/introduction.dart';
 import 'package:booqs_mobile/widgets/purchase/introduction_footer.dart';
 import 'package:booqs_mobile/widgets/purchase/subscription_button.dart';
@@ -22,41 +23,43 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
   @override
   Widget build(BuildContext context) {
     Widget _body() {
-      return SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 28),
-          color: Colors.transparent,
-          child: Column(
-            children: const <Widget>[
-              PurchaseIntroduction(),
-              SizedBox(
-                height: 48,
-              ),
-              PurchaseSubscriptionButton(),
-              SizedBox(
-                height: 24,
-              ),
-              PurchaseIntroductionFooter(),
-              SizedBox(
-                height: 32,
-              ),
-              PurchaseRestoreButton(),
-              SizedBox(
-                height: 80,
-              ),
-            ],
+      return Column(
+        children: const <Widget>[
+          SizedBox(
+            height: 24,
           ),
-        ),
+          PurchaseIntroduction(),
+          SizedBox(
+            height: 48,
+          ),
+          PurchaseSubscriptionButton(),
+          SizedBox(
+            height: 24,
+          ),
+          PurchaseIntroductionFooter(),
+          SizedBox(
+            height: 32,
+          ),
+          PurchaseRestoreButton(),
+          SizedBox(
+            height: 80,
+          ),
+        ],
       );
     }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('プレミアムプラン'),
-        //automaticallyImplyLeading: false,
       ),
-      body: _body(),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          color: Colors.transparent,
+          child: _body(),
+        ),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

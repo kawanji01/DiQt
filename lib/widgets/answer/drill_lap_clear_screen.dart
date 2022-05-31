@@ -8,6 +8,7 @@ import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/answer/share_button.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/gained_exp_indicator.dart';
@@ -60,7 +61,8 @@ class AnswerDrillLapClearScreen extends ConsumerWidget {
     }
 
     return Container(
-      height: 400,
+      height: ResponsiveValues.dialogHeight(context),
+      width: ResponsiveValues.dialogWidth(context),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
       child: Stack(
