@@ -36,7 +36,7 @@ class ResponsiveValues {
 
     return getValueForScreenType(
         context: context,
-        mobile: grid * 80,
+        mobile: grid * 75,
         tablet: grid * 60,
         desktop: grid * 60);
   }
