@@ -45,7 +45,7 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
         'initial_interval': ref.watch(initialIntervalProvider),
         'interval_step_up_condition':
             ref.watch(intervalStepUpConditionProvider),
-        'review_delete_condition': ref.watch(intervalStepUpConditionProvider),
+        'review_delete_condition': ref.watch(reviewDeleteConditionProvider),
         'review_notification_enabled':
             ref.watch(reviewNotificationEnabledProvider),
         'review_notification_timer': ref.watch(reviewNotificationTimerProvider),
