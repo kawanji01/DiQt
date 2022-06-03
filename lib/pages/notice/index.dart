@@ -48,7 +48,7 @@ class _NoticeIndexPageState extends ConsumerState<NoticeIndexPage> {
     return SingleChildScrollView(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.all(28.0),
+        padding: const EdgeInsets.symmetric(vertical: 28),
         child: Column(
           children: const <Widget>[
             //_notificationsPageButton(),
