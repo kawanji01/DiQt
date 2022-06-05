@@ -13,13 +13,56 @@ import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerCompleteReviewScreen extends ConsumerWidget {
+class AnswerCompleteReviewScreen extends ConsumerStatefulWidget {
   const AnswerCompleteReviewScreen({Key? key, required this.answerCreator})
       : super(key: key);
   final AnswerCreator answerCreator;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _AnswerCompleteReviewScreenState createState() =>
+      _AnswerCompleteReviewScreenState();
+}
+
+class _AnswerCompleteReviewScreenState
+    extends ConsumerState<AnswerCompleteReviewScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      // 効果音
+      final bool seEnabled = ref.watch(seEnabledProvider);
+      if (seEnabled) {
+        final AudioCache _cache = AudioCache(
+          fixedPlayer: AudioPlayer(),
+        );
+        // _cache.loadAll([achievementSound]);
+        _cache.play(achievementSound);
+      }
+    });
+  }
+
+  Widget _heading() {
+    return const Text('復習達成',
+        style: TextStyle(
+            fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
+  }
+
+  Widget _shareButton(User? user) {
+    if (user == null) {
+      return Container();
+    }
+
+    const String tweet = '復習をすべて達成しました！！';
+    final String url =
+        '${DiQtURL.root(context)}/users/${user.publicUid}?complete_review=1';
+
+    return AnswerShareButton(text: tweet, url: url);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final User? user = ref.watch(currentUserProvider);
+    final AnswerCreator answerCreator = widget.answerCreator;
     // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬 + 連続年報酬）
     final int initialExp = answerCreator.startPoint +
         answerCreator.lapClearPoint +
@@ -30,33 +73,6 @@ class AnswerCompleteReviewScreen extends ConsumerWidget {
         answerCreator.continuationAllYearPoint;
     // 獲得経験値
     final int gainedExp = answerCreator.completeReviewPoint;
-
-    // 効果音
-    final bool seEnabled = ref.watch(seEnabledProvider);
-    if (seEnabled) {
-      final AudioCache _cache = AudioCache(
-        fixedPlayer: AudioPlayer(),
-      );
-      // _cache.loadAll([achievementSound]);
-      _cache.play(achievementSound);
-    }
-
-    Widget _heading() {
-      return const Text('復習達成',
-          style: TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
-    }
-
-    Widget _shareButton() {
-      final User? user = ref.watch(currentUserProvider);
-      if (user == null) return Container();
-
-      const String tweet = '復習をすべて達成しました！！';
-      final String url =
-          '${DiQtURL.root(context)}/users/${user.publicUid}?complete_review=1';
-
-      return AnswerShareButton(text: tweet, url: url);
-    }
 
     return Container(
       height: ResponsiveValues.dialogHeight(context),
@@ -73,7 +89,7 @@ class AnswerCompleteReviewScreen extends ConsumerWidget {
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _shareButton()
+            _shareButton(user)
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),
