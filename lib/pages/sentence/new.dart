@@ -72,8 +72,6 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
       Map<String, dynamic> params = {
         'original': _originalController.text,
         'lang_number_of_original': _dictionary!.langNumberOfEntry,
@@ -82,11 +80,12 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
         'explanation': _explanationController.text,
         'dictionary_id': _dictionary!.id
       };
-
+      // 画面全体にローディングを表示
+      EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteSentences.create(params);
+      EasyLoading.dismiss();
 
       if (resMap == null) {
-        EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
@@ -95,7 +94,6 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         SentenceShowPage.pushReplacement(context, sentence.id);
       }
-      EasyLoading.dismiss();
     }
 
     // 更新ボタン

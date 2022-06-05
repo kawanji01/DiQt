@@ -94,8 +94,8 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWords.create(params);
+      EasyLoading.dismiss();
       if (resMap == null) {
-        EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
@@ -105,8 +105,6 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
         if (wordId == null) return MyHomePage.push(context);
         WordShowPage.pushReplacement(context, wordId);
       }
-      // 画面全体のローディングを消す。
-      EasyLoading.dismiss();
     }
 
     // 更新ボタン

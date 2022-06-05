@@ -84,9 +84,6 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
-
       final Map<String, dynamic> params = {
         'id': word.id,
         'entry': _entryController.text,
@@ -95,11 +92,12 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
         'sentence_id': _sentenceIdController.text,
         'dictionary_id': _dictionary!.id,
       };
-
+      // 画面全体にローディングを表示
+      EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWords.update(params);
+      EasyLoading.dismiss();
 
       if (resMap == null) {
-        EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
@@ -108,7 +106,6 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         WordShowPage.pushReplacement(context, wordId);
       }
-      EasyLoading.dismiss();
     }
 
     // 更新ボタン
