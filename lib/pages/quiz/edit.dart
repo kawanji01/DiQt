@@ -83,8 +83,6 @@ class _QuizEditPageState extends State<QuizEditPage> {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
       final Map<String, dynamic> params = {
         'id': quiz.id,
         'question': _questionController.text,
@@ -94,10 +92,12 @@ class _QuizEditPageState extends State<QuizEditPage> {
         'hint': _hintController.text,
       };
 
+      // 画面全体にローディングを表示
+      EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteQuizzes.update(params);
+      EasyLoading.dismiss();
 
       if (resMap == null) {
-        EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('問題を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
@@ -106,7 +106,6 @@ class _QuizEditPageState extends State<QuizEditPage> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         QuizShowPage.pushReplacement(context, quizId);
       }
-      EasyLoading.dismiss();
     }
 
     // 更新ボタン
