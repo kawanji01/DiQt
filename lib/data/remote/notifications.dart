@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 
 class RemoteNotifications {
