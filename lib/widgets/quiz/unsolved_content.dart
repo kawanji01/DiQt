@@ -46,7 +46,7 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
   @override
   Widget build(BuildContext context) {
     Quiz quiz = widget.quiz;
-    final List<int> loadedQuizIds = ref.watch(loadedQuizIdsProvider);
+    //final List<int> loadedQuizIds = ref.watch(loadedQuizIdsProvider);
 
     // 正解を読み上げる
     void _speakCorrectAnswer(notification) {
