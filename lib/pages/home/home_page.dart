@@ -1,13 +1,13 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/widgets/home/home_search_page.dart';
+import 'package:booqs_mobile/widgets/home/search_screen.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyHomePage extends ConsumerStatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class HomePage extends ConsumerStatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -25,17 +25,17 @@ class MyHomePage extends ConsumerStatefulWidget {
       PageRouteBuilder(
         // 画面遷移のログを送信するために、settings.nameを設定する。
         settings: const RouteSettings(name: indexPage),
-        pageBuilder: (context, animation1, animation2) => const MyHomePage(),
+        pageBuilder: (context, animation1, animation2) => const HomePage(),
         transitionDuration: Duration.zero,
       ),
     );
   }
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends ConsumerState<MyHomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
@@ -50,7 +50,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
       appBar: AppBar(
         title: const Text('辞書'),
       ),
-      body: const HomeSearchPage(),
+      body: const HomeSearchScreen(),
       bottomNavigationBar: const BottomNavbar(),
       drawer: const DrawerMenu(),
     );

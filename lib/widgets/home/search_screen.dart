@@ -4,14 +4,14 @@ import 'package:booqs_mobile/widgets/word/search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeSearchPage extends ConsumerStatefulWidget {
-  const HomeSearchPage({Key? key}) : super(key: key);
+class HomeSearchScreen extends ConsumerStatefulWidget {
+  const HomeSearchScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeSearchPageState createState() => _HomeSearchPageState();
+  _HomeSearchScreenState createState() => _HomeSearchScreenState();
 }
 
-class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
+class _HomeSearchScreenState extends ConsumerState<HomeSearchScreen> {
   final searchController = TextEditingController();
 
   @override

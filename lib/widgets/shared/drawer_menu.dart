@@ -1,4 +1,5 @@
 import 'package:app_review/app_review.dart';
+import 'package:booqs_mobile/pages/home/community_page.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,12 @@ class DrawerMenu extends StatelessWidget {
                   fontSize: 32,
                   fontWeight: FontWeight.bold),
             ),
+          ),
+          ListTile(
+            title: const Text('コミュニティ', style: TextStyle(fontSize: 16)),
+            onTap: () {
+              CommunityPage.push(context);
+            },
           ),
           ListTile(
             title: const Text('お問い合わせ', style: TextStyle(fontSize: 16)),

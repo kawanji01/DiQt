@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/pages/home.dart';
+import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -102,7 +102,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
         final int? wordId = resMap['word']['id'];
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        if (wordId == null) return MyHomePage.push(context);
+        if (wordId == null) return HomePage.push(context);
         WordShowPage.pushReplacement(context, wordId);
       }
     }

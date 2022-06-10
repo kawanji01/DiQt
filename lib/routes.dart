@@ -8,7 +8,8 @@ import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
 import 'package:booqs_mobile/pages/drill/show.dart';
 import 'package:booqs_mobile/pages/drill/solved.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
-import 'package:booqs_mobile/pages/home.dart';
+import 'package:booqs_mobile/pages/home/home_page.dart';
+import 'package:booqs_mobile/pages/home/community_page.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/notice/index.dart';
@@ -38,6 +39,8 @@ import 'package:booqs_mobile/pages/word/show.dart';
 
 // ホーム
 const indexPage = '/';
+const communityPage = '/home/community';
+
 // 通知
 const noticeIndexPage = '/notice/index';
 const noticeHomePage = '/notice/home';
@@ -92,7 +95,8 @@ const answerAnalysisIndexPage = 'answer_analysis/index';
 const noteIndexPage = 'note/index';
 
 final routes = {
-  indexPage: (context) => const MyHomePage(),
+  indexPage: (context) => const HomePage(),
+  communityPage: (context) => const CommunityPage(),
   noticeIndexPage: (context) => const NoticeIndexPage(),
   noticeHomePage: (context) => const NoticeHomePage(),
   userMyPage: (context) => const UserMyPage(),

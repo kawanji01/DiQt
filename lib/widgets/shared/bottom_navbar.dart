@@ -3,7 +3,7 @@ import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
-import 'package:booqs_mobile/pages/home.dart';
+import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
@@ -85,7 +85,7 @@ class BottomNavbar extends ConsumerWidget {
 
       switch (index) {
         case 0:
-          MyHomePage.push(context);
+          HomePage.push(context);
           break;
         case 1:
           ChapterIndexPage.push(context);
