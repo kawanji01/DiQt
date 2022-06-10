@@ -98,4 +98,20 @@ class RemoteReviews {
     Map resMap = json.decode(res.body);
     return resMap;
   }
+
+  // 復習の全削除
+  static Future<Map?> destroyAll() async {
+    final String? token = await LocalUserInfo.authToken();
+    if (token == null) return null;
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews/destroy_all');
+    final Response res = await delete(url, body: {
+      'token': token,
+    });
+    if (res.statusCode != 200) return null;
+
+    Map resMap = json.decode(res.body);
+    return resMap;
+  }
 }

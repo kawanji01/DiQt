@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/widgets/review/bulk_deletion_button.dart';
 import 'package:booqs_mobile/widgets/review/introduction.dart';
 import 'package:booqs_mobile/widgets/review/order_select_form.dart';
 import 'package:booqs_mobile/widgets/review/quiz_list_view.dart';
@@ -36,7 +37,9 @@ class _ReviewAllPageState extends ConsumerState<ReviewAllPage> {
         ReviewStatusTabs(
           selected: 'all',
         ),
-        SizedBox(height: 8),
+        SizedBox(height: 40),
+        ReviewBulkDeletionButton(),
+        SizedBox(height: 40),
         ReviewQuizListView(),
         SizedBox(height: 120),
       ],
