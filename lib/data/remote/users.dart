@@ -80,6 +80,20 @@ class RemoteUsers {
     return resMap;
   }
 
+  // 参加中の教室
+  static Future<Map?> chapters(String publicUid) async {
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid/chapters');
+    final Response res =
+        await get(url, headers: {"Content-Type": "application/json"});
+
+    if (res.statusCode != 200) {
+      return null;
+    }
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 退会
   static Future<Map?> withdrawal() async {
     const storage = FlutterSecureStorage();

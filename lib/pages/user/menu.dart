@@ -3,6 +3,7 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
+import 'package:booqs_mobile/pages/user/chapters.dart';
 import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -84,6 +85,15 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
+    Widget _chapters() {
+      return InkWell(
+        onTap: () {
+          UserChaptersPage.push(context);
+        },
+        child: const LargeGreenButton(label: '参加中の教室', icon: Icons.school),
+      );
+    }
+
     Widget _answerSettingButton() {
       const String btnText = '解答・復習設定';
       return InkWell(
@@ -131,6 +141,10 @@ class UserMenuPage extends ConsumerWidget {
             height: 32,
           ),
           _userSearch(),
+          const SizedBox(
+            height: 32,
+          ),
+          _chapters(),
           const SizedBox(
             height: 32,
           ),

@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
+import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
@@ -62,3 +63,14 @@ final asyncUserProvider = FutureProvider<User?>((ref) async {
 // プレミアムユーザーの検証
 final premiumEnabledProvider = StateProvider<bool>((ref) => ref.watch(
     currentUserProvider.select((user) => user == null ? false : user.premium)));
+
+// 非同期でユーザーの参加中のchapterを取得する
+final asyncUserChaptersProvider =
+    FutureProvider.family<List<Chapter>, String>((ref, userUid) async {
+  final List<Chapter> chapters = [];
+  final Map? resMap = await RemoteUsers.chapters(userUid);
+  if (resMap == null) return chapters;
+
+  resMap['chapters'].forEach((e) => chapters.add(Chapter.fromJson(e)));
+  return chapters;
+});
