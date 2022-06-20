@@ -3,9 +3,11 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
+import 'package:booqs_mobile/pages/user/chapters.dart';
 import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
 import 'package:booqs_mobile/widgets/button/large_green_button.dart';
 import 'package:booqs_mobile/widgets/purchase/delete_button.dart';
@@ -83,6 +85,15 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
+    Widget _chapters() {
+      return InkWell(
+        onTap: () {
+          UserChaptersPage.push(context);
+        },
+        child: const LargeGreenButton(label: '参加中の教室', icon: Icons.school),
+      );
+    }
+
     Widget _answerSettingButton() {
       const String btnText = '解答・復習設定';
       return InkWell(
@@ -108,47 +119,44 @@ class UserMenuPage extends ConsumerWidget {
     }
 
     Widget _body() {
-      return SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 28),
-          color: Colors.transparent,
-          child: Column(
-            children: <Widget>[
-              const SizedBox(
-                height: 32,
-              ),
-              _weaknessAnalysisButton(),
-              const SizedBox(
-                height: 32,
-              ),
-              _answerHistoriesButton(),
-              const SizedBox(
-                height: 32,
-              ),
-              _answerAnalysesButton(),
-              const SizedBox(
-                height: 32,
-              ),
-              _noteListButton(),
-              const SizedBox(
-                height: 32,
-              ),
-              _userSearch(),
-              const SizedBox(
-                height: 32,
-              ),
-              _answerSettingButton(),
-              const SizedBox(
-                height: 64,
-              ),
-              const PurchaseDeleteButton(),
-              const SizedBox(
-                height: 80,
-              ),
-            ],
+      return Column(
+        children: <Widget>[
+          const SizedBox(
+            height: 32,
           ),
-        ),
+          _weaknessAnalysisButton(),
+          const SizedBox(
+            height: 32,
+          ),
+          _answerHistoriesButton(),
+          const SizedBox(
+            height: 32,
+          ),
+          _answerAnalysesButton(),
+          const SizedBox(
+            height: 32,
+          ),
+          _noteListButton(),
+          const SizedBox(
+            height: 32,
+          ),
+          _userSearch(),
+          const SizedBox(
+            height: 32,
+          ),
+          _chapters(),
+          const SizedBox(
+            height: 32,
+          ),
+          _answerSettingButton(),
+          const SizedBox(
+            height: 64,
+          ),
+          const PurchaseDeleteButton(),
+          const SizedBox(
+            height: 80,
+          ),
+        ],
       );
     }
 
@@ -156,7 +164,16 @@ class UserMenuPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('メニュー'),
       ),
-      body: _body(),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: ResponsiveValues.horizontalMargin(context),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 28),
+          color: Colors.transparent,
+          child: _body(),
+        ),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

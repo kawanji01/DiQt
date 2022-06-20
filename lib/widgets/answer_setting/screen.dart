@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/remote/answer_settings.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/answer_setting/answer_setting.dart';
 import 'package:booqs_mobile/widgets/answer_setting/review_setting.dart';
 import 'package:booqs_mobile/widgets/answer_setting/weakness_setting.dart';
@@ -44,7 +45,7 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
         'initial_interval': ref.watch(initialIntervalProvider),
         'interval_step_up_condition':
             ref.watch(intervalStepUpConditionProvider),
-        'review_delete_condition': ref.watch(intervalStepUpConditionProvider),
+        'review_delete_condition': ref.watch(reviewDeleteConditionProvider),
         'review_notification_enabled':
             ref.watch(reviewNotificationEnabledProvider),
         'review_notification_timer': ref.watch(reviewNotificationTimerProvider),
@@ -73,6 +74,9 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
       return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: ResponsiveValues.horizontalMargin(context),
+          ),
           padding: const EdgeInsets.only(bottom: 32),
           color: Colors.white,
           child: ElevatedButton.icon(
@@ -153,14 +157,17 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
       }
     }
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+    return SizedBox(
       width: double.infinity,
-      height: 600,
+      height: ResponsiveValues.dialogHeight(context),
       child: Stack(
         children: [
           SingleChildScrollView(
-            child: _column(),
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: ResponsiveValues.horizontalMargin(context)),
+              child: _column(),
+            ),
           ),
           _submitButton(),
         ],

@@ -29,6 +29,7 @@ class DrillIntroduction extends ConsumerWidget {
         style: const TextStyle(fontSize: 16, color: Colors.black87));
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         title,
         const SizedBox(height: 8),

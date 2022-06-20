@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
 import 'package:booqs_mobile/widgets/sentence/list_item.dart';
@@ -52,42 +53,46 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
       if (quiz == null) return const Text('Quiz does not exist.');
       final Dictionary? dictionary = sentence.dictionary;
       if (dictionary == null) return const Text('Dictionary does not exist.');
-      return SingleChildScrollView(
-          child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 24),
-                  DictionaryName(dictionary: dictionary),
-                  const SizedBox(height: 24),
-                  SentenceListItem(
-                    sentence: sentence,
-                    isShow: true,
-                  ),
-                  SentenceSentenceRequestsButton(sentence: sentence),
-                  const SizedBox(height: 24),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  const SizedBox(height: 16),
-                  DrillListQuiz(
-                    quiz: quiz,
-                    isShow: false,
-                  ),
-                  const SizedBox(height: 48),
-                ],
-              )));
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 24),
+          DictionaryName(dictionary: dictionary),
+          const SizedBox(height: 24),
+          SentenceListItem(
+            sentence: sentence,
+            isShow: true,
+          ),
+          SentenceSentenceRequestsButton(sentence: sentence),
+          const SizedBox(height: 24),
+          const Divider(
+            thickness: 1,
+          ),
+          const SizedBox(height: 16),
+          DrillListQuiz(
+            quiz: quiz,
+            isShow: false,
+          ),
+          const SizedBox(height: 48),
+        ],
+      );
     }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('例文'),
       ),
-      body: future.when(
-        loading: () => const LoadingSpinner(),
-        error: (err, stack) => Text('Error: $err'),
-        data: (sentence) => _body(sentence),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: future.when(
+            loading: () => const LoadingSpinner(),
+            error: (err, stack) => Text('Error: $err'),
+            data: (sentence) => _body(sentence),
+          ),
+        ),
       ),
       bottomNavigationBar: const BottomNavbar(),
     );

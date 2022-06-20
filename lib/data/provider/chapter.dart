@@ -17,12 +17,12 @@ final asynChapterDrillsProvider = FutureProvider<List<Drill>?>((ref) async {
 });
 
 // チャプターのリスト
-final chaptersProvider = StateProvider<List<Chapter>?>((ref) => null);
+final chaptersProvider = StateProvider<List<Chapter>>((ref) => []);
 // 非同期でチャプターのリストを取得する（chaptersProviderも更新する）
-final asyncChaptersProvider = FutureProvider<List<Chapter>?>((ref) async {
+final asyncChaptersProvider = FutureProvider<List<Chapter>>((ref) async {
   final List<Chapter> chapters = [];
   final Map? resMap = await RemoteChapters.index();
-  if (resMap == null) return null;
+  if (resMap == null) return chapters;
   resMap['data'].forEach((e) => chapters.add(Chapter.fromJson(e)));
   ref.read(chaptersProvider.notifier).state = chapters;
   return chapters;

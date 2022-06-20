@@ -19,9 +19,10 @@ class QuizExplanationQuestion extends StatelessWidget {
       if (quiz.langNumberOfQuestion == langNumberOfEntry) {
         return TextWithLink(
           text: quiz.question,
+          langNumber: quiz.langNumberOfQuestion,
+          dictionaryId: quiz.dictionaryId,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.center,
-          dictionaryId: quiz.dictionaryId,
         );
       }
       return Text(quiz.question, style: const TextStyle(fontSize: 16));

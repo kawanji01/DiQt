@@ -2,6 +2,8 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/exp_indicator.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +73,8 @@ class ExpLevelUpScreen extends ConsumerWidget {
 
     Widget _modal() {
       return Container(
-        height: 400,
+        height: ResponsiveValues.dialogHeight(context),
+        width: ResponsiveValues.dialogWidth(context),
         padding: const EdgeInsets.symmetric(horizontal: 20),
         // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
         child: Stack(
@@ -86,7 +89,7 @@ class ExpLevelUpScreen extends ConsumerWidget {
               const SizedBox(height: 16),
               _shareButton()
             ]),
-            _closeButton(),
+            const DialogCloseButton(),
             // 紙吹雪
             // ref: https://blog.dalt.me/2478
             // ref: https://gist.github.com/derekedelaney/0bd36b370daceaf56712a22bd097cdc8

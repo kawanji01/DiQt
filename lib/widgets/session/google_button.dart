@@ -6,6 +6,7 @@ import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleButton extends ConsumerWidget {
@@ -27,23 +28,6 @@ class GoogleButton extends ConsumerWidget {
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      /* ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する ////
-      final deviceInfo = DeviceInfoService();
-      final String platform = deviceInfo.getPlatform();
-      final String deviceIdentifier = await deviceInfo.getIndentifier();
-      final String deviceName = await deviceInfo.getName();
-      ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する(END) ////
-
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/sessions/google');
-      var res = await http.post(url, body: {
-        'identity_token': googleAuth.idToken,
-        'device_identifier': deviceIdentifier,
-        'platform': platform,
-        'device_name': deviceName,
-      }); */
-
-      /*  if (res.statusCode != 200) return EasyLoading.dismiss(); */
 
       Map? resMap = await RemoteSessions.google(googleAuth);
       if (resMap == null) return EasyLoading.dismiss();
@@ -58,52 +42,36 @@ class GoogleButton extends ConsumerWidget {
       UserMyPage.push(context);
     }
 
-    return TextButton(
-      onPressed: () => {_googleAuth()},
+    final richText = RichText(
+        text: const TextSpan(children: [
+      WidgetSpan(
+        child: FaIcon(
+          FontAwesomeIcons.google,
+          size: 20,
+          color: Colors.white,
+        ),
+      ),
+      TextSpan(
+          text: ' Googleで続ける',
+          style: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal))
+    ]));
+
+    return InkWell(
+      onTap: () {
+        _googleAuth();
+      },
       child: Container(
         height: 48,
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
         margin: const EdgeInsets.only(top: 20),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          border: Border.all(color: const Color(0xffDB4437), width: 1),
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          color: const Color(0xffDB4437),
         ),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xffd33426),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(5),
-                      topLeft: Radius.circular(5)),
-                ),
-                alignment: Alignment.center,
-                child: const Text('G',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w400)),
-              ),
-            ),
-            Expanded(
-              flex: 5,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xffDB4437),
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(5),
-                      topRight: Radius.circular(5)),
-                ),
-                alignment: Alignment.center,
-                child: const Text('Googleで続ける',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ),
-          ],
-        ),
+        child: richText,
       ),
     );
   }

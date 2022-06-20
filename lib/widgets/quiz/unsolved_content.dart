@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
@@ -46,7 +45,7 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
   @override
   Widget build(BuildContext context) {
     Quiz quiz = widget.quiz;
-    final List<int> loadedQuizIds = ref.watch(loadedQuizIdsProvider);
+    //final List<int> loadedQuizIds = ref.watch(loadedQuizIdsProvider);
 
     // 正解を読み上げる
     void _speakCorrectAnswer(notification) {
@@ -96,13 +95,16 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
             final List<int> solvedQuizIds = ref.watch(solvedQuizIdsProvider);
             print('solvedQuizIds');
             print(solvedQuizIds);
+            print(solvedQuizIds.length);
             // 読み込まれた問題（loadedQuizIds）のうち、実際に画面に表示されている問題のIDを算出する （読み込まれた問題 - 解いた問題のID （solvedQuizIdsProvider））
-            loadedQuizIds
-                .removeWhere((int quizId) => solvedQuizIds.contains(quizId));
-            print('displayedQuizIDs');
-            print(loadedQuizIds);
+            //loadedQuizIds
+            //    .removeWhere((int quizId) => solvedQuizIds.contains(quizId));
+            //print('displayedQuizIDs');
+            //print(loadedQuizIds);
             // 画面に表示されている問題がなければ、次の問題を読み込むために親（reviewやdrillのscreen）に通知する。
-            if (loadedQuizIds.isEmpty) {
+            //
+            // 10の倍数の解答数でリロードする
+            if (solvedQuizIds.length % 10 == 0) {
               LoadingUnsolvedQuizzesNotification(true).dispatch(context);
             }
             setState(() {

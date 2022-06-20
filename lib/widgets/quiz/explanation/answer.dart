@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
@@ -15,16 +14,18 @@ class QuizExplanationAnswer extends StatelessWidget {
   Widget build(BuildContext context) {
     final Dictionary? dictionary = quiz.dictionary;
     Widget _answer() {
-      if (dictionary == null)
+      if (dictionary == null) {
         return Text(quiz.correctAnswer, style: const TextStyle(fontSize: 16));
+      }
 
       if (quiz.langNumberOfAnswer == dictionary.langNumberOfEntry) {
         const center = CrossAxisAlignment.center;
         return TextWithLink(
           text: quiz.correctAnswer,
+          langNumber: quiz.langNumberOfAnswer,
+          dictionaryId: dictionary.id,
           autoLinkEnabled: true,
           crossAxisAlignment: center,
-          dictionaryId: dictionary.id,
         );
       }
       return Text(quiz.correctAnswer, style: const TextStyle(fontSize: 16));

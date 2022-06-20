@@ -1,8 +1,9 @@
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/pages/home.dart';
+import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -59,6 +60,8 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
     _meaningController.text = resMap['translation'] ?? '';
     setState(() {
       _dictionary = dictionary;
+      _entryController;
+      _meaningController;
       _isLoading;
     });
   }
@@ -91,19 +94,17 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWords.create(params);
+      EasyLoading.dismiss();
       if (resMap == null) {
-        EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         final int? wordId = resMap['word']['id'];
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        if (wordId == null) return MyHomePage.push(context);
+        if (wordId == null) return HomePage.push(context);
         WordShowPage.pushReplacement(context, wordId);
       }
-      // 画面全体のローディングを消す。
-      EasyLoading.dismiss();
     }
 
     // 更新ボタン
@@ -131,28 +132,27 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       if (_isLoading) return const LoadingSpinner();
       if (_dictionary == null) return const Text('Dictionary does not exist.');
       return SingleChildScrollView(
-        child: Container(
-            margin: const EdgeInsets.all(20),
-            child: Form(
-                key: _formKey,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      DictionaryName(dictionary: _dictionary!),
-                      WordForm(
-                        entryController: _entryController,
-                        meaningController: _meaningController,
-                        explanationController: _explanationController,
-                        dictionary: _dictionary!,
-                      ),
-                      WordFormSentenceSetting(
-                          sentenceIdController: _sentenceIdController,
-                          entryController: _entryController,
-                          dictionary: _dictionary!),
-                      const SizedBox(height: 40),
-                      _submitButton(),
-                      const SizedBox(height: 40),
-                    ]))),
+        child: Form(
+            key: _formKey,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  DictionaryName(dictionary: _dictionary!),
+                  const SizedBox(height: 32),
+                  WordForm(
+                    entryController: _entryController,
+                    meaningController: _meaningController,
+                    explanationController: _explanationController,
+                    dictionary: _dictionary!,
+                  ),
+                  WordFormSentenceSetting(
+                      sentenceIdController: _sentenceIdController,
+                      entryController: _entryController,
+                      dictionary: _dictionary!),
+                  const SizedBox(height: 40),
+                  _submitButton(),
+                  const SizedBox(height: 40),
+                ])),
       );
     }
 
@@ -160,7 +160,12 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       appBar: AppBar(
         title: const Text('項目の作成'),
       ),
-      body: _body(),
+      body: Container(
+        margin: EdgeInsets.symmetric(
+            vertical: 24,
+            horizontal: ResponsiveValues.horizontalMargin(context)),
+        child: _body(),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

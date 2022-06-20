@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/answer_history/incorrect_quiz_list_view.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/premium_recommendation.dart';
@@ -47,7 +48,9 @@ class _AnswerHistoryTodaysMistakesPageState
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.all(20),
+          margin: EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: ResponsiveValues.horizontalMargin(context)),
           child: Column(
             children: <Widget>[
               _feed(),

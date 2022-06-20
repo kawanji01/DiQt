@@ -21,9 +21,10 @@ class QuizExplanationExplanation extends StatelessWidget {
           const SizedBox(height: 16),
           TextWithLink(
             text: quiz.explanation!,
+            langNumber: null,
+            dictionaryId: quiz.dictionaryId,
             autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
-            dictionaryId: quiz.dictionaryId,
           ),
           const SizedBox(height: 24),
         ],

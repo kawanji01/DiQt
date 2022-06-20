@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/widgets/quiz/edit_button.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/answer.dart';
@@ -119,28 +120,31 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
     // 出典（辞書と例文）
 
     // 80%の高さで表示させる
-    return Container(
+    return SizedBox(
         height: height,
-        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              const SizedBox(
-                height: 24,
-              ),
-              _question(),
-              _answer(),
-              _distractors(),
-              _reviewButton(),
-              const SizedBox(height: 16),
-              _explanation(),
-              _editButtons(),
-              const SizedBox(height: 40),
-              _answerAnalysis(),
-              _note(),
-              const SizedBox(height: 40),
-              QuizSource(quiz: _quiz),
-            ],
+          child: Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: ResponsiveValues.horizontalMargin(context)),
+            child: Column(
+              children: <Widget>[
+                const SizedBox(
+                  height: 24,
+                ),
+                _question(),
+                _answer(),
+                _distractors(),
+                _reviewButton(),
+                const SizedBox(height: 16),
+                _explanation(),
+                _editButtons(),
+                const SizedBox(height: 40),
+                _answerAnalysis(),
+                _note(),
+                const SizedBox(height: 40),
+                QuizSource(quiz: _quiz),
+              ],
+            ),
           ),
         ));
   }

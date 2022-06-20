@@ -8,7 +8,8 @@ import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
 import 'package:booqs_mobile/pages/drill/show.dart';
 import 'package:booqs_mobile/pages/drill/solved.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
-import 'package:booqs_mobile/pages/home.dart';
+import 'package:booqs_mobile/pages/home/home_page.dart';
+import 'package:booqs_mobile/pages/home/community_page.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/notice/index.dart';
@@ -22,6 +23,7 @@ import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
+import 'package:booqs_mobile/pages/user/chapters.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/pages/user/menu.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
@@ -38,6 +40,8 @@ import 'package:booqs_mobile/pages/word/show.dart';
 
 // ホーム
 const indexPage = '/';
+const communityPage = '/home/community';
+
 // 通知
 const noticeIndexPage = '/notice/index';
 const noticeHomePage = '/notice/home';
@@ -68,6 +72,7 @@ const userAchievementsPage = '/user/achievements';
 const userEditPage = '/user/edit';
 const userMenuPage = '/user/menu';
 const userSearchPage = '/user/search';
+const userChaptersPage = '/user/chapters';
 const userPremiumPlanPage = '/user/premium_plan';
 // 問題集
 const drillUnsolvedPage = '/drill/unsolved';
@@ -92,7 +97,8 @@ const answerAnalysisIndexPage = 'answer_analysis/index';
 const noteIndexPage = 'note/index';
 
 final routes = {
-  indexPage: (context) => const MyHomePage(),
+  indexPage: (context) => const HomePage(),
+  communityPage: (context) => const CommunityPage(),
   noticeIndexPage: (context) => const NoticeIndexPage(),
   noticeHomePage: (context) => const NoticeHomePage(),
   userMyPage: (context) => const UserMyPage(),
@@ -116,6 +122,7 @@ final routes = {
   userEditPage: (context) => const UserEditPage(),
   userMenuPage: (context) => const UserMenuPage(),
   userSearchPage: (context) => const UserSearchPage(),
+  userChaptersPage: (context) => const UserChaptersPage(),
   userPremiumPlanPage: (context) => const PremiumPlanPage(),
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   drillSolvedPage: (context) => const DrillSolvedPage(),

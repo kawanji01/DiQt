@@ -2,6 +2,7 @@ import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/pages/activity/index.dart';
 import 'package:booqs_mobile/pages/notice/index.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,12 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
             ],
           ),
         ),
-        body: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
+        body: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: ResponsiveValues.horizontalMargin(context),
+          ),
+          child: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
+        ),
         bottomNavigationBar: const BottomNavbar(),
       ),
     );

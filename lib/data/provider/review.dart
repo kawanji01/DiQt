@@ -8,8 +8,7 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final reviewOrderProvider =
-    StateProvider<String>((ref) => 'scheduled_date-desc');
+final reviewOrderProvider = StateProvider<String>((ref) => 'random-random');
 
 final asyncUnsolvedReviewsProvider = FutureProvider<List<Review>>((ref) async {
   final List<Review> reviews = [];

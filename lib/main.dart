@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/services/purchase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -16,10 +17,14 @@ Future<void> main() async {
   // RevenueCatの初期化
   final purchase = PurchaseService();
   purchase.initPlatformState();
-  // runApp()を実行する前に Flutter Engine の機能を使いたい場合に呼び出しておくおまじないコード。AdMobの初期化に必要。 ref: https://zenn.dev/sugitlab/books/flutter_poke_app_handson/viewer/step7
+  // runApp()を実行する前に Flutter Engine の機能を使いたい場合に呼び出しておくおまじないコード。AdMobの初期化 や 画面の向きの固定 に必要。 ref: https://zenn.dev/sugitlab/books/flutter_poke_app_handson/viewer/step7
   WidgetsFlutterBinding.ensureInitialized();
   // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
   MobileAds.instance.initialize();
+  // 画面の向きの固定 ref: https://qiita.com/osamu1203/items/6172df89f5270060a44d
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp, //縦固定
+  ]);
   // ~分前のようなタイムスタンプを表示するための設定。具体的な表示の処理は utils/date_time_formatter にある ref: https://zenn.dev/namioto/articles/0e0034f3b93874
   timeago.setLocaleMessages("ja", timeago.JaMessages());
   // Riverpodをアプリに適用

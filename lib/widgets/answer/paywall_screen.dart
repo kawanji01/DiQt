@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:flutter/material.dart';
 
@@ -38,8 +39,8 @@ class AnswerPaywallScreen extends StatelessWidget {
     }
 
     return Container(
-      height: 400,
-      width: double.infinity,
+      height: ResponsiveValues.dialogHeight(context),
+      width: ResponsiveValues.dialogWidth(context),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
       child: Stack(

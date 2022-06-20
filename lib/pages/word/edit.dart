@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -83,9 +84,6 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
-
       final Map<String, dynamic> params = {
         'id': word.id,
         'entry': _entryController.text,
@@ -94,11 +92,12 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
         'sentence_id': _sentenceIdController.text,
         'dictionary_id': _dictionary!.id,
       };
-
+      // 画面全体にローディングを表示
+      EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWords.update(params);
+      EasyLoading.dismiss();
 
       if (resMap == null) {
-        EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
@@ -107,7 +106,6 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         WordShowPage.pushReplacement(context, wordId);
       }
-      EasyLoading.dismiss();
     }
 
     // 更新ボタン
@@ -136,30 +134,29 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       if (_word == null) return const Text('Word does not exist.');
       if (_dictionary == null) return const Text('Dictionary does not exist.');
       return SingleChildScrollView(
-        child: Container(
-            margin: const EdgeInsets.all(20),
-            child: Form(
-                key: _formKey,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      DictionaryName(dictionary: _dictionary!),
-                      WordForm(
-                        entryController: _entryController,
-                        meaningController: _meaningController,
-                        explanationController: _explanationController,
-                        dictionary: _dictionary!,
-                      ),
-                      WordFormSentenceSetting(
-                          sentenceIdController: _sentenceIdController,
-                          entryController: _entryController,
-                          dictionary: _dictionary!),
-                      const SizedBox(height: 40),
-                      _submitButton(),
-                      const SizedBox(height: 64),
-                      WordFormDestroyButton(word: _word!),
-                      const SizedBox(height: 160),
-                    ]))),
+        child: Form(
+            key: _formKey,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  DictionaryName(dictionary: _dictionary!),
+                  const SizedBox(height: 32),
+                  WordForm(
+                    entryController: _entryController,
+                    meaningController: _meaningController,
+                    explanationController: _explanationController,
+                    dictionary: _dictionary!,
+                  ),
+                  WordFormSentenceSetting(
+                      sentenceIdController: _sentenceIdController,
+                      entryController: _entryController,
+                      dictionary: _dictionary!),
+                  const SizedBox(height: 40),
+                  _submitButton(),
+                  const SizedBox(height: 64),
+                  WordFormDestroyButton(word: _word!),
+                  const SizedBox(height: 160),
+                ])),
       );
     }
 
@@ -167,7 +164,12 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       appBar: AppBar(
         title: Text('${_entryController.text}の編集'),
       ),
-      body: _body(),
+      body: Container(
+        margin: EdgeInsets.symmetric(
+            vertical: 24,
+            horizontal: ResponsiveValues.horizontalMargin(context)),
+        child: _body(),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

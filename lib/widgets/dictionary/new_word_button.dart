@@ -11,7 +11,7 @@ class DictionaryNewWordButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (keyword == null) {
+    if (keyword == null || keyword == '') {
       return InkWell(
         onTap: () {
           WordNewPage.push(context, dictionaryId, '');
@@ -22,7 +22,7 @@ class DictionaryNewWordButton extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        WordNewPage.push(context, dictionaryId, '');
+        WordNewPage.push(context, dictionaryId, keyword!);
       },
       child:
           SmallOutlineGrayButton(label: '"$keyword"を辞書に追加する', icon: Icons.add),

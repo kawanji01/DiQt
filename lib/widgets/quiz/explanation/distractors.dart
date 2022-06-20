@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
@@ -24,9 +23,10 @@ class QuizExplanationDistractors extends StatelessWidget {
       if (quiz.langNumberOfAnswer == langNumberOfEntry) {
         child = TextWithLink(
           text: distractor,
+          langNumber: quiz.langNumberOfAnswer,
+          dictionaryId: quiz.dictionaryId,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
-          dictionaryId: quiz.dictionaryId,
         );
       }
 

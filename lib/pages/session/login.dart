@@ -1,5 +1,7 @@
 import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/session/apple_button.dart';
 import 'package:booqs_mobile/widgets/session/divider_widget.dart';
 import 'package:booqs_mobile/widgets/session/google_button.dart';
@@ -21,9 +23,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // パスワードリセット
   Future _moveToInitPasswordPage() async {
-    final String url =
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/password_resets/new';
+    final String url = '${DiQtURL.root(context)}/password_resets/new';
     if (await canLaunch(url)) {
       await launch(
         url,
@@ -33,8 +35,9 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  Widget _forgotPassword() {
-    return Container(
+  @override
+  Widget build(BuildContext context) {
+    final _forgetPassword = Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
       alignment: Alignment.centerRight,
       child: TextButton(
@@ -49,13 +52,10 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(color: Colors.black87)),
       ),
     );
-  }
 
-  Widget _createAccountLabel() {
-    return InkWell(
+    final _signUpLabel = InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const SignUpPage()));
+        SignUpPage.push(context);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 20),
@@ -82,40 +82,30 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text('ログイン'),
       ),
-      body: SizedBox(
-        height: height,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const SizedBox(height: 48),
-                    const LoginForm(),
-                    _forgotPassword(),
-                    const DividerWidget(),
-                    const GoogleButton(),
-                    const TwitterButton(),
-                    const AppleButton(),
-                    const SizedBox(height: 24),
-                    _createAccountLabel(),
-                  ],
-                ),
-              ),
-            ),
-          ],
+      body: Container(
+        padding: EdgeInsets.symmetric(
+            horizontal: ResponsiveValues.horizontalMargin(context)),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(height: 48),
+              const LoginForm(),
+              _forgetPassword,
+              const DividerWidget(),
+              const GoogleButton(),
+              const TwitterButton(),
+              const AppleButton(),
+              const SizedBox(height: 24),
+              _signUpLabel,
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

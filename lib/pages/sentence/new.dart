@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/sentence/form/form.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -71,8 +72,6 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
       Map<String, dynamic> params = {
         'original': _originalController.text,
         'lang_number_of_original': _dictionary!.langNumberOfEntry,
@@ -81,11 +80,12 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
         'explanation': _explanationController.text,
         'dictionary_id': _dictionary!.id
       };
-
+      // 画面全体にローディングを表示
+      EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteSentences.create(params);
+      EasyLoading.dismiss();
 
       if (resMap == null) {
-        EasyLoading.dismiss();
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
@@ -94,7 +94,6 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         SentenceShowPage.pushReplacement(context, sentence.id);
       }
-      EasyLoading.dismiss();
     }
 
     // 更新ボタン
@@ -122,24 +121,22 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
       if (_isLoading) return const LoadingSpinner();
       if (_dictionary == null) return const Text('Dictionary does not exist.');
 
-      return SingleChildScrollView(
-        child: Container(
-            margin: const EdgeInsets.all(20),
-            child: Form(
-                key: _formKey,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      DictionaryName(dictionary: _dictionary!),
-                      SentenceForm(
-                          originalController: _originalController,
-                          translationController: _translationController,
-                          explanationController: _explanationController,
-                          dictionary: _dictionary!),
-                      const SizedBox(height: 40),
-                      _submitButton(),
-                      const SizedBox(height: 40),
-                    ]))),
+      return Form(
+        key: _formKey,
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              DictionaryName(dictionary: _dictionary!),
+              const SizedBox(height: 32),
+              SentenceForm(
+                  originalController: _originalController,
+                  translationController: _translationController,
+                  explanationController: _explanationController,
+                  dictionary: _dictionary!),
+              const SizedBox(height: 40),
+              _submitButton(),
+              const SizedBox(height: 40),
+            ]),
       );
     }
 
@@ -147,7 +144,14 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
       appBar: AppBar(
         title: const Text('例文の追加'),
       ),
-      body: _body(),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: _body(),
+        ),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

@@ -9,8 +9,7 @@
 
 # DEMO
 
-<img src="https://user-images.githubusercontent.com/44082240/145131653-4fb3e5dd-70e7-4c5f-b148-8c4382f77451.png" width=200 height=429/> <img src="https://user-images.githubusercontent.com/44082240/145131681-511ba9bf-6e6a-455c-86c1-08b19ce84f59.png" width=200 height=429/> 
-                                                                                                               
+<img src="https://user-images.githubusercontent.com/44082240/172999319-3070b927-051b-40b3-8250-29e4e2faab67.png" width=200 height=429/><img src="https://user-images.githubusercontent.com/44082240/172999545-7210ab44-b26d-4259-8605-adec52d0af02.png" width=200 height=429/><img src="https://user-images.githubusercontent.com/44082240/172999672-4017f039-afab-4d2c-842f-5ba6d6ee8b34.png" width=200 height=429/><img src="https://user-images.githubusercontent.com/44082240/172999742-bb2fe992-60fb-468f-8e38-e84b020073f0.png" width=200 height=429/><img src="https://user-images.githubusercontent.com/44082240/172999834-00eb0706-5c90-4387-9737-b02b273bc692.png" width=200 height=429/> 
                                                                                                                
 # Details
 モバイル版では、以下の構成図のように、サーバーにRuby on Rails, クライアントサイドにFlutterを使っています。

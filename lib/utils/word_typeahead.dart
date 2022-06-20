@@ -7,7 +7,7 @@ class WordTypeahead {
   // ユーザーが検索フォームに入力したキーワードから、辞書の項目をサジェストする
   static Future<List<String>> getSuggestions(
       String query, int dictionaryId) async {
-    List<Word> _words = [];
+    List<String> _entries = [];
 
     if (query.isEmpty && query.length < 3) {
       print('Query needs to be at least 3 chars');
@@ -17,9 +17,9 @@ class WordTypeahead {
     final Map? resMap = await RemoteWords.autocomplete(dictionaryId, query);
 
     if (resMap != null) {
-      resMap['data'].forEach((e) => _words.add(Word.fromJson(e)));
+      resMap['entries'].forEach((entry) => _entries.add(entry));
     }
 
-    return Future.value(_words.map((e) => e.entry).toList());
+    return Future.value(_entries);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,8 @@ class SentenceFormPreviewScreen extends StatelessWidget {
 
     return Container(
       height: 560,
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: EdgeInsets.symmetric(
+          horizontal: ResponsiveValues.horizontalMargin(context)),
       child: SingleChildScrollView(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,9 +44,10 @@ class SentenceFormPreviewScreen extends StatelessWidget {
           ),
           TextWithLink(
             text: original,
+            langNumber: dictionary.langNumberOfEntry,
+            dictionaryId: dictionary.id,
             autoLinkEnabled: true,
             crossAxisAlignment: CrossAxisAlignment.start,
-            dictionaryId: dictionary.id,
           ),
           const SizedBox(
             height: 32,
@@ -61,9 +64,10 @@ class SentenceFormPreviewScreen extends StatelessWidget {
           const SharedItemLabel(text: '解説'),
           TextWithLink(
             text: explanation,
+            langNumber: dictionary.langNumberOfEntry,
+            dictionaryId: dictionary.id,
             autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
-            dictionaryId: dictionary.id,
           ),
           const SizedBox(
             height: 32,
