@@ -133,7 +133,7 @@ class RemoteWords {
   // 自動補完
   static Future<Map?> autocomplete(int dictionaryId, String query) async {
     final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/autocomplete_2');
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/autocomplete');
     final Response res = await post(url,
         body: {'dictionary_id': '$dictionaryId', 'query': query});
     if (res.statusCode != 200) return null;
