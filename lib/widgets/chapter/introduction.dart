@@ -24,8 +24,9 @@ class ChapterIntrodiction extends StatelessWidget {
 
     Widget _reference() {
       final String? url = chapter.referenceUrl;
+      if (url == null || url == '') return Container();
       final String? title = chapter.referenceTitle;
-      if (url == null || title == null) return Container();
+      if (title == null || title == '') return Container();
 
       return InkWell(
         onTap: () {
