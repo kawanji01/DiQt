@@ -62,7 +62,7 @@ class UserExpIndicator extends StatelessWidget {
         ),
         linearStrokeCap: LinearStrokeCap.roundAll,
         progressColor: Colors.orange,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
       );
     }
 
