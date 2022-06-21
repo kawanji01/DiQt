@@ -22,7 +22,7 @@ class ChapterCard extends ConsumerWidget {
     }
 
     final image = CachedNetworkImage(
-      imageUrl: chapter.imageUrl,
+      imageUrl: chapter.thumbnailUrl,
       placeholder: (context, url) => const CircularProgressIndicator(),
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );
