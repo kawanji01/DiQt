@@ -279,8 +279,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9dead85be96bd877acb9ba7514a7aad89b7d82b1
 
-<<<<<<< HEAD
-COCOAPODS: 1.11.2
-=======
 COCOAPODS: 1.11.3
->>>>>>> origin/main

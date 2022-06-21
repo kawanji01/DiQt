@@ -6,6 +6,7 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/user/menu_button.dart';
+import 'package:booqs_mobile/widgets/user/participating_chapters.dart';
 import 'package:booqs_mobile/widgets/user/study_records.dart';
 import 'package:booqs_mobile/widgets/user/todays_mistakes_button.dart';
 import 'package:booqs_mobile/widgets/user/weakness_button.dart';
@@ -148,6 +149,7 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
               const SizedBox(
                 height: 48,
               ),
+              UserParticipatingChapters(user: user),
               const AppBanner(),
             ],
           ),

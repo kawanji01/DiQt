@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/answer_setting.dart';
+import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/relationship.dart';
 
@@ -31,6 +32,7 @@ class User {
     this.answerSetting,
     this.drillInProgress,
     this.relationship,
+    this.participatingChapters,
   });
 
   int id;
@@ -60,6 +62,7 @@ class User {
   AnswerSetting? answerSetting;
   Drill? drillInProgress;
   Relationship? relationship;
+  List<Chapter>? participatingChapters;
 
   User.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -99,8 +102,14 @@ class User {
             : Drill.fromJson(json['drill_in_progress']),
         relationship = json['relationship'] == null
             ? null
-            : Relationship.fromJson(json['relationship']);
-
+            : Relationship.fromJson(json['relationship']),
+        participatingChapters = json['participating_chapters'] == null
+            ? []
+            : json['participating_chapters']
+                .map<Chapter>((e) => Chapter.fromJson(e))
+                .toList();
+// mapでjsonをList<Chapter>に変換する ref: https://zenn.dev/tris/articles/61c4a9ca398472#map%E3%81%AE%E5%9F%BA%E6%9C%AC
+// toList()によってList<Chapter>がList<dynamic>に解釈されてしまう問題の解決 ref: https://pryogram.com/flutter/define-type-to-list-method/
   Map<String, dynamic> toJson() => {
         'id': id,
         'public_uid': publicUid,
@@ -113,12 +122,10 @@ class User {
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
         'todays_incorrect_answer_histories_count':
             todaysIncorrectAnswerHistoriesCount,
-
         'answer_days_count': answerDaysCount,
         'continuous_answer_days_count': continuousAnswerDaysCount,
         'continuous_goal_achievement_count': continuousGoalAchievementCount,
         'continuous_complete_review_count': continuousCompleteReviewCount,
-
         'achievement_maps_count': achievementMapsCount,
         'premium': premium,
         'paid_via_native_app': paidViaNativeApp,
