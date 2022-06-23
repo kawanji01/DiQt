@@ -3,7 +3,8 @@ class Chapter {
       {required this.id,
       required this.name,
       required this.introduction,
-      required this.imageUrl,
+      this.imageUrl,
+      required this.thumbnailUrl,
       this.iconUrl,
       this.groupType,
       required this.publicUid,
@@ -18,7 +19,8 @@ class Chapter {
   int id;
   String name;
   String introduction;
-  String imageUrl;
+  String? imageUrl;
+  String thumbnailUrl;
   String? iconUrl;
   String? groupType;
   String publicUid;
@@ -35,6 +37,7 @@ class Chapter {
         name = json['name'] ?? '',
         introduction = json['introduction'] ?? '',
         imageUrl = json['cover_image_url'] ?? '',
+        thumbnailUrl = json['thumbnail_url'] ?? '',
         iconUrl = json['icon_image_url'] ?? '',
         groupType = json['group_type'].toString(),
         publicUid = json['public_uid'],
@@ -51,6 +54,7 @@ class Chapter {
         'name': name,
         'introduction': introduction,
         'imageUrl': imageUrl,
+        'thumbnail_url': thumbnailUrl,
         'iconUrl': iconUrl,
         'groupType': groupType,
         'publicUid': publicUid,
