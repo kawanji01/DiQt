@@ -40,6 +40,7 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
         'daily_goal': _dailyGoalController.text,
         'question_covered': ref.watch(questionCoveredProvider),
         'choices_covered': ref.watch(choicesCoveredProvider),
+        'strict_solving_mode': ref.watch(strictSolvingModeProvider),
         'se_enabled': ref.watch(seEnabledProvider),
         'effect_enabled': ref.watch(effectEnabledProvider),
         'initial_interval': ref.watch(initialIntervalProvider),
@@ -49,6 +50,7 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
         'review_notification_enabled':
             ref.watch(reviewNotificationEnabledProvider),
         'review_notification_timer': ref.watch(reviewNotificationTimerProvider),
+        'strict_reviewing_mode': ref.watch(strictReviewingModeProvider),
         'weakness_condition': ref.watch(weaknessConditionProvider),
         'overcoming_condition': ref.watch(overcomingConditionProvider),
       };

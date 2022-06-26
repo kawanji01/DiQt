@@ -2,6 +2,7 @@ import 'package:booqs_mobile/widgets/answer_setting/initial_interval.dart';
 import 'package:booqs_mobile/widgets/answer_setting/interval_step_up_condition.dart';
 import 'package:booqs_mobile/widgets/answer_setting/review_delete_condition.dart';
 import 'package:booqs_mobile/widgets/answer_setting/review_notification.dart';
+import 'package:booqs_mobile/widgets/answer_setting/strict_reviewing_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,6 +37,9 @@ class AnswerSettingReviewSetting extends ConsumerWidget {
         const AnswerSettingReviewDeleteCondition(),
         const SizedBox(height: 40),
         const AnswerSettingReviewNotification(),
+        const SizedBox(height: 40),
+        const AnswerSettingStrictReviewMode(),
+        const SizedBox(height: 40),
       ],
     );
   }

@@ -7,9 +7,11 @@ class AnswerSetting {
     required this.dailyGoal,
     required this.choicesCovered,
     required this.questionCovered,
+    required this.strictSolvingMode,
     required this.reviewNotificationTimer,
     required this.reviewNotificationTimerSet,
     required this.reviewNotificationEnabled,
+    required this.strictReviewingMode,
     required this.seEnabled,
     required this.effectEnabled,
     required this.speechRate,
@@ -27,9 +29,11 @@ class AnswerSetting {
   int dailyGoal;
   bool choicesCovered;
   bool questionCovered;
+  bool strictSolvingMode;
   int reviewNotificationTimer;
   bool reviewNotificationTimerSet;
   bool reviewNotificationEnabled;
+  bool strictReviewingMode;
   bool seEnabled;
   bool effectEnabled;
   int speechRate;
@@ -47,9 +51,11 @@ class AnswerSetting {
         dailyGoal = json['daily_goal'],
         choicesCovered = json['choices_covered'],
         questionCovered = json['question_covered'],
+        strictSolvingMode = json['strict_solving_mode'],
         reviewNotificationTimer = json['review_notification_timer'],
         reviewNotificationTimerSet = json['review_notification_timer_set'],
         reviewNotificationEnabled = json['review_notification_enabled'],
+        strictReviewingMode = json['strict_reviewing_mode'],
         seEnabled = json['se_enabled'],
         effectEnabled = json['effect_enabled'],
         speechRate = json['speech_rate'],
@@ -67,9 +73,11 @@ class AnswerSetting {
         'daily_goal': dailyGoal,
         'choices_covered': choicesCovered,
         'question_covered': questionCovered,
+        'strict_solving_mode': strictSolvingMode,
         'review_notification_timer': reviewNotificationTimer,
         'review_notification_timer_set': reviewNotificationTimerSet,
         'review_notification_enabled': reviewNotificationEnabled,
+        'strict_reviewing_mode': strictReviewingMode,
         'se_enabled': seEnabled,
         'effect_enabled': effectEnabled,
         'speech_rate': speechRate,

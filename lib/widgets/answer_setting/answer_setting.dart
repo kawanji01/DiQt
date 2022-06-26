@@ -1,5 +1,10 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
+import 'package:booqs_mobile/widgets/answer_setting/choices_covered.dart';
+import 'package:booqs_mobile/widgets/answer_setting/effect_enabled.dart';
+import 'package:booqs_mobile/widgets/answer_setting/question_covered.dart';
+import 'package:booqs_mobile/widgets/answer_setting/se_enabled.dart';
+import 'package:booqs_mobile/widgets/answer_setting/strict_solving_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,51 +44,6 @@ class AnswerSettingAnswerSetting extends ConsumerWidget {
       ],
     );
 
-    Widget _questionCovered() {
-      return SwitchListTile(
-        title:
-            const Text('質問文を隠す', style: TextStyle(fontWeight: FontWeight.bold)),
-        value: ref.watch(questionCoveredProvider),
-        onChanged: (bool value) {
-          ref.read(questionCoveredProvider.notifier).state = value;
-        },
-        secondary: const Icon(Icons.visibility_off),
-      );
-    }
-
-    Widget _choicesCovered() {
-      return SwitchListTile(
-          title: const Text('選択肢を隠す',
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          value: ref.watch(choicesCoveredProvider),
-          onChanged: (bool value) {
-            ref.read(choicesCoveredProvider.notifier).state = value;
-          },
-          secondary: const Icon(Icons.visibility_off));
-    }
-
-    Widget _seEnabled() {
-      return SwitchListTile(
-          title: const Text('効果音を鳴らす',
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          value: ref.watch(seEnabledProvider),
-          onChanged: (bool value) {
-            ref.read(seEnabledProvider.notifier).state = value;
-          },
-          secondary: const Icon(Icons.volume_up));
-    }
-
-    Widget _effectEnabled() {
-      return SwitchListTile(
-          title: const Text('解答時の報酬を表示する',
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          value: ref.watch(effectEnabledProvider),
-          onChanged: (bool value) {
-            ref.read(effectEnabledProvider.notifier).state = value;
-          },
-          secondary: const Icon(Icons.wysiwyg));
-    }
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -91,13 +51,16 @@ class AnswerSettingAnswerSetting extends ConsumerWidget {
         const SizedBox(height: 16),
         dailyGoalForm,
         const SizedBox(height: 16),
-        _questionCovered(),
+        const AnswerSettingQuestionCovered(),
         const SizedBox(height: 8),
-        _choicesCovered(),
+        const AnswerSettingChoicesCovered(),
         const SizedBox(height: 8),
-        _seEnabled(),
+        const AnswerSettingStrictSolvingMode(),
         const SizedBox(height: 8),
-        _effectEnabled()
+        const AnswerSettingSEEnabled(),
+        const SizedBox(height: 8),
+        const AnswerSettingEffectEnabled(),
+        const SizedBox(height: 8),
       ],
     );
   }
