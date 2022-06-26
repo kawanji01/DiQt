@@ -13,6 +13,10 @@ final questionCoveredProvider = StateProvider<bool>((ref) => ref.watch(
 final choicesCoveredProvider = StateProvider<bool>((ref) => ref.watch(
     answerSettingProvider.select(
         (setting) => setting == null ? false : setting.choicesCovered)));
+// 厳格解答モード
+final strictSolvingModeProvider = StateProvider<bool>((ref) => ref.watch(
+    answerSettingProvider.select(
+        (setting) => setting == null ? false : setting.strictSolvingMode)));
 // 効果音設定
 final seEnabledProvider = StateProvider<bool>((ref) => ref.watch(
     answerSettingProvider
@@ -22,6 +26,7 @@ final effectEnabledProvider = StateProvider<bool>((ref) => ref.watch(
     answerSettingProvider
         .select((setting) => setting == null ? false : setting.effectEnabled)));
 //
+
 //// 復習設定用 ////
 // 自動復習の初期設定
 final initialIntervalProvider = StateProvider<int>((ref) => ref.watch(
@@ -43,6 +48,10 @@ final reviewNotificationEnabledProvider = StateProvider<bool>((ref) =>
 final reviewNotificationTimerProvider = StateProvider<int>((ref) => ref.watch(
     answerSettingProvider.select(
         (setting) => setting == null ? 6 : setting.reviewNotificationTimer)));
+// 厳格復習モード
+final strictReviewingModeProvider = StateProvider<bool>((ref) => ref.watch(
+    answerSettingProvider.select(
+        (setting) => setting == null ? false : setting.strictReviewingMode)));
 
 // 弱点分析設定用
 // 弱点に自動設定する条件

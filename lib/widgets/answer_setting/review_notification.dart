@@ -78,7 +78,7 @@ class AnswerSettingReviewNotification extends ConsumerWidget {
         onChanged: (bool value) {
           ref.read(reviewNotificationEnabledProvider.notifier).state = value;
         },
-        secondary: const Icon(Icons.visibility_off),
+        secondary: const Icon(Icons.notifications),
       );
     }
 
