@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
+import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
@@ -24,8 +25,11 @@ final asyncUnsolvedReviewsProvider = FutureProvider<List<Review>>((ref) async {
       user.todaysAnswerHistoriesCount;
 
   resMap['reviews'].forEach((e) => reviews.add(Review.fromJson(e)));
+  // 画面に描画された問題のID
   final List<int> loadedQuizIds = reviews.map((e) => e.quizId).toList();
   ref.read(loadedQuizIdsProvider.notifier).state = loadedQuizIds;
+  // 解答済の問題IDをリセットする
+  ref.read(solvedQuizIdsProvider.notifier).state = [];
 
   return reviews;
 });
