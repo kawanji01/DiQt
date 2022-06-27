@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/provider/drill_lap.dart';
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
@@ -44,8 +45,11 @@ final asyncDrillUnsolvedQuizzesProvider =
   ref.read(drillLapProvider.notifier).state = drillLap;
 
   resMap['quizzes'].forEach((e) => quizzes.add(Quiz.fromJson(e)));
+  // 画面に描画された問題のID
   final List<int> loadedQuizIds = quizzes.map((e) => e.id).toList();
   ref.read(loadedQuizIdsProvider.notifier).state = loadedQuizIds;
+  // 解答済の問題IDをリセットする
+  ref.read(solvedQuizIdsProvider.notifier).state = [];
 
   return quizzes;
 });

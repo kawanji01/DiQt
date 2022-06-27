@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
@@ -45,7 +46,7 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
   @override
   Widget build(BuildContext context) {
     Quiz quiz = widget.quiz;
-    //final List<int> loadedQuizIds = ref.watch(loadedQuizIdsProvider);
+    final List<int> loadedQuizIds = ref.watch(loadedQuizIdsProvider);
 
     // 正解を読み上げる
     void _speakCorrectAnswer(notification) {
@@ -91,11 +92,17 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
         duration: const Duration(milliseconds: 800),
         onEnd: () {
           if (_isOpaque == false) {
-            // 解答した問題が再描画されないように、問題のIDをproviderに追加する。
+            // 解答済の問題のID
             final List<int> solvedQuizIds = ref.watch(solvedQuizIdsProvider);
             print('solvedQuizIds');
             print(solvedQuizIds);
             print(solvedQuizIds.length);
+            loadedQuizIds
+                .removeWhere((int quizId) => solvedQuizIds.contains(quizId));
+            print('loadedQuizIds');
+            print(loadedQuizIds);
+            print(loadedQuizIds.length);
+
             // 読み込まれた問題（loadedQuizIds）のうち、実際に画面に表示されている問題のIDを算出する （読み込まれた問題 - 解いた問題のID （solvedQuizIdsProvider））
             //loadedQuizIds
             //    .removeWhere((int quizId) => solvedQuizIds.contains(quizId));
@@ -104,7 +111,7 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
             // 画面に表示されている問題がなければ、次の問題を読み込むために親（reviewやdrillのscreen）に通知する。
             //
             // 10の倍数の解答数でリロードする
-            if (solvedQuizIds.length % 10 == 0) {
+            if (solvedQuizIds.length % 10 == 0 || loadedQuizIds.isEmpty) {
               LoadingUnsolvedQuizzesNotification(true).dispatch(context);
             }
             setState(() {
