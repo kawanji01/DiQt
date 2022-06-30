@@ -69,4 +69,22 @@ class Dialogs {
       duration: const Duration(milliseconds: 700),
     );
   }
+
+  // 下からふわっと表示されるダイアログ
+  static Future<void> normal(Widget screen) async {
+    await showAnimatedDialog(
+      context: navigatorKey.currentContext!,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return CustomDialog(
+          child: screen,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        );
+      },
+      animationType: DialogTransitionType.none,
+      duration: const Duration(milliseconds: 0),
+    );
+  }
 }
