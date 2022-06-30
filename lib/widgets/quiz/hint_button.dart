@@ -22,7 +22,7 @@ class QuizHintButton extends StatelessWidget {
       ),
       onPressed: () {
         final Widget screen = QuizHintScreen(quiz: quiz, note: note);
-        Dialogs.slideFromBottomFade(screen);
+        Dialogs.normal(screen);
       },
       icon: const Icon(Icons.lightbulb_outline_sharp, color: Colors.black87),
       label: const Text(

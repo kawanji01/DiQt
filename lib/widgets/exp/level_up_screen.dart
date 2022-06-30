@@ -37,31 +37,6 @@ class ExpLevelUpScreen extends ConsumerWidget {
       return AnswerShareButton(text: tweet, url: url);
     }
 
-    Widget _closeButton() {
-      return Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: ElevatedButton.icon(
-            icon: const Icon(
-              Icons.close,
-              color: Colors.white,
-            ),
-            label: const Text('閉じる',
-                style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold)),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(264, 40),
-              primary: Colors.green,
-            ),
-          ),
-        ),
-      );
-    }
-
     Widget _confetti() {
       return Align(
         alignment: Alignment.topRight,

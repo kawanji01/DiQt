@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:booqs_mobile/data/remote/words.dart';
-import 'package:booqs_mobile/models/word.dart';
 
 // 参考： https://ichi.pro/flutter-de-o-tokonpuri-to-kino-o-jissosuru-hoho-209603487537223
 class WordTypeahead {

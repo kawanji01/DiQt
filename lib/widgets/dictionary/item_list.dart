@@ -16,7 +16,7 @@ class _DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
   @override
   void initState() {
     super.initState();
-    ref.refresh(asyncDictionariesProvider);
+    //ref.refresh(asyncDictionariesProvider);
   }
 
   @override

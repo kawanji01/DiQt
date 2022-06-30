@@ -1,7 +1,5 @@
 import 'package:booqs_mobile/data/provider/chapter.dart';
 import 'package:booqs_mobile/models/chapter.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
-import 'package:booqs_mobile/widgets/chapter/card.dart';
 import 'package:booqs_mobile/widgets/chapter/card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

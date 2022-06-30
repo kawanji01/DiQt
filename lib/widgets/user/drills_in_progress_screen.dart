@@ -57,12 +57,13 @@ class _UserDrillsInProgressScreenState
       height: ResponsiveValues.dialogHeight(context),
       margin: EdgeInsets.symmetric(
           horizontal: ResponsiveValues.horizontalMargin(context)),
-      padding: const EdgeInsets.symmetric(vertical: 24),
       child: SingleChildScrollView(
           child: Column(
         children: [
+          const SizedBox(height: 24),
           heading,
           _drillFeed(),
+          const SizedBox(height: 48),
         ],
       )),
     );

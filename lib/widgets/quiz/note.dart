@@ -98,6 +98,7 @@ class _QuizNoteState extends State<QuizNote> {
                 border: InputBorder.none,
                 fillColor: Color(0xfff3f3f4),
                 labelText: "問題に関する自分用のメモ",
+                labelStyle: TextStyle(color: Colors.black54),
               ),
               validator: (value) {
                 if (value!.isEmpty) {
