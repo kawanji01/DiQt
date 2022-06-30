@@ -18,8 +18,16 @@ class TextWithLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int _langNumber = langNumber ?? 21;
-    final int _dictionaryId = dictionaryId ?? 1;
+    // final int _langNumber = langNumber ?? 21;
+    // デフォルトの辞書が設定されていないなら、普通のテキストを返す。
+    if (dictionaryId == null) {
+      return Text(
+        text,
+        style:
+            const TextStyle(fontSize: 16, height: 1.6, color: Colors.black87),
+      );
+    }
+
     // 記法が使われたテキストと、そうでないテキストを分ける。
     // セパレーターを含んでテキストを分割する。参考： https://stackoverflow.com/questions/59547040/dart-split-string-using-regular-expression-and-include-delimiters?rq=1
     List<String> allMatchesWithSep(String text, RegExp exp, [int start = 0]) {
@@ -56,7 +64,7 @@ class TextWithLink extends StatelessWidget {
 
     Future _goToWordSearchPage(keyword) async {
       await DictionaryWordSearchResultsPage.push(
-          context, _dictionaryId, keyword);
+          context, dictionaryId!, keyword);
     }
 
     // 自動でリンクをつけるならtrue, Wiki記法でのみリンクをつける場合はfalse

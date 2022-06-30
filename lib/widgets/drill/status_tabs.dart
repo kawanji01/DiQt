@@ -11,8 +11,6 @@ class DrillStatusTabs extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String publicUid =
-        ref.watch(drillProvider.select((drill) => drill!.publicUid));
     final int quizzesCount =
         ref.watch(drillProvider.select((drill) => drill!.quizzesCount));
     final int solvedQuizzesCount = ref.watch(drillSolvedQuizzesCountProvider);
