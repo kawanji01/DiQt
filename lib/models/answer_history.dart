@@ -20,7 +20,9 @@ class AnswerHistory {
     this.answer,
     //this.solved = false,
     required this.dailyGoalAchievement,
+    required this.goalAchievement,
     required this.completeReview,
+    required this.reviewCompletion,
     required this.continuation,
     required this.continuationAllWeek,
     required this.continuationAllMonth,
@@ -49,7 +51,9 @@ class AnswerHistory {
   String? answer;
   // bool solved;
   bool dailyGoalAchievement;
+  bool goalAchievement;
   bool completeReview;
+  bool reviewCompletion;
   bool continuation;
   bool continuationAllWeek;
   bool continuationAllMonth;
@@ -76,8 +80,10 @@ class AnswerHistory {
         answerDate = DateTime.parse(json['answer_date']),
         firstOfTheDay = json['first_of_the_day'],
         answer = json['answer'],
-        dailyGoalAchievement = json['daily_goal_achievement'],
-        completeReview = json['complete_review'],
+        dailyGoalAchievement = json['daily_goal_achievement'] ?? false,
+        goalAchievement = json['goal_Achievement'] ?? false,
+        completeReview = json['complete_review'] ?? false,
+        reviewCompletion = json['review_completion'] ?? false,
         continuation = json['continuation'],
         continuationAllWeek = json['continuation_all_week'],
         continuationAllMonth = json['continuation_all_month'],
@@ -107,7 +113,9 @@ class AnswerHistory {
         'first_of_the_day': firstOfTheDay,
         'answer': answer,
         'daily_goal_achievement': dailyGoalAchievement,
+        'goal_achievement': goalAchievement,
         'complete_review': completeReview,
+        'review_completion': reviewCompletion,
         'continuation': continuation,
         'continuation_all_week': continuationAllWeek,
         'continuation_all_month': continuationAllMonth,
