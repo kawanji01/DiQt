@@ -33,7 +33,7 @@ class ActivityGoalAchievement extends StatelessWidget {
       return RichText(
           text: TextSpan(children: [
         TextSpan(text: '${activity.continuationCount}日連続', style: textGreen),
-        const TextSpan(text: 'で目標を達成しました！', style: textBlack),
+        const TextSpan(text: 'で達成しました！', style: textBlack),
       ]));
     }
 
@@ -44,6 +44,7 @@ class ActivityGoalAchievement extends StatelessWidget {
           UserFeedIcon(user: user),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 information,
                 _continuationCount(),

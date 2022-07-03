@@ -30,9 +30,9 @@ class AnswerReward {
     // 連続年解答報酬
     await AnswerReward.continuationAllYear(answerCreator);
     // 復習達成
-    await AnswerReward.completeReview(answerCreator);
+    await AnswerReward.reviewCompletion(answerCreator);
     // 連続復習達成
-    await AnswerReward.continuousCompleteReview(answerCreator);
+    await AnswerReward.continuousReviewCompletion(answerCreator);
     // 目標達成
     await AnswerReward.goalAchievement(answerCreator);
     // 連続目標達成
@@ -119,9 +119,11 @@ class AnswerReward {
   }
 
   // 復習達成
-  static Future<void> completeReview(AnswerCreator answerCreator) async {
+  static Future<void> reviewCompletion(AnswerCreator answerCreator) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
-    if (answerHistory!.completeReview) {
+    final bool reviewCompletion =
+        answerHistory!.completeReview || answerHistory.completeReview;
+    if (reviewCompletion) {
       final Widget screen =
           AnswerCompleteReviewScreen(answerCreator: answerCreator);
       Dialogs.reward(screen);
@@ -130,12 +132,14 @@ class AnswerReward {
   }
 
   // 連続復習達成
-  static Future<void> continuousCompleteReview(
+  static Future<void> continuousReviewCompletion(
       AnswerCreator answerCreator) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuousCompleteReviewCount =
         answerCreator.continuousCompleteReviewCount;
-    if (answerHistory!.completeReview && continuousCompleteReviewCount! > 1) {
+    final bool reviewCompletion =
+        answerHistory!.completeReview || answerHistory.completeReview;
+    if (reviewCompletion && continuousCompleteReviewCount! > 1) {
       final Widget screen =
           AnswerContinuousCompleteReviewScreen(answerCreator: answerCreator);
       Dialogs.reward(screen);
@@ -146,7 +150,9 @@ class AnswerReward {
   // 目標達成報酬
   static Future<void> goalAchievement(AnswerCreator answerCreator) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
-    if (answerHistory!.dailyGoalAchievement) {
+    final bool goalAchievement =
+        answerHistory!.dailyGoalAchievement || answerHistory.goalAchievement;
+    if (goalAchievement) {
       final Widget screen =
           AnswerGoalAchievementScreen(answerCreator: answerCreator);
       Dialogs.reward(screen);
@@ -160,8 +166,9 @@ class AnswerReward {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuousGoalAchievementCount =
         answerCreator.continuousGoalAchievementCount;
-    if (answerHistory!.dailyGoalAchievement &&
-        continuousGoalAchievementCount! > 1) {
+    final bool goalAchievement =
+        answerHistory!.dailyGoalAchievement || answerHistory.goalAchievement;
+    if (goalAchievement && continuousGoalAchievementCount! > 1) {
       final Widget screen =
           AnswerContinuousGoalAchievementScreen(answerCreator: answerCreator);
       Dialogs.reward(screen);

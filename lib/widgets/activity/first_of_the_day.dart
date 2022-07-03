@@ -81,6 +81,7 @@ class ActivityFirstOfTheDay extends StatelessWidget {
           UserFeedIcon(user: user),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 answerDaysCount,
                 _continuationCount(),
