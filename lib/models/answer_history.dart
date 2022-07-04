@@ -81,7 +81,7 @@ class AnswerHistory {
         firstOfTheDay = json['first_of_the_day'],
         answer = json['answer'],
         dailyGoalAchievement = json['daily_goal_achievement'] ?? false,
-        goalAchievement = json['goal_Achievement'] ?? false,
+        goalAchievement = json['goal_achievement'] ?? false,
         completeReview = json['complete_review'] ?? false,
         reviewCompletion = json['review_completion'] ?? false,
         continuation = json['continuation'],
