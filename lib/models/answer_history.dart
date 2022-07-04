@@ -18,7 +18,6 @@ class AnswerHistory {
     required this.answerDate,
     required this.firstOfTheDay,
     this.answer,
-    required this.dailyGoalAchievement,
     required this.goalAchievement,
     required this.reviewCompletion,
     required this.continuation,
@@ -47,7 +46,6 @@ class AnswerHistory {
   DateTime answerDate;
   bool firstOfTheDay;
   String? answer;
-  bool dailyGoalAchievement;
   bool goalAchievement;
   bool reviewCompletion;
   bool continuation;
@@ -76,7 +74,6 @@ class AnswerHistory {
         answerDate = DateTime.parse(json['answer_date']),
         firstOfTheDay = json['first_of_the_day'],
         answer = json['answer'],
-        dailyGoalAchievement = json['daily_goal_achievement'] ?? false,
         goalAchievement = json['goal_achievement'] ?? false,
         reviewCompletion = json['review_completion'] ?? false,
         continuation = json['continuation'],
@@ -107,7 +104,6 @@ class AnswerHistory {
         'answer_date': answerDate,
         'first_of_the_day': firstOfTheDay,
         'answer': answer,
-        'daily_goal_achievement': dailyGoalAchievement,
         'goal_achievement': goalAchievement,
         'review_completion': reviewCompletion,
         'continuation': continuation,
