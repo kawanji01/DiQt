@@ -121,8 +121,7 @@ class AnswerReward {
   // 復習達成
   static Future<void> reviewCompletion(AnswerCreator answerCreator) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
-    final bool reviewCompletion =
-        answerHistory!.completeReview || answerHistory.reviewCompletion;
+    final bool reviewCompletion = answerHistory!.reviewCompletion;
     if (reviewCompletion) {
       final Widget screen =
           AnswerCompleteReviewScreen(answerCreator: answerCreator);
@@ -137,8 +136,7 @@ class AnswerReward {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuousCompleteReviewCount =
         answerCreator.continuousCompleteReviewCount;
-    final bool reviewCompletion =
-        answerHistory!.completeReview || answerHistory.reviewCompletion;
+    final bool reviewCompletion = answerHistory!.reviewCompletion;
     if (reviewCompletion && continuousCompleteReviewCount! > 1) {
       final Widget screen =
           AnswerContinuousCompleteReviewScreen(answerCreator: answerCreator);
