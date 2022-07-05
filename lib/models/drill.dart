@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/models/chapter.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 
 class Drill {
@@ -17,7 +19,9 @@ class Drill {
       required this.quizzesCount,
       required this.createdAt,
       required this.updatedAt,
-      this.drillLap});
+      this.drillLap,
+      this.chapter,
+      this.dictionary});
 
   int id;
   int? userId;
@@ -35,6 +39,8 @@ class Drill {
   int answerHistoriesCount;
   int quizzesCount;
   DrillLap? drillLap;
+  Chapter? chapter;
+  Dictionary? dictionary;
 
   Drill.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -54,7 +60,12 @@ class Drill {
         quizzesCount = json['quizzes_count'],
         drillLap = json['drill_lap'] == null
             ? null
-            : DrillLap.fromJson(json['drill_lap']);
+            : DrillLap.fromJson(json['drill_lap']),
+        chapter =
+            json['chapter'] == null ? null : Chapter.fromJson(json['chapter']),
+        dictionary = json['dictionary'] == null
+            ? null
+            : Dictionary.fromJson(json['dictionary']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -73,5 +84,7 @@ class Drill {
         'answerHistoriesCount': answerHistoriesCount,
         'quizzesCount': quizzesCount,
         'drill_lap': drillLap,
+        'chapter': chapter,
+        'dictionary': dictionary,
       };
 }
