@@ -55,7 +55,7 @@ class WordTagButtons extends StatelessWidget {
 
       // タグの問題集ページへ遷移
       Future _moveToTagPage() async {
-        await ChapterShowPage.push(context, chapterUid!);
+        //await ChapterShowPage.push(context, chapterUid!);
 
         // 外部リンクダイアログを表示
         //await showDialog(

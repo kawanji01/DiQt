@@ -13,6 +13,8 @@ class User {
     required this.amountOfExp,
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
+    required this.wholeWeeksAnswerHistoriesCount,
+    required this.wholeMonthsAnswerHistoriesCount,
     required this.todaysIncorrectAnswerHistoriesCount,
     required this.answerDaysCount,
     required this.continuousAnswerDaysCount,
@@ -43,6 +45,8 @@ class User {
   int amountOfExp;
   int answerHistoriesCount;
   int todaysAnswerHistoriesCount;
+  int wholeWeeksAnswerHistoriesCount;
+  int wholeMonthsAnswerHistoriesCount;
   int todaysIncorrectAnswerHistoriesCount;
   int answerDaysCount;
   int continuousAnswerDaysCount;
@@ -73,6 +77,10 @@ class User {
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
+        wholeWeeksAnswerHistoriesCount =
+            json['whole_weeks_answer_histories_count'],
+        wholeMonthsAnswerHistoriesCount =
+            json['whole_months_answer_histories_count'],
         todaysIncorrectAnswerHistoriesCount =
             json['todays_incorrect_answer_histories_count'],
         answerDaysCount = json['answer_days_count'],
@@ -120,6 +128,8 @@ class User {
         'amount_of_exp': amountOfExp,
         'answer_histories_count': answerHistoriesCount,
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
+        'whole_weeks_answer_histories_count': wholeWeeksAnswerHistoriesCount,
+        'whole_months_answer_histories_count': wholeMonthsAnswerHistoriesCount,
         'todays_incorrect_answer_histories_count':
             todaysIncorrectAnswerHistoriesCount,
         'answer_days_count': answerDaysCount,

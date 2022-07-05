@@ -8,6 +8,8 @@ class Chapter {
       this.iconUrl,
       this.groupType,
       required this.publicUid,
+      required this.school,
+      required this.private,
       this.referenceUrl,
       this.referenceTitle,
       this.referenceOgp,
@@ -24,6 +26,8 @@ class Chapter {
   String? iconUrl;
   String? groupType;
   String publicUid;
+  bool school;
+  bool private;
   String? referenceUrl;
   String? referenceTitle;
   String? referenceOgp;
@@ -41,6 +45,8 @@ class Chapter {
         iconUrl = json['icon_image_url'] ?? '',
         groupType = json['group_type'].toString(),
         publicUid = json['public_uid'],
+        school = json['school'],
+        private = json['private'],
         referenceUrl = json['reference_url'],
         referenceTitle = json['reference_title'],
         referenceOgp = json['reference_ogp'],
@@ -58,6 +64,8 @@ class Chapter {
         'iconUrl': iconUrl,
         'groupType': groupType,
         'publicUid': publicUid,
+        'school': school,
+        'private': private,
         'reference_url': referenceUrl,
         'reference_title': referenceTitle,
         'referenceOgp': referenceOgp,

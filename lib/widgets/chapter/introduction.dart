@@ -2,8 +2,8 @@ import 'package:booqs_mobile/models/chapter.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ChapterIntrodiction extends StatelessWidget {
-  const ChapterIntrodiction({Key? key, required this.chapter})
+class ChapterIntroduction extends StatelessWidget {
+  const ChapterIntroduction({Key? key, required this.chapter})
       : super(key: key);
   final Chapter chapter;
 
@@ -57,15 +57,16 @@ class ChapterIntrodiction extends StatelessWidget {
       );
     }
 
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 24),
-      color: Colors.white,
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [introduction, _reference()],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          chapter.name,
+          style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+        ),
+        introduction,
+        _reference()
+      ],
     );
   }
 }

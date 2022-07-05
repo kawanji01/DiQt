@@ -65,6 +65,7 @@ const sentenceShowPage = '/sentence/show';
 // チャプター
 const chapterIndexPage = '/chapter/index';
 const chapterShowPage = '/chapter/show';
+const chapterDrillsPage = '/chapter/drills';
 // ユーザー
 const userMyPage = '/user/mypage';
 const userShowPage = '/user/show';

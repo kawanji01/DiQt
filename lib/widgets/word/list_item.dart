@@ -25,7 +25,7 @@ class WordListItem extends StatelessWidget {
 
     Widget _content() {
       return Column(children: <Widget>[
-        WordTagButtons(tags: word.tags),
+        //WordTagButtons(tags: word.tags),
         const SizedBox(height: 10),
         WordEntry(word: word),
         const SizedBox(

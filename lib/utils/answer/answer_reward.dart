@@ -148,8 +148,7 @@ class AnswerReward {
   // 目標達成報酬
   static Future<void> goalAchievement(AnswerCreator answerCreator) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
-    final bool goalAchievement =
-        answerHistory!.dailyGoalAchievement || answerHistory.goalAchievement;
+    final bool goalAchievement = answerHistory!.goalAchievement;
     if (goalAchievement) {
       final Widget screen =
           AnswerGoalAchievementScreen(answerCreator: answerCreator);
@@ -164,8 +163,7 @@ class AnswerReward {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuousGoalAchievementCount =
         answerCreator.continuousGoalAchievementCount;
-    final bool goalAchievement =
-        answerHistory!.dailyGoalAchievement || answerHistory.goalAchievement;
+    final bool goalAchievement = answerHistory!.goalAchievement;
     if (goalAchievement && continuousGoalAchievementCount! > 1) {
       final Widget screen =
           AnswerContinuousGoalAchievementScreen(answerCreator: answerCreator);
