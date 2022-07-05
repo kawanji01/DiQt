@@ -25,4 +25,28 @@ class RemoteChapters {
     Map<String, dynamic> resMap = json.decode(res.body);
     return resMap;
   }
+
+  static Future<Map?> activities(
+      String publicUid, int pageKey, int pageSize) async {
+    final String? token = await LocalUserInfo.authToken();
+    Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/$publicUid/activities?page=$pageKey&size=$pageSize&token=$token');
+    Response res =
+        await get(url, headers: {"Content-Type": "application/json"});
+
+    if (res.statusCode != 200) return null;
+    Map<String, dynamic> resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  static Future<Map?> ranking(String publicUid) async {
+    Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/$publicUid/ranking');
+    Response res =
+        await get(url, headers: {"Content-Type": "application/json"});
+
+    if (res.statusCode != 200) return null;
+    Map<String, dynamic> resMap = json.decode(res.body);
+    return resMap;
+  }
 }

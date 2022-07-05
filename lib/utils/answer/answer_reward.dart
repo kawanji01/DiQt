@@ -121,8 +121,7 @@ class AnswerReward {
   // 復習達成
   static Future<void> reviewCompletion(AnswerCreator answerCreator) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
-    final bool reviewCompletion =
-        answerHistory!.completeReview || answerHistory.reviewCompletion;
+    final bool reviewCompletion = answerHistory!.reviewCompletion;
     if (reviewCompletion) {
       final Widget screen =
           AnswerCompleteReviewScreen(answerCreator: answerCreator);
@@ -137,8 +136,7 @@ class AnswerReward {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuousCompleteReviewCount =
         answerCreator.continuousCompleteReviewCount;
-    final bool reviewCompletion =
-        answerHistory!.completeReview || answerHistory.reviewCompletion;
+    final bool reviewCompletion = answerHistory!.reviewCompletion;
     if (reviewCompletion && continuousCompleteReviewCount! > 1) {
       final Widget screen =
           AnswerContinuousCompleteReviewScreen(answerCreator: answerCreator);
@@ -150,8 +148,7 @@ class AnswerReward {
   // 目標達成報酬
   static Future<void> goalAchievement(AnswerCreator answerCreator) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
-    final bool goalAchievement =
-        answerHistory!.dailyGoalAchievement || answerHistory.goalAchievement;
+    final bool goalAchievement = answerHistory!.goalAchievement;
     if (goalAchievement) {
       final Widget screen =
           AnswerGoalAchievementScreen(answerCreator: answerCreator);
@@ -166,8 +163,7 @@ class AnswerReward {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuousGoalAchievementCount =
         answerCreator.continuousGoalAchievementCount;
-    final bool goalAchievement =
-        answerHistory!.dailyGoalAchievement || answerHistory.goalAchievement;
+    final bool goalAchievement = answerHistory!.goalAchievement;
     if (goalAchievement && continuousGoalAchievementCount! > 1) {
       final Widget screen =
           AnswerContinuousGoalAchievementScreen(answerCreator: answerCreator);

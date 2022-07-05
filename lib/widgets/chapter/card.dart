@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/chapter.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -17,8 +18,8 @@ class ChapterCard extends ConsumerWidget {
 
     // Chapterページに遷移
     Future _moveToChapterPage(chapter) async {
-      // TODO: タグによる経由のページ遷移のために、一応publidUidは渡しておく（タグを改善したら修正する）
-      await ChapterShowPage.push(context, chapter.publicUid);
+      ref.read(chapterProvider.notifier).state = chapter;
+      await ChapterShowPage.push(context);
     }
 
     final image = CachedNetworkImage(

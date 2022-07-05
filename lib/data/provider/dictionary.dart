@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final dictionaryIdProvider = StateProvider<int>((ref) => 1);
 // 非同期で辞書一覧を取得する
 final asyncDictionariesProvider =
-    FutureProvider.autoDispose<List<Dictionary>?>((ref) async {
+    FutureProvider<List<Dictionary>?>((ref) async {
   final Map? resMap = await RemoteDictionaries.index();
   if (resMap == null) return null;
   List<Dictionary> dictionaries = [];

@@ -1,38 +1,24 @@
 import 'package:booqs_mobile/models/tab_info.dart';
-import 'package:booqs_mobile/pages/activity/index.dart';
-import 'package:booqs_mobile/pages/notice/index.dart';
-import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/pages/chapter/ranking.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
+import 'package:booqs_mobile/widgets/chapter/activities.dart';
+import 'package:booqs_mobile/widgets/chapter/drills.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 
-class NoticeHomePage extends StatefulWidget {
-  const NoticeHomePage({Key? key}) : super(key: key);
-
-  static Future push(BuildContext context) async {
-    // return Navigator.of(context).pushNamed(notificationIndexPage);
-    // アニメーションなしで画面遷移させる。 参考： https://stackoverflow.com/questions/49874272/how-to-navigate-to-other-page-without-animation-flutter
-    return Navigator.pushReplacement(
-      context,
-      PageRouteBuilder(
-        // 画面遷移のログを送信するために、settings.nameを設定する。
-        settings: const RouteSettings(name: noticeHomePage),
-        pageBuilder: (context, animation1, animation2) =>
-            const NoticeHomePage(),
-        transitionDuration: Duration.zero,
-      ),
-    );
-  }
+class ChapterSchoolPage extends StatefulWidget {
+  const ChapterSchoolPage({Key? key}) : super(key: key);
 
   @override
-  State<NoticeHomePage> createState() => _NoticeHomePageState();
+  State<ChapterSchoolPage> createState() => _ChapterSchoolPageState();
 }
 
-class _NoticeHomePageState extends State<NoticeHomePage> {
+class _ChapterSchoolPageState extends State<ChapterSchoolPage> {
   final List<TabInfo> _tabs = [
-    TabInfo("通知", const NoticeIndexPage()),
-    TabInfo("活動", const ActivityIndexPage()),
+    TabInfo("問題集", const ChapterDrills()),
+    TabInfo("活動", const ChapterActivities()),
+    TabInfo("ランキング", const ChapterRanking()),
   ];
 
   @override
@@ -40,17 +26,17 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
     List<Widget> _tabBars() {
       SizeConfig().init(context);
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
-      double width = grid * 40;
+      double width = grid * 30;
       return [
-        SizedBox(width: width, child: const Tab(text: '通知')),
+        SizedBox(width: width, child: const Tab(text: '問題集')),
         SizedBox(width: width, child: const Tab(text: '活動')),
+        SizedBox(width: width, child: const Tab(text: 'ランキング')),
       ];
     }
 
     return DefaultTabController(
       initialIndex: 0,
-      length: 2,
-      //length: _tabs.length,
+      length: _tabs.length,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
