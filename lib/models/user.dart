@@ -88,7 +88,7 @@ class User {
         continuousGoalAchievementCount =
             json['continuous_goal_achievement_count'],
         continuousReviewCompletionCount =
-            json['continuous_review_completion_count'],
+            json['continuous_review_completion_count'] ?? 0,
         achievementMapsCount = json['achievement_maps_count'],
         premium = json['premium'],
         paidViaNativeApp = json['paid_via_native_app'],
