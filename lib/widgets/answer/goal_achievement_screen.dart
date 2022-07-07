@@ -74,8 +74,8 @@ class _AnswerGoalAchievementScreenState
         answerCreator.continuationAllWeekPoint +
         answerCreator.continuationAllMonthPoint +
         answerCreator.continuationAllYearPoint +
-        answerCreator.completeReviewPoint +
-        answerCreator.continuousCompleteReviewPoint;
+        answerCreator.reviewCompletionPoint +
+        answerCreator.continuousReviewCompletionPoint;
     // 獲得経験値
     final int gainedExp = answerCreator.goalAchievementPoint;
 

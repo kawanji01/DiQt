@@ -13,19 +13,18 @@ import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerContinuousCompleteReviewScreen extends ConsumerStatefulWidget {
-  const AnswerContinuousCompleteReviewScreen(
-      {Key? key, required this.answerCreator})
+class AnswerReviewCompletionScreen extends ConsumerStatefulWidget {
+  const AnswerReviewCompletionScreen({Key? key, required this.answerCreator})
       : super(key: key);
   final AnswerCreator answerCreator;
 
   @override
-  _AnswerContinuousCompleteReviewScreenState createState() =>
-      _AnswerContinuousCompleteReviewScreenState();
+  _AnswerReviewCompletionScreenState createState() =>
+      _AnswerReviewCompletionScreenState();
 }
 
-class _AnswerContinuousCompleteReviewScreenState
-    extends ConsumerState<AnswerContinuousCompleteReviewScreen> {
+class _AnswerReviewCompletionScreenState
+    extends ConsumerState<AnswerReviewCompletionScreen> {
   @override
   void initState() {
     super.initState();
@@ -42,18 +41,21 @@ class _AnswerContinuousCompleteReviewScreenState
     });
   }
 
-  Widget _heading(int counter) {
-    return Text('$counter日連続復習達成',
-        style: const TextStyle(
+  Widget _heading() {
+    return const Text('復習達成',
+        style: TextStyle(
             fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
   }
 
-  Widget _twitterShareButton(User? user, int counter) {
-    if (user == null) return Container();
+  Widget _shareButton(User? user) {
+    if (user == null) {
+      return Container();
+    }
 
-    final String tweet = '$counter日連続で復習を達成しました！！';
+    const String tweet = '復習をすべて達成しました！！';
     final String url =
-        '${DiQtURL.root(context)}/users/${user.publicUid}?continuous_complete_review=$counter';
+        '${DiQtURL.root(context)}/users/${user.publicUid}?complete_review=1';
+
     return AnswerShareButton(text: tweet, url: url);
   }
 
@@ -61,19 +63,16 @@ class _AnswerContinuousCompleteReviewScreenState
   Widget build(BuildContext context) {
     final User? user = ref.watch(currentUserProvider);
     final AnswerCreator answerCreator = widget.answerCreator;
-    // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬 + 連続年解答報酬 + 復習達成報酬）
+    // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬 + 連続年報酬）
     final int initialExp = answerCreator.startPoint +
         answerCreator.lapClearPoint +
         answerCreator.answerDaysPoint +
         answerCreator.continuousAnswerDaysPoint +
         answerCreator.continuationAllWeekPoint +
         answerCreator.continuationAllMonthPoint +
-        answerCreator.continuationAllYearPoint +
-        answerCreator.completeReviewPoint;
+        answerCreator.continuationAllYearPoint;
     // 獲得経験値
-    final int gainedExp = answerCreator.continuousCompleteReviewPoint;
-    // 記録
-    final int counter = answerCreator.continuousCompleteReviewCount ?? 0;
+    final int gainedExp = answerCreator.reviewCompletionPoint;
 
     return Container(
       height: ResponsiveValues.dialogHeight(context),
@@ -84,13 +83,13 @@ class _AnswerContinuousCompleteReviewScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            _heading(counter),
+            _heading(),
             ExpGainedExpIndicator(
               initialExp: initialExp,
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton(user, counter)
+            _shareButton(user)
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

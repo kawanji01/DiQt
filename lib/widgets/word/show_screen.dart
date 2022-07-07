@@ -11,7 +11,6 @@ import 'package:booqs_mobile/widgets/word/entry.dart';
 import 'package:booqs_mobile/widgets/word/explanation.dart';
 import 'package:booqs_mobile/widgets/word/meaning.dart';
 import 'package:booqs_mobile/widgets/word/sentence.dart';
-import 'package:booqs_mobile/widgets/word/tag_buttons.dart';
 import 'package:booqs_mobile/widgets/word/word_requests_button.dart';
 import 'package:flutter/material.dart';
 
