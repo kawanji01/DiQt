@@ -149,7 +149,7 @@ class AnswerCreator {
         'continuation_all_week_point': continuationAllWeekPoint,
         'continuation_all_month_point': continuationAllMonthPoint,
         'continuation_all_year_point': continuationAllYearPoint,
-        'complete_review_point': reviewCompletionPoint,
+        'review_completion_point': reviewCompletionPoint,
         'continuous_review_completion_point': continuousReviewCompletionPoint,
         'goal_achievement_point': answerDaysPoint,
         'continuous_goal_achievement_point': continuousGoalAchievementPoint,
