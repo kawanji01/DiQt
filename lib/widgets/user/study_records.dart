@@ -33,11 +33,12 @@ class UserStudyRecords extends ConsumerWidget {
       );
     }
 
-    Widget _continuousCompleteReview() {
-      final int continuousCompleteReview = user.continuousCompleteReviewCount;
-      if (continuousCompleteReview < 2) return Container();
+    Widget _continuousReviewCompletion() {
+      final int continuousReviewCompletion =
+          user.continuousReviewCompletionCount;
+      if (continuousReviewCompletion < 2) return Container();
       return Text(
-        '$continuousCompleteReview日連続復習達成中！！',
+        '$continuousReviewCompletion日連続復習達成中！！',
         style: textStyle,
       );
     }
@@ -47,7 +48,7 @@ class UserStudyRecords extends ConsumerWidget {
       children: [
         _continuousAnswerDays(),
         _continuousGoalAchievement(),
-        _continuousCompleteReview()
+        _continuousReviewCompletion()
       ],
     );
   }

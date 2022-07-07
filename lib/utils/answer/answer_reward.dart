@@ -3,12 +3,12 @@ import 'package:booqs_mobile/models/answer_history.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/widgets/answer/answer_days_screen.dart';
-import 'package:booqs_mobile/widgets/answer/complete_review_screen.dart';
+import 'package:booqs_mobile/widgets/answer/review_completion_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuation_all_month_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuation_all_week_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuation_all_year_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuous_answer_days_screen.dart';
-import 'package:booqs_mobile/widgets/answer/continuous_complete_review_screen.dart';
+import 'package:booqs_mobile/widgets/answer/continuous_review_completion_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuous_goal_achievement_screen.dart';
 import 'package:booqs_mobile/widgets/answer/drill_lap_clear_screen.dart';
 import 'package:booqs_mobile/widgets/answer/goal_achievement_screen.dart';
@@ -124,7 +124,7 @@ class AnswerReward {
     final bool reviewCompletion = answerHistory!.reviewCompletion;
     if (reviewCompletion) {
       final Widget screen =
-          AnswerCompleteReviewScreen(answerCreator: answerCreator);
+          AnswerReviewCompletionScreen(answerCreator: answerCreator);
       Dialogs.reward(screen);
       await Future.delayed(const Duration(seconds: 2));
     }
@@ -134,12 +134,12 @@ class AnswerReward {
   static Future<void> continuousReviewCompletion(
       AnswerCreator answerCreator) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
-    final int? continuousCompleteReviewCount =
-        answerCreator.continuousCompleteReviewCount;
+    final int? continuousReviewCompletionCount =
+        answerCreator.continuousReviewCompletionCount;
     final bool reviewCompletion = answerHistory!.reviewCompletion;
-    if (reviewCompletion && continuousCompleteReviewCount! > 1) {
+    if (reviewCompletion && continuousReviewCompletionCount! > 1) {
       final Widget screen =
-          AnswerContinuousCompleteReviewScreen(answerCreator: answerCreator);
+          AnswerContinuousReviewCompletionScreen(answerCreator: answerCreator);
       Dialogs.reward(screen);
       await Future.delayed(const Duration(seconds: 2));
     }

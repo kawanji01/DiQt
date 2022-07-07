@@ -18,7 +18,7 @@ class AnswerCreator {
     this.continuationAllMonthCount,
     this.continuationAllYearCount,
     this.continuousGoalAchievementCount,
-    this.continuousCompleteReviewCount,
+    this.continuousReviewCompletionCount,
     this.reviewCreated = false,
     this.reviewReleased = false,
     this.sameMistakeCount,
@@ -33,8 +33,8 @@ class AnswerCreator {
     this.continuationAllWeekPoint = 0,
     this.continuationAllMonthPoint = 0,
     this.continuationAllYearPoint = 0,
-    this.completeReviewPoint = 0,
-    this.continuousCompleteReviewPoint = 0,
+    this.reviewCompletionPoint = 0,
+    this.continuousReviewCompletionPoint = 0,
     this.goalAchievementPoint = 0,
     this.continuousGoalAchievementPoint = 0,
     this.allPoint = 0,
@@ -53,7 +53,7 @@ class AnswerCreator {
   int? continuationAllMonthCount;
   int? continuationAllYearCount;
   int? continuousGoalAchievementCount;
-  int? continuousCompleteReviewCount;
+  int? continuousReviewCompletionCount;
   bool? reviewCreated;
   bool? reviewReleased;
   int? sameMistakeCount;
@@ -68,8 +68,8 @@ class AnswerCreator {
   int continuationAllWeekPoint;
   int continuationAllMonthPoint;
   int continuationAllYearPoint;
-  int completeReviewPoint;
-  int continuousCompleteReviewPoint;
+  int reviewCompletionPoint;
+  int continuousReviewCompletionPoint;
   int goalAchievementPoint;
   int continuousGoalAchievementPoint;
   int allPoint;
@@ -96,8 +96,8 @@ class AnswerCreator {
         continuationAllYearCount = json['continuation_all_year_count'],
         continuousGoalAchievementCount =
             json['continuous_goal_achievement_count'],
-        continuousCompleteReviewCount =
-            json['continuous_complete_review_count'],
+        continuousReviewCompletionCount =
+            json['continuous_review_completion_count'],
         reviewCreated = json['review_created'],
         reviewReleased = json['review_released'],
         sameMistakeCount = json['same_mistake_count'],
@@ -112,9 +112,9 @@ class AnswerCreator {
         continuationAllWeekPoint = json['continuation_all_week_point'],
         continuationAllMonthPoint = json['continuation_all_month_point'],
         continuationAllYearPoint = json['continuation_all_year_point'],
-        completeReviewPoint = json['complete_review_point'],
-        continuousCompleteReviewPoint =
-            json['continuous_complete_review_point'],
+        reviewCompletionPoint = json['review_completion_point'],
+        continuousReviewCompletionPoint =
+            json['continuous_review_completion_point'],
         goalAchievementPoint = json['goal_achievement_point'],
         continuousGoalAchievementPoint =
             json['continuous_goal_achievement_point'],
@@ -134,7 +134,7 @@ class AnswerCreator {
         'continuation_all_month_count': continuationAllMonthCount,
         'continuation_all_year_count': continuationAllYearCount,
         'continuous_goal_achievement_count': continuousGoalAchievementCount,
-        'continuous_complete_review_count': continuousCompleteReviewCount,
+        'continuous_review_completion_count': continuousReviewCompletionCount,
         'review_created': reviewCreated,
         'review_released': reviewReleased,
         'same_mistake_count': sameMistakeCount,
@@ -149,8 +149,8 @@ class AnswerCreator {
         'continuation_all_week_point': continuationAllWeekPoint,
         'continuation_all_month_point': continuationAllMonthPoint,
         'continuation_all_year_point': continuationAllYearPoint,
-        'complete_review_point': completeReviewPoint,
-        'continuous_complete_review_point': continuousCompleteReviewPoint,
+        'complete_review_point': reviewCompletionPoint,
+        'continuous_review_completion_point': continuousReviewCompletionPoint,
         'goal_achievement_point': answerDaysPoint,
         'continuous_goal_achievement_point': continuousGoalAchievementPoint,
         'all_point': allPoint,

@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:flutter/material.dart';
 
 class WordTagButtons extends StatelessWidget {

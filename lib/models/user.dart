@@ -19,7 +19,7 @@ class User {
     required this.answerDaysCount,
     required this.continuousAnswerDaysCount,
     required this.continuousGoalAchievementCount,
-    required this.continuousCompleteReviewCount,
+    required this.continuousReviewCompletionCount,
     required this.achievementMapsCount,
     required this.premium,
     required this.paidViaNativeApp,
@@ -51,7 +51,7 @@ class User {
   int answerDaysCount;
   int continuousAnswerDaysCount;
   int continuousGoalAchievementCount;
-  int continuousCompleteReviewCount;
+  int continuousReviewCompletionCount;
   int achievementMapsCount;
   bool premium;
   bool paidViaNativeApp;
@@ -87,8 +87,8 @@ class User {
         continuousAnswerDaysCount = json['continuous_answer_days_count'],
         continuousGoalAchievementCount =
             json['continuous_goal_achievement_count'],
-        continuousCompleteReviewCount =
-            json['continuous_complete_review_count'],
+        continuousReviewCompletionCount =
+            json['continuous_review_completion_count'],
         achievementMapsCount = json['achievement_maps_count'],
         premium = json['premium'],
         paidViaNativeApp = json['paid_via_native_app'],
@@ -135,7 +135,7 @@ class User {
         'answer_days_count': answerDaysCount,
         'continuous_answer_days_count': continuousAnswerDaysCount,
         'continuous_goal_achievement_count': continuousGoalAchievementCount,
-        'continuous_complete_review_count': continuousCompleteReviewCount,
+        'continuous_review_completion_count': continuousReviewCompletionCount,
         'achievement_maps_count': achievementMapsCount,
         'premium': premium,
         'paid_via_native_app': paidViaNativeApp,
