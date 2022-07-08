@@ -5,8 +5,9 @@ import 'package:http/http.dart';
 
 class RemoteChapters {
   static Future<Map?> index() async {
+    final String? token = await LocalUserInfo.authToken();
     Uri url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/chapters');
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters?token=$token');
     Response res =
         await get(url, headers: {"Content-Type": "application/json"});
     // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2

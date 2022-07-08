@@ -33,7 +33,11 @@ final asyncChaptersProvider = FutureProvider<List<Chapter>>((ref) async {
   final List<Chapter> chapters = [];
   final Map? resMap = await RemoteChapters.index();
   if (resMap == null) return chapters;
-  resMap['data'].forEach((e) => chapters.add(Chapter.fromJson(e)));
+  resMap['chapters'].forEach((e) => chapters.add(Chapter.fromJson(e)));
+  if (resMap['participating_chapters'] != null) {
+    resMap['participating_chapters']
+        .forEach((e) => chapters.insert(0, Chapter.fromJson(e)));
+  }
   ref.read(chaptersProvider.notifier).state = chapters;
   return chapters;
 });
