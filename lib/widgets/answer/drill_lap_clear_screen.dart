@@ -55,7 +55,7 @@ class AnswerDrillLapClearScreen extends ConsumerWidget {
 
       final String tweet = '「${drill.title}」を$counter周クリアしました！';
       final String url =
-          '${DiQtURL.root(context)}/users/${user.publicUid}?type=all_solved';
+          '${DiQtURL.root(context)}/drills/${drill.publicUid}/unsolved?type=all_solved';
 
       return AnswerShareButton(text: tweet, url: url);
     }
