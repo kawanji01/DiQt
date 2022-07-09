@@ -54,7 +54,7 @@ class _AnswerReviewCompletionScreenState
 
     const String tweet = '復習をすべて達成しました！！';
     final String url =
-        '${DiQtURL.root(context)}/users/${user.publicUid}?complete_review=1';
+        '${DiQtURL.root(context)}/users/${user.publicUid}?review_completion=1';
 
     return AnswerShareButton(text: tweet, url: url);
   }
