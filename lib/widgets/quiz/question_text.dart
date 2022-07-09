@@ -1,7 +1,10 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
+import 'package:booqs_mobile/utils/markdown/diqt_link_builder.dart';
+import 'package:booqs_mobile/utils/markdown/diqt_link_syntax.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizQuestionText extends ConsumerStatefulWidget {
@@ -72,6 +75,16 @@ class _QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
     if (_isCovered && quiz.questionReadAloud) {
       return cover;
     }
-    return questionText;
+    return SizedBox(
+      width: double.infinity,
+      child: Markdown(
+        data: quiz.question,
+        shrinkWrap: true,
+        builders: <String, MarkdownElementBuilder>{
+          'diqtlink': DiQtLinkBuilder(),
+        },
+        inlineSyntaxes: [DiQtLinkSyntax(quiz.dictionaryId)],
+      ),
+    );
   }
 }
