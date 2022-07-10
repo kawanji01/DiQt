@@ -33,11 +33,11 @@ class _QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
   Widget build(BuildContext context) {
     final Quiz quiz = widget.quiz;
     // DiQtリンク（[[text1|text2]]など）を取り除いてplain textに直す。
-    final String question = Sanitizer.removeDiQtLink(quiz.question);
-    final Widget questionText = Text(
-      question,
-      style: const TextStyle(fontSize: 16),
-    );
+    //final String question = Sanitizer.removeDiQtLink(quiz.question);
+    //final Widget questionText = Text(
+    //  question,
+    //  style: const TextStyle(fontSize: 16),
+    //);
 
     final Widget cover = InkWell(
       onTap: () {
@@ -77,7 +77,7 @@ class _QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
     }
     return SizedBox(
       width: double.infinity,
-      child: Markdown(
+      child: MarkdownBody(
         data: quiz.question,
         shrinkWrap: true,
         builders: <String, MarkdownElementBuilder>{

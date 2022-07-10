@@ -1,10 +1,13 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
+import 'package:booqs_mobile/utils/markdown/diqt_link_builder.dart';
+import 'package:booqs_mobile/utils/markdown/diqt_link_syntax.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class QuizExplanationQuestion extends StatelessWidget {
   const QuizExplanationQuestion({Key? key, required this.quiz})
@@ -14,7 +17,7 @@ class QuizExplanationQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _question() {
-      final Dictionary? dictionary = quiz.dictionary;
+      /* final Dictionary? dictionary = quiz.dictionary;
       final int langNumberOfEntry = dictionary?.langNumberOfEntry ?? 0;
       if (quiz.langNumberOfQuestion == langNumberOfEntry) {
         return TextWithLink(
@@ -25,7 +28,18 @@ class QuizExplanationQuestion extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
         );
       }
-      return Text(quiz.question, style: const TextStyle(fontSize: 16));
+      return Text(quiz.question, style: const TextStyle(fontSize: 16)); */
+      return SizedBox(
+        width: double.infinity,
+        child: MarkdownBody(
+          data: quiz.question,
+          shrinkWrap: true,
+          builders: <String, MarkdownElementBuilder>{
+            'diqtlink': DiQtLinkBuilder(),
+          },
+          inlineSyntaxes: [DiQtLinkSyntax(quiz.dictionaryId)],
+        ),
+      );
     }
 
     Widget _ttsBtn() {
