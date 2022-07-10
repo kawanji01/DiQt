@@ -71,6 +71,7 @@ dependencies:
   share_plus: ^4.0.4 # 連続解答記録のシェアなど
   responsive_builder: ^0.4.2 # 画面幅に合わせたレスポンシブデザイン
   font_awesome_flutter: ^10.1.0 # font awesome
+  flutter_markdown: ^0.6.10 # markdown
   
 
 dev_dependencies:
