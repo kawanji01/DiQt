@@ -29,8 +29,9 @@ class QuizExplanationQuestion extends StatelessWidget {
         );
       }
       return Text(quiz.question, style: const TextStyle(fontSize: 16)); */
-      return SizedBox(
+      return Container(
         width: double.infinity,
+        alignment: Alignment.center,
         child: MarkdownBody(
           data: quiz.question,
           shrinkWrap: true,
@@ -38,6 +39,11 @@ class QuizExplanationQuestion extends StatelessWidget {
             'diqtlink': DiQtLinkBuilder(),
           },
           inlineSyntaxes: [DiQtLinkSyntax(quiz.dictionaryId)],
+          selectable: true,
+          styleSheet: MarkdownStyleSheet(
+              p: const TextStyle(
+            fontSize: 16,
+          )),
         ),
       );
     }

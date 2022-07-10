@@ -20,6 +20,9 @@ class Quiz {
     required this.langNumberOfAnswer,
     required this.answerReadAloud,
     this.distractors,
+    this.distractor1,
+    this.distractor2,
+    this.distractor3,
     required this.flashcard,
     this.explanation,
     this.hint,
@@ -46,6 +49,9 @@ class Quiz {
   int langNumberOfAnswer;
   bool answerReadAloud;
   String? distractors;
+  String? distractor1;
+  String? distractor2;
+  String? distractor3;
   bool flashcard;
   String? explanation;
   String? hint;
@@ -73,6 +79,9 @@ class Quiz {
         langNumberOfAnswer = json['lang_number_of_answer'],
         answerReadAloud = json['answer_read_aloud'],
         distractors = json['distractors'],
+        distractor1 = json['distractor_1'],
+        distractor2 = json['distractor_2'],
+        distractor3 = json['distractor_3'],
         flashcard = json['flashcard'],
         explanation = json['explanation'],
         hint = json['hint'],
@@ -107,6 +116,9 @@ class Quiz {
         'lang_number_of_answer': langNumberOfAnswer,
         'answer_read_aloud': answerReadAloud,
         'distractors': distractors,
+        'distractor_1': distractor1,
+        'distractor_2': distractor2,
+        'distractor_3': distractor3,
         'flashcard': flashcard,
         'explanation': explanation,
         'hint': hint,

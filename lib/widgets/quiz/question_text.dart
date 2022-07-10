@@ -84,6 +84,8 @@ class _QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
           'diqtlink': DiQtLinkBuilder(),
         },
         inlineSyntaxes: [DiQtLinkSyntax(quiz.dictionaryId)],
+        selectable: true,
+        styleSheet: MarkdownStyleSheet(p: const TextStyle(fontSize: 16)),
       ),
     );
   }
