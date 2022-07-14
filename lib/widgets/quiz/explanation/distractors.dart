@@ -1,7 +1,6 @@
-import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
+import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizExplanationDistractors extends StatelessWidget {
@@ -11,24 +10,16 @@ class QuizExplanationDistractors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (quiz.distractors == '' || quiz.distractors == null) {
+    if (quiz.distractor1 == '' || quiz.distractor1 == null) {
       return Container();
     }
+    final int? _dictionaryId = quiz.dictionaryId;
 
     Widget _distractor(distractor) {
-      Widget child = Text(distractor,
-          style: const TextStyle(fontSize: 16, color: Colors.red));
-      final Dictionary? dictionary = quiz.dictionary;
-      final int langNumberOfEntry = dictionary?.langNumberOfEntry ?? 0;
-      if (quiz.langNumberOfAnswer == langNumberOfEntry) {
-        child = TextWithLink(
+      final Widget markdown = MarkdownWithDiQtLink(
           text: distractor,
-          langNumber: quiz.langNumberOfAnswer,
-          dictionaryId: quiz.dictionaryId,
-          autoLinkEnabled: true,
-          crossAxisAlignment: CrossAxisAlignment.start,
-        );
-      }
+          dictionaryId: _dictionaryId,
+          textStyle: const TextStyle(fontSize: 16, color: Colors.red));
 
       return Row(
         mainAxisSize: MainAxisSize.min,
@@ -40,18 +31,21 @@ class QuizExplanationDistractors extends StatelessWidget {
           ),
           // Expandedを使うと短い文章でも幅全体を埋めてしまい、結果的に左寄せになってしまうので Flexible を使う。
           Flexible(
-            child: child,
+            child: markdown,
           ),
         ],
       );
     }
 
     // 選択肢（distracorsWidget）を作成する
-    final List<String> answerTextList = quiz.distractors!.split('\n');
-    List<Widget> widgetList = [];
+    final List<String> answerTextList = [
+      quiz.distractor1 ?? '',
+      quiz.distractor2 ?? '',
+      quiz.distractor3 ?? ''
+    ];
+    answerTextList.removeWhere((element) => element == '');
+    final List<Widget> widgetList = [];
     answerTextList.asMap().forEach((int i, String value) {
-      // 空文字の改行は選択肢にしない
-      if (value == '') return;
       widgetList.add(
         Container(
             padding: const EdgeInsets.only(bottom: 8),

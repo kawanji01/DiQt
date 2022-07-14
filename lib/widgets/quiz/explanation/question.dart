@@ -1,13 +1,9 @@
-import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
-import 'package:booqs_mobile/utils/markdown/diqt_link_builder.dart';
-import 'package:booqs_mobile/utils/markdown/diqt_link_syntax.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
+import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
 import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class QuizExplanationQuestion extends StatelessWidget {
   const QuizExplanationQuestion({Key? key, required this.quiz})
@@ -17,35 +13,14 @@ class QuizExplanationQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _question() {
-      /* final Dictionary? dictionary = quiz.dictionary;
-      final int langNumberOfEntry = dictionary?.langNumberOfEntry ?? 0;
-      if (quiz.langNumberOfQuestion == langNumberOfEntry) {
-        return TextWithLink(
-          text: quiz.question,
-          langNumber: quiz.langNumberOfQuestion,
-          dictionaryId: quiz.dictionaryId,
-          autoLinkEnabled: true,
-          crossAxisAlignment: CrossAxisAlignment.center,
-        );
-      }
-      return Text(quiz.question, style: const TextStyle(fontSize: 16)); */
       return Container(
-        width: double.infinity,
-        alignment: Alignment.center,
-        child: MarkdownBody(
-          data: quiz.question,
-          shrinkWrap: true,
-          builders: <String, MarkdownElementBuilder>{
-            'diqtlink': DiQtLinkBuilder(),
-          },
-          inlineSyntaxes: [DiQtLinkSyntax(quiz.dictionaryId)],
-          selectable: true,
-          styleSheet: MarkdownStyleSheet(
-              p: const TextStyle(
-            fontSize: 16,
-          )),
-        ),
-      );
+          width: double.infinity,
+          alignment: Alignment.center,
+          child: MarkdownWithDiQtLink(
+            text: quiz.question,
+            dictionaryId: quiz.dictionaryId,
+            textStyle: const TextStyle(fontSize: 16),
+          ));
     }
 
     Widget _ttsBtn() {

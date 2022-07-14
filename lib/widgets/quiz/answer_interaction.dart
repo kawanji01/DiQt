@@ -4,6 +4,7 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/quiz/answers_count.dart';
 import 'package:booqs_mobile/widgets/quiz/exp_indicator.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/open_button.dart';
+import 'package:booqs_mobile/widgets/shared/markdown_without_diqt_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,7 +17,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bool _correct = notification.correct;
     final Quiz _quiz = notification.quiz;
-    final String? _correctAnswer = _quiz.correctAnswer;
+    final String _correctAnswer = _quiz.correctAnswer;
     final String? _usersAnswer = notification.usersAnswer;
     // initialExpにProviderを使うと、サーバーのレスポンス速度によっては解答報酬獲得後の総合経験値が入ってしまう
     final int initialExp = notification.user!.amountOfExp;
@@ -35,12 +36,13 @@ class QuizAnswerInteraction extends ConsumerWidget {
             ),
             // Expandedを使うと短い文章でも幅全体を埋めてしまい、結果的に左寄せになってしまうので Flexible を使う。
             Flexible(
-              child: Text(
-                '$_correctAnswer',
-                style: const TextStyle(
+              child: MarkdownWithoutDiQtLink(
+                text: _correctAnswer,
+                textStyle: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.w800),
+                selectable: false,
               ),
             ),
           ],
@@ -61,9 +63,13 @@ class QuizAnswerInteraction extends ConsumerWidget {
               child: const Icon(Icons.clear, color: Colors.white, size: 24),
             ),
             Flexible(
-              child: Text(
-                '$_usersAnswer',
-                style: const TextStyle(color: Colors.white, fontSize: 16),
+              child: MarkdownWithoutDiQtLink(
+                text: '$_usersAnswer',
+                textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800),
+                selectable: false,
               ),
             ),
           ],
