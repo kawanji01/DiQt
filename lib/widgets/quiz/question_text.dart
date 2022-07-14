@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:booqs_mobile/utils/markdown/diqt_link_builder.dart';
 import 'package:booqs_mobile/utils/markdown/diqt_link_syntax.dart';
 import 'package:flutter/material.dart';
@@ -32,12 +31,6 @@ class _QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
   @override
   Widget build(BuildContext context) {
     final Quiz quiz = widget.quiz;
-    // DiQtリンク（[[text1|text2]]など）を取り除いてplain textに直す。
-    //final String question = Sanitizer.removeDiQtLink(quiz.question);
-    //final Widget questionText = Text(
-    //  question,
-    //  style: const TextStyle(fontSize: 16),
-    //);
 
     final Widget cover = InkWell(
       onTap: () {

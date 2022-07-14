@@ -12,11 +12,15 @@ class QuizAnswerPart extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget _answerForm() {
       // 多肢選択型
-      if (quiz.distractors != '' && quiz.distractors != null) {
-        final List<String> answerTextList = quiz.distractors!.split('\n');
+      if (quiz.distractor1 != '' && quiz.distractor1 != null) {
         final correctAnswer = quiz.correctAnswer;
-        // 選択肢に正解を含めてシャッフルする
-        answerTextList.add(correctAnswer);
+        final List<String> answerTextList = [
+          correctAnswer,
+          quiz.distractor1 ?? '',
+          quiz.distractor2 ?? '',
+          quiz.distractor3 ?? ''
+        ];
+        answerTextList.removeWhere((value) => value == '');
         answerTextList.shuffle();
         // リビルド時に選択肢がシャッフルし直されるのを防ぐために、外部からリストを渡す。
         return QuizMultipleChoices(

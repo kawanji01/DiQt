@@ -20,9 +20,15 @@ class DiQtLinkBuilder extends MarkdownElementBuilder {
         searchWord = alias;
       }
 
-      final int dictionaryId =
-          int.parse(textContent.split('::dictionary_id=')[1]);
+      // 辞書IDが無かれば通常の文字列
+      final String dictionaryIdText = textContent.split('::dictionary_id=')[1];
+      if (dictionaryIdText == '') {
+        return Text(alias,
+            style: const TextStyle(
+                color: Colors.black87, fontSize: 16, height: 1.6));
+      }
 
+      final int dictionaryId = int.parse(dictionaryIdText);
       Future _goToWordSearchPage(String keyword) async {
         await DictionaryWordSearchResultsPage.push(
             context, dictionaryId, keyword);

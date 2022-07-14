@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/widgets/shared/markdown_without_diqt_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizChoiceButton extends StatelessWidget {
@@ -20,13 +21,14 @@ class QuizChoiceButton extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(5)),
           color: Colors.green,
         ),
-        child: Text(
-          answerText,
-          style: const TextStyle(
-              fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
+        child: MarkdownWithoutDiQtLink(
+          text: answerText,
+          textStyle: const TextStyle(
+              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       );
     }
+
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
@@ -36,10 +38,10 @@ class QuizChoiceButton extends StatelessWidget {
         border: Border.all(color: Colors.green, width: 1),
         borderRadius: const BorderRadius.all(Radius.circular(5)),
       ),
-      child: Text(
-        answerText,
-        style: const TextStyle(
-            fontSize: 15, color: Colors.green, fontWeight: FontWeight.bold),
+      child: MarkdownWithoutDiQtLink(
+        text: answerText,
+        textStyle: const TextStyle(
+            fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green),
       ),
     );
   }

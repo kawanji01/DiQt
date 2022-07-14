@@ -2,6 +2,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
+import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
 import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
@@ -12,25 +13,6 @@ class QuizExplanationAnswer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Dictionary? dictionary = quiz.dictionary;
-    Widget _answer() {
-      if (dictionary == null) {
-        return Text(quiz.correctAnswer, style: const TextStyle(fontSize: 16));
-      }
-
-      if (quiz.langNumberOfAnswer == dictionary.langNumberOfEntry) {
-        const center = CrossAxisAlignment.center;
-        return TextWithLink(
-          text: quiz.correctAnswer,
-          langNumber: quiz.langNumberOfAnswer,
-          dictionaryId: dictionary.id,
-          autoLinkEnabled: true,
-          crossAxisAlignment: center,
-        );
-      }
-      return Text(quiz.correctAnswer, style: const TextStyle(fontSize: 16));
-    }
-
     Widget _ttsBtn() {
       if (quiz.answerReadAloud) {
         // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す
@@ -51,7 +33,10 @@ class QuizExplanationAnswer extends StatelessWidget {
     return Column(children: <Widget>[
       const SharedItemLabel(text: '正解'),
       const SizedBox(height: 16),
-      _answer(),
+      MarkdownWithDiQtLink(
+          text: quiz.correctAnswer,
+          dictionaryId: quiz.dictionaryId,
+          textStyle: const TextStyle(fontSize: 16, color: Colors.black87)),
       _ttsBtn(),
       const SizedBox(height: 24),
     ]);
