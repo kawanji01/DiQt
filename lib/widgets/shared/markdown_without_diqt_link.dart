@@ -4,10 +4,14 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 
 class MarkdownWithoutDiQtLink extends StatelessWidget {
   const MarkdownWithoutDiQtLink(
-      {Key? key, required this.text, required this.textStyle})
+      {Key? key,
+      required this.text,
+      required this.textStyle,
+      required this.selectable})
       : super(key: key);
   final String text;
   final TextStyle textStyle;
+  final bool selectable;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class MarkdownWithoutDiQtLink extends StatelessWidget {
     return MarkdownBody(
       data: sanitizedText,
       shrinkWrap: true,
-      selectable: true,
+      selectable: selectable,
       styleSheet: MarkdownStyleSheet(
         p: textStyle,
       ),
