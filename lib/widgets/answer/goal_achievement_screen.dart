@@ -42,32 +42,24 @@ class _AnswerGoalAchievementScreenState
     });
   }
 
-  Widget _heading() {
-    return const Text('目標達成',
-        style: TextStyle(
-            fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
-  }
-
-  Widget _twitterShareButton(User? user, AnswerSetting? answerSetting) {
-    if (user == null) return Container();
-    if (answerSetting == null) return Container();
-    final int counter = answerSetting.dailyGoal;
-
-    final String tweet = '1日の目標($counter問)を達成しました！！';
-    final String url =
-        '${DiQtURL.root(context)}/users/${user.publicUid}?goal=$counter';
-
-    return AnswerShareButton(text: tweet, url: url);
-  }
-
   @override
   Widget build(BuildContext context) {
-    final User? user = ref.watch(currentUserProvider);
-    final AnswerSetting? answerSetting = ref.watch(answerSettingProvider);
+    final User? _user = ref.watch(currentUserProvider);
+    if (_user == null) return Container();
+    final AnswerSetting? _answerSetting = ref.watch(answerSettingProvider);
+    if (_answerSetting == null) return Container();
+    final int _goalCount = _answerSetting.dailyGoal;
+    final bool _strictSolvingMode = _answerSetting.strictSolvingMode;
+    String _description;
+    if (_strictSolvingMode) {
+      _description = '厳格解答モードで1日の目標($_goalCount問正解)を達成しました！';
+    } else {
+      _description = '1日の目標($_goalCount問)を達成しました！';
+    }
 
     final AnswerCreator answerCreator = widget.answerCreator;
     // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬 + 連続年解答報酬 + 復習達成報酬 +  連続復習達成報酬）
-    final int initialExp = answerCreator.startPoint +
+    final int _initialExp = answerCreator.startPoint +
         answerCreator.lapClearPoint +
         answerCreator.answerDaysPoint +
         answerCreator.continuousAnswerDaysPoint +
@@ -77,7 +69,7 @@ class _AnswerGoalAchievementScreenState
         answerCreator.reviewCompletionPoint +
         answerCreator.continuousReviewCompletionPoint;
     // 獲得経験値
-    final int gainedExp = answerCreator.goalAchievementPoint;
+    final int _gainedExp = answerCreator.goalAchievementPoint;
 
     return Container(
       height: ResponsiveValues.dialogHeight(context),
@@ -88,13 +80,28 @@ class _AnswerGoalAchievementScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            _heading(),
+            // haeding
+            const Text('目標達成',
+                style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange)),
+            const SizedBox(height: 16),
+            // explanation
+            Text(_description,
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87)),
             ExpGainedExpIndicator(
-              initialExp: initialExp,
-              gainedExp: gainedExp,
+              initialExp: _initialExp,
+              gainedExp: _gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton(user, answerSetting)
+            AnswerShareButton(
+                text: _description,
+                url:
+                    '${DiQtURL.root(context)}/users/${_user.publicUid}?goal=$_goalCount'),
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

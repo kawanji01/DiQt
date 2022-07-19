@@ -11,6 +11,7 @@ class QuizAnswersCount extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       final int todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
+      // １０問解答ごとに画面上端に通知を表示する。
       if (todaysAnswersCount % 10 == 0) {
         showFlash(
           context: context,
@@ -43,16 +44,20 @@ class QuizAnswersCount extends ConsumerWidget {
       }
     });
 
+    final int _todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
+    final int _todaysCorrectAnswersCount =
+        ref.watch(todaysCorrectAnswersCountProvider);
+    final int _dailyGoalCount = ref.watch(
+            answerSettingProvider.select((setting) => setting!.dailyGoal)) ??
+        30;
+
+    // 通常モードで表示する解答数
     Widget _answersCount() {
-      final int todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
-      final int dailyGoalCount = ref.watch(
-              answerSettingProvider.select((setting) => setting!.dailyGoal)) ??
-          30;
       String message = '';
-      if (dailyGoalCount < todaysAnswersCount) {
-        message = '$todaysAnswersCount問解答';
+      if (_dailyGoalCount < _todaysAnswersCount) {
+        message = '$_todaysAnswersCount問解答';
       } else {
-        final int remainedCount = dailyGoalCount - todaysAnswersCount;
+        final int remainedCount = _dailyGoalCount - _todaysAnswersCount;
         message = '目標まで残り$remainedCount問';
       }
       return Text(
@@ -61,7 +66,31 @@ class QuizAnswersCount extends ConsumerWidget {
       );
     }
 
+    // 厳格解答モードで表示する解答数
+    Widget _correctAnswersCount() {
+      String message = '';
+      if (_dailyGoalCount < _todaysCorrectAnswersCount) {
+        message = '$_todaysAnswersCount問正解';
+      } else {
+        final int remainedCount = _dailyGoalCount - _todaysCorrectAnswersCount;
+        message = '目標まで残り$remainedCount問正解';
+      }
+      return Text(
+        message,
+        style: const TextStyle(color: Colors.white, fontSize: 16),
+      );
+    }
+
+    Widget _answersCountInformation() {
+      final bool strictSolvingMode = ref.watch(strictSolvingModeProvider);
+      if (strictSolvingMode) {
+        return _correctAnswersCount();
+      }
+      return _answersCount();
+    }
+
     return Container(
-        padding: const EdgeInsets.only(bottom: 8), child: _answersCount());
+        padding: const EdgeInsets.only(bottom: 8),
+        child: _answersCountInformation());
   }
 }

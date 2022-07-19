@@ -13,9 +13,10 @@ class User {
     required this.amountOfExp,
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
+    required this.todaysCorrectAnswerHistoriesCount,
+    required this.todaysIncorrectAnswerHistoriesCount,
     required this.wholeWeeksAnswerHistoriesCount,
     required this.wholeMonthsAnswerHistoriesCount,
-    required this.todaysIncorrectAnswerHistoriesCount,
     required this.answerDaysCount,
     required this.continuousAnswerDaysCount,
     required this.continuousGoalAchievementCount,
@@ -45,9 +46,10 @@ class User {
   int amountOfExp;
   int answerHistoriesCount;
   int todaysAnswerHistoriesCount;
+  int todaysCorrectAnswerHistoriesCount;
+  int todaysIncorrectAnswerHistoriesCount;
   int wholeWeeksAnswerHistoriesCount;
   int wholeMonthsAnswerHistoriesCount;
-  int todaysIncorrectAnswerHistoriesCount;
   int answerDaysCount;
   int continuousAnswerDaysCount;
   int continuousGoalAchievementCount;
@@ -77,6 +79,8 @@ class User {
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
+        todaysCorrectAnswerHistoriesCount =
+            json['todays_correct_answer_histories_count'],
         wholeWeeksAnswerHistoriesCount =
             json['whole_weeks_answer_histories_count'],
         wholeMonthsAnswerHistoriesCount =
@@ -128,10 +132,12 @@ class User {
         'amount_of_exp': amountOfExp,
         'answer_histories_count': answerHistoriesCount,
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
-        'whole_weeks_answer_histories_count': wholeWeeksAnswerHistoriesCount,
-        'whole_months_answer_histories_count': wholeMonthsAnswerHistoriesCount,
+        'todays_correct_answer_histories_count':
+            todaysCorrectAnswerHistoriesCount,
         'todays_incorrect_answer_histories_count':
             todaysIncorrectAnswerHistoriesCount,
+        'whole_weeks_answer_histories_count': wholeWeeksAnswerHistoriesCount,
+        'whole_months_answer_histories_count': wholeMonthsAnswerHistoriesCount,
         'answer_days_count': answerDaysCount,
         'continuous_answer_days_count': continuousAnswerDaysCount,
         'continuous_goal_achievement_count': continuousGoalAchievementCount,

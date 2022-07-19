@@ -28,6 +28,8 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
       ref.read(currentUserProvider.notifier).state = user;
       ref.read(todaysAnswersCountProvider.notifier).state =
           user.todaysAnswerHistoriesCount;
+      ref.read(todaysCorrectAnswersCountProvider.notifier).state =
+          user.todaysCorrectAnswerHistoriesCount;
       // 解答済の問題数を更新する
       ref.read(drillSolvedQuizzesCountProvider.notifier).state =
           answerCreator.solvedQuizzesCount!;

@@ -62,6 +62,8 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
         final int todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
+        final int todaysCorrectAnswersCount =
+            ref.watch(todaysCorrectAnswersCountProvider);
         final bool premiumEnabled = ref.watch(premiumEnabledProvider);
         // 無料ユーザーで１００問以上解いたユーザーにはペイウォールを表示する
         if (todaysAnswersCount > 99 && premiumEnabled == false) {
@@ -72,6 +74,12 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
         // 今日の解答数のカウンターを+1する。
         ref.read(todaysAnswersCountProvider.notifier).state =
             todaysAnswersCount + 1;
+        // 正解なら正解数を+1する
+        if (notification.correct) {
+          ref.read(todaysCorrectAnswersCountProvider.notifier).state =
+              todaysCorrectAnswersCount + 1;
+        }
+
         // 正解を読み上げる
         _speakCorrectAnswer(notification);
         // 解答インタラクションを表示する
