@@ -14,7 +14,6 @@ class User {
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
     required this.todaysCorrectAnswerHistoriesCount,
-    required this.todaysIncorrectAnswerHistoriesCount,
     required this.wholeWeeksAnswerHistoriesCount,
     required this.wholeMonthsAnswerHistoriesCount,
     required this.answerDaysCount,
@@ -47,7 +46,6 @@ class User {
   int answerHistoriesCount;
   int todaysAnswerHistoriesCount;
   int todaysCorrectAnswerHistoriesCount;
-  int todaysIncorrectAnswerHistoriesCount;
   int wholeWeeksAnswerHistoriesCount;
   int wholeMonthsAnswerHistoriesCount;
   int answerDaysCount;
@@ -85,8 +83,6 @@ class User {
             json['whole_weeks_answer_histories_count'],
         wholeMonthsAnswerHistoriesCount =
             json['whole_months_answer_histories_count'],
-        todaysIncorrectAnswerHistoriesCount =
-            json['todays_incorrect_answer_histories_count'],
         answerDaysCount = json['answer_days_count'],
         continuousAnswerDaysCount = json['continuous_answer_days_count'],
         continuousGoalAchievementCount =
@@ -134,8 +130,6 @@ class User {
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
         'todays_correct_answer_histories_count':
             todaysCorrectAnswerHistoriesCount,
-        'todays_incorrect_answer_histories_count':
-            todaysIncorrectAnswerHistoriesCount,
         'whole_weeks_answer_histories_count': wholeWeeksAnswerHistoriesCount,
         'whole_months_answer_histories_count': wholeMonthsAnswerHistoriesCount,
         'answer_days_count': answerDaysCount,

@@ -11,7 +11,9 @@ class UserTodaysMistakesButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final User? user = ref.watch(currentUserProvider);
     if (user == null) return Container();
-    if (user.todaysIncorrectAnswerHistoriesCount == 0) return Container();
+    final int todaysIncorrectAnswersCount = user.todaysAnswerHistoriesCount -
+        user.todaysCorrectAnswerHistoriesCount;
+    if (todaysIncorrectAnswersCount == 0) return Container();
 
     return Container(
       margin: const EdgeInsets.only(bottom: 48),
@@ -61,7 +63,7 @@ class UserTodaysMistakesButton extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      '${user.todaysIncorrectAnswerHistoriesCount}問',
+                      '$todaysIncorrectAnswersCount問',
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
