@@ -45,6 +45,7 @@ class AnswerCreator {
   Review? review;
   DrillLap? drillLap;
   int? todaysAnswerHistoriesCount;
+  int? todaysCorrectAnswerHistoriesCount;
   int? solvedQuizzesCount;
   int? unsolvedReviewsCount;
   int? answerDaysCount;
@@ -87,6 +88,8 @@ class AnswerCreator {
             ? null
             : DrillLap.fromJson(json['drill_lap']),
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
+        todaysCorrectAnswerHistoriesCount =
+            json['todays_correct_answer_histories_count'],
         solvedQuizzesCount = json['solved_quizzes_count'],
         unsolvedReviewsCount = json['unsolved_reviews_count'],
         answerDaysCount = json['answer_days_count'],
@@ -126,6 +129,8 @@ class AnswerCreator {
         'review': review,
         'drillLap': drillLap,
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
+        'todays_correct_answer_histories_count':
+            todaysCorrectAnswerHistoriesCount,
         'solved_quizzes_count': solvedQuizzesCount,
         'unsolved_reviews_count': unsolvedReviewsCount,
         'answer_days_count': answerDaysCount,

@@ -29,10 +29,10 @@ class GoogleButton extends ConsumerWidget {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
 
-      Map? resMap = await RemoteSessions.google(googleAuth);
+      final Map? resMap = await RemoteSessions.google(googleAuth);
       if (resMap == null) return EasyLoading.dismiss();
 
-      User user = User.fromJson(resMap['user']);
+      final User user = User.fromJson(resMap['user']);
       await UserSetup.signIn(user);
       ref.read(currentUserProvider.notifier).state = user;
       // 画面全体のローディングを消す。

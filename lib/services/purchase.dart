@@ -146,17 +146,16 @@ class PurchaseService {
   // DB側の解約処理
   // クライアント側に解約APIは用意されていないので、サーバー側（Ruby）の解約APIを叩き、解約をDBと同期する。
   Future<bool> deleteSubscriber(token) async {
-    var url = Uri.parse(
+    final url = Uri.parse(
         '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/users/delete_subscriber');
-    var res = await http.post(url, body: {'token': token});
+    final res = await http.post(url, body: {'token': token});
 
     if (res.statusCode != 200) {
-      // print('.deleteSubscriber: response ${res.statusCode}');
       return false;
     }
 
-    Map resMap = json.decode(res.body);
-    User user = User.fromJson(resMap['user']);
+    final Map resMap = json.decode(res.body);
+    final User user = User.fromJson(resMap['user']);
     await UserSetup.signIn(user);
     return true;
   }

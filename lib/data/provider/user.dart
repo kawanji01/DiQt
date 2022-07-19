@@ -18,6 +18,7 @@ final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
     await UserSetup.logOut(null);
     ref.read(currentUserProvider.notifier).state = null;
     ref.read(todaysAnswersCountProvider.notifier).state = 0;
+    ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0;
     ref.read(answerSettingProvider.notifier).state = null;
     return null;
   } else {
@@ -27,6 +28,8 @@ final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
     ref.read(currentUserProvider.notifier).state = user;
     ref.read(todaysAnswersCountProvider.notifier).state =
         user.todaysAnswerHistoriesCount;
+    ref.read(todaysCorrectAnswersCountProvider.notifier).state =
+        user.todaysCorrectAnswerHistoriesCount;
     ref.read(answerSettingProvider.notifier).state = user.answerSetting;
     return user;
   }

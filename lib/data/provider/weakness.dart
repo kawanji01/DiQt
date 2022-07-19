@@ -29,7 +29,8 @@ final asyncUnsolvedWeaknessesProvider =
   ref.read(answerSettingProvider.notifier).state = user.answerSetting;
   ref.read(todaysAnswersCountProvider.notifier).state =
       user.todaysAnswerHistoriesCount;
-
+  ref.read(todaysCorrectAnswersCountProvider.notifier).state =
+      user.todaysCorrectAnswerHistoriesCount;
   resMap['weaknesses'].forEach((e) => weaknesses.add(Weakness.fromJson(e)));
   // 画面に描画された問題のID
   final List<int> loadedQuizIds = weaknesses.map((e) => e.quizId).toList();

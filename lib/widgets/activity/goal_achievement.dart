@@ -18,13 +18,24 @@ class ActivityGoalAchievement extends StatelessWidget {
     const TextStyle textGreen = TextStyle(
         color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold);
 
-    final Widget information = RichText(
-        text: TextSpan(children: [
-      TextSpan(text: user.name, style: textGreen),
-      const TextSpan(text: 'が', style: textBlack),
-      TextSpan(text: '目標（${activity.amount}問）', style: textGreen),
-      const TextSpan(text: 'を達成しました！', style: textBlack),
-    ]));
+    Widget _information() {
+      if (activity.information == 'strict_solving_mode') {
+        return RichText(
+            text: TextSpan(children: [
+          TextSpan(text: user.name, style: textGreen),
+          const TextSpan(text: 'が', style: textBlack),
+          TextSpan(text: '厳格解答モードで目標（${activity.amount}問正解）', style: textGreen),
+          const TextSpan(text: 'を達成しました！', style: textBlack),
+        ]));
+      }
+      return RichText(
+          text: TextSpan(children: [
+        TextSpan(text: user.name, style: textGreen),
+        const TextSpan(text: 'が', style: textBlack),
+        TextSpan(text: '目標（${activity.amount}問）', style: textGreen),
+        const TextSpan(text: 'を達成しました！', style: textBlack),
+      ]));
+    }
 
     Widget _continuationCount() {
       if (activity.continuationCount! < 2) {
@@ -46,7 +57,7 @@ class ActivityGoalAchievement extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                information,
+                _information(),
                 _continuationCount(),
               ],
             ),

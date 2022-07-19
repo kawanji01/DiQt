@@ -23,6 +23,8 @@ class WeaknessUnsolvedScreenWrapper extends ConsumerWidget {
       ref.read(currentUserProvider.notifier).state = user;
       ref.read(todaysAnswersCountProvider.notifier).state =
           user.todaysAnswerHistoriesCount;
+      ref.read(todaysCorrectAnswersCountProvider.notifier).state =
+          user.todaysCorrectAnswerHistoriesCount;
     }
 
     // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。

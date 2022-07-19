@@ -67,6 +67,7 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
       ref.read(currentUserProvider.notifier).state = null;
       ref.read(answerSettingProvider.notifier).state = null;
       ref.read(todaysAnswersCountProvider.notifier).state = 0;
+      ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0;
       // ローディングを消す
       EasyLoading.dismiss();
       const snackBar = SnackBar(content: Text('ログアウトしました。'));
