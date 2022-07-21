@@ -18,7 +18,7 @@ class QuizExplanationExplanation extends StatelessWidget {
       children: [
         const SharedItemLabel(text: '解説'),
         const SizedBox(height: 16),
-        MarkdownWithDiQtLink(
+        MarkdownWithDictLink(
           text: quiz.explanation ?? '',
           dictionaryId: quiz.dictionaryId,
           textStyle: const TextStyle(fontSize: 16),

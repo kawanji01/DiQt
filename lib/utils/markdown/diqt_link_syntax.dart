@@ -1,7 +1,9 @@
 import 'package:markdown/markdown.dart' as md;
 
+// 一行ずつ parse して DiQtLinkBuilder に値を引き渡す
+// 例： 《補語にのみ用いて》《話》『元気な』,健康な([[well]])::dictionary_id=1
 class DiQtLinkSyntax extends md.InlineSyntax {
-  DiQtLinkSyntax(this.dictionaryId) : super(r'(\[{2}.*?\]{2})');
+  DiQtLinkSyntax(this.dictionaryId) : super(r'(.*\[{2}.*?\]{2}.*)');
   final int dictionaryId;
 
   @override

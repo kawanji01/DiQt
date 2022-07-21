@@ -26,7 +26,7 @@ class QuizExplanationQuestion extends StatelessWidget {
       return Container(
           width: double.infinity,
           alignment: Alignment.center,
-          child: MarkdownWithDiQtLink(
+          child: MarkdownWithDictLink(
             text: quiz.question,
             dictionaryId: quiz.dictionaryId,
             textStyle: const TextStyle(fontSize: 16),

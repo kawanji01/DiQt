@@ -28,7 +28,7 @@ class QuizHintScreen extends StatelessWidget {
           // content
           Container(
             alignment: Alignment.centerLeft,
-            child: MarkdownWithDiQtLink(
+            child: MarkdownWithDictLink(
               text: hintText,
               dictionaryId: quiz.dictionaryId,
               textStyle: const TextStyle(fontSize: 16),
@@ -54,7 +54,7 @@ class QuizHintScreen extends StatelessWidget {
           const SizedBox(height: 16),
           Container(
             alignment: Alignment.centerLeft,
-            child: MarkdownWithDiQtLink(
+            child: MarkdownWithDictLink(
               text: noteText,
               dictionaryId: quiz.dictionaryId,
               textStyle: const TextStyle(fontSize: 16),

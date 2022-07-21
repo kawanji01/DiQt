@@ -2,8 +2,8 @@ import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-class MarkdownWithoutDiQtLink extends StatelessWidget {
-  const MarkdownWithoutDiQtLink(
+class MarkdownWithoutDictLink extends StatelessWidget {
+  const MarkdownWithoutDictLink(
       {Key? key,
       required this.text,
       required this.textStyle,

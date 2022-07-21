@@ -39,7 +39,7 @@ class QuizExplanationAnswer extends StatelessWidget {
           dictionaryId: quiz.dictionaryId,
         );
       }
-      return MarkdownWithDiQtLink(
+      return MarkdownWithDictLink(
           text: quiz.correctAnswer,
           dictionaryId: quiz.dictionaryId,
           textStyle: const TextStyle(fontSize: 16, color: Colors.black87));

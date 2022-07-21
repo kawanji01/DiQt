@@ -27,7 +27,7 @@ class QuizExplanationDistractors extends StatelessWidget {
           dictionaryId: quiz.dictionaryId,
         );
       }
-      return MarkdownWithDiQtLink(
+      return MarkdownWithDictLink(
           text: distractor,
           dictionaryId: _dictionaryId,
           textStyle: const TextStyle(fontSize: 16, color: Colors.red));

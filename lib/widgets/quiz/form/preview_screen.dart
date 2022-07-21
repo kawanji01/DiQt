@@ -46,7 +46,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
         );
       }
-      return MarkdownWithDiQtLink(
+      return MarkdownWithDictLink(
         text: question,
         dictionaryId: dictionaryId,
         textStyle: const TextStyle(fontSize: 16, color: Colors.black87),
@@ -63,7 +63,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
         );
       }
-      return MarkdownWithDiQtLink(
+      return MarkdownWithDictLink(
         text: correctAnswer,
         dictionaryId: dictionaryId,
         textStyle: const TextStyle(
@@ -103,7 +103,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
           ),
           QuizFormPreviewDistractors(distractors: distractors),
           const SharedItemLabel(text: 'ヒント'),
-          MarkdownWithDiQtLink(
+          MarkdownWithDictLink(
             text: hint,
             dictionaryId: dictionaryId,
             textStyle: const TextStyle(fontSize: 16),
@@ -112,7 +112,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
             height: 32,
           ),
           const SharedItemLabel(text: '解説'),
-          MarkdownWithDiQtLink(
+          MarkdownWithDictLink(
             text: explanation,
             dictionaryId: dictionaryId,
             textStyle: const TextStyle(fontSize: 16),

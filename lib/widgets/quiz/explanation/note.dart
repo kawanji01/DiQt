@@ -109,7 +109,7 @@ class _QuizExplanationNoteState extends State<QuizExplanationNote> {
         children: [
           const SharedItemLabel(text: 'ノート'),
           const SizedBox(height: 8),
-          MarkdownWithDiQtLink(
+          MarkdownWithDictLink(
             text: _note?.content ?? 'Note does not exist.',
             dictionaryId: widget.quiz.dictionaryId,
             textStyle: const TextStyle(fontSize: 16),
