@@ -9,7 +9,7 @@ import 'package:booqs_mobile/widgets/quiz/explanation/answer_analysis.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/distractors.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/explanation.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/question.dart';
-import 'package:booqs_mobile/widgets/quiz/note.dart';
+import 'package:booqs_mobile/widgets/quiz/explanation/note.dart';
 import 'package:booqs_mobile/widgets/quiz/source.dart';
 import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
@@ -111,7 +111,7 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
     // ノート
     Widget _note() {
       return future.when(
-        data: (quiz) => QuizNote(quiz: quiz!),
+        data: (quiz) => QuizExplanationNote(quiz: quiz!),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       );

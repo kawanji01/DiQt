@@ -6,18 +6,19 @@ import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/note/form_field.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
+import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class QuizNote extends StatefulWidget {
-  const QuizNote({Key? key, required this.quiz}) : super(key: key);
+class QuizExplanationNote extends StatefulWidget {
+  const QuizExplanationNote({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
 
   @override
-  State<QuizNote> createState() => _QuizNoteState();
+  State<QuizExplanationNote> createState() => _QuizExplanationNoteState();
 }
 
-class _QuizNoteState extends State<QuizNote> {
+class _QuizExplanationNoteState extends State<QuizExplanationNote> {
   bool _isEdit = true;
   Note? _note;
   final _formKey = GlobalKey<FormState>();
@@ -108,9 +109,10 @@ class _QuizNoteState extends State<QuizNote> {
         children: [
           const SharedItemLabel(text: 'ノート'),
           const SizedBox(height: 8),
-          Text(
-            _note?.content ?? 'Note does not exist.',
-            style: const TextStyle(fontSize: 16),
+          MarkdownWithDiQtLink(
+            text: _note?.content ?? 'Note does not exist.',
+            dictionaryId: widget.quiz.dictionaryId,
+            textStyle: const TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 16),
           InkWell(

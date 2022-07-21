@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizHintScreen extends StatelessWidget {
@@ -15,20 +16,24 @@ class QuizHintScreen extends StatelessWidget {
       final String? hintText = quiz.hint;
       if (hintText == null) return Container();
 
-      const heading = Text('ヒント',
-          style: TextStyle(
-              color: Colors.green, fontSize: 22, fontWeight: FontWeight.bold));
-      // 内容
-      final content = Container(
-        alignment: Alignment.centerLeft,
-        child: Text(hintText.trim(),
-            style: const TextStyle(fontSize: 16, color: Colors.black87)),
-      );
       return Column(
         children: [
-          heading,
+          // heading
+          const Text('ヒント',
+              style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold)),
           const SizedBox(height: 16),
-          content,
+          // content
+          Container(
+            alignment: Alignment.centerLeft,
+            child: MarkdownWithDiQtLink(
+              text: hintText,
+              dictionaryId: quiz.dictionaryId,
+              textStyle: const TextStyle(fontSize: 16),
+            ),
+          ),
           const SizedBox(height: 40),
         ],
       );
@@ -39,24 +44,22 @@ class QuizHintScreen extends StatelessWidget {
       if (note == null) return Container();
       final String noteText = note?.content ?? '';
 
-      const heading = Text('ノート',
-          style: TextStyle(
-              color: Colors.green, fontSize: 22, fontWeight: FontWeight.bold));
-      // 内容
-      final content = Container(
-        alignment: Alignment.centerLeft,
-        child: Text(noteText.trim(),
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.black87,
-            )),
-      );
-
       return Column(
         children: [
-          heading,
+          const Text('ノート',
+              style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold)),
           const SizedBox(height: 16),
-          content,
+          Container(
+            alignment: Alignment.centerLeft,
+            child: MarkdownWithDiQtLink(
+              text: noteText,
+              dictionaryId: quiz.dictionaryId,
+              textStyle: const TextStyle(fontSize: 16),
+            ),
+          ),
           const SizedBox(height: 40),
         ],
       );

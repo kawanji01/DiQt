@@ -36,12 +36,18 @@ class _QuizFormState extends State<QuizForm> {
     final int langNumberOfAnswer = _quiz?.langNumberOfAnswer ?? 0;
     final Dictionary _dictionary = widget.dictionary;
 
+    bool _autoDictLinkOfQuestion;
+    bool _autoDictLinkOfAnswer;
     bool _isConnectedToWord;
     bool _isConnectedToSentence;
     if (_quiz == null) {
+      _autoDictLinkOfQuestion = false;
+      _autoDictLinkOfAnswer = false;
       _isConnectedToWord = false;
       _isConnectedToSentence = false;
     } else {
+      _autoDictLinkOfQuestion = _quiz.autoDictLinkOfQuestion;
+      _autoDictLinkOfAnswer = _quiz.autoDictLinkOfAnswer;
       _isConnectedToWord =
           _quiz.wordId != null || _quiz.referenceWordId != null;
       _isConnectedToSentence = _quiz.sentenceId != null;
@@ -201,7 +207,9 @@ class _QuizFormState extends State<QuizForm> {
           distractorsController: _distractorsController,
           hintController: _hintController,
           explanationController: _explanationController,
-          dictionary: _dictionary,
+          autoDictLinkOfQuestion: _autoDictLinkOfQuestion,
+          autoDictLinkOfAnswer: _autoDictLinkOfAnswer,
+          dictionaryId: _dictionary.id,
         )
       ],
     );
