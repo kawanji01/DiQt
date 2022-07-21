@@ -4,6 +4,7 @@ import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
+import 'package:booqs_mobile/widgets/note/form_field.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -20,15 +21,17 @@ class _QuizNoteState extends State<QuizNote> {
   bool _isEdit = true;
   Note? _note;
   final _formKey = GlobalKey<FormState>();
-  final _contentController = TextEditingController();
+  final TextEditingController _noteContentController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     final Quiz quiz = widget.quiz;
+    _note = quiz.note;
+    _noteContentController.text = _note?.content ?? '';
     if (quiz.note == null) return;
     setState(() {
-      _note = quiz.note;
+      _note;
       _isEdit = false;
     });
   }
@@ -36,7 +39,7 @@ class _QuizNoteState extends State<QuizNote> {
   @override
   void dispose() {
     super.dispose();
-    _contentController.dispose();
+    _noteContentController.dispose();
   }
 
   @override
@@ -57,7 +60,7 @@ class _QuizNoteState extends State<QuizNote> {
         // create
         final Map<String, dynamic> params = {
           'quiz_id': widget.quiz.id,
-          'content': _contentController.text,
+          'content': _noteContentController.text,
         };
         resMap = await RemoteNotes.create(params);
       } else {
@@ -65,21 +68,22 @@ class _QuizNoteState extends State<QuizNote> {
         final Map<String, dynamic> params = {
           'id': _note!.id,
           'quiz_id': widget.quiz.id,
-          'content': _contentController.text,
+          'content': _noteContentController.text,
         };
         resMap = await RemoteNotes.update(params);
       }
       EasyLoading.dismiss();
       if (resMap == null) return;
       final Note note = Note.fromJson(resMap['note']);
+      _noteContentController.text = note.content;
       setState(() {
         _note = note;
         _isEdit = false;
       });
     }
 
-    Widget _noteForm() {
-      _contentController.text = _note?.content ?? '';
+    if (_isEdit) {
+      // Note編集画面
       return Form(
         key: _formKey,
         child: Column(
@@ -87,26 +91,7 @@ class _QuizNoteState extends State<QuizNote> {
           children: <Widget>[
             const SharedItemLabel(text: 'ノート'),
             const SizedBox(height: 16),
-            // 入力フォーム
-            TextFormField(
-              controller: _contentController,
-              minLines: 4,
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              decoration: const InputDecoration(
-                filled: true,
-                border: InputBorder.none,
-                fillColor: Color(0xfff3f3f4),
-                labelText: "問題に関する自分用のメモ",
-                labelStyle: TextStyle(color: Colors.black54),
-              ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return '空欄のノートは作成できません。';
-                }
-                return null;
-              },
-            ),
+            NoteFormField(noteContentController: _noteContentController),
             const SizedBox(height: 24),
             InkWell(
               onTap: () {
@@ -117,16 +102,14 @@ class _QuizNoteState extends State<QuizNote> {
           ],
         ),
       );
-    }
-
-    Widget _noteText() {
-      if (_note == null) return const Text('Note does not exist.');
+    } else {
+      // Noteのコンテンツ表示
       return Column(
         children: [
           const SharedItemLabel(text: 'ノート'),
           const SizedBox(height: 8),
           Text(
-            _note!.content,
+            _note?.content ?? 'Note does not exist.',
             style: const TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 16),
@@ -138,12 +121,6 @@ class _QuizNoteState extends State<QuizNote> {
           ),
         ],
       );
-    }
-
-    if (_isEdit) {
-      return _noteForm();
-    } else {
-      return _noteText();
     }
   }
 }
