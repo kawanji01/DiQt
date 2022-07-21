@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_distractors.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
+import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizFormPreviewScreen extends StatelessWidget {
@@ -33,7 +33,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
 
     Widget _questionText() {
       if (dictionary.langNumberOfEntry == langNumberOfQuestion) {
-        return TextWithLink(
+        return TextWithDictLink(
           text: question,
           langNumber: langNumberOfQuestion,
           dictionaryId: dictionary.id,
@@ -51,7 +51,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
 
     Widget _answerText() {
       if (dictionary.langNumberOfEntry == langNumberOfAnswer) {
-        return TextWithLink(
+        return TextWithDictLink(
           text: correctAnswer,
           langNumber: langNumberOfAnswer,
           dictionaryId: dictionary.id,
@@ -99,7 +99,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
           ),
           QuizFormPreviewDistractors(distractors: distractors),
           const SharedItemLabel(text: 'ヒント'),
-          TextWithLink(
+          TextWithDictLink(
             text: hint,
             langNumber: null,
             dictionaryId: dictionary.id,
@@ -110,7 +110,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
             height: 32,
           ),
           const SharedItemLabel(text: '解説'),
-          TextWithLink(
+          TextWithDictLink(
             text: explanation,
             langNumber: null,
             dictionaryId: dictionary.id,

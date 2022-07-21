@@ -1,8 +1,8 @@
 import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
 import 'package:flutter/material.dart';
 
-class TextWithLink extends StatelessWidget {
-  const TextWithLink(
+class TextWithDictLink extends StatelessWidget {
+  const TextWithDictLink(
       {Key? key,
       required this.text,
       required this.langNumber,

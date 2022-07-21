@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
+import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/word/label.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +42,7 @@ class WordExplanation extends StatelessWidget {
             const SizedBox(height: 24),
             const WordLabel(text: '解説'),
             const SizedBox(height: 8),
-            TextWithLink(
+            TextWithDictLink(
               text: expText!,
               langNumber: word!.langNumberOfEntry,
               autoLinkEnabled: false,

@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
+import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizExplanationExplanation extends StatelessWidget {
@@ -19,7 +19,7 @@ class QuizExplanationExplanation extends StatelessWidget {
         children: [
           const SharedItemLabel(text: '解説'),
           const SizedBox(height: 16),
-          TextWithLink(
+          TextWithDictLink(
             text: quiz.explanation!,
             langNumber: null,
             dictionaryId: quiz.dictionaryId,
