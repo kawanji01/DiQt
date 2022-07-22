@@ -4,7 +4,7 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/quiz/answers_count.dart';
 import 'package:booqs_mobile/widgets/quiz/exp_indicator.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/open_button.dart';
-import 'package:booqs_mobile/widgets/shared/markdown_without_diqt_link.dart';
+import 'package:booqs_mobile/widgets/shared/markdown_without_dict_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,7 +36,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
             ),
             // Expandedを使うと短い文章でも幅全体を埋めてしまい、結果的に左寄せになってしまうので Flexible を使う。
             Flexible(
-              child: MarkdownWithoutDiQtLink(
+              child: MarkdownWithoutDictLink(
                 text: _correctAnswer,
                 textStyle: const TextStyle(
                     color: Colors.white,
@@ -63,7 +63,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
               child: const Icon(Icons.clear, color: Colors.white, size: 24),
             ),
             Flexible(
-              child: MarkdownWithoutDiQtLink(
+              child: MarkdownWithoutDictLink(
                 text: '$_usersAnswer',
                 textStyle: const TextStyle(
                     color: Colors.white,

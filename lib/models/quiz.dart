@@ -26,6 +26,8 @@ class Quiz {
     required this.flashcard,
     this.explanation,
     this.hint,
+    required this.autoDictLinkOfQuestion,
+    required this.autoDictLinkOfAnswer,
     required this.acceptedQuizRequestsCount,
     required this.pendingQuizRequestsCount,
     required this.quizRequestsCount,
@@ -55,6 +57,8 @@ class Quiz {
   bool flashcard;
   String? explanation;
   String? hint;
+  bool autoDictLinkOfQuestion;
+  bool autoDictLinkOfAnswer;
   int acceptedQuizRequestsCount;
   int pendingQuizRequestsCount;
   int quizRequestsCount;
@@ -85,6 +89,8 @@ class Quiz {
         flashcard = json['flashcard'],
         explanation = json['explanation'],
         hint = json['hint'],
+        autoDictLinkOfQuestion = json['auto_dict_link_of_question'],
+        autoDictLinkOfAnswer = json['auto_dict_link_of_answer'],
         acceptedQuizRequestsCount = json['accepted_quiz_requests_count'],
         pendingQuizRequestsCount = json['pending_quiz_requests_count'],
         quizRequestsCount = json['quiz_requests_count'],
@@ -122,6 +128,8 @@ class Quiz {
         'flashcard': flashcard,
         'explanation': explanation,
         'hint': hint,
+        'auto_dict_link_of_question': autoDictLinkOfQuestion,
+        'auto_dict_link_of_answer': autoDictLinkOfAnswer,
         'accepted_quiz_requests_count': acceptedQuizRequestsCount,
         'pending_quiz_requests_count': pendingQuizRequestsCount,
         'quiz_requests_count': quizRequestsCount,

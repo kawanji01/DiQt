@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
+import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class SentenceFormPreviewScreen extends StatelessWidget {
@@ -42,7 +42,7 @@ class SentenceFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          TextWithLink(
+          TextWithDictLink(
             text: original,
             langNumber: dictionary.langNumberOfEntry,
             dictionaryId: dictionary.id,
@@ -62,7 +62,7 @@ class SentenceFormPreviewScreen extends StatelessWidget {
             height: 32,
           ),
           const SharedItemLabel(text: '解説'),
-          TextWithLink(
+          TextWithDictLink(
             text: explanation,
             langNumber: dictionary.langNumberOfEntry,
             dictionaryId: dictionary.id,

@@ -2,6 +2,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +14,19 @@ class QuizExplanationQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _question() {
+      if (quiz.autoDictLinkOfQuestion) {
+        return TextWithDictLink(
+          text: quiz.question,
+          langNumber: quiz.langNumberOfQuestion,
+          autoLinkEnabled: true,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          dictionaryId: quiz.dictionaryId,
+        );
+      }
       return Container(
           width: double.infinity,
           alignment: Alignment.center,
-          child: MarkdownWithDiQtLink(
+          child: MarkdownWithDictLink(
             text: quiz.question,
             dictionaryId: quiz.dictionaryId,
             textStyle: const TextStyle(fontSize: 16),

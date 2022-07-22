@@ -5,7 +5,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/sentence/edit_button.dart';
 import 'package:booqs_mobile/widgets/sentence/tts_button.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
+import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/word/label.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +29,7 @@ class WordSentence extends StatelessWidget {
       const SizedBox(height: 24),
       const WordLabel(text: '例文'),
       const SizedBox(height: 8),
-      TextWithLink(
+      TextWithDictLink(
         text: sentence.original,
         langNumber: sentence.langNumberOfOriginal,
         dictionaryId: sentence.dictionaryId,

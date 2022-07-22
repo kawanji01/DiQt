@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/widgets/sentence/tts_button.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
+import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class SentenceItem extends StatelessWidget {
@@ -15,7 +15,7 @@ class SentenceItem extends StatelessWidget {
       children: [
         const SharedItemLabel(text: '例文'),
         const SizedBox(height: 16),
-        TextWithLink(
+        TextWithDictLink(
           text: sentence.original,
           langNumber: sentence.langNumberOfOriginal,
           autoLinkEnabled: true,

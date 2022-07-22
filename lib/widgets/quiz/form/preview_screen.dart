@@ -1,7 +1,8 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_distractors.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
+import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizFormPreviewScreen extends StatelessWidget {
@@ -14,7 +15,9 @@ class QuizFormPreviewScreen extends StatelessWidget {
       required this.distractors,
       required this.hint,
       required this.explanation,
-      required this.dictionary})
+      required this.autoDictLinkOfQuestion,
+      required this.autoDictLinkOfAnswer,
+      required this.dictionaryId})
       : super(key: key);
   final String question;
   final int langNumberOfQuestion;
@@ -23,7 +26,9 @@ class QuizFormPreviewScreen extends StatelessWidget {
   final String distractors;
   final String hint;
   final String explanation;
-  final Dictionary dictionary;
+  final bool autoDictLinkOfQuestion;
+  final bool autoDictLinkOfAnswer;
+  final int dictionaryId;
 
   @override
   Widget build(BuildContext context) {
@@ -32,39 +37,38 @@ class QuizFormPreviewScreen extends StatelessWidget {
             fontSize: 24, color: Colors.black87, fontWeight: FontWeight.bold));
 
     Widget _questionText() {
-      if (dictionary.langNumberOfEntry == langNumberOfQuestion) {
-        return TextWithLink(
+      if (autoDictLinkOfQuestion) {
+        return TextWithDictLink(
           text: question,
           langNumber: langNumberOfQuestion,
-          dictionaryId: dictionary.id,
-          autoLinkEnabled: false,
+          dictionaryId: dictionaryId,
+          autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
         );
-      } else {
-        return Text(question,
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.black87,
-            ));
       }
+      return MarkdownWithDictLink(
+        text: question,
+        dictionaryId: dictionaryId,
+        textStyle: const TextStyle(fontSize: 16, color: Colors.black87),
+      );
     }
 
     Widget _answerText() {
-      if (dictionary.langNumberOfEntry == langNumberOfAnswer) {
-        return TextWithLink(
+      if (autoDictLinkOfAnswer) {
+        return TextWithDictLink(
           text: correctAnswer,
           langNumber: langNumberOfAnswer,
-          dictionaryId: dictionary.id,
-          autoLinkEnabled: false,
+          dictionaryId: dictionaryId,
+          autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
         );
-      } else {
-        return Text(correctAnswer,
-            style: const TextStyle(
-                fontSize: 18,
-                color: Colors.black87,
-                fontWeight: FontWeight.bold));
       }
+      return MarkdownWithDictLink(
+        text: correctAnswer,
+        dictionaryId: dictionaryId,
+        textStyle: const TextStyle(
+            fontSize: 16, color: Colors.black87, fontWeight: FontWeight.bold),
+      );
     }
 
     return Container(
@@ -99,23 +103,19 @@ class QuizFormPreviewScreen extends StatelessWidget {
           ),
           QuizFormPreviewDistractors(distractors: distractors),
           const SharedItemLabel(text: 'ヒント'),
-          TextWithLink(
+          MarkdownWithDictLink(
             text: hint,
-            langNumber: null,
-            dictionaryId: dictionary.id,
-            autoLinkEnabled: false,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            dictionaryId: dictionaryId,
+            textStyle: const TextStyle(fontSize: 16),
           ),
           const SizedBox(
             height: 32,
           ),
           const SharedItemLabel(text: '解説'),
-          TextWithLink(
+          MarkdownWithDictLink(
             text: explanation,
-            langNumber: null,
-            dictionaryId: dictionary.id,
-            autoLinkEnabled: false,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            dictionaryId: dictionaryId,
+            textStyle: const TextStyle(fontSize: 16),
           ),
           const SizedBox(
             height: 80,

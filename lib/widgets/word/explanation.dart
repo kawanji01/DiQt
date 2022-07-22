@@ -1,18 +1,16 @@
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_link.dart';
+import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
 import 'package:booqs_mobile/widgets/word/label.dart';
 import 'package:flutter/material.dart';
 
 class WordExplanation extends StatelessWidget {
   const WordExplanation({Key? key, required this.word}) : super(key: key);
-  final Word? word;
+  final Word word;
 
   @override
   Widget build(BuildContext context) {
-    if (word == null) return Container();
-
     Widget _pronunciationPart() {
-      if (word!.ipa == null || word!.ipa == '') return Container();
+      if (word.ipa == null || word.ipa == '') return Container();
 
       return Column(
         children: [
@@ -24,7 +22,7 @@ class WordExplanation extends StatelessWidget {
               const SizedBox(
                 width: 12,
               ),
-              Text('${word!.ipa}', style: const TextStyle(fontSize: 16)),
+              Text('${word.ipa}', style: const TextStyle(fontSize: 16)),
             ],
           ),
         ],
@@ -32,9 +30,8 @@ class WordExplanation extends StatelessWidget {
     }
 
     Widget _explanation() {
-      if (word!.explanation == '') return Container();
+      if (word.explanation == '') return Container();
 
-      final expText = word!.explanation;
       return Column(
           // 左寄せ
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,17 +39,16 @@ class WordExplanation extends StatelessWidget {
             const SizedBox(height: 24),
             const WordLabel(text: '解説'),
             const SizedBox(height: 8),
-            TextWithLink(
-              text: expText!,
-              langNumber: word!.langNumberOfEntry,
-              autoLinkEnabled: false,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              dictionaryId: word!.dictionaryId,
+            MarkdownWithDictLink(
+              text: word.explanation ?? '',
+              dictionaryId: word.dictionaryId,
+              textStyle: const TextStyle(fontSize: 16),
             ),
           ]);
     }
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         _pronunciationPart(),
         _explanation(),
