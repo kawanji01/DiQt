@@ -88,7 +88,6 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
             setState(() {
               _isReached = true;
             });
-
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
             _pagingController.notifyPageRequestListeners(_nextPagekey);
           }

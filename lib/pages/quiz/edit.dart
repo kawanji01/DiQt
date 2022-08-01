@@ -30,7 +30,9 @@ class _QuizEditPageState extends State<QuizEditPage> {
   final _formKey = GlobalKey<FormState>();
   final _questionController = TextEditingController();
   final _correctAnswerController = TextEditingController();
-  final _distractorsController = TextEditingController();
+  final _distractor1Controller = TextEditingController();
+  final _distractor2Controller = TextEditingController();
+  final _distractor3Controller = TextEditingController();
   final _hintController = TextEditingController();
   final _explanationController = TextEditingController();
 
@@ -56,7 +58,9 @@ class _QuizEditPageState extends State<QuizEditPage> {
     }
     _questionController.text = quiz.question;
     _correctAnswerController.text = quiz.correctAnswer;
-    _distractorsController.text = quiz.distractors ?? '';
+    _distractor1Controller.text = quiz.distractor1 ?? '';
+    _distractor2Controller.text = quiz.distractor2 ?? '';
+    _distractor3Controller.text = quiz.distractor3 ?? '';
     _hintController.text = quiz.hint ?? '';
     _explanationController.text = quiz.explanation ?? '';
     setState(() {
@@ -70,7 +74,9 @@ class _QuizEditPageState extends State<QuizEditPage> {
   void dispose() {
     _questionController.dispose();
     _correctAnswerController.dispose();
-    _distractorsController.dispose();
+    _distractor1Controller.dispose();
+    _distractor2Controller.dispose();
+    _distractor3Controller.dispose();
     _hintController.dispose();
     _explanationController.dispose();
     super.dispose();
@@ -87,7 +93,9 @@ class _QuizEditPageState extends State<QuizEditPage> {
         'id': quiz.id,
         'question': _questionController.text,
         'correct_answer': _correctAnswerController.text,
-        'distractors': _distractorsController.text,
+        'distractor_1': _distractor1Controller.text,
+        'distractor_2': _distractor2Controller.text,
+        'distractor_3': _distractor3Controller.text,
         'explanation': _explanationController.text,
         'hint': _hintController.text,
       };
@@ -147,7 +155,9 @@ class _QuizEditPageState extends State<QuizEditPage> {
               QuizForm(
                   questionController: _questionController,
                   correctAnswerController: _correctAnswerController,
-                  distractorsController: _distractorsController,
+                  distractor1Controller: _distractor1Controller,
+                  distractor2Controller: _distractor2Controller,
+                  distractor3Controller: _distractor3Controller,
                   explanationController: _explanationController,
                   hintController: _hintController,
                   quiz: quiz,

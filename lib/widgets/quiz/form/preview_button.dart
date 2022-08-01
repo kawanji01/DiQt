@@ -8,7 +8,9 @@ class QuizFormPreviewButton extends StatelessWidget {
       required this.langNumberOfQuestion,
       required this.correctAnswerController,
       required this.langNumberOfAnswer,
-      required this.distractorsController,
+      required this.distractor1Controller,
+      required this.distractor2Controller,
+      required this.distractor3Controller,
       required this.hintController,
       required this.explanationController,
       required this.autoDictLinkOfQuestion,
@@ -19,7 +21,9 @@ class QuizFormPreviewButton extends StatelessWidget {
   final int langNumberOfQuestion;
   final TextEditingController correctAnswerController;
   final int langNumberOfAnswer;
-  final TextEditingController distractorsController;
+  final TextEditingController distractor1Controller;
+  final TextEditingController distractor2Controller;
+  final TextEditingController distractor3Controller;
   final TextEditingController hintController;
   final TextEditingController explanationController;
   final bool autoDictLinkOfQuestion;
@@ -51,7 +55,9 @@ class QuizFormPreviewButton extends StatelessWidget {
                 langNumberOfQuestion: langNumberOfQuestion,
                 correctAnswer: correctAnswerController.text,
                 langNumberOfAnswer: langNumberOfAnswer,
-                distractors: distractorsController.text,
+                distractor1: distractor1Controller.text,
+                distractor2: distractor2Controller.text,
+                distractor3: distractor3Controller.text,
                 hint: hintController.text,
                 explanation: explanationController.text,
                 autoDictLinkOfQuestion: autoDictLinkOfQuestion,

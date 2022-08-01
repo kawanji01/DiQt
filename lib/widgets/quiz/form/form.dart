@@ -2,6 +2,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/pages/sentence/edit.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
+import 'package:booqs_mobile/widgets/quiz/form/distractor.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_button.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,9 @@ class QuizForm extends StatefulWidget {
       {Key? key,
       required this.questionController,
       required this.correctAnswerController,
-      required this.distractorsController,
+      required this.distractor1Controller,
+      required this.distractor2Controller,
+      required this.distractor3Controller,
       required this.explanationController,
       required this.hintController,
       required this.quiz,
@@ -18,7 +21,9 @@ class QuizForm extends StatefulWidget {
       : super(key: key);
   final TextEditingController questionController;
   final TextEditingController correctAnswerController;
-  final TextEditingController distractorsController;
+  final TextEditingController distractor1Controller;
+  final TextEditingController distractor2Controller;
+  final TextEditingController distractor3Controller;
   final TextEditingController explanationController;
   final TextEditingController hintController;
   final Quiz? quiz;
@@ -56,8 +61,12 @@ class _QuizFormState extends State<QuizForm> {
     final TextEditingController _questionController = widget.questionController;
     final TextEditingController _correctAnswerController =
         widget.correctAnswerController;
-    final TextEditingController _distractorsController =
-        widget.distractorsController;
+    final TextEditingController _distractor1Controller =
+        widget.distractor1Controller;
+    final TextEditingController _distractor2Controller =
+        widget.distractor2Controller;
+    final TextEditingController _distractor3Controller =
+        widget.distractor3Controller;
     final TextEditingController _explanationController =
         widget.explanationController;
     final TextEditingController _hintController = widget.hintController;
@@ -157,7 +166,7 @@ class _QuizFormState extends State<QuizForm> {
         _questionAndAnswer(),
         const SizedBox(height: 40),
         // 誤りの選択肢
-        TextFormField(
+        /* TextFormField(
           minLines: 5,
           keyboardType: TextInputType.multiline,
           maxLines: null,
@@ -167,11 +176,19 @@ class _QuizFormState extends State<QuizForm> {
             labelText: '誤りの選択肢',
             hintText: '【空欄可】誤りの選択肢があれば入力してください。',
           ),
-        ),
-        const Text(
+        ), */
+        QuizFormDistractor(
+            distractorController: _distractor1Controller, number: 1),
+        const SizedBox(height: 16),
+        QuizFormDistractor(
+            distractorController: _distractor2Controller, number: 2),
+        const SizedBox(height: 16),
+        QuizFormDistractor(
+            distractorController: _distractor3Controller, number: 3),
+        /* const Text(
           '改行によって選択肢を増やします。',
           style: TextStyle(color: Colors.black54),
-        ),
+        ), */
         const SizedBox(height: 40),
         // ヒント
         TextFormField(
@@ -204,7 +221,9 @@ class _QuizFormState extends State<QuizForm> {
           langNumberOfQuestion: langNumberOfQuestion,
           correctAnswerController: _correctAnswerController,
           langNumberOfAnswer: langNumberOfAnswer,
-          distractorsController: _distractorsController,
+          distractor1Controller: _distractor1Controller,
+          distractor2Controller: _distractor2Controller,
+          distractor3Controller: _distractor3Controller,
           hintController: _hintController,
           explanationController: _explanationController,
           autoDictLinkOfQuestion: _autoDictLinkOfQuestion,
