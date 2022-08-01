@@ -16,9 +16,9 @@ class AnswerAnalysisOrderSelectForm extends ConsumerWidget {
         case 'correct_answer_rate-desc':
           return '正答率が高い順';
         case 'incorrect_answer_histories_count-desc':
-          return '不正解が多い順';
+          return '間違いが多い順';
         case 'incorrect_answer_histories_count-asc':
-          return '不正解が少ない順';
+          return '間違いが少ない順';
         case 'last_answered_at-desc':
           return '解答履歴：新しい順';
         case 'last_answered_at-asc':
