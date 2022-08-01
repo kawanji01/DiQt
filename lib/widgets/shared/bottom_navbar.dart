@@ -96,7 +96,7 @@ class BottomNavbar extends ConsumerWidget {
           break;
         case 3:
           if (_selectedIndex == index) return;
-          NoticeHomePage.push(context);
+          NoticeHomePage.push(context, 0);
           break;
         case 4:
           if (_selectedIndex == index) return;

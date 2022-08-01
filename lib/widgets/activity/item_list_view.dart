@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/activity.dart';
 import 'package:booqs_mobile/data/remote/activities.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/widgets/activity/list_item.dart';
@@ -36,7 +37,8 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
     if (_isReached == false) return;
     _isLoading = true;
 
-    final Map? resMap = await RemoteActivities.index(pageKey, _pageSize);
+    final String order = ref.watch(activitiesOrderProvider);
+    final Map? resMap = await RemoteActivities.index(pageKey, _pageSize, order);
     if (resMap == null) {
       if (mounted) {
         setState(() {
