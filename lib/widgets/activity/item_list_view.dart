@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/activity.dart';
 import 'package:booqs_mobile/data/remote/activities.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/widgets/activity/list_item.dart';
@@ -36,7 +37,8 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
     if (_isReached == false) return;
     _isLoading = true;
 
-    final Map? resMap = await RemoteActivities.index(pageKey, _pageSize);
+    final String order = ref.watch(activitiesOrderProvider);
+    final Map? resMap = await RemoteActivities.index(pageKey, _pageSize, order);
     if (resMap == null) {
       if (mounted) {
         setState(() {
@@ -86,7 +88,6 @@ class _ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
             setState(() {
               _isReached = true;
             });
-
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
             _pagingController.notifyPageRequestListeners(_nextPagekey);
           }

@@ -1,8 +1,8 @@
-import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/widgets/quiz/form/preview_correct_answer.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_distractors.dart';
+import 'package:booqs_mobile/widgets/quiz/form/preview_question.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizFormPreviewScreen extends StatelessWidget {
@@ -12,7 +12,9 @@ class QuizFormPreviewScreen extends StatelessWidget {
       required this.langNumberOfQuestion,
       required this.correctAnswer,
       required this.langNumberOfAnswer,
-      required this.distractors,
+      required this.distractor1,
+      required this.distractor2,
+      required this.distractor3,
       required this.hint,
       required this.explanation,
       required this.autoDictLinkOfQuestion,
@@ -23,7 +25,9 @@ class QuizFormPreviewScreen extends StatelessWidget {
   final int langNumberOfQuestion;
   final String correctAnswer;
   final int langNumberOfAnswer;
-  final String distractors;
+  final String distractor1;
+  final String distractor2;
+  final String distractor3;
   final String hint;
   final String explanation;
   final bool autoDictLinkOfQuestion;
@@ -35,41 +39,6 @@ class QuizFormPreviewScreen extends StatelessWidget {
     const heading = Text('問題のプレビュー',
         style: TextStyle(
             fontSize: 24, color: Colors.black87, fontWeight: FontWeight.bold));
-
-    Widget _questionText() {
-      if (autoDictLinkOfQuestion) {
-        return TextWithDictLink(
-          text: question,
-          langNumber: langNumberOfQuestion,
-          dictionaryId: dictionaryId,
-          autoLinkEnabled: true,
-          crossAxisAlignment: CrossAxisAlignment.start,
-        );
-      }
-      return MarkdownWithDictLink(
-        text: question,
-        dictionaryId: dictionaryId,
-        textStyle: const TextStyle(fontSize: 16, color: Colors.black87),
-      );
-    }
-
-    Widget _answerText() {
-      if (autoDictLinkOfAnswer) {
-        return TextWithDictLink(
-          text: correctAnswer,
-          langNumber: langNumberOfAnswer,
-          dictionaryId: dictionaryId,
-          autoLinkEnabled: true,
-          crossAxisAlignment: CrossAxisAlignment.start,
-        );
-      }
-      return MarkdownWithDictLink(
-        text: correctAnswer,
-        dictionaryId: dictionaryId,
-        textStyle: const TextStyle(
-            fontSize: 16, color: Colors.black87, fontWeight: FontWeight.bold),
-      );
-    }
 
     return Container(
       height: 640,
@@ -85,23 +54,33 @@ class QuizFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          const SharedItemLabel(text: '問題'),
-          const SizedBox(
-            height: 16,
-          ),
-          _questionText(),
-          const SizedBox(
-            height: 32,
-          ),
-          const SharedItemLabel(text: '正解'),
-          const SizedBox(
-            height: 16,
-          ),
-          _answerText(),
+          QuizFormPreviewQuestion(
+              question: question,
+              langNumberOfQuestion: langNumberOfQuestion,
+              autoDictLinkOfQuestion: autoDictLinkOfQuestion,
+              dictionaryId: dictionaryId),
           const SizedBox(
             height: 32,
           ),
-          QuizFormPreviewDistractors(distractors: distractors),
+          QuizFormPreviewCorrectAnswer(
+              correctAnswer: correctAnswer,
+              langNumberOfAnswer: langNumberOfAnswer,
+              dictionaryId: dictionaryId,
+              autoDictLinkOfAnswer: autoDictLinkOfAnswer),
+          const SizedBox(
+            height: 32,
+          ),
+          QuizFormPreviewDistractors(
+            distractor1: distractor1,
+            distractor2: distractor2,
+            distractor3: distractor3,
+            dictionaryId: dictionaryId,
+            langNumberOfAnswer: langNumberOfAnswer,
+            autoDictLinkOfAnswer: autoDictLinkOfAnswer,
+          ),
+          const SizedBox(
+            height: 32,
+          ),
           const SharedItemLabel(text: 'ヒント'),
           MarkdownWithDictLink(
             text: hint,

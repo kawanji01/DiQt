@@ -1,18 +1,32 @@
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
+import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizFormPreviewDistractors extends StatelessWidget {
-  const QuizFormPreviewDistractors({Key? key, required this.distractors})
+  const QuizFormPreviewDistractors(
+      {Key? key,
+      required this.distractor1,
+      required this.distractor2,
+      required this.distractor3,
+      required this.dictionaryId,
+      required this.langNumberOfAnswer,
+      required this.autoDictLinkOfAnswer})
       : super(key: key);
-  final String distractors;
+  final String distractor1;
+  final String distractor2;
+  final String distractor3;
+  final int? dictionaryId;
+  final int langNumberOfAnswer;
+  final bool autoDictLinkOfAnswer;
 
   @override
   Widget build(BuildContext context) {
-    if (distractors == '') {
+    if (distractor1 == '') {
       return Container();
     }
 
-    Widget _distractor(String distractor) {
+    Widget _autoLink(String distractor) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -23,39 +37,70 @@ class QuizFormPreviewDistractors extends StatelessWidget {
           ),
           // Expandedを使うと短い文章でも幅全体を埋めてしまい、結果的に左寄せになってしまうので Flexible を使う。
           Flexible(
-            child: Text(distractor,
-                style: const TextStyle(fontSize: 16, color: Colors.red)),
+            child: TextWithDictLink(
+              text: distractor,
+              langNumber: langNumberOfAnswer,
+              dictionaryId: dictionaryId,
+              autoLinkEnabled: true,
+              crossAxisAlignment: CrossAxisAlignment.start,
+            ),
           ),
         ],
       );
     }
 
-    // 選択肢（distracorsWidget）を作成する
-    final List<String> answerTextList = distractors.split('\n');
-    List<Widget> widgetList = [];
-    answerTextList.asMap().forEach((int i, String value) {
-      // 空文字の改行は選択肢にしない
-      if (value == '') return;
-      widgetList.add(
-        Container(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: _distractor(value)),
+    Widget _markdown(String distractor) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(right: 8),
+            child: const Icon(Icons.close, color: Colors.red, size: 24),
+          ),
+          // Expandedを使うと短い文章でも幅全体を埋めてしまい、結果的に左寄せになってしまうので Flexible を使う。
+          Flexible(
+            child: MarkdownWithDictLink(
+              text: distractor,
+              dictionaryId: dictionaryId,
+              textStyle: const TextStyle(fontSize: 16, color: Colors.red),
+            ),
+          ),
+        ],
       );
-    });
-    final Widget distracorsWidget = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: widgetList,
-    );
+    }
 
-    return Column(children: <Widget>[
-      const SharedItemLabel(text: '誤りの選択肢'),
-      const SizedBox(
-        height: 16,
-      ),
-      distracorsWidget,
-      const SizedBox(
-        height: 24,
-      ),
-    ]);
+    Widget _distractor(String distractor) {
+      if (distractor == '') {
+        return Container();
+      }
+      Widget distractorWidget;
+      if (autoDictLinkOfAnswer) {
+        distractorWidget = _autoLink(distractor);
+      } else {
+        distractorWidget = _markdown(distractor);
+      }
+      return Column(
+        children: [
+          distractorWidget,
+          const SizedBox(
+            height: 8,
+          ),
+        ],
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SharedItemLabel(text: '誤りの選択肢'),
+        const SizedBox(
+          height: 16,
+        ),
+        _distractor(distractor1),
+        _distractor(distractor2),
+        _distractor(distractor3)
+      ],
+    );
   }
 }

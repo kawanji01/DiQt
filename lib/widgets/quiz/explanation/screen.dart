@@ -119,33 +119,39 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
 
     // 出典（辞書と例文）
 
-    // 80%の高さで表示させる
-    return SizedBox(
-        height: height,
-        child: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: ResponsiveValues.horizontalMargin(context)),
-            child: Column(
-              children: <Widget>[
-                const SizedBox(
-                  height: 24,
-                ),
-                _question(),
-                _answer(),
-                _distractors(),
-                _reviewButton(),
-                const SizedBox(height: 16),
-                _explanation(),
-                _editButtons(),
-                const SizedBox(height: 40),
-                _answerAnalysis(),
-                _note(),
-                const SizedBox(height: 40),
-                QuizSource(quiz: _quiz),
-              ],
+    // keyboardにフォームが隠れないようにする。 ref: https://www.choge-blog.com/programming/flutter-keyboard-modalbottomsheet/
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
+      // 80%の高さで表示させる
+      child: SizedBox(
+          height: height,
+          child: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: ResponsiveValues.horizontalMargin(context)),
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  _question(),
+                  _answer(),
+                  _distractors(),
+                  _reviewButton(),
+                  const SizedBox(height: 16),
+                  _explanation(),
+                  _editButtons(),
+                  const SizedBox(height: 40),
+                  _answerAnalysis(),
+                  _note(),
+                  const SizedBox(height: 40),
+                  QuizSource(quiz: _quiz),
+                ],
+              ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }

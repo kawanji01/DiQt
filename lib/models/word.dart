@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/models/word_tag.dart';
 
 class Word {
   Word({
@@ -25,6 +26,7 @@ class Word {
     this.sentence,
     this.dictionary,
     this.quiz,
+    this.wordTags,
   });
 
   int id;
@@ -48,6 +50,7 @@ class Word {
   Sentence? sentence;
   Dictionary? dictionary;
   Quiz? quiz;
+  List<WordTag>? wordTags;
 
   Word.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -73,7 +76,12 @@ class Word {
         dictionary = json['dictionary'] == null
             ? null
             : Dictionary.fromJson(json['dictionary']),
-        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']);
+        quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
+        wordTags = json['word_tags'] == null
+            ? []
+            : json['word_tags']
+                .map<WordTag>((e) => WordTag.fromJson(e))
+                .toList();
 
   Map<String, dynamic> toJson() => {
         'id': id,

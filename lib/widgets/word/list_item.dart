@@ -7,6 +7,7 @@ import 'package:booqs_mobile/widgets/word/entry.dart';
 import 'package:booqs_mobile/widgets/word/explanation.dart';
 import 'package:booqs_mobile/widgets/word/meaning.dart';
 import 'package:booqs_mobile/widgets/word/sentence.dart';
+import 'package:booqs_mobile/widgets/word/word_tags.dart';
 import 'package:flutter/material.dart';
 
 class WordListItem extends StatelessWidget {
@@ -24,7 +25,9 @@ class WordListItem extends StatelessWidget {
 
     Widget _content() {
       return Column(children: <Widget>[
-        //WordTagButtons(tags: word.tags),
+        WordWordTags(
+          word: word,
+        ),
         const SizedBox(height: 10),
         WordEntry(word: word),
         const SizedBox(

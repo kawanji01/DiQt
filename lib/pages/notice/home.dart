@@ -8,9 +8,10 @@ import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 
 class NoticeHomePage extends StatefulWidget {
-  const NoticeHomePage({Key? key}) : super(key: key);
+  const NoticeHomePage({Key? key, this.initialndex}) : super(key: key);
+  final int? initialndex;
 
-  static Future push(BuildContext context) async {
+  static Future push(BuildContext context, int initialndex) async {
     // return Navigator.of(context).pushNamed(notificationIndexPage);
     // アニメーションなしで画面遷移させる。 参考： https://stackoverflow.com/questions/49874272/how-to-navigate-to-other-page-without-animation-flutter
     return Navigator.pushReplacement(
@@ -19,7 +20,7 @@ class NoticeHomePage extends StatefulWidget {
         // 画面遷移のログを送信するために、settings.nameを設定する。
         settings: const RouteSettings(name: noticeHomePage),
         pageBuilder: (context, animation1, animation2) =>
-            const NoticeHomePage(),
+            NoticeHomePage(initialndex: initialndex),
         transitionDuration: Duration.zero,
       ),
     );
@@ -37,6 +38,8 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final int initialIndex = widget.initialndex ?? 0;
+
     List<Widget> _tabBars() {
       SizeConfig().init(context);
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
@@ -48,7 +51,7 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
     }
 
     return DefaultTabController(
-      initialIndex: 0,
+      initialIndex: initialIndex,
       length: 2,
       //length: _tabs.length,
       child: Scaffold(
