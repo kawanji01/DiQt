@@ -6,7 +6,7 @@ import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/note/form_field.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 

@@ -4,7 +4,7 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/quiz/answers_count.dart';
 import 'package:booqs_mobile/widgets/quiz/exp_indicator.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/open_button.dart';
-import 'package:booqs_mobile/widgets/shared/markdown_without_dict_link.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_without_dict_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_without_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class WordMeaning extends StatelessWidget {
@@ -11,8 +12,15 @@ class WordMeaning extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      child: Text(word!.meaning,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+      child: MarkdownWithoutDictLink(
+        text: word!.meaning,
+        textStyle: const TextStyle(
+            fontSize: 18,
+            height: 1.8,
+            color: Colors.black54,
+            fontWeight: FontWeight.bold),
+        selectable: true,
+      ),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/widgets/shared/markdown_without_dict_link.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_without_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizChoiceButton extends StatelessWidget {

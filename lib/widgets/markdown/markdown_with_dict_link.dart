@@ -1,5 +1,7 @@
 import 'package:booqs_mobile/utils/markdown/diqt_link_builder.dart';
 import 'package:booqs_mobile/utils/markdown/diqt_link_syntax.dart';
+import 'package:booqs_mobile/utils/markdown/item_label_builder.dart';
+import 'package:booqs_mobile/utils/markdown/item_label_syntax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
@@ -29,9 +31,10 @@ class MarkdownWithDictLink extends StatelessWidget {
       data: text,
       softLineBreak: true,
       shrinkWrap: true,
-      inlineSyntaxes: [DiQtLinkSyntax(dictionaryId!)],
+      inlineSyntaxes: [DiQtLinkSyntax(dictionaryId!), ItemLabelSyntax(16)],
       builders: <String, MarkdownElementBuilder>{
         'diqtlink': DiQtLinkBuilder(),
+        'itemLabel': ItemLabelBuilder(),
       },
       selectable: true,
       styleSheet: MarkdownStyleSheet(p: textStyle),
