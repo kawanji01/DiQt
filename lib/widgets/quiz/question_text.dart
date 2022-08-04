@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/utils/markdown/diqt_link_builder.dart';
-import 'package:booqs_mobile/utils/markdown/diqt_link_syntax.dart';
+import 'package:booqs_mobile/utils/markdown/dict_link_builder.dart';
+import 'package:booqs_mobile/utils/markdown/dict_link_syntax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -74,9 +74,10 @@ class _QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
         data: quiz.question,
         shrinkWrap: true,
         builders: <String, MarkdownElementBuilder>{
-          'diqtlink': DiQtLinkBuilder(),
+          'dictLink': DictLinkBuilder(
+              16, FontWeight.normal, Colors.black87, quiz.dictionaryId, true),
         },
-        inlineSyntaxes: [DiQtLinkSyntax(quiz.dictionaryId)],
+        inlineSyntaxes: [DictLinkSyntax()],
         selectable: true,
         styleSheet: MarkdownStyleSheet(p: const TextStyle(fontSize: 16)),
       ),

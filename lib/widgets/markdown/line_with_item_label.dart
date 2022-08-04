@@ -1,21 +1,16 @@
-import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
 import 'package:booqs_mobile/widgets/markdown/markdown_without_dict_link.dart';
 import 'package:flutter/material.dart';
 
-class LineWithDictLink extends StatelessWidget {
-  const LineWithDictLink(
+class MarkdownLineWithItemLabel extends StatelessWidget {
+  const MarkdownLineWithItemLabel(
       {Key? key,
       required this.line,
-      required this.dictionaryId,
-      required this.autoLinkEnabled,
       required this.fontSize,
       required this.fontWeight,
       required this.fontColor,
       required this.selectable})
       : super(key: key);
   final String line;
-  final int? dictionaryId;
-  final bool autoLinkEnabled;
   final double fontSize;
   final FontWeight fontWeight;
   final Color fontColor;
@@ -23,47 +18,9 @@ class LineWithDictLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double fontHeight = fontSize / 10;
-    // 辞書IDが設定されていないなら、
-    if (dictionaryId == null) {
-      return MarkdownWithoutDictLink(
-        text: line,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        fontColor: fontColor,
-        selectable: selectable,
-      );
-    }
+    final RegExp regExp = RegExp(r'(\{\[.*?\]\})');
 
-    final ButtonStyle buttonStyle = ButtonStyle(
-      // paddingを消す
-      padding: MaterialStateProperty.all(EdgeInsets.zero),
-      minimumSize: MaterialStateProperty.all(Size.zero),
-      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-    );
-
-    Future _goToWordSearchPage(keyword) async {
-      await DictionaryWordSearchResultsPage.push(
-          context, dictionaryId!, keyword);
-    }
-
-    // 記法なしの単語
-    // 自動でリンクをつけるならtrue, 記法でのみリンクをつける場合はfalse
     Widget _plainWord(String word) {
-      if (autoLinkEnabled) {
-        return TextButton(
-          style: buttonStyle,
-          onPressed: () => _goToWordSearchPage(word),
-          // splitで削除した空白を追加する
-          child: Text('$word ',
-              style: TextStyle(
-                  color: Colors.green,
-                  fontSize: fontSize,
-                  fontWeight: fontWeight,
-                  height: fontHeight)),
-        );
-      }
-
       return MarkdownWithoutDictLink(
         text: '$word ',
         fontSize: fontSize,
@@ -73,50 +30,34 @@ class LineWithDictLink extends StatelessWidget {
       );
     }
 
-    Widget _wordWithDictLink(String word) {
-      final linkedWord = word.replaceFirst('[[', '').replaceFirst(']]', '');
-      Color textColor = Colors.green;
-      // オートリンクの場合は、オートリンクとwiki記法のリンクの区別がつかないので、wiki記法のリンクの色をオレンジにする。
-      if (autoLinkEnabled) {
-        textColor = Colors.orange;
-      }
+    Widget _wordWithItemLabel(String word) {
+      final String label = word.replaceFirst('{[', '').replaceFirst(']}', '');
+      final double labelFontSize = fontSize - 4;
+      final double marginTop = fontSize / 2;
 
-      // [[diplayedWord|searchedWord]]の場合
-      if (linkedWord.contains('|')) {
-        final displayedWord = linkedWord.split('|')[0];
-        final searchedWord = linkedWord.split('|')[1];
-        return TextButton(
-          style: buttonStyle,
-          onPressed: () => _goToWordSearchPage(searchedWord),
-          child: Text(displayedWord,
+      return Container(
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+          margin: EdgeInsets.only(right: 8, top: marginTop),
+          decoration: BoxDecoration(
+            border: Border.all(color: fontColor),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Text(label,
               style: TextStyle(
-                  color: textColor,
-                  fontSize: fontSize,
-                  height: fontHeight,
-                  fontWeight: fontWeight)),
-        );
-      }
-      // [[diplayedWord]]の場合
-      return TextButton(
-        style: buttonStyle,
-        onPressed: () => _goToWordSearchPage(linkedWord),
-        child: Text(linkedWord,
-            style: TextStyle(
-                color: textColor,
-                fontSize: fontSize,
-                height: fontHeight,
-                fontWeight: fontWeight)),
-      );
+                fontSize: labelFontSize,
+                color: fontColor,
+                fontWeight: FontWeight.bold,
+              )));
     }
 
     // 単語のウィジェットを生成する。
     Widget _wordWidget(String word) {
       // 記法を持たない単語
-      if (RegExp(r'(\[{2}.*?\]{2})').hasMatch(word) == false) {
+      if (regExp.hasMatch(word) == false) {
         return _plainWord(word);
       }
       // 記法持ちの単語
-      return _wordWithDictLink(word);
+      return _wordWithItemLabel(word);
     }
 
     // 記法が使われたテキストと、そうでない通常のテキストを分けてリストにする
@@ -133,7 +74,7 @@ class LineWithDictLink extends StatelessWidget {
         notMatch.split(' ').forEach((element) {
           result.add(element);
         });
-        // 一致した文字列[[text]]をリストに追加する。
+        // 一致した文字列 {[label]} をリストに追加する。
         result.add(match[0]!);
         // 一致した文字列の最後のindexをstartを書き換えて、(X)を機能させる。
         start = match.end;
@@ -148,13 +89,12 @@ class LineWithDictLink extends StatelessWidget {
 
     // [[text]]や[[text|link]]を分ける。
     List<String?> _splitLineIntoWords(String textWithDictLinks) {
-      final exp = RegExp(r'(\[{2}.*?\]{2})');
-      final list = allMatchesWithSep(textWithDictLinks, exp);
+      final list = allMatchesWithSep(textWithDictLinks, regExp);
       return list;
     }
 
     // 文字列を「リンク付き文字列」に変換する
-    Widget _lineWithDictLink(String line) {
+    Widget _lineWithItemLabel(String line) {
       List<Widget> wordWidgetList = <Widget>[];
       // テキストを単語に分割してリストにする。
       List<String?> wordList = _splitLineIntoWords(line);
@@ -165,13 +105,16 @@ class LineWithDictLink extends StatelessWidget {
       }
 
       // RowではなくWrapを使うことで、Widgetを横に並べたときに画面からはみ出す問題を防ぐ。
-      return Wrap(
-        alignment: WrapAlignment.start,
-        crossAxisAlignment: WrapCrossAlignment.end,
-        children: wordWidgetList,
+      return SizedBox(
+        width: double.infinity,
+        child: Wrap(
+          // ref: https://qiita.com/ling350181/items/47c8029e53af392f0e5f
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: wordWidgetList,
+        ),
       );
     }
 
-    return _lineWithDictLink(line);
+    return _lineWithItemLabel(line);
   }
 }

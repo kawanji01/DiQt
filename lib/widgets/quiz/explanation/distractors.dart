@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
@@ -20,17 +20,24 @@ class QuizExplanationDistractors extends StatelessWidget {
     Widget _distractorContent(String distractor) {
       if (quiz.autoDictLinkOfAnswer) {
         return TextWithDictLink(
-          text: distractor,
-          langNumber: quiz.langNumberOfAnswer,
-          autoLinkEnabled: true,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          dictionaryId: quiz.dictionaryId,
-        );
+            text: distractor,
+            langNumber: quiz.langNumberOfAnswer,
+            autoLinkEnabled: true,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            dictionaryId: quiz.dictionaryId,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.red,
+            selectable: false);
       }
       return MarkdownWithDictLink(
-          text: distractor,
-          dictionaryId: _dictionaryId,
-          textStyle: const TextStyle(fontSize: 16, color: Colors.red));
+        text: distractor,
+        dictionaryId: _dictionaryId,
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        fontColor: Colors.red,
+        selectable: false,
+      );
     }
 
     // 実際の選択肢

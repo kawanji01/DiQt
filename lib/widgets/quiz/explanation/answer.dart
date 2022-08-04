@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
@@ -32,17 +32,24 @@ class QuizExplanationAnswer extends StatelessWidget {
     Widget _answer() {
       if (quiz.autoDictLinkOfAnswer) {
         return TextWithDictLink(
-          text: quiz.correctAnswer,
-          langNumber: quiz.langNumberOfAnswer,
-          autoLinkEnabled: true,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          dictionaryId: quiz.dictionaryId,
-        );
+            text: quiz.correctAnswer,
+            langNumber: quiz.langNumberOfAnswer,
+            autoLinkEnabled: true,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            dictionaryId: quiz.dictionaryId,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true);
       }
       return MarkdownWithDictLink(
-          text: quiz.correctAnswer,
-          dictionaryId: quiz.dictionaryId,
-          textStyle: const TextStyle(fontSize: 16, color: Colors.black87));
+        text: quiz.correctAnswer,
+        dictionaryId: quiz.dictionaryId,
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        fontColor: Colors.black87,
+        selectable: true,
+      );
     }
 
     return Column(children: <Widget>[

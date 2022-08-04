@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
@@ -43,6 +43,10 @@ class QuizFormPreviewDistractors extends StatelessWidget {
               dictionaryId: dictionaryId,
               autoLinkEnabled: true,
               crossAxisAlignment: CrossAxisAlignment.start,
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontColor: Colors.red,
+              selectable: true,
             ),
           ),
         ],
@@ -63,7 +67,10 @@ class QuizFormPreviewDistractors extends StatelessWidget {
             child: MarkdownWithDictLink(
               text: distractor,
               dictionaryId: dictionaryId,
-              textStyle: const TextStyle(fontSize: 16, color: Colors.red),
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontColor: Colors.red,
+              selectable: true,
             ),
           ),
         ],

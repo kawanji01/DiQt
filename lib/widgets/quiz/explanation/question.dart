@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/services/sanitizer.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +21,10 @@ class QuizExplanationQuestion extends StatelessWidget {
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.center,
           dictionaryId: quiz.dictionaryId,
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          fontColor: Colors.black87,
+          selectable: true,
         );
       }
       return Container(
@@ -29,7 +33,10 @@ class QuizExplanationQuestion extends StatelessWidget {
           child: MarkdownWithDictLink(
             text: quiz.question,
             dictionaryId: quiz.dictionaryId,
-            textStyle: const TextStyle(fontSize: 16),
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true,
           ));
     }
 

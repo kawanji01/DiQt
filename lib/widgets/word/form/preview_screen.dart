@@ -69,6 +69,10 @@ class WordFormPreviewScreen extends StatelessWidget {
             autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
             dictionaryId: dictionary.id,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true,
           ),
           const SizedBox(
             height: 32,

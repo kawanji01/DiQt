@@ -8,13 +8,21 @@ class TextWithDictLink extends StatelessWidget {
       required this.langNumber,
       required this.autoLinkEnabled,
       required this.crossAxisAlignment,
-      required this.dictionaryId})
+      required this.dictionaryId,
+      required this.fontSize,
+      required this.fontWeight,
+      required this.fontColor,
+      required this.selectable})
       : super(key: key);
   final String text;
   final int? langNumber;
   final int? dictionaryId;
   final bool autoLinkEnabled;
   final CrossAxisAlignment crossAxisAlignment;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final Color fontColor;
+  final bool selectable;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +34,13 @@ class TextWithDictLink extends StatelessWidget {
 
       for (String line in lines) {
         Widget textWithLink = LineWithDictLink(
-          line: line,
-          dictionaryId: dictionaryId,
-          autoLinkEnabled: autoLinkEnabled,
-        );
+            line: line,
+            dictionaryId: dictionaryId,
+            autoLinkEnabled: autoLinkEnabled,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            fontColor: fontColor,
+            selectable: selectable);
         textWithLinkWidgetList.add(textWithLink);
       }
       return textWithLinkWidgetList;

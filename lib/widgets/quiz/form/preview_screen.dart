@@ -2,7 +2,7 @@ import 'package:booqs_mobile/widgets/quiz/form/preview_correct_answer.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_distractors.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_question.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizFormPreviewScreen extends StatelessWidget {
@@ -85,7 +85,10 @@ class QuizFormPreviewScreen extends StatelessWidget {
           MarkdownWithDictLink(
             text: hint,
             dictionaryId: dictionaryId,
-            textStyle: const TextStyle(fontSize: 16),
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true,
           ),
           const SizedBox(
             height: 32,
@@ -94,7 +97,10 @@ class QuizFormPreviewScreen extends StatelessWidget {
           MarkdownWithDictLink(
             text: explanation,
             dictionaryId: dictionaryId,
-            textStyle: const TextStyle(fontSize: 16),
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true,
           ),
           const SizedBox(
             height: 80,

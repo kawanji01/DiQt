@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/word/label.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +42,10 @@ class WordExplanation extends StatelessWidget {
             MarkdownWithDictLink(
               text: word.explanation ?? '',
               dictionaryId: word.dictionaryId,
-              textStyle: const TextStyle(fontSize: 16),
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontColor: Colors.black87,
+              selectable: true,
             ),
           ]);
     }

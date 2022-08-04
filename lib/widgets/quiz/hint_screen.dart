@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/widgets/shared/markdown_with_diqt_link.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizHintScreen extends StatelessWidget {
@@ -31,7 +31,10 @@ class QuizHintScreen extends StatelessWidget {
             child: MarkdownWithDictLink(
               text: hintText,
               dictionaryId: quiz.dictionaryId,
-              textStyle: const TextStyle(fontSize: 16),
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontColor: Colors.black87,
+              selectable: true,
             ),
           ),
           const SizedBox(height: 40),
@@ -57,7 +60,10 @@ class QuizHintScreen extends StatelessWidget {
             child: MarkdownWithDictLink(
               text: noteText,
               dictionaryId: quiz.dictionaryId,
-              textStyle: const TextStyle(fontSize: 16),
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontColor: Colors.black87,
+              selectable: true,
             ),
           ),
           const SizedBox(height: 40),
