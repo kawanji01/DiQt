@@ -7,21 +7,31 @@ class LineWithDictLink extends StatelessWidget {
       {Key? key,
       required this.line,
       required this.dictionaryId,
-      required this.autoLinkEnabled})
+      required this.autoLinkEnabled,
+      required this.fontSize,
+      required this.fontWeight,
+      required this.fontColor,
+      required this.selectable})
       : super(key: key);
   final String line;
   final int? dictionaryId;
   final bool autoLinkEnabled;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final Color fontColor;
+  final bool selectable;
 
   @override
   Widget build(BuildContext context) {
+    final double fontHeight = fontSize / 10;
     // 辞書IDが設定されていないなら、
     if (dictionaryId == null) {
       return MarkdownWithoutDictLink(
         text: line,
-        textStyle:
-            const TextStyle(fontSize: 16, height: 1.6, color: Colors.black87),
-        selectable: true,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        fontColor: fontColor,
+        selectable: selectable,
       );
     }
 
@@ -46,18 +56,20 @@ class LineWithDictLink extends StatelessWidget {
           onPressed: () => _goToWordSearchPage(word),
           // splitで削除した空白を追加する
           child: Text('$word ',
-              style: const TextStyle(
-                  color: Colors.green, fontSize: 16, height: 1.6)),
+              style: TextStyle(
+                  color: Colors.green,
+                  fontSize: fontSize,
+                  fontWeight: fontWeight,
+                  height: fontHeight)),
         );
       }
-      //return Text('$word ',
-      //    style: const TextStyle(
-      //        fontSize: 16, height: 1.6, color: Colors.black87));
+
       return MarkdownWithoutDictLink(
         text: '$word ',
-        textStyle:
-            const TextStyle(fontSize: 16, height: 1.6, color: Colors.black87),
-        selectable: true,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        fontColor: fontColor,
+        selectable: selectable,
       );
     }
 
@@ -77,7 +89,11 @@ class LineWithDictLink extends StatelessWidget {
           style: buttonStyle,
           onPressed: () => _goToWordSearchPage(searchedWord),
           child: Text(displayedWord,
-              style: TextStyle(color: textColor, fontSize: 16, height: 1.6)),
+              style: TextStyle(
+                  color: textColor,
+                  fontSize: fontSize,
+                  height: fontHeight,
+                  fontWeight: fontWeight)),
         );
       }
       // [[diplayedWord]]の場合
@@ -85,7 +101,11 @@ class LineWithDictLink extends StatelessWidget {
         style: buttonStyle,
         onPressed: () => _goToWordSearchPage(linkedWord),
         child: Text(linkedWord,
-            style: TextStyle(color: textColor, fontSize: 16, height: 1.6)),
+            style: TextStyle(
+                color: textColor,
+                fontSize: fontSize,
+                height: fontHeight,
+                fontWeight: fontWeight)),
       );
     }
 
@@ -146,6 +166,8 @@ class LineWithDictLink extends StatelessWidget {
 
       // RowではなくWrapを使うことで、Widgetを横に並べたときに画面からはみ出す問題を防ぐ。
       return Wrap(
+        alignment: WrapAlignment.start,
+        crossAxisAlignment: WrapCrossAlignment.end,
         children: wordWidgetList,
       );
     }

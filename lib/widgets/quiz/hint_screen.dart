@@ -31,7 +31,10 @@ class QuizHintScreen extends StatelessWidget {
             child: MarkdownWithDictLink(
               text: hintText,
               dictionaryId: quiz.dictionaryId,
-              textStyle: const TextStyle(fontSize: 16),
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontColor: Colors.black87,
+              selectable: true,
             ),
           ),
           const SizedBox(height: 40),
@@ -57,7 +60,10 @@ class QuizHintScreen extends StatelessWidget {
             child: MarkdownWithDictLink(
               text: noteText,
               dictionaryId: quiz.dictionaryId,
-              textStyle: const TextStyle(fontSize: 16),
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontColor: Colors.black87,
+              selectable: true,
             ),
           ),
           const SizedBox(height: 40),

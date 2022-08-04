@@ -48,6 +48,10 @@ class SentenceFormPreviewScreen extends StatelessWidget {
             dictionaryId: dictionary.id,
             autoLinkEnabled: true,
             crossAxisAlignment: CrossAxisAlignment.start,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true,
           ),
           const SizedBox(
             height: 32,
@@ -68,6 +72,10 @@ class SentenceFormPreviewScreen extends StatelessWidget {
             dictionaryId: dictionary.id,
             autoLinkEnabled: false,
             crossAxisAlignment: CrossAxisAlignment.start,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true,
           ),
           const SizedBox(
             height: 32,

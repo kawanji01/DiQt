@@ -21,6 +21,10 @@ class QuizExplanationQuestion extends StatelessWidget {
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.center,
           dictionaryId: quiz.dictionaryId,
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          fontColor: Colors.black87,
+          selectable: true,
         );
       }
       return Container(
@@ -29,7 +33,10 @@ class QuizExplanationQuestion extends StatelessWidget {
           child: MarkdownWithDictLink(
             text: quiz.question,
             dictionaryId: quiz.dictionaryId,
-            textStyle: const TextStyle(fontSize: 16),
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true,
           ));
     }
 

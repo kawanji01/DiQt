@@ -21,6 +21,10 @@ class SentenceItem extends StatelessWidget {
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
           dictionaryId: sentence.dictionaryId,
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          fontColor: Colors.black87,
+          selectable: true,
         ),
         SentenceTTSButton(
           sentence: sentence,

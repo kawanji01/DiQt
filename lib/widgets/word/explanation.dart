@@ -42,7 +42,10 @@ class WordExplanation extends StatelessWidget {
             MarkdownWithDictLink(
               text: word.explanation ?? '',
               dictionaryId: word.dictionaryId,
-              textStyle: const TextStyle(fontSize: 16),
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontColor: Colors.black87,
+              selectable: true,
             ),
           ]);
     }

@@ -8,27 +8,38 @@ class MarkdownWithoutDictLink extends StatelessWidget {
   const MarkdownWithoutDictLink(
       {Key? key,
       required this.text,
-      required this.textStyle,
+      required this.fontSize,
+      required this.fontWeight,
+      required this.fontColor,
       required this.selectable})
       : super(key: key);
   final String text;
-  final TextStyle textStyle;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final Color fontColor;
   final bool selectable;
 
   @override
   Widget build(BuildContext context) {
     final String sanitizedText = Sanitizer.removeDiQtLink(text);
+    final double lineHeight = fontSize / 10;
 
     return MarkdownBody(
       data: sanitizedText,
       shrinkWrap: true,
       selectable: selectable,
-      inlineSyntaxes: [ItemLabelSyntax(16)],
+      inlineSyntaxes: [ItemLabelSyntax()],
       builders: <String, MarkdownElementBuilder>{
-        'itemLabel': ItemLabelBuilder(),
+        'itemLabel':
+            ItemLabelBuilder(fontSize, fontWeight, fontColor, selectable),
       },
       styleSheet: MarkdownStyleSheet(
-        p: textStyle,
+        p: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: fontColor,
+          height: lineHeight,
+        ),
       ),
     );
   }

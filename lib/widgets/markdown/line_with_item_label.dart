@@ -7,42 +7,47 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
       required this.line,
       required this.fontSize,
       required this.fontWeight,
-      required this.fontColor})
+      required this.fontColor,
+      required this.selectable})
       : super(key: key);
   final String line;
   final double fontSize;
   final FontWeight fontWeight;
   final Color fontColor;
+  final bool selectable;
 
   @override
   Widget build(BuildContext context) {
     final RegExp regExp = RegExp(r'(\{\[.*?\]\})');
-    final fontHeight = fontSize / 10;
 
     Widget _plainWord(String word) {
       return MarkdownWithoutDictLink(
         text: '$word ',
-        textStyle:
-            TextStyle(fontSize: fontSize, height: fontHeight, color: fontColor),
-        selectable: true,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        fontColor: fontColor,
+        selectable: selectable,
       );
     }
 
     Widget _wordWithItemLabel(String word) {
       final String label = word.replaceFirst('{[', '').replaceFirst(']}', '');
-      final double labelFontSize = fontSize - 3;
+      final double labelFontSize = fontSize - 4;
+      final double marginTop = fontSize / 2;
+
       return Container(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-          margin: const EdgeInsets.only(right: 8),
+          margin: EdgeInsets.only(right: 8, top: marginTop),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.black87),
+            border: Border.all(color: fontColor),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Text(label,
               style: TextStyle(
-                  fontSize: labelFontSize,
-                  color: fontColor,
-                  fontWeight: fontWeight)));
+                fontSize: labelFontSize,
+                color: fontColor,
+                fontWeight: FontWeight.bold,
+              )));
     }
 
     // 単語のウィジェットを生成する。
@@ -103,6 +108,8 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
       return SizedBox(
         width: double.infinity,
         child: Wrap(
+          // ref: https://qiita.com/ling350181/items/47c8029e53af392f0e5f
+          crossAxisAlignment: WrapCrossAlignment.center,
           children: wordWidgetList,
         ),
       );

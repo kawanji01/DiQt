@@ -22,6 +22,10 @@ class QuizAnswerInteraction extends ConsumerWidget {
     // initialExpにProviderを使うと、サーバーのレスポンス速度によっては解答報酬獲得後の総合経験値が入ってしまう
     final int initialExp = notification.user!.amountOfExp;
 
+    const double fontSize = 16;
+    final FontWeight fontWeight = FontWeight.bold;
+    const Color fontColor = Colors.white;
+
     Widget _correctAnswerWidget() {
       return Container(
         margin: const EdgeInsets.only(bottom: 16, top: 8),
@@ -38,10 +42,9 @@ class QuizAnswerInteraction extends ConsumerWidget {
             Flexible(
               child: MarkdownWithoutDictLink(
                 text: _correctAnswer,
-                textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800),
+                fontSize: fontSize,
+                fontColor: fontColor,
+                fontWeight: fontWeight,
                 selectable: false,
               ),
             ),
@@ -65,10 +68,9 @@ class QuizAnswerInteraction extends ConsumerWidget {
             Flexible(
               child: MarkdownWithoutDictLink(
                 text: '$_usersAnswer',
-                textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800),
+                fontSize: fontSize,
+                fontColor: fontColor,
+                fontWeight: fontWeight,
                 selectable: false,
               ),
             ),

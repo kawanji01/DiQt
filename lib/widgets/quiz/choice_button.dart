@@ -23,8 +23,9 @@ class QuizChoiceButton extends StatelessWidget {
         ),
         child: MarkdownWithoutDictLink(
           text: answerText,
-          textStyle: const TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          fontColor: Colors.white,
           selectable: false,
         ),
       );
@@ -41,8 +42,9 @@ class QuizChoiceButton extends StatelessWidget {
       ),
       child: MarkdownWithoutDictLink(
         text: answerText,
-        textStyle: const TextStyle(
-            fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green),
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        fontColor: Colors.green,
         selectable: false,
       ),
     );

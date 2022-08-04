@@ -14,11 +14,9 @@ class WordMeaning extends StatelessWidget {
       width: double.infinity,
       child: MarkdownWithoutDictLink(
         text: word!.meaning,
-        textStyle: const TextStyle(
-            fontSize: 18,
-            height: 1.8,
-            color: Colors.black54,
-            fontWeight: FontWeight.bold),
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        fontColor: Colors.black87,
         selectable: true,
       ),
     );

@@ -32,17 +32,24 @@ class QuizExplanationAnswer extends StatelessWidget {
     Widget _answer() {
       if (quiz.autoDictLinkOfAnswer) {
         return TextWithDictLink(
-          text: quiz.correctAnswer,
-          langNumber: quiz.langNumberOfAnswer,
-          autoLinkEnabled: true,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          dictionaryId: quiz.dictionaryId,
-        );
+            text: quiz.correctAnswer,
+            langNumber: quiz.langNumberOfAnswer,
+            autoLinkEnabled: true,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            dictionaryId: quiz.dictionaryId,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true);
       }
       return MarkdownWithDictLink(
-          text: quiz.correctAnswer,
-          dictionaryId: quiz.dictionaryId,
-          textStyle: const TextStyle(fontSize: 16, color: Colors.black87));
+        text: quiz.correctAnswer,
+        dictionaryId: quiz.dictionaryId,
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        fontColor: Colors.black87,
+        selectable: true,
+      );
     }
 
     return Column(children: <Widget>[

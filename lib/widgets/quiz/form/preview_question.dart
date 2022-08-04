@@ -26,12 +26,19 @@ class QuizFormPreviewQuestion extends StatelessWidget {
           dictionaryId: dictionaryId,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.start,
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          fontColor: Colors.black87,
+          selectable: true,
         );
       }
       return MarkdownWithDictLink(
         text: question,
         dictionaryId: dictionaryId,
-        textStyle: const TextStyle(fontSize: 16, color: Colors.black87),
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        fontColor: Colors.black87,
+        selectable: true,
       );
     }
 

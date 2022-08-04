@@ -85,7 +85,10 @@ class QuizFormPreviewScreen extends StatelessWidget {
           MarkdownWithDictLink(
             text: hint,
             dictionaryId: dictionaryId,
-            textStyle: const TextStyle(fontSize: 16),
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true,
           ),
           const SizedBox(
             height: 32,
@@ -94,7 +97,10 @@ class QuizFormPreviewScreen extends StatelessWidget {
           MarkdownWithDictLink(
             text: explanation,
             dictionaryId: dictionaryId,
-            textStyle: const TextStyle(fontSize: 16),
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true,
           ),
           const SizedBox(
             height: 80,
