@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/models/sentence_source.dart';
 
 class Sentence {
   Sentence({
@@ -17,6 +18,7 @@ class Sentence {
     required this.createdAt,
     required this.updatedAt,
     this.quiz,
+    this.sentenceSource,
     this.dictionary,
   });
 
@@ -34,6 +36,7 @@ class Sentence {
   DateTime createdAt;
   DateTime updatedAt;
   Quiz? quiz;
+  SentenceSource? sentenceSource;
   Dictionary? dictionary;
 
   Sentence.fromJson(Map<String, dynamic> json)
@@ -52,6 +55,9 @@ class Sentence {
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
+        sentenceSource = json['sentence_source'] == null
+            ? null
+            : SentenceSource.fromJson(json['sentence_source']),
         dictionary = json['dictionary'] == null
             ? null
             : Dictionary.fromJson(json['dictionary']);
@@ -70,6 +76,7 @@ class Sentence {
         'created_at': createdAt,
         'updated_at': updatedAt,
         'quiz': quiz,
+        'sentence_source': sentenceSource,
         'dictionary': dictionary,
       };
 }
