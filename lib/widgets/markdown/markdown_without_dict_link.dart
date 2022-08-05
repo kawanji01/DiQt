@@ -1,4 +1,6 @@
 import 'package:booqs_mobile/services/sanitizer.dart';
+import 'package:booqs_mobile/utils/markdown/embedded_sentence_builder.dart';
+import 'package:booqs_mobile/utils/markdown/embedded_sentence_syntax.dart';
 import 'package:booqs_mobile/utils/markdown/item_label_builder.dart';
 import 'package:booqs_mobile/utils/markdown/item_label_syntax.dart';
 import 'package:flutter/material.dart';
@@ -28,10 +30,11 @@ class MarkdownWithoutDictLink extends StatelessWidget {
       data: sanitizedText,
       shrinkWrap: true,
       selectable: selectable,
-      inlineSyntaxes: [ItemLabelSyntax()],
+      inlineSyntaxes: [ItemLabelSyntax(), EmbeddedSentenceSyntax()],
       builders: <String, MarkdownElementBuilder>{
         'itemLabel':
             ItemLabelBuilder(fontSize, fontWeight, fontColor, selectable),
+        'embeddedSentence': EmbeddedSentenceBuilder(fontSize, selectable),
       },
       styleSheet: MarkdownStyleSheet(
         p: TextStyle(

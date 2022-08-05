@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class WordFormPreviewScreen extends StatelessWidget {
@@ -63,11 +63,11 @@ class WordFormPreviewScreen extends StatelessWidget {
             height: 32,
           ),
           const SharedItemLabel(text: '解説'),
-          TextWithDictLink(
+          const SizedBox(
+            height: 16,
+          ),
+          MarkdownWithDictLink(
             text: explanation,
-            langNumber: dictionary.langNumberOfEntry,
-            autoLinkEnabled: false,
-            crossAxisAlignment: CrossAxisAlignment.start,
             dictionaryId: dictionary.id,
             fontSize: 16,
             fontWeight: FontWeight.normal,
@@ -75,7 +75,7 @@ class WordFormPreviewScreen extends StatelessWidget {
             selectable: true,
           ),
           const SizedBox(
-            height: 32,
+            height: 64,
           ),
         ],
       )),
