@@ -23,48 +23,37 @@ class MarkdownEmbeddedSentence extends ConsumerWidget {
       if (sentence == null) {
         return Container();
       }
-      return DottedBorder(
-        color: Colors.black54,
-        strokeWidth: 1,
-        padding: const EdgeInsets.only(top: 16, right: 16, left: 16),
-        child: Column(
-          children: [
-            TextWithDictLink(
-              text: sentence.original,
-              langNumber: sentence.langNumberOfOriginal,
-              autoLinkEnabled: true,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              dictionaryId: sentence.dictionaryId,
-              fontSize: sentenceFontSize,
-              fontWeight: FontWeight.normal,
-              fontColor: Colors.black87,
-              selectable: true,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              sentence.translation,
-              style:
-                  TextStyle(fontSize: sentenceFontSize, color: Colors.black87),
-            ),
-            Container(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.only(bottom: 0),
-                  textStyle: TextStyle(
-                    fontSize: sentenceFontSize - 2,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                onPressed: () => SentenceShowPage.push(context, sentenceId),
-                child: const Text('例文ページ',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      decoration: TextDecoration.underline,
-                    )),
+      return InkWell(
+        onTap: () {
+          SentenceShowPage.push(context, sentenceId);
+        },
+        child: DottedBorder(
+          color: Colors.black54,
+          strokeWidth: 1,
+          padding:
+              const EdgeInsets.only(top: 10, bottom: 16, left: 16, right: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextWithDictLink(
+                text: sentence.original,
+                langNumber: sentence.langNumberOfOriginal,
+                autoLinkEnabled: true,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                dictionaryId: sentence.dictionaryId,
+                fontSize: sentenceFontSize,
+                fontWeight: FontWeight.normal,
+                fontColor: Colors.black87,
+                selectable: true,
               ),
-            ),
-          ],
+              const SizedBox(height: 2),
+              Text(
+                sentence.translation,
+                style: TextStyle(
+                    fontSize: sentenceFontSize, color: Colors.black87),
+              ),
+            ],
+          ),
         ),
       );
     }
