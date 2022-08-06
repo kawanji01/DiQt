@@ -165,10 +165,13 @@ class LineWithDictLink extends StatelessWidget {
       }
 
       // RowではなくWrapを使うことで、Widgetを横に並べたときに画面からはみ出す問題を防ぐ。
-      return Wrap(
-        alignment: WrapAlignment.start,
-        crossAxisAlignment: WrapCrossAlignment.end,
-        children: wordWidgetList,
+      return Container(
+        margin: const EdgeInsets.symmetric(vertical: 6),
+        child: Wrap(
+          alignment: WrapAlignment.start,
+          crossAxisAlignment: WrapCrossAlignment.end,
+          children: wordWidgetList,
+        ),
       );
     }
 
