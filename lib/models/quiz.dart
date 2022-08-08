@@ -19,7 +19,6 @@ class Quiz {
     required this.correctAnswer,
     required this.langNumberOfAnswer,
     required this.answerReadAloud,
-    this.distractors,
     this.distractor1,
     this.distractor2,
     this.distractor3,
@@ -50,7 +49,6 @@ class Quiz {
   String correctAnswer;
   int langNumberOfAnswer;
   bool answerReadAloud;
-  String? distractors;
   String? distractor1;
   String? distractor2;
   String? distractor3;
@@ -82,7 +80,6 @@ class Quiz {
         correctAnswer = json['correct_answer'],
         langNumberOfAnswer = json['lang_number_of_answer'],
         answerReadAloud = json['answer_read_aloud'],
-        distractors = json['distractors'],
         distractor1 = json['distractor_1'],
         distractor2 = json['distractor_2'],
         distractor3 = json['distractor_3'],
@@ -121,7 +118,6 @@ class Quiz {
         'correct_answer': correctAnswer,
         'lang_number_of_answer': langNumberOfAnswer,
         'answer_read_aloud': answerReadAloud,
-        'distractors': distractors,
         'distractor_1': distractor1,
         'distractor_2': distractor2,
         'distractor_3': distractor3,
