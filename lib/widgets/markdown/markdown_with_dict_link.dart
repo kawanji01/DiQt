@@ -54,8 +54,12 @@ class MarkdownWithDictLink extends StatelessWidget {
       builders: <String, MarkdownElementBuilder>{
         'dictLink': DictLinkBuilder(
             fontSize, fontWeight, fontColor, dictionaryId, selectable),
-        'itemLabel':
-            ItemLabelBuilder(fontSize, fontWeight, fontColor, selectable),
+        'itemLabel': ItemLabelBuilder(
+          fontSize,
+          fontWeight,
+          fontColor,
+          selectable,
+        ),
         'embeddedSentence': EmbeddedSentenceBuilder(fontSize, selectable),
       },
       selectable: selectable,

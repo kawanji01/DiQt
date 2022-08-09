@@ -105,8 +105,7 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
       }
 
       // RowではなくWrapを使うことで、Widgetを横に並べたときに画面からはみ出す問題を防ぐ。
-      return SizedBox(
-        width: double.infinity,
+      return Flexible(
         child: Wrap(
           // ref: https://qiita.com/ling350181/items/47c8029e53af392f0e5f
           crossAxisAlignment: WrapCrossAlignment.center,
