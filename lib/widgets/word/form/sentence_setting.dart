@@ -41,6 +41,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
     _loadSentence();
   }
 
+  @override
   void dispose() {
     _searchKeywordController.dispose();
     super.dispose();
@@ -84,7 +85,6 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
             Text('例文が設定されていません。',
                 style: TextStyle(
                     fontSize: 16, height: 1.6, color: Colors.black87)),
-            SizedBox(height: 24),
           ],
         );
       }
@@ -92,7 +92,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
     }
 
     //// 例文を検索して設定する ////
-    Future _searchSentence(String keyword, Dictionary dictionary) async {
+    Future _searchSentence(Dictionary dictionary) async {
       // settingはnullで戻る
       // { 'set': null } で削除
       // { 'set': sentence } で設定
@@ -100,7 +100,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
         context: context,
         builder: (BuildContext context) {
           return WordFormSentenceSearchModal(
-              keyword: _entryController!.text, dictionary: dictionary);
+              keyword: _searchKeywordController.text, dictionary: dictionary);
         },
       );
 
@@ -121,12 +121,33 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
     // 設定ボタン
     Widget _settingButton() {
       return Column(children: [
+        TextFormField(
+          controller: _searchKeywordController,
+          style: const TextStyle(color: Colors.black54, fontSize: 14),
+          decoration: const InputDecoration(
+            labelText: "例文の検索キーワード",
+            hintText: '例文を検索するキーワードを入力してください。',
+            labelStyle: TextStyle(
+              fontSize: 12,
+              color: Colors.green,
+            ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+            ),
+          ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'キーワードは空欄にできません。';
+            }
+            return null;
+          },
+        ),
         InkWell(
           onTap: () {
-            _searchSentence(widget.entryController.text, dictionary);
+            _searchSentence(dictionary);
           },
           child: const SmallGreenButton(
-            label: '設定する',
+            label: '検索して設定する',
             icon: Icons.settings,
           ),
         ),
@@ -139,7 +160,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
           _hiddenField(),
           const SizedBox(height: 24),
           _sentencePreview(),
-          const SizedBox(height: 16),
+          const SizedBox(height: 32),
           _settingButton(),
         ]);
   }
