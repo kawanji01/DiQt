@@ -28,6 +28,8 @@ class WordFormSentenceSetting extends StatefulWidget {
 class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
   TextEditingController? _sentenceIdController;
   TextEditingController? _entryController;
+  final TextEditingController _searchKeywordController =
+      TextEditingController(text: '');
   Sentence? _sentence;
 
   @override
@@ -35,7 +37,13 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
     super.initState();
     _sentenceIdController = widget.sentenceIdController;
     _entryController = widget.entryController;
+    _searchKeywordController.text = widget.entryController.text;
     _loadSentence();
+  }
+
+  void dispose() {
+    _searchKeywordController.dispose();
+    super.dispose();
   }
 
   Future _loadSentence() async {
@@ -97,7 +105,6 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
       );
 
       if (setting == null) return;
-
       // 更新
       setState(() {
         // sentence.idがnullなら、設定されている例文を取り消す。
@@ -113,15 +120,17 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
 
     // 設定ボタン
     Widget _settingButton() {
-      return InkWell(
-        onTap: () {
-          _searchSentence(widget.entryController.text, dictionary);
-        },
-        child: const SmallGreenButton(
-          label: '設定する',
-          icon: Icons.settings,
+      return Column(children: [
+        InkWell(
+          onTap: () {
+            _searchSentence(widget.entryController.text, dictionary);
+          },
+          child: const SmallGreenButton(
+            label: '設定する',
+            icon: Icons.settings,
+          ),
         ),
-      );
+      ]);
     }
 
     return Column(

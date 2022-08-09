@@ -29,11 +29,16 @@ class MarkdownWithoutDictLink extends StatelessWidget {
     return MarkdownBody(
       data: sanitizedText,
       shrinkWrap: true,
+      softLineBreak: true,
       selectable: selectable,
       inlineSyntaxes: [ItemLabelSyntax(), EmbeddedSentenceSyntax()],
       builders: <String, MarkdownElementBuilder>{
-        'itemLabel':
-            ItemLabelBuilder(fontSize, fontWeight, fontColor, selectable),
+        'itemLabel': ItemLabelBuilder(
+          fontSize,
+          fontWeight,
+          fontColor,
+          selectable,
+        ),
         'embeddedSentence': EmbeddedSentenceBuilder(fontSize, selectable),
       },
       styleSheet: MarkdownStyleSheet(
