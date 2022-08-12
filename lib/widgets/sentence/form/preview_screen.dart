@@ -3,8 +3,9 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceFormPreviewScreen extends StatelessWidget {
+class SentenceFormPreviewScreen extends ConsumerWidget {
   const SentenceFormPreviewScreen(
       {Key? key,
       required this.original,
@@ -18,11 +19,7 @@ class SentenceFormPreviewScreen extends StatelessWidget {
   final Dictionary dictionary;
 
   @override
-  Widget build(BuildContext context) {
-    const heading = Text('例文のプレビュー',
-        style: TextStyle(
-            fontSize: 24, color: Colors.black87, fontWeight: FontWeight.bold));
-
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       height: 560,
       padding: EdgeInsets.symmetric(
@@ -34,7 +31,11 @@ class SentenceFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          heading,
+          const Text('例文のプレビュー',
+              style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold)),
           const SizedBox(
             height: 16,
           ),
@@ -78,7 +79,7 @@ class SentenceFormPreviewScreen extends StatelessWidget {
             selectable: true,
           ),
           const SizedBox(
-            height: 32,
+            height: 64,
           ),
         ],
       )),

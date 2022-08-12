@@ -1,7 +1,6 @@
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/sentence_source.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
-import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/sentence/edit_button.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +50,8 @@ class WordFormListSentence extends StatelessWidget {
                 onTap: () {
                   return Navigator.of(context).pop({'set': sentence});
                 },
-                child: const SmallGreenButton(label: '選ぶ', icon: Icons.check)),
+                child:
+                    const SmallGreenButton(label: '設定する', icon: Icons.check)),
             SentenceEditButton(sentence: sentence, isShow: false),
           ]),
     );

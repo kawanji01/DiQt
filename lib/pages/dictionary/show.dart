@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/pages/dictionary/guideline.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/drill_part.dart';
@@ -61,6 +62,21 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
           const SizedBox(height: 64),
           DictionaryDrillPart(
             dictionary: dictionary,
+          ),
+          const SizedBox(height: 64),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            onPressed: () {
+              ref.read(dictionaryProvider.notifier).state = dictionary;
+              DictionaryGuidelinePage.push(context);
+            },
+            child:
+                const Text('編集ガイドライン', style: TextStyle(color: Colors.green)),
           ),
           const SizedBox(height: 120),
         ],

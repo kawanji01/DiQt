@@ -8,7 +8,6 @@ import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/form/form.dart';
-import 'package:booqs_mobile/widgets/word/form/sentence_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -113,6 +112,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
         height: 48,
         child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
+            primary: Colors.green,
             minimumSize: const Size(double.infinity,
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
@@ -143,12 +143,9 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
                     entryController: _entryController,
                     meaningController: _meaningController,
                     explanationController: _explanationController,
+                    sentenceIdController: _sentenceIdController,
                     dictionary: _dictionary!,
                   ),
-                  WordFormSentenceSetting(
-                      sentenceIdController: _sentenceIdController,
-                      entryController: _entryController,
-                      dictionary: _dictionary!),
                   const SizedBox(height: 40),
                   _submitButton(),
                   const SizedBox(height: 40),

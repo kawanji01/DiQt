@@ -5,6 +5,9 @@ class Dictionary {
       {required this.id,
       required this.title,
       this.introduction,
+      this.guideline,
+      this.credit,
+      this.license,
       this.image,
       this.thumbnailUrl,
       required this.publicUid,
@@ -37,6 +40,9 @@ class Dictionary {
   int id;
   String title;
   String? introduction;
+  String? guideline;
+  String? credit;
+  String? license;
   String? image;
   String? thumbnailUrl;
   String publicUid;
@@ -70,6 +76,9 @@ class Dictionary {
       : id = json['id'],
         title = json['title'],
         introduction = json['introduction'],
+        guideline = json['guideline'],
+        credit = json['credit'],
+        license = json['license'],
         thumbnailUrl = json['thumbnail_url'],
         image = json['image'].toString(),
         publicUid = json['public_uid'],
@@ -104,6 +113,9 @@ class Dictionary {
         'id': id,
         'title': title,
         'introduction': introduction,
+        'guideline': guideline,
+        'credit': credit,
+        'license': license,
         'image': image,
         'thumbnail_url': thumbnailUrl,
         'public_uid': publicUid,

@@ -2,6 +2,7 @@ import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
+import 'package:booqs_mobile/pages/dictionary/guideline.dart';
 import 'package:booqs_mobile/pages/dictionary/sentence_search_results.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
@@ -53,6 +54,7 @@ const dictionaryShowPage = '/dictionary/show';
 const dictionaryWordSearchResultsPage = '/dictionary/word_search_results';
 const dictionarySentenceSearchResultsPage =
     '/dictionary/sentence_search_results';
+const dictionaryGuidelinePage = '/dictionary/guideline';
 // 単語
 const wordShowPage = '/word/show';
 const wordNewPage = '/word/new';
@@ -110,6 +112,7 @@ final routes = {
       const DictionaryWordSearchResultsPage(),
   dictionarySentenceSearchResultsPage: (context) =>
       const DictionarySentenceSearchResultsPage(),
+  dictionaryGuidelinePage: (context) => const DictionaryGuidelinePage(),
   wordShowPage: (context) => const WordShowPage(),
   wordNewPage: (context) => const WordNewPage(),
   wordEditPage: (context) => const WordEditPage(),

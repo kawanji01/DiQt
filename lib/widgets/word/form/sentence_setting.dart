@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/sentence/item.dart';
+import 'package:booqs_mobile/widgets/word/form/sentence.dart';
 import 'package:booqs_mobile/widgets/word/form/sentence_search_modal.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/widgets/word/label.dart';
@@ -13,11 +14,11 @@ class WordFormSentenceSetting extends StatefulWidget {
   const WordFormSentenceSetting(
       {Key? key,
       required this.sentenceIdController,
-      required this.entryController,
+      required this.entry,
       required this.dictionary})
       : super(key: key);
   final TextEditingController sentenceIdController;
-  final TextEditingController entryController;
+  final String entry;
   final Dictionary dictionary;
 
   @override
@@ -27,7 +28,6 @@ class WordFormSentenceSetting extends StatefulWidget {
 
 class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
   TextEditingController? _sentenceIdController;
-  TextEditingController? _entryController;
   final TextEditingController _searchKeywordController =
       TextEditingController(text: '');
   Sentence? _sentence;
@@ -36,8 +36,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
   void initState() {
     super.initState();
     _sentenceIdController = widget.sentenceIdController;
-    _entryController = widget.entryController;
-    _searchKeywordController.text = widget.entryController.text;
+    _searchKeywordController.text = widget.entry;
     _loadSentence();
   }
 
@@ -76,19 +75,22 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
 
     // 隠しフィールドに設定されている例文の本文と翻訳文のプレビュー
     Widget _sentencePreview() {
+      Widget sentenceWidget;
       if (_sentence == null) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[
-            WordLabel(text: '例文'),
-            SizedBox(height: 8),
-            Text('例文が設定されていません。',
-                style: TextStyle(
-                    fontSize: 16, height: 1.6, color: Colors.black87)),
-          ],
-        );
+        sentenceWidget = const Text('例文が設定されていません。',
+            style: TextStyle(fontSize: 16, height: 1.6, color: Colors.black87));
+      } else {
+        sentenceWidget = WordFormSentence(sentence: _sentence!);
       }
-      return SentenceItem(sentence: _sentence!);
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const WordLabel(text: '例文'),
+          const SizedBox(height: 8),
+          sentenceWidget,
+        ],
+      );
     }
 
     //// 例文を検索して設定する ////
@@ -147,7 +149,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
             _searchSentence(dictionary);
           },
           child: const SmallGreenButton(
-            label: '検索して設定する',
+            label: '例文を検索する',
             icon: Icons.settings,
           ),
         ),

@@ -114,6 +114,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
         height: 48,
         child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
+            primary: Colors.green,
             minimumSize: const Size(double.infinity,
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
@@ -145,12 +146,9 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                     entryController: _entryController,
                     meaningController: _meaningController,
                     explanationController: _explanationController,
+                    sentenceIdController: _sentenceIdController,
                     dictionary: _dictionary!,
                   ),
-                  WordFormSentenceSetting(
-                      sentenceIdController: _sentenceIdController,
-                      entryController: _entryController,
-                      dictionary: _dictionary!),
                   const SizedBox(height: 40),
                   _submitButton(),
                   const SizedBox(height: 64),
