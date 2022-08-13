@@ -3,6 +3,7 @@ import 'package:booqs_mobile/utils/markdown/embedded_sentence_builder.dart';
 import 'package:booqs_mobile/utils/markdown/embedded_sentence_syntax.dart';
 import 'package:booqs_mobile/utils/markdown/item_label_builder.dart';
 import 'package:booqs_mobile/utils/markdown/item_label_syntax.dart';
+import 'package:booqs_mobile/utils/markdown/style_sheet_set.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
@@ -41,14 +42,8 @@ class MarkdownWithoutDictLink extends StatelessWidget {
         ),
         'embeddedSentence': EmbeddedSentenceBuilder(fontSize, selectable),
       },
-      styleSheet: MarkdownStyleSheet(
-        p: TextStyle(
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          color: fontColor,
-          height: lineHeight,
-        ),
-      ),
+      styleSheet: MarkdownStyleSheetSet.normal(
+          fontSize, fontWeight, lineHeight, fontColor),
     );
   }
 }

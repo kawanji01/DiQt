@@ -20,22 +20,45 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     final RegExp regExp = RegExp(r'(\{\[.*?\]\})');
 
-    Widget _plainWord(String word) {
-      return MarkdownWithoutDictLink(
-        text: '$word ',
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        fontColor: fontColor,
-        selectable: selectable,
+    InlineSpan _plainWord(String word) {
+      return WidgetSpan(
+        child: MarkdownWithoutDictLink(
+          text: '$word ',
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          fontColor: fontColor,
+          selectable: selectable,
+        ),
       );
+      /*  return TextSpan(
+        text: word,
+        style: TextStyle(
+            fontSize: fontSize, color: fontColor, fontWeight: fontWeight),
+      ); */
     }
 
-    Widget _wordWithItemLabel(String word) {
+    InlineSpan _wordWithItemLabel(String word) {
       final String label = word.replaceFirst('{[', '').replaceFirst(']}', '');
       final double labelFontSize = fontSize - 4;
       final double marginTop = fontSize / 2;
 
-      return Container(
+      return WidgetSpan(
+        child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            margin: EdgeInsets.only(right: 4, left: 4, top: marginTop),
+            decoration: BoxDecoration(
+              border: Border.all(color: fontColor),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(label,
+                style: TextStyle(
+                  fontSize: labelFontSize,
+                  color: fontColor,
+                  fontWeight: FontWeight.bold,
+                ))),
+      );
+
+      /* eturn Container(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
           margin: EdgeInsets.only(right: 8, top: marginTop),
           decoration: BoxDecoration(
@@ -47,11 +70,11 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
                 fontSize: labelFontSize,
                 color: fontColor,
                 fontWeight: FontWeight.bold,
-              )));
+              ))); */
     }
 
     // 単語のウィジェットを生成する。
-    Widget _wordWidget(String word) {
+    InlineSpan _wordWidget(String word) {
       // 記法を持たない単語
       if (regExp.hasMatch(word) == false) {
         return _plainWord(word);
@@ -95,23 +118,20 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
 
     // 文字列を「リンク付き文字列」に変換する
     Widget _lineWithItemLabel(String line) {
-      List<Widget> wordWidgetList = <Widget>[];
+      List<InlineSpan> richTextSpans = <InlineSpan>[];
       // テキストを単語に分割してリストにする。
       List<String?> wordList = _splitLineIntoWords(line);
 
       for (String? word in wordList) {
-        Widget wordWidget = _wordWidget(word!);
-        wordWidgetList.add(wordWidget);
+        InlineSpan span = _wordWidget(word!);
+        richTextSpans.add(span);
       }
 
       // RowではなくWrapを使うことで、Widgetを横に並べたときに画面からはみ出す問題を防ぐ。
-      return Flexible(
-        child: Wrap(
-          // ref: https://qiita.com/ling350181/items/47c8029e53af392f0e5f
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: wordWidgetList,
-        ),
-      );
+      return RichText(
+          text: TextSpan(
+        children: richTextSpans,
+      ));
     }
 
     return _lineWithItemLabel(line);
