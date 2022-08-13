@@ -64,19 +64,24 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
             dictionary: dictionary,
           ),
           const SizedBox(height: 64),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+          ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.green,
+              minimumSize: const Size(double.infinity,
+                  40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
             ),
-            onPressed: () {
-              ref.read(dictionaryProvider.notifier).state = dictionary;
-              DictionaryGuidelinePage.push(context);
+            onPressed: () => {
+              ref.read(dictionaryProvider.notifier).state = dictionary,
+              DictionaryGuidelinePage.push(context),
             },
-            child:
-                const Text('編集ガイドライン', style: TextStyle(color: Colors.green)),
+            icon: const Icon(Icons.policy_outlined, color: Colors.white),
+            label: const Text(
+              '編集ガイドライン',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.white),
+            ),
           ),
           const SizedBox(height: 120),
         ],
