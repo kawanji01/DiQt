@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/sentence/item.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
@@ -46,8 +47,12 @@ class WordFormPreviewScreen extends ConsumerWidget {
       );
     }
 
+    SizeConfig().init(context);
+    final double grid = SizeConfig.blockSizeVertical ?? 0;
+    final double height = grid * 80;
+
     return Container(
-      height: 560,
+      height: height,
       padding: EdgeInsets.symmetric(
           horizontal: ResponsiveValues.horizontalMargin(context)),
       child: SingleChildScrollView(

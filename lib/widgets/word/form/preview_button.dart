@@ -25,6 +25,11 @@ class WordFormPreviewButton extends StatelessWidget {
         minimumSize: const Size(double.infinity,
             40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
       ),
+      icon: const Icon(Icons.visibility, color: Colors.white),
+      label: const Text(
+        'プレビューを見る',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
       onPressed: () => {
         showModalBottomSheet(
             isScrollControlled: true,
@@ -43,11 +48,6 @@ class WordFormPreviewButton extends StatelessWidget {
                 sentenceId: sentenceIdController.text,
                 dictionary: dictionary))
       },
-      icon: const Icon(Icons.visibility, color: Colors.white),
-      label: const Text(
-        'プレビューを見る',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-      ),
     );
   }
 }

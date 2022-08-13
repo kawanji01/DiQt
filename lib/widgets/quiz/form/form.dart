@@ -2,6 +2,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/pages/sentence/edit.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
+import 'package:booqs_mobile/widgets/markdown/introduction_text_button.dart';
 import 'package:booqs_mobile/widgets/quiz/form/distractor.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_button.dart';
 import 'package:flutter/material.dart';
@@ -165,18 +166,6 @@ class _QuizFormState extends State<QuizForm> {
       children: <Widget>[
         _questionAndAnswer(),
         const SizedBox(height: 40),
-        // 誤りの選択肢
-        /* TextFormField(
-          minLines: 5,
-          keyboardType: TextInputType.multiline,
-          maxLines: null,
-          controller: _distractorsController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: '誤りの選択肢',
-            hintText: '【空欄可】誤りの選択肢があれば入力してください。',
-          ),
-        ), */
         QuizFormDistractor(
             distractorController: _distractor1Controller, number: 1),
         const SizedBox(height: 16),
@@ -185,10 +174,6 @@ class _QuizFormState extends State<QuizForm> {
         const SizedBox(height: 16),
         QuizFormDistractor(
             distractorController: _distractor3Controller, number: 3),
-        /* const Text(
-          '改行によって選択肢を増やします。',
-          style: TextStyle(color: Colors.black54),
-        ), */
         const SizedBox(height: 40),
         // ヒント
         TextFormField(
@@ -202,6 +187,7 @@ class _QuizFormState extends State<QuizForm> {
             hintText: '【空欄可】ヒントがあれば入力してください。',
           ),
         ),
+        const MarkdownIntroductionTextButton(),
         const SizedBox(height: 32),
         // 解説
         TextFormField(
@@ -215,6 +201,8 @@ class _QuizFormState extends State<QuizForm> {
             hintText: '【空欄可】解説があれば入力してください。',
           ),
         ),
+        const MarkdownIntroductionTextButton(),
+        const SizedBox(height: 32),
         // プレビューボタン
         QuizFormPreviewButton(
           questionController: _questionController,

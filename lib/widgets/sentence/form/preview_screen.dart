@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,12 @@ class SentenceFormPreviewScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    SizeConfig().init(context);
+    final double grid = SizeConfig.blockSizeVertical ?? 0;
+    final double height = grid * 80;
+
     return Container(
-      height: 560,
+      height: height,
       padding: EdgeInsets.symmetric(
           horizontal: ResponsiveValues.horizontalMargin(context)),
       child: SingleChildScrollView(
