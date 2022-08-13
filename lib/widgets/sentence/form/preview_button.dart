@@ -17,14 +17,13 @@ class SentenceFormPreviewButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.only(left: 0),
-        textStyle: const TextStyle(
-          fontSize: 14,
-        ),
+    return ElevatedButton.icon(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.green,
+        minimumSize: const Size(double.infinity,
+            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
       ),
-      onPressed: () {
+      onPressed: () => {
         showModalBottomSheet(
             isScrollControlled: true,
             context: context,
@@ -39,9 +38,13 @@ class SentenceFormPreviewButton extends StatelessWidget {
                 original: originalController.text,
                 translation: translationController.text,
                 explanation: explanationController.text,
-                dictionary: dictionary));
+                dictionary: dictionary))
       },
-      child: const Text('プレビューを見る', style: TextStyle(color: Colors.green)),
+      icon: const Icon(Icons.visibility, color: Colors.white),
+      label: const Text(
+        'プレビューを見る',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
     );
   }
 }

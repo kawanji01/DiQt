@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_correct_answer.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_distractors.dart';
 import 'package:booqs_mobile/widgets/quiz/form/preview_question.dart';
@@ -36,12 +37,11 @@ class QuizFormPreviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const heading = Text('問題のプレビュー',
-        style: TextStyle(
-            fontSize: 24, color: Colors.black87, fontWeight: FontWeight.bold));
-
+    SizeConfig().init(context);
+    final double grid = SizeConfig.blockSizeVertical ?? 0;
+    final double height = grid * 80;
     return Container(
-      height: 640,
+      height: height,
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: SingleChildScrollView(
           child: Column(
@@ -50,7 +50,11 @@ class QuizFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          heading,
+          const Text('問題のプレビュー',
+              style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold)),
           const SizedBox(
             height: 16,
           ),

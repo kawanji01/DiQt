@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/widgets/markdown/introduction_text_button.dart';
 import 'package:booqs_mobile/widgets/sentence/form/preview_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -83,11 +84,15 @@ class _SentenceFormState extends ConsumerState<SentenceForm> {
             hintText: '【空欄可】解説があれば入力してください。',
           ),
         ),
+        const MarkdownIntroductionTextButton(),
+
+        const SizedBox(height: 40),
+
         SentenceFormPreviewButton(
             originalController: _originalController!,
             translationController: _translationController!,
             explanationController: _explanationController!,
-            dictionary: widget.dictionary)
+            dictionary: widget.dictionary),
       ],
     );
   }

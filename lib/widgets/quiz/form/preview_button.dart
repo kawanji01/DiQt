@@ -32,14 +32,18 @@ class QuizFormPreviewButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.only(left: 0),
-        textStyle: const TextStyle(
-          fontSize: 14,
-        ),
+    return ElevatedButton.icon(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.green,
+        minimumSize: const Size(double.infinity,
+            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
       ),
-      onPressed: () {
+      icon: const Icon(Icons.visibility, color: Colors.white),
+      label: const Text(
+        'プレビューを見る',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
+      onPressed: () => {
         showModalBottomSheet(
             isScrollControlled: true,
             context: context,
@@ -62,9 +66,8 @@ class QuizFormPreviewButton extends StatelessWidget {
                 explanation: explanationController.text,
                 autoDictLinkOfQuestion: autoDictLinkOfQuestion,
                 autoDictLinkOfAnswer: autoDictLinkOfAnswer,
-                dictionaryId: dictionaryId));
+                dictionaryId: dictionaryId)),
       },
-      child: const Text('プレビューを見る', style: TextStyle(color: Colors.green)),
     );
   }
 }
