@@ -4,8 +4,10 @@ import 'package:booqs_mobile/utils/markdown/embedded_sentence_builder.dart';
 import 'package:booqs_mobile/utils/markdown/embedded_sentence_syntax.dart';
 import 'package:booqs_mobile/utils/markdown/item_label_builder.dart';
 import 'package:booqs_mobile/utils/markdown/item_label_syntax.dart';
+import 'package:booqs_mobile/utils/markdown/style_sheet_set.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MarkdownWithDictLink extends StatelessWidget {
   const MarkdownWithDictLink({
@@ -27,11 +29,6 @@ class MarkdownWithDictLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lineHeight = fontSize / 10;
-    final TextStyle textStyle = TextStyle(
-        fontSize: fontSize,
-        height: lineHeight,
-        fontWeight: fontWeight,
-        color: fontColor);
 
     if (dictionaryId == null) {
       return MarkdownBody(
@@ -39,7 +36,8 @@ class MarkdownWithDictLink extends StatelessWidget {
         softLineBreak: true,
         shrinkWrap: true,
         selectable: selectable,
-        styleSheet: MarkdownStyleSheet(p: textStyle),
+        styleSheet: MarkdownStyleSheetSet.normal(
+            fontSize, fontWeight, lineHeight, fontColor),
       );
     }
     return MarkdownBody(
@@ -63,7 +61,13 @@ class MarkdownWithDictLink extends StatelessWidget {
         'embeddedSentence': EmbeddedSentenceBuilder(fontSize, selectable),
       },
       selectable: selectable,
-      styleSheet: MarkdownStyleSheet(p: textStyle),
+      styleSheet: MarkdownStyleSheetSet.normal(
+          fontSize, fontWeight, lineHeight, fontColor),
+      onTapLink: (text, href, title) {
+        if (href != null) {
+          launch(href);
+        }
+      },
     );
   }
 }

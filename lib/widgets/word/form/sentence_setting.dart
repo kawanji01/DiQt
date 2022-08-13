@@ -1,7 +1,6 @@
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/widgets/button/small_green_button.dart';
-import 'package:booqs_mobile/widgets/sentence/item.dart';
 import 'package:booqs_mobile/widgets/word/form/sentence.dart';
 import 'package:booqs_mobile/widgets/word/form/sentence_search_modal.dart';
 import 'package:booqs_mobile/models/sentence.dart';

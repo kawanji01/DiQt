@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/widgets/markdown/line_with_item_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
@@ -15,11 +16,10 @@ class ItemLabelBuilder extends MarkdownElementBuilder {
     return Builder(builder: (context) {
       final String textContent = element.textContent;
 
-      final String label =
+      /* final String label =
           textContent.replaceFirst('{[', '').replaceFirst(']}', '');
       final double labelFontSize = fontSize - 4;
       final double marginTop = fontSize / 2;
-
       return Container(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
           margin: EdgeInsets.only(right: 8, top: marginTop),
@@ -33,13 +33,19 @@ class ItemLabelBuilder extends MarkdownElementBuilder {
                 color: fontColor,
                 fontWeight: fontWeight,
               )));
-
-      //return MarkdownLineWithItemLabel(
-      //    line: textContent,
-      //    fontSize: fontSize,
-      //    fontColor: fontColor,
-      //    fontWeight: fontWeight,
-      //    selectable: selectable);
+ */
+      /* return Text(textContent,
+          style: TextStyle(
+            fontSize: fontSize,
+            color: fontColor,
+            fontWeight: fontWeight,
+          )); */
+      return MarkdownLineWithItemLabel(
+          line: textContent,
+          fontSize: fontSize,
+          fontColor: fontColor,
+          fontWeight: fontWeight,
+          selectable: selectable);
     });
   }
 }
