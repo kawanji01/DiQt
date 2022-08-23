@@ -27,6 +27,33 @@ class RemoteDictionaries {
     return resMap;
   }
 
+  // 項目の素早い検索
+  // 単語・熟語の検索
+  static Future<Map?> search(
+      int dictionaryId, String keyword, int pageKey, int pageSize) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    final String encodedData = json.encode({
+      'keyword': keyword,
+      'page': pageKey,
+      'size': pageSize,
+      'token': '$token'
+    });
+    final Map<String, String> headers = {'content-type': 'application/json'};
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$dictionaryId/search');
+    final Response res = await post(
+      url,
+      headers: headers,
+      body: encodedData,
+    );
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 単語・熟語の検索
   static Future<Map?> wordSearch(
       int dictionaryId, String keyword, int pageKey, int pageSize) async {

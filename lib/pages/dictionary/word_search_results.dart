@@ -1,8 +1,6 @@
 import 'package:booqs_mobile/data/provider/dictionary.dart';
-import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/dictionary/word_list_view.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
@@ -39,20 +37,6 @@ class _DictionaryWordSearchResultsPageState
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
     final int _dictionaryId = arguments['dictionaryId'];
     final String _keyword = arguments['keyword'];
-    final future = ref.watch(asyncDictionaryFamily(_dictionaryId));
-
-    Widget _dictionaryName(Dictionary? dictionary) {
-      if (dictionary == null) return const Text('Dictionary does not exist.');
-      return DictionaryName(dictionary: dictionary);
-    }
-
-    Widget _heading() {
-      return future.when(
-        loading: () => Container(),
-        error: (err, stack) => Text('Error: $err'),
-        data: (dictionary) => _dictionaryName(dictionary),
-      );
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -66,7 +50,6 @@ class _DictionaryWordSearchResultsPageState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 24),
-                _heading(),
                 DictionaryWordListView(
                   dictionaryId: _dictionaryId,
                   keyword: _keyword,

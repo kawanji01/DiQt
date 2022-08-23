@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word_tag.dart';
 
@@ -26,6 +27,8 @@ class Word {
     this.sentence,
     this.dictionary,
     this.quiz,
+    // 検索結果で表示する復讐
+    this.review,
     this.wordTags,
   });
 
@@ -50,6 +53,7 @@ class Word {
   Sentence? sentence;
   Dictionary? dictionary;
   Quiz? quiz;
+  Review? review;
   List<WordTag>? wordTags;
 
   Word.fromJson(Map<String, dynamic> json)
@@ -77,6 +81,8 @@ class Word {
             ? null
             : Dictionary.fromJson(json['dictionary']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
+        review =
+            json['review'] == null ? null : Review.fromJson(json['review']),
         wordTags = json['word_tags'] == null
             ? []
             : json['word_tags']
@@ -104,5 +110,6 @@ class Word {
         'sentence': sentence,
         'dictionary': dictionary,
         'quiz': quiz,
+        'review': review,
       };
 }

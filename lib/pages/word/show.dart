@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/word.dart';
+import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
@@ -41,10 +42,13 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
     final int wordId = arguments['wordId'];
+    final Word? _word = ref.watch(wordProvider);
     final future = ref.watch(asyncWordFamily(wordId));
 
     Widget _screen(word) {
-      if (word == null) return const Text('Word does not exist.');
+      if (word == null) {
+        return const LoadingSpinner();
+      }
       return WordShowScreen(word: word);
     }
 
@@ -52,7 +56,7 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
       return future.when(
         data: (word) => Text(word!.entry),
         error: (err, stack) => const Text('Error'),
-        loading: () => const Text(''),
+        loading: () => Text(_word?.entry ?? ''),
       );
     }
 
@@ -68,7 +72,7 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
           child: future.when(
             data: (word) => _screen(word),
             error: (err, stack) => Text('Error: $err'),
-            loading: () => const LoadingSpinner(),
+            loading: () => _screen(_word),
           ),
         ),
       ),
