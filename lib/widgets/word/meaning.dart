@@ -12,12 +12,13 @@ class WordMeaning extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      child: MarkdownWithoutDictLink(
-        text: word!.meaning,
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        fontColor: Colors.black87,
-        selectable: true,
+      child: Text(
+        word!.meaning,
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.black87,
+        ),
       ),
     );
   }

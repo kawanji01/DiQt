@@ -11,5 +11,8 @@ final asyncWordFamily =
   final Map? resMap = await RemoteWords.show(wordId);
   if (resMap == null) return null;
   final Word word = Word.fromJson(resMap['word']);
+  ref.read(wordProvider.notifier).state = word;
   return word;
 });
+
+final wordProvider = StateProvider<Word?>((ref) => null);

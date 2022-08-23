@@ -42,7 +42,7 @@ class _DictionaryWordListViewState extends State<DictionaryWordListView> {
     if (_isReached == false) return;
     _isLoading = true;
 
-    final Map? resMap = await RemoteDictionaries.wordSearch(
+    final Map? resMap = await RemoteDictionaries.search(
         widget.dictionaryId, widget.keyword, pageKey, _pageSize);
     if (resMap == null) {
       if (mounted) {

@@ -12,6 +12,7 @@ import 'package:booqs_mobile/widgets/word/explanation.dart';
 import 'package:booqs_mobile/widgets/word/meaning.dart';
 import 'package:booqs_mobile/widgets/word/sentence.dart';
 import 'package:booqs_mobile/widgets/word/word_requests_button.dart';
+import 'package:booqs_mobile/widgets/word/word_tags.dart';
 import 'package:flutter/material.dart';
 
 class WordShowScreen extends StatelessWidget {
@@ -38,7 +39,9 @@ class WordShowScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DictionaryName(dictionary: dictionary),
-          //WordTagButtons(tags: word.tags),
+          WordWordTags(
+            word: word,
+          ),
           const SizedBox(height: 10),
           WordEntry(word: word),
           const SizedBox(
