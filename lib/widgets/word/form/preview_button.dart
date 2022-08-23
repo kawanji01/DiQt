@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/word/form/preview_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,19 @@ class WordFormPreviewButton extends StatelessWidget {
         'プレビューを見る',
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
-      onPressed: () => {
+      onPressed: () {
+        // プレビューするwordを生成する
+        final Word word = Word(
+          id: 0,
+          entry: entryController.text,
+          meaning: meaningController.text,
+          explanation: explanationController.text,
+          sentenceId: int.parse(sentenceIdController.text),
+          dictionaryId: dictionary.id,
+          langNumberOfEntry: dictionary.langNumberOfEntry,
+          langNumberOfMeaning: dictionary.langNumberOfMeaning,
+        );
+
         showModalBottomSheet(
             isScrollControlled: true,
             context: context,
@@ -41,12 +54,8 @@ class WordFormPreviewButton extends StatelessWidget {
                   topRight: Radius.circular(15.0)),
             ),
             // showModalBottomSheetで表示される中身
-            builder: (context) => WordFormPreviewScreen(
-                entry: entryController.text,
-                meaning: meaningController.text,
-                explanation: explanationController.text,
-                sentenceId: sentenceIdController.text,
-                dictionary: dictionary))
+            builder: (context) =>
+                WordFormPreviewScreen(word: word, dictionary: dictionary));
       },
     );
   }

@@ -5,8 +5,8 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/word/edit_button.dart';
-import 'package:booqs_mobile/widgets/word/entry.dart';
-import 'package:booqs_mobile/widgets/word/meaning.dart';
+import 'package:booqs_mobile/widgets/word/item/entry.dart';
+import 'package:booqs_mobile/widgets/word/item/meaning.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -29,11 +29,11 @@ class WordListItem extends ConsumerWidget {
         //  word: word,
         //),
         const SizedBox(height: 10),
-        WordEntry(word: word),
+        WordItemEntry(word: word),
         const SizedBox(
           height: 10,
         ),
-        WordMeaning(word: word),
+        WordItemMeaning(word: word),
         const SizedBox(
           height: 24,
         ),

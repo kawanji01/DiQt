@@ -4,7 +4,7 @@ import 'package:booqs_mobile/widgets/button/small_green_button.dart';
 import 'package:booqs_mobile/widgets/word/form/sentence.dart';
 import 'package:booqs_mobile/widgets/word/form/sentence_search_modal.dart';
 import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/widgets/word/label.dart';
+import 'package:booqs_mobile/widgets/word/item/label.dart';
 import 'package:flutter/material.dart';
 
 // 項目の例文設定フォーム。
@@ -85,7 +85,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const WordLabel(text: '例文'),
+          const WordItemLabel(text: '例文'),
           const SizedBox(height: 8),
           sentenceWidget,
         ],

@@ -6,11 +6,11 @@ import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/sentence/edit_button.dart';
 import 'package:booqs_mobile/widgets/sentence/tts_button.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
-import 'package:booqs_mobile/widgets/word/label.dart';
+import 'package:booqs_mobile/widgets/word/item/label.dart';
 import 'package:flutter/material.dart';
 
-class WordSentence extends StatelessWidget {
-  const WordSentence({Key? key, required this.word}) : super(key: key);
+class WordItemSentence extends StatelessWidget {
+  const WordItemSentence({Key? key, required this.word}) : super(key: key);
   final Word word;
 
   @override
@@ -27,7 +27,7 @@ class WordSentence extends StatelessWidget {
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const SizedBox(height: 24),
-      const WordLabel(text: '例文'),
+      const WordItemLabel(text: '例文'),
       const SizedBox(height: 8),
       TextWithDictLink(
         text: sentence.original,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WordLabel extends StatelessWidget {
-  const WordLabel({Key? key, required this.text}) : super(key: key);
+class WordItemLabel extends StatelessWidget {
+  const WordItemLabel({Key? key, required this.text}) : super(key: key);
   final String text;
 
   @override

@@ -1,52 +1,27 @@
-import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
-import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
-import 'package:booqs_mobile/widgets/sentence/item.dart';
-import 'package:booqs_mobile/widgets/shared/item_label.dart';
-import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/widgets/word/form/preview_sentence.dart';
+import 'package:booqs_mobile/widgets/word/item/antonyms.dart';
+import 'package:booqs_mobile/widgets/word/item/entry.dart';
+import 'package:booqs_mobile/widgets/word/item/etymologies.dart';
+import 'package:booqs_mobile/widgets/word/item/explanation.dart';
+import 'package:booqs_mobile/widgets/word/item/ipa.dart';
+import 'package:booqs_mobile/widgets/word/item/meaning.dart';
+import 'package:booqs_mobile/widgets/word/item/related_entries.dart';
+import 'package:booqs_mobile/widgets/word/item/synonyms.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordFormPreviewScreen extends ConsumerWidget {
+class WordFormPreviewScreen extends StatelessWidget {
   const WordFormPreviewScreen(
-      {Key? key,
-      required this.entry,
-      required this.meaning,
-      required this.explanation,
-      required this.sentenceId,
-      required this.dictionary})
+      {Key? key, required this.word, required this.dictionary})
       : super(key: key);
-  final String entry;
-  final String meaning;
-  final String explanation;
-  final String sentenceId;
+  final Word word;
   final Dictionary dictionary;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    Widget _sentence(Sentence? sentence) {
-      if (sentence == null) {
-        return Container();
-      }
-      return SentenceItem(sentence: sentence);
-    }
-
-    Widget _sentencePreview() {
-      if (sentenceId == '') {
-        return Container();
-      }
-      final int sentenceIdInt = int.parse(sentenceId);
-      final future = ref.watch(asyncSentenceFamily(sentenceIdInt));
-      return future.when(
-        loading: () => const LoadingSpinner(),
-        error: (err, stack) => Text('Error: $err'),
-        data: (Sentence? data) => _sentence(data),
-      );
-    }
-
+  Widget build(BuildContext context) {
     SizeConfig().init(context);
     final double grid = SizeConfig.blockSizeVertical ?? 0;
     final double height = grid * 80;
@@ -68,50 +43,28 @@ class WordFormPreviewScreen extends ConsumerWidget {
                   color: Colors.black87,
                   fontWeight: FontWeight.bold)),
           const SizedBox(
-            height: 16,
+            height: 24,
           ),
-          const SharedItemLabel(text: '項目'),
+          WordItemEntry(word: word),
           const SizedBox(
-            height: 16,
+            height: 24,
           ),
-          Text(entry,
-              style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.bold)),
+          WordItemMeaning(word: word),
           const SizedBox(
-            height: 32,
+            height: 24,
           ),
-          const SharedItemLabel(text: '意味'),
-          const SizedBox(
-            height: 16,
-          ),
-          Text(meaning,
-              style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.bold)),
-          const SizedBox(
-            height: 32,
-          ),
-          const SharedItemLabel(text: '解説'),
-          const SizedBox(
-            height: 16,
-          ),
-          MarkdownWithDictLink(
-            text: explanation,
-            dictionaryId: dictionary.id,
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-            fontColor: Colors.black87,
-            selectable: true,
-          ),
+          WordItemIPA(word: word),
+          WordItemEtymologies(word: word),
+          WordItemExplanation(word: word),
           const SizedBox(
             height: 40,
           ),
-          _sentencePreview(),
+          WordFormPreviewSentence(word: word),
+          WordItemSynonyms(word: word),
+          WordItemAntonyms(word: word),
+          WordItemRelatedEntries(word: word),
           const SizedBox(
-            height: 64,
+            height: 80,
           ),
         ],
       )),
