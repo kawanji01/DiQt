@@ -16,13 +16,13 @@ class Word {
     this.explanation = '',
     this.ipa,
     this.reading,
-    this.phrase,
-    this.frequency,
-    this.tags,
-    this.initial,
-    required this.wordRequestsCount,
-    required this.acceptedWordRequestsCount,
-    required this.pendingWordRequestsCount,
+    this.etymologies,
+    this.synonyms,
+    this.antonyms,
+    this.relatedEntries,
+    this.wordRequestsCount = 0,
+    this.acceptedWordRequestsCount = 0,
+    this.pendingWordRequestsCount = 0,
     // 結合したテーブル
     this.sentence,
     this.dictionary,
@@ -42,10 +42,10 @@ class Word {
   String? explanation;
   String? ipa;
   String? reading;
-  bool? phrase;
-  int? frequency;
-  String? tags;
-  String? initial;
+  String? etymologies;
+  String? synonyms;
+  String? antonyms;
+  String? relatedEntries;
   int wordRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
@@ -67,10 +67,10 @@ class Word {
         explanation = json['explanation'],
         ipa = json['ipa'],
         reading = json['reading'],
-        phrase = json['phrase'],
-        frequency = json['frequency'],
-        tags = json['tags'],
-        initial = json['initial'],
+        etymologies = json['etymologies'],
+        synonyms = json['synonyms'],
+        antonyms = json['antonyms'],
+        relatedEntries = json['related_entries'],
         wordRequestsCount = json['word_requests_count'],
         acceptedWordRequestsCount = json['accepted_word_requests_count'],
         pendingWordRequestsCount = json['pending_word_requests_count'],
@@ -100,10 +100,10 @@ class Word {
         'explanation': explanation,
         'ipa': ipa,
         'reading': reading,
-        'phrase': phrase,
-        'frequency': frequency,
-        'tags': tags,
-        'initial': initial,
+        'etymologies': etymologies,
+        'synonyms': synonyms,
+        'antonyms': antonyms,
+        'related_entries': relatedEntries,
         'word_requests_count': wordRequestsCount,
         'accepted_word_requests_count': acceptedWordRequestsCount,
         'pending_word_requests_count': pendingWordRequestsCount,

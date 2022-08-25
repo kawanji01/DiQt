@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/services/purchase.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 Future<void> main() async {
@@ -27,10 +27,16 @@ Future<void> main() async {
   ]);
   // ~分前のようなタイムスタンプを表示するための設定。具体的な表示の処理は utils/date_time_formatter にある ref: https://zenn.dev/namioto/articles/0e0034f3b93874
   timeago.setLocaleMessages("ja", timeago.JaMessages());
-  // Riverpodをアプリに適用
+  //
+  LocaleSettings.useDeviceLocale();
+
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    // Riverpodをアプリに適用
+    ProviderScope(
+      // i18n ref: https://pub.dev/packages/fast_i18n#getting-started
+      child: TranslationProvider(
+        child: const MyApp(),
+      ),
     ),
   );
 }
@@ -52,17 +58,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // locale : https://zenn.dev/dala/books/flutter-basic-app/viewer/create-flashcard-edit
-    String? defaultLocale = Intl.defaultLocale;
-    defaultLocale ??= 'ja';
-    Intl.defaultLocale = defaultLocale;
-    final locale = Locale(defaultLocale, '');
+    //String? defaultLocale = Intl.defaultLocale;
+    //defaultLocale ??= 'ja';
+    //Intl.defaultLocale = defaultLocale;
+    //final locale = Locale('ja', '');
 
     return MaterialApp(
       title: 'DiQt',
-      locale: locale,
       // 上述のUnhandled Exception: Looking up a deactivated widget's ancestor is unsafe.対策
       navigatorKey: navigatorKey,
-      // 画面全体に被さるローディングの初期化　参考： https://pub.dev/packages/flutter_easyloading
+      // 画面全体に被さるローディングの初期化　ref： https://pub.dev/packages/flutter_easyloading
       builder: EasyLoading.init(),
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -77,10 +82,8 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale("ja", ""),
-        Locale('en', ''),
-      ],
+      supportedLocales: LocaleSettings.supportedLocales,
+      locale: TranslationProvider.of(context).flutterLocale,
       routes: routes,
     );
   }

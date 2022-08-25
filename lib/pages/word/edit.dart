@@ -32,9 +32,15 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _entryController = TextEditingController();
+  final _readingController = TextEditingController();
   final _meaningController = TextEditingController();
+  final _ipaController = TextEditingController();
+  final _etymologiesController = TextEditingController();
   final _explanationController = TextEditingController();
   final _sentenceIdController = TextEditingController();
+  final _synonymsController = TextEditingController();
+  final _antonymsController = TextEditingController();
+  final _relatedEntriesController = TextEditingController();
 
   @override
   void initState() {
@@ -54,9 +60,15 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
     }
     final Word word = Word.fromJson(resMap['word']);
     _entryController.text = word.entry;
+    _readingController.text = word.reading ?? '';
     _meaningController.text = word.meaning;
+    _ipaController.text = word.ipa ?? '';
+    _etymologiesController.text = word.etymologies ?? '';
     _explanationController.text = word.explanation ?? '';
     _sentenceIdController.text = word.sentenceId.toString();
+    _synonymsController.text = word.synonyms ?? '';
+    _antonymsController.text = word.antonyms ?? '';
+    _relatedEntriesController.text = word.relatedEntries ?? '';
     final dictionary = word.dictionary;
     setState(() {
       _word = word;
@@ -70,9 +82,15 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
   // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
   void dispose() {
     _entryController.dispose();
+    _readingController.dispose();
     _meaningController.dispose();
+    _ipaController.dispose();
+    _etymologiesController.dispose();
     _explanationController.dispose();
     _sentenceIdController.dispose();
+    _synonymsController.dispose();
+    _antonymsController.dispose();
+    _relatedEntriesController.dispose();
     super.dispose();
   }
 
@@ -86,9 +104,15 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       final Map<String, dynamic> params = {
         'id': word.id,
         'entry': _entryController.text,
+        'reading': _readingController.text,
         'meaning': _meaningController.text,
+        'ipa': _ipaController.text,
+        'etymologies': _etymologiesController.text,
         'explanation': _explanationController.text,
         'sentence_id': _sentenceIdController.text,
+        'synonyms': _synonymsController.text,
+        'antonyms': _antonymsController.text,
+        'related_entries': _relatedEntriesController.text,
         'dictionary_id': _dictionary!.id,
       };
       // 画面全体にローディングを表示
@@ -143,9 +167,15 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                   const SizedBox(height: 32),
                   WordForm(
                     entryController: _entryController,
+                    readingController: _readingController,
                     meaningController: _meaningController,
+                    ipaController: _ipaController,
+                    etymologiesController: _etymologiesController,
                     explanationController: _explanationController,
                     sentenceIdController: _sentenceIdController,
+                    synonymsController: _synonymsController,
+                    antonymsController: _antonymsController,
+                    relatedEntriesController: _relatedEntriesController,
                     dictionary: _dictionary!,
                   ),
                   const SizedBox(height: 40),

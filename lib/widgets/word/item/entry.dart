@@ -2,8 +2,8 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 
-class WordEntry extends StatelessWidget {
-  const WordEntry({Key? key, required this.word}) : super(key: key);
+class WordItemEntry extends StatelessWidget {
+  const WordItemEntry({Key? key, required this.word}) : super(key: key);
   final Word? word;
 
   @override
@@ -18,9 +18,10 @@ class WordEntry extends StatelessWidget {
           Text(
             word!.entry,
             textAlign: TextAlign.left,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 32,
-              fontWeight: FontWeight.w800,
+              fontWeight: FontWeight.bold,
+              color: Colors.green.shade700,
             ),
           ),
           TtsButton(

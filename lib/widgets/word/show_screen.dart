@@ -7,12 +7,18 @@ import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
 import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/word/edit_button.dart';
-import 'package:booqs_mobile/widgets/word/entry.dart';
-import 'package:booqs_mobile/widgets/word/explanation.dart';
-import 'package:booqs_mobile/widgets/word/meaning.dart';
-import 'package:booqs_mobile/widgets/word/sentence.dart';
+import 'package:booqs_mobile/widgets/word/item/antonyms.dart';
+import 'package:booqs_mobile/widgets/word/item/entry.dart';
+import 'package:booqs_mobile/widgets/word/item/etymologies.dart';
+import 'package:booqs_mobile/widgets/word/item/explanation.dart';
+import 'package:booqs_mobile/widgets/word/item/ipa.dart';
+import 'package:booqs_mobile/widgets/word/item/meaning.dart';
+import 'package:booqs_mobile/widgets/word/item/reading.dart';
+import 'package:booqs_mobile/widgets/word/item/related_entries.dart';
+import 'package:booqs_mobile/widgets/word/item/sentence.dart';
+import 'package:booqs_mobile/widgets/word/item/synonyms.dart';
 import 'package:booqs_mobile/widgets/word/word_requests_button.dart';
-import 'package:booqs_mobile/widgets/word/word_tags.dart';
+import 'package:booqs_mobile/widgets/word/item/tags.dart';
 import 'package:flutter/material.dart';
 
 class WordShowScreen extends StatelessWidget {
@@ -39,22 +45,30 @@ class WordShowScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DictionaryName(dictionary: dictionary),
-          WordWordTags(
+          WordItemTags(
             word: word,
           ),
           const SizedBox(height: 10),
-          WordEntry(word: word),
+          WordItemEntry(word: word),
+          WordItemReading(word: word),
           const SizedBox(
             height: 10,
           ),
-          WordMeaning(word: word),
+          WordItemMeaning(word: word),
           const SizedBox(
             height: 24,
           ),
-          //WordReviewButton(word: word),
           _reviewButton(),
-          WordExplanation(word: word),
-          WordSentence(word: word),
+          WordItemIPA(word: word),
+          WordItemEtymologies(word: word),
+          WordItemExplanation(word: word),
+          WordItemSentence(word: word),
+          WordItemSynonyms(word: word),
+          WordItemAntonyms(word: word),
+          WordItemRelatedEntries(word: word),
+          const SizedBox(
+            height: 16,
+          ),
           WordEditButton(
             word: word,
             isShow: true,

@@ -1,0 +1,53 @@
+# localeの設定 https://pub.dev/packages/fast_i18n#configuration / 日本語訳　https://qiita.com/popy1017/items/3495be9fdc028161bef9#%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB
+targets:
+  $default:
+    builders:
+      fast_i18n:
+        options:
+          base_locale: en
+          fallback_strategy: base_locale
+          input_directory: lib/i18n
+          input_file_pattern: .i18n.yaml
+          output_directory: lib/i18n
+          output_file_pattern: .g.dart # deprecated, use output_file_name
+          output_file_name: translations.g.dart
+          output_format: single_file
+          locale_handling: true
+          namespaces: false
+          translate_var: t
+          enum_name: AppLocale
+          translation_class_visibility: private
+          key_case: snake
+          key_map_case: null
+          param_case: pascal
+          string_interpolation: double_braces
+          flat_map: false
+          timestamp: true
+          maps:
+            - error.codes
+            - category
+            - iconNames
+            - lang # 言語設定
+          pluralization:
+            auto: cardinal
+            cardinal:
+              - someKey.apple
+            ordinal:
+              - someKey.place
+          contexts:
+            gender_context:
+              enum:
+                - male
+                - female
+              auto: false
+              paths:
+                - my.path.to.greet
+          interfaces:
+            PageData: onboarding.pages.*
+            PageData2:
+              paths:
+                - my.path
+                - cool.pages.*
+              attributes:
+                - String title
+                - String? content
