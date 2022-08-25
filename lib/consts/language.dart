@@ -1,3 +1,4 @@
+// ※ l10nのarbでは - は利用できないので、-を-に変換している。
 const Map<String, int> languageCodeMap = {
   'undefined': 0,
   'af': 1,

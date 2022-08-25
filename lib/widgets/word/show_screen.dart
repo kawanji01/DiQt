@@ -13,6 +13,7 @@ import 'package:booqs_mobile/widgets/word/item/etymologies.dart';
 import 'package:booqs_mobile/widgets/word/item/explanation.dart';
 import 'package:booqs_mobile/widgets/word/item/ipa.dart';
 import 'package:booqs_mobile/widgets/word/item/meaning.dart';
+import 'package:booqs_mobile/widgets/word/item/reading.dart';
 import 'package:booqs_mobile/widgets/word/item/related_entries.dart';
 import 'package:booqs_mobile/widgets/word/item/sentence.dart';
 import 'package:booqs_mobile/widgets/word/item/synonyms.dart';
@@ -49,6 +50,7 @@ class WordShowScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           WordItemEntry(word: word),
+          WordItemReading(word: word),
           const SizedBox(
             height: 10,
           ),

@@ -36,6 +36,13 @@
 		</dict>
 	</array>
 	<!-- End of the Google Sign-in Section -->
+	<!-- ローカライゼーション ref: https://pub.dev/packages/fast_i18n/versions/5.0.0#getting-started -->
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>ja</string>
+	</array>
+	<!-- ローカライゼーション END -->
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>

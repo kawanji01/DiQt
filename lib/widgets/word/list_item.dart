@@ -7,6 +7,7 @@ import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/word/edit_button.dart';
 import 'package:booqs_mobile/widgets/word/item/entry.dart';
 import 'package:booqs_mobile/widgets/word/item/meaning.dart';
+import 'package:booqs_mobile/widgets/word/item/reading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,27 +25,27 @@ class WordListItem extends ConsumerWidget {
     }
 
     Widget _content() {
-      return Column(children: <Widget>[
-        ///WordWordTags(
-        //  word: word,
-        //),
-        const SizedBox(height: 10),
-        WordItemEntry(word: word),
-        const SizedBox(
-          height: 10,
-        ),
-        WordItemMeaning(word: word),
-        const SizedBox(
-          height: 24,
-        ),
-        _reviewButton(),
-        //WordExplanation(word: word),
-        //WordSentence(word: word),
-        WordEditButton(
-          word: word,
-          isShow: false,
-        ),
-      ]);
+      return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(height: 10),
+            WordItemEntry(word: word),
+            WordItemReading(word: word),
+            const SizedBox(
+              height: 10,
+            ),
+            WordItemMeaning(word: word),
+            const SizedBox(
+              height: 24,
+            ),
+            _reviewButton(),
+            //WordExplanation(word: word),
+            //WordSentence(word: word),
+            WordEditButton(
+              word: word,
+              isShow: false,
+            ),
+          ]);
     }
 
     return InkWell(

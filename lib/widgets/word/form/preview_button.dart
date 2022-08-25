@@ -32,13 +32,17 @@ class WordFormPreviewButton extends StatelessWidget {
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
       onPressed: () {
+        int? sentenceId;
+        if (sentenceIdController.text != 'null') {
+          sentenceId = int.parse(sentenceIdController.text);
+        }
         // プレビューするwordを生成する
         final Word word = Word(
           id: 0,
           entry: entryController.text,
           meaning: meaningController.text,
           explanation: explanationController.text,
-          sentenceId: int.parse(sentenceIdController.text),
+          sentenceId: sentenceId,
           dictionaryId: dictionary.id,
           langNumberOfEntry: dictionary.langNumberOfEntry,
           langNumberOfMeaning: dictionary.langNumberOfMeaning,
