@@ -15,7 +15,7 @@ class DrillLapUpdateScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final Drill? drill = ref.watch(drillProvider);
     final DrillLap? drillLap = ref.watch(drillLapProvider);
-    final int newLapNumber = drillLap!.numberOfLaps! + 1;
+    final int newLapNumber = drillLap!.clearsCount + 1;
 
     Future<void> _startNewLap() async {
       Navigator.of(context).pop();

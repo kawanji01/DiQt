@@ -29,8 +29,8 @@ class AnswerDrillLapClearScreen extends ConsumerWidget {
     final int gainedExp = answerCreator.lapClearPoint;
     // 周回情報
     final DrillLap drillLap = answerCreator.drillLap!;
-    // 記録
-    final int counter = drillLap.numberOfLaps ?? 0;
+    // クリア回数
+    final int clearsCount = drillLap.clearsCount;
     // 効果音
     final bool seEnabled = ref.watch(seEnabledProvider);
     if (seEnabled) {
@@ -42,7 +42,7 @@ class AnswerDrillLapClearScreen extends ConsumerWidget {
     }
 
     Widget _heading() {
-      return Text('$counter周クリア',
+      return Text('$clearsCount周クリア',
           style: const TextStyle(
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
     }
@@ -53,7 +53,7 @@ class AnswerDrillLapClearScreen extends ConsumerWidget {
       final Drill? drill = ref.watch(drillProvider);
       if (drill == null) return Container();
 
-      final String tweet = '「${drill.title}」を$counter周クリアしました！';
+      final String tweet = '「${drill.title}」を$clearsCount周クリアしました！';
       final String url =
           '${DiQtURL.root(context)}/drills/${drill.publicUid}/unsolved?type=all_solved';
 

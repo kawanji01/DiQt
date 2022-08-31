@@ -13,11 +13,11 @@ class DrillLapUpdateButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final DrillLap? drillLap = ref.watch(drillLapProvider);
     if (drillLap == null) return Container();
-    final int newLapNumber = drillLap.numberOfLaps! + 1;
+    final int newLapNumber = drillLap.clearsCount + 1;
 
     Widget _lapInfo() {
       return Text(
-        '${drillLap.numberOfLaps}周クリアしました',
+        '${drillLap.clearsCount}周クリアしました',
         style: const TextStyle(
             fontSize: 32, color: Colors.black54, fontWeight: FontWeight.bold),
       );
