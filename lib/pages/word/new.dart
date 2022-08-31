@@ -3,7 +3,6 @@ import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
-import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';

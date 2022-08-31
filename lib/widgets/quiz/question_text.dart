@@ -1,10 +1,7 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/utils/markdown/dict_link_builder.dart';
-import 'package:booqs_mobile/utils/markdown/dict_link_syntax.dart';
 import 'package:booqs_mobile/widgets/markdown/markdown_without_dict_link.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizQuestionText extends ConsumerStatefulWidget {
