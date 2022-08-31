@@ -41,9 +41,9 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    final int wordId = arguments['wordId'];
+    final int _wordId = arguments['wordId'];
     final Word? _word = ref.watch(wordProvider);
-    final future = ref.watch(asyncWordFamily(wordId));
+    final future = ref.watch(asyncWordFamily(_wordId));
 
     Widget _screen(word) {
       if (word == null) {
@@ -54,7 +54,7 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
 
     Widget _title() {
       return future.when(
-        data: (word) => Text(word!.entry),
+        data: (word) => Text(word?.entry ?? ''),
         error: (err, stack) => const Text('Error'),
         loading: () => Text(_word?.entry ?? ''),
       );

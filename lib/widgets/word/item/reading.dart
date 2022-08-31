@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/widgets/word/item/label.dart';
 import 'package:flutter/material.dart';
 
 class WordItemReading extends StatelessWidget {
