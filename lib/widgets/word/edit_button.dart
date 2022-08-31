@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
@@ -22,6 +23,7 @@ class WordEditButton extends ConsumerWidget {
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {
+          ref.read(wordProvider.notifier).state = word;
           WordEditPage.push(context, word.id);
         },
         child: const Text(
