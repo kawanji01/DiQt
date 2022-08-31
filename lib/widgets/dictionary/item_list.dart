@@ -28,7 +28,10 @@ class _DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
 
       final iconButton = IconButton(
         icon: const Icon(Icons.arrow_forward_ios_rounded),
-        onPressed: () => DictionaryShowPage.push(context, dictionary.id),
+        onPressed: () {
+          ref.read(dictionaryProvider.notifier).state = dictionary;
+          DictionaryShowPage.push(context, dictionary.id);
+        },
       );
       // ref: https://api.flutter.dev/flutter/material/RadioListTile-class.html
       return RadioListTile(
