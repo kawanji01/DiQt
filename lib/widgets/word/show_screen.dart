@@ -45,6 +45,7 @@ class WordShowScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DictionaryName(dictionary: dictionary),
+          const SizedBox(height: 10),
           WordItemTags(
             word: word,
           ),

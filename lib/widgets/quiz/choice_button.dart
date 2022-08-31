@@ -13,7 +13,7 @@ class QuizChoiceButton extends StatelessWidget {
     if (selected) {
       return Container(
         width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+        padding: const EdgeInsets.only(top: 8, bottom: 16, left: 8, right: 8),
         margin: const EdgeInsets.symmetric(vertical: 4),
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -33,7 +33,7 @@ class QuizChoiceButton extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+      padding: const EdgeInsets.only(top: 8, bottom: 16, left: 8, right: 8),
       margin: const EdgeInsets.symmetric(vertical: 4),
       alignment: Alignment.center,
       decoration: BoxDecoration(

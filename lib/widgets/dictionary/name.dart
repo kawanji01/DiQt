@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class DictionaryName extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final button = InkWell(
       onTap: () {
+        ref.read(dictionaryProvider.notifier).state = dictionary;
         DictionaryShowPage.push(context, dictionary.id);
       },
       child: Container(

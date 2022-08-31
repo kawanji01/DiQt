@@ -38,19 +38,20 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    final int dictionaryId = arguments['dictionaryId'];
-    final future = ref.watch(asyncDictionaryFamily(dictionaryId));
+    final int _dictionaryId = arguments['dictionaryId'];
+    final Dictionary? _dictionary = ref.watch(dictionaryProvider);
+    final future = ref.watch(asyncDictionaryFamily(_dictionaryId));
 
     Widget _title() {
       return future.when(
-        loading: () => const Text(''),
+        loading: () => Text(_dictionary?.title ?? ''),
         error: (err, stack) => Text('Error: $err'),
         data: (dictionary) => Text('${dictionary?.title}'),
       );
     }
 
     Widget _page(Dictionary? dictionary) {
-      if (dictionary == null) return const Text('Dictionary does not exist.');
+      if (dictionary == null) return const LoadingSpinner();
 
       return Column(
         children: <Widget>[
@@ -98,7 +99,7 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
               vertical: 20,
               horizontal: ResponsiveValues.horizontalMargin(context)),
           child: future.when(
-            loading: () => const LoadingSpinner(),
+            loading: () => _page(_dictionary),
             error: (err, stack) => Text('Error: $err'),
             data: (dictionary) => _page(dictionary),
           ),

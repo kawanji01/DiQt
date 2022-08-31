@@ -42,7 +42,7 @@ class DrillCard extends ConsumerWidget {
         );
       }
       return Text(
-        '$answerHistoriesCount解答 / ${drillLap.numberOfLaps}周クリア',
+        '$answerHistoriesCount解答 / ${drillLap.clearsCount}周クリア',
         style: TextStyle(color: Colors.black.withOpacity(0.6)),
       );
     }

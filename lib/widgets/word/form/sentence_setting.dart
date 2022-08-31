@@ -136,12 +136,6 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
               borderSide: BorderSide.none,
             ),
           ),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'キーワードは空欄にできません。';
-            }
-            return null;
-          },
         ),
         InkWell(
           onTap: () {

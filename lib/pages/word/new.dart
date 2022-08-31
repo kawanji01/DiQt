@@ -1,5 +1,8 @@
+import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -116,11 +119,14 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        final int? wordId = resMap['word']['id'];
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        if (wordId == null) return HomePage.push(context);
-        WordShowPage.pushReplacement(context, wordId);
+        if (resMap['word'] == null) {
+          return DictionaryShowPage.push(context, _dictionary!.id);
+        }
+        final Word word = Word.fromJson(resMap['word']);
+        ref.read(wordProvider.notifier).state = word;
+        WordShowPage.pushReplacement(context, word.id);
       }
     }
 
@@ -155,6 +161,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  const SizedBox(height: 24),
                   DictionaryName(dictionary: _dictionary!),
                   const SizedBox(height: 32),
                   WordForm(
@@ -183,7 +190,6 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       ),
       body: Container(
         margin: EdgeInsets.symmetric(
-            vertical: 24,
             horizontal: ResponsiveValues.horizontalMargin(context)),
         child: _body(),
       ),
