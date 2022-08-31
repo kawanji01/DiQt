@@ -46,7 +46,7 @@ class AnswerReward {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final DrillLap? drillLap = answerCreator.drillLap;
 
-    if (drillLap != null && answerHistory!.atDrillPage && drillLap.clearLap) {
+    if (drillLap != null && answerHistory!.atDrillPage && drillLap.cleared) {
       final Widget screen =
           AnswerDrillLapClearScreen(answerCreator: answerCreator);
       Dialogs.reward(screen);

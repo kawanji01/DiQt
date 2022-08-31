@@ -4,7 +4,6 @@ class DrillLap {
     this.userId,
     this.drillId,
     required this.clearsCount,
-    this.clearLap = false,
     this.cleared = false,
     this.createdAt,
     this.updatedAt,
@@ -13,7 +12,6 @@ class DrillLap {
   int? userId;
   int? drillId;
   int clearsCount;
-  bool clearLap;
   bool cleared;
   String? createdAt;
   String? updatedAt;
@@ -23,7 +21,6 @@ class DrillLap {
         userId = json['user_id'],
         drillId = json['drill_id'],
         clearsCount = json['clears_count'],
-        clearLap = json['clear_lap'],
         cleared = json['cleared'],
         createdAt = json['created_at'],
         updatedAt = json['updated_at'];
@@ -33,7 +30,6 @@ class DrillLap {
         'user_id': userId,
         'drill_id': drillId,
         'clears_count': clearsCount,
-        'clear_lap': clearLap,
         'created_at': createdAt,
         'updated_at': updatedAt,
       };
