@@ -19,7 +19,7 @@ class Word {
     this.etymologies,
     this.synonyms,
     this.antonyms,
-    this.relatedEntries,
+    this.related,
     this.wordRequestsCount = 0,
     this.acceptedWordRequestsCount = 0,
     this.pendingWordRequestsCount = 0,
@@ -45,7 +45,7 @@ class Word {
   String? etymologies;
   String? synonyms;
   String? antonyms;
-  String? relatedEntries;
+  String? related;
   int wordRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
@@ -70,7 +70,7 @@ class Word {
         etymologies = json['etymologies'],
         synonyms = json['synonyms'],
         antonyms = json['antonyms'],
-        relatedEntries = json['related_entries'],
+        related = json['related'],
         wordRequestsCount = json['word_requests_count'],
         acceptedWordRequestsCount = json['accepted_word_requests_count'],
         pendingWordRequestsCount = json['pending_word_requests_count'],
@@ -103,7 +103,7 @@ class Word {
         'etymologies': etymologies,
         'synonyms': synonyms,
         'antonyms': antonyms,
-        'related_entries': relatedEntries,
+        'related': related,
         'word_requests_count': wordRequestsCount,
         'accepted_word_requests_count': acceptedWordRequestsCount,
         'pending_word_requests_count': pendingWordRequestsCount,

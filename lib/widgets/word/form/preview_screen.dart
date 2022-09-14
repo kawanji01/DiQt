@@ -10,7 +10,7 @@ import 'package:booqs_mobile/widgets/word/item/explanation.dart';
 import 'package:booqs_mobile/widgets/word/item/ipa.dart';
 import 'package:booqs_mobile/widgets/word/item/meaning.dart';
 import 'package:booqs_mobile/widgets/word/item/reading.dart';
-import 'package:booqs_mobile/widgets/word/item/related_entries.dart';
+import 'package:booqs_mobile/widgets/word/item/related.dart';
 import 'package:booqs_mobile/widgets/word/item/synonyms.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +64,7 @@ class WordFormPreviewScreen extends StatelessWidget {
           WordFormPreviewSentence(word: word),
           WordItemSynonyms(word: word),
           WordItemAntonyms(word: word),
-          WordItemRelatedEntries(word: word),
+          WordItemRelated(word: word),
           const SizedBox(
             height: 80,
           ),

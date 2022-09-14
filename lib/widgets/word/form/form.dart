@@ -18,7 +18,7 @@ class WordForm extends StatelessWidget {
     required this.sentenceIdController,
     required this.synonymsController,
     required this.antonymsController,
-    required this.relatedEntriesController,
+    required this.relatedController,
     required this.dictionary,
   }) : super(key: key);
 
@@ -31,7 +31,7 @@ class WordForm extends StatelessWidget {
   final TextEditingController sentenceIdController;
   final TextEditingController synonymsController;
   final TextEditingController antonymsController;
-  final TextEditingController relatedEntriesController;
+  final TextEditingController relatedController;
   final Dictionary dictionary;
 
   @override
@@ -133,7 +133,7 @@ class WordForm extends StatelessWidget {
         const SizedBox(height: 24),
         // 関連語
         TextFormField(
-          controller: relatedEntriesController,
+          controller: relatedController,
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "関連語",

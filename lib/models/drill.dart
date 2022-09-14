@@ -52,7 +52,7 @@ class Drill {
         introduction = json['introduction'] ?? '',
         imageUrl = json['cover_image_url'] ?? '',
         referenceUrl = json['reference_url'] ?? '',
-        thumbnailUrl = json['thumbnail_url'],
+        thumbnailUrl = json['thumbnail_url'] ?? '',
         publicUid = json['public_uid'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),

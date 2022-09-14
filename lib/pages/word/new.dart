@@ -41,7 +41,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
   final _sentenceIdController = TextEditingController();
   final _synonymsController = TextEditingController();
   final _antonymsController = TextEditingController();
-  final _relatedEntriesController = TextEditingController();
+  final _relatedController = TextEditingController();
 
   @override
   void initState() {
@@ -86,7 +86,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
     _sentenceIdController.dispose();
     _synonymsController.dispose();
     _antonymsController.dispose();
-    _relatedEntriesController.dispose();
+    _relatedController.dispose();
     super.dispose();
   }
 
@@ -107,7 +107,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
         'sentence_id': _sentenceIdController.text,
         'synonyms': _synonymsController.text,
         'antonyms': _antonymsController.text,
-        'related_entries': _relatedEntriesController.text,
+        'related_entries': _relatedController.text,
         'dictionary_id': _dictionary!.id,
       };
       // 画面全体にローディングを表示
@@ -173,7 +173,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
                     sentenceIdController: _sentenceIdController,
                     synonymsController: _synonymsController,
                     antonymsController: _antonymsController,
-                    relatedEntriesController: _relatedEntriesController,
+                    relatedController: _relatedController,
                     dictionary: _dictionary!,
                   ),
                   const SizedBox(height: 40),
