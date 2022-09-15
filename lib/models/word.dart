@@ -21,6 +21,7 @@ class Word {
     this.synonyms,
     this.antonyms,
     this.related,
+    this.sensesJson,
     this.wordRequestsCount = 0,
     this.acceptedWordRequestsCount = 0,
     this.pendingWordRequestsCount = 0,
@@ -48,6 +49,7 @@ class Word {
   String? synonyms;
   String? antonyms;
   String? related;
+  List? sensesJson;
   int wordRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
@@ -73,6 +75,7 @@ class Word {
         synonyms = json['synonyms'],
         antonyms = json['antonyms'],
         related = json['related'],
+        sensesJson = json['senses_json'],
         wordRequestsCount = json['word_requests_count'],
         acceptedWordRequestsCount = json['accepted_word_requests_count'],
         pendingWordRequestsCount = json['pending_word_requests_count'],
@@ -107,6 +110,7 @@ class Word {
         'synonyms': synonyms,
         'antonyms': antonyms,
         'related': related,
+        'senses_json': sensesJson,
         'word_requests_count': wordRequestsCount,
         'accepted_word_requests_count': acceptedWordRequestsCount,
         'pending_word_requests_count': pendingWordRequestsCount,
