@@ -49,7 +49,6 @@ class Word {
   int wordRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
-  // 結合したsentence
   Sentence? sentence;
   Dictionary? dictionary;
   Quiz? quiz;
