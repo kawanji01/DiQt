@@ -14,12 +14,14 @@ class Word {
     required this.meaning,
     required this.langNumberOfMeaning,
     this.explanation = '',
+    this.pos,
     this.ipa,
     this.reading,
     this.etymologies,
     this.synonyms,
     this.antonyms,
-    this.relatedEntries,
+    this.related,
+    this.sensesJson,
     this.wordRequestsCount = 0,
     this.acceptedWordRequestsCount = 0,
     this.pendingWordRequestsCount = 0,
@@ -40,16 +42,17 @@ class Word {
   String meaning;
   int langNumberOfMeaning;
   String? explanation;
+  String? pos;
   String? ipa;
   String? reading;
   String? etymologies;
   String? synonyms;
   String? antonyms;
-  String? relatedEntries;
+  String? related;
+  List? sensesJson;
   int wordRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
-  // 結合したsentence
   Sentence? sentence;
   Dictionary? dictionary;
   Quiz? quiz;
@@ -65,12 +68,14 @@ class Word {
         meaning = json['meaning'],
         langNumberOfMeaning = json['lang_number_of_meaning'],
         explanation = json['explanation'],
+        pos = json['pos'],
         ipa = json['ipa'],
         reading = json['reading'],
         etymologies = json['etymologies'],
         synonyms = json['synonyms'],
         antonyms = json['antonyms'],
-        relatedEntries = json['related_entries'],
+        related = json['related'],
+        sensesJson = json['senses_json'],
         wordRequestsCount = json['word_requests_count'],
         acceptedWordRequestsCount = json['accepted_word_requests_count'],
         pendingWordRequestsCount = json['pending_word_requests_count'],
@@ -98,12 +103,14 @@ class Word {
         'meaning': meaning,
         'lang_number_of_meaning': langNumberOfMeaning,
         'explanation': explanation,
+        'pos': pos,
         'ipa': ipa,
         'reading': reading,
         'etymologies': etymologies,
         'synonyms': synonyms,
         'antonyms': antonyms,
-        'related_entries': relatedEntries,
+        'related': related,
+        'senses_json': sensesJson,
         'word_requests_count': wordRequestsCount,
         'accepted_word_requests_count': acceptedWordRequestsCount,
         'pending_word_requests_count': pendingWordRequestsCount,

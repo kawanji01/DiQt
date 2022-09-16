@@ -57,10 +57,14 @@ class LineWithDictLink extends StatelessWidget {
           // splitで削除した空白を追加する
           child: Text('$word ',
               style: TextStyle(
-                  color: Colors.green,
-                  fontSize: fontSize,
-                  fontWeight: fontWeight,
-                  height: fontHeight)),
+                color: fontColor,
+                fontSize: fontSize,
+                fontWeight: fontWeight,
+                height: fontHeight,
+                decoration: TextDecoration.underline,
+                decorationColor: fontColor,
+                decorationThickness: 0.5,
+              )),
         );
       }
 
@@ -90,10 +94,14 @@ class LineWithDictLink extends StatelessWidget {
           onPressed: () => _goToWordSearchPage(searchedWord),
           child: Text(displayedWord,
               style: TextStyle(
-                  color: textColor,
-                  fontSize: fontSize,
-                  height: fontHeight,
-                  fontWeight: fontWeight)),
+                color: textColor,
+                fontSize: fontSize,
+                height: fontHeight,
+                fontWeight: fontWeight,
+                decoration: TextDecoration.underline,
+                decorationColor: textColor,
+                decorationThickness: 0.5,
+              )),
         );
       }
       // [[diplayedWord]]の場合
@@ -102,10 +110,14 @@ class LineWithDictLink extends StatelessWidget {
         onPressed: () => _goToWordSearchPage(linkedWord),
         child: Text(linkedWord,
             style: TextStyle(
-                color: textColor,
-                fontSize: fontSize,
-                height: fontHeight,
-                fontWeight: fontWeight)),
+              color: textColor,
+              fontSize: fontSize,
+              height: fontHeight,
+              fontWeight: fontWeight,
+              decoration: TextDecoration.underline,
+              decorationColor: textColor,
+              decorationThickness: 0.5,
+            )),
       );
     }
 

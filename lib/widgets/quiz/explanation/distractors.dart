@@ -47,6 +47,7 @@ class QuizExplanationDistractors extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               margin: const EdgeInsets.only(right: 8),
@@ -54,7 +55,10 @@ class QuizExplanationDistractors extends StatelessWidget {
             ),
             // Expandedを使うと短い文章でも幅全体を埋めてしまい、結果的に左寄せになってしまうので Flexible を使う。
             Flexible(
-              child: _distractorContent(distractor),
+              child: Container(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: _distractorContent(distractor),
+              ),
             ),
           ],
         ),

@@ -3,19 +3,18 @@ import 'package:booqs_mobile/widgets/shared/line_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/word/item/label.dart';
 import 'package:flutter/material.dart';
 
-class WordItemRelatedEntries extends StatelessWidget {
-  const WordItemRelatedEntries({Key? key, required this.word})
-      : super(key: key);
+class WordItemRelated extends StatelessWidget {
+  const WordItemRelated({Key? key, required this.word}) : super(key: key);
   final Word word;
 
   @override
   Widget build(BuildContext context) {
-    final String? relatedEntries = word.relatedEntries;
-    if (relatedEntries == null || relatedEntries == '') {
+    final String? related = word.related;
+    if (related == null || related == '') {
       return Container();
     }
 
-    final List<String> words = relatedEntries.split(',');
+    final List<String> words = related.split(',');
     final String results = words.map((word) => '[[$word]]').join(',');
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

@@ -41,7 +41,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
   final _sentenceIdController = TextEditingController();
   final _synonymsController = TextEditingController();
   final _antonymsController = TextEditingController();
-  final _relatedEntriesController = TextEditingController();
+  final _relatedController = TextEditingController();
 
   @override
   void initState() {
@@ -69,7 +69,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
     _sentenceIdController.text = word.sentenceId.toString();
     _synonymsController.text = word.synonyms ?? '';
     _antonymsController.text = word.antonyms ?? '';
-    _relatedEntriesController.text = word.relatedEntries ?? '';
+    _relatedController.text = word.related ?? '';
     final dictionary = word.dictionary;
     setState(() {
       _word = word;
@@ -91,7 +91,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
     _sentenceIdController.dispose();
     _synonymsController.dispose();
     _antonymsController.dispose();
-    _relatedEntriesController.dispose();
+    _relatedController.dispose();
     super.dispose();
   }
 
@@ -113,7 +113,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
         'sentence_id': _sentenceIdController.text,
         'synonyms': _synonymsController.text,
         'antonyms': _antonymsController.text,
-        'related_entries': _relatedEntriesController.text,
+        'related_entries': _relatedController.text,
         'dictionary_id': _dictionary!.id,
       };
       // 画面全体にローディングを表示
@@ -178,7 +178,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                     sentenceIdController: _sentenceIdController,
                     synonymsController: _synonymsController,
                     antonymsController: _antonymsController,
-                    relatedEntriesController: _relatedEntriesController,
+                    relatedController: _relatedController,
                     dictionary: _dictionary!,
                   ),
                   const SizedBox(height: 40),

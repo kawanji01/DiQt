@@ -24,6 +24,17 @@ class WordListItem extends ConsumerWidget {
       return ReviewLargeSettingButton(quizId: quiz.id, review: review);
     }
 
+    Widget _ipa() {
+      if (word.ipa == null || word.ipa == '') {
+        return Container();
+      }
+      return Text('${word.ipa}',
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.green.shade700,
+          ));
+    }
+
     Widget _content() {
       return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,6 +42,7 @@ class WordListItem extends ConsumerWidget {
             const SizedBox(height: 10),
             WordItemEntry(word: word),
             WordItemReading(word: word),
+            _ipa(),
             const SizedBox(
               height: 10,
             ),
@@ -39,8 +51,6 @@ class WordListItem extends ConsumerWidget {
               height: 24,
             ),
             _reviewButton(),
-            //WordExplanation(word: word),
-            //WordSentence(word: word),
             WordEditButton(
               word: word,
               isShow: false,
