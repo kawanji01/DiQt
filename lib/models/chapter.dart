@@ -1,6 +1,7 @@
 class Chapter {
   Chapter(
       {required this.id,
+      required this.appliedDictionaryId,
       required this.title,
       required this.langNumberOfTitle,
       required this.introduction,
@@ -14,13 +15,13 @@ class Chapter {
       this.referenceUrl,
       this.referenceTitle,
       this.referenceOgp,
-      required this.appliedDictionaryId,
       required this.createdAt,
       required this.updatedAt,
       // eager_loadでキャッシュしたdrillの情報
       this.answerHistoriesCount});
 
   int id;
+  int appliedDictionaryId;
   String title;
   int langNumberOfTitle;
   String introduction;
@@ -34,7 +35,6 @@ class Chapter {
   String? referenceUrl;
   String? referenceTitle;
   String? referenceOgp;
-  int appliedDictionaryId;
   DateTime createdAt;
   DateTime updatedAt;
   // テーブルを結合してキャッシュしたdrillの情報
@@ -42,6 +42,7 @@ class Chapter {
 
   Chapter.fromJson(Map<String, dynamic> json)
       : id = json['id'],
+        appliedDictionaryId = json['applied_dictionary_id'],
         title = json['title'] ?? '',
         langNumberOfTitle = json['langNumberOfTitle'] ?? 44,
         introduction = json['introduction'] ?? '',
@@ -55,7 +56,6 @@ class Chapter {
         referenceUrl = json['reference_url'],
         referenceTitle = json['reference_title'],
         referenceOgp = json['reference_ogp'],
-        appliedDictionaryId = json['applied_dictionary_id'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         // テーブルを結合してキャッシュしたdrillの情報,
@@ -63,6 +63,7 @@ class Chapter {
 
   Map<String, dynamic> toJson() => {
         'id': id,
+        'applied_dictionary_id': appliedDictionaryId,
         'name': title,
         'introduction': introduction,
         'image_url': imageUrl,
@@ -75,7 +76,6 @@ class Chapter {
         'reference_url': referenceUrl,
         'reference_title': referenceTitle,
         'reference_ogp': referenceOgp,
-        'applied_dictionary_id': appliedDictionaryId,
         'created_at': createdAt,
         'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,
