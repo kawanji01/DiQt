@@ -5,11 +5,13 @@ import 'package:booqs_mobile/models/drill_lap.dart';
 class Drill {
   Drill(
       {required this.id,
+      required this.appliedDictionaryId,
       this.userId,
       this.chapterId,
       this.dictionaryId,
       this.sentenceDictionaryId,
       required this.title,
+      required this.langNumberOfTitle,
       required this.introduction,
       this.imageUrl = '',
       this.referenceUrl,
@@ -24,11 +26,13 @@ class Drill {
       this.dictionary});
 
   int id;
+  int appliedDictionaryId;
   int? userId;
   int? chapterId;
   int? dictionaryId;
   int? sentenceDictionaryId;
   String title;
+  int langNumberOfTitle;
   String introduction;
   String imageUrl;
   String? referenceUrl;
@@ -44,11 +48,13 @@ class Drill {
 
   Drill.fromJson(Map<String, dynamic> json)
       : id = json['id'],
+        appliedDictionaryId = json['applied_dictionary_id'],
         userId = json['user_id'],
         chapterId = json['chapter_id'],
         dictionaryId = json['dictionary_id'],
         sentenceDictionaryId = json['sentence_dictionary_id'],
         title = json['title'] ?? '',
+        langNumberOfTitle = json['lang_number_of_title'],
         introduction = json['introduction'] ?? '',
         imageUrl = json['cover_image_url'] ?? '',
         referenceUrl = json['reference_url'] ?? '',
@@ -69,20 +75,22 @@ class Drill {
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'userId': userId,
-        'chapterId': chapterId,
-        'dictionaryId': dictionaryId,
-        'sentenceDictionaryId': sentenceDictionaryId,
-        'title': title,
+        'applied_dictionary_id': appliedDictionaryId,
+        'user_id': userId,
+        'chapter_id': chapterId,
+        'dictionary_id': dictionaryId,
+        'sentence_dictionary_id': sentenceDictionaryId,
+        'lang_number_of_title': title,
+        'langNumberOfTitle': langNumberOfTitle,
         'introduction': introduction,
-        'imageUrl': imageUrl,
-        'referenceUrl': referenceUrl,
+        'image_url': imageUrl,
+        'reference_url': referenceUrl,
         'thumbnail_url': thumbnailUrl,
-        'publicUid': publicUid,
-        'createdAt': createdAt,
-        'updatedAt': updatedAt,
-        'answerHistoriesCount': answerHistoriesCount,
-        'quizzesCount': quizzesCount,
+        'public_uid': publicUid,
+        'created_at': createdAt,
+        'updated_at': updatedAt,
+        'answer_histories_count': answerHistoriesCount,
+        'quizzes_count': quizzesCount,
         'drill_lap': drillLap,
         'chapter': chapter,
         'dictionary': dictionary,

@@ -30,7 +30,7 @@ class QuizHintScreen extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: MarkdownWithDictLink(
               text: hintText,
-              dictionaryId: quiz.dictionaryId,
+              dictionaryId: quiz.appliedDictionaryId,
               fontSize: 16,
               fontWeight: FontWeight.normal,
               fontColor: Colors.black87,
@@ -59,7 +59,7 @@ class QuizHintScreen extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: MarkdownWithDictLink(
               text: noteText,
-              dictionaryId: quiz.dictionaryId,
+              dictionaryId: quiz.appliedDictionaryId,
               fontSize: 16,
               fontWeight: FontWeight.normal,
               fontColor: Colors.black87,

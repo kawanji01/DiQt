@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/services/sanitizer.dart';
+import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:booqs_mobile/utils/markdown/embedded_sentence_builder.dart';
 import 'package:booqs_mobile/utils/markdown/embedded_sentence_syntax.dart';
 import 'package:booqs_mobile/utils/markdown/item_label_builder.dart';

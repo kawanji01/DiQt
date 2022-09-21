@@ -15,7 +15,7 @@ class QuizFormPreviewButton extends StatelessWidget {
       required this.explanationController,
       required this.autoDictLinkOfQuestion,
       required this.autoDictLinkOfAnswer,
-      required this.dictionaryId})
+      required this.appliedDictionaryId})
       : super(key: key);
   final TextEditingController questionController;
   final int langNumberOfQuestion;
@@ -28,7 +28,7 @@ class QuizFormPreviewButton extends StatelessWidget {
   final TextEditingController explanationController;
   final bool autoDictLinkOfQuestion;
   final bool autoDictLinkOfAnswer;
-  final int dictionaryId;
+  final int appliedDictionaryId;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class QuizFormPreviewButton extends StatelessWidget {
                 explanation: explanationController.text,
                 autoDictLinkOfQuestion: autoDictLinkOfQuestion,
                 autoDictLinkOfAnswer: autoDictLinkOfAnswer,
-                dictionaryId: dictionaryId)),
+                appliedDictionaryId: appliedDictionaryId)),
       },
     );
   }

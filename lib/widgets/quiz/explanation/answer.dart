@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/services/sanitizer.dart';
+import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
@@ -36,7 +36,7 @@ class QuizExplanationAnswer extends StatelessWidget {
             langNumber: quiz.langNumberOfAnswer,
             autoLinkEnabled: true,
             crossAxisAlignment: CrossAxisAlignment.center,
-            dictionaryId: quiz.dictionaryId,
+            dictionaryId: quiz.appliedDictionaryId,
             fontSize: 16,
             fontWeight: FontWeight.normal,
             fontColor: Colors.black87,
@@ -44,7 +44,7 @@ class QuizExplanationAnswer extends StatelessWidget {
       }
       return MarkdownWithDictLink(
         text: quiz.correctAnswer,
-        dictionaryId: quiz.dictionaryId,
+        dictionaryId: quiz.appliedDictionaryId,
         fontSize: 16,
         fontWeight: FontWeight.normal,
         fontColor: Colors.black87,

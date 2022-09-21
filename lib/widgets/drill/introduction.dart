@@ -33,7 +33,7 @@ class DrillIntroduction extends ConsumerWidget {
           ChapterShowPage.push(context);
         },
         child:
-            Text(chapter.name, style: const TextStyle(color: Colors.black54)),
+            Text(chapter.title, style: const TextStyle(color: Colors.black54)),
       );
     }
 

@@ -61,7 +61,7 @@ class ChapterIntroduction extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          chapter.name,
+          chapter.title,
           style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
         introduction,

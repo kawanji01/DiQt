@@ -9,7 +9,8 @@ class Quiz {
   Quiz({
     required this.id,
     required this.drillId,
-    required this.dictionaryId,
+    this.dictionaryId,
+    required this.appliedDictionaryId,
     this.wordId,
     this.referenceWordId,
     this.sentenceId,
@@ -22,7 +23,7 @@ class Quiz {
     this.distractor1,
     this.distractor2,
     this.distractor3,
-    required this.flashcard,
+    required this.shortAnswerEnabled,
     this.explanation,
     this.hint,
     required this.autoDictLinkOfQuestion,
@@ -39,7 +40,8 @@ class Quiz {
 
   int id;
   int drillId;
-  int dictionaryId;
+  int? dictionaryId;
+  int appliedDictionaryId;
   int? wordId;
   int? referenceWordId;
   int? sentenceId;
@@ -52,7 +54,7 @@ class Quiz {
   String? distractor1;
   String? distractor2;
   String? distractor3;
-  bool flashcard;
+  bool shortAnswerEnabled;
   String? explanation;
   String? hint;
   bool autoDictLinkOfQuestion;
@@ -70,7 +72,8 @@ class Quiz {
   Quiz.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         drillId = json['drill_id'],
-        dictionaryId = json['dictionary_id'] ?? 1,
+        dictionaryId = json['dictionary_id'],
+        appliedDictionaryId = json['applied_dictionary_id'],
         wordId = json['word_id'],
         referenceWordId = json['reference_word_id'],
         sentenceId = json['sentence_id'],
@@ -83,7 +86,7 @@ class Quiz {
         distractor1 = json['distractor_1'],
         distractor2 = json['distractor_2'],
         distractor3 = json['distractor_3'],
-        flashcard = json['flashcard'],
+        shortAnswerEnabled = json['short_answer_enabled'],
         explanation = json['explanation'],
         hint = json['hint'],
         autoDictLinkOfQuestion = json['auto_dict_link_of_question'],
@@ -109,6 +112,7 @@ class Quiz {
         'id': id,
         'drill_id': drillId,
         'dictionary_id': dictionaryId,
+        'applied_dictionary_id': appliedDictionaryId,
         'word_id': wordId,
         'reference_word_id': referenceWordId,
         'sentence_id': sentenceId,
@@ -121,7 +125,7 @@ class Quiz {
         'distractor_1': distractor1,
         'distractor_2': distractor2,
         'distractor_3': distractor3,
-        'flashcard': flashcard,
+        'short_answer_enabled': shortAnswerEnabled,
         'explanation': explanation,
         'hint': hint,
         'auto_dict_link_of_question': autoDictLinkOfQuestion,

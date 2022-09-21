@@ -20,7 +20,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
       required this.explanation,
       required this.autoDictLinkOfQuestion,
       required this.autoDictLinkOfAnswer,
-      required this.dictionaryId})
+      required this.appliedDictionaryId})
       : super(key: key);
   final String question;
   final int langNumberOfQuestion;
@@ -33,7 +33,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
   final String explanation;
   final bool autoDictLinkOfQuestion;
   final bool autoDictLinkOfAnswer;
-  final int dictionaryId;
+  final int appliedDictionaryId;
 
   @override
   Widget build(BuildContext context) {
@@ -62,14 +62,14 @@ class QuizFormPreviewScreen extends StatelessWidget {
               question: question,
               langNumberOfQuestion: langNumberOfQuestion,
               autoDictLinkOfQuestion: autoDictLinkOfQuestion,
-              dictionaryId: dictionaryId),
+              dictionaryId: appliedDictionaryId),
           const SizedBox(
             height: 32,
           ),
           QuizFormPreviewCorrectAnswer(
               correctAnswer: correctAnswer,
               langNumberOfAnswer: langNumberOfAnswer,
-              dictionaryId: dictionaryId,
+              dictionaryId: appliedDictionaryId,
               autoDictLinkOfAnswer: autoDictLinkOfAnswer),
           const SizedBox(
             height: 32,
@@ -78,7 +78,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
             distractor1: distractor1,
             distractor2: distractor2,
             distractor3: distractor3,
-            dictionaryId: dictionaryId,
+            dictionaryId: appliedDictionaryId,
             langNumberOfAnswer: langNumberOfAnswer,
             autoDictLinkOfAnswer: autoDictLinkOfAnswer,
           ),
@@ -88,7 +88,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
           const SharedItemLabel(text: 'ヒント'),
           MarkdownWithDictLink(
             text: hint,
-            dictionaryId: dictionaryId,
+            dictionaryId: appliedDictionaryId,
             fontSize: 16,
             fontWeight: FontWeight.normal,
             fontColor: Colors.black87,
@@ -100,7 +100,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
           const SharedItemLabel(text: '解説'),
           MarkdownWithDictLink(
             text: explanation,
-            dictionaryId: dictionaryId,
+            dictionaryId: appliedDictionaryId,
             fontSize: 16,
             fontWeight: FontWeight.normal,
             fontColor: Colors.black87,

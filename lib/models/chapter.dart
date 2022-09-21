@@ -1,7 +1,9 @@
 class Chapter {
   Chapter(
       {required this.id,
-      required this.name,
+      required this.appliedDictionaryId,
+      required this.title,
+      required this.langNumberOfTitle,
       required this.introduction,
       this.imageUrl,
       required this.thumbnailUrl,
@@ -19,7 +21,9 @@ class Chapter {
       this.answerHistoriesCount});
 
   int id;
-  String name;
+  int appliedDictionaryId;
+  String title;
+  int langNumberOfTitle;
   String introduction;
   String? imageUrl;
   String thumbnailUrl;
@@ -38,7 +42,9 @@ class Chapter {
 
   Chapter.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        name = json['name'] ?? '',
+        appliedDictionaryId = json['applied_dictionary_id'],
+        title = json['title'] ?? '',
+        langNumberOfTitle = json['langNumberOfTitle'] ?? 44,
         introduction = json['introduction'] ?? '',
         imageUrl = json['cover_image_url'] ?? '',
         thumbnailUrl = json['thumbnail_url'] ?? '',
@@ -57,21 +63,22 @@ class Chapter {
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'name': name,
+        'applied_dictionary_id': appliedDictionaryId,
+        'name': title,
         'introduction': introduction,
-        'imageUrl': imageUrl,
+        'image_url': imageUrl,
         'thumbnail_url': thumbnailUrl,
-        'iconUrl': iconUrl,
-        'groupType': groupType,
-        'publicUid': publicUid,
+        'icon_url': iconUrl,
+        'group_type': groupType,
+        'public_uid': publicUid,
         'school': school,
         'private': private,
         'reference_url': referenceUrl,
         'reference_title': referenceTitle,
-        'referenceOgp': referenceOgp,
-        'createdAt': createdAt,
-        'updatedAt': updatedAt,
+        'reference_ogp': referenceOgp,
+        'created_at': createdAt,
+        'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,
-        'answerHistoriesCount': answerHistoriesCount,
+        'answer_histories_count': answerHistoriesCount,
       };
 }

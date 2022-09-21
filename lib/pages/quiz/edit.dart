@@ -35,6 +35,7 @@ class _QuizEditPageState extends State<QuizEditPage> {
   final _distractor3Controller = TextEditingController();
   final _hintController = TextEditingController();
   final _explanationController = TextEditingController();
+  final _appliedDictionaryIdController = TextEditingController();
 
   @override
   void initState() {
@@ -63,6 +64,7 @@ class _QuizEditPageState extends State<QuizEditPage> {
     _distractor3Controller.text = quiz.distractor3 ?? '';
     _hintController.text = quiz.hint ?? '';
     _explanationController.text = quiz.explanation ?? '';
+    _appliedDictionaryIdController.text = '${quiz.appliedDictionaryId}';
     setState(() {
       _quiz = quiz;
     });
@@ -79,6 +81,7 @@ class _QuizEditPageState extends State<QuizEditPage> {
     _distractor3Controller.dispose();
     _hintController.dispose();
     _explanationController.dispose();
+    _appliedDictionaryIdController.dispose();
     super.dispose();
   }
 
@@ -154,15 +157,16 @@ class _QuizEditPageState extends State<QuizEditPage> {
               DrillName(drill: drill),
               const SizedBox(height: 32),
               QuizForm(
-                  questionController: _questionController,
-                  correctAnswerController: _correctAnswerController,
-                  distractor1Controller: _distractor1Controller,
-                  distractor2Controller: _distractor2Controller,
-                  distractor3Controller: _distractor3Controller,
-                  explanationController: _explanationController,
-                  hintController: _hintController,
-                  quiz: quiz,
-                  dictionary: quiz.dictionary!),
+                questionController: _questionController,
+                correctAnswerController: _correctAnswerController,
+                distractor1Controller: _distractor1Controller,
+                distractor2Controller: _distractor2Controller,
+                distractor3Controller: _distractor3Controller,
+                explanationController: _explanationController,
+                hintController: _hintController,
+                appliedDictionaryIdController: _appliedDictionaryIdController,
+                quiz: quiz,
+              ),
               const SizedBox(height: 40),
               _submitButton(),
               const SizedBox(height: 40),
