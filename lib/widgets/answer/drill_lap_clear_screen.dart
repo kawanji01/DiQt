@@ -4,6 +4,7 @@ import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
+import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -16,13 +17,48 @@ import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerDrillLapClearScreen extends ConsumerWidget {
+class AnswerDrillLapClearScreen extends ConsumerStatefulWidget {
   const AnswerDrillLapClearScreen({Key? key, required this.answerCreator})
       : super(key: key);
   final AnswerCreator answerCreator;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _AnswerDrillLapClearScreenState createState() =>
+      _AnswerDrillLapClearScreenState();
+}
+
+class _AnswerDrillLapClearScreenState
+    extends ConsumerState<AnswerDrillLapClearScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      // 効果音
+      final bool seEnabled = ref.watch(seEnabledProvider);
+      if (seEnabled) {
+        final AudioCache _cache = AudioCache(
+          fixedPlayer: AudioPlayer(),
+        );
+        _cache.play(achievementSound);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final User? _user = ref.watch(currentUserProvider);
+    if (_user == null) return Container();
+    final AnswerSetting? _answerSetting = ref.watch(answerSettingProvider);
+    if (_answerSetting == null) return Container();
+
+    final bool _strictSolvingMode = _answerSetting.strictSolvingMode;
+    String _description;
+    if (_strictSolvingMode) {
+      _description = '厳格解答モードで全ての問題に正解しました！';
+    } else {
+      _description = '全ての問題を解きました！';
+    }
+    final AnswerCreator answerCreator = widget.answerCreator;
     // 開始経験値（基準 + 問題集周回報酬）
     final int initialExp = answerCreator.startPoint;
     // 獲得経験値
@@ -31,15 +67,6 @@ class AnswerDrillLapClearScreen extends ConsumerWidget {
     final DrillLap drillLap = answerCreator.drillLap!;
     // クリア回数
     final int clearsCount = drillLap.clearsCount;
-    // 効果音
-    final bool seEnabled = ref.watch(seEnabledProvider);
-    if (seEnabled) {
-      final AudioCache _cache = AudioCache(
-        fixedPlayer: AudioPlayer(),
-      );
-      _cache.loadAll([achievementSound]);
-      _cache.play(achievementSound);
-    }
 
     Widget _heading() {
       return Text('$clearsCount周クリア',
@@ -70,6 +97,13 @@ class AnswerDrillLapClearScreen extends ConsumerWidget {
           Column(children: [
             const SizedBox(height: 16),
             _heading(),
+            const SizedBox(height: 16),
+            // explanation
+            Text(_description,
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87)),
             ExpGainedExpIndicator(
               initialExp: initialExp,
               gainedExp: gainedExp,
