@@ -9,7 +9,8 @@ class Quiz {
   Quiz({
     required this.id,
     required this.drillId,
-    required this.dictionaryId,
+    this.dictionaryId,
+    required this.appliedDictionaryId,
     this.wordId,
     this.referenceWordId,
     this.sentenceId,
@@ -39,7 +40,8 @@ class Quiz {
 
   int id;
   int drillId;
-  int dictionaryId;
+  int? dictionaryId;
+  int appliedDictionaryId;
   int? wordId;
   int? referenceWordId;
   int? sentenceId;
@@ -70,7 +72,8 @@ class Quiz {
   Quiz.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         drillId = json['drill_id'],
-        dictionaryId = json['dictionary_id'] ?? 1,
+        dictionaryId = json['dictionary_id'],
+        appliedDictionaryId = json['applied_dictionary_id'],
         wordId = json['word_id'],
         referenceWordId = json['reference_word_id'],
         sentenceId = json['sentence_id'],
@@ -109,6 +112,7 @@ class Quiz {
         'id': id,
         'drill_id': drillId,
         'dictionary_id': dictionaryId,
+        'applied_dictionary_id': appliedDictionaryId,
         'word_id': wordId,
         'reference_word_id': referenceWordId,
         'sentence_id': sentenceId,

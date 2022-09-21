@@ -14,7 +14,6 @@ class QuizExplanationDistractors extends StatelessWidget {
     if (quiz.distractor1 == '' || quiz.distractor1 == null) {
       return Container();
     }
-    final int? _dictionaryId = quiz.dictionaryId;
 
     // 選択肢のテキスト
     Widget _distractorContent(String distractor) {
@@ -24,7 +23,7 @@ class QuizExplanationDistractors extends StatelessWidget {
             langNumber: quiz.langNumberOfAnswer,
             autoLinkEnabled: true,
             crossAxisAlignment: CrossAxisAlignment.start,
-            dictionaryId: quiz.dictionaryId,
+            dictionaryId: quiz.appliedDictionaryId,
             fontSize: 16,
             fontWeight: FontWeight.normal,
             fontColor: Colors.red,
@@ -32,7 +31,7 @@ class QuizExplanationDistractors extends StatelessWidget {
       }
       return MarkdownWithDictLink(
         text: distractor,
-        dictionaryId: _dictionaryId,
+        dictionaryId: quiz.appliedDictionaryId,
         fontSize: 16,
         fontWeight: FontWeight.normal,
         fontColor: Colors.red,
