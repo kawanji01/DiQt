@@ -42,7 +42,7 @@ class ChapterCard extends ConsumerWidget {
           children: [
             ListTile(
               //leading: Image(image: NetworkImage('${chapter.iconUrl}')),
-              title: Text(chapter.name,
+              title: Text(chapter.title,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 18)),
               subtitle: Text(
