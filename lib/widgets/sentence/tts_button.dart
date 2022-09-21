@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/services/sanitizer.dart';
+import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:booqs_mobile/widgets/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 

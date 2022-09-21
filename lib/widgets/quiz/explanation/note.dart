@@ -111,7 +111,7 @@ class _QuizExplanationNoteState extends State<QuizExplanationNote> {
           const SizedBox(height: 8),
           MarkdownWithDictLink(
             text: _note?.content ?? 'Note does not exist.',
-            dictionaryId: widget.quiz.dictionaryId,
+            dictionaryId: widget.quiz.appliedDictionaryId,
             fontSize: 16,
             fontWeight: FontWeight.normal,
             fontColor: Colors.black87,

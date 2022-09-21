@@ -23,7 +23,7 @@ class Quiz {
     this.distractor1,
     this.distractor2,
     this.distractor3,
-    required this.flashcard,
+    required this.shortAnswerEnabled,
     this.explanation,
     this.hint,
     required this.autoDictLinkOfQuestion,
@@ -54,7 +54,7 @@ class Quiz {
   String? distractor1;
   String? distractor2;
   String? distractor3;
-  bool flashcard;
+  bool shortAnswerEnabled;
   String? explanation;
   String? hint;
   bool autoDictLinkOfQuestion;
@@ -86,7 +86,7 @@ class Quiz {
         distractor1 = json['distractor_1'],
         distractor2 = json['distractor_2'],
         distractor3 = json['distractor_3'],
-        flashcard = json['flashcard'],
+        shortAnswerEnabled = json['short_answer_enabled'],
         explanation = json['explanation'],
         hint = json['hint'],
         autoDictLinkOfQuestion = json['auto_dict_link_of_question'],
@@ -125,7 +125,7 @@ class Quiz {
         'distractor_1': distractor1,
         'distractor_2': distractor2,
         'distractor_3': distractor3,
-        'flashcard': flashcard,
+        'short_answer_enabled': shortAnswerEnabled,
         'explanation': explanation,
         'hint': hint,
         'auto_dict_link_of_question': autoDictLinkOfQuestion,

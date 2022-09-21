@@ -20,7 +20,7 @@ class QuizExplanationExplanation extends StatelessWidget {
         const SizedBox(height: 16),
         MarkdownWithDictLink(
           text: quiz.explanation ?? '',
-          dictionaryId: quiz.dictionaryId,
+          dictionaryId: quiz.appliedDictionaryId,
           fontSize: 16,
           fontWeight: FontWeight.normal,
           fontColor: Colors.black87,

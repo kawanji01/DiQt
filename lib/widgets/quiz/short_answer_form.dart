@@ -2,12 +2,13 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
+import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizInputForm extends ConsumerWidget {
-  const QuizInputForm({Key? key, required this.quiz}) : super(key: key);
+class QuizShortAnswerForm extends ConsumerWidget {
+  const QuizShortAnswerForm({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
 
   @override
@@ -15,19 +16,31 @@ class QuizInputForm extends ConsumerWidget {
     final User? user = ref.watch(currentUserProvider);
     final answerController = TextEditingController();
 
+    // ユーザーの入力と正解を一致させるために正規化する。
+    String _sanitizedText(String text) {
+      final String textWithoutDictLink = Sanitizer.removeDiQtLink(text);
+      // replaceAll: dealing with auto correct letter function such as Microsoft Word.
+      final String sanitizedText =
+          textWithoutDictLink.replaceAll("’", "'").trim().toLowerCase();
+      return sanitizedText;
+    }
+
     // ユーザーの答えが正解かどうかを検証する
-    bool _verifyAnswer(String? usersAnswer) {
+    bool _verifyAnswerIsCorrect(String? usersAnswer) {
       String correctAnswer = quiz.correctAnswer;
       if (usersAnswer == null || usersAnswer == '') return false;
-      usersAnswer = usersAnswer.trim().toLowerCase();
-      correctAnswer = correctAnswer.trim().toLowerCase();
-      return usersAnswer == correctAnswer;
+      List correctAnswerList = correctAnswer
+          .split(';')
+          .map((answer) => _sanitizedText(answer))
+          .toList();
+      usersAnswer = _sanitizedText(usersAnswer);
+      return correctAnswerList.contains(usersAnswer);
     }
 
     // 解答の通知を送る
     void _answer() {
       String? usersAnswer = answerController.text;
-      bool isCorrect = _verifyAnswer(usersAnswer);
+      bool isCorrect = _verifyAnswerIsCorrect(usersAnswer);
       HapticFeedback.mediumImpact();
       AnswerNotification(usersAnswer, isCorrect, quiz, user!, true)
           .dispatch(context);

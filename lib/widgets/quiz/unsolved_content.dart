@@ -5,7 +5,7 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
-import 'package:booqs_mobile/services/sanitizer.dart';
+import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:booqs_mobile/utils/answer/answer_interaction.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/text_to_speech.dart';
