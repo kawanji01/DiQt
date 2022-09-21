@@ -19,7 +19,7 @@ class QuizShortAnswerForm extends ConsumerWidget {
     // ユーザーの入力と正解を一致させるために正規化する。
     String _sanitizedText(String text) {
       final String textWithoutDictLink = Sanitizer.removeDiQtLink(text);
-      // replaceAll: dealing with auto correct letter function such as Microsoft Word.
+      // replaceAll: MicrosoftWordのオートコレクト対策.
       final String sanitizedText =
           textWithoutDictLink.replaceAll("’", "'").trim().toLowerCase();
       return sanitizedText;
