@@ -2,9 +2,9 @@
  * Generated file. Do not edit.
  *
  * Locales: 2
- * Strings: 502 (251.0 per locale)
+ * Strings: 506 (253.0 per locale)
  *
- * Built on 2022-08-25 at 12:40 UTC
+ * Built on 2022-09-23 at 12:19 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -574,6 +574,18 @@ class _TranslationsEn {
         'vi-VN': 'Vietnamese (Vietnam)',
         'zu-ZA': 'Zulu (South Africa)',
       };
+  late final _TranslationsWordsEn words = _TranslationsWordsEn._(_root);
+}
+
+// Path: words
+class _TranslationsWordsEn {
+  _TranslationsWordsEn._(this._root);
+
+  final _TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  String get entry => 'Entry';
+  String get meaning => 'Meaning';
 }
 
 // Path: <root>
@@ -840,4 +852,22 @@ class _TranslationsJa extends _TranslationsEn {
         'vi-VN': 'ベトナム語（ベトナム）',
         'zu-ZA': 'ズールー語（南アフリカ）',
       };
+  @override
+  late final _TranslationsWordsJa words = _TranslationsWordsJa._(_root);
+}
+
+// Path: words
+class _TranslationsWordsJa extends _TranslationsWordsEn {
+  _TranslationsWordsJa._(_TranslationsJa root)
+      : this._root = root,
+        super._(root);
+
+  @override
+  final _TranslationsJa _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get entry => '項目';
+  @override
+  String get meaning => '意味';
 }

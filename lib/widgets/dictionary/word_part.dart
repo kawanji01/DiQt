@@ -21,6 +21,7 @@ class DictionaryWordPart extends StatelessWidget {
           dictionary: dictionary,
         ),
         DictionaryNewWordButton(dictionaryId: dictionary.id, keyword: null),
+        const SizedBox(height: 16),
         DictionaryWordRequestsButton(dictionary: dictionary),
       ],
     );

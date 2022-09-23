@@ -55,6 +55,7 @@ class _DictionaryWordListViewState extends State<DictionaryWordListView> {
     }
     final List<Word> words = [];
     resMap['words'].forEach((e) => words.add(Word.fromJson(e)));
+
     final isLastPage = words.length < _pageSize;
     if (isLastPage) {
       _pagingController.appendLastPage(words);

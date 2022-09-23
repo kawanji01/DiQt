@@ -250,3 +250,6 @@ lang:
     uz-UZ: 'Uzbek (Uzbekistan)'
     vi-VN: 'Vietnamese (Vietnam)'
     zu-ZA: 'Zulu (South Africa)'
+words:
+    entry: 'Entry'
+    meaning: 'Meaning'
