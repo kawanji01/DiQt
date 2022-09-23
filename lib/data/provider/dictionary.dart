@@ -18,6 +18,7 @@ final asyncDictionariesProvider =
 
 //
 final dictionaryProvider = StateProvider<Dictionary?>((ref) => null);
+final secondDictionaryProvider = StateProvider<Dictionary?>((ref) => null);
 
 // 非同期で引数の辞書を取得する
 // ref: https://riverpod.dev/ja/docs/concepts/modifiers/family

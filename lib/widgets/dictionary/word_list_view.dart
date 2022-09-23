@@ -5,10 +5,11 @@ import 'package:booqs_mobile/widgets/dictionary/no_words_found.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/list_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class DictionaryWordListView extends StatefulWidget {
+class DictionaryWordListView extends ConsumerStatefulWidget {
   const DictionaryWordListView(
       {Key? key, required this.dictionaryId, required this.keyword})
       : super(key: key);
@@ -16,10 +17,11 @@ class DictionaryWordListView extends StatefulWidget {
   final String keyword;
 
   @override
-  State<DictionaryWordListView> createState() => _DictionaryWordListViewState();
+  _DictionaryWordListViewState createState() => _DictionaryWordListViewState();
 }
 
-class _DictionaryWordListViewState extends State<DictionaryWordListView> {
+class _DictionaryWordListViewState
+    extends ConsumerState<DictionaryWordListView> {
   bool _isLoading = false;
   bool _isReached = true;
   int _nextPagekey = 0;

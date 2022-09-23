@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/word_list_view.dart';
+import 'package:booqs_mobile/widgets/dictionary/word_search_results_action.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,6 +42,10 @@ class _DictionaryWordSearchResultsPageState
     return Scaffold(
       appBar: AppBar(
         title: Text('$_keywordの検索結果'),
+        actions: [
+          DictionaryWordSearchResultsAction(
+              keyword: _keyword, dictionaryId: _dictionaryId)
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
