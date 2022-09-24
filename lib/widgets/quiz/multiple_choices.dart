@@ -10,10 +10,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizMultipleChoices extends ConsumerStatefulWidget {
   const QuizMultipleChoices(
-      {Key? key, required this.quiz, required this.answerTextList})
+      {Key? key,
+      required this.quiz,
+      required this.answerTextList,
+      required this.unsolved})
       : super(key: key);
   final Quiz quiz;
   final List<String> answerTextList;
+  final bool unsolved;
 
   @override
   _QuizMultipleChoicesState createState() => _QuizMultipleChoicesState();
@@ -22,6 +26,7 @@ class QuizMultipleChoices extends ConsumerStatefulWidget {
 class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
   String? _selectedAnswer;
   bool _isCovered = false;
+  bool _isDisabled = false;
 
   @override
   void initState() {
@@ -46,17 +51,29 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
       final bool selected = _selectedAnswer == answerText;
 
       return InkWell(
-        onTap: () {
-          _selectedAnswer = answerText;
-          final bool correct = _selectedAnswer == _correctAnswer;
-          AnswerNotification(answerText, correct, _quiz, user, true)
-              .dispatch(context);
-          // 振動フィードバック
-          HapticFeedback.mediumImpact();
-          setState(() {
-            _selectedAnswer;
-          });
-        },
+        // 二重タップを防ぐ
+        onTap: _isDisabled
+            ? null
+            : () async {
+                _selectedAnswer = answerText;
+                final bool correct = _selectedAnswer == _correctAnswer;
+                AnswerNotification(answerText, correct, _quiz, user, true)
+                    .dispatch(context);
+                // 振動フィードバック
+                HapticFeedback.mediumImpact();
+                setState(() {
+                  _selectedAnswer;
+                  _isDisabled = true;
+                });
+                if (widget.unsolved) {
+                  return;
+                }
+                // １秒間タップできないようにしてから有効化する。
+                await Future.delayed(
+                  const Duration(seconds: 1),
+                );
+                setState(() => _isDisabled = false);
+              },
         child: QuizChoiceButton(
           answerText: answerText,
           selected: selected,
