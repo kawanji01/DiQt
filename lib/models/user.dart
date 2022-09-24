@@ -10,6 +10,7 @@ class User {
     required this.name,
     this.profile,
     this.iconImageUrl,
+    required this.langNumber,
     required this.amountOfExp,
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
@@ -29,6 +30,7 @@ class User {
     required this.unsolvedWeaknessesCount,
     required this.weaknessesCount,
     required this.rewardRemained,
+    required this.todaysTranslationsCount,
     this.authToken,
     this.dateCurrent,
     this.answerSetting,
@@ -42,6 +44,7 @@ class User {
   String name;
   String? profile;
   String? iconImageUrl;
+  int langNumber;
   int amountOfExp;
   int answerHistoriesCount;
   int todaysAnswerHistoriesCount;
@@ -61,6 +64,7 @@ class User {
   int unsolvedWeaknessesCount;
   int weaknessesCount;
   bool rewardRemained;
+  int todaysTranslationsCount;
   String? authToken;
   DateTime? dateCurrent;
   AnswerSetting? answerSetting;
@@ -74,6 +78,7 @@ class User {
         name = json['name'],
         profile = json['profile'],
         iconImageUrl = json['icon_image_url'],
+        langNumber = json['lang_number'],
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
@@ -98,6 +103,7 @@ class User {
         unsolvedWeaknessesCount = json['unsolved_weaknesses_count'],
         weaknessesCount = json['weaknesses_count'],
         rewardRemained = json['reward_remained'],
+        todaysTranslationsCount = json['todays_translations_count'],
         authToken = json['token_for_native_app'],
         dateCurrent = json['date_current'] == null
             ? null
@@ -125,6 +131,7 @@ class User {
         //'icon': icon,
         'profile': profile,
         'icon_image_url': iconImageUrl,
+        'lang_number': langNumber,
         'amount_of_exp': amountOfExp,
         'answer_histories_count': answerHistoriesCount,
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
@@ -144,6 +151,7 @@ class User {
         'reviews_count': reviewsCount,
         'unsolved_weaknesses_count': unsolvedWeaknessesCount,
         'weaknesses_count': weaknessesCount,
+        'todays_translations_count': todaysTranslationsCount,
         'token_for_native_app': authToken,
         'date_current': dateCurrent,
         'answer_setting': answerSetting,

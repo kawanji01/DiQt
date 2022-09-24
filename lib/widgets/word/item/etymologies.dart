@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/word/item/label.dart';
+import 'package:booqs_mobile/widgets/word/item/small_translation_buttons.dart';
 import 'package:booqs_mobile/widgets/word/item/text.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,9 @@ class WordItemEtymologies extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        WordItemText(word: word, text: '${word.etymologies}')
+        WordItemText(word: word, text: '${word.etymologies}'),
+        WordItemSmallTranslationButtons(
+            word: word, original: '${word.etymologies}'),
       ],
     );
   }

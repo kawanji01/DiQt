@@ -2,6 +2,7 @@ import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/shared/text_with_dict_link.dart';
 import 'package:booqs_mobile/widgets/word/item/label.dart';
+import 'package:booqs_mobile/widgets/word/item/small_translation_buttons.dart';
 import 'package:flutter/material.dart';
 
 class WordItemMeaning extends StatelessWidget {
@@ -47,7 +48,11 @@ class WordItemMeaning extends StatelessWidget {
           WordItemLabel(
             text: pos,
           ),
-          _meaningText()
+          _meaningText(),
+          WordItemSmallTranslationButtons(
+            original: word.meaning,
+            word: word,
+          ),
         ],
       );
     }

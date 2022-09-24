@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/widgets/word/item/label.dart';
+import 'package:booqs_mobile/widgets/word/item/small_translation_buttons.dart';
 import 'package:booqs_mobile/widgets/word/item/text.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,7 @@ class WordItemSenses extends StatelessWidget {
           WordItemLabel(text: '意味($number)'),
           const SizedBox(height: 8),
           WordItemText(word: word, text: gloss),
+          WordItemSmallTranslationButtons(word: word, original: gloss),
           const SizedBox(height: 32),
         ],
       );
