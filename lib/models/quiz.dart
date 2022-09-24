@@ -3,7 +3,9 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/weakness.dart';
+import 'package:booqs_mobile/models/word.dart';
 
 class Quiz {
   Quiz({
@@ -36,6 +38,9 @@ class Quiz {
     this.note,
     this.answerAnalysis,
     this.weakness,
+    this.word,
+    this.referenceWord,
+    this.sentence,
   });
 
   int id;
@@ -68,6 +73,9 @@ class Quiz {
   Note? note;
   AnswerAnalysis? answerAnalysis;
   Weakness? weakness;
+  Word? word;
+  Word? referenceWord;
+  Sentence? sentence;
 
   Quiz.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -106,7 +114,14 @@ class Quiz {
             : AnswerAnalysis.fromJson(json['answer_analysis']),
         weakness = json['weakness'] == null
             ? null
-            : Weakness.fromJson(json['weakness']);
+            : Weakness.fromJson(json['weakness']),
+        word = json['word'] == null ? null : Word.fromJson(json['word']),
+        referenceWord = json['reference_word'] == null
+            ? null
+            : Word.fromJson(json['reference_word']),
+        sentence = json['sentence'] == null
+            ? null
+            : Sentence.fromJson(json['sentence']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
