@@ -6,7 +6,6 @@ import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
 import 'package:booqs_mobile/widgets/quiz/edit_button.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/answer_analysis.dart';
 import 'package:booqs_mobile/widgets/quiz/quiz_requests_button.dart';
-import 'package:booqs_mobile/widgets/quiz/source.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -61,8 +60,6 @@ class _QuizShowPageState extends ConsumerState<QuizShowPage> {
           const SizedBox(height: 48),
           QuizExplanationAnswerAnalysis(quiz: quiz),
           const SizedBox(height: 40),
-          QuizSource(quiz: quiz),
-          const SizedBox(height: 48),
         ],
       );
     }

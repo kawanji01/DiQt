@@ -81,9 +81,9 @@ class LineWithDictLink extends StatelessWidget {
       final linkedWord = word.replaceFirst('[[', '').replaceFirst(']]', '');
       Color textColor = Colors.green;
       // オートリンクの場合は、オートリンクとwiki記法のリンクの区別がつかないので、wiki記法のリンクの色をオレンジにする。
-      if (autoLinkEnabled) {
-        textColor = Colors.orange;
-      }
+      //if (autoLinkEnabled) {
+      //  textColor = Colors.orange;
+      ///}
 
       // [[diplayedWord|searchedWord]]の場合
       if (linkedWord.contains('|')) {

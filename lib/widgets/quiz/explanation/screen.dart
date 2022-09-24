@@ -10,7 +10,6 @@ import 'package:booqs_mobile/widgets/quiz/explanation/distractors.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/explanation.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/question.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/note.dart';
-import 'package:booqs_mobile/widgets/quiz/source.dart';
 import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -117,6 +116,8 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
       );
     }
 
+    // 問題の引用元
+
     // 出典（辞書と例文）
 
     // keyboardにフォームが隠れないようにする。 ref: https://www.choge-blog.com/programming/flutter-keyboard-modalbottomsheet/
@@ -146,8 +147,7 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
                   const SizedBox(height: 40),
                   _answerAnalysis(),
                   _note(),
-                  const SizedBox(height: 40),
-                  QuizSource(quiz: _quiz),
+                  const SizedBox(height: 120),
                 ],
               ),
             ),

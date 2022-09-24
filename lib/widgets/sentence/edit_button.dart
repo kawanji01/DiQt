@@ -19,15 +19,15 @@ class SentenceEditButton extends ConsumerWidget {
         alignment: Alignment.topLeft,
         child: TextButton(
           style: TextButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             primary: Colors.black54,
-            textStyle: const TextStyle(fontSize: 14),
+            textStyle: const TextStyle(fontSize: 16),
           ),
           onPressed: () {
             SentenceEditPage.push(context, sentence.id);
           },
           child: const Text(
-            'この例文を改善する',
+            '例文を改善する',
             style: TextStyle(
               decoration: TextDecoration.underline,
             ),
@@ -44,9 +44,9 @@ class SentenceEditButton extends ConsumerWidget {
         alignment: Alignment.topRight,
         child: TextButton(
           style: TextButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             primary: Colors.black54,
-            textStyle: const TextStyle(fontSize: 14),
+            textStyle: const TextStyle(fontSize: 16),
           ),
           onPressed: () {
             SentenceShowPage.push(context, sentence.id);

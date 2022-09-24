@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/word/preloaded_show_screen.dart';
 import 'package:booqs_mobile/widgets/word/show_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,13 +46,6 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
     final Word? _word = ref.watch(wordProvider);
     final future = ref.watch(asyncWordFamily(_wordId));
 
-    Widget _screen(word) {
-      if (word == null) {
-        return const LoadingSpinner();
-      }
-      return WordShowScreen(word: word);
-    }
-
     Widget _title() {
       return future.when(
         data: (word) => Text(word?.entry ?? ''),
@@ -70,9 +64,9 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
               vertical: 24,
               horizontal: ResponsiveValues.horizontalMargin(context)),
           child: future.when(
-            data: (word) => _screen(word),
+            data: (data) => WordShowScreen(word: data!),
             error: (err, stack) => Text('Error: $err'),
-            loading: () => _screen(_word),
+            loading: () => WordPreloadedShowScreen(word: _word),
           ),
         ),
       ),

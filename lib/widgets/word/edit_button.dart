@@ -18,7 +18,7 @@ class WordEditButton extends ConsumerWidget {
       alignment: Alignment.topLeft,
       child: TextButton(
         style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           primary: Colors.black54,
           textStyle: const TextStyle(fontSize: 16),
         ),
@@ -27,7 +27,7 @@ class WordEditButton extends ConsumerWidget {
           WordEditPage.push(context, word.id);
         },
         child: const Text(
-          'この項目を改善する',
+          '項目を編集する',
           style: TextStyle(
             decoration: TextDecoration.underline,
           ),
@@ -42,7 +42,7 @@ class WordEditButton extends ConsumerWidget {
       alignment: Alignment.topRight,
       child: TextButton(
         style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           primary: Colors.black54,
           textStyle: const TextStyle(fontSize: 16),
         ),

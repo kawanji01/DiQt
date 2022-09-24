@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/pages/word/new.dart';
-import 'package:booqs_mobile/widgets/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryNewWordButton extends StatelessWidget {
@@ -11,21 +10,30 @@ class DictionaryNewWordButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String label;
     if (keyword == null || keyword == '') {
-      return InkWell(
-        onTap: () {
-          WordNewPage.push(context, dictionaryId, '');
-        },
-        child: const SmallOutlineGrayButton(label: '項目を追加する', icon: Icons.add),
-      );
+      label = '項目を追加する';
+    } else {
+      label = '"$keyword"を辞書に追加する';
     }
 
-    return InkWell(
-      onTap: () {
-        WordNewPage.push(context, dictionaryId, keyword!);
-      },
-      child:
-          SmallOutlineGrayButton(label: '"$keyword"を辞書に追加する', icon: Icons.add),
+    return SizedBox(
+      height: 48,
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.green,
+          minimumSize: const Size(double.infinity,
+              40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+        ),
+        onPressed: () {
+          WordNewPage.push(context, dictionaryId, keyword ?? '');
+        },
+        icon: const Icon(Icons.add, color: Colors.white),
+        label: Text(
+          label,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+      ),
     );
   }
 }
