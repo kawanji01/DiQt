@@ -26,7 +26,10 @@ class QuizContent extends ConsumerWidget {
     if (drill == null) return const Text('Drill does not exist.');
     final Review? review = quiz.review;
     final question = QuizQuestionPart(quiz: quiz, drill: drill);
-    final answer = QuizAnswerPart(quiz: quiz);
+    final answer = QuizAnswerPart(
+      quiz: quiz,
+      unsolved: false,
+    );
     final footer = QuizFooter(
       quiz: quiz,
       review: review,

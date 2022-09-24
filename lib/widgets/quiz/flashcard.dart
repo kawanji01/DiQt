@@ -2,21 +2,41 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
+import 'package:booqs_mobile/widgets/markdown/markdown_without_dict_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizFlashcard extends ConsumerWidget {
-  const QuizFlashcard({Key? key, required this.quiz}) : super(key: key);
+class QuizFlashcard extends ConsumerStatefulWidget {
+  const QuizFlashcard({Key? key, required this.quiz, required this.unsolved})
+      : super(key: key);
   final Quiz quiz;
+  final bool unsolved;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final User? user = ref.watch(currentUserProvider);
+  _QuizFlashcardState createState() => _QuizFlashcardState();
+}
 
-    void _answer(bool correct) {
+class _QuizFlashcardState extends ConsumerState<QuizFlashcard> {
+  bool _isDisabled = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final Quiz _quiz = widget.quiz;
+    final bool _unsolved = widget.unsolved;
+    final User? _user = ref.watch(currentUserProvider);
+
+    void _answer(bool correct) async {
+      if (_isDisabled) return;
       HapticFeedback.mediumImpact();
-      AnswerNotification('', correct, quiz, user!, true).dispatch(context);
+      AnswerNotification('', correct, _quiz, _user!, true).dispatch(context);
+      setState(() => _isDisabled = true);
+      if (_unsolved) return;
+      // 未解答画面でないなら、１秒間タップできないようにしてから有効化する。
+      await Future.delayed(
+        const Duration(seconds: 1),
+      );
+      setState(() => _isDisabled = false);
     }
 
     Widget _correctButton() {
@@ -63,27 +83,6 @@ class QuizFlashcard extends ConsumerWidget {
       );
     }
 
-    Widget _answerButtons() {
-      return Row(
-        children: [
-          Expanded(flex: 1, child: _correctButton()),
-          Expanded(flex: 1, child: _incorrectButton()),
-        ],
-      );
-    }
-
-    Widget _content() {
-      return Column(
-        children: [
-          Text(quiz.correctAnswer,
-              style:
-                  const TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 32),
-          _answerButtons(),
-        ],
-      );
-    }
-
     return ExpansionTile(
       title: const Text(
         'タップして答えを表示する',
@@ -92,7 +91,26 @@ class QuizFlashcard extends ConsumerWidget {
       //collapsedBackgroundColor: const Color(0xfff3f3f4),
       collapsedBackgroundColor: Colors.grey.shade200,
       children: <Widget>[
-        _content(),
+        Column(
+          children: [
+            // 答え
+            MarkdownWithoutDictLink(
+              text: _quiz.correctAnswer,
+              fontSize: 17,
+              fontColor: Colors.black87,
+              fontWeight: FontWeight.bold,
+              selectable: true,
+            ),
+            const SizedBox(height: 32),
+            // 解答ボタン
+            Row(
+              children: [
+                Expanded(flex: 1, child: _correctButton()),
+                Expanded(flex: 1, child: _incorrectButton()),
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }

@@ -39,7 +39,10 @@ class WeaknessUnsolvedQuizWrapper extends StatelessWidget {
       weakness: weakness,
     );
     final question = QuizQuestionPart(quiz: quiz, drill: drill);
-    final answer = QuizAnswerPart(quiz: quiz);
+    final answer = QuizAnswerPart(
+      quiz: quiz,
+      unsolved: true,
+    );
     final footer = QuizUnsolvedFooter(quiz: quiz, review: review);
 
     // 解答時に問題をフェイドアウトする際にリビルドされてレイアウトが崩れるのを防ぐために、外部からwidgetを渡す
