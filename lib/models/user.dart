@@ -78,7 +78,7 @@ class User {
         name = json['name'],
         profile = json['profile'],
         iconImageUrl = json['icon_image_url'],
-        langNumber = json['lang_number'],
+        langNumber = json['lang_number'] ?? 44,
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
