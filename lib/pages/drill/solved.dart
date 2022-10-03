@@ -4,7 +4,7 @@ import 'package:booqs_mobile/widgets/drill/introduction.dart';
 import 'package:booqs_mobile/widgets/drill/order_select_form.dart';
 import 'package:booqs_mobile/widgets/drill/solved_quiz_list_view.dart';
 import 'package:booqs_mobile/widgets/drill/status_tabs.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 

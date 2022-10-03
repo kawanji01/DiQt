@@ -5,7 +5,7 @@ import 'package:booqs_mobile/widgets/review/introduction.dart';
 import 'package:booqs_mobile/widgets/review/order_select_form.dart';
 import 'package:booqs_mobile/widgets/review/quiz_list_view.dart';
 import 'package:booqs_mobile/widgets/review/status_tabs.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
 import 'package:flutter/material.dart';

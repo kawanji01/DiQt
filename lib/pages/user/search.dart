@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/user/item_list_view.dart';
 import 'package:booqs_mobile/widgets/user/search_form.dart';
 import 'package:flutter/material.dart';

@@ -7,7 +7,7 @@ import 'package:booqs_mobile/widgets/dictionary/drill_part.dart';
 import 'package:booqs_mobile/widgets/dictionary/introduction.dart';
 import 'package:booqs_mobile/widgets/dictionary/sentence_part.dart';
 import 'package:booqs_mobile/widgets/dictionary/word_part.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

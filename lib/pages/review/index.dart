@@ -5,7 +5,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/review/unsolved_screen_wrapper.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
 import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
 import 'package:booqs_mobile/widgets/shared/entrance.dart';

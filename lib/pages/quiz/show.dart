@@ -6,7 +6,7 @@ import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
 import 'package:booqs_mobile/widgets/quiz/edit_button.dart';
 import 'package:booqs_mobile/widgets/quiz/explanation/answer_analysis.dart';
 import 'package:booqs_mobile/widgets/quiz/quiz_requests_button.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
