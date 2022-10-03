@@ -11,6 +11,10 @@ class NoticeMonthlyReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (notice.monthlyReport == null) {
+      return Text(('InvalidNotification: ID:${notice.id}'));
+    }
+
     final MonthlyReport report = notice.monthlyReport!;
     final dateFormat = DateFormat('yyyy年MM月');
     final String firstDate = dateFormat.format(report.measuredAt);

@@ -8,7 +8,7 @@ import 'package:booqs_mobile/widgets/dictionary/name.dart';
 import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
 import 'package:booqs_mobile/widgets/sentence/list_item.dart';
 import 'package:booqs_mobile/widgets/sentence/sentence_requests_button.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

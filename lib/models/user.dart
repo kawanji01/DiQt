@@ -23,6 +23,7 @@ class User {
     required this.continuousReviewCompletionCount,
     required this.achievementMapsCount,
     required this.premium,
+    required this.school,
     required this.paidViaNativeApp,
     required this.unreadNotificationsCount,
     required this.unsolvedReviewsCount,
@@ -57,6 +58,7 @@ class User {
   int continuousReviewCompletionCount;
   int achievementMapsCount;
   bool premium;
+  bool school;
   bool paidViaNativeApp;
   int unreadNotificationsCount;
   int unsolvedReviewsCount;
@@ -96,6 +98,7 @@ class User {
             json['continuous_review_completion_count'] ?? 0,
         achievementMapsCount = json['achievement_maps_count'],
         premium = json['premium'],
+        school = json['school'],
         paidViaNativeApp = json['paid_via_native_app'],
         unreadNotificationsCount = json['unread_notifications_count'],
         unsolvedReviewsCount = json['unsolved_reviews_count'],
@@ -145,6 +148,7 @@ class User {
         'continuous_review_completion_count': continuousReviewCompletionCount,
         'achievement_maps_count': achievementMapsCount,
         'premium': premium,
+        'school': school,
         'paid_via_native_app': paidViaNativeApp,
         'reward_remained': rewardRemained,
         'unsolved_reviews_count': unsolvedReviewsCount,

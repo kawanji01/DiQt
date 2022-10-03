@@ -4,7 +4,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/answer_history/incorrect_quiz_list_view.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/premium_recommendation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

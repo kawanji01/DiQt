@@ -5,7 +5,7 @@ import 'package:booqs_mobile/widgets/session/apple_button.dart';
 import 'package:booqs_mobile/widgets/session/divider_widget.dart';
 import 'package:booqs_mobile/widgets/session/google_button.dart';
 import 'package:booqs_mobile/widgets/session/twitter_button.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/session/sign_up_form.dart';
 import 'package:flutter/material.dart';
 

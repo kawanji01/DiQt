@@ -3,7 +3,7 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/note/introduction.dart';
 import 'package:booqs_mobile/widgets/note/order_select_form.dart';
 import 'package:booqs_mobile/widgets/note/quiz_list_view.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 

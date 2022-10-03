@@ -5,22 +5,11 @@ import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/user/menu_button.dart';
-import 'package:booqs_mobile/widgets/user/participating_chapters.dart';
-import 'package:booqs_mobile/widgets/user/study_records.dart';
-import 'package:booqs_mobile/widgets/user/todays_mistakes_button.dart';
-import 'package:booqs_mobile/widgets/user/weakness_button.dart';
+import 'package:booqs_mobile/widgets/user/mypage_screen.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
-import 'package:booqs_mobile/widgets/shared/entrance.dart';
-import 'package:booqs_mobile/widgets/shared/premium_plan_button.dart';
-import 'package:booqs_mobile/widgets/user/achievements_button.dart';
-import 'package:booqs_mobile/widgets/user/drill_in_progress.dart';
-import 'package:booqs_mobile/widgets/user/exp_indicator.dart';
-import 'package:booqs_mobile/widgets/user/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -114,50 +103,6 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
       );
     }
 
-    // マイページを表示するか、ログインしてなければログインボタンを表示する。
-    Widget _mypageOrEntrance(User? user) {
-      // initializeが終わっているのにユーザーが存在していないなら、ログイン・登録画面へ誘導する。
-      if (user == null) return const Entrance();
-
-      return SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          color: Colors.transparent,
-          child: Column(
-            children: <Widget>[
-              const UserDrillInProgress(),
-              const UserWeaknessButton(),
-              const UserTodaysMistakesButton(),
-              UserProfile(user: user),
-              const SizedBox(
-                height: 24,
-              ),
-              const UserMenuButton(),
-              const SizedBox(
-                height: 32,
-              ),
-              UserExpIndicator(user: user),
-              UserAchievementsButton(user: user),
-              const SizedBox(
-                height: 32,
-              ),
-              const UserStudyRecords(),
-              const SizedBox(
-                height: 80,
-              ),
-              PremiumPlanButton(user: user),
-              const SizedBox(
-                height: 48,
-              ),
-              UserParticipatingChapters(user: user),
-              const AppBanner(),
-            ],
-          ),
-        ),
-      );
-    }
-
     // 最終的なアウトプット
     return Scaffold(
       appBar: AppBar(
@@ -169,9 +114,9 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
           horizontal: ResponsiveValues.horizontalMargin(context),
         ),
         child: future.when(
-          loading: () => _mypageOrEntrance(_user),
+          loading: () => UserMypageScreen(user: _user),
           error: (err, stack) => Text('Error: $err'),
-          data: (data) => _mypageOrEntrance(data),
+          data: (data) => UserMypageScreen(user: data),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

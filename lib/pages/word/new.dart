@@ -7,7 +7,7 @@ import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/form/form.dart';
 import 'package:flutter/material.dart';
@@ -129,28 +129,6 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       }
     }
 
-    // 更新ボタン
-    Widget _submitButton() {
-      return SizedBox(
-        height: 48,
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.green,
-            minimumSize: const Size(double.infinity,
-                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-          ),
-          onPressed: () => {
-            _create(),
-          },
-          icon: const Icon(Icons.update, color: Colors.white),
-          label: const Text(
-            '作成する',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-        ),
-      );
-    }
-
     Widget _body() {
       if (_isLoading) return const LoadingSpinner();
       if (_dictionary == null) return const Text('Dictionary does not exist.');
@@ -177,7 +155,26 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
                     dictionary: _dictionary!,
                   ),
                   const SizedBox(height: 40),
-                  _submitButton(),
+                  // 作成ボタン
+                  SizedBox(
+                    height: 48,
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
+                        minimumSize: const Size(double.infinity,
+                            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                      ),
+                      onPressed: () => {
+                        _create(),
+                      },
+                      icon: const Icon(Icons.update, color: Colors.white),
+                      label: const Text(
+                        '作成する',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 40),
                 ])),
       );

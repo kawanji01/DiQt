@@ -6,7 +6,7 @@ import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/name.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/word/form/destroy_button.dart';
 import 'package:booqs_mobile/widgets/word/form/form.dart';
@@ -97,7 +97,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    //
+    // 更新処理
     Future _save(word) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
@@ -133,28 +133,6 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       }
     }
 
-    // 更新ボタン
-    Widget _submitButton() {
-      return SizedBox(
-        height: 48,
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.green,
-            minimumSize: const Size(double.infinity,
-                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-          ),
-          onPressed: () => {
-            _save(_word),
-          },
-          icon: const Icon(Icons.update, color: Colors.white),
-          label: const Text(
-            '更新する',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-        ),
-      );
-    }
-
     Widget _body() {
       if (_isLoading) return const LoadingSpinner();
       if (_word == null) return const Text('Word does not exist.');
@@ -182,7 +160,26 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                     dictionary: _dictionary!,
                   ),
                   const SizedBox(height: 40),
-                  _submitButton(),
+                  // SubmitBtn
+                  SizedBox(
+                    height: 48,
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
+                        minimumSize: const Size(double.infinity,
+                            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                      ),
+                      onPressed: () => {
+                        _save(_word),
+                      },
+                      icon: const Icon(Icons.update, color: Colors.white),
+                      label: const Text(
+                        '更新する',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 64),
                   WordFormDestroyButton(word: _word!),
                   const SizedBox(height: 160),

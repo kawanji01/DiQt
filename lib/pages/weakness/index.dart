@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
 import 'package:booqs_mobile/widgets/shared/premium_recommendation.dart';
 import 'package:booqs_mobile/widgets/weakness/introduction.dart';

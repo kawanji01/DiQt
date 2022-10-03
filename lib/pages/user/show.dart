@@ -4,7 +4,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/relationship/follow_button.dart';
-import 'package:booqs_mobile/widgets/shared/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:booqs_mobile/widgets/user/achievements_button.dart';
 import 'package:booqs_mobile/widgets/user/exp_indicator.dart';
