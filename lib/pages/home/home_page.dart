@@ -1,5 +1,9 @@
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/size_config.dart';
+import 'package:booqs_mobile/widgets/chapter/index.dart';
 import 'package:booqs_mobile/widgets/home/search_screen.dart';
 import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
@@ -44,15 +48,46 @@ class _HomePageState extends ConsumerState<HomePage> {
     });
   }
 
+  final List<TabInfo> _tabs = [
+    TabInfo("辞書", const HomeSearchScreen()),
+    TabInfo("単語帳", const ChapterIndex()),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('辞書'),
+    List<Widget> _tabBars() {
+      SizeConfig().init(context);
+      double grid = SizeConfig.blockSizeHorizontal ?? 0;
+      double width = grid * 40;
+      return [
+        SizedBox(width: width, child: const Tab(text: '辞書')),
+        SizedBox(width: width, child: const Tab(text: '単語帳')),
+      ];
+    }
+
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 2,
+      //length: _tabs.length,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          // タイトル部分を消す ref: https://blog.mrym.tv/2019/09/flutter-tabbar-without-appbar-title/
+          flexibleSpace: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              TabBar(isScrollable: true, tabs: _tabBars()),
+            ],
+          ),
+        ),
+        body: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: ResponsiveValues.horizontalMargin(context),
+          ),
+          child: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
+        ),
+        bottomNavigationBar: const BottomNavbar(),
       ),
-      body: const HomeSearchScreen(),
-      bottomNavigationBar: const BottomNavbar(),
-      drawer: const DrawerMenu(),
     );
   }
 }
