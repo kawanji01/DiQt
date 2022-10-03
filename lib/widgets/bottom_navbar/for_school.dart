@@ -54,7 +54,7 @@ class BottomNavbarForSchool extends ConsumerWidget {
         ),
         const BottomNavigationBarItem(
           icon: Icon(Icons.school),
-          label: '単語帳',
+          label: '教室',
         ),
         BottomNavigationBarItem(
           icon: BottomNavbarReviewIcon(

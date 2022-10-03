@@ -7,7 +7,6 @@ import 'package:booqs_mobile/widgets/word/preloaded_show_screen.dart';
 import 'package:booqs_mobile/widgets/word/show_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 
 class WordShowPage extends ConsumerStatefulWidget {
   const WordShowPage({Key? key}) : super(key: key);

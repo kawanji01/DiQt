@@ -41,3 +41,6 @@ final asyncChaptersProvider = FutureProvider<List<Chapter>>((ref) async {
   ref.read(chaptersProvider.notifier).state = chapters;
   return chapters;
 });
+
+
+// School

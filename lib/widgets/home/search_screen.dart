@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/dictionary/item_list.dart';
 import 'package:booqs_mobile/widgets/word/search_form.dart';
 import 'package:flutter/material.dart';
