@@ -10,7 +10,7 @@ class Achievement {
     required this.lockedImageUrl,
     required this.tutorial,
     required this.numberOfAnswers,
-    required this.daysAnswered,
+    //required this.daysAnswered,
     required this.master,
     required this.createdAt,
     required this.updatedAt,
@@ -26,7 +26,7 @@ class Achievement {
   String lockedImageUrl;
   bool tutorial;
   bool numberOfAnswers;
-  bool daysAnswered;
+  //bool daysAnswered;
   bool master;
   DateTime createdAt;
   DateTime updatedAt;
@@ -42,7 +42,7 @@ class Achievement {
         lockedImageUrl = json['cloudinary_image_locked'] ?? '',
         tutorial = json['tutorial'],
         numberOfAnswers = json['number_of_answers'],
-        daysAnswered = json['days_answered'],
+        //daysAnswered = json['days_answered'],
         master = json['master'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']);
@@ -58,7 +58,7 @@ class Achievement {
         'cloudinary_image_locked': lockedImageUrl,
         'tutorial': tutorial,
         'number_of_answers': numberOfAnswers,
-        'days_answered': daysAnswered,
+        //'days_answered': daysAnswered,
         'master': master,
         'created_at': createdAt,
         'updated_at': updatedAt,
