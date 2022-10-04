@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
+import 'package:booqs_mobile/pages/chapter/school.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/guideline.dart';
 import 'package:booqs_mobile/pages/dictionary/sentence_search_results.dart';
@@ -68,6 +69,7 @@ const sentenceShowPage = '/sentence/show';
 const chapterIndexPage = '/chapter/index';
 const chapterShowPage = '/chapter/show';
 const chapterDrillsPage = '/chapter/drills';
+const chapterSchoolPage = '/chapter/school';
 // ユーザー
 const userMyPage = '/user/mypage';
 const userShowPage = '/user/show';
@@ -121,6 +123,7 @@ final routes = {
   sentenceShowPage: (context) => const SentenceShowPage(),
   chapterIndexPage: (context) => const ChapterIndexPage(),
   chapterShowPage: (context) => const ChapterShowPage(),
+  chapterSchoolPage: (context) => const ChapterSchoolPage(),
   userShowPage: (context) => const UserShowPage(),
   userAchievementsPage: (context) => const UserAchievementsPage(),
   userEditPage: (context) => const UserEditPage(),

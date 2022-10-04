@@ -1,18 +1,33 @@
 import 'package:booqs_mobile/data/provider/chapter.dart';
-import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
-import 'package:booqs_mobile/pages/chapter/ranking.dart';
+import 'package:booqs_mobile/widgets/chapter/school/drawer.dart';
+import 'package:booqs_mobile/widgets/chapter/school/ranking.dart';
+import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
-import 'package:booqs_mobile/widgets/chapter/activities.dart';
-import 'package:booqs_mobile/widgets/chapter/drills.dart';
+import 'package:booqs_mobile/widgets/chapter/school/activities.dart';
 import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
+import 'package:booqs_mobile/widgets/chapter/school/drills.dart';
+import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ChapterSchoolPage extends ConsumerStatefulWidget {
   const ChapterSchoolPage({Key? key}) : super(key: key);
+
+  static Future pushReplacement(BuildContext context) async {
+    //return Navigator.of(context).pushNamed(reviewIndexPage);
+    return Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        // 画面遷移のログを送信するために、settings.nameを設定する。
+        settings: const RouteSettings(name: chapterSchoolPage),
+        pageBuilder: (context, animation1, animation2) =>
+            const ChapterSchoolPage(),
+        transitionDuration: Duration.zero,
+      ),
+    );
+  }
 
   @override
   _ChapterSchoolPageState createState() => _ChapterSchoolPageState();
@@ -20,13 +35,15 @@ class ChapterSchoolPage extends ConsumerStatefulWidget {
 
 class _ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
   final List<TabInfo> _tabs = [
-    TabInfo("問題集", const ChapterDrills()),
-    TabInfo("活動", const ChapterActivities()),
-    TabInfo("ランキング", const ChapterRanking()),
+    TabInfo("問題集", const ChapterSchoolDrills()),
+    TabInfo("活動", const ChapterSchoolActivities()),
+    TabInfo("ランキング", const ChapterSchoolRanking()),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final future = ref.watch(asyncSchoolProvider);
+
     List<Widget> _tabBars() {
       SizeConfig().init(context);
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
@@ -38,15 +55,16 @@ class _ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
       ];
     }
 
-    final Chapter? chapter = ref.watch(chapterProvider);
-
     return DefaultTabController(
       initialIndex: 0,
       length: _tabs.length,
       child: Scaffold(
         appBar: AppBar(
-          //automaticallyImplyLeading: false,
-          title: Text(chapter?.title ?? ''),
+          title: future.when(
+            data: (data) => Text(data?.title ?? ''),
+            error: (err, stack) => Text('Error: $err'),
+            loading: () => const Text(''),
+          ),
           bottom: TabBar(isScrollable: true, tabs: _tabBars()),
           // タイトル部分を消す ref: https://blog.mrym.tv/2019/09/flutter-tabbar-without-appbar-title/
         ),
@@ -54,10 +72,16 @@ class _ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
           margin: EdgeInsets.symmetric(
             horizontal: ResponsiveValues.horizontalMargin(context),
           ),
-          child: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
+          //child: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
+          child: future.when(
+            data: (data) =>
+                TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
+            error: (err, stack) => Text('Error: $err'),
+            loading: () => const LoadingSpinner(),
+          ),
         ),
         bottomNavigationBar: const BottomNavbar(),
-        drawer: const DrawerMenu(),
+        drawer: const ChapterSchoolDrawer(),
       ),
     );
   }

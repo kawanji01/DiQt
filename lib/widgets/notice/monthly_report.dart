@@ -11,6 +11,7 @@ class NoticeMonthlyReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //
     if (notice.monthlyReport == null) {
       return Text(('InvalidNotification: ID:${notice.id}'));
     }
@@ -104,7 +105,7 @@ class NoticeMonthlyReport extends StatelessWidget {
         const SizedBox(height: 8),
         _rankInfo(),
         _information('解答数', '${report.numberOfAnswers}回'),
-        _information('解答日数', '${report.daysAnswered}日'),
+        //_information('解答日数', '${report.daysAnswered}日'),
         const SizedBox(height: 48),
       ],
     );

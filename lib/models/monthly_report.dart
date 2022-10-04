@@ -4,7 +4,7 @@ class MonthlyReport {
     this.userId = 0,
     required this.measuredAt,
     this.rank,
-    this.daysAnswered = 0,
+    //this.daysAnswered = 0,
     this.numberOfAnswers = 0,
     required this.createdAt,
     required this.updatedAt,
@@ -13,7 +13,7 @@ class MonthlyReport {
   int userId;
   DateTime measuredAt;
   int? rank;
-  int daysAnswered;
+  //int daysAnswered;
   int numberOfAnswers;
   DateTime createdAt;
   DateTime updatedAt;
@@ -23,7 +23,7 @@ class MonthlyReport {
         userId = json['user_id'],
         measuredAt = DateTime.parse(json['measured_at']),
         rank = json['rank'],
-        daysAnswered = json['days_answered'],
+        //daysAnswered = json['days_answered'],
         numberOfAnswers = json['number_of_answers'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']);
@@ -33,7 +33,7 @@ class MonthlyReport {
         'user_id': userId,
         'measured_at': measuredAt,
         'rank': rank,
-        'days_answered': daysAnswered,
+        //'days_answered': daysAnswered,
         'number_of_answers': numberOfAnswers,
         'created_at': createdAt,
         'updated_at': updatedAt,

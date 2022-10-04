@@ -7,14 +7,14 @@ import 'package:booqs_mobile/widgets/user/ranker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChapterRanking extends ConsumerStatefulWidget {
-  const ChapterRanking({Key? key}) : super(key: key);
+class ChapterSchoolRanking extends ConsumerStatefulWidget {
+  const ChapterSchoolRanking({Key? key}) : super(key: key);
 
   @override
-  _ChapterRankingState createState() => _ChapterRankingState();
+  _ChapterSchoolRankingState createState() => _ChapterSchoolRankingState();
 }
 
-class _ChapterRankingState extends ConsumerState<ChapterRanking> {
+class _ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
   final List<User> _dailyRankers = [];
   final List<User> _weeklyRankers = [];
   final List<User> _monthlyRankers = [];
@@ -29,9 +29,9 @@ class _ChapterRankingState extends ConsumerState<ChapterRanking> {
   }
 
   Future _loadRankers() async {
-    final Chapter? chapter = ref.watch(chapterProvider);
-    if (chapter == null) return;
-    final Map? resMap = await RemoteChapters.ranking(chapter.publicUid);
+    final Chapter? school = ref.watch(schoolProvider);
+    if (school == null) return;
+    final Map? resMap = await RemoteChapters.ranking(school.publicUid);
     if (resMap == null) return;
     resMap['daily_rankers'].forEach((e) => _dailyRankers.add(User.fromJson(e)));
     resMap['weekly_rankers']

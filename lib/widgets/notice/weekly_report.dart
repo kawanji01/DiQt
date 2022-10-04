@@ -109,7 +109,7 @@ class NoticeWeeklyReport extends StatelessWidget {
         const SizedBox(height: 8),
         _rankInfo(),
         _information('解答数', '${report.numberOfAnswers}回'),
-        _information('解答日数', '${report.daysAnswered}日'),
+        //_information('解答日数', '${report.daysAnswered}日'),
         const SizedBox(height: 48),
       ],
     );
