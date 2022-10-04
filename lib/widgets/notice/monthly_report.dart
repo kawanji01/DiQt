@@ -11,6 +11,7 @@ class NoticeMonthlyReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //
     if (notice.monthlyReport == null) {
       return Text(('InvalidNotification: ID:${notice.id}'));
     }
