@@ -1,8 +1,8 @@
 import 'package:booqs_mobile/widgets/chapter/activity_list_view.dart';
 import 'package:flutter/material.dart';
 
-class ChapterActivities extends StatelessWidget {
-  const ChapterActivities({Key? key}) : super(key: key);
+class ChapterSchoolActivities extends StatelessWidget {
+  const ChapterSchoolActivities({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

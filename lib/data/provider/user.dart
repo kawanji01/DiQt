@@ -77,3 +77,14 @@ final asyncUserChaptersProvider =
   resMap['chapters'].forEach((e) => chapters.add(Chapter.fromJson(e)));
   return chapters;
 });
+
+// 非同期でユーザーの参加中のchapterを取得する
+final asyncUserSchoolsProvider =
+    FutureProvider.family<List<Chapter>, String>((ref, userUid) async {
+  final List<Chapter> schools = [];
+  final Map? resMap = await RemoteUsers.schools(userUid);
+  if (resMap == null) return schools;
+
+  resMap['schools'].forEach((e) => schools.add(Chapter.fromJson(e)));
+  return schools;
+});

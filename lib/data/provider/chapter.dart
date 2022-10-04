@@ -34,13 +34,37 @@ final asyncChaptersProvider = FutureProvider<List<Chapter>>((ref) async {
   final Map? resMap = await RemoteChapters.index();
   if (resMap == null) return chapters;
   resMap['chapters'].forEach((e) => chapters.add(Chapter.fromJson(e)));
-  if (resMap['participating_chapters'] != null) {
-    resMap['participating_chapters']
-        .forEach((e) => chapters.insert(0, Chapter.fromJson(e)));
-  }
+  //if (resMap['participating_chapters'] != null) {
+  //  resMap['participating_chapters']
+  //      .forEach((e) => chapters.insert(0, Chapter.fromJson(e)));
+  //}
   ref.read(chaptersProvider.notifier).state = chapters;
   return chapters;
 });
 
-
 // School
+final schoolUidProvider = StateProvider<String>((ref) => '');
+//
+final schoolProvider = StateProvider<Chapter?>((ref) => null);
+// schoolUidProviderを元にschoolをセットする。 schoolUidがなくても参加しているschoolを取得してくる。
+final asyncSchoolProvider = FutureProvider<Chapter?>((ref) async {
+  final String uid = ref.read(schoolUidProvider);
+  final Map? resMap = await RemoteChapters.school(uid);
+  if (resMap == null) return null;
+  Chapter school = Chapter.fromJson(resMap['school']);
+  ref.read(schoolUidProvider.notifier).state = school.publicUid;
+  ref.read(schoolProvider.notifier).state = school;
+  ref.read(chapterProvider.notifier).state = school;
+  return school;
+});
+
+// 非同期でChapterのDrillsを取得する
+final asynSchoolDrillsProvider = FutureProvider<List<Drill>?>((ref) async {
+  final Chapter? chapter = ref.read(schoolProvider);
+  final Map? resMap = await RemoteChapters.show(chapter!.publicUid);
+  if (resMap == null) return null;
+  List<Drill> drills = [];
+  resMap['drills'].forEach((e) => drills.add(Drill.fromJson(e)));
+
+  return drills;
+});

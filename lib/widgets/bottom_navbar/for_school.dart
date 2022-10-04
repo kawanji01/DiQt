@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/chapter/index.dart';
+import 'package:booqs_mobile/pages/chapter/school.dart';
 import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
@@ -28,7 +28,7 @@ class BottomNavbarForSchool extends ConsumerWidget {
           HomePage.push(context);
           break;
         case 1:
-          ChapterIndexPage.push(context);
+          ChapterSchoolPage.pushReplacement(context);
           break;
         case 2:
           //if (_selectedIndex == index) return;

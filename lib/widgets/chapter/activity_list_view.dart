@@ -40,7 +40,7 @@ class _ChapterActivityListViewState
     _isLoading = true;
 
     final String publicUid =
-        ref.watch(chapterProvider.select((chapter) => chapter!.publicUid));
+        ref.watch(schoolProvider.select((chapter) => chapter!.publicUid));
 
     final Map? resMap =
         await RemoteChapters.activities(publicUid, pageKey, _pageSize);
