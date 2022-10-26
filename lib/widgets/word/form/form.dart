@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/widgets/markdown/introduction_text_button.dart';
+import 'package:booqs_mobile/widgets/word/form/detailed_settings.dart';
 import 'package:booqs_mobile/widgets/word/form/lang_setting.dart';
 import 'package:booqs_mobile/widgets/word/form/preview_button.dart';
 import 'package:booqs_mobile/widgets/word/form/reading.dart';
@@ -84,67 +84,32 @@ class WordForm extends StatelessWidget {
               hintText: 'IPAの発音記号を設定できます。'),
         ),
         const SizedBox(height: 24),
-        // 語源
-        TextFormField(
-          controller: etymologiesController,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "語源",
-              hintText: '語源を設定できます。'),
-        ),
-        const SizedBox(height: 24),
-        // 解説フォーム
-        TextFormField(
-          // 複数行のフォーム。 参考： https://stackoverflow.com/questions/54972928/how-to-expand-a-textfield-in-flutter-looks-like-a-text-area
-          minLines: 8,
-          keyboardType: TextInputType.multiline,
-          maxLines: null,
-          controller: explanationController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: '解説',
-            hintText: '【空欄可】解説があれば入力してください。',
-          ),
-        ),
-        // プレビューボタンとDiQt Markdown
-        const MarkdownIntroductionTextButton(),
+        // 例文設定
         WordFormSentenceSetting(
             sentenceIdController: sentenceIdController,
             entry: entryController.text,
             dictionary: dictionary),
-        const SizedBox(height: 24),
-        // 類義語
-        TextFormField(
-          controller: synonymsController,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "類義語",
-              hintText: '複数設定する場合は、間に「,」を入力してください'),
+        const SizedBox(height: 40),
+        // 詳細設定
+        WordFormDetailedSettings(
+          etymologiesController: etymologiesController,
+          explanationController: explanationController,
+          synonymsController: synonymsController,
+          antonymsController: antonymsController,
+          relatedController: relatedController,
         ),
-        const SizedBox(height: 24),
-        // 対義語
-        TextFormField(
-          controller: antonymsController,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "対義語",
-              hintText: '複数設定する場合は、間に「,」を入力してください'),
-        ),
-        const SizedBox(height: 24),
-        // 関連語
-        TextFormField(
-          controller: relatedController,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "関連語",
-              hintText: '複数設定する場合は、間に「,」を入力してください'),
-        ),
+
         const SizedBox(height: 40),
         WordFormPreviewButton(
             entryController: entryController,
             meaningController: meaningController,
-            explanationController: explanationController,
+            ipaController: ipaController,
             sentenceIdController: sentenceIdController,
+            etymologiesController: etymologiesController,
+            explanationController: explanationController,
+            synonymsController: synonymsController,
+            antonymsController: antonymsController,
+            relatedController: relatedController,
             dictionary: dictionary),
       ],
     );
