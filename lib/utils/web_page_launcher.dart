@@ -25,8 +25,8 @@ class WebPageLauncher {
     if (await canLaunch(url)) {
       await launch(
         url,
-        forceSafariVC: true,
-        forceWebView: true,
+        forceSafariVC: false,
+        forceWebView: false,
       );
     }
   }

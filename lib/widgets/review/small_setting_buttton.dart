@@ -63,11 +63,11 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
     }
 
     //// 復習設定の間隔変更や削除： リマインダー設定ダイアログを表示する＆ダイアログから設定されたreviewを使ってsetStateで再描画する。 ////
-    Future _editReview() async {
+    Future _updateReview(Review review) async {
       final Review? newReview = await showDialog(
           context: context,
           builder: (context) {
-            return ReviewFormDialog(review: _review);
+            return ReviewFormDialog(review: review);
           });
 
       if (newReview == null) return;
@@ -98,10 +98,9 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
     // 復習の更新ボタン
     Widget _editButton(review) {
       final String label = ReviewHelper.intervalSetting(review.intervalSetting);
-
       return InkWell(
         onTap: () {
-          _editReview();
+          _updateReview(review);
         },
         child: SmallGreenButton(
           label: label,
@@ -110,14 +109,10 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
       );
     }
 
-    Widget _reviewButton(review) {
-      if (review != null) {
-        return _editButton(review);
-      } else {
-        return _createButton();
-      }
+    if (_review == null) {
+      return _createButton();
+    } else {
+      return _editButton(_review);
     }
-
-    return _reviewButton(_review);
   }
 }

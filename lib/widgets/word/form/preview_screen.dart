@@ -56,12 +56,12 @@ class WordFormPreviewScreen extends StatelessWidget {
             height: 24,
           ),
           WordItemIPA(word: word),
+          WordFormPreviewSentence(word: word),
           WordItemEtymologies(word: word),
           WordItemExplanation(word: word),
           const SizedBox(
             height: 40,
           ),
-          WordFormPreviewSentence(word: word),
           WordItemSynonyms(word: word),
           WordItemAntonyms(word: word),
           WordItemRelated(word: word),

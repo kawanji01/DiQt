@@ -3,7 +3,7 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
-import 'package:booqs_mobile/pages/user/chapters.dart';
+import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -12,6 +12,7 @@ import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
 import 'package:booqs_mobile/widgets/button/large_green_button.dart';
 import 'package:booqs_mobile/widgets/purchase/delete_button.dart';
 import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/widgets/user/logout_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -85,13 +86,16 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
-    Widget _chapters() {
+    Widget _accountSetting() {
+      const String btnText = 'アカウント設定';
       return InkWell(
-        onTap: () {
-          UserChaptersPage.push(context);
-        },
-        child: const LargeGreenButton(label: '参加中の教室', icon: Icons.school),
-      );
+          onTap: () {
+            UserEditPage.push(context, user);
+          },
+          child: const LargeGreenButton(
+            label: btnText,
+            icon: Icons.manage_accounts,
+          ));
     }
 
     Widget _answerSettingButton() {
@@ -144,11 +148,15 @@ class UserMenuPage extends ConsumerWidget {
           const SizedBox(
             height: 32,
           ),
-          _chapters(),
+          _accountSetting(),
           const SizedBox(
             height: 32,
           ),
           _answerSettingButton(),
+          const SizedBox(
+            height: 32,
+          ),
+          const UserLogoutButton(),
           const SizedBox(
             height: 64,
           ),

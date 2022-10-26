@@ -27,13 +27,17 @@ class WordItemMeaning extends StatelessWidget {
           selectable: true,
         );
       }
-      return Text(
-        word.meaning,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.black87,
-        ),
+      return TextWithDictLink(
+        text: word.meaning,
+        langNumber: word.langNumberOfMeaning,
+        // 辞書記法だけリンクにする。
+        autoLinkEnabled: false,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        dictionaryId: word.dictionaryId,
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        fontColor: Colors.black87,
+        selectable: true,
       );
     }
 

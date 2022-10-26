@@ -1,13 +1,12 @@
 import 'package:booqs_mobile/data/provider/word.dart';
-import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
-import 'package:booqs_mobile/widgets/review/large_setting_button.dart';
 import 'package:booqs_mobile/widgets/word/edit_button.dart';
 import 'package:booqs_mobile/widgets/word/item/entry.dart';
 import 'package:booqs_mobile/widgets/word/item/meaning.dart';
 import 'package:booqs_mobile/widgets/word/item/reading.dart';
+import 'package:booqs_mobile/widgets/word/item/review_button.dart';
+import 'package:booqs_mobile/widgets/word/item/sentence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,13 +16,6 @@ class WordListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Widget _reviewButton() {
-      final Quiz? quiz = word.quiz;
-      if (quiz == null) return const Text('Quiz does not exist.');
-      final Review? review = word.review;
-      return ReviewLargeSettingButton(quizId: quiz.id, review: review);
-    }
-
     Widget _ipa() {
       if (word.ipa == null || word.ipa == '') {
         return Container();
@@ -50,7 +42,8 @@ class WordListItem extends ConsumerWidget {
             const SizedBox(
               height: 24,
             ),
-            _reviewButton(),
+            WordItemReviewButton(word: word),
+            WordItemSentence(word: word),
             WordEditButton(
               word: word,
               isShow: false,

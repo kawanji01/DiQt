@@ -8,14 +8,24 @@ class WordFormPreviewButton extends StatelessWidget {
       {Key? key,
       required this.entryController,
       required this.meaningController,
-      required this.explanationController,
+      required this.ipaController,
       required this.sentenceIdController,
+      required this.etymologiesController,
+      required this.explanationController,
+      required this.synonymsController,
+      required this.antonymsController,
+      required this.relatedController,
       required this.dictionary})
       : super(key: key);
   final TextEditingController entryController;
   final TextEditingController meaningController;
-  final TextEditingController explanationController;
+  final TextEditingController ipaController;
   final TextEditingController sentenceIdController;
+  final TextEditingController etymologiesController;
+  final TextEditingController explanationController;
+  final TextEditingController synonymsController;
+  final TextEditingController antonymsController;
+  final TextEditingController relatedController;
   final Dictionary dictionary;
 
   @override
@@ -41,8 +51,13 @@ class WordFormPreviewButton extends StatelessWidget {
           id: 0,
           entry: entryController.text,
           meaning: meaningController.text,
-          explanation: explanationController.text,
+          ipa: ipaController.text,
           sentenceId: sentenceId,
+          etymologies: etymologiesController.text,
+          explanation: explanationController.text,
+          synonyms: synonymsController.text,
+          antonyms: antonymsController.text,
+          related: relatedController.text,
           dictionaryId: dictionary.id,
           langNumberOfEntry: dictionary.langNumberOfEntry,
           langNumberOfMeaning: dictionary.langNumberOfMeaning,
