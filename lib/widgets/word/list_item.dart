@@ -8,6 +8,7 @@ import 'package:booqs_mobile/widgets/word/edit_button.dart';
 import 'package:booqs_mobile/widgets/word/item/entry.dart';
 import 'package:booqs_mobile/widgets/word/item/meaning.dart';
 import 'package:booqs_mobile/widgets/word/item/reading.dart';
+import 'package:booqs_mobile/widgets/word/item/sentence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -51,6 +52,10 @@ class WordListItem extends ConsumerWidget {
               height: 24,
             ),
             _reviewButton(),
+            WordItemSentence(
+                sentence: word.sentence,
+                quizId: word.sentenceQuiz?.id,
+                review: word.sentenceReview),
             WordEditButton(
               word: word,
               isShow: false,

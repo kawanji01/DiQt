@@ -27,6 +27,8 @@ class Word {
     this.pendingWordRequestsCount = 0,
     // 結合したテーブル
     this.sentence,
+    this.sentenceQuiz,
+    this.sentenceReview,
     this.dictionary,
     this.quiz,
     // 検索結果で表示する復讐
@@ -54,6 +56,8 @@ class Word {
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
   Sentence? sentence;
+  Quiz? sentenceQuiz;
+  Review? sentenceReview;
   Dictionary? dictionary;
   Quiz? quiz;
   Review? review;
@@ -82,6 +86,12 @@ class Word {
         sentence = json['sentence'] == null
             ? null
             : Sentence.fromJson(json['sentence']),
+        sentenceQuiz = json['sentence_quiz'] == null
+            ? null
+            : Quiz.fromJson(json['sentence_quiz']),
+        sentenceReview = json['sentence_review'] == null
+            ? null
+            : Review.fromJson(json['sentence_review']),
         dictionary = json['dictionary'] == null
             ? null
             : Dictionary.fromJson(json['dictionary']),

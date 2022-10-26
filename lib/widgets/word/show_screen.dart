@@ -63,7 +63,10 @@ class WordShowScreen extends StatelessWidget {
           WordItemIPA(word: word),
           WordItemEtymologies(word: word),
           WordItemExplanation(word: word),
-          WordItemSentence(word: word),
+          WordItemSentence(
+              sentence: word.sentence,
+              quizId: word.sentence?.quiz?.id,
+              review: word.sentence?.quiz?.review),
           WordItemSynonyms(word: word),
           WordItemAntonyms(word: word),
           WordItemRelated(word: word),
