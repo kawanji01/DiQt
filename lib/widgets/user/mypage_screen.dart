@@ -6,7 +6,6 @@ import 'package:booqs_mobile/widgets/user/achievements_button.dart';
 import 'package:booqs_mobile/widgets/user/drill_in_progress.dart';
 import 'package:booqs_mobile/widgets/user/exp_indicator.dart';
 import 'package:booqs_mobile/widgets/user/menu_button.dart';
-import 'package:booqs_mobile/widgets/user/participating_chapters.dart';
 import 'package:booqs_mobile/widgets/user/profile.dart';
 import 'package:booqs_mobile/widgets/user/study_records.dart';
 import 'package:booqs_mobile/widgets/user/todays_mistakes_button.dart';
@@ -53,7 +52,6 @@ class UserMypageScreen extends StatelessWidget {
             const SizedBox(
               height: 48,
             ),
-            UserParticipatingChapters(user: user!),
             const AppBanner(),
           ],
         ),

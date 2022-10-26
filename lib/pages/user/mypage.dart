@@ -47,67 +47,10 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
     final User? _user = ref.watch(currentUserProvider);
     final future = ref.watch(asyncCurrentUserProvider);
 
-    // ログアウト
-    Future _logout() async {
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
-      await RemoteSessions.logout(context);
-      await UserSetup.logOut(_user);
-      ref.read(currentUserProvider.notifier).state = null;
-      ref.read(answerSettingProvider.notifier).state = null;
-      ref.read(todaysAnswersCountProvider.notifier).state = 0;
-      ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0;
-      // ローディングを消す
-      EasyLoading.dismiss();
-      const snackBar = SnackBar(content: Text('ログアウトしました。'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      UserMyPage.push(context);
-    }
-
-    Future _pushPopup(value) async {
-      switch (value) {
-        case 0:
-          //_moveToAccountSetting();
-          UserEditPage.push(context, _user!);
-          break;
-        case 1:
-          _logout();
-          break;
-      }
-    }
-
-    Widget _settingButton() {
-      if (_user == null) return Container();
-
-      // PopupMenuButton 参考： https://api.flutter.dev/flutter/material/PopupMenuButton-class.html
-      return PopupMenuButton(
-        onSelected: (newValue) {
-          _pushPopup(newValue);
-        },
-        itemBuilder: (BuildContext context) => [
-          const PopupMenuItem(
-            child: Text(
-              'アカウント設定',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            value: 0,
-          ),
-          const PopupMenuItem(
-            child: Text(
-              'ログアウト',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            value: 1,
-          )
-        ],
-      );
-    }
-
     // 最終的なアウトプット
     return Scaffold(
       appBar: AppBar(
         title: const Text('マイページ'),
-        actions: <Widget>[_settingButton()],
       ),
       body: Container(
         margin: EdgeInsets.symmetric(
