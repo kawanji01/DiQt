@@ -13,9 +13,9 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewFormDialog extends ConsumerStatefulWidget {
-  const ReviewFormDialog({Key? key, this.review}) : super(key: key);
+  const ReviewFormDialog({Key? key, required this.review}) : super(key: key);
 
-  final Review? review;
+  final Review review;
   @override
   _ReviewFormDialogState createState() => _ReviewFormDialogState();
 }
@@ -28,9 +28,7 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
   void initState() {
     super.initState();
     _review = widget.review;
-    if (_review != null) {
-      _dropdownValue = _review!.intervalSetting ?? 0;
-    }
+    _dropdownValue = _review?.intervalSetting ?? 0;
   }
 
   @override
@@ -52,11 +50,17 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
       resMap = await RemoteReviews.update(context, _review!.id, _dropdownValue);
       EasyLoading.dismiss();
       if (resMap == null) return;
-
-      final Review review = Review.fromJson(resMap['review']);
+      // 復習設定を更新前にすでにその復習設定が削除されていた場合の対応
+      if (resMap['review'] == null) {
+        // 削除が完了したことを伝えるモデルを作成する。
+        _review?.scheduledDate = 'deleted';
+      } else {
+        // 通常の更新
+        _review = Review.fromJson(resMap['review']);
+      }
       await Toasts.reviewSetting(context, resMap['message']);
       // ダイアログを閉じて、reviewを返り値にする。
-      Navigator.of(context).pop(review);
+      Navigator.of(context).pop(_review);
     }
 
     //
