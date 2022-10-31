@@ -18,10 +18,10 @@ class NoticeWeeklyReport extends StatelessWidget {
     final WeeklyReport report = notice.weeklyReport!;
     final firstDateFormat = DateFormat('yyyy年MM月dd日');
     final String firstDate =
-        firstDateFormat.format(findFirstDateOfTheWeek(report.measuredAt));
+        firstDateFormat.format(findFirstDateOfTheWeek(report.measuredDate));
     final lastDateFormat = DateFormat('MM月dd日');
     final String lastDate =
-        lastDateFormat.format(findLastDateOfTheWeek(report.measuredAt));
+        lastDateFormat.format(findLastDateOfTheWeek(report.measuredDate));
 
     final Widget messageText = RichText(
       text: TextSpan(
