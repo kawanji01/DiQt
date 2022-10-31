@@ -2,9 +2,11 @@ import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/answer_history.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/models/user.dart';
 
 class AnswerCreator {
   AnswerCreator({
+    this.user,
     this.answerHistory,
     this.answerAnalysis,
     this.review,
@@ -40,6 +42,7 @@ class AnswerCreator {
     this.allPoint = 0,
   });
 
+  User? user;
   AnswerHistory? answerHistory;
   AnswerAnalysis? answerAnalysis;
   Review? review;
@@ -76,7 +79,8 @@ class AnswerCreator {
   int allPoint;
 
   AnswerCreator.fromJson(Map<String, dynamic> json)
-      : answerHistory = json['answer_history'] == null
+      : user = json['user'] == null ? null : User.fromJson(json['user']),
+        answerHistory = json['answer_history'] == null
             ? null
             : AnswerHistory.fromJson(json['answer_history']),
         answerAnalysis = json['answer_analysis'] == null
@@ -124,6 +128,7 @@ class AnswerCreator {
         allPoint = json['all_point'];
 
   Map<String, dynamic> toJson() => {
+        'user': user,
         'answer_history': answerHistory,
         'answer_analysis': answerAnalysis,
         'review': review,

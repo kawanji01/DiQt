@@ -32,6 +32,7 @@ class User {
     required this.weaknessesCount,
     required this.rewardRemained,
     required this.todaysTranslationsCount,
+    required this.appFavored,
     this.authToken,
     this.dateCurrent,
     this.answerSetting,
@@ -67,6 +68,7 @@ class User {
   int weaknessesCount;
   bool rewardRemained;
   int todaysTranslationsCount;
+  bool appFavored;
   String? authToken;
   DateTime? dateCurrent;
   AnswerSetting? answerSetting;
@@ -107,6 +109,7 @@ class User {
         weaknessesCount = json['weaknesses_count'],
         rewardRemained = json['reward_remained'],
         todaysTranslationsCount = json['todays_translations_count'],
+        appFavored = json['app_favored'],
         authToken = json['token_for_native_app'],
         dateCurrent = json['date_current'] == null
             ? null
@@ -156,6 +159,7 @@ class User {
         'unsolved_weaknesses_count': unsolvedWeaknessesCount,
         'weaknesses_count': weaknessesCount,
         'todays_translations_count': todaysTranslationsCount,
+        'app_favored': appFavored,
         'token_for_native_app': authToken,
         'date_current': dateCurrent,
         'answer_setting': answerSetting,

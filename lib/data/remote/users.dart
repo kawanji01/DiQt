@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:booqs_mobile/data/local/user_info.dart';
+import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
@@ -80,20 +81,6 @@ class RemoteUsers {
     return resMap;
   }
 
-  // 参加中のチャプター（削除予定）
-  static Future<Map?> chapters(String publicUid) async {
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid/chapters');
-    final Response res =
-        await get(url, headers: {"Content-Type": "application/json"});
-
-    if (res.statusCode != 200) {
-      return null;
-    }
-    final Map resMap = json.decode(res.body);
-    return resMap;
-  }
-
   // 参加中の教室
   static Future<Map?> schools(String publicUid) async {
     final Uri url = Uri.parse(
@@ -120,6 +107,26 @@ class RemoteUsers {
         '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$uid?token=$token');
     final Response res = await delete(url);
 
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // アプリのレビュー画面を表示したことを伝える
+  static Future<Map?> favorApp() async {
+    const storage = FlutterSecureStorage();
+    final String? token = await storage.read(key: 'token');
+    if (token == null) return null;
+
+    final deviceInfo = DeviceInfoService();
+    final String platform = deviceInfo.getPlatform();
+    final String deviceName = await deviceInfo.getName();
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/favor_app');
+    final Map boby = {'token': token, 'device_info': '$platform / $deviceName'};
+    final Response res = await post(url, body: boby);
     if (res.statusCode != 200) return null;
 
     final Map resMap = json.decode(res.body);

@@ -68,17 +68,6 @@ final premiumEnabledProvider = StateProvider<bool>((ref) => ref.watch(
     currentUserProvider.select((user) => user == null ? false : user.premium)));
 
 // 非同期でユーザーの参加中のchapterを取得する
-final asyncUserChaptersProvider =
-    FutureProvider.family<List<Chapter>, String>((ref, userUid) async {
-  final List<Chapter> chapters = [];
-  final Map? resMap = await RemoteUsers.chapters(userUid);
-  if (resMap == null) return chapters;
-
-  resMap['chapters'].forEach((e) => chapters.add(Chapter.fromJson(e)));
-  return chapters;
-});
-
-// 非同期でユーザーの参加中のchapterを取得する
 final asyncUserSchoolsProvider =
     FutureProvider.family<List<Chapter>, String>((ref, userUid) async {
   final List<Chapter> schools = [];
