@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
@@ -11,11 +12,17 @@ class RemoteInquiries {
     final String? token = await storage.read(key: 'token');
     if (token == null) return null;
 
+    final deviceInfo = DeviceInfoService();
+    final String platform = deviceInfo.getPlatform();
+    final String deviceName = await deviceInfo.getName();
+
     final Uri url =
         Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/inquiries');
     final Map boby = {
       'token': token,
       'content': contenct,
+      'platform': platform,
+      'device_name': deviceName,
     };
     final Response res = await post(url, body: boby);
     if (res.statusCode != 200) return null;
