@@ -28,12 +28,17 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
   Widget build(BuildContext context) {
     Widget _form() {
       if (_isSubmitted) {
-        return const Text(
-            'お問い合わせいただき、誠にありがとうございます！！\n必要に応じて、後日メールにてご返信させていただく場合もございます。',
-            style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.normal,
-                color: Colors.black87));
+        return Column(
+          children: const [
+            Text('お問い合わせいただき、誠にありがとうございます！！\n必要に応じて、後日メールにてご返信させていただく場合もございます。',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black87)),
+            SizedBox(height: 24),
+            DialogCloseButton(),
+          ],
+        );
       }
       return Form(
         key: _formKey,
@@ -102,10 +107,8 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
       height: ResponsiveValues.dialogHeight(context),
       width: ResponsiveValues.dialogWidth(context),
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child:
-          // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
-          Stack(children: [
-        Column(
+      child: SingleChildScrollView(
+        child: Column(
           children: [
             const SizedBox(height: 24),
             const Text('お問い合わせ',
@@ -118,8 +121,8 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
             const SizedBox(height: 40),
           ],
         ),
-        const DialogCloseButton(),
-      ]),
+        //const DialogCloseButton(),
+      ),
     );
   }
 }
