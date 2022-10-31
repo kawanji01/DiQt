@@ -1,24 +1,19 @@
-import 'package:app_review/app_review.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/home/community_page.dart';
+import 'package:booqs_mobile/utils/app_review_service.dart';
+import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
-import 'package:booqs_mobile/widgets/session/external_link_dialog.dart';
+import 'package:booqs_mobile/widgets/shared/contact_form_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DrawerMenu extends StatelessWidget {
+class DrawerMenu extends ConsumerWidget {
   const DrawerMenu({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    // 問い合わせページへの移動
-    Future _moveToContactPage() async {
-      // 外部リンクダイアログを表示
-      await showDialog(
-          context: context,
-          builder: (context) {
-            // ./locale/ を取り除いたpathを指定する
-            return const ExternalLinkDialog(redirectPath: 'contact');
-          });
-    }
+  Widget build(BuildContext context, WidgetRef ref) {
+    final User? _user = ref.watch(currentUserProvider);
 
     return Drawer(
       // Add a ListView to the drawer. This ensures the user can scroll
@@ -49,15 +44,19 @@ class DrawerMenu extends StatelessWidget {
           ListTile(
             title: const Text('お問い合わせ', style: TextStyle(fontSize: 16)),
             onTap: () {
-              _moveToContactPage();
+              if (_user == null) {
+                // ログインしていないなら、ブラウザ経由で問い合わせ方法を提示する
+                WebPageLauncher.open('https://www.diqt.net/ja/contact');
+              } else {
+                // ログインしているならお問い合わせフィームをモーダル表示
+                Dialogs.reward(const ContactFormScreen());
+              }
             },
           ),
           ListTile(
             title: const Text('レビュー', style: TextStyle(fontSize: 16)),
             onTap: () {
-              AppReview.requestReview.then((onValue) {
-                print(onValue);
-              });
+              AppReviewService.request();
             },
           ),
           ListTile(
