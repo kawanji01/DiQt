@@ -59,6 +59,12 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                 border: OutlineInputBorder(),
                 labelText: 'お問い合わせ内容',
               ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'お問い合わせ内容は空欄にできません。';
+                }
+                return null;
+              },
             ),
             // SubmitBtn
             Container(
@@ -71,6 +77,8 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                       40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
                 ),
                 onPressed: () async {
+                  if (!_formKey.currentState!.validate()) return;
+
                   EasyLoading.show(status: 'loading...');
                   await RemoteInquiries.create(_contactController.text);
                   EasyLoading.dismiss();
