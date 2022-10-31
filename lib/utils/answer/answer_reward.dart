@@ -1,8 +1,11 @@
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/answer_history.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
+import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/utils/app_review_service.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/widgets/answer/answer_days_screen.dart';
+import 'package:booqs_mobile/widgets/answer/requesting_review_screen.dart';
 import 'package:booqs_mobile/widgets/answer/review_completion_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuation_all_month_screen.dart';
 import 'package:booqs_mobile/widgets/answer/continuation_all_week_screen.dart';
@@ -39,6 +42,8 @@ class AnswerReward {
     await AnswerReward.continuousGoalAvhievement(answerCreator);
     // 苦手な問題をすべて解答
     await AnswerReward.allWeaknessesSolved(answerCreator);
+    // 継続者にレビューを求める
+    await AnswerReward.requestReview(answerCreator);
   }
 
   // 問題集周回報酬
@@ -179,5 +184,25 @@ class AnswerReward {
       Dialogs.reward(screen);
       await Future.delayed(const Duration(seconds: 2));
     }
+  }
+
+  // 継続者にレビューを求める
+  static Future<void> requestReview(AnswerCreator answerCreator) async {
+    final User? user = answerCreator.user;
+    if (user == null) return;
+    final int? answerDaysCount = answerCreator.answerDaysCount;
+    if (answerDaysCount == null) return;
+    if (answerDaysCount < 10) return;
+    // 20日ごとにレビューを求める
+    if (answerDaysCount % 20 != 0) return;
+
+    if (user.appFavored) {
+      // アプリを気に入っている場合は、評価モーダルを表示する。
+      AppReviewService.request();
+    } else {
+      // まだアプリを気に入っていない場合は、問い合わせフォームを含んだモーダルを表示する。
+      Dialogs.reward(const AnswerRequestingReviewScreen());
+    }
+    await Future.delayed(const Duration(seconds: 2));
   }
 }
