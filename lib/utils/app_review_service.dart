@@ -1,17 +1,19 @@
-import 'package:app_review/app_review.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 class AppReviewService {
-  static void request() {
-    AppReview.requestReview.then((onValue) {
-      //print(onValue);
-    });
+  static Future request() async {
+    final InAppReview inAppReview = InAppReview.instance;
+    if (await inAppReview.isAvailable()) {
+      inAppReview.requestReview();
+    }
   }
 
-  static void favorApp() {
-    AppReview.requestReview.then((onValue) {
-      //print(onValue);
+  static Future favorApp() async {
+    final InAppReview inAppReview = InAppReview.instance;
+    if (await inAppReview.isAvailable()) {
+      inAppReview.requestReview();
       RemoteUsers.favorApp();
-    });
+    }
   }
 }

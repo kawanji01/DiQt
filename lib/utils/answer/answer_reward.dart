@@ -198,7 +198,7 @@ class AnswerReward {
 
     if (user.appFavored) {
       // アプリを気に入っている場合は、評価モーダルを表示する。
-      AppReviewService.request();
+      await AppReviewService.request();
     } else {
       // まだアプリを気に入っていない場合は、問い合わせフォームを含んだモーダルを表示する。
       Dialogs.reward(const AnswerRequestingReviewScreen());
