@@ -55,8 +55,8 @@ class DrawerMenu extends ConsumerWidget {
           ),
           ListTile(
             title: const Text('レビュー', style: TextStyle(fontSize: 16)),
-            onTap: () {
-              AppReviewService.request();
+            onTap: () async {
+              await AppReviewService.request();
             },
           ),
           ListTile(

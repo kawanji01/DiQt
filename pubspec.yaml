@@ -51,7 +51,7 @@ dependencies:
   nonce: ^1.2.0 # 英数両用の乱数を生成する（Apple認証で利用）
   google_sign_in: ^5.2.1 # Google認証
   flutter_easyloading: ^3.0.3 # 画面全体にローディングを表示する
-  app_review: ^2.1.1+1 # アプリ内でレビューできるようにする。
+  in_app_review: ^2.0.4 # アプリ内でレビューできるようにする。ref: https://pub.dev/packages/in_app_review
   flutter_typeahead: ^3.2.4 # 検索時のautocomplete
   percent_indicator: ^3.4.0 # 経験値のインジケーター
   eval_ex: ^1.1.0 # レベル実装のために、log10（ 10 を底とした対数を返すメソッド）が必要なため。
