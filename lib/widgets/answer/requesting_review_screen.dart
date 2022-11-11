@@ -86,7 +86,7 @@ class _AnswerRequestingReviewScreenState
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18)),
-                            onPressed: () {
+                            onPressed: () async {
                               // ユーザーのappFavored（アプリを気に入った）をtrueにする & レビューを求める
                               AppReviewService.favorApp();
                               Navigator.pop(context);
