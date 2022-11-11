@@ -9,6 +9,7 @@ import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/widgets/bottom_navbar/notification_icon.dart';
 import 'package:booqs_mobile/widgets/bottom_navbar/review_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BottomNavbarForSchool extends ConsumerWidget {
@@ -22,6 +23,7 @@ class BottomNavbarForSchool extends ConsumerWidget {
     // 参考：https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
     void _onItemTapped(int index) {
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
+      EasyLoading.dismiss();
 
       switch (index) {
         case 0:

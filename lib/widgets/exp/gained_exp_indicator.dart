@@ -1,6 +1,5 @@
-import 'package:audioplayers/audioplayers.dart';
-import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/utils/audio_players_service.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
 import 'package:booqs_mobile/utils/level_up_dialog.dart';
 import 'package:flutter/material.dart';
@@ -72,11 +71,7 @@ class _ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
       // 効果音
       final bool seEnabled = ref.watch(seEnabledProvider);
       if (seEnabled) {
-        final AudioCache _cache = AudioCache(
-          fixedPlayer: AudioPlayer(),
-        );
-        _cache.loadAll([levelUpSound]);
-        _cache.play(levelUpSound);
+        AudioPlayersService.playLevelUpSound();
       }
     }
 

@@ -8,6 +8,7 @@ import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/widgets/bottom_navbar/notification_icon.dart';
 import 'package:booqs_mobile/widgets/bottom_navbar/review_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BottomNavbarForNormal extends ConsumerWidget {
@@ -25,7 +26,8 @@ class BottomNavbarForNormal extends ConsumerWidget {
     // 参考：https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
     void _onItemTapped(int index) {
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
-
+      // ローディングがあれば消す
+      EasyLoading.dismiss();
       switch (index) {
         case 0:
           HomePage.push(context);
