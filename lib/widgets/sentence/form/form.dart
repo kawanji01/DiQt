@@ -1,38 +1,27 @@
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/widgets/markdown/introduction_text_button.dart';
+import 'package:booqs_mobile/widgets/sentence/form/details.dart';
+import 'package:booqs_mobile/widgets/sentence/form/generator_button.dart';
 import 'package:booqs_mobile/widgets/sentence/form/preview_button.dart';
+import 'package:booqs_mobile/widgets/sentence/form/translation.dart';
+import 'package:booqs_mobile/widgets/shared/item_label.dart';
+import 'package:booqs_mobile/widgets/shared/lang_setting.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceForm extends ConsumerStatefulWidget {
-  const SentenceForm(
-      {Key? key,
-      required this.originalController,
-      required this.translationController,
-      required this.explanationController,
-      required this.dictionary})
-      : super(key: key);
+class SentenceForm extends StatelessWidget {
+  const SentenceForm({
+    Key? key,
+    required this.originalController,
+    required this.translationController,
+    required this.explanationController,
+    required this.dictionary,
+    this.keyword,
+  }) : super(key: key);
+
   final TextEditingController originalController;
   final TextEditingController translationController;
   final TextEditingController explanationController;
+  final String? keyword;
   final Dictionary dictionary;
-
-  @override
-  _SentenceFormState createState() => _SentenceFormState();
-}
-
-class _SentenceFormState extends ConsumerState<SentenceForm> {
-  TextEditingController? _originalController;
-  TextEditingController? _translationController;
-  TextEditingController? _explanationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _originalController = widget.originalController;
-    _translationController = widget.translationController;
-    _explanationController = widget.explanationController;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +29,19 @@ class _SentenceFormState extends ConsumerState<SentenceForm> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // 例文フォーム
+        const SharedItemLabel(text: '例文'),
+        const SizedBox(
+          height: 16,
+        ),
         TextFormField(
-          controller: _originalController,
+          controller: originalController,
           minLines: 3,
           keyboardType: TextInputType.multiline,
           maxLines: 8,
-          decoration:
-              const InputDecoration(labelText: "例文", hintText: '例文を入力してください。'),
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "例文",
+              hintText: '例文を入力してください。'),
           validator: (value) {
             if (value!.isEmpty) {
               return '例文は空欄にできません。';
@@ -54,45 +49,30 @@ class _SentenceFormState extends ConsumerState<SentenceForm> {
             return null;
           },
         ),
-        const SizedBox(height: 24),
-        // 翻訳フォーム
-        TextFormField(
-          controller: _translationController,
-          minLines: 3,
-          keyboardType: TextInputType.multiline,
-          maxLines: 8,
-          decoration: const InputDecoration(
-              labelText: "例文の訳", hintText: '例文の訳を入力してください。'),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return '例文の翻訳は空欄にできません。';
-            }
-            return null;
-          },
+        SharedLangSetting(langNumber: dictionary.langNumberOfEntry),
+        //const SizedBox(height: 16),
+        SentenceFormGeneratorButton(
+          langNumber: dictionary.langNumberOfEntry,
+          originalController: originalController,
+          keyword: keyword,
         ),
-        const SizedBox(height: 40),
-        // 解説フォーム
-        TextFormField(
-          // 複数行のフォーム。 参考： https://stackoverflow.com/questions/54972928/how-to-expand-a-textfield-in-flutter-looks-like-a-text-area
-          minLines: 8,
-          keyboardType: TextInputType.multiline,
-          maxLines: null,
-          controller: _explanationController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: '解説',
-            hintText: '【空欄可】解説があれば入力してください。',
-          ),
-        ),
-        const MarkdownIntroductionTextButton(),
 
         const SizedBox(height: 40),
 
+        SentenceFormTranslation(
+          translationController: translationController,
+          dictionary: dictionary,
+          originalController: originalController,
+        ),
+
+        const SizedBox(height: 40),
+        SentenceFormDetails(explanationController: explanationController),
+        const SizedBox(height: 40),
         SentenceFormPreviewButton(
-            originalController: _originalController!,
-            translationController: _translationController!,
-            explanationController: _explanationController!,
-            dictionary: widget.dictionary),
+            originalController: originalController,
+            translationController: translationController,
+            explanationController: explanationController,
+            dictionary: dictionary),
       ],
     );
   }

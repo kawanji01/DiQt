@@ -77,6 +77,7 @@ const userEditPage = '/user/edit';
 const userMenuPage = '/user/menu';
 const userSearchPage = '/user/search';
 const userPremiumPlanPage = '/user/premium_plan';
+const userPaymentSettingPage = '/user/payment_setting';
 // 問題集
 const drillUnsolvedPage = '/drill/unsolved';
 const drillSolvedPage = '/drill/solved';

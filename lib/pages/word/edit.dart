@@ -30,6 +30,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
   Word? _word;
   Dictionary? _dictionary;
   bool _isLoading = true;
+  bool _isRequesting = false;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _entryController = TextEditingController();
@@ -101,6 +102,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
     Future _save(word) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
+      setState(() => _isRequesting = true);
 
       final Map<String, dynamic> params = {
         'id': word.id,
@@ -120,6 +122,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWords.update(params);
       EasyLoading.dismiss();
+      setState(() => _isRequesting = false);
 
       if (resMap == null) {
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
@@ -169,9 +172,11 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                         minimumSize: const Size(double.infinity,
                             40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
                       ),
-                      onPressed: () => {
-                        _save(_word),
-                      },
+                      onPressed: _isRequesting
+                          ? null
+                          : () async {
+                              _save(_word);
+                            },
                       icon: const Icon(Icons.update, color: Colors.white),
                       label: const Text(
                         '更新する',

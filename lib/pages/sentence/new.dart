@@ -15,9 +15,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class SentenceNewPage extends ConsumerStatefulWidget {
   const SentenceNewPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context, int dictionaryId) async {
-    return Navigator.of(context)
-        .pushNamed(sentenceNewPage, arguments: {'dictionaryId': dictionaryId});
+  static Future push(
+      BuildContext context, int dictionaryId, String keyword) async {
+    return Navigator.of(context).pushNamed(sentenceNewPage,
+        arguments: {'dictionaryId': dictionaryId, 'keyword': keyword});
   }
 
   @override
@@ -26,7 +27,9 @@ class SentenceNewPage extends ConsumerStatefulWidget {
 
 class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   Dictionary? _dictionary;
+  String _keyword = '';
   bool _isLoading = true;
+  bool _isRequesting = false;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _originalController = TextEditingController();
@@ -38,22 +41,21 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-      final int dictionaryId = arguments['dictionaryId'];
-      _loadDictionary(dictionaryId);
+      _initialize(arguments);
     });
   }
 
-  Future _loadDictionary(int dictionaryId) async {
+  // 辞書とキーワードを読み込んでから、loadingを完了する。
+  Future _initialize(Map arguments) async {
+    _keyword = arguments['keyword'];
+    final int dictionaryId = arguments['dictionaryId'];
     final Map? resMap = await RemoteSentences.newSentence(dictionaryId);
     _isLoading = false;
     if (resMap == null) {
       return setState(() => _isLoading);
     }
-    final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
-    setState(() {
-      _dictionary = dictionary;
-      _isLoading;
-    });
+    _dictionary = Dictionary.fromJson(resMap['dictionary']);
+    setState(() => _isLoading);
   }
 
   @override
@@ -71,12 +73,14 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
     Future _save() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
+      // リクエストロック開始
+      setState(() {
+        _isRequesting = true;
+      });
 
       Map<String, dynamic> params = {
         'original': _originalController.text,
-        'lang_number_of_original': _dictionary!.langNumberOfEntry,
         'translation': _translationController.text,
-        'lang_number_of_tranlsation': _dictionary!.langNumberOfMeaning,
         'explanation': _explanationController.text,
         'dictionary_id': _dictionary!.id
       };
@@ -84,6 +88,10 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteSentences.create(params);
       EasyLoading.dismiss();
+      // リクエストロック終了
+      setState(() {
+        _isRequesting = false;
+      });
 
       if (resMap == null) {
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
@@ -106,9 +114,12 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
             minimumSize: const Size(double.infinity,
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
-          onPressed: () => {
-            _save(),
-          },
+          // 二重リクエスト防止
+          onPressed: _isRequesting
+              ? null
+              : () async {
+                  _save();
+                },
           icon: const Icon(Icons.update, color: Colors.white),
           label: const Text(
             '作成する',
@@ -130,10 +141,12 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
               DictionaryName(dictionary: _dictionary!),
               const SizedBox(height: 32),
               SentenceForm(
-                  originalController: _originalController,
-                  translationController: _translationController,
-                  explanationController: _explanationController,
-                  dictionary: _dictionary!),
+                originalController: _originalController,
+                translationController: _translationController,
+                explanationController: _explanationController,
+                dictionary: _dictionary!,
+                keyword: _keyword,
+              ),
               const SizedBox(height: 40),
               _submitButton(),
               const SizedBox(height: 40),

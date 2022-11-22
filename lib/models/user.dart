@@ -15,8 +15,12 @@ class User {
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
     required this.todaysCorrectAnswerHistoriesCount,
+    required this.wholeWeekAnswerHistoriesCount,
+    required this.wholeMonthAnswerHistoriesCount,
+    // 削除予定
     required this.wholeWeeksAnswerHistoriesCount,
     required this.wholeMonthsAnswerHistoriesCount,
+    //
     required this.answerDaysCount,
     required this.continuousAnswerDaysCount,
     required this.continuousGoalAchievementCount,
@@ -51,7 +55,11 @@ class User {
   int answerHistoriesCount;
   int todaysAnswerHistoriesCount;
   int todaysCorrectAnswerHistoriesCount;
+  int wholeWeekAnswerHistoriesCount;
+  // 削除予定
   int wholeWeeksAnswerHistoriesCount;
+  int wholeMonthAnswerHistoriesCount;
+  // 削除予定
   int wholeMonthsAnswerHistoriesCount;
   int answerDaysCount;
   int continuousAnswerDaysCount;
@@ -88,10 +96,16 @@ class User {
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
         todaysCorrectAnswerHistoriesCount =
             json['todays_correct_answer_histories_count'],
+        wholeWeekAnswerHistoriesCount =
+            json['whole_week_answer_histories_count'] ?? 0,
+        wholeMonthAnswerHistoriesCount =
+            json['whole_month_answer_histories_count'] ?? 0,
+        // 削除予定
         wholeWeeksAnswerHistoriesCount =
-            json['whole_weeks_answer_histories_count'],
+            json['whole_weeks_answer_histories_count'] ?? 0,
         wholeMonthsAnswerHistoriesCount =
-            json['whole_months_answer_histories_count'],
+            json['whole_months_answer_histories_count'] ?? 0,
+        //
         answerDaysCount = json['answer_days_count'],
         continuousAnswerDaysCount = json['continuous_answer_days_count'],
         continuousGoalAchievementCount =
@@ -143,8 +157,12 @@ class User {
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
         'todays_correct_answer_histories_count':
             todaysCorrectAnswerHistoriesCount,
+        'whole_week_answer_histories_count': wholeWeekAnswerHistoriesCount,
+        'whole_month_answer_histories_count': wholeMonthAnswerHistoriesCount,
+        // 削除予定
         'whole_weeks_answer_histories_count': wholeWeeksAnswerHistoriesCount,
         'whole_months_answer_histories_count': wholeMonthsAnswerHistoriesCount,
+        //
         'answer_days_count': answerDaysCount,
         'continuous_answer_days_count': continuousAnswerDaysCount,
         'continuous_goal_achievement_count': continuousGoalAchievementCount,

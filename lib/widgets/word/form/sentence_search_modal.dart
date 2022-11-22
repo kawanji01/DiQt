@@ -36,7 +36,7 @@ class _WordFormSentenceSearchModalState
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
           onPressed: () {
-            SentenceNewPage.push(context, widget.dictionary.id);
+            SentenceNewPage.push(context, widget.dictionary.id, widget.keyword);
           },
           icon: const Icon(Icons.add, color: Colors.white),
           label: const Text(
@@ -78,7 +78,7 @@ class _WordFormSentenceSearchModalState
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: () {
-          SentenceNewPage.push(context, widget.dictionary.id);
+          SentenceNewPage.push(context, widget.dictionary.id, widget.keyword);
         },
         child: const Text(' / 例文を追加する',
             style: TextStyle(

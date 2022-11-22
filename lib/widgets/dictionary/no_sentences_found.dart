@@ -16,7 +16,7 @@ class DictionaryNoSentencesFound extends StatelessWidget {
     Widget _newSentenceButton() {
       return InkWell(
         onTap: () {
-          SentenceNewPage.push(context, dictionaryId);
+          SentenceNewPage.push(context, dictionaryId, keyword);
         },
         child: const SmallOutlineGrayButton(label: '例文を追加する', icon: Icons.add),
       );

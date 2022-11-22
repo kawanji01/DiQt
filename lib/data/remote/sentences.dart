@@ -130,4 +130,30 @@ class RemoteSentences {
     final Map? resMap = json.decode(res.body);
     return resMap;
   }
+
+  // AIによる例文の生成
+  static Future<Map?> generate(
+      String keyword, int langNumber, String temperature) async {
+    final String? token = await LocalUserInfo.authToken();
+
+    final String encodedData = json.encode({
+      'keyword': keyword,
+      'lang_number': '$langNumber',
+      'temperature': temperature,
+      'token': token,
+    });
+    final Map<String, String> headers = {'content-type': 'application/json'};
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/generate');
+    final Response res = await post(
+      url,
+      headers: headers,
+      body: encodedData,
+    );
+    if (res.statusCode != 200) return null;
+
+    final Map? resMap = json.decode(res.body);
+    return resMap;
+  }
 }
