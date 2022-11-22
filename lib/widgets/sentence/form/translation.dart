@@ -1,13 +1,19 @@
+import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/widgets/sentence/form/translation_buttons.dart';
 import 'package:booqs_mobile/widgets/shared/item_label.dart';
 import 'package:booqs_mobile/widgets/shared/lang_setting.dart';
 import 'package:flutter/material.dart';
 
 class SentenceFormTranslation extends StatelessWidget {
-  const SentenceFormTranslation(
-      {Key? key, required this.translationController, required this.langNumber})
-      : super(key: key);
+  const SentenceFormTranslation({
+    Key? key,
+    required this.translationController,
+    required this.dictionary,
+    required this.originalController,
+  }) : super(key: key);
   final TextEditingController translationController;
-  final int langNumber;
+  final Dictionary dictionary;
+  final TextEditingController originalController;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +40,13 @@ class SentenceFormTranslation extends StatelessWidget {
             return null;
           },
         ),
-        SharedLangSetting(langNumber: langNumber),
+        SharedLangSetting(langNumber: dictionary.langNumberOfMeaning),
+        SentenceFormTranslationButtons(
+          originalController: originalController,
+          translationController: translationController,
+          sourceLangNumber: dictionary.langNumberOfEntry,
+          targetLangNumber: dictionary.langNumberOfMeaning,
+        )
       ],
     );
   }
