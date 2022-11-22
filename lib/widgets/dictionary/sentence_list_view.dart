@@ -137,8 +137,8 @@ class _DictionarySentenceListViewState
           noItemsFoundIndicatorBuilder: (_) => DictionaryNoSentencesFound(
               dictionaryId: _dictionaryId, keyword: _keyword),
           // すべての検索結果の読み込み完了
-          noMoreItemsIndicatorBuilder: (_) =>
-              DictionaryNoMoreSentences(dictionaryId: _dictionaryId)),
+          noMoreItemsIndicatorBuilder: (_) => DictionaryNoMoreSentences(
+              dictionaryId: _dictionaryId, keyword: _keyword)),
     );
   }
 }

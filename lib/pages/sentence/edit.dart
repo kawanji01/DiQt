@@ -138,6 +138,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
                 translationController: _translationController,
                 explanationController: _explanationController,
                 dictionary: sentence.dictionary!,
+                keyword: '',
               ),
               const SizedBox(height: 40),
               _submitButton(),
