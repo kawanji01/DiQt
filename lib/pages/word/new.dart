@@ -30,6 +30,7 @@ class WordNewPage extends ConsumerStatefulWidget {
 class _WordNewPageState extends ConsumerState<WordNewPage> {
   Dictionary? _dictionary;
   bool _isLoading = true;
+  bool _isRequesting = false;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _entryController = TextEditingController();
@@ -62,15 +63,10 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
     if (resMap == null) {
       return setState(() => _isLoading);
     }
-    final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
+    _dictionary = Dictionary.fromJson(resMap['dictionary']);
     _entryController.text = keyword;
     _meaningController.text = resMap['translation'] ?? '';
-    setState(() {
-      _dictionary = dictionary;
-      _entryController;
-      _meaningController;
-      _isLoading;
-    });
+    setState(() => _isLoading);
   }
 
   // widgetの破棄時にコントローラも破棄する。Controllerを使うなら必ず必要。
@@ -97,6 +93,8 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
+      setState(() => _isRequesting = true);
+
       final Map<String, dynamic> params = {
         'entry': _entryController.text,
         'reading': _readingController.text,
@@ -114,6 +112,8 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWords.create(params);
       EasyLoading.dismiss();
+      setState(() => _isRequesting = false);
+
       if (resMap == null) {
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -164,9 +164,11 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
                         minimumSize: const Size(double.infinity,
                             40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
                       ),
-                      onPressed: () => {
-                        _create(),
-                      },
+                      onPressed: _isRequesting
+                          ? null
+                          : () async {
+                              _create();
+                            },
                       icon: const Icon(Icons.update, color: Colors.white),
                       label: const Text(
                         '作成する',

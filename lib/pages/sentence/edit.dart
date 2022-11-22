@@ -51,11 +51,8 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
     if (resMap == null) {
       return setState(() => _isLoading);
     }
-    final Sentence sentence = Sentence.fromJson(resMap['sentence']);
-    setState(() {
-      _sentence = sentence;
-      _isLoading;
-    });
+    _sentence = Sentence.fromJson(resMap['sentence']);
+    setState(() => _isLoading);
   }
 
   @override
@@ -74,6 +71,9 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
     Future _save(sentence) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
+      setState(() {
+        _isRequesting = true;
+      });
 
       Map<String, dynamic> params = {
         'id': sentence.id,
@@ -85,6 +85,9 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteSentences.update(params);
       EasyLoading.dismiss();
+      setState(() {
+        _isRequesting = false;
+      });
 
       if (resMap == null) {
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));

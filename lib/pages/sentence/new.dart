@@ -41,23 +41,21 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-      _keyword = arguments['keyword'];
-      final int dictionaryId = arguments['dictionaryId'];
-      _loadDictionary(dictionaryId);
+      _initialize(arguments);
     });
   }
 
-  Future _loadDictionary(int dictionaryId) async {
+  // 辞書とキーワードを読み込んでから、loadingを完了する。
+  Future _initialize(Map arguments) async {
+    _keyword = arguments['keyword'];
+    final int dictionaryId = arguments['dictionaryId'];
     final Map? resMap = await RemoteSentences.newSentence(dictionaryId);
     _isLoading = false;
     if (resMap == null) {
       return setState(() => _isLoading);
     }
-    final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
-    setState(() {
-      _dictionary = dictionary;
-      _isLoading;
-    });
+    _dictionary = Dictionary.fromJson(resMap['dictionary']);
+    setState(() => _isLoading);
   }
 
   @override
