@@ -28,6 +28,7 @@ class SentenceEditPage extends ConsumerStatefulWidget {
 class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
   Sentence? _sentence;
   bool _isLoading = true;
+  bool _isRequesting = false;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _originalController = TextEditingController();
@@ -69,6 +70,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
 
   @override
   Widget build(BuildContext context) {
+    // 更新処理
     Future _save(sentence) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
@@ -95,28 +97,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
       }
     }
 
-    // 更新ボタン
-    Widget _submitButton() {
-      return SizedBox(
-        height: 48,
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.green,
-            minimumSize: const Size(double.infinity,
-                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-          ),
-          onPressed: () => {
-            _save(_sentence),
-          },
-          icon: const Icon(Icons.update, color: Colors.white),
-          label: const Text(
-            '更新する',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-        ),
-      );
-    }
-
+    // メイン
     Widget _body(Sentence? sentence) {
       if (_isLoading) return const LoadingSpinner();
       if (sentence == null) return const Text('Sentence does not exists.');
@@ -141,7 +122,26 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
                 keyword: '',
               ),
               const SizedBox(height: 40),
-              _submitButton(),
+              SizedBox(
+                height: 48,
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                    minimumSize: const Size(double.infinity,
+                        40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                  ),
+                  onPressed: _isRequesting
+                      ? null
+                      : () async {
+                          _save(_sentence);
+                        },
+                  icon: const Icon(Icons.update, color: Colors.white),
+                  label: const Text(
+                    '更新する',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+              ),
               const SizedBox(height: 64),
               SentenceFormDestroyButton(sentence: sentence),
               const SizedBox(height: 160),

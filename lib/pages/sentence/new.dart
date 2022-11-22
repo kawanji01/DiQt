@@ -82,9 +82,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
 
       Map<String, dynamic> params = {
         'original': _originalController.text,
-        'lang_number_of_original': _dictionary!.langNumberOfEntry,
         'translation': _translationController.text,
-        'lang_number_of_tranlsation': _dictionary!.langNumberOfMeaning,
         'explanation': _explanationController.text,
         'dictionary_id': _dictionary!.id
       };
