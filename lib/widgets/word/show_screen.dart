@@ -19,7 +19,7 @@ class WordShowScreen extends StatelessWidget {
       return WordDetailedItem(word: word);
     }
 
-    Widget _sentenceQuiz() {
+    Widget sentenceQuiz() {
       if (sentence == null) return Container();
       final Quiz? sentenceQuiz = sentence.quiz;
       if (sentenceQuiz == null) return Container();
@@ -35,7 +35,7 @@ class WordShowScreen extends StatelessWidget {
         quiz: quiz,
         isShow: false,
       ),
-      _sentenceQuiz(),
+      sentenceQuiz(),
       const SizedBox(
         height: 120,
       ),

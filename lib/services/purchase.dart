@@ -171,7 +171,7 @@ class PurchaseService {
       bool result = await syncSubscription(restoredInfo);
       return result;
     } on PlatformException catch (e) {
-      // print('.restore: $e');
+      print('.restore: $e');
       return false;
     } finally {
       isExecuting = false;

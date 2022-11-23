@@ -17,7 +17,7 @@ class QuizHintButton extends StatelessWidget {
 
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        primary: Colors.white70,
+        backgroundColor: Colors.white70,
         minimumSize: const Size(80, 32),
       ),
       onPressed: () {

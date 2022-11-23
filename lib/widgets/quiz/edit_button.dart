@@ -21,8 +21,8 @@ class QuizEditButton extends StatelessWidget {
         alignment: Alignment.topLeft,
         child: TextButton(
           style: TextButton.styleFrom(
+            foregroundColor: Colors.black54,
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            primary: Colors.black54,
             textStyle: const TextStyle(fontSize: 16),
           ),
           onPressed: () {

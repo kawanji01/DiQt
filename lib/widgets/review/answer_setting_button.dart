@@ -30,7 +30,7 @@ class ReviewAnswerSettingButton extends ConsumerWidget {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 40),
-        primary: const Color(0xfff3f3f4),
+        backgroundColor: const Color(0xfff3f3f4),
       ),
       onPressed: () => {_moveToAnswerSetting()},
       icon: const Icon(

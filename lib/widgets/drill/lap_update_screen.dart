@@ -52,7 +52,7 @@ class DrillLapUpdateScreen extends ConsumerWidget {
             },
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(264, 48),
-              primary: Colors.green,
+              backgroundColor: Colors.green,
             ),
           ),
         ),

@@ -22,7 +22,7 @@ class DialogCloseButton extends StatelessWidget {
           },
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 40),
-            primary: Colors.green,
+            backgroundColor: Colors.green,
           ),
         ),
       ),

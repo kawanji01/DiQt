@@ -28,7 +28,7 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       final int dictionaryId = arguments['dictionaryId'];
       ref.refresh(asyncDictionaryFamily(dictionaryId));
@@ -67,7 +67,7 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
           const SizedBox(height: 64),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              primary: Colors.green,
+              backgroundColor: Colors.green,
               minimumSize: const Size(double.infinity,
                   40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
             ),

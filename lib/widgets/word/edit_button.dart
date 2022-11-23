@@ -18,8 +18,8 @@ class WordEditButton extends ConsumerWidget {
       alignment: Alignment.topLeft,
       child: TextButton(
         style: TextButton.styleFrom(
+          foregroundColor: Colors.black54,
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          primary: Colors.black54,
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {
@@ -42,8 +42,8 @@ class WordEditButton extends ConsumerWidget {
       alignment: Alignment.topRight,
       child: TextButton(
         style: TextButton.styleFrom(
+          foregroundColor: Colors.black54,
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          primary: Colors.black54,
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {

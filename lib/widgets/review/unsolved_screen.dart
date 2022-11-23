@@ -22,7 +22,7 @@ class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
     super.initState();
     // WidgetsBinding.instance?.addPostFrameCallback　はすべてのWidgetのビルドが終わったタイミングで呼ばれるコールバック ref: https://zuma-lab.com/posts/flutter-troubleshooting-called-during-build
     // ビルドが終わる前にStateを更新すると setState() or markNeedsBuild() called during build が発生する。
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.refresh(asyncUnsolvedReviewsProvider);
     });
   }
@@ -55,7 +55,7 @@ class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
     return NotificationListener<LoadingUnsolvedQuizzesNotification>(
       onNotification: (notification) {
         // すべてのWeidgetの描画が終わるまで待たないと20件の復習が読み込まれる。
-        WidgetsBinding.instance?.addPostFrameCallback((_) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
           ref.refresh(asyncUnsolvedReviewsProvider);
         });
         // trueを返すことで通知がこれ以上遡らない

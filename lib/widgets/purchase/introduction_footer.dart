@@ -1,6 +1,6 @@
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 // 購入ボタンの下に表示する注意書きなど
 class PurchaseIntroductionFooter extends StatelessWidget {
@@ -32,8 +32,8 @@ class PurchaseIntroductionFooter extends StatelessWidget {
               // テキスト内リンクの実装方法：ref: https://qiita.com/chooyan_eng/items/9e8f6ca2af55ea0e683a
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  launch("https://www.diqt.net/ja/privacy_policy",
-                      forceSafariVC: true);
+                  WebPageLauncher.openByWebView(
+                      "https://www.diqt.net/ja/privacy_policy");
                 },
             ),
             const TextSpan(
@@ -44,8 +44,8 @@ class PurchaseIntroductionFooter extends StatelessWidget {
               style: const TextStyle(decoration: TextDecoration.underline),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  launch("https://www.diqt.net/ja/terms_of_service",
-                      forceSafariVC: true);
+                  WebPageLauncher.openByWebView(
+                      "https://www.diqt.net/ja/terms_of_service");
                 },
             ),
             const TextSpan(
@@ -56,7 +56,8 @@ class PurchaseIntroductionFooter extends StatelessWidget {
               style: const TextStyle(decoration: TextDecoration.underline),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  launch("https://www.diqt.net/ja/legal", forceSafariVC: true);
+                  WebPageLauncher.openByWebView(
+                      "https://www.diqt.net/ja/legal");
                 },
             ),
             const TextSpan(
@@ -67,9 +68,8 @@ class PurchaseIntroductionFooter extends StatelessWidget {
               style: const TextStyle(decoration: TextDecoration.underline),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  launch(
-                      "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
-                      forceSafariVC: true);
+                  WebPageLauncher.openByWebView(
+                      "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/");
                 },
             ),
             const TextSpan(

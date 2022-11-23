@@ -12,7 +12,7 @@ class LocalUserInfo {
   // ユーザーのIDを取得する
   static Future<String?> publicUid() async {
     const storage = FlutterSecureStorage();
-    String? uid = await storage.read(key: 'publicUis');
+    String? uid = await storage.read(key: 'publicUid');
     return uid;
   }
 }

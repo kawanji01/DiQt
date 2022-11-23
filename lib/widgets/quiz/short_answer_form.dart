@@ -93,8 +93,8 @@ class _QuizShortAnswerFormState extends ConsumerState<QuizShortAnswerForm> {
           child: const Text('解答する',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity, 40), // 親要素まで横幅を広げる
-            primary: Colors.green,
+            minimumSize: const Size(double.infinity, 40),
+            backgroundColor: Colors.green,
           ),
         ),
       ],

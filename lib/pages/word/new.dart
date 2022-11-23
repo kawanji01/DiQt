@@ -49,7 +49,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
     super.initState();
     // 複数の引数を受け取る。参考： https://stackoverflow.com/questions/53304340/navigator-pass-arguments-with-pushnamed
     // exeception回避
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       _initialize(arguments);
     });
@@ -160,7 +160,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
                     height: 48,
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
+                        backgroundColor: Colors.green,
                         minimumSize: const Size(double.infinity,
                             40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
                       ),

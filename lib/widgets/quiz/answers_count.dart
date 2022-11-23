@@ -9,7 +9,7 @@ class QuizAnswersCount extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final int todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
       // １０問解答ごとに画面上端に通知を表示する。
       if (todaysAnswersCount % 10 == 0) {

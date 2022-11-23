@@ -3,9 +3,9 @@ import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 
 class ExternalLinkDialog extends StatefulWidget {
   const ExternalLinkDialog({Key? key, this.redirectPath}) : super(key: key);
@@ -52,20 +52,13 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
     Future<void> _moveToExternalPage() async {
       Navigator.of(context).pop();
       // ワンタイムパスコードがない場合は、直接URLにリダイレクトする
-      String url = "${DiQtURL.root(context)}/$_redirectPath";
+      String urlStr = "${DiQtURL.root(context)}/$_redirectPath";
       // ワンタイムパスコードがある場合は、パスコードを使ってログインさせてからリダイレクトさせる。
       if (_onetimePasscode != null) {
-        url =
+        urlStr =
             "${DiQtURL.root(context)}/api/v1/mobile/sessions/verify_onetime_passcode?onetime_passcode=$_onetimePasscode";
       }
-
-      if (await canLaunch(url)) {
-        await launch(
-          url,
-          forceSafariVC: false,
-          forceWebView: false,
-        );
-      }
+      WebPageLauncher.openByWebView(urlStr);
     }
 
     // ダイアログの中身を生成する
@@ -87,7 +80,7 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
                     fontSize: 16,
                     color: Colors.white)),
             style: ElevatedButton.styleFrom(
-              primary: Colors.black45, //ボタンの背景色
+              backgroundColor: Colors.black45,
             ),
           ),
         );
@@ -106,7 +99,7 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
                   color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
-              primary: Colors.green, //ボタンの背景色
+              backgroundColor: Colors.green,
             ),
           ),
         );
