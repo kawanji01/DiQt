@@ -145,7 +145,6 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
                 translationController: _translationController,
                 explanationController: _explanationController,
                 dictionary: _dictionary!,
-                isNew: true,
                 keyword: _keyword,
               ),
               const SizedBox(height: 40),
