@@ -14,17 +14,30 @@ class SentenceForm extends StatelessWidget {
     required this.translationController,
     required this.explanationController,
     required this.dictionary,
+    required this.isNew,
     this.keyword,
   }) : super(key: key);
 
   final TextEditingController originalController;
   final TextEditingController translationController;
   final TextEditingController explanationController;
+  final bool isNew;
   final String? keyword;
   final Dictionary dictionary;
 
   @override
   Widget build(BuildContext context) {
+    Widget sentenceGeneratorButton() {
+      if (isNew) {
+        return SentenceFormGeneratorButton(
+          langNumber: dictionary.langNumberOfEntry,
+          originalController: originalController,
+          keyword: keyword,
+        );
+      }
+      return Container();
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -51,12 +64,7 @@ class SentenceForm extends StatelessWidget {
         ),
         SharedLangSetting(langNumber: dictionary.langNumberOfEntry),
         //const SizedBox(height: 16),
-        SentenceFormGeneratorButton(
-          langNumber: dictionary.langNumberOfEntry,
-          originalController: originalController,
-          keyword: keyword,
-        ),
-
+        sentenceGeneratorButton(),
         const SizedBox(height: 40),
 
         SentenceFormTranslation(

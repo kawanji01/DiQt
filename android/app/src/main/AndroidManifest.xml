@@ -8,7 +8,9 @@
     <application
         android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher">
+        <!-- Android 12に対応するためにexportedを設定する。ref: https://minpro.net/apps-targeting-android-12-and-higher-are-required-to-specify-an-explicit-value-for-android-exported -->
         <activity
+            android:exported="true"
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
