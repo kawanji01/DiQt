@@ -29,7 +29,7 @@ class _ActivityCheerButtonState extends ConsumerState<ActivityCheerButton> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         _activity = widget.activity;
         _cheer = widget.cheer;

@@ -35,7 +35,7 @@ class _NoticeUnreceivedAchievementState
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _achievementMap = widget.achievementMap;
       _achievement = _achievementMap!.achievement;
       _initialExp = _achievementMap!.user!.amountOfExp;

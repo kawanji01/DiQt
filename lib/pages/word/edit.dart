@@ -47,7 +47,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       final int wordId = arguments['wordId'];
       _loadWord(wordId);

@@ -38,7 +38,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       final int sentenceId = arguments['sentenceId'];
       _loadSentence(sentenceId);

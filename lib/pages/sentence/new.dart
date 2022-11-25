@@ -39,7 +39,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       _initialize(arguments);
     });

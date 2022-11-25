@@ -23,7 +23,7 @@ class _ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _loadRankers();
     });
   }

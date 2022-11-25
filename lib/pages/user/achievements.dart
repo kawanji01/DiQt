@@ -44,7 +44,7 @@ class _UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
   void initState() {
     super.initState();
     // exeception回避
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _loadAchievements();
     });
   }

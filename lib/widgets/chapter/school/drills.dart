@@ -17,7 +17,7 @@ class _ChapterSchoolDrillsState extends ConsumerState<ChapterSchoolDrills> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.refresh(asynSchoolDrillsProvider);
     });
   }
