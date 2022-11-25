@@ -46,7 +46,7 @@ class RemoteSessions {
     final Response res = await post(url, body: {
       'uid': '${authResult.user!.id}',
       'name': authResult.user!.name,
-      'email': authResult.user!.email,
+      'email': authResult.user?.email ?? '',
       'image': authResult.user!.thumbnailImage,
       'device_identifier': deviceIdentifier,
       'platform': platform,
