@@ -40,7 +40,7 @@ class _QuizEditPageState extends State<QuizEditPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       final int quizId = arguments['quizId'];
       _loadQuiz(quizId);

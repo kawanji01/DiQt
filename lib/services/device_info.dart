@@ -8,7 +8,7 @@ class DeviceInfoService {
     String deviceIdentifier = "unknown";
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      deviceIdentifier = androidInfo.androidId!;
+      deviceIdentifier = androidInfo.id;
     } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       deviceIdentifier = iosInfo.identifierForVendor!;
@@ -32,7 +32,7 @@ class DeviceInfoService {
     String deviceName = "unknown";
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      deviceName = androidInfo.model!;
+      deviceName = androidInfo.model;
     } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       deviceName = iosInfo.utsname.machine!;

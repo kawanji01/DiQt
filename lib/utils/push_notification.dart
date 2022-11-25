@@ -55,7 +55,6 @@ class PushNotification {
       const AndroidNotificationChannel channel = AndroidNotificationChannel(
         'high_importance_channel', // id
         'High Importance Notifications', // title
-        'This channel is used for important notifications.', // description
         importance: Importance.max,
       );
 
@@ -80,7 +79,6 @@ class PushNotification {
                 android: AndroidNotificationDetails(
                   channel.id,
                   channel.name,
-                  channel.description,
                   icon: android.smallIcon,
                   // バナーを表示　https://zenn.dev/tomon9086/articles/d2624f6ab37c4c
                   importance: Importance.max,

@@ -28,7 +28,7 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       final int dictionaryId = arguments['dictionaryId'];
       ref.refresh(asyncDictionaryFamily(dictionaryId));

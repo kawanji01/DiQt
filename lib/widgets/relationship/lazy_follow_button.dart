@@ -26,7 +26,7 @@ class _RelationshipLazyFollowButtonState
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _user = widget.user;
       _currentUser = ref.watch(currentUserProvider);
       if (_user == null || _currentUser == null) return;

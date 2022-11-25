@@ -34,45 +34,44 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  http: ^0.13.4 # APIへのリクエスト
-  google_fonts: ^2.1.0 # フォント
-  flutter_secure_storage: ^4.2.1 # クライアント側のセキュアなストレージ
-  url_launcher: ^6.0.12 # ブラウザを開く
-  badges: ^2.0.1 # バッジの表示
-  twitter_login: ^4.0.1 # Twitter認証 
-  firebase_core: "^1.10.0" # Push通知の実装に利用。参考：https://zuma-lab.com/posts/flutter-fcm-push-notify-development
-  firebase_messaging: "^11.1.0" # Push通知の実装に利用する。参考： https://firebase.flutter.dev/docs/messaging/overview/#installation
-  flutter_local_notifications: ^8.2.0 # AndroidでフォアグラウンドでPush通知を送れるようにする。参照：https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_messaging/firebase_messaging/example/pubspec.yaml / https://zenn.dev/rafekun/articles/ef8a22f9fe90bd
-  device_info_plus: ^3.1.0 # デバイスのユニークIDやデバイスの名前、OSを取得する。
-  flutter_tts: ^3.2.2 # 読み上げ
+  cupertino_icons: ^1.0.5
+  http: ^0.13.5 # APIへのリクエスト
+  google_fonts: ^3.0.1 # フォント
+  flutter_secure_storage: ^6.1.0 # クライアント側のセキュアなストレージ
+  url_launcher: ^6.1.7 # ブラウザを開く
+  badges: ^2.0.3 # バッジの表示
+  twitter_login: ^4.2.3 # Twitter認証 
+  firebase_core: ^2.3.0 # Push通知の実装に利用。参考：https://zuma-lab.com/posts/flutter-fcm-push-notify-development
+  firebase_messaging: ^14.1.2 # Push通知の実装に利用する。参考： https://firebase.flutter.dev/docs/messaging/overview/#installation
+  flutter_local_notifications: ^12.0.4 # AndroidでフォアグラウンドでPush通知を送れるようにする。参照：https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_messaging/firebase_messaging/example/pubspec.yaml / https://zenn.dev/rafekun/articles/ef8a22f9fe90bd
+  device_info_plus: ^8.0.0 # デバイスのユニークIDやデバイスの名前、OSを取得する。
+  flutter_tts: ^3.6.2 # 読み上げ
   flutter_dotenv: ^5.0.2 # 環境変数の管理
-  sign_in_with_apple: ^3.2.0 # Apple認証
+  sign_in_with_apple: ^4.2.0 # Apple認証
   nonce: ^1.2.0 # 英数両用の乱数を生成する（Apple認証で利用）
-  google_sign_in: ^5.2.1 # Google認証
-  flutter_easyloading: ^3.0.3 # 画面全体にローディングを表示する
+  google_sign_in: ^5.4.2 # Google認証
+  flutter_easyloading: ^3.0.5 # 画面全体にローディングを表示する
   in_app_review: ^2.0.4 # アプリ内でレビューできるようにする。ref: https://pub.dev/packages/in_app_review
   flutter_typeahead: ^3.2.4 # 検索時のautocomplete
   percent_indicator: ^3.4.0 # 経験値のインジケーター
   eval_ex: ^1.1.0 # レベル実装のために、log10（ 10 を底とした対数を返すメソッド）が必要なため。
   purchases_flutter: ^3.9.3 # 課金実装
-  google_mobile_ads: ^0.13.6 # 広告
+  google_mobile_ads: ^2.3.0 # 広告
   flutter_riverpod: ^1.0.3 # 状態管理
-  # intl: ^0.17.0 # 多言語化
-  flash: ^2.0.3+2 # トースト
+  flash: ^2.0.5 # トースト
   flutter_animated_dialog: ^2.0.1 # アニメーションするダイアログ
-  confetti: ^0.6.0 # 紙吹雪
-  audioplayers: ^0.20.1 # 音声の再生
-  infinite_scroll_pagination: ^3.1.0 # 無限スクロール
-  visibility_detector: ^0.2.2 # 無限スクロールで、次のアイテムを読み込むためにページの下端への到達を検知する
-  timeago: ^3.2.2 # ~分前などのタイムスタンプを実装する
-  path: ^1.8.0 # Achievementの獲得時の画像で。cloudinaryの画像合成を利用するためにimageのURLからファイル名を取得するために利用
-  cached_network_image: ^3.2.0 # ネットワーク経由で画像を表示し、画像をキャッシュディレクトリに保持する。
-  share_plus: ^4.0.4 # 連続解答記録のシェアなど
-  responsive_builder: ^0.4.2 # 画面幅に合わせたレスポンシブデザイン
-  font_awesome_flutter: ^10.1.0 # font awesome
-  flutter_markdown: ^0.6.10 # markdown
-  dotted_border: ^2.0.0+2 # embedded_sentenceで利用
+  confetti: ^0.7.0 # 紙吹雪
+  audioplayers: ^1.1.1 # 音声の再生
+  infinite_scroll_pagination: ^3.2.0 # 無限スクロール
+  visibility_detector: ^0.3.3 # 無限スクロールで、次のアイテムを読み込むためにページの下端への到達を検知する
+  timeago: ^3.3.0 # ~分前などのタイムスタンプを実装する
+  path: ^1.8.2 # Achievementの獲得時の画像で。cloudinaryの画像合成を利用するためにimageのURLからファイル名を取得するために利用
+  cached_network_image: ^3.2.2 # ネットワーク経由で画像を表示し、画像をキャッシュディレクトリに保持する。
+  share_plus: ^6.3.0 # 連続解答記録のシェアなど
+  responsive_builder: ^0.4.3 # 画面幅に合わせたレスポンシブデザイン
+  font_awesome_flutter: ^10.2.1 # font awesome
+  flutter_markdown: ^0.6.13 # markdown
+  dotted_border: ^2.0.0+3 # embedded_sentenceで利用
 
   
 

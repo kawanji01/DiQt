@@ -29,7 +29,7 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final Quiz quiz = widget.answerNotification.quiz;
       ref.refresh(asyncQuizFamily(quiz.id));
     });
