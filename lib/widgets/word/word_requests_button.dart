@@ -28,8 +28,8 @@ class WordWordRequestsButton extends StatelessWidget {
       final String redirectPath = 'words/${word.id}/pending_word_requests';
       return TextButton(
         style: TextButton.styleFrom(
+          foregroundColor: Colors.green,
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          primary: Colors.green,
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {

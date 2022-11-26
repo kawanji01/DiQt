@@ -32,7 +32,7 @@ class ReviewBulkDeletionScreen extends ConsumerWidget {
 
     final cancelButton = ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        primary: Colors.grey,
+        backgroundColor: Colors.grey,
         minimumSize: const Size(144,
             40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
       ),

@@ -44,7 +44,7 @@ class _QuizFlashcardState extends ConsumerState<QuizFlashcard> {
         padding: const EdgeInsets.only(right: 8),
         child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            primary: Colors.blue,
+            backgroundColor: Colors.blue,
             minimumSize: const Size(double.infinity,
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
@@ -66,7 +66,7 @@ class _QuizFlashcardState extends ConsumerState<QuizFlashcard> {
         padding: const EdgeInsets.only(left: 8),
         child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            primary: Colors.red,
+            backgroundColor: Colors.red,
             minimumSize: const Size(double.infinity,
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),

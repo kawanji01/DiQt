@@ -92,7 +92,7 @@ class _AnswerRequestingReviewScreenState
                               Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.green,
+                              backgroundColor: Colors.green,
                             ),
                           ),
                         ),

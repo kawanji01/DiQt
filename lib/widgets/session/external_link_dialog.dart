@@ -87,7 +87,7 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
                     fontSize: 16,
                     color: Colors.white)),
             style: ElevatedButton.styleFrom(
-              primary: Colors.black45, //ボタンの背景色
+              backgroundColor: Colors.black45, //ボタンの背景色
             ),
           ),
         );
@@ -106,7 +106,7 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
                   color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
-              primary: Colors.green, //ボタンの背景色
+              backgroundColor: Colors.green, //ボタンの背景色
             ),
           ),
         );

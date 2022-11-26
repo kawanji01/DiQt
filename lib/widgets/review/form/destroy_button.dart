@@ -31,7 +31,7 @@ class ReviewFormDestroyButton extends StatelessWidget {
       label: const Text('復習設定を削除する'),
       onPressed: () => _delete(),
       style: TextButton.styleFrom(
-        primary: Colors.red,
+        foregroundColor: Colors.red,
         textStyle: const TextStyle(fontSize: 16),
         padding: EdgeInsets.zero,
       ),

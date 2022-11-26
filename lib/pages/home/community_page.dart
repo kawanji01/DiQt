@@ -59,7 +59,7 @@ class CommunityPage extends StatelessWidget {
     //
     final discordButton = ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        primary: const Color(0xff7289da),
+        backgroundColor: const Color(0xff7289da),
         minimumSize: const Size(double.infinity, 56),
       ),
       onPressed: () => {_moveToDiscord()},
