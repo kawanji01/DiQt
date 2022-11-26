@@ -1,8 +1,9 @@
+import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/utils/audio_players_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/answer/share_button.dart';
@@ -25,6 +26,7 @@ class AnswerContinuousGoalAchievementScreen extends ConsumerStatefulWidget {
 
 class _AnswerContinuousGoalAchievementScreenState
     extends ConsumerState<AnswerContinuousGoalAchievementScreen> {
+  final AudioPlayer audioPlayer = AudioPlayer();
   @override
   void initState() {
     super.initState();
@@ -32,9 +34,15 @@ class _AnswerContinuousGoalAchievementScreenState
       // 効果音
       final bool seEnabled = ref.watch(seEnabledProvider);
       if (seEnabled) {
-        AudioPlayersService.playAchievementSound();
+        audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
       }
     });
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
   }
 
   Widget _heading(int counter) {

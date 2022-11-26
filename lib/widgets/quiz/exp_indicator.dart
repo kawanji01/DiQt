@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/utils/audio_players_service.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
 import 'package:booqs_mobile/utils/level_up_dialog.dart';
 import 'package:flutter/material.dart';
@@ -62,11 +61,11 @@ class _QuizExpIndicatorState extends ConsumerState<QuizExpIndicator> {
 
       LevelUpDialog.show(context, _exp!);
       // 効果音
-      final bool seEnabled = ref
-          .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
-      if (seEnabled) {
-        AudioPlayersService.playLevelUpSound();
-      }
+      //final bool seEnabled = ref
+      //    .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
+      //if (seEnabled) {
+      //  AudioPlayersService.playLevelUpSound();
+      //}
     }
 
     Future<void> _afterAnimation() async {
