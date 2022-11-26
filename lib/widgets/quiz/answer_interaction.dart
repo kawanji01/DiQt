@@ -23,7 +23,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
     final int initialExp = notification.user!.amountOfExp;
 
     const double fontSize = 16;
-    final FontWeight fontWeight = FontWeight.bold;
+    const FontWeight fontWeight = FontWeight.bold;
     const Color fontColor = Colors.white;
 
     Widget _correctAnswerWidget() {

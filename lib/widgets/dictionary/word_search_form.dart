@@ -83,6 +83,7 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
               if (value!.isEmpty) {
                 return '入力してください。';
               }
+              return null;
             },
           ),
           Container(
