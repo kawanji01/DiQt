@@ -3,9 +3,9 @@ import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 
 class ExternalLinkDialog extends StatefulWidget {
   const ExternalLinkDialog({Key? key, this.redirectPath}) : super(key: key);
@@ -58,14 +58,7 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
         url =
             "${DiQtURL.root(context)}/api/v1/mobile/sessions/verify_onetime_passcode?onetime_passcode=$_onetimePasscode";
       }
-
-      if (await canLaunch(url)) {
-        await launch(
-          url,
-          forceSafariVC: false,
-          forceWebView: false,
-        );
-      }
+      WebPageLauncher.openByExternalBrowser(url);
     }
 
     // ダイアログの中身を生成する

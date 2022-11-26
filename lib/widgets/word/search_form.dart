@@ -73,6 +73,7 @@ class WordSearchForm extends ConsumerWidget {
               if (value!.isEmpty) {
                 return 'キーワードを入力してください。';
               }
+              return null;
             },
           ),
           Container(

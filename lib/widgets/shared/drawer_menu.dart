@@ -46,7 +46,8 @@ class DrawerMenu extends ConsumerWidget {
             onTap: () {
               if (_user == null) {
                 // ログインしていないなら、ブラウザ経由で問い合わせ方法を提示する
-                WebPageLauncher.open('https://www.diqt.net/ja/contact');
+                WebPageLauncher.openByWebView(
+                    'https://www.diqt.net/ja/contact');
               } else {
                 // ログインしているならお問い合わせフィームをモーダル表示
                 Dialogs.reward(const ContactFormScreen());
@@ -62,25 +63,27 @@ class DrawerMenu extends ConsumerWidget {
           ListTile(
             title: const Text('利用規約', style: TextStyle(fontSize: 16)),
             onTap: () {
-              WebPageLauncher.open('https://www.diqt.net/ja/terms_of_service');
+              WebPageLauncher.openByWebView(
+                  'https://www.diqt.net/ja/terms_of_service');
             },
           ),
           ListTile(
             title: const Text('プライバシーポリシー', style: TextStyle(fontSize: 16)),
             onTap: () {
-              WebPageLauncher.open('https://www.diqt.net/ja/privacy_policy');
+              WebPageLauncher.openByWebView(
+                  'https://www.diqt.net/ja/privacy_policy');
             },
           ),
           ListTile(
             title: const Text('特定商取引法に基づく表記', style: TextStyle(fontSize: 16)),
             onTap: () {
-              WebPageLauncher.open('https://www.diqt.net/ja/legal');
+              WebPageLauncher.openByWebView('https://www.diqt.net/ja/legal');
             },
           ),
           ListTile(
             title: const Text('運営会社', style: TextStyle(fontSize: 16)),
             onTap: () {
-              WebPageLauncher.open('https://www.diqt.net/ja/about');
+              WebPageLauncher.openByWebView('https://www.diqt.net/ja/about');
             },
           ),
         ],

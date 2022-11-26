@@ -1,27 +1,15 @@
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MarkdownIntroductionTextButton extends StatelessWidget {
   const MarkdownIntroductionTextButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _moveToDiQt() async {
-      // ワンタイムパスコードがない場合は、直接URLにリダイレクトする
-      String url = "${DiQtURL.root(context)}/markdown";
-      if (await canLaunch(url)) {
-        await launch(
-          url,
-          forceSafariVC: true,
-          forceWebView: true,
-        );
-      }
-    }
-
     return TextButton.icon(
       onPressed: () {
-        _moveToDiQt();
+        WebPageLauncher.openByWebView("${DiQtURL.root(context)}/markdown");
       },
       icon: const Icon(
         Icons.info_outline,

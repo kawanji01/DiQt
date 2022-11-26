@@ -4,9 +4,9 @@ import 'package:booqs_mobile/utils/markdown/embedded_sentence_syntax.dart';
 import 'package:booqs_mobile/utils/markdown/item_label_builder.dart';
 import 'package:booqs_mobile/utils/markdown/item_label_syntax.dart';
 import 'package:booqs_mobile/utils/markdown/style_sheet_set.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MarkdownWithoutDictLink extends StatelessWidget {
   const MarkdownWithoutDictLink(
@@ -47,7 +47,7 @@ class MarkdownWithoutDictLink extends StatelessWidget {
           fontSize, fontWeight, lineHeight, fontColor),
       onTapLink: (text, href, title) {
         if (href != null) {
-          launch(href);
+          WebPageLauncher.openByExternalBrowser(href);
         }
       },
     );

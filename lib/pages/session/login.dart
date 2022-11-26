@@ -2,6 +2,7 @@ import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:booqs_mobile/widgets/session/apple_button.dart';
 import 'package:booqs_mobile/widgets/session/divider_widget.dart';
 import 'package:booqs_mobile/widgets/session/google_button.dart';
@@ -9,7 +10,6 @@ import 'package:booqs_mobile/widgets/session/login_form.dart';
 import 'package:booqs_mobile/widgets/session/twitter_button.dart';
 import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -26,13 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   // パスワードリセット
   Future _moveToInitPasswordPage() async {
     final String url = '${DiQtURL.root(context)}/password_resets/new';
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-      );
-    }
+    WebPageLauncher.openByWebView(url);
   }
 
   @override
