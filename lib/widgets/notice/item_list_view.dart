@@ -50,14 +50,14 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
     _isLoading = true;
 
     final Map? resMap = await RemoteNotifications.index(pageKey, _pageSize);
+    // ref: https://github.com/EdsonBueno/infinite_scroll_pagination/issues/64
+    if (!mounted) return;
+
     if (resMap == null) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _isReached = false;
-        });
-      }
-      return;
+      return setState(() {
+        _isLoading = false;
+        _isReached = false;
+      });
     }
     final List<Notice> notices = [];
     resMap['notifications'].forEach((e) => notices.add(Notice.fromJson(e)));
@@ -72,13 +72,10 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(notices, _nextPagekey);
     }
-
-    if (mounted) {
-      setState(() {
-        _isReached = false;
-        _isLoading = false;
-      });
-    }
+    setState(() {
+      _isReached = false;
+      _isLoading = false;
+    });
   }
 
   @override

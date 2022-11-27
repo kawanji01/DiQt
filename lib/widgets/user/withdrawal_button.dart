@@ -1,3 +1,6 @@
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
@@ -5,24 +8,38 @@ import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserWithdrawalButton extends StatelessWidget {
-  const UserWithdrawalButton({Key? key, required this.user}) : super(key: key);
-  final User user;
+class UserWithdrawalButton extends ConsumerStatefulWidget {
+  const UserWithdrawalButton({Key? key}) : super(key: key);
 
   @override
+  UserWithdrawalButtonState createState() => UserWithdrawalButtonState();
+}
+
+class UserWithdrawalButtonState extends ConsumerState<UserWithdrawalButton> {
+  @override
   Widget build(BuildContext context) {
+    final User? user = ref.watch(currentUserProvider);
+    if (user == null) return Container();
+
     // 退会リクエスト
     Future withdrawal() async {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteUsers.withdrawal();
+      EasyLoading.dismiss();
+
       if (resMap == null) {
-        EasyLoading.dismiss();
+        if (!mounted) return;
         const snackBar = SnackBar(content: Text('エラーが発生しました。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         await UserSetup.logOut(user);
-        EasyLoading.dismiss();
+        ref.read(currentUserProvider.notifier).state = null;
+        ref.read(answerSettingProvider.notifier).state = null;
+        ref.read(todaysAnswersCountProvider.notifier).state = 0;
+        ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0;
+        if (!mounted) return;
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);

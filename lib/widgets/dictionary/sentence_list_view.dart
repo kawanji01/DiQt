@@ -47,14 +47,12 @@ class _DictionarySentenceListViewState
 
     final Map? resMap = await RemoteDictionaries.sentenceSearch(
         widget.dictionaryId, widget.keyword, pageKey, _pageSize);
+    if (!mounted) return;
     if (resMap == null) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _isReached = false;
-        });
-      }
-      return;
+      return setState(() {
+        _isLoading = false;
+        _isReached = false;
+      });
     }
     final List<Sentence> sentences = [];
     resMap['sentences'].forEach((e) => sentences.add(Sentence.fromJson(e)));
@@ -67,12 +65,11 @@ class _DictionarySentenceListViewState
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(sentences, _nextPagekey);
     }
-    if (mounted) {
-      setState(() {
-        _isReached = false;
-        _isLoading = false;
-      });
-    }
+
+    setState(() {
+      _isReached = false;
+      _isLoading = false;
+    });
   }
 
   @override

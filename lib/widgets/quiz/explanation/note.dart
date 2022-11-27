@@ -50,6 +50,7 @@ class _QuizExplanationNoteState extends State<QuizExplanationNote> {
       final String? token = await LocalUserInfo.authToken();
       if (token == null) {
         const snackBar = SnackBar(content: Text('ノートを利用するためにはログインが必要です。'));
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
         return;

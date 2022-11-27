@@ -6,15 +6,22 @@ import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizDrillTitle extends ConsumerWidget {
+class QuizDrillTitle extends ConsumerStatefulWidget {
   const QuizDrillTitle({Key? key, required this.drill}) : super(key: key);
   final Drill drill;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  QuizDrillTitleState createState() => QuizDrillTitleState();
+}
+
+class QuizDrillTitleState extends ConsumerState<QuizDrillTitle> {
+  @override
+  Widget build(BuildContext context) {
+    final Drill drill = widget.drill;
     // Drillページに遷移
     Future moveToDrillPage(drill) async {
       final String? token = await LocalUserInfo.authToken();
+      if (!mounted) return;
 
       if (token == null) {
         const snackBar = SnackBar(content: Text('問題を解くにはログインが必要です。'));

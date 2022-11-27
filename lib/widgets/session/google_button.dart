@@ -9,11 +9,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class GoogleButton extends ConsumerWidget {
+class GoogleButton extends ConsumerStatefulWidget {
   const GoogleButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  GoogleButtonState createState() => GoogleButtonState();
+}
+
+class GoogleButtonState extends ConsumerState<GoogleButton> {
+  @override
+  Widget build(BuildContext context) {
     // Google 認証
     final googleSignin = GoogleSignIn(scopes: [
       'email',
@@ -28,18 +33,22 @@ class GoogleButton extends ConsumerWidget {
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-
       final Map? resMap = await RemoteSessions.google(googleAuth);
-      if (resMap == null) return EasyLoading.dismiss();
-
-      final User user = User.fromJson(resMap['user']);
-      await UserSetup.signIn(user);
-      ref.read(currentUserProvider.notifier).state = user;
       // 画面全体のローディングを消す。
       EasyLoading.dismiss();
-      const snackBar = SnackBar(content: Text('ログインしました。'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      UserMyPage.push(context);
+      if (resMap == null) {
+        if (!mounted) return;
+        const snackBar = SnackBar(content: Text('エラーが発生しました。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        final User user = User.fromJson(resMap['user']);
+        await UserSetup.signIn(user);
+        ref.read(currentUserProvider.notifier).state = user;
+        if (!mounted) return;
+        const snackBar = SnackBar(content: Text('ログインしました。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        UserMyPage.push(context);
+      }
     }
 
     final richText = RichText(

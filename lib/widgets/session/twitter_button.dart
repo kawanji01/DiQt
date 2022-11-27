@@ -10,11 +10,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_login/twitter_login.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-// Web/Mobile/ExtensionでSign in with Appleを導入できるようになるまでSNS認証の導入を見送る。
-class TwitterButton extends ConsumerWidget {
+class TwitterButton extends ConsumerStatefulWidget {
   const TwitterButton({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  TwitterButtonState createState() => TwitterButtonState();
+}
+
+class TwitterButtonState extends ConsumerState<TwitterButton> {
+  @override
+  Widget build(BuildContext context) {
     final String? apiKey = dotenv.env['TWITTER_CONSUMER_KEY'];
     final String? apiSecretKey = dotenv.env['TWITTER_CONSUMER_SECRET'];
     final String? aredirectURI = dotenv.env['TWITTER_CALLBACK_URL'];
@@ -44,38 +49,37 @@ class TwitterButton extends ConsumerWidget {
       switch (authResult.status) {
         case TwitterLoginStatus.loggedIn:
           final Map? resMap = await RemoteSessions.twitter(authResult);
+          EasyLoading.dismiss();
           if (resMap == null) {
+            if (!mounted) return;
             const snackBar = SnackBar(content: Text('エラーが発生しました。'));
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            EasyLoading.dismiss();
             return;
           }
-
           final User user = User.fromJson(resMap['user']);
           await UserSetup.signIn(user);
           ref.read(currentUserProvider.notifier).state = user;
           const snackBar = SnackBar(content: Text('ログインしました。'));
+          if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           UserMyPage.push(context);
           EasyLoading.dismiss();
           break;
         case TwitterLoginStatus.cancelledByUser:
+          EasyLoading.dismiss();
+          if (!mounted) return;
           // cancel
           const snackBar = SnackBar(content: Text('キャンセルしました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          EasyLoading.dismiss();
           break;
         case TwitterLoginStatus.error:
+          EasyLoading.dismiss();
+          if (!mounted) return;
           // error
           const snackBar = SnackBar(content: Text('エラーが発生しました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          EasyLoading.dismiss();
           break;
         default:
-          // error
-          const snackBar = SnackBar(content: Text('エラーが発生しました。'));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          EasyLoading.dismiss();
       }
     }
 

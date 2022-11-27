@@ -113,6 +113,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
       final Map? resMap = await RemoteWords.create(params);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
+      if (!mounted) return;
 
       if (resMap == null) {
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));

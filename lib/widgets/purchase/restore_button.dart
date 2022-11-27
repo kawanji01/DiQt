@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 // サブスクのリストアボタン
-class PurchaseRestoreButton extends StatelessWidget {
+class PurchaseRestoreButton extends StatefulWidget {
   const PurchaseRestoreButton({Key? key}) : super(key: key);
 
+  @override
+  State<PurchaseRestoreButton> createState() => _PurchaseRestoreButtonState();
+}
+
+class _PurchaseRestoreButtonState extends State<PurchaseRestoreButton> {
   @override
   Widget build(BuildContext context) {
     final purchase = PurchaseService();
@@ -18,6 +23,7 @@ class PurchaseRestoreButton extends StatelessWidget {
         final subscriptionRestored = await purchase.restore();
         // 画面全体のローディングを消す。
         EasyLoading.dismiss();
+        if (!mounted) return;
         if (subscriptionRestored) {
           const snackBar = SnackBar(content: Text('購入情報を復元しました。'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);

@@ -44,14 +44,12 @@ class DrillSolvedQuizListViewState
 
     final Map? resMap =
         await RemoteDrills.solved(publicUid, pageKey, _pageSize, order);
+    if (!mounted) return;
     if (resMap == null) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _isReached = false;
-        });
-      }
-      return;
+      return setState(() {
+        _isLoading = false;
+        _isReached = false;
+      });
     }
     final List<Quiz> quizzes = [];
     resMap['quizzes'].forEach((e) => quizzes.add(Quiz.fromJson(e)));
@@ -64,12 +62,11 @@ class DrillSolvedQuizListViewState
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(quizzes, _nextPagekey);
     }
-    if (mounted) {
-      setState(() {
-        _isReached = false;
-        _isLoading = false;
-      });
-    }
+
+    setState(() {
+      _isReached = false;
+      _isLoading = false;
+    });
   }
 
   @override

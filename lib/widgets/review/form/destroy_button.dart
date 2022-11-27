@@ -4,13 +4,20 @@ import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class ReviewFormDestroyButton extends StatelessWidget {
+class ReviewFormDestroyButton extends StatefulWidget {
   const ReviewFormDestroyButton({Key? key, required this.review})
       : super(key: key);
   final Review review;
 
   @override
+  State<ReviewFormDestroyButton> createState() =>
+      _ReviewFormDestroyButtonState();
+}
+
+class _ReviewFormDestroyButtonState extends State<ReviewFormDestroyButton> {
+  @override
   Widget build(BuildContext context) {
+    final Review review = widget.review;
     // 復習設定を削除する
     Future delete() async {
       EasyLoading.show(status: 'loading...');
@@ -22,6 +29,7 @@ class ReviewFormDestroyButton extends StatelessWidget {
       // 削除が完了したことを伝えるモデルを作成する。
       review.scheduledDate = 'deleted';
       // ダイアログを閉じて、reviewを返り値にする。
+      if (!mounted) return;
       Navigator.of(context).pop(review);
     }
 

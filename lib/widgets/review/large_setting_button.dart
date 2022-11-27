@@ -40,6 +40,7 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
       final String? authToken = await LocalUserInfo.authToken();
       // ログインしていない場合（トークンがない場合）ユーザーはマイページにリダイレクト
       if (authToken == null) {
+        if (!mounted) return;
         const snackBar = SnackBar(content: Text('復習を設定するためには、ログインが必要です。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);

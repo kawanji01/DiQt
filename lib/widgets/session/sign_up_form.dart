@@ -44,29 +44,15 @@ class SignUpFormState extends ConsumerState<SignUpForm> {
         return;
       }
 
-      /* // デバイスの識別IDなどを取得する
-      final deviceInfo = DeviceInfoService();
-      String platform = deviceInfo.getPlatform();
-      String deviceIdentifier = await deviceInfo.getIndentifier();
-      String deviceName = await deviceInfo.getName();
-      // リクエスト
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users');
-      var res = await http.post(url, body: {
-        'name': _nameController.text,
-        'email': _idController.text,
-        'password': _passwordController.text,
-        'device_identifier': deviceIdentifier,
-        'device_name': deviceName,
-        'platform': platform,
-      }); */
       final String name = _nameController.text;
       final String email = _idController.text;
       final String password = _passwordController.text;
       final Map? resMap = await RemoteSessions.signUp(name, email, password);
+      EasyLoading.dismiss();
 
       // レスポンスに対する処理
       if (resMap == null) {
+        if (!mounted) return;
         _passwordController.text = '';
         const snackBar = SnackBar(
             content: Text('登録できませんでした。指定メールアドレスのユーザーはすでに存在しているか、パスワードが短すぎます。'));
@@ -74,12 +60,12 @@ class SignUpFormState extends ConsumerState<SignUpForm> {
       } else {
         User user = User.fromJson(resMap['user']);
         await UserSetup.signIn(user);
+        if (!mounted) return;
         ref.read(currentUserProvider.notifier).state = user;
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
       }
-      EasyLoading.dismiss();
     }
 
     return Form(

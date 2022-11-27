@@ -46,14 +46,12 @@ class _WordFormSentenceListViewState extends State<WordFormSentenceListView> {
     final String keyword = widget.keyword;
     final Map? resMap =
         await RemoteSentences.search(keyword, dictionaryId, pageKey, _pageSize);
+    if (!mounted) return;
     if (resMap == null) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _isReached = false;
-        });
-      }
-      return;
+      return setState(() {
+        _isLoading = false;
+        _isReached = false;
+      });
     }
     final List<Sentence> sentences = [];
     if (resMap['sentences'] != null) {
@@ -70,12 +68,10 @@ class _WordFormSentenceListViewState extends State<WordFormSentenceListView> {
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(sentences, _nextPagekey);
     }
-    if (mounted) {
-      setState(() {
-        _isReached = false;
-        _isLoading = false;
-      });
-    }
+    setState(() {
+      _isReached = false;
+      _isLoading = false;
+    });
   }
 
   @override

@@ -1,12 +1,9 @@
-import 'dart:convert';
-
+import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/widgets/user/withdrawal_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart';
 
 class UserForm extends StatefulWidget {
   const UserForm({Key? key, required this.user}) : super(key: key);
@@ -44,30 +41,17 @@ class _UserFormState extends State<UserForm> {
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      const storage = FlutterSecureStorage();
-      String? token = await storage.read(key: 'token');
-
-      // リクエスト
-      var url = Uri.parse(
-          '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/${user.publicUid}');
-
-      Response response = await patch(url, body: {
-        'token': token,
-        'name': _nameController.text,
-        'profile': _profileController.text,
-      });
-
-      if (response.statusCode == 200) {
-        // 画面全体のローディングを消す。
-        EasyLoading.dismiss();
-        Map<String, dynamic> resMap = json.decode(response.body);
+      final Map? resMap = await RemoteUsers.update(
+          user.publicUid, _nameController.text, _profileController.text);
+      EasyLoading.dismiss();
+      if (!mounted) return;
+      if (resMap == null) {
+        const snackBar = SnackBar(content: Text('アカウントを更新できませんでした。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
-      } else {
-        EasyLoading.dismiss();
-        const snackBar = SnackBar(content: Text('アカウントを更新できませんでした。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
 
@@ -136,7 +120,7 @@ class _UserFormState extends State<UserForm> {
               const SizedBox(height: 40),
               submitButton(),
               const SizedBox(height: 80),
-              UserWithdrawalButton(user: user),
+              const UserWithdrawalButton(),
               const SizedBox(height: 80),
             ]));
   }

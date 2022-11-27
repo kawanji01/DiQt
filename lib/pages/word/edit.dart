@@ -123,6 +123,7 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
       final Map? resMap = await RemoteWords.update(params);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
+      if (!mounted) return;
 
       if (resMap == null) {
         const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));

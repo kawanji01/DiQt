@@ -1,7 +1,8 @@
-import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -21,10 +22,9 @@ class DrillCard extends ConsumerWidget {
     final DrillLap? drillLap = drill.drillLap;
 
     // Drillページに遷移
-    Future moveToDrillPage(drill) async {
-      final String? token = await LocalUserInfo.authToken();
-
-      if (token == null) {
+    void moveToDrillPage(drill) {
+      final User? user = ref.watch(currentUserProvider);
+      if (user == null) {
         const snackBar = SnackBar(content: Text('問題を解くにはログインが必要です。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
@@ -47,12 +47,6 @@ class DrillCard extends ConsumerWidget {
       );
     }
 
-    final image = CachedNetworkImage(
-      imageUrl: drill.thumbnailUrl,
-      placeholder: (context, url) => const CircularProgressIndicator(),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
-    );
-
     // カードデザインの参考： https://material.io/components/cards/flutter
     return Card(
       margin: const EdgeInsets.only(bottom: 24),
@@ -74,7 +68,11 @@ class DrillCard extends ConsumerWidget {
               ),
               subtitle: subtitle(),
             ),
-            image,
+            CachedNetworkImage(
+              imageUrl: drill.thumbnailUrl,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
             Padding(
               padding: const EdgeInsets.only(
                   right: 16.0, left: 16, top: 16, bottom: 32),

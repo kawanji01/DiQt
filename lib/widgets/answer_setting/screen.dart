@@ -26,7 +26,6 @@ class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
     super.dispose();
     _dailyGoalController.dispose();
   }
-  //final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +56,8 @@ class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
 
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteAnswerSettings.update(params);
+      EasyLoading.dismiss();
+      if (!mounted) return;
       if (resMap == null) {
         const snackBar = SnackBar(content: Text('設定が更新できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -67,9 +68,7 @@ class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
         const snackBar = SnackBar(content: Text('設定を更新しました。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
-      EasyLoading.dismiss();
       Navigator.of(context).pop();
-      //print('dailyGoal:${_answerSetting.initialInterval}');
     }
 
     Widget submitButton() {
