@@ -3,9 +3,16 @@ import 'package:booqs_mobile/services/purchase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class PurchaseSubscriptionButton extends StatelessWidget {
+class PurchaseSubscriptionButton extends StatefulWidget {
   const PurchaseSubscriptionButton({Key? key}) : super(key: key);
 
+  @override
+  State<PurchaseSubscriptionButton> createState() =>
+      _PurchaseSubscriptionButtonState();
+}
+
+class _PurchaseSubscriptionButtonState
+    extends State<PurchaseSubscriptionButton> {
   @override
   Widget build(BuildContext context) {
     // 決済関連のクラスのインスタンス化
@@ -19,6 +26,7 @@ class PurchaseSubscriptionButton extends StatelessWidget {
       final bool subscriptionCompleted = await purchase.subscribe(productID);
       // 画面全体のローディングを消す。
       EasyLoading.dismiss();
+      if (!mounted) return;
       // 契約完了したらマイページに画面遷移
       if (subscriptionCompleted) {
         const snackBar = SnackBar(content: Text('プレミアム会員になりました！'));

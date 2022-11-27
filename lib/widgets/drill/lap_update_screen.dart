@@ -8,11 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DrillLapUpdateScreen extends ConsumerWidget {
+class DrillLapUpdateScreen extends ConsumerStatefulWidget {
   const DrillLapUpdateScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  DrillLapUpdateScreenState createState() => DrillLapUpdateScreenState();
+}
+
+class DrillLapUpdateScreenState extends ConsumerState<DrillLapUpdateScreen> {
+  @override
+  Widget build(BuildContext context) {
     final Drill? drill = ref.watch(drillProvider);
     final DrillLap? drillLap = ref.watch(drillLapProvider);
     final int newLapNumber = drillLap!.clearsCount + 1;
@@ -25,6 +30,7 @@ class DrillLapUpdateScreen extends ConsumerWidget {
       Map? resMap = await RemoteDrills.newLap(drill!.publicUid);
       EasyLoading.dismiss();
       if (resMap == null) return;
+      if (!mounted) return;
       final snackBar = SnackBar(content: Text('${resMap['message']}'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.of(context).pop();
@@ -59,11 +65,6 @@ class DrillLapUpdateScreen extends ConsumerWidget {
       );
     }
 
-    final explanation = Text(
-        '解答済の問題をすべて未解答に戻して、$newLapNumber周目を始めます。\nよろしいですか？',
-        style: const TextStyle(
-            fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87));
-
     return Container(
       height: 240,
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -72,7 +73,11 @@ class DrillLapUpdateScreen extends ConsumerWidget {
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            explanation,
+            Text('解答済の問題をすべて未解答に戻して、$newLapNumber周目を始めます。\nよろしいですか？',
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87)),
             const SizedBox(height: 16),
           ]),
           updateButton(),

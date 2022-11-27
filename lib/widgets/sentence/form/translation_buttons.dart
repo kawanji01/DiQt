@@ -45,6 +45,7 @@ class _SentenceFormTranslationButtonsState
       _isRequesting = false;
       _isGoogleTranslating = false;
     });
+    if (!mounted) return;
     if (resMap == null) {
       const snackBar = SnackBar(content: Text('翻訳できませんでした。'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -74,6 +75,7 @@ class _SentenceFormTranslationButtonsState
       _isDeeplTranslating = false;
     });
     if (resMap == null) {
+      if (!mounted) return;
       const snackBar = SnackBar(content: Text('翻訳できませんでした。'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {

@@ -9,11 +9,16 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class PurchaseDeleteButton extends ConsumerWidget {
+class PurchaseDeleteButton extends ConsumerStatefulWidget {
   const PurchaseDeleteButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  PurchaseDeleteButtonState createState() => PurchaseDeleteButtonState();
+}
+
+class PurchaseDeleteButtonState extends ConsumerState<PurchaseDeleteButton> {
+  @override
+  Widget build(BuildContext context) {
     final User? user = ref.watch(currentUserProvider);
     if (user == null) return Container();
     if (user.premium == false) return Container();
@@ -30,6 +35,7 @@ class PurchaseDeleteButton extends ConsumerWidget {
       final subscriptionRestored = await purchase.deleteSubscriber(token);
       // 画面全体のローディングを消す。
       EasyLoading.dismiss();
+      if (!mounted) return;
       if (subscriptionRestored) {
         const snackBar = SnackBar(content: Text('プレミアムプランを解約しました。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);

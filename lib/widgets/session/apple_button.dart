@@ -13,11 +13,16 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:crypto/crypto.dart';
 import 'package:nonce/nonce.dart';
 
-class AppleButton extends ConsumerWidget {
+class AppleButton extends ConsumerStatefulWidget {
   const AppleButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  AppleButtonState createState() => AppleButtonState();
+}
+
+class AppleButtonState extends ConsumerState<AppleButton> {
+  @override
+  Widget build(BuildContext context) {
     final rawNonce = Nonce.generate();
     final state = Nonce.generate();
     String? clientId = dotenv.env['IOS_BUNDLE_ID'];
@@ -49,16 +54,22 @@ class AppleButton extends ConsumerWidget {
         // 画面全体にローディングを表示
         EasyLoading.show(status: 'loading...');
         final Map? resMap = await RemoteSessions.apple(appleCredential);
-
-        if (resMap == null) return EasyLoading.dismiss();
-
-        final User user = User.fromJson(resMap['user']);
-        await UserSetup.signIn(user);
-        ref.read(currentUserProvider.notifier).state = user;
-        const snackBar = SnackBar(content: Text('ログインしました。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         EasyLoading.dismiss();
-        UserMyPage.push(context);
+
+        if (resMap == null) {
+          if (!mounted) return;
+          const snackBar = SnackBar(content: Text('ログインしました。'));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        } else {
+          final User user = User.fromJson(resMap['user']);
+          await UserSetup.signIn(user);
+          ref.read(currentUserProvider.notifier).state = user;
+          if (!mounted) return;
+          const snackBar = SnackBar(content: Text('ログインしました。'));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          EasyLoading.dismiss();
+          UserMyPage.push(context);
+        }
 
         // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
         // after they have been validated with Apple (see `Integration` section for more information on how to do this)

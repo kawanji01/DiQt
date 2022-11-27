@@ -50,13 +50,15 @@ class RelationshipFollowButtonState
     Future<void> follow() async {
       // ログインしていないならマイページ（ログイン画面）に飛ばす
       final String? token = await LocalUserInfo.authToken();
-      if (token == null) return UserMyPage.push(context);
+      if (token == null) {
+        if (!mounted) return;
+        return UserMyPage.push(context);
+      }
 
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteRelationships.create(_user!.publicUid);
       EasyLoading.dismiss();
       if (resMap == null) return;
-
       final Relationship relationship =
           Relationship.fromJson(resMap['relationship']);
       setState(() {

@@ -4,11 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WeaknessNewLapScreen extends ConsumerWidget {
+class WeaknessNewLapScreen extends ConsumerStatefulWidget {
   const WeaknessNewLapScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  WeaknessNewLapScreenState createState() => WeaknessNewLapScreenState();
+}
+
+class WeaknessNewLapScreenState extends ConsumerState<WeaknessNewLapScreen> {
+  @override
+  Widget build(BuildContext context) {
     Future<void> startNewLap() async {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       Navigator.of(context).pop();
@@ -17,6 +22,8 @@ class WeaknessNewLapScreen extends ConsumerWidget {
       final Map? resMap = await RemoteWeaknesses.newLap();
       EasyLoading.dismiss();
       if (resMap == null) return;
+      if (!mounted) return;
+
       const snackBar = SnackBar(content: Text('すべての問題を未正解に戻しました。'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       ref.refresh(asyncUnsolvedWeaknessesProvider);

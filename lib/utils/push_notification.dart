@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:booqs_mobile/services/device_info.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +99,7 @@ class PushNotification {
     // DB側のユーザー（token）とデバイス（device_identifier）と通知用のトークン（fcm_token）の紐付けを更新する。
     // アプリをアンインストールしたときなどにFCMトークンはリセットされるので、こまめな更新が必要。参照：https://qiita.com/unsoluble_sugar/items/bca933735c9d3a2d60c2
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}/api/v1/mobile/users/update_fcm_token');
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/update_fcm_token');
     await http.post(url, body: {
       'token': token,
       'fcm_token': '$fcmToken',

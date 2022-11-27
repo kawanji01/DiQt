@@ -6,18 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReviewBulkDeletionScreen extends ConsumerWidget {
+class ReviewBulkDeletionScreen extends ConsumerStatefulWidget {
   const ReviewBulkDeletionScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    const heading = Text('削除確認',
-        style: TextStyle(
-            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87));
+  ReviewBulkDeletionScreenState createState() =>
+      ReviewBulkDeletionScreenState();
+}
 
-    const explanation = Text('全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？',
-        style: TextStyle(fontSize: 16, color: Colors.black87));
-
+class ReviewBulkDeletionScreenState
+    extends ConsumerState<ReviewBulkDeletionScreen> {
+  @override
+  Widget build(BuildContext context) {
     Future submit() async {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteReviews.destroyAll();
@@ -26,6 +26,7 @@ class ReviewBulkDeletionScreen extends ConsumerWidget {
       const snackBar = SnackBar(content: Text('復習を全て削除しました。'));
       // currentUserの再読み込みでカウントをリセットする
       ref.refresh(asyncCurrentUserProvider);
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       ReviewAllPage.push(context);
     }
@@ -73,9 +74,14 @@ class ReviewBulkDeletionScreen extends ConsumerWidget {
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          heading,
+          const Text('削除確認',
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87)),
           const SizedBox(height: 16),
-          explanation,
+          const Text('全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？',
+              style: TextStyle(fontSize: 16, color: Colors.black87)),
           const SizedBox(height: 32),
           Wrap(
             children: [cancelButton, submitButton],

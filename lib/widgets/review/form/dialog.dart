@@ -39,6 +39,7 @@ class ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
       final String? token = await LocalUserInfo.authToken();
       // ログインしていないユーザーはマイページにリダイレクト
       if (token == null) {
+        if (!mounted) return;
         const snackBar = SnackBar(content: Text('復習を設定するためには、ログインが必要です。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
@@ -59,6 +60,7 @@ class ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
         _review = Review.fromJson(resMap['review']);
       }
       await Toasts.reviewSetting(resMap['message']);
+      if (!mounted) return;
       // ダイアログを閉じて、reviewを返り値にする。
       Navigator.of(context).pop(_review);
     }

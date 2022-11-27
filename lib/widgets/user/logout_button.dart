@@ -10,35 +10,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserLogoutButton extends ConsumerWidget {
+class UserLogoutButton extends ConsumerStatefulWidget {
   const UserLogoutButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final User? user = ref.watch(currentUserProvider);
-    // ログアウト
-    Future logout() async {
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
-      await RemoteSessions.logout();
-      await UserSetup.logOut(user);
-      ref.read(currentUserProvider.notifier).state = null;
-      ref.read(answerSettingProvider.notifier).state = null;
-      ref.read(todaysAnswersCountProvider.notifier).state = 0;
-      ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0;
-      // ローディングを消す
-      EasyLoading.dismiss();
-      const snackBar = SnackBar(content: Text('ログアウトしました。'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      UserMyPage.push(context);
-    }
+  UserLogoutButtonState createState() => UserLogoutButtonState();
+}
 
-    const String btnText = 'ログアウト';
+class UserLogoutButtonState extends ConsumerState<UserLogoutButton> {
+  @override
+  Widget build(BuildContext context) {
+    final User? user = ref.watch(currentUserProvider);
+    if (user == null) return Container();
+    // ログアウトボタン
     return InkWell(
       onTap: () async {
-        logout();
+        // 画面全体にローディングを表示
+        EasyLoading.show(status: 'loading...');
+        await RemoteSessions.logout();
+        await UserSetup.logOut(user);
+        ref.read(currentUserProvider.notifier).state = null;
+        ref.read(answerSettingProvider.notifier).state = null;
+        ref.read(todaysAnswersCountProvider.notifier).state = 0;
+        ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0;
+        // ローディングを消す
+        EasyLoading.dismiss();
+        if (!mounted) return;
+        const snackBar = SnackBar(content: Text('ログアウトしました。'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        UserMyPage.push(context);
       },
-      child: const LargeGreenButton(label: btnText, icon: Icons.logout),
+      child: const LargeGreenButton(label: 'ログアウト', icon: Icons.logout),
     );
   }
 }

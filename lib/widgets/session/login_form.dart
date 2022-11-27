@@ -44,12 +44,14 @@ class LoginFormState extends ConsumerState<LoginForm> {
       Map? resMap = await RemoteSessions.login(email, password);
       EasyLoading.dismiss();
       if (resMap == null) {
+        if (!mounted) return;
         _passwordController.clear();
         const snackBar = SnackBar(content: Text('メールアドレスまたはパスワードが違います。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         User user = User.fromJson(resMap['user']);
         await UserSetup.signIn(user);
+        if (!mounted) return;
         ref.read(currentUserProvider.notifier).state = user;
         const snackBar = SnackBar(content: Text('ログインしました。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);

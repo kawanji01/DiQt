@@ -35,6 +35,8 @@ class WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
   Widget build(BuildContext context) {
     Future<void> create() async {
       final String? token = await LocalUserInfo.authToken();
+      if (!mounted) return;
+
       if (token == null) {
         const snackBar = SnackBar(content: Text('苦手な問題を設定するにはログインが必要です。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);

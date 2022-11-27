@@ -49,6 +49,27 @@ class RemoteUsers {
     return resMap;
   }
 
+  // ユーザー情報の更新
+  static Future<Map?> update(
+      String publicUid, String name, String profile) async {
+    const storage = FlutterSecureStorage();
+    String? token = await storage.read(key: 'token');
+
+    // リクエスト
+    final url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid');
+
+    final Response res = await patch(url, body: {
+      'token': token,
+      'name': name,
+      'profile': profile,
+    });
+
+    if (res.statusCode != 200) return null;
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 解答中の問題集の取得
   static Future<Map?> drillsInProgress() async {
     const storage = FlutterSecureStorage();

@@ -104,6 +104,7 @@ class _QuizEditPageState extends State<QuizEditPage> {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteQuizzes.update(params);
       EasyLoading.dismiss();
+      if (!mounted) return;
 
       if (resMap == null) {
         const snackBar = SnackBar(content: Text('問題を更新できませんでした。'));

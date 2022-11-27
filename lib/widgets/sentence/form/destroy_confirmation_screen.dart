@@ -6,26 +6,29 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class SentenceFormDestroyConfirmationScreen extends StatelessWidget {
+class SentenceFormDestroyConfirmationScreen extends StatefulWidget {
   const SentenceFormDestroyConfirmationScreen(
       {Key? key, required this.sentence})
       : super(key: key);
   final Sentence sentence;
 
   @override
-  Widget build(BuildContext context) {
-    const heading = Text('削除確認',
-        style: TextStyle(
-            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87));
+  State<SentenceFormDestroyConfirmationScreen> createState() =>
+      _SentenceFormDestroyConfirmationScreenState();
+}
 
-    const explanation = Text('この例文の削除申請を行います。よろしいですか？',
-        style: TextStyle(fontSize: 16, color: Colors.black87));
+class _SentenceFormDestroyConfirmationScreenState
+    extends State<SentenceFormDestroyConfirmationScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final Sentence sentence = widget.sentence;
 
     Future submit() async {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteSentences.destroy(sentence.id);
       EasyLoading.dismiss();
+      if (!mounted) return;
       if (resMap == null) return;
       final snackBar = SnackBar(content: Text(resMap['message']));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -61,9 +64,14 @@ class SentenceFormDestroyConfirmationScreen extends StatelessWidget {
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          heading,
+          const Text('削除確認',
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87)),
           const SizedBox(height: 16),
-          explanation,
+          const Text('この例文の削除申請を行います。よろしいですか？',
+              style: TextStyle(fontSize: 16, color: Colors.black87)),
           const SizedBox(height: 32),
           submitButton
         ],
