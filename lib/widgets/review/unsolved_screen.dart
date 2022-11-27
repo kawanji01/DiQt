@@ -13,10 +13,10 @@ class ReviewUnsolvedScreen extends ConsumerStatefulWidget {
   const ReviewUnsolvedScreen({Key? key}) : super(key: key);
 
   @override
-  _ReviewIndexState createState() => _ReviewIndexState();
+  ReviewUnsolvedScreenState createState() => ReviewUnsolvedScreenState();
 }
 
-class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
+class ReviewUnsolvedScreenState extends ConsumerState<ReviewUnsolvedScreen> {
   @override
   void initState() {
     super.initState();
@@ -31,7 +31,7 @@ class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
   Widget build(BuildContext context) {
     final future = ref.watch(asyncUnsolvedReviewsProvider);
 
-    Widget _reviewFeed(reviews) {
+    Widget reviewFeed(reviews) {
       if (reviews.isEmpty) {
         return const Text('復習すべき問題はありません',
             textAlign: TextAlign.center,
@@ -44,9 +44,9 @@ class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
       return ReviewUnsolvedQuizzes(reviews: reviews);
     }
 
-    Widget _unsolvedQuizzes() {
+    Widget unsolvedQuizzes() {
       return future.when(
-        data: (data) => _reviewFeed(data),
+        data: (data) => reviewFeed(data),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       );
@@ -70,7 +70,7 @@ class _ReviewIndexState extends ConsumerState<ReviewUnsolvedScreen> {
             selected: 'unreviewed',
           ),
           const SizedBox(height: 8),
-          _unsolvedQuizzes(),
+          unsolvedQuizzes(),
           const SizedBox(height: 80),
           const UserDrillInProgress(),
         ],

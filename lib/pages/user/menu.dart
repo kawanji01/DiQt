@@ -28,7 +28,7 @@ class UserMenuPage extends ConsumerWidget {
     final User? user = ref.watch(currentUserProvider);
     if (user == null) return Container();
 
-    Widget _weaknessAnalysisButton() {
+    Widget weaknessAnalysisButton() {
       final String btnText = '苦手な問題（${user.unsolvedWeaknessesCount}）';
 
       return InkWell(
@@ -40,7 +40,7 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
-    Widget _answerHistoriesButton() {
+    Widget answerHistoriesButton() {
       const String btnText = '解答履歴';
       return InkWell(
         onTap: () {
@@ -52,7 +52,7 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
-    Widget _answerAnalysesButton() {
+    Widget answerAnalysesButton() {
       const String btnText = '解答分析';
       return InkWell(
         onTap: () {
@@ -65,7 +65,7 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
-    Widget _noteListButton() {
+    Widget noteListButton() {
       const String btnText = 'ノート一覧';
       return InkWell(
         onTap: () {
@@ -76,7 +76,7 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
-    Widget _userSearch() {
+    Widget userSearch() {
       const String btnText = 'ユーザーを探す';
       return InkWell(
         onTap: () {
@@ -86,7 +86,7 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
-    Widget _accountSetting() {
+    Widget accountSetting() {
       const String btnText = 'アカウント設定';
       return InkWell(
           onTap: () {
@@ -98,7 +98,7 @@ class UserMenuPage extends ConsumerWidget {
           ));
     }
 
-    Widget _answerSettingButton() {
+    Widget answerSettingButton() {
       const String btnText = '解答・復習設定';
       return InkWell(
         onTap: () {
@@ -122,52 +122,6 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
-    Widget _body() {
-      return Column(
-        children: <Widget>[
-          const SizedBox(
-            height: 32,
-          ),
-          _weaknessAnalysisButton(),
-          const SizedBox(
-            height: 32,
-          ),
-          _answerHistoriesButton(),
-          const SizedBox(
-            height: 32,
-          ),
-          _answerAnalysesButton(),
-          const SizedBox(
-            height: 32,
-          ),
-          _noteListButton(),
-          const SizedBox(
-            height: 32,
-          ),
-          _userSearch(),
-          const SizedBox(
-            height: 32,
-          ),
-          _accountSetting(),
-          const SizedBox(
-            height: 32,
-          ),
-          _answerSettingButton(),
-          const SizedBox(
-            height: 32,
-          ),
-          const UserLogoutButton(),
-          const SizedBox(
-            height: 64,
-          ),
-          const PurchaseDeleteButton(),
-          const SizedBox(
-            height: 80,
-          ),
-        ],
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('メニュー'),
@@ -179,7 +133,49 @@ class UserMenuPage extends ConsumerWidget {
           ),
           padding: const EdgeInsets.symmetric(vertical: 28),
           color: Colors.transparent,
-          child: _body(),
+          child: Column(
+            children: <Widget>[
+              const SizedBox(
+                height: 32,
+              ),
+              weaknessAnalysisButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              answerHistoriesButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              answerAnalysesButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              noteListButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              userSearch(),
+              const SizedBox(
+                height: 32,
+              ),
+              accountSetting(),
+              const SizedBox(
+                height: 32,
+              ),
+              answerSettingButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              const UserLogoutButton(),
+              const SizedBox(
+                height: 64,
+              ),
+              const PurchaseDeleteButton(),
+              const SizedBox(
+                height: 80,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

@@ -83,10 +83,10 @@ class _DictionarySentenceListViewState
 
   @override
   Widget build(BuildContext context) {
-    final int _dictionaryId = widget.dictionaryId;
-    final String _keyword = widget.keyword;
+    final int dictionaryId = widget.dictionaryId;
+    final String keyword = widget.keyword;
     //
-    Widget _loader() {
+    Widget loader() {
       // ref: https://qiita.com/kikuchy/items/07d10394a4f7aa2a3836
       return VisibilityDetector(
         key: const Key("for detect visibility"),
@@ -110,7 +110,7 @@ class _DictionarySentenceListViewState
     }
 
     // 区切り線
-    Widget _divider() {
+    Widget divider() {
       return Container(
         padding: const EdgeInsets.only(bottom: 40),
         child: const Divider(
@@ -121,7 +121,7 @@ class _DictionarySentenceListViewState
 
     return PagedListView.separated(
       pagingController: _pagingController,
-      separatorBuilder: (context, index) => _divider(),
+      separatorBuilder: (context, index) => divider(),
       padding: const EdgeInsets.only(top: 40),
       // Vertical viewport was given unbounded heightの解決 ref: https://qiita.com/code-cutlass/items/3a8b759056db1e8f7639
       shrinkWrap: true,
@@ -132,13 +132,13 @@ class _DictionarySentenceListViewState
                 isShow: false,
               ),
           // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
-          newPageProgressIndicatorBuilder: (_) => _loader(),
+          newPageProgressIndicatorBuilder: (_) => loader(),
           // 検索結果なし
           noItemsFoundIndicatorBuilder: (_) => DictionaryNoSentencesFound(
-              dictionaryId: _dictionaryId, keyword: _keyword),
+              dictionaryId: dictionaryId, keyword: keyword),
           // すべての検索結果の読み込み完了
           noMoreItemsIndicatorBuilder: (_) => DictionaryNoMoreSentences(
-              dictionaryId: _dictionaryId, keyword: _keyword)),
+              dictionaryId: dictionaryId, keyword: keyword)),
     );
   }
 }

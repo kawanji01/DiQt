@@ -19,10 +19,10 @@ class LoginPage extends StatefulWidget {
   }
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
   // パスワードリセット
   Future _moveToInitPasswordPage() async {
     final String url = '${DiQtURL.root(context)}/password_resets/new';
@@ -31,52 +31,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _forgetPassword = Container(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      alignment: Alignment.centerRight,
-      child: TextButton(
-        style: TextButton.styleFrom(
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        onPressed: () => _moveToInitPasswordPage(),
-        child: const Text('パスワードを忘れましたか?',
-            style: TextStyle(color: Colors.black87)),
-      ),
-    );
-
-    final _signUpLabel = InkWell(
-      onTap: () {
-        SignUpPage.push(context);
-      },
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 20),
-        padding: const EdgeInsets.all(15),
-        alignment: Alignment.bottomCenter,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'アカウントを持っていませんか？',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              '新規登録',
-              style: TextStyle(
-                  color: Color(0xfff79c4f),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
-            ),
-          ],
-        ),
-      ),
-    );
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('ログイン'),
@@ -91,13 +45,58 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               const SizedBox(height: 48),
               const LoginForm(),
-              _forgetPassword,
+              // forgetPassword
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  onPressed: () => _moveToInitPasswordPage(),
+                  child: const Text('パスワードを忘れましたか?',
+                      style: TextStyle(color: Colors.black87)),
+                ),
+              ),
               const DividerWidget(),
               const GoogleButton(),
               const TwitterButton(),
               const AppleButton(),
               const SizedBox(height: 24),
-              _signUpLabel,
+              // signUpLabel
+              InkWell(
+                onTap: () {
+                  SignUpPage.push(context);
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.all(15),
+                  alignment: Alignment.bottomCenter,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const <Widget>[
+                      Text(
+                        'アカウントを持っていませんか？',
+                        style: TextStyle(
+                            fontSize: 13, fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '新規登録',
+                        style: TextStyle(
+                            color: Color(0xfff79c4f),
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

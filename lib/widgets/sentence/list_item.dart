@@ -16,7 +16,7 @@ class SentenceListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 復習ボタン
-    Widget _reviewButton() {
+    Widget reviewButton() {
       final Quiz? quiz = sentence.quiz;
       if (quiz == null) return Container();
       final Review? review = quiz.review;
@@ -29,7 +29,7 @@ class SentenceListItem extends StatelessWidget {
         const SizedBox(
           height: 32,
         ),
-        _reviewButton(),
+        reviewButton(),
         SentenceEditButton(sentence: sentence, isShow: isShow)
       ],
     );

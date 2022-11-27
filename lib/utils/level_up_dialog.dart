@@ -9,12 +9,11 @@ class LevelUpDialog {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return CustomDialog(
-          child: ExpLevelUpScreen(
-            totalExp: totalExp,
-          ),
-          // ref: https://medium.flutterdevs.com/custom-dialog-in-flutter-7ca5c2a8d33a
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
+          ),
+          child: ExpLevelUpScreen(
+            totalExp: totalExp,
           ),
         );
       },

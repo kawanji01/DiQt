@@ -24,7 +24,7 @@ class ReviewStatusTabs extends ConsumerWidget {
     const normalStyle = TextStyle(
         color: Colors.black54, fontSize: 16, fontWeight: FontWeight.bold);
 
-    Widget _unreviewed() {
+    Widget unreviewed() {
       final style = selected == 'unreviewed' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
@@ -38,7 +38,7 @@ class ReviewStatusTabs extends ConsumerWidget {
       );
     }
 
-    Widget _scheduled() {
+    Widget scheduled() {
       final style = selected == 'scheduled' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
@@ -60,7 +60,7 @@ class ReviewStatusTabs extends ConsumerWidget {
       );
     }
 
-    Widget _all() {
+    Widget all() {
       final style = selected == 'all' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
@@ -78,10 +78,10 @@ class ReviewStatusTabs extends ConsumerWidget {
       children: [
         Expanded(
           flex: 1,
-          child: _unreviewed(),
+          child: unreviewed(),
         ),
-        Expanded(flex: 1, child: _scheduled()),
-        Expanded(flex: 1, child: _all()),
+        Expanded(flex: 1, child: scheduled()),
+        Expanded(flex: 1, child: all()),
       ],
     );
   }

@@ -23,10 +23,10 @@ class WordEditPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _WordEditPageState createState() => _WordEditPageState();
+  WordEditPageState createState() => WordEditPageState();
 }
 
-class _WordEditPageState extends ConsumerState<WordEditPage> {
+class WordEditPageState extends ConsumerState<WordEditPage> {
   Word? _word;
   Dictionary? _dictionary;
   bool _isLoading = true;
@@ -99,7 +99,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
   @override
   Widget build(BuildContext context) {
     // 更新処理
-    Future _save(word) async {
+    Future save(word) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
       setState(() => _isRequesting = true);
@@ -136,7 +136,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       }
     }
 
-    Widget _body() {
+    Widget body() {
       if (_isLoading) return const LoadingSpinner();
       if (_word == null) return const Text('Word does not exist.');
       if (_dictionary == null) return const Text('Dictionary does not exist.');
@@ -175,7 +175,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
                       onPressed: _isRequesting
                           ? null
                           : () async {
-                              _save(_word);
+                              save(_word);
                             },
                       icon: const Icon(Icons.update, color: Colors.white),
                       label: const Text(
@@ -199,7 +199,7 @@ class _WordEditPageState extends ConsumerState<WordEditPage> {
       body: Container(
         margin: EdgeInsets.symmetric(
             horizontal: ResponsiveValues.horizontalMargin(context)),
-        child: _body(),
+        child: body(),
       ),
       bottomNavigationBar: const BottomNavbar(),
     );

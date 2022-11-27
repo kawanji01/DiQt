@@ -17,11 +17,11 @@ class AnswerHistoryTodaysMistakesPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _AnswerHistoryTodaysMistakesPageState createState() =>
-      _AnswerHistoryTodaysMistakesPageState();
+  AnswerHistoryTodaysMistakesPageState createState() =>
+      AnswerHistoryTodaysMistakesPageState();
 }
 
-class _AnswerHistoryTodaysMistakesPageState
+class AnswerHistoryTodaysMistakesPageState
     extends ConsumerState<AnswerHistoryTodaysMistakesPage> {
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _AnswerHistoryTodaysMistakesPageState
     if (user == null) return const Text('Not logged in');
     final bool premiumEnabled = ref.watch(premiumEnabledProvider);
 
-    Widget _feed() {
+    Widget feed() {
       if (premiumEnabled == false) {
         return const SharedPremiumRecommendation(
             explanationText: '『今日間違えた問題』を確認するには、プレミアムプランへの登録が必要です。');
@@ -53,7 +53,7 @@ class _AnswerHistoryTodaysMistakesPageState
               horizontal: ResponsiveValues.horizontalMargin(context)),
           child: Column(
             children: <Widget>[
-              _feed(),
+              feed(),
               const SizedBox(
                 height: 80,
               ),

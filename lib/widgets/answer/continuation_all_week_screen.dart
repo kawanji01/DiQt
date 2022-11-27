@@ -19,11 +19,11 @@ class AnswerContinuationAllWeekScreen extends ConsumerStatefulWidget {
   final AnswerCreator answerCreator;
 
   @override
-  _AnswerContinuationAllWeekScreenState createState() =>
-      _AnswerContinuationAllWeekScreenState();
+  AnswerContinuationAllWeekScreenState createState() =>
+      AnswerContinuationAllWeekScreenState();
 }
 
-class _AnswerContinuationAllWeekScreenState
+class AnswerContinuationAllWeekScreenState
     extends ConsumerState<AnswerContinuationAllWeekScreen> {
   final AudioPlayer audioPlayer = AudioPlayer();
 
@@ -58,7 +58,7 @@ class _AnswerContinuationAllWeekScreenState
     // 記録
     final int counter = answerCreator.continuationAllWeekCount ?? 0;
 
-    Widget _twitterShareButton() {
+    Widget twitterShareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
@@ -88,7 +88,7 @@ class _AnswerContinuationAllWeekScreenState
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton()
+            twitterShareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

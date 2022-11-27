@@ -27,7 +27,7 @@ class TextWithDictLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // テキストWidgetの行ごとのリスト
-    List<Widget> _textWithLinkWidgetList(String text) {
+    List<Widget> textWithLinkWidgetList(String text) {
       // テキストを行ごとに分けてリストにする。
       final lines = text.split('\n');
       List<Widget> textWithLinkWidgetList = <Widget>[];
@@ -53,7 +53,7 @@ class TextWithDictLink extends StatelessWidget {
       child: Column(
         // 左寄せ。
         crossAxisAlignment: crossAxisAlignment,
-        children: _textWithLinkWidgetList(text),
+        children: textWithLinkWidgetList(text),
       ),
     );
   }

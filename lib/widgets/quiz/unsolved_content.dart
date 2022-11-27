@@ -31,10 +31,10 @@ class QuizUnsolvedContent extends ConsumerStatefulWidget {
   final Widget footer;
 
   @override
-  _QuizUnsolvedContentState createState() => _QuizUnsolvedContentState();
+  QuizUnsolvedContentState createState() => QuizUnsolvedContentState();
 }
 
-class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
+class QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
   bool _isVisible = true;
   bool _isOpaque = true;
 
@@ -49,10 +49,10 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
     final List<int> loadedQuizIds = ref.watch(loadedQuizIdsProvider);
 
     // 正解を読み上げる
-    void _speakCorrectAnswer(notification) {
+    void speakCorrectAnswer(notification) {
       final Quiz quiz = notification.quiz;
       if (quiz.answerReadAloud) {
-        final int? langNumber = quiz.langNumberOfAnswer;
+        final int langNumber = quiz.langNumberOfAnswer;
         // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す
         final String speechText = Sanitizer.removeDiQtLink(quiz.correctAnswer);
         TextToSpeech.speak(langNumber, speechText);
@@ -81,7 +81,7 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
         }
 
         // 正解を読み上げる
-        _speakCorrectAnswer(notification);
+        speakCorrectAnswer(notification);
         // 解答インタラクションを表示する
         AnswerInteraction.show(notification, context);
 
@@ -130,6 +130,7 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
         // 必ずコンテンツは外から渡す。
         // そうしないと、コンテンツが解かれて消えるまでにコンテンツがリビルドされて、選択肢が一瞬ランダムに表示されるなど不細工なことになる。ref: https://qiita.com/chooyan_eng/items/ec11f6dcf714f7a2fa3d
         child: Visibility(
+          visible: _isVisible,
           child: Container(
             decoration: const BoxDecoration(
               border: Border(
@@ -152,7 +153,6 @@ class _QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
               ],
             ),
           ),
-          visible: _isVisible,
         ),
       ),
     );

@@ -17,11 +17,11 @@ class BottomNavbarForSchool extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? _user = ref.watch(currentUserProvider);
-    final int _selectedIndex = ref.watch(bottomNavbarState);
+    final User? user = ref.watch(currentUserProvider);
+    final int selectedIndex = ref.watch(bottomNavbarState);
 
     // 参考：https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
-    void _onItemTapped(int index) {
+    void onItemTapped(int index) {
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
       EasyLoading.dismiss();
 
@@ -60,13 +60,13 @@ class BottomNavbarForSchool extends ConsumerWidget {
         ),
         BottomNavigationBarItem(
           icon: BottomNavbarReviewIcon(
-            user: _user,
+            user: user,
           ),
           label: '復習',
         ),
         BottomNavigationBarItem(
           icon: BottomNavbarNotificationIcon(
-            user: _user,
+            user: user,
           ),
           label: '通知',
         ),
@@ -75,10 +75,10 @@ class BottomNavbarForSchool extends ConsumerWidget {
           label: 'マイページ',
         ),
       ],
-      currentIndex: _selectedIndex,
+      currentIndex: selectedIndex,
       selectedItemColor: Colors.green[800],
       type: BottomNavigationBarType.fixed,
-      onTap: _onItemTapped,
+      onTap: onItemTapped,
     );
   }
 }

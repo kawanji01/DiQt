@@ -11,7 +11,7 @@ class ReviewOrderSelectForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // ページに合わせて問題を更新する
-    void _refresh() {
+    void refresh() {
       switch (type) {
         case 'unreviewed':
           ref.refresh(asyncUnsolvedReviewsProvider);
@@ -26,7 +26,7 @@ class ReviewOrderSelectForm extends ConsumerWidget {
     }
 
     // 値に対応するフォームのラベル
-    String _label(String value) {
+    String label(String value) {
       switch (value) {
         case 'scheduled_date-desc':
           return '予定日が新しい順';
@@ -40,7 +40,7 @@ class ReviewOrderSelectForm extends ConsumerWidget {
     }
 
     // ドロップダウンボタンの生成
-    Widget _buildDropDown() {
+    Widget buildDropDown() {
       return Container(
         margin: const EdgeInsets.only(top: 24),
         height: 48,
@@ -56,7 +56,7 @@ class ReviewOrderSelectForm extends ConsumerWidget {
           onChanged: (String? newValue) {
             if (newValue == null) return;
             ref.read(reviewOrderProvider.notifier).state = newValue;
-            _refresh();
+            refresh();
           },
           items: <String>[
             'scheduled_date-desc',
@@ -65,7 +65,7 @@ class ReviewOrderSelectForm extends ConsumerWidget {
           ].map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
-              child: Text(_label(value),
+              child: Text(label(value),
                   style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -76,6 +76,6 @@ class ReviewOrderSelectForm extends ConsumerWidget {
       );
     }
 
-    return _buildDropDown();
+    return buildDropDown();
   }
 }

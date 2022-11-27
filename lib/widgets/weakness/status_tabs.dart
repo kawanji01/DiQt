@@ -24,7 +24,7 @@ class WeaknessStatusTabs extends ConsumerWidget {
     const normalStyle = TextStyle(
         color: Colors.black54, fontSize: 16, fontWeight: FontWeight.bold);
 
-    Widget _unsolved() {
+    Widget unsolved() {
       final style = selected == 'unsolved' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
@@ -38,7 +38,7 @@ class WeaknessStatusTabs extends ConsumerWidget {
       );
     }
 
-    Widget _solved() {
+    Widget solved() {
       final style = selected == 'solved' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
@@ -60,7 +60,7 @@ class WeaknessStatusTabs extends ConsumerWidget {
       );
     }
 
-    Widget _all() {
+    Widget all() {
       final style = selected == 'all' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
@@ -78,10 +78,10 @@ class WeaknessStatusTabs extends ConsumerWidget {
       children: [
         Expanded(
           flex: 1,
-          child: _unsolved(),
+          child: unsolved(),
         ),
-        Expanded(flex: 1, child: _solved()),
-        Expanded(flex: 1, child: _all()),
+        Expanded(flex: 1, child: solved()),
+        Expanded(flex: 1, child: all()),
       ],
     );
   }

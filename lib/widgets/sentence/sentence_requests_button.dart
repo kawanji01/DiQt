@@ -10,7 +10,7 @@ class SentenceSentenceRequestsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _acceptedWordRequestsButton() {
+    Widget acceptedWordRequestsButton() {
       final String redirectPath =
           'sentences/${sentence.id}/accepted_sentence_requests';
       return InkWell(
@@ -23,7 +23,7 @@ class SentenceSentenceRequestsButton extends StatelessWidget {
           ));
     }
 
-    Widget _pendingWordRequestsButton() {
+    Widget pendingWordRequestsButton() {
       if (sentence.pendingSentenceRequestsCount == 0) return Container();
 
       final String redirectPath =
@@ -48,7 +48,7 @@ class SentenceSentenceRequestsButton extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [_acceptedWordRequestsButton(), _pendingWordRequestsButton()],
+      children: [acceptedWordRequestsButton(), pendingWordRequestsButton()],
     );
   }
 }

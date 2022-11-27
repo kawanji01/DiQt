@@ -22,10 +22,10 @@ class SentenceNewPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _SentenceNewPageState createState() => _SentenceNewPageState();
+  SentenceNewPageState createState() => SentenceNewPageState();
 }
 
-class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
+class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   Dictionary? _dictionary;
   String _keyword = '';
   bool _isLoading = true;
@@ -70,7 +70,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future _save() async {
+    Future save() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
       // リクエストロック開始
@@ -105,7 +105,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
     }
 
     // 更新ボタン
-    Widget _submitButton() {
+    Widget submitButton() {
       return SizedBox(
         height: 48,
         child: ElevatedButton.icon(
@@ -118,7 +118,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
           onPressed: _isRequesting
               ? null
               : () async {
-                  _save();
+                  save();
                 },
           icon: const Icon(Icons.update, color: Colors.white),
           label: const Text(
@@ -129,7 +129,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
       );
     }
 
-    Widget _body() {
+    Widget body() {
       if (_isLoading) return const LoadingSpinner();
       if (_dictionary == null) return const Text('Dictionary does not exist.');
 
@@ -149,7 +149,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
                 keyword: _keyword,
               ),
               const SizedBox(height: 40),
-              _submitButton(),
+              submitButton(),
               const SizedBox(height: 40),
             ]),
       );
@@ -164,7 +164,7 @@ class _SentenceNewPageState extends ConsumerState<SentenceNewPage> {
           margin: EdgeInsets.symmetric(
               vertical: 24,
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: _body(),
+          child: body(),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

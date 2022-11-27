@@ -18,7 +18,7 @@ class QuizFormPreviewCorrectAnswer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _answerText() {
+    Widget answerText() {
       if (autoDictLinkOfAnswer) {
         return TextWithDictLink(
           text: correctAnswer,
@@ -49,7 +49,7 @@ class QuizFormPreviewCorrectAnswer extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        _answerText(),
+        answerText(),
       ],
     );
   }

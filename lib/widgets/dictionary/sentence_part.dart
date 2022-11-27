@@ -19,7 +19,7 @@ class DictionarySentencePart extends ConsumerWidget {
           fontSize: 24, color: Colors.black87, fontWeight: FontWeight.bold),
     );
 
-    Widget _newSentenceButton() {
+    Widget newSentenceButton() {
       return InkWell(
         onTap: () {
           SentenceNewPage.push(context, dictionary.id, '');
@@ -34,7 +34,7 @@ class DictionarySentencePart extends ConsumerWidget {
         heading,
         const SizedBox(height: 16),
         DictionarySentenceSearchForm(dictionary: dictionary),
-        _newSentenceButton(),
+        newSentenceButton(),
         DictionarySentenceRequestsButton(dictionary: dictionary),
       ],
     );

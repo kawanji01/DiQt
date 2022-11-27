@@ -12,7 +12,7 @@ class DrillUnsolvedQuizzes extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 未解答の問題一覧
-    Widget _quizItems(quizzes) {
+    Widget quizItems(quizzes) {
       // 未解答の問題がなければ、周回ボタンを表示する。
       if (quizzes.isEmpty) return const DrillLapUpdateButton();
 
@@ -26,6 +26,6 @@ class DrillUnsolvedQuizzes extends ConsumerWidget {
     }
 
     // ListViewはスクロールによって再ビルドされたりするので、Columnを使う。
-    return _quizItems(quizzes);
+    return quizItems(quizzes);
   }
 }

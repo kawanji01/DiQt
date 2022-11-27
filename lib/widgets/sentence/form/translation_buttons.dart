@@ -86,7 +86,7 @@ class _SentenceFormTranslationButtonsState
   Widget build(BuildContext context) {
     const TextStyle styleText = TextStyle(fontSize: 14, color: Colors.black87);
 
-    Widget _googleButton() {
+    Widget googleButton() {
       if (_isGoogleTranslating) {
         return const Text(
           '翻訳中...',
@@ -110,7 +110,7 @@ class _SentenceFormTranslationButtonsState
       );
     }
 
-    Widget _deeplButton() {
+    Widget deeplButton() {
       if (_isDeeplTranslating) {
         return const Text(
           '翻訳中...',
@@ -136,12 +136,12 @@ class _SentenceFormTranslationButtonsState
 
     return Row(
       children: [
-        _googleButton(),
+        googleButton(),
         const Text(
           ' / ',
           style: styleText,
         ),
-        _deeplButton(),
+        deeplButton(),
       ],
     );
   }

@@ -18,7 +18,7 @@ class ActivityGoalAchievement extends StatelessWidget {
     const TextStyle textGreen = TextStyle(
         color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold);
 
-    Widget _information() {
+    Widget information() {
       if (activity.information == 'strict_solving_mode') {
         return RichText(
             text: TextSpan(children: [
@@ -37,7 +37,7 @@ class ActivityGoalAchievement extends StatelessWidget {
       ]));
     }
 
-    Widget _continuationCount() {
+    Widget continuationCount() {
       if (activity.continuationCount! < 2) {
         return Container();
       }
@@ -57,8 +57,8 @@ class ActivityGoalAchievement extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _information(),
-                _continuationCount(),
+                information(),
+                continuationCount(),
               ],
             ),
           )

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class RemoteReviews {
@@ -49,11 +48,12 @@ class RemoteReviews {
   }
 
   // 復習設定の新規作成
-  static Future<Map?> create(BuildContext context, int quizId) async {
+  static Future<Map?> create(int quizId) async {
     final String? token = await LocalUserInfo.authToken();
     if (token == null) return null;
 
-    final Uri url = Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews');
+    final Uri url =
+        Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews');
     Map boby = {
       'token': token,
       'quiz_id': '$quizId',
@@ -67,13 +67,12 @@ class RemoteReviews {
   }
 
   // 復習設定の更新
-  static Future<Map?> update(
-      BuildContext context, int reviewId, int intervalSetting) async {
+  static Future<Map?> update(int reviewId, int intervalSetting) async {
     final String? token = await LocalUserInfo.authToken();
     if (token == null) return null;
 
-    final Uri url =
-        Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews/$reviewId');
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews/$reviewId');
     final Response res = await patch(url,
         body: {'token': token, 'interval_setting': '$intervalSetting'});
 
@@ -84,12 +83,12 @@ class RemoteReviews {
   }
 
   // 復習設定の削除
-  static Future<Map?> destroy(BuildContext context, int reviewId) async {
+  static Future<Map?> destroy(int reviewId) async {
     final String? token = await LocalUserInfo.authToken();
     if (token == null) return null;
 
-    final Uri url =
-        Uri.parse('${DiQtURL.root(context)}/api/v1/mobile/reviews/$reviewId');
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews/$reviewId');
     final Response res = await delete(url, body: {
       'token': token,
     });

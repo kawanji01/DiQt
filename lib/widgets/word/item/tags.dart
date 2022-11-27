@@ -21,7 +21,7 @@ class WordItemTags extends ConsumerWidget {
     }
 
     // タグボタン
-    Widget _tagButton(WordTag wordTag) {
+    Widget tagButton(WordTag wordTag) {
       return InkWell(
         onTap: () {
           ref.refresh(asyncChapterFamily(wordTag.chapterUid));
@@ -59,11 +59,10 @@ class WordItemTags extends ConsumerWidget {
     }
 
     // タグのボタン（複数）を作成する
-    List<Widget> _createTags() {
+    List<Widget> createTags() {
       List<Widget> tagWidgets = <Widget>[];
       for (WordTag tag in wordTags) {
-        Widget tagButton = _tagButton(tag);
-        tagWidgets.add(tagButton);
+        tagWidgets.add(tagButton(tag));
       }
       return tagWidgets;
     }
@@ -71,7 +70,7 @@ class WordItemTags extends ConsumerWidget {
     // タグを右揃えに並べて返す。
     return Container(
       alignment: Alignment.centerRight,
-      child: Wrap(alignment: WrapAlignment.end, children: _createTags()),
+      child: Wrap(alignment: WrapAlignment.end, children: createTags()),
     );
   }
 }

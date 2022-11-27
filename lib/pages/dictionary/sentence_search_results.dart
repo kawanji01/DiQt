@@ -19,11 +19,11 @@ class DictionarySentenceSearchResultsPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _DictionarySentenceSearchResultsPageState createState() =>
-      _DictionarySentenceSearchResultsPageState();
+  DictionarySentenceSearchResultsPageState createState() =>
+      DictionarySentenceSearchResultsPageState();
 }
 
-class _DictionarySentenceSearchResultsPageState
+class DictionarySentenceSearchResultsPageState
     extends ConsumerState<DictionarySentenceSearchResultsPage> {
   @override
   void initState() {
@@ -38,26 +38,26 @@ class _DictionarySentenceSearchResultsPageState
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    final int _dictionaryId = arguments['dictionaryId'];
-    final String _keyword = arguments['keyword'];
-    final future = ref.watch(asyncDictionaryFamily(_dictionaryId));
+    final int dictionaryId = arguments['dictionaryId'];
+    final String keyword = arguments['keyword'];
+    final future = ref.watch(asyncDictionaryFamily(dictionaryId));
 
-    Widget _dictionaryName(Dictionary? dictionary) {
+    Widget dictionaryName(Dictionary? dictionary) {
       if (dictionary == null) return const Text('Dictionary does not exist.');
       return DictionaryName(dictionary: dictionary);
     }
 
-    Widget _heading() {
+    Widget heading() {
       return future.when(
         loading: () => const LoadingSpinner(),
         error: (err, stack) => Text('Error: $err'),
-        data: (dictionary) => _dictionaryName(dictionary),
+        data: (dictionary) => dictionaryName(dictionary),
       );
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('$_keywordの検索結果'),
+        title: Text('$keywordの検索結果'),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -67,10 +67,10 @@ class _DictionarySentenceSearchResultsPageState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 24),
-                _heading(),
+                heading(),
                 DictionarySentenceListView(
-                  dictionaryId: _dictionaryId,
-                  keyword: _keyword,
+                  dictionaryId: dictionaryId,
+                  keyword: keyword,
                 ),
               ],
             )),

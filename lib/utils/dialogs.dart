@@ -39,10 +39,10 @@ class Dialogs {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return CustomDialog(
-          child: screen,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
+          child: screen,
         );
       },
       animationType: DialogTransitionType.scale,
@@ -58,10 +58,10 @@ class Dialogs {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return CustomDialog(
-          child: screen,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
+          child: screen,
         );
       },
       animationType: DialogTransitionType.slideFromBottomFade,
@@ -77,10 +77,10 @@ class Dialogs {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return CustomDialog(
-          child: screen,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
+          child: screen,
         );
       },
       animationType: DialogTransitionType.none,

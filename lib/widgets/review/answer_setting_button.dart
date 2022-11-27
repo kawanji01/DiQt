@@ -9,7 +9,7 @@ class ReviewAnswerSettingButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 解答設定を開く
-    Future<void> _moveToAnswerSetting() async {
+    Future<void> moveToAnswerSetting() async {
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
       await showModalBottomSheet(
         isScrollControlled: true,
@@ -32,7 +32,7 @@ class ReviewAnswerSettingButton extends ConsumerWidget {
         minimumSize: const Size(double.infinity, 40),
         backgroundColor: const Color(0xfff3f3f4),
       ),
-      onPressed: () => {_moveToAnswerSetting()},
+      onPressed: () => {moveToAnswerSetting()},
       icon: const Icon(
         Icons.settings,
         color: Colors.black54,

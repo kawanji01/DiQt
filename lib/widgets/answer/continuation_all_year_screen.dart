@@ -19,11 +19,11 @@ class AnswerContinuationAllYearScreen extends ConsumerStatefulWidget {
   final AnswerCreator answerCreator;
 
   @override
-  _AnswerContinuationAllYearScreenState createState() =>
-      _AnswerContinuationAllYearScreenState();
+  AnswerContinuationAllYearScreenState createState() =>
+      AnswerContinuationAllYearScreenState();
 }
 
-class _AnswerContinuationAllYearScreenState
+class AnswerContinuationAllYearScreenState
     extends ConsumerState<AnswerContinuationAllYearScreen> {
   final AudioPlayer audioPlayer = AudioPlayer();
 
@@ -60,7 +60,7 @@ class _AnswerContinuationAllYearScreenState
     // 記録
     final int counter = answerCreator.continuationAllYearCount ?? 0;
 
-    Widget _twitterShareButton() {
+    Widget twitterShareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
@@ -90,7 +90,7 @@ class _AnswerContinuationAllYearScreenState
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton()
+            twitterShareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

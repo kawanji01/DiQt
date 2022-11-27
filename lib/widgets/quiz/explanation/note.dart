@@ -45,7 +45,7 @@ class _QuizExplanationNoteState extends State<QuizExplanationNote> {
 
   @override
   Widget build(BuildContext context) {
-    Future _save() async {
+    Future save() async {
       // ログインしていない場合は、ログインページへ
       final String? token = await LocalUserInfo.authToken();
       if (token == null) {
@@ -96,7 +96,7 @@ class _QuizExplanationNoteState extends State<QuizExplanationNote> {
             const SizedBox(height: 24),
             InkWell(
               onTap: () {
-                _save();
+                save();
               },
               child: const SmallGreenButton(label: '更新する', icon: Icons.update),
             ),

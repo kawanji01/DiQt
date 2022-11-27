@@ -14,7 +14,7 @@ class ChapterIntroduction extends StatelessWidget {
     final introduction = Text(chapter.introduction,
         style: const TextStyle(fontSize: 16, color: Colors.black87));
 
-    Widget _reference() {
+    Widget reference() {
       final String? url = chapter.referenceUrl;
       if (url == null || url == '') return Container();
       final String? title = chapter.referenceTitle;
@@ -57,7 +57,7 @@ class ChapterIntroduction extends StatelessWidget {
           style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
         introduction,
-        _reference()
+        reference()
       ],
     );
   }

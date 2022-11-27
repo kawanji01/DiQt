@@ -20,11 +20,11 @@ class AnswerContinuousReviewCompletionScreen extends ConsumerStatefulWidget {
   final AnswerCreator answerCreator;
 
   @override
-  _AnswerContinuousReviewCompletionScreenState createState() =>
-      _AnswerContinuousReviewCompletionScreenState();
+  AnswerContinuousReviewCompletionScreenState createState() =>
+      AnswerContinuousReviewCompletionScreenState();
 }
 
-class _AnswerContinuousReviewCompletionScreenState
+class AnswerContinuousReviewCompletionScreenState
     extends ConsumerState<AnswerContinuousReviewCompletionScreen> {
   final AudioPlayer audioPlayer = AudioPlayer();
   @override

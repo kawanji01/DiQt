@@ -15,10 +15,10 @@ class QuizAnswerInteraction extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bool _correct = notification.correct;
-    final Quiz _quiz = notification.quiz;
-    final String _correctAnswer = _quiz.correctAnswer;
-    final String? _usersAnswer = notification.usersAnswer;
+    final bool correct = notification.correct;
+    final Quiz quiz = notification.quiz;
+    final String correctAnswer = quiz.correctAnswer;
+    final String usersAnswer = notification.usersAnswer;
     // initialExpにProviderを使うと、サーバーのレスポンス速度によっては解答報酬獲得後の総合経験値が入ってしまう
     final int initialExp = notification.user!.amountOfExp;
 
@@ -26,7 +26,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
     const FontWeight fontWeight = FontWeight.bold;
     const Color fontColor = Colors.white;
 
-    Widget _correctAnswerWidget() {
+    Widget correctAnswerWidget() {
       return Container(
         margin: const EdgeInsets.only(bottom: 16, top: 8),
         child: Row(
@@ -41,7 +41,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
             // Expandedを使うと短い文章でも幅全体を埋めてしまい、結果的に左寄せになってしまうので Flexible を使う。
             Flexible(
               child: MarkdownWithoutDictLink(
-                text: _correctAnswer,
+                text: correctAnswer,
                 fontSize: fontSize,
                 fontColor: fontColor,
                 fontWeight: fontWeight,
@@ -53,8 +53,8 @@ class QuizAnswerInteraction extends ConsumerWidget {
       );
     }
 
-    Widget _incorrectFeedback() {
-      if (_correct) return Container();
+    Widget incorrectFeedback() {
+      if (correct) return Container();
 
       return Container(
         margin: const EdgeInsets.only(bottom: 16),
@@ -67,7 +67,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
             ),
             Flexible(
               child: MarkdownWithoutDictLink(
-                text: '$_usersAnswer',
+                text: usersAnswer,
                 fontSize: fontSize,
                 fontColor: fontColor,
                 fontWeight: fontWeight,
@@ -79,8 +79,8 @@ class QuizAnswerInteraction extends ConsumerWidget {
       );
     }
 
-    Widget _expIndicator() {
-      if (_correct == false) return Container();
+    Widget expIndicator() {
+      if (correct == false) return Container();
       return QuizExpIndicator(initialExp: initialExp, gainedExp: 3);
     }
 
@@ -96,9 +96,9 @@ class QuizAnswerInteraction extends ConsumerWidget {
               // 画面一杯にSnackbarが広がるのを防ぐ ref: https://stackoverflow.com/questions/61790405/how-to-avoid-that-a-column-inside-a-snackbar-occupies-100-of-the-height
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                _correctAnswerWidget(),
-                _incorrectFeedback(),
-                _expIndicator(),
+                correctAnswerWidget(),
+                incorrectFeedback(),
+                expIndicator(),
                 const QuizAnswersCount(),
                 QuizExplanationOpenButton(
                   answerNotification: notification,

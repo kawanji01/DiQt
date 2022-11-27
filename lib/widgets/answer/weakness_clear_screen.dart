@@ -11,11 +11,11 @@ class AnswerWeaknessClearScreen extends ConsumerStatefulWidget {
   const AnswerWeaknessClearScreen({Key? key}) : super(key: key);
 
   @override
-  _AnswerWeaknessClearScreenState createState() =>
-      _AnswerWeaknessClearScreenState();
+  AnswerWeaknessClearScreenState createState() =>
+      AnswerWeaknessClearScreenState();
 }
 
-class _AnswerWeaknessClearScreenState
+class AnswerWeaknessClearScreenState
     extends ConsumerState<AnswerWeaknessClearScreen> {
   final AudioPlayer audioPlayer = AudioPlayer();
 

@@ -10,7 +10,7 @@ class Entrance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ログインボタン
-    Widget _submitButton() {
+    Widget submitButton() {
       return InkWell(
         onTap: () {
           LoginPage.push(context);
@@ -39,7 +39,7 @@ class Entrance extends StatelessWidget {
     }
 
     // 新規登録ボタン
-    Widget _signUpButton() {
+    Widget signUpButton() {
       return InkWell(
         onTap: () {
           SignUpPage.push(context);
@@ -61,7 +61,7 @@ class Entrance extends StatelessWidget {
       );
     }
 
-    Widget _label() {
+    Widget label() {
       return Container(
         margin: const EdgeInsets.only(top: 40, bottom: 20),
         child: Column(
@@ -88,12 +88,12 @@ class Entrance extends StatelessWidget {
           const SizedBox(
             height: 80,
           ),
-          _submitButton(),
+          submitButton(),
           const SizedBox(
             height: 40,
           ),
-          _signUpButton(),
-          _label(),
+          signUpButton(),
+          label(),
           const SizedBox(
             height: 40,
           ),

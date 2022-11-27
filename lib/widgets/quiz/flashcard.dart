@@ -14,24 +14,24 @@ class QuizFlashcard extends ConsumerStatefulWidget {
   final bool unsolved;
 
   @override
-  _QuizFlashcardState createState() => _QuizFlashcardState();
+  QuizFlashcardState createState() => QuizFlashcardState();
 }
 
-class _QuizFlashcardState extends ConsumerState<QuizFlashcard> {
+class QuizFlashcardState extends ConsumerState<QuizFlashcard> {
   bool _isDisabled = false;
 
   @override
   Widget build(BuildContext context) {
-    final Quiz _quiz = widget.quiz;
-    final bool _unsolved = widget.unsolved;
-    final User? _user = ref.watch(currentUserProvider);
+    final Quiz quiz = widget.quiz;
+    final bool unsolved = widget.unsolved;
+    final User? user = ref.watch(currentUserProvider);
 
-    void _answer(bool correct) async {
+    void answer(bool correct) async {
       if (_isDisabled) return;
       HapticFeedback.mediumImpact();
-      AnswerNotification('', correct, _quiz, _user!, true).dispatch(context);
+      AnswerNotification('', correct, quiz, user!, true).dispatch(context);
       setState(() => _isDisabled = true);
-      if (_unsolved) return;
+      if (unsolved) return;
       // 未解答画面でないなら、１秒間タップできないようにしてから有効化する。
       await Future.delayed(
         const Duration(seconds: 1),
@@ -39,7 +39,7 @@ class _QuizFlashcardState extends ConsumerState<QuizFlashcard> {
       setState(() => _isDisabled = false);
     }
 
-    Widget _correctButton() {
+    Widget correctButton() {
       return Container(
         padding: const EdgeInsets.only(right: 8),
         child: ElevatedButton.icon(
@@ -49,7 +49,7 @@ class _QuizFlashcardState extends ConsumerState<QuizFlashcard> {
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
           onPressed: () => {
-            _answer(true),
+            answer(true),
           },
           icon: const Icon(Icons.circle_outlined, color: Colors.white),
           label: const Text(
@@ -61,7 +61,7 @@ class _QuizFlashcardState extends ConsumerState<QuizFlashcard> {
       );
     }
 
-    Widget _incorrectButton() {
+    Widget incorrectButton() {
       return Container(
         padding: const EdgeInsets.only(left: 8),
         child: ElevatedButton.icon(
@@ -71,7 +71,7 @@ class _QuizFlashcardState extends ConsumerState<QuizFlashcard> {
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
           onPressed: () => {
-            _answer(false),
+            answer(false),
           },
           icon: const Icon(Icons.close, color: Colors.white),
           label: const Text(
@@ -95,7 +95,7 @@ class _QuizFlashcardState extends ConsumerState<QuizFlashcard> {
           children: [
             // 答え
             MarkdownWithoutDictLink(
-              text: _quiz.correctAnswer,
+              text: quiz.correctAnswer,
               fontSize: 17,
               fontColor: Colors.black87,
               fontWeight: FontWeight.bold,
@@ -105,8 +105,8 @@ class _QuizFlashcardState extends ConsumerState<QuizFlashcard> {
             // 解答ボタン
             Row(
               children: [
-                Expanded(flex: 1, child: _correctButton()),
-                Expanded(flex: 1, child: _incorrectButton()),
+                Expanded(flex: 1, child: correctButton()),
+                Expanded(flex: 1, child: incorrectButton()),
               ],
             ),
           ],

@@ -27,10 +27,10 @@ class NoticeIndexPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _NoticeIndexPageState createState() => _NoticeIndexPageState();
+  NoticeIndexPageState createState() => NoticeIndexPageState();
 }
 
-class _NoticeIndexPageState extends ConsumerState<NoticeIndexPage> {
+class NoticeIndexPageState extends ConsumerState<NoticeIndexPage> {
   User? _user;
 
   @override

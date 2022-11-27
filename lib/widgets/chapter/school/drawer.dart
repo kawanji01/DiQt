@@ -18,7 +18,7 @@ class ChapterSchoolDrawer extends ConsumerWidget {
     final future = ref.watch(asyncUserSchoolsProvider(user.publicUid));
 
     // drawerのheader
-    const Widget _header = DrawerHeader(
+    const Widget header = DrawerHeader(
       decoration: BoxDecoration(
         color: Colors.green,
       ),
@@ -29,7 +29,7 @@ class ChapterSchoolDrawer extends ConsumerWidget {
       ),
     );
 
-    Widget _tile(Chapter school) {
+    Widget tile(Chapter school) {
       return ListTile(
         title: Text(school.title, style: const TextStyle(fontSize: 16)),
         onTap: () {
@@ -40,10 +40,10 @@ class ChapterSchoolDrawer extends ConsumerWidget {
       );
     }
 
-    List<Widget> _drawerList(data) {
+    List<Widget> drawerList(data) {
       List<Widget> list = [];
-      data.forEach((school) => list.add(_tile(school)));
-      list.insert(0, _header);
+      data.forEach((school) => list.add(tile(school)));
+      list.insert(0, header);
       return list;
     }
 
@@ -55,9 +55,9 @@ class ChapterSchoolDrawer extends ConsumerWidget {
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: future.when(
-          loading: () => [_header, const LoadingSpinner()],
-          error: (err, stack) => [_header, Text('Error: $err')],
-          data: (data) => _drawerList(data),
+          loading: () => [header, const LoadingSpinner()],
+          error: (err, stack) => [header, Text('Error: $err')],
+          data: (data) => drawerList(data),
         ),
       ),
     );

@@ -40,7 +40,7 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
   Widget build(BuildContext context) {
     final int initialIndex = widget.initialndex ?? 0;
 
-    List<Widget> _tabBars() {
+    List<Widget> tabBars() {
       SizeConfig().init(context);
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
       double width = grid * 40;
@@ -61,7 +61,7 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
           flexibleSpace: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              TabBar(isScrollable: true, tabs: _tabBars()),
+              TabBar(isScrollable: true, tabs: tabBars()),
             ],
           ),
         ),

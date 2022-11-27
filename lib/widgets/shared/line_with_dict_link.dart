@@ -42,18 +42,18 @@ class LineWithDictLink extends StatelessWidget {
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
 
-    Future _goToWordSearchPage(keyword) async {
+    Future goToWordSearchPage(keyword) async {
       await DictionaryWordSearchResultsPage.push(
           context, dictionaryId!, keyword);
     }
 
     // 記法なしの単語
     // 自動でリンクをつけるならtrue, 記法でのみリンクをつける場合はfalse
-    Widget _plainWord(String word) {
+    Widget plainWord(String word) {
       if (autoLinkEnabled) {
         return TextButton(
           style: buttonStyle,
-          onPressed: () => _goToWordSearchPage(word),
+          onPressed: () => goToWordSearchPage(word),
           // splitで削除した空白を追加する
           child: Text('$word ',
               style: TextStyle(
@@ -77,7 +77,7 @@ class LineWithDictLink extends StatelessWidget {
       );
     }
 
-    Widget _wordWithDictLink(String word) {
+    Widget wordWithDictLink(String word) {
       final linkedWord = word.replaceFirst('[[', '').replaceFirst(']]', '');
       Color textColor = Colors.green;
       // オートリンクの場合は、オートリンクとwiki記法のリンクの区別がつかないので、wiki記法のリンクの色をオレンジにする。
@@ -91,7 +91,7 @@ class LineWithDictLink extends StatelessWidget {
         final searchedWord = linkedWord.split('|')[1];
         return TextButton(
           style: buttonStyle,
-          onPressed: () => _goToWordSearchPage(searchedWord),
+          onPressed: () => goToWordSearchPage(searchedWord),
           child: Text(displayedWord,
               style: TextStyle(
                 color: textColor,
@@ -107,7 +107,7 @@ class LineWithDictLink extends StatelessWidget {
       // [[diplayedWord]]の場合
       return TextButton(
         style: buttonStyle,
-        onPressed: () => _goToWordSearchPage(linkedWord),
+        onPressed: () => goToWordSearchPage(linkedWord),
         child: Text(linkedWord,
             style: TextStyle(
               color: textColor,
@@ -122,13 +122,13 @@ class LineWithDictLink extends StatelessWidget {
     }
 
     // 単語のウィジェットを生成する。
-    Widget _wordWidget(String word) {
+    Widget wordWidget(String word) {
       // 記法を持たない単語
       if (RegExp(r'(\[{2}.*?\]{2})').hasMatch(word) == false) {
-        return _plainWord(word);
+        return plainWord(word);
       }
       // 記法持ちの単語
-      return _wordWithDictLink(word);
+      return wordWithDictLink(word);
     }
 
     // 記法が使われたテキストと、そうでない通常のテキストを分けてリストにする
@@ -159,23 +159,21 @@ class LineWithDictLink extends StatelessWidget {
     }
 
     // [[text]]や[[text|link]]を分ける。
-    List<String?> _splitLineIntoWords(String textWithDictLinks) {
+    List<String?> splitLineIntoWords(String textWithDictLinks) {
       final exp = RegExp(r'(\[{2}.*?\]{2})');
       final list = allMatchesWithSep(textWithDictLinks, exp);
       return list;
     }
 
     // 文字列を「リンク付き文字列」に変換する
-    Widget _lineWithDictLink(String line) {
+    Widget lineWithDictLink(String line) {
       List<Widget> wordWidgetList = <Widget>[];
       // テキストを単語に分割してリストにする。
-      List<String?> wordList = _splitLineIntoWords(line);
+      List<String?> wordList = splitLineIntoWords(line);
 
       for (String? word in wordList) {
-        Widget wordWidget = _wordWidget(word!);
-        wordWidgetList.add(wordWidget);
+        wordWidgetList.add(wordWidget(word ?? ''));
       }
-
       // RowではなくWrapを使うことで、Widgetを横に並べたときに画面からはみ出す問題を防ぐ。
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 6),
@@ -187,6 +185,6 @@ class LineWithDictLink extends StatelessWidget {
       );
     }
 
-    return _lineWithDictLink(line);
+    return lineWithDictLink(line);
   }
 }

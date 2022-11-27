@@ -10,7 +10,7 @@ class ReviewBulkDeletionButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bool _isPremium = ref.watch(premiumEnabledProvider);
+    final bool isPremium = ref.watch(premiumEnabledProvider);
 
     final RichText richText = RichText(
         text: const TextSpan(children: [
@@ -29,7 +29,7 @@ class ReviewBulkDeletionButton extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
-        if (_isPremium) {
+        if (isPremium) {
           Dialogs.slideFromBottomFade(const ReviewBulkDeletionScreen());
         } else {
           const snackBar =

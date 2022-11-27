@@ -20,11 +20,11 @@ class AnswerContinuousAnswerDaysScreen extends ConsumerStatefulWidget {
   final AnswerCreator answerCreator;
 
   @override
-  _AnswerContinuousAnswerDaysScreenState createState() =>
-      _AnswerContinuousAnswerDaysScreenState();
+  AnswerContinuousAnswerDaysScreenState createState() =>
+      AnswerContinuousAnswerDaysScreenState();
 }
 
-class _AnswerContinuousAnswerDaysScreenState
+class AnswerContinuousAnswerDaysScreenState
     extends ConsumerState<AnswerContinuousAnswerDaysScreen> {
   final _audioPlayer = AudioPlayer();
 
@@ -58,7 +58,7 @@ class _AnswerContinuousAnswerDaysScreenState
     // 記録
     final int counter = answerCreator.continuousAnswerDaysCount ?? 0;
 
-    Widget _twitterShareButton() {
+    Widget twitterShareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
@@ -87,7 +87,7 @@ class _AnswerContinuousAnswerDaysScreenState
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton()
+            twitterShareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

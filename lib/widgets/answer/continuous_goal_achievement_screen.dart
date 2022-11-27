@@ -20,11 +20,11 @@ class AnswerContinuousGoalAchievementScreen extends ConsumerStatefulWidget {
   final AnswerCreator answerCreator;
 
   @override
-  _AnswerContinuousGoalAchievementScreenState createState() =>
-      _AnswerContinuousGoalAchievementScreenState();
+  AnswerContinuousGoalAchievementScreenState createState() =>
+      AnswerContinuousGoalAchievementScreenState();
 }
 
-class _AnswerContinuousGoalAchievementScreenState
+class AnswerContinuousGoalAchievementScreenState
     extends ConsumerState<AnswerContinuousGoalAchievementScreen> {
   final AudioPlayer audioPlayer = AudioPlayer();
   @override

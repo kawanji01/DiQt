@@ -9,7 +9,6 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/exp_indicator.dart';
 import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:booqs_mobile/widgets/answer/share_button.dart';
@@ -19,10 +18,10 @@ class ExpLevelUpScreen extends ConsumerStatefulWidget {
   final int totalExp;
 
   @override
-  _ExpLevelUpScreenState createState() => _ExpLevelUpScreenState();
+  ExpLevelUpScreenState createState() => ExpLevelUpScreenState();
 }
 
-class _ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
+class ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
   final AudioPlayer audioPlayer = AudioPlayer();
 
   @override
@@ -47,7 +46,7 @@ class _ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
   Widget build(BuildContext context) {
     final int totalExp = widget.totalExp;
 
-    Widget _shareButton() {
+    Widget shareButton() {
       final int level = LevelCalculator.levelForExp(totalExp).floor();
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
@@ -76,7 +75,7 @@ class _ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
               exp: totalExp,
             ),
             const SizedBox(height: 16),
-            _shareButton()
+            shareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

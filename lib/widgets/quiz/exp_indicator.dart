@@ -13,10 +13,10 @@ class QuizExpIndicator extends ConsumerStatefulWidget {
   final int gainedExp;
 
   @override
-  _QuizExpIndicatorState createState() => _QuizExpIndicatorState();
+  QuizExpIndicatorState createState() => QuizExpIndicatorState();
 }
 
-class _QuizExpIndicatorState extends ConsumerState<QuizExpIndicator> {
+class QuizExpIndicatorState extends ConsumerState<QuizExpIndicator> {
   int? _exp;
   int? _initialLevel;
   bool _isVisible = true;
@@ -53,32 +53,26 @@ class _QuizExpIndicatorState extends ConsumerState<QuizExpIndicator> {
     }
 
     // レベルアップ処理
-    void _levelUp(percent) {
+    void levelUp(percent) {
       if (percent != 1) return;
       // 報酬表示がOFFなら表示をスキップ
       final bool effectEnabled = ref.watch(effectEnabledProvider);
       if (effectEnabled == false) return;
 
       LevelUpDialog.show(context, _exp!);
-      // 効果音
-      //final bool seEnabled = ref
-      //    .watch(answerSettingProvider.select((setting) => setting!.seEnabled));
-      //if (seEnabled) {
-      //  AudioPlayersService.playLevelUpSound();
-      //}
     }
 
-    Future<void> _afterAnimation() async {
+    Future<void> afterAnimation() async {
       // インジケーターを消す前に1秒待つ
       // await Future.delayed(const Duration(seconds: 1));
-      _levelUp(percent);
+      levelUp(percent);
       setState(() {
         _isVisible = false;
       });
     }
 
     // 初期値の経験値インジケーター
-    Widget _initialExpIndicator() {
+    Widget initialExpIndicator() {
       return LinearPercentIndicator(
         animation: true,
         addAutomaticKeepAlive: true,
@@ -102,7 +96,7 @@ class _QuizExpIndicatorState extends ConsumerState<QuizExpIndicator> {
     }
 
     // 経験値獲得後のインジケーター
-    Widget _gainedExpIndicator() {
+    Widget gainedExpIndicator() {
       return LinearPercentIndicator(
         animation: true,
         animateFromLastPercent: true,
@@ -119,23 +113,23 @@ class _QuizExpIndicatorState extends ConsumerState<QuizExpIndicator> {
         progressColor: Colors.orange,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         onAnimationEnd: () {
-          _afterAnimation();
+          afterAnimation();
         },
       );
     }
 
-    Widget _expIndicator() {
+    Widget expIndicator() {
       if (_exp == widget.initialExp) {
-        return _initialExpIndicator();
+        return initialExpIndicator();
       }
-      return _gainedExpIndicator();
+      return gainedExpIndicator();
     }
 
     return Visibility(
       visible: _isVisible,
       child: Container(
           padding: const EdgeInsets.symmetric(vertical: 16),
-          child: _expIndicator()),
+          child: expIndicator()),
     );
   }
 }

@@ -23,7 +23,7 @@ class _UserSearchFormState extends State<UserSearchForm> {
   Widget build(BuildContext context) {
     _searchController.text = widget.keyword;
 
-    void _search() {
+    void search() {
       if (!_formKey.currentState!.validate()) {
         return;
       }
@@ -67,7 +67,7 @@ class _UserSearchFormState extends State<UserSearchForm> {
                 minimumSize: const Size(double.infinity,
                     48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
               ),
-              onPressed: _search,
+              onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
               label: const Text(
                 '検索する',

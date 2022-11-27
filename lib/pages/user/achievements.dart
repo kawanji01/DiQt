@@ -28,10 +28,10 @@ class UserAchievementsPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _UserAchievementsPageState createState() => _UserAchievementsPageState();
+  UserAchievementsPageState createState() => UserAchievementsPageState();
 }
 
-class _UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
+class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
   User? _user;
   final List<Achievement> _tutorialMedals = [];
   final List<Achievement> _answerMedals = [];
@@ -92,7 +92,7 @@ class _UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
     final double width = gridWidth * 33;
 
     // メダル一つ一つのデザイン
-    Widget _medal(achievement) {
+    Widget medal(achievement) {
       //Image image;
       String imageUrl;
       Text name;
@@ -122,18 +122,18 @@ class _UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
     }
 
     // _medal() を並べたもの
-    Widget _medalTile(achievements) {
+    Widget medalTile(achievements) {
       List<Widget> medalWidgetList = <Widget>[];
 
       for (Achievement? achievement in achievements) {
-        Widget achievementWidget = _medal(achievement);
+        Widget achievementWidget = medal(achievement);
         medalWidgetList.add(achievementWidget);
       }
       return Wrap(alignment: WrapAlignment.center, children: medalWidgetList);
     }
 
     // _medakTile() の説明 / メダルの種類の説明
-    Widget _heading(String title, String introduction) {
+    Widget heading(String title, String introduction) {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(children: <Widget>[
@@ -152,7 +152,7 @@ class _UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
       );
     }
 
-    Widget _userInfo() {
+    Widget userInfo() {
       final User? user = ref.watch(userProvider);
       if (user == null) return Container();
 
@@ -177,20 +177,20 @@ class _UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
     }
 
     // メダル一覧画面
-    Widget _bodyWidget() {
+    Widget bodyWidget() {
       if (_initDone == false) return const LoadingSpinner();
 
       return SingleChildScrollView(
         child: Column(children: <Widget>[
-          _userInfo(),
-          _heading('チュートリアルメダル', 'DiQtの基本的操作を達成することで手に入るメダルです。'),
-          _medalTile(_tutorialMedals),
-          _heading('解答数メダル', '累計の解答数に応じて手に入るメダルです。'),
-          _medalTile(_answerMedals),
-          _heading('解答日数メダル', '累計の解答日数に応じて手に入るメダルです。'),
-          _medalTile(_continuationMedals),
-          _heading('マスターメダル', '偉業を成し遂げたときに獲得できるメダルです。'),
-          _medalTile(_masterMedals),
+          userInfo(),
+          heading('チュートリアルメダル', 'DiQtの基本的操作を達成することで手に入るメダルです。'),
+          medalTile(_tutorialMedals),
+          heading('解答数メダル', '累計の解答数に応じて手に入るメダルです。'),
+          medalTile(_answerMedals),
+          heading('解答日数メダル', '累計の解答日数に応じて手に入るメダルです。'),
+          medalTile(_continuationMedals),
+          heading('マスターメダル', '偉業を成し遂げたときに獲得できるメダルです。'),
+          medalTile(_masterMedals),
           const SizedBox(height: 80),
           Text(
             '獲得メダル数：39個中${_user!.achievementMapsCount}個',
@@ -205,7 +205,7 @@ class _UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
       appBar: AppBar(
         title: const Text('獲得メダル'),
       ),
-      body: _bodyWidget(),
+      body: bodyWidget(),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

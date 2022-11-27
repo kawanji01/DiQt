@@ -28,7 +28,7 @@ class Toasts {
     );
   }
 
-  static Future<void> reviewSetting(BuildContext context, String text) async {
+  static Future<void> reviewSetting(String text) async {
     final richText = RichText(
         text: TextSpan(children: [
       const WidgetSpan(

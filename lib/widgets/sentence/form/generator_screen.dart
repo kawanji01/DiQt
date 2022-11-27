@@ -46,7 +46,7 @@ class _SentenceFormGeneratorScreenState
         widget.temperatureController;
     final int langNumber = widget.langNumber;
 
-    Future _generate() async {
+    Future generate() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
       // リクエストロック開始
@@ -180,7 +180,7 @@ class _SentenceFormGeneratorScreenState
                     onPressed: _isRequesting
                         ? null
                         : () async {
-                            _generate();
+                            generate();
                           },
                     icon: const Icon(Icons.auto_fix_high, color: Colors.white),
                     label: const Text(

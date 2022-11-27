@@ -13,11 +13,11 @@ class WordFormSentenceSearchModal extends ConsumerStatefulWidget {
   final Dictionary dictionary;
 
   @override
-  _WordFormSentenceSearchModalState createState() =>
-      _WordFormSentenceSearchModalState();
+  WordFormSentenceSearchModalState createState() =>
+      WordFormSentenceSearchModalState();
 }
 
-class _WordFormSentenceSearchModalState
+class WordFormSentenceSearchModalState
     extends ConsumerState<WordFormSentenceSearchModal> {
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _WordFormSentenceSearchModalState
   @override
   Widget build(BuildContext context) {
     // 例文追加ボタン
-    Widget _buttonToAddSentence() {
+    Widget buttonToAddSentence() {
       return SizedBox(
         height: 40,
         child: ElevatedButton.icon(
@@ -48,7 +48,7 @@ class _WordFormSentenceSearchModalState
     }
 
     // 例文の取り消しボタン
-    Widget _removeButton() {
+    Widget removeButton() {
       return TextButton(
         style: ButtonStyle(
           // paddingを消す
@@ -69,7 +69,7 @@ class _WordFormSentenceSearchModalState
     }
 
     // ヘッダーの例文の追加ボタン
-    Widget _additionButton() {
+    Widget additionButton() {
       return TextButton(
         style: ButtonStyle(
           // paddingを消す
@@ -89,11 +89,11 @@ class _WordFormSentenceSearchModalState
     }
 
     // 例文の取り消しボタン
-    Widget _heading() {
+    Widget heading() {
       return Wrap(children: [
         Text('"${widget.keyword}"の例文 / ', style: const TextStyle(fontSize: 12)),
-        _removeButton(),
-        _additionButton()
+        removeButton(),
+        additionButton()
       ]);
     }
 
@@ -107,12 +107,12 @@ class _WordFormSentenceSearchModalState
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const SizedBox(height: 16),
-            _heading(),
+            heading(),
             const SizedBox(height: 16),
             //_searchResults(),
             WordFormSentenceListView(
                 keyword: widget.keyword, dictionary: widget.dictionary),
-            _buttonToAddSentence(),
+            buttonToAddSentence(),
             const SizedBox(height: 120),
           ],
         ),

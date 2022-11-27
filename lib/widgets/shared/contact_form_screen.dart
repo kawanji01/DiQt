@@ -26,7 +26,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget _form() {
+    Widget form() {
       if (_isSubmitted) {
         return Column(
           children: const [
@@ -117,7 +117,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                     fontWeight: FontWeight.bold,
                     color: Colors.black87)),
             const SizedBox(height: 16),
-            _form(),
+            form(),
             const SizedBox(height: 40),
           ],
         ),

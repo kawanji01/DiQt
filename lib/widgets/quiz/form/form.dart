@@ -34,26 +34,25 @@ class QuizForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final int langNumberOfQuestion = quiz?.langNumberOfQuestion ?? 0;
     final int langNumberOfAnswer = quiz?.langNumberOfAnswer ?? 0;
-    bool _autoDictLinkOfQuestion;
-    bool _autoDictLinkOfAnswer;
-    bool _isConnectedToWord;
-    bool _isConnectedToSentence;
+    bool autoDictLinkOfQuestion;
+    bool autoDictLinkOfAnswer;
+    bool isConnectedToWord;
+    bool isConnectedToSentence;
     if (quiz == null) {
-      _autoDictLinkOfQuestion = false;
-      _autoDictLinkOfAnswer = false;
-      _isConnectedToWord = false;
-      _isConnectedToSentence = false;
+      autoDictLinkOfQuestion = false;
+      autoDictLinkOfAnswer = false;
+      isConnectedToWord = false;
+      isConnectedToSentence = false;
     } else {
-      _autoDictLinkOfQuestion = quiz!.autoDictLinkOfQuestion;
-      _autoDictLinkOfAnswer = quiz!.autoDictLinkOfAnswer;
-      _isConnectedToWord =
-          quiz!.wordId != null || quiz!.referenceWordId != null;
-      _isConnectedToSentence = quiz!.sentenceId != null;
+      autoDictLinkOfQuestion = quiz!.autoDictLinkOfQuestion;
+      autoDictLinkOfAnswer = quiz!.autoDictLinkOfAnswer;
+      isConnectedToWord = quiz!.wordId != null || quiz!.referenceWordId != null;
+      isConnectedToSentence = quiz!.sentenceId != null;
     }
 
     // 問題に紐づいている辞書の項目や例文への編集ボタン
-    Widget _buttonToEditRoot() {
-      if (_isConnectedToWord) {
+    Widget buttonToEditRoot() {
+      if (isConnectedToWord) {
         final int? wordId = quiz?.wordId ?? quiz?.referenceWordId;
         if (wordId == null) return Container();
         return TextButton(
@@ -70,7 +69,7 @@ class QuizForm extends StatelessWidget {
         );
       }
 
-      if (_isConnectedToSentence) {
+      if (isConnectedToSentence) {
         final int? sentenceId = quiz?.sentenceId;
         if (sentenceId == null) return Container();
         return TextButton(
@@ -89,9 +88,9 @@ class QuizForm extends StatelessWidget {
       return Container();
     }
 
-    Widget _questionAndAnswer() {
+    Widget questionAndAnswer() {
       final bool enabled =
-          _isConnectedToWord == false && _isConnectedToSentence == false;
+          isConnectedToWord == false && isConnectedToSentence == false;
       //
       return Column(
         children: [
@@ -135,7 +134,7 @@ class QuizForm extends StatelessWidget {
             },
           ),
 
-          _buttonToEditRoot()
+          buttonToEditRoot()
         ],
       );
     }
@@ -143,7 +142,7 @@ class QuizForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _questionAndAnswer(),
+        questionAndAnswer(),
         const SizedBox(height: 40),
         QuizFormDistractor(
             distractorController: distractor1Controller, number: 1),
@@ -193,8 +192,8 @@ class QuizForm extends StatelessWidget {
           distractor3Controller: distractor3Controller,
           hintController: hintController,
           explanationController: explanationController,
-          autoDictLinkOfQuestion: _autoDictLinkOfQuestion,
-          autoDictLinkOfAnswer: _autoDictLinkOfAnswer,
+          autoDictLinkOfQuestion: autoDictLinkOfQuestion,
+          autoDictLinkOfAnswer: autoDictLinkOfAnswer,
           appliedDictionaryId: int.parse(appliedDictionaryIdController.text),
         )
       ],

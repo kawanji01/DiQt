@@ -9,7 +9,7 @@ class DrillAnswerSettingButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 解答設定
-    Future<void> _moveToAnswerSetting() async {
+    Future<void> moveToAnswerSetting() async {
       // bottomSheetを表示するときにインタラクションも消しておく
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
       await showModalBottomSheet(
@@ -33,7 +33,7 @@ class DrillAnswerSettingButton extends ConsumerWidget {
         minimumSize: const Size(double.infinity, 40),
         backgroundColor: const Color(0xfff3f3f4),
       ),
-      onPressed: () => {_moveToAnswerSetting()},
+      onPressed: () => {moveToAnswerSetting()},
       icon: const Icon(
         Icons.settings,
         color: Colors.black54,

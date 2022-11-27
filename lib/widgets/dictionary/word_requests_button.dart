@@ -11,7 +11,7 @@ class DictionaryWordRequestsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 承認済の辞書リクエスト
-    Widget _acceptedWordRequestsButton() {
+    Widget acceptedWordRequestsButton() {
       final String btnText = '辞書の改善履歴（${dictionary.acceptedWordRequestsCount}）';
       final String redirectPath =
           'dictionaries/${dictionary.id}/accepted_word_requests';
@@ -24,7 +24,7 @@ class DictionaryWordRequestsButton extends StatelessWidget {
     }
 
     // 保留中の辞書リクエスト
-    Widget _pendingWordRequestsButton() {
+    Widget pendingWordRequestsButton() {
       final int pendingRequestsCount = dictionary.pendingWordRequestsCount;
       if (pendingRequestsCount == 0) return Container();
       final String btnText = '$pendingRequestsCount件の審査中の編集';
@@ -45,7 +45,7 @@ class DictionaryWordRequestsButton extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [_acceptedWordRequestsButton(), _pendingWordRequestsButton()],
+      children: [acceptedWordRequestsButton(), pendingWordRequestsButton()],
     );
   }
 }

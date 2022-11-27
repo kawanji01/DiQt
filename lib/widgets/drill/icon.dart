@@ -20,7 +20,7 @@ class DrillIcon extends ConsumerWidget {
     double paddingRight = grid * 4;
 
     // Drillページに遷移
-    Future _moveToDrillPage(drill) async {
+    Future moveToDrillPage(drill) async {
       final String? token = await LocalUserInfo.authToken();
 
       if (token == null) {
@@ -33,18 +33,15 @@ class DrillIcon extends ConsumerWidget {
       }
     }
 
-    Widget _image() {
-      return InkWell(
+    return Container(
+      padding: EdgeInsets.only(right: paddingRight),
+      width: width,
+      child: InkWell(
         onTap: () {
-          _moveToDrillPage(drill);
+          moveToDrillPage(drill);
         },
         child: Image.network(drill.thumbnailUrl),
-      );
-    }
-
-    return Container(
-        padding: EdgeInsets.only(right: paddingRight),
-        child: _image(),
-        width: width);
+      ),
+    );
   }
 }

@@ -24,10 +24,10 @@ class WordShowPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _WordShowPageState createState() => _WordShowPageState();
+  WordShowPageState createState() => WordShowPageState();
 }
 
-class _WordShowPageState extends ConsumerState<WordShowPage> {
+class WordShowPageState extends ConsumerState<WordShowPage> {
   @override
   void initState() {
     super.initState();
@@ -41,21 +41,21 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    final int _wordId = arguments['wordId'];
-    final Word? _word = ref.watch(wordProvider);
-    final future = ref.watch(asyncWordFamily(_wordId));
+    final int wordId = arguments['wordId'];
+    final Word? word = ref.watch(wordProvider);
+    final future = ref.watch(asyncWordFamily(wordId));
 
-    Widget _title() {
+    Widget title() {
       return future.when(
-        data: (word) => Text(word?.entry ?? ''),
+        data: (date) => Text(date?.entry ?? ''),
         error: (err, stack) => const Text('Error'),
-        loading: () => Text(_word?.entry ?? ''),
+        loading: () => Text(word?.entry ?? ''),
       );
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: _title(),
+        title: title(),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -65,7 +65,7 @@ class _WordShowPageState extends ConsumerState<WordShowPage> {
           child: future.when(
             data: (data) => WordShowScreen(word: data!),
             error: (err, stack) => Text('Error: $err'),
-            loading: () => WordPreloadedShowScreen(word: _word),
+            loading: () => WordPreloadedShowScreen(word: word),
           ),
         ),
       ),

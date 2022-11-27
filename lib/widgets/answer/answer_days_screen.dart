@@ -19,10 +19,10 @@ class AnswerAnswerDaysScreen extends ConsumerStatefulWidget {
   final AnswerCreator answerCreator;
 
   @override
-  _AnswerAnswerDaysScreenState createState() => _AnswerAnswerDaysScreenState();
+  AnswerAnswerDaysScreenState createState() => AnswerAnswerDaysScreenState();
 }
 
-class _AnswerAnswerDaysScreenState
+class AnswerAnswerDaysScreenState
     extends ConsumerState<AnswerAnswerDaysScreen> {
   final _audioPlayer = AudioPlayer();
 
@@ -55,13 +55,13 @@ class _AnswerAnswerDaysScreenState
     // 獲得経験値
     final int gainedExp = answerCreator.answerDaysPoint;
 
-    Widget _heading() {
+    Widget heading() {
       return Text('${answerCreator.answerDaysCount}日解答',
           style: const TextStyle(
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
     }
 
-    Widget _twitterShareButton() {
+    Widget twitterShareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
@@ -81,13 +81,13 @@ class _AnswerAnswerDaysScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            _heading(),
+            heading(),
             ExpGainedExpIndicator(
               initialExp: initialExp,
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton(),
+            twitterShareButton(),
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

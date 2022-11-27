@@ -11,7 +11,7 @@ class UserAchievementsButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Future _moveToAchievementsPage() async {
+    Future moveToAchievementsPage() async {
       ref.read(userProvider.notifier).state = user;
       await UserAchievementsPage.pushDialog(context);
     }
@@ -23,7 +23,7 @@ class UserAchievementsButton extends ConsumerWidget {
           minimumSize: const Size(double.infinity,
               40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
         ),
-        onPressed: () => {_moveToAchievementsPage()},
+        onPressed: () => {moveToAchievementsPage()},
         icon: const Icon(Icons.military_tech, color: Colors.white),
         label: Text(
           '獲得メダルをみる(${user.achievementMapsCount}/39)',

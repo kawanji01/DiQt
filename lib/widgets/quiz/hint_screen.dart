@@ -12,7 +12,7 @@ class QuizHintScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
-    Widget _hint() {
+    Widget hintPart() {
       final String? hintText = quiz.hint;
       if (hintText == null) return Container();
 
@@ -43,7 +43,7 @@ class QuizHintScreen extends StatelessWidget {
     }
 
     //
-    Widget _note() {
+    Widget notePart() {
       if (note == null) return Container();
       final String noteText = note?.content ?? '';
 
@@ -77,7 +77,7 @@ class QuizHintScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: SingleChildScrollView(
           child: Column(
-        children: [_hint(), _note()],
+        children: [hintPart(), notePart()],
       )),
     );
   }

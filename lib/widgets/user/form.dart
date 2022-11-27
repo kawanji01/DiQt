@@ -33,12 +33,12 @@ class _UserFormState extends State<UserForm> {
 
   @override
   Widget build(BuildContext context) {
-    final User _user = ModalRoute.of(context)!.settings.arguments as User;
-    _nameController.text = _user.name;
-    _profileController.text = _user.profile ?? '';
+    final User user = ModalRoute.of(context)!.settings.arguments as User;
+    _nameController.text = user.name;
+    _profileController.text = user.profile ?? '';
 
     // 画像
-    Future _save(user) async {
+    Future save(user) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
@@ -72,7 +72,7 @@ class _UserFormState extends State<UserForm> {
     }
 
     // 更新ボタン
-    Widget _submitButton() {
+    Widget submitButton() {
       return SizedBox(
         height: 48,
         child: ElevatedButton.icon(
@@ -81,7 +81,7 @@ class _UserFormState extends State<UserForm> {
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
           onPressed: () => {
-            _save(_user),
+            save(user),
           },
           icon: const Icon(Icons.edit_outlined, color: Colors.white),
           label: const Text(
@@ -92,7 +92,7 @@ class _UserFormState extends State<UserForm> {
       );
     }
 
-    Widget _userForm() {
+    Widget userForm() {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -132,11 +132,11 @@ class _UserFormState extends State<UserForm> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              _userForm(),
+              userForm(),
               const SizedBox(height: 40),
-              _submitButton(),
+              submitButton(),
               const SizedBox(height: 80),
-              UserWithdrawalButton(user: _user),
+              UserWithdrawalButton(user: user),
               const SizedBox(height: 80),
             ]));
   }

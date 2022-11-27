@@ -12,11 +12,11 @@ class AnswerAnalysisQuizListView extends ConsumerStatefulWidget {
   const AnswerAnalysisQuizListView({Key? key}) : super(key: key);
 
   @override
-  _AnswerAnalysisQuizListViewState createState() =>
-      _AnswerAnalysisQuizListViewState();
+  AnswerAnalysisQuizListViewState createState() =>
+      AnswerAnalysisQuizListViewState();
 }
 
-class _AnswerAnalysisQuizListViewState
+class AnswerAnalysisQuizListViewState
     extends ConsumerState<AnswerAnalysisQuizListView> {
   bool _isLoading = false;
   bool _isReached = true;
@@ -81,7 +81,7 @@ class _AnswerAnalysisQuizListViewState
   @override
   Widget build(BuildContext context) {
     //
-    Widget _loader() {
+    Widget loader() {
       // ref: https://qiita.com/kikuchy/items/07d10394a4f7aa2a3836
       return VisibilityDetector(
         key: const Key("for detect visibility"),
@@ -115,7 +115,7 @@ class _AnswerAnalysisQuizListViewState
           isShow: false,
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
-        newPageProgressIndicatorBuilder: (_) => _loader(),
+        newPageProgressIndicatorBuilder: (_) => loader(),
       ),
     );
   }

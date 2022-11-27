@@ -12,10 +12,10 @@ class QuizSkipButton extends ConsumerStatefulWidget {
   final Quiz quiz;
 
   @override
-  _QuizSkipButtonState createState() => _QuizSkipButtonState();
+  QuizSkipButtonState createState() => QuizSkipButtonState();
 }
 
-class _QuizSkipButtonState extends ConsumerState<QuizSkipButton> {
+class QuizSkipButtonState extends ConsumerState<QuizSkipButton> {
   bool _selected = false;
 
   @override
@@ -23,7 +23,7 @@ class _QuizSkipButtonState extends ConsumerState<QuizSkipButton> {
     final User? user = ref.watch(currentUserProvider);
     final quiz = widget.quiz;
 
-    Widget _button() {
+    Widget button() {
       //const String label = 'わからない';
 
       if (_selected) {
@@ -45,7 +45,7 @@ class _QuizSkipButtonState extends ConsumerState<QuizSkipButton> {
           _selected = true;
         });
       },
-      child: _button(),
+      child: button(),
     );
   }
 }

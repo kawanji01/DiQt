@@ -10,12 +10,13 @@ class PurchaseSubscriptionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // 決済関連のクラスのインスタンス化
     final purchase = PurchaseService();
-    Future _test() async {
+
+    Future purchasePremium() async {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       // 製品IDを取得して契約
-      final String? productID = await purchase.fetchProductID();
-      final bool subscriptionCompleted = await purchase.subscribe(productID!);
+      final String productID = await purchase.fetchProductID();
+      final bool subscriptionCompleted = await purchase.subscribe(productID);
       // 画面全体のローディングを消す。
       EasyLoading.dismiss();
       // 契約完了したらマイページに画面遷移
@@ -39,7 +40,7 @@ class PurchaseSubscriptionButton extends StatelessWidget {
           minimumSize: const Size(double.infinity,
               48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
         ),
-        onPressed: () => {_test()},
+        onPressed: () => {purchasePremium()},
         icon: const Icon(Icons.grade, color: Colors.white),
         label: const Text(
           '¥500 / 月',

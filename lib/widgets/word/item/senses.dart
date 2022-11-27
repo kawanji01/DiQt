@@ -11,10 +11,10 @@ class WordItemSenses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (word.sensesJson == null || word.sensesJson == []) return Container();
-    final List _sensesList = word.sensesJson!;
+    final List sensesList = word.sensesJson!;
 
     // 意味
-    Widget _gloss(int number, Map<String, dynamic> senseMap) {
+    Widget gloss(int number, Map<String, dynamic> senseMap) {
       final String gloss =
           senseMap['raw_glosses'] != null && senseMap['raw_glosses'] != ''
               ? senseMap['raw_glosses'].join('; ')
@@ -32,10 +32,10 @@ class WordItemSenses extends StatelessWidget {
     }
 
     // 意味のリスト
-    final List<Widget> _glossesList = [];
+    final List<Widget> glossesList = [];
     int i = 1;
-    for (var sense in _sensesList) {
-      _glossesList.add(_gloss(i, sense));
+    for (var sense in sensesList) {
+      glossesList.add(gloss(i, sense));
       i += 1;
     }
 
@@ -43,7 +43,7 @@ class WordItemSenses extends StatelessWidget {
       margin: const EdgeInsets.only(top: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _glossesList,
+        children: glossesList,
       ),
     );
   }

@@ -16,7 +16,7 @@ class WordListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Widget _ipa() {
+    Widget ipa() {
       if (word.ipa == null || word.ipa == '') {
         return Container();
       }
@@ -27,37 +27,34 @@ class WordListItem extends ConsumerWidget {
           ));
     }
 
-    Widget _content() {
-      return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const SizedBox(height: 10),
-            WordItemEntry(word: word),
-            WordItemReading(word: word),
-            _ipa(),
-            const SizedBox(
-              height: 10,
-            ),
-            WordItemMeaning(word: word),
-            const SizedBox(
-              height: 24,
-            ),
-            WordItemReviewButton(word: word),
-            WordItemSentence(word: word),
-            WordEditButton(
-              word: word,
-              isShow: false,
-            ),
-          ]);
-    }
-
     return InkWell(
       onTap: () {
         ref.read(wordProvider.notifier).state = word;
         WordShowPage.push(context, word.id);
       },
       child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 24), child: _content()),
+          padding: const EdgeInsets.symmetric(vertical: 24),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(height: 10),
+                WordItemEntry(word: word),
+                WordItemReading(word: word),
+                ipa(),
+                const SizedBox(
+                  height: 10,
+                ),
+                WordItemMeaning(word: word),
+                const SizedBox(
+                  height: 24,
+                ),
+                WordItemReviewButton(word: word),
+                WordItemSentence(word: word),
+                WordEditButton(
+                  word: word,
+                  isShow: false,
+                ),
+              ])),
     );
   }
 }

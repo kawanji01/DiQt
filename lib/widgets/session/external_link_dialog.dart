@@ -12,7 +12,7 @@ class ExternalLinkDialog extends StatefulWidget {
 
   final String? redirectPath;
   @override
-  _ExternalLinkDialogState createState() => _ExternalLinkDialogState();
+  createState() => _ExternalLinkDialogState();
 }
 
 class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
@@ -49,7 +49,7 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _moveToExternalPage() async {
+    Future<void> moveToExternalPage() async {
       Navigator.of(context).pop();
       // ワンタイムパスコードがない場合は、直接URLにリダイレクトする
       String url = "${DiQtURL.root(context)}/$_redirectPath";
@@ -62,11 +62,11 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
     }
 
     // ダイアログの中身を生成する
-    Widget _buildExternalLinkDialog() {
+    Widget buildExternalLinkDialog() {
       return const Text('Web版DiQtに移動します。よろしいですか？');
     }
 
-    Widget _linkButton() {
+    Widget linkButton() {
       if (_initDone == false) {
         return Container(
           width: MediaQuery.of(context).size.width,
@@ -74,14 +74,14 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
           height: 40,
           child: ElevatedButton(
             onPressed: null,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black45, //ボタンの背景色
+            ),
             child: const Text('OK',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                     color: Colors.white)),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black45, //ボタンの背景色
-            ),
           ),
         );
       } else {
@@ -90,16 +90,16 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
           width: MediaQuery.of(context).size.width,
           height: 40,
           child: ElevatedButton(
-            onPressed: () => _moveToExternalPage(),
+            onPressed: () => moveToExternalPage(),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green, //ボタンの背景色
+            ),
             child: const Text(
               'OK',
               style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                   color: Colors.white),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green, //ボタンの背景色
             ),
           ),
         );
@@ -113,9 +113,9 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
         '外部リンク',
         style: TextStyle(fontWeight: FontWeight.w800),
       ),
-      content: _buildExternalLinkDialog(),
+      content: buildExternalLinkDialog(),
       actions: [
-        _linkButton(),
+        linkButton(),
       ],
     );
   }

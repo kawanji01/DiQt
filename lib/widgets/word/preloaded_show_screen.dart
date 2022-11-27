@@ -26,7 +26,7 @@ class WordPreloadedShowScreen extends StatelessWidget {
       return const LoadingSpinner();
     }
 
-    Widget _word() {
+    Widget wordItem() {
       final Dictionary? dictionary = word!.dictionary;
       if (dictionary == null) return const Text('Dictionary does not exist.');
 
@@ -81,7 +81,7 @@ class WordPreloadedShowScreen extends StatelessWidget {
     }
 
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-      _word(),
+      wordItem(),
       const LoadingSpinner(),
       const SizedBox(
         height: 120,

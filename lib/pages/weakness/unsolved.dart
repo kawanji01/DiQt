@@ -15,10 +15,10 @@ class WeaknessUnsolvedPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _WeaknessUnsolvedPageState createState() => _WeaknessUnsolvedPageState();
+  WeaknessUnsolvedPageState createState() => WeaknessUnsolvedPageState();
 }
 
-class _WeaknessUnsolvedPageState extends ConsumerState<WeaknessUnsolvedPage> {
+class WeaknessUnsolvedPageState extends ConsumerState<WeaknessUnsolvedPage> {
   @override
   void initState() {
     super.initState();

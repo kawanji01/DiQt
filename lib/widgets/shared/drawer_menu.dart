@@ -13,7 +13,7 @@ class DrawerMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? _user = ref.watch(currentUserProvider);
+    final User? user = ref.watch(currentUserProvider);
 
     return Drawer(
       // Add a ListView to the drawer. This ensures the user can scroll
@@ -44,7 +44,7 @@ class DrawerMenu extends ConsumerWidget {
           ListTile(
             title: const Text('お問い合わせ', style: TextStyle(fontSize: 16)),
             onTap: () {
-              if (_user == null) {
+              if (user == null) {
                 // ログインしていないなら、ブラウザ経由で問い合わせ方法を提示する
                 WebPageLauncher.openByWebView(
                     'https://www.diqt.net/ja/contact');

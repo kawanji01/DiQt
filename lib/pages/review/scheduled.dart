@@ -22,10 +22,10 @@ class ReviewScheduledPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _ReviewScheduledPageState createState() => _ReviewScheduledPageState();
+  ReviewScheduledPageState createState() => ReviewScheduledPageState();
 }
 
-class _ReviewScheduledPageState extends ConsumerState<ReviewScheduledPage> {
+class ReviewScheduledPageState extends ConsumerState<ReviewScheduledPage> {
   @override
   Widget build(BuildContext context) {
     final body = Column(

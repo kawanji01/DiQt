@@ -22,10 +22,10 @@ class SentenceEditPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _SentenceEditPageState createState() => _SentenceEditPageState();
+  SentenceEditPageState createState() => SentenceEditPageState();
 }
 
-class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
+class SentenceEditPageState extends ConsumerState<SentenceEditPage> {
   Sentence? _sentence;
   bool _isLoading = true;
   bool _isRequesting = false;
@@ -68,7 +68,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
   @override
   Widget build(BuildContext context) {
     // 更新処理
-    Future _save(sentence) async {
+    Future save(sentence) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
       setState(() {
@@ -101,7 +101,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
     }
 
     // メイン
-    Widget _body(Sentence? sentence) {
+    Widget body(Sentence? sentence) {
       if (_isLoading) return const LoadingSpinner();
       if (sentence == null) return const Text('Sentence does not exists.');
       final Dictionary? dictionary = sentence.dictionary;
@@ -137,7 +137,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
                   onPressed: _isRequesting
                       ? null
                       : () async {
-                          _save(_sentence);
+                          save(_sentence);
                         },
                   icon: const Icon(Icons.update, color: Colors.white),
                   label: const Text(
@@ -162,7 +162,7 @@ class _SentenceEditPageState extends ConsumerState<SentenceEditPage> {
           margin: EdgeInsets.symmetric(
               vertical: 24,
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: _body(_sentence),
+          child: body(_sentence),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

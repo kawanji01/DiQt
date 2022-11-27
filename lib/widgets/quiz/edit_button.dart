@@ -15,7 +15,7 @@ class QuizEditButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _editButton() {
+    Widget editButton() {
       return Container(
         // 左寄せ
         alignment: Alignment.topLeft,
@@ -38,12 +38,12 @@ class QuizEditButton extends StatelessWidget {
       );
     }
 
-    Widget _detailButton() {
+    Widget detailButton() {
       if (isShow) return Container();
       return QuizDetailButton(quiz: quiz);
     }
 
-    Widget _sourceEditButton() {
+    Widget sourceEditButton() {
       final Word? word = quiz.word ?? quiz.referenceWord;
       final Sentence? sentence = quiz.sentence;
       if (word != null) {
@@ -58,9 +58,9 @@ class QuizEditButton extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [_editButton(), _detailButton()],
+        children: [editButton(), detailButton()],
       ),
-      _sourceEditButton()
+      sourceEditButton()
     ]);
   }
 }

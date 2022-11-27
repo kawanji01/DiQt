@@ -12,7 +12,7 @@ class DictionaryNoMoreSentences extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 例文の新規作成ボタン
-    Widget _newSentenceButton() {
+    Widget newSentenceButton() {
       return InkWell(
         onTap: () {
           SentenceNewPage.push(context, dictionaryId, keyword);
@@ -23,7 +23,7 @@ class DictionaryNoMoreSentences extends StatelessWidget {
 
     return Column(children: [
       const SizedBox(height: 48),
-      _newSentenceButton(),
+      newSentenceButton(),
       const SizedBox(height: 120),
     ]);
   }

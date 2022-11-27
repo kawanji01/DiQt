@@ -18,7 +18,7 @@ class DictionaryGuidelinePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final Dictionary? dictionary = ref.watch(dictionaryProvider);
 
-    Widget _guideline() {
+    Widget guideline() {
       if (dictionary == null) {
         const Text('Dictionary does not exists.');
       }
@@ -42,7 +42,7 @@ class DictionaryGuidelinePage extends ConsumerWidget {
           margin: EdgeInsets.symmetric(
               vertical: 20,
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: _guideline(),
+          child: guideline(),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

@@ -9,7 +9,7 @@ class ActivitiesOrderSelectForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 値に対応するフォームのラベル
-    String _label(String value) {
+    String label(String value) {
       switch (value) {
         case 'all':
           return 'すべてのユーザー';
@@ -46,7 +46,7 @@ class ActivitiesOrderSelectForm extends ConsumerWidget {
         ].map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(_label(value),
+            child: Text(label(value),
                 style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,

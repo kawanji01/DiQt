@@ -28,8 +28,8 @@ class DateTimeFormatter {
   static DateTime datetime(String datetimeStr) {
     DateTime result;
     // "2020/09/16 22:16"みたいな文字列から取る場合
-    final _dateFormatter = DateFormat("y/M/d HH:mm");
-    result = _dateFormatter.parse(datetimeStr);
+    final dateFormatter = DateFormat("y/M/d HH:mm");
+    result = dateFormatter.parse(datetimeStr);
     return result;
   }
 }

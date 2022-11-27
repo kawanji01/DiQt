@@ -11,7 +11,7 @@ class WordItemMeaning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _meaningText() {
+    Widget meaningText() {
       // 英英辞書なら全文辞書リンク
       if (word.langNumberOfEntry == word.langNumberOfMeaning &&
           word.langNumberOfMeaning == languageCodeMap['en']) {
@@ -41,10 +41,10 @@ class WordItemMeaning extends StatelessWidget {
       );
     }
 
-    Widget _meaning() {
+    Widget meaning() {
       final String? pos = word.pos;
       if (pos == null || pos == '') {
-        return _meaningText();
+        return meaningText();
       }
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +52,7 @@ class WordItemMeaning extends StatelessWidget {
           WordItemLabel(
             text: pos,
           ),
-          _meaningText(),
+          meaningText(),
           WordItemSmallTranslationButtons(
             original: word.meaning,
             word: word,
@@ -63,7 +63,7 @@ class WordItemMeaning extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      child: _meaning(),
+      child: meaning(),
     );
   }
 }

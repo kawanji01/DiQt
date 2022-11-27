@@ -21,7 +21,7 @@ class DrillCard extends ConsumerWidget {
     final DrillLap? drillLap = drill.drillLap;
 
     // Drillページに遷移
-    Future _moveToDrillPage(drill) async {
+    Future moveToDrillPage(drill) async {
       final String? token = await LocalUserInfo.authToken();
 
       if (token == null) {
@@ -34,7 +34,7 @@ class DrillCard extends ConsumerWidget {
       }
     }
 
-    Widget _subtitle() {
+    Widget subtitle() {
       if (drillLap == null) {
         return Text(
           '$answerHistoriesCount解答',
@@ -60,7 +60,7 @@ class DrillCard extends ConsumerWidget {
       child: InkWell(
         splashColor: Colors.green.withAlpha(30),
         onTap: () {
-          _moveToDrillPage(drill);
+          moveToDrillPage(drill);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +72,7 @@ class DrillCard extends ConsumerWidget {
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 18)),
               ),
-              subtitle: _subtitle(),
+              subtitle: subtitle(),
             ),
             image,
             Padding(

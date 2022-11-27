@@ -15,13 +15,13 @@ class UserLogoutButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? _user = ref.watch(currentUserProvider);
+    final User? user = ref.watch(currentUserProvider);
     // ログアウト
-    Future _logout() async {
+    Future logout() async {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      await RemoteSessions.logout(context);
-      await UserSetup.logOut(_user);
+      await RemoteSessions.logout();
+      await UserSetup.logOut(user);
       ref.read(currentUserProvider.notifier).state = null;
       ref.read(answerSettingProvider.notifier).state = null;
       ref.read(todaysAnswersCountProvider.notifier).state = 0;
@@ -36,7 +36,7 @@ class UserLogoutButton extends ConsumerWidget {
     const String btnText = 'ログアウト';
     return InkWell(
       onTap: () async {
-        _logout();
+        logout();
       },
       child: const LargeGreenButton(label: btnText, icon: Icons.logout),
     );

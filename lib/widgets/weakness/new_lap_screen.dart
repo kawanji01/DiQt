@@ -9,7 +9,7 @@ class WeaknessNewLapScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Future<void> _startNewLap() async {
+    Future<void> startNewLap() async {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       Navigator.of(context).pop();
       // 画面全体にローディングを表示
@@ -22,7 +22,7 @@ class WeaknessNewLapScreen extends ConsumerWidget {
       ref.refresh(asyncUnsolvedWeaknessesProvider);
     }
 
-    Widget _updateButton() {
+    Widget updateButton() {
       return Container(
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Align(
@@ -38,7 +38,7 @@ class WeaknessNewLapScreen extends ConsumerWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 16)),
             onPressed: () {
-              _startNewLap();
+              startNewLap();
             },
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(264, 48),
@@ -64,7 +64,7 @@ class WeaknessNewLapScreen extends ConsumerWidget {
             explanation,
             SizedBox(height: 16),
           ]),
-          _updateButton(),
+          updateButton(),
         ],
       ),
     );

@@ -19,7 +19,7 @@ class WordItemRelatedWord extends StatelessWidget {
       return Container();
     }
 
-    Widget _wordButton(String entry) {
+    Widget wordButton(String entry) {
       return Container(
         margin: const EdgeInsets.only(right: 8.0),
         child: TextButton(
@@ -43,10 +43,10 @@ class WordItemRelatedWord extends StatelessWidget {
       );
     }
 
-    Widget _words(String source) {
+    Widget words(String source) {
       final List<String> entries = source.split(';');
       final List<Widget> wordButtons =
-          entries.map((entry) => _wordButton(entry)).toList();
+          entries.map((entry) => wordButton(entry)).toList();
       return Wrap(
         children: wordButtons,
       );
@@ -58,7 +58,7 @@ class WordItemRelatedWord extends StatelessWidget {
       const SizedBox(
         height: 12,
       ),
-      _words(sourceText ?? ''),
+      words(sourceText ?? ''),
     ]);
   }
 }

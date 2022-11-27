@@ -7,10 +7,10 @@ class HomeSearchScreen extends ConsumerStatefulWidget {
   const HomeSearchScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeSearchScreenState createState() => _HomeSearchScreenState();
+  HomeSearchScreenState createState() => HomeSearchScreenState();
 }
 
-class _HomeSearchScreenState extends ConsumerState<HomeSearchScreen> {
+class HomeSearchScreenState extends ConsumerState<HomeSearchScreen> {
   final searchController = TextEditingController();
 
   @override

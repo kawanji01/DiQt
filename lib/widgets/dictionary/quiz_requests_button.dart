@@ -10,7 +10,7 @@ class DictionaryQuizRequestsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _acceptedQuizRequestsButton() {
+    Widget acceptedQuizRequestsButton() {
       final String btnText = '問題の改善履歴（${dictionary.acceptedQuizRequestsCount}）';
       final String redirectPath =
           'dictionaries/${dictionary.id}/accepted_quiz_requests';
@@ -22,7 +22,7 @@ class DictionaryQuizRequestsButton extends StatelessWidget {
       );
     }
 
-    Widget _pendingQuizRequestsButton() {
+    Widget pendingQuizRequestsButton() {
       int requestsCount = dictionary.pendingQuizRequestsCount;
       if (requestsCount == 0) return Container();
 
@@ -44,7 +44,7 @@ class DictionaryQuizRequestsButton extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [_acceptedQuizRequestsButton(), _pendingQuizRequestsButton()],
+      children: [acceptedQuizRequestsButton(), pendingQuizRequestsButton()],
     );
   }
 }

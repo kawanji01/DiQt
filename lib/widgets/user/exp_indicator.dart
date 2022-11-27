@@ -9,8 +9,8 @@ class UserExpIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int? exp = user.amountOfExp;
-    final int level = LevelCalculator.levelForExp(exp!).floor();
+    final int exp = user.amountOfExp;
+    final int level = LevelCalculator.levelForExp(exp).floor();
     // Web版BooQsのusers/show.html.erbに書いたRubyの処理のDart版。
     final int requiredExp =
         LevelCalculator.requiredExpForTheLevel(level).floor();
@@ -36,46 +36,7 @@ class UserExpIndicator extends StatelessWidget {
     // インジケーターに表示するパーセンテージ
     int percentInt = (percent * 100.0).floor();
 
-    Widget _levelLabel() {
-      return Container(
-        padding: const EdgeInsets.only(bottom: 10),
-        alignment: Alignment.centerLeft,
-        child: Text(
-          'Lv.$level',
-          style: const TextStyle(
-              color: Colors.black87, fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      );
-    }
-
-    Widget _expIndicator() {
-      return LinearPercentIndicator(
-        animation: true,
-        animateFromLastPercent: true,
-        lineHeight: 40.0,
-        animationDuration: 500,
-        percent: percent,
-        center: Text(
-          "$percentInt%",
-          style:
-              const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        linearStrokeCap: LinearStrokeCap.roundAll,
-        progressColor: Colors.orange,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-      );
-    }
-
-    Widget _expForNextLevel() {
-      return Container(
-        padding: const EdgeInsets.only(top: 16),
-        alignment: Alignment.centerLeft,
-        child: Text('次のレベルまであと${expForNextLevel}EXP',
-            style: const TextStyle(color: Colors.black87, fontSize: 16)),
-      );
-    }
-
-    Widget _status() {
+    Widget status() {
       const textStyle = TextStyle(color: Colors.black87, fontSize: 16);
       return Container(
         alignment: Alignment.centerLeft,
@@ -94,10 +55,41 @@ class UserExpIndicator extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(
         children: <Widget>[
-          _levelLabel(),
-          _expIndicator(),
-          _expForNextLevel(),
-          _status(),
+          Container(
+            padding: const EdgeInsets.only(bottom: 10),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Lv.$level',
+              style: const TextStyle(
+                  color: Colors.black87,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          // Indicator
+          LinearPercentIndicator(
+            animation: true,
+            animateFromLastPercent: true,
+            lineHeight: 40.0,
+            animationDuration: 500,
+            percent: percent,
+            center: Text(
+              "$percentInt%",
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+            linearStrokeCap: LinearStrokeCap.roundAll,
+            progressColor: Colors.orange,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+          ),
+          //
+          Container(
+            padding: const EdgeInsets.only(top: 16),
+            alignment: Alignment.centerLeft,
+            child: Text('次のレベルまであと${expForNextLevel}EXP',
+                style: const TextStyle(color: Colors.black87, fontSize: 16)),
+          ),
+          status(),
         ],
       ),
     );

@@ -17,10 +17,10 @@ class ReviewFormDialog extends ConsumerStatefulWidget {
 
   final Review review;
   @override
-  _ReviewFormDialogState createState() => _ReviewFormDialogState();
+  ReviewFormDialogState createState() => ReviewFormDialogState();
 }
 
-class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
+class ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
   Review? _review;
   int _dropdownValue = 0;
 
@@ -33,9 +33,9 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final bool _premiumEnabled = ref.watch(premiumEnabledProvider);
+    final bool premiumEnabled = ref.watch(premiumEnabledProvider);
     // 復習設定を作成するか更新する
-    Future _update() async {
+    Future update() async {
       final String? token = await LocalUserInfo.authToken();
       // ログインしていないユーザーはマイページにリダイレクト
       if (token == null) {
@@ -47,7 +47,7 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
       EasyLoading.show(status: 'loading...');
       Map? resMap;
       // reviews#update
-      resMap = await RemoteReviews.update(context, _review!.id, _dropdownValue);
+      resMap = await RemoteReviews.update(_review!.id, _dropdownValue);
       EasyLoading.dismiss();
       if (resMap == null) return;
       // 復習設定を更新前にすでにその復習設定が削除されていた場合の対応
@@ -58,16 +58,16 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
         // 通常の更新
         _review = Review.fromJson(resMap['review']);
       }
-      await Toasts.reviewSetting(context, resMap['message']);
+      await Toasts.reviewSetting(resMap['message']);
       // ダイアログを閉じて、reviewを返り値にする。
       Navigator.of(context).pop(_review);
     }
 
     //
-    Future _change(int? newValue) async {
+    Future change(int? newValue) async {
       if (newValue == null) return;
 
-      if (_premiumEnabled == false) {
+      if (premiumEnabled == false) {
         const snackBar =
             SnackBar(content: Text('復習設定を変更するにはプレミアムプランへの登録が必要です。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -79,7 +79,7 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
     }
 
     // ドロップダウンボタンの生成
-    Widget _buildDropDown() {
+    Widget buildDropDown() {
       return Container(
         margin: const EdgeInsets.only(top: 24),
         height: 48,
@@ -94,7 +94,7 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
           iconSize: 24,
           elevation: 16,
           onChanged: (int? newValue) {
-            _change(newValue);
+            change(newValue);
           },
           items: <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
               .map<DropdownMenuItem<int>>((int value) {
@@ -112,13 +112,13 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
     }
 
     // ダイアログの中身を生成する
-    Widget _buildReviewDialog() {
+    Widget buildReviewDialog() {
       return Column(
         // アラートが縦に伸びてしまうのを防ぐ、
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           ReviewFormStatus(review: _review!),
-          _buildDropDown(),
+          buildDropDown(),
           const SizedBox(height: 8),
         ],
       );
@@ -127,7 +127,7 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
     return AlertDialog(
       insetPadding: EdgeInsets.symmetric(
           horizontal: ResponsiveValues.horizontalMargin(context)),
-      content: _buildReviewDialog(),
+      content: buildReviewDialog(),
       actions: [
         Container(
           margin: const EdgeInsets.only(left: 12, right: 12, bottom: 24),
@@ -139,7 +139,7 @@ class _ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
               minimumSize: const Size(double.infinity,
                   48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
             ),
-            onPressed: () => _update(),
+            onPressed: () => update(),
             icon: const Icon(Icons.update, color: Colors.white),
             label: const Text(
               '設定する',

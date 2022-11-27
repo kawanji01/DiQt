@@ -25,15 +25,15 @@ class _DictionarySentenceSearchFormState
 
   @override
   Widget build(BuildContext context) {
-    final Dictionary _dictionary = widget.dictionary;
-    final int _dictionaryId = _dictionary.id;
+    final Dictionary dictionary = widget.dictionary;
+    final int dictionaryId = dictionary.id;
 
-    void _search() {
+    void search() {
       if (!_formKey.currentState!.validate()) {
         return;
       }
       final String keyword = _sentenceSearchController.text;
-      DictionarySentenceSearchResultsPage.push(context, _dictionaryId, keyword);
+      DictionarySentenceSearchResultsPage.push(context, dictionaryId, keyword);
     }
 
     return Form(
@@ -73,7 +73,7 @@ class _DictionarySentenceSearchFormState
                 minimumSize: const Size(double.infinity,
                     48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
               ),
-              onPressed: _search,
+              onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
               label: const Text(
                 '検索する',

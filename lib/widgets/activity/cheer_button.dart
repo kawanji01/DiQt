@@ -17,10 +17,10 @@ class ActivityCheerButton extends ConsumerStatefulWidget {
   final Cheer? cheer;
 
   @override
-  _ActivityCheerButtonState createState() => _ActivityCheerButtonState();
+  ActivityCheerButtonState createState() => ActivityCheerButtonState();
 }
 
-class _ActivityCheerButtonState extends ConsumerState<ActivityCheerButton> {
+class ActivityCheerButtonState extends ConsumerState<ActivityCheerButton> {
   Activity? _activity;
   Cheer? _cheer;
   User? _user;
@@ -43,7 +43,7 @@ class _ActivityCheerButtonState extends ConsumerState<ActivityCheerButton> {
     if (_activity == null) return const LoadingSpinner();
     if (_user?.id == _activity?.user?.id) return Container();
 
-    Future<void> _createCheer() async {
+    Future<void> createCheer() async {
       final Map? resMap = await RemoteCheers.create(_activity!.id);
       if (resMap == null) return;
       final Cheer cheer = Cheer.fromJson(resMap['cheer']);
@@ -52,7 +52,7 @@ class _ActivityCheerButtonState extends ConsumerState<ActivityCheerButton> {
       });
     }
 
-    Widget _button() {
+    Widget button() {
       // 楽観的UI
       if (_cheer != null || _tapped == true) {
         return const SmallGreenButton(
@@ -66,7 +66,7 @@ class _ActivityCheerButtonState extends ConsumerState<ActivityCheerButton> {
           setState(() {
             _tapped = true;
           });
-          _createCheer();
+          createCheer();
         },
         child: const SmallOutlineGreenButton(
           label: '応援する！',
@@ -75,6 +75,6 @@ class _ActivityCheerButtonState extends ConsumerState<ActivityCheerButton> {
       );
     }
 
-    return _button();
+    return button();
   }
 }

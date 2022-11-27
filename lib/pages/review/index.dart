@@ -34,10 +34,10 @@ class ReviewIndexPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _ReviewIndexPageState createState() => _ReviewIndexPageState();
+  ReviewIndexPageState createState() => ReviewIndexPageState();
 }
 
-class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
+class ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
   @override
   void initState() {
     super.initState();
@@ -52,7 +52,7 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
   Widget build(BuildContext context) {
     final User? currentUser = ref.watch(currentUserProvider);
 
-    Widget _reviewsOrEntrance() {
+    Widget reviewsOrEntrance() {
       if (currentUser == null) return const Entrance();
 
       return const ReviewUnsolvedScreenWrapper();
@@ -64,7 +64,7 @@ class _ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
           margin: EdgeInsets.symmetric(
             horizontal: ResponsiveValues.horizontalMargin(context),
           ),
-          child: _reviewsOrEntrance()),
+          child: reviewsOrEntrance()),
       bottomNavigationBar: const BottomNavbar(),
       drawer: const DrawerMenu(),
     );

@@ -22,7 +22,7 @@ class WordFormPreviewSentence extends ConsumerWidget {
     final int sentenceId = word.sentenceId ?? 0;
     final future = ref.watch(asyncSentenceFamily(sentenceId));
 
-    Widget _sentence(Sentence? sentence) {
+    Widget sentence(Sentence? sentence) {
       if (sentence == null) {
         return Container();
       }
@@ -58,7 +58,7 @@ class WordFormPreviewSentence extends ConsumerWidget {
     return future.when(
       loading: () => const LoadingSpinner(),
       error: (err, stack) => Text('Error: $err'),
-      data: (Sentence? data) => _sentence(data),
+      data: (Sentence? data) => sentence(data),
     );
   }
 }

@@ -14,7 +14,7 @@ class UserStudyRecords extends ConsumerWidget {
     const textStyle = TextStyle(
         fontSize: 28, color: Colors.orange, fontWeight: FontWeight.bold);
 
-    Widget _continuousAnswerDays() {
+    Widget continuousAnswerDays() {
       final int continuousAnswers = user.continuousAnswerDaysCount;
       if (continuousAnswers < 2) return Container();
 
@@ -24,7 +24,7 @@ class UserStudyRecords extends ConsumerWidget {
       );
     }
 
-    Widget _continuousGoalAchievement() {
+    Widget continuousGoalAchievement() {
       final int continuousGoalAchievement = user.continuousGoalAchievementCount;
       if (continuousGoalAchievement < 2) return Container();
       return Text(
@@ -33,7 +33,7 @@ class UserStudyRecords extends ConsumerWidget {
       );
     }
 
-    Widget _continuousReviewCompletion() {
+    Widget continuousReviewCompletion() {
       final int continuousReviewCompletion =
           user.continuousReviewCompletionCount;
       if (continuousReviewCompletion < 2) return Container();
@@ -46,9 +46,9 @@ class UserStudyRecords extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _continuousAnswerDays(),
-        _continuousGoalAchievement(),
-        _continuousReviewCompletion()
+        continuousAnswerDays(),
+        continuousGoalAchievement(),
+        continuousReviewCompletion()
       ],
     );
   }

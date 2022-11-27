@@ -8,7 +8,7 @@ class LangSmallTranslationNotLoggedIn extends StatelessWidget {
   Widget build(BuildContext context) {
     const TextStyle styleText = TextStyle(fontSize: 14, color: Colors.black87);
 
-    void _recommendSignIn() {
+    void recommendSignIn() {
       const snackBar = SnackBar(content: Text('翻訳機能を利用するには、ログインが必要です。'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       UserMyPage.push(context);
@@ -24,7 +24,7 @@ class LangSmallTranslationNotLoggedIn extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          onPressed: () => _recommendSignIn(),
+          onPressed: () => recommendSignIn(),
           child: const Text('Google翻訳', style: TextStyle(color: Colors.green)),
         ),
         const Text(
@@ -39,7 +39,7 @@ class LangSmallTranslationNotLoggedIn extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          onPressed: () => _recommendSignIn(),
+          onPressed: () => recommendSignIn(),
           child: const Text('DeepL翻訳', style: TextStyle(color: Colors.green)),
         ),
       ],

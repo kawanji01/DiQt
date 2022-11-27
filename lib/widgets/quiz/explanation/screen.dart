@@ -22,10 +22,10 @@ class QuizExplanationScreen extends ConsumerStatefulWidget {
   final AnswerNotification answerNotification;
 
   @override
-  _QuizExplanationScreenState createState() => _QuizExplanationScreenState();
+  QuizExplanationScreenState createState() => QuizExplanationScreenState();
 }
 
-class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
+class QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
   @override
   void initState() {
     super.initState();
@@ -37,61 +37,61 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final AnswerNotification _answerNotification = widget.answerNotification;
-    final Quiz _quiz = _answerNotification.quiz;
-    final future = ref.watch(asyncQuizFamily(_quiz.id));
+    final AnswerNotification answerNotification = widget.answerNotification;
+    final Quiz quiz = answerNotification.quiz;
+    final future = ref.watch(asyncQuizFamily(quiz.id));
 
     SizeConfig().init(context);
     final double grid = SizeConfig.blockSizeVertical ?? 0;
     final double height = grid * 80;
 
-    Widget _question() {
+    Widget question() {
       return future.when(
         data: (data) => QuizExplanationQuestion(quiz: data!),
         error: (err, stack) => Text('Error: $err'),
-        loading: () => QuizExplanationQuestion(quiz: _quiz),
+        loading: () => QuizExplanationQuestion(quiz: quiz),
       );
     }
 
-    Widget _answer() {
+    Widget answer() {
       return future.when(
-        data: (quiz) => QuizExplanationAnswer(quiz: quiz!),
+        data: (date) => QuizExplanationAnswer(quiz: date!),
         error: (err, stack) => Text('Error: $err'),
-        loading: () => QuizExplanationAnswer(quiz: _quiz),
+        loading: () => QuizExplanationAnswer(quiz: quiz),
       );
     }
 
-    Widget _distractors() {
+    Widget distractors() {
       return future.when(
-        data: (quiz) => QuizExplanationDistractors(quiz: quiz!),
+        data: (date) => QuizExplanationDistractors(quiz: date!),
         error: (err, stack) => Text('Error: $err'),
-        loading: () => QuizExplanationDistractors(quiz: _quiz),
+        loading: () => QuizExplanationDistractors(quiz: quiz),
       );
     }
 
     // 復習
-    Widget _reviewButton() {
+    Widget reviewButton() {
       return future.when(
-        data: (quiz) =>
-            ReviewLargeSettingButton(quizId: _quiz.id, review: quiz!.review),
+        data: (date) =>
+            ReviewLargeSettingButton(quizId: date!.id, review: date.review),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       );
     }
 
     // 解説
-    Widget _explanation() {
+    Widget explanation() {
       return future.when(
-        data: (quiz) => QuizExplanationExplanation(quiz: quiz!),
+        data: (date) => QuizExplanationExplanation(quiz: date!),
         error: (err, stack) => Text('Error: $err'),
-        loading: () => QuizExplanationExplanation(quiz: _quiz),
+        loading: () => QuizExplanationExplanation(quiz: quiz),
       );
     }
 
-    Widget _editButtons() {
+    Widget editButtons() {
       return future.when(
-        data: (quiz) => QuizEditButton(
-          quiz: quiz!,
+        data: (date) => QuizEditButton(
+          quiz: date!,
           isShow: false,
         ),
         error: (err, stack) => Text('Error: $err'),
@@ -100,27 +100,27 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
     }
 
     // 解答分析と弱点設定
-    Widget _answerAnalysis() {
+    Widget answerAnalysis() {
       return future.when(
-        data: (quiz) => QuizExplanationAnswerAnalysis(quiz: quiz!),
+        data: (date) => QuizExplanationAnswerAnalysis(quiz: date!),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       );
     }
 
     // ノート
-    Widget _note() {
+    Widget note() {
       return future.when(
-        data: (quiz) => QuizExplanationNote(quiz: quiz!),
+        data: (date) => QuizExplanationNote(quiz: date!),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       );
     }
 
     // 出典（辞書と例文）
-    Widget _word() {
+    Widget word() {
       return future.when(
-        data: (quiz) => QuizExplanationWord(quiz: quiz!),
+        data: (date) => QuizExplanationWord(quiz: date!),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       );
@@ -143,18 +143,18 @@ class _QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
                   const SizedBox(
                     height: 24,
                   ),
-                  _question(),
-                  _answer(),
-                  _distractors(),
-                  _reviewButton(),
+                  question(),
+                  answer(),
+                  distractors(),
+                  reviewButton(),
                   const SizedBox(height: 16),
-                  _explanation(),
-                  _editButtons(),
+                  explanation(),
+                  editButtons(),
                   const SizedBox(height: 40),
-                  _answerAnalysis(),
-                  _note(),
+                  answerAnalysis(),
+                  note(),
                   const SizedBox(height: 56),
-                  _word(),
+                  word(),
                   const SizedBox(height: 120),
                 ],
               ),

@@ -20,7 +20,7 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // サーバーからのレスポンスをもとにProviderを更新する
-    void _updateProviders(resMap) {
+    void updateProviders(resMap) {
       // ユーザー情報を更新する
       final User user = User.fromJson(resMap['user']);
       ref.read(currentUserProvider.notifier).state = user;
@@ -31,10 +31,10 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
     }
 
     // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。
-    Future<void> _requestReview(notification) async {
-      Map? resMap = await RemoteQuizzes.answer(context, notification, 'review');
+    Future<void> requestReview(notification) async {
+      Map? resMap = await RemoteQuizzes.answer(notification, 'review');
       if (resMap == null) return;
-      _updateProviders(resMap);
+      updateProviders(resMap);
       final AnswerCreator answerCreator =
           AnswerCreator.fromJson(resMap['answer_creator']);
       // awaitをつけるとAnswerRewardを表示が重なった時にLooking up a deactivated widget's ancestorエラーが起きる
@@ -47,7 +47,7 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
 
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
-        _requestReview(notification);
+        requestReview(notification);
         // trueを返すことで通知がこれ以上遡らない
         return true;
       },

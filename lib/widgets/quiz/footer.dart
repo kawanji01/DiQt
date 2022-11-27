@@ -17,7 +17,7 @@ class QuizFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _detailedButton() {
+    Widget detailedButton() {
       if (isShow) return Container();
       return QuizDetailButton(quiz: quiz);
     }
@@ -26,7 +26,7 @@ class QuizFooter extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         ReviewSmallSettingButton(quiz: quiz, review: review),
-        _detailedButton(),
+        detailedButton(),
       ],
     );
   }

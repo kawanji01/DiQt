@@ -10,8 +10,8 @@ class BottomNavbar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? _user = ref.watch(currentUserProvider);
-    final bool school = _user?.school ?? false;
+    final User? user = ref.watch(currentUserProvider);
+    final bool school = user?.school ?? false;
     if (school) {
       return const BottomNavbarForSchool();
     }

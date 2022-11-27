@@ -26,27 +26,25 @@ class NoteIndexPage extends StatefulWidget {
 class _NoteIndexPageState extends State<NoteIndexPage> {
   @override
   Widget build(BuildContext context) {
-    final _body = SingleChildScrollView(
-      child: Container(
-        margin: EdgeInsets.symmetric(
-            vertical: 24,
-            horizontal: ResponsiveValues.horizontalMargin(context)),
-        child: Column(
-          children: const [
-            SizedBox(height: 32),
-            NoteIntroduction(),
-            NoteOrderSelectForm(),
-            SizedBox(height: 32),
-            NoteQuizListView(),
-            SizedBox(height: 240),
-          ],
-        ),
-      ),
-    );
-
     return Scaffold(
       appBar: const EmptyAppBar(),
-      body: _body,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: Column(
+            children: const [
+              SizedBox(height: 32),
+              NoteIntroduction(),
+              NoteOrderSelectForm(),
+              SizedBox(height: 32),
+              NoteQuizListView(),
+              SizedBox(height: 240),
+            ],
+          ),
+        ),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

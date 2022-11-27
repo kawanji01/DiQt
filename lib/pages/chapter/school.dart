@@ -30,10 +30,10 @@ class ChapterSchoolPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _ChapterSchoolPageState createState() => _ChapterSchoolPageState();
+  ChapterSchoolPageState createState() => ChapterSchoolPageState();
 }
 
-class _ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
+class ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
   final List<TabInfo> _tabs = [
     TabInfo("問題集", const ChapterSchoolDrills()),
     TabInfo("活動", const ChapterSchoolActivities()),
@@ -44,7 +44,7 @@ class _ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
   Widget build(BuildContext context) {
     final future = ref.watch(asyncSchoolProvider);
 
-    List<Widget> _tabBars() {
+    List<Widget> tabBars() {
       SizeConfig().init(context);
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
       double width = grid * 30;
@@ -65,7 +65,7 @@ class _ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
             error: (err, stack) => Text('Error: $err'),
             loading: () => const Text(''),
           ),
-          bottom: TabBar(isScrollable: true, tabs: _tabBars()),
+          bottom: TabBar(isScrollable: true, tabs: tabBars()),
           // タイトル部分を消す ref: https://blog.mrym.tv/2019/09/flutter-tabbar-without-appbar-title/
         ),
         body: Container(

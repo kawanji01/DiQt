@@ -23,11 +23,11 @@ class AnswerDrillLapClearScreen extends ConsumerStatefulWidget {
   final AnswerCreator answerCreator;
 
   @override
-  _AnswerDrillLapClearScreenState createState() =>
-      _AnswerDrillLapClearScreenState();
+  AnswerDrillLapClearScreenState createState() =>
+      AnswerDrillLapClearScreenState();
 }
 
-class _AnswerDrillLapClearScreenState
+class AnswerDrillLapClearScreenState
     extends ConsumerState<AnswerDrillLapClearScreen> {
   final AudioPlayer audioPlayer = AudioPlayer();
   @override
@@ -50,17 +50,17 @@ class _AnswerDrillLapClearScreenState
 
   @override
   Widget build(BuildContext context) {
-    final User? _user = ref.watch(currentUserProvider);
-    if (_user == null) return Container();
-    final AnswerSetting? _answerSetting = ref.watch(answerSettingProvider);
-    if (_answerSetting == null) return Container();
+    final User? user = ref.watch(currentUserProvider);
+    if (user == null) return Container();
+    final AnswerSetting? answerSetting = ref.watch(answerSettingProvider);
+    if (answerSetting == null) return Container();
 
-    final bool _strictSolvingMode = _answerSetting.strictSolvingMode;
-    String _description;
-    if (_strictSolvingMode) {
-      _description = '厳格解答モードで全ての問題に正解しました！';
+    final bool strictSolvingMode = answerSetting.strictSolvingMode;
+    String description;
+    if (strictSolvingMode) {
+      description = '厳格解答モードで全ての問題に正解しました！';
     } else {
-      _description = '全ての問題を解きました！';
+      description = '全ての問題を解きました！';
     }
     final AnswerCreator answerCreator = widget.answerCreator;
     // 開始経験値（基準 + 問題集周回報酬）
@@ -72,13 +72,7 @@ class _AnswerDrillLapClearScreenState
     // クリア回数
     final int clearsCount = drillLap.clearsCount;
 
-    Widget _heading() {
-      return Text('$clearsCount周クリア',
-          style: const TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
-    }
-
-    Widget _twitterShareButton() {
+    Widget twitterShareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
       final Drill? drill = ref.watch(drillProvider);
@@ -100,10 +94,15 @@ class _AnswerDrillLapClearScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            _heading(),
+            // heading
+            Text('$clearsCount周クリア',
+                style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange)),
             const SizedBox(height: 16),
             // explanation
-            Text(_description,
+            Text(description,
                 style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -113,7 +112,7 @@ class _AnswerDrillLapClearScreenState
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton()
+            twitterShareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

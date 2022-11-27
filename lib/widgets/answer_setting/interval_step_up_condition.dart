@@ -15,10 +15,10 @@ class AnswerSettingIntervalStepUpCondition extends ConsumerWidget {
     const explanation = Text('復習の間隔を繰り上げるための条件を設定します。',
         style: TextStyle(fontSize: 14, color: Colors.black54));
 
-    final bool _premiumEnabled = ref.watch(premiumEnabledProvider);
+    final bool premiumEnabled = ref.watch(premiumEnabledProvider);
 
-    Widget _premiumRecommendation() {
-      if (_premiumEnabled) return Container();
+    Widget premiumRecommendation() {
+      if (premiumEnabled) return Container();
       return TextButton.icon(
         onPressed: () {
           PremiumPlanPage.push(context);
@@ -39,10 +39,10 @@ class AnswerSettingIntervalStepUpCondition extends ConsumerWidget {
       );
     }
 
-    Future _change(int? newValue) async {
+    Future change(int? newValue) async {
       if (newValue == null) return;
 
-      if (_premiumEnabled == false) {
+      if (premiumEnabled == false) {
         const snackBar =
             SnackBar(content: Text('この設定を変更するにはプレミアムプランへの登録が必要です。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -52,7 +52,7 @@ class AnswerSettingIntervalStepUpCondition extends ConsumerWidget {
     }
 
     // ドロップダウンボタンの生成
-    Widget _buildDropDown() {
+    Widget buildDropDown() {
       return Container(
         margin: const EdgeInsets.only(top: 24),
         height: 48,
@@ -66,7 +66,7 @@ class AnswerSettingIntervalStepUpCondition extends ConsumerWidget {
           iconSize: 24,
           elevation: 16,
           onChanged: (int? newValue) {
-            _change(newValue);
+            change(newValue);
           },
           items: <int>[
             1,
@@ -95,8 +95,8 @@ class AnswerSettingIntervalStepUpCondition extends ConsumerWidget {
         heading,
         const SizedBox(height: 4),
         explanation,
-        _buildDropDown(),
-        _premiumRecommendation(),
+        buildDropDown(),
+        premiumRecommendation(),
       ],
     );
   }

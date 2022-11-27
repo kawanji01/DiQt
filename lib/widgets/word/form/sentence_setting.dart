@@ -21,8 +21,7 @@ class WordFormSentenceSetting extends StatefulWidget {
   final Dictionary dictionary;
 
   @override
-  _WordFormSentenceSettingState createState() =>
-      _WordFormSentenceSettingState();
+  createState() => _WordFormSentenceSettingState();
 }
 
 class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
@@ -62,7 +61,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
   Widget build(BuildContext context) {
     final dictionary = widget.dictionary;
     // sentenceIDを格納する隠れフィールド
-    Widget _hiddenField() {
+    Widget hiddenField() {
       return Visibility(
         visible: false,
         child: TextField(
@@ -73,7 +72,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
     }
 
     // 隠しフィールドに設定されている例文の本文と翻訳文のプレビュー
-    Widget _sentencePreview() {
+    Widget sentencePreview() {
       Widget sentenceWidget;
       if (_sentence == null) {
         sentenceWidget = const Text('例文が設定されていません。',
@@ -93,7 +92,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
     }
 
     //// 例文を検索して設定する ////
-    Future _searchSentence(Dictionary dictionary) async {
+    Future searchSentence(Dictionary dictionary) async {
       // settingはnullで戻る
       // { 'set': null } で削除
       // { 'set': sentence } で設定
@@ -120,7 +119,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
     }
 
     // 設定ボタン
-    Widget _settingButton() {
+    Widget settingButton() {
       return Column(children: [
         TextFormField(
           controller: _searchKeywordController,
@@ -139,7 +138,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
         ),
         InkWell(
           onTap: () {
-            _searchSentence(dictionary);
+            searchSentence(dictionary);
           },
           child: const SmallGreenButton(
             label: '例文を検索する',
@@ -152,11 +151,11 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _hiddenField(),
+          hiddenField(),
           const SizedBox(height: 24),
-          _sentencePreview(),
+          sentencePreview(),
           const SizedBox(height: 32),
-          _settingButton(),
+          settingButton(),
         ]);
   }
 }

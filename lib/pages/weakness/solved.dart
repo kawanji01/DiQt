@@ -24,15 +24,15 @@ class WeaknessSolvedPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _WeaknessSolvedPageState createState() => _WeaknessSolvedPageState();
+  WeaknessSolvedPageState createState() => WeaknessSolvedPageState();
 }
 
-class _WeaknessSolvedPageState extends ConsumerState<WeaknessSolvedPage> {
+class WeaknessSolvedPageState extends ConsumerState<WeaknessSolvedPage> {
   @override
   Widget build(BuildContext context) {
     final bool premiumEnabled = ref.watch(premiumEnabledProvider);
 
-    Widget _quizzes() {
+    Widget quizzes() {
       if (premiumEnabled == false) {
         return const SharedPremiumRecommendation(
             explanationText: '『苦手な問題』を解くには、プレミアムプランへの登録が必要です。');
@@ -40,30 +40,28 @@ class _WeaknessSolvedPageState extends ConsumerState<WeaknessSolvedPage> {
       return const WeaknessSolvedQuizListView();
     }
 
-    final _body = Column(
-      children: [
-        const SizedBox(height: 32),
-        const WeaknessIntroduction(),
-        const WeaknessOrderSelectForm(
-          type: 'solved',
-        ),
-        const SizedBox(height: 32),
-        const WeaknessStatusTabs(
-          selected: 'solved',
-        ),
-        const SizedBox(height: 8),
-        _quizzes(),
-        const SizedBox(height: 240),
-      ],
-    );
-
     return Scaffold(
       appBar: const EmptyAppBar(),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: _body,
+          child: Column(
+            children: [
+              const SizedBox(height: 32),
+              const WeaknessIntroduction(),
+              const WeaknessOrderSelectForm(
+                type: 'solved',
+              ),
+              const SizedBox(height: 32),
+              const WeaknessStatusTabs(
+                selected: 'solved',
+              ),
+              const SizedBox(height: 8),
+              quizzes(),
+              const SizedBox(height: 240),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

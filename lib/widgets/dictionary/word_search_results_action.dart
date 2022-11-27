@@ -11,7 +11,7 @@ class DictionaryWordSearchResultsAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future _pushPopup(value) async {
+    Future pushPopup(value) async {
       switch (value) {
         case 0:
           // 辞書に追加
@@ -27,22 +27,22 @@ class DictionaryWordSearchResultsAction extends StatelessWidget {
     // PopupMenuButton 参考： https://api.flutter.dev/flutter/material/PopupMenuButton-class.html
     return PopupMenuButton(
       onSelected: (newValue) {
-        _pushPopup(newValue);
+        pushPopup(newValue);
       },
       itemBuilder: (BuildContext context) => [
         PopupMenuItem(
+          value: 0,
           child: Text(
             '辞書に$keywordを追加する',
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          value: 0,
         ),
         const PopupMenuItem(
+          value: 1,
           child: Text(
             'Webで検索する',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          value: 1,
         )
       ],
     );

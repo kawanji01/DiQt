@@ -26,10 +26,10 @@ class UserMyPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _UserMyPageState createState() => _UserMyPageState();
+  UserMyPageState createState() => UserMyPageState();
 }
 
-class _UserMyPageState extends ConsumerState<UserMyPage> {
+class UserMyPageState extends ConsumerState<UserMyPage> {
   @override
   void initState() {
     super.initState();
@@ -38,7 +38,7 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
 
   @override
   Widget build(BuildContext context) {
-    final User? _user = ref.watch(currentUserProvider);
+    final User? user = ref.watch(currentUserProvider);
     final future = ref.watch(asyncCurrentUserProvider);
 
     // 最終的なアウトプット
@@ -51,7 +51,7 @@ class _UserMyPageState extends ConsumerState<UserMyPage> {
           horizontal: ResponsiveValues.horizontalMargin(context),
         ),
         child: future.when(
-          loading: () => UserMypageScreen(user: _user),
+          loading: () => UserMypageScreen(user: user),
           error: (err, stack) => Text('Error: $err'),
           data: (data) => UserMypageScreen(user: data),
         ),

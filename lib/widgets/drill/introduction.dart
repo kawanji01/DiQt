@@ -16,7 +16,7 @@ class DrillIntroduction extends ConsumerWidget {
     final Drill? drill = ref.watch(drillProvider);
     if (drill == null) return Container();
 
-    Widget _referenceLink() {
+    Widget referenceLink() {
       final Chapter? chapter = drill.chapter;
       if (chapter == null) return Container();
 
@@ -37,30 +37,26 @@ class DrillIntroduction extends ConsumerWidget {
       );
     }
 
-    final title = Text(
-      drill.title,
-      style: const TextStyle(
-          fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
-    );
-
-    final image = CachedNetworkImage(
-      imageUrl: drill.thumbnailUrl,
-      placeholder: (context, url) => const CircularProgressIndicator(),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
-    );
-
-    final introduction = Text(drill.introduction.trimRight(),
-        style: const TextStyle(fontSize: 16, color: Colors.black87));
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _referenceLink(),
-        title,
+        referenceLink(),
+        // Title
+        Text(
+          drill.title,
+          style: const TextStyle(
+              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
+        ),
         const SizedBox(height: 8),
-        image,
+        // Image
+        CachedNetworkImage(
+            imageUrl: drill.thumbnailUrl,
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.error)),
         const SizedBox(height: 16),
-        introduction,
+        // Introduction
+        Text(drill.introduction.trimRight(),
+            style: const TextStyle(fontSize: 16, color: Colors.black87)),
         const SizedBox(height: 24),
         const DrillAnswerSettingButton(),
       ],

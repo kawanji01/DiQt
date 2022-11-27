@@ -20,13 +20,13 @@ class AnswerContinuationAllMonthScreen extends ConsumerStatefulWidget {
   final AnswerCreator answerCreator;
 
   @override
-  _AnswerContinuationAllMonthScreenState createState() =>
-      _AnswerContinuationAllMonthScreenState();
+  AnswerContinuationAllMonthScreenState createState() =>
+      AnswerContinuationAllMonthScreenState();
 }
 
-class _AnswerContinuationAllMonthScreenState
+class AnswerContinuationAllMonthScreenState
     extends ConsumerState<AnswerContinuationAllMonthScreen> {
-  final AudioPlayer audioPlayer = AudioPlayer();
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   void initState() {
@@ -35,14 +35,14 @@ class _AnswerContinuationAllMonthScreenState
       final bool seEnabled = ref.watch(seEnabledProvider);
       if (seEnabled) {
         // 効果音を鳴らす
-        audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
+        _audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
       }
     });
   }
 
   @override
   void dispose() {
-    audioPlayer.dispose();
+    _audioPlayer.dispose();
     super.dispose();
   }
 
@@ -60,7 +60,7 @@ class _AnswerContinuationAllMonthScreenState
     // 記録
     final int counter = answerCreator.continuationAllMonthCount ?? 0;
 
-    Widget _twitterShareButton() {
+    Widget twitterShareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
@@ -90,7 +90,7 @@ class _AnswerContinuationAllMonthScreenState
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton()
+            twitterShareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),
