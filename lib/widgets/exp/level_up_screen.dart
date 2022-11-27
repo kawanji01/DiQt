@@ -8,6 +8,7 @@ import 'package:booqs_mobile/utils/level_calculator.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/button/dialog_close_button.dart';
 import 'package:booqs_mobile/widgets/exp/exp_indicator.dart';
+import 'package:booqs_mobile/widgets/shared/dialog_confetti.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,19 +24,15 @@ class ExpLevelUpScreen extends ConsumerStatefulWidget {
 
 class _ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
   final AudioPlayer audioPlayer = AudioPlayer();
-  final ConfettiController _confettiController =
-      ConfettiController(duration: const Duration(seconds: 1));
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // 効果音を鳴らす
       final bool seEnabled = ref.watch(seEnabledProvider);
       if (seEnabled) {
-        // 効果音を鳴らす
         audioPlayer.play(AssetSource(levelUpSound), volume: 0.8);
-        // 紙吹雪を降らせる
-        _confettiController.play();
       }
     });
   }
@@ -43,7 +40,6 @@ class _ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
   @override
   void dispose() {
     audioPlayer.dispose();
-    _confettiController.dispose();
     super.dispose();
   }
 
@@ -62,15 +58,6 @@ class _ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
       return AnswerShareButton(text: tweet, url: url);
     }
 
-    Widget _confetti() {
-      return Align(
-        alignment: Alignment.topRight,
-        child: ConfettiWidget(
-          confettiController: _confettiController,
-        ),
-      );
-    }
-
     return Container(
       height: ResponsiveValues.dialogHeight(context),
       width: ResponsiveValues.dialogWidth(context),
@@ -79,7 +66,6 @@ class _ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
       child: Stack(
         children: [
           Column(children: [
-            _confetti(),
             const SizedBox(height: 16),
             const Text('レベルアップ',
                 style: TextStyle(
@@ -93,21 +79,7 @@ class _ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
             _shareButton()
           ]),
           const DialogCloseButton(),
-          // 紙吹雪
-          // ref: https://blog.dalt.me/2478
-          // ref: https://gist.github.com/derekedelaney/0bd36b370daceaf56712a22bd097cdc8
-          Align(
-            alignment: Alignment.topCenter,
-            child: ConfettiWidget(
-              confettiController: _confettiController,
-              blastDirectionality: BlastDirectionality.explosive,
-              minimumSize: const Size(10, 5),
-              maximumSize: const Size(20, 10),
-              // 一度に発射する数
-              numberOfParticles: 30,
-              emissionFrequency: 0.1,
-            ),
-          ),
+          const DialogConfetti(),
         ],
       ),
     );

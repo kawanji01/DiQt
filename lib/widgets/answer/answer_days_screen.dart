@@ -24,7 +24,8 @@ class AnswerAnswerDaysScreen extends ConsumerStatefulWidget {
 
 class _AnswerAnswerDaysScreenState
     extends ConsumerState<AnswerAnswerDaysScreen> {
-  final audioPlayer = AudioPlayer();
+  final _audioPlayer = AudioPlayer();
+
   @override
   void initState() {
     super.initState();
@@ -32,14 +33,14 @@ class _AnswerAnswerDaysScreenState
       // 効果音
       final bool seEnabled = ref.watch(seEnabledProvider);
       if (seEnabled) {
-        audioPlayer.play(AssetSource(continousSound), volume: 0.8);
+        _audioPlayer.play(AssetSource(continousSound), volume: 0.8);
       }
     });
   }
 
   @override
   void dispose() {
-    audioPlayer.dispose();
+    _audioPlayer.dispose();
     super.dispose();
   }
 

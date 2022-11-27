@@ -45,12 +45,6 @@ class _AnswerContinuousGoalAchievementScreenState
     super.dispose();
   }
 
-  Widget _heading(int counter) {
-    return Text('$counter日連続目標達成',
-        style: const TextStyle(
-            fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
-  }
-
   Widget _twitterShareButton(User? user, int counter) {
     if (user == null) return Container();
 
@@ -89,7 +83,11 @@ class _AnswerContinuousGoalAchievementScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            _heading(counter),
+            Text('$counter日連続目標達成',
+                style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange)),
             ExpGainedExpIndicator(
               initialExp: initialExp,
               gainedExp: gainedExp,

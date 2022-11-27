@@ -26,7 +26,7 @@ class AnswerContinuousAnswerDaysScreen extends ConsumerStatefulWidget {
 
 class _AnswerContinuousAnswerDaysScreenState
     extends ConsumerState<AnswerContinuousAnswerDaysScreen> {
-  final audioPlayer = AudioPlayer();
+  final _audioPlayer = AudioPlayer();
 
   @override
   void initState() {
@@ -35,14 +35,14 @@ class _AnswerContinuousAnswerDaysScreenState
       // 効果音
       final bool seEnabled = ref.watch(seEnabledProvider);
       if (seEnabled) {
-        audioPlayer.play(AssetSource(continousSound), volume: 0.8);
+        _audioPlayer.play(AssetSource(continousSound), volume: 0.8);
       }
     });
   }
 
   @override
   void dispose() {
-    audioPlayer.dispose();
+    _audioPlayer.dispose();
     super.dispose();
   }
 
@@ -55,15 +55,8 @@ class _AnswerContinuousAnswerDaysScreenState
         answerCreator.answerDaysPoint;
     // 獲得経験値
     final int gainedExp = answerCreator.continuousAnswerDaysPoint;
-
     // 記録
     final int counter = answerCreator.continuousAnswerDaysCount ?? 0;
-    //
-    Widget _heading() {
-      return Text('$counter日連続解答',
-          style: const TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
-    }
 
     Widget _twitterShareButton() {
       final User? user = ref.watch(currentUserProvider);
@@ -84,7 +77,11 @@ class _AnswerContinuousAnswerDaysScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            _heading(),
+            Text('$counter日連続解答',
+                style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange)),
             ExpGainedExpIndicator(
               initialExp: initialExp,
               gainedExp: gainedExp,
