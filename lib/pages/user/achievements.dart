@@ -70,17 +70,17 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
         .forEach((e) => _masterMedals.add(Achievement.fromJson(e)));
     _gotMedalIds = resMap['got_medal_ids'];
 
-    if (mounted) {
-      setState(() {
-        _tutorialMedals;
-        _answerMedals;
-        _continuationMedals;
-        _masterMedals;
-        _gotMedalIds;
-        _user = user;
-        _initDone = true;
-      });
-    }
+    if (!mounted) return;
+
+    setState(() {
+      _tutorialMedals;
+      _answerMedals;
+      _continuationMedals;
+      _masterMedals;
+      _gotMedalIds;
+      _user = user;
+      _initDone = true;
+    });
   }
 
   @override

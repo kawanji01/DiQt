@@ -39,14 +39,13 @@ class ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
 
     final String order = ref.watch(activitiesOrderProvider);
     final Map? resMap = await RemoteActivities.index(pageKey, _pageSize, order);
+    // ref: https://github.com/EdsonBueno/infinite_scroll_pagination/issues/64
+    if (!mounted) return;
     if (resMap == null) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _isReached = false;
-        });
-      }
-      return;
+      return setState(() {
+        _isLoading = false;
+        _isReached = false;
+      });
     }
     final List<Activity> activities = [];
     resMap['activities'].forEach((e) => activities.add(Activity.fromJson(e)));
@@ -60,12 +59,11 @@ class ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(activities, _nextPagekey);
     }
-    if (mounted) {
-      setState(() {
-        _isReached = false;
-        _isLoading = false;
-      });
-    }
+
+    setState(() {
+      _isReached = false;
+      _isLoading = false;
+    });
   }
 
   @override

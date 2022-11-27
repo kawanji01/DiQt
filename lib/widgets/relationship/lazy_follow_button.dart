@@ -42,13 +42,12 @@ class RelationshipLazyFollowButtonState
         ? null
         : Relationship.fromJson(resMap['relationship']);
     // 画面間を素早く行き来すると発生するエラーの解決 ref: https://blog.mrym.tv/2019/12/traps-on-calling-setstate-inside-initstate/
-    if (mounted) {
-      setState(() {
-        _user = user;
-        _currentUser = currentUser;
-        _relationship = relationship;
-      });
-    }
+    if (!mounted) return;
+    setState(() {
+      _user = user;
+      _currentUser = currentUser;
+      _relationship = relationship;
+    });
   }
 
   @override

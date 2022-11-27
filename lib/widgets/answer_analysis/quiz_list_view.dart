@@ -43,14 +43,14 @@ class AnswerAnalysisQuizListViewState
     final String order = ref.watch(answerAnalysisOrderProvider);
     final Map? resMap =
         await RemoteAnswerAnalyses.index(pageKey, _pageSize, order);
+    // ref: https://github.com/EdsonBueno/infinite_scroll_pagination/issues/64
+    if (!mounted) return;
+
     if (resMap == null) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _isReached = false;
-        });
-      }
-      return;
+      return setState(() {
+        _isLoading = false;
+        _isReached = false;
+      });
     }
     final List<AnswerAnalysis> answerAnalyses = [];
     resMap['answer_analyses']
@@ -64,12 +64,11 @@ class AnswerAnalysisQuizListViewState
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(answerAnalyses, _nextPagekey);
     }
-    if (mounted) {
-      setState(() {
-        _isReached = false;
-        _isLoading = false;
-      });
-    }
+
+    setState(() {
+      _isReached = false;
+      _isLoading = false;
+    });
   }
 
   @override

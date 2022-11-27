@@ -32,13 +32,12 @@ class RelationshipFollowButtonState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        setState(() {
-          _user = widget.user;
-          _currentUser = ref.watch(currentUserProvider);
-          _relationship = widget.relationship;
-        });
-      }
+      if (!mounted) return;
+      setState(() {
+        _user = widget.user;
+        _currentUser = ref.watch(currentUserProvider);
+        _relationship = widget.relationship;
+      });
     });
   }
 

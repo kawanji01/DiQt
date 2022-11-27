@@ -39,14 +39,12 @@ class WeaknessQuizListViewState extends ConsumerState<WeaknessQuizListView> {
 
     final String order = ref.watch(weaknessOrderProvider);
     final Map? resMap = await RemoteWeaknesses.index(pageKey, _pageSize, order);
+    if (!mounted) return;
     if (resMap == null) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _isReached = false;
-        });
-      }
-      return;
+      return setState(() {
+        _isLoading = false;
+        _isReached = false;
+      });
     }
     final List<Weakness> weaknesses = [];
     resMap['weaknesses'].forEach((e) => weaknesses.add(Weakness.fromJson(e)));
@@ -59,12 +57,11 @@ class WeaknessQuizListViewState extends ConsumerState<WeaknessQuizListView> {
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(weaknesses, _nextPagekey);
     }
-    if (mounted) {
-      setState(() {
-        _isReached = false;
-        _isLoading = false;
-      });
-    }
+
+    setState(() {
+      _isReached = false;
+      _isLoading = false;
+    });
   }
 
   @override

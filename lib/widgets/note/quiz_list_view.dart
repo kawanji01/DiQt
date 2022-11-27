@@ -39,14 +39,12 @@ class NoteQuizListViewState extends ConsumerState<NoteQuizListView> {
 
     final String order = ref.watch(noteOrderProvider);
     final Map? resMap = await RemoteNotes.index(pageKey, _pageSize, order);
+    if (!mounted) return;
     if (resMap == null) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _isReached = false;
-        });
-      }
-      return;
+      return setState(() {
+        _isLoading = false;
+        _isReached = false;
+      });
     }
     final List<Note> notes = [];
     resMap['notes'].forEach((e) => notes.add(Note.fromJson(e)));
@@ -59,12 +57,11 @@ class NoteQuizListViewState extends ConsumerState<NoteQuizListView> {
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(notes, _nextPagekey);
     }
-    if (mounted) {
-      setState(() {
-        _isReached = false;
-        _isLoading = false;
-      });
-    }
+
+    setState(() {
+      _isReached = false;
+      _isLoading = false;
+    });
   }
 
   @override
