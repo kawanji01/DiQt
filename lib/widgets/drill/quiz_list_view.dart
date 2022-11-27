@@ -12,10 +12,10 @@ class DrillQuizListView extends ConsumerStatefulWidget {
   const DrillQuizListView({Key? key}) : super(key: key);
 
   @override
-  _DrillQuizListViewState createState() => _DrillQuizListViewState();
+  DrillQuizListViewState createState() => DrillQuizListViewState();
 }
 
-class _DrillQuizListViewState extends ConsumerState<DrillQuizListView> {
+class DrillQuizListViewState extends ConsumerState<DrillQuizListView> {
   bool _isLoading = false;
   bool _isReached = true;
   int _nextPagekey = 0;
@@ -80,7 +80,7 @@ class _DrillQuizListViewState extends ConsumerState<DrillQuizListView> {
   @override
   Widget build(BuildContext context) {
     //
-    Widget _loader() {
+    Widget loader() {
       // ref: https://qiita.com/kikuchy/items/07d10394a4f7aa2a3836
       return VisibilityDetector(
         key: const Key("for detect visibility"),
@@ -113,7 +113,7 @@ class _DrillQuizListViewState extends ConsumerState<DrillQuizListView> {
           isShow: false,
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
-        newPageProgressIndicatorBuilder: (_) => _loader(),
+        newPageProgressIndicatorBuilder: (_) => loader(),
       ),
     );
   }

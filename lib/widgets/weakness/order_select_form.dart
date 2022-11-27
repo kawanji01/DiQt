@@ -12,7 +12,7 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // ページに合わせて問題を更新する
-    void _refresh() {
+    void refresh() {
       switch (type) {
         case 'unsolved':
           ref.refresh(asyncUnsolvedWeaknessesProvider);
@@ -27,7 +27,7 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
     }
 
     // 値に対応するフォームのラベル
-    String _label(String value) {
+    String label(String value) {
       switch (value) {
         case 'correct_answer_rate-asc':
           return '正答率が低い順';
@@ -49,46 +49,42 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
     }
 
     // ドロップダウンボタンの生成
-    Widget _buildDropDown() {
-      return Container(
-        margin: const EdgeInsets.only(top: 24),
-        height: 48,
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(color: Colors.black87)),
-        child: DropdownButton<String>(
-          value: ref.watch(weaknessOrderProvider),
-          iconSize: 24,
-          elevation: 16,
-          onChanged: (String? newValue) {
-            if (newValue == null) return;
-            ref.read(weaknessOrderProvider.notifier).state = newValue;
-            _refresh();
-          },
-          items: <String>[
-            'correct_answer_rate-asc',
-            'correct_answer_rate-desc',
-            'incorrect_answers_count-desc',
-            'incorrect_answers_count-asc',
-            'created_at-desc',
-            'created_at-asc',
-            'random-random',
-          ].map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(_label(value),
-                  style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87)),
-            );
-          }).toList(),
-        ),
-      );
-    }
-
-    return _buildDropDown();
+    return Container(
+      margin: const EdgeInsets.only(top: 24),
+      height: 48,
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          border: Border.all(color: Colors.black87)),
+      child: DropdownButton<String>(
+        value: ref.watch(weaknessOrderProvider),
+        iconSize: 24,
+        elevation: 16,
+        onChanged: (String? newValue) {
+          if (newValue == null) return;
+          ref.read(weaknessOrderProvider.notifier).state = newValue;
+          refresh();
+        },
+        items: <String>[
+          'correct_answer_rate-asc',
+          'correct_answer_rate-desc',
+          'incorrect_answers_count-desc',
+          'incorrect_answers_count-asc',
+          'created_at-desc',
+          'created_at-asc',
+          'random-random',
+        ].map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(label(value),
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87)),
+          );
+        }).toList(),
+      ),
+    );
   }
 }

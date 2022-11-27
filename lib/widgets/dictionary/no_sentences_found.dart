@@ -13,7 +13,7 @@ class DictionaryNoSentencesFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 例文の新規作成ボタン
-    Widget _newSentenceButton() {
+    Widget newSentenceButton() {
       return InkWell(
         onTap: () {
           SentenceNewPage.push(context, dictionaryId, keyword);
@@ -30,7 +30,7 @@ class DictionaryNoSentencesFound extends StatelessWidget {
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 40),
-        _newSentenceButton(),
+        newSentenceButton(),
         const SizedBox(height: 80),
         const AppBanner(),
       ],

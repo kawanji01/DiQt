@@ -51,7 +51,7 @@ class ActivityDrillLapClear extends ConsumerWidget {
       ),
     );
 
-    Widget _achievementImage() {
+    Widget achievementImage() {
       return InkWell(
         onTap: () {
           ref.read(drillProvider.notifier).state = drill;
@@ -68,7 +68,7 @@ class ActivityDrillLapClear extends ConsumerWidget {
     return Column(
       children: [
         message,
-        _achievementImage(),
+        achievementImage(),
       ],
     );
   }

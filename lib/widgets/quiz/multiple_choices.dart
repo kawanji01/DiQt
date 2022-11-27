@@ -20,10 +20,10 @@ class QuizMultipleChoices extends ConsumerStatefulWidget {
   final bool unsolved;
 
   @override
-  _QuizMultipleChoicesState createState() => _QuizMultipleChoicesState();
+  QuizMultipleChoicesState createState() => QuizMultipleChoicesState();
 }
 
-class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
+class QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
   String? _selectedAnswer;
   bool _isCovered = false;
   bool _isDisabled = false;
@@ -42,12 +42,12 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
   @override
   Widget build(BuildContext context) {
     final User? user = ref.watch(currentUserProvider);
-    final Quiz _quiz = widget.quiz;
-    final String? _correctAnswer = _quiz.correctAnswer;
-    final List<String> _answerTextList = widget.answerTextList;
+    final Quiz quiz = widget.quiz;
+    final String correctAnswer = quiz.correctAnswer;
+    final List<String> answerTextList = widget.answerTextList;
 
     // 解答ボタン
-    Widget _answerButton(answerText) {
+    Widget answerButton(answerText) {
       final bool selected = _selectedAnswer == answerText;
 
       return InkWell(
@@ -56,8 +56,8 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
             ? null
             : () async {
                 _selectedAnswer = answerText;
-                final bool correct = _selectedAnswer == _correctAnswer;
-                AnswerNotification(answerText, correct, _quiz, user, true)
+                final bool correct = _selectedAnswer == correctAnswer;
+                AnswerNotification(answerText, correct, quiz, user, true)
                     .dispatch(context);
                 // 振動フィードバック
                 HapticFeedback.mediumImpact();
@@ -82,19 +82,19 @@ class _QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
     }
 
     // 解答ボタンのリストを生成する
-    List<Widget> _choiceButtons(textList) {
+    List<Widget> choiceButtons(textList) {
       List<Widget> buttonList = [];
       textList.forEach((answerText) {
         // 空文字の改行は選択肢にしない
         if (answerText == '') return;
-        buttonList.add(_answerButton(answerText));
+        buttonList.add(answerButton(answerText));
       });
       return buttonList;
     }
 
     // 多肢選択肢
     final Widget multipleChoices = Column(
-      children: _choiceButtons(_answerTextList),
+      children: choiceButtons(answerTextList),
     );
 
     // 選択肢カバー

@@ -23,11 +23,10 @@ class AnswerAnalysisIndexPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _AnswerAnalysisIndexPageState createState() =>
-      _AnswerAnalysisIndexPageState();
+  AnswerAnalysisIndexPageState createState() => AnswerAnalysisIndexPageState();
 }
 
-class _AnswerAnalysisIndexPageState
+class AnswerAnalysisIndexPageState
     extends ConsumerState<AnswerAnalysisIndexPage> {
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class _AnswerAnalysisIndexPageState
     String title = '解答分析';
     if (order.split('-')[0] == 'last_answered_at') title = '解答履歴';
 
-    Widget _feed() {
+    Widget feed() {
       if (premiumEnabled) {
         return const AnswerAnalysisQuizListView();
       } else {
@@ -61,7 +60,7 @@ class _AnswerAnalysisIndexPageState
               const SizedBox(
                 height: 24,
               ),
-              _feed(),
+              feed(),
               const SizedBox(
                 height: 80,
               ),

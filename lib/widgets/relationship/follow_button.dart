@@ -18,10 +18,11 @@ class RelationshipFollowButton extends ConsumerStatefulWidget {
   final Relationship? relationship;
 
   @override
-  _RelationshipFollowButton createState() => _RelationshipFollowButton();
+  RelationshipFollowButtonState createState() =>
+      RelationshipFollowButtonState();
 }
 
-class _RelationshipFollowButton
+class RelationshipFollowButtonState
     extends ConsumerState<RelationshipFollowButton> {
   User? _user;
   User? _currentUser;
@@ -46,7 +47,7 @@ class _RelationshipFollowButton
     if (_user == null || _currentUser == null) return Container();
 
     // フォロー
-    Future<void> _follow() async {
+    Future<void> follow() async {
       // ログインしていないならマイページ（ログイン画面）に飛ばす
       final String? token = await LocalUserInfo.authToken();
       if (token == null) return UserMyPage.push(context);
@@ -64,7 +65,7 @@ class _RelationshipFollowButton
     }
 
     // フォロー解除
-    Future<void> _remove() async {
+    Future<void> remove() async {
       if (_relationship == null) return;
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteRelationships.destroy(_relationship!);
@@ -75,11 +76,11 @@ class _RelationshipFollowButton
       });
     }
 
-    Widget _button(relationship) {
+    Widget button(relationship) {
       if (relationship == null) {
         return InkWell(
           onTap: () {
-            _follow();
+            follow();
           },
           child: const SmallOutlineGrayButton(
             label: 'フォローする',
@@ -89,13 +90,13 @@ class _RelationshipFollowButton
       } else {
         return InkWell(
           onTap: () {
-            _remove();
+            remove();
           },
           child: const SmallGreenButton(label: 'フォロー中', icon: Icons.person),
         );
       }
     }
 
-    return _button(_relationship);
+    return button(_relationship);
   }
 }

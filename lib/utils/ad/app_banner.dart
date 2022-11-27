@@ -14,10 +14,10 @@ class AppBanner extends ConsumerStatefulWidget {
   final String adUnitId;
 
   @override
-  _AppBannerState createState() => _AppBannerState();
+  AppBannerState createState() => AppBannerState();
 }
 
-class _AppBannerState extends ConsumerState<AppBanner> {
+class AppBannerState extends ConsumerState<AppBanner> {
   BannerAd? bannerAd;
 
   @override
@@ -75,16 +75,16 @@ class _AppBannerState extends ConsumerState<AppBanner> {
       print('widget.adSize == null');
       return Container(
         alignment: Alignment.center,
-        child: AdWidget(ad: bannerAd!),
         height: 90,
+        child: AdWidget(ad: bannerAd!),
       );
     }
 
     return Container(
       alignment: Alignment.center,
-      child: AdWidget(ad: bannerAd!),
       width: bannerAd!.size.width.toDouble(),
       height: bannerAd!.size.height.toDouble(),
+      child: AdWidget(ad: bannerAd!),
     );
   }
 }

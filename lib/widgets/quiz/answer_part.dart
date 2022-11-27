@@ -12,7 +12,7 @@ class QuizAnswerPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _answerForm() {
+    Widget answerForm() {
       if (quiz.shortAnswerEnabled) {
         // 入力型
         return QuizShortAnswerForm(
@@ -44,6 +44,6 @@ class QuizAnswerPart extends StatelessWidget {
       }
     }
 
-    return _answerForm();
+    return answerForm();
   }
 }

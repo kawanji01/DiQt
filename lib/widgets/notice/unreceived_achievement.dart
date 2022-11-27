@@ -20,11 +20,11 @@ class NoticeUnreceivedAchievement extends ConsumerStatefulWidget {
   final AchievementMap achievementMap;
 
   @override
-  _NoticeUnreceivedAchievementState createState() =>
-      _NoticeUnreceivedAchievementState();
+  NoticeUnreceivedAchievementState createState() =>
+      NoticeUnreceivedAchievementState();
 }
 
-class _NoticeUnreceivedAchievementState
+class NoticeUnreceivedAchievementState
     extends ConsumerState<NoticeUnreceivedAchievement> {
   bool _isreceived = false;
   AchievementMap? _achievementMap;
@@ -53,7 +53,7 @@ class _NoticeUnreceivedAchievementState
     if (_achievementMap == null) return Container();
 
     // 報酬の受け取り処理
-    Future<void> _receive() async {
+    Future<void> receive() async {
       final Map? resMap =
           await RemoteAchievementMaps.update(_achievementMap!.id);
       if (resMap == null) return;
@@ -75,7 +75,7 @@ class _NoticeUnreceivedAchievementState
               color: Colors.orange)),
     );
 
-    Widget _medalImage() {
+    Widget medalImage() {
       final File file = File(_achievement!.imageUrl);
       final filename = basename(file.path);
       final achievementImageUrl =
@@ -84,7 +84,7 @@ class _NoticeUnreceivedAchievementState
       return Image.network(achievementImageUrl);
     }
 
-    Widget _explanation() {
+    Widget explanation() {
       if (_isreceived) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -105,7 +105,7 @@ class _NoticeUnreceivedAchievementState
       );
     }
 
-    Widget _shareButton() {
+    Widget shareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
       if (_achievement == null) return Container();
@@ -120,7 +120,7 @@ class _NoticeUnreceivedAchievementState
       );
     }
 
-    Widget _receiveButton() {
+    Widget receiveButton() {
       if (_isreceived == true) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -134,11 +134,11 @@ class _NoticeUnreceivedAchievementState
           alignment: Alignment.bottomCenter,
           child: ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              primary: Colors.pink,
+              backgroundColor: Colors.pink,
               minimumSize: const Size(double.infinity,
                   56), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
             ),
-            onPressed: () => {_receive()},
+            onPressed: () => {receive()},
             icon: const Icon(Icons.military_tech, color: Colors.white),
             label: const Text(
               ' 報酬を受け取る',
@@ -159,16 +159,16 @@ class _NoticeUnreceivedAchievementState
             child: Column(
               children: [
                 heading,
-                _medalImage(),
+                medalImage(),
                 const SizedBox(height: 16),
-                _explanation(),
+                explanation(),
                 const SizedBox(height: 24),
-                _shareButton(),
+                shareButton(),
                 const SizedBox(height: 120),
               ],
             ),
           ),
-          _receiveButton(),
+          receiveButton(),
           const DialogConfetti(),
         ],
       ),

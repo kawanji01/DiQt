@@ -13,10 +13,10 @@ class DrillUnsolvedScreen extends ConsumerStatefulWidget {
   const DrillUnsolvedScreen({Key? key}) : super(key: key);
 
   @override
-  _DrillUnsolvedScreenState createState() => _DrillUnsolvedScreenState();
+  DrillUnsolvedScreenState createState() => DrillUnsolvedScreenState();
 }
 
-class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
+class DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
   @override
   void initState() {
     super.initState();
@@ -28,7 +28,7 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
   Widget build(BuildContext context) {
     final future = ref.watch(asyncDrillUnsolvedQuizzesProvider);
 
-    Widget _unsolvedQuizzes() {
+    Widget unsolvedQuizzes() {
       return future.when(
         data: (data) => DrillUnsolvedQuizzes(quizzes: data),
         error: (err, stack) => Text('Error: $err'),
@@ -56,7 +56,7 @@ class _DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
             selected: 'unsolved',
           ),
           const SizedBox(height: 32),
-          _unsolvedQuizzes(),
+          unsolvedQuizzes(),
           const SizedBox(height: 80),
           const UserDrillInProgress(),
         ],

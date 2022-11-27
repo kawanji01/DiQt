@@ -12,10 +12,10 @@ class LoginForm extends ConsumerStatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  LoginFormState createState() => LoginFormState();
 }
 
-class _LoginFormState extends ConsumerState<LoginForm> {
+class LoginFormState extends ConsumerState<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -31,7 +31,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   @override
   Widget build(BuildContext context) {
     // 送信
-    Future _submit() async {
+    Future submit() async {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       if (!_formKey.currentState!.validate()) {
@@ -57,10 +57,10 @@ class _LoginFormState extends ConsumerState<LoginForm> {
       }
     }
 
-    Widget _submitButton() {
+    Widget submitButton() {
       return InkWell(
         onTap: () {
-          _submit();
+          submit();
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -99,7 +99,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
               controller: _passwordController,
               isPassword: true),
           const SizedBox(height: 20),
-          _submitButton(),
+          submitButton(),
         ],
       ),
     );

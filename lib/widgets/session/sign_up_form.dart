@@ -12,10 +12,10 @@ class SignUpForm extends ConsumerStatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
 
   @override
-  _SignUpFormState createState() => _SignUpFormState();
+  SignUpFormState createState() => SignUpFormState();
 }
 
-class _SignUpFormState extends ConsumerState<SignUpForm> {
+class SignUpFormState extends ConsumerState<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _idController = TextEditingController();
@@ -35,7 +35,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     // 送信
-    Future _submit() async {
+    Future submit() async {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       if (!_formKey.currentState!.validate()) {
@@ -82,37 +82,6 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
       EasyLoading.dismiss();
     }
 
-    Widget _submitButton() {
-      return InkWell(
-        onTap: () {
-          _submit();
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.shade200,
-                    offset: const Offset(2, 4),
-                    blurRadius: 5,
-                    spreadRadius: 2)
-              ],
-              gradient: const LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-          child: const Text(
-            '登録する',
-            style: TextStyle(
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      );
-    }
-
     return Form(
       key: _formKey,
       child: Column(
@@ -126,7 +95,37 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
               controller: _passwordController,
               isPassword: true),
           const SizedBox(height: 20),
-          _submitButton(),
+          // SubmitButton
+          InkWell(
+            onTap: () {
+              submit();
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                        color: Colors.grey.shade200,
+                        offset: const Offset(2, 4),
+                        blurRadius: 5,
+                        spreadRadius: 2)
+                  ],
+                  gradient: const LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [Color(0xfffbb448), Color(0xfff7892b)])),
+              child: const Text(
+                '登録する',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
         ],
       ),
     );

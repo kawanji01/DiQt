@@ -12,10 +12,10 @@ class ReviewQuizListView extends ConsumerStatefulWidget {
   const ReviewQuizListView({Key? key}) : super(key: key);
 
   @override
-  _ReviewQuizListViewState createState() => _ReviewQuizListViewState();
+  ReviewQuizListViewState createState() => ReviewQuizListViewState();
 }
 
-class _ReviewQuizListViewState extends ConsumerState<ReviewQuizListView> {
+class ReviewQuizListViewState extends ConsumerState<ReviewQuizListView> {
   bool _isLoading = false;
   bool _isReached = true;
   int _nextPagekey = 0;
@@ -76,7 +76,7 @@ class _ReviewQuizListViewState extends ConsumerState<ReviewQuizListView> {
   @override
   Widget build(BuildContext context) {
     //
-    Widget _loader() {
+    Widget loader() {
       // ref: https://qiita.com/kikuchy/items/07d10394a4f7aa2a3836
       return VisibilityDetector(
         key: const Key("for detect visibility"),
@@ -109,7 +109,7 @@ class _ReviewQuizListViewState extends ConsumerState<ReviewQuizListView> {
           review: item,
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
-        newPageProgressIndicatorBuilder: (_) => _loader(),
+        newPageProgressIndicatorBuilder: (_) => loader(),
       ),
     );
   }

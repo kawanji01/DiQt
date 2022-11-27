@@ -9,11 +9,11 @@ class UserDrillsInProgressScreen extends ConsumerStatefulWidget {
   const UserDrillsInProgressScreen({Key? key}) : super(key: key);
 
   @override
-  _UserDrillsInProgressScreenState createState() =>
-      _UserDrillsInProgressScreenState();
+  UserDrillsInProgressScreenState createState() =>
+      UserDrillsInProgressScreenState();
 }
 
-class _UserDrillsInProgressScreenState
+class UserDrillsInProgressScreenState
     extends ConsumerState<UserDrillsInProgressScreen> {
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _UserDrillsInProgressScreenState
               height: 2))
     ]));
 
-    Widget _drillFeed() {
+    Widget drillFeed() {
       return future.when(
         loading: () => const LoadingSpinner(),
         error: (err, stack) => Text('Error: $err'),
@@ -62,7 +62,7 @@ class _UserDrillsInProgressScreenState
         children: [
           const SizedBox(height: 24),
           heading,
-          _drillFeed(),
+          drillFeed(),
           const SizedBox(height: 48),
         ],
       )),

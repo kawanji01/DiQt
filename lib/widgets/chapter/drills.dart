@@ -10,10 +10,10 @@ class ChapterDrills extends ConsumerStatefulWidget {
   const ChapterDrills({Key? key}) : super(key: key);
 
   @override
-  _ChapterDrillsState createState() => _ChapterDrillsState();
+  ChapterDrillsState createState() => ChapterDrillsState();
 }
 
-class _ChapterDrillsState extends ConsumerState<ChapterDrills> {
+class ChapterDrillsState extends ConsumerState<ChapterDrills> {
   @override
   void initState() {
     super.initState();
@@ -28,7 +28,7 @@ class _ChapterDrillsState extends ConsumerState<ChapterDrills> {
     final future = ref.watch(asynChapterDrillsProvider);
 
     //
-    Widget _buildCards() {
+    Widget buildCards() {
       return future.when(
           loading: () => const LoadingSpinner(),
           error: (err, stack) => Text('Error: $err'),
@@ -47,7 +47,7 @@ class _ChapterDrillsState extends ConsumerState<ChapterDrills> {
             const SizedBox(
               height: 40,
             ),
-            _buildCards(),
+            buildCards(),
           ],
         ),
       ),

@@ -23,10 +23,10 @@ class ReviewAllPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _ReviewAllPageState createState() => _ReviewAllPageState();
+  ReviewAllPageState createState() => ReviewAllPageState();
 }
 
-class _ReviewAllPageState extends ConsumerState<ReviewAllPage> {
+class ReviewAllPageState extends ConsumerState<ReviewAllPage> {
   @override
   Widget build(BuildContext context) {
     final body = Column(

@@ -20,7 +20,7 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     final RegExp regExp = RegExp(r'(\{\[.*?\]\})');
 
-    InlineSpan _plainWord(String word) {
+    InlineSpan plainWord(String word) {
       return WidgetSpan(
         child: MarkdownWithoutDictLink(
           text: '$word ',
@@ -37,7 +37,7 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
       ); */
     }
 
-    InlineSpan _wordWithItemLabel(String word) {
+    InlineSpan wordWithItemLabel(String word) {
       final String label = word.replaceFirst('{[', '').replaceFirst(']}', '');
       final double labelFontSize = fontSize - 4;
       final double marginTop = fontSize / 2;
@@ -74,13 +74,13 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
     }
 
     // 単語のウィジェットを生成する。
-    InlineSpan _wordWidget(String word) {
+    InlineSpan wordWidget(String word) {
       // 記法を持たない単語
       if (regExp.hasMatch(word) == false) {
-        return _plainWord(word);
+        return plainWord(word);
       }
       // 記法持ちの単語
-      return _wordWithItemLabel(word);
+      return wordWithItemLabel(word);
     }
 
     // 記法が使われたテキストと、そうでない通常のテキストを分けてリストにする
@@ -111,19 +111,19 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
     }
 
     // [[text]]や[[text|link]]を分ける。
-    List<String?> _splitLineIntoWords(String textWithDictLinks) {
+    List<String?> splitLineIntoWords(String textWithDictLinks) {
       final list = allMatchesWithSep(textWithDictLinks, regExp);
       return list;
     }
 
     // 文字列を「リンク付き文字列」に変換する
-    Widget _lineWithItemLabel(String line) {
+    Widget lineWithItemLabel(String line) {
       List<InlineSpan> richTextSpans = <InlineSpan>[];
       // テキストを単語に分割してリストにする。
-      List<String?> wordList = _splitLineIntoWords(line);
+      List<String?> wordList = splitLineIntoWords(line);
 
       for (String? word in wordList) {
-        InlineSpan span = _wordWidget(word!);
+        InlineSpan span = wordWidget(word!);
         richTextSpans.add(span);
       }
 
@@ -134,6 +134,6 @@ class MarkdownLineWithItemLabel extends StatelessWidget {
       ));
     }
 
-    return _lineWithItemLabel(line);
+    return lineWithItemLabel(line);
   }
 }

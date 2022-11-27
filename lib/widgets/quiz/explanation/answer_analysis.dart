@@ -16,7 +16,7 @@ class QuizExplanationAnswerAnalysis extends StatelessWidget {
     final AnswerAnalysis? answerAnalysis = quiz.answerAnalysis;
     final Weakness? weakness = quiz.weakness;
 
-    Widget _answersCount() {
+    Widget answersCount() {
       if (answerAnalysis == null) {
         return const Text('まだ解答したことがありません。', style: TextStyle(fontSize: 16));
       }
@@ -41,7 +41,7 @@ class QuizExplanationAnswerAnalysis extends StatelessWidget {
       );
     }
 
-    Widget _incorrectAnswersCount() {
+    Widget incorrectAnswersCount() {
       if (answerAnalysis == null) {
         return Container();
       }
@@ -66,7 +66,7 @@ class QuizExplanationAnswerAnalysis extends StatelessWidget {
       );
     }
 
-    Widget _correctAnswerRate() {
+    Widget correctAnswerRate() {
       if (answerAnalysis == null) {
         return Container();
       }
@@ -95,7 +95,7 @@ class QuizExplanationAnswerAnalysis extends StatelessWidget {
       );
     }
 
-    Widget _lastAnswerDate() {
+    Widget lastAnswerDate() {
       if (answerAnalysis == null) {
         return Container();
       }
@@ -146,13 +146,13 @@ class QuizExplanationAnswerAnalysis extends StatelessWidget {
       children: [
         const SharedItemLabel(text: '解答分析'),
         const SizedBox(height: 8),
-        _answersCount(),
+        answersCount(),
         const SizedBox(height: 4),
-        _incorrectAnswersCount(),
+        incorrectAnswersCount(),
         const SizedBox(height: 4),
-        _correctAnswerRate(),
+        correctAnswerRate(),
         const SizedBox(height: 4),
-        _lastAnswerDate(),
+        lastAnswerDate(),
         const SizedBox(height: 8),
         WeaknessSettingButton(quizId: quiz.id, weakness: weakness),
         const SizedBox(height: 80),

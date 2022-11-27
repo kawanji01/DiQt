@@ -9,7 +9,7 @@ class WordFormSentence extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _info() {
+    Widget info() {
       final SentenceSource? source = sentence.sentenceSource;
       if (source == null) {
         return Text(
@@ -43,7 +43,7 @@ class WordFormSentence extends StatelessWidget {
           style: const TextStyle(fontSize: 16, color: Colors.black87),
         ),
         const SizedBox(height: 8),
-        _info(),
+        info(),
       ],
     );
   }

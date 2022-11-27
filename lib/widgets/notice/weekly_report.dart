@@ -60,7 +60,7 @@ class NoticeWeeklyReport extends StatelessWidget {
       ),
     );
 
-    Widget _rankImage() {
+    Widget rankImage() {
       final String rankImageUrl =
           "https://res.cloudinary.com/hkbyf3jop/image/upload/l_text:Sawarabi%20Gothic_56_bold:${report.rank}位,co_rgb:faf0a2,w_360,y_-32/v1589085558/ranking_weekly_gold.png";
       // if (report.rank == null || report.rank! > 100) return Container();
@@ -73,7 +73,7 @@ class NoticeWeeklyReport extends StatelessWidget {
       );
     }
 
-    Widget _information(String label, String value) {
+    Widget information(String label, String value) {
       return RichText(
           text: TextSpan(children: [
         TextSpan(
@@ -93,11 +93,11 @@ class NoticeWeeklyReport extends StatelessWidget {
       ]));
     }
 
-    Widget _rankInfo() {
+    Widget rankInfo() {
       //if (report.rank == null || report.rank! > 100) return Container();
       const String label = '週間ランキング';
       final String value = '${report.rank}位';
-      return _information(label, value);
+      return information(label, value);
     }
 
     return Column(
@@ -105,10 +105,10 @@ class NoticeWeeklyReport extends StatelessWidget {
       children: [
         NoticeTimestamp(notice: notice),
         message,
-        _rankImage(),
+        rankImage(),
         const SizedBox(height: 8),
-        _rankInfo(),
-        _information('解答数', '${report.numberOfAnswers}回'),
+        rankInfo(),
+        information('解答数', '${report.numberOfAnswers}回'),
         //_information('解答日数', '${report.daysAnswered}日'),
         const SizedBox(height: 48),
       ],

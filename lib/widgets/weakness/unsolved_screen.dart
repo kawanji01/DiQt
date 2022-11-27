@@ -14,10 +14,10 @@ class WeaknessUnsolvedScreen extends ConsumerStatefulWidget {
   const WeaknessUnsolvedScreen({Key? key}) : super(key: key);
 
   @override
-  _WeaknessUnsolvedScreenState createState() => _WeaknessUnsolvedScreenState();
+  WeaknessUnsolvedScreenState createState() => WeaknessUnsolvedScreenState();
 }
 
-class _WeaknessUnsolvedScreenState
+class WeaknessUnsolvedScreenState
     extends ConsumerState<WeaknessUnsolvedScreen> {
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _WeaknessUnsolvedScreenState
     final future = ref.watch(asyncUnsolvedWeaknessesProvider);
     final bool premiumEnabled = ref.watch(premiumEnabledProvider);
 
-    Widget _unsolvedQuizzes() {
+    Widget unsolvedQuizzes() {
       if (premiumEnabled == false) {
         return const SharedPremiumRecommendation(
             explanationText: '『苦手な問題』を解くには、プレミアムプランへの登録が必要です。');
@@ -67,7 +67,7 @@ class _WeaknessUnsolvedScreenState
             selected: 'unsolved',
           ),
           const SizedBox(height: 8),
-          _unsolvedQuizzes(),
+          unsolvedQuizzes(),
           const SizedBox(height: 240),
         ],
       ),

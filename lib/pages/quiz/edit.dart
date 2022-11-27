@@ -50,13 +50,10 @@ class _QuizEditPageState extends State<QuizEditPage> {
   Future _loadQuiz(int quizId) async {
     final Map? resMap = await RemoteQuizzes.edit(quizId);
     _isLoading = false;
-    if (resMap == null) {
+    if (resMap == null || resMap['quiz'] == null) {
       return setState(() => _isLoading);
     }
-    final Quiz? quiz = Quiz.fromJson(resMap['quiz']);
-    if (quiz == null) {
-      return setState(() => _isLoading);
-    }
+    final Quiz quiz = Quiz.fromJson(resMap['quiz']);
     _questionController.text = quiz.question;
     _correctAnswerController.text = quiz.correctAnswer;
     _distractor1Controller.text = quiz.distractor1 ?? '';
@@ -88,7 +85,7 @@ class _QuizEditPageState extends State<QuizEditPage> {
   @override
   Widget build(BuildContext context) {
     //
-    Future _save(quiz) async {
+    Future save(quiz) async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
@@ -120,17 +117,17 @@ class _QuizEditPageState extends State<QuizEditPage> {
     }
 
     // 更新ボタン
-    Widget _submitButton() {
+    Widget submitButton() {
       return SizedBox(
         height: 48,
         child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            primary: Colors.green,
+            backgroundColor: Colors.green,
             minimumSize: const Size(double.infinity,
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
           onPressed: () => {
-            _save(_quiz),
+            save(_quiz),
           },
           icon: const Icon(Icons.update, color: Colors.white),
           label: const Text(
@@ -142,7 +139,7 @@ class _QuizEditPageState extends State<QuizEditPage> {
     }
 
     //
-    Widget _body(Quiz? quiz) {
+    Widget body(Quiz? quiz) {
       if (_isLoading) return const LoadingSpinner();
       if (quiz == null) return const Text('Quiz does not exist.');
       final Drill? drill = quiz.drill;
@@ -168,7 +165,7 @@ class _QuizEditPageState extends State<QuizEditPage> {
                 quiz: quiz,
               ),
               const SizedBox(height: 40),
-              _submitButton(),
+              submitButton(),
               const SizedBox(height: 40),
             ]),
       );
@@ -182,7 +179,7 @@ class _QuizEditPageState extends State<QuizEditPage> {
         child: Container(
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: _body(_quiz),
+          child: body(_quiz),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

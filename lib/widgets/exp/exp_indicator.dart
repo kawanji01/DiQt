@@ -36,7 +36,7 @@ class ExpExpIndicator extends StatelessWidget {
     int percentInt = (percent * 100.0).floor();
 
     // レベル表示
-    Widget _levelLabel() {
+    Widget levelLabel() {
       return Container(
         padding: const EdgeInsets.only(bottom: 10),
         alignment: Alignment.centerLeft,
@@ -49,7 +49,7 @@ class ExpExpIndicator extends StatelessWidget {
     }
 
     // 経験値バー
-    Widget _expIndicator() {
+    Widget expIndicator() {
       return LinearPercentIndicator(
         animation: true,
         animateFromLastPercent: true,
@@ -67,23 +67,19 @@ class ExpExpIndicator extends StatelessWidget {
       );
     }
 
-    // 次のレベルに上がるまでに必要な経験値量
-    Widget _expForNextLevel() {
-      return Container(
-        padding: const EdgeInsets.only(top: 16),
-        alignment: Alignment.centerLeft,
-        child: Text('次のレベルまであと${expForNextLevel}EXP',
-            style: const TextStyle(color: Colors.black87, fontSize: 16)),
-      );
-    }
-
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(
         children: <Widget>[
-          _levelLabel(),
-          _expIndicator(),
-          _expForNextLevel(),
+          levelLabel(),
+          expIndicator(),
+          // 次のレベルに上がるまでに必要な経験値量
+          Container(
+            padding: const EdgeInsets.only(top: 16),
+            alignment: Alignment.centerLeft,
+            child: Text('次のレベルまであと${expForNextLevel}EXP',
+                style: const TextStyle(color: Colors.black87, fontSize: 16)),
+          ),
         ],
       ),
     );

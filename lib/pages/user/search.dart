@@ -24,21 +24,10 @@ class _UserSearchPageState extends State<UserSearchPage> {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
     final String keyword = arguments['keyword'];
 
-    Widget _results() {
+    Widget results() {
       if (keyword == '') return Container();
 
       return UserItemListView(keyword: keyword);
-    }
-
-    Widget _page() {
-      return Column(
-        children: [
-          const SizedBox(height: 40),
-          UserSearchForm(keyword: keyword),
-          _results(),
-          const SizedBox(height: 120),
-        ],
-      );
     }
 
     // 最終的なアウトプット
@@ -50,7 +39,14 @@ class _UserSearchPageState extends State<UserSearchPage> {
         child: Container(
           padding: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: _page(),
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              UserSearchForm(keyword: keyword),
+              results(),
+              const SizedBox(height: 120),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

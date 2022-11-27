@@ -18,10 +18,10 @@ class WeaknessSettingButton extends ConsumerStatefulWidget {
   final int quizId;
 
   @override
-  _WeaknessSettingButtonState createState() => _WeaknessSettingButtonState();
+  WeaknessSettingButtonState createState() => WeaknessSettingButtonState();
 }
 
-class _WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
+class WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
   Weakness? _weakness;
   @override
   void initState() {
@@ -33,7 +33,7 @@ class _WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _create() async {
+    Future<void> create() async {
       final String? token = await LocalUserInfo.authToken();
       if (token == null) {
         const snackBar = SnackBar(content: Text('苦手な問題を設定するにはログインが必要です。'));
@@ -53,7 +53,7 @@ class _WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
       });
     }
 
-    Future<void> _destroy() async {
+    Future<void> destroy() async {
       final String? token = await LocalUserInfo.authToken();
       if (token == null) return;
       EasyLoading.show(status: 'loading...');
@@ -70,7 +70,7 @@ class _WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
     if (_weakness == null) {
       return InkWell(
         onTap: () {
-          _create();
+          create();
         },
         child: const SmallOutlineGreenButton(
           label: '苦手な問題に追加する',
@@ -81,7 +81,7 @@ class _WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
 
     return InkWell(
       onTap: () {
-        _destroy();
+        destroy();
       },
       child: const SmallGreenButton(
         label: '苦手な問題から取り除く',

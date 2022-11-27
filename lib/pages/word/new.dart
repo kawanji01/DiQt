@@ -24,10 +24,10 @@ class WordNewPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _WordNewPageState createState() => _WordNewPageState();
+  WordNewPageState createState() => WordNewPageState();
 }
 
-class _WordNewPageState extends ConsumerState<WordNewPage> {
+class WordNewPageState extends ConsumerState<WordNewPage> {
   Dictionary? _dictionary;
   bool _isLoading = true;
   bool _isRequesting = false;
@@ -89,7 +89,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
   @override
   Widget build(BuildContext context) {
     // 項目の作成
-    Future _create() async {
+    Future create() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
 
@@ -129,7 +129,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       }
     }
 
-    Widget _body() {
+    Widget body() {
       if (_isLoading) return const LoadingSpinner();
       if (_dictionary == null) return const Text('Dictionary does not exist.');
       return SingleChildScrollView(
@@ -160,14 +160,14 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
                     height: 48,
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
+                        backgroundColor: Colors.green,
                         minimumSize: const Size(double.infinity,
                             40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
                       ),
                       onPressed: _isRequesting
                           ? null
                           : () async {
-                              _create();
+                              create();
                             },
                       icon: const Icon(Icons.update, color: Colors.white),
                       label: const Text(
@@ -189,7 +189,7 @@ class _WordNewPageState extends ConsumerState<WordNewPage> {
       body: Container(
         margin: EdgeInsets.symmetric(
             horizontal: ResponsiveValues.horizontalMargin(context)),
-        child: _body(),
+        child: body(),
       ),
       bottomNavigationBar: const BottomNavbar(),
     );

@@ -13,7 +13,7 @@ class QuizDrillTitle extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Drillページに遷移
-    Future _moveToDrillPage(drill) async {
+    Future moveToDrillPage(drill) async {
       final String? token = await LocalUserInfo.authToken();
 
       if (token == null) {
@@ -37,7 +37,7 @@ class QuizDrillTitle extends ConsumerWidget {
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: () {
-          _moveToDrillPage(drill);
+          moveToDrillPage(drill);
         },
         child: Text(
           drill.title,

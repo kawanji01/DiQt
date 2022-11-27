@@ -17,10 +17,10 @@ class DictionaryWordListView extends ConsumerStatefulWidget {
   final String keyword;
 
   @override
-  _DictionaryWordListViewState createState() => _DictionaryWordListViewState();
+  DictionaryWordListViewState createState() => DictionaryWordListViewState();
 }
 
-class _DictionaryWordListViewState
+class DictionaryWordListViewState
     extends ConsumerState<DictionaryWordListView> {
   bool _isLoading = false;
   bool _isReached = true;
@@ -83,10 +83,10 @@ class _DictionaryWordListViewState
 
   @override
   Widget build(BuildContext context) {
-    final int _dictionaryId = widget.dictionaryId;
-    final String _keyword = widget.keyword;
+    final int dictionaryId = widget.dictionaryId;
+    final String keyword = widget.keyword;
     //
-    Widget _loader() {
+    Widget loader() {
       // ref: https://qiita.com/kikuchy/items/07d10394a4f7aa2a3836
       return VisibilityDetector(
         key: const Key("for detect visibility"),
@@ -119,13 +119,13 @@ class _DictionaryWordListViewState
                 word: item,
               ),
           // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
-          newPageProgressIndicatorBuilder: (_) => _loader(),
+          newPageProgressIndicatorBuilder: (_) => loader(),
           // 検索結果なし
           noItemsFoundIndicatorBuilder: (_) => DictionaryNoWordsFound(
-              dictionaryId: _dictionaryId, keyword: _keyword),
+              dictionaryId: dictionaryId, keyword: keyword),
           // すべての検索結果の読み込み完了
           noMoreItemsIndicatorBuilder: (_) => DictionaryNoMoreWords(
-              dictionaryId: _dictionaryId, keyword: _keyword)),
+              dictionaryId: dictionaryId, keyword: keyword)),
     );
   }
 }

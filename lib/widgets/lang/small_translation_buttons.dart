@@ -28,7 +28,7 @@ class _LangSmallTranslationButtonsState
   Widget build(BuildContext context) {
     const TextStyle styleText = TextStyle(fontSize: 14, color: Colors.black87);
 
-    Widget _googleButton() {
+    Widget googleButton() {
       if (_googleTranslating) {
         if (_translationByGoogle == null) {
           return const Text(
@@ -66,7 +66,7 @@ class _LangSmallTranslationButtonsState
       );
     }
 
-    Widget _deeplButton() {
+    Widget deeplButton() {
       if (_deeplTranslating) {
         if (_translationByDeepl == null) {
           return const Text(
@@ -103,7 +103,7 @@ class _LangSmallTranslationButtonsState
       );
     }
 
-    Widget _googleResults() {
+    Widget googleResults() {
       if (_translationByGoogle == null) {
         return Container();
       }
@@ -123,7 +123,7 @@ class _LangSmallTranslationButtonsState
       );
     }
 
-    Widget _deeplResults() {
+    Widget deeplResults() {
       if (_translationByDeepl == null) {
         return Container();
       }
@@ -148,17 +148,17 @@ class _LangSmallTranslationButtonsState
       children: [
         Row(
           children: [
-            _googleButton(),
+            googleButton(),
             const Text(
               ' / ',
               style: styleText,
             ),
-            _deeplButton()
+            deeplButton()
           ],
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [_googleResults(), _deeplResults()],
+          children: [googleResults(), deeplResults()],
         ),
       ],
     );

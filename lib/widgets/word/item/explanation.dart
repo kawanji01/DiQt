@@ -10,7 +10,7 @@ class WordItemExplanation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (word.sensesJson != null && word.sensesJson != '') {
+    if (word.sensesJson != null && word.sensesJson != ['']) {
       return WordItemSenses(word: word);
     }
 

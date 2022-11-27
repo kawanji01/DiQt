@@ -17,7 +17,7 @@ class DrillLapUpdateScreen extends ConsumerWidget {
     final DrillLap? drillLap = ref.watch(drillLapProvider);
     final int newLapNumber = drillLap!.clearsCount + 1;
 
-    Future<void> _startNewLap() async {
+    Future<void> startNewLap() async {
       Navigator.of(context).pop();
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       // 画面全体にローディングを表示
@@ -32,7 +32,7 @@ class DrillLapUpdateScreen extends ConsumerWidget {
       DrillUnsolvedPage.push(context);
     }
 
-    Widget _updateButton() {
+    Widget updateButton() {
       return Container(
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Align(
@@ -48,11 +48,11 @@ class DrillLapUpdateScreen extends ConsumerWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 16)),
             onPressed: () {
-              _startNewLap();
+              startNewLap();
             },
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(264, 48),
-              primary: Colors.green,
+              backgroundColor: Colors.green,
             ),
           ),
         ),
@@ -75,7 +75,7 @@ class DrillLapUpdateScreen extends ConsumerWidget {
             explanation,
             const SizedBox(height: 16),
           ]),
-          _updateButton(),
+          updateButton(),
         ],
       ),
     );

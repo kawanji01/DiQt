@@ -12,7 +12,7 @@ class WordFormListSentence extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _source() {
+    Widget source() {
       final SentenceSource? sentenceSource = sentence.sentenceSource;
       if (sentenceSource == null) {
         return Text('ID: ${sentence.id}',
@@ -44,7 +44,7 @@ class WordFormListSentence extends StatelessWidget {
                 style: const TextStyle(
                     fontSize: 16, height: 1.6, color: Colors.black87)),
             const SizedBox(height: 8),
-            _source(),
+            source(),
             const SizedBox(height: 8),
             InkWell(
                 onTap: () {

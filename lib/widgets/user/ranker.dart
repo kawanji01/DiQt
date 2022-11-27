@@ -12,11 +12,11 @@ class UserRanker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String _name(User user) {
+    String name(User user) {
       return '$rank位: ${user.name}';
     }
 
-    String _answersCount(User user) {
+    String answersCount(User user) {
       switch (type) {
         case 'daily':
           return '解答数： ${user.todaysAnswerHistoriesCount}問';
@@ -29,37 +29,37 @@ class UserRanker extends StatelessWidget {
       }
     }
 
-    final information = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          _name(user),
-          style: const TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        Text(
-          _answersCount(user),
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.black54,
-          ),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-      ],
-    );
-
     return Container(
       padding: const EdgeInsets.only(top: 16, bottom: 24),
       child: Row(
         children: [
           UserFeedIcon(user: user),
           Expanded(
-            child: information,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name(user),
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  answersCount(user),
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.black54,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+              ],
+            ),
           ),
         ],
       ),

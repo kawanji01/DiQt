@@ -19,10 +19,10 @@ class ReviewSmallSettingButton extends ConsumerStatefulWidget {
   final Review? review;
 
   @override
-  _ReviewSmallButtonState createState() => _ReviewSmallButtonState();
+  ReviewSmallButtonState createState() => ReviewSmallButtonState();
 }
 
-class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
+class ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
   Review? _review;
 
   @override
@@ -39,7 +39,7 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
     final int quizId = quiz.id;
 
     //// 復習を設定する。
-    Future _createReview() async {
+    Future createReview() async {
       final String? authToken = await LocalUserInfo.authToken();
       // ログインしていない場合（トークンがない場合）ユーザーはマイページにリダイレクト
       if (authToken == null) {
@@ -50,12 +50,12 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
       }
 
       EasyLoading.show(status: 'loading...');
-      Map? resMap = await RemoteReviews.create(context, quizId);
+      Map? resMap = await RemoteReviews.create(quizId);
       EasyLoading.dismiss();
       if (resMap == null) return;
 
       Review newReview = Review.fromJson(resMap['review']);
-      await Toasts.reviewSetting(context, resMap['message']);
+      await Toasts.reviewSetting(resMap['message']);
 
       setState(() {
         _review = newReview;
@@ -63,7 +63,7 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
     }
 
     //// 復習設定の間隔変更や削除： リマインダー設定ダイアログを表示する＆ダイアログから設定されたreviewを使ってsetStateで再描画する。 ////
-    Future _updateReview(Review review) async {
+    Future updateReview(Review review) async {
       final Review? newReview = await showDialog(
           context: context,
           builder: (context) {
@@ -82,11 +82,11 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
     }
 
     // 復習の作成ボタン
-    Widget _createButton() {
+    Widget createButton() {
       const String label = '覚える';
       return InkWell(
         onTap: () {
-          _createReview();
+          createReview();
         },
         child: const SmallOutlineGrayButton(
           label: label,
@@ -96,11 +96,11 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
     }
 
     // 復習の更新ボタン
-    Widget _editButton(review) {
+    Widget editButton(review) {
       final String label = ReviewHelper.intervalSetting(review.intervalSetting);
       return InkWell(
         onTap: () {
-          _updateReview(review);
+          updateReview(review);
         },
         child: SmallGreenButton(
           label: label,
@@ -110,9 +110,9 @@ class _ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
     }
 
     if (_review == null) {
-      return _createButton();
+      return createButton();
     } else {
-      return _editButton(_review);
+      return editButton(_review);
     }
   }
 }

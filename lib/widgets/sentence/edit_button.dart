@@ -13,14 +13,14 @@ class SentenceEditButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Widget _editButton() {
+    Widget editButton() {
       return Container(
         // 左寄せ
         alignment: Alignment.topLeft,
         child: TextButton(
           style: TextButton.styleFrom(
+            foregroundColor: Colors.black54,
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            primary: Colors.black54,
             textStyle: const TextStyle(fontSize: 16),
           ),
           onPressed: () {
@@ -36,7 +36,7 @@ class SentenceEditButton extends ConsumerWidget {
       );
     }
 
-    Widget _deatailButton() {
+    Widget deatailButton() {
       if (isShow) return Container();
 
       return Container(
@@ -44,8 +44,8 @@ class SentenceEditButton extends ConsumerWidget {
         alignment: Alignment.topRight,
         child: TextButton(
           style: TextButton.styleFrom(
+            foregroundColor: Colors.black54,
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            primary: Colors.black54,
             textStyle: const TextStyle(fontSize: 16),
           ),
           onPressed: () {
@@ -63,7 +63,7 @@ class SentenceEditButton extends ConsumerWidget {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [_editButton(), _deatailButton()],
+      children: [editButton(), deatailButton()],
     );
   }
 }

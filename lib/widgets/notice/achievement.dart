@@ -61,7 +61,7 @@ class NoticeAchievement extends ConsumerWidget {
       ),
     );
 
-    Widget _achievementImage() {
+    Widget achievementImage() {
       return InkWell(
         onTap: () {
           ref.read(userProvider.notifier).state = user;
@@ -79,7 +79,7 @@ class NoticeAchievement extends ConsumerWidget {
       children: [
         NoticeTimestamp(notice: notice),
         notifying,
-        _achievementImage(),
+        achievementImage(),
         const SizedBox(height: 48),
       ],
     );

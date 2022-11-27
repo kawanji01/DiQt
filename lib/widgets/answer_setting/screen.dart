@@ -15,10 +15,10 @@ class AnswerSettingScreen extends ConsumerStatefulWidget {
   final String primary;
 
   @override
-  _AnswerSettingScreenState createState() => _AnswerSettingScreenState();
+  AnswerSettingScreenState createState() => AnswerSettingScreenState();
 }
 
-class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
+class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
   final TextEditingController _dailyGoalController = TextEditingController();
 
   @override
@@ -30,12 +30,12 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AnswerSetting? _answerSetting = ref.watch(answerSettingProvider);
-    if (_answerSetting == null) return Container();
+    AnswerSetting? answerSetting = ref.watch(answerSettingProvider);
+    if (answerSetting == null) return Container();
 
-    _dailyGoalController.text = '${_answerSetting.dailyGoal}';
+    _dailyGoalController.text = '${answerSetting.dailyGoal}';
 
-    Future<void> _update() async {
+    Future<void> update() async {
       Map<String, dynamic> params = {
         'daily_goal': _dailyGoalController.text,
         'question_covered': ref.watch(questionCoveredProvider),
@@ -72,7 +72,7 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
       //print('dailyGoal:${_answerSetting.initialInterval}');
     }
 
-    Widget _submitButton() {
+    Widget submitButton() {
       return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
@@ -85,7 +85,7 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 40),
             ),
-            onPressed: () => {_update()},
+            onPressed: () => {update()},
             icon: const Icon(Icons.settings, color: Colors.white),
             label: const Text(
               '更新する',
@@ -97,7 +97,7 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
     }
 
     // primaryに応じて、設定を並べ替える
-    Widget _column() {
+    Widget column() {
       final String primary = widget.primary;
       switch (primary) {
         case 'AnswerSetting':
@@ -168,10 +168,10 @@ class _AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
             child: Container(
               padding: EdgeInsets.symmetric(
                   horizontal: ResponsiveValues.horizontalMargin(context)),
-              child: _column(),
+              child: column(),
             ),
           ),
-          _submitButton(),
+          submitButton(),
         ],
       ),
     );

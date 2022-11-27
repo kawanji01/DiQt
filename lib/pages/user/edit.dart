@@ -20,7 +20,7 @@ class _UserEditPageState extends State<UserEditPage> {
   @override
   Widget build(BuildContext context) {
     // 項目の取得
-    final User _user = ModalRoute.of(context)!.settings.arguments as User;
+    final User user = ModalRoute.of(context)!.settings.arguments as User;
 
     // 最終的なアウトプット
     return Scaffold(
@@ -33,7 +33,7 @@ class _UserEditPageState extends State<UserEditPage> {
                 horizontal: ResponsiveValues.horizontalMargin(context)),
             padding: const EdgeInsets.symmetric(vertical: 32),
             child: UserForm(
-              user: _user,
+              user: user,
             )),
       ),
       bottomNavigationBar: const BottomNavbar(),

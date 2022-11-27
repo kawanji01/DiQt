@@ -21,7 +21,7 @@ class SentenceFormDestroyConfirmationScreen extends StatelessWidget {
     const explanation = Text('この例文の削除申請を行います。よろしいですか？',
         style: TextStyle(fontSize: 16, color: Colors.black87));
 
-    Future _submit() async {
+    Future submit() async {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteSentences.destroy(sentence.id);
@@ -39,12 +39,12 @@ class SentenceFormDestroyConfirmationScreen extends StatelessWidget {
 
     final submitButton = ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        primary: Colors.red,
+        backgroundColor: Colors.red,
         minimumSize: const Size(double.infinity,
             40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
       ),
       onPressed: () {
-        _submit();
+        submit();
       },
       icon: const Icon(Icons.delete, color: Colors.white),
       label: const Text(

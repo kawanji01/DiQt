@@ -24,14 +24,14 @@ class WeaknessIndexPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _WeaknessIndexPageState createState() => _WeaknessIndexPageState();
+  WeaknessIndexPageState createState() => WeaknessIndexPageState();
 }
 
-class _WeaknessIndexPageState extends ConsumerState<WeaknessIndexPage> {
+class WeaknessIndexPageState extends ConsumerState<WeaknessIndexPage> {
   @override
   Widget build(BuildContext context) {
     final bool premiumEnabled = ref.watch(premiumEnabledProvider);
-    Widget _quizzes() {
+    Widget quizzes() {
       if (premiumEnabled == false) {
         return const SharedPremiumRecommendation(
             explanationText: '『苦手な問題』を解くには、プレミアムプランへの登録が必要です。');
@@ -39,30 +39,28 @@ class _WeaknessIndexPageState extends ConsumerState<WeaknessIndexPage> {
       return const WeaknessQuizListView();
     }
 
-    final _body = Column(
-      children: [
-        const SizedBox(height: 32),
-        const WeaknessIntroduction(),
-        const WeaknessOrderSelectForm(
-          type: 'all',
-        ),
-        const SizedBox(height: 32),
-        const WeaknessStatusTabs(
-          selected: 'all',
-        ),
-        const SizedBox(height: 8),
-        _quizzes(),
-        const SizedBox(height: 240),
-      ],
-    );
-
     return Scaffold(
       appBar: const EmptyAppBar(),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: _body,
+          child: Column(
+            children: [
+              const SizedBox(height: 32),
+              const WeaknessIntroduction(),
+              const WeaknessOrderSelectForm(
+                type: 'all',
+              ),
+              const SizedBox(height: 32),
+              const WeaknessStatusTabs(
+                selected: 'all',
+              ),
+              const SizedBox(height: 8),
+              quizzes(),
+              const SizedBox(height: 240),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

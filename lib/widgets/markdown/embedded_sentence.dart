@@ -19,7 +19,7 @@ class MarkdownEmbeddedSentence extends ConsumerWidget {
     final future = ref.watch(asyncSentenceFamily(sentenceId));
     final double sentenceFontSize = fontSize - 2;
 
-    Widget _embeddedSentence(Sentence? sentence) {
+    Widget embeddedSentence(Sentence? sentence) {
       if (sentence == null) {
         return Container();
       }
@@ -59,7 +59,7 @@ class MarkdownEmbeddedSentence extends ConsumerWidget {
     }
 
     return future.when(
-      data: (data) => _embeddedSentence(data),
+      data: (data) => embeddedSentence(data),
       error: (err, stack) => Text('Error: $err'),
       loading: () => const LoadingSpinner(),
     );

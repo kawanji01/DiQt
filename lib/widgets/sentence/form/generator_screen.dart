@@ -46,7 +46,7 @@ class _SentenceFormGeneratorScreenState
         widget.temperatureController;
     final int langNumber = widget.langNumber;
 
-    Future _generate() async {
+    Future generate() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
       // リクエストロック開始
@@ -173,14 +173,14 @@ class _SentenceFormGeneratorScreenState
                   const SizedBox(height: 40),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
+                      backgroundColor: Colors.green,
                       minimumSize: const Size(double.infinity,
                           48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
                     ),
                     onPressed: _isRequesting
                         ? null
                         : () async {
-                            _generate();
+                            generate();
                           },
                     icon: const Icon(Icons.auto_fix_high, color: Colors.white),
                     label: const Text(

@@ -26,15 +26,15 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
 
   @override
   Widget build(BuildContext context) {
-    final Dictionary _dictionary = widget.dictionary;
-    final int _dictionaryId = _dictionary.id;
+    final Dictionary dictionary = widget.dictionary;
+    final int dictionaryId = dictionary.id;
 
-    void _search() {
+    void search() {
       if (!_formKey.currentState!.validate()) {
         return;
       }
       final String keyword = _wordSearchController.text;
-      DictionaryWordSearchResultsPage.push(context, _dictionaryId, keyword);
+      DictionaryWordSearchResultsPage.push(context, dictionaryId, keyword);
     }
 
     return Form(
@@ -61,7 +61,7 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
                   ),
                 )),
             suggestionsCallback: (pattern) {
-              return WordTypeahead.getSuggestions(pattern, _dictionaryId);
+              return WordTypeahead.getSuggestions(pattern, dictionaryId);
             },
             itemBuilder: (context, String suggestion) {
               // 候補をタップしたときに検索画面に遷移する。参考： https://stackoverflow.com/questions/68375774/use-the-typeaheadformfield-inside-a-form-flutter
@@ -69,7 +69,7 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
                 title: Text(suggestion),
                 onTap: () {
                   _wordSearchController.text = suggestion;
-                  _search();
+                  search();
                 },
               );
             },
@@ -83,17 +83,18 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
               if (value!.isEmpty) {
                 return '入力してください。';
               }
+              return null;
             },
           ),
           Container(
             margin: const EdgeInsets.only(top: 20, bottom: 40),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                primary: Colors.green,
+                backgroundColor: Colors.green,
                 minimumSize: const Size(double.infinity,
                     48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
               ),
-              onPressed: _search,
+              onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
               label: const Text(
                 '検索する',

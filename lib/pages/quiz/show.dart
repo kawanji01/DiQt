@@ -26,10 +26,10 @@ class QuizShowPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _QuizShowPageState createState() => _QuizShowPageState();
+  QuizShowPageState createState() => QuizShowPageState();
 }
 
-class _QuizShowPageState extends ConsumerState<QuizShowPage> {
+class QuizShowPageState extends ConsumerState<QuizShowPage> {
   @override
   void initState() {
     super.initState();
@@ -46,7 +46,7 @@ class _QuizShowPageState extends ConsumerState<QuizShowPage> {
     final int quizId = arguments['quizId'];
     final future = ref.watch(asyncQuizFamily(quizId));
 
-    Widget _screen(Quiz? quiz) {
+    Widget screen(Quiz? quiz) {
       if (quiz == null) return const Text('Quiz does not exist.');
 
       return Column(
@@ -74,7 +74,7 @@ class _QuizShowPageState extends ConsumerState<QuizShowPage> {
               horizontal: ResponsiveValues.horizontalMargin(context),
               vertical: 24),
           child: future.when(
-            data: (quiz) => _screen(quiz),
+            data: (quiz) => screen(quiz),
             error: (err, stack) => Text('Error: $err'),
             loading: () => const LoadingSpinner(),
           ),

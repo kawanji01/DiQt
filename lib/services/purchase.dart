@@ -28,7 +28,7 @@ class PurchaseService {
     }
 
     // アプリ起動時などのコールバック時に実行され、契約状況をDBと同期する。
-    Future<void> _purchaserInfoUpdated(PurchaserInfo info) async {
+    Future<void> purchaserInfoUpdated(PurchaserInfo info) async {
       //print('purchaserInfoUpdated: $isExecuting');
       //print('_purchaserInfoUpdated: ${info.entitlements}');
       if (isExecuting) return;
@@ -36,7 +36,7 @@ class PurchaseService {
     }
 
     // 契約情報更新時のイベントを捕捉するリスナー ref: https://docs.revenuecat.com/docs/purchaserinfo#listening-for-purchaser-info-updates
-    Purchases.addPurchaserInfoUpdateListener(_purchaserInfoUpdated);
+    Purchases.addPurchaserInfoUpdateListener(purchaserInfoUpdated);
   }
 
   // RevenueCatのユーザー認証。UserSetupで利用 　ref：https://docs.revenuecat.com/docs/user-ids#logging-back-in
@@ -171,7 +171,7 @@ class PurchaseService {
       bool result = await syncSubscription(restoredInfo);
       return result;
     } on PlatformException catch (e) {
-      // print('.restore: $e');
+      print('.restore: $e');
       return false;
     } finally {
       isExecuting = false;

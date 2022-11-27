@@ -26,7 +26,7 @@ class ActivityFirstOfTheDay extends StatelessWidget {
       const TextSpan(text: '解答しました！', style: textBlack),
     ]));
 
-    Widget _continuationCount() {
+    Widget continuationCount() {
       if (activity.continuationCount! < 2) {
         return Container();
       }
@@ -37,7 +37,7 @@ class ActivityFirstOfTheDay extends StatelessWidget {
       ]));
     }
 
-    Widget _allWeekContinuationCount() {
+    Widget allWeekContinuationCount() {
       if (activity.allWeekContinuationCount == null) {
         return Container();
       }
@@ -49,7 +49,7 @@ class ActivityFirstOfTheDay extends StatelessWidget {
       ]));
     }
 
-    Widget _allMonthContinuationCount() {
+    Widget allMonthContinuationCount() {
       if (activity.allMonthContinuationCount == null) {
         return Container();
       }
@@ -62,7 +62,7 @@ class ActivityFirstOfTheDay extends StatelessWidget {
       ]));
     }
 
-    Widget _allYearContinuationCount() {
+    Widget allYearContinuationCount() {
       if (activity.allYearContinuationCount == null) {
         return Container();
       }
@@ -84,10 +84,10 @@ class ActivityFirstOfTheDay extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 answerDaysCount,
-                _continuationCount(),
-                _allWeekContinuationCount(),
-                _allMonthContinuationCount(),
-                _allYearContinuationCount()
+                continuationCount(),
+                allWeekContinuationCount(),
+                allMonthContinuationCount(),
+                allYearContinuationCount()
               ],
             ),
           )

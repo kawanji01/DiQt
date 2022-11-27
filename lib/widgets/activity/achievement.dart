@@ -76,7 +76,7 @@ class ActivityAchievement extends ConsumerWidget {
       ),
     );
 
-    Widget _achievementImage() {
+    Widget achievementImage() {
       return InkWell(
         onTap: () {
           ref.read(userProvider.notifier).state = user;
@@ -93,7 +93,7 @@ class ActivityAchievement extends ConsumerWidget {
     return Column(
       children: [
         message,
-        _achievementImage(),
+        achievementImage(),
       ],
     );
   }

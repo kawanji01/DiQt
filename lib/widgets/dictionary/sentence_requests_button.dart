@@ -11,7 +11,7 @@ class DictionarySentenceRequestsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 承認済の例文リクエスト
-    Widget _acceptedSentenceRequestsButton() {
+    Widget acceptedSentenceRequestsButton() {
       final String btnText =
           '例文の改善履歴（${dictionary.acceptedSentenceRequestsCount}）';
       final String redirectPath =
@@ -25,7 +25,7 @@ class DictionarySentenceRequestsButton extends StatelessWidget {
     }
 
     // 審査中の例文リクエスト
-    Widget _pendingSentenceRequestsButton() {
+    Widget pendingSentenceRequestsButton() {
       final int requestsCount = dictionary.pendingSentenceRequestsCount;
       if (requestsCount == 0) return Container();
       final String btnText = '$requestsCount件の審査中の編集';
@@ -47,8 +47,8 @@ class DictionarySentenceRequestsButton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _acceptedSentenceRequestsButton(),
-        _pendingSentenceRequestsButton()
+        acceptedSentenceRequestsButton(),
+        pendingSentenceRequestsButton()
       ],
     );
   }

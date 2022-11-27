@@ -35,10 +35,10 @@ class HomePage extends ConsumerStatefulWidget {
   }
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
@@ -54,7 +54,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _tabBars() {
+    List<Widget> tabBars() {
       SizeConfig().init(context);
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
       double width = grid * 40;
@@ -75,7 +75,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           flexibleSpace: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              TabBar(isScrollable: true, tabs: _tabBars()),
+              TabBar(isScrollable: true, tabs: tabBars()),
             ],
           ),
         ),

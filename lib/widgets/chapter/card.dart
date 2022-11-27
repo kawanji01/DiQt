@@ -17,7 +17,7 @@ class ChapterCard extends ConsumerWidget {
     final answerHistoriesCount = formatter.format(chapter.answerHistoriesCount);
 
     // Chapterページに遷移
-    Future _moveToChapterPage(chapter) async {
+    Future moveToChapterPage(chapter) async {
       ref.read(chapterProvider.notifier).state = chapter;
       await ChapterShowPage.push(context);
     }
@@ -35,7 +35,7 @@ class ChapterCard extends ConsumerWidget {
       child: InkWell(
         splashColor: Colors.green.withAlpha(30),
         onTap: () {
-          _moveToChapterPage(chapter);
+          moveToChapterPage(chapter);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

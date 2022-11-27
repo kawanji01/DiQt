@@ -44,20 +44,20 @@ class QuizAnswersCount extends ConsumerWidget {
       }
     });
 
-    final int _todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
-    final int _todaysCorrectAnswersCount =
+    final int todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
+    final int todaysCorrectAnswersCount =
         ref.watch(todaysCorrectAnswersCountProvider);
-    final int _dailyGoalCount = ref.watch(
+    final int dailyGoalCount = ref.watch(
             answerSettingProvider.select((setting) => setting!.dailyGoal)) ??
         30;
 
     // 通常モードで表示する解答数
-    Widget _answersCount() {
+    Widget answersCount() {
       String message = '';
-      if (_dailyGoalCount < _todaysAnswersCount) {
-        message = '$_todaysAnswersCount問解答';
+      if (dailyGoalCount < todaysAnswersCount) {
+        message = '$todaysAnswersCount問解答';
       } else {
-        final int remainedCount = _dailyGoalCount - _todaysAnswersCount;
+        final int remainedCount = dailyGoalCount - todaysAnswersCount;
         message = '目標まで残り$remainedCount問';
       }
       return Text(
@@ -67,12 +67,12 @@ class QuizAnswersCount extends ConsumerWidget {
     }
 
     // 厳格解答モードで表示する解答数
-    Widget _correctAnswersCount() {
+    Widget correctAnswersCount() {
       String message = '';
-      if (_dailyGoalCount < _todaysCorrectAnswersCount) {
-        message = '$_todaysAnswersCount問正解';
+      if (dailyGoalCount < todaysCorrectAnswersCount) {
+        message = '$todaysAnswersCount問正解';
       } else {
-        final int remainedCount = _dailyGoalCount - _todaysCorrectAnswersCount;
+        final int remainedCount = dailyGoalCount - todaysCorrectAnswersCount;
         message = '目標まで残り$remainedCount問正解';
       }
       return Text(
@@ -81,16 +81,16 @@ class QuizAnswersCount extends ConsumerWidget {
       );
     }
 
-    Widget _answersCountInformation() {
+    Widget answersCountInformation() {
       final bool strictSolvingMode = ref.watch(strictSolvingModeProvider);
       if (strictSolvingMode) {
-        return _correctAnswersCount();
+        return correctAnswersCount();
       }
-      return _answersCount();
+      return answersCount();
     }
 
     return Container(
         padding: const EdgeInsets.only(bottom: 8),
-        child: _answersCountInformation());
+        child: answersCountInformation());
   }
 }

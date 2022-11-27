@@ -18,7 +18,7 @@ class ReviewBulkDeletionScreen extends ConsumerWidget {
     const explanation = Text('全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？',
         style: TextStyle(fontSize: 16, color: Colors.black87));
 
-    Future _submit() async {
+    Future submit() async {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteReviews.destroyAll();
       EasyLoading.dismiss();
@@ -32,7 +32,7 @@ class ReviewBulkDeletionScreen extends ConsumerWidget {
 
     final cancelButton = ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        primary: Colors.grey,
+        backgroundColor: Colors.grey,
         minimumSize: const Size(144,
             40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
       ),
@@ -49,7 +49,7 @@ class ReviewBulkDeletionScreen extends ConsumerWidget {
 
     final submitButton = TextButton.icon(
       onPressed: () {
-        _submit();
+        submit();
       },
       icon: const Icon(
         Icons.delete,

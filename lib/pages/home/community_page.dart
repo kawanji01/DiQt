@@ -1,9 +1,9 @@
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class CommunityPage extends StatelessWidget {
   const CommunityPage({Key? key}) : super(key: key);
@@ -45,24 +45,14 @@ class CommunityPage extends StatelessWidget {
     ]));
 
     //
-    Future<void> _moveToDiscord() async {
-      const String url = "https://discord.gg/N7zUGMJ";
-      if (await canLaunch(url)) {
-        await launch(
-          url,
-          forceSafariVC: false,
-          forceWebView: false,
-        );
-      }
-    }
-
-    //
     final discordButton = ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        primary: const Color(0xff7289da),
+        backgroundColor: const Color(0xff7289da),
         minimumSize: const Size(double.infinity, 56),
       ),
-      onPressed: () => {_moveToDiscord()},
+      onPressed: () => {
+        WebPageLauncher.openByExternalBrowser("https://discord.gg/N7zUGMJ"),
+      },
       icon: const FaIcon(
         FontAwesomeIcons.discord,
         color: Colors.white,

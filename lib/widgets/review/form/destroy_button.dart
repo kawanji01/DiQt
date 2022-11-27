@@ -12,13 +12,13 @@ class ReviewFormDestroyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 復習設定を削除する
-    Future _delete() async {
+    Future delete() async {
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteReviews.destroy(context, review.id);
+      final Map? resMap = await RemoteReviews.destroy(review.id);
       EasyLoading.dismiss();
 
       if (resMap == null) return;
-      await Toasts.reviewSetting(context, resMap['message']);
+      await Toasts.reviewSetting(resMap['message']);
       // 削除が完了したことを伝えるモデルを作成する。
       review.scheduledDate = 'deleted';
       // ダイアログを閉じて、reviewを返り値にする。
@@ -29,9 +29,9 @@ class ReviewFormDestroyButton extends StatelessWidget {
     return TextButton.icon(
       icon: const Icon(Icons.delete_outlined),
       label: const Text('復習設定を削除する'),
-      onPressed: () => _delete(),
+      onPressed: () => delete(),
       style: TextButton.styleFrom(
-        primary: Colors.red,
+        foregroundColor: Colors.red,
         textStyle: const TextStyle(fontSize: 16),
         padding: EdgeInsets.zero,
       ),

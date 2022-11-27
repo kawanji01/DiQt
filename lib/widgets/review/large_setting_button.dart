@@ -36,7 +36,7 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
   @override
   Widget build(BuildContext context) {
     //// 復習を設定する。 ////
-    Future _createReview() async {
+    Future createReview() async {
       final String? authToken = await LocalUserInfo.authToken();
       // ログインしていない場合（トークンがない場合）ユーザーはマイページにリダイレクト
       if (authToken == null) {
@@ -47,13 +47,13 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
       }
 
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteReviews.create(context, _quizId!);
+      final Map? resMap = await RemoteReviews.create(_quizId!);
       EasyLoading.dismiss();
 
       if (resMap == null) return;
 
       Review newReview = Review.fromJson(resMap['review']);
-      await Toasts.reviewSetting(context, resMap['message']);
+      await Toasts.reviewSetting(resMap['message']);
 
       setState(() {
         _review = newReview;
@@ -61,7 +61,7 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
     }
 
     //// 復習設定の間隔変更や削除： リマインダー設定ダイアログを表示する＆ダイアログから設定されたreviewを使ってsetStateで再描画する。 ////
-    Future _editReview(Review review) async {
+    Future editReview(Review review) async {
       final Review? newReview = await showDialog(
           context: context,
           builder: (context) {
@@ -80,22 +80,22 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
     }
 
     // 復習の作成ボタン
-    Widget _createButton() {
+    Widget createButton() {
       const String label = '覚える';
       return InkWell(
         onTap: () {
-          _createReview();
+          createReview();
         },
         child: const ReviewLargeOutlineButton(label: label),
       );
     }
 
     // 復習の更新ボタン
-    Widget _editButton(Review review) {
+    Widget editButton(Review review) {
       final String label = ReviewHelper.intervalSetting(review.intervalSetting);
       return InkWell(
         onTap: () {
-          _editReview(review);
+          editReview(review);
         },
         child: ReviewLargeGreenButton(
           label: label,
@@ -104,9 +104,9 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
     }
 
     if (_review == null) {
-      return _createButton();
+      return createButton();
     } else {
-      return _editButton(_review!);
+      return editButton(_review!);
     }
   }
 }

@@ -21,7 +21,7 @@ class PurchaseDeleteButton extends ConsumerWidget {
     final purchase = PurchaseService();
 
     // 解約処理
-    Future _cancelSubscription() async {
+    Future cancelSubscription() async {
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       const storage = FlutterSecureStorage();
@@ -41,14 +41,14 @@ class PurchaseDeleteButton extends ConsumerWidget {
     }
 
     // 解約ボタン
-    Widget _cancelViaRevenueCat() {
+    Widget cancelViaRevenueCat() {
       return GestureDetector(
         onTap: () async {
           const String title = '解約';
           const String text = 'プレミアムプランを解約します。よろしいですか？';
           bool result = await Dialogs.confirm(context, title, text);
           if (result) {
-            await _cancelSubscription();
+            await cancelSubscription();
           }
         },
         child: const Text(
@@ -63,7 +63,7 @@ class PurchaseDeleteButton extends ConsumerWidget {
       );
     }
 
-    Widget _cancelViaWeb() {
+    Widget cancelViaWeb() {
       return GestureDetector(
         onTap: () async {
           final String redirectPath = 'users/${user.publicUid}/payment_setting';
@@ -82,9 +82,9 @@ class PurchaseDeleteButton extends ConsumerWidget {
     }
 
     if (user.paidViaNativeApp == true) {
-      return _cancelViaRevenueCat();
+      return cancelViaRevenueCat();
     } else {
-      return _cancelViaWeb();
+      return cancelViaWeb();
     }
   }
 }

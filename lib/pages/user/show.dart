@@ -20,10 +20,10 @@ class UserShowPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _UserShowPageState createState() => _UserShowPageState();
+  UserShowPageState createState() => UserShowPageState();
 }
 
-class _UserShowPageState extends ConsumerState<UserShowPage> {
+class UserShowPageState extends ConsumerState<UserShowPage> {
   @override
   void initState() {
     super.initState();
@@ -36,7 +36,7 @@ class _UserShowPageState extends ConsumerState<UserShowPage> {
     // final String _title = _user == null ? 'ユーザーページ' : _user.name;
     final future = ref.watch(asyncUserProvider);
 
-    Widget _userPage(user) {
+    Widget userPage(user) {
       if (user == null) return const LoadingSpinner();
 
       final Relationship? relationship = user.relationship;
@@ -74,7 +74,7 @@ class _UserShowPageState extends ConsumerState<UserShowPage> {
           child: future.when(
             loading: () => const LoadingSpinner(),
             error: (err, stack) => Text('Error: $err'),
-            data: (data) => _userPage(data),
+            data: (data) => userPage(data),
           ),
         ),
       ),

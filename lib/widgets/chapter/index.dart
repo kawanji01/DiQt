@@ -9,13 +9,13 @@ class ChapterIndex extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<Chapter> _chapters = ref.watch(chaptersProvider);
+    final List<Chapter> chapters = ref.watch(chaptersProvider);
     final future = ref.watch(asyncChaptersProvider);
 
     return SingleChildScrollView(
       child: Container(
         child: future.when(
-          loading: () => ChapterCardList(chapters: _chapters),
+          loading: () => ChapterCardList(chapters: chapters),
           error: (err, stack) => Text('Error: $err'),
           data: (data) => ChapterCardList(chapters: data),
         ),

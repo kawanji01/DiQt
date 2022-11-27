@@ -12,23 +12,23 @@ class WordSearchForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _formKey = GlobalKey<FormState>();
-    final int _dictionaryId = ref.watch(dictionaryIdProvider);
+    final formKey = GlobalKey<FormState>();
+    final int dictionaryId = ref.watch(dictionaryIdProvider);
 
-    Future _moveToSearchResults(keyword) async {
+    Future moveToSearchResults(keyword) async {
       await DictionaryWordSearchResultsPage.push(
-          context, _dictionaryId, keyword);
+          context, dictionaryId, keyword);
     }
 
-    void _search() {
-      if (!_formKey.currentState!.validate()) {
+    void search() {
+      if (!formKey.currentState!.validate()) {
         return;
       }
-      _moveToSearchResults(searchController.text);
+      moveToSearchResults(searchController.text);
     }
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         children: [
           TypeAheadFormField(
@@ -51,7 +51,7 @@ class WordSearchForm extends ConsumerWidget {
                   ),
                 )),
             suggestionsCallback: (pattern) {
-              return WordTypeahead.getSuggestions(pattern, _dictionaryId);
+              return WordTypeahead.getSuggestions(pattern, dictionaryId);
             },
             itemBuilder: (context, String suggestion) {
               // 候補をタップしたときに検索画面に遷移する。参考： https://stackoverflow.com/questions/68375774/use-the-typeaheadformfield-inside-a-form-flutter
@@ -59,7 +59,7 @@ class WordSearchForm extends ConsumerWidget {
                 title: Text(suggestion),
                 onTap: () {
                   searchController.text = suggestion;
-                  _moveToSearchResults(suggestion);
+                  moveToSearchResults(suggestion);
                 },
               );
             },
@@ -73,6 +73,7 @@ class WordSearchForm extends ConsumerWidget {
               if (value!.isEmpty) {
                 return 'キーワードを入力してください。';
               }
+              return null;
             },
           ),
           Container(
@@ -82,7 +83,7 @@ class WordSearchForm extends ConsumerWidget {
                 minimumSize: const Size(double.infinity,
                     48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
               ),
-              onPressed: _search,
+              onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
               label: const Text(
                 '検索する',

@@ -15,14 +15,14 @@ class GoogleButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Google 認証
-    final _googleSignin = GoogleSignIn(scopes: [
+    final googleSignin = GoogleSignIn(scopes: [
       'email',
       // contacts apiは廃止されて、people APIへ移行している。
       // 'https://www.googleapis.com/auth/contacts.readonly',
     ]);
 
-    Future _googleAuth() async {
-      final GoogleSignInAccount? googleUser = await _googleSignin.signIn();
+    Future googleAuth() async {
+      final GoogleSignInAccount? googleUser = await googleSignin.signIn();
       final GoogleSignInAuthentication googleAuth =
           await googleUser!.authentication;
 
@@ -59,7 +59,7 @@ class GoogleButton extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
-        _googleAuth();
+        googleAuth();
       },
       child: Container(
         height: 48,

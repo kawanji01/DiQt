@@ -1,3 +1,5 @@
+import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
@@ -6,7 +8,6 @@ import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/utils/audio_players_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/widgets/answer/share_button.dart';
@@ -22,12 +23,13 @@ class AnswerDrillLapClearScreen extends ConsumerStatefulWidget {
   final AnswerCreator answerCreator;
 
   @override
-  _AnswerDrillLapClearScreenState createState() =>
-      _AnswerDrillLapClearScreenState();
+  AnswerDrillLapClearScreenState createState() =>
+      AnswerDrillLapClearScreenState();
 }
 
-class _AnswerDrillLapClearScreenState
+class AnswerDrillLapClearScreenState
     extends ConsumerState<AnswerDrillLapClearScreen> {
+  final AudioPlayer audioPlayer = AudioPlayer();
   @override
   void initState() {
     super.initState();
@@ -35,24 +37,30 @@ class _AnswerDrillLapClearScreenState
       // 効果音
       final bool seEnabled = ref.watch(seEnabledProvider);
       if (seEnabled) {
-        AudioPlayersService.playAchievementSound();
+        audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
       }
     });
   }
 
   @override
-  Widget build(BuildContext context) {
-    final User? _user = ref.watch(currentUserProvider);
-    if (_user == null) return Container();
-    final AnswerSetting? _answerSetting = ref.watch(answerSettingProvider);
-    if (_answerSetting == null) return Container();
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
+  }
 
-    final bool _strictSolvingMode = _answerSetting.strictSolvingMode;
-    String _description;
-    if (_strictSolvingMode) {
-      _description = '厳格解答モードで全ての問題に正解しました！';
+  @override
+  Widget build(BuildContext context) {
+    final User? user = ref.watch(currentUserProvider);
+    if (user == null) return Container();
+    final AnswerSetting? answerSetting = ref.watch(answerSettingProvider);
+    if (answerSetting == null) return Container();
+
+    final bool strictSolvingMode = answerSetting.strictSolvingMode;
+    String description;
+    if (strictSolvingMode) {
+      description = '厳格解答モードで全ての問題に正解しました！';
     } else {
-      _description = '全ての問題を解きました！';
+      description = '全ての問題を解きました！';
     }
     final AnswerCreator answerCreator = widget.answerCreator;
     // 開始経験値（基準 + 問題集周回報酬）
@@ -64,13 +72,7 @@ class _AnswerDrillLapClearScreenState
     // クリア回数
     final int clearsCount = drillLap.clearsCount;
 
-    Widget _heading() {
-      return Text('$clearsCount周クリア',
-          style: const TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
-    }
-
-    Widget _twitterShareButton() {
+    Widget twitterShareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
       final Drill? drill = ref.watch(drillProvider);
@@ -92,10 +94,15 @@ class _AnswerDrillLapClearScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            _heading(),
+            // heading
+            Text('$clearsCount周クリア',
+                style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange)),
             const SizedBox(height: 16),
             // explanation
-            Text(_description,
+            Text(description,
                 style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -105,7 +112,7 @@ class _AnswerDrillLapClearScreenState
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton()
+            twitterShareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

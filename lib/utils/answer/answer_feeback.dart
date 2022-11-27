@@ -41,6 +41,7 @@ class AnswerFeedback {
           ReviewHelper.intervalSetting(review.intervalSetting);
       return reviewMessage(interval);
     }
+    return null;
   }
 
   static RichText reviewMessage(String text) {
@@ -70,6 +71,7 @@ class AnswerFeedback {
       final String text = '繰り上がりで$interval';
       return reviewMessage(text);
     }
+    return null;
   }
 
   // 復習設定が解除された通知
@@ -78,6 +80,7 @@ class AnswerFeedback {
       String text = '復習が解除されました';
       return reviewMessage(text);
     }
+    return null;
   }
 
   // 同じ間違いの通知
@@ -99,6 +102,7 @@ class AnswerFeedback {
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
       ]));
     }
+    return null;
   }
 
   // 弱点の克服
@@ -120,5 +124,6 @@ class AnswerFeedback {
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
       ]));
     }
+    return null;
   }
 }

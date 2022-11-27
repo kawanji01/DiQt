@@ -9,10 +9,10 @@ class QuizQuestionText extends ConsumerStatefulWidget {
   final Quiz quiz;
 
   @override
-  _QuizQuestionTextState createState() => _QuizQuestionTextState();
+  QuizQuestionTextState createState() => QuizQuestionTextState();
 }
 
-class _QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
+class QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
   bool _isCovered = false;
 
   @override

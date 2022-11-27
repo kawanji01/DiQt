@@ -3,16 +3,16 @@ import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/services/device_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 
 class ExternalLinkDialog extends StatefulWidget {
   const ExternalLinkDialog({Key? key, this.redirectPath}) : super(key: key);
 
   final String? redirectPath;
   @override
-  _ExternalLinkDialogState createState() => _ExternalLinkDialogState();
+  createState() => _ExternalLinkDialogState();
 }
 
 class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
@@ -49,7 +49,7 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _moveToExternalPage() async {
+    Future<void> moveToExternalPage() async {
       Navigator.of(context).pop();
       // ワンタイムパスコードがない場合は、直接URLにリダイレクトする
       String url = "${DiQtURL.root(context)}/$_redirectPath";
@@ -58,22 +58,15 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
         url =
             "${DiQtURL.root(context)}/api/v1/mobile/sessions/verify_onetime_passcode?onetime_passcode=$_onetimePasscode";
       }
-
-      if (await canLaunch(url)) {
-        await launch(
-          url,
-          forceSafariVC: false,
-          forceWebView: false,
-        );
-      }
+      WebPageLauncher.openByExternalBrowser(url);
     }
 
     // ダイアログの中身を生成する
-    Widget _buildExternalLinkDialog() {
+    Widget buildExternalLinkDialog() {
       return const Text('Web版DiQtに移動します。よろしいですか？');
     }
 
-    Widget _linkButton() {
+    Widget linkButton() {
       if (_initDone == false) {
         return Container(
           width: MediaQuery.of(context).size.width,
@@ -81,14 +74,14 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
           height: 40,
           child: ElevatedButton(
             onPressed: null,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black45, //ボタンの背景色
+            ),
             child: const Text('OK',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                     color: Colors.white)),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.black45, //ボタンの背景色
-            ),
           ),
         );
       } else {
@@ -97,16 +90,16 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
           width: MediaQuery.of(context).size.width,
           height: 40,
           child: ElevatedButton(
-            onPressed: () => _moveToExternalPage(),
+            onPressed: () => moveToExternalPage(),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green, //ボタンの背景色
+            ),
             child: const Text(
               'OK',
               style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                   color: Colors.white),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.green, //ボタンの背景色
             ),
           ),
         );
@@ -120,9 +113,9 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
         '外部リンク',
         style: TextStyle(fontWeight: FontWeight.w800),
       ),
-      content: _buildExternalLinkDialog(),
+      content: buildExternalLinkDialog(),
       actions: [
-        _linkButton(),
+        linkButton(),
       ],
     );
   }

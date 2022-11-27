@@ -27,10 +27,10 @@ class SentenceShowPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _SentenceShowPageState createState() => _SentenceShowPageState();
+  SentenceShowPageState createState() => SentenceShowPageState();
 }
 
-class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
+class SentenceShowPageState extends ConsumerState<SentenceShowPage> {
   @override
   void initState() {
     super.initState();
@@ -47,7 +47,7 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
     final int sentenceId = arguments['sentenceId'];
     final future = ref.watch(asyncSentenceFamily(sentenceId));
 
-    Widget _body(Sentence? sentence) {
+    Widget body(Sentence? sentence) {
       if (sentence == null) return const Text('Sentence does not exist.');
       final Quiz? quiz = sentence.quiz;
       if (quiz == null) return const Text('Quiz does not exist.');
@@ -90,7 +90,7 @@ class _SentenceShowPageState extends ConsumerState<SentenceShowPage> {
           child: future.when(
             loading: () => const LoadingSpinner(),
             error: (err, stack) => Text('Error: $err'),
-            data: (sentence) => _body(sentence),
+            data: (sentence) => body(sentence),
           ),
         ),
       ),

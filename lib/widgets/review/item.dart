@@ -20,8 +20,8 @@ class ReviewItem extends ConsumerWidget {
     // 解答済の問題を消す。
     // ReviewUnsolvedWrapper でも隠す処理はあるが、ListViewではスクロールするとステートがリセットされて再描画されてしまうので、ここでも隠す。
     return Visibility(
-      child: ReviewUnsolvedQuizWrapper(review: review),
       visible: isvisible,
+      child: ReviewUnsolvedQuizWrapper(review: review),
     );
   }
 }

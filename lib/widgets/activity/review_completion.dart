@@ -30,7 +30,7 @@ class ActivityReviewCompletion extends StatelessWidget {
       const TextSpan(text: '達成しました！', style: textBlack),
     ]));
 
-    Widget _continuationCount() {
+    Widget continuationCount() {
       if (activity.continuationCount! < 2) {
         return Container();
       }
@@ -51,7 +51,7 @@ class ActivityReviewCompletion extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 information,
-                _continuationCount(),
+                continuationCount(),
               ],
             ),
           )

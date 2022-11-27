@@ -14,7 +14,7 @@ class AnswerSettingReviewNotification extends ConsumerWidget {
         style: TextStyle(fontSize: 14, color: Colors.black54));
 
     // ドロップダウンボタンの生成
-    Widget _buildDropDown() {
+    Widget buildDropDown() {
       return Container(
         margin: const EdgeInsets.only(top: 16),
         height: 48,
@@ -70,7 +70,7 @@ class AnswerSettingReviewNotification extends ConsumerWidget {
       );
     }
 
-    Widget _reviewNotificationEnabled() {
+    Widget reviewNotificationEnabled() {
       return SwitchListTile(
         title: const Text('通知を受け取る',
             style: TextStyle(fontWeight: FontWeight.bold)),
@@ -88,8 +88,8 @@ class AnswerSettingReviewNotification extends ConsumerWidget {
         heading,
         const SizedBox(height: 4),
         explanation,
-        _reviewNotificationEnabled(),
-        _buildDropDown()
+        reviewNotificationEnabled(),
+        buildDropDown()
       ],
     );
   }

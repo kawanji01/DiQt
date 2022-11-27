@@ -9,10 +9,10 @@ class DictionaryRadioList extends ConsumerStatefulWidget {
   const DictionaryRadioList({Key? key}) : super(key: key);
 
   @override
-  _DictionaryRadioListState createState() => _DictionaryRadioListState();
+  DictionaryRadioListState createState() => DictionaryRadioListState();
 }
 
-class _DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
+class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
   @override
   void initState() {
     super.initState();
@@ -23,7 +23,7 @@ class _DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
   Widget build(BuildContext context) {
     final future = ref.watch(asyncDictionariesProvider);
 
-    Widget _buildListRow(List<Dictionary> dictionaries, int index) {
+    Widget buildListRow(List<Dictionary> dictionaries, int index) {
       final dictionary = dictionaries[index];
 
       final iconButton = IconButton(
@@ -47,20 +47,20 @@ class _DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
       );
     }
 
-    Widget _dictionaryList(data) {
+    Widget dictionaryList(data) {
       final List<Dictionary>? dictionaries = data;
       if (dictionaries == null) return Container();
 
       return ListView.separated(
         shrinkWrap: true,
-        itemBuilder: (context, index) => _buildListRow(dictionaries, index),
+        itemBuilder: (context, index) => buildListRow(dictionaries, index),
         separatorBuilder: (context, index) => const Divider(),
         itemCount: dictionaries.length,
       );
     }
 
     return future.when(
-      data: (dictionaries) => _dictionaryList(dictionaries),
+      data: (dictionaries) => dictionaryList(dictionaries),
       error: (err, stack) => Text('Error: $err'),
       loading: () => const LoadingSpinner(),
     );

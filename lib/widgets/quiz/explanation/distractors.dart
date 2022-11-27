@@ -16,7 +16,7 @@ class QuizExplanationDistractors extends StatelessWidget {
     }
 
     // 選択肢のテキスト
-    Widget _distractorContent(String distractor) {
+    Widget distractorContent(String distractor) {
       if (quiz.autoDictLinkOfAnswer) {
         return TextWithDictLink(
             text: distractor,
@@ -40,7 +40,7 @@ class QuizExplanationDistractors extends StatelessWidget {
     }
 
     // 実際の選択肢
-    Widget _distractor(String distractor) {
+    Widget distractor(String distractor) {
       return Container(
         padding: const EdgeInsets.only(bottom: 8),
         child: Row(
@@ -56,7 +56,7 @@ class QuizExplanationDistractors extends StatelessWidget {
             Flexible(
               child: Container(
                 padding: const EdgeInsets.only(bottom: 6),
-                child: _distractorContent(distractor),
+                child: distractorContent(distractor),
               ),
             ),
           ],
@@ -65,7 +65,7 @@ class QuizExplanationDistractors extends StatelessWidget {
     }
 
     // 選択肢のリスト
-    List<Widget> _distractorWidgetList() {
+    List<Widget> distractorWidgetList() {
       final List<Widget> widgetList = [];
       final List<String> answerTextList = [
         quiz.distractor1 ?? '',
@@ -74,7 +74,7 @@ class QuizExplanationDistractors extends StatelessWidget {
       ];
       answerTextList.removeWhere((element) => element == '');
       answerTextList.asMap().forEach((int i, String value) {
-        widgetList.add(_distractor(value));
+        widgetList.add(distractor(value));
       });
       return widgetList;
     }
@@ -86,7 +86,7 @@ class QuizExplanationDistractors extends StatelessWidget {
       ),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _distractorWidgetList(),
+        children: distractorWidgetList(),
       ),
       const SizedBox(
         height: 24,

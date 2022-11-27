@@ -26,7 +26,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget _form() {
+    Widget form() {
       if (_isSubmitted) {
         return Column(
           children: const [
@@ -77,7 +77,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
               height: 48,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
+                  backgroundColor: Colors.green,
                   minimumSize: const Size(double.infinity,
                       40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
                 ),
@@ -117,7 +117,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                     fontWeight: FontWeight.bold,
                     color: Colors.black87)),
             const SizedBox(height: 16),
-            _form(),
+            form(),
             const SizedBox(height: 40),
           ],
         ),

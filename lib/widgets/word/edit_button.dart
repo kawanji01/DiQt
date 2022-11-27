@@ -14,53 +14,57 @@ class WordEditButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 編集ボタン
-    final _editButton = Align(
-      alignment: Alignment.topLeft,
-      child: TextButton(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          primary: Colors.black54,
-          textStyle: const TextStyle(fontSize: 16),
-        ),
-        onPressed: () {
-          ref.read(wordProvider.notifier).state = word;
-          WordEditPage.push(context, word.id);
-        },
-        child: const Text(
-          '項目を編集する',
-          style: TextStyle(
-            decoration: TextDecoration.underline,
+    Widget editButton() {
+      return Align(
+        alignment: Alignment.topLeft,
+        child: TextButton(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.black54,
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            textStyle: const TextStyle(fontSize: 16),
+          ),
+          onPressed: () {
+            ref.read(wordProvider.notifier).state = word;
+            WordEditPage.push(context, word.id);
+          },
+          child: const Text(
+            '項目を編集する',
+            style: TextStyle(
+              decoration: TextDecoration.underline,
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
 
-    if (isShow) return _editButton;
+    if (isShow) return editButton();
 
     // 単語ページボタン
-    final _showButton = Align(
-      alignment: Alignment.topRight,
-      child: TextButton(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          primary: Colors.black54,
-          textStyle: const TextStyle(fontSize: 16),
-        ),
-        onPressed: () {
-          WordShowPage.push(context, word.id);
-        },
-        child: const Text(
-          '詳細',
-          style: TextStyle(
-            decoration: TextDecoration.underline,
+    Widget showButton() {
+      return Align(
+        alignment: Alignment.topRight,
+        child: TextButton(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.black54,
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            textStyle: const TextStyle(fontSize: 16),
+          ),
+          onPressed: () {
+            WordShowPage.push(context, word.id);
+          },
+          child: const Text(
+            '詳細',
+            style: TextStyle(
+              decoration: TextDecoration.underline,
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [_editButton, _showButton],
+      children: [editButton(), showButton()],
     );
   }
 }

@@ -15,10 +15,10 @@ class QuizShortAnswerForm extends ConsumerStatefulWidget {
   final bool unsolved;
 
   @override
-  _QuizShortAnswerFormState createState() => _QuizShortAnswerFormState();
+  QuizShortAnswerFormState createState() => QuizShortAnswerFormState();
 }
 
-class _QuizShortAnswerFormState extends ConsumerState<QuizShortAnswerForm> {
+class QuizShortAnswerFormState extends ConsumerState<QuizShortAnswerForm> {
   bool _isDisabled = false;
   final _answerController = TextEditingController();
 
@@ -30,11 +30,11 @@ class _QuizShortAnswerFormState extends ConsumerState<QuizShortAnswerForm> {
 
   @override
   Widget build(BuildContext context) {
-    final Quiz _quiz = widget.quiz;
-    final User? _user = ref.watch(currentUserProvider);
+    final Quiz quiz = widget.quiz;
+    final User? user = ref.watch(currentUserProvider);
 
     // ユーザーの入力と正解を一致させるために正規化する。
-    String _sanitizedText(String text) {
+    String sanitizedText(String text) {
       final String textWithoutDictLink = Sanitizer.removeDiQtLink(text);
       // replaceAll: MicrosoftWordのオートコレクト対策.
       final String sanitizedText =
@@ -43,14 +43,14 @@ class _QuizShortAnswerFormState extends ConsumerState<QuizShortAnswerForm> {
     }
 
     // ユーザーの答えが正解かどうかを検証する
-    bool _verifyAnswerIsCorrect(String? usersAnswer) {
-      String correctAnswer = _quiz.correctAnswer;
+    bool verifyAnswerIsCorrect(String? usersAnswer) {
+      String correctAnswer = quiz.correctAnswer;
       if (usersAnswer == null || usersAnswer == '') return false;
       List correctAnswerList = correctAnswer
           .split(';')
-          .map((answer) => _sanitizedText(answer))
+          .map((answer) => sanitizedText(answer))
           .toList();
-      usersAnswer = _sanitizedText(usersAnswer);
+      usersAnswer = sanitizedText(usersAnswer);
       return correctAnswerList.contains(usersAnswer);
     }
 
@@ -78,10 +78,9 @@ class _QuizShortAnswerFormState extends ConsumerState<QuizShortAnswerForm> {
                   // 二重タップ防止策
                   setState(() => _isDisabled = true);
                   String? usersAnswer = _answerController.text;
-                  bool isCorrect = _verifyAnswerIsCorrect(usersAnswer);
+                  bool isCorrect = verifyAnswerIsCorrect(usersAnswer);
                   HapticFeedback.mediumImpact();
-                  AnswerNotification(
-                          usersAnswer, isCorrect, _quiz, _user!, true)
+                  AnswerNotification(usersAnswer, isCorrect, quiz, user!, true)
                       .dispatch(context);
                   if (widget.unsolved) return;
                   // 未解答画面でないなら、１秒間タップできないようにしてから有効化する。
@@ -90,12 +89,12 @@ class _QuizShortAnswerFormState extends ConsumerState<QuizShortAnswerForm> {
                   );
                   setState(() => _isDisabled = false);
                 },
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size(double.infinity, 40),
+            backgroundColor: Colors.green,
+          ),
           child: const Text('解答する',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity, 40), // 親要素まで横幅を広げる
-            primary: Colors.green,
-          ),
         ),
       ],
     );

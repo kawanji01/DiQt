@@ -11,10 +11,10 @@ class ChapterSchoolRanking extends ConsumerStatefulWidget {
   const ChapterSchoolRanking({Key? key}) : super(key: key);
 
   @override
-  _ChapterSchoolRankingState createState() => _ChapterSchoolRankingState();
+  ChapterSchoolRankingState createState() => ChapterSchoolRankingState();
 }
 
-class _ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
+class ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
   final List<User> _dailyRankers = [];
   final List<User> _weeklyRankers = [];
   final List<User> _monthlyRankers = [];
@@ -52,7 +52,7 @@ class _ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
       return const LoadingSpinner();
     }
 
-    Widget _dailyRanking() {
+    Widget dailyRanking() {
       List<Widget> rankers = [];
       _dailyRankers.asMap().forEach((int i, User user) {
         rankers.add(
@@ -64,7 +64,7 @@ class _ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
       );
     }
 
-    Widget _weeklyRanking() {
+    Widget weeklyRanking() {
       List<Widget> rankers = [];
       _weeklyRankers.asMap().forEach((int i, User user) {
         rankers.add(
@@ -76,7 +76,7 @@ class _ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
       );
     }
 
-    Widget _monthlyRanking() {
+    Widget monthlyRanking() {
       List<Widget> rankers = [];
       _monthlyRankers.asMap().forEach((int i, User user) {
         rankers.add(
@@ -88,7 +88,7 @@ class _ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
       );
     }
 
-    Widget _heading(String text) {
+    Widget heading(String text) {
       return Text(
         text,
         style: const TextStyle(
@@ -100,16 +100,16 @@ class _ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
       child: Column(
         children: [
           const SizedBox(height: 48),
-          _heading('今日のランキング'),
+          heading('今日のランキング'),
           const SizedBox(height: 16),
-          _dailyRanking(),
+          dailyRanking(),
           const SizedBox(height: 48),
-          _heading('週間ランキング'),
+          heading('週間ランキング'),
           const SizedBox(height: 16),
-          _weeklyRanking(),
+          weeklyRanking(),
           const SizedBox(height: 48),
-          _heading('月間ランキング'),
-          _monthlyRanking(),
+          heading('月間ランキング'),
+          monthlyRanking(),
           const SizedBox(height: 120),
         ],
       ),

@@ -15,17 +15,13 @@ class DrillLapUpdateButton extends ConsumerWidget {
     if (drillLap == null) return Container();
     final int newLapNumber = drillLap.clearsCount + 1;
 
-    Widget _lapInfo() {
-      return Text(
+    return Column(children: [
+      const SizedBox(height: 32),
+      Text(
         '${drillLap.clearsCount}周クリアしました',
         style: const TextStyle(
             fontSize: 32, color: Colors.black54, fontWeight: FontWeight.bold),
-      );
-    }
-
-    return Column(children: [
-      const SizedBox(height: 32),
-      _lapInfo(),
+      ),
       const SizedBox(height: 32),
       InkWell(
         onTap: () {

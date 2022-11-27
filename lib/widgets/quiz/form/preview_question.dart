@@ -18,7 +18,7 @@ class QuizFormPreviewQuestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _question() {
+    Widget questionPart() {
       if (autoDictLinkOfQuestion) {
         return TextWithDictLink(
           text: question,
@@ -49,7 +49,7 @@ class QuizFormPreviewQuestion extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        _question(),
+        questionPart(),
       ],
     );
   }

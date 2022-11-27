@@ -87,7 +87,7 @@ class _WordFormSentenceListViewState extends State<WordFormSentenceListView> {
   @override
   Widget build(BuildContext context) {
     //
-    Widget _loader() {
+    Widget loader() {
       // ref: https://qiita.com/kikuchy/items/07d10394a4f7aa2a3836
       return VisibilityDetector(
         key: const Key("for detect visibility"),
@@ -120,7 +120,7 @@ class _WordFormSentenceListViewState extends State<WordFormSentenceListView> {
           sentence: item,
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
-        newPageProgressIndicatorBuilder: (_) => _loader(),
+        newPageProgressIndicatorBuilder: (_) => loader(),
       ),
     );
   }

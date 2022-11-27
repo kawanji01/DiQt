@@ -12,7 +12,7 @@ class QuizExplanationAnswer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _ttsBtn() {
+    Widget ttsBtn() {
       if (quiz.answerReadAloud) {
         // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す
         final String answerPlainText =
@@ -29,7 +29,7 @@ class QuizExplanationAnswer extends StatelessWidget {
       return Container();
     }
 
-    Widget _answer() {
+    Widget answer() {
       if (quiz.autoDictLinkOfAnswer) {
         return TextWithDictLink(
             text: quiz.correctAnswer,
@@ -55,8 +55,8 @@ class QuizExplanationAnswer extends StatelessWidget {
     return Column(children: <Widget>[
       const SharedItemLabel(text: '正解'),
       const SizedBox(height: 16),
-      _answer(),
-      _ttsBtn(),
+      answer(),
+      ttsBtn(),
       const SizedBox(height: 24),
     ]);
   }

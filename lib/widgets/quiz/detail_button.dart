@@ -13,8 +13,8 @@ class QuizDetailButton extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         style: TextButton.styleFrom(
+          foregroundColor: Colors.black54,
           padding: const EdgeInsets.symmetric(vertical: 16.0),
-          primary: Colors.black54,
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {

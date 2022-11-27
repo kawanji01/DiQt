@@ -15,26 +15,26 @@ class TwitterButton extends ConsumerWidget {
   const TwitterButton({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String? _apiKey = dotenv.env['TWITTER_CONSUMER_KEY'];
-    final String? _apiSecretKey = dotenv.env['TWITTER_CONSUMER_SECRET'];
-    final String? _aredirectURI = dotenv.env['TWITTER_CALLBACK_URL'];
+    final String? apiKey = dotenv.env['TWITTER_CONSUMER_KEY'];
+    final String? apiSecretKey = dotenv.env['TWITTER_CONSUMER_SECRET'];
+    final String? aredirectURI = dotenv.env['TWITTER_CALLBACK_URL'];
 
     // 必要な情報が揃ってないなら、空のWidgetを返す。
-    if (_apiKey == null || _apiSecretKey == null || _aredirectURI == null) {
+    if (apiKey == null || apiSecretKey == null || aredirectURI == null) {
       return Container();
     }
 
-    Future _twitterAuth() async {
+    Future twitterAuth() async {
       // Twitterログイン
       final twitterLogin = TwitterLogin(
         // Consumer API keys
-        apiKey: _apiKey,
+        apiKey: apiKey,
         // Consumer API Secret keys
-        apiSecretKey: _apiSecretKey,
+        apiSecretKey: apiSecretKey,
         // Registered Callback URLs in TwitterApp
         // Android is a deeplink
         // iOS is a URLScheme
-        redirectURI: _aredirectURI,
+        redirectURI: aredirectURI,
       );
       final authResult = await twitterLogin.login();
 
@@ -98,7 +98,7 @@ class TwitterButton extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
-        _twitterAuth();
+        twitterAuth();
       },
       child: Container(
         height: 48,

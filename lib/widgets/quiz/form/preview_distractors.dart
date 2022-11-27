@@ -26,7 +26,7 @@ class QuizFormPreviewDistractors extends StatelessWidget {
       return Container();
     }
 
-    Widget _autoLink(String distractor) {
+    Widget autoLink(String distractor) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -53,7 +53,7 @@ class QuizFormPreviewDistractors extends StatelessWidget {
       );
     }
 
-    Widget _markdown(String distractor) {
+    Widget markdown(String distractor) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -77,15 +77,15 @@ class QuizFormPreviewDistractors extends StatelessWidget {
       );
     }
 
-    Widget _distractor(String distractor) {
+    Widget distractor(String distractor) {
       if (distractor == '') {
         return Container();
       }
       Widget distractorWidget;
       if (autoDictLinkOfAnswer) {
-        distractorWidget = _autoLink(distractor);
+        distractorWidget = autoLink(distractor);
       } else {
-        distractorWidget = _markdown(distractor);
+        distractorWidget = markdown(distractor);
       }
       return Column(
         children: [
@@ -104,9 +104,9 @@ class QuizFormPreviewDistractors extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        _distractor(distractor1),
-        _distractor(distractor2),
-        _distractor(distractor3)
+        distractor(distractor1),
+        distractor(distractor2),
+        distractor(distractor3)
       ],
     );
   }

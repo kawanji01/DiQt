@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/models/chapter.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ChapterIntroduction extends StatelessWidget {
   const ChapterIntroduction({Key? key, required this.chapter})
@@ -14,15 +14,7 @@ class ChapterIntroduction extends StatelessWidget {
     final introduction = Text(chapter.introduction,
         style: const TextStyle(fontSize: 16, color: Colors.black87));
 
-    Future<void> _moveToReferencePage(url) async {
-      if (await canLaunch(url)) {
-        await launch(
-          url,
-        );
-      }
-    }
-
-    Widget _reference() {
+    Widget reference() {
       final String? url = chapter.referenceUrl;
       if (url == null || url == '') return Container();
       final String? title = chapter.referenceTitle;
@@ -30,7 +22,7 @@ class ChapterIntroduction extends StatelessWidget {
 
       return InkWell(
         onTap: () {
-          _moveToReferencePage(url);
+          WebPageLauncher.openByExternalBrowser(url);
         },
         child: Container(
             margin: const EdgeInsets.only(top: 32),
@@ -65,7 +57,7 @@ class ChapterIntroduction extends StatelessWidget {
           style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
         introduction,
-        _reference()
+        reference()
       ],
     );
   }

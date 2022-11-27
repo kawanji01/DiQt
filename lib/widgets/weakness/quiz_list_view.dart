@@ -12,10 +12,10 @@ class WeaknessQuizListView extends ConsumerStatefulWidget {
   const WeaknessQuizListView({Key? key}) : super(key: key);
 
   @override
-  _WeaknessQuizListViewState createState() => _WeaknessQuizListViewState();
+  WeaknessQuizListViewState createState() => WeaknessQuizListViewState();
 }
 
-class _WeaknessQuizListViewState extends ConsumerState<WeaknessQuizListView> {
+class WeaknessQuizListViewState extends ConsumerState<WeaknessQuizListView> {
   bool _isLoading = false;
   bool _isReached = true;
   int _nextPagekey = 0;
@@ -76,7 +76,7 @@ class _WeaknessQuizListViewState extends ConsumerState<WeaknessQuizListView> {
   @override
   Widget build(BuildContext context) {
     //
-    Widget _loader() {
+    Widget loader() {
       // ref: https://qiita.com/kikuchy/items/07d10394a4f7aa2a3836
       return VisibilityDetector(
         key: const Key("for detect visibility"),
@@ -109,7 +109,7 @@ class _WeaknessQuizListViewState extends ConsumerState<WeaknessQuizListView> {
           weakness: item,
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
-        newPageProgressIndicatorBuilder: (_) => _loader(),
+        newPageProgressIndicatorBuilder: (_) => loader(),
       ),
     );
   }

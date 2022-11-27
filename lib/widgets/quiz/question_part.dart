@@ -19,7 +19,7 @@ class QuizQuestionPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _ttsBtn() {
+    Widget ttsBtn() {
       if (quiz.questionReadAloud) {
         // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文をつくる
         final String questionPlainText =
@@ -47,7 +47,7 @@ class QuizQuestionPart extends StatelessWidget {
               quiz: quiz,
             ),
             const SizedBox(height: 8),
-            _ttsBtn(),
+            ttsBtn(),
             QuizHintButton(quiz: quiz),
           ]),
         ),

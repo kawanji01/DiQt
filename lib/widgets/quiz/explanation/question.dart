@@ -13,7 +13,7 @@ class QuizExplanationQuestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _question() {
+    Widget question() {
       if (quiz.autoDictLinkOfQuestion) {
         return TextWithDictLink(
           text: quiz.question,
@@ -40,7 +40,7 @@ class QuizExplanationQuestion extends StatelessWidget {
           ));
     }
 
-    Widget _ttsBtn() {
+    Widget ttsBtn() {
       if (quiz.questionReadAloud) {
         // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す
         final String questionPlainText =
@@ -63,8 +63,8 @@ class QuizExplanationQuestion extends StatelessWidget {
         children: <Widget>[
           const SharedItemLabel(text: '問題'),
           const SizedBox(height: 16),
-          _question(),
-          _ttsBtn(),
+          question(),
+          ttsBtn(),
           const SizedBox(height: 24),
         ]);
   }

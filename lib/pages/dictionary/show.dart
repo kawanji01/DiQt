@@ -21,10 +21,10 @@ class DictionaryShowPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _DictionaryShowPageState createState() => _DictionaryShowPageState();
+  DictionaryShowPageState createState() => DictionaryShowPageState();
 }
 
-class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
+class DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
   @override
   void initState() {
     super.initState();
@@ -38,19 +38,19 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    final int _dictionaryId = arguments['dictionaryId'];
-    final Dictionary? _dictionary = ref.watch(dictionaryProvider);
-    final future = ref.watch(asyncDictionaryFamily(_dictionaryId));
+    final int dictionaryId = arguments['dictionaryId'];
+    final Dictionary? dictionary = ref.watch(dictionaryProvider);
+    final future = ref.watch(asyncDictionaryFamily(dictionaryId));
 
-    Widget _title() {
+    Widget title() {
       return future.when(
-        loading: () => Text(_dictionary?.title ?? ''),
+        loading: () => Text(dictionary?.title ?? ''),
         error: (err, stack) => Text('Error: $err'),
         data: (dictionary) => Text('${dictionary?.title}'),
       );
     }
 
-    Widget _page(Dictionary? dictionary) {
+    Widget page(Dictionary? dictionary) {
       if (dictionary == null) return const LoadingSpinner();
 
       return Column(
@@ -67,7 +67,7 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
           const SizedBox(height: 64),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              primary: Colors.green,
+              backgroundColor: Colors.green,
               minimumSize: const Size(double.infinity,
                   40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
             ),
@@ -91,7 +91,7 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: _title(),
+        title: title(),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -99,9 +99,9 @@ class _DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
               vertical: 20,
               horizontal: ResponsiveValues.horizontalMargin(context)),
           child: future.when(
-            loading: () => _page(_dictionary),
+            loading: () => page(dictionary),
             error: (err, stack) => Text('Error: $err'),
-            data: (dictionary) => _page(dictionary),
+            data: (dictionary) => page(dictionary),
           ),
         ),
       ),

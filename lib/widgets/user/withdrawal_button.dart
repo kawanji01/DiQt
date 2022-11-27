@@ -13,7 +13,7 @@ class UserWithdrawalButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 退会リクエスト
-    Future _withdrawal() async {
+    Future withdrawal() async {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteUsers.withdrawal();
       if (resMap == null) {
@@ -35,7 +35,7 @@ class UserWithdrawalButton extends StatelessWidget {
         const String text = 'アカウントを削除いたします。削除したアカウントは二度と復元できません。それでもよろしいですか？';
         bool result = await Dialogs.confirm(context, title, text);
         if (result) {
-          await _withdrawal();
+          await withdrawal();
         }
       },
       child: const Text(

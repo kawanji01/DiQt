@@ -16,38 +16,12 @@ class PremiumPlanPage extends StatefulWidget {
   }
 
   @override
-  _PremiumPlanPageState createState() => _PremiumPlanPageState();
+  createState() => _PremiumPlanPageState();
 }
 
 class _PremiumPlanPageState extends State<PremiumPlanPage> {
   @override
   Widget build(BuildContext context) {
-    Widget _body() {
-      return Column(
-        children: const <Widget>[
-          SizedBox(
-            height: 24,
-          ),
-          PurchaseIntroduction(),
-          SizedBox(
-            height: 48,
-          ),
-          PurchaseSubscriptionButton(),
-          SizedBox(
-            height: 24,
-          ),
-          PurchaseIntroductionFooter(),
-          SizedBox(
-            height: 32,
-          ),
-          PurchaseRestoreButton(),
-          SizedBox(
-            height: 80,
-          ),
-        ],
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('プレミアムプラン'),
@@ -57,7 +31,29 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
           color: Colors.transparent,
-          child: _body(),
+          child: Column(
+            children: const <Widget>[
+              SizedBox(
+                height: 24,
+              ),
+              PurchaseIntroduction(),
+              SizedBox(
+                height: 48,
+              ),
+              PurchaseSubscriptionButton(),
+              SizedBox(
+                height: 24,
+              ),
+              PurchaseIntroductionFooter(),
+              SizedBox(
+                height: 32,
+              ),
+              PurchaseRestoreButton(),
+              SizedBox(
+                height: 80,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

@@ -8,16 +8,16 @@ class AnswerRequestingReviewScreen extends ConsumerStatefulWidget {
   const AnswerRequestingReviewScreen({Key? key}) : super(key: key);
 
   @override
-  _AnswerRequestingReviewScreenState createState() =>
-      _AnswerRequestingReviewScreenState();
+  AnswerGoalAchievementScreenState createState() =>
+      AnswerGoalAchievementScreenState();
 }
 
-class _AnswerRequestingReviewScreenState
+class AnswerGoalAchievementScreenState
     extends ConsumerState<AnswerRequestingReviewScreen> {
   bool _isNo = false;
   @override
   Widget build(BuildContext context) {
-    Widget _screen() {
+    Widget screen() {
       // 問い合わせフォーム
       if (_isNo) {
         return const ContactFormScreen();
@@ -92,7 +92,7 @@ class _AnswerRequestingReviewScreenState
                               Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.green,
+                              backgroundColor: Colors.green,
                             ),
                           ),
                         ),
@@ -105,6 +105,6 @@ class _AnswerRequestingReviewScreenState
       );
     }
 
-    return _screen();
+    return screen();
   }
 }

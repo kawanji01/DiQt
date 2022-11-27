@@ -10,7 +10,7 @@ class QuizQuizRequestsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _acceptedWordRequestsButton() {
+    Widget acceptedWordRequestsButton() {
       final String redirectPath = 'quizzes/${quiz.id}/accepted_quiz_requests';
       return InkWell(
           onTap: () {
@@ -22,14 +22,14 @@ class QuizQuizRequestsButton extends StatelessWidget {
           ));
     }
 
-    Widget _pendingWordRequestsButton() {
+    Widget pendingWordRequestsButton() {
       if (quiz.pendingQuizRequestsCount == 0) return Container();
 
       final String redirectPath = 'quizzes/${quiz.id}/pending_quiz_requests';
       return TextButton(
         style: TextButton.styleFrom(
+          foregroundColor: Colors.green,
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          primary: Colors.green,
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {
@@ -46,7 +46,7 @@ class QuizQuizRequestsButton extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [_acceptedWordRequestsButton(), _pendingWordRequestsButton()],
+      children: [acceptedWordRequestsButton(), pendingWordRequestsButton()],
     );
   }
 }

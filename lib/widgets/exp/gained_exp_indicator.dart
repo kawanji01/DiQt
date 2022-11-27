@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/utils/audio_players_service.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
 import 'package:booqs_mobile/utils/level_up_dialog.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +14,10 @@ class ExpGainedExpIndicator extends ConsumerStatefulWidget {
   final int gainedExp;
 
   @override
-  _ExpGainedExpIndicatorState createState() => _ExpGainedExpIndicatorState();
+  ExpGainedExpIndicatorState createState() => ExpGainedExpIndicatorState();
 }
 
-class _ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
+class ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
   int? _exp;
   int? _initialLevel;
 
@@ -61,7 +60,7 @@ class _ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
     }
 
     // レベルアップ処理
-    void _levelUp(percent) {
+    void levelUp(percent) {
       if (percent != 1) return;
       // 報酬表示がOFFなら表示をスキップ
       final bool effectEnabled = ref.watch(effectEnabledProvider);
@@ -69,14 +68,14 @@ class _ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
 
       LevelUpDialog.show(context, _exp!);
       // 効果音
-      final bool seEnabled = ref.watch(seEnabledProvider);
-      if (seEnabled) {
-        AudioPlayersService.playLevelUpSound();
-      }
+      //final bool seEnabled = ref.watch(seEnabledProvider);
+      //if (seEnabled) {
+      //  AudioPlayersService.playLevelUpSound();
+      //}
     }
 
     // レベルのラベル
-    Widget _gainedExpLabel() {
+    Widget gainedExpLabel() {
       return Container(
         padding: const EdgeInsets.only(bottom: 10),
         alignment: Alignment.center,
@@ -89,7 +88,7 @@ class _ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
     }
 
     // 初期値の経験値インジケーター
-    Widget _initialExpIndicator() {
+    Widget initialExpIndicator() {
       return LinearPercentIndicator(
         animation: true,
         addAutomaticKeepAlive: true,
@@ -113,7 +112,7 @@ class _ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
     }
 
     // 経験値獲得後のインジケーター
-    Widget _gainedExpIndicator() {
+    Widget gainedExpIndicator() {
       return LinearPercentIndicator(
         animation: true,
         animateFromLastPercent: true,
@@ -130,13 +129,13 @@ class _ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
         progressColor: Colors.orange,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         onAnimationEnd: () {
-          _levelUp(percent);
+          levelUp(percent);
         },
       );
     }
 
     // 次のレベルに上がるまでに必要な経験値量
-    Widget _expForNextLevel() {
+    Widget expForNextLevelPart() {
       if (percent == 1) return Container();
 
       return Container(
@@ -147,19 +146,19 @@ class _ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
       );
     }
 
-    Widget _expIndicator() {
+    Widget expIndicator() {
       if (_exp == widget.initialExp) {
-        return _initialExpIndicator();
+        return initialExpIndicator();
       }
-      return _gainedExpIndicator();
+      return gainedExpIndicator();
     }
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Column(children: <Widget>[
-        _gainedExpLabel(),
-        _expIndicator(),
-        _expForNextLevel()
+        gainedExpLabel(),
+        expIndicator(),
+        expForNextLevelPart()
       ]),
     );
   }

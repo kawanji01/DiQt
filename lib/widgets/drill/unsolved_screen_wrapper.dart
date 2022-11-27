@@ -20,7 +20,7 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // サーバーからのレスポンスをもとに、providerを更新する。
-    void _updateProviders(resMap) async {
+    void updateProviders(resMap) async {
       final AnswerCreator answerCreator =
           AnswerCreator.fromJson(resMap['answer_creator']);
       // ユーザー情報と今日の解答数を更新する
@@ -38,10 +38,10 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
     }
 
     // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。
-    Future<void> _requestReview(notification) async {
-      Map? resMap = await RemoteQuizzes.answer(context, notification, 'drill');
+    Future<void> requestReview(notification) async {
+      Map? resMap = await RemoteQuizzes.answer(notification, 'drill');
       if (resMap == null) return;
-      _updateProviders(resMap);
+      updateProviders(resMap);
       final AnswerCreator answerCreator =
           AnswerCreator.fromJson(resMap['answer_creator']);
       AnswerFeedback.call(answerCreator);
@@ -53,7 +53,7 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
 
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
-        _requestReview(notification);
+        requestReview(notification);
         // trueを返すことで通知がこれ以上遡らない
         return true;
       },

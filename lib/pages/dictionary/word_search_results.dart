@@ -17,11 +17,11 @@ class DictionaryWordSearchResultsPage extends ConsumerStatefulWidget {
   }
 
   @override
-  _DictionaryWordSearchResultsPageState createState() =>
-      _DictionaryWordSearchResultsPageState();
+  DictionaryWordSearchResultsPageState createState() =>
+      DictionaryWordSearchResultsPageState();
 }
 
-class _DictionaryWordSearchResultsPageState
+class DictionaryWordSearchResultsPageState
     extends ConsumerState<DictionaryWordSearchResultsPage> {
   @override
   void initState() {
@@ -36,15 +36,15 @@ class _DictionaryWordSearchResultsPageState
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    final int _dictionaryId = arguments['dictionaryId'];
-    final String _keyword = arguments['keyword'];
+    final int dictionaryId = arguments['dictionaryId'];
+    final String keyword = arguments['keyword'];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('$_keywordの検索結果'),
+        title: Text('$keywordの検索結果'),
         actions: [
           DictionaryWordSearchResultsAction(
-              keyword: _keyword, dictionaryId: _dictionaryId)
+              keyword: keyword, dictionaryId: dictionaryId)
         ],
       ),
       body: SingleChildScrollView(
@@ -56,8 +56,8 @@ class _DictionaryWordSearchResultsPageState
               children: [
                 const SizedBox(height: 24),
                 DictionaryWordListView(
-                  dictionaryId: _dictionaryId,
-                  keyword: _keyword,
+                  dictionaryId: dictionaryId,
+                  keyword: keyword,
                 ),
               ],
             )),
