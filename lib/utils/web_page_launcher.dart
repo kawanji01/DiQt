@@ -29,8 +29,8 @@ class WebPageLauncher {
     String entry,
   ) async {
     final String meaning = t.words.meaning;
-    final String url = Uri.encodeFull(
-        "https://www.google.com/search?q=$entry+$meaning&oq=$entry+$meaning");
+    final String url =
+        "https://www.google.com/search?q=$entry+$meaning&oq=$entry+$meaning";
     openByExternalBrowser(url);
   }
 }
