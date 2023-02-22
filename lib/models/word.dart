@@ -56,11 +56,13 @@ class Word {
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
   Sentence? sentence;
-  Quiz? sentenceQuiz;
-  Review? sentenceReview;
   Dictionary? dictionary;
   Quiz? quiz;
   Review? review;
+  Quiz? sentenceQuiz;
+  Review? sentenceReview;
+  Quiz? sentenceSpeakingQuiz;
+  Review? sentenceSpeakingReview;
   List<WordTag>? wordTags;
 
   Word.fromJson(Map<String, dynamic> json)
@@ -86,18 +88,24 @@ class Word {
         sentence = json['sentence'] == null
             ? null
             : Sentence.fromJson(json['sentence']),
-        sentenceQuiz = json['sentence_quiz'] == null
-            ? null
-            : Quiz.fromJson(json['sentence_quiz']),
-        sentenceReview = json['sentence_review'] == null
-            ? null
-            : Review.fromJson(json['sentence_review']),
         dictionary = json['dictionary'] == null
             ? null
             : Dictionary.fromJson(json['dictionary']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
         review =
             json['review'] == null ? null : Review.fromJson(json['review']),
+        sentenceQuiz = json['sentence_quiz'] == null
+            ? null
+            : Quiz.fromJson(json['sentence_quiz']),
+        sentenceReview = json['sentence_review'] == null
+            ? null
+            : Review.fromJson(json['sentence_review']),
+        sentenceSpeakingQuiz = json['sentence_speaking_quiz'] == null
+            ? null
+            : Quiz.fromJson(json['sentence_speaking_quiz']),
+        sentenceSpeakingReview = json['sentence_speaking_review'] == null
+            ? null
+            : Review.fromJson(json['sentence_speaking_review']),
         wordTags = json['word_tags'] == null
             ? []
             : json['word_tags']

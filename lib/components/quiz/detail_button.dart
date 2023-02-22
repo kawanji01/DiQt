@@ -15,7 +15,7 @@ class QuizDetailButton extends StatelessWidget {
         style: TextButton.styleFrom(
           foregroundColor: Colors.black54,
           padding: const EdgeInsets.symmetric(vertical: 16.0),
-          textStyle: const TextStyle(fontSize: 16),
+          textStyle: const TextStyle(fontSize: 15),
         ),
         onPressed: () {
           QuizShowPage.push(context, quiz.id);
