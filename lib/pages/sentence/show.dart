@@ -47,10 +47,27 @@ class SentenceShowPageState extends ConsumerState<SentenceShowPage> {
     final int sentenceId = arguments['sentenceId'];
     final future = ref.watch(asyncSentenceFamily(sentenceId));
 
+    Widget quiz(Sentence sentence) {
+      final Quiz? quiz = sentence.quiz;
+      if (quiz == null) return Container();
+      return DrillListQuiz(
+        quiz: quiz,
+        isShow: false,
+      );
+    }
+
+    Widget speakingQuiz(Sentence sentence) {
+      final Quiz? quiz = sentence.speakingQuiz;
+      if (quiz == null) return Container();
+      return DrillListQuiz(
+        quiz: quiz,
+        isShow: false,
+      );
+    }
+
     Widget body(Sentence? sentence) {
       if (sentence == null) return const Text('Sentence does not exist.');
-      final Quiz? quiz = sentence.quiz;
-      if (quiz == null) return const Text('Quiz does not exist.');
+
       final Dictionary? dictionary = sentence.dictionary;
       if (dictionary == null) return const Text('Dictionary does not exist.');
       return Column(
@@ -69,10 +86,8 @@ class SentenceShowPageState extends ConsumerState<SentenceShowPage> {
             thickness: 1,
           ),
           const SizedBox(height: 16),
-          DrillListQuiz(
-            quiz: quiz,
-            isShow: false,
-          ),
+          quiz(sentence),
+          speakingQuiz(sentence),
           const SizedBox(height: 48),
         ],
       );

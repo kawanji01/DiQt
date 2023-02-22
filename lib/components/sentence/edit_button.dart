@@ -21,13 +21,13 @@ class SentenceEditButton extends ConsumerWidget {
           style: TextButton.styleFrom(
             foregroundColor: Colors.black54,
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            textStyle: const TextStyle(fontSize: 16),
+            textStyle: const TextStyle(fontSize: 15),
           ),
           onPressed: () {
             SentenceEditPage.push(context, sentence.id);
           },
           child: const Text(
-            '例文を改善する',
+            '例文を編集する',
             style: TextStyle(
               decoration: TextDecoration.underline,
             ),
@@ -46,7 +46,7 @@ class SentenceEditButton extends ConsumerWidget {
           style: TextButton.styleFrom(
             foregroundColor: Colors.black54,
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            textStyle: const TextStyle(fontSize: 16),
+            textStyle: const TextStyle(fontSize: 15),
           ),
           onPressed: () {
             SentenceShowPage.push(context, sentence.id);

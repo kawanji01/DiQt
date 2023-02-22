@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
@@ -16,17 +17,6 @@ class WordListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Widget ipa() {
-      if (word.ipa == null || word.ipa == '') {
-        return Container();
-      }
-      return Text('${word.ipa}',
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.green.shade700,
-          ));
-    }
-
     return InkWell(
       onTap: () {
         ref.read(wordProvider.notifier).state = word;
@@ -40,7 +30,7 @@ class WordListItem extends ConsumerWidget {
                 const SizedBox(height: 10),
                 WordItemEntry(word: word),
                 WordItemReading(word: word),
-                ipa(),
+                WordItemIPA(word: word),
                 const SizedBox(
                   height: 10,
                 ),
@@ -49,6 +39,9 @@ class WordListItem extends ConsumerWidget {
                   height: 24,
                 ),
                 WordItemReviewButton(word: word),
+                const SizedBox(
+                  height: 24,
+                ),
                 WordItemSentence(word: word),
                 WordEditButton(
                   word: word,

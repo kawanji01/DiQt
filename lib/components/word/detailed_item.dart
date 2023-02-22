@@ -35,6 +35,7 @@ class WordDetailedItem extends StatelessWidget {
         const SizedBox(height: 10),
         WordItemEntry(word: word),
         WordItemReading(word: word),
+        WordItemIPA(word: word),
         const SizedBox(
           height: 10,
         ),
@@ -43,7 +44,9 @@ class WordDetailedItem extends StatelessWidget {
           height: 24,
         ),
         WordItemReviewButton(word: word),
-        WordItemIPA(word: word),
+        const SizedBox(
+          height: 24,
+        ),
         WordItemSentence(word: word),
         WordItemEtymologies(word: word),
         WordItemExplanation(word: word),

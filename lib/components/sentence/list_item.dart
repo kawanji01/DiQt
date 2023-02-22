@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/sentence/review_button.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/sentence.dart';
@@ -20,7 +21,20 @@ class SentenceListItem extends StatelessWidget {
       final Quiz? quiz = sentence.quiz;
       if (quiz == null) return Container();
       final Review? review = quiz.review;
-      return ReviewLargeSettingButton(quizId: quiz.id, review: review);
+      return SentenceReviewButton(
+        quizId: quiz.id,
+        review: review,
+        speaking: false,
+      );
+    }
+
+    //
+    Widget speakingReviewButton() {
+      final Quiz? quiz = sentence.speakingQuiz;
+      if (quiz == null) return Container();
+      final Review? review = quiz.review;
+      return SentenceReviewButton(
+          quizId: quiz.id, review: review, speaking: true);
     }
 
     return Column(
@@ -30,6 +44,10 @@ class SentenceListItem extends StatelessWidget {
           height: 32,
         ),
         reviewButton(),
+        const SizedBox(
+          height: 16,
+        ),
+        speakingReviewButton(),
         SentenceEditButton(sentence: sentence, isShow: isShow)
       ],
     );

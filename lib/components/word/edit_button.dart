@@ -21,7 +21,7 @@ class WordEditButton extends ConsumerWidget {
           style: TextButton.styleFrom(
             foregroundColor: Colors.black54,
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            textStyle: const TextStyle(fontSize: 16),
+            textStyle: const TextStyle(fontSize: 15),
           ),
           onPressed: () {
             ref.read(wordProvider.notifier).state = word;
@@ -47,7 +47,7 @@ class WordEditButton extends ConsumerWidget {
           style: TextButton.styleFrom(
             foregroundColor: Colors.black54,
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            textStyle: const TextStyle(fontSize: 16),
+            textStyle: const TextStyle(fontSize: 15),
           ),
           onPressed: () {
             WordShowPage.push(context, word.id);
