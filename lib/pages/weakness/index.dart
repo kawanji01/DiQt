@@ -1,13 +1,13 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
-import 'package:booqs_mobile/widgets/shared/premium_recommendation.dart';
-import 'package:booqs_mobile/widgets/weakness/introduction.dart';
-import 'package:booqs_mobile/widgets/weakness/order_select_form.dart';
-import 'package:booqs_mobile/widgets/weakness/quiz_list_view.dart';
-import 'package:booqs_mobile/widgets/weakness/status_tabs.dart';
+import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/shared/empty_app_bar.dart';
+import 'package:booqs_mobile/components/shared/premium_recommendation.dart';
+import 'package:booqs_mobile/components/weakness/introduction.dart';
+import 'package:booqs_mobile/components/weakness/order_select_form.dart';
+import 'package:booqs_mobile/components/weakness/quiz_list_view.dart';
+import 'package:booqs_mobile/components/weakness/status_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

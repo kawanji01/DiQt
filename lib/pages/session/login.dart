@@ -3,12 +3,12 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
-import 'package:booqs_mobile/widgets/session/apple_button.dart';
-import 'package:booqs_mobile/widgets/session/divider_widget.dart';
-import 'package:booqs_mobile/widgets/session/google_button.dart';
-import 'package:booqs_mobile/widgets/session/login_form.dart';
-import 'package:booqs_mobile/widgets/session/twitter_button.dart';
-import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/session/apple_button.dart';
+import 'package:booqs_mobile/components/session/divider_widget.dart';
+import 'package:booqs_mobile/components/session/google_button.dart';
+import 'package:booqs_mobile/components/session/login_form.dart';
+import 'package:booqs_mobile/components/session/twitter_button.dart';
+import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {

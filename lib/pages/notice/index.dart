@@ -3,8 +3,8 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
-import 'package:booqs_mobile/widgets/notice/item_list_view.dart';
-import 'package:booqs_mobile/widgets/shared/entrance.dart';
+import 'package:booqs_mobile/components/notice/item_list_view.dart';
+import 'package:booqs_mobile/components/shared/entrance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/notifications/answer.dart';
-import 'package:booqs_mobile/widgets/quiz/answer_interaction.dart';
+import 'package:booqs_mobile/components/quiz/answer_interaction.dart';
 import 'package:flutter/material.dart';
 
 class AnswerInteraction {

@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
-import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
