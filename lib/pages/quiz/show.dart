@@ -2,12 +2,12 @@ import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/drill/list_quiz.dart';
-import 'package:booqs_mobile/widgets/quiz/edit_button.dart';
-import 'package:booqs_mobile/widgets/quiz/explanation/answer_analysis.dart';
-import 'package:booqs_mobile/widgets/quiz/quiz_requests_button.dart';
-import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/components/drill/list_quiz.dart';
+import 'package:booqs_mobile/components/quiz/edit_button.dart';
+import 'package:booqs_mobile/components/quiz/explanation/answer_analysis.dart';
+import 'package:booqs_mobile/components/quiz/quiz_requests_button.dart';
+import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

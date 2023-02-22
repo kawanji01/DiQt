@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/widgets/markdown/embedded_sentence.dart';
+import 'package:booqs_mobile/components/markdown/embedded_sentence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;

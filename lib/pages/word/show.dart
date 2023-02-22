@@ -2,9 +2,9 @@ import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/word/preloaded_show_screen.dart';
-import 'package:booqs_mobile/widgets/word/show_screen.dart';
+import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/word/preloaded_show_screen.dart';
+import 'package:booqs_mobile/components/word/show_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

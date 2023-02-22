@@ -8,11 +8,11 @@ import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/answer_setting/screen.dart';
-import 'package:booqs_mobile/widgets/button/large_green_button.dart';
-import 'package:booqs_mobile/widgets/purchase/delete_button.dart';
-import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/user/logout_button.dart';
+import 'package:booqs_mobile/components/answer_setting/screen.dart';
+import 'package:booqs_mobile/components/button/large_green_button.dart';
+import 'package:booqs_mobile/components/purchase/delete_button.dart';
+import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/user/logout_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

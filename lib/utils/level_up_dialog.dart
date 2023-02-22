@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/widgets/exp/level_up_screen.dart';
+import 'package:booqs_mobile/components/exp/level_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 

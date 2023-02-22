@@ -1,8 +1,8 @@
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/chapter/index.dart';
-import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/shared/drawer_menu.dart';
+import 'package:booqs_mobile/components/chapter/index.dart';
+import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/shared/drawer_menu.dart';
 import 'package:flutter/material.dart';
 
 class ChapterIndexPage extends StatelessWidget {

@@ -3,9 +3,9 @@ import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/pages/chapter/school.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/chapter/drills.dart';
-import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/shared/empty_app_bar.dart';
+import 'package:booqs_mobile/components/chapter/drills.dart';
+import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/shared/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

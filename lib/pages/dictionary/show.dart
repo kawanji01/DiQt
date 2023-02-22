@@ -3,12 +3,12 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/guideline.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/widgets/dictionary/drill_part.dart';
-import 'package:booqs_mobile/widgets/dictionary/introduction.dart';
-import 'package:booqs_mobile/widgets/dictionary/sentence_part.dart';
-import 'package:booqs_mobile/widgets/dictionary/word_part.dart';
-import 'package:booqs_mobile/widgets/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/widgets/shared/loading_spinner.dart';
+import 'package:booqs_mobile/components/dictionary/drill_part.dart';
+import 'package:booqs_mobile/components/dictionary/introduction.dart';
+import 'package:booqs_mobile/components/dictionary/sentence_part.dart';
+import 'package:booqs_mobile/components/dictionary/word_part.dart';
+import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
