@@ -1,8 +1,8 @@
 import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/components/sentence/edit_button.dart';
-import 'package:booqs_mobile/components/sentence/tts_button.dart';
+import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
+import 'package:booqs_mobile/components/sentence/item/tts_button.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
 import 'package:booqs_mobile/components/word/item/label.dart';
@@ -41,13 +41,13 @@ class WordFormPreviewSentence extends ConsumerWidget {
           fontColor: Colors.black87,
           selectable: true,
         ),
-        SentenceTTSButton(sentence: sentence),
+        SentenceItemTTSButton(sentence: sentence),
         const SizedBox(height: 8),
         Text(sentence.translation,
             style: const TextStyle(
                 fontSize: 16, height: 1.6, color: Colors.black87)),
         const SizedBox(height: 24),
-        SentenceEditButton(
+        SentenceItemEditButton(
           sentence: sentence,
           isShow: false,
         ),

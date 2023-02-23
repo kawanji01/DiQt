@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/components/review/large_setting_button.dart';
+import 'package:booqs_mobile/components/review/setting/large_button.dart';
 import 'package:flutter/material.dart';
 
 class WordItemReviewButton extends StatelessWidget {
@@ -13,7 +13,7 @@ class WordItemReviewButton extends StatelessWidget {
     // サーバーサイドのWord#json_for_native_app と Word#json_for_searchのどちらの取得でも対応できるようにする。
     final Quiz? quiz = word.quiz;
     if (quiz == null) return const Text('Quiz does not exist.');
-    final Review? review = quiz.review ?? word.review;
-    return ReviewLargeSettingButton(quizId: quiz.id, review: review);
+    final Review? review = quiz.review;
+    return ReviewSettingLargeButton(quizId: quiz.id, review: review);
   }
 }

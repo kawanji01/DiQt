@@ -4,25 +4,27 @@ import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
-import 'package:booqs_mobile/components/review/large_green_button.dart';
-import 'package:booqs_mobile/components/review/large_outline_button.dart';
 import 'package:booqs_mobile/components/review/form/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class ReviewLargeSettingButton extends StatefulWidget {
-  const ReviewLargeSettingButton(
-      {Key? key, required this.quizId, required this.review})
+class ReviewSettingMediumButton extends StatefulWidget {
+  const ReviewSettingMediumButton(
+      {Key? key,
+      required this.quizId,
+      required this.review,
+      required this.label})
       : super(key: key);
   final int quizId;
   final Review? review;
+  final String label;
 
   @override
-  State<ReviewLargeSettingButton> createState() =>
-      _ReviewLargeSettingButtonState();
+  State<ReviewSettingMediumButton> createState() =>
+      _ReviewSettingMediumButtonState();
 }
 
-class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
+class _ReviewSettingMediumButtonState extends State<ReviewSettingMediumButton> {
   int? _quizId;
   Review? _review;
 
@@ -82,12 +84,40 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
 
     // 復習の作成ボタン
     Widget createButton() {
-      const String label = '覚える';
+      String label = widget.label;
       return InkWell(
         onTap: () {
           createReview();
         },
-        child: const ReviewLargeOutlineButton(label: label),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(50)),
+            border: Border.all(color: Colors.green, width: 1),
+          ),
+          child: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.green,
+                  fontWeight: FontWeight.w600),
+              children: [
+                const WidgetSpan(
+                  child: Icon(
+                    Icons.access_alarm,
+                    size: 20,
+                    color: Colors.green,
+                  ),
+                ),
+                TextSpan(
+                  text: " $label",
+                ),
+              ],
+            ),
+          ),
+        ),
       );
     }
 
@@ -98,8 +128,35 @@ class _ReviewLargeSettingButtonState extends State<ReviewLargeSettingButton> {
         onTap: () {
           editReview(review);
         },
-        child: ReviewLargeGreenButton(
-          label: label,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(50)),
+            border: Border.all(color: Colors.green, width: 1),
+            color: Colors.green,
+          ),
+          child: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600),
+              children: [
+                const WidgetSpan(
+                  child: Icon(
+                    Icons.access_alarm,
+                    size: 20,
+                    color: Colors.white,
+                  ),
+                ),
+                TextSpan(
+                  text: " $label",
+                ),
+              ],
+            ),
+          ),
         ),
       );
     }

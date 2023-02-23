@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/components/quiz/detail_button.dart';
-import 'package:booqs_mobile/components/review/small_setting_buttton.dart';
+import 'package:booqs_mobile/components/review/setting/small_buttton.dart';
 import 'package:flutter/material.dart';
 
 class QuizFooter extends StatelessWidget {
@@ -25,7 +25,7 @@ class QuizFooter extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        ReviewSmallSettingButton(quiz: quiz, review: review),
+        ReviewSettingSmallButton(quiz: quiz, review: review),
         detailedButton(),
       ],
     );

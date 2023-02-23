@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/sentence_source.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
-import 'package:booqs_mobile/components/sentence/edit_button.dart';
+import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +52,7 @@ class WordFormListSentence extends StatelessWidget {
                 },
                 child:
                     const SmallGreenButton(label: '設定する', icon: Icons.check)),
-            SentenceEditButton(sentence: sentence, isShow: false),
+            SentenceItemEditButton(sentence: sentence, isShow: false),
           ]),
     );
   }

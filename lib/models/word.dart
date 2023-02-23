@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/models/sense.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word_tag.dart';
 
@@ -27,13 +28,10 @@ class Word {
     this.pendingWordRequestsCount = 0,
     // 結合したテーブル
     this.sentence,
-    this.sentenceQuiz,
-    this.sentenceReview,
     this.dictionary,
     this.quiz,
-    // 検索結果で表示する復讐
-    this.review,
     this.wordTags,
+    this.senses,
   });
 
   int id;
@@ -58,12 +56,8 @@ class Word {
   Sentence? sentence;
   Dictionary? dictionary;
   Quiz? quiz;
-  Review? review;
-  Quiz? sentenceQuiz;
-  Review? sentenceReview;
-  Quiz? sentenceSpeakingQuiz;
-  Review? sentenceSpeakingReview;
   List<WordTag>? wordTags;
+  List<Sense>? senses;
 
   Word.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -92,25 +86,14 @@ class Word {
             ? null
             : Dictionary.fromJson(json['dictionary']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
-        review =
-            json['review'] == null ? null : Review.fromJson(json['review']),
-        sentenceQuiz = json['sentence_quiz'] == null
-            ? null
-            : Quiz.fromJson(json['sentence_quiz']),
-        sentenceReview = json['sentence_review'] == null
-            ? null
-            : Review.fromJson(json['sentence_review']),
-        sentenceSpeakingQuiz = json['sentence_speaking_quiz'] == null
-            ? null
-            : Quiz.fromJson(json['sentence_speaking_quiz']),
-        sentenceSpeakingReview = json['sentence_speaking_review'] == null
-            ? null
-            : Review.fromJson(json['sentence_speaking_review']),
         wordTags = json['word_tags'] == null
             ? []
             : json['word_tags']
                 .map<WordTag>((e) => WordTag.fromJson(e))
-                .toList();
+                .toList(),
+        senses = json['senses'] == null
+            ? []
+            : json['senses'].map<Sense>((e) => Sense.fromJson(e)).toList();
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -135,6 +118,5 @@ class Word {
         'sentence': sentence,
         'dictionary': dictionary,
         'quiz': quiz,
-        'review': review,
       };
 }

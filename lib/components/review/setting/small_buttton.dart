@@ -12,17 +12,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReviewSmallSettingButton extends ConsumerStatefulWidget {
-  const ReviewSmallSettingButton({Key? key, required this.quiz, this.review})
+class ReviewSettingSmallButton extends ConsumerStatefulWidget {
+  const ReviewSettingSmallButton({Key? key, required this.quiz, this.review})
       : super(key: key);
   final Quiz quiz;
   final Review? review;
 
   @override
-  ReviewSmallButtonState createState() => ReviewSmallButtonState();
+  ReviewSettingSmallButtonState createState() =>
+      ReviewSettingSmallButtonState();
 }
 
-class ReviewSmallButtonState extends ConsumerState<ReviewSmallSettingButton> {
+class ReviewSettingSmallButtonState
+    extends ConsumerState<ReviewSettingSmallButton> {
   Review? _review;
 
   @override

@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/components/word/item/label.dart';
 import 'package:flutter/material.dart';
 
 class WordItemIPA extends StatelessWidget {

@@ -4,27 +4,25 @@ import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
-import 'package:booqs_mobile/components/review/large_green_button.dart';
+import 'package:booqs_mobile/components/review/setting/large_green_button.dart';
+import 'package:booqs_mobile/components/review/setting/large_outline_button.dart';
 import 'package:booqs_mobile/components/review/form/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class SentenceReviewButton extends StatefulWidget {
-  const SentenceReviewButton(
-      {Key? key,
-      required this.quizId,
-      required this.review,
-      required this.speaking})
+class ReviewSettingLargeButton extends StatefulWidget {
+  const ReviewSettingLargeButton(
+      {Key? key, required this.quizId, required this.review})
       : super(key: key);
   final int quizId;
   final Review? review;
-  final bool speaking;
 
   @override
-  State<SentenceReviewButton> createState() => _SentenceReviewButtonState();
+  State<ReviewSettingLargeButton> createState() =>
+      _ReviewSettingLargeButtonState();
 }
 
-class _SentenceReviewButtonState extends State<SentenceReviewButton> {
+class _ReviewSettingLargeButtonState extends State<ReviewSettingLargeButton> {
   int? _quizId;
   Review? _review;
 
@@ -84,43 +82,12 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
 
     // 復習の作成ボタン
     Widget createButton() {
-      String label = '読めるようになる';
-      if (widget.speaking) {
-        label = '話せるようになる';
-      }
+      const String label = '覚える';
       return InkWell(
         onTap: () {
           createReview();
         },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.green, width: 1),
-          ),
-          child: RichText(
-            text: TextSpan(
-              style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.green,
-                  fontWeight: FontWeight.w600),
-              children: [
-                const WidgetSpan(
-                  child: Icon(
-                    Icons.access_alarm,
-                    size: 20,
-                    color: Colors.green,
-                  ),
-                ),
-                TextSpan(
-                  text: " $label",
-                ),
-              ],
-            ),
-          ),
-        ),
+        child: const ReviewLargeOutlineButton(label: label),
       );
     }
 
@@ -131,35 +98,8 @@ class _SentenceReviewButtonState extends State<SentenceReviewButton> {
         onTap: () {
           editReview(review);
         },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(50)),
-            border: Border.all(color: Colors.green, width: 1),
-            color: Colors.green,
-          ),
-          child: RichText(
-            text: TextSpan(
-              style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600),
-              children: [
-                const WidgetSpan(
-                  child: Icon(
-                    Icons.access_alarm,
-                    size: 20,
-                    color: Colors.white,
-                  ),
-                ),
-                TextSpan(
-                  text: " $label",
-                ),
-              ],
-            ),
-          ),
+        child: ReviewLargeGreenButton(
+          label: label,
         ),
       );
     }
