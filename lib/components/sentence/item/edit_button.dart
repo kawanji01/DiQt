@@ -4,8 +4,8 @@ import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceEditButton extends ConsumerWidget {
-  const SentenceEditButton(
+class SentenceItemEditButton extends ConsumerWidget {
+  const SentenceItemEditButton(
       {Key? key, required this.sentence, required this.isShow})
       : super(key: key);
   final Sentence sentence;

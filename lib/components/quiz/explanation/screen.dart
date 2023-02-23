@@ -11,7 +11,7 @@ import 'package:booqs_mobile/components/quiz/explanation/explanation.dart';
 import 'package:booqs_mobile/components/quiz/explanation/question.dart';
 import 'package:booqs_mobile/components/quiz/explanation/note.dart';
 import 'package:booqs_mobile/components/quiz/explanation/word.dart';
-import 'package:booqs_mobile/components/review/large_setting_button.dart';
+import 'package:booqs_mobile/components/review/setting/large_button.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -73,7 +73,7 @@ class QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
     Widget reviewButton() {
       return future.when(
         data: (date) =>
-            ReviewLargeSettingButton(quizId: date!.id, review: date.review),
+            ReviewSettingLargeButton(quizId: date!.id, review: date.review),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       );

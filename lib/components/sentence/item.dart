@@ -1,44 +1,28 @@
+import 'package:booqs_mobile/components/sentence/item/content.dart';
+import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
+import 'package:booqs_mobile/components/sentence/item/reading_review_button.dart';
+import 'package:booqs_mobile/components/sentence/item/speaking_review_button.dart';
 import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/components/sentence/tts_button.dart';
-import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class SentenceItem extends StatelessWidget {
-  const SentenceItem({Key? key, required this.sentence}) : super(key: key);
+  const SentenceItem({Key? key, required this.sentence, required this.isShow})
+      : super(key: key);
   final Sentence sentence;
+  final bool isShow;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 16),
-              TextWithDictLink(
-                text: sentence.original,
-                langNumber: sentence.langNumberOfOriginal,
-                autoLinkEnabled: true,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                dictionaryId: sentence.dictionaryId,
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-                fontColor: Colors.black87,
-                selectable: true,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                sentence.translation,
-                style: const TextStyle(fontSize: 16, color: Colors.black87),
-              ),
-            ],
-          ),
-        ),
-        SentenceTTSButton(
-          sentence: sentence,
-        ),
-      ],
-    );
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      SentenceItemContent(sentence: sentence),
+      const SizedBox(height: 24),
+      SentenceItemReadingReviewButton(sentence: sentence),
+      const SizedBox(height: 16),
+      SentenceItemSpeakingReviewButton(sentence: sentence),
+      SentenceItemEditButton(
+        sentence: sentence,
+        isShow: isShow,
+      ),
+    ]);
   }
 }

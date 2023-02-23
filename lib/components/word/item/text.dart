@@ -25,11 +25,16 @@ class WordItemText extends StatelessWidget {
         selectable: true,
       );
     }
-    return Text(text,
-        style: const TextStyle(
-          fontSize: 16,
-          color: Colors.black87,
-          fontWeight: FontWeight.normal,
-        ));
+    return TextWithDictLink(
+      text: text,
+      langNumber: word.langNumberOfMeaning,
+      autoLinkEnabled: false,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      dictionaryId: word.dictionaryId,
+      fontSize: 16,
+      fontWeight: FontWeight.normal,
+      fontColor: Colors.black87,
+      selectable: true,
+    );
   }
 }

@@ -1,7 +1,7 @@
+import 'package:booqs_mobile/components/sense/item.dart';
+import 'package:booqs_mobile/models/sense.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/word/item/label.dart';
-import 'package:booqs_mobile/components/word/item/small_translation_buttons.dart';
-import 'package:booqs_mobile/components/word/item/text.dart';
 import 'package:flutter/material.dart';
 
 class WordItemSenses extends StatelessWidget {
@@ -10,23 +10,20 @@ class WordItemSenses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (word.sensesJson == null || word.sensesJson == []) return Container();
-    final List sensesList = word.sensesJson!;
+    final List<Sense>? senses = word.senses;
+    if (senses == null) return Container();
 
     // 意味
-    Widget gloss(int number, Map<String, dynamic> senseMap) {
-      final String gloss =
-          senseMap['raw_glosses'] != null && senseMap['raw_glosses'] != ''
-              ? senseMap['raw_glosses'].join('; ')
-              : senseMap['glosses'].join('; ');
+    Widget gloss(int number, Sense sense) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: 16),
           WordItemLabel(text: '意味($number)'),
           const SizedBox(height: 8),
-          WordItemText(word: word, text: gloss),
-          WordItemSmallTranslationButtons(word: word, original: gloss),
+          SenseItem(sense: sense),
           const SizedBox(height: 32),
+          const SizedBox(height: 16),
         ],
       );
     }
@@ -34,7 +31,7 @@ class WordItemSenses extends StatelessWidget {
     // 意味のリスト
     final List<Widget> glossesList = [];
     int i = 1;
-    for (var sense in sensesList) {
+    for (var sense in senses) {
       glossesList.add(gloss(i, sense));
       i += 1;
     }

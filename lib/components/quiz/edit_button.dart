@@ -3,7 +3,7 @@ import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/quiz/edit.dart';
 import 'package:booqs_mobile/components/quiz/detail_button.dart';
-import 'package:booqs_mobile/components/sentence/edit_button.dart';
+import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
 import 'package:booqs_mobile/components/word/edit_button.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +50,7 @@ class QuizEditButton extends StatelessWidget {
         return WordEditButton(word: word, isShow: isShow);
       }
       if (sentence != null) {
-        return SentenceEditButton(sentence: sentence, isShow: isShow);
+        return SentenceItemEditButton(sentence: sentence, isShow: isShow);
       }
       return Container();
     }

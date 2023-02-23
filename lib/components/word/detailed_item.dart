@@ -1,10 +1,10 @@
+import 'package:booqs_mobile/components/word/item/senses.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/word/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
 import 'package:booqs_mobile/components/word/item/etymologies.dart';
-import 'package:booqs_mobile/components/word/item/explanation.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/components/word/item/reading.dart';
@@ -49,7 +49,8 @@ class WordDetailedItem extends StatelessWidget {
         ),
         WordItemSentence(word: word),
         WordItemEtymologies(word: word),
-        WordItemExplanation(word: word),
+        // WordItemExplanation(word: word),
+        WordItemSenses(word: word),
         WordItemRelatedWords(word: word),
         const SizedBox(
           height: 16,

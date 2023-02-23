@@ -1,12 +1,11 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
-import 'package:booqs_mobile/components/review/large_outline_button.dart';
+import 'package:booqs_mobile/components/review/setting/large_outline_button.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
 import 'package:booqs_mobile/components/word/item/etymologies.dart';
-import 'package:booqs_mobile/components/word/item/explanation.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/components/word/item/reading.dart';
@@ -40,6 +39,7 @@ class WordPreloadedShowScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           WordItemEntry(word: word),
+          WordItemIPA(word: word!),
           WordItemReading(word: word!),
           const SizedBox(
             height: 10,
@@ -51,9 +51,8 @@ class WordPreloadedShowScreen extends StatelessWidget {
           const ReviewLargeOutlineButton(
             label: '覚える',
           ),
-          WordItemIPA(word: word!),
           WordItemEtymologies(word: word!),
-          WordItemExplanation(word: word!),
+          //WordItemExplanation(word: word!),
           const LoadingSpinner(),
           WordItemRelatedWords(word: word!),
           const SizedBox(

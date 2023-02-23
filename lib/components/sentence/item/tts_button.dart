@@ -3,8 +3,9 @@ import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:booqs_mobile/components/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 
-class SentenceTTSButton extends StatelessWidget {
-  const SentenceTTSButton({Key? key, required this.sentence}) : super(key: key);
+class SentenceItemTTSButton extends StatelessWidget {
+  const SentenceItemTTSButton({Key? key, required this.sentence})
+      : super(key: key);
   final Sentence sentence;
 
   @override
