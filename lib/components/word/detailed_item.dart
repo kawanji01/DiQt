@@ -2,7 +2,7 @@ import 'package:booqs_mobile/components/word/item/senses.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
-import 'package:booqs_mobile/components/word/edit_button.dart';
+import 'package:booqs_mobile/components/word/item/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
 import 'package:booqs_mobile/components/word/item/etymologies.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
@@ -55,7 +55,7 @@ class WordDetailedItem extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        WordEditButton(
+        WordItemEditButton(
           word: word,
           isShow: true,
         ),

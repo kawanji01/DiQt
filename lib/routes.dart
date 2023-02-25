@@ -20,6 +20,9 @@ import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/review/scheduled.dart';
+import 'package:booqs_mobile/pages/sense/edit.dart';
+import 'package:booqs_mobile/pages/sense/new.dart';
+import 'package:booqs_mobile/pages/sense/show.dart';
 import 'package:booqs_mobile/pages/sentence/edit.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
@@ -60,6 +63,10 @@ const wordShowPage = '/word/show';
 const wordNewPage = '/word/new';
 const wordEditPage = '/word/edit';
 const wordSearchResultsPage = '/word/search';
+// 意味
+const senseShowPage = '/sense/show';
+const senseNewPage = '/sense/new';
+const senseEditPage = '/sense/edit';
 // 例文
 const sentenceNewPage = '/sentence/new';
 const sentenceEditPage = '/sentence/edit';
@@ -114,9 +121,15 @@ final routes = {
   dictionarySentenceSearchResultsPage: (context) =>
       const DictionarySentenceSearchResultsPage(),
   dictionaryGuidelinePage: (context) => const DictionaryGuidelinePage(),
+  // Word
   wordShowPage: (context) => const WordShowPage(),
   wordNewPage: (context) => const WordNewPage(),
   wordEditPage: (context) => const WordEditPage(),
+  // Sense
+  senseEditPage: (context) => const SenseEditPage(),
+  senseNewPage: (context) => const SenseNewPage(),
+  senseShowPage: (context) => const SenseShowPage(),
+  // Sentence
   sentenceNewPage: (context) => const SentenceNewPage(),
   sentenceEditPage: (context) => const SentenceEditPage(),
   sentenceShowPage: (context) => const SentenceShowPage(),

@@ -2,7 +2,7 @@ import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
-import 'package:booqs_mobile/components/word/edit_button.dart';
+import 'package:booqs_mobile/components/word/item/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/components/word/item/reading.dart';
@@ -43,7 +43,7 @@ class WordListItem extends ConsumerWidget {
                   height: 24,
                 ),
                 WordItemSentence(word: word),
-                WordEditButton(
+                WordItemEditButton(
                   word: word,
                   isShow: false,
                 ),

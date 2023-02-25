@@ -1,33 +1,31 @@
-import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/models/sense.dart';
 import 'package:booqs_mobile/utils/booqs_on_web.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
-class SentenceSentenceRequestsButton extends StatelessWidget {
-  const SentenceSentenceRequestsButton({Key? key, required this.sentence})
+class SenseSenseRequestsButton extends StatelessWidget {
+  const SenseSenseRequestsButton({Key? key, required this.sense})
       : super(key: key);
-  final Sentence sentence;
+  final Sense sense;
 
   @override
   Widget build(BuildContext context) {
-    Widget acceptedSentenceRequestsButton() {
-      final String redirectPath =
-          'sentences/${sentence.id}/accepted_sentence_requests';
+    Widget acceptedSenseRequestsButton() {
+      final String redirectPath = 'senses/${sense.id}/accepted_sense_requests';
       return InkWell(
           onTap: () {
             BooQsOnWeb.open(context, redirectPath);
           },
           child: SmallOutlineGrayButton(
             icon: Icons.history,
-            label: '例文の改善履歴（${sentence.acceptedSentenceRequestsCount}）',
+            label: '意味の改善履歴（${sense.acceptedSenseRequestsCount}）',
           ));
     }
 
-    Widget pendingSentenceRequestsButton() {
-      if (sentence.pendingSentenceRequestsCount == 0) return Container();
+    Widget pendingSenseRequestsButton() {
+      if (sense.pendingSenseRequestsCount == 0) return Container();
 
-      final String redirectPath =
-          'sentences/${sentence.id}/pending_sentence_requests';
+      final String redirectPath = 'senses/${sense.id}/pending_sense_requests';
       return TextButton(
         style: TextButton.styleFrom(
           foregroundColor: Colors.green,
@@ -38,7 +36,7 @@ class SentenceSentenceRequestsButton extends StatelessWidget {
           BooQsOnWeb.open(context, redirectPath);
         },
         child: Text(
-          '${sentence.pendingSentenceRequestsCount}件の審査中の編集',
+          '${sense.pendingSenseRequestsCount}件の審査中の編集',
           style: const TextStyle(
             decoration: TextDecoration.underline,
           ),
@@ -48,10 +46,7 @@ class SentenceSentenceRequestsButton extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        acceptedSentenceRequestsButton(),
-        pendingSentenceRequestsButton()
-      ],
+      children: [acceptedSenseRequestsButton(), pendingSenseRequestsButton()],
     );
   }
 }

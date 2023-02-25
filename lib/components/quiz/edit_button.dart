@@ -4,7 +4,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/quiz/edit.dart';
 import 'package:booqs_mobile/components/quiz/detail_button.dart';
 import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
-import 'package:booqs_mobile/components/word/edit_button.dart';
+import 'package:booqs_mobile/components/word/item/edit_button.dart';
 import 'package:flutter/material.dart';
 
 class QuizEditButton extends StatelessWidget {
@@ -47,7 +47,7 @@ class QuizEditButton extends StatelessWidget {
       final Word? word = quiz.word ?? quiz.referenceWord;
       final Sentence? sentence = quiz.sentence;
       if (word != null) {
-        return WordEditButton(word: word, isShow: isShow);
+        return WordItemEditButton(word: word, isShow: isShow);
       }
       if (sentence != null) {
         return SentenceItemEditButton(sentence: sentence, isShow: isShow);

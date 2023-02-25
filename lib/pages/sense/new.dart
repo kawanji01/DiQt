@@ -1,57 +1,59 @@
-import 'package:booqs_mobile/data/remote/sentences.dart';
+import 'package:booqs_mobile/components/sense/form.dart';
+import 'package:booqs_mobile/components/sense/word_entry.dart';
+import 'package:booqs_mobile/data/remote/senses.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/pages/sentence/show.dart';
+import 'package:booqs_mobile/models/sense.dart';
+import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/pages/sense/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
-import 'package:booqs_mobile/components/sentence/form.dart';
-import 'package:booqs_mobile/components/sentence/form/destroy_button.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceEditPage extends ConsumerStatefulWidget {
-  const SentenceEditPage({Key? key}) : super(key: key);
+class SenseNewPage extends ConsumerStatefulWidget {
+  const SenseNewPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context, int sentenceId) async {
+  static Future push(BuildContext context, int wordId) async {
     return Navigator.of(context)
-        .pushNamed(sentenceEditPage, arguments: {'sentenceId': sentenceId});
+        .pushNamed(senseNewPage, arguments: {'wordId': wordId});
   }
 
   @override
-  SentenceEditPageState createState() => SentenceEditPageState();
+  SenseNewPageState createState() => SenseNewPageState();
 }
 
-class SentenceEditPageState extends ConsumerState<SentenceEditPage> {
-  Sentence? _sentence;
+class SenseNewPageState extends ConsumerState<SenseNewPage> {
+  Word? _word;
+
   bool _isLoading = true;
   bool _isRequesting = false;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
-  final _originalController = TextEditingController();
-  final _translationController = TextEditingController();
-  final _explanationController = TextEditingController();
+  final _glossController = TextEditingController();
+  final _sentenceIdController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-      final int sentenceId = arguments['sentenceId'];
-      _loadSentence(sentenceId);
+      _initialize(arguments);
     });
   }
 
-  Future _loadSentence(int sentenceId) async {
-    final Map? resMap = await RemoteSentences.edit(sentenceId);
+  // 辞書とキーワードを読み込んでから、loadingを完了する。
+  Future _initialize(Map arguments) async {
+    final int wordId = arguments['wordId'];
+    final Map? resMap = await RemoteSenses.newSense(wordId);
     _isLoading = false;
     if (resMap == null) {
       return setState(() => _isLoading);
     }
-    _sentence = Sentence.fromJson(resMap['sentence']);
+    _word = Word.fromJson(resMap['word']);
     setState(() => _isLoading);
   }
 
@@ -59,57 +61,52 @@ class SentenceEditPageState extends ConsumerState<SentenceEditPage> {
   // widgetの破棄時にコントローラも破棄する。Controllerを使うなら必ず必要。
   // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
   void dispose() {
-    _originalController.dispose();
-    _translationController.dispose();
-    _explanationController.dispose();
+    _glossController.dispose();
+    _sentenceIdController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // 更新処理
-    Future save(sentence) async {
+    Future save() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
+      // リクエストロック開始
       setState(() {
         _isRequesting = true;
       });
 
       Map<String, dynamic> params = {
-        'id': sentence.id,
-        'original': _originalController.text,
-        'translation': _translationController.text,
-        'explanation': _explanationController.text
+        'gloss': _glossController.text,
+        'sentence_id': _sentenceIdController.text,
+        'word_id': _word!.id
       };
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteSentences.update(params);
+      final Map? resMap = await RemoteSenses.create(params);
       EasyLoading.dismiss();
+      // リクエストロック終了
       setState(() {
         _isRequesting = false;
       });
       if (!mounted) return;
 
       if (resMap == null) {
-        const snackBar = SnackBar(content: Text('例文を更新できませんでした。'));
+        const snackBar = SnackBar(content: Text('意味を作成できませんでした。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        final sentence = Sentence.fromJson(resMap['sentence']);
+        final sense = Sense.fromJson(resMap['sense']);
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        SentenceShowPage.pushReplacement(context, sentence.id);
+        SenseShowPage.pushReplacement(context, sense.id);
       }
     }
 
-    // メイン
-    Widget body(Sentence? sentence) {
+    Widget body(Word? word) {
       if (_isLoading) return const LoadingSpinner();
-      if (sentence == null) return const Text('Sentence does not exists.');
-      final Dictionary? dictionary = sentence.dictionary;
-      if (dictionary == null) return const Text('Dictionary does not exists.');
-      _originalController.text = sentence.original;
-      _translationController.text = sentence.translation;
-      _explanationController.text = sentence.explanation ?? '';
+      if (word == null) return const Text('Word does not exist.');
+      final Dictionary? dictionary = word.dictionary;
+      if (dictionary == null) return const Text('Dictionary does not exist.');
 
       return Form(
         key: _formKey,
@@ -117,15 +114,17 @@ class SentenceEditPageState extends ConsumerState<SentenceEditPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               DictionaryName(dictionary: dictionary),
-              const SizedBox(height: 32),
-              SentenceForm(
-                originalController: _originalController,
-                translationController: _translationController,
-                explanationController: _explanationController,
-                dictionary: sentence.dictionary!,
-                isNew: false,
-                keyword: '',
+              const SizedBox(height: 16),
+              SenseWordEntry(
+                word: word,
               ),
+              const SizedBox(height: 24),
+              SenseForm(
+                  glossController: _glossController,
+                  sentenceIdController: _sentenceIdController,
+                  dictionary: dictionary,
+                  keyword: word.entry,
+                  isNew: true),
               const SizedBox(height: 40),
               SizedBox(
                 height: 48,
@@ -135,35 +134,34 @@ class SentenceEditPageState extends ConsumerState<SentenceEditPage> {
                     minimumSize: const Size(double.infinity,
                         40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
                   ),
+                  // 二重リクエスト防止
                   onPressed: _isRequesting
                       ? null
                       : () async {
-                          save(_sentence);
+                          save();
                         },
                   icon: const Icon(Icons.update, color: Colors.white),
                   label: const Text(
-                    '更新する',
+                    '作成する',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
               ),
-              const SizedBox(height: 64),
-              SentenceFormDestroyButton(sentence: sentence),
-              const SizedBox(height: 160),
+              const SizedBox(height: 40),
             ]),
       );
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('例文の編集'),
+        title: const Text('意味の追加'),
       ),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(
               vertical: 24,
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: body(_sentence),
+          child: body(_word),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

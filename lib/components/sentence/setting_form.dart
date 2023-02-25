@@ -1,30 +1,30 @@
+import 'package:booqs_mobile/components/sentence/item/content.dart';
+import 'package:booqs_mobile/components/sentence/setting_form/search_modal.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
-import 'package:booqs_mobile/components/word/form/sentence.dart';
-import 'package:booqs_mobile/components/word/form/sentence_search_modal.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/components/word/item/label.dart';
 import 'package:flutter/material.dart';
 
 // 項目の例文設定フォーム。
 // 検索条件はentryControllerを利用する
-class WordFormSentenceSetting extends StatefulWidget {
-  const WordFormSentenceSetting(
+class SentenceSettingForm extends StatefulWidget {
+  const SentenceSettingForm(
       {Key? key,
       required this.sentenceIdController,
-      required this.entry,
+      required this.keyword,
       required this.dictionary})
       : super(key: key);
   final TextEditingController sentenceIdController;
-  final String entry;
+  final String keyword;
   final Dictionary dictionary;
 
   @override
-  createState() => _WordFormSentenceSettingState();
+  createState() => _SentenceSettingFormState();
 }
 
-class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
+class _SentenceSettingFormState extends State<SentenceSettingForm> {
   TextEditingController? _sentenceIdController;
   final TextEditingController _searchKeywordController =
       TextEditingController(text: '');
@@ -34,7 +34,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
   void initState() {
     super.initState();
     _sentenceIdController = widget.sentenceIdController;
-    _searchKeywordController.text = widget.entry;
+    _searchKeywordController.text = widget.keyword;
     _loadSentence();
   }
 
@@ -78,7 +78,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
         sentenceWidget = const Text('例文が設定されていません。',
             style: TextStyle(fontSize: 16, height: 1.6, color: Colors.black87));
       } else {
-        sentenceWidget = WordFormSentence(sentence: _sentence!);
+        sentenceWidget = SentenceItemContent(sentence: _sentence!);
       }
 
       return Column(
@@ -99,7 +99,7 @@ class _WordFormSentenceSettingState extends State<WordFormSentenceSetting> {
       final Map<String, Sentence?>? setting = await showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
-          return WordFormSentenceSearchModal(
+          return SentenceSettingFormSearchModal(
               keyword: _searchKeywordController.text, dictionary: dictionary);
         },
       );

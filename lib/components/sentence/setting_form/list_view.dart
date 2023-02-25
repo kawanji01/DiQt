@@ -1,26 +1,27 @@
+import 'package:booqs_mobile/components/sentence/setting_form/list_item.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
-import 'package:booqs_mobile/components/word/form/list_sentence.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 // 編集画面を複数跨ぐこともできるので、フォームでは値を画面内で完結させるために、状態管理にProviderは利用しない。
-class WordFormSentenceListView extends StatefulWidget {
-  const WordFormSentenceListView(
+class SentenceSettingFormListView extends StatefulWidget {
+  const SentenceSettingFormListView(
       {Key? key, required this.keyword, required this.dictionary})
       : super(key: key);
   final String keyword;
   final Dictionary dictionary;
 
   @override
-  State<WordFormSentenceListView> createState() =>
-      _WordFormSentenceListViewState();
+  State<SentenceSettingFormListView> createState() =>
+      _SentenceSettingFormListViewState();
 }
 
-class _WordFormSentenceListViewState extends State<WordFormSentenceListView> {
+class _SentenceSettingFormListViewState
+    extends State<SentenceSettingFormListView> {
   bool _isLoading = false;
   bool _isReached = true;
   int _nextPagekey = 0;
@@ -112,7 +113,7 @@ class _WordFormSentenceListViewState extends State<WordFormSentenceListView> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       builderDelegate: PagedChildBuilderDelegate<Sentence>(
-        itemBuilder: (context, item, index) => WordFormListSentence(
+        itemBuilder: (context, item, index) => SentenceSettingFormListItem(
           sentence: item,
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html

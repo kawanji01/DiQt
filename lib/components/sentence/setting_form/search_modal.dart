@@ -1,28 +1,15 @@
+import 'package:booqs_mobile/components/sentence/setting_form/list_view.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/word/form/sentence_list_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordFormSentenceSearchModal extends ConsumerStatefulWidget {
-  const WordFormSentenceSearchModal(
+class SentenceSettingFormSearchModal extends StatelessWidget {
+  const SentenceSettingFormSearchModal(
       {Key? key, required this.keyword, required this.dictionary})
       : super(key: key);
   final String keyword;
   final Dictionary dictionary;
-
-  @override
-  WordFormSentenceSearchModalState createState() =>
-      WordFormSentenceSearchModalState();
-}
-
-class WordFormSentenceSearchModalState
-    extends ConsumerState<WordFormSentenceSearchModal> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +23,7 @@ class WordFormSentenceSearchModalState
                 40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
           ),
           onPressed: () {
-            SentenceNewPage.push(context, widget.dictionary.id, widget.keyword);
+            SentenceNewPage.push(context, dictionary.id, keyword);
           },
           icon: const Icon(Icons.add, color: Colors.white),
           label: const Text(
@@ -78,7 +65,7 @@ class WordFormSentenceSearchModalState
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: () {
-          SentenceNewPage.push(context, widget.dictionary.id, widget.keyword);
+          SentenceNewPage.push(context, dictionary.id, keyword);
         },
         child: const Text(' / 例文を追加する',
             style: TextStyle(
@@ -91,7 +78,7 @@ class WordFormSentenceSearchModalState
     // 例文の取り消しボタン
     Widget heading() {
       return Wrap(children: [
-        Text('"${widget.keyword}"の例文 / ', style: const TextStyle(fontSize: 12)),
+        Text('"$keyword"の例文 / ', style: const TextStyle(fontSize: 12)),
         removeButton(),
         additionButton()
       ]);
@@ -110,8 +97,8 @@ class WordFormSentenceSearchModalState
             heading(),
             const SizedBox(height: 16),
             //_searchResults(),
-            WordFormSentenceListView(
-                keyword: widget.keyword, dictionary: widget.dictionary),
+            SentenceSettingFormListView(
+                keyword: keyword, dictionary: dictionary),
             buttonToAddSentence(),
             const SizedBox(height: 120),
           ],
