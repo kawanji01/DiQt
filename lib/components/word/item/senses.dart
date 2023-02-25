@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/sense/item.dart';
+import 'package:booqs_mobile/components/word/item/new_sense_button.dart';
 import 'package:booqs_mobile/models/sense.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/word/item/label.dart';
@@ -35,6 +36,8 @@ class WordItemSenses extends StatelessWidget {
       glossesList.add(gloss(i, sense));
       i += 1;
     }
+    // 意味の追加ボタンを最後に追加する
+    glossesList.add(WordItemNewSenseButton(word: word));
 
     return Container(
       margin: const EdgeInsets.only(top: 24),

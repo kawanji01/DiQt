@@ -21,6 +21,7 @@ import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/review/scheduled.dart';
 import 'package:booqs_mobile/pages/sense/edit.dart';
+import 'package:booqs_mobile/pages/sense/new.dart';
 import 'package:booqs_mobile/pages/sense/show.dart';
 import 'package:booqs_mobile/pages/sentence/edit.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
@@ -125,8 +126,9 @@ final routes = {
   wordNewPage: (context) => const WordNewPage(),
   wordEditPage: (context) => const WordEditPage(),
   // Sense
-  senseShowPage: (context) => const SenseShowPage(),
   senseEditPage: (context) => const SenseEditPage(),
+  senseNewPage: (context) => const SenseNewPage(),
+  senseShowPage: (context) => const SenseShowPage(),
   // Sentence
   sentenceNewPage: (context) => const SentenceNewPage(),
   sentenceEditPage: (context) => const SentenceEditPage(),

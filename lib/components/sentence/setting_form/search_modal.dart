@@ -4,8 +4,8 @@ import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
 
-class SentenceSettingFromSearchModal extends StatelessWidget {
-  const SentenceSettingFromSearchModal(
+class SentenceSettingFormSearchModal extends StatelessWidget {
+  const SentenceSettingFormSearchModal(
       {Key? key, required this.keyword, required this.dictionary})
       : super(key: key);
   final String keyword;

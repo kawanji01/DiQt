@@ -1,8 +1,8 @@
 import 'package:booqs_mobile/components/sentence/item/content.dart';
+import 'package:booqs_mobile/components/sentence/setting_form/search_modal.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
-import 'package:booqs_mobile/components/word/form/sentence_search_modal.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/components/word/item/label.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +99,7 @@ class _SentenceSettingFormState extends State<SentenceSettingForm> {
       final Map<String, Sentence?>? setting = await showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
-          return WordFormSentenceSearchModal(
+          return SentenceSettingFormSearchModal(
               keyword: _searchKeywordController.text, dictionary: dictionary);
         },
       );

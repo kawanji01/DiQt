@@ -10,7 +10,7 @@ class Sense {
     required this.dictionaryId,
     this.sentenceId,
     required this.gloss,
-    required this.orderNumber,
+    this.orderNumber,
     this.explanation,
     required this.acceptedSenseRequestsCount,
     required this.pendingSenseRequestsCount,
@@ -27,7 +27,7 @@ class Sense {
   int dictionaryId;
   int? sentenceId;
   String gloss;
-  int orderNumber;
+  int? orderNumber;
   String? explanation;
   int acceptedSenseRequestsCount;
   int pendingSenseRequestsCount;

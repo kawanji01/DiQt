@@ -48,7 +48,7 @@ class SenseForm extends StatelessWidget {
         ),
         SharedLangSetting(langNumber: dictionary.langNumberOfMeaning),
 
-        const SizedBox(height: 40),
+        const SizedBox(height: 24),
         SentenceSettingForm(
             sentenceIdController: sentenceIdController,
             keyword: '$keyword',

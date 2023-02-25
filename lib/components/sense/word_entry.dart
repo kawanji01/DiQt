@@ -10,14 +10,14 @@ class SenseWordEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () => WordShowPage.push(context, word.id),
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.only(left: 0),
-        textStyle: const TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
+      style: ButtonStyle(
+        // paddingを消す
+        padding: MaterialStateProperty.all(EdgeInsets.zero),
+        minimumSize: MaterialStateProperty.all(Size.zero),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
-      child: Text(word.entry, style: const TextStyle(color: Colors.green)),
+      child: Text(word.entry,
+          style: const TextStyle(color: Colors.green, fontSize: 20)),
     );
   }
 }

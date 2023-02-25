@@ -74,6 +74,7 @@ class SenseShowPageState extends ConsumerState<SenseShowPage> {
           SenseWordEntry(
             word: word,
           ),
+          const SizedBox(height: 24),
           SenseItem(
             sense: sense,
             isShow: true,
