@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/sense/form.dart';
+import 'package:booqs_mobile/components/sense/form/destroy_button.dart';
 import 'package:booqs_mobile/components/sense/word_entry.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/remote/senses.dart';
@@ -149,7 +150,7 @@ class SenseEditPageState extends ConsumerState<SenseEditPage> {
                 ),
               ),
               const SizedBox(height: 64),
-              // SentenceFormDestroyButton(sentence: sentence),
+              SenseFormDestroyButton(sense: sense),
               const SizedBox(height: 160),
             ]),
       );
