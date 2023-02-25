@@ -21,7 +21,7 @@ class WordItemSenses extends StatelessWidget {
           const SizedBox(height: 16),
           WordItemLabel(text: '意味($number)'),
           const SizedBox(height: 8),
-          SenseItem(sense: sense),
+          SenseItem(sense: sense, isShow: false),
           const SizedBox(height: 32),
           const SizedBox(height: 16),
         ],

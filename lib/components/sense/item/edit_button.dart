@@ -1,21 +1,21 @@
-import 'package:booqs_mobile/data/provider/word.dart';
-import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/pages/word/edit.dart';
-import 'package:booqs_mobile/pages/word/show.dart';
+import 'package:booqs_mobile/models/sense.dart';
+import 'package:booqs_mobile/pages/sense/edit.dart';
+import 'package:booqs_mobile/pages/sense/show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordEditButton extends ConsumerWidget {
-  const WordEditButton({Key? key, required this.word, required this.isShow})
+class SenseItemEditButton extends ConsumerWidget {
+  const SenseItemEditButton(
+      {Key? key, required this.sense, required this.isShow})
       : super(key: key);
-  final Word word;
+  final Sense sense;
   final bool isShow;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 編集ボタン
     Widget editButton() {
-      return Align(
+      return Container(
+        // 左寄せ
         alignment: Alignment.topLeft,
         child: TextButton(
           style: TextButton.styleFrom(
@@ -24,11 +24,10 @@ class WordEditButton extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 15),
           ),
           onPressed: () {
-            ref.read(wordProvider.notifier).state = word;
-            WordEditPage.push(context, word.id);
+            SenseEditPage.push(context, sense.id);
           },
           child: const Text(
-            '項目を編集する',
+            '意味を編集する',
             style: TextStyle(
               decoration: TextDecoration.underline,
             ),
@@ -37,11 +36,10 @@ class WordEditButton extends ConsumerWidget {
       );
     }
 
-    if (isShow) return editButton();
-
-    // 単語ページボタン
-    Widget showButton() {
-      return Align(
+    Widget deatailButton() {
+      if (isShow) return Container();
+      return Container(
+        // 左寄せ
         alignment: Alignment.topRight,
         child: TextButton(
           style: TextButton.styleFrom(
@@ -50,7 +48,7 @@ class WordEditButton extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 15),
           ),
           onPressed: () {
-            WordShowPage.push(context, word.id);
+            SenseShowPage.push(context, sense.id);
           },
           child: const Text(
             '詳細',
@@ -64,7 +62,7 @@ class WordEditButton extends ConsumerWidget {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [editButton(), showButton()],
+      children: [editButton(), deatailButton()],
     );
   }
 }

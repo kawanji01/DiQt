@@ -9,7 +9,7 @@ import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/form/destroy_button.dart';
-import 'package:booqs_mobile/components/word/form/form.dart';
+import 'package:booqs_mobile/components/word/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
