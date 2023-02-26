@@ -1,6 +1,6 @@
+import 'package:booqs_mobile/components/word/list_item.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/components/word/detailed_item.dart';
 import 'package:flutter/material.dart';
 
 class QuizExplanationWord extends StatelessWidget {
@@ -12,7 +12,7 @@ class QuizExplanationWord extends StatelessWidget {
     final Word? word = quiz.word;
 
     if (word != null) {
-      return WordDetailedItem(
+      return WordListItem(
         word: word,
       );
     }
