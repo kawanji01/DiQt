@@ -8,16 +8,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SentencePreview extends ConsumerWidget {
-  const SentencePreview({Key? key, required this.sentenceId}) : super(key: key);
-  final int? sentenceId;
+  const SentencePreview({Key? key, required this.sentenceIdStr})
+      : super(key: key);
+  final String sentenceIdStr;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    //
+    int? sentenceId;
+    if (sentenceIdStr != 'null' && sentenceIdStr != '') {
+      sentenceId = int.parse(sentenceIdStr);
+    }
+
     if (sentenceId == null) {
       return Container();
     }
 
-    final future = ref.watch(asyncSentenceFamily(sentenceId!));
+    final future = ref.watch(asyncSentenceFamily(sentenceId));
 
     Widget sentence(Sentence? sentence) {
       if (sentence == null) {

@@ -24,12 +24,6 @@ class SenseFormPreviewScreen extends ConsumerWidget {
     final double grid = SizeConfig.blockSizeVertical ?? 0;
     final double height = grid * 80;
 
-    //
-    int? sentenceId;
-    if (sentenceIdStr != 'null') {
-      sentenceId = int.parse(sentenceIdStr);
-    }
-
     return Container(
       height: height,
       padding: EdgeInsets.symmetric(
@@ -67,7 +61,7 @@ class SenseFormPreviewScreen extends ConsumerWidget {
           const SizedBox(
             height: 32,
           ),
-          SentencePreview(sentenceId: sentenceId),
+          SentencePreview(sentenceIdStr: sentenceIdStr),
           const SizedBox(
             height: 64,
           ),

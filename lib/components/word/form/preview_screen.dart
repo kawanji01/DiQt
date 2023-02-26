@@ -1,8 +1,8 @@
+import 'package:booqs_mobile/components/sentence/preview.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
-import 'package:booqs_mobile/components/word/form/preview_sentence.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
 import 'package:booqs_mobile/components/word/item/etymologies.dart';
 import 'package:booqs_mobile/components/word/item/explanation.dart';
@@ -46,6 +46,7 @@ class WordFormPreviewScreen extends StatelessWidget {
           ),
           WordItemEntry(word: word),
           WordItemReading(word: word),
+          WordItemIPA(word: word),
           const SizedBox(
             height: 24,
           ),
@@ -53,10 +54,9 @@ class WordFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          WordItemIPA(word: word),
-          WordFormPreviewSentence(word: word),
+          SentencePreview(sentenceIdStr: '${word.sentenceId}'),
           WordItemEtymologies(word: word),
-          WordItemExplanation(word: word),
+          // WordItemExplanation(word: word),
           const SizedBox(
             height: 40,
           ),
