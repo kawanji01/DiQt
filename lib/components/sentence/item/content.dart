@@ -10,6 +10,22 @@ class SentenceItemContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget translation(Sentence sentence) {
+      if (sentence.langNumberOfOriginal == sentence.langNumberOfTranslation) {
+        return Container();
+      }
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 8),
+          Text(
+            sentence.translation,
+            style: const TextStyle(fontSize: 16, color: Colors.black87),
+          ),
+        ],
+      );
+    }
+
     return Row(
       children: [
         Expanded(
@@ -28,11 +44,7 @@ class SentenceItemContent extends StatelessWidget {
                 fontColor: Colors.black87,
                 selectable: true,
               ),
-              const SizedBox(height: 8),
-              Text(
-                sentence.translation,
-                style: const TextStyle(fontSize: 16, color: Colors.black87),
-              ),
+              translation(sentence),
             ],
           ),
         ),

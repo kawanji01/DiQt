@@ -16,10 +16,14 @@ class SentenceItemReadingReviewButton extends StatelessWidget {
       return Container();
     }
     final Review? review = quiz.review;
+    String label = '読めるようになる';
+    if (sentence.langNumberOfOriginal == sentence.langNumberOfTranslation) {
+      label = '聞き取れるようになる';
+    }
     return ReviewSettingMediumButton(
       quizId: quiz.id,
       review: review,
-      label: '読めるようになる',
+      label: label,
     );
   }
 }

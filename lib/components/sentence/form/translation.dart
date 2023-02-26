@@ -17,6 +17,9 @@ class SentenceFormTranslation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (dictionary.langNumberOfEntry == dictionary.langNumberOfMeaning) {
+      return Container();
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

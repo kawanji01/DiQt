@@ -61,6 +61,7 @@ class WordForm extends StatelessWidget {
         const SizedBox(height: 24),
         // 意味フォーム
         TextFormField(
+          // [Flutter/Dart]入力欄（TextField）で折返し表示させる方法 ref: https://minpro.net/flutter-dart-textfield-fold
           maxLines: null,
           controller: meaningController,
           decoration: const InputDecoration(
