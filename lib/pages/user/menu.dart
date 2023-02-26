@@ -90,7 +90,7 @@ class UserMenuPage extends ConsumerWidget {
       const String btnText = 'アカウント設定';
       return InkWell(
           onTap: () {
-            UserEditPage.push(context, user);
+            UserEditPage.push(context);
           },
           child: const LargeGreenButton(
             label: btnText,

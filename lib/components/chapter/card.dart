@@ -22,12 +22,6 @@ class ChapterCard extends ConsumerWidget {
       await ChapterShowPage.push(context);
     }
 
-    final image = CachedNetworkImage(
-      imageUrl: chapter.thumbnailUrl,
-      placeholder: (context, url) => const CircularProgressIndicator(),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
-    );
-
     // カードデザインの参考： https://material.io/components/cards/flutter
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 24),
@@ -50,7 +44,13 @@ class ChapterCard extends ConsumerWidget {
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ),
-            image,
+            CachedNetworkImage(
+              imageUrl: chapter.thumbnailUrl,
+              placeholder: (context, url) => Container(
+                  alignment: Alignment.center,
+                  child: const CircularProgressIndicator()),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
             Padding(
               padding: const EdgeInsets.only(
                   right: 16.0, left: 16, top: 16, bottom: 32),

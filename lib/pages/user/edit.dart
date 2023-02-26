@@ -1,26 +1,39 @@
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/user/form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserEditPage extends StatefulWidget {
+class UserEditPage extends ConsumerStatefulWidget {
   const UserEditPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context, User user) async {
-    return Navigator.of(context).pushNamed(userEditPage, arguments: user);
+  static Future push(BuildContext context) async {
+    return Navigator.of(context).pushNamed(userEditPage);
   }
 
   @override
-  State<UserEditPage> createState() => _UserEditPageState();
+  UserEditPageState createState() => UserEditPageState();
 }
 
-class _UserEditPageState extends State<UserEditPage> {
+class UserEditPageState extends ConsumerState<UserEditPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // 項目の取得
-    final User user = ModalRoute.of(context)!.settings.arguments as User;
+    final User? user = ref.watch(currentUserProvider);
+
+    Widget userForm() {
+      if (user == null) {
+        return Container();
+      }
+      return UserForm(user: user);
+    }
 
     // 最終的なアウトプット
     return Scaffold(
@@ -29,12 +42,11 @@ class _UserEditPageState extends State<UserEditPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-            margin: EdgeInsets.symmetric(
-                horizontal: ResponsiveValues.horizontalMargin(context)),
-            padding: const EdgeInsets.symmetric(vertical: 32),
-            child: UserForm(
-              user: user,
-            )),
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          padding: const EdgeInsets.symmetric(vertical: 32),
+          child: userForm(),
+        ),
       ),
       bottomNavigationBar: const BottomNavbar(),
     );

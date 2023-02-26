@@ -70,7 +70,9 @@ class DrillCard extends ConsumerWidget {
             ),
             CachedNetworkImage(
               imageUrl: drill.thumbnailUrl,
-              placeholder: (context, url) => const CircularProgressIndicator(),
+              placeholder: (context, url) => Container(
+                  alignment: Alignment.center,
+                  child: const CircularProgressIndicator()),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
             Padding(

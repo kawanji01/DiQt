@@ -25,6 +25,11 @@ class UserMyPage extends ConsumerStatefulWidget {
     );
   }
 
+  // 戻らせない画面遷移
+  static Future pushReplacement(BuildContext context) async {
+    return Navigator.of(context).pushReplacementNamed(userMyPage);
+  }
+
   @override
   UserMyPageState createState() => UserMyPageState();
 }
@@ -33,7 +38,12 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
   @override
   void initState() {
     super.initState();
-    ref.refresh(asyncCurrentUserProvider);
+    // Unhandled Exception: setState() or markNeedsBuild() called during build.を防ぐために、
+    // すべてのビルドが終わってからrefreshする。
+    // ref: https://zuma-lab.com/posts/flutter-troubleshooting-called-during-build
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.refresh(asyncCurrentUserProvider);
+    });
   }
 
   @override
