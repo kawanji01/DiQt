@@ -5,9 +5,8 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SenseFormPreviewScreen extends ConsumerWidget {
+class SenseFormPreviewScreen extends StatelessWidget {
   const SenseFormPreviewScreen(
       {Key? key,
       required this.gloss,
@@ -19,7 +18,7 @@ class SenseFormPreviewScreen extends ConsumerWidget {
   final Word word;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     SizeConfig().init(context);
     final double grid = SizeConfig.blockSizeVertical ?? 0;
     final double height = grid * 80;

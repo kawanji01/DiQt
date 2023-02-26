@@ -5,7 +5,6 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
 import 'package:booqs_mobile/components/word/item/etymologies.dart';
-import 'package:booqs_mobile/components/word/item/explanation.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/components/word/item/reading.dart';

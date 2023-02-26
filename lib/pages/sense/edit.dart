@@ -53,6 +53,9 @@ class SenseEditPageState extends ConsumerState<SenseEditPage> {
       return setState(() => _isLoading);
     }
     _sense = Sense.fromJson(resMap['sense']);
+    _glossController.text = _sense?.gloss ?? '';
+    _sentenceIdController.text = '${_sense?.sentenceId ?? ''}';
+
     setState(() => _isLoading);
   }
 
@@ -108,8 +111,6 @@ class SenseEditPageState extends ConsumerState<SenseEditPage> {
       if (dictionary == null) return const Text('Dictionary does not exists.');
       final Word? word = sense.word;
       if (word == null) return const Text('Word does not exists.');
-      _glossController.text = sense.gloss;
-      _sentenceIdController.text = '${sense.sentenceId}';
 
       return Form(
         key: _formKey,
