@@ -61,6 +61,7 @@ class WordForm extends StatelessWidget {
         const SizedBox(height: 24),
         // 意味フォーム
         TextFormField(
+          maxLines: null,
           controller: meaningController,
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
