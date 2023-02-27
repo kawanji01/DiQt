@@ -5,6 +5,7 @@ import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizSkipButton extends ConsumerStatefulWidget {
@@ -40,6 +41,8 @@ class QuizSkipButtonState extends ConsumerState<QuizSkipButton> {
 
     return InkWell(
       onTap: () {
+        // 振動フィードバック
+        HapticFeedback.mediumImpact();
         AnswerNotification('わからない', false, quiz, user!, true).dispatch(context);
         setState(() {
           _selected = true;

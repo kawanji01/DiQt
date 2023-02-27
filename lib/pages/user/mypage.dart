@@ -6,6 +6,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/drawer_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserMyPage extends ConsumerStatefulWidget {
@@ -62,7 +63,7 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
         ),
         child: RefreshIndicator(
           onRefresh: () async {
-            // 更新したい処理を書く
+            HapticFeedback.mediumImpact();
             ref.refresh(asyncCurrentUserProvider);
           },
           child: future.when(

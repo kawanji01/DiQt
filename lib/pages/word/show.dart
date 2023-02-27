@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/word/show_action.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -6,6 +7,7 @@ import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/word/preloaded_show_screen.dart';
 import 'package:booqs_mobile/components/word/show_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordShowPage extends ConsumerStatefulWidget {
@@ -53,19 +55,34 @@ class WordShowPageState extends ConsumerState<WordShowPage> {
       );
     }
 
+    Widget action() {
+      return future.when(
+        data: (date) => WordShowAction(word: date),
+        error: (err, stack) => Container(),
+        loading: () => WordShowAction(word: word),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: title(),
+        actions: [action()],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.symmetric(
-              vertical: 24,
-              horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: future.when(
-            data: (data) => WordShowScreen(word: data!),
-            error: (err, stack) => Text('Error: $err'),
-            loading: () => WordPreloadedShowScreen(word: word),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          HapticFeedback.mediumImpact();
+          ref.refresh(asyncWordFamily(wordId));
+        },
+        child: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.symmetric(
+                vertical: 24,
+                horizontal: ResponsiveValues.horizontalMargin(context)),
+            child: future.when(
+              data: (data) => WordShowScreen(word: data!),
+              error: (err, stack) => Text('Error: $err'),
+              loading: () => WordPreloadedShowScreen(word: word),
+            ),
           ),
         ),
       ),
