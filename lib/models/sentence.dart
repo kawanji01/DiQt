@@ -47,7 +47,7 @@ class Sentence {
         sentenceSourceId = json['sentence_source_id'],
         original = json['original'],
         langNumberOfOriginal = json['lang_number_of_original'],
-        translation = json['translation'],
+        translation = json['translation'] ?? '',
         langNumberOfTranslation = json['lang_number_of_translation'],
         explanation = json['explanation'],
         acceptedSentenceRequestsCount =

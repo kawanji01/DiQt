@@ -1,22 +1,21 @@
 import 'package:booqs_mobile/components/sentence/preview.dart';
-import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/components/word/item/entry.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
-import 'package:booqs_mobile/components/word/item/entry.dart';
-import 'package:booqs_mobile/components/word/item/etymologies.dart';
-import 'package:booqs_mobile/components/word/item/ipa.dart';
-import 'package:booqs_mobile/components/word/item/meaning.dart';
-import 'package:booqs_mobile/components/word/item/reading.dart';
-import 'package:booqs_mobile/components/word/item/related_words.dart';
+import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
-class WordFormPreviewScreen extends StatelessWidget {
-  const WordFormPreviewScreen(
-      {Key? key, required this.word, required this.dictionary})
+class SenseFormPreviewScreen extends StatelessWidget {
+  const SenseFormPreviewScreen(
+      {Key? key,
+      required this.gloss,
+      required this.sentenceIdStr,
+      required this.word})
       : super(key: key);
+  final String gloss;
+  final String sentenceIdStr;
   final Word word;
-  final Dictionary dictionary;
 
   @override
   Widget build(BuildContext context) {
@@ -35,33 +34,35 @@ class WordFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          const Text('項目のプレビュー',
+          const Text('意味のプレビュー',
               style: TextStyle(
                   fontSize: 24,
                   color: Colors.black87,
                   fontWeight: FontWeight.bold)),
           const SizedBox(
-            height: 24,
+            height: 16,
           ),
           WordItemEntry(word: word),
-          WordItemReading(word: word),
-          WordItemIPA(word: word),
           const SizedBox(
-            height: 24,
+            height: 16,
           ),
-          WordItemMeaning(word: word),
-          const SizedBox(
-            height: 24,
+          TextWithDictLink(
+            text: gloss,
+            langNumber: word.langNumberOfMeaning,
+            dictionaryId: word.dictionaryId,
+            autoLinkEnabled: false,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.black87,
+            selectable: true,
           ),
-          SentencePreview(sentenceIdStr: '${word.sentenceId}'),
-          WordItemEtymologies(word: word),
-          // WordItemExplanation(word: word),
           const SizedBox(
-            height: 40,
+            height: 32,
           ),
-          WordItemRelatedWords(word: word),
+          SentencePreview(sentenceIdStr: sentenceIdStr),
           const SizedBox(
-            height: 80,
+            height: 64,
           ),
         ],
       )),

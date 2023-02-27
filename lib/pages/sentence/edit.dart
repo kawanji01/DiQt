@@ -52,6 +52,9 @@ class SentenceEditPageState extends ConsumerState<SentenceEditPage> {
       return setState(() => _isLoading);
     }
     _sentence = Sentence.fromJson(resMap['sentence']);
+    _originalController.text = _sentence?.original ?? '';
+    _translationController.text = _sentence?.translation ?? '';
+    _explanationController.text = _sentence?.explanation ?? '';
     setState(() => _isLoading);
   }
 
@@ -107,9 +110,6 @@ class SentenceEditPageState extends ConsumerState<SentenceEditPage> {
       if (sentence == null) return const Text('Sentence does not exists.');
       final Dictionary? dictionary = sentence.dictionary;
       if (dictionary == null) return const Text('Dictionary does not exists.');
-      _originalController.text = sentence.original;
-      _translationController.text = sentence.translation;
-      _explanationController.text = sentence.explanation ?? '';
 
       return Form(
         key: _formKey,

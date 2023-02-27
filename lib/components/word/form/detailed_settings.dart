@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/components/markdown/introduction_text_button.dart';
 import 'package:flutter/material.dart';
 
 class WordFormDetailedSettings extends StatelessWidget {
@@ -40,20 +39,20 @@ class WordFormDetailedSettings extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             // 解説フォーム
-            TextFormField(
-              // 複数行のフォーム。 参考： https://stackoverflow.com/questions/54972928/how-to-expand-a-textfield-in-flutter-looks-like-a-text-area
-              minLines: 8,
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              controller: explanationController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: '解説',
-                hintText: '【空欄可】解説があれば入力してください。',
-              ),
-            ),
+            //TextFormField(
+            // 複数行のフォーム。 参考： https://stackoverflow.com/questions/54972928/how-to-expand-a-textfield-in-flutter-looks-like-a-text-area
+            //  minLines: 8,
+            //  keyboardType: TextInputType.multiline,
+            //  maxLines: null,
+            //  controller: explanationController,
+            //  decoration: const InputDecoration(
+            //    border: OutlineInputBorder(),
+            //    labelText: '解説',
+            //    hintText: '【空欄可】解説があれば入力してください。',
+            //  ),
+            //),
             // DiQt Markdownの説明
-            const MarkdownIntroductionTextButton(),
+            //const MarkdownIntroductionTextButton(),
 
             // 類義語
             TextFormField(

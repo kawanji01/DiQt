@@ -6,8 +6,8 @@ import 'package:booqs_mobile/components/word/form/preview_button.dart';
 import 'package:booqs_mobile/components/word/form/reading.dart';
 import 'package:flutter/material.dart';
 
-class WordForm extends StatelessWidget {
-  const WordForm({
+class WordFormFields extends StatelessWidget {
+  const WordFormFields({
     Key? key,
     required this.entryController,
     required this.readingController,
@@ -61,8 +61,6 @@ class WordForm extends StatelessWidget {
         const SizedBox(height: 24),
         // 意味フォーム
         TextFormField(
-          // [Flutter/Dart]入力欄（TextField）で折返し表示させる方法 ref: https://minpro.net/flutter-dart-textfield-fold
-          maxLines: null,
           controller: meaningController,
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -88,9 +86,10 @@ class WordForm extends StatelessWidget {
         const SizedBox(height: 24),
         // 例文設定
         SentenceSettingForm(
-            sentenceIdController: sentenceIdController,
-            keyword: entryController.text,
-            dictionary: dictionary),
+          sentenceIdController: sentenceIdController,
+          keyword: entryController.text,
+          dictionary: dictionary,
+        ),
         const SizedBox(height: 40),
         // 詳細設定
         WordFormDetailedSettings(

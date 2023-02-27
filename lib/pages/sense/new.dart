@@ -122,6 +122,7 @@ class SenseNewPageState extends ConsumerState<SenseNewPage> {
               SenseForm(
                   glossController: _glossController,
                   sentenceIdController: _sentenceIdController,
+                  word: word,
                   dictionary: dictionary,
                   keyword: word.entry,
                   isNew: true),

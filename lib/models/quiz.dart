@@ -88,7 +88,7 @@ class Quiz {
         question = json['question'],
         langNumberOfQuestion = json['lang_number_of_question'],
         questionReadAloud = json['question_read_aloud'],
-        correctAnswer = json['correct_answer'],
+        correctAnswer = json['correct_answer'] ?? '',
         langNumberOfAnswer = json['lang_number_of_answer'],
         answerReadAloud = json['answer_read_aloud'],
         distractor1 = json['distractor_1'],
