@@ -1,7 +1,9 @@
+import 'package:booqs_mobile/components/review/form/quiz_button.dart';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/review.dart';
+import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
@@ -119,7 +121,7 @@ class ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
         // アラートが縦に伸びてしまうのを防ぐ、
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          ReviewFormStatus(review: _review!),
+          ReviewFormStatus(review: widget.review),
           buildDropDown(),
           const SizedBox(height: 8),
         ],
@@ -134,21 +136,28 @@ class ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
         Container(
           margin: const EdgeInsets.only(left: 12, right: 12, bottom: 24),
           width: MediaQuery.of(context).size.width,
-          height: 48,
-          child: ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
-              minimumSize: const Size(double.infinity,
-                  48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-            ),
-            onPressed: () => update(),
-            icon: const Icon(Icons.update, color: Colors.white),
-            label: const Text(
-              '設定する',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white),
+          height: 88,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    minimumSize: const Size(double.infinity,
+                        48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                  ),
+                  onPressed: () => update(),
+                  icon: const Icon(Icons.update, color: Colors.white),
+                  label: const Text(
+                    '設定する',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.white),
+                  ),
+                ),
+                ReviewFormQuizButton(review: widget.review),
+              ],
             ),
           ),
         ),
