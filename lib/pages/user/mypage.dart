@@ -60,10 +60,16 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
         margin: EdgeInsets.symmetric(
           horizontal: ResponsiveValues.horizontalMargin(context),
         ),
-        child: future.when(
-          loading: () => UserMypageScreen(user: user),
-          error: (err, stack) => Text('Error: $err'),
-          data: (data) => UserMypageScreen(user: data),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            // 更新したい処理を書く
+            ref.refresh(asyncCurrentUserProvider);
+          },
+          child: future.when(
+            loading: () => UserMypageScreen(user: user),
+            error: (err, stack) => Text('Error: $err'),
+            data: (data) => UserMypageScreen(user: data),
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/components/review/answer_setting_button.dart';
+import 'package:booqs_mobile/components/review/heading.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/review/bulk_deletion_button.dart';
@@ -29,28 +31,31 @@ class ReviewAllPage extends ConsumerStatefulWidget {
 class ReviewAllPageState extends ConsumerState<ReviewAllPage> {
   @override
   Widget build(BuildContext context) {
-    final body = Column(
-      children: const [
-        ReviewIntroduction(),
-        ReviewOrderSelectForm(type: 'all'),
-        SizedBox(height: 40),
-        ReviewStatusTabs(
-          selected: 'all',
-        ),
-        SizedBox(height: 40),
-        ReviewBulkDeletionButton(),
-        SizedBox(height: 40),
-        ReviewQuizListView(),
-        SizedBox(height: 120),
-      ],
-    );
     return Scaffold(
       appBar: const EmptyAppBar(),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: body,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              SizedBox(height: 32),
+              ReviewHeading(),
+              ReviewOrderSelectForm(type: 'all'),
+              SizedBox(height: 24),
+              ReviewAnswerSettingButton(),
+              SizedBox(height: 48),
+              ReviewStatusTabs(
+                selected: 'all',
+              ),
+              SizedBox(height: 40),
+              ReviewBulkDeletionButton(),
+              SizedBox(height: 40),
+              ReviewQuizListView(),
+              SizedBox(height: 120),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

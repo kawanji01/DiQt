@@ -1,6 +1,7 @@
+import 'package:booqs_mobile/components/review/answer_setting_button.dart';
+import 'package:booqs_mobile/components/review/heading.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/review/introduction.dart';
 import 'package:booqs_mobile/components/review/order_select_form.dart';
 import 'package:booqs_mobile/components/review/scheduled_quiz_list_view.dart';
 import 'package:booqs_mobile/components/review/status_tabs.dart';
@@ -28,27 +29,29 @@ class ReviewScheduledPage extends ConsumerStatefulWidget {
 class ReviewScheduledPageState extends ConsumerState<ReviewScheduledPage> {
   @override
   Widget build(BuildContext context) {
-    final body = Column(
-      children: const [
-        ReviewIntroduction(),
-        ReviewOrderSelectForm(type: 'scheduled'),
-        SizedBox(height: 40),
-        ReviewStatusTabs(
-          selected: 'scheduled',
-        ),
-        SizedBox(height: 8),
-        ReviewScheduledQuizListView(),
-        SizedBox(height: 120),
-      ],
-    );
-
     return Scaffold(
       appBar: const EmptyAppBar(),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: body,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              SizedBox(height: 32),
+              ReviewHeading(),
+              ReviewOrderSelectForm(type: 'scheduled'),
+              SizedBox(height: 24),
+              ReviewAnswerSettingButton(),
+              SizedBox(height: 48),
+              ReviewStatusTabs(
+                selected: 'scheduled',
+              ),
+              SizedBox(height: 8),
+              ReviewScheduledQuizListView(),
+              SizedBox(height: 120),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),
