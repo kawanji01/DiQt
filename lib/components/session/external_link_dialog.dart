@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:booqs_mobile/data/local/user_info.dart';
-import 'package:booqs_mobile/services/device_info.dart';
+import 'package:booqs_mobile/utils/device_info%20_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';

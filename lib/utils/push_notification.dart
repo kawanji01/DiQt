@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:booqs_mobile/services/device_info.dart';
+import 'package:booqs_mobile/utils/device_info%20_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

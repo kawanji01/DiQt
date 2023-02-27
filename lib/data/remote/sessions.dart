@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:booqs_mobile/services/device_info.dart';
+import 'package:booqs_mobile/utils/device_info%20_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';

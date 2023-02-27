@@ -3,7 +3,6 @@ import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
