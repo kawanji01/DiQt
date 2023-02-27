@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/services/purchase.dart';
+import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:flutter/material.dart';

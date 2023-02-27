@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/services/purchase.dart';
+import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/services/purchase.dart';
+import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserSetup {
