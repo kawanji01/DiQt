@@ -2,7 +2,7 @@ import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/services/purchase.dart';
-import 'package:booqs_mobile/utils/booqs_on_web.dart';
+import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -73,7 +73,7 @@ class PurchaseDeleteButtonState extends ConsumerState<PurchaseDeleteButton> {
       return GestureDetector(
         onTap: () async {
           final String redirectPath = 'users/${user.publicUid}/payment_setting';
-          BooQsOnWeb.open(context, redirectPath);
+          DiQtBrowserDialog.open(context, redirectPath);
         },
         child: const Text(
           '解約する',

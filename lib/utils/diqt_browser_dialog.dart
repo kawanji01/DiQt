@@ -1,7 +1,8 @@
 import 'package:booqs_mobile/components/session/external_link_dialog.dart';
 import 'package:flutter/material.dart';
 
-class BooQsOnWeb {
+// Web版のDiQtを開くダイアログを表示する
+class DiQtBrowserDialog {
   static Future<void> open(
     BuildContext context,
     String redirectPath,

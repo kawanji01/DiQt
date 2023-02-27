@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/utils/booqs_on_web.dart';
+import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class SentenceSentenceRequestsButton extends StatelessWidget {
           'sentences/${sentence.id}/accepted_sentence_requests';
       return InkWell(
           onTap: () {
-            BooQsOnWeb.open(context, redirectPath);
+            DiQtBrowserDialog.open(context, redirectPath);
           },
           child: SmallOutlineGrayButton(
             icon: Icons.history,
@@ -35,7 +35,7 @@ class SentenceSentenceRequestsButton extends StatelessWidget {
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {
-          BooQsOnWeb.open(context, redirectPath);
+          DiQtBrowserDialog.open(context, redirectPath);
         },
         child: Text(
           '${sentence.pendingSentenceRequestsCount}件の審査中の編集',
