@@ -1,6 +1,7 @@
+import 'package:booqs_mobile/components/review/answer_setting_button.dart';
+import 'package:booqs_mobile/components/review/heading.dart';
 import 'package:booqs_mobile/data/provider/review.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
-import 'package:booqs_mobile/components/review/introduction.dart';
 import 'package:booqs_mobile/components/review/order_select_form.dart';
 import 'package:booqs_mobile/components/review/status_tabs.dart';
 import 'package:booqs_mobile/components/review/unsolved_quizzes.dart';
@@ -62,10 +63,14 @@ class ReviewUnsolvedScreenState extends ConsumerState<ReviewUnsolvedScreen> {
         return true;
       },
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ReviewIntroduction(),
+          const SizedBox(height: 32),
+          const ReviewHeading(),
           const ReviewOrderSelectForm(type: 'unreviewed'),
-          const SizedBox(height: 40),
+          const SizedBox(height: 24),
+          const ReviewAnswerSettingButton(),
+          const SizedBox(height: 48),
           const ReviewStatusTabs(
             selected: 'unreviewed',
           ),

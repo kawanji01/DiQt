@@ -6,6 +6,7 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/drawer_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserMyPage extends ConsumerStatefulWidget {
@@ -60,10 +61,16 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
         margin: EdgeInsets.symmetric(
           horizontal: ResponsiveValues.horizontalMargin(context),
         ),
-        child: future.when(
-          loading: () => UserMypageScreen(user: user),
-          error: (err, stack) => Text('Error: $err'),
-          data: (data) => UserMypageScreen(user: data),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            HapticFeedback.mediumImpact();
+            ref.refresh(asyncCurrentUserProvider);
+          },
+          child: future.when(
+            loading: () => UserMypageScreen(user: user),
+            error: (err, stack) => Text('Error: $err'),
+            data: (data) => UserMypageScreen(user: data),
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

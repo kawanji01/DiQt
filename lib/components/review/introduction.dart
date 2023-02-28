@@ -1,5 +1,5 @@
+import 'package:booqs_mobile/components/review/heading.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/utils/helpers/answer_setting.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
@@ -14,22 +14,6 @@ class ReviewIntroduction extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AnswerSetting? answerSetting = ref.watch(answerSettingProvider);
     if (answerSetting == null) return const Text('Error:解答設定がありません。');
-
-    final heading = RichText(
-        text: TextSpan(children: [
-      const WidgetSpan(
-        child: Icon(
-          Icons.alarm,
-          color: Colors.black,
-          size: 36.0,
-        ),
-      ),
-      TextSpan(
-          text:
-              ' 復習（${ref.watch(currentUserProvider.select((user) => user == null ? 0 : user.unsolvedReviewsCount))}）',
-          style: const TextStyle(
-              color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold))
-    ]));
 
     const textStyle = TextStyle(
         color: Colors.black87, fontSize: 16, fontWeight: FontWeight.normal);
@@ -89,7 +73,7 @@ class ReviewIntroduction extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 40),
-        heading,
+        const ReviewHeading(),
         const SizedBox(height: 16),
         initialSettingText,
         const SizedBox(height: 8),

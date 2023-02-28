@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryRadioList extends ConsumerStatefulWidget {
@@ -26,13 +27,6 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
     Widget buildListRow(List<Dictionary> dictionaries, int index) {
       final dictionary = dictionaries[index];
 
-      final iconButton = IconButton(
-        icon: const Icon(Icons.arrow_forward_ios_rounded),
-        onPressed: () {
-          ref.read(dictionaryProvider.notifier).state = dictionary;
-          DictionaryShowPage.push(context, dictionary.id);
-        },
-      );
       // ref: https://api.flutter.dev/flutter/material/RadioListTile-class.html
       return RadioListTile(
         title: Text(dictionary.title),
@@ -43,7 +37,13 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
           final int dictionaryId = int.parse('$value');
           ref.read(dictionaryIdProvider.notifier).state = dictionaryId;
         },
-        secondary: iconButton,
+        secondary: IconButton(
+          icon: const Icon(Icons.arrow_forward_ios_rounded),
+          onPressed: () {
+            ref.read(dictionaryProvider.notifier).state = dictionary;
+            DictionaryShowPage.push(context, dictionary.id);
+          },
+        ),
       );
     }
 
@@ -59,10 +59,17 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
       );
     }
 
-    return future.when(
-      data: (dictionaries) => dictionaryList(dictionaries),
-      error: (err, stack) => Text('Error: $err'),
-      loading: () => const LoadingSpinner(),
+    return RefreshIndicator(
+      onRefresh: () async {
+        HapticFeedback.mediumImpact();
+        // 更新したい処理を書く
+        ref.refresh(asyncDictionariesProvider);
+      },
+      child: future.when(
+        data: (dictionaries) => dictionaryList(dictionaries),
+        error: (err, stack) => Text('Error: $err'),
+        loading: () => const LoadingSpinner(),
+      ),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/sense.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word_tag.dart';
