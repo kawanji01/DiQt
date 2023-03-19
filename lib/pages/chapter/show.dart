@@ -21,7 +21,21 @@ class ChapterShowPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final Chapter? chapter = ref.watch(chapterProvider);
     if (chapter == null) {
-      return Container();
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Chapters'),
+        ),
+        body: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: ResponsiveValues.horizontalMargin(context),
+          ),
+          child: Container(
+            margin: const EdgeInsets.only(top: 32),
+            child: const Text("Chapters doesn't exists."),
+          ),
+        ),
+        bottomNavigationBar: const BottomNavbar(),
+      );
     }
     if (chapter.school) {
       return const ChapterSchoolPage();

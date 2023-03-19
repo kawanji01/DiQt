@@ -22,7 +22,7 @@ class WordTag {
 
   int id;
   int dictionaryId;
-  int chapterId;
+  int? chapterId;
   String chapterUid;
   String name;
   String? introduction;

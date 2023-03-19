@@ -36,25 +36,25 @@ class QuizForm extends StatelessWidget {
     final int langNumberOfAnswer = quiz?.langNumberOfAnswer ?? 0;
     bool autoDictLinkOfQuestion;
     bool autoDictLinkOfAnswer;
-    bool isConnectedToWord;
-    bool isConnectedToSentence;
+    int? wordId = quiz?.wordId ?? quiz?.referenceWordId;
+    int? sentenceId = quiz?.sentenceId ?? quiz?.speakingSentenceId;
+    //bool isConnectedToWord;
+    //bool isConnectedToSentence;
     if (quiz == null) {
       autoDictLinkOfQuestion = false;
       autoDictLinkOfAnswer = false;
-      isConnectedToWord = false;
-      isConnectedToSentence = false;
+      //isConnectedToWord = false;
+      //isConnectedToSentence = false;
     } else {
       autoDictLinkOfQuestion = quiz!.autoDictLinkOfQuestion;
       autoDictLinkOfAnswer = quiz!.autoDictLinkOfAnswer;
-      isConnectedToWord = quiz!.wordId != null || quiz!.referenceWordId != null;
-      isConnectedToSentence = quiz!.sentenceId != null;
+      //isConnectedToWord = quiz!.wordId != null || quiz!.referenceWordId != null;
+      //isConnectedToSentence = quiz!.sentenceId != null;
     }
 
     // 問題に紐づいている辞書の項目や例文への編集ボタン
     Widget buttonToEditRoot() {
-      if (isConnectedToWord) {
-        final int? wordId = quiz?.wordId ?? quiz?.referenceWordId;
-        if (wordId == null) return Container();
+      if (wordId != null) {
         return TextButton(
           style: TextButton.styleFrom(
             padding: const EdgeInsets.only(left: 0, top: 16),
@@ -69,9 +69,7 @@ class QuizForm extends StatelessWidget {
         );
       }
 
-      if (isConnectedToSentence) {
-        final int? sentenceId = quiz?.sentenceId;
-        if (sentenceId == null) return Container();
+      if (sentenceId != null) {
         return TextButton(
           style: TextButton.styleFrom(
             padding: const EdgeInsets.only(left: 0, top: 16),
@@ -89,8 +87,7 @@ class QuizForm extends StatelessWidget {
     }
 
     Widget questionAndAnswer() {
-      final bool enabled =
-          isConnectedToWord == false && isConnectedToSentence == false;
+      final bool enabled = wordId == null && sentenceId == null;
       //
       return Column(
         children: [

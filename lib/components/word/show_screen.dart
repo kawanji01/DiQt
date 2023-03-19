@@ -29,6 +29,16 @@ class WordShowScreen extends StatelessWidget {
       );
     }
 
+    Widget speakingSentenceQuiz() {
+      if (sentence == null) return Container();
+      final Quiz? sentenceQuiz = sentence.speakingQuiz;
+      if (sentenceQuiz == null) return Container();
+      return DrillListQuiz(
+        quiz: sentenceQuiz,
+        isShow: false,
+      );
+    }
+
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       WordDetailedItem(word: word),
       DrillListQuiz(
@@ -36,6 +46,7 @@ class WordShowScreen extends StatelessWidget {
         isShow: false,
       ),
       sentenceQuiz(),
+      speakingSentenceQuiz(),
       const SizedBox(
         height: 120,
       ),

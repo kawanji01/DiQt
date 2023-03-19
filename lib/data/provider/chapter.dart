@@ -10,6 +10,7 @@ final asyncChapterFamily = FutureProvider.autoDispose
     .family<Chapter?, String>((ref, chapterUid) async {
   final Map? resMap = await RemoteChapters.show(chapterUid);
   if (resMap == null) return null;
+  if (resMap['chapter'] == null) return null;
   final Chapter chapter = Chapter.fromJson(resMap['chapter']);
   ref.read(chapterProvider.notifier).state = chapter;
   return chapter;
