@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class BottomNavbarNotificationIcon extends StatelessWidget {
     }
     // 未受領の実績メダルがあるなら、それを伝える
     if (user!.rewardRemained) {
-      return Badge(
+      return badges.Badge(
         badgeContent: const Icon(
           Icons.military_tech,
           color: Colors.white,
@@ -37,7 +37,7 @@ class BottomNavbarNotificationIcon extends StatelessWidget {
     } else {
       counterStr = '$counter';
     }
-    return Badge(
+    return badges.Badge(
       badgeContent: Text(
         counterStr,
         style: const TextStyle(color: Colors.white),
