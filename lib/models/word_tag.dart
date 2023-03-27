@@ -52,7 +52,7 @@ class WordTag {
         updatedAt = DateTime.parse(json['updated_at']),
         dictionary = json['dictionary'] == null
             ? null
-            : Dictionary.fromJson(json['quiz']),
+            : Dictionary.fromJson(json['dictionary']),
         chapter =
             json['chapter'] == null ? null : Chapter.fromJson(json['chapter']);
 

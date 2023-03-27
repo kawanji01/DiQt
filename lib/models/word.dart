@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/models/pos_tag.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sense.dart';
 import 'package:booqs_mobile/models/sentence.dart';
@@ -9,6 +10,7 @@ class Word {
     required this.id,
     required this.dictionaryId,
     this.sentenceId,
+    this.posTagId,
     required this.entry,
     required this.langNumberOfEntry,
     required this.meaning,
@@ -28,6 +30,7 @@ class Word {
     // 結合したテーブル
     this.sentence,
     this.dictionary,
+    this.posTag,
     this.quiz,
     this.wordTags,
     this.senses,
@@ -36,6 +39,7 @@ class Word {
   int id;
   int dictionaryId;
   int? sentenceId;
+  int? posTagId;
   String entry;
   int langNumberOfEntry;
   String meaning;
@@ -54,6 +58,7 @@ class Word {
   int pendingWordRequestsCount;
   Sentence? sentence;
   Dictionary? dictionary;
+  PosTag? posTag;
   Quiz? quiz;
   List<WordTag>? wordTags;
   List<Sense>? senses;
@@ -62,6 +67,7 @@ class Word {
       : id = json['id'],
         dictionaryId = json['dictionary_id'],
         sentenceId = json['sentence_id'],
+        posTagId = json['pos_tag_id'],
         entry = json['entry'],
         langNumberOfEntry = json['lang_number_of_entry'],
         meaning = json['meaning'],
@@ -84,6 +90,8 @@ class Word {
         dictionary = json['dictionary'] == null
             ? null
             : Dictionary.fromJson(json['dictionary']),
+        posTag =
+            json['pos_tag'] == null ? null : PosTag.fromJson(json['pos_tag']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
         wordTags = json['word_tags'] == null
             ? []
@@ -98,6 +106,7 @@ class Word {
         'id': id,
         'dictionary_id': dictionaryId,
         'sentence_id': sentenceId,
+        'pos_tag_id': posTagId,
         'entry': entry,
         'lang_number_of_entry': langNumberOfEntry,
         'meaning': meaning,
@@ -116,6 +125,7 @@ class Word {
         'pending_word_requests_count': pendingWordRequestsCount,
         'sentence': sentence,
         'dictionary': dictionary,
+        'pos_tag': posTag,
         'quiz': quiz,
       };
 }

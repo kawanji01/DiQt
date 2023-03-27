@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/sentence/setting_form.dart';
+import 'package:booqs_mobile/components/word/form/pos_tag_setting.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/word/form/detailed_settings.dart';
 import 'package:booqs_mobile/components/word/form/lang_setting.dart';
@@ -12,6 +13,7 @@ class WordForm extends StatelessWidget {
     required this.entryController,
     required this.readingController,
     required this.meaningController,
+    required this.posTagIdController,
     required this.ipaController,
     required this.etymologiesController,
     required this.explanationController,
@@ -25,6 +27,7 @@ class WordForm extends StatelessWidget {
   final TextEditingController entryController;
   final TextEditingController readingController;
   final TextEditingController meaningController;
+  final TextEditingController posTagIdController;
   final TextEditingController ipaController;
   final TextEditingController etymologiesController;
   final TextEditingController explanationController;
@@ -58,7 +61,12 @@ class WordForm extends StatelessWidget {
           langNumberOfEntry: dictionary.langNumberOfEntry,
         ),
         WordFormLangSetting(langNumber: dictionary.langNumberOfEntry),
-        const SizedBox(height: 24),
+        const SizedBox(height: 16),
+        // 品詞設定
+        WordFormPosTagSetting(
+            posTagIdController: posTagIdController,
+            posTags: dictionary.posTags),
+        const SizedBox(height: 40),
         // 意味フォーム
         TextFormField(
           // [Flutter/Dart]入力欄（TextField）で折返し表示させる方法 ref: https://minpro.net/flutter-dart-textfield-fold

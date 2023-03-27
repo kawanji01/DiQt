@@ -36,6 +36,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
   final _entryController = TextEditingController();
   final _readingController = TextEditingController();
   final _meaningController = TextEditingController();
+  final _posTagIdController = TextEditingController();
   final _ipaController = TextEditingController();
   final _etymologiesController = TextEditingController();
   final _explanationController = TextEditingController();
@@ -76,6 +77,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
     _entryController.dispose();
     _readingController.dispose();
     _meaningController.dispose();
+    _posTagIdController.dispose();
     _ipaController.dispose();
     _etymologiesController.dispose();
     _explanationController.dispose();
@@ -99,6 +101,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
         'entry': _entryController.text,
         'reading': _readingController.text,
         'meaning': _meaningController.text,
+        'pos_tag_id': _posTagIdController.text,
         'ipa': _ipaController.text,
         'etymologies': _etymologiesController.text,
         'explanation': _explanationController.text,
@@ -146,6 +149,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
                     entryController: _entryController,
                     readingController: _readingController,
                     meaningController: _meaningController,
+                    posTagIdController: _posTagIdController,
                     ipaController: _ipaController,
                     etymologiesController: _etymologiesController,
                     explanationController: _explanationController,

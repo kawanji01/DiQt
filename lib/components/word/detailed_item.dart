@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/word/item/pos_tag.dart';
 import 'package:booqs_mobile/components/word/item/senses.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
@@ -39,6 +40,7 @@ class WordDetailedItem extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
+        WordItemPosTag(word: word),
         WordItemMeaning(word: word),
         const SizedBox(
           height: 24,

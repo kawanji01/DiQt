@@ -36,6 +36,7 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
   final _entryController = TextEditingController();
   final _readingController = TextEditingController();
   final _meaningController = TextEditingController();
+  final _posTagIdController = TextEditingController();
   final _ipaController = TextEditingController();
   final _etymologiesController = TextEditingController();
   final _explanationController = TextEditingController();
@@ -64,6 +65,7 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
     _entryController.text = word.entry;
     _readingController.text = word.reading ?? '';
     _meaningController.text = word.meaning;
+    _posTagIdController.text = word.posTagId.toString();
     _ipaController.text = word.ipa ?? '';
     _etymologiesController.text = word.etymologies ?? '';
     _explanationController.text = word.explanation ?? '';
@@ -71,7 +73,7 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
     _synonymsController.text = word.synonyms ?? '';
     _antonymsController.text = word.antonyms ?? '';
     _relatedController.text = word.related ?? '';
-    final dictionary = word.dictionary;
+    final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
     setState(() {
       _word = word;
       _dictionary = dictionary;
@@ -86,6 +88,7 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
     _entryController.dispose();
     _readingController.dispose();
     _meaningController.dispose();
+    _posTagIdController.dispose();
     _ipaController.dispose();
     _etymologiesController.dispose();
     _explanationController.dispose();
@@ -109,6 +112,7 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
         'entry': _entryController.text,
         'reading': _readingController.text,
         'meaning': _meaningController.text,
+        'pos_tag_id': _posTagIdController.text,
         'ipa': _ipaController.text,
         'etymologies': _etymologiesController.text,
         'explanation': _explanationController.text,
@@ -154,6 +158,7 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
                     entryController: _entryController,
                     readingController: _readingController,
                     meaningController: _meaningController,
+                    posTagIdController: _posTagIdController,
                     ipaController: _ipaController,
                     etymologiesController: _etymologiesController,
                     explanationController: _explanationController,
