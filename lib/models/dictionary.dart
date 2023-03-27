@@ -1,41 +1,44 @@
 import 'package:booqs_mobile/models/drill.dart';
+import 'package:booqs_mobile/models/pos_tag.dart';
 
 class Dictionary {
-  Dictionary(
-      {required this.id,
-      required this.title,
-      this.introduction,
-      this.guideline,
-      this.credit,
-      this.license,
-      this.image,
-      this.thumbnailUrl,
-      required this.publicUid,
-      required this.langNumberOfEntry,
-      required this.langNumberOfMeaning,
-      this.requestScreened = false,
-      this.wordsCount = 0,
-      this.sentencesCount = 0,
-      this.acceptedWordRequestsCount = 0,
-      this.pendingWordRequestsCount = 0,
-      this.acceptedSentenceRequestsCount = 0,
-      this.pendingSentenceRequestsCount = 0,
-      this.acceptedQuizRequestsCount = 0,
-      this.pendingQuizRequestsCount = 0,
-      this.usersAuthorizedToCreate = 4,
-      this.createScreened = false,
-      this.usersAuthorizedToUpdate = 4,
-      this.updateScreened = false,
-      this.usersAuthorizedToDestroy = 1,
-      this.destroyScreened = false,
-      this.usersAuthorizedToVote = 3,
-      this.votesCountToCloseRequest = 3,
-      this.sameEntryScreened = false,
-      this.changingEntryScreened = false,
-      required this.createdAt,
-      required this.updatedAt,
-      // eager_loadでキャッシュしたdrillの情報
-      this.drill});
+  Dictionary({
+    required this.id,
+    required this.title,
+    this.introduction,
+    this.guideline,
+    this.credit,
+    this.license,
+    this.image,
+    this.thumbnailUrl,
+    required this.publicUid,
+    required this.langNumberOfEntry,
+    required this.langNumberOfMeaning,
+    this.requestScreened = false,
+    this.wordsCount = 0,
+    this.sentencesCount = 0,
+    this.acceptedWordRequestsCount = 0,
+    this.pendingWordRequestsCount = 0,
+    this.acceptedSentenceRequestsCount = 0,
+    this.pendingSentenceRequestsCount = 0,
+    this.acceptedQuizRequestsCount = 0,
+    this.pendingQuizRequestsCount = 0,
+    this.usersAuthorizedToCreate = 4,
+    this.createScreened = false,
+    this.usersAuthorizedToUpdate = 4,
+    this.updateScreened = false,
+    this.usersAuthorizedToDestroy = 1,
+    this.destroyScreened = false,
+    this.usersAuthorizedToVote = 3,
+    this.votesCountToCloseRequest = 3,
+    this.sameEntryScreened = false,
+    this.changingEntryScreened = false,
+    required this.createdAt,
+    required this.updatedAt,
+    // eager_loadでキャッシュしたdrillの情報
+    this.drill,
+    this.posTags,
+  });
 
   int id;
   String title;
@@ -71,6 +74,7 @@ class Dictionary {
   DateTime updatedAt;
   // テーブルを結合してキャッシュしたdrillの情報
   Drill? drill;
+  List<PosTag>? posTags;
 
   Dictionary.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -107,7 +111,10 @@ class Dictionary {
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         // テーブルを結合してキャッシュしたdrillの情報,
-        drill = json['drill'] == null ? null : Drill.fromJson(json['drill']);
+        drill = json['drill'] == null ? null : Drill.fromJson(json['drill']),
+        posTags = json['pos_tags'] == null
+            ? []
+            : json['pos_tags'].map<PosTag>((e) => PosTag.fromJson(e)).toList();
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -144,5 +151,6 @@ class Dictionary {
         'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,
         'drill': drill,
+        'pos_tags': posTags,
       };
 }
