@@ -14,7 +14,8 @@ class WordItemPosTag extends StatelessWidget {
     if (posTag == null) {
       return Container();
     }
-    return InkWell(
+    return SharedItemLabel(text: posTag.name);
+    /*  return InkWell(
       child: SharedItemLabel(text: posTag.name),
       onTap: () {
         showModalBottomSheet(
@@ -28,6 +29,6 @@ class WordItemPosTag extends StatelessWidget {
           builder: (context) => WordItemPosTagScreen(posTag: posTag),
         );
       },
-    );
+    ); */
   }
 }
