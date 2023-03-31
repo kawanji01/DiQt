@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/components/shared/item_label.dart';
-import 'package:booqs_mobile/components/word/item/pos_tag_screen.dart';
 import 'package:booqs_mobile/models/pos_tag.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,8 @@ class WordItemPosTag extends StatelessWidget {
     if (posTag == null) {
       return Container();
     }
-    return InkWell(
+    return SharedItemLabel(text: posTag.name);
+    /*  return InkWell(
       child: SharedItemLabel(text: posTag.name),
       onTap: () {
         showModalBottomSheet(
@@ -28,6 +28,6 @@ class WordItemPosTag extends StatelessWidget {
           builder: (context) => WordItemPosTagScreen(posTag: posTag),
         );
       },
-    );
+    ); */
   }
 }
