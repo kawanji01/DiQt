@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
 
-class CustomTagBuilder extends MarkdownElementBuilder {
+class DiQtLinkBuilder extends MarkdownElementBuilder {
   final BuildContext context;
   final double fontSize;
   final FontWeight fontWeight;
   final int? dictionaryId;
 
-  CustomTagBuilder(
+  DiQtLinkBuilder(
       this.context, this.fontSize, this.fontWeight, this.dictionaryId);
   @override
   Widget visitElementAfter(md.Element element, TextStyle? preferredStyle) {
