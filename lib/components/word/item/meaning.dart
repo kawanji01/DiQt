@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
@@ -27,12 +28,8 @@ class WordItemMeaning extends StatelessWidget {
           selectable: true,
         );
       }
-      return TextWithDictLink(
+      return MarkdownWithDictLink(
         text: word.meaning,
-        langNumber: word.langNumberOfMeaning,
-        // 辞書記法だけリンクにする。
-        autoLinkEnabled: false,
-        crossAxisAlignment: CrossAxisAlignment.start,
         dictionaryId: word.dictionaryId,
         fontSize: 18,
         fontWeight: FontWeight.bold,
