@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/components/shared/item_label.dart';
-import 'package:booqs_mobile/components/word/item/pos_tag_screen.dart';
 import 'package:booqs_mobile/models/pos_tag.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
