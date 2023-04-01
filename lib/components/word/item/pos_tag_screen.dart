@@ -22,7 +22,7 @@ class WordItemPosTagScreen extends StatelessWidget {
           Text(posTag.name,
               style: const TextStyle(
                   color: Colors.green,
-                  fontSize: 24,
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
                   height: 2)),
           const SizedBox(height: 24),
