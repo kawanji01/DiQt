@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/user/contract_details.dart';
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -98,6 +99,18 @@ class UserMenuPage extends ConsumerWidget {
           ));
     }
 
+    Widget contractDetails() {
+      const String btnText = 'ご契約内容';
+      return InkWell(
+          onTap: () {
+            UserContractDetails.push(context);
+          },
+          child: const LargeGreenButton(
+            label: btnText,
+            icon: Icons.manage_accounts,
+          ));
+    }
+
     Widget answerSettingButton() {
       const String btnText = '解答・復習設定';
       return InkWell(
@@ -163,6 +176,10 @@ class UserMenuPage extends ConsumerWidget {
                 height: 32,
               ),
               answerSettingButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              contractDetails(),
               const SizedBox(
                 height: 32,
               ),

@@ -28,6 +28,7 @@ import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
+import 'package:booqs_mobile/pages/user/contract_detail.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/pages/user/menu.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
@@ -84,7 +85,7 @@ const userEditPage = '/user/edit';
 const userMenuPage = '/user/menu';
 const userSearchPage = '/user/search';
 const userPremiumPlanPage = '/user/premium_plan';
-const userPaymentSettingPage = '/user/payment_setting';
+const userContractDetailsPage = '/user/contract_details';
 // 問題集
 const drillUnsolvedPage = '/drill/unsolved';
 const drillSolvedPage = '/drill/solved';
@@ -110,11 +111,13 @@ const noteIndexPage = 'note/index';
 final routes = {
   indexPage: (context) => const HomePage(),
   communityPage: (context) => const CommunityPage(),
+  // Notification(Notice)
   noticeIndexPage: (context) => const NoticeIndexPage(),
   noticeHomePage: (context) => const NoticeHomePage(),
-  userMyPage: (context) => const UserMyPage(),
+  // Session
   signUpPage: (context) => const SignUpPage(),
   loginPage: (context) => const LoginPage(),
+  // Dictionary
   dictionaryShowPage: (context) => const DictionaryShowPage(),
   dictionaryWordSearchResultsPage: (context) =>
       const DictionaryWordSearchResultsPage(),
@@ -133,28 +136,38 @@ final routes = {
   sentenceNewPage: (context) => const SentenceNewPage(),
   sentenceEditPage: (context) => const SentenceEditPage(),
   sentenceShowPage: (context) => const SentenceShowPage(),
+  // Chapter
   chapterIndexPage: (context) => const ChapterIndexPage(),
   chapterShowPage: (context) => const ChapterShowPage(),
   chapterSchoolPage: (context) => const ChapterSchoolPage(),
+  // User
+  userMyPage: (context) => const UserMyPage(),
   userShowPage: (context) => const UserShowPage(),
   userAchievementsPage: (context) => const UserAchievementsPage(),
   userEditPage: (context) => const UserEditPage(),
   userMenuPage: (context) => const UserMenuPage(),
   userSearchPage: (context) => const UserSearchPage(),
   userPremiumPlanPage: (context) => const PremiumPlanPage(),
+  userContractDetailsPage: (context) => const UserContractDetailsPage(),
+  // Drill
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   drillSolvedPage: (context) => const DrillSolvedPage(),
   drillShowPage: (context) => const DrillShowPage(),
+  // Quiz
   quizEditPage: (context) => const QuizEditPage(),
   quizShowPage: (context) => const QuizShowPage(),
+  // Review
   reviewIndexPage: (context) => const ReviewIndexPage(),
   reviewScheduledPage: (context) => const ReviewScheduledPage(),
   reviewAllPage: (context) => const ReviewAllPage(),
+  // Weakness
   weaknessIndexPage: (context) => const WeaknessIndexPage(),
   weaknessUnsolvedPage: (context) => const WeaknessUnsolvedPage(),
   weaknessSolvedPage: (context) => const WeaknessSolvedPage(),
+  // AnswerHistory
   answerHistoryTodaysMistakesPage: (context) =>
       const AnswerHistoryTodaysMistakesPage(),
   answerAnalysisIndexPage: (context) => const AnswerAnalysisIndexPage(),
+  // Note
   noteIndexPage: (context) => const NoteIndexPage(),
 };

@@ -1,5 +1,5 @@
 {
-  "identifier" : "4107123A",
+  "identifier" : "BCFC623B",
   "nonRenewingSubscriptions" : [
 
   ],
@@ -11,7 +11,7 @@
   },
   "subscriptionGroups" : [
     {
-      "id" : "E563C2CE",
+      "id" : "4C76B048",
       "localizations" : [
 
       ],
@@ -21,11 +21,15 @@
           "adHocOffers" : [
 
           ],
-          "displayPrice" : "0.99",
+          "displayPrice" : "5",
           "familyShareable" : false,
           "groupNumber" : 1,
-          "internalID" : "8C065013",
-          "introductoryOffer" : null,
+          "internalID" : "6885AB40",
+          "introductoryOffer" : {
+            "internalID" : "D0AB551A",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P2W"
+          },
           "localizations" : [
             {
               "description" : "",
@@ -33,10 +37,36 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "com.temporary.id",
+          "productID" : "diqt_500_1m_2w0",
           "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : null,
-          "subscriptionGroupID" : "E563C2CE",
+          "referenceName" : "Monthly ¥500, 2-weeks free",
+          "subscriptionGroupID" : "4C76B048",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "50.00",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "CF5956F3",
+          "introductoryOffer" : {
+            "internalID" : "476C24FE",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P2W"
+          },
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "diqt_5000_1y_2w0",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Yearly ¥5000, 2 weeks free",
+          "subscriptionGroupID" : "4C76B048",
           "type" : "RecurringSubscription"
         }
       ]

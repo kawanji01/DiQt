@@ -102,6 +102,23 @@ class RemoteUsers {
     return resMap;
   }
 
+  // 契約プラン情報
+  static Future<Map?> contractDetails() async {
+    const storage = FlutterSecureStorage();
+    final String? token = await storage.read(key: 'token');
+
+    if (token == null) return null;
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/contract_deatails?token=$token');
+    final Response res = await get(url);
+
+    if (res.statusCode != 200) return null;
+    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
   // 参加中の教室
   static Future<Map?> schools(String publicUid) async {
     final Uri url = Uri.parse(
