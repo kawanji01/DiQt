@@ -83,7 +83,7 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
       if (!mounted) return;
 
       if (resMap == null) {
-        const snackBar = SnackBar(content: Text('解約に失敗しました。'));
+        const snackBar = SnackBar(content: Text('通信エラーが発生しました。'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         UserMyPage.push(context);
