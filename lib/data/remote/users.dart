@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/utils/device_info%20_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/entitlement_info_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
+import 'package:purchases_flutter/object_wrappers.dart';
 
 class RemoteUsers {
   // 現在のログインユーザーの取得　　　users/current
@@ -102,23 +104,6 @@ class RemoteUsers {
     return resMap;
   }
 
-  // 契約プラン情報
-  static Future<Map?> contractDetails() async {
-    const storage = FlutterSecureStorage();
-    final String? token = await storage.read(key: 'token');
-
-    if (token == null) return null;
-
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/contract_deatails?token=$token');
-    final Response res = await get(url);
-
-    if (res.statusCode != 200) return null;
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    final Map resMap = json.decode(res.body);
-    return resMap;
-  }
-
   // 参加中の教室
   static Future<Map?> schools(String publicUid) async {
     final Uri url = Uri.parse(
@@ -164,6 +149,32 @@ class RemoteUsers {
     final Uri url = Uri.parse(
         '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/favor_app');
     final Map boby = {'token': token, 'device_info': '$platform / $deviceName'};
+    final Response res = await post(url, body: boby);
+    if (res.statusCode != 200) return null;
+
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
+
+  // 解約理由を送信する
+  static Future<Map?> sendCancellationReport(
+      EntitlementInfo entitlementInfo, String reason) async {
+    const storage = FlutterSecureStorage();
+    final String? token = await storage.read(key: 'token');
+    if (token == null) return null;
+    final String productIdentifier = entitlementInfo.productIdentifier;
+    final String device = EntitlementInfoService.device(entitlementInfo);
+    final bool inTrial = EntitlementInfoService.inTrial(entitlementInfo);
+
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/send_cancellation_report');
+    final Map boby = {
+      'token': token,
+      'product_identifier': productIdentifier,
+      'device': device,
+      'in_trial': '$inTrial',
+      'reason': reason
+    };
     final Response res = await post(url, body: boby);
     if (res.statusCode != 200) return null;
 

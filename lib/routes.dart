@@ -28,7 +28,8 @@ import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
-import 'package:booqs_mobile/pages/user/contract_detail.dart';
+import 'package:booqs_mobile/pages/user/cancellation.dart';
+import 'package:booqs_mobile/pages/user/contract_details.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/pages/user/menu.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
@@ -86,6 +87,7 @@ const userMenuPage = '/user/menu';
 const userSearchPage = '/user/search';
 const userPremiumPlanPage = '/user/premium_plan';
 const userContractDetailsPage = '/user/contract_details';
+const userCancellationPage = '/user/cancellation';
 // 問題集
 const drillUnsolvedPage = '/drill/unsolved';
 const drillSolvedPage = '/drill/solved';
@@ -149,6 +151,7 @@ final routes = {
   userSearchPage: (context) => const UserSearchPage(),
   userPremiumPlanPage: (context) => const PremiumPlanPage(),
   userContractDetailsPage: (context) => const UserContractDetailsPage(),
+  userCancellationPage: (context) => const UserCancellationPage(),
   // Drill
   drillUnsolvedPage: (context) => const DrillUnsolvedPage(),
   drillSolvedPage: (context) => const DrillSolvedPage(),

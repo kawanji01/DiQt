@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io' show Platform;
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -10,6 +11,7 @@ import 'package:http/http.dart' as http;
 
 // RevenueCatのセットアップ
 // ref： https://docs.revenuecat.com/docs/getting-started-1#section-configure-purchases
+// ４系からはメソッドのリネームが発生しているので注意： ref: https://pub.dev/packages/purchases_flutter/changelog
 class PurchaseService {
   // 処理実行中にコールバック（_purchaserInfoUpdated）を実行しないための処理
   bool isExecuting = false;
@@ -17,26 +19,32 @@ class PurchaseService {
   // RevenueCatの初期化するメソッド（呼んだ回数分コールバックが呼ばれるようになるのでMainで１度だけ実行する）。 ref：https://docs.revenuecat.com/docs/getting-started#7-configure-the-purchases-sdk
   Future<void> initPlatformState() async {
     // デバック用のログを表示する
-    // await Purchases.setDebugLogsEnabled(true);
+    //await Purchases.setDebugLogsEnabled(true);
 
+    PurchasesConfiguration configuration;
     if (Platform.isAndroid) {
-      final publicAndroidSdkKey = dotenv.env['REVENUECAT_ANDROID_PUBLIC_KEY'];
-      await Purchases.setup('$publicAndroidSdkKey');
+      final String? publicAndroidSdkKey =
+          dotenv.env['REVENUECAT_ANDROID_PUBLIC_KEY'];
+      configuration = PurchasesConfiguration(publicAndroidSdkKey!);
+      await Purchases.configure(configuration);
+      //await Purchases.setup('$publicAndroidSdkKey');
     } else if (Platform.isIOS) {
-      final publicIosSdkKey = dotenv.env['REVENUECAT_IOS_PUBLIC_KEY'];
-      await Purchases.setup('$publicIosSdkKey');
+      final String? publicIosSdkKey = dotenv.env['REVENUECAT_IOS_PUBLIC_KEY'];
+      configuration = PurchasesConfiguration(publicIosSdkKey!);
+      await Purchases.configure(configuration);
+      //await Purchases.setup('$publicIosSdkKey');
     }
 
     // アプリ起動時などのコールバック時に実行され、契約状況をDBと同期する。
-    Future<void> purchaserInfoUpdated(PurchaserInfo info) async {
+    Future<void> purchaserInfoUpdated(CustomerInfo info) async {
       //print('purchaserInfoUpdated: $isExecuting');
-      //print('_purchaserInfoUpdated: ${info.entitlements}');
+      print('_purchaserInfoUpdated: isEmpty? ${info.entitlements.all.isEmpty}');
       if (isExecuting) return;
       await syncSubscription(info);
     }
 
     // 契約情報更新時のイベントを捕捉するリスナー ref: https://docs.revenuecat.com/docs/purchaserinfo#listening-for-purchaser-info-updates
-    Purchases.addPurchaserInfoUpdateListener(purchaserInfoUpdated);
+    Purchases.addCustomerInfoUpdateListener(purchaserInfoUpdated);
   }
 
   // RevenueCatのユーザー認証。UserSetupで利用 　ref：https://docs.revenuecat.com/docs/user-ids#logging-back-in
@@ -54,11 +62,26 @@ class PurchaseService {
     }
   }
 
-  // プレミアムプランのIDを取得。
+  // プレミアムプランのIDを取得。ref: https://www.revenuecat.com/docs/displaying-products#fetching-offerings
   Future<String> fetchProductID() async {
-    Offerings offerings = await Purchases.getOfferings();
-    final product = offerings.current!.monthly!.product;
-    return product.identifier;
+    try {
+      Offerings offerings = await Purchases.getOfferings();
+      if (offerings.current != null &&
+          offerings.current!.availablePackages.isNotEmpty) {
+        // Display packages for sale
+        StoreProduct product = offerings.current!.monthly!.storeProduct;
+        String productID = product.identifier;
+        print('productId: $productID');
+        return productID;
+      }
+    } on PlatformException catch (e) {
+      // optional error handling
+      print('.fetchProductID: $e');
+      return '';
+    }
+    //Offerings offerings = await Purchases.getOfferings();
+    //return offerings.current.identifier;
+    return '';
   }
 
   // 購入処理
@@ -78,7 +101,7 @@ class PurchaseService {
       final isSubscribed = await getOrCreateSubscriber(token);
       return isSubscribed;
     } catch (e) {
-      // print('.subscribe: $e');
+      print('.subscribe: $e');
       return false;
     } finally {
       // errorであれreturnで外部コードに抜ける前であれ、常に実行する。ref: https://ja.javascript.info/try-catch#ref-1685
@@ -89,28 +112,31 @@ class PurchaseService {
   // DBの同期処理
   // restoreや_purchaserInfoUpdated（コールバック）で利用
   // PurchaserInfo（購入情報）を引数にして、ユーザーの購入状況（契約中か解約済か）をDB側で同期する。
-  Future<bool> syncSubscription(PurchaserInfo info) async {
+  Future<bool> syncSubscription(CustomerInfo customerInfo) async {
     isExecuting = true;
     bool isSubscribed = false;
-    // print('syncSubscription: ${info.entitlements}');
-
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
     // ログインしてない（トークンがない）ならそもそもリクエストを飛ばさない。
     if (token == null) {
       isExecuting = false;
-      // print(".syncSubscription: token not found");
       return isSubscribed;
     }
     // DBの購入状況を同期する。
     // if文は１つでもプレミアムプランがアクティブなら、trueを返す処理 ref: https://docs.revenuecat.com/docs/purchaserinfo#checking-if-a-user-is-subscribed
     // 現状はプランによって提供機能を変えていないためこれで十分
-    if (info.entitlements.active.isNotEmpty) {
-      // print(".syncSubscription: NotEmpty / 購入する");
-      isSubscribed = await getOrCreateSubscriber(token);
+    if (customerInfo.entitlements.active.isNotEmpty) {
+      print(".syncSubscription: There is active");
+      isSubscribed = await enablePremiumOnDB(token);
     } else {
-      // print(".syncSubscription: Empty / 解約する");
-      isSubscribed = await deleteSubscriber(token);
+      print(".syncSubscription: There is no active");
+      // 有効期限が全て切れていたら、DBのpremiumをfalseにする。
+      final bool allExpired = isAllExpired(customerInfo);
+      if (allExpired) {
+        print(".syncSubscription: All expired");
+        disablePremiumOnDB(token);
+      }
+      isSubscribed = false;
     }
     isExecuting = false;
     return isSubscribed;
@@ -143,17 +169,62 @@ class PurchaseService {
     return true;
   }
 
-  // DB側の解約処理
-  // クライアント側に解約APIは用意されていないので、サーバー側（Ruby）の解約APIを叩き、解約をDBと同期する。
-  Future<bool> deleteSubscriber(token) async {
-    final url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/users/delete_subscriber');
-    final res = await http.post(url, body: {'token': token});
+  // すべての契約の有効期限のチェックして、すべて切れていたらtrue、そうでないならfalse
+  bool isAllExpired(CustomerInfo customerInfo) {
+    final Map<String, EntitlementInfo> entitlementInfoMap =
+        customerInfo.entitlements.all;
+    // entitlementがすべて有効期限が切れているかどうかを確認する。
+    final bool allExpired = entitlementInfoMap.values.every((value) {
+      final String? strExpirationDateTime = value.expirationDate;
+      if (strExpirationDateTime == null) return false;
+      final expirationDatetime = DateTime.parse(strExpirationDateTime);
+      // 期限切れならtrue
+      final bool expired =
+          DateTime.now().isAfter(expirationDatetime) ? true : false;
+      return expired;
+    });
+    return allExpired;
+  }
 
+  // DB上で、ユーザーにpremium権限を付与する
+  Future<bool> enablePremiumOnDB(String? token) async {
+    if (token == null) return false;
+    final url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/enable_premium');
+    final res = await http.post(url, body: {'token': token});
     if (res.statusCode != 200) {
       return false;
     }
+    final Map resMap = json.decode(res.body);
+    final User user = User.fromJson(resMap['user']);
+    await UserSetup.signIn(user);
+    return true;
+  }
 
+  // DB上で、ユーザーのpremium権限を剥奪する
+  Future<bool> disablePremiumOnDB(String? token) async {
+    if (token == null) return false;
+    final url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/disable_premium');
+    final res = await http.post(url, body: {'token': token});
+    if (res.statusCode != 200) {
+      return false;
+    }
+    final Map resMap = json.decode(res.body);
+    final User user = User.fromJson(resMap['user']);
+    await UserSetup.signIn(user);
+    return true;
+  }
+
+  // DB側の解約処理
+  // クライアント側に解約APIは用意されていないので、サーバー側（Ruby）の解約APIを叩き、解約をDBと同期する。
+  Future<bool> deleteSubscriber(String? token, String reason) async {
+    final url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/delete_subscriber');
+    final res = await http.post(url, body: {'token': token, 'reason': reason});
+    if (res.statusCode != 200) {
+      return false;
+    }
     final Map resMap = json.decode(res.body);
     final User user = User.fromJson(resMap['user']);
     await UserSetup.signIn(user);
@@ -164,7 +235,7 @@ class PurchaseService {
   Future<bool> restore() async {
     try {
       isExecuting = true;
-      PurchaserInfo restoredInfo = await Purchases.restoreTransactions();
+      CustomerInfo restoredInfo = await Purchases.restorePurchases();
       // リストアできる購入情報が存在しなければ、falseを返す。
       // if文はアクティブなサブスクが一つもなければtrueを返す処理 ref:  https://docs.revenuecat.com/docs/purchaserinfo#checking-if-a-user-is-subscribed
       if (restoredInfo.entitlements.active.isEmpty) return false;

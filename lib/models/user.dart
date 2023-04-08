@@ -37,6 +37,7 @@ class User {
     required this.rewardRemained,
     required this.todaysTranslationsCount,
     required this.appFavored,
+    required this.appCancelReportSent,
     this.authToken,
     this.dateCurrent,
     this.answerSetting,
@@ -77,6 +78,7 @@ class User {
   bool rewardRemained;
   int todaysTranslationsCount;
   bool appFavored;
+  bool appCancelReportSent;
   String? authToken;
   DateTime? dateCurrent;
   AnswerSetting? answerSetting;
@@ -124,6 +126,7 @@ class User {
         rewardRemained = json['reward_remained'],
         todaysTranslationsCount = json['todays_translations_count'],
         appFavored = json['app_favored'],
+        appCancelReportSent = json['app_cancel_report_sent'],
         authToken = json['token_for_native_app'],
         dateCurrent = json['date_current'] == null
             ? null
@@ -178,6 +181,7 @@ class User {
         'weaknesses_count': weaknessesCount,
         'todays_translations_count': todaysTranslationsCount,
         'app_favored': appFavored,
+        'app_cancel_report_sent': appCancelReportSent,
         'token_for_native_app': authToken,
         'date_current': dateCurrent,
         'answer_setting': answerSetting,

@@ -21,7 +21,10 @@
           "adHocOffers" : [
 
           ],
-          "displayPrice" : "5",
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "500",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "6885AB40",
@@ -47,7 +50,10 @@
           "adHocOffers" : [
 
           ],
-          "displayPrice" : "50.00",
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "5000",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "CF5956F3",
@@ -73,7 +79,7 @@
     }
   ],
   "version" : {
-    "major" : 1,
-    "minor" : 1
+    "major" : 2,
+    "minor" : 0
   }
 }

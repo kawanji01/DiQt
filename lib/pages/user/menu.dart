@@ -1,9 +1,9 @@
-import 'package:booqs_mobile/components/user/contract_details.dart';
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
+import 'package:booqs_mobile/pages/user/contract_details.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
@@ -11,7 +11,6 @@ import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/answer_setting/screen.dart';
 import 'package:booqs_mobile/components/button/large_green_button.dart';
-import 'package:booqs_mobile/components/purchase/delete_button.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/user/logout_button.dart';
 import 'package:flutter/material.dart';
@@ -103,7 +102,7 @@ class UserMenuPage extends ConsumerWidget {
       const String btnText = 'ご契約内容';
       return InkWell(
           onTap: () {
-            UserContractDetails.push(context);
+            UserContractDetailsPage.push(context);
           },
           child: const LargeGreenButton(
             label: btnText,
@@ -187,10 +186,10 @@ class UserMenuPage extends ConsumerWidget {
               const SizedBox(
                 height: 64,
               ),
-              const PurchaseDeleteButton(),
-              const SizedBox(
-                height: 80,
-              ),
+              // const PurchaseDeleteButton(),
+              // const SizedBox(
+              //   height: 80,
+              // ),
             ],
           ),
         ),
