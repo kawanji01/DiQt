@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.3.97+135
+version: 1.3.98+136
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -60,7 +60,7 @@ dependencies:
   flutter_typeahead: ^3.2.4 # 検索時のautocomplete
   percent_indicator: ^3.4.0 # 経験値のインジケーター
   eval_ex: ^1.1.0 # レベル実装のために、log10（ 10 を底とした対数を返すメソッド）が必要なため。
-  purchases_flutter: ^3.9.3 # 課金実装
+  purchases_flutter: ^4.11.1 # 課金実装
   google_mobile_ads: ^2.3.0 # 広告
   flutter_riverpod: ^1.0.3 # 状態管理
   flash: ^2.0.5 # トースト

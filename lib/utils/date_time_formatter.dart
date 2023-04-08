@@ -32,4 +32,11 @@ class DateTimeFormatter {
     result = dateFormatter.parse(datetimeStr);
     return result;
   }
+
+  // 2023-05-02のような形式のstringを返す
+  static date(DateTime datetime) {
+    DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+    String formattedDate = dateFormat.format(datetime);
+    return formattedDate;
+  }
 }
