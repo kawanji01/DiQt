@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/purchase/subscription_status.dart';
+import 'package:booqs_mobile/components/purchase/app_subscription.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
@@ -112,7 +112,7 @@ class _PurchaseContractDetailsState extends State<PurchaseContractDetails> {
 
     List<Widget> entitlements = [];
     entitlementInfoMap.forEach((key, value) {
-      entitlements.add(PurchaseSubscriptionStatus(
+      entitlements.add(PurchaseAppSubscription(
         entitlementInfo: value,
       ));
     });
