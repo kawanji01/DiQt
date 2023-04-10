@@ -17,26 +17,29 @@ class PurchaseCancellationButton extends ConsumerWidget {
     if (user == null) return Container();
     if (user.premium == false) return Container();
 
-    return TextButton(
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all(EdgeInsets.zero),
-        minimumSize: MaterialStateProperty.all(Size.zero),
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      ),
-      onPressed: () {
-        // 解約理由を送信済みなら端末の支払い設定に飛ばす。
-        if (user.appCancelReportSent) {
-          WebPageLauncher.openCancellationPage(entitlementInfo);
-        } else {
-          // 解約理由を送信していないなら、解約理由を書き込むページに遷移
-          UserCancellationPage.push(context, entitlementInfo);
-        }
-      },
-      child: const Text(
-        '解約する',
-        style: TextStyle(
-          color: Colors.red,
-          fontSize: 14,
+    return Container(
+      margin: const EdgeInsets.only(top: 4),
+      child: TextButton(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(EdgeInsets.zero),
+          minimumSize: MaterialStateProperty.all(Size.zero),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        onPressed: () {
+          // 解約理由を送信済みなら端末の支払い設定に飛ばす。
+          if (user.appCancelReportSent) {
+            WebPageLauncher.openCancellationPage(entitlementInfo);
+          } else {
+            // 解約理由を送信していないなら、解約理由を書き込むページに遷移
+            UserCancellationPage.push(context, entitlementInfo);
+          }
+        },
+        child: const Text(
+          '解約する',
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: 14,
+          ),
         ),
       ),
     );

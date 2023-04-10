@@ -48,6 +48,6 @@ class WebPageLauncher {
       // Google Playの解約ページ
       url = 'https://play.google.com/store/account/subscriptions';
     }
-    await openByWebView(url);
+    await openByExternalBrowser(url);
   }
 }

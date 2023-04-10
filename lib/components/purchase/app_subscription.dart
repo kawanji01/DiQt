@@ -56,7 +56,7 @@ class PurchaseAppSubscription extends StatelessWidget {
       }
     }
 
-    Widget purcaseDate(String label, String? strDatetime) {
+    Widget date(String label, String? strDatetime) {
       if (strDatetime == null) {
         return Text(
           '$label: なし',
@@ -64,8 +64,8 @@ class PurchaseAppSubscription extends StatelessWidget {
         );
       }
       final DateTime datetime = DateTime.parse(strDatetime);
-      final String expirationDate = DateTimeFormatter.date(datetime);
-      return Text('$label: $expirationDate', style: normalTextStyle);
+      final String date = DateTimeFormatter.date(datetime);
+      return Text('$label: $date', style: normalTextStyle);
     }
 
     Widget willRenew() {
@@ -105,6 +105,17 @@ class PurchaseAppSubscription extends StatelessWidget {
     }
 
     Widget isActive() {
+      // Androidでも解約されても有効期限が残っていればactiveになるので、自動更新がOFFなら解約予定日を表示する。
+      if (entitlementInfo.willRenew == false) {
+        final DateTime datetime =
+            DateTime.parse('${entitlementInfo.expirationDate}');
+        final String date = DateTimeFormatter.date(datetime);
+        return Text(
+          '$dateに解約されます',
+          style: normalTextStyle,
+        );
+      }
+
       if (entitlementInfo.isActive) {
         return PurchaseCancellationButton(
           entitlementInfo: entitlementInfo,
@@ -127,8 +138,8 @@ class PurchaseAppSubscription extends StatelessWidget {
         // Text(entitlementInfo.identifier),
         productIdentifier(),
         // Text('契約開始日: ${entitlementInfo.originalPurchaseDate}'),
-        purcaseDate('契約更新日', entitlementInfo.latestPurchaseDate),
-        purcaseDate('有効期限日', entitlementInfo.expirationDate),
+        date('契約更新日', entitlementInfo.latestPurchaseDate),
+        date('有効期限日', entitlementInfo.expirationDate),
         willRenew(),
         periodType(),
         store(),
