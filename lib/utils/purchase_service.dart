@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io' show Platform;
+import 'package:booqs_mobile/consts/purchase.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
@@ -62,6 +63,113 @@ class PurchaseService {
     }
   }
 
+  // 月額プランのpackageを取得する ref: https://www.revenuecat.com/docs/displaying-products#displaying-packages
+  Future<Package?> fetchMonthlyPackage() async {
+    try {
+      final Offerings offerings = await Purchases.getOfferings();
+      final String offeringId = PurchaseConsts.offeringId;
+      final Offering? offering = offerings.getOffering(offeringId);
+      if (offering == null) {
+        print(".fetchMonthlyPackage: offering doesn't exist.");
+        return null;
+      }
+      final Package? package = offering.monthly;
+      if (package == null) {
+        print("fetchMonthlyPackage: Package doesn't exist.");
+        return null;
+      }
+      return package;
+    } on PlatformException catch (e) {
+      // optional error handling
+      print('.fetchMonthlyPackage: $e');
+      return null;
+    }
+  }
+
+  // 年額プランのpackageを取得する ref: https://www.revenuecat.com/docs/displaying-products#displaying-packages
+  Future<Package?> fetchAnnualPackage() async {
+    try {
+      final Offerings offerings = await Purchases.getOfferings();
+      final String offeringId = PurchaseConsts.offeringId;
+      print(offeringId);
+      final Offering? offering = offerings.getOffering(offeringId);
+      if (offering == null) {
+        print(".fetchAnnualPackage: offering doesn't exist.");
+        return null;
+      }
+      final Package? package = offering.annual;
+      if (package == null) {
+        print("fetchAnnualPackage: Package doesn't exist.");
+        return null;
+      }
+      return package;
+    } on PlatformException catch (e) {
+      // optional error handling
+      print('.fetchAnnualPackage: $e');
+      return null;
+    }
+  }
+
+  // packageを購入する
+  // 購入が完了したらtrueを返す。購入がキャンセルされるか、DBの同期が失敗したらfalseを返す。
+  Future<bool> purchasePachage(
+      Package package, String entitlementIdentifier) async {
+    try {
+      isExecuting = true;
+      CustomerInfo purchaserInfo = await Purchases.purchasePackage(package);
+      if (purchaserInfo.entitlements.all[entitlementIdentifier]!.isActive) {
+        // Unlock that great "pro" content
+        const storage = FlutterSecureStorage();
+        String? token = await storage.read(key: 'token');
+        // DB側の購入情報を同期する
+        // パスワードの入力の不要なキャッシュから購入（Vending PurchaserInfo from cache.）された場合、
+        // syncSubscription(info)で契約処理を行なってしまうと、isActive: falseのinfoが引き渡されることによって、
+        // syncSubscription(info)内のinfo.entitlements.active.isNotEmptyをすり抜けて、契約処理ではなく、解約処理が実行されてしまう。
+        // そのため、あらかじめ購入とわかっている場合には、同期にはsyncSubscriptionではなく、getOrCreateSubscriberを使う。
+        final isSubscribed = await getOrCreateSubscriber(token);
+        return isSubscribed;
+      } else {
+        return false;
+      }
+    } on PlatformException catch (e) {
+      var errorCode = PurchasesErrorHelper.getErrorCode(e);
+      if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
+        print('purchasePachage: error: $e');
+      }
+      return false;
+    } catch (e) {
+      print('purchasePachage: error: $e');
+      return false;
+    } finally {
+      // errorであれreturnで外部コードに抜ける前であれ、常に実行する。ref: https://ja.javascript.info/try-catch#ref-1685
+      isExecuting = false;
+    }
+  }
+
+// 月額プランを購入する
+  Future<bool> purchaseMonthlyPlan() async {
+    final Package? package = await fetchMonthlyPackage();
+    if (package == null) {
+      return false;
+    }
+    final completed =
+        await purchasePachage(package, PurchaseConsts.monthlyPlanEntitlementId);
+    return completed;
+  }
+
+// 年額プランを購入する
+  Future<bool> purchaseAnnualPlan() async {
+    final Package? package = await fetchAnnualPackage();
+    if (package == null) {
+      return false;
+    }
+    final completed =
+        await purchasePachage(package, PurchaseConsts.annualPlanEntitlementId);
+    return completed;
+  }
+
+  // 廃止予定
+  // 理由はproduct経由ではなく、package経由で購入するため。
   // プレミアムプランのIDを取得。ref: https://www.revenuecat.com/docs/displaying-products#fetching-offerings
   Future<String> fetchProductID() async {
     try {
@@ -79,11 +187,10 @@ class PurchaseService {
       print('.fetchProductID: $e');
       return '';
     }
-    //Offerings offerings = await Purchases.getOfferings();
-    //return offerings.current.identifier;
     return '';
   }
 
+  // 廃止予定
   // 購入処理
   // 購入が完了したらtrueを返す。購入がキャンセルされるか、DBの同期が失敗したらfalseを返す。
   Future<bool> subscribe(String productID) async {
@@ -154,7 +261,7 @@ class PurchaseService {
     }
 
     var url = Uri.parse(
-        '${const String.fromEnvironment("ROOT_URL")}/api/v1/mobile/users/get_or_create_subscriber');
+        '${DiQtURL.rootWithoutLocale()}}/api/v1/mobile/users/get_or_create_subscriber');
     var res =
         await http.post(url, body: {'token': token, 'platform': platform});
 

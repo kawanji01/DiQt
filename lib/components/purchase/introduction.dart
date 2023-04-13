@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/components/purchase/annual_plan.dart';
+import 'package:booqs_mobile/components/purchase/monthly_plan.dart';
 import 'package:flutter/material.dart';
 
 class PurchaseIntroduction extends StatelessWidget {
@@ -42,6 +44,18 @@ class PurchaseIntroduction extends StatelessWidget {
               fontWeight: FontWeight.w800,
               color: Colors.green,
             ),
+          ),
+          const SizedBox(
+            height: 32,
+          ),
+          Row(
+            children: const [
+              Spacer(),
+              PurchaseMonthlyplan(),
+              SizedBox(width: 16),
+              PurchaseAnnualPlan(),
+              Spacer(),
+            ],
           ),
           RichText(
             text: const TextSpan(
