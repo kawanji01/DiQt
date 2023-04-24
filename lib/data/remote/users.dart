@@ -181,4 +181,15 @@ class RemoteUsers {
     final Map resMap = json.decode(res.body);
     return resMap;
   }
+
+  // カレンダーのイベントを取得する
+  static Future<Map?> loadCalendarEvents(
+      String publicUid, DateTime firstDate, DateTime lastDate) async {
+    final Uri url = Uri.parse(
+        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid/calendar?start=$firstDate&end=$lastDate');
+    final Response res = await get(url);
+    if (res.statusCode != 200) return null;
+    final Map resMap = json.decode(res.body);
+    return resMap;
+  }
 }

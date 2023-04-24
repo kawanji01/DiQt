@@ -62,7 +62,7 @@ dependencies:
   eval_ex: ^1.1.0 # レベル実装のために、log10（ 10 を底とした対数を返すメソッド）が必要なため。
   purchases_flutter: ^4.11.1 # 課金実装
   google_mobile_ads: ^2.3.0 # 広告
-  flutter_riverpod: ^1.0.3 # 状態管理
+  flutter_riverpod: ^2.3.6 # 状態管理
   flash: ^2.0.5 # トースト
   flutter_animated_dialog: ^2.0.1 # アニメーションするダイアログ
   confetti: ^0.7.0 # 紙吹雪
@@ -79,6 +79,8 @@ dependencies:
   markdown: ^7.0.1 # flutter_markdownが依存しているパッケージ
   dotted_border: ^2.0.0+3 # embedded_sentenceで利用
   intl: ^0.17.0 # 日付などの多言語化。DateTimeFormatterなどで利用
+  cell_calendar: ^0.8.0 # カレンダー
+
 
   
 
