@@ -39,7 +39,7 @@ class SenseShowPageState extends ConsumerState<SenseShowPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       final int senseId = arguments['senseId'];
-      ref.refresh(asyncSenseFamily(senseId));
+      ref.invalidate(asyncSenseFamily(senseId));
     });
   }
 

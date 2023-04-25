@@ -63,7 +63,7 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
       onRefresh: () async {
         HapticFeedback.mediumImpact();
         // 更新したい処理を書く
-        ref.refresh(asyncDictionariesProvider);
+        ref.invalidate(asyncDictionariesProvider);
       },
       child: future.when(
         data: (dictionaries) => dictionaryList(dictionaries),

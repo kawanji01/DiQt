@@ -24,7 +24,7 @@ class WeaknessAnswerSettingButton extends ConsumerWidget {
           primary: 'weaknessSetting',
         ),
       );
-      ref.refresh(asyncUnsolvedWeaknessesProvider);
+      ref.invalidate(asyncUnsolvedWeaknessesProvider);
     }
 
     //

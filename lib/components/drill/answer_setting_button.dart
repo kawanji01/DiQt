@@ -25,7 +25,7 @@ class DrillAnswerSettingButton extends ConsumerWidget {
           primary: 'answerSetting',
         ),
       );
-      ref.refresh(asyncDrillUnsolvedQuizzesProvider);
+      ref.invalidate(asyncDrillUnsolvedQuizzesProvider);
     }
 
     return ElevatedButton.icon(

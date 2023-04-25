@@ -27,7 +27,7 @@ class UserShowPageState extends ConsumerState<UserShowPage> {
   @override
   void initState() {
     super.initState();
-    ref.refresh(asyncUserProvider);
+    ref.invalidate(asyncUserProvider);
   }
 
   @override

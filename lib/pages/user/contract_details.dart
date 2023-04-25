@@ -26,7 +26,7 @@ class UserContractDetailsPageState
     // すべてのビルドが終わってからrefreshする。
     // ref: https://zuma-lab.com/posts/flutter-troubleshooting-called-during-build
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.refresh(asyncCustomerInfoProvider);
+      ref.invalidate(asyncCustomerInfoProvider);
     });
   }
 

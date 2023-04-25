@@ -25,7 +25,7 @@ class ReviewBulkDeletionScreenState
       if (resMap == null) return;
       const snackBar = SnackBar(content: Text('復習を全て削除しました。'));
       // currentUserの再読み込みでカウントをリセットする
-      ref.refresh(asyncCurrentUserProvider);
+      ref.invalidate(asyncCurrentUserProvider);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       ReviewAllPage.push(context);

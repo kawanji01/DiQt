@@ -36,7 +36,7 @@ class WordShowPageState extends ConsumerState<WordShowPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       final int wordId = arguments['wordId'];
-      ref.refresh(asyncWordFamily(wordId));
+      ref.invalidate(asyncWordFamily(wordId));
     });
   }
 
@@ -71,7 +71,7 @@ class WordShowPageState extends ConsumerState<WordShowPage> {
       body: RefreshIndicator(
         onRefresh: () async {
           HapticFeedback.mediumImpact();
-          ref.refresh(asyncWordFamily(wordId));
+          ref.invalidate(asyncWordFamily(wordId));
         },
         child: SingleChildScrollView(
           child: Container(

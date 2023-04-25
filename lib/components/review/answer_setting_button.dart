@@ -24,7 +24,7 @@ class ReviewAnswerSettingButton extends ConsumerWidget {
           primary: 'reviewSetting',
         ),
       );
-      ref.refresh(asyncUnsolvedReviewsProvider);
+      ref.invalidate(asyncUnsolvedReviewsProvider);
     }
 
     return ElevatedButton.icon(

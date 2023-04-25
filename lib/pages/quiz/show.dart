@@ -36,7 +36,7 @@ class QuizShowPageState extends ConsumerState<QuizShowPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       final int quizId = arguments['quizId'];
-      ref.refresh(asyncQuizFamily(quizId));
+      ref.invalidate(asyncQuizFamily(quizId));
     });
   }
 

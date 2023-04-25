@@ -34,7 +34,7 @@ class ChapterSchoolDrawer extends ConsumerWidget {
         title: Text(school.title, style: const TextStyle(fontSize: 16)),
         onTap: () {
           ref.read(schoolUidProvider.notifier).state = school.publicUid;
-          ref.refresh(asyncSchoolProvider);
+          ref.invalidate(asyncSchoolProvider);
           Navigator.of(context).pop();
         },
       );
