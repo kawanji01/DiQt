@@ -22,6 +22,17 @@ DateTime findLastDateOfTheWeek(DateTime dateTime) {
   return dateTime.add(Duration(days: DateTime.daysPerWeek - dateTime.weekday));
 }
 
+// 月の最初の日を取得する
+DateTime firstDayOfMonth(DateTime date) {
+  return DateTime(date.year, date.month, 1);
+}
+
+// 月の最後の日を取得する
+DateTime lastDayOfMonth(DateTime date) {
+  DateTime lastDay = DateTime(date.year, date.month + 1, 0);
+  return lastDay;
+}
+
 class DateTimeFormatter {
   // String→DateTime変換
   // ref: https://qiita.com/kawarabasami/items/bd3a22c7a06d17340c62

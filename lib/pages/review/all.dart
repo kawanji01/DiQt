@@ -3,7 +3,6 @@ import 'package:booqs_mobile/components/review/heading.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/review/bulk_deletion_button.dart';
-import 'package:booqs_mobile/components/review/introduction.dart';
 import 'package:booqs_mobile/components/review/order_select_form.dart';
 import 'package:booqs_mobile/components/review/quiz_list_view.dart';
 import 'package:booqs_mobile/components/review/status_tabs.dart';

@@ -24,7 +24,7 @@ class WordItemTags extends ConsumerWidget {
     Widget tagButton(WordTag wordTag) {
       return InkWell(
         onTap: () {
-          ref.refresh(asyncChapterFamily(wordTag.chapterUid));
+          ref.invalidate(asyncChapterFamily(wordTag.chapterUid));
           ChapterShowPage.push(context);
         },
         child: Container(

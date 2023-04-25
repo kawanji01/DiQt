@@ -15,7 +15,7 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
     void refresh() {
       switch (type) {
         case 'unsolved':
-          ref.refresh(asyncUnsolvedWeaknessesProvider);
+          ref.invalidate(asyncUnsolvedWeaknessesProvider);
           break;
         case 'solved':
           WeaknessSolvedPage.pushReplacement(context);

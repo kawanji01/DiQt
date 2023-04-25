@@ -34,7 +34,7 @@ class DrillLapUpdateScreenState extends ConsumerState<DrillLapUpdateScreen> {
       final snackBar = SnackBar(content: Text('${resMap['message']}'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.of(context).pop();
-      ref.refresh(asyncDrillUnsolvedQuizzesProvider);
+      ref.invalidate(asyncDrillUnsolvedQuizzesProvider);
       DrillUnsolvedPage.push(context);
     }
 

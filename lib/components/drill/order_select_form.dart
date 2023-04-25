@@ -14,7 +14,7 @@ class DrillOrderSelectForm extends ConsumerWidget {
     void refresh() {
       switch (type) {
         case 'unsolved':
-          ref.refresh(asyncDrillUnsolvedQuizzesProvider);
+          ref.invalidate(asyncDrillUnsolvedQuizzesProvider);
           break;
         case 'solved':
           DrillSolvedPage.pushReplacement(context);

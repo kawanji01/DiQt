@@ -26,7 +26,7 @@ class WeaknessNewLapScreenState extends ConsumerState<WeaknessNewLapScreen> {
 
       const snackBar = SnackBar(content: Text('すべての問題を未正解に戻しました。'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      ref.refresh(asyncUnsolvedWeaknessesProvider);
+      ref.invalidate(asyncUnsolvedWeaknessesProvider);
     }
 
     Widget updateButton() {

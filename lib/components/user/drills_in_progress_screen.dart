@@ -17,7 +17,7 @@ class UserDrillsInProgressScreenState
     extends ConsumerState<UserDrillsInProgressScreen> {
   @override
   void initState() {
-    ref.refresh(asyncDrillsInProgress);
+    ref.invalidate(asyncDrillsInProgress);
     super.initState();
   }
 

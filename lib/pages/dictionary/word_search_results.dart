@@ -29,7 +29,7 @@ class DictionaryWordSearchResultsPageState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       final int dictionaryId = arguments['dictionaryId'];
-      ref.refresh(asyncDictionaryFamily(dictionaryId));
+      ref.invalidate(asyncDictionaryFamily(dictionaryId));
     });
   }
 

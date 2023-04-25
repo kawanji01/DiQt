@@ -14,7 +14,7 @@ class ReviewOrderSelectForm extends ConsumerWidget {
     void refresh() {
       switch (type) {
         case 'unreviewed':
-          ref.refresh(asyncUnsolvedReviewsProvider);
+          ref.invalidate(asyncUnsolvedReviewsProvider);
           break;
         case 'scheduled':
           ReviewScheduledPage.pushReplacement(context);

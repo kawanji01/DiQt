@@ -43,7 +43,7 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
     // すべてのビルドが終わってからrefreshする。
     // ref: https://zuma-lab.com/posts/flutter-troubleshooting-called-during-build
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.refresh(asyncCurrentUserProvider);
+      ref.invalidate(asyncCurrentUserProvider);
     });
   }
 
@@ -64,7 +64,7 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
         child: RefreshIndicator(
           onRefresh: () async {
             HapticFeedback.mediumImpact();
-            ref.refresh(asyncCurrentUserProvider);
+            ref.invalidate(asyncCurrentUserProvider);
           },
           child: future.when(
             loading: () => UserMypageScreen(user: user),

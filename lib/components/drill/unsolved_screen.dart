@@ -20,8 +20,10 @@ class DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
   @override
   void initState() {
     super.initState();
-    // futureは結果をキャッシュするので、画面の読み込みのたびにrefreshして再度読み込みを行う。
-    ref.refresh(asyncDrillUnsolvedQuizzesProvider);
+    // futureは結果をキャッシュするので、画面の読み込みのたびに invalidate して再度読み込みを行う。
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.invalidate(asyncDrillUnsolvedQuizzesProvider);
+    });
   }
 
   @override
@@ -41,7 +43,7 @@ class DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
         // 次の問題が読み込まれるかの判断は、QuizUnsolvedContent で行い、通知している。
         // すべてのWeidgetの描画が終わるまで待たないと、初回から実行されてしまう。
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          ref.refresh(asyncDrillUnsolvedQuizzesProvider);
+          ref.invalidate(asyncDrillUnsolvedQuizzesProvider);
         });
         // trueを返すことで通知がこれ以上遡らない
         return true;

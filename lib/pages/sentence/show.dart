@@ -37,7 +37,7 @@ class SentenceShowPageState extends ConsumerState<SentenceShowPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       final int sentenceId = arguments['sentenceId'];
-      ref.refresh(asyncSentenceFamily(sentenceId));
+      ref.invalidate(asyncSentenceFamily(sentenceId));
     });
   }
 

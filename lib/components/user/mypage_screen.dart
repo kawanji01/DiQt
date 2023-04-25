@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/user/calendar.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/components/shared/entrance.dart';
@@ -43,6 +44,12 @@ class UserMypageScreen extends StatelessWidget {
             UserAchievementsButton(user: user!),
             const SizedBox(
               height: 32,
+            ),
+            UserCalendar(
+              user: user!,
+            ),
+            const SizedBox(
+              height: 24,
             ),
             const UserStudyRecords(),
             const SizedBox(
