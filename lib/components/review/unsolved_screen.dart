@@ -30,27 +30,14 @@ class ReviewUnsolvedScreenState extends ConsumerState<ReviewUnsolvedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final future = ref.watch(asyncUnsolvedReviewsProvider);
-
-    Widget reviewFeed(reviews) {
-      if (reviews.isEmpty) {
-        return const Text('復習すべき問題はありません',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Colors.black54,
-                height: 4));
-      }
-      return ReviewUnsolvedQuizzes(reviews: reviews);
-    }
-
+    // 復習のフィード
     Widget unsolvedQuizzes() {
-      return future.when(
-        data: (data) => reviewFeed(data),
-        error: (err, stack) => Text('Error: $err'),
-        loading: () => const LoadingSpinner(),
-      );
+      return ref.watch(asyncUnsolvedReviewsProvider).when(
+            skipLoadingOnRefresh: false,
+            data: (reviews) => ReviewUnsolvedQuizzes(reviews: reviews),
+            error: (err, stack) => Text('Error: $err'),
+            loading: () => const LoadingSpinner(),
+          );
     }
 
     return NotificationListener<LoadingUnsolvedQuizzesNotification>(

@@ -11,22 +11,6 @@ class WeaknessUnsolvedQuizzes extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /* final int weaknessesCount = ref.watch(currentUserProvider
-        .select((user) => user == null ? 0 : user.weaknessesCount));
-
-    // 苦手な問題がない場合
-    if (weaknesses.isEmpty && weaknessesCount == 0) {
-      return const Text('苦手な問題はありません',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-              color: Colors.black54,
-              height: 4));
-    } else if (weaknesses.isEmpty) {
-      return const WeaknessNewLapButton();
-    } */
-
     if (weaknesses.isEmpty) {
       return const WeaknessNewLapButton();
     }

@@ -31,19 +31,18 @@ class WeaknessUnsolvedScreenState
 
   @override
   Widget build(BuildContext context) {
-    final future = ref.watch(asyncUnsolvedWeaknessesProvider);
-    final bool premiumEnabled = ref.watch(premiumEnabledProvider);
-
     Widget unsolvedQuizzes() {
-      if (premiumEnabled == false) {
+      if (ref.watch(premiumEnabledProvider) == false) {
         return const SharedPremiumRecommendation(
             explanationText: '『苦手な問題』を解くには、プレミアムプランへの登録が必要です。');
       }
-      return future.when(
-        data: (weaknesses) => WeaknessUnsolvedQuizzes(weaknesses: weaknesses),
-        error: (err, stack) => Text('Error: $err'),
-        loading: () => const LoadingSpinner(),
-      );
+      return ref.watch(asyncUnsolvedWeaknessesProvider).when(
+            skipLoadingOnRefresh: false,
+            data: (weaknesses) =>
+                WeaknessUnsolvedQuizzes(weaknesses: weaknesses),
+            error: (err, stack) => Text('Error: $err'),
+            loading: () => const LoadingSpinner(),
+          );
     }
 
     return NotificationListener<LoadingUnsolvedQuizzesNotification>(

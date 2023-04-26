@@ -43,7 +43,7 @@ class HomePageState extends ConsumerState<HomePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.invalidate(asyncCurrentUserProvider);
+      ref.refresh(asyncCurrentUserProvider);
     });
   }
 

@@ -84,7 +84,6 @@ class QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
         speakCorrectAnswer(notification);
         // 解答インタラクションを表示する
         AnswerInteraction.show(notification, context);
-
         // 解答した問題が再描画されないように、問題のIDをproviderに追加する。
         ref.read(solvedQuizIdsProvider.notifier).state.add(quiz.id);
         // setStateするとともにプロバイダーも更新してonEndで利用できるようにする
@@ -120,6 +119,7 @@ class QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
             //
             // 10の倍数の解答数でリロードする
             if (solvedQuizIds.length % 10 == 0 || loadedQuizIds.isEmpty) {
+              print("LoadingNext");
               LoadingUnsolvedQuizzesNotification(true).dispatch(context);
             }
             setState(() {
