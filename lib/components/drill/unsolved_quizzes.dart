@@ -15,7 +15,6 @@ class DrillUnsolvedQuizzes extends ConsumerWidget {
     Widget quizItems(quizzes) {
       // 未解答の問題がなければ、周回ボタンを表示する。
       if (quizzes.isEmpty) return const DrillLapUpdateButton();
-
       final List<Widget> list = [];
       for (Quiz quiz in quizzes!) {
         list.add(DrillUnsolvedQuizWrapper(quiz: quiz));

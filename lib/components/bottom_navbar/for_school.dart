@@ -1,6 +1,4 @@
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/chapter/school.dart';
 import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
@@ -17,7 +15,6 @@ class BottomNavbarForSchool extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? user = ref.watch(currentUserProvider);
     final int selectedIndex = ref.watch(bottomNavbarState);
 
     // 参考：https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
@@ -49,28 +46,24 @@ class BottomNavbarForSchool extends ConsumerWidget {
     }
 
     return BottomNavigationBar(
-      items: <BottomNavigationBarItem>[
-        const BottomNavigationBarItem(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
           icon: Icon(Icons.search),
           label: '辞書',
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Icon(Icons.school),
           label: '教室',
         ),
         BottomNavigationBarItem(
-          icon: BottomNavbarReviewIcon(
-            user: user,
-          ),
+          icon: BottomNavbarReviewIcon(),
           label: '復習',
         ),
         BottomNavigationBarItem(
-          icon: BottomNavbarNotificationIcon(
-            user: user,
-          ),
+          icon: BottomNavbarNotificationIcon(),
           label: '通知',
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Icon(Icons.account_circle),
           label: 'マイページ',
         ),

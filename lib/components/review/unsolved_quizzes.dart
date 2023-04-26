@@ -10,6 +10,18 @@ class ReviewUnsolvedQuizzes extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (reviews.isEmpty) {
+      return Container(
+        alignment: Alignment.center,
+        child: const Text('復習すべき問題はありません',
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: Colors.black54,
+                height: 4)),
+      );
+    }
+
     final List<Widget> list = [];
     for (Review review in reviews) {
       list.add(ReviewUnsolvedQuizWrapper(review: review));
