@@ -1,6 +1,4 @@
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
@@ -16,7 +14,6 @@ class BottomNavbarForNormal extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? user = ref.watch(currentUserProvider);
     int selectedIndex = ref.watch(bottomNavbarState);
     // 教室プラン加入者がログアウトする時、マイページのindexが4になることによって発生するエラーを防ぐ。
     if (selectedIndex > 3) {
@@ -46,24 +43,20 @@ class BottomNavbarForNormal extends ConsumerWidget {
     }
 
     return BottomNavigationBar(
-      items: <BottomNavigationBarItem>[
-        const BottomNavigationBarItem(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
           icon: Icon(Icons.search),
           label: '辞書',
         ),
         BottomNavigationBarItem(
-          icon: BottomNavbarReviewIcon(
-            user: user,
-          ),
+          icon: BottomNavbarReviewIcon(),
           label: '復習',
         ),
         BottomNavigationBarItem(
-          icon: BottomNavbarNotificationIcon(
-            user: user,
-          ),
+          icon: BottomNavbarNotificationIcon(),
           label: '通知',
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Icon(Icons.account_circle),
           label: 'マイページ',
         ),

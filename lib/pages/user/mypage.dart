@@ -1,5 +1,5 @@
+import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/user/mypage_screen.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -49,9 +49,6 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
 
   @override
   Widget build(BuildContext context) {
-    final User? user = ref.watch(currentUserProvider);
-    final future = ref.watch(asyncCurrentUserProvider);
-
     // 最終的なアウトプット
     return Scaffold(
       appBar: AppBar(
@@ -66,11 +63,11 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
             HapticFeedback.mediumImpact();
             ref.invalidate(asyncCurrentUserProvider);
           },
-          child: future.when(
-            loading: () => UserMypageScreen(user: user),
-            error: (err, stack) => Text('Error: $err'),
-            data: (data) => UserMypageScreen(user: data),
-          ),
+          child: ref.watch(asyncCurrentUserProvider).when(
+                data: (data) => UserMypageScreen(user: data),
+                error: (err, stack) => Text('Error: $err'),
+                loading: () => const LoadingSpinner(),
+              ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

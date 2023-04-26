@@ -17,14 +17,14 @@ class UserDrillsInProgressScreenState
     extends ConsumerState<UserDrillsInProgressScreen> {
   @override
   void initState() {
-    ref.invalidate(asyncDrillsInProgress);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.invalidate(asyncDrillsInProgress);
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final future = ref.watch(asyncDrillsInProgress);
-
     final heading = RichText(
         text: const TextSpan(children: [
       WidgetSpan(
@@ -44,13 +44,13 @@ class UserDrillsInProgressScreenState
     ]));
 
     Widget drillFeed() {
-      return future.when(
-        loading: () => const LoadingSpinner(),
-        error: (err, stack) => Text('Error: $err'),
-        data: (data) => DrillFeed(
-          drills: data,
-        ),
-      );
+      return ref.watch(asyncDrillsInProgress).when(
+            data: (data) => DrillFeed(
+              drills: data,
+            ),
+            error: (err, stack) => Text('Error: $err'),
+            loading: () => const LoadingSpinner(),
+          );
     }
 
     return Container(
