@@ -29,6 +29,9 @@ class QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
   @override
   Widget build(BuildContext context) {
     final Quiz quiz = widget.quiz;
+    if (quiz.questionHidden) {
+      return Container();
+    }
 
     final Widget cover = InkWell(
       onTap: () {

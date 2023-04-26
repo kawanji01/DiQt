@@ -26,6 +26,7 @@ class Quiz {
     this.distractor2,
     this.distractor3,
     required this.shortAnswerEnabled,
+    required this.questionHidden,
     this.explanation,
     this.hint,
     required this.autoDictLinkOfQuestion,
@@ -57,6 +58,7 @@ class Quiz {
   String correctAnswer;
   int langNumberOfAnswer;
   bool answerReadAloud;
+  bool questionHidden;
   String? distractor1;
   String? distractor2;
   String? distractor3;
@@ -98,6 +100,7 @@ class Quiz {
         distractor2 = json['distractor_2'],
         distractor3 = json['distractor_3'],
         shortAnswerEnabled = json['short_answer_enabled'],
+        questionHidden = json['question_hidden'],
         explanation = json['explanation'],
         hint = json['hint'],
         autoDictLinkOfQuestion = json['auto_dict_link_of_question'],
@@ -148,6 +151,7 @@ class Quiz {
         'distractor_2': distractor2,
         'distractor_3': distractor3,
         'short_answer_enabled': shortAnswerEnabled,
+        'question_hidden': questionHidden,
         'explanation': explanation,
         'hint': hint,
         'auto_dict_link_of_question': autoDictLinkOfQuestion,
