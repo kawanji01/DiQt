@@ -52,21 +52,24 @@ class RemoteUsers {
   }
 
   // ユーザー情報の更新
-  static Future<Map?> update(
-      String publicUid, String name, String profile) async {
+  static Future<Map?> update(Map<String, dynamic> params) async {
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'token');
+    final String publicUid = params['public_uid'];
+
+    // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
+    final String encodedData = json.encode({'user': params, 'token': '$token'});
+    final Map<String, String> headers = {'content-type': 'application/json'};
 
     // リクエスト
     final url = Uri.parse(
         '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid');
 
-    final Response res = await patch(url, body: {
-      'token': token,
-      'name': name,
-      'profile': profile,
-    });
-
+    final Response res = await patch(
+      url,
+      headers: headers,
+      body: encodedData,
+    );
     if (res.statusCode != 200) return null;
     final Map resMap = json.decode(res.body);
     return resMap;

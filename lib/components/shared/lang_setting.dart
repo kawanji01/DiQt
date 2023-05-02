@@ -10,7 +10,7 @@ class SharedLangSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String language = LanguageService.getLanguageFromNumber(langNumber);
-    final String? languageSetting = t.lang['language_setting'];
+    final String? languageSetting = t['lang.language_setting'];
 
     return Container(
       width: double.infinity,

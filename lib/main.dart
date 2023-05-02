@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
@@ -28,14 +29,14 @@ Future<void> main() async {
   // ~分前のようなタイムスタンプを表示するための設定。具体的な表示の処理は utils/date_time_formatter にある ref: https://zenn.dev/namioto/articles/0e0034f3b93874
   timeago.setLocaleMessages("ja", timeago.JaMessages());
   //
-  LocaleSettings.useDeviceLocale();
+  //LocaleSettings.useDeviceLocale();
 
   runApp(
     // Riverpodをアプリに適用
     ProviderScope(
       // i18n ref: https://pub.dev/packages/fast_i18n#getting-started
       child: TranslationProvider(
-        child: const MyApp(),
+        child: const DiQt(),
       ),
     ),
   );
@@ -51,18 +52,26 @@ Future<void> main() async {
 // ref: https://stackoverflow.com/questions/56280736/alertdialog-without-context-in-flutter
 final navigatorKey = GlobalKey<NavigatorState>();
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-  // This widget is the root of your application.
+class DiQt extends ConsumerStatefulWidget {
+  const DiQt({Key? key}) : super(key: key);
+
+  @override
+  DiQtState createState() => DiQtState();
+}
+
+class DiQtState extends ConsumerState<DiQt> {
+  @override
+  void initState() {
+    super.initState();
+    //
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final String locale = ref.watch(userLocaleProvider);
+      LocaleSettings.setLocaleRaw(locale);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    // locale : https://zenn.dev/dala/books/flutter-basic-app/viewer/create-flashcard-edit
-    //String? defaultLocale = Intl.defaultLocale;
-    //defaultLocale ??= 'ja';
-    //Intl.defaultLocale = defaultLocale;
-    //final locale = Locale('ja', '');
-
     return MaterialApp(
       title: 'DiQt',
       // 上述のUnhandled Exception: Looking up a deactivated widget's ancestor is unsafe.対策

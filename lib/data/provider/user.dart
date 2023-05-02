@@ -4,7 +4,9 @@ import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/utils/language.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 現在のログイン済ユーザー
@@ -66,6 +68,29 @@ final asyncUserProvider = FutureProvider<User?>((ref) async {
 // プレミアムユーザーの検証
 final premiumEnabledProvider = StateProvider<bool>((ref) => ref.watch(
     currentUserProvider.select((user) => user == null ? false : user.premium)));
+
+//
+final userLocaleProvider = StateProvider<String>((ref) {
+  final int langNumber = ref.watch(
+      currentUserProvider.select((user) => user == null ? 0 : user.langNumber));
+  String locale = LanguageService.getLangCode(langNumber);
+  // ユーザーに言語が設定されていない場合は、デバイスの言語を設定する。
+  if (locale == 'undefined') {
+    locale = WidgetsBinding.instance.window.locale.toLanguageTag();
+  }
+  return locale;
+});
+
+// ユーザーの言語設定
+final userLangNumberProvider = StateProvider<int>((ref) {
+  final String locale = ref.watch(userLocaleProvider);
+  final int langNumber = LanguageService.getLangNumber(locale);
+
+  if ([21, 44].contains(langNumber)) {
+    return langNumber;
+  }
+  return 21;
+});
 
 // 非同期でユーザーの参加中のchapterを取得する
 final asyncUserSchoolsProvider =

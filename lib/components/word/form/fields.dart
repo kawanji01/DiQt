@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/sentence/setting_form.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/word/form/detailed_settings.dart';
 import 'package:booqs_mobile/components/word/form/lang_setting.dart';
@@ -42,9 +43,9 @@ class WordFormFields extends StatelessWidget {
         // 項目フォーム
         TextFormField(
           controller: entryController,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "項目名",
+          decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              labelText: t.words.entry,
               hintText: '項目名を入力してください。'),
           validator: (value) {
             if (value!.isEmpty) {
@@ -62,9 +63,9 @@ class WordFormFields extends StatelessWidget {
         // 意味フォーム
         TextFormField(
           controller: meaningController,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "主な意味",
+          decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              labelText: t.words.meaning,
               hintText: '主な意味を入力してください。'),
           validator: (value) {
             if (value!.isEmpty) {

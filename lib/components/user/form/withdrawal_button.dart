@@ -1,3 +1,4 @@
+
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
@@ -10,14 +11,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserWithdrawalButton extends ConsumerStatefulWidget {
-  const UserWithdrawalButton({Key? key}) : super(key: key);
+class UserFormWithdrawalButton extends ConsumerStatefulWidget {
+  const UserFormWithdrawalButton({Key? key}) : super(key: key);
 
   @override
-  UserWithdrawalButtonState createState() => UserWithdrawalButtonState();
+  UserFormWithdrawalButtonState createState() =>
+      UserFormWithdrawalButtonState();
 }
 
-class UserWithdrawalButtonState extends ConsumerState<UserWithdrawalButton> {
+class UserFormWithdrawalButtonState
+    extends ConsumerState<UserFormWithdrawalButton> {
   @override
   Widget build(BuildContext context) {
     final User? user = ref.watch(currentUserProvider);

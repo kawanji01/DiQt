@@ -29,7 +29,7 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
 
       // ref: https://api.flutter.dev/flutter/material/RadioListTile-class.html
       return RadioListTile(
-        title: Text(dictionary.title),
+        title: Text(dictionary.typeName()),
         value: dictionary.id,
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         groupValue: ref.watch(dictionaryIdProvider),

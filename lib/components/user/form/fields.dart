@@ -1,21 +1,25 @@
+import 'package:booqs_mobile/components/user/form/language_setting.dart';
+import 'package:booqs_mobile/components/user/form/withdrawal_button.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/components/user/withdrawal_button.dart';
+import 'package:booqs_mobile/utils/language.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserForm extends ConsumerStatefulWidget {
-  const UserForm({Key? key, required this.user}) : super(key: key);
+class UserFormFields extends ConsumerStatefulWidget {
+  const UserFormFields({Key? key, required this.user}) : super(key: key);
   final User user;
 
   @override
-  UserFormState createState() => UserFormState();
+  UserFormFieldsState createState() => UserFormFieldsState();
 }
 
-class UserFormState extends ConsumerState<UserForm> {
+class UserFormFieldsState extends ConsumerState<UserFormFields> {
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
@@ -48,11 +52,16 @@ class UserFormState extends ConsumerState<UserForm> {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
       setState(() => _isRequesting = true);
-
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteUsers.update(
-          user.publicUid, _nameController.text, _profileController.text);
+      final Map<String, dynamic> params = {
+        'id': user.id,
+        'public_uid': user.publicUid,
+        'name': _nameController.text,
+        'profile': _profileController.text,
+        'lang_number': ref.watch(userLangNumberProvider),
+      };
+      final Map? resMap = await RemoteUsers.update(params);
       await EasyLoading.dismiss();
       setState(() => _isRequesting = false);
       if (!mounted) return;
@@ -62,6 +71,10 @@ class UserFormState extends ConsumerState<UserForm> {
       } else {
         final updatedUser = User.fromJson(resMap['user']);
         ref.read(currentUserProvider.notifier).state = updatedUser;
+        // 言語設定の切り替え
+        final String locale =
+            LanguageService.getLangCode(updatedUser.langNumber);
+        LocaleSettings.setLocaleRaw(locale);
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
@@ -104,6 +117,7 @@ class UserFormState extends ConsumerState<UserForm> {
                   ),
                 ],
               ),
+              const UserFormLanguageSetting(),
               const SizedBox(height: 40),
               SizedBox(
                 height: 48,
@@ -125,7 +139,7 @@ class UserFormState extends ConsumerState<UserForm> {
                 ),
               ),
               const SizedBox(height: 80),
-              const UserWithdrawalButton(),
+              const UserFormWithdrawalButton(),
               const SizedBox(height: 80),
             ]));
   }

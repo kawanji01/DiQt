@@ -1,0 +1,7 @@
+# localeの設定
+# ref: https://blog.okaryo.io/20230104-split-and-manage-arb-files-for-internationalized-flutter-app-in-yaml-format
+namespaces: true # これを設定することでファイルの分割ができる
+input_directory: lib/i18n
+input_file_pattern: .yaml # デフォルトはjsonなので、それ以外の形式を使うには設定する必要がある
+output_directory: lib/i18n
+output_file_name: translations.g.dart
