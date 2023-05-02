@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/remote/users.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/daily_report.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
@@ -81,7 +82,7 @@ class _UserCalendarState extends State<UserCalendar> {
         events: _eventsList,
         todayMarkColor: Colors.lightGreen,
         daysOfTheWeekBuilder: (dayIndex) {
-          final labels = ["日", "月", "火", "水", "木", "金", "土"];
+          final labels = ["t.calendars", "月", "火", "水", "木", "金", "土"];
           return Padding(
             padding: const EdgeInsets.only(bottom: 4.0),
             child: Text(

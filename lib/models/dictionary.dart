@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/pos_tag.dart';
+import 'package:booqs_mobile/utils/language.dart';
 
 class Dictionary {
   Dictionary({
@@ -116,6 +117,15 @@ class Dictionary {
             ? []
             : json['pos_tags'].map<PosTag>((e) => PosTag.fromJson(e)).toList();
 
+  // 見出し語の言語
+  String languageOfEntry() =>
+      LanguageService.getLanguageFromNumber(langNumberOfEntry);
+  // 意味の言語
+  String languageOfMeaning() =>
+      LanguageService.getLanguageFromNumber(langNumberOfMeaning);
+  // 辞書の名前
+  String typeName() => '${languageOfEntry()} - ${languageOfMeaning()}';
+  //
   Map<String, dynamic> toJson() => {
         'id': id,
         'title': title,

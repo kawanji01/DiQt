@@ -24,10 +24,16 @@ class LanguageService {
     return langNumber ?? 0;
   }
 
-  // 言語を取得
+  // 言語名を取得
   static String getLanguageFromNumber(int number) {
-    final String langCode = getLangCode(number);
-    final String? language = t.lang[langCode];
+    String langCode = getLangCode(number);
+    if (langCode == 'undefined') return 'undefined';
+    // 詳しくはi18n/en/langの　Icelandic　を参照。
+    if (langCode == 'is') {
+      langCode = 'Icelandic';
+    }
+    langCode = langCode.replaceAll('-', '_');
+    final String? language = t['lang.$langCode'];
     return language ?? 'undefined';
   }
 }

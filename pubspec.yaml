@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.4.0+141
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -80,6 +80,8 @@ dependencies:
   dotted_border: ^2.0.0+3 # embedded_sentenceで利用
   intl: ^0.17.0 # 日付などの多言語化。DateTimeFormatterなどで利用
   cell_calendar: ^0.8.0 # カレンダー
+  slang: ^3.15.0
+  slang_flutter: ^3.15.0
 
 
   
@@ -94,8 +96,8 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.1
   flutter_launcher_icons: ^0.9.2 # アイコンの設定。参照：https://zenn.dev/dala/books/flutter-basic-app/viewer/appinfo
-  build_runner: ^2.1.10 # 多言語化 ref: https://pub.dev/packages/fast_i18n#getting-started
-  fast_i18n: ^5.12.6 # 多言語化
+  build_runner: ^2.3.3 # slang用
+  slang_build_runner: ^3.15.0 # slang用
 flutter_icons:
   android: true
   ios: true

@@ -44,9 +44,9 @@ class DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
 
     Widget title() {
       return future.when(
-        loading: () => Text(dictionary?.title ?? ''),
+        data: (date) => Text('${date?.typeName()}'),
         error: (err, stack) => Text('Error: $err'),
-        data: (dictionary) => Text('${dictionary?.title}'),
+        loading: () => Text('${dictionary?.typeName()}'),
       );
     }
 
@@ -99,9 +99,9 @@ class DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
               vertical: 20,
               horizontal: ResponsiveValues.horizontalMargin(context)),
           child: future.when(
-            loading: () => page(dictionary),
+            data: (date) => page(date),
             error: (err, stack) => Text('Error: $err'),
-            data: (dictionary) => page(dictionary),
+            loading: () => page(dictionary),
           ),
         ),
       ),
