@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 506 (253 per locale)
+/// Strings: 540 (270 per locale)
 ///
-/// Built on 2023-05-02 at 01:17 UTC
+/// Built on 2023-05-02 at 06:27 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -148,6 +148,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 
 	// Translations
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
+	late final _TranslationsCalendarsEn calendars = _TranslationsCalendarsEn._(_root);
 	late final _TranslationsWordsEn words = _TranslationsWordsEn._(_root);
 }
 
@@ -411,6 +412,32 @@ class _TranslationsLangEn {
 	String get zu_ZA => 'Zulu (South Africa)';
 }
 
+// Path: calendars
+class _TranslationsCalendarsEn {
+	_TranslationsCalendarsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get sunday => 'Sun.';
+	String get monday => 'Mon.';
+	String get tuesday => 'Tue.';
+	String get wednesday => 'Wed.';
+	String get thursday => 'Th.';
+	String get friday => 'Fri.';
+	String get saturday => 'Sat.';
+	String get prev => 'Prev';
+	String get next => 'Next';
+	String get prevYear => 'PrevYear';
+	String get nextYear => 'NextYear';
+	String get today => 'Today';
+	String get month => 'Month';
+	String get week => 'Week';
+	String get day => 'Day';
+	String answers({required Object count}) => '${count}';
+	String get reviewed => 'Review';
+}
+
 // Path: words
 class _TranslationsWordsEn {
 	_TranslationsWordsEn._(this._root);
@@ -448,6 +475,7 @@ class _TranslationsJa implements _TranslationsEn {
 
 	// Translations
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
+	@override late final _TranslationsCalendarsJa calendars = _TranslationsCalendarsJa._(_root);
 	@override late final _TranslationsWordsJa words = _TranslationsWordsJa._(_root);
 }
 
@@ -709,6 +737,32 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get uz_UZ => 'ウズベク語（ウズベキスタン）';
 	@override String get vi_VN => 'ベトナム語（ベトナム）';
 	@override String get zu_ZA => 'ズールー語（南アフリカ）';
+}
+
+// Path: calendars
+class _TranslationsCalendarsJa implements _TranslationsCalendarsEn {
+	_TranslationsCalendarsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get sunday => '日';
+	@override String get monday => '月';
+	@override String get tuesday => '火';
+	@override String get wednesday => '水';
+	@override String get thursday => '木';
+	@override String get friday => '金';
+	@override String get saturday => '土';
+	@override String get prev => '前';
+	@override String get next => '次';
+	@override String get prevYear => '前年';
+	@override String get nextYear => '翌年';
+	@override String get today => '今日';
+	@override String get month => '月';
+	@override String get week => '週';
+	@override String get day => '日';
+	@override String answers({required Object count}) => '${count}問';
+	@override String get reviewed => '復習了';
 }
 
 // Path: words
@@ -979,6 +1033,23 @@ extension on _TranslationsEn {
 			case 'lang.uz_UZ': return 'Uzbek (Uzbekistan)';
 			case 'lang.vi_VN': return 'Vietnamese (Vietnam)';
 			case 'lang.zu_ZA': return 'Zulu (South Africa)';
+			case 'calendars.sunday': return 'Sun.';
+			case 'calendars.monday': return 'Mon.';
+			case 'calendars.tuesday': return 'Tue.';
+			case 'calendars.wednesday': return 'Wed.';
+			case 'calendars.thursday': return 'Th.';
+			case 'calendars.friday': return 'Fri.';
+			case 'calendars.saturday': return 'Sat.';
+			case 'calendars.prev': return 'Prev';
+			case 'calendars.next': return 'Next';
+			case 'calendars.prevYear': return 'PrevYear';
+			case 'calendars.nextYear': return 'NextYear';
+			case 'calendars.today': return 'Today';
+			case 'calendars.month': return 'Month';
+			case 'calendars.week': return 'Week';
+			case 'calendars.day': return 'Day';
+			case 'calendars.answers': return ({required Object count}) => '${count}';
+			case 'calendars.reviewed': return 'Review';
 			case 'words.entry': return 'Entry';
 			case 'words.meaning': return 'Meaning';
 			default: return null;
@@ -1240,6 +1311,23 @@ extension on _TranslationsJa {
 			case 'lang.uz_UZ': return 'ウズベク語（ウズベキスタン）';
 			case 'lang.vi_VN': return 'ベトナム語（ベトナム）';
 			case 'lang.zu_ZA': return 'ズールー語（南アフリカ）';
+			case 'calendars.sunday': return '日';
+			case 'calendars.monday': return '月';
+			case 'calendars.tuesday': return '火';
+			case 'calendars.wednesday': return '水';
+			case 'calendars.thursday': return '木';
+			case 'calendars.friday': return '金';
+			case 'calendars.saturday': return '土';
+			case 'calendars.prev': return '前';
+			case 'calendars.next': return '次';
+			case 'calendars.prevYear': return '前年';
+			case 'calendars.nextYear': return '翌年';
+			case 'calendars.today': return '今日';
+			case 'calendars.month': return '月';
+			case 'calendars.week': return '週';
+			case 'calendars.day': return '日';
+			case 'calendars.answers': return ({required Object count}) => '${count}問';
+			case 'calendars.reviewed': return '復習了';
 			case 'words.entry': return '項目';
 			case 'words.meaning': return '意味';
 			default: return null;

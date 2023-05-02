@@ -116,3 +116,5 @@ const Map<String, int> languageCodeMap = {
   'yo': 108,
   'zu': 109
 };
+// 多言語化(i18n)に対応している言語番号
+const List<int> supportedLangNumbers = [21, 44];

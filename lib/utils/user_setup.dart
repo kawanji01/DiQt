@@ -11,6 +11,7 @@ class UserSetup {
     await storage.write(key: 'token', value: user.authToken);
     await storage.write(key: 'publicUid', value: user.publicUid);
     await storage.write(key: 'premium', value: user.premium.toString());
+    await storage.write(key: 'locale', value: user.locale());
     // RevenueCatの認証 参考：https://docs.revenuecat.com/docs/user-ids#logging-back-in
     await PurchaseService.identify(user.id.toString());
   }

@@ -2,6 +2,7 @@ import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/relationship.dart';
+import 'package:booqs_mobile/utils/language.dart';
 
 class User {
   User({
@@ -145,6 +146,17 @@ class User {
             : json['participating_chapters']
                 .map<Chapter>((e) => Chapter.fromJson(e))
                 .toList();
+
+// 言語コード
+  String langCode() => LanguageService.getLangCode(langNumber);
+// Locale
+  String locale() {
+    if (langNumber == 44) {
+      return 'ja';
+    }
+    return 'en';
+  }
+
 // mapでjsonをList<Chapter>に変換する ref: https://zenn.dev/tris/articles/61c4a9ca398472#map%E3%81%AE%E5%9F%BA%E6%9C%AC
 // toList()によってList<Chapter>がList<dynamic>に解釈されてしまう問題の解決 ref: https://pryogram.com/flutter/define-type-to-list-method/
   Map<String, dynamic> toJson() => {
