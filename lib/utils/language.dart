@@ -32,8 +32,19 @@ class LanguageService {
     if (langCode == 'is') {
       langCode = 'Icelandic';
     }
+    // slangだと-が利用できないので。
     langCode = langCode.replaceAll('-', '_');
     final String? language = t['lang.$langCode'];
     return language ?? 'undefined';
+  }
+
+  // 対応言語かどうかを検証する
+  static bool langNumberSupported(int langNumber) {
+    return supportedLangNumbers.contains(langNumber);
+  }
+
+  static bool langCodeSupported(String langCode) {
+    final langNumber = getLangNumber(langCode);
+    return langNumberSupported(langNumber);
   }
 }

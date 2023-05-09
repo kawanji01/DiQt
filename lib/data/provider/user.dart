@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
@@ -69,24 +70,11 @@ final asyncUserProvider = FutureProvider<User?>((ref) async {
 final premiumEnabledProvider = StateProvider<bool>((ref) => ref.watch(
     currentUserProvider.select((user) => user == null ? false : user.premium)));
 
-//
-final userLocaleProvider = StateProvider<String>((ref) {
+// ユーザーの言語番号(formのControllerとして利用)
+final userLangNumberProvider = StateProvider<int>((ref) {
   final int langNumber = ref.watch(
       currentUserProvider.select((user) => user == null ? 0 : user.langNumber));
-  String locale = LanguageService.getLangCode(langNumber);
-  // ユーザーに言語が設定されていない場合は、デバイスの言語を設定する。
-  if (locale == 'undefined') {
-    locale = WidgetsBinding.instance.window.locale.toLanguageTag();
-  }
-  return locale;
-});
-
-// ユーザーの言語設定
-final userLangNumberProvider = StateProvider<int>((ref) {
-  final String locale = ref.watch(userLocaleProvider);
-  final int langNumber = LanguageService.getLangNumber(locale);
-
-  if ([21, 44].contains(langNumber)) {
+  if (LanguageService.langNumberSupported(langNumber)) {
     return langNumber;
   }
   return 21;

@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
@@ -64,8 +64,8 @@ class DiQtState extends ConsumerState<DiQt> {
   void initState() {
     super.initState();
     //
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final String locale = ref.watch(userLocaleProvider);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final String locale = await LocalUserInfo.locale();
       LocaleSettings.setLocaleRaw(locale);
     });
   }
@@ -91,7 +91,7 @@ class DiQtState extends ConsumerState<DiQt> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: LocaleSettings.supportedLocales,
+      supportedLocales: AppLocaleUtils.supportedLocales,
       locale: TranslationProvider.of(context).flutterLocale,
       routes: routes,
     );

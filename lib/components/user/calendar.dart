@@ -37,7 +37,7 @@ class _UserCalendarState extends State<UserCalendar> {
       final Color backgroundColor =
           dailyReport.goalAchievement ? Colors.redAccent : Colors.lightGreen;
       final event = CalendarEvent(
-        eventName: "${dailyReport.answersCount}問",
+        eventName: t.calendars.answers(count: '${dailyReport.answersCount}'),
         eventTextStyle: const TextStyle(
             fontSize: 12,
             color: Colors.white,
@@ -49,7 +49,7 @@ class _UserCalendarState extends State<UserCalendar> {
       _eventsList.add(event);
       if (dailyReport.reviewCompletion) {
         _eventsList.add(CalendarEvent(
-          eventName: "復習了",
+          eventName: t.calendars.reviewed,
           eventTextStyle: const TextStyle(
               fontSize: 12,
               color: Colors.white,
@@ -82,7 +82,15 @@ class _UserCalendarState extends State<UserCalendar> {
         events: _eventsList,
         todayMarkColor: Colors.lightGreen,
         daysOfTheWeekBuilder: (dayIndex) {
-          final labels = ["t.calendars", "月", "火", "水", "木", "金", "土"];
+          final labels = [
+            t.calendars.sunday,
+            t.calendars.monday,
+            t.calendars.tuesday,
+            t.calendars.wednesday,
+            t.calendars.thursday,
+            t.calendars.friday,
+            t.calendars.saturday
+          ];
           return Padding(
             padding: const EdgeInsets.only(bottom: 4.0),
             child: Text(
