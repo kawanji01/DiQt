@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/components/drill/card.dart';
@@ -13,24 +14,6 @@ class UserDrillInProgress extends ConsumerWidget {
     final Drill? drill =
         ref.watch(currentUserProvider.select((user) => user?.drillInProgress));
     if (drill == null) return Container();
-
-    final heading = RichText(
-        text: const TextSpan(children: [
-      WidgetSpan(
-        child: Icon(
-          Icons.bookmark_border,
-          color: Colors.green,
-          size: 28.0,
-        ),
-      ),
-      TextSpan(
-          text: ' 続きから',
-          style: TextStyle(
-              color: Colors.green,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              height: 2))
-    ]));
 
     // 解答中の問題集の一覧を表示するボタン
     final drillsInProgressButton = ElevatedButton.icon(
@@ -62,7 +45,7 @@ class UserDrillInProgress extends ConsumerWidget {
       margin: const EdgeInsets.only(top: 32, bottom: 48),
       child: Column(
         children: [
-          heading,
+          const HeadingMediumGreen(label: '続きから', icon: Icons.bookmark_border),
           DrillCard(drill: drill),
           drillsInProgressButton,
         ],

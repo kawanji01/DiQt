@@ -34,10 +34,12 @@ class WordSearchForm extends ConsumerWidget {
           TypeAheadFormField(
             textFieldConfiguration: TextFieldConfiguration(
                 controller: searchController,
+                maxLines: null,
                 decoration: InputDecoration(
                   labelText: '単語・熟語を入力してください',
-                  // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
+                  // 折り返させる
                   filled: true,
+                  // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
                   fillColor: Colors.grey.shade200,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),

@@ -1,0 +1,6 @@
+create: 'Create'
+edit: 'Edit'
+update: 'Update'
+destroy: 'Destroy'
+cancel: 'Cancel'
+search: 'Search'

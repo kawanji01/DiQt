@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 540 (270 per locale)
+/// Strings: 618 (309 per locale)
 ///
-/// Built on 2023-05-02 at 06:27 UTC
+/// Built on 2023-05-15 at 08:52 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -147,9 +147,40 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsEn _root = this; // ignore: unused_field
 
 	// Translations
+	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
+	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsCalendarsEn calendars = _TranslationsCalendarsEn._(_root);
+	late final _TranslationsLayoutsEn layouts = _TranslationsLayoutsEn._(_root);
+	late final _TranslationsDictionaryMapsEn dictionaryMaps = _TranslationsDictionaryMapsEn._(_root);
 	late final _TranslationsWordsEn words = _TranslationsWordsEn._(_root);
+}
+
+// Path: errors
+class _TranslationsErrorsEn {
+	_TranslationsErrorsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get error_message_404 => 'Page Not Found...';
+	String get error_message_505 => 'I\'m so sorry. This is internal server error.';
+	String get cant_be_blank => 'This field can\'t be blank.';
+}
+
+// Path: shared
+class _TranslationsSharedEn {
+	_TranslationsSharedEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get create => 'Create';
+	String get edit => 'Edit';
+	String get update => 'Update';
+	String get destroy => 'Destroy';
+	String get cancel => 'Cancel';
+	String get search => 'Search';
 }
 
 // Path: lang
@@ -438,6 +469,54 @@ class _TranslationsCalendarsEn {
 	String get reviewed => 'Review';
 }
 
+// Path: layouts
+class _TranslationsLayoutsEn {
+	_TranslationsLayoutsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get my_page => 'MyPage';
+	String get review => 'Reviews';
+	String get notification => 'Notifications';
+	String get word_list => 'WordLists';
+	String get dictionary => 'Dictionaries';
+	String get school => 'School';
+	String get download => 'Download';
+	String get premium_plan => 'Premium Plan';
+	String get community => 'Community';
+	String get update => 'Update';
+	String get contact => 'Contact';
+	String get related_services => 'Related Services';
+	String get help => 'Help';
+	String get company => 'Company';
+	String get commercial_transaction_act => 'Specified Commercial Transaction Act';
+	String get term_of_service => 'Terms of service';
+	String get privacy_policy => 'Privacy policy';
+}
+
+// Path: dictionaryMaps
+class _TranslationsDictionaryMapsEn {
+	_TranslationsDictionaryMapsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get please_select => 'Please select a dictionary';
+	String get not_selected => 'Dictionary not selected';
+	String enter({required Object language}) => 'Please enter ${language}';
+	String get set_dictionaries => 'Set My dictionaries';
+	String get add_dictionaries => 'Add My dictionaries';
+	String get remove_dictionaries => 'Remove My dictionaries';
+	String get select_dictionaries_to_use => 'Select dictionaries to add';
+	String get add => 'Add';
+	String get select_dictionaries_to_remove => 'Select dictionaries to remove';
+	String get remove => 'Remove';
+	String get set => 'Set';
+	String get update_success => 'My Dictionaries Set';
+	String get update_failed => 'Setting My Dictionaries Failed';
+}
+
 // Path: words
 class _TranslationsWordsEn {
 	_TranslationsWordsEn._(this._root);
@@ -474,9 +553,40 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsJa _root = this; // ignore: unused_field
 
 	// Translations
+	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
+	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsCalendarsJa calendars = _TranslationsCalendarsJa._(_root);
+	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
+	@override late final _TranslationsDictionaryMapsJa dictionaryMaps = _TranslationsDictionaryMapsJa._(_root);
 	@override late final _TranslationsWordsJa words = _TranslationsWordsJa._(_root);
+}
+
+// Path: errors
+class _TranslationsErrorsJa implements _TranslationsErrorsEn {
+	_TranslationsErrorsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get error_message_404 => 'ページが見つかりませんでした。';
+	@override String get error_message_505 => '大変申し訳ございません。サーバーでエラーが発生しました。';
+	@override String get cant_be_blank => 'この項目は空欄にできません。';
+}
+
+// Path: shared
+class _TranslationsSharedJa implements _TranslationsSharedEn {
+	_TranslationsSharedJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get create => '作成する';
+	@override String get edit => '編集する';
+	@override String get update => '更新する';
+	@override String get destroy => '削除する';
+	@override String get cancel => 'キャンセルする';
+	@override String get search => '検索する';
 }
 
 // Path: lang
@@ -765,6 +875,54 @@ class _TranslationsCalendarsJa implements _TranslationsCalendarsEn {
 	@override String get reviewed => '復習了';
 }
 
+// Path: layouts
+class _TranslationsLayoutsJa implements _TranslationsLayoutsEn {
+	_TranslationsLayoutsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get my_page => 'マイページ';
+	@override String get review => '復習';
+	@override String get notification => '通知';
+	@override String get dictionary => '辞書';
+	@override String get school => '教室';
+	@override String get word_list => '単語帳';
+	@override String get download => 'ダウンロード';
+	@override String get premium_plan => 'プレミアムプラン';
+	@override String get community => 'コミュニティ';
+	@override String get update => '更新情報';
+	@override String get contact => 'お問い合わせ';
+	@override String get related_services => '関連サービス';
+	@override String get help => 'ヘルプ';
+	@override String get company => '運営会社';
+	@override String get commercial_transaction_act => '特定商取引法に基づく表記';
+	@override String get term_of_service => '利用規約';
+	@override String get privacy_policy => 'プライバシーポリシー';
+}
+
+// Path: dictionaryMaps
+class _TranslationsDictionaryMapsJa implements _TranslationsDictionaryMapsEn {
+	_TranslationsDictionaryMapsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get please_select => '辞書を選択してください';
+	@override String get not_selected => '辞書が選択されていません';
+	@override String enter({required Object language}) => '${language}を入力してください';
+	@override String get set_dictionaries => 'My辞書を設定する';
+	@override String get add_dictionaries => 'My辞書を追加する';
+	@override String get remove_dictionaries => 'My辞書を削除する';
+	@override String get select_dictionaries_to_use => '追加する辞書を選択してください';
+	@override String get add => '追加する';
+	@override String get select_dictionaries_to_remove => '削除する辞書を選択してください';
+	@override String get remove => '削除する';
+	@override String get set => '設定する';
+	@override String get update_success => 'My辞書を設定しました。';
+	@override String get update_failed => 'My辞書が設定できませんでした。';
+}
+
 // Path: words
 class _TranslationsWordsJa implements _TranslationsWordsEn {
 	_TranslationsWordsJa._(this._root);
@@ -782,6 +940,15 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 extension on _TranslationsEn {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'errors.error_message_404': return 'Page Not Found...';
+			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
+			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
+			case 'shared.create': return 'Create';
+			case 'shared.edit': return 'Edit';
+			case 'shared.update': return 'Update';
+			case 'shared.destroy': return 'Destroy';
+			case 'shared.cancel': return 'Cancel';
+			case 'shared.search': return 'Search';
 			case 'lang.language_setting': return 'Language';
 			case 'lang.auto_configure': return 'Auto_configure';
 			case 'lang.undefined': return 'Undefined';
@@ -1050,6 +1217,36 @@ extension on _TranslationsEn {
 			case 'calendars.day': return 'Day';
 			case 'calendars.answers': return ({required Object count}) => '${count}';
 			case 'calendars.reviewed': return 'Review';
+			case 'layouts.my_page': return 'MyPage';
+			case 'layouts.review': return 'Reviews';
+			case 'layouts.notification': return 'Notifications';
+			case 'layouts.word_list': return 'WordLists';
+			case 'layouts.dictionary': return 'Dictionaries';
+			case 'layouts.school': return 'School';
+			case 'layouts.download': return 'Download';
+			case 'layouts.premium_plan': return 'Premium Plan';
+			case 'layouts.community': return 'Community';
+			case 'layouts.update': return 'Update';
+			case 'layouts.contact': return 'Contact';
+			case 'layouts.related_services': return 'Related Services';
+			case 'layouts.help': return 'Help';
+			case 'layouts.company': return 'Company';
+			case 'layouts.commercial_transaction_act': return 'Specified Commercial Transaction Act';
+			case 'layouts.term_of_service': return 'Terms of service';
+			case 'layouts.privacy_policy': return 'Privacy policy';
+			case 'dictionaryMaps.please_select': return 'Please select a dictionary';
+			case 'dictionaryMaps.not_selected': return 'Dictionary not selected';
+			case 'dictionaryMaps.enter': return ({required Object language}) => 'Please enter ${language}';
+			case 'dictionaryMaps.set_dictionaries': return 'Set My dictionaries';
+			case 'dictionaryMaps.add_dictionaries': return 'Add My dictionaries';
+			case 'dictionaryMaps.remove_dictionaries': return 'Remove My dictionaries';
+			case 'dictionaryMaps.select_dictionaries_to_use': return 'Select dictionaries to add';
+			case 'dictionaryMaps.add': return 'Add';
+			case 'dictionaryMaps.select_dictionaries_to_remove': return 'Select dictionaries to remove';
+			case 'dictionaryMaps.remove': return 'Remove';
+			case 'dictionaryMaps.set': return 'Set';
+			case 'dictionaryMaps.update_success': return 'My Dictionaries Set';
+			case 'dictionaryMaps.update_failed': return 'Setting My Dictionaries Failed';
 			case 'words.entry': return 'Entry';
 			case 'words.meaning': return 'Meaning';
 			default: return null;
@@ -1060,6 +1257,15 @@ extension on _TranslationsEn {
 extension on _TranslationsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'errors.error_message_404': return 'ページが見つかりませんでした。';
+			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
+			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';
+			case 'shared.create': return '作成する';
+			case 'shared.edit': return '編集する';
+			case 'shared.update': return '更新する';
+			case 'shared.destroy': return '削除する';
+			case 'shared.cancel': return 'キャンセルする';
+			case 'shared.search': return '検索する';
 			case 'lang.language_setting': return '言語設定';
 			case 'lang.auto_configure': return '自動で設定する';
 			case 'lang.undefined': return '未定義';
@@ -1328,6 +1534,36 @@ extension on _TranslationsJa {
 			case 'calendars.day': return '日';
 			case 'calendars.answers': return ({required Object count}) => '${count}問';
 			case 'calendars.reviewed': return '復習了';
+			case 'layouts.my_page': return 'マイページ';
+			case 'layouts.review': return '復習';
+			case 'layouts.notification': return '通知';
+			case 'layouts.dictionary': return '辞書';
+			case 'layouts.school': return '教室';
+			case 'layouts.word_list': return '単語帳';
+			case 'layouts.download': return 'ダウンロード';
+			case 'layouts.premium_plan': return 'プレミアムプラン';
+			case 'layouts.community': return 'コミュニティ';
+			case 'layouts.update': return '更新情報';
+			case 'layouts.contact': return 'お問い合わせ';
+			case 'layouts.related_services': return '関連サービス';
+			case 'layouts.help': return 'ヘルプ';
+			case 'layouts.company': return '運営会社';
+			case 'layouts.commercial_transaction_act': return '特定商取引法に基づく表記';
+			case 'layouts.term_of_service': return '利用規約';
+			case 'layouts.privacy_policy': return 'プライバシーポリシー';
+			case 'dictionaryMaps.please_select': return '辞書を選択してください';
+			case 'dictionaryMaps.not_selected': return '辞書が選択されていません';
+			case 'dictionaryMaps.enter': return ({required Object language}) => '${language}を入力してください';
+			case 'dictionaryMaps.set_dictionaries': return 'My辞書を設定する';
+			case 'dictionaryMaps.add_dictionaries': return 'My辞書を追加する';
+			case 'dictionaryMaps.remove_dictionaries': return 'My辞書を削除する';
+			case 'dictionaryMaps.select_dictionaries_to_use': return '追加する辞書を選択してください';
+			case 'dictionaryMaps.add': return '追加する';
+			case 'dictionaryMaps.select_dictionaries_to_remove': return '削除する辞書を選択してください';
+			case 'dictionaryMaps.remove': return '削除する';
+			case 'dictionaryMaps.set': return '設定する';
+			case 'dictionaryMaps.update_success': return 'My辞書を設定しました。';
+			case 'dictionaryMaps.update_failed': return 'My辞書が設定できませんでした。';
 			case 'words.entry': return '項目';
 			case 'words.meaning': return '意味';
 			default: return null;

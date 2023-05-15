@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/chapter/school.dart';
 import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
@@ -15,6 +16,12 @@ class BottomNavbarForSchool extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final String dictionary = '${t['layouts.dictionary']}';
+    final String review = '${t['layouts.review']}';
+    final String notification = '${t['layouts.notification']}';
+    final String myPage = '${t['layouts.my_page']}';
+    final String school = '${t['layouts.school']}';
+
     final int selectedIndex = ref.watch(bottomNavbarState);
 
     // 参考：https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
@@ -46,26 +53,26 @@ class BottomNavbarForSchool extends ConsumerWidget {
     }
 
     return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
+      items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: '辞書',
+          icon: const Icon(Icons.search),
+          label: dictionary,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.school),
-          label: '教室',
+          icon: const Icon(Icons.school),
+          label: school,
         ),
         BottomNavigationBarItem(
-          icon: BottomNavbarReviewIcon(),
-          label: '復習',
+          icon: const BottomNavbarReviewIcon(),
+          label: review,
         ),
         BottomNavigationBarItem(
-          icon: BottomNavbarNotificationIcon(),
-          label: '通知',
+          icon: const BottomNavbarNotificationIcon(),
+          label: notification,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle),
-          label: 'マイページ',
+          icon: const Icon(Icons.account_circle),
+          label: myPage,
         ),
       ],
       currentIndex: selectedIndex,

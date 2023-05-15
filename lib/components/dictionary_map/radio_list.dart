@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/dictionary.dart';
+import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
@@ -6,36 +7,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DictionaryRadioList extends ConsumerStatefulWidget {
-  const DictionaryRadioList({Key? key}) : super(key: key);
+class DictionaryMapRadioList extends ConsumerStatefulWidget {
+  const DictionaryMapRadioList({Key? key}) : super(key: key);
 
   @override
-  DictionaryRadioListState createState() => DictionaryRadioListState();
+  DictionaryMapRadioListState createState() => DictionaryMapRadioListState();
 }
 
-class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
+class DictionaryMapRadioListState
+    extends ConsumerState<DictionaryMapRadioList> {
   @override
   void initState() {
     super.initState();
-    //ref.refresh(asyncDictionariesProvider);
   }
 
   @override
   Widget build(BuildContext context) {
-    final future = ref.watch(asyncDictionariesProvider);
+    final future = ref.watch(asyncMyDictionariesProvider);
 
     Widget buildListRow(List<Dictionary> dictionaries, int index) {
       final dictionary = dictionaries[index];
+
+      if (index == dictionaries.length - 1) {}
 
       // ref: https://api.flutter.dev/flutter/material/RadioListTile-class.html
       return RadioListTile(
         title: Text(dictionary.typeName()),
         value: dictionary.id,
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-        groupValue: ref.watch(dictionaryIdProvider),
+        groupValue:
+            ref.watch(selectedDictionaryProvider.select((value) => value?.id)),
         onChanged: (value) {
-          final int dictionaryId = int.parse('$value');
-          ref.read(dictionaryIdProvider.notifier).state = dictionaryId;
+          ref.read(selectedDictionaryProvider.notifier).state = dictionary;
         },
         secondary: IconButton(
           icon: const Icon(Icons.arrow_forward_ios_rounded),
@@ -56,6 +59,7 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
         itemBuilder: (context, index) => buildListRow(dictionaries, index),
         separatorBuilder: (context, index) => const Divider(),
         itemCount: dictionaries.length,
+        padding: const EdgeInsets.only(bottom: 120),
       );
     }
 
@@ -63,7 +67,7 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
       onRefresh: () async {
         HapticFeedback.mediumImpact();
         // 更新したい処理を書く
-        ref.invalidate(asyncDictionariesProvider);
+        ref.invalidate(asyncMyDictionariesProvider);
       },
       child: future.when(
         data: (dictionaries) => dictionaryList(dictionaries),

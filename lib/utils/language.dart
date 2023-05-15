@@ -3,25 +3,25 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 
 class LanguageService {
   // 言語コードを取得
-  static String getLangCode(int number) {
-    String? langCode;
-    languageCodeMap.forEach((String key, int value) {
-      if (value == number) {
-        langCode = key;
-      }
-    });
-    return langCode ?? 'undefined';
+  static String getLangCode(int langNumber) {
+    String? langCode = languageCodeMap.entries
+        .firstWhere(
+          (entry) => entry.value == langNumber,
+          orElse: () => const MapEntry('undefined', 0),
+        )
+        .key;
+    return langCode;
   }
 
   // 言語番号を取得
-  static int getLangNumber(String code) {
-    int? langNumber;
-    languageCodeMap.forEach((String key, int value) {
-      if (key == code) {
-        langNumber = value;
-      }
-    });
-    return langNumber ?? 0;
+  static int getLangNumber(String langCode) {
+    int? langNumber = languageCodeMap.entries
+        .firstWhere(
+          (entry) => entry.key == langCode,
+          orElse: () => const MapEntry('undefined', 0),
+        )
+        .value;
+    return langNumber;
   }
 
   // 言語名を取得
