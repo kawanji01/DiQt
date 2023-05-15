@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/drill/feed.dart';
@@ -25,24 +26,6 @@ class UserDrillsInProgressScreenState
 
   @override
   Widget build(BuildContext context) {
-    final heading = RichText(
-        text: const TextSpan(children: [
-      WidgetSpan(
-        child: Icon(
-          Icons.bookmark_border,
-          color: Colors.green,
-          size: 28.0,
-        ),
-      ),
-      TextSpan(
-          text: ' 続きから',
-          style: TextStyle(
-              color: Colors.green,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              height: 2))
-    ]));
-
     Widget drillFeed() {
       return ref.watch(asyncDrillsInProgress).when(
             data: (data) => DrillFeed(
@@ -61,7 +44,7 @@ class UserDrillsInProgressScreenState
           child: Column(
         children: [
           const SizedBox(height: 24),
-          heading,
+          const HeadingMediumGreen(label: '続きから', icon: Icons.bookmark_border),
           drillFeed(),
           const SizedBox(height: 48),
         ],

@@ -14,7 +14,6 @@ const Map<String, int> languageCodeMap = {
   'bg': 11,
   'ca': 12,
   'ceb': 13,
-  'zh': 110,
   'zh-CN': 14,
   'zh-Hans': 14,
   'zh-TW': 15,
@@ -114,7 +113,8 @@ const Map<String, int> languageCodeMap = {
   'xh': 106,
   'yi': 107,
   'yo': 108,
-  'zu': 109
+  'zu': 109,
+  'zh': 110,
 };
 // 多言語化(i18n)に対応している言語番号
 const List<int> supportedLangNumbers = [21, 44];

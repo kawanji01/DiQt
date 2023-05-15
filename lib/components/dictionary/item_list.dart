@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/dictionary.dart';
+import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
@@ -17,15 +18,16 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
   @override
   void initState() {
     super.initState();
-    //ref.refresh(asyncDictionariesProvider);
   }
 
   @override
   Widget build(BuildContext context) {
-    final future = ref.watch(asyncDictionariesProvider);
+    final future = ref.watch(asyncMyDictionariesProvider);
 
     Widget buildListRow(List<Dictionary> dictionaries, int index) {
       final dictionary = dictionaries[index];
+
+      if (index == dictionaries.length - 1) {}
 
       // ref: https://api.flutter.dev/flutter/material/RadioListTile-class.html
       return RadioListTile(
@@ -56,6 +58,7 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
         itemBuilder: (context, index) => buildListRow(dictionaries, index),
         separatorBuilder: (context, index) => const Divider(),
         itemCount: dictionaries.length,
+        padding: const EdgeInsets.only(bottom: 120),
       );
     }
 
@@ -63,7 +66,7 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
       onRefresh: () async {
         HapticFeedback.mediumImpact();
         // 更新したい処理を書く
-        ref.invalidate(asyncDictionariesProvider);
+        ref.invalidate(asyncMyDictionariesProvider);
       },
       child: future.when(
         data: (dictionaries) => dictionaryList(dictionaries),

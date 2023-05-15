@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 540 (270 per locale)
+/// Strings: 560 (280 per locale)
 ///
-/// Built on 2023-05-02 at 06:27 UTC
+/// Built on 2023-05-14 at 11:12 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -149,6 +149,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	// Translations
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsCalendarsEn calendars = _TranslationsCalendarsEn._(_root);
+	late final _TranslationsDictionaryMapsEn dictionaryMaps = _TranslationsDictionaryMapsEn._(_root);
 	late final _TranslationsWordsEn words = _TranslationsWordsEn._(_root);
 }
 
@@ -438,6 +439,25 @@ class _TranslationsCalendarsEn {
 	String get reviewed => 'Review';
 }
 
+// Path: dictionaryMaps
+class _TranslationsDictionaryMapsEn {
+	_TranslationsDictionaryMapsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get set_dictionaries => 'Set My dictionaries';
+	String get add_dictionaries => 'Add My dictionaries';
+	String get remove_dictionaries => 'Remove My dictionaries';
+	String get select_dictionaries_to_use => 'Select dictionaries to add';
+	String get add => 'Add';
+	String get select_dictionaries_to_remove => 'Select dictionaries to remove';
+	String get remove => 'Remove';
+	String get set => 'Set';
+	String get update_success => 'My Dictionaries Set';
+	String get update_failed => 'Setting My Dictionaries Failed';
+}
+
 // Path: words
 class _TranslationsWordsEn {
 	_TranslationsWordsEn._(this._root);
@@ -476,6 +496,7 @@ class _TranslationsJa implements _TranslationsEn {
 	// Translations
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsCalendarsJa calendars = _TranslationsCalendarsJa._(_root);
+	@override late final _TranslationsDictionaryMapsJa dictionaryMaps = _TranslationsDictionaryMapsJa._(_root);
 	@override late final _TranslationsWordsJa words = _TranslationsWordsJa._(_root);
 }
 
@@ -765,6 +786,25 @@ class _TranslationsCalendarsJa implements _TranslationsCalendarsEn {
 	@override String get reviewed => '復習了';
 }
 
+// Path: dictionaryMaps
+class _TranslationsDictionaryMapsJa implements _TranslationsDictionaryMapsEn {
+	_TranslationsDictionaryMapsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get set_dictionaries => 'My辞書を設定する';
+	@override String get add_dictionaries => 'My辞書を追加する';
+	@override String get remove_dictionaries => 'My辞書を削除する';
+	@override String get select_dictionaries_to_use => '追加する辞書を選択してください';
+	@override String get add => '追加する';
+	@override String get select_dictionaries_to_remove => '削除する辞書を選択してください';
+	@override String get remove => '削除する';
+	@override String get set => '設定する';
+	@override String get update_success => 'My辞書を設定しました。';
+	@override String get update_failed => 'My辞書が設定できませんでした。';
+}
+
 // Path: words
 class _TranslationsWordsJa implements _TranslationsWordsEn {
 	_TranslationsWordsJa._(this._root);
@@ -1050,6 +1090,16 @@ extension on _TranslationsEn {
 			case 'calendars.day': return 'Day';
 			case 'calendars.answers': return ({required Object count}) => '${count}';
 			case 'calendars.reviewed': return 'Review';
+			case 'dictionaryMaps.set_dictionaries': return 'Set My dictionaries';
+			case 'dictionaryMaps.add_dictionaries': return 'Add My dictionaries';
+			case 'dictionaryMaps.remove_dictionaries': return 'Remove My dictionaries';
+			case 'dictionaryMaps.select_dictionaries_to_use': return 'Select dictionaries to add';
+			case 'dictionaryMaps.add': return 'Add';
+			case 'dictionaryMaps.select_dictionaries_to_remove': return 'Select dictionaries to remove';
+			case 'dictionaryMaps.remove': return 'Remove';
+			case 'dictionaryMaps.set': return 'Set';
+			case 'dictionaryMaps.update_success': return 'My Dictionaries Set';
+			case 'dictionaryMaps.update_failed': return 'Setting My Dictionaries Failed';
 			case 'words.entry': return 'Entry';
 			case 'words.meaning': return 'Meaning';
 			default: return null;
@@ -1328,6 +1378,16 @@ extension on _TranslationsJa {
 			case 'calendars.day': return '日';
 			case 'calendars.answers': return ({required Object count}) => '${count}問';
 			case 'calendars.reviewed': return '復習了';
+			case 'dictionaryMaps.set_dictionaries': return 'My辞書を設定する';
+			case 'dictionaryMaps.add_dictionaries': return 'My辞書を追加する';
+			case 'dictionaryMaps.remove_dictionaries': return 'My辞書を削除する';
+			case 'dictionaryMaps.select_dictionaries_to_use': return '追加する辞書を選択してください';
+			case 'dictionaryMaps.add': return '追加する';
+			case 'dictionaryMaps.select_dictionaries_to_remove': return '削除する辞書を選択してください';
+			case 'dictionaryMaps.remove': return '削除する';
+			case 'dictionaryMaps.set': return '設定する';
+			case 'dictionaryMaps.update_success': return 'My辞書を設定しました。';
+			case 'dictionaryMaps.update_failed': return 'My辞書が設定できませんでした。';
 			case 'words.entry': return '項目';
 			case 'words.meaning': return '意味';
 			default: return null;

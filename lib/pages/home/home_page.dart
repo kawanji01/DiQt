@@ -1,10 +1,12 @@
+import 'package:booqs_mobile/components/dictionary_map/floating_action_button.dart';
+import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/components/chapter/index.dart';
-import 'package:booqs_mobile/components/home/search_screen.dart';
+import 'package:booqs_mobile/components/dictionary_map/search_screen.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,6 +41,11 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class HomePageState extends ConsumerState<HomePage> {
+  final List<TabInfo> _tabs = [
+    TabInfo("辞書", const DictionaryMapSearchScreen()),
+    TabInfo("単語帳", const ChapterIndex()),
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -46,11 +53,6 @@ class HomePageState extends ConsumerState<HomePage> {
       ref.invalidate(asyncCurrentUserProvider);
     });
   }
-
-  final List<TabInfo> _tabs = [
-    TabInfo("辞書", const HomeSearchScreen()),
-    TabInfo("単語帳", const ChapterIndex()),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -67,25 +69,46 @@ class HomePageState extends ConsumerState<HomePage> {
     return DefaultTabController(
       initialIndex: 0,
       length: 2,
-      //length: _tabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          // タイトル部分を消す ref: https://blog.mrym.tv/2019/09/flutter-tabbar-without-appbar-title/
-          flexibleSpace: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              TabBar(isScrollable: true, tabs: tabBars()),
-            ],
-          ),
-        ),
-        body: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: ResponsiveValues.horizontalMargin(context),
-          ),
-          child: TabBarView(children: _tabs.map((tab) => tab.widget).toList()),
-        ),
-        bottomNavigationBar: const BottomNavbar(),
+      child: Builder(
+        builder: (BuildContext context) {
+          final TabController tabController = DefaultTabController.of(context);
+          tabController.addListener(() {
+            // この条件式がないとタブ移動時に2回実行される。
+            if (!tabController.indexIsChanging) {
+              if (tabController.index == 0) {
+                ref
+                    .read(dictionaryMapFloatingActionButtonProvider.notifier)
+                    .state = const DictionaryMapFloatingActionButton();
+              } else {
+                ref
+                    .read(dictionaryMapFloatingActionButtonProvider.notifier)
+                    .state = null;
+              }
+            }
+          });
+          return Scaffold(
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                // タイトル部分を消す ref: https://blog.mrym.tv/2019/09/flutter-tabbar-without-appbar-title/
+                flexibleSpace: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    TabBar(isScrollable: true, tabs: tabBars()),
+                  ],
+                ),
+              ),
+              body: Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: ResponsiveValues.horizontalMargin(context),
+                ),
+                child: TabBarView(
+                    children: _tabs.map((tab) => tab.widget).toList()),
+              ),
+              bottomNavigationBar: const BottomNavbar(),
+              floatingActionButton: ref.watch(
+                  dictionaryMapFloatingActionButtonProvider) // tabIndexが0でないときは、FloatingActionButtonを表示しない
+              );
+        },
       ),
     );
   }

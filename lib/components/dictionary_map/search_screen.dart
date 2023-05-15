@@ -3,14 +3,16 @@ import 'package:booqs_mobile/components/word/search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeSearchScreen extends ConsumerStatefulWidget {
-  const HomeSearchScreen({Key? key}) : super(key: key);
+class DictionaryMapSearchScreen extends ConsumerStatefulWidget {
+  const DictionaryMapSearchScreen({Key? key}) : super(key: key);
 
   @override
-  HomeSearchScreenState createState() => HomeSearchScreenState();
+  DictionaryMapSearchScreenState createState() =>
+      DictionaryMapSearchScreenState();
 }
 
-class HomeSearchScreenState extends ConsumerState<HomeSearchScreen> {
+class DictionaryMapSearchScreenState
+    extends ConsumerState<DictionaryMapSearchScreen> {
   final searchController = TextEditingController();
 
   @override
@@ -33,7 +35,11 @@ class HomeSearchScreenState extends ConsumerState<HomeSearchScreen> {
         children: <Widget>[
           const SizedBox(height: 16),
           WordSearchForm(searchController: searchController),
-          const DictionaryRadioList(),
+          // FlutterでRenderFlex overflowedのエラーが発生するとき、それは通常、フレックスボックス（Row、Column、Flex）内のウィジェットが利用可能なスペースを超えて拡大しようとしたときに発生する。
+          // この場合、画面からはみ出すフレックスボックスの小要素をExpandedをwrapすると解決できる。
+          const Expanded(
+            child: DictionaryRadioList(),
+          ),
         ],
       ),
     );
