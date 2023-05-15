@@ -1,0 +1,3 @@
+error_message_404: 'Page Not Found...'
+error_message_505: "I'm so sorry. This is internal server error."
+cant_be_blank: "This field can't be blank."

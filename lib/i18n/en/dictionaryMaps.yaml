@@ -1,3 +1,6 @@
+please_select: 'Please select a dictionary'
+not_selected: 'Dictionary not selected'
+enter: 'Please enter ${language}'
 set_dictionaries: 'Set My dictionaries'
 add_dictionaries: 'Add My dictionaries'
 remove_dictionaries: 'Remove My dictionaries'

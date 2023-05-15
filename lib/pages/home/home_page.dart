@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/dictionary_map/floating_action_button.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -41,11 +42,6 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class HomePageState extends ConsumerState<HomePage> {
-  final List<TabInfo> _tabs = [
-    TabInfo("辞書", const DictionaryMapSearchScreen()),
-    TabInfo("単語帳", const ChapterIndex()),
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -56,16 +52,24 @@ class HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //
+    final String dictionary = '${t.layouts.dictionary}';
+    final String wordList = '${t['layouts.word_list']}';
+    final List<TabInfo> tabs = [
+      TabInfo(dictionary, const DictionaryMapSearchScreen()),
+      TabInfo(wordList, const ChapterIndex()),
+    ];
     List<Widget> tabBars() {
       SizeConfig().init(context);
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
       double width = grid * 40;
       return [
-        SizedBox(width: width, child: const Tab(text: '辞書')),
-        SizedBox(width: width, child: const Tab(text: '単語帳')),
+        SizedBox(width: width, child: Tab(text: dictionary)),
+        SizedBox(width: width, child: Tab(text: wordList)),
       ];
     }
 
+    //
     return DefaultTabController(
       initialIndex: 0,
       length: 2,
@@ -102,7 +106,7 @@ class HomePageState extends ConsumerState<HomePage> {
                   horizontal: ResponsiveValues.horizontalMargin(context),
                 ),
                 child: TabBarView(
-                    children: _tabs.map((tab) => tab.widget).toList()),
+                    children: tabs.map((tab) => tab.widget).toList()),
               ),
               bottomNavigationBar: const BottomNavbar(),
               floatingActionButton: ref.watch(

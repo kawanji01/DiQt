@@ -16,11 +16,15 @@ final asyncMyDictionariesProvider =
   return dictionaries;
 });
 
+// 選択中の辞書
+
+final selectedDictionaryProvider = StateProvider<Dictionary?>((ref) => null);
+
 // My辞書設定のためのfloatingActionButton
 final dictionaryMapFloatingActionButtonProvider =
     StateProvider<Widget?>((ref) => const DictionaryMapFloatingActionButton());
 
 // 追加する辞書のIDのリスト
-final additionDictionaryIdList = StateProvider<List<int>>((ref) => []);
+final additionDictionaryIdsProvider = StateProvider<List<int>>((ref) => []);
 // 削除する辞書のIDのリスト
-final removalDictionaryIdList = StateProvider<List<int>>((ref) => []);
+final removalDictionaryIdsProvider = StateProvider<List<int>>((ref) => []);

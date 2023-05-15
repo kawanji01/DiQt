@@ -25,7 +25,8 @@ class DictionaryMapAdditionScreenState
     Future<void> update() async {
       setState(() => _isRequesting = true);
 
-      final List<int> dictionaryIdList = ref.watch(additionDictionaryIdList);
+      final List<int> dictionaryIdList =
+          ref.watch(additionDictionaryIdsProvider);
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteDictionaryMaps.add(dictionaryIdList);
@@ -39,7 +40,7 @@ class DictionaryMapAdditionScreenState
         const snackBar = SnackBar(content: Text('Error'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        ref.read(additionDictionaryIdList.notifier).state = [];
+        ref.read(additionDictionaryIdsProvider.notifier).state = [];
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         // My辞書を更新する

@@ -7,14 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DictionaryRadioList extends ConsumerStatefulWidget {
-  const DictionaryRadioList({Key? key}) : super(key: key);
+class DictionaryMapRadioList extends ConsumerStatefulWidget {
+  const DictionaryMapRadioList({Key? key}) : super(key: key);
 
   @override
-  DictionaryRadioListState createState() => DictionaryRadioListState();
+  DictionaryMapRadioListState createState() => DictionaryMapRadioListState();
 }
 
-class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
+class DictionaryMapRadioListState
+    extends ConsumerState<DictionaryMapRadioList> {
   @override
   void initState() {
     super.initState();
@@ -34,10 +35,10 @@ class DictionaryRadioListState extends ConsumerState<DictionaryRadioList> {
         title: Text(dictionary.typeName()),
         value: dictionary.id,
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-        groupValue: ref.watch(dictionaryIdProvider),
+        groupValue:
+            ref.watch(selectedDictionaryProvider.select((value) => value?.id)),
         onChanged: (value) {
-          final int dictionaryId = int.parse('$value');
-          ref.read(dictionaryIdProvider.notifier).state = dictionaryId;
+          ref.read(selectedDictionaryProvider.notifier).state = dictionary;
         },
         secondary: IconButton(
           icon: const Icon(Icons.arrow_forward_ios_rounded),

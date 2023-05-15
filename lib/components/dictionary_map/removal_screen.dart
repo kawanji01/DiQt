@@ -27,7 +27,8 @@ class DictionaryMapRemovalScreenState
     Future<void> update() async {
       setState(() => _isRequesting = true);
 
-      final List<int> dictionaryIdList = ref.watch(removalDictionaryIdList);
+      final List<int> dictionaryIdList =
+          ref.watch(removalDictionaryIdsProvider);
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteDictionaryMaps.remove(dictionaryIdList);
@@ -41,7 +42,7 @@ class DictionaryMapRemovalScreenState
         const snackBar = SnackBar(content: Text('Error'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        ref.read(removalDictionaryIdList.notifier).state = [];
+        ref.read(removalDictionaryIdsProvider.notifier).state = [];
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         // My辞書を更新する

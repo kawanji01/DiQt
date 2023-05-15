@@ -36,12 +36,12 @@ class DictionaryMapRemovalListItemState
           if (checkedValue == null) return;
           if (checkedValue) {
             ref
-                .read(removalDictionaryIdList.notifier)
+                .read(removalDictionaryIdsProvider.notifier)
                 .state
                 .add(widget.dictionary.id);
           } else {
             ref
-                .read(removalDictionaryIdList.notifier)
+                .read(removalDictionaryIdsProvider.notifier)
                 .state
                 .remove(widget.dictionary.id);
           }
