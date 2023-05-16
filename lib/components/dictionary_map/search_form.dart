@@ -69,6 +69,9 @@ class DictionaryWordSearchFormState
           TypeAheadFormField(
             textFieldConfiguration: TextFieldConfiguration(
                 controller: _keywordController,
+                // 改行を許さず、文字数に応じて自動で改行表示する。
+                keyboardType: TextInputType.text,
+                maxLines: null,
                 decoration: InputDecoration(
                   labelText: label,
                   // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
