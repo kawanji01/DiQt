@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
@@ -20,7 +21,8 @@ class WordShowAction extends StatelessWidget {
           break;
         case 1:
           // Webで検索する
-          WebPageLauncher.searchEntryByGoogle(word.entry);
+          WebPageLauncher.searchEntryByGoogle(
+              word.entry, word.langNumberOfEntry);
           break;
       }
     }
@@ -31,18 +33,18 @@ class WordShowAction extends StatelessWidget {
         pushPopup(newValue, word!);
       },
       itemBuilder: (BuildContext context) => [
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 0,
           child: Text(
-            '項目を編集する',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            t.words.edit,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 1,
           child: Text(
-            'Webで検索する',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            t.dictionaries.search_by_web,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         )
       ],

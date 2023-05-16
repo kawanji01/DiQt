@@ -1,3 +1,7 @@
+google_translation: 'Google翻訳'
+deepl_translation: 'DeepL翻訳'
+translating: '翻訳中...'
+done: '完了'
 language_setting: '言語設定'
 auto_configure: '自動で設定する'
 undefined: '未定義'

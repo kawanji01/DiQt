@@ -35,7 +35,7 @@ class DictionaryName extends ConsumerWidget {
                 ),
               ),
               TextSpan(
-                text: dictionary.title,
+                text: dictionary.typeName(),
               ),
             ],
           ),

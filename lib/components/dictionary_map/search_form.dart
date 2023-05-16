@@ -32,24 +32,24 @@ class DictionaryWordSearchFormState
     final int? dictionaryId = dictionary?.id;
     final String label;
     if (dictionary == null) {
-      label = '${t['dictionaryMaps.please_select']}';
+      label = t.dictionaryMaps.please_select;
     } else {
       final String language = dictionary.languageOfEntry();
       label = t.dictionaryMaps.enter(language: language);
     }
 
     void search() {
-      if (dictionaryId == null) return;
+      if (dictionary == null) return;
       if (!_formKey.currentState!.validate()) {
         return;
       }
       final String keyword = _keywordController.text;
-      DictionaryWordSearchResultsPage.push(context, dictionaryId, keyword);
+      DictionaryWordSearchResultsPage.push(context, dictionary.id, keyword);
     }
 
     Widget dictionaryName() {
       if (dictionary == null) {
-        return Text('${t['dictionaryMaps.not_selected']}',
+        return Text(t.dictionaryMaps.not_selected,
             style: const TextStyle(fontSize: 12, color: Colors.red));
       } else {
         return Text(dictionary.typeName(),
@@ -108,7 +108,7 @@ class DictionaryWordSearchFormState
             },
             validator: (value) {
               if (value!.isEmpty) {
-                return '${t['errors.cant_be_blank']}';
+                return t.errors.cant_be_blank;
               }
               return null;
             },
@@ -124,7 +124,7 @@ class DictionaryWordSearchFormState
               onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
               label: Text(
-                '${t['shared.search']}',
+                t.shared.search,
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),

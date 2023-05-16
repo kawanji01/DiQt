@@ -1,4 +1,6 @@
 import 'package:booqs_mobile/data/remote/langs.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/utils/language.dart';
 import 'package:flutter/material.dart';
 
 class LangSmallTranslationButtons extends StatefulWidget {
@@ -27,17 +29,22 @@ class _LangSmallTranslationButtonsState
   @override
   Widget build(BuildContext context) {
     const TextStyle styleText = TextStyle(fontSize: 14, color: Colors.black87);
+    final String sourceLanguage =
+        LanguageService.getLanguageFromNumber(widget.sourceLangNumber);
+    final String targetLanguage =
+        LanguageService.getLanguageFromNumber(widget.targetLangNumber);
+    final String translationInfo = '$sourceLanguage - $targetLanguage';
 
     Widget googleButton() {
       if (_googleTranslating) {
         if (_translationByGoogle == null) {
-          return const Text(
-            '翻訳中...',
+          return Text(
+            t.lang.translating,
             style: styleText,
           );
         }
-        return const Text(
-          '完了',
+        return Text(
+          t.lang.done,
           style: styleText,
         );
       }
@@ -62,21 +69,22 @@ class _LangSmallTranslationButtonsState
                 resMap == null ? null : resMap['translation'];
           });
         },
-        child: const Text('Google翻訳', style: TextStyle(color: Colors.green)),
+        child: Text(t.lang.google_translation,
+            style: const TextStyle(color: Colors.green)),
       );
     }
 
     Widget deeplButton() {
       if (_deeplTranslating) {
         if (_translationByDeepl == null) {
-          return const Text(
-            '翻訳中...',
-            style: TextStyle(fontSize: 14, color: Colors.black87),
+          return Text(
+            t.lang.translating,
+            style: const TextStyle(fontSize: 14, color: Colors.black87),
           );
         }
-        return const Text(
-          '完了',
-          style: TextStyle(fontSize: 14, color: Colors.black87),
+        return Text(
+          t.lang.done,
+          style: const TextStyle(fontSize: 14, color: Colors.black87),
         );
       }
       return TextButton(
@@ -99,7 +107,8 @@ class _LangSmallTranslationButtonsState
             _translationByDeepl = resMap == null ? null : resMap['translation'];
           });
         },
-        child: const Text('DeepL翻訳', style: TextStyle(color: Colors.green)),
+        child: Text(t.lang.deepl_translation,
+            style: const TextStyle(color: Colors.green)),
       );
     }
 
@@ -111,9 +120,9 @@ class _LangSmallTranslationButtonsState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 8),
-          const Text(
-            'Google翻訳：',
-            style: TextStyle(
+          Text(
+            '${t.lang.google_translation} ($translationInfo)：',
+            style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54),
@@ -131,9 +140,9 @@ class _LangSmallTranslationButtonsState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 8),
-          const Text(
-            'DeepL翻訳：',
-            style: TextStyle(
+          Text(
+            '${t.lang.deepl_translation} ($translationInfo)：',
+            style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54),

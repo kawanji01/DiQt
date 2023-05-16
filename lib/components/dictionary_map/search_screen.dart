@@ -1,23 +1,9 @@
 import 'package:booqs_mobile/components/dictionary_map/radio_list.dart';
 import 'package:booqs_mobile/components/dictionary_map/search_form.dart';
-import 'package:booqs_mobile/components/word/search_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DictionaryMapSearchScreen extends ConsumerStatefulWidget {
-  const DictionaryMapSearchScreen({Key? key}) : super(key: key);
-
-  @override
-  DictionaryMapSearchScreenState createState() =>
-      DictionaryMapSearchScreenState();
-}
-
-class DictionaryMapSearchScreenState
-    extends ConsumerState<DictionaryMapSearchScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class DictionaryMapSearchScreen extends StatelessWidget {
+  const DictionaryMapSearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

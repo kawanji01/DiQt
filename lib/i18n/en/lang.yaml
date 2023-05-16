@@ -1,3 +1,7 @@
+google_translation: 'Google Translation'
+deepl_translation: 'DeepL Translation'
+translating: 'Translating...'
+done: 'Done'
 language_setting: 'Language'
 auto_configure: 'Auto_configure'
 undefined: 'Undefined'
