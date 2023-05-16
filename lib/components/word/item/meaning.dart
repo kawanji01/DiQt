@@ -1,9 +1,9 @@
+import 'package:booqs_mobile/components/lang/small_translation_buttons.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
-import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
 import 'package:booqs_mobile/components/word/item/label.dart';
-import 'package:booqs_mobile/components/word/item/small_translation_buttons.dart';
+import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:flutter/material.dart';
 
 class WordItemMeaning extends StatelessWidget {
@@ -13,9 +13,8 @@ class WordItemMeaning extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget meaningText() {
-      // 英英辞書なら全文辞書リンク
-      if (word.langNumberOfEntry == word.langNumberOfMeaning &&
-          word.langNumberOfMeaning == languageCodeMap['en']) {
+      // 見出し語と意味が同じ言語なら全文辞書リンク
+      if (word.langNumberOfEntry == word.langNumberOfMeaning) {
         return TextWithDictLink(
           text: word.meaning,
           langNumber: word.langNumberOfMeaning,
@@ -38,29 +37,28 @@ class WordItemMeaning extends StatelessWidget {
       );
     }
 
-    Widget meaning() {
+    Widget pos() {
       final String? pos = word.pos;
       if (pos == null || pos == '') {
-        return meaningText();
+        return Container();
       }
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          WordItemLabel(
-            text: pos,
-          ),
-          meaningText(),
-          WordItemSmallTranslationButtons(
-            original: word.meaning,
-            word: word,
-          ),
-        ],
+      return WordItemLabel(
+        text: pos,
       );
     }
 
     return SizedBox(
-      width: double.infinity,
-      child: meaning(),
-    );
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            pos(),
+            meaningText(),
+            LangSmallTranslationButtons(
+              original: word.meaning,
+              sourceLangNumber: word.langNumberOfMeaning,
+            ),
+          ],
+        ));
   }
 }

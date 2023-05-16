@@ -151,10 +151,7 @@ class User {
   String langCode() => LanguageService.getLangCode(langNumber);
 // Locale
   String locale() {
-    if (langNumber == 44) {
-      return 'ja';
-    }
-    return 'en';
+    return LanguageService.getLangCode(langNumber);
   }
 
 // mapでjsonをList<Chapter>に変換する ref: https://zenn.dev/tris/articles/61c4a9ca398472#map%E3%81%AE%E5%9F%BA%E6%9C%AC

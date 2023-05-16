@@ -17,8 +17,18 @@ final asyncMyDictionariesProvider =
 });
 
 // 選択中の辞書
-
 final selectedDictionaryProvider = StateProvider<Dictionary?>((ref) => null);
+// 最後に選択した辞書
+/* final lastSelectedDictionary = FutureProvider<Dictionary?>((ref) async {
+  final String? lastSelectedDictionaryIdStr =
+      await LocalUserInfo.getSelectedDictionaryId();
+  if (lastSelectedDictionaryIdStr == null) return null;
+  final int dictionaryId = int.parse(lastSelectedDictionaryIdStr);
+  final Map? resMap = await RemoteDictionaries.show(dictionaryId);
+  if (resMap == null) return null;
+  final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
+  return dictionary;
+}); */
 
 // My辞書設定のためのfloatingActionButton
 final dictionaryMapFloatingActionButtonProvider =

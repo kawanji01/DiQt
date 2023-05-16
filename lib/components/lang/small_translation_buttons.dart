@@ -1,26 +1,28 @@
+import 'package:booqs_mobile/components/lang/small_translation_over_limit.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/langs.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/language.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LangSmallTranslationButtons extends StatefulWidget {
-  const LangSmallTranslationButtons(
-      {Key? key,
-      required this.original,
-      required this.sourceLangNumber,
-      required this.targetLangNumber})
-      : super(key: key);
+class LangSmallTranslationButtons extends ConsumerStatefulWidget {
+  const LangSmallTranslationButtons({
+    Key? key,
+    required this.original,
+    required this.sourceLangNumber,
+  }) : super(key: key);
   final String original;
   final int sourceLangNumber;
-  final int targetLangNumber;
 
   @override
-  State<LangSmallTranslationButtons> createState() =>
-      _LangSmallTranslationButtonsState();
+  LangSmallTranslationButtonsState createState() =>
+      LangSmallTranslationButtonsState();
 }
 
-class _LangSmallTranslationButtonsState
-    extends State<LangSmallTranslationButtons> {
+class LangSmallTranslationButtonsState
+    extends ConsumerState<LangSmallTranslationButtons> {
   String? _translationByGoogle;
   String? _translationByDeepl;
   bool _googleTranslating = false;
@@ -28,11 +30,26 @@ class _LangSmallTranslationButtonsState
 
   @override
   Widget build(BuildContext context) {
+    final User? user = ref.watch(currentUserProvider);
+    if (user == null) {
+      return const Text('not Logged in');
+    }
+    // 同じ言語なら翻訳を表示しない。
+    if (user.langNumber == widget.sourceLangNumber) {
+      return Container();
+    }
+    // 翻訳上限を超えた場合
+    if (user.premium == false && user.todaysTranslationsCount > 9) {
+      return const LangSmallTranslationOverLimit();
+    }
+
+    final int targetLangNumber = user.langNumber;
+
     const TextStyle styleText = TextStyle(fontSize: 14, color: Colors.black87);
     final String sourceLanguage =
         LanguageService.getLanguageFromNumber(widget.sourceLangNumber);
     final String targetLanguage =
-        LanguageService.getLanguageFromNumber(widget.targetLangNumber);
+        LanguageService.getLanguageFromNumber(targetLangNumber);
     final String translationInfo = '$sourceLanguage - $targetLanguage';
 
     Widget googleButton() {
@@ -61,9 +78,7 @@ class _LangSmallTranslationButtonsState
             _googleTranslating = true;
           });
           final Map? resMap = await RemoteLangs.googleTranslation(
-              widget.original,
-              widget.sourceLangNumber,
-              widget.targetLangNumber);
+              widget.original, widget.sourceLangNumber, targetLangNumber, user);
           setState(() {
             _translationByGoogle =
                 resMap == null ? null : resMap['translation'];
@@ -100,9 +115,7 @@ class _LangSmallTranslationButtonsState
             _deeplTranslating = true;
           });
           final Map? resMap = await RemoteLangs.deeplTranslation(
-              widget.original,
-              widget.sourceLangNumber,
-              widget.targetLangNumber);
+              widget.original, widget.sourceLangNumber, targetLangNumber, user);
           setState(() {
             _translationByDeepl = resMap == null ? null : resMap['translation'];
           });
@@ -123,9 +136,7 @@ class _LangSmallTranslationButtonsState
           Text(
             '${t.lang.google_translation} ($translationInfo)：',
             style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54),
+                fontSize: 14, fontWeight: FontWeight.bold, color: Colors.green),
           ),
           Text('$_translationByGoogle', style: styleText),
         ],
@@ -143,9 +154,7 @@ class _LangSmallTranslationButtonsState
           Text(
             '${t.lang.deepl_translation} ($translationInfo)：',
             style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54),
+                fontSize: 14, fontWeight: FontWeight.bold, color: Colors.green),
           ),
           Text('$_translationByDeepl', style: styleText),
         ],

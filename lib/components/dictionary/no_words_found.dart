@@ -39,9 +39,9 @@ class DictionaryNoWordsFound extends ConsumerWidget {
           ),
           const SizedBox(height: 16),
           LangLargeTranslationButtons(
-              original: keyword,
-              sourceLangNumber: dictionary.langNumberOfEntry,
-              targetLangNumber: dictionary.langNumberOfMeaning),
+            original: keyword,
+            sourceLangNumber: dictionary.langNumberOfEntry,
+          ),
           const SizedBox(height: 80),
           const AppBanner(),
         ],

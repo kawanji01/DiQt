@@ -1,0 +1,32 @@
+import 'package:booqs_mobile/components/lang/small_translation_buttons.dart';
+import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
+import 'package:booqs_mobile/models/sentence.dart';
+import 'package:flutter/material.dart';
+
+class SentenceItemOriginal extends StatelessWidget {
+  const SentenceItemOriginal({super.key, required this.sentence});
+  final Sentence sentence;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextWithDictLink(
+          text: sentence.original,
+          langNumber: sentence.langNumberOfOriginal,
+          autoLinkEnabled: true,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          dictionaryId: sentence.dictionaryId,
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          fontColor: Colors.black87,
+          selectable: true,
+        ),
+        LangSmallTranslationButtons(
+          original: sentence.original,
+          sourceLangNumber: sentence.langNumberOfOriginal,
+        )
+      ],
+    );
+  }
+}

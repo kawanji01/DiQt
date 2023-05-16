@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 776 (388 per locale)
+/// Strings: 778 (389 per locale)
 ///
-/// Built on 2023-05-16 at 05:17 UTC
+/// Built on 2023-05-16 at 13:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -247,6 +247,7 @@ class _TranslationsLangEn {
 	String get deepl_translation => 'DeepL Translation';
 	String get translating => 'Translating...';
 	String get done => 'Done';
+	String get translation_failed => 'Translation Failed';
 	String get language_setting => 'Language';
 	String get auto_configure => 'Auto_configure';
 	String get undefined => 'Undefined';
@@ -742,6 +743,7 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get deepl_translation => 'DeepL翻訳';
 	@override String get translating => '翻訳中...';
 	@override String get done => '完了';
+	@override String get translation_failed => '翻訳できませんでした。';
 	@override String get language_setting => '言語設定';
 	@override String get auto_configure => '自動で設定する';
 	@override String get undefined => '未定義';
@@ -1174,6 +1176,7 @@ extension on _TranslationsEn {
 			case 'lang.deepl_translation': return 'DeepL Translation';
 			case 'lang.translating': return 'Translating...';
 			case 'lang.done': return 'Done';
+			case 'lang.translation_failed': return 'Translation Failed';
 			case 'lang.language_setting': return 'Language';
 			case 'lang.auto_configure': return 'Auto_configure';
 			case 'lang.undefined': return 'Undefined';
@@ -1570,6 +1573,7 @@ extension on _TranslationsJa {
 			case 'lang.deepl_translation': return 'DeepL翻訳';
 			case 'lang.translating': return '翻訳中...';
 			case 'lang.done': return '完了';
+			case 'lang.translation_failed': return '翻訳できませんでした。';
 			case 'lang.language_setting': return '言語設定';
 			case 'lang.auto_configure': return '自動で設定する';
 			case 'lang.undefined': return '未定義';
