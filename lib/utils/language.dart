@@ -1,7 +1,29 @@
 import 'package:booqs_mobile/consts/language.dart';
+import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/utils/date_time_formatter.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LanguageService {
+  // localeを設定する
+  static Future<String> setLocale(User? user) async {
+    String locale;
+    if (user == null) {
+      locale = await LocalUserInfo.locale();
+    } else {
+      // localeをlocaleStorageに保存して、再取得する
+      const storage = FlutterSecureStorage();
+      await storage.write(key: 'locale', value: user.locale());
+      locale = await LocalUserInfo.locale();
+    }
+    // 全体のlocaleを設定する。
+    LocaleSettings.setLocaleRaw(locale);
+    // timeagoのlocaleを設定する。
+    DateTimeFormatter.setLocale(locale);
+    return locale;
+  }
+
   // 言語コードを取得
   static String getLangCode(int langNumber) {
     String? langCode = languageCodeMap.entries

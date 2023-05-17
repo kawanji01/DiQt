@@ -26,10 +26,6 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp, //縦固定
   ]);
-  // ~分前のようなタイムスタンプを表示するための設定。具体的な表示の処理は utils/date_time_formatter にある ref: https://zenn.dev/namioto/articles/0e0034f3b93874
-  timeago.setLocaleMessages("ja", timeago.JaMessages());
-  //
-  //LocaleSettings.useDeviceLocale();
 
   runApp(
     // Riverpodをアプリに適用
@@ -67,6 +63,9 @@ class DiQtState extends ConsumerState<DiQt> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final String locale = await LocalUserInfo.locale();
       LocaleSettings.setLocaleRaw(locale);
+      // ~分前のようなタイムスタンプを表示するための設定。具体的な表示の処理は utils/date_time_formatter にある ref: https://zenn.dev/namioto/articles/0e0034f3b93874
+      // timeago.setLocaleMessages("ja", timeago.JaMessages());
+      timeago.setLocaleMessages(locale, timeago.JaMessages());
     });
   }
 

@@ -20,7 +20,8 @@ class AnswerHistoryQuizHeader extends StatelessWidget {
     }
 
     // 解答日時
-    final String timeAgo = createTimeAgoString(answerHistory.createdAt);
+    final String timeAgo =
+        DateTimeFormatter.createTimeAgoString(answerHistory.createdAt);
 
     final information = Text(
       '$timeAgoに$correctText',

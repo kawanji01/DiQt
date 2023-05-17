@@ -8,7 +8,8 @@ class NoticeTimestamp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final timeAgoString = createTimeAgoString(notice.createdAt);
+    final timeAgoString =
+        DateTimeFormatter.createTimeAgoString(notice.createdAt);
 
     return Container(
         alignment: Alignment.centerRight, child: Text(timeAgoString));

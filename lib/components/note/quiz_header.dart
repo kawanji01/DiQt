@@ -9,9 +9,11 @@ class NoteQuizHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 作成日
-    final String createdAtTimeAgo = createTimeAgoString(note.createdAt);
+    final String createdAtTimeAgo =
+        DateTimeFormatter.createTimeAgoString(note.createdAt);
     // 更新日
-    final String updatedAtTimeAgo = createTimeAgoString(note.updatedAt);
+    final String updatedAtTimeAgo =
+        DateTimeFormatter.createTimeAgoString(note.updatedAt);
 
     final timeStamp = Text(
       '更新：$updatedAtTimeAgo / 作成：$createdAtTimeAgo',

@@ -20,7 +20,8 @@ class AnswerAnalysisQuizHeader extends StatelessWidget {
     }
 
     // 解答日時
-    final String timeAgo = createTimeAgoString(answerAnalysis.lastAnsweredAt);
+    final String timeAgo =
+        DateTimeFormatter.createTimeAgoString(answerAnalysis.lastAnsweredAt);
     // 不正解数
     final String incorrectAnswersCount =
         '不正解${answerAnalysis.incorrectAnswerHistoriesCount}回';

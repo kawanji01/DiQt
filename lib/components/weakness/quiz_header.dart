@@ -21,7 +21,8 @@ class WeaknessQuizHeader extends ConsumerWidget {
     if (correctRate < overcomingRate) colors = Colors.red;
 
     // 追加日
-    final String timeAgo = createTimeAgoString(weakness.createdAt);
+    final String timeAgo =
+        DateTimeFormatter.createTimeAgoString(weakness.createdAt);
 
     final correctRateText = Text(
       '正答率：${correctRate.floor()}% / 不正解：$incorrectAnswersCount回 / $timeAgoに追加',

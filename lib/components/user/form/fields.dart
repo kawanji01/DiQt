@@ -2,7 +2,6 @@ import 'package:booqs_mobile/components/user/form/language_setting.dart';
 import 'package:booqs_mobile/components/user/form/withdrawal_button.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
-import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/language.dart';
@@ -61,23 +60,34 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
         'profile': _profileController.text,
         'lang_number': ref.watch(userLangNumberProvider),
       };
-      final Map? resMap = await RemoteUsers.update(params);
-      await EasyLoading.dismiss();
-      setState(() => _isRequesting = false);
-      if (!mounted) return;
-      if (resMap == null) {
-        const snackBar = SnackBar(content: Text('アカウントを更新できませんでした。'));
+      try {
+        final Map? resMap = await RemoteUsers.update(params);
+        await EasyLoading.dismiss();
+        setState(() => _isRequesting = false);
+
+        if (resMap == null ||
+            resMap['user'] == null ||
+            resMap['message'] == null) {
+          if (!mounted) return;
+          const snackBar = SnackBar(content: Text('アカウントを更新できませんでした。'));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        } else {
+          final updatedUser = User.fromJson(resMap['user']);
+          ref.read(currentUserProvider.notifier).state = updatedUser;
+          // 言語設定の切り替え
+          await LanguageService.setLocale(updatedUser);
+          final snackBar = SnackBar(content: Text('${resMap['message']}'));
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          UserMyPage.push(context);
+        }
+      } catch (e) {
+        // エラーハンドリング
+        await EasyLoading.dismiss();
+        setState(() => _isRequesting = false);
+        if (!mounted) return;
+        final snackBar = SnackBar(content: Text('エラーが発生しました: $e'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } else {
-        final updatedUser = User.fromJson(resMap['user']);
-        ref.read(currentUserProvider.notifier).state = updatedUser;
-        // 言語設定の切り替え
-        final String locale =
-            LanguageService.getLangCode(updatedUser.langNumber);
-        LocaleSettings.setLocaleRaw(locale);
-        final snackBar = SnackBar(content: Text('${resMap['message']}'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
       }
     }
 
