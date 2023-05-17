@@ -1,6 +1,8 @@
-import 'package:booqs_mobile/data/local/user_info.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/language.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +12,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 Future<void> main() async {
   // 環境変数の読み込み　ref： https://pub.dev/packages/flutter_dotenv
@@ -59,13 +60,10 @@ class DiQtState extends ConsumerState<DiQt> {
   @override
   void initState() {
     super.initState();
-    //
+    // localeを設定する
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final String locale = await LocalUserInfo.locale();
-      LocaleSettings.setLocaleRaw(locale);
-      // ~分前のようなタイムスタンプを表示するための設定。具体的な表示の処理は utils/date_time_formatter にある ref: https://zenn.dev/namioto/articles/0e0034f3b93874
-      // timeago.setLocaleMessages("ja", timeago.JaMessages());
-      timeago.setLocaleMessages(locale, timeago.JaMessages());
+      final User? user = ref.watch(currentUserProvider);
+      await LanguageService.setLocale(user);
     });
   }
 
