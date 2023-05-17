@@ -1,14 +1,21 @@
+import 'package:booqs_mobile/components/word/form/senses.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
 class WordFormDetailedSettings extends StatelessWidget {
   const WordFormDetailedSettings(
       {Key? key,
+      required this.word,
+      required this.ipaController,
       required this.etymologiesController,
       required this.explanationController,
       required this.synonymsController,
       required this.antonymsController,
       required this.relatedController})
       : super(key: key);
+  final Word? word;
+  final TextEditingController ipaController;
   final TextEditingController etymologiesController;
   final TextEditingController explanationController;
   final TextEditingController synonymsController;
@@ -18,9 +25,9 @@ class WordFormDetailedSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: const Text(
-        '詳細を設定する',
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      title: Text(
+        t.words.detailed_settings,
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
       //collapsedBackgroundColor: const Color(0xfff3f3f4),
       collapsedBackgroundColor: Colors.grey.shade200,
@@ -29,13 +36,26 @@ class WordFormDetailedSettings extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 24),
+            // IPA
+            TextFormField(
+              controller: ipaController,
+              decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: t.words.ipa,
+                  hintText: t.shared.please_enter(name: t.words.ipa)),
+            ),
+            const SizedBox(height: 24),
+            WordFormSenses(
+              word: word,
+            ),
+            const SizedBox(height: 24),
             // 語源
             TextFormField(
               controller: etymologiesController,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "語源",
-                  hintText: '語源を設定できます。'),
+              decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: t.words.etymologies,
+                  hintText: t.shared.please_enter(name: t.words.etymologies)),
             ),
             const SizedBox(height: 24),
             // 解説フォーム

@@ -28,6 +28,6 @@ class DictionaryNewWordButton extends StatelessWidget {
 
     return InkWell(
         onTap: () => WordNewPage.push(context, dictionaryId, keyword ?? ''),
-        child: MediumGreenButton(label: label, icon: Icons.add));
+        child: MediumGreenButton(label: label, fontSize: 16, icon: Icons.add));
   }
 }

@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/button/small_green_button.dart';
+import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/dictionary_map/addition_screen.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +24,9 @@ class DictionaryMapAdditionButton extends StatelessWidget {
             builder: (context) => const DictionaryMapAdditionScreen(),
           );
         },
-        child: SmallGreenButton(
+        child: MediumGreenButton(
           label: '${t['dictionaryMaps.add_dictionaries']}',
+          fontSize: 16,
           icon: Icons.add,
         ));
   }

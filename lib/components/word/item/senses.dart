@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/sense/item.dart';
 import 'package:booqs_mobile/components/word/item/new_sense_button.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/sense.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/word/item/label.dart';
@@ -20,7 +21,7 @@ class WordItemSenses extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 16),
-          WordItemLabel(text: '意味($number)'),
+          WordItemLabel(text: t.words.sense(number: number)),
           const SizedBox(height: 8),
           SenseItem(sense: sense, isShow: false),
           const SizedBox(height: 32),

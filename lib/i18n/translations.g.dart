@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 778 (389 per locale)
+/// Strings: 782 (391 per locale)
 ///
-/// Built on 2023-05-16 at 13:25 UTC
+/// Built on 2023-05-17 at 05:42 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -234,6 +234,7 @@ class _TranslationsSharedEn {
 	String get destroy => 'Destroy';
 	String get cancel => 'Cancel';
 	String get search => 'Search';
+	String please_enter({required Object name}) => 'Please enter "${name}"';
 }
 
 // Path: lang
@@ -600,6 +601,7 @@ class _TranslationsWordsEn {
 	String get synonyms => 'Synonyms';
 	String get antonyms => 'Antonyms';
 	String get related => 'Related Words';
+	String sense({required Object number}) => 'sense(${number})';
 	String get detailed_settings => 'Detailed Settings';
 	String get comment => 'Comment';
 	String get update => 'Fix';
@@ -695,7 +697,7 @@ class _TranslationsDictionariesJa implements _TranslationsDictionariesEn {
 	@override String get grammars => '文法';
 	@override String get no_applied_dictionary => '辞書設定：なし';
 	@override String search_results_of({required Object query}) => '『${query}』の検索結果';
-	@override String entry_not_found({required Object query}) => '${query}は辞書に登録されていません。';
+	@override String entry_not_found({required Object query}) => '"${query}"は辞書に登録されていません。';
 	@override String get search_by_web => 'Webで検索する';
 	@override String search_by_another({required Object name}) => '${name}で検索する';
 	@override String add_keyword_to_dictionary({required Object keyword}) => '"${keyword}"を辞書に追加する';
@@ -730,6 +732,7 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get destroy => '削除する';
 	@override String get cancel => 'キャンセルする';
 	@override String get search => '検索する';
+	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
 }
 
 // Path: lang
@@ -1096,6 +1099,7 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get synonyms => '類義語';
 	@override String get antonyms => '対義語';
 	@override String get related => '関連語';
+	@override String sense({required Object number}) => '意味(${number})';
 	@override String get detailed_settings => '詳細設定';
 	@override String get comment => 'コメント';
 	@override String get update => '修正する';
@@ -1172,6 +1176,7 @@ extension on _TranslationsEn {
 			case 'shared.destroy': return 'Destroy';
 			case 'shared.cancel': return 'Cancel';
 			case 'shared.search': return 'Search';
+			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
 			case 'lang.translating': return 'Translating...';
@@ -1493,6 +1498,7 @@ extension on _TranslationsEn {
 			case 'words.synonyms': return 'Synonyms';
 			case 'words.antonyms': return 'Antonyms';
 			case 'words.related': return 'Related Words';
+			case 'words.sense': return ({required Object number}) => 'sense(${number})';
 			case 'words.detailed_settings': return 'Detailed Settings';
 			case 'words.comment': return 'Comment';
 			case 'words.update': return 'Fix';
@@ -1552,7 +1558,7 @@ extension on _TranslationsJa {
 			case 'dictionaries.grammars': return '文法';
 			case 'dictionaries.no_applied_dictionary': return '辞書設定：なし';
 			case 'dictionaries.search_results_of': return ({required Object query}) => '『${query}』の検索結果';
-			case 'dictionaries.entry_not_found': return ({required Object query}) => '${query}は辞書に登録されていません。';
+			case 'dictionaries.entry_not_found': return ({required Object query}) => '"${query}"は辞書に登録されていません。';
 			case 'dictionaries.search_by_web': return 'Webで検索する';
 			case 'dictionaries.search_by_another': return ({required Object name}) => '${name}で検索する';
 			case 'dictionaries.add_keyword_to_dictionary': return ({required Object keyword}) => '"${keyword}"を辞書に追加する';
@@ -1569,6 +1575,7 @@ extension on _TranslationsJa {
 			case 'shared.destroy': return '削除する';
 			case 'shared.cancel': return 'キャンセルする';
 			case 'shared.search': return '検索する';
+			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
 			case 'lang.translating': return '翻訳中...';
@@ -1890,6 +1897,7 @@ extension on _TranslationsJa {
 			case 'words.synonyms': return '類義語';
 			case 'words.antonyms': return '対義語';
 			case 'words.related': return '関連語';
+			case 'words.sense': return ({required Object number}) => '意味(${number})';
 			case 'words.detailed_settings': return '詳細設定';
 			case 'words.comment': return 'コメント';
 			case 'words.update': return '修正する';

@@ -5,6 +5,7 @@ import 'package:booqs_mobile/components/word/form/detailed_settings.dart';
 import 'package:booqs_mobile/components/word/form/lang_setting.dart';
 import 'package:booqs_mobile/components/word/form/preview_button.dart';
 import 'package:booqs_mobile/components/word/form/reading.dart';
+import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
 class WordFormFields extends StatelessWidget {
@@ -21,6 +22,7 @@ class WordFormFields extends StatelessWidget {
     required this.antonymsController,
     required this.relatedController,
     required this.dictionary,
+    required this.word,
   }) : super(key: key);
 
   final TextEditingController entryController;
@@ -34,6 +36,7 @@ class WordFormFields extends StatelessWidget {
   final TextEditingController antonymsController;
   final TextEditingController relatedController;
   final Dictionary dictionary;
+  final Word? word;
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +49,12 @@ class WordFormFields extends StatelessWidget {
           decoration: InputDecoration(
               border: const OutlineInputBorder(),
               labelText: t.words.entry,
-              hintText: '項目名を入力してください。'),
+              hintText: t.shared.please_enter(
+                name: t.words.entry,
+              )),
           validator: (value) {
             if (value!.isEmpty) {
-              return '項目名は空欄にできません。';
+              return t.errors.cant_be_blank;
             }
             return null;
           },
@@ -69,25 +74,19 @@ class WordFormFields extends StatelessWidget {
           decoration: InputDecoration(
               border: const OutlineInputBorder(),
               labelText: t.words.meaning,
-              hintText: '主な意味を入力してください。'),
+              hintText: t.shared.please_enter(
+                name: t.words.meaning,
+              )),
           validator: (value) {
             if (value!.isEmpty) {
-              return '意味は空欄にできません。';
+              return t.errors.cant_be_blank;
             }
             return null;
           },
         ),
         WordFormLangSetting(langNumber: dictionary.langNumberOfMeaning),
         const SizedBox(height: 40),
-        // IPA
-        TextFormField(
-          controller: ipaController,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "発音記号(IPA)",
-              hintText: 'IPAの発音記号を設定できます。'),
-        ),
-        const SizedBox(height: 24),
+
         // 例文設定
         SentenceSettingForm(
           sentenceIdController: sentenceIdController,
@@ -102,6 +101,8 @@ class WordFormFields extends StatelessWidget {
           synonymsController: synonymsController,
           antonymsController: antonymsController,
           relatedController: relatedController,
+          ipaController: ipaController,
+          word: word,
         ),
 
         const SizedBox(height: 40),

@@ -1,10 +1,12 @@
 import 'package:booqs_mobile/components/sentence/setting_form.dart';
 import 'package:booqs_mobile/components/word/form/pos_tag_setting.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/word/form/detailed_settings.dart';
 import 'package:booqs_mobile/components/word/form/lang_setting.dart';
 import 'package:booqs_mobile/components/word/form/preview_button.dart';
 import 'package:booqs_mobile/components/word/form/reading.dart';
+import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
 class WordForm extends StatelessWidget {
@@ -22,6 +24,7 @@ class WordForm extends StatelessWidget {
     required this.antonymsController,
     required this.relatedController,
     required this.dictionary,
+    required this.word,
   }) : super(key: key);
 
   final TextEditingController entryController;
@@ -36,6 +39,7 @@ class WordForm extends StatelessWidget {
   final TextEditingController antonymsController;
   final TextEditingController relatedController;
   final Dictionary dictionary;
+  final Word? word;
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +49,13 @@ class WordForm extends StatelessWidget {
         // 項目フォーム
         TextFormField(
           controller: entryController,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "項目名",
-              hintText: '項目名を入力してください。'),
+          decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              labelText: t.words.entry,
+              hintText: t.shared.please_enter(name: t.words.entry)),
           validator: (value) {
             if (value!.isEmpty) {
-              return '項目名は空欄にできません。';
+              return t.errors.cant_be_blank;
             }
             return null;
           },
@@ -72,28 +76,20 @@ class WordForm extends StatelessWidget {
           // [Flutter/Dart]入力欄（TextField）で折返し表示させる方法 ref: https://minpro.net/flutter-dart-textfield-fold
           maxLines: null,
           controller: meaningController,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "主な意味",
-              hintText: '主な意味を入力してください。'),
+          decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              labelText: t.words.meaning,
+              hintText: t.shared.please_enter(name: t.words.meaning)),
           validator: (value) {
             if (value!.isEmpty) {
-              return '意味は空欄にできません。';
+              return t.errors.cant_be_blank;
             }
             return null;
           },
         ),
         WordFormLangSetting(langNumber: dictionary.langNumberOfMeaning),
         const SizedBox(height: 40),
-        // IPA
-        TextFormField(
-          controller: ipaController,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "発音記号(IPA)",
-              hintText: 'IPAの発音記号を設定できます。'),
-        ),
-        const SizedBox(height: 24),
+
         // 例文設定
         SentenceSettingForm(
             sentenceIdController: sentenceIdController,
@@ -102,11 +98,13 @@ class WordForm extends StatelessWidget {
         const SizedBox(height: 40),
         // 詳細設定
         WordFormDetailedSettings(
+          ipaController: ipaController,
           etymologiesController: etymologiesController,
           explanationController: explanationController,
           synonymsController: synonymsController,
           antonymsController: antonymsController,
           relatedController: relatedController,
+          word: word,
         ),
 
         const SizedBox(height: 40),
