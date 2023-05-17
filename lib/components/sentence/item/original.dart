@@ -1,14 +1,32 @@
 import 'package:booqs_mobile/components/lang/small_translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceItemOriginal extends StatelessWidget {
+class SentenceItemOriginal extends ConsumerWidget {
   const SentenceItemOriginal({super.key, required this.sentence});
   final Sentence sentence;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final User? user = ref.watch(currentUserProvider);
+
+    Widget translationButton() {
+      if (user == null) {
+        return Container();
+      }
+      if (sentence.langNumberOfTranslation == user.langNumber) {
+        return Container();
+      }
+      return LangSmallTranslationButtons(
+        original: sentence.original,
+        sourceLangNumber: sentence.langNumberOfOriginal,
+      );
+    }
+
     return Column(
       children: [
         TextWithDictLink(
@@ -22,10 +40,7 @@ class SentenceItemOriginal extends StatelessWidget {
           fontColor: Colors.black87,
           selectable: true,
         ),
-        LangSmallTranslationButtons(
-          original: sentence.original,
-          sourceLangNumber: sentence.langNumberOfOriginal,
-        )
+        translationButton()
       ],
     );
   }
