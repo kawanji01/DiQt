@@ -1,6 +1,6 @@
+import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/dictionary/word_list_view.dart';
@@ -62,8 +62,7 @@ class DictionaryWordSearchResultsPageState
       return future.when(
           data: (dictionary) {
             if (dictionary == null) return Container();
-            return Text(dictionary.typeName(),
-                style: const TextStyle(fontSize: 12, color: Colors.black54));
+            return DictionaryName(dictionary: dictionary);
           },
           error: (e, str) => Text('$e'),
           loading: () => Container());

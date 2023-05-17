@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -52,8 +53,7 @@ class DictionaryWordSearchFormState
         return Text(t.dictionaryMaps.not_selected,
             style: const TextStyle(fontSize: 12, color: Colors.red));
       } else {
-        return Text(dictionary.typeName(),
-            style: const TextStyle(fontSize: 12, color: Colors.black54));
+        return DictionaryName(dictionary: dictionary);
       }
     }
 
