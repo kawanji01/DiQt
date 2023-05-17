@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+// NOTE: 引数を dictionary ではなく dictionaryId にしているのは、DiQtMarkdownの辞書リンクからでも遷移できるようにするため。
 class DictionaryWordListView extends ConsumerStatefulWidget {
   const DictionaryWordListView(
       {Key? key, required this.dictionaryId, required this.keyword})

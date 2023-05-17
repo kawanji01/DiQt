@@ -31,4 +31,17 @@ class LocalUserInfo {
     String? uid = await storage.read(key: 'publicUid');
     return uid;
   }
+
+  // ホーム画面で選択した辞書IDを取得する
+  static Future<String?> getSelectedDictionaryId() async {
+    const storage = FlutterSecureStorage();
+    String? dictionaryId = await storage.read(key: 'selectedDictionaryId');
+    return dictionaryId;
+  }
+
+  // ホーム画面で選択した辞書IDを保存する
+  static void writeSelectedDictionaryId(int dictionaryId) {
+    const storage = FlutterSecureStorage();
+    storage.write(key: 'locale', value: '$dictionaryId');
+  }
 }

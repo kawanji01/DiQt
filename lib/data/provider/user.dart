@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
@@ -7,7 +6,6 @@ import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/language.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 現在のログイン済ユーザー
@@ -26,7 +24,7 @@ final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
     return null;
   } else {
     // ログインしている場合
-    User user = User.fromJson(resMap['user']);
+    final User user = User.fromJson(resMap['user']);
     await UserSetup.signIn(user);
     ref.read(currentUserProvider.notifier).state = user;
     ref.read(todaysAnswersCountProvider.notifier).state =

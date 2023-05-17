@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -18,8 +19,20 @@ class DictionaryMapRadioListState
     extends ConsumerState<DictionaryMapRadioList> {
   @override
   void initState() {
+    //WidgetsBinding.instance.addPostFrameCallback((_) {
+    // 何も選択されていない場合は、一番上の辞書を自動選択
+    //   if (ref.watch(selectedDictionaryProvider) == null) {
+    //     _restoreLastSelected();
+    //  }
+    //});
+
     super.initState();
   }
+
+  // Future<void> _restoreLastSelected() async {
+  //  final Dictionary? dictionary = ref.refresh(selectedDictionaryProvider);
+  //  ref.read(selectedDictionaryProvider.notifier).state = dictionary;
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +52,8 @@ class DictionaryMapRadioListState
             ref.watch(selectedDictionaryProvider.select((value) => value?.id)),
         onChanged: (value) {
           ref.read(selectedDictionaryProvider.notifier).state = dictionary;
+          // アプリ再起動時に選択し直さなくても良いように、localStorageに選択した辞書情報を保存しておく。
+          LocalUserInfo.writeSelectedDictionaryId(dictionary.id);
         },
         secondary: IconButton(
           icon: const Icon(Icons.arrow_forward_ios_rounded),
@@ -50,19 +65,6 @@ class DictionaryMapRadioListState
       );
     }
 
-    Widget dictionaryList(data) {
-      final List<Dictionary>? dictionaries = data;
-      if (dictionaries == null) return Container();
-
-      return ListView.separated(
-        shrinkWrap: true,
-        itemBuilder: (context, index) => buildListRow(dictionaries, index),
-        separatorBuilder: (context, index) => const Divider(),
-        itemCount: dictionaries.length,
-        padding: const EdgeInsets.only(bottom: 120),
-      );
-    }
-
     return RefreshIndicator(
       onRefresh: () async {
         HapticFeedback.mediumImpact();
@@ -70,7 +72,17 @@ class DictionaryMapRadioListState
         ref.invalidate(asyncMyDictionariesProvider);
       },
       child: future.when(
-        data: (dictionaries) => dictionaryList(dictionaries),
+        data: (List<Dictionary>? dictionaries) {
+          if (dictionaries == null) return Container();
+
+          return ListView.separated(
+            shrinkWrap: true,
+            itemBuilder: (context, index) => buildListRow(dictionaries, index),
+            separatorBuilder: (context, index) => const Divider(),
+            itemCount: dictionaries.length,
+            padding: const EdgeInsets.only(bottom: 120),
+          );
+        },
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       ),

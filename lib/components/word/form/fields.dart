@@ -63,6 +63,9 @@ class WordFormFields extends StatelessWidget {
         // 意味フォーム
         TextFormField(
           controller: meaningController,
+          // 改行を許さず、文字数に応じて自動で改行して表示する。
+          keyboardType: TextInputType.text,
+          maxLines: null,
           decoration: InputDecoration(
               border: const OutlineInputBorder(),
               labelText: t.words.meaning,

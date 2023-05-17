@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/lang/small_translation_over_limit.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/langs.dart';
@@ -7,8 +8,8 @@ import 'package:booqs_mobile/utils/language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LangSmallTranslationButtons extends ConsumerStatefulWidget {
-  const LangSmallTranslationButtons({
+class LangLargeTranslationButtons extends ConsumerStatefulWidget {
+  const LangLargeTranslationButtons({
     Key? key,
     required this.original,
     required this.sourceLangNumber,
@@ -17,16 +18,18 @@ class LangSmallTranslationButtons extends ConsumerStatefulWidget {
   final int sourceLangNumber;
 
   @override
-  LangSmallTranslationButtonsState createState() =>
-      LangSmallTranslationButtonsState();
+  LangLargeTranslationButtonsState createState() =>
+      LangLargeTranslationButtonsState();
 }
 
-class LangSmallTranslationButtonsState
-    extends ConsumerState<LangSmallTranslationButtons> {
+class LangLargeTranslationButtonsState
+    extends ConsumerState<LangLargeTranslationButtons> {
   String? _translationByGoogle;
   String? _translationByDeepl;
   bool _googleTranslating = false;
+  bool _googleTranlsationDone = false;
   bool _deeplTranslating = false;
+  bool _deeplTranslationDone = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,77 +55,69 @@ class LangSmallTranslationButtonsState
         LanguageService.getLanguageFromNumber(targetLangNumber);
     final String translationInfo = '$sourceLanguage - $targetLanguage';
 
-    Widget googleButton() {
-      if (_googleTranslating) {
-        if (_translationByGoogle == null) {
-          return Text(
-            t.lang.translating,
-            style: styleText,
-          );
-        }
-        return Text(
-          t.lang.done,
-          style: styleText,
-        );
-      }
-      return TextButton(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
+    Widget loadingSpinner() {
+      return const Center(
+        child: CircularProgressIndicator(
+          semanticsLabel: 'Linear progress indicator',
         ),
-        onPressed: () async {
-          setState(() {
-            _googleTranslating = true;
-          });
-          final Map? resMap = await RemoteLangs.googleTranslation(
-              widget.original, widget.sourceLangNumber, targetLangNumber, user);
-          setState(() {
-            _translationByGoogle =
-                resMap == null ? null : resMap['translation'];
-          });
-        },
-        child: Text(t.lang.google_translation,
-            style: const TextStyle(color: Colors.green)),
       );
     }
 
-    Widget deeplButton() {
-      if (_deeplTranslating) {
-        if (_translationByDeepl == null) {
-          return Text(
-            t.lang.translating,
-            style: const TextStyle(fontSize: 14, color: Colors.black87),
-          );
-        }
-        return Text(
-          t.lang.done,
-          style: const TextStyle(fontSize: 14, color: Colors.black87),
-        );
+    Widget googleButton() {
+      if (_googleTranlsationDone) {
+        return Container();
       }
-      return TextButton(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        onPressed: () async {
-          setState(() {
-            _deeplTranslating = true;
-          });
-          final Map? resMap = await RemoteLangs.deeplTranslation(
-              widget.original, widget.sourceLangNumber, targetLangNumber, user);
-          setState(() {
-            _translationByDeepl = resMap == null ? null : resMap['translation'];
-          });
-        },
-        child: Text(t.lang.deepl_translation,
-            style: const TextStyle(color: Colors.green)),
-      );
+      if (_googleTranslating) {
+        return loadingSpinner();
+      }
+
+      return InkWell(
+          onTap: () async {
+            setState(() {
+              _googleTranslating = true;
+            });
+            final Map? resMap = await RemoteLangs.googleTranslation(
+                widget.original,
+                widget.sourceLangNumber,
+                targetLangNumber,
+                user);
+            setState(() {
+              _translationByGoogle =
+                  resMap == null ? null : resMap['translation'];
+              _googleTranslating = false;
+              _googleTranlsationDone = true;
+            });
+          },
+          child: MediumGreenButton(
+              label: t.lang.google_translation, icon: Icons.translate));
+    }
+
+    Widget deeplButton() {
+      if (_deeplTranslationDone) {
+        return Container();
+      }
+      if (_deeplTranslating) {
+        return loadingSpinner();
+      }
+      return InkWell(
+          onTap: () async {
+            setState(() {
+              _deeplTranslating = true;
+            });
+            final Map? resMap = await RemoteLangs.deeplTranslation(
+                widget.original,
+                widget.sourceLangNumber,
+                targetLangNumber,
+                user);
+            setState(() {
+              _translationByDeepl =
+                  resMap == null ? null : resMap['translation'];
+              _deeplTranslating = false;
+              _deeplTranslationDone = true;
+            });
+          },
+          child: MediumGreenButton(
+              label: t.lang.deepl_translation, icon: Icons.translate));
     }
 
     Widget googleResults() {
@@ -164,20 +159,11 @@ class LangSmallTranslationButtonsState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            googleButton(),
-            const Text(
-              ' / ',
-              style: styleText,
-            ),
-            deeplButton()
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [googleResults(), deeplResults()],
-        ),
+        googleButton(),
+        googleResults(),
+        const SizedBox(height: 16),
+        deeplButton(),
+        deeplResults()
       ],
     );
   }

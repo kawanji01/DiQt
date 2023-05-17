@@ -1,13 +1,15 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryWordSearchResultsAction extends StatelessWidget {
   const DictionaryWordSearchResultsAction(
-      {Key? key, required this.keyword, required this.dictionaryId})
+      {Key? key, required this.keyword, required this.dictionary})
       : super(key: key);
   final String keyword;
-  final int dictionaryId;
+  final Dictionary dictionary;
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +17,12 @@ class DictionaryWordSearchResultsAction extends StatelessWidget {
       switch (value) {
         case 0:
           // 辞書に追加
-          WordNewPage.push(context, dictionaryId, keyword);
+          WordNewPage.push(context, dictionary.id, keyword);
           break;
         case 1:
           // Webで検索する
-          WebPageLauncher.searchEntryByGoogle(keyword);
+          WebPageLauncher.searchEntryByGoogle(
+              keyword, dictionary.langNumberOfEntry);
           break;
       }
     }
@@ -33,15 +36,15 @@ class DictionaryWordSearchResultsAction extends StatelessWidget {
         PopupMenuItem(
           value: 0,
           child: Text(
-            '辞書に$keywordを追加する',
+            t.dictionaries.add_keyword_to_dictionary(keyword: keyword),
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 1,
           child: Text(
-            'Webで検索する',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            t.dictionaries.search_by_web,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         )
       ],

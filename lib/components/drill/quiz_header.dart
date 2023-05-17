@@ -23,7 +23,8 @@ class DrillQuizHeader extends StatelessWidget {
       resultText = '不正解';
     }
     // 最終解答
-    final String timeAgo = createTimeAgoString(answerAnalysis.lastAnsweredAt);
+    final String timeAgo =
+        DateTimeFormatter.createTimeAgoString(answerAnalysis.lastAnsweredAt);
     // 正答率
     final String correctRate =
         '正答率${answerAnalysis.correctAnswerRate.floor()}%';

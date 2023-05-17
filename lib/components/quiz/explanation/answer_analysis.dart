@@ -127,7 +127,7 @@ class QuizExplanationAnswerAnalysis extends StatelessWidget {
             TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.bold),
       );
       final String answeredAt =
-          createTimeAgoString(answerAnalysis.lastAnsweredAt);
+          DateTimeFormatter.createTimeAgoString(answerAnalysis.lastAnsweredAt);
 
       final value = Text(
         '$answeredAtに ',

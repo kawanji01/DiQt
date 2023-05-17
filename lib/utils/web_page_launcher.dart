@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/entitlement_info_service.dart';
+import 'package:booqs_mobile/utils/language.dart';
 import 'package:purchases_flutter/object_wrappers.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -28,11 +29,12 @@ class WebPageLauncher {
 
   // Googleで単語を調べる。
   static Future<void> searchEntryByGoogle(
-    String entry,
-  ) async {
+      String entry, int langNumberOfEntry) async {
+    final String language =
+        LanguageService.getLanguageFromNumber(langNumberOfEntry);
     final String meaning = t.words.meaning;
     final String url =
-        "https://www.google.com/search?q=$entry+$meaning&oq=$entry+$meaning";
+        "https://www.google.com/search?q=$entry+$meaning+$language&oq=$entry+$meaning+$language";
     openByExternalBrowser(url);
   }
 

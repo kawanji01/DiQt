@@ -10,7 +10,7 @@ class DictionaryName extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final button = InkWell(
+    /* final button = InkWell(
       onTap: () {
         ref.read(dictionaryProvider.notifier).state = dictionary;
         DictionaryShowPage.push(context, dictionary.id);
@@ -35,7 +35,7 @@ class DictionaryName extends ConsumerWidget {
                 ),
               ),
               TextSpan(
-                text: dictionary.title,
+                text: dictionary.typeName(),
               ),
             ],
           ),
@@ -44,6 +44,14 @@ class DictionaryName extends ConsumerWidget {
     );
 
     //return button;
-    return Row(mainAxisAlignment: MainAxisAlignment.start, children: [button]);
+    return Row(mainAxisAlignment: MainAxisAlignment.start, children: [button]); */
+
+    return InkWell(
+        onTap: () {
+          ref.read(dictionaryProvider.notifier).state = dictionary;
+          DictionaryShowPage.push(context, dictionary.id);
+        },
+        child: Text(dictionary.typeName(),
+            style: const TextStyle(fontSize: 12, color: Colors.black54)));
   }
 }

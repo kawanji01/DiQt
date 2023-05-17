@@ -8,7 +8,8 @@ class ActivityTimestamp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final timeAgoString = createTimeAgoString(activity.createdAt);
+    final timeAgoString =
+        DateTimeFormatter.createTimeAgoString(activity.createdAt);
 
     return Container(
         alignment: Alignment.centerRight, child: Text(timeAgoString));

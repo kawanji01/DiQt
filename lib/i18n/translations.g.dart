@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 618 (309 per locale)
+/// Strings: 778 (389 per locale)
 ///
-/// Built on 2023-05-15 at 08:52 UTC
+/// Built on 2023-05-16 at 13:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -147,6 +147,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsEn _root = this; // ignore: unused_field
 
 	// Translations
+	late final _TranslationsDictionariesEn dictionaries = _TranslationsDictionariesEn._(_root);
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
@@ -154,6 +155,58 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsLayoutsEn layouts = _TranslationsLayoutsEn._(_root);
 	late final _TranslationsDictionaryMapsEn dictionaryMaps = _TranslationsDictionaryMapsEn._(_root);
 	late final _TranslationsWordsEn words = _TranslationsWordsEn._(_root);
+}
+
+// Path: dictionaries
+class _TranslationsDictionariesEn {
+	_TranslationsDictionariesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get dictionaries => 'Dictionaries';
+	String get dictionary => 'Dictionary';
+	String get search => 'Search';
+	String get input_keyword => 'Search keyword';
+	String get image_alt => 'Image of Dictionary';
+	String get accepted_requests => 'Accepted Requests';
+	String get pending_requests => 'Pending Requests';
+	String get accepted_word_requests => 'Accepted Word Requests';
+	String get pending_word_requests => 'Pending Word Requests';
+	String get rejected_word_requests => 'Rejected Word Requests';
+	String get accepted => 'Accepted';
+	String get pending => 'Pending';
+	String get rejected => 'Rejected';
+	String get words => 'Words';
+	String get sentences => 'Sentences';
+	String get accepted_sense_requests => 'Accepted Sense Requests';
+	String get pending_sense_requests => 'Pending Sense Requests';
+	String get rejected_sense_requests => 'Rejected Sense Requests';
+	String get accepted_sentence_requests => 'Accepted Sentence Requests';
+	String get pending_sentence_requests => 'Pending Sentence Requests';
+	String get rejected_sentence_requests => 'Rejected Sentence Requests';
+	String get accepted_quiz_requests => 'Accepted Quiz Requests';
+	String get pending_quiz_requests => 'Pending Quiz Requests';
+	String get rejected_quiz_requests => 'Rejected Quiz Requests';
+	String get word_lists => 'Word Lists';
+	String get word_drill => 'WordDrill';
+	String get sentence_drill => 'SentenceDrill';
+	String get speaking_sentence_drill => 'SentenceDrill for writing and speaking';
+	String get sense_drill => 'SenseDrill';
+	String get guideline => 'Editing Guideline';
+	String get credit => 'Credit';
+	String get pos_tags => 'Part of Speech';
+	String get grammars => 'Grammars';
+	String get no_applied_dictionary => 'DictionarySetting: None';
+	String search_results_of({required Object query}) => 'Search results of "${query}"';
+	String entry_not_found({required Object query}) => '"${query}" is not found.';
+	String get search_by_web => 'Search by Web';
+	String search_by_another({required Object name}) => 'Search by ${name}';
+	String add_keyword_to_dictionary({required Object keyword}) => 'Add "${keyword}" to the dictionary';
+	String get no_permission => 'You don\'t have permission.';
+	String get no_addition_permission => 'You don\'t have create permission.';
+	String get no_modification_permission => 'You don\'t have update permission.';
+	String get no_elimination_permission => 'You don\'t have delete permission.';
 }
 
 // Path: errors
@@ -190,6 +243,11 @@ class _TranslationsLangEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get google_translation => 'Google Translation';
+	String get deepl_translation => 'DeepL Translation';
+	String get translating => 'Translating...';
+	String get done => 'Done';
+	String get translation_failed => 'Translation Failed';
 	String get language_setting => 'Language';
 	String get auto_configure => 'Auto_configure';
 	String get undefined => 'Undefined';
@@ -524,8 +582,40 @@ class _TranslationsWordsEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	String get entry => 'Entry';
+	String get add => 'Add Word';
+	String get edit => 'Edit Word';
+	String get created => 'Word Created';
+	String get create_failed => 'Creating Word failed';
+	String get updated => 'Word Updated';
+	String get update_failed => 'Word Update Failed ';
+	String get destroyed => 'Word Destroyed';
+	String get entry => 'Headword';
+	String get reading => 'Reading';
 	String get meaning => 'Meaning';
+	String get ipa => 'IPA(Pronunciation)';
+	String get set_example_sentence => 'Search Example Sentences';
+	String get etymologies => 'Etymologies';
+	String get explanation => 'Explanation';
+	String get sentence => 'Example Sentence';
+	String get synonyms => 'Synonyms';
+	String get antonyms => 'Antonyms';
+	String get related => 'Related Words';
+	String get detailed_settings => 'Detailed Settings';
+	String get comment => 'Comment';
+	String get update => 'Fix';
+	String get diqt_markdown_support => 'DiQt Markdown Support';
+	String get text_preview => 'Preview';
+	String get there_is_no_text => 'There is no text.';
+	String get undefined_lang_number => 'Language is not set.';
+	String get diqt_notation => 'DiQt Notation';
+	String get comment_placeholder => 'You can comment about this.';
+	String get destroy => 'Destroy';
+	String get confirmation => 'Confirmation';
+	String get edit_btn => 'Edit this word';
+	String get new_btn => 'Add a word';
+	String get view_your_edit => 'View your edit';
+	String get details => 'Details';
+	String get not_found => 'Not Found';
 }
 
 // Path: <root>
@@ -553,6 +643,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsJa _root = this; // ignore: unused_field
 
 	// Translations
+	@override late final _TranslationsDictionariesJa dictionaries = _TranslationsDictionariesJa._(_root);
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
@@ -560,6 +651,58 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
 	@override late final _TranslationsDictionaryMapsJa dictionaryMaps = _TranslationsDictionaryMapsJa._(_root);
 	@override late final _TranslationsWordsJa words = _TranslationsWordsJa._(_root);
+}
+
+// Path: dictionaries
+class _TranslationsDictionariesJa implements _TranslationsDictionariesEn {
+	_TranslationsDictionariesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get dictionaries => '辞書一覧';
+	@override String get dictionary => '辞書';
+	@override String get search => '検索する';
+	@override String get input_keyword => '辞書で調べたい単語を入力';
+	@override String get image_alt => '辞書の画像';
+	@override String get accepted_requests => '編集履歴';
+	@override String get pending_requests => '審査中の編集';
+	@override String get accepted_word_requests => '項目の編集履歴';
+	@override String get pending_word_requests => '項目の審査中の編集';
+	@override String get rejected_word_requests => '項目の却下された編集';
+	@override String get accepted => '採用';
+	@override String get pending => '審査中';
+	@override String get rejected => '却下';
+	@override String get words => '項目一覧';
+	@override String get sentences => '例文一覧';
+	@override String get accepted_sense_requests => '意味の編集履歴';
+	@override String get pending_sense_requests => '意味の審査中の編集';
+	@override String get rejected_sense_requests => '意味の却下された編集';
+	@override String get accepted_sentence_requests => '例文の編集履歴';
+	@override String get pending_sentence_requests => '例文の審査中の編集';
+	@override String get rejected_sentence_requests => '例文の却下された編集';
+	@override String get accepted_quiz_requests => '問題の編集履歴';
+	@override String get pending_quiz_requests => '問題の審査中の編集';
+	@override String get rejected_quiz_requests => '問題の却下された編集';
+	@override String get word_lists => '単語帳';
+	@override String get word_drill => '辞書問題';
+	@override String get sentence_drill => '例文問題';
+	@override String get speaking_sentence_drill => 'スピーキングとライティングのための例文問題';
+	@override String get sense_drill => '意味問題';
+	@override String get guideline => '編集ガイドライン';
+	@override String get credit => 'クレジット';
+	@override String get pos_tags => '品詞';
+	@override String get grammars => '文法';
+	@override String get no_applied_dictionary => '辞書設定：なし';
+	@override String search_results_of({required Object query}) => '『${query}』の検索結果';
+	@override String entry_not_found({required Object query}) => '${query}は辞書に登録されていません。';
+	@override String get search_by_web => 'Webで検索する';
+	@override String search_by_another({required Object name}) => '${name}で検索する';
+	@override String add_keyword_to_dictionary({required Object keyword}) => '"${keyword}"を辞書に追加する';
+	@override String get no_permission => '権限がありません。';
+	@override String get no_addition_permission => '追加する権限がありません。';
+	@override String get no_modification_permission => '修正する権限がありません。';
+	@override String get no_elimination_permission => '削除する権限がありません。';
 }
 
 // Path: errors
@@ -596,6 +739,11 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get google_translation => 'Google翻訳';
+	@override String get deepl_translation => 'DeepL翻訳';
+	@override String get translating => '翻訳中...';
+	@override String get done => '完了';
+	@override String get translation_failed => '翻訳できませんでした。';
 	@override String get language_setting => '言語設定';
 	@override String get auto_configure => '自動で設定する';
 	@override String get undefined => '未定義';
@@ -930,8 +1078,40 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get entry => '項目';
+	@override String get add => '項目を追加する';
+	@override String get edit => '項目を編集する';
+	@override String get created => '項目を作成しました。';
+	@override String get create_failed => '項目の作成に失敗しました。';
+	@override String get updated => '項目を更新しました。';
+	@override String get update_failed => '項目の更新に失敗しました。';
+	@override String get destroyed => 'Word Destroyed';
+	@override String get entry => '見出し語';
+	@override String get reading => '読み（ひらがな）';
 	@override String get meaning => '意味';
+	@override String get ipa => 'IPA（発音記号）';
+	@override String get set_example_sentence => '例文を検索する';
+	@override String get etymologies => '語源';
+	@override String get explanation => '解説';
+	@override String get sentence => '例文';
+	@override String get synonyms => '類義語';
+	@override String get antonyms => '対義語';
+	@override String get related => '関連語';
+	@override String get detailed_settings => '詳細設定';
+	@override String get comment => 'コメント';
+	@override String get update => '修正する';
+	@override String get diqt_markdown_support => 'DiQt Markdown対応';
+	@override String get text_preview => 'プレビュー';
+	@override String get there_is_no_text => 'テキストがありません。';
+	@override String get undefined_lang_number => '言語が設定されていません。';
+	@override String get diqt_notation => 'DiQt記法';
+	@override String get comment_placeholder => '【空欄可】コメントなどあればここに書いてください。';
+	@override String get destroy => '削除する';
+	@override String get confirmation => '削除確認';
+	@override String get edit_btn => '項目を編集する';
+	@override String get new_btn => '項目を追加する';
+	@override String get view_your_edit => '編集内容を見る';
+	@override String get details => '詳細';
+	@override String get not_found => '該当する単語はありません。';
 }
 
 /// Flat map(s) containing all translations.
@@ -940,6 +1120,49 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 extension on _TranslationsEn {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'dictionaries.dictionaries': return 'Dictionaries';
+			case 'dictionaries.dictionary': return 'Dictionary';
+			case 'dictionaries.search': return 'Search';
+			case 'dictionaries.input_keyword': return 'Search keyword';
+			case 'dictionaries.image_alt': return 'Image of Dictionary';
+			case 'dictionaries.accepted_requests': return 'Accepted Requests';
+			case 'dictionaries.pending_requests': return 'Pending Requests';
+			case 'dictionaries.accepted_word_requests': return 'Accepted Word Requests';
+			case 'dictionaries.pending_word_requests': return 'Pending Word Requests';
+			case 'dictionaries.rejected_word_requests': return 'Rejected Word Requests';
+			case 'dictionaries.accepted': return 'Accepted';
+			case 'dictionaries.pending': return 'Pending';
+			case 'dictionaries.rejected': return 'Rejected';
+			case 'dictionaries.words': return 'Words';
+			case 'dictionaries.sentences': return 'Sentences';
+			case 'dictionaries.accepted_sense_requests': return 'Accepted Sense Requests';
+			case 'dictionaries.pending_sense_requests': return 'Pending Sense Requests';
+			case 'dictionaries.rejected_sense_requests': return 'Rejected Sense Requests';
+			case 'dictionaries.accepted_sentence_requests': return 'Accepted Sentence Requests';
+			case 'dictionaries.pending_sentence_requests': return 'Pending Sentence Requests';
+			case 'dictionaries.rejected_sentence_requests': return 'Rejected Sentence Requests';
+			case 'dictionaries.accepted_quiz_requests': return 'Accepted Quiz Requests';
+			case 'dictionaries.pending_quiz_requests': return 'Pending Quiz Requests';
+			case 'dictionaries.rejected_quiz_requests': return 'Rejected Quiz Requests';
+			case 'dictionaries.word_lists': return 'Word Lists';
+			case 'dictionaries.word_drill': return 'WordDrill';
+			case 'dictionaries.sentence_drill': return 'SentenceDrill';
+			case 'dictionaries.speaking_sentence_drill': return 'SentenceDrill for writing and speaking';
+			case 'dictionaries.sense_drill': return 'SenseDrill';
+			case 'dictionaries.guideline': return 'Editing Guideline';
+			case 'dictionaries.credit': return 'Credit';
+			case 'dictionaries.pos_tags': return 'Part of Speech';
+			case 'dictionaries.grammars': return 'Grammars';
+			case 'dictionaries.no_applied_dictionary': return 'DictionarySetting: None';
+			case 'dictionaries.search_results_of': return ({required Object query}) => 'Search results of "${query}"';
+			case 'dictionaries.entry_not_found': return ({required Object query}) => '"${query}" is not found.';
+			case 'dictionaries.search_by_web': return 'Search by Web';
+			case 'dictionaries.search_by_another': return ({required Object name}) => 'Search by ${name}';
+			case 'dictionaries.add_keyword_to_dictionary': return ({required Object keyword}) => 'Add "${keyword}" to the dictionary';
+			case 'dictionaries.no_permission': return 'You don\'t have permission.';
+			case 'dictionaries.no_addition_permission': return 'You don\'t have create permission.';
+			case 'dictionaries.no_modification_permission': return 'You don\'t have update permission.';
+			case 'dictionaries.no_elimination_permission': return 'You don\'t have delete permission.';
 			case 'errors.error_message_404': return 'Page Not Found...';
 			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
@@ -949,6 +1172,11 @@ extension on _TranslationsEn {
 			case 'shared.destroy': return 'Destroy';
 			case 'shared.cancel': return 'Cancel';
 			case 'shared.search': return 'Search';
+			case 'lang.google_translation': return 'Google Translation';
+			case 'lang.deepl_translation': return 'DeepL Translation';
+			case 'lang.translating': return 'Translating...';
+			case 'lang.done': return 'Done';
+			case 'lang.translation_failed': return 'Translation Failed';
 			case 'lang.language_setting': return 'Language';
 			case 'lang.auto_configure': return 'Auto_configure';
 			case 'lang.undefined': return 'Undefined';
@@ -1247,8 +1475,40 @@ extension on _TranslationsEn {
 			case 'dictionaryMaps.set': return 'Set';
 			case 'dictionaryMaps.update_success': return 'My Dictionaries Set';
 			case 'dictionaryMaps.update_failed': return 'Setting My Dictionaries Failed';
-			case 'words.entry': return 'Entry';
+			case 'words.add': return 'Add Word';
+			case 'words.edit': return 'Edit Word';
+			case 'words.created': return 'Word Created';
+			case 'words.create_failed': return 'Creating Word failed';
+			case 'words.updated': return 'Word Updated';
+			case 'words.update_failed': return 'Word Update Failed ';
+			case 'words.destroyed': return 'Word Destroyed';
+			case 'words.entry': return 'Headword';
+			case 'words.reading': return 'Reading';
 			case 'words.meaning': return 'Meaning';
+			case 'words.ipa': return 'IPA(Pronunciation)';
+			case 'words.set_example_sentence': return 'Search Example Sentences';
+			case 'words.etymologies': return 'Etymologies';
+			case 'words.explanation': return 'Explanation';
+			case 'words.sentence': return 'Example Sentence';
+			case 'words.synonyms': return 'Synonyms';
+			case 'words.antonyms': return 'Antonyms';
+			case 'words.related': return 'Related Words';
+			case 'words.detailed_settings': return 'Detailed Settings';
+			case 'words.comment': return 'Comment';
+			case 'words.update': return 'Fix';
+			case 'words.diqt_markdown_support': return 'DiQt Markdown Support';
+			case 'words.text_preview': return 'Preview';
+			case 'words.there_is_no_text': return 'There is no text.';
+			case 'words.undefined_lang_number': return 'Language is not set.';
+			case 'words.diqt_notation': return 'DiQt Notation';
+			case 'words.comment_placeholder': return 'You can comment about this.';
+			case 'words.destroy': return 'Destroy';
+			case 'words.confirmation': return 'Confirmation';
+			case 'words.edit_btn': return 'Edit this word';
+			case 'words.new_btn': return 'Add a word';
+			case 'words.view_your_edit': return 'View your edit';
+			case 'words.details': return 'Details';
+			case 'words.not_found': return 'Not Found';
 			default: return null;
 		}
 	}
@@ -1257,6 +1517,49 @@ extension on _TranslationsEn {
 extension on _TranslationsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'dictionaries.dictionaries': return '辞書一覧';
+			case 'dictionaries.dictionary': return '辞書';
+			case 'dictionaries.search': return '検索する';
+			case 'dictionaries.input_keyword': return '辞書で調べたい単語を入力';
+			case 'dictionaries.image_alt': return '辞書の画像';
+			case 'dictionaries.accepted_requests': return '編集履歴';
+			case 'dictionaries.pending_requests': return '審査中の編集';
+			case 'dictionaries.accepted_word_requests': return '項目の編集履歴';
+			case 'dictionaries.pending_word_requests': return '項目の審査中の編集';
+			case 'dictionaries.rejected_word_requests': return '項目の却下された編集';
+			case 'dictionaries.accepted': return '採用';
+			case 'dictionaries.pending': return '審査中';
+			case 'dictionaries.rejected': return '却下';
+			case 'dictionaries.words': return '項目一覧';
+			case 'dictionaries.sentences': return '例文一覧';
+			case 'dictionaries.accepted_sense_requests': return '意味の編集履歴';
+			case 'dictionaries.pending_sense_requests': return '意味の審査中の編集';
+			case 'dictionaries.rejected_sense_requests': return '意味の却下された編集';
+			case 'dictionaries.accepted_sentence_requests': return '例文の編集履歴';
+			case 'dictionaries.pending_sentence_requests': return '例文の審査中の編集';
+			case 'dictionaries.rejected_sentence_requests': return '例文の却下された編集';
+			case 'dictionaries.accepted_quiz_requests': return '問題の編集履歴';
+			case 'dictionaries.pending_quiz_requests': return '問題の審査中の編集';
+			case 'dictionaries.rejected_quiz_requests': return '問題の却下された編集';
+			case 'dictionaries.word_lists': return '単語帳';
+			case 'dictionaries.word_drill': return '辞書問題';
+			case 'dictionaries.sentence_drill': return '例文問題';
+			case 'dictionaries.speaking_sentence_drill': return 'スピーキングとライティングのための例文問題';
+			case 'dictionaries.sense_drill': return '意味問題';
+			case 'dictionaries.guideline': return '編集ガイドライン';
+			case 'dictionaries.credit': return 'クレジット';
+			case 'dictionaries.pos_tags': return '品詞';
+			case 'dictionaries.grammars': return '文法';
+			case 'dictionaries.no_applied_dictionary': return '辞書設定：なし';
+			case 'dictionaries.search_results_of': return ({required Object query}) => '『${query}』の検索結果';
+			case 'dictionaries.entry_not_found': return ({required Object query}) => '${query}は辞書に登録されていません。';
+			case 'dictionaries.search_by_web': return 'Webで検索する';
+			case 'dictionaries.search_by_another': return ({required Object name}) => '${name}で検索する';
+			case 'dictionaries.add_keyword_to_dictionary': return ({required Object keyword}) => '"${keyword}"を辞書に追加する';
+			case 'dictionaries.no_permission': return '権限がありません。';
+			case 'dictionaries.no_addition_permission': return '追加する権限がありません。';
+			case 'dictionaries.no_modification_permission': return '修正する権限がありません。';
+			case 'dictionaries.no_elimination_permission': return '削除する権限がありません。';
 			case 'errors.error_message_404': return 'ページが見つかりませんでした。';
 			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
 			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';
@@ -1266,6 +1569,11 @@ extension on _TranslationsJa {
 			case 'shared.destroy': return '削除する';
 			case 'shared.cancel': return 'キャンセルする';
 			case 'shared.search': return '検索する';
+			case 'lang.google_translation': return 'Google翻訳';
+			case 'lang.deepl_translation': return 'DeepL翻訳';
+			case 'lang.translating': return '翻訳中...';
+			case 'lang.done': return '完了';
+			case 'lang.translation_failed': return '翻訳できませんでした。';
 			case 'lang.language_setting': return '言語設定';
 			case 'lang.auto_configure': return '自動で設定する';
 			case 'lang.undefined': return '未定義';
@@ -1564,8 +1872,40 @@ extension on _TranslationsJa {
 			case 'dictionaryMaps.set': return '設定する';
 			case 'dictionaryMaps.update_success': return 'My辞書を設定しました。';
 			case 'dictionaryMaps.update_failed': return 'My辞書が設定できませんでした。';
-			case 'words.entry': return '項目';
+			case 'words.add': return '項目を追加する';
+			case 'words.edit': return '項目を編集する';
+			case 'words.created': return '項目を作成しました。';
+			case 'words.create_failed': return '項目の作成に失敗しました。';
+			case 'words.updated': return '項目を更新しました。';
+			case 'words.update_failed': return '項目の更新に失敗しました。';
+			case 'words.destroyed': return 'Word Destroyed';
+			case 'words.entry': return '見出し語';
+			case 'words.reading': return '読み（ひらがな）';
 			case 'words.meaning': return '意味';
+			case 'words.ipa': return 'IPA（発音記号）';
+			case 'words.set_example_sentence': return '例文を検索する';
+			case 'words.etymologies': return '語源';
+			case 'words.explanation': return '解説';
+			case 'words.sentence': return '例文';
+			case 'words.synonyms': return '類義語';
+			case 'words.antonyms': return '対義語';
+			case 'words.related': return '関連語';
+			case 'words.detailed_settings': return '詳細設定';
+			case 'words.comment': return 'コメント';
+			case 'words.update': return '修正する';
+			case 'words.diqt_markdown_support': return 'DiQt Markdown対応';
+			case 'words.text_preview': return 'プレビュー';
+			case 'words.there_is_no_text': return 'テキストがありません。';
+			case 'words.undefined_lang_number': return '言語が設定されていません。';
+			case 'words.diqt_notation': return 'DiQt記法';
+			case 'words.comment_placeholder': return '【空欄可】コメントなどあればここに書いてください。';
+			case 'words.destroy': return '削除する';
+			case 'words.confirmation': return '削除確認';
+			case 'words.edit_btn': return '項目を編集する';
+			case 'words.new_btn': return '項目を追加する';
+			case 'words.view_your_edit': return '編集内容を見る';
+			case 'words.details': return '詳細';
+			case 'words.not_found': return '該当する単語はありません。';
 			default: return null;
 		}
 	}

@@ -1,8 +1,12 @@
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/langs.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceFormTranslationButtons extends StatefulWidget {
+class SentenceFormTranslationButtons extends ConsumerStatefulWidget {
   const SentenceFormTranslationButtons(
       {Key? key,
       required this.originalController,
@@ -16,18 +20,18 @@ class SentenceFormTranslationButtons extends StatefulWidget {
   final int targetLangNumber;
 
   @override
-  State<SentenceFormTranslationButtons> createState() =>
-      _SentenceFormTranslationButtonsState();
+  SentenceFormTranslationButtonsState createState() =>
+      SentenceFormTranslationButtonsState();
 }
 
-class _SentenceFormTranslationButtonsState
-    extends State<SentenceFormTranslationButtons> {
+class SentenceFormTranslationButtonsState
+    extends ConsumerState<SentenceFormTranslationButtons> {
   bool _isRequesting = false;
   bool _isGoogleTranslating = false;
   bool _isDeeplTranslating = false;
 
   // Google翻訳
-  Future _translateByGoogle() async {
+  Future _translateByGoogle(User user) async {
     // リクエストロック開始
     setState(() {
       _isRequesting = true;
@@ -35,10 +39,12 @@ class _SentenceFormTranslationButtonsState
     });
     // 画面全体にローディングを表示
     EasyLoading.show(status: 'loading...');
+
     final Map? resMap = await RemoteLangs.googleTranslation(
         widget.originalController.text,
         widget.sourceLangNumber,
-        widget.targetLangNumber);
+        widget.targetLangNumber,
+        user);
     EasyLoading.dismiss();
     // リクエストロック終了
     setState(() {
@@ -47,7 +53,7 @@ class _SentenceFormTranslationButtonsState
     });
     if (!mounted) return;
     if (resMap == null) {
-      const snackBar = SnackBar(content: Text('翻訳できませんでした。'));
+      final snackBar = SnackBar(content: Text(t.lang.translation_failed));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {
       final String translation = resMap['translation'] ?? '';
@@ -56,7 +62,7 @@ class _SentenceFormTranslationButtonsState
   }
 
   // DeepL翻訳
-  Future _translateByDeepL() async {
+  Future _translateByDeepL(User user) async {
     // リクエストロック開始
     setState(() {
       _isRequesting = true;
@@ -67,7 +73,8 @@ class _SentenceFormTranslationButtonsState
     final Map? resMap = await RemoteLangs.deeplTranslation(
         widget.originalController.text,
         widget.sourceLangNumber,
-        widget.targetLangNumber);
+        widget.targetLangNumber,
+        user);
     EasyLoading.dismiss();
     // リクエストロック終了
     setState(() {
@@ -76,7 +83,7 @@ class _SentenceFormTranslationButtonsState
     });
     if (resMap == null) {
       if (!mounted) return;
-      const snackBar = SnackBar(content: Text('翻訳できませんでした。'));
+      final snackBar = SnackBar(content: Text(t.lang.translation_failed));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {
       final String translation = resMap['translation'] ?? '';
@@ -87,11 +94,16 @@ class _SentenceFormTranslationButtonsState
   @override
   Widget build(BuildContext context) {
     const TextStyle styleText = TextStyle(fontSize: 14, color: Colors.black87);
+    const TextStyle buttonStyleText = TextStyle(color: Colors.green);
+    final User? user = ref.watch(currentUserProvider);
+    if (user == null) {
+      return Container();
+    }
 
     Widget googleButton() {
       if (_isGoogleTranslating) {
-        return const Text(
-          '翻訳中...',
+        return Text(
+          t.lang.translating,
           style: styleText,
         );
       }
@@ -106,17 +118,17 @@ class _SentenceFormTranslationButtonsState
         onPressed: _isRequesting
             ? null
             : () async {
-                _translateByGoogle();
+                _translateByGoogle(user);
               },
-        child: const Text('Google翻訳', style: TextStyle(color: Colors.green)),
+        child: Text(t.lang.google_translation, style: buttonStyleText),
       );
     }
 
     Widget deeplButton() {
       if (_isDeeplTranslating) {
-        return const Text(
-          '翻訳中...',
-          style: TextStyle(fontSize: 14, color: Colors.black87),
+        return Text(
+          t.lang.translating,
+          style: styleText,
         );
       }
       return TextButton(
@@ -130,9 +142,9 @@ class _SentenceFormTranslationButtonsState
         onPressed: _isRequesting
             ? null
             : () async {
-                _translateByDeepL();
+                _translateByDeepL(user);
               },
-        child: const Text('DeepL翻訳', style: TextStyle(color: Colors.green)),
+        child: Text(t.lang.deepl_translation, style: buttonStyleText),
       );
     }
 

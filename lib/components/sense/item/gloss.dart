@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/word/item/small_translation_buttons.dart';
+import 'package:booqs_mobile/components/lang/small_translation_buttons.dart';
 import 'package:booqs_mobile/components/word/item/text.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,10 @@ class SenseItemGloss extends StatelessWidget {
     return Column(
       children: [
         WordItemText(word: word, text: sense.gloss),
-        WordItemSmallTranslationButtons(word: word, original: sense.gloss),
+        LangSmallTranslationButtons(
+          original: sense.gloss,
+          sourceLangNumber: word.langNumberOfMeaning,
+        ),
       ],
     );
   }

@@ -53,8 +53,8 @@ class HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     //
-    final String dictionary = '${t.layouts.dictionary}';
-    final String wordList = '${t['layouts.word_list']}';
+    final String dictionary = t.layouts.dictionary;
+    final String wordList = t.layouts.word_list;
     final List<TabInfo> tabs = [
       TabInfo(dictionary, const DictionaryMapSearchScreen()),
       TabInfo(wordList, const ChapterIndex()),

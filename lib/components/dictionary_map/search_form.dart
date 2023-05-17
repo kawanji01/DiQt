@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -32,28 +33,27 @@ class DictionaryWordSearchFormState
     final int? dictionaryId = dictionary?.id;
     final String label;
     if (dictionary == null) {
-      label = '${t['dictionaryMaps.please_select']}';
+      label = t.dictionaryMaps.please_select;
     } else {
       final String language = dictionary.languageOfEntry();
       label = t.dictionaryMaps.enter(language: language);
     }
 
     void search() {
-      if (dictionaryId == null) return;
+      if (dictionary == null) return;
       if (!_formKey.currentState!.validate()) {
         return;
       }
       final String keyword = _keywordController.text;
-      DictionaryWordSearchResultsPage.push(context, dictionaryId, keyword);
+      DictionaryWordSearchResultsPage.push(context, dictionary.id, keyword);
     }
 
     Widget dictionaryName() {
       if (dictionary == null) {
-        return Text('${t['dictionaryMaps.not_selected']}',
+        return Text(t.dictionaryMaps.not_selected,
             style: const TextStyle(fontSize: 12, color: Colors.red));
       } else {
-        return Text(dictionary.typeName(),
-            style: const TextStyle(fontSize: 12, color: Colors.black54));
+        return DictionaryName(dictionary: dictionary);
       }
     }
 
@@ -69,6 +69,9 @@ class DictionaryWordSearchFormState
           TypeAheadFormField(
             textFieldConfiguration: TextFieldConfiguration(
                 controller: _keywordController,
+                // 改行を許さず、文字数に応じて自動で改行表示する。
+                keyboardType: TextInputType.text,
+                maxLines: null,
                 decoration: InputDecoration(
                   labelText: label,
                   // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
@@ -108,7 +111,7 @@ class DictionaryWordSearchFormState
             },
             validator: (value) {
               if (value!.isEmpty) {
-                return '${t['errors.cant_be_blank']}';
+                return t.errors.cant_be_blank;
               }
               return null;
             },
@@ -124,7 +127,7 @@ class DictionaryWordSearchFormState
               onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
               label: Text(
-                '${t['shared.search']}',
+                t.shared.search,
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),

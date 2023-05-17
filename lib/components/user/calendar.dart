@@ -21,8 +21,8 @@ class _UserCalendarState extends State<UserCalendar> {
   @override
   void initState() {
     final DateTime today = DateTime.now();
-    final DateTime firstDate = firstDayOfMonth(today);
-    final DateTime lastDate = lastDayOfMonth(today);
+    final DateTime firstDate = DateTimeFormatter.firstDayOfMonth(today);
+    final DateTime lastDate = DateTimeFormatter.lastDayOfMonth(today);
     _loadEvents(firstDate, lastDate);
     super.initState();
   }

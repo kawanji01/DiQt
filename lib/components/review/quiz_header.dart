@@ -37,7 +37,8 @@ class ReviewQuizHeader extends StatelessWidget {
       resultText = '不正解';
     }
     // 最終解答
-    final String timeAgo = createTimeAgoString(answerAnalysis.lastAnsweredAt);
+    final String timeAgo =
+        DateTimeFormatter.createTimeAgoString(answerAnalysis.lastAnsweredAt);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
