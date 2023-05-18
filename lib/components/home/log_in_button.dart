@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/session/login.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeLogInButton extends StatelessWidget {
   const HomeLogInButton({super.key});
@@ -21,8 +22,12 @@ class HomeLogInButton extends StatelessWidget {
         ),
         child: Text(
           t.sessions.log_in,
-          style: const TextStyle(
-              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+          style: GoogleFonts.mPlusRounded1c(
+            textStyle: Theme.of(context).textTheme.headlineMedium,
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

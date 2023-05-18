@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 828 (414 per locale)
+/// Strings: 834 (417 per locale)
 ///
-/// Built on 2023-05-18 at 03:22 UTC
+/// Built on 2023-05-18 at 07:49 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -660,7 +660,10 @@ class _TranslationsHomeEn {
 
 	// Translations
 	String get welcome => 'Welcome to DiQt!';
-	String get welcome_description => 'DiQt is a dictionary app to help you never forget vocabulary.';
+	String get welcome_description_1 => 'DiQt is a dictionary app to help you never forget vocabulary.';
+	String get welcome_description_2 => 'Easy to use. Look up the word in the dictionary,';
+	String get welcome_description_3 => 'set a review for the word you want to remember,';
+	String get welcome_description_4 => 'and you can review it automatically later.';
 }
 
 // Path: <root>
@@ -1201,7 +1204,10 @@ class _TranslationsHomeJa implements _TranslationsHomeEn {
 
 	// Translations
 	@override String get welcome => 'DiQtへようこそ！';
-	@override String get welcome_description => 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
+	@override String get welcome_description_1 => 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
+	@override String get welcome_description_2 => '使い方は簡単。辞書で調べて、';
+	@override String get welcome_description_3 => '覚えたい単語に復習を設定すれば、';
+	@override String get welcome_description_4 => '後日、自動で復習できます。';
 }
 
 /// Flat map(s) containing all translations.
@@ -1623,7 +1629,10 @@ extension on _TranslationsEn {
 			case 'words.details': return 'Details';
 			case 'words.not_found': return 'Not Found';
 			case 'home.welcome': return 'Welcome to DiQt!';
-			case 'home.welcome_description': return 'DiQt is a dictionary app to help you never forget vocabulary.';
+			case 'home.welcome_description_1': return 'DiQt is a dictionary app to help you never forget vocabulary.';
+			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
+			case 'home.welcome_description_3': return 'set a review for the word you want to remember,';
+			case 'home.welcome_description_4': return 'and you can review it automatically later.';
 			default: return null;
 		}
 	}
@@ -2045,7 +2054,10 @@ extension on _TranslationsJa {
 			case 'words.details': return '詳細';
 			case 'words.not_found': return '該当する単語はありません。';
 			case 'home.welcome': return 'DiQtへようこそ！';
-			case 'home.welcome_description': return 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
+			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
+			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';
+			case 'home.welcome_description_3': return '覚えたい単語に復習を設定すれば、';
+			case 'home.welcome_description_4': return '後日、自動で復習できます。';
 			default: return null;
 		}
 	}
