@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -8,7 +9,6 @@ import 'package:booqs_mobile/components/review/unsolved_screen_wrapper.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/drawer_menu.dart';
 import 'package:booqs_mobile/components/shared/empty_app_bar.dart';
-import 'package:booqs_mobile/components/shared/entrance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -53,7 +53,7 @@ class ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
     final User? currentUser = ref.watch(currentUserProvider);
 
     Widget reviewsOrEntrance() {
-      if (currentUser == null) return const Entrance();
+      if (currentUser == null) return const LoadingSpinner();
 
       return const ReviewUnsolvedScreenWrapper();
     }

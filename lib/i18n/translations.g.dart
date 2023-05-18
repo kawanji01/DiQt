@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 824 (412 per locale)
+/// Strings: 828 (414 per locale)
 ///
-/// Built on 2023-05-18 at 03:04 UTC
+/// Built on 2023-05-18 at 03:22 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -184,6 +184,8 @@ class _TranslationsSessionsEn {
 	String get continue_with_apple => 'Continue with Apple';
 	String get continue_with_google => 'Continue with Google';
 	String get continue_with_twitter => 'Continue with Twitter';
+	String get log_out => 'Log out';
+	String get log_out_succeeded => 'Logged out';
 }
 
 // Path: dictionaries
@@ -723,6 +725,8 @@ class _TranslationsSessionsJa implements _TranslationsSessionsEn {
 	@override String get continue_with_apple => 'Appleで続ける';
 	@override String get continue_with_google => 'Googleで続ける';
 	@override String get continue_with_twitter => 'Twitterで続ける';
+	@override String get log_out => 'ログアウトする';
+	@override String get log_out_succeeded => 'ログアウトしました。';
 }
 
 // Path: dictionaries
@@ -1224,6 +1228,8 @@ extension on _TranslationsEn {
 			case 'sessions.continue_with_apple': return 'Continue with Apple';
 			case 'sessions.continue_with_google': return 'Continue with Google';
 			case 'sessions.continue_with_twitter': return 'Continue with Twitter';
+			case 'sessions.log_out': return 'Log out';
+			case 'sessions.log_out_succeeded': return 'Logged out';
 			case 'dictionaries.dictionaries': return 'Dictionaries';
 			case 'dictionaries.dictionary': return 'Dictionary';
 			case 'dictionaries.search': return 'Search';
@@ -1644,6 +1650,8 @@ extension on _TranslationsJa {
 			case 'sessions.continue_with_apple': return 'Appleで続ける';
 			case 'sessions.continue_with_google': return 'Googleで続ける';
 			case 'sessions.continue_with_twitter': return 'Twitterで続ける';
+			case 'sessions.log_out': return 'ログアウトする';
+			case 'sessions.log_out_succeeded': return 'ログアウトしました。';
 			case 'dictionaries.dictionaries': return '辞書一覧';
 			case 'dictionaries.dictionary': return '辞書';
 			case 'dictionaries.search': return '検索する';

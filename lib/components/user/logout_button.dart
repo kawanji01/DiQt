@@ -2,8 +2,9 @@ import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/components/button/large_green_button.dart';
 import 'package:flutter/material.dart';
@@ -36,11 +37,11 @@ class UserLogoutButtonState extends ConsumerState<UserLogoutButton> {
         // ローディングを消す
         EasyLoading.dismiss();
         if (!mounted) return;
-        const snackBar = SnackBar(content: Text('ログアウトしました。'));
+        final snackBar = SnackBar(content: Text(t.sessions.log_out_succeeded));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
+        HomePage.push(context);
       },
-      child: const LargeGreenButton(label: 'ログアウト', icon: Icons.logout),
+      child: LargeGreenButton(label: t.sessions.log_out, icon: Icons.logout),
     );
   }
 }
