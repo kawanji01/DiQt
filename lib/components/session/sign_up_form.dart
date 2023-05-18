@@ -1,5 +1,7 @@
+import 'package:booqs_mobile/components/button/large_orange_button.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
@@ -8,14 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpForm extends ConsumerStatefulWidget {
-  const SignUpForm({Key? key}) : super(key: key);
+class SessionSignUpForm extends ConsumerStatefulWidget {
+  const SessionSignUpForm({Key? key}) : super(key: key);
 
   @override
-  SignUpFormState createState() => SignUpFormState();
+  SessionSignUpFormState createState() => SessionSignUpFormState();
 }
 
-class SignUpFormState extends ConsumerState<SignUpForm> {
+class SessionSignUpFormState extends ConsumerState<SessionSignUpForm> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _idController = TextEditingController();
@@ -54,8 +56,7 @@ class SignUpFormState extends ConsumerState<SignUpForm> {
       if (resMap == null) {
         if (!mounted) return;
         _passwordController.text = '';
-        const snackBar = SnackBar(
-            content: Text('登録できませんでした。指定メールアドレスのユーザーはすでに存在しているか、パスワードが短すぎます。'));
+        final snackBar = SnackBar(content: Text(t.sessions.sign_up_failed));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         User user = User.fromJson(resMap['user']);
@@ -73,45 +74,24 @@ class SignUpFormState extends ConsumerState<SignUpForm> {
       child: Column(
         children: <Widget>[
           SessionFormField(
-              label: "ユーザー名", controller: _nameController, isPassword: false),
+              label: t.sessions.user_name,
+              controller: _nameController,
+              isPassword: false),
           SessionFormField(
-              label: "メールアドレス", controller: _idController, isPassword: false),
+              label: t.sessions.email,
+              controller: _idController,
+              isPassword: false),
           SessionFormField(
-              label: "パスワード（６文字以上）",
+              label: "${t.sessions.password}（${t.sessions.password_condition}）",
               controller: _passwordController,
               isPassword: true),
           const SizedBox(height: 20),
           // SubmitButton
           InkWell(
-            onTap: () {
-              submit();
-            },
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(5)),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: Colors.grey.shade200,
-                        offset: const Offset(2, 4),
-                        blurRadius: 5,
-                        spreadRadius: 2)
-                  ],
-                  gradient: const LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-              child: const Text(
-                '登録する',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
+              onTap: () {
+                submit();
+              },
+              child: LargeOrangeButton(label: t.sessions.register)),
         ],
       ),
     );

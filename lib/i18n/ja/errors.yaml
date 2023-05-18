@@ -1,3 +1,4 @@
 error_message_404: 'ページが見つかりませんでした。'
 error_message_505: '大変申し訳ございません。サーバーでエラーが発生しました。'
 cant_be_blank: "この項目は空欄にできません。"
+error_occured: 'エラーが発生しました。'

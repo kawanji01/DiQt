@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -13,14 +15,14 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:crypto/crypto.dart';
 import 'package:nonce/nonce.dart';
 
-class AppleButton extends ConsumerStatefulWidget {
-  const AppleButton({Key? key}) : super(key: key);
+class SessionAppleButton extends ConsumerStatefulWidget {
+  const SessionAppleButton({Key? key}) : super(key: key);
 
   @override
-  AppleButtonState createState() => AppleButtonState();
+  SessionAppleButtonState createState() => SessionAppleButtonState();
 }
 
-class AppleButtonState extends ConsumerState<AppleButton> {
+class SessionAppleButtonState extends ConsumerState<SessionAppleButton> {
   @override
   Widget build(BuildContext context) {
     final rawNonce = Nonce.generate();
@@ -30,49 +32,51 @@ class AppleButtonState extends ConsumerState<AppleButton> {
     if (Platform.isAndroid) clientId = dotenv.env['ANDROID_SERVICE_ID'];
 
     return SignInWithAppleButton(
-      text: 'Appleで続ける',
+      text: t.sessions.continue_with_apple,
       height: 48,
       onPressed: () async {
-        // 認証処理
-        final appleCredential = await SignInWithApple.getAppleIDCredential(
-          scopes: [
-            AppleIDAuthorizationScopes.email,
-            AppleIDAuthorizationScopes.fullName,
-          ],
-          webAuthenticationOptions: WebAuthenticationOptions(
-            clientId: clientId!,
-            redirectUri: Uri.parse(
-              '${const String.fromEnvironment("ROOT_URL")}/auth/apple/callback_on_android',
+        try {
+          // 認証処理
+          final appleCredential = await SignInWithApple.getAppleIDCredential(
+            scopes: [
+              AppleIDAuthorizationScopes.email,
+              AppleIDAuthorizationScopes.fullName,
+            ],
+            webAuthenticationOptions: WebAuthenticationOptions(
+              clientId: clientId!,
+              redirectUri: Uri.parse(
+                '${DiQtURL.rootWithoutLocale()}/auth/apple/callback_on_android',
+              ),
             ),
-          ),
-          // nonce : リプレイアタック対策。　参考： https://medium.com/flutter-jp/sign-in-with-apple-d0d123cbbe17
-          nonce: sha256.convert(utf8.encode(rawNonce)).toString(),
-          // state: CSRF対策
-          state: state,
-        );
-
-        // 画面全体にローディングを表示
-        EasyLoading.show(status: 'loading...');
-        final Map? resMap = await RemoteSessions.apple(appleCredential);
-        EasyLoading.dismiss();
-
-        if (resMap == null) {
-          if (!mounted) return;
-          const snackBar = SnackBar(content: Text('ログインしました。'));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        } else {
-          final User user = User.fromJson(resMap['user']);
-          await UserSetup.signIn(user);
-          ref.read(currentUserProvider.notifier).state = user;
-          if (!mounted) return;
-          const snackBar = SnackBar(content: Text('ログインしました。'));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            // nonce : リプレイアタック対策。　参考： https://medium.com/flutter-jp/sign-in-with-apple-d0d123cbbe17
+            nonce: sha256.convert(utf8.encode(rawNonce)).toString(),
+            // state: CSRF対策
+            state: state,
+          );
+          // 画面全体にローディングを表示
+          EasyLoading.show(status: 'loading...');
+          final Map? resMap = await RemoteSessions.apple(appleCredential);
           EasyLoading.dismiss();
-          UserMyPage.push(context);
-        }
 
-        // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
-        // after they have been validated with Apple (see `Integration` section for more information on how to do this)
+          if (resMap == null) {
+            if (!mounted) return;
+            final snackBar = SnackBar(content: Text(t.sessions.login_failed));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          } else {
+            final User user = User.fromJson(resMap['user']);
+            await UserSetup.signIn(user);
+            ref.read(currentUserProvider.notifier).state = user;
+            if (!mounted) return;
+            final snackBar =
+                SnackBar(content: Text(t.sessions.login_succeeded));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            UserMyPage.push(context);
+          }
+        } catch (e) {
+          EasyLoading.dismiss();
+          final snackBar = SnackBar(content: Text(t.sessions.cancelled));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
       },
     );
   }

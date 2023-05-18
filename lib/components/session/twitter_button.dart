@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
@@ -52,14 +53,14 @@ class TwitterButtonState extends ConsumerState<TwitterButton> {
           EasyLoading.dismiss();
           if (resMap == null) {
             if (!mounted) return;
-            const snackBar = SnackBar(content: Text('エラーが発生しました。'));
+            final snackBar = SnackBar(content: Text(t.errors.error_occured));
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
             return;
           }
           final User user = User.fromJson(resMap['user']);
           await UserSetup.signIn(user);
           ref.read(currentUserProvider.notifier).state = user;
-          const snackBar = SnackBar(content: Text('ログインしました。'));
+          final snackBar = SnackBar(content: Text(t.sessions.login_succeeded));
           if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           UserMyPage.push(context);
@@ -69,14 +70,14 @@ class TwitterButtonState extends ConsumerState<TwitterButton> {
           EasyLoading.dismiss();
           if (!mounted) return;
           // cancel
-          const snackBar = SnackBar(content: Text('キャンセルしました。'));
+          final snackBar = SnackBar(content: Text(t.sessions.cancelled));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           break;
         case TwitterLoginStatus.error:
           EasyLoading.dismiss();
           if (!mounted) return;
           // error
-          const snackBar = SnackBar(content: Text('エラーが発生しました。'));
+          final snackBar = SnackBar(content: Text(t.errors.error_occured));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           break;
         default:
@@ -85,21 +86,6 @@ class TwitterButtonState extends ConsumerState<TwitterButton> {
 
     const color = Color(0xff1da1f2);
 
-    final richText = RichText(
-        text: const TextSpan(children: [
-      WidgetSpan(
-        child: FaIcon(
-          FontAwesomeIcons.twitter,
-          size: 20,
-          color: Colors.white,
-        ),
-      ),
-      TextSpan(
-          text: ' Twitterで続ける',
-          style: TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal))
-    ]));
-
     return InkWell(
       onTap: () {
         twitterAuth();
@@ -107,14 +93,33 @@ class TwitterButtonState extends ConsumerState<TwitterButton> {
       child: Container(
         height: 48,
         padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-        margin: const EdgeInsets.symmetric(vertical: 24),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           border: Border.all(color: color, width: 1),
           borderRadius: const BorderRadius.all(Radius.circular(5)),
           color: color,
         ),
-        child: richText,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const FaIcon(
+              FontAwesomeIcons.twitter,
+              size: 20,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 4),
+            Flexible(
+              child: Text(
+                t.sessions.continue_with_twitter,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal),
+                overflow: TextOverflow.visible,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -16,11 +16,11 @@ class BottomNavbarForSchool extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String dictionary = '${t['layouts.dictionary']}';
-    final String review = '${t['layouts.review']}';
-    final String notification = '${t['layouts.notification']}';
-    final String myPage = '${t['layouts.my_page']}';
-    final String school = '${t['layouts.school']}';
+    final String dictionary = t.layouts.dictionary;
+    final String review = t.layouts.review;
+    final String notification = t.layouts.notification;
+    final String myPage = t.layouts.my_page;
+    final String school = t.layouts.school;
 
     final int selectedIndex = ref.watch(bottomNavbarState);
 

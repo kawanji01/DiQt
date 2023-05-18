@@ -13,7 +13,7 @@ class Entrance extends StatelessWidget {
     Widget submitButton() {
       return InkWell(
         onTap: () {
-          LoginPage.push(context);
+          SessionLoginPage.push(context);
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -42,7 +42,7 @@ class Entrance extends StatelessWidget {
     Widget signUpButton() {
       return InkWell(
         onTap: () {
-          SignUpPage.push(context);
+          SessionSignUpPage.push(context);
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
