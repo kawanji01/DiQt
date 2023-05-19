@@ -1,4 +1,6 @@
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -10,27 +12,31 @@ import 'package:booqs_mobile/components/session/google_button.dart';
 import 'package:booqs_mobile/components/session/login_form.dart';
 import 'package:booqs_mobile/components/session/twitter_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SessionLoginPage extends StatefulWidget {
-  const SessionLoginPage({Key? key}) : super(key: key);
+class SessionLoginPage extends ConsumerWidget {
+  const SessionLoginPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(loginPage);
   }
 
   @override
-  SessionLoginPageState createState() => SessionLoginPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    /*  final User? user = ref.watch(currentUserProvider);
+    if (user == null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(t.sessions.log_in),
+        ),
+        body: Container(
+          padding: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: const Text('You have already logged in.'),
+        ),
+      );
+    } */
 
-class SessionLoginPageState extends State<SessionLoginPage> {
-  // パスワードリセット
-  Future _moveToInitPasswordPage() async {
-    final String url = '${DiQtURL.root(context)}/password_resets/new';
-    WebPageLauncher.openByWebView(url);
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(t.sessions.log_in),
@@ -45,7 +51,7 @@ class SessionLoginPageState extends State<SessionLoginPage> {
             children: <Widget>[
               const SizedBox(height: 48),
               const SessionLoginForm(),
-              // forgetPassword
+              // forgetPassword パスワードリセット
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 alignment: Alignment.centerRight,
@@ -56,7 +62,11 @@ class SessionLoginPageState extends State<SessionLoginPage> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  onPressed: () => _moveToInitPasswordPage(),
+                  onPressed: () {
+                    final String url =
+                        '${DiQtURL.root(context)}/password_resets/new';
+                    WebPageLauncher.openByWebView(url);
+                  },
                   child: Text(t.sessions.forgot_password,
                       style: const TextStyle(color: Colors.black87)),
                 ),

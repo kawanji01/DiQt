@@ -1,8 +1,8 @@
 import 'package:booqs_mobile/components/home/dictionary_screen.dart';
 import 'package:booqs_mobile/components/home/loading_screen.dart';
 import 'package:booqs_mobile/components/home/sign_in_screen.dart';
+
 import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,11 +47,17 @@ class HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final User? user = ref.watch(currentUserProvider);
-    if (user == null) {
-      return const HomeSignInScreen();
-    } else {
-      return const HomeDictionaryScreen();
-    }
+    //
+    return ref.watch(asyncCurrentUserProvider).when(
+        data: (user) {
+          if (user == null) {
+            return const HomeSignInScreen();
+          }
+          return const HomeDictionaryScreen();
+        },
+        error: (e, str) => HomeLoadingScreen(
+              error: '$e',
+            ),
+        loading: () => const HomeLoadingScreen());
   }
 }
