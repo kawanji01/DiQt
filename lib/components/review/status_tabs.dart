@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/review/scheduled.dart';
@@ -12,12 +11,9 @@ class ReviewStatusTabs extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? user = ref.watch(currentUserProvider);
-    final int unsolvedReviewsCount =
-        user == null ? 0 : user.unsolvedReviewsCount;
-    final int reviewsCount = user == null ? 0 : user.reviewsCount;
-    final int solvedReviewsCount =
-        user == null ? 0 : reviewsCount - unsolvedReviewsCount;
+    final int unsolvedReviewsCount = ref.watch(unsolvedReviewsCountProvider);
+    final int reviewsCount = ref.watch(reviewsCountProvider);
+    final int solvedReviewsCount = ref.watch(solvedReviewsCountProvider);
 
     const selectedStyle = TextStyle(
         color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold);

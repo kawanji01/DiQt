@@ -1,6 +1,5 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,13 +8,8 @@ class BottomNavbarNotificationIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? user = ref.watch(currentUserProvider);
-    // ログインしていないなら通常のアイコン
-    if (user == null) {
-      return const Icon(Icons.notifications);
-    }
     // 未受領の実績メダルがあるなら、それを伝える
-    if (user.rewardRemained) {
+    if (ref.watch(rewardRemainedProvider)) {
       return badges.Badge(
         badgeContent: const Icon(
           Icons.military_tech,
@@ -26,7 +20,7 @@ class BottomNavbarNotificationIcon extends ConsumerWidget {
     }
 
     // 通知の数が０なら通常のアイコン
-    final int counter = user.unreadNotificationsCount;
+    final int counter = ref.watch(unreadNotificationsCountProvider);
     if (counter == 0) {
       return const Icon(Icons.notifications);
     }

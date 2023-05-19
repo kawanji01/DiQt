@@ -63,10 +63,6 @@ final asyncUserProvider =
   }
 });
 
-// プレミアムユーザーの検証
-final premiumEnabledProvider = StateProvider<bool>((ref) => ref.watch(
-    currentUserProvider.select((user) => user == null ? false : user.premium)));
-
 // ユーザーの言語番号(formのControllerとして利用)
 final userLangNumberProvider = StateProvider<int>((ref) {
   final int langNumber = ref.watch(
@@ -86,4 +82,36 @@ final asyncUserSchoolsProvider =
 
   resMap['schools'].forEach((e) => schools.add(Chapter.fromJson(e)));
   return schools;
+});
+
+//// ログインユーザーの情報  ////
+// プレミアムユーザーの検証
+final premiumEnabledProvider = Provider<bool>(
+  (ref) =>
+      ref.watch(currentUserProvider.select((user) => user?.premium ?? false)),
+);
+// 確認していない通知の数
+final unreadNotificationsCountProvider = Provider<int>(
+  (ref) => ref.watch(currentUserProvider
+      .select((user) => user?.unreadNotificationsCount ?? 0)),
+);
+// 報酬を受け取ったかどうか。
+final rewardRemainedProvider = Provider<bool>(
+  (ref) => ref.watch(
+      currentUserProvider.select((user) => user?.rewardRemained ?? false)),
+);
+// 未解答の復習の数
+final unsolvedReviewsCountProvider = Provider<int>(
+  (ref) => ref.watch(
+      currentUserProvider.select((user) => user?.unsolvedReviewsCount ?? 0)),
+);
+// 復習の数
+final reviewsCountProvider = Provider<int>(
+  (ref) =>
+      ref.watch(currentUserProvider.select((user) => user?.reviewsCount ?? 0)),
+);
+// 解答済の復習の数
+final solvedReviewsCountProvider = Provider<int>((ref) {
+  return ref.watch(reviewsCountProvider) -
+      ref.watch(unsolvedReviewsCountProvider);
 });
