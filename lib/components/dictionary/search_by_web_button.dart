@@ -17,6 +17,7 @@ class DictionarySearchByWebButton extends StatelessWidget {
             WebPageLauncher.searchEntryByGoogle(keyword, langNumberOfKeyword),
         child: MediumGreenButton(
           label: t['dictionaries.search_by_web'],
+          fontSize: 16,
           icon: Icons.search,
         ));
   }

@@ -1,10 +1,10 @@
+import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:booqs_mobile/components/notice/item_list_view.dart';
-import 'package:booqs_mobile/components/shared/entrance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -43,7 +43,7 @@ class NoticeIndexPageState extends ConsumerState<NoticeIndexPage> {
   Widget build(BuildContext context) {
     _user = ref.watch(currentUserProvider);
 
-    if (_user == null) return const Entrance();
+    if (_user == null) return const LoadingSpinner();
 
     return SingleChildScrollView(
       child: Container(

@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
@@ -130,7 +131,7 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
       if (!mounted) return;
 
       if (resMap == null) {
-        const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
+        final snackBar = SnackBar(content: Text(t.words.update_failed));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         final Word word = Word.fromJson(resMap['word']);
@@ -167,6 +168,7 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
                     antonymsController: _antonymsController,
                     relatedController: _relatedController,
                     dictionary: _dictionary!,
+                    word: _word,
                   ),
                   const SizedBox(height: 40),
                   // SubmitBtn
@@ -184,9 +186,9 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
                               save(_word);
                             },
                       icon: const Icon(Icons.update, color: Colors.white),
-                      label: const Text(
-                        '更新する',
-                        style: TextStyle(
+                      label: Text(
+                        t.shared.update,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                     ),
@@ -200,7 +202,7 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${_entryController.text}の編集'),
+        title: Text(t.words.edit),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(

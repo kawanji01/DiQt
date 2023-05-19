@@ -117,8 +117,8 @@ final routes = {
   noticeIndexPage: (context) => const NoticeIndexPage(),
   noticeHomePage: (context) => const NoticeHomePage(),
   // Session
-  signUpPage: (context) => const SignUpPage(),
-  loginPage: (context) => const LoginPage(),
+  signUpPage: (context) => const SessionSignUpPage(),
+  loginPage: (context) => const SessionLoginPage(),
   // Dictionary
   dictionaryShowPage: (context) => const DictionaryShowPage(),
   dictionaryWordSearchResultsPage: (context) =>

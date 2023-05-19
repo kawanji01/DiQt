@@ -7,6 +7,11 @@ class DiQtURL {
   }
 
   //
+  static String rootWithLocale(String locale) {
+    return '${const String.fromEnvironment("ROOT_URL")}/$locale';
+  }
+
+  //
   static String rootWithoutLocale() {
     return const String.fromEnvironment("ROOT_URL");
   }

@@ -42,6 +42,6 @@ class LocalUserInfo {
   // ホーム画面で選択した辞書IDを保存する
   static void writeSelectedDictionaryId(int dictionaryId) {
     const storage = FlutterSecureStorage();
-    storage.write(key: 'locale', value: '$dictionaryId');
+    storage.write(key: 'selectedDictionaryId', value: '$dictionaryId');
   }
 }

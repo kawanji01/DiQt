@@ -1,7 +1,7 @@
+import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/user/calendar.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
-import 'package:booqs_mobile/components/shared/entrance.dart';
 import 'package:booqs_mobile/components/shared/premium_plan_button.dart';
 import 'package:booqs_mobile/components/user/achievements_button.dart';
 import 'package:booqs_mobile/components/user/drill_in_progress.dart';
@@ -20,7 +20,7 @@ class UserMypageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ユーザーが存在していないなら、ログイン・登録画面へ誘導する。
-    if (user == null) return const Entrance();
+    if (user == null) return const LoadingSpinner();
 
     return SingleChildScrollView(
       child: Container(

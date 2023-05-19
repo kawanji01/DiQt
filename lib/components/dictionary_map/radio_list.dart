@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
+import 'package:booqs_mobile/data/remote/dictionaries.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
@@ -19,20 +20,29 @@ class DictionaryMapRadioListState
     extends ConsumerState<DictionaryMapRadioList> {
   @override
   void initState() {
-    //WidgetsBinding.instance.addPostFrameCallback((_) {
-    // 何も選択されていない場合は、一番上の辞書を自動選択
-    //   if (ref.watch(selectedDictionaryProvider) == null) {
-    //     _restoreLastSelected();
-    //  }
-    //});
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // 何も選択されていない場合は、最後に選択した辞書を設定
+      if (ref.watch(selectedDictionaryProvider) == null) {
+        _loadLastSelectedDictionary();
+      }
+    });
     super.initState();
   }
 
-  // Future<void> _restoreLastSelected() async {
-  //  final Dictionary? dictionary = ref.refresh(selectedDictionaryProvider);
-  //  ref.read(selectedDictionaryProvider.notifier).state = dictionary;
-  //}
+  Future<void> _loadLastSelectedDictionary() async {
+    final String? selectedDictionaryIdStr =
+        await LocalUserInfo.getSelectedDictionaryId();
+    if (selectedDictionaryIdStr == null) return;
+    try {
+      final int dictionaryId = int.parse(selectedDictionaryIdStr);
+      final Map? resMap = await RemoteDictionaries.show(dictionaryId);
+      if (resMap == null || resMap['dictionary'] == null) return;
+      final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
+      ref.read(selectedDictionaryProvider.notifier).state = dictionary;
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +50,6 @@ class DictionaryMapRadioListState
 
     Widget buildListRow(List<Dictionary> dictionaries, int index) {
       final dictionary = dictionaries[index];
-
-      if (index == dictionaries.length - 1) {}
 
       // ref: https://api.flutter.dev/flutter/material/RadioListTile-class.html
       return RadioListTile(
@@ -73,7 +81,9 @@ class DictionaryMapRadioListState
       },
       child: future.when(
         data: (List<Dictionary>? dictionaries) {
-          if (dictionaries == null) return Container();
+          if (dictionaries == null) {
+            return const Text('Dictionaries does not exist.');
+          }
 
           return ListView.separated(
             shrinkWrap: true,

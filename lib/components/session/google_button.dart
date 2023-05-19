@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
@@ -9,14 +10,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class GoogleButton extends ConsumerStatefulWidget {
-  const GoogleButton({Key? key}) : super(key: key);
+class SessionGoogleButton extends ConsumerStatefulWidget {
+  const SessionGoogleButton({Key? key}) : super(key: key);
 
   @override
-  GoogleButtonState createState() => GoogleButtonState();
+  SessionGoogleButtonState createState() => SessionGoogleButtonState();
 }
 
-class GoogleButtonState extends ConsumerState<GoogleButton> {
+class SessionGoogleButtonState extends ConsumerState<SessionGoogleButton> {
   @override
   Widget build(BuildContext context) {
     // Google 認証
@@ -27,44 +28,35 @@ class GoogleButtonState extends ConsumerState<GoogleButton> {
     ]);
 
     Future googleAuth() async {
-      final GoogleSignInAccount? googleUser = await googleSignin.signIn();
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser!.authentication;
+      try {
+        final GoogleSignInAccount? googleUser = await googleSignin.signIn();
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser!.authentication;
 
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteSessions.google(googleAuth);
-      // 画面全体のローディングを消す。
-      EasyLoading.dismiss();
-      if (resMap == null) {
-        if (!mounted) return;
-        const snackBar = SnackBar(content: Text('エラーが発生しました。'));
+        // 画面全体にローディングを表示
+        EasyLoading.show(status: 'loading...');
+        final Map? resMap = await RemoteSessions.google(googleAuth);
+        // 画面全体のローディングを消す。
+        EasyLoading.dismiss();
+        if (resMap == null) {
+          if (!mounted) return;
+          final snackBar = SnackBar(content: Text(t.sessions.login_failed));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        } else {
+          final User user = User.fromJson(resMap['user']);
+          await UserSetup.signIn(user);
+          ref.read(currentUserProvider.notifier).state = user;
+          if (!mounted) return;
+          final snackBar = SnackBar(content: Text(t.sessions.login_succeeded));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          UserMyPage.push(context);
+        }
+      } catch (e) {
+        EasyLoading.dismiss();
+        final snackBar = SnackBar(content: Text(t.sessions.cancelled));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } else {
-        final User user = User.fromJson(resMap['user']);
-        await UserSetup.signIn(user);
-        ref.read(currentUserProvider.notifier).state = user;
-        if (!mounted) return;
-        const snackBar = SnackBar(content: Text('ログインしました。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
       }
     }
-
-    final richText = RichText(
-        text: const TextSpan(children: [
-      WidgetSpan(
-        child: FaIcon(
-          FontAwesomeIcons.google,
-          size: 20,
-          color: Colors.white,
-        ),
-      ),
-      TextSpan(
-          text: ' Googleで続ける',
-          style: TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal))
-    ]));
 
     return InkWell(
       onTap: () {
@@ -73,14 +65,33 @@ class GoogleButtonState extends ConsumerState<GoogleButton> {
       child: Container(
         height: 48,
         padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-        margin: const EdgeInsets.only(top: 20),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           border: Border.all(color: const Color(0xffDB4437), width: 1),
           borderRadius: const BorderRadius.all(Radius.circular(5)),
           color: const Color(0xffDB4437),
         ),
-        child: richText,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const FaIcon(
+              FontAwesomeIcons.google,
+              size: 20,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 4),
+            Flexible(
+              child: Text(
+                t.sessions.continue_with_google,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal),
+                overflow: TextOverflow.visible,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

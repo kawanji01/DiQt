@@ -1,21 +1,24 @@
+import 'package:booqs_mobile/components/button/large_orange_button.dart';
+import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/components/session/form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginForm extends ConsumerStatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class SessionLoginForm extends ConsumerStatefulWidget {
+  const SessionLoginForm({Key? key}) : super(key: key);
 
   @override
-  LoginFormState createState() => LoginFormState();
+  SessionLoginFormState createState() => SessionLoginFormState();
 }
 
-class LoginFormState extends ConsumerState<LoginForm> {
+class SessionLoginFormState extends ConsumerState<SessionLoginForm> {
   final _formKey = GlobalKey<FormState>();
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -32,62 +35,35 @@ class LoginFormState extends ConsumerState<LoginForm> {
   Widget build(BuildContext context) {
     // 送信
     Future submit() async {
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
       if (!_formKey.currentState!.validate()) {
-        // ローディングを消す
-        EasyLoading.dismiss();
         return;
       }
-      final String email = _idController.text;
-      final String password = _passwordController.text;
-      Map? resMap = await RemoteSessions.login(email, password);
-      EasyLoading.dismiss();
-      if (resMap == null) {
-        if (!mounted) return;
-        _passwordController.clear();
-        const snackBar = SnackBar(content: Text('メールアドレスまたはパスワードが違います。'));
+      try {
+        final String email = _idController.text;
+        final String password = _passwordController.text;
+        // 画面全体にローディングを表示
+        EasyLoading.show(status: 'loading...');
+        Map? resMap = await RemoteSessions.login(email, password);
+        EasyLoading.dismiss();
+        if (resMap == null) {
+          if (!mounted) return;
+          _passwordController.clear();
+          final snackBar = SnackBar(content: Text(t.sessions.login_failed));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        } else {
+          User user = User.fromJson(resMap['user']);
+          await UserSetup.signIn(user);
+          if (!mounted) return;
+          ref.read(currentUserProvider.notifier).state = user;
+          ref.read(bottomNavbarState.notifier).state = 0;
+          final snackBar = SnackBar(content: Text(t.sessions.login_succeeded));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          HomePage.push(context);
+        }
+      } catch (e) {
+        final snackBar = SnackBar(content: Text(t.errors.error_occured));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } else {
-        User user = User.fromJson(resMap['user']);
-        await UserSetup.signIn(user);
-        if (!mounted) return;
-        ref.read(currentUserProvider.notifier).state = user;
-        const snackBar = SnackBar(content: Text('ログインしました。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        await UserMyPage.push(context);
       }
-    }
-
-    Widget submitButton() {
-      return InkWell(
-        onTap: () {
-          submit();
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.shade200,
-                    offset: const Offset(2, 4),
-                    blurRadius: 5,
-                    spreadRadius: 2)
-              ],
-              gradient: const LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-          child: const Text(
-            'ログインする',
-            style: TextStyle(
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      );
     }
 
     return Form(
@@ -95,13 +71,21 @@ class LoginFormState extends ConsumerState<LoginForm> {
       child: Column(
         children: <Widget>[
           SessionFormField(
-              label: "メールアドレス", controller: _idController, isPassword: false),
+              label: t.sessions.email,
+              controller: _idController,
+              isPassword: false),
           SessionFormField(
-              label: "パスワード",
+              label: t.sessions.password,
               controller: _passwordController,
               isPassword: true),
           const SizedBox(height: 20),
-          submitButton(),
+          InkWell(
+              onTap: () {
+                submit();
+              },
+              child: LargeOrangeButton(
+                label: t.sessions.log_in,
+              )),
         ],
       ),
     );

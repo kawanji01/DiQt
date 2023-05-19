@@ -15,10 +15,10 @@ class BottomNavbarForNormal extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String dictionary = '${t['layouts.dictionary']}';
-    final String review = '${t['layouts.review']}';
-    final String notification = '${t['layouts.notification']}';
-    final String myPage = '${t['layouts.my_page']}';
+    final String dictionary = t.layouts.dictionary;
+    final String review = t.layouts.review;
+    final String notification = t.layouts.notification;
+    final String myPage = t.layouts.my_page;
 
     int selectedIndex = ref.watch(bottomNavbarState);
     // 教室プラン加入者がログアウトする時、マイページのindexが4になることによって発生するエラーを防ぐ。

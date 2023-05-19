@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
@@ -119,7 +120,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
       if (!mounted) return;
 
       if (resMap == null) {
-        const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
+        final snackBar = SnackBar(content: Text(t.words.create_failed));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
@@ -158,6 +159,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
                     antonymsController: _antonymsController,
                     relatedController: _relatedController,
                     dictionary: _dictionary!,
+                    word: null,
                   ),
                   const SizedBox(height: 40),
                   // 作成ボタン
@@ -166,8 +168,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
-                        minimumSize: const Size(double.infinity,
-                            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                        minimumSize: const Size(double.infinity, 40),
                       ),
                       onPressed: _isRequesting
                           ? null
@@ -175,9 +176,9 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
                               create();
                             },
                       icon: const Icon(Icons.update, color: Colors.white),
-                      label: const Text(
-                        '作成する',
-                        style: TextStyle(
+                      label: Text(
+                        t.shared.create,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                     ),
@@ -189,7 +190,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('項目の作成'),
+        title: Text(t.words.add),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -8,21 +9,20 @@ import 'package:booqs_mobile/components/session/divider_widget.dart';
 import 'package:booqs_mobile/components/session/google_button.dart';
 import 'package:booqs_mobile/components/session/login_form.dart';
 import 'package:booqs_mobile/components/session/twitter_button.dart';
-import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SessionLoginPage extends StatefulWidget {
+  const SessionLoginPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(loginPage);
   }
 
   @override
-  LoginPageState createState() => LoginPageState();
+  SessionLoginPageState createState() => SessionLoginPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class SessionLoginPageState extends State<SessionLoginPage> {
   // パスワードリセット
   Future _moveToInitPasswordPage() async {
     final String url = '${DiQtURL.root(context)}/password_resets/new';
@@ -33,7 +33,7 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ログイン'),
+        title: Text(t.sessions.log_in),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(
@@ -44,7 +44,7 @@ class LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const SizedBox(height: 48),
-              const LoginForm(),
+              const SessionLoginForm(),
               // forgetPassword
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 10),
@@ -57,19 +57,23 @@ class LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   onPressed: () => _moveToInitPasswordPage(),
-                  child: const Text('パスワードを忘れましたか?',
-                      style: TextStyle(color: Colors.black87)),
+                  child: Text(t.sessions.forgot_password,
+                      style: const TextStyle(color: Colors.black87)),
                 ),
               ),
-              const DividerWidget(),
-              const GoogleButton(),
-              const TwitterButton(),
-              const AppleButton(),
+              const SessionDividerWidget(),
               const SizedBox(height: 24),
-              // signUpLabel
+              const SessionGoogleButton(),
+              const SizedBox(height: 24),
+              const SessionAppleButton(),
+              const SizedBox(height: 24),
+              const SessionTwitterButton(),
+
+              const SizedBox(height: 24),
+              // SignUp recommendation
               InkWell(
                 onTap: () {
-                  SignUpPage.push(context);
+                  SessionSignUpPage.push(context);
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 20),
@@ -77,18 +81,18 @@ class LoginPageState extends State<LoginPage> {
                   alignment: Alignment.bottomCenter,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
+                    children: <Widget>[
                       Text(
-                        'アカウントを持っていませんか？',
-                        style: TextStyle(
+                        t.sessions.dont_have_account,
+                        style: const TextStyle(
                             fontSize: 13, fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        '新規登録',
-                        style: TextStyle(
+                        t.sessions.sign_up,
+                        style: const TextStyle(
                             color: Color(0xfff79c4f),
                             fontSize: 13,
                             fontWeight: FontWeight.w600),
@@ -97,11 +101,13 @@ class LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 40,
+              ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

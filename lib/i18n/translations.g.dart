@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 778 (389 per locale)
+/// Strings: 836 (418 per locale)
 ///
-/// Built on 2023-05-16 at 13:25 UTC
+/// Built on 2023-05-18 at 23:45 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -147,6 +147,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsEn _root = this; // ignore: unused_field
 
 	// Translations
+	late final _TranslationsSessionsEn sessions = _TranslationsSessionsEn._(_root);
 	late final _TranslationsDictionariesEn dictionaries = _TranslationsDictionariesEn._(_root);
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
@@ -155,6 +156,37 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsLayoutsEn layouts = _TranslationsLayoutsEn._(_root);
 	late final _TranslationsDictionaryMapsEn dictionaryMaps = _TranslationsDictionaryMapsEn._(_root);
 	late final _TranslationsWordsEn words = _TranslationsWordsEn._(_root);
+	late final _TranslationsHomeEn home = _TranslationsHomeEn._(_root);
+}
+
+// Path: sessions
+class _TranslationsSessionsEn {
+	_TranslationsSessionsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get log_in => 'Log in';
+	String get sign_up => 'Sign up';
+	String get register => 'Register';
+	String get dont_have_account => 'Don\'t have an account?';
+	String get forgot_password => 'Forgot password?';
+	String get already_have_an_account => 'Already have an account?';
+	String get user_name => 'Name';
+	String get email => 'Email';
+	String get password => 'Password';
+	String get password_condition => 'at least 6 characters';
+	String get sign_up_succeeded => 'Signed up. Welcome to DiQt!';
+	String get sign_up_failed => 'Could not register. Either the user with the email address already exists or the password is too short.';
+	String get login_succeeded => 'Logged in';
+	String get login_failed => 'Could not log in.';
+	String get cancelled => 'cancelled';
+	String get or => 'or';
+	String get continue_with_apple => 'Continue with Apple';
+	String get continue_with_google => 'Continue with Google';
+	String get continue_with_twitter => 'Continue with Twitter';
+	String get log_out => 'Log out';
+	String get log_out_succeeded => 'Logged out';
 }
 
 // Path: dictionaries
@@ -219,6 +251,7 @@ class _TranslationsErrorsEn {
 	String get error_message_404 => 'Page Not Found...';
 	String get error_message_505 => 'I\'m so sorry. This is internal server error.';
 	String get cant_be_blank => 'This field can\'t be blank.';
+	String get error_occured => 'Errors have occurred.';
 }
 
 // Path: shared
@@ -234,6 +267,7 @@ class _TranslationsSharedEn {
 	String get destroy => 'Destroy';
 	String get cancel => 'Cancel';
 	String get search => 'Search';
+	String please_enter({required Object name}) => 'Please enter "${name}"';
 }
 
 // Path: lang
@@ -600,6 +634,7 @@ class _TranslationsWordsEn {
 	String get synonyms => 'Synonyms';
 	String get antonyms => 'Antonyms';
 	String get related => 'Related Words';
+	String sense({required Object number}) => 'sense(${number})';
 	String get detailed_settings => 'Detailed Settings';
 	String get comment => 'Comment';
 	String get update => 'Fix';
@@ -616,6 +651,20 @@ class _TranslationsWordsEn {
 	String get view_your_edit => 'View your edit';
 	String get details => 'Details';
 	String get not_found => 'Not Found';
+}
+
+// Path: home
+class _TranslationsHomeEn {
+	_TranslationsHomeEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get welcome => 'Welcome to DiQt!';
+	String get welcome_description_1 => 'DiQt is a dictionary app to help you never forget vocabulary.';
+	String get welcome_description_2 => 'Easy to use. Look up the word in the dictionary,';
+	String get welcome_description_3 => 'set a review for the word you want to memorize,';
+	String get welcome_description_4 => 'and you can review it automatically until you learn it.';
 }
 
 // Path: <root>
@@ -643,6 +692,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsJa _root = this; // ignore: unused_field
 
 	// Translations
+	@override late final _TranslationsSessionsJa sessions = _TranslationsSessionsJa._(_root);
 	@override late final _TranslationsDictionariesJa dictionaries = _TranslationsDictionariesJa._(_root);
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
@@ -651,6 +701,37 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
 	@override late final _TranslationsDictionaryMapsJa dictionaryMaps = _TranslationsDictionaryMapsJa._(_root);
 	@override late final _TranslationsWordsJa words = _TranslationsWordsJa._(_root);
+	@override late final _TranslationsHomeJa home = _TranslationsHomeJa._(_root);
+}
+
+// Path: sessions
+class _TranslationsSessionsJa implements _TranslationsSessionsEn {
+	_TranslationsSessionsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get log_in => 'ログインする';
+	@override String get sign_up => '新規登録する';
+	@override String get register => '登録する';
+	@override String get dont_have_account => 'アカウントを持っていませんか？';
+	@override String get forgot_password => 'パスワードを忘れましたか?';
+	@override String get already_have_an_account => 'すでにアカウントをお持ちですか?';
+	@override String get user_name => 'ユーザー名';
+	@override String get email => 'メールアドレス';
+	@override String get password => 'パスワード';
+	@override String get password_condition => '6文字以上';
+	@override String get sign_up_succeeded => '登録が完了しました。ようこそDiQtへ。';
+	@override String get sign_up_failed => '登録できませんでした。そのメールアドレスのユーザーがすでに存在しているか、パスワードが短すぎます。';
+	@override String get login_succeeded => 'ログインしました。';
+	@override String get login_failed => 'ログインに失敗しました。';
+	@override String get cancelled => 'キャンセルされました。';
+	@override String get or => 'あるいは';
+	@override String get continue_with_apple => 'Appleで続ける';
+	@override String get continue_with_google => 'Googleで続ける';
+	@override String get continue_with_twitter => 'Twitterで続ける';
+	@override String get log_out => 'ログアウトする';
+	@override String get log_out_succeeded => 'ログアウトしました。';
 }
 
 // Path: dictionaries
@@ -695,7 +776,7 @@ class _TranslationsDictionariesJa implements _TranslationsDictionariesEn {
 	@override String get grammars => '文法';
 	@override String get no_applied_dictionary => '辞書設定：なし';
 	@override String search_results_of({required Object query}) => '『${query}』の検索結果';
-	@override String entry_not_found({required Object query}) => '${query}は辞書に登録されていません。';
+	@override String entry_not_found({required Object query}) => '"${query}"は辞書に登録されていません。';
 	@override String get search_by_web => 'Webで検索する';
 	@override String search_by_another({required Object name}) => '${name}で検索する';
 	@override String add_keyword_to_dictionary({required Object keyword}) => '"${keyword}"を辞書に追加する';
@@ -715,6 +796,7 @@ class _TranslationsErrorsJa implements _TranslationsErrorsEn {
 	@override String get error_message_404 => 'ページが見つかりませんでした。';
 	@override String get error_message_505 => '大変申し訳ございません。サーバーでエラーが発生しました。';
 	@override String get cant_be_blank => 'この項目は空欄にできません。';
+	@override String get error_occured => 'エラーが発生しました。';
 }
 
 // Path: shared
@@ -730,6 +812,7 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get destroy => '削除する';
 	@override String get cancel => 'キャンセルする';
 	@override String get search => '検索する';
+	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
 }
 
 // Path: lang
@@ -1096,6 +1179,7 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get synonyms => '類義語';
 	@override String get antonyms => '対義語';
 	@override String get related => '関連語';
+	@override String sense({required Object number}) => '意味(${number})';
 	@override String get detailed_settings => '詳細設定';
 	@override String get comment => 'コメント';
 	@override String get update => '修正する';
@@ -1114,12 +1198,47 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get not_found => '該当する単語はありません。';
 }
 
+// Path: home
+class _TranslationsHomeJa implements _TranslationsHomeEn {
+	_TranslationsHomeJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get welcome => 'DiQtへようこそ！';
+	@override String get welcome_description_1 => 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
+	@override String get welcome_description_2 => '使い方は簡単。辞書で調べて、';
+	@override String get welcome_description_3 => '覚えたい単語に復習を設定すれば、';
+	@override String get welcome_description_4 => '覚えるまで自動で復習できるようになります。';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
 extension on _TranslationsEn {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'sessions.log_in': return 'Log in';
+			case 'sessions.sign_up': return 'Sign up';
+			case 'sessions.register': return 'Register';
+			case 'sessions.dont_have_account': return 'Don\'t have an account?';
+			case 'sessions.forgot_password': return 'Forgot password?';
+			case 'sessions.already_have_an_account': return 'Already have an account?';
+			case 'sessions.user_name': return 'Name';
+			case 'sessions.email': return 'Email';
+			case 'sessions.password': return 'Password';
+			case 'sessions.password_condition': return 'at least 6 characters';
+			case 'sessions.sign_up_succeeded': return 'Signed up. Welcome to DiQt!';
+			case 'sessions.sign_up_failed': return 'Could not register. Either the user with the email address already exists or the password is too short.';
+			case 'sessions.login_succeeded': return 'Logged in';
+			case 'sessions.login_failed': return 'Could not log in.';
+			case 'sessions.cancelled': return 'cancelled';
+			case 'sessions.or': return 'or';
+			case 'sessions.continue_with_apple': return 'Continue with Apple';
+			case 'sessions.continue_with_google': return 'Continue with Google';
+			case 'sessions.continue_with_twitter': return 'Continue with Twitter';
+			case 'sessions.log_out': return 'Log out';
+			case 'sessions.log_out_succeeded': return 'Logged out';
 			case 'dictionaries.dictionaries': return 'Dictionaries';
 			case 'dictionaries.dictionary': return 'Dictionary';
 			case 'dictionaries.search': return 'Search';
@@ -1166,12 +1285,14 @@ extension on _TranslationsEn {
 			case 'errors.error_message_404': return 'Page Not Found...';
 			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
+			case 'errors.error_occured': return 'Errors have occurred.';
 			case 'shared.create': return 'Create';
 			case 'shared.edit': return 'Edit';
 			case 'shared.update': return 'Update';
 			case 'shared.destroy': return 'Destroy';
 			case 'shared.cancel': return 'Cancel';
 			case 'shared.search': return 'Search';
+			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
 			case 'lang.translating': return 'Translating...';
@@ -1493,6 +1614,7 @@ extension on _TranslationsEn {
 			case 'words.synonyms': return 'Synonyms';
 			case 'words.antonyms': return 'Antonyms';
 			case 'words.related': return 'Related Words';
+			case 'words.sense': return ({required Object number}) => 'sense(${number})';
 			case 'words.detailed_settings': return 'Detailed Settings';
 			case 'words.comment': return 'Comment';
 			case 'words.update': return 'Fix';
@@ -1509,6 +1631,11 @@ extension on _TranslationsEn {
 			case 'words.view_your_edit': return 'View your edit';
 			case 'words.details': return 'Details';
 			case 'words.not_found': return 'Not Found';
+			case 'home.welcome': return 'Welcome to DiQt!';
+			case 'home.welcome_description_1': return 'DiQt is a dictionary app to help you never forget vocabulary.';
+			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
+			case 'home.welcome_description_3': return 'set a review for the word you want to memorize,';
+			case 'home.welcome_description_4': return 'and you can review it automatically until you learn it.';
 			default: return null;
 		}
 	}
@@ -1517,6 +1644,27 @@ extension on _TranslationsEn {
 extension on _TranslationsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'sessions.log_in': return 'ログインする';
+			case 'sessions.sign_up': return '新規登録する';
+			case 'sessions.register': return '登録する';
+			case 'sessions.dont_have_account': return 'アカウントを持っていませんか？';
+			case 'sessions.forgot_password': return 'パスワードを忘れましたか?';
+			case 'sessions.already_have_an_account': return 'すでにアカウントをお持ちですか?';
+			case 'sessions.user_name': return 'ユーザー名';
+			case 'sessions.email': return 'メールアドレス';
+			case 'sessions.password': return 'パスワード';
+			case 'sessions.password_condition': return '6文字以上';
+			case 'sessions.sign_up_succeeded': return '登録が完了しました。ようこそDiQtへ。';
+			case 'sessions.sign_up_failed': return '登録できませんでした。そのメールアドレスのユーザーがすでに存在しているか、パスワードが短すぎます。';
+			case 'sessions.login_succeeded': return 'ログインしました。';
+			case 'sessions.login_failed': return 'ログインに失敗しました。';
+			case 'sessions.cancelled': return 'キャンセルされました。';
+			case 'sessions.or': return 'あるいは';
+			case 'sessions.continue_with_apple': return 'Appleで続ける';
+			case 'sessions.continue_with_google': return 'Googleで続ける';
+			case 'sessions.continue_with_twitter': return 'Twitterで続ける';
+			case 'sessions.log_out': return 'ログアウトする';
+			case 'sessions.log_out_succeeded': return 'ログアウトしました。';
 			case 'dictionaries.dictionaries': return '辞書一覧';
 			case 'dictionaries.dictionary': return '辞書';
 			case 'dictionaries.search': return '検索する';
@@ -1552,7 +1700,7 @@ extension on _TranslationsJa {
 			case 'dictionaries.grammars': return '文法';
 			case 'dictionaries.no_applied_dictionary': return '辞書設定：なし';
 			case 'dictionaries.search_results_of': return ({required Object query}) => '『${query}』の検索結果';
-			case 'dictionaries.entry_not_found': return ({required Object query}) => '${query}は辞書に登録されていません。';
+			case 'dictionaries.entry_not_found': return ({required Object query}) => '"${query}"は辞書に登録されていません。';
 			case 'dictionaries.search_by_web': return 'Webで検索する';
 			case 'dictionaries.search_by_another': return ({required Object name}) => '${name}で検索する';
 			case 'dictionaries.add_keyword_to_dictionary': return ({required Object keyword}) => '"${keyword}"を辞書に追加する';
@@ -1563,12 +1711,14 @@ extension on _TranslationsJa {
 			case 'errors.error_message_404': return 'ページが見つかりませんでした。';
 			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
 			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';
+			case 'errors.error_occured': return 'エラーが発生しました。';
 			case 'shared.create': return '作成する';
 			case 'shared.edit': return '編集する';
 			case 'shared.update': return '更新する';
 			case 'shared.destroy': return '削除する';
 			case 'shared.cancel': return 'キャンセルする';
 			case 'shared.search': return '検索する';
+			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
 			case 'lang.translating': return '翻訳中...';
@@ -1890,6 +2040,7 @@ extension on _TranslationsJa {
 			case 'words.synonyms': return '類義語';
 			case 'words.antonyms': return '対義語';
 			case 'words.related': return '関連語';
+			case 'words.sense': return ({required Object number}) => '意味(${number})';
 			case 'words.detailed_settings': return '詳細設定';
 			case 'words.comment': return 'コメント';
 			case 'words.update': return '修正する';
@@ -1906,6 +2057,11 @@ extension on _TranslationsJa {
 			case 'words.view_your_edit': return '編集内容を見る';
 			case 'words.details': return '詳細';
 			case 'words.not_found': return '該当する単語はありません。';
+			case 'home.welcome': return 'DiQtへようこそ！';
+			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
+			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';
+			case 'home.welcome_description_3': return '覚えたい単語に復習を設定すれば、';
+			case 'home.welcome_description_4': return '覚えるまで自動で復習できるようになります。';
 			default: return null;
 		}
 	}

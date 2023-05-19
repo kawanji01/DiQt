@@ -89,7 +89,9 @@ class LangLargeTranslationButtonsState
             });
           },
           child: MediumGreenButton(
-              label: t.lang.google_translation, icon: Icons.translate));
+              label: t.lang.google_translation,
+              fontSize: 16,
+              icon: Icons.translate));
     }
 
     Widget deeplButton() {
@@ -117,7 +119,9 @@ class LangLargeTranslationButtonsState
             });
           },
           child: MediumGreenButton(
-              label: t.lang.deepl_translation, icon: Icons.translate));
+              label: t.lang.deepl_translation,
+              fontSize: 16,
+              icon: Icons.translate));
     }
 
     Widget googleResults() {

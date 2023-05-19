@@ -99,6 +99,7 @@ class DictionaryMapRemovalScreenState
           child: ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 48),
+              backgroundColor: Colors.red,
             ),
             onPressed: _isRequesting
                 ? null
