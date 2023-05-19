@@ -1,9 +1,10 @@
 import 'package:booqs_mobile/components/button/large_orange_button.dart';
+import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/components/session/form_field.dart';
 import 'package:flutter/material.dart';
@@ -34,30 +35,34 @@ class SessionLoginFormState extends ConsumerState<SessionLoginForm> {
   Widget build(BuildContext context) {
     // 送信
     Future submit() async {
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
       if (!_formKey.currentState!.validate()) {
-        // ローディングを消す
-        EasyLoading.dismiss();
         return;
       }
-      final String email = _idController.text;
-      final String password = _passwordController.text;
-      Map? resMap = await RemoteSessions.login(email, password);
-      EasyLoading.dismiss();
-      if (resMap == null) {
-        if (!mounted) return;
-        _passwordController.clear();
-        const snackBar = SnackBar(content: Text('メールアドレスまたはパスワードが違います。'));
+      try {
+        final String email = _idController.text;
+        final String password = _passwordController.text;
+        // 画面全体にローディングを表示
+        EasyLoading.show(status: 'loading...');
+        Map? resMap = await RemoteSessions.login(email, password);
+        EasyLoading.dismiss();
+        if (resMap == null) {
+          if (!mounted) return;
+          _passwordController.clear();
+          final snackBar = SnackBar(content: Text(t.sessions.login_failed));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        } else {
+          User user = User.fromJson(resMap['user']);
+          await UserSetup.signIn(user);
+          if (!mounted) return;
+          ref.read(currentUserProvider.notifier).state = user;
+          ref.read(bottomNavbarState.notifier).state = 0;
+          final snackBar = SnackBar(content: Text(t.sessions.login_succeeded));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          HomePage.push(context);
+        }
+      } catch (e) {
+        final snackBar = SnackBar(content: Text(t.errors.error_occured));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } else {
-        User user = User.fromJson(resMap['user']);
-        await UserSetup.signIn(user);
-        if (!mounted) return;
-        ref.read(currentUserProvider.notifier).state = user;
-        const snackBar = SnackBar(content: Text('ログインしました。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        await UserMyPage.push(context);
       }
     }
 

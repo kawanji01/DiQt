@@ -60,6 +60,7 @@ class _UserCalendarState extends State<UserCalendar> {
         ));
       }
     });
+    if (!mounted) return;
     setState(() {
       _eventsList;
     });
@@ -133,37 +134,7 @@ class _UserCalendarState extends State<UserCalendar> {
             ),
           );
         },
-        onCellTapped: (date) {
-          /*  final eventsOnTheDate = _sampleEvents.where((event) {
-            final eventDate = event.eventDate;
-            return eventDate.year == date.year &&
-                eventDate.month == date.month &&
-                eventDate.day == date.day;
-          }).toList();
-          showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                    title:
-                        Text(date.month.monthName + " " + date.day.toString()),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: eventsOnTheDate
-                          .map(
-                            (event) => Container(
-                              width: double.infinity,
-                              padding: EdgeInsets.all(4),
-                              margin: EdgeInsets.only(bottom: 12),
-                              color: event.eventBackgroundColor,
-                              child: Text(
-                                event.eventName,
-                                style: TextStyle(color: event.eventTextColor),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  )); */
-        },
+        onCellTapped: (date) {},
         onPageChanged: (firstDate, lastDate) async {
           await _loadEvents(firstDate, lastDate);
 

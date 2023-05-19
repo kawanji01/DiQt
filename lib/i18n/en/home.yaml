@@ -1,5 +1,5 @@
 welcome: 'Welcome to DiQt!'
 welcome_description_1: 'DiQt is a dictionary app to help you never forget vocabulary.'
 welcome_description_2: 'Easy to use. Look up the word in the dictionary,'
-welcome_description_3: 'set a review for the word you want to remember,'
-welcome_description_4: 'and you can review it automatically later.'
+welcome_description_3: 'set a review for the word you want to memorize,'
+welcome_description_4: 'and you can review it automatically until you learn it.'

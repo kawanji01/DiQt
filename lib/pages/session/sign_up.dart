@@ -49,7 +49,7 @@ class SessionSignUpPage extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              const TwitterButton(),
+              const SessionTwitterButton(),
 
               // login recommendation
               InkWell(

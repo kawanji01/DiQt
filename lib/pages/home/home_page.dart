@@ -47,15 +47,11 @@ class HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //
-    return ref.watch(asyncCurrentUserProvider).when(
-        data: (user) {
-          if (user == null) {
-            return const HomeSignInScreen();
-          }
-          return const HomeDictionaryScreen();
-        },
-        error: (e, str) => Text('$e'),
-        loading: () => const HomeLoadingScreen());
+    final User? user = ref.watch(currentUserProvider);
+    if (user == null) {
+      return const HomeSignInScreen();
+    } else {
+      return const HomeDictionaryScreen();
+    }
   }
 }

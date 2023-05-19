@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/components/home/introduction.dart';
 import 'package:booqs_mobile/components/home/log_in_button.dart';
 import 'package:booqs_mobile/components/home/sign_up_button.dart';
 import 'package:booqs_mobile/components/home/walkthrough.dart';

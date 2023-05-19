@@ -67,7 +67,7 @@ class SessionLoginPageState extends State<SessionLoginPage> {
               const SizedBox(height: 24),
               const SessionAppleButton(),
               const SizedBox(height: 24),
-              const TwitterButton(),
+              const SessionTwitterButton(),
 
               const SizedBox(height: 24),
               // SignUp recommendation

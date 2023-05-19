@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 834 (417 per locale)
+/// Strings: 836 (418 per locale)
 ///
-/// Built on 2023-05-18 at 07:49 UTC
+/// Built on 2023-05-18 at 23:45 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -176,6 +176,7 @@ class _TranslationsSessionsEn {
 	String get email => 'Email';
 	String get password => 'Password';
 	String get password_condition => 'at least 6 characters';
+	String get sign_up_succeeded => 'Signed up. Welcome to DiQt!';
 	String get sign_up_failed => 'Could not register. Either the user with the email address already exists or the password is too short.';
 	String get login_succeeded => 'Logged in';
 	String get login_failed => 'Could not log in.';
@@ -662,8 +663,8 @@ class _TranslationsHomeEn {
 	String get welcome => 'Welcome to DiQt!';
 	String get welcome_description_1 => 'DiQt is a dictionary app to help you never forget vocabulary.';
 	String get welcome_description_2 => 'Easy to use. Look up the word in the dictionary,';
-	String get welcome_description_3 => 'set a review for the word you want to remember,';
-	String get welcome_description_4 => 'and you can review it automatically later.';
+	String get welcome_description_3 => 'set a review for the word you want to memorize,';
+	String get welcome_description_4 => 'and you can review it automatically until you learn it.';
 }
 
 // Path: <root>
@@ -720,6 +721,7 @@ class _TranslationsSessionsJa implements _TranslationsSessionsEn {
 	@override String get email => 'メールアドレス';
 	@override String get password => 'パスワード';
 	@override String get password_condition => '6文字以上';
+	@override String get sign_up_succeeded => '登録が完了しました。ようこそDiQtへ。';
 	@override String get sign_up_failed => '登録できませんでした。そのメールアドレスのユーザーがすでに存在しているか、パスワードが短すぎます。';
 	@override String get login_succeeded => 'ログインしました。';
 	@override String get login_failed => 'ログインに失敗しました。';
@@ -1207,7 +1209,7 @@ class _TranslationsHomeJa implements _TranslationsHomeEn {
 	@override String get welcome_description_1 => 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
 	@override String get welcome_description_2 => '使い方は簡単。辞書で調べて、';
 	@override String get welcome_description_3 => '覚えたい単語に復習を設定すれば、';
-	@override String get welcome_description_4 => '後日、自動で復習できます。';
+	@override String get welcome_description_4 => '覚えるまで自動で復習できるようになります。';
 }
 
 /// Flat map(s) containing all translations.
@@ -1226,6 +1228,7 @@ extension on _TranslationsEn {
 			case 'sessions.email': return 'Email';
 			case 'sessions.password': return 'Password';
 			case 'sessions.password_condition': return 'at least 6 characters';
+			case 'sessions.sign_up_succeeded': return 'Signed up. Welcome to DiQt!';
 			case 'sessions.sign_up_failed': return 'Could not register. Either the user with the email address already exists or the password is too short.';
 			case 'sessions.login_succeeded': return 'Logged in';
 			case 'sessions.login_failed': return 'Could not log in.';
@@ -1631,8 +1634,8 @@ extension on _TranslationsEn {
 			case 'home.welcome': return 'Welcome to DiQt!';
 			case 'home.welcome_description_1': return 'DiQt is a dictionary app to help you never forget vocabulary.';
 			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
-			case 'home.welcome_description_3': return 'set a review for the word you want to remember,';
-			case 'home.welcome_description_4': return 'and you can review it automatically later.';
+			case 'home.welcome_description_3': return 'set a review for the word you want to memorize,';
+			case 'home.welcome_description_4': return 'and you can review it automatically until you learn it.';
 			default: return null;
 		}
 	}
@@ -1651,6 +1654,7 @@ extension on _TranslationsJa {
 			case 'sessions.email': return 'メールアドレス';
 			case 'sessions.password': return 'パスワード';
 			case 'sessions.password_condition': return '6文字以上';
+			case 'sessions.sign_up_succeeded': return '登録が完了しました。ようこそDiQtへ。';
 			case 'sessions.sign_up_failed': return '登録できませんでした。そのメールアドレスのユーザーがすでに存在しているか、パスワードが短すぎます。';
 			case 'sessions.login_succeeded': return 'ログインしました。';
 			case 'sessions.login_failed': return 'ログインに失敗しました。';
@@ -2057,7 +2061,7 @@ extension on _TranslationsJa {
 			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
 			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';
 			case 'home.welcome_description_3': return '覚えたい単語に復習を設定すれば、';
-			case 'home.welcome_description_4': return '後日、自動で復習できます。';
+			case 'home.welcome_description_4': return '覚えるまで自動で復習できるようになります。';
 			default: return null;
 		}
 	}

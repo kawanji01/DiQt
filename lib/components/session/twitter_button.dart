@@ -11,14 +11,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_login/twitter_login.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class TwitterButton extends ConsumerStatefulWidget {
-  const TwitterButton({Key? key}) : super(key: key);
+class SessionTwitterButton extends ConsumerStatefulWidget {
+  const SessionTwitterButton({Key? key}) : super(key: key);
 
   @override
-  TwitterButtonState createState() => TwitterButtonState();
+  SessionTwitterButtonState createState() => SessionTwitterButtonState();
 }
 
-class TwitterButtonState extends ConsumerState<TwitterButton> {
+class SessionTwitterButtonState extends ConsumerState<SessionTwitterButton> {
   @override
   Widget build(BuildContext context) {
     final String? apiKey = dotenv.env['TWITTER_CONSUMER_KEY'];

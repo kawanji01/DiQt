@@ -55,11 +55,11 @@ class _HomeWalkthroughState extends State<HomeWalkthrough> {
       width: 25.0,
       child: Center(
         child: Material(
-          color: index == _currentPage ? Colors.white : Colors.grey,
+          color: index == _currentPage ? Colors.white : Colors.lightGreen,
           type: MaterialType.circle,
           child: SizedBox(
-            width: 6.0 * zoom,
-            height: 6.0 * zoom,
+            width: 4.0 * zoom,
+            height: 4.0 * zoom,
           ),
         ),
       ),
