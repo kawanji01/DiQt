@@ -15,8 +15,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class UserShowPage extends ConsumerStatefulWidget {
   const UserShowPage({Key? key}) : super(key: key);
 
-  static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(userShowPage);
+  static Future push(BuildContext context, String userUid) async {
+    return Navigator.of(context)
+        .pushNamed(userShowPage, arguments: {'userUid': userUid});
   }
 
   @override
@@ -27,14 +28,13 @@ class UserShowPageState extends ConsumerState<UserShowPage> {
   @override
   void initState() {
     super.initState();
-    ref.invalidate(asyncUserProvider);
   }
 
   @override
   Widget build(BuildContext context) {
-    // final User? _user = ref.watch(userProvider);
-    // final String _title = _user == null ? 'ユーザーページ' : _user.name;
-    final future = ref.watch(asyncUserProvider);
+    final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    final String userUid = arguments['userUid'];
+    final future = ref.watch(asyncUserProvider(userUid));
 
     Widget userPage(user) {
       if (user == null) return const LoadingSpinner();
@@ -72,9 +72,9 @@ class UserShowPageState extends ConsumerState<UserShowPage> {
               horizontal: ResponsiveValues.horizontalMargin(context)),
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: future.when(
+            data: (user) => userPage(user),
             loading: () => const LoadingSpinner(),
             error: (err, stack) => Text('Error: $err'),
-            data: (data) => userPage(data),
           ),
         ),
       ),
