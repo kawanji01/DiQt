@@ -1,5 +1,7 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/user/mypage_screen.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -39,20 +41,33 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
   @override
   void initState() {
     super.initState();
-    // Unhandled Exception: setState() or markNeedsBuild() called during build.を防ぐために、
-    // すべてのビルドが終わってからrefreshする。
-    // ref: https://zuma-lab.com/posts/flutter-troubleshooting-called-during-build
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Unhandled Exception: setState() or markNeedsBuild() called during build.を防ぐために、
+      // すべてのビルドが終わってから、userをrefreshする。
+      // ref: https://zuma-lab.com/posts/flutter-troubleshooting-called-during-build
       ref.invalidate(asyncCurrentUserProvider);
+      // ATT(App Tracking Transparency)対応 ref: https://zenn.dev/toshinobu/articles/0f7d4eebcf1f80
+      initATT();
     });
+  }
+
+  Future<void> initATT() async {
+    if (await AppTrackingTransparency.trackingAuthorizationStatus ==
+        TrackingStatus.notDetermined) {
+      // Show a custom explainer dialog before the system dialog
+      //await showCustomTrackingDialog(context);
+      // Wait for dialog popping animation
+      await Future.delayed(const Duration(milliseconds: 200));
+      // Request system's tracking authorization dialog
+      await AppTrackingTransparency.requestTrackingAuthorization();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // 最終的なアウトプット
     return Scaffold(
       appBar: AppBar(
-        title: const Text('マイページ'),
+        title: Text(t.layouts.my_page),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(

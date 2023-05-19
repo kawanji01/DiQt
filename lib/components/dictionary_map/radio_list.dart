@@ -1,7 +1,9 @@
+import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/data/remote/dictionaries.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
@@ -46,8 +48,6 @@ class DictionaryMapRadioListState
 
   @override
   Widget build(BuildContext context) {
-    final future = ref.watch(asyncMyDictionariesProvider);
-
     Widget buildListRow(List<Dictionary> dictionaries, int index) {
       final dictionary = dictionaries[index];
 
@@ -73,29 +73,40 @@ class DictionaryMapRadioListState
       );
     }
 
+    Widget reloadButton() {
+      return InkWell(
+          onTap: () {
+            HapticFeedback.mediumImpact();
+            ref.invalidate(asyncMyDictionariesProvider);
+          },
+          child: SmallOutlineGreenButton(
+              label: t.shared.reload, icon: Icons.refresh));
+    }
+
     return RefreshIndicator(
       onRefresh: () async {
         HapticFeedback.mediumImpact();
         // 更新したい処理を書く
         ref.invalidate(asyncMyDictionariesProvider);
       },
-      child: future.when(
-        data: (List<Dictionary>? dictionaries) {
-          if (dictionaries == null) {
-            return const Text('Dictionaries does not exist.');
-          }
+      child: ref.watch(asyncMyDictionariesProvider).when(
+            data: (List<Dictionary>? dictionaries) {
+              if (dictionaries == null) {
+                return reloadButton();
+              }
 
-          return ListView.separated(
-            shrinkWrap: true,
-            itemBuilder: (context, index) => buildListRow(dictionaries, index),
-            separatorBuilder: (context, index) => const Divider(),
-            itemCount: dictionaries.length,
-            padding: const EdgeInsets.only(bottom: 120),
-          );
-        },
-        error: (err, stack) => Text('Error: $err'),
-        loading: () => const LoadingSpinner(),
-      ),
+              return ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) =>
+                    buildListRow(dictionaries, index),
+                separatorBuilder: (context, index) => const Divider(),
+                itemCount: dictionaries.length,
+                padding: const EdgeInsets.only(bottom: 120),
+              );
+            },
+            error: (err, stack) => Text('Error: $err'),
+            loading: () => const LoadingSpinner(),
+          ),
     );
   }
 }

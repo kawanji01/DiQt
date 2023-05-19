@@ -34,6 +34,7 @@ class UserLogoutButtonState extends ConsumerState<UserLogoutButton> {
         ref.read(answerSettingProvider.notifier).state = null;
         ref.read(todaysAnswersCountProvider.notifier).state = 0;
         ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0;
+        // ref.invalidate(asyncCurrentUserProvider);
         // ローディングを消す
         EasyLoading.dismiss();
         if (!mounted) return;

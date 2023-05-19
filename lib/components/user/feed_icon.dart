@@ -18,13 +18,6 @@ class UserFeedIcon extends ConsumerWidget {
     double width = grid * 20;
     double paddingRight = grid * 5;
 
-    // Drillページに遷移
-    Future moveToUserPage(user) async {
-      ref.read(userProvider.notifier).state = user;
-      ref.read(userUidProvider.notifier).state = user.publicUid;
-      UserShowPage.push(context);
-    }
-
     Widget image() {
       final String imageUrl = '${user.iconImageUrl}';
       // const String notFoundIconName = 'assets/images/not_found_icon.png';
@@ -48,7 +41,10 @@ class UserFeedIcon extends ConsumerWidget {
     }
 
     return InkWell(
-      onTap: () => {moveToUserPage(user)},
+      onTap: () {
+        ref.read(userProvider.notifier).state = user;
+        UserShowPage.push(context, user.publicUid);
+      },
       child: Container(
         height: 56,
         width: width,

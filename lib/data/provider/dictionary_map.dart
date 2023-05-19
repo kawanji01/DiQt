@@ -1,7 +1,5 @@
 // 非同期でMy辞書一覧を取得する
 import 'package:booqs_mobile/components/dictionary_map/floating_action_button.dart';
-import 'package:booqs_mobile/data/local/user_info.dart';
-import 'package:booqs_mobile/data/remote/dictionaries.dart';
 import 'package:booqs_mobile/data/remote/dictionary_maps.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:flutter/material.dart';

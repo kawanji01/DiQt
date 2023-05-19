@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 836 (418 per locale)
+/// Strings: 838 (419 per locale)
 ///
-/// Built on 2023-05-18 at 23:45 UTC
+/// Built on 2023-05-19 at 10:28 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -266,6 +266,7 @@ class _TranslationsSharedEn {
 	String get update => 'Update';
 	String get destroy => 'Destroy';
 	String get cancel => 'Cancel';
+	String get reload => 'Reload';
 	String get search => 'Search';
 	String please_enter({required Object name}) => 'Please enter "${name}"';
 }
@@ -811,6 +812,7 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get update => '更新する';
 	@override String get destroy => '削除する';
 	@override String get cancel => 'キャンセルする';
+	@override String get reload => '再読み込みする';
 	@override String get search => '検索する';
 	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
 }
@@ -1291,6 +1293,7 @@ extension on _TranslationsEn {
 			case 'shared.update': return 'Update';
 			case 'shared.destroy': return 'Destroy';
 			case 'shared.cancel': return 'Cancel';
+			case 'shared.reload': return 'Reload';
 			case 'shared.search': return 'Search';
 			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
 			case 'lang.google_translation': return 'Google Translation';
@@ -1717,6 +1720,7 @@ extension on _TranslationsJa {
 			case 'shared.update': return '更新する';
 			case 'shared.destroy': return '削除する';
 			case 'shared.cancel': return 'キャンセルする';
+			case 'shared.reload': return '再読み込みする';
 			case 'shared.search': return '検索する';
 			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
 			case 'lang.google_translation': return 'Google翻訳';

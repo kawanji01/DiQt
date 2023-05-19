@@ -48,20 +48,19 @@ final asyncDrillsInProgress = FutureProvider<List<Drill>>((ref) async {
 
 // ユーザーページなどで表示する他のuser
 final userProvider = StateProvider<User?>((ref) => null);
-// 上のuserのpublic_uid
-final userUidProvider = StateProvider<String?>((ref) => null);
+
 // IDをもとに非同期でユーザーを取得する
-final asyncUserProvider = FutureProvider<User?>((ref) async {
-  String? publicUid = ref.watch(userUidProvider);
-  if (publicUid == null) return null;
-
-  final Map? resMap = await RemoteUsers.show(publicUid);
-  if (resMap == null) return null;
-
-  // ログインしている場合
-  User user = User.fromJson(resMap['user']);
-  ref.read(userProvider.notifier).state = user;
-  return user;
+final asyncUserProvider =
+    FutureProvider.autoDispose.family<User?, String>((ref, userUid) async {
+  try {
+    final Map? resMap = await RemoteUsers.show(userUid);
+    if (resMap == null || resMap['user'] == null) return null;
+    User user = User.fromJson(resMap['user']);
+    ref.read(userProvider.notifier).state = user;
+    return user;
+  } catch (e) {
+    return null;
+  }
 });
 
 // プレミアムユーザーの検証
