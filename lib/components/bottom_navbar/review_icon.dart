@@ -1,6 +1,5 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,11 +8,7 @@ class BottomNavbarReviewIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? user = ref.watch(currentUserProvider);
-    if (user == null) {
-      return const Icon(Icons.access_alarm);
-    }
-    final int counter = user.unsolvedReviewsCount;
+    final int counter = ref.watch(unsolvedReviewsCountProvider);
 
     if (counter == 0) {
       return const Icon(Icons.access_alarm);

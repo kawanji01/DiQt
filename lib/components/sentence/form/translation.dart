@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/sentence/form/translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
@@ -23,7 +24,7 @@ class SentenceFormTranslation extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SharedItemLabel(text: '翻訳'),
+        SharedItemLabel(text: t.sentences.translation),
         const SizedBox(
           height: 16,
         ),
@@ -32,13 +33,14 @@ class SentenceFormTranslation extends StatelessWidget {
           minLines: 3,
           keyboardType: TextInputType.multiline,
           maxLines: 8,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "例文の訳",
-              hintText: '例文の訳を入力してください。'),
+          decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              labelText: t.sentences.translation,
+              hintText: t.sentences.translation_placeholder(
+                  language: dictionary.languageOfMeaning())),
           validator: (value) {
             if (value!.isEmpty) {
-              return '例文の翻訳は空欄にできません。';
+              return t.errors.cant_be_blank;
             }
             return null;
           },

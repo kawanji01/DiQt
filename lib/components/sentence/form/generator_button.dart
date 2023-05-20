@@ -1,16 +1,19 @@
+import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/components/sentence/form/generator_screen.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:flutter/material.dart';
 
 class SentenceFormGeneratorButton extends StatefulWidget {
   const SentenceFormGeneratorButton(
       {Key? key,
-      required this.langNumber,
       required this.originalController,
-      required this.keyword})
+      required this.keyword,
+      required this.dictionary})
       : super(key: key);
-  final int langNumber;
   final TextEditingController originalController;
   final String? keyword;
+  final Dictionary dictionary;
 
   @override
   State<SentenceFormGeneratorButton> createState() =>
@@ -20,11 +23,17 @@ class SentenceFormGeneratorButton extends StatefulWidget {
 class _SentenceFormGeneratorButtonState
     extends State<SentenceFormGeneratorButton> {
   final _keywordController = TextEditingController();
+  final _posTagIdController = TextEditingController();
+  final _meaningController = TextEditingController();
+  final _sentenceTypeController = TextEditingController();
   final _temperatureController = TextEditingController();
 
   @override
   void initState() {
     _keywordController.text = widget.keyword ?? '';
+    _posTagIdController.text = '';
+    _meaningController.text = '';
+    _sentenceTypeController.text = '';
     _temperatureController.text = '7';
     super.initState();
   }
@@ -32,41 +41,38 @@ class _SentenceFormGeneratorButtonState
   @override
   void dispose() {
     _keywordController.dispose();
+    _posTagIdController.dispose();
+    _meaningController.dispose();
+    _sentenceTypeController.dispose();
     _temperatureController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.green,
-        minimumSize: const Size(double.infinity,
-            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-      ),
-      onPressed: () => {
-        showModalBottomSheet(
-            isScrollControlled: true,
-            context: context,
-            // 丸み ref: https://www.codegrepper.com/code-examples/whatever/showmodalbottomsheet+rounded+corners
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15.0),
-                  topRight: Radius.circular(15.0)),
-            ),
-            // showModalBottomSheetで表示される中身
-            builder: (context) => SentenceFormGeneratorScreen(
-                  langNumber: widget.langNumber,
-                  originalController: widget.originalController,
-                  keywordController: _keywordController,
-                  temperatureController: _temperatureController,
-                ))
-      },
-      icon: const Icon(Icons.auto_fix_high, color: Colors.white),
-      label: const Text(
-        'AIで例文を生成する',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-      ),
-    );
+    return InkWell(
+        onTap: () {
+          showModalBottomSheet(
+              isScrollControlled: true,
+              context: context,
+              // 丸み ref: https://www.codegrepper.com/code-examples/whatever/showmodalbottomsheet+rounded+corners
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15.0),
+                    topRight: Radius.circular(15.0)),
+              ),
+              // showModalBottomSheetで表示される中身
+              builder: (context) => SentenceFormGeneratorScreen(
+                    originalController: widget.originalController,
+                    keywordController: _keywordController,
+                    posTagIdController: _posTagIdController,
+                    meaningController: _meaningController,
+                    sentenceTypeController: _sentenceTypeController,
+                    temperatureController: _temperatureController,
+                    dictionary: widget.dictionary,
+                  ));
+        },
+        child: SmallGreenButton(
+            label: t.sentences.generate_sentence, icon: Icons.auto_fix_high));
   }
 }

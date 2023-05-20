@@ -1,22 +1,36 @@
+import 'package:booqs_mobile/components/button/medium_green_button.dart';
+import 'package:booqs_mobile/components/heading/medium_green.dart';
+import 'package:booqs_mobile/components/sentence/form/keyword.dart';
+import 'package:booqs_mobile/components/sentence/form/meaning.dart';
+import 'package:booqs_mobile/components/sentence/form/pos_tag.dart';
+import 'package:booqs_mobile/components/sentence/form/sentence_type.dart';
+import 'package:booqs_mobile/components/sentence/form/temperature.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
-import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class SentenceFormGeneratorScreen extends StatefulWidget {
   const SentenceFormGeneratorScreen(
       {Key? key,
-      required this.langNumber,
       required this.originalController,
       required this.keywordController,
-      required this.temperatureController})
+      required this.posTagIdController,
+      required this.meaningController,
+      required this.sentenceTypeController,
+      required this.temperatureController,
+      required this.dictionary})
       : super(key: key);
-  final int langNumber;
   final TextEditingController originalController;
   final TextEditingController keywordController;
+  final TextEditingController posTagIdController;
+  final TextEditingController meaningController;
+  final TextEditingController sentenceTypeController;
   final TextEditingController temperatureController;
+  final Dictionary dictionary;
 
   @override
   State<SentenceFormGeneratorScreen> createState() =>
@@ -27,24 +41,27 @@ class _SentenceFormGeneratorScreenState
     extends State<SentenceFormGeneratorScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isRequesting = false;
-  double _currentSliderValue = 7;
 
   @override
   void initState() {
-    _currentSliderValue = double.parse(widget.temperatureController.text);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final Dictionary dictionary = widget.dictionary;
+    final int dictionaryId = dictionary.id;
     SizeConfig().init(context);
     final double grid = SizeConfig.blockSizeVertical ?? 0;
     final double height = grid * 80;
     final TextEditingController originalController = widget.originalController;
     final TextEditingController keywordController = widget.keywordController;
+    final TextEditingController posTagIdController = widget.posTagIdController;
+    final TextEditingController meaningController = widget.meaningController;
+    final TextEditingController sentenceTypeController =
+        widget.sentenceTypeController;
     final TextEditingController temperatureController =
         widget.temperatureController;
-    final int langNumber = widget.langNumber;
 
     Future generate() async {
       // 各Fieldのvalidatorを呼び出す
@@ -54,25 +71,38 @@ class _SentenceFormGeneratorScreenState
         _isRequesting = true;
       });
 
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteSentences.generate(
-          keywordController.text, langNumber, temperatureController.text);
-      EasyLoading.dismiss();
-      // リクエストロック終了
-      setState(() {
-        _isRequesting = false;
-      });
-      if (!mounted) return;
-      if (resMap == null) {
-        const snackBar = SnackBar(content: Text('例文が生成できませんでした。'));
+      try {
+        // 画面全体にローディングを表示
+        EasyLoading.show(status: 'loading...');
+        final Map? resMap = await RemoteSentences.generate(
+            keywordController.text,
+            dictionaryId,
+            posTagIdController.text,
+            meaningController.text,
+            sentenceTypeController.text,
+            temperatureController.text);
+        EasyLoading.dismiss();
+        // リクエストロック終了
+        setState(() {
+          _isRequesting = false;
+        });
+        if (!mounted) return;
+        if (resMap == null) {
+          final snackBar =
+              SnackBar(content: Text(t.sentences.generating_sentence_failed));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        } else {
+          final String? original = resMap['original'];
+          originalController.text = original ?? '';
+          final snackBar =
+              SnackBar(content: Text(t.sentences.sentence_generated));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          Navigator.pop(context);
+        }
+      } catch (e) {
+        print(e);
+        final snackBar = SnackBar(content: Text(t.errors.error_occured));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } else {
-        final String? original = resMap['original'];
-        originalController.text = original ?? '';
-        const snackBar = SnackBar(content: Text('例文が生成されました。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        Navigator.pop(context);
       }
     }
 
@@ -92,103 +122,75 @@ class _SentenceFormGeneratorScreenState
                   const SizedBox(
                     height: 24,
                   ),
-                  const Text('AIで例文を生成する',
-                      style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold)),
+                  HeadingMediumGreen(
+                    label: t.sentences.generate_sentence,
+                  ),
+
                   const SizedBox(
                     height: 16,
                   ),
-                  // 項目フォーム
-                  TextFormField(
-                    controller: keywordController,
-                    decoration: InputDecoration(
-                      labelText: '例文に含めるキーワード',
-                      filled: true,
-                      fillColor: Colors.grey.shade200,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      ),
-                      suffixIcon: IconButton(
-                        icon: const Icon(Icons.clear),
-                        onPressed: () {
-                          keywordController.clear();
-                        },
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'キーワードは空欄にできません。';
-                      }
-                      return null;
-                    },
+                  // キーワードフォーム
+                  SentenceFormKeyword(
+                    keywordController: keywordController,
                   ),
                   const SizedBox(
                     height: 24,
                   ),
-
-                  ExpansionTile(
-                    title: const Text(
-                      '詳細設定',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    //collapsedBackgroundColor: const Color(0xfff3f3f4),
-                    collapsedBackgroundColor: Colors.grey.shade200,
-                    children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 24),
-                          // Temperatur
-                          const SharedItemLabel(text: '単語のランダム性（Temperature）'),
-                          const SizedBox(height: 8),
-                          const Text(
-                              '0~20の間で設定します。数値が高いほど単語のランダム性が上がり、数値が低いほど確定的な文章を生成します。デフォルトは７です。',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black87,
-                                  fontWeight: FontWeight.normal)),
-                          const SizedBox(height: 16),
-                          Slider(
-                            value: _currentSliderValue,
-                            max: 20,
-                            min: 0,
-                            divisions: 20,
-                            label: _currentSliderValue.round().toString(),
-                            onChanged: (double value) {
-                              temperatureController.text = '$value';
-                              setState(() {
-                                _currentSliderValue = value;
-                              });
-                            },
-                          ),
-                          const SizedBox(height: 24),
-                        ],
-                      ),
-                    ],
+                  // 品詞
+                  SentenceFormPosTag(
+                    posTagIdController: posTagIdController,
+                    posTags: widget.dictionary.posTags,
                   ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  // 詳細設定
+                  ExpansionTile(
+                      title: Text(
+                        t.sentences.details,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      collapsedBackgroundColor: Colors.grey.shade200,
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        // 意味
+                        SentenceFormMeaning(
+                          meaningController: meaningController,
+                          dictionary: dictionary,
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        // 文の種類
+                        SentenceFormSentenceType(
+                          sentenceTypeController: sentenceTypeController,
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        // temperature
+                        SentenceFormTemperature(
+                          temperatureController: temperatureController,
+                        ),
+                      ]),
                   const SizedBox(height: 40),
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      minimumSize: const Size(double.infinity,
-                          48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-                    ),
-                    onPressed: _isRequesting
+                  InkWell(
+                    onTap: _isRequesting
                         ? null
                         : () async {
                             generate();
                           },
-                    icon: const Icon(Icons.auto_fix_high, color: Colors.white),
-                    label: const Text(
-                      '生成する',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    child: MediumGreenButton(
+                      fontSize: 18,
+                      icon: Icons.auto_fix_high,
+                      label: t.shared.generate,
                     ),
                   ),
+
+                  const SizedBox(height: 80),
                 ],
               ),
             ],

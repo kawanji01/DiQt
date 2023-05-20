@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 838 (419 per locale)
+/// Strings: 900 (450 per locale)
 ///
-/// Built on 2023-05-19 at 10:28 UTC
+/// Built on 2023-05-20 at 11:44 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -152,6 +152,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
+	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
 	late final _TranslationsCalendarsEn calendars = _TranslationsCalendarsEn._(_root);
 	late final _TranslationsLayoutsEn layouts = _TranslationsLayoutsEn._(_root);
 	late final _TranslationsDictionaryMapsEn dictionaryMaps = _TranslationsDictionaryMapsEn._(_root);
@@ -268,6 +269,9 @@ class _TranslationsSharedEn {
 	String get cancel => 'Cancel';
 	String get reload => 'Reload';
 	String get search => 'Search';
+	String get generate => 'Generate';
+	String get undefined => 'Undefined';
+	String get details => 'Details';
 	String please_enter({required Object name}) => 'Please enter "${name}"';
 }
 
@@ -536,6 +540,43 @@ class _TranslationsLangEn {
 	String get zu_ZA => 'Zulu (South Africa)';
 }
 
+// Path: sentences
+class _TranslationsSentencesEn {
+	_TranslationsSentencesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get sentence => 'Sentence';
+	String get add => 'Add sentence';
+	String get edit => 'Edit sentence';
+	String get original => 'Original';
+	String get translation => 'Translation';
+	String original_placeholder({required Object language}) => 'Please enter an example sentence in ${language}.';
+	String translation_placeholder({required Object language}) => 'Please enter a ${language} translation of the example sentence.';
+	String get generate_sentence => 'Generate an example sentence with AI';
+	String keyword_description({required Object limit}) => 'Enter the keywords you wish to include in the examples (max. ${limit} characters).';
+	String get keyword_placeholder => 'Keywords to be included in the sentence';
+	String get pos => 'Part of speech of keywords';
+	String get meaning => 'Meaning of keywords (e.g. synonyms)';
+	String get meaning_placeholder => 'The meaning of the keywords can be specified.';
+	String get sentence_type => 'Sentence Type';
+	String get declarative_sentence => 'Declarative sentence';
+	String get interrogative_sentence => 'Interrogative sentence';
+	String get imperative_sentence => 'Imperative sentence';
+	String get exclamatory_sentence => 'Exclamatory sentence';
+	String get temperature => 'Temperature';
+	String get temperature_description => 'Set between 0~20. Higher values increase the randomness of the sentences; lower values generate more deterministic sentences. The default is 7.';
+	String get details => 'Details';
+	String get sentence_generated => 'Sentence generated';
+	String get generating_sentence_failed => 'Generating sentence failed';
+	String get created => 'Sentence Created';
+	String get create_failed => 'Failed to create the sentence.';
+	String get updated => 'Sentence Updated';
+	String get update_failed => 'Failed to update the sentence.';
+	String get destroyed => 'Sentence Destroyed';
+}
+
 // Path: calendars
 class _TranslationsCalendarsEn {
 	_TranslationsCalendarsEn._(this._root);
@@ -698,6 +739,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
+	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
 	@override late final _TranslationsCalendarsJa calendars = _TranslationsCalendarsJa._(_root);
 	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
 	@override late final _TranslationsDictionaryMapsJa dictionaryMaps = _TranslationsDictionaryMapsJa._(_root);
@@ -814,6 +856,9 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get cancel => 'キャンセルする';
 	@override String get reload => '再読み込みする';
 	@override String get search => '検索する';
+	@override String get generate => '生成する';
+	@override String get undefined => '未定義';
+	@override String get details => '詳細';
 	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
 }
 
@@ -1082,6 +1127,43 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get zu_ZA => 'ズールー語（南アフリカ）';
 }
 
+// Path: sentences
+class _TranslationsSentencesJa implements _TranslationsSentencesEn {
+	_TranslationsSentencesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get sentence => '例文';
+	@override String get add => '例文を追加する';
+	@override String get edit => '例文を編集する';
+	@override String get original => '原文';
+	@override String get translation => '翻訳';
+	@override String original_placeholder({required Object language}) => '【必須】${language}の例文を入力してください。';
+	@override String translation_placeholder({required Object language}) => '【必須】例文の${language}の訳を入力してください。';
+	@override String get generate_sentence => 'AIで例文を生成する';
+	@override String keyword_description({required Object limit}) => '例文に含めたいキーワードを入力してください(${limit}文字以内)。';
+	@override String get keyword_placeholder => '【必須】例文に含みたいキーワード';
+	@override String get pos => 'キーワードの品詞';
+	@override String get meaning => 'キーワードの意味（類義語など）';
+	@override String get meaning_placeholder => 'キーワードの意味を指定できます。';
+	@override String get sentence_type => '文の種類';
+	@override String get declarative_sentence => '平叙文';
+	@override String get interrogative_sentence => '疑問文';
+	@override String get imperative_sentence => '命令文';
+	@override String get exclamatory_sentence => '感嘆文';
+	@override String get temperature => 'ランダム性（Temperature）';
+	@override String get temperature_description => '0~20の間で設定します。数値が高いほど文章のランダム性が上がり、数値が低いほど確定的な文章を生成します。デフォルトは７です';
+	@override String get details => '詳細';
+	@override String get sentence_generated => '例文を生成しました。';
+	@override String get generating_sentence_failed => '例文の生成に失敗しました。';
+	@override String get created => '例文が作成されました。';
+	@override String get create_failed => '例文の作成に失敗しました。';
+	@override String get updated => '例文が更新されました。';
+	@override String get update_failed => '例文の更新に失敗しました。';
+	@override String get destroyed => '例文が削除されました。';
+}
+
 // Path: calendars
 class _TranslationsCalendarsJa implements _TranslationsCalendarsEn {
 	_TranslationsCalendarsJa._(this._root);
@@ -1295,6 +1377,9 @@ extension on _TranslationsEn {
 			case 'shared.cancel': return 'Cancel';
 			case 'shared.reload': return 'Reload';
 			case 'shared.search': return 'Search';
+			case 'shared.generate': return 'Generate';
+			case 'shared.undefined': return 'Undefined';
+			case 'shared.details': return 'Details';
 			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -1552,6 +1637,34 @@ extension on _TranslationsEn {
 			case 'lang.uz_UZ': return 'Uzbek (Uzbekistan)';
 			case 'lang.vi_VN': return 'Vietnamese (Vietnam)';
 			case 'lang.zu_ZA': return 'Zulu (South Africa)';
+			case 'sentences.sentence': return 'Sentence';
+			case 'sentences.add': return 'Add sentence';
+			case 'sentences.edit': return 'Edit sentence';
+			case 'sentences.original': return 'Original';
+			case 'sentences.translation': return 'Translation';
+			case 'sentences.original_placeholder': return ({required Object language}) => 'Please enter an example sentence in ${language}.';
+			case 'sentences.translation_placeholder': return ({required Object language}) => 'Please enter a ${language} translation of the example sentence.';
+			case 'sentences.generate_sentence': return 'Generate an example sentence with AI';
+			case 'sentences.keyword_description': return ({required Object limit}) => 'Enter the keywords you wish to include in the examples (max. ${limit} characters).';
+			case 'sentences.keyword_placeholder': return 'Keywords to be included in the sentence';
+			case 'sentences.pos': return 'Part of speech of keywords';
+			case 'sentences.meaning': return 'Meaning of keywords (e.g. synonyms)';
+			case 'sentences.meaning_placeholder': return 'The meaning of the keywords can be specified.';
+			case 'sentences.sentence_type': return 'Sentence Type';
+			case 'sentences.declarative_sentence': return 'Declarative sentence';
+			case 'sentences.interrogative_sentence': return 'Interrogative sentence';
+			case 'sentences.imperative_sentence': return 'Imperative sentence';
+			case 'sentences.exclamatory_sentence': return 'Exclamatory sentence';
+			case 'sentences.temperature': return 'Temperature';
+			case 'sentences.temperature_description': return 'Set between 0~20. Higher values increase the randomness of the sentences; lower values generate more deterministic sentences. The default is 7.';
+			case 'sentences.details': return 'Details';
+			case 'sentences.sentence_generated': return 'Sentence generated';
+			case 'sentences.generating_sentence_failed': return 'Generating sentence failed';
+			case 'sentences.created': return 'Sentence Created';
+			case 'sentences.create_failed': return 'Failed to create the sentence.';
+			case 'sentences.updated': return 'Sentence Updated';
+			case 'sentences.update_failed': return 'Failed to update the sentence.';
+			case 'sentences.destroyed': return 'Sentence Destroyed';
 			case 'calendars.sunday': return 'Sun.';
 			case 'calendars.monday': return 'Mon.';
 			case 'calendars.tuesday': return 'Tue.';
@@ -1722,6 +1835,9 @@ extension on _TranslationsJa {
 			case 'shared.cancel': return 'キャンセルする';
 			case 'shared.reload': return '再読み込みする';
 			case 'shared.search': return '検索する';
+			case 'shared.generate': return '生成する';
+			case 'shared.undefined': return '未定義';
+			case 'shared.details': return '詳細';
 			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
@@ -1979,6 +2095,34 @@ extension on _TranslationsJa {
 			case 'lang.uz_UZ': return 'ウズベク語（ウズベキスタン）';
 			case 'lang.vi_VN': return 'ベトナム語（ベトナム）';
 			case 'lang.zu_ZA': return 'ズールー語（南アフリカ）';
+			case 'sentences.sentence': return '例文';
+			case 'sentences.add': return '例文を追加する';
+			case 'sentences.edit': return '例文を編集する';
+			case 'sentences.original': return '原文';
+			case 'sentences.translation': return '翻訳';
+			case 'sentences.original_placeholder': return ({required Object language}) => '【必須】${language}の例文を入力してください。';
+			case 'sentences.translation_placeholder': return ({required Object language}) => '【必須】例文の${language}の訳を入力してください。';
+			case 'sentences.generate_sentence': return 'AIで例文を生成する';
+			case 'sentences.keyword_description': return ({required Object limit}) => '例文に含めたいキーワードを入力してください(${limit}文字以内)。';
+			case 'sentences.keyword_placeholder': return '【必須】例文に含みたいキーワード';
+			case 'sentences.pos': return 'キーワードの品詞';
+			case 'sentences.meaning': return 'キーワードの意味（類義語など）';
+			case 'sentences.meaning_placeholder': return 'キーワードの意味を指定できます。';
+			case 'sentences.sentence_type': return '文の種類';
+			case 'sentences.declarative_sentence': return '平叙文';
+			case 'sentences.interrogative_sentence': return '疑問文';
+			case 'sentences.imperative_sentence': return '命令文';
+			case 'sentences.exclamatory_sentence': return '感嘆文';
+			case 'sentences.temperature': return 'ランダム性（Temperature）';
+			case 'sentences.temperature_description': return '0~20の間で設定します。数値が高いほど文章のランダム性が上がり、数値が低いほど確定的な文章を生成します。デフォルトは７です';
+			case 'sentences.details': return '詳細';
+			case 'sentences.sentence_generated': return '例文を生成しました。';
+			case 'sentences.generating_sentence_failed': return '例文の生成に失敗しました。';
+			case 'sentences.created': return '例文が作成されました。';
+			case 'sentences.create_failed': return '例文の作成に失敗しました。';
+			case 'sentences.updated': return '例文が更新されました。';
+			case 'sentences.update_failed': return '例文の更新に失敗しました。';
+			case 'sentences.destroyed': return '例文が削除されました。';
 			case 'calendars.sunday': return '日';
 			case 'calendars.monday': return '月';
 			case 'calendars.tuesday': return '火';

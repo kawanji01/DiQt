@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/sentence/form/details.dart';
 import 'package:booqs_mobile/components/sentence/form/generator_button.dart';
@@ -30,9 +31,9 @@ class SentenceForm extends StatelessWidget {
     Widget sentenceGeneratorButton() {
       if (isNew) {
         return SentenceFormGeneratorButton(
-          langNumber: dictionary.langNumberOfEntry,
           originalController: originalController,
           keyword: keyword,
+          dictionary: dictionary,
         );
       }
       return Container();
@@ -42,7 +43,7 @@ class SentenceForm extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // 例文フォーム
-        const SharedItemLabel(text: '例文'),
+        SharedItemLabel(text: t.sentences.original),
         const SizedBox(
           height: 16,
         ),
@@ -51,13 +52,14 @@ class SentenceForm extends StatelessWidget {
           minLines: 3,
           keyboardType: TextInputType.multiline,
           maxLines: 8,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "例文",
-              hintText: '例文を入力してください。'),
+          decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              labelText: t.sentences.original,
+              hintText: t.sentences.original_placeholder(
+                  language: dictionary.languageOfEntry())),
           validator: (value) {
             if (value!.isEmpty) {
-              return '例文は空欄にできません。';
+              return t.errors.cant_be_blank;
             }
             return null;
           },
