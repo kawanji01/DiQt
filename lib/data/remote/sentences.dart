@@ -133,12 +133,19 @@ class RemoteSentences {
 
   // AIによる例文の生成
   static Future<Map?> generate(
-      String keyword, int langNumber, String temperature) async {
+      String keyword,
+      int dictionaryId,
+      String posTagId,
+      String meaning,
+      String sentenceType,
+      String temperature) async {
     final String? token = await LocalUserInfo.authToken();
-
     final String encodedData = json.encode({
       'keyword': keyword,
-      'lang_number': '$langNumber',
+      'pos_tag_id': posTagId,
+      'meaning': meaning,
+      'sentence_type': sentenceType,
+      'dictionary_id': '$dictionaryId',
       'temperature': temperature,
       'token': token,
     });

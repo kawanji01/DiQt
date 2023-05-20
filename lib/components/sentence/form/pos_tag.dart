@@ -1,25 +1,20 @@
+import 'package:booqs_mobile/components/shared/item_label.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/pos_tag.dart';
 import 'package:flutter/material.dart';
 
-class WordFormPosTagSetting extends StatefulWidget {
-  const WordFormPosTagSetting(
+class SentenceFormPosTag extends StatefulWidget {
+  const SentenceFormPosTag(
       {Key? key, required this.posTagIdController, required this.posTags})
       : super(key: key);
   final TextEditingController posTagIdController;
   final List<PosTag>? posTags;
 
   @override
-  State<WordFormPosTagSetting> createState() => _WordFormPosTagSettingState();
+  State<SentenceFormPosTag> createState() => SentenceFormPosTagState();
 }
 
-class _WordFormPosTagSettingState extends State<WordFormPosTagSetting> {
-  //
-  Future change(String? newValue) async {
-    setState(() {
-      widget.posTagIdController.text = '$newValue';
-    });
-  }
-
+class SentenceFormPosTagState extends State<SentenceFormPosTag> {
   @override
   Widget build(BuildContext context) {
     List<PosTag?>? posTags = widget.posTags;
@@ -35,7 +30,7 @@ class _WordFormPosTagSettingState extends State<WordFormPosTagSetting> {
       return '${posTag?.id}';
     }).toList();
     if (posTagIds.contains(dropDownValue) == false) {
-      dropDownValue = 'null';
+      dropDownValue = '';
     }
 
     List<DropdownMenuItem<String>> dropDownItems =
@@ -50,32 +45,40 @@ class _WordFormPosTagSettingState extends State<WordFormPosTagSetting> {
       );
     }).toList();
 
-    const undefinePosTag = DropdownMenuItem<String>(
-      value: 'null',
-      child: Text('未定義',
-          style: TextStyle(
+    final undefinePosTag = DropdownMenuItem<String>(
+      value: '',
+      child: Text(t.shared.undefined,
+          style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.normal,
               color: Colors.black87)),
     );
     dropDownItems.insert(0, undefinePosTag);
 
-    return Container(
-      height: 48,
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
-          border: Border.all(color: Colors.black54)),
-      child: DropdownButton<String>(
-        value: dropDownValue,
-        iconSize: 24,
-        elevation: 16,
-        onChanged: (String? newValue) {
-          change(newValue);
-        },
-        items: dropDownItems,
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      SharedItemLabel(
+        text: t.sentences.pos,
       ),
-    );
+      const SizedBox(height: 16),
+      Container(
+        height: 48,
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.only(left: 15.0, right: 10.0),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            border: Border.all(color: Colors.black54)),
+        child: DropdownButton<String>(
+          value: dropDownValue,
+          iconSize: 24,
+          elevation: 16,
+          onChanged: (String? newValue) {
+            setState(() {
+              widget.posTagIdController.text = '$newValue';
+            });
+          },
+          items: dropDownItems,
+        ),
+      ),
+    ]);
   }
 }

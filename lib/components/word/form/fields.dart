@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/sentence/setting_form.dart';
+import 'package:booqs_mobile/components/word/form/pos_tag.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/word/form/detailed_settings.dart';
@@ -14,6 +15,7 @@ class WordFormFields extends StatelessWidget {
     required this.entryController,
     required this.readingController,
     required this.meaningController,
+    required this.posTagIdController,
     required this.ipaController,
     required this.etymologiesController,
     required this.explanationController,
@@ -28,6 +30,7 @@ class WordFormFields extends StatelessWidget {
   final TextEditingController entryController;
   final TextEditingController readingController;
   final TextEditingController meaningController;
+  final TextEditingController posTagIdController;
   final TextEditingController ipaController;
   final TextEditingController etymologiesController;
   final TextEditingController explanationController;
@@ -49,9 +52,7 @@ class WordFormFields extends StatelessWidget {
           decoration: InputDecoration(
               border: const OutlineInputBorder(),
               labelText: t.words.entry,
-              hintText: t.shared.please_enter(
-                name: t.words.entry,
-              )),
+              hintText: t.shared.please_enter(name: t.words.entry)),
           validator: (value) {
             if (value!.isEmpty) {
               return t.errors.cant_be_blank;
@@ -64,19 +65,21 @@ class WordFormFields extends StatelessWidget {
           langNumberOfEntry: dictionary.langNumberOfEntry,
         ),
         WordFormLangSetting(langNumber: dictionary.langNumberOfEntry),
-        const SizedBox(height: 24),
+        const SizedBox(height: 16),
+        // 品詞設定
+        WordFormPosTag(
+            posTagIdController: posTagIdController,
+            posTags: dictionary.posTags),
+        const SizedBox(height: 40),
         // 意味フォーム
         TextFormField(
-          controller: meaningController,
-          // 改行を許さず、文字数に応じて自動で改行して表示する。
-          keyboardType: TextInputType.text,
+          // [Flutter/Dart]入力欄（TextField）で折返し表示させる方法 ref: https://minpro.net/flutter-dart-textfield-fold
           maxLines: null,
+          controller: meaningController,
           decoration: InputDecoration(
               border: const OutlineInputBorder(),
               labelText: t.words.meaning,
-              hintText: t.shared.please_enter(
-                name: t.words.meaning,
-              )),
+              hintText: t.shared.please_enter(name: t.words.meaning)),
           validator: (value) {
             if (value!.isEmpty) {
               return t.errors.cant_be_blank;
@@ -89,19 +92,18 @@ class WordFormFields extends StatelessWidget {
 
         // 例文設定
         SentenceSettingForm(
-          sentenceIdController: sentenceIdController,
-          keyword: entryController.text,
-          dictionary: dictionary,
-        ),
+            sentenceIdController: sentenceIdController,
+            keyword: entryController.text,
+            dictionary: dictionary),
         const SizedBox(height: 40),
         // 詳細設定
         WordFormDetailedSettings(
+          ipaController: ipaController,
           etymologiesController: etymologiesController,
           explanationController: explanationController,
           synonymsController: synonymsController,
           antonymsController: antonymsController,
           relatedController: relatedController,
-          ipaController: ipaController,
           word: word,
         ),
 

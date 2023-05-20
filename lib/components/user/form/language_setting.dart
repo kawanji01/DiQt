@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/utils/language.dart';
 import 'package:flutter/material.dart';

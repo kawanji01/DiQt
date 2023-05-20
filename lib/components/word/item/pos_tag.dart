@@ -18,7 +18,6 @@ class WordItemPosTag extends StatelessWidget {
     return InkWell(
       child: SharedItemLabel(text: posTag.name),
       onTap: () {
-        print('aaaa');
         showModalBottomSheet(
           isScrollControlled: true,
           context: context,
