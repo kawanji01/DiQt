@@ -13,20 +13,22 @@ class HeadingMediumGreen extends StatelessWidget {
         fontWeight: FontWeight.bold,
         height: 2);
 
-    if (icon == null) {
-      return Text(label, style: headingTextStyle);
-    } else {
-      return RichText(
-          text: TextSpan(children: [
-        WidgetSpan(
-          child: Icon(
-            icon,
-            color: Colors.green,
-            size: 28.0,
-          ),
-        ),
-        TextSpan(text: ' $label', style: headingTextStyle)
-      ]));
-    }
+    return icon == null
+        ? Text(label, style: headingTextStyle)
+        : RichText(
+            text: TextSpan(
+              children: [
+                WidgetSpan(
+                  child: Icon(
+                    icon,
+                    color: Colors.green,
+                    size: 28.0,
+                  ),
+                ),
+                const TextSpan(text: ' 　'), // この行がスペースを追加します
+                TextSpan(text: label, style: headingTextStyle),
+              ],
+            ),
+          );
   }
 }

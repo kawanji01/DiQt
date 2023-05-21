@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
@@ -12,6 +13,7 @@ class User {
     this.profile,
     this.iconImageUrl,
     required this.langNumber,
+    required this.learningLangNumber,
     required this.amountOfExp,
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
@@ -53,6 +55,7 @@ class User {
   String? profile;
   String? iconImageUrl;
   int langNumber;
+  int learningLangNumber;
   int amountOfExp;
   int answerHistoriesCount;
   int todaysAnswerHistoriesCount;
@@ -93,7 +96,8 @@ class User {
         name = json['name'],
         profile = json['profile'],
         iconImageUrl = json['icon_image_url'],
-        langNumber = json['lang_number'] ?? 44,
+        langNumber = json['lang_number'] ?? defaultLangNumber,
+        learningLangNumber = json['learning_lang_number'] ?? defaultLangNumber,
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
@@ -164,6 +168,7 @@ class User {
         'profile': profile,
         'icon_image_url': iconImageUrl,
         'lang_number': langNumber,
+        'learning_lang_number': learningLangNumber,
         'amount_of_exp': amountOfExp,
         'answer_histories_count': answerHistoriesCount,
         'todays_answer_histories_count': todaysAnswerHistoriesCount,

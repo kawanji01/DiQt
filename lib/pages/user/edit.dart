@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -38,7 +39,7 @@ class UserEditPageState extends ConsumerState<UserEditPage> {
     // 最終的なアウトプット
     return Scaffold(
       appBar: AppBar(
-        title: const Text('アカウント設定'),
+        title: Text(t.users.edit),
       ),
       body: SingleChildScrollView(
         child: Container(

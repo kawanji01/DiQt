@@ -1,6 +1,4 @@
-import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -23,20 +21,6 @@ class SessionLoginPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /*  final User? user = ref.watch(currentUserProvider);
-    if (user == null) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(t.sessions.log_in),
-        ),
-        body: Container(
-          padding: EdgeInsets.symmetric(
-              horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: const Text('You have already logged in.'),
-        ),
-      );
-    } */
-
     return Scaffold(
       appBar: AppBar(
         title: Text(t.sessions.log_in),

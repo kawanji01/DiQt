@@ -1,7 +1,9 @@
+import 'package:booqs_mobile/components/button/medium_green_button.dart';
+import 'package:booqs_mobile/components/heading/medium_green.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
-import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -14,59 +16,9 @@ class CommunityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final heading = RichText(
-        text: const TextSpan(children: [
-      WidgetSpan(
-        child: FaIcon(
-          FontAwesomeIcons.discord,
-          size: 32,
-          color: Colors.green,
-        ),
-      ),
-      TextSpan(
-          text: ' DiQt Community',
-          style: TextStyle(
-              color: Colors.green, fontSize: 32, fontWeight: FontWeight.bold))
-    ]));
-
-    const style = TextStyle(
-        color: Colors.black87,
-        fontSize: 16,
-        height: 1.7,
-        fontWeight: FontWeight.normal);
-
-    final introduction = RichText(
-        text: const TextSpan(children: [
-      TextSpan(
-          text: '''DiQt Community（ディクト・コミュニティ）は、DiQtユーザーのためのオンラインコミュニティです。\n''',
-          style: style),
-      TextSpan(
-          text: '''このコミュニティでは、DiQtについて、直接開発者によるサポートを受けられます。\n''', style: style)
-    ]));
-
-    //
-    final discordButton = ElevatedButton.icon(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xff7289da),
-        minimumSize: const Size(double.infinity, 56),
-      ),
-      onPressed: () => {
-        WebPageLauncher.openByExternalBrowser("https://discord.gg/N7zUGMJ"),
-      },
-      icon: const FaIcon(
-        FontAwesomeIcons.discord,
-        color: Colors.white,
-        size: 22,
-      ),
-      label: const Text(
-        'コミュニティに参加する',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-      ),
-    );
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('コミュニティ'),
+        title: Text(t.home.community),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(
@@ -75,16 +27,28 @@ class CommunityPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            heading,
+            const HeadingMediumGreen(
+              label: 'DiQt Community',
+              icon: FontAwesomeIcons.discord,
+            ),
             const SizedBox(height: 16),
-            introduction,
-            const SizedBox(height: 32),
-            discordButton,
-            const SizedBox(height: 32),
+            Text(
+              t.home.community_description,
+              style: const TextStyle(fontSize: 16, color: Colors.black87),
+            ),
+            const SizedBox(height: 40),
+            InkWell(
+                onTap: () => WebPageLauncher.openByExternalBrowser(
+                    "https://discord.gg/N7zUGMJ"),
+                child: MediumGreenButton(
+                  label: t.home.join_community,
+                  icon: null,
+                  fontSize: 20,
+                )),
+            const SizedBox(height: 80),
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

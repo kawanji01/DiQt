@@ -1,6 +1,8 @@
 create: 'Create'
 edit: 'Edit'
 update: 'Update'
+update_succeeded: 'Updated'
+update_failed: 'Update failed'
 destroy: 'Destroy'
 cancel: 'Cancel'
 reload: 'Reload'
