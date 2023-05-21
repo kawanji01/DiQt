@@ -20,8 +20,6 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<!-- Put me in the [my_project]/ios/Runner/Info.plist file -->
-	<!-- Google Sign-in Section -->
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -29,20 +27,15 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<!-- TODO Replace this value: -->
-				<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
 				<string>com.googleusercontent.apps.874138930661-08qjbhrovv58l61b8f72gf83tt7j3h2v</string>
 			</array>
 		</dict>
 	</array>
-	<!-- End of the Google Sign-in Section -->
-	<!-- ローカライゼーション ref: https://pub.dev/packages/fast_i18n/versions/5.0.0#getting-started -->
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
 		<string>ja</string>
 	</array>
-	<!-- ローカライゼーション END -->
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -71,30 +64,15 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-
-  	<!-- AdMob, START ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
-  	ref: https://developers.google.com/admob/ios/quick-start?hl=ja#import_the_mobile_ads_sdk -->
-    <!-- バナー広告 -->
-    <key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-9489251797522277~6073978820</string>
-	<!-- AdMob, END -->
-
-	<!-- ATT(App Tracking Transparency)対応 START -->
-	 <key>NSUserTrackingUsageDescription</key>
-    <string>表示する広告を適切に選択するために使用します。</string>
-	<!-- ATT(App Tracking Transparency)対応 END -->
-
-	<!-- TwitterのURLスキームを開くために必要 ref: https://yasai.dev/posts/2021-04-08-flutter%E3%81%A7twitter%E3%81%AB%E5%85%B1%E6%9C%89%E3%81%99%E3%82%8B%E3%83%9C%E3%82%BF%E3%83%B3%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F/ -->
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-9489251797522277~6073978820</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Used to select the appropriate advertisements to display.</string>
 	<key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>https</string>
-        <string>http</string>
-        <string>twitter</string>
-    </array>
-
+	<array>
+		<string>https</string>
+		<string>http</string>
+		<string>twitter</string>
+	</array>
 </dict>
-
-
-
-
 </plist>
