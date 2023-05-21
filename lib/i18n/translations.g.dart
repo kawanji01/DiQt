@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 935 (467 per locale)
+/// Strings: 949 (474 per locale)
 ///
-/// Built on 2023-05-21 at 03:11 UTC
+/// Built on 2023-05-21 at 06:00 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -734,6 +734,13 @@ class _TranslationsHomeEn {
 	String get welcome_description_2 => 'Easy to use. Look up the word in the dictionary,';
 	String get welcome_description_3 => 'set a review for the word you want to memorize,';
 	String get welcome_description_4 => 'and you can review it automatically until you learn it.';
+	String get community => 'Community';
+	String get contact => 'Contact';
+	String get app_review => 'App Review';
+	String get temrs_of_service => 'Terms of service';
+	String get privacy_policy => 'Privacy policy';
+	String get legal => 'Specified Commercial Transaction Act';
+	String get company => 'Company';
 }
 
 // Path: <root>
@@ -1349,6 +1356,13 @@ class _TranslationsHomeJa implements _TranslationsHomeEn {
 	@override String get welcome_description_2 => '使い方は簡単。辞書で調べて、';
 	@override String get welcome_description_3 => '覚えたい単語に復習を設定すれば、';
 	@override String get welcome_description_4 => '覚えるまで自動で復習できるようになります。';
+	@override String get community => 'コミュニティ';
+	@override String get contact => 'お問い合わせ';
+	@override String get app_review => 'レビュー';
+	@override String get temrs_of_service => '利用規約';
+	@override String get privacy_policy => 'プライバシーポリシー';
+	@override String get legal => '特定商取引法に基づく表記';
+	@override String get company => '運営会社';
 }
 
 /// Flat map(s) containing all translations.
@@ -1824,6 +1838,13 @@ extension on _TranslationsEn {
 			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
 			case 'home.welcome_description_3': return 'set a review for the word you want to memorize,';
 			case 'home.welcome_description_4': return 'and you can review it automatically until you learn it.';
+			case 'home.community': return 'Community';
+			case 'home.contact': return 'Contact';
+			case 'home.app_review': return 'App Review';
+			case 'home.temrs_of_service': return 'Terms of service';
+			case 'home.privacy_policy': return 'Privacy policy';
+			case 'home.legal': return 'Specified Commercial Transaction Act';
+			case 'home.company': return 'Company';
 			default: return null;
 		}
 	}
@@ -2300,6 +2321,13 @@ extension on _TranslationsJa {
 			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';
 			case 'home.welcome_description_3': return '覚えたい単語に復習を設定すれば、';
 			case 'home.welcome_description_4': return '覚えるまで自動で復習できるようになります。';
+			case 'home.community': return 'コミュニティ';
+			case 'home.contact': return 'お問い合わせ';
+			case 'home.app_review': return 'レビュー';
+			case 'home.temrs_of_service': return '利用規約';
+			case 'home.privacy_policy': return 'プライバシーポリシー';
+			case 'home.legal': return '特定商取引法に基づく表記';
+			case 'home.company': return '運営会社';
 			default: return null;
 		}
 	}

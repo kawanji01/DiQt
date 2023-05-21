@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/home/community_page.dart';
 import 'package:booqs_mobile/utils/app_review_service.dart';
@@ -36,18 +37,17 @@ class DrawerMenu extends ConsumerWidget {
             ),
           ),
           ListTile(
-            title: const Text('コミュニティ', style: TextStyle(fontSize: 16)),
+            title: Text(t.home.community, style: const TextStyle(fontSize: 16)),
             onTap: () {
               CommunityPage.push(context);
             },
           ),
           ListTile(
-            title: const Text('お問い合わせ', style: TextStyle(fontSize: 16)),
+            title: Text(t.home.contact, style: const TextStyle(fontSize: 16)),
             onTap: () {
               if (user == null) {
                 // ログインしていないなら、ブラウザ経由で問い合わせ方法を提示する
-                WebPageLauncher.openByWebView(
-                    'https://www.diqt.net/ja/contact');
+                WebPageLauncher.openByWebView('https://www.diqt.net/contact');
               } else {
                 // ログインしているならお問い合わせフィームをモーダル表示
                 Dialogs.reward(const ContactFormScreen());
@@ -55,33 +55,36 @@ class DrawerMenu extends ConsumerWidget {
             },
           ),
           ListTile(
-            title: const Text('レビュー', style: TextStyle(fontSize: 16)),
+            title:
+                Text(t.home.app_review, style: const TextStyle(fontSize: 16)),
             onTap: () async {
               await AppReviewService.request();
             },
           ),
           ListTile(
-            title: const Text('利用規約', style: TextStyle(fontSize: 16)),
+            title: Text(t.home.temrs_of_service,
+                style: const TextStyle(fontSize: 16)),
             onTap: () {
               WebPageLauncher.openByWebView(
                   'https://www.diqt.net/ja/terms_of_service');
             },
           ),
           ListTile(
-            title: const Text('プライバシーポリシー', style: TextStyle(fontSize: 16)),
+            title: Text(t.home.privacy_policy,
+                style: const TextStyle(fontSize: 16)),
             onTap: () {
               WebPageLauncher.openByWebView(
                   'https://www.diqt.net/ja/privacy_policy');
             },
           ),
           ListTile(
-            title: const Text('特定商取引法に基づく表記', style: TextStyle(fontSize: 16)),
+            title: Text(t.home.legal, style: const TextStyle(fontSize: 16)),
             onTap: () {
               WebPageLauncher.openByWebView('https://www.diqt.net/ja/legal');
             },
           ),
           ListTile(
-            title: const Text('運営会社', style: TextStyle(fontSize: 16)),
+            title: Text(t.home.company, style: const TextStyle(fontSize: 16)),
             onTap: () {
               WebPageLauncher.openByWebView('https://www.diqt.net/ja/about');
             },
