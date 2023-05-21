@@ -1,6 +1,8 @@
 create: '作成する'
 edit: '編集する'
 update: '更新する'
+update_succeeded: '更新されました。'
+update_failed: '更新に失敗しました。'
 destroy: '削除する'
 cancel: 'キャンセルする'
 reload: '再読み込みする'

@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 900 (450 per locale)
+/// Strings: 935 (467 per locale)
 ///
-/// Built on 2023-05-20 at 11:44 UTC
+/// Built on 2023-05-21 at 03:11 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -150,6 +150,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsSessionsEn sessions = _TranslationsSessionsEn._(_root);
 	late final _TranslationsDictionariesEn dictionaries = _TranslationsDictionariesEn._(_root);
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
+	late final _TranslationsUsersEn users = _TranslationsUsersEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
@@ -255,6 +256,30 @@ class _TranslationsErrorsEn {
 	String get error_occured => 'Errors have occurred.';
 }
 
+// Path: users
+class _TranslationsUsersEn {
+	_TranslationsUsersEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get anonymous_user => 'Anonymous user';
+	String get edit => 'Account Setting';
+	String get withdraw => 'Withdraw from DiQt';
+	String get name => 'Name';
+	String get profile => 'Profile';
+	String get profile_placeholder => 'Please enter a profile of no more than 500 characters.';
+	String get lang_number => 'Language Setting(mother tongue)';
+	String get learning_lang_number => 'Learning Language';
+	String get authentication => 'Authentication';
+	String get email => 'Email';
+	String get new_password => 'Password';
+	String get new_password_placeholder => 'At least 6 alphanumeric characters';
+	String get new_password_confirmation => 'Password Confirmation';
+	String get new_password_confirmation_placeholder => 'Please enter a new password again';
+	String get notification_deliver => 'Receive email notifications';
+}
+
 // Path: shared
 class _TranslationsSharedEn {
 	_TranslationsSharedEn._(this._root);
@@ -265,6 +290,8 @@ class _TranslationsSharedEn {
 	String get create => 'Create';
 	String get edit => 'Edit';
 	String get update => 'Update';
+	String get update_succeeded => 'Updated';
+	String get update_failed => 'Update failed';
 	String get destroy => 'Destroy';
 	String get cancel => 'Cancel';
 	String get reload => 'Reload';
@@ -737,6 +764,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsSessionsJa sessions = _TranslationsSessionsJa._(_root);
 	@override late final _TranslationsDictionariesJa dictionaries = _TranslationsDictionariesJa._(_root);
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
+	@override late final _TranslationsUsersJa users = _TranslationsUsersJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
@@ -842,6 +870,31 @@ class _TranslationsErrorsJa implements _TranslationsErrorsEn {
 	@override String get error_occured => 'エラーが発生しました。';
 }
 
+// Path: users
+class _TranslationsUsersJa implements _TranslationsUsersEn {
+	_TranslationsUsersJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get anonymous_user => '匿名ユーザー';
+	@override String get creating_account_succeeded => '会員登録が完了しました！ようこそDiQtへ！！';
+	@override String get edit => 'アカウント設定';
+	@override String get withdraw => 'DiQtから退会する';
+	@override String get name => 'ユーザー名';
+	@override String get profile => 'プロフィール';
+	@override String get profile_placeholder => '500文字以内でプロフィールを入力してください。';
+	@override String get lang_number => '言語設定(母語)';
+	@override String get learning_lang_number => '学習言語';
+	@override String get authentication => '認証設定';
+	@override String get email => 'メールアドレス';
+	@override String get new_password => 'パスワード';
+	@override String get new_password_placeholder => '半角英数字６文字以上';
+	@override String get new_password_confirmation => 'パスワード確認';
+	@override String get new_password_confirmation_placeholder => 'もう一度パスワードを入力してください。';
+	@override String get notification_deliver => 'メールによる通知を受け取る';
+}
+
 // Path: shared
 class _TranslationsSharedJa implements _TranslationsSharedEn {
 	_TranslationsSharedJa._(this._root);
@@ -852,6 +905,8 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get create => '作成する';
 	@override String get edit => '編集する';
 	@override String get update => '更新する';
+	@override String get update_succeeded => '更新されました。';
+	@override String get update_failed => '更新に失敗しました。';
 	@override String get destroy => '削除する';
 	@override String get cancel => 'キャンセルする';
 	@override String get reload => '再読み込みする';
@@ -1370,9 +1425,26 @@ extension on _TranslationsEn {
 			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
 			case 'errors.error_occured': return 'Errors have occurred.';
+			case 'users.anonymous_user': return 'Anonymous user';
+			case 'users.edit': return 'Account Setting';
+			case 'users.withdraw': return 'Withdraw from DiQt';
+			case 'users.name': return 'Name';
+			case 'users.profile': return 'Profile';
+			case 'users.profile_placeholder': return 'Please enter a profile of no more than 500 characters.';
+			case 'users.lang_number': return 'Language Setting(mother tongue)';
+			case 'users.learning_lang_number': return 'Learning Language';
+			case 'users.authentication': return 'Authentication';
+			case 'users.email': return 'Email';
+			case 'users.new_password': return 'Password';
+			case 'users.new_password_placeholder': return 'At least 6 alphanumeric characters';
+			case 'users.new_password_confirmation': return 'Password Confirmation';
+			case 'users.new_password_confirmation_placeholder': return 'Please enter a new password again';
+			case 'users.notification_deliver': return 'Receive email notifications';
 			case 'shared.create': return 'Create';
 			case 'shared.edit': return 'Edit';
 			case 'shared.update': return 'Update';
+			case 'shared.update_succeeded': return 'Updated';
+			case 'shared.update_failed': return 'Update failed';
 			case 'shared.destroy': return 'Destroy';
 			case 'shared.cancel': return 'Cancel';
 			case 'shared.reload': return 'Reload';
@@ -1828,9 +1900,27 @@ extension on _TranslationsJa {
 			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
 			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';
 			case 'errors.error_occured': return 'エラーが発生しました。';
+			case 'users.anonymous_user': return '匿名ユーザー';
+			case 'users.creating_account_succeeded': return '会員登録が完了しました！ようこそDiQtへ！！';
+			case 'users.edit': return 'アカウント設定';
+			case 'users.withdraw': return 'DiQtから退会する';
+			case 'users.name': return 'ユーザー名';
+			case 'users.profile': return 'プロフィール';
+			case 'users.profile_placeholder': return '500文字以内でプロフィールを入力してください。';
+			case 'users.lang_number': return '言語設定(母語)';
+			case 'users.learning_lang_number': return '学習言語';
+			case 'users.authentication': return '認証設定';
+			case 'users.email': return 'メールアドレス';
+			case 'users.new_password': return 'パスワード';
+			case 'users.new_password_placeholder': return '半角英数字６文字以上';
+			case 'users.new_password_confirmation': return 'パスワード確認';
+			case 'users.new_password_confirmation_placeholder': return 'もう一度パスワードを入力してください。';
+			case 'users.notification_deliver': return 'メールによる通知を受け取る';
 			case 'shared.create': return '作成する';
 			case 'shared.edit': return '編集する';
 			case 'shared.update': return '更新する';
+			case 'shared.update_succeeded': return '更新されました。';
+			case 'shared.update_failed': return '更新に失敗しました。';
 			case 'shared.destroy': return '削除する';
 			case 'shared.cancel': return 'キャンセルする';
 			case 'shared.reload': return '再読み込みする';

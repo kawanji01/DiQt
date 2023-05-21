@@ -1,7 +1,10 @@
-import 'package:booqs_mobile/components/user/form/language_setting.dart';
+import 'package:booqs_mobile/components/button/medium_green_button.dart';
+import 'package:booqs_mobile/components/user/form/lang_number.dart';
+import 'package:booqs_mobile/components/user/form/learning_lang_number.dart';
 import 'package:booqs_mobile/components/user/form/withdrawal_button.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/language.dart';
@@ -59,6 +62,7 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
         'name': _nameController.text,
         'profile': _profileController.text,
         'lang_number': ref.watch(userLangNumberProvider),
+        'learning_lang_number': ref.watch(userLearningLangNumberProvider),
       };
       try {
         final Map? resMap = await RemoteUsers.update(params);
@@ -69,14 +73,14 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
             resMap['user'] == null ||
             resMap['message'] == null) {
           if (!mounted) return;
-          const snackBar = SnackBar(content: Text('アカウントを更新できませんでした。'));
+          final snackBar = SnackBar(content: Text(t.shared.update_failed));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         } else {
           final updatedUser = User.fromJson(resMap['user']);
           ref.read(currentUserProvider.notifier).state = updatedUser;
           // 言語設定の切り替え
           await LanguageService.setLocale(updatedUser);
-          final snackBar = SnackBar(content: Text('${resMap['message']}'));
+          final snackBar = SnackBar(content: Text(t.shared.update_succeeded));
           if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           UserMyPage.push(context);
@@ -86,7 +90,8 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
         await EasyLoading.dismiss();
         setState(() => _isRequesting = false);
         if (!mounted) return;
-        final snackBar = SnackBar(content: Text('エラーが発生しました: $e'));
+        final snackBar =
+            SnackBar(content: Text('${t.errors.error_occured}: $e'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
@@ -102,11 +107,10 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
                   // 項目フォーム
                   TextFormField(
                     controller: _nameController,
-                    decoration: const InputDecoration(
-                        labelText: "名前", hintText: '名前を入力してください。'),
+                    decoration: InputDecoration(labelText: t.users.name),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return '名前は空欄にできません。';
+                        return t.errors.cant_be_blank;
                       }
                       return null;
                     },
@@ -119,17 +123,31 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     controller: _profileController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'プロフィール',
-                      hintText: '【空欄可】自己紹介を入力してください。',
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: t.users.profile,
+                      hintText: t.users.profile_placeholder,
                     ),
                   ),
                 ],
               ),
-              const UserFormLanguageSetting(),
               const SizedBox(height: 40),
-              SizedBox(
+              const UserFormLangNumber(),
+              const SizedBox(height: 32),
+              const UserFormLearningLangNumber(),
+              const SizedBox(height: 64),
+              InkWell(
+                  onTap: _isRequesting
+                      ? null
+                      : () async {
+                          save(widget.user);
+                        },
+                  child: MediumGreenButton(
+                    label: t.shared.update,
+                    icon: Icons.edit_outlined,
+                    fontSize: 18,
+                  )),
+              /* SizedBox(
                 height: 48,
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
@@ -142,12 +160,13 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
                           save(widget.user);
                         },
                   icon: const Icon(Icons.edit_outlined, color: Colors.white),
-                  label: const Text(
-                    '更新する',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  label: Text(
+                    t.shared.update,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
-              ),
+              ), */
               const SizedBox(height: 80),
               const UserFormWithdrawalButton(),
               const SizedBox(height: 80),

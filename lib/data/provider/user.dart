@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
@@ -63,16 +64,6 @@ final asyncUserProvider =
   }
 });
 
-// ユーザーの言語番号(formのControllerとして利用)
-final userLangNumberProvider = StateProvider<int>((ref) {
-  final int langNumber = ref.watch(
-      currentUserProvider.select((user) => user == null ? 0 : user.langNumber));
-  if (LanguageService.langNumberSupported(langNumber)) {
-    return langNumber;
-  }
-  return 21;
-});
-
 // 非同期でユーザーの参加中のchapterを取得する
 final asyncUserSchoolsProvider =
     FutureProvider.family<List<Chapter>, String>((ref, userUid) async {
@@ -84,7 +75,24 @@ final asyncUserSchoolsProvider =
   return schools;
 });
 
-//// ログインユーザーの情報  ////
+//// formでcontrollerがわりに利用 /////
+// ユーザーの言語の番号
+final userLangNumberProvider = StateProvider<int>((ref) {
+  final int langNumber = ref.watch(currentUserProvider
+      .select((user) => user?.langNumber ?? defaultLangNumber));
+  // ユーザーの母語はi18nに対応している言語に限定しておく
+  if (LanguageService.langNumberSupported(langNumber)) {
+    return langNumber;
+  }
+  return defaultLangNumber;
+});
+// 学習言語の番号
+final userLearningLangNumberProvider = StateProvider<int>((ref) {
+  return ref.watch(currentUserProvider
+      .select((user) => user?.learningLangNumber ?? defaultLangNumber));
+});
+
+//// 手動で書き換える必要ないログインユーザーの情報（Providerを利用） ////
 // プレミアムユーザーの検証
 final premiumEnabledProvider = Provider<bool>(
   (ref) =>
