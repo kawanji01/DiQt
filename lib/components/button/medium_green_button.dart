@@ -18,8 +18,10 @@ class MediumGreenButton extends StatelessWidget {
     if (icon == null) {
       child = Text(
         label,
-        style: const TextStyle(
-            color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold),
         overflow: TextOverflow.visible,
       );
     } else {
