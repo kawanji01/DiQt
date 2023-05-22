@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -203,7 +204,7 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('獲得メダル'),
+        title: Text(t.achievements.medals_won),
       ),
       body: bodyWidget(),
       bottomNavigationBar: const BottomNavbar(),

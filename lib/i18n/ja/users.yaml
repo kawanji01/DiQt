@@ -1,5 +1,6 @@
 anonymous_user: '匿名ユーザー'
 creating_account_succeeded: '会員登録が完了しました！ようこそDiQtへ！！'
+show: 'ユーザーページ'
 edit: 'アカウント設定'
 withdraw: 'DiQtから退会する'
 name: 'ユーザー名'

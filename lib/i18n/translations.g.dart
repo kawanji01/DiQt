@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 957 (478 per locale)
+/// Strings: 961 (480 per locale)
 ///
-/// Built on 2023-05-22 at 00:35 UTC
+/// Built on 2023-05-22 at 05:48 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -152,6 +152,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
 	late final _TranslationsUsersEn users = _TranslationsUsersEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
+	late final _TranslationsAchievementsEn achievements = _TranslationsAchievementsEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
@@ -265,6 +266,7 @@ class _TranslationsUsersEn {
 
 	// Translations
 	String get anonymous_user => 'Anonymous user';
+	String get show => 'User Page';
 	String get edit => 'Account Setting';
 	String get withdraw => 'Withdraw from DiQt';
 	String get name => 'Name';
@@ -301,6 +303,16 @@ class _TranslationsSharedEn {
 	String get undefined => 'Undefined';
 	String get details => 'Details';
 	String please_enter({required Object name}) => 'Please enter "${name}"';
+}
+
+// Path: achievements
+class _TranslationsAchievementsEn {
+	_TranslationsAchievementsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get medals_won => 'Medals won';
 }
 
 // Path: lang
@@ -787,6 +799,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
 	@override late final _TranslationsUsersJa users = _TranslationsUsersJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
+	@override late final _TranslationsAchievementsJa achievements = _TranslationsAchievementsJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
@@ -901,6 +914,7 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	// Translations
 	@override String get anonymous_user => '匿名ユーザー';
 	@override String get creating_account_succeeded => '会員登録が完了しました！ようこそDiQtへ！！';
+	@override String get show => 'ユーザーページ';
 	@override String get edit => 'アカウント設定';
 	@override String get withdraw => 'DiQtから退会する';
 	@override String get name => 'ユーザー名';
@@ -937,6 +951,16 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get undefined => '未定義';
 	@override String get details => '詳細';
 	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
+}
+
+// Path: achievements
+class _TranslationsAchievementsJa implements _TranslationsAchievementsEn {
+	_TranslationsAchievementsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get medals_won => '獲得メダル';
 }
 
 // Path: lang
@@ -1468,6 +1492,7 @@ extension on _TranslationsEn {
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
 			case 'errors.error_occured': return 'Errors have occurred.';
 			case 'users.anonymous_user': return 'Anonymous user';
+			case 'users.show': return 'User Page';
 			case 'users.edit': return 'Account Setting';
 			case 'users.withdraw': return 'Withdraw from DiQt';
 			case 'users.name': return 'Name';
@@ -1495,6 +1520,7 @@ extension on _TranslationsEn {
 			case 'shared.undefined': return 'Undefined';
 			case 'shared.details': return 'Details';
 			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
+			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
 			case 'lang.translating': return 'Translating...';
@@ -1955,6 +1981,7 @@ extension on _TranslationsJa {
 			case 'errors.error_occured': return 'エラーが発生しました。';
 			case 'users.anonymous_user': return '匿名ユーザー';
 			case 'users.creating_account_succeeded': return '会員登録が完了しました！ようこそDiQtへ！！';
+			case 'users.show': return 'ユーザーページ';
 			case 'users.edit': return 'アカウント設定';
 			case 'users.withdraw': return 'DiQtから退会する';
 			case 'users.name': return 'ユーザー名';
@@ -1982,6 +2009,7 @@ extension on _TranslationsJa {
 			case 'shared.undefined': return '未定義';
 			case 'shared.details': return '詳細';
 			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
+			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
 			case 'lang.translating': return '翻訳中...';
