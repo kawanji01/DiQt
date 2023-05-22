@@ -23,10 +23,6 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
       // ユーザー情報を更新する
       final User user = User.fromJson(resMap['user']);
       ref.read(currentUserProvider.notifier).updateUser(user);
-      /* ref.read(todaysAnswersCountProvider.notifier).state =
-          user.todaysAnswerHistoriesCount;
-      ref.read(todaysCorrectAnswersCountProvider.notifier).state =
-          user.todaysCorrectAnswerHistoriesCount; */
     }
 
     // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。

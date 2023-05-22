@@ -1,5 +1,3 @@
-
-
 import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/word/form/destroy_button.dart';
 import 'package:booqs_mobile/components/word/form/fields.dart';
@@ -14,7 +12,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordEditScreen extends ConsumerStatefulWidget {
-  const WordEditScreen({super.key, required this.word, required this.dictionary});
+  const WordEditScreen(
+      {super.key, required this.word, required this.dictionary});
   final Word word;
   final Dictionary dictionary;
 
@@ -23,8 +22,6 @@ class WordEditScreen extends ConsumerStatefulWidget {
 }
 
 class WordEditScreenState extends ConsumerState<WordEditScreen> {
-
-  
   bool _isRequesting = false;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
@@ -40,12 +37,11 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
   final _antonymsController = TextEditingController();
   final _relatedController = TextEditingController();
 
-
   @override
   void initState() {
     super.initState();
     final Word word = widget.word;
-     _entryController.text = word.entry;
+    _entryController.text = word.entry;
     _readingController.text = word.reading ?? '';
     _meaningController.text = word.meaning;
     _posTagIdController.text = word.posTagId.toString();
@@ -57,8 +53,6 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
     _antonymsController.text = word.antonyms ?? '';
     _relatedController.text = word.related ?? '';
   }
-
-  
 
   @override
   // widgetの破棄時にコントローラも破棄する。Controllerを使うなら必ず必要。
@@ -123,57 +117,57 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
       }
     }
 
-    
     return SingleChildScrollView(
-        child: Form(
-            key: _formKey,
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(height: 24),
-                  DictionaryName(dictionary: dictionary),
-                  const SizedBox(height: 32),
-                  WordFormFields(
-                    entryController: _entryController,
-                    readingController: _readingController,
-                    meaningController: _meaningController,
-                    posTagIdController: _posTagIdController,
-                    ipaController: _ipaController,
-                    etymologiesController: _etymologiesController,
-                    explanationController: _explanationController,
-                    sentenceIdController: _sentenceIdController,
-                    synonymsController: _synonymsController,
-                    antonymsController: _antonymsController,
-                    relatedController: _relatedController,
-                    dictionary: dictionary,
-                    word: word,
-                  ),
-                  const SizedBox(height: 40),
-                  // SubmitBtn
-                  SizedBox(
-                    height: 48,
-                    child: ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        minimumSize: const Size(double.infinity,
-                            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-                      ),
-                      onPressed: _isRequesting
-                          ? null
-                          : () async {
-                              save();
-                            },
-                      icon: const Icon(Icons.update, color: Colors.white),
-                      label: Text(
-                        t.shared.update,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
-                      ),
+      child: Form(
+          key: _formKey,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(height: 24),
+                DictionaryName(dictionary: dictionary),
+                const SizedBox(height: 32),
+                WordFormFields(
+                  entryController: _entryController,
+                  readingController: _readingController,
+                  meaningController: _meaningController,
+                  posTagIdController: _posTagIdController,
+                  ipaController: _ipaController,
+                  etymologiesController: _etymologiesController,
+                  explanationController: _explanationController,
+                  sentenceIdController: _sentenceIdController,
+                  synonymsController: _synonymsController,
+                  antonymsController: _antonymsController,
+                  relatedController: _relatedController,
+                  dictionary: dictionary,
+                  word: word,
+                ),
+                const SizedBox(height: 40),
+                // SubmitBtn
+                SizedBox(
+                  height: 48,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      minimumSize: const Size(double.infinity,
+                          40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                    ),
+                    onPressed: _isRequesting
+                        ? null
+                        : () async {
+                            save();
+                          },
+                    icon: const Icon(Icons.update, color: Colors.white),
+                    label: Text(
+                      t.shared.update,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ),
-                  const SizedBox(height: 64),
-                  WordFormDestroyButton(word: word),
-                  const SizedBox(height: 160),
-                ])),
-      );
+                ),
+                const SizedBox(height: 64),
+                WordFormDestroyButton(word: word),
+                const SizedBox(height: 160),
+              ])),
+    );
+  }
 }

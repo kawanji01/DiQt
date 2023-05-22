@@ -36,9 +36,6 @@ class UserFormWithdrawalButtonState
       } else {
         await UserSetup.logOut(user);
         ref.read(currentUserProvider.notifier).updateUser(null);
-        /* ref.read(answerSettingProvider.notifier).state = null;
-        ref.read(todaysAnswersCountProvider.notifier).state = 0;
-        ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0; */
         if (!mounted) return;
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
