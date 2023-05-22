@@ -24,7 +24,7 @@ class DictionaryMapRadioListState
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // 何も選択されていない場合は、最後に選択した辞書を設定
-      if (ref.watch(selectedDictionaryProvider) == null) {
+      if (ref.read(selectedDictionaryProvider) == null) {
         _loadLastSelectedDictionary();
       }
     });

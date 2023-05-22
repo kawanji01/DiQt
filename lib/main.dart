@@ -62,7 +62,7 @@ class DiQtState extends ConsumerState<DiQt> {
     super.initState();
     // localeを設定する
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final User? user = ref.watch(currentUserProvider);
+      final User? user = ref.read(currentUserProvider);
       await LanguageService.setLocale(user);
     });
   }
