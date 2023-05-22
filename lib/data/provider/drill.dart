@@ -1,9 +1,7 @@
-import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/drill_lap.dart';
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
-import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
 import 'package:booqs_mobile/data/remote/drills.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
@@ -31,12 +29,8 @@ final asyncDrillUnsolvedQuizzesProvider =
 
   final User user = User.fromJson(resMap['user']);
   await UserSetup.signIn(user);
-  ref.read(currentUserProvider.notifier).state = user;
-  ref.read(answerSettingProvider.notifier).state = user.answerSetting;
-  ref.read(todaysAnswersCountProvider.notifier).state =
-      user.todaysAnswerHistoriesCount;
-  ref.read(todaysCorrectAnswersCountProvider.notifier).state =
-      user.todaysCorrectAnswerHistoriesCount;
+  ref.read(currentUserProvider.notifier).updateUser(user);
+
   // 解答済の問題数の更新
   ref.read(drillSolvedQuizzesCountProvider.notifier).state =
       resMap['solved_count'];

@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/quizzes.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -23,11 +22,7 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
     void updateProviders(resMap) {
       // ユーザー情報を更新する
       final User user = User.fromJson(resMap['user']);
-      ref.read(currentUserProvider.notifier).state = user;
-      ref.read(todaysAnswersCountProvider.notifier).state =
-          user.todaysAnswerHistoriesCount;
-      ref.read(todaysCorrectAnswersCountProvider.notifier).state =
-          user.todaysCorrectAnswerHistoriesCount;
+      ref.read(currentUserProvider.notifier).updateUser(user);
     }
 
     // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。

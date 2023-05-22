@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/components/heading/medium_green.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/drill/feed.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';

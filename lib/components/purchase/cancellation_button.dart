@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/cancellation.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';

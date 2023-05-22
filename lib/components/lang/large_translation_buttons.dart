@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/lang/small_translation_over_limit.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/langs.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';

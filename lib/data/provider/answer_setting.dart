@@ -1,8 +1,12 @@
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 解答設定のプロバイダー
-final answerSettingProvider = StateProvider<AnswerSetting?>((ref) => null);
+final answerSettingProvider = StateProvider<AnswerSetting?>((ref) {
+  final user = ref.watch(currentUserProvider);
+  return user?.answerSetting;
+});
 
 //// 解答設定用 ////
 // 問題文を隠す設定

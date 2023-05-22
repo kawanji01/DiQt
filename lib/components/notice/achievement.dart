@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/notice.dart';

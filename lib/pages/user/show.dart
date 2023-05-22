@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
@@ -12,8 +13,8 @@ import 'package:booqs_mobile/components/user/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserShowPage extends ConsumerStatefulWidget {
-  const UserShowPage({Key? key}) : super(key: key);
+class UserShowPage extends ConsumerWidget {
+  const UserShowPage({super.key});
 
   static Future push(BuildContext context, String userUid) async {
     return Navigator.of(context)
@@ -21,20 +22,9 @@ class UserShowPage extends ConsumerStatefulWidget {
   }
 
   @override
-  UserShowPageState createState() => UserShowPageState();
-}
-
-class UserShowPageState extends ConsumerState<UserShowPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
     final String userUid = arguments['userUid'];
-    final future = ref.watch(asyncUserProvider(userUid));
 
     Widget userPage(user) {
       if (user == null) return const LoadingSpinner();
@@ -44,7 +34,6 @@ class UserShowPageState extends ConsumerState<UserShowPage> {
       return Column(
         children: <Widget>[
           UserProfile(user: user),
-         
           RelationshipFollowButton(user: user, relationship: relationship),
           UserExpIndicator(user: user),
           UserAchievementsButton(user: user),
@@ -62,18 +51,18 @@ class UserShowPageState extends ConsumerState<UserShowPage> {
     // 最終的なアウトプット
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ユーザーページ'),
+        title: Text(t.users.show),
       ),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
           padding: const EdgeInsets.symmetric(vertical: 16),
-          child: future.when(
-            data: (user) => userPage(user),
-            loading: () => const LoadingSpinner(),
-            error: (err, stack) => Text('Error: $err'),
-          ),
+          child: ref.watch(asyncUserFamily(userUid)).when(
+                data: (user) => userPage(user),
+                loading: () => const LoadingSpinner(),
+                error: (err, stack) => Text('Error: $err'),
+              ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

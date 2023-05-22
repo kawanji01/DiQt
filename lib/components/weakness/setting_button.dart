@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/data/local/user_info.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/weaknesses.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/models/weakness.dart';
@@ -49,7 +49,7 @@ class WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
       if (resMap == null) return;
       final Weakness weakness = Weakness.fromJson(resMap['weakness']);
       final User user = User.fromJson(resMap['user']);
-      ref.watch(currentUserProvider.notifier).state = user;
+      ref.watch(currentUserProvider.notifier).updateUser(user);
       setState(() {
         _weakness = weakness;
       });
@@ -63,7 +63,7 @@ class WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
       EasyLoading.dismiss();
       if (resMap == null) return;
       final User user = User.fromJson(resMap['user']);
-      ref.watch(currentUserProvider.notifier).state = user;
+      ref.watch(currentUserProvider.notifier).updateUser(user);
       setState(() {
         _weakness = null;
       });
