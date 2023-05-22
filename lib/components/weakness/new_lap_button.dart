@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/components/button/large_green_button.dart';
 import 'package:booqs_mobile/components/weakness/new_lap_screen.dart';

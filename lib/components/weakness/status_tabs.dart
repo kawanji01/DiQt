@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/pages/weakness/index.dart';
 import 'package:booqs_mobile/pages/weakness/solved.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';

@@ -1,9 +1,6 @@
-import 'package:booqs_mobile/data/local/user_info.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/relationships.dart';
 import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';

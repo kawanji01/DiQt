@@ -2,7 +2,7 @@ import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/user/form/lang_number.dart';
 import 'package:booqs_mobile/components/user/form/learning_lang_number.dart';
 import 'package:booqs_mobile/components/user/form/withdrawal_button.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -77,7 +77,7 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         } else {
           final updatedUser = User.fromJson(resMap['user']);
-          ref.read(currentUserProvider.notifier).state = updatedUser;
+          ref.read(currentUserProvider.notifier).updateUser(user);
           // 言語設定の切り替え
           await LanguageService.setLocale(updatedUser);
           final snackBar = SnackBar(content: Text(t.shared.update_succeeded));

@@ -2,7 +2,7 @@ import 'package:booqs_mobile/components/home/dictionary_screen.dart';
 import 'package:booqs_mobile/components/home/loading_screen.dart';
 import 'package:booqs_mobile/components/home/sign_in_screen.dart';
 
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

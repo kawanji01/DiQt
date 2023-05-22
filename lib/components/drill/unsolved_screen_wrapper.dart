@@ -1,8 +1,7 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/drill_lap.dart';
-import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/quizzes.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
@@ -25,11 +24,8 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
           AnswerCreator.fromJson(resMap['answer_creator']);
       // ユーザー情報と今日の解答数を更新する
       final User user = User.fromJson(resMap['user']);
-      ref.read(currentUserProvider.notifier).state = user;
-      ref.read(todaysAnswersCountProvider.notifier).state =
-          user.todaysAnswerHistoriesCount;
-      ref.read(todaysCorrectAnswersCountProvider.notifier).state =
-          user.todaysCorrectAnswerHistoriesCount;
+      ref.read(currentUserProvider.notifier).updateUser(user);
+
       // 解答済の問題数を更新する
       ref.read(drillSolvedQuizzesCountProvider.notifier).state =
           answerCreator.solvedQuizzesCount!;

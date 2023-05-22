@@ -1,53 +1,9 @@
-import 'package:booqs_mobile/consts/language.dart';
-import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
+// ユーザーページなどで表示する他のuser
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/chapter.dart';
-import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/utils/language.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// 現在のログイン済ユーザー
-final currentUserProvider = StateProvider<User?>((ref) => null);
-
-// 非同期でログイン済ユーザーを取得する
-final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
-  Map? resMap = await RemoteUsers.current();
-  if (resMap == null) {
-    // ログインしていない場合
-    await UserSetup.logOut(null);
-    ref.read(currentUserProvider.notifier).state = null;
-    ref.read(todaysAnswersCountProvider.notifier).state = 0;
-    ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0;
-    ref.read(answerSettingProvider.notifier).state = null;
-    return null;
-  } else {
-    // ログインしている場合
-    final User user = User.fromJson(resMap['user']);
-    await UserSetup.signIn(user);
-    ref.read(currentUserProvider.notifier).state = user;
-    ref.read(todaysAnswersCountProvider.notifier).state =
-        user.todaysAnswerHistoriesCount;
-    ref.read(todaysCorrectAnswersCountProvider.notifier).state =
-        user.todaysCorrectAnswerHistoriesCount;
-    ref.read(answerSettingProvider.notifier).state = user.answerSetting;
-    return user;
-  }
-});
-
-// 非同期でユーザーが解答中の問題集のリストを取得する
-final asyncDrillsInProgress = FutureProvider<List<Drill>>((ref) async {
-  final List<Drill> drills = [];
-  final Map? resMap = await RemoteUsers.drillsInProgress();
-  if (resMap == null) return drills;
-
-  resMap['drills'].forEach((e) => drills.add(Drill.fromJson(e)));
-  return drills;
-});
-
-// ユーザーページなどで表示する他のuser
 final userProvider = StateProvider<User?>((ref) => null);
 
 // IDをもとに非同期でユーザーを取得する
@@ -73,53 +29,4 @@ final asyncUserSchoolsProvider =
 
   resMap['schools'].forEach((e) => schools.add(Chapter.fromJson(e)));
   return schools;
-});
-
-//// formでcontrollerがわりに利用 /////
-// ユーザーの言語の番号
-final userLangNumberProvider = StateProvider<int>((ref) {
-  final int langNumber = ref.watch(currentUserProvider
-      .select((user) => user?.langNumber ?? defaultLangNumber));
-  // ユーザーの母語はi18nに対応している言語に限定しておく
-  if (LanguageService.langNumberSupported(langNumber)) {
-    return langNumber;
-  }
-  return defaultLangNumber;
-});
-// 学習言語の番号
-final userLearningLangNumberProvider = StateProvider<int>((ref) {
-  return ref.watch(currentUserProvider
-      .select((user) => user?.learningLangNumber ?? defaultLangNumber));
-});
-
-//// 手動で書き換える必要ないログインユーザーの情報（Providerを利用） ////
-// プレミアムユーザーの検証
-final premiumEnabledProvider = Provider<bool>(
-  (ref) =>
-      ref.watch(currentUserProvider.select((user) => user?.premium ?? false)),
-);
-// 確認していない通知の数
-final unreadNotificationsCountProvider = Provider<int>(
-  (ref) => ref.watch(currentUserProvider
-      .select((user) => user?.unreadNotificationsCount ?? 0)),
-);
-// 報酬を受け取ったかどうか。
-final rewardRemainedProvider = Provider<bool>(
-  (ref) => ref.watch(
-      currentUserProvider.select((user) => user?.rewardRemained ?? false)),
-);
-// 未解答の復習の数
-final unsolvedReviewsCountProvider = Provider<int>(
-  (ref) => ref.watch(
-      currentUserProvider.select((user) => user?.unsolvedReviewsCount ?? 0)),
-);
-// 復習の数
-final reviewsCountProvider = Provider<int>(
-  (ref) =>
-      ref.watch(currentUserProvider.select((user) => user?.reviewsCount ?? 0)),
-);
-// 解答済の復習の数
-final solvedReviewsCountProvider = Provider<int>((ref) {
-  return ref.watch(reviewsCountProvider) -
-      ref.watch(unsolvedReviewsCountProvider);
 });

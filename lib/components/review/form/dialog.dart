@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/components/review/form/quiz_button.dart';
 import 'package:booqs_mobile/data/local/user_info.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';

@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/components/lang/small_translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';

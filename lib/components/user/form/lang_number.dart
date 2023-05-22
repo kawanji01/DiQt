@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/consts/language.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/language.dart';
 import 'package:flutter/material.dart';

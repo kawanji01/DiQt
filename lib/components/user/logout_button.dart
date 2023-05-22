@@ -1,6 +1,4 @@
-import 'package:booqs_mobile/data/provider/answer_setting.dart';
-import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -30,10 +28,10 @@ class UserLogoutButtonState extends ConsumerState<UserLogoutButton> {
         EasyLoading.show(status: 'loading...');
         await RemoteSessions.logout();
         await UserSetup.logOut(user);
-        ref.read(currentUserProvider.notifier).state = null;
-        ref.read(answerSettingProvider.notifier).state = null;
+        ref.read(currentUserProvider.notifier).updateUser(null);
+        /* ref.read(answerSettingProvider.notifier).state = null;
         ref.read(todaysAnswersCountProvider.notifier).state = 0;
-        ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0;
+        ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0; */
         // ref.invalidate(asyncCurrentUserProvider);
         // ローディングを消す
         EasyLoading.dismiss();

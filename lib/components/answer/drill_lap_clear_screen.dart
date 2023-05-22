@@ -2,7 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/drill.dart';

@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/components/purchase/no_subscriptions.dart';
 import 'package:booqs_mobile/components/purchase/app_subscription.dart';
 import 'package:booqs_mobile/components/purchase/web_subscription.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

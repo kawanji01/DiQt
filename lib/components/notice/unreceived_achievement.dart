@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/achievement_maps.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/achievement_map.dart';
@@ -60,7 +60,7 @@ class NoticeUnreceivedAchievementState
 
       // ユーザーを更新する
       final User user = User.fromJson(resMap['user']);
-      ref.read(currentUserProvider.notifier).state = user;
+      ref.read(currentUserProvider.notifier).updateUser(user);
       setState(() {
         _isreceived = true;
       });

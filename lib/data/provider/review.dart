@@ -1,8 +1,6 @@
-import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
-import 'package:booqs_mobile/data/provider/todays_answers_count.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -19,12 +17,12 @@ final asyncUnsolvedReviewsProvider = FutureProvider<List<Review>>((ref) async {
 
   User user = User.fromJson(resMap['user']);
   await UserSetup.signIn(user);
-  ref.read(currentUserProvider.notifier).state = user;
-  ref.read(answerSettingProvider.notifier).state = user.answerSetting;
+  ref.read(currentUserProvider.notifier).updateUser(user);
+  /* ref.read(answerSettingProvider.notifier).state = user.answerSetting;
   ref.read(todaysAnswersCountProvider.notifier).state =
       user.todaysAnswerHistoriesCount;
   ref.read(todaysCorrectAnswersCountProvider.notifier).state =
-      user.todaysCorrectAnswerHistoriesCount;
+      user.todaysCorrectAnswerHistoriesCount; */
   resMap['reviews'].forEach((e) => reviews.add(Review.fromJson(e)));
   // 画面に描画された問題のID
   final List<int> loadedQuizIds = reviews.map((e) => e.quizId).toList();

@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';

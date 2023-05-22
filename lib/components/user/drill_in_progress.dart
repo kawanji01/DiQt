@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/components/heading/medium_green.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/components/drill/card.dart';
 import 'package:booqs_mobile/components/user/drills_in_progress_screen.dart';
