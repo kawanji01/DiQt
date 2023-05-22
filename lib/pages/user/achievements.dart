@@ -50,7 +50,7 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
   }
 
   Future _loadAchievements() async {
-    final User? user = ref.watch(userProvider);
+    final User? user = ref.read(userProvider);
     if (user == null) return;
 
     Map? resMap = await RemoteUsers.achievements(user.publicUid);

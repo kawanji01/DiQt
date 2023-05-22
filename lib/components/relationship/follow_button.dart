@@ -24,18 +24,13 @@ class RelationshipFollowButton extends ConsumerStatefulWidget {
 
 class RelationshipFollowButtonState
     extends ConsumerState<RelationshipFollowButton> {
-  User? _user;
-  User? _currentUser;
   Relationship? _relationship;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
       setState(() {
-        _user = widget.user;
-        _currentUser = ref.watch(currentUserProvider);
         _relationship = widget.relationship;
       });
     });
@@ -43,19 +38,12 @@ class RelationshipFollowButtonState
 
   @override
   Widget build(BuildContext context) {
-    if (_user == null || _currentUser == null) return Container();
+    final User user = widget.user;
 
     // フォロー
     Future<void> follow() async {
-      // ログインしていないならマイページ（ログイン画面）に飛ばす
-      final String? token = await LocalUserInfo.authToken();
-      if (token == null) {
-        if (!mounted) return;
-        return UserMyPage.push(context);
-      }
-
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteRelationships.create(_user!.publicUid);
+      final Map? resMap = await RemoteRelationships.create(user.publicUid);
       EasyLoading.dismiss();
       if (resMap == null) return;
       final Relationship relationship =
@@ -77,27 +65,23 @@ class RelationshipFollowButtonState
       });
     }
 
-    Widget button(relationship) {
-      if (relationship == null) {
-        return InkWell(
-          onTap: () {
-            follow();
-          },
-          child: const SmallOutlineGrayButton(
-            label: 'フォローする',
-            icon: Icons.person_add,
-          ),
-        );
-      } else {
-        return InkWell(
-          onTap: () {
-            remove();
-          },
-          child: const SmallGreenButton(label: 'フォロー中', icon: Icons.person),
-        );
-      }
+    if (_relationship == null) {
+      return InkWell(
+        onTap: () {
+          follow();
+        },
+        child: const SmallOutlineGrayButton(
+          label: 'フォローする',
+          icon: Icons.person_add,
+        ),
+      );
     }
 
-    return button(_relationship);
+    return InkWell(
+      onTap: () {
+        remove();
+      },
+      child: const SmallGreenButton(label: 'フォロー中', icon: Icons.person),
+    );
   }
 }

@@ -19,8 +19,7 @@ class QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        _isCovered = ref.watch(answerSettingProvider
-            .select((setting) => setting?.questionCovered ?? false));
+        _isCovered = ref.read(questionCoveredProvider);
       });
     });
     super.initState();

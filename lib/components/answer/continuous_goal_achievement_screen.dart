@@ -30,8 +30,8 @@ class AnswerContinuousGoalAchievementScreenState
   @override
   void initState() {
     super.initState();
+    // 効果音
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // 効果音
       if (ref.read(seEnabledProvider)) {
         audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
       }
