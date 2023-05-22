@@ -67,11 +67,6 @@ class ExpGainedExpIndicatorState extends ConsumerState<ExpGainedExpIndicator> {
       if (effectEnabled == false) return;
 
       LevelUpDialog.show(context, _exp!);
-      // 効果音
-      //final bool seEnabled = ref.watch(seEnabledProvider);
-      //if (seEnabled) {
-      //  AudioPlayersService.playLevelUpSound();
-      //}
     }
 
     // レベルのラベル

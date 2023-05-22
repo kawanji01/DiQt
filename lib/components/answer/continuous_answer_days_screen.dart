@@ -33,8 +33,7 @@ class AnswerContinuousAnswerDaysScreenState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // 効果音
-      final bool seEnabled = ref.watch(seEnabledProvider);
-      if (seEnabled) {
+      if (ref.read(seEnabledProvider)) {
         _audioPlayer.play(AssetSource(continousSound), volume: 0.8);
       }
     });
