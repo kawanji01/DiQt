@@ -30,11 +30,7 @@ final asyncDrillUnsolvedQuizzesProvider =
   final User user = User.fromJson(resMap['user']);
   await UserSetup.signIn(user);
   ref.read(currentUserProvider.notifier).updateUser(user);
-  /* ref.read(answerSettingProvider.notifier).state = user.answerSetting;
-  ref.read(todaysAnswersCountProvider.notifier).state =
-      user.todaysAnswerHistoriesCount;
-  ref.read(todaysCorrectAnswersCountProvider.notifier).state =
-      user.todaysCorrectAnswerHistoriesCount; */
+
   // 解答済の問題数の更新
   ref.read(drillSolvedQuizzesCountProvider.notifier).state =
       resMap['solved_count'];

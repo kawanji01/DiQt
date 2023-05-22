@@ -18,11 +18,7 @@ final asyncUnsolvedReviewsProvider = FutureProvider<List<Review>>((ref) async {
   User user = User.fromJson(resMap['user']);
   await UserSetup.signIn(user);
   ref.read(currentUserProvider.notifier).updateUser(user);
-  /* ref.read(answerSettingProvider.notifier).state = user.answerSetting;
-  ref.read(todaysAnswersCountProvider.notifier).state =
-      user.todaysAnswerHistoriesCount;
-  ref.read(todaysCorrectAnswersCountProvider.notifier).state =
-      user.todaysCorrectAnswerHistoriesCount; */
+
   resMap['reviews'].forEach((e) => reviews.add(Review.fromJson(e)));
   // 画面に描画された問題のID
   final List<int> loadedQuizIds = reviews.map((e) => e.quizId).toList();
