@@ -32,8 +32,7 @@ class QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        _isCovered = ref.watch(answerSettingProvider.select(
-            (setting) => setting == null ? false : setting.choicesCovered));
+        _isCovered = ref.read(choicesCoveredProvider);
       });
     });
     super.initState();

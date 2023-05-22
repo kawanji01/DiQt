@@ -25,7 +25,7 @@ class HeadingMediumGreen extends StatelessWidget {
                     size: 28.0,
                   ),
                 ),
-                const TextSpan(text: ' 　'), // この行がスペースを追加します
+                const TextSpan(text: ' '), // この行がスペースを追加します
                 TextSpan(text: label, style: headingTextStyle),
               ],
             ),

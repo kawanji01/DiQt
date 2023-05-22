@@ -44,9 +44,7 @@ class UserShowPageState extends ConsumerState<UserShowPage> {
       return Column(
         children: <Widget>[
           UserProfile(user: user),
-          /* RelationshipLazyFollowButton(
-                user: user,
-              ), */
+         
           RelationshipFollowButton(user: user, relationship: relationship),
           UserExpIndicator(user: user),
           UserAchievementsButton(user: user),

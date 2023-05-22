@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 953 (476 per locale)
+/// Strings: 957 (478 per locale)
 ///
-/// Built on 2023-05-21 at 06:27 UTC
+/// Built on 2023-05-22 at 00:35 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -154,6 +154,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
+	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
 	late final _TranslationsCalendarsEn calendars = _TranslationsCalendarsEn._(_root);
 	late final _TranslationsLayoutsEn layouts = _TranslationsLayoutsEn._(_root);
 	late final _TranslationsDictionaryMapsEn dictionaryMaps = _TranslationsDictionaryMapsEn._(_root);
@@ -604,6 +605,17 @@ class _TranslationsSentencesEn {
 	String get destroyed => 'Sentence Destroyed';
 }
 
+// Path: activities
+class _TranslationsActivitiesEn {
+	_TranslationsActivitiesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get cheer => 'Cheer!';
+	String get cheered => 'Cheered!';
+}
+
 // Path: calendars
 class _TranslationsCalendarsEn {
 	_TranslationsCalendarsEn._(this._root);
@@ -777,6 +789,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
+	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
 	@override late final _TranslationsCalendarsJa calendars = _TranslationsCalendarsJa._(_root);
 	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
 	@override late final _TranslationsDictionaryMapsJa dictionaryMaps = _TranslationsDictionaryMapsJa._(_root);
@@ -1226,6 +1239,17 @@ class _TranslationsSentencesJa implements _TranslationsSentencesEn {
 	@override String get updated => '例文が更新されました。';
 	@override String get update_failed => '例文の更新に失敗しました。';
 	@override String get destroyed => '例文が削除されました。';
+}
+
+// Path: activities
+class _TranslationsActivitiesJa implements _TranslationsActivitiesEn {
+	_TranslationsActivitiesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get cheer => '応援する!';
+	@override String get cheered => '応援しました！';
 }
 
 // Path: calendars
@@ -1755,6 +1779,8 @@ extension on _TranslationsEn {
 			case 'sentences.updated': return 'Sentence Updated';
 			case 'sentences.update_failed': return 'Failed to update the sentence.';
 			case 'sentences.destroyed': return 'Sentence Destroyed';
+			case 'activities.cheer': return 'Cheer!';
+			case 'activities.cheered': return 'Cheered!';
 			case 'calendars.sunday': return 'Sun.';
 			case 'calendars.monday': return 'Mon.';
 			case 'calendars.tuesday': return 'Tue.';
@@ -2240,6 +2266,8 @@ extension on _TranslationsJa {
 			case 'sentences.updated': return '例文が更新されました。';
 			case 'sentences.update_failed': return '例文の更新に失敗しました。';
 			case 'sentences.destroyed': return '例文が削除されました。';
+			case 'activities.cheer': return '応援する!';
+			case 'activities.cheered': return '応援しました！';
 			case 'calendars.sunday': return '日';
 			case 'calendars.monday': return '月';
 			case 'calendars.tuesday': return '火';

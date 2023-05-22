@@ -31,8 +31,7 @@ class AnswerContinuationAllYearScreenState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final bool seEnabled = ref.watch(seEnabledProvider);
-      if (seEnabled) {
+      if (ref.read(seEnabledProvider)) {
         // 効果音を鳴らす
         audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
       }

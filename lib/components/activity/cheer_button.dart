@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/cheers.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/cheer.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -21,55 +22,39 @@ class ActivityCheerButton extends ConsumerStatefulWidget {
 }
 
 class ActivityCheerButtonState extends ConsumerState<ActivityCheerButton> {
-  Activity? _activity;
-  Cheer? _cheer;
-  User? _user;
   bool _tapped = false;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        _activity = widget.activity;
-        _cheer = widget.cheer;
-        _user = ref.watch(currentUserProvider);
-      });
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_activity == null) return const LoadingSpinner();
-    if (_user?.id == _activity?.user?.id) return Container();
-
-    Future<void> createCheer() async {
-      final Map? resMap = await RemoteCheers.create(_activity!.id);
-      if (resMap == null) return;
-      final Cheer cheer = Cheer.fromJson(resMap['cheer']);
-      setState(() {
-        _cheer = cheer;
-      });
-    }
+    final User? user = ref.watch(currentUserProvider);
+    final Activity activity = widget.activity;
+    final Cheer? cheer = widget.cheer;
+    if (user == null) return const LoadingSpinner();
+    if (user.id == activity.user?.id) return Container();
 
     Widget button() {
       // 楽観的UI
-      if (_cheer != null || _tapped == true) {
-        return const SmallGreenButton(
-          label: '応援しました！',
+      if (cheer != null || _tapped == true) {
+        return SmallGreenButton(
+          label: t.activities.cheered,
           icon: Icons.favorite,
         );
       }
       return InkWell(
-        onTap: () {
+        onTap: () async {
           HapticFeedback.mediumImpact();
           setState(() {
             _tapped = true;
           });
-          createCheer();
+          await RemoteCheers.create(activity.id);
         },
-        child: const SmallOutlineGreenButton(
-          label: '応援する！',
+        child: SmallOutlineGreenButton(
+          label: t.activities.cheer,
           icon: Icons.favorite,
         ),
       );

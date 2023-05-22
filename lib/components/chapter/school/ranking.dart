@@ -29,7 +29,7 @@ class ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
   }
 
   Future _loadRankers() async {
-    final Chapter? school = ref.watch(schoolProvider);
+    final Chapter? school = ref.read(schoolProvider);
     if (school == null) return;
     final Map? resMap = await RemoteChapters.ranking(school.publicUid);
     if (resMap == null) return;
