@@ -81,8 +81,9 @@ dependencies:
   dotted_border: ^2.0.0+3 # embedded_sentenceで利用
   intl: ^0.17.0 # 日付などの多言語化。DateTimeFormatterなどで利用
   cell_calendar: ^0.8.0 # カレンダー
-  slang: ^3.15.0
-  slang_flutter: ^3.15.0
+  slang: ^3.15.0 # 多言語化
+  slang_flutter: ^3.15.0 # 多言語化
+  flutter_app_badger: ^1.5.0
 
 
   
