@@ -1,25 +1,24 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:booqs_mobile/utils/device_info%20_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 
 class PushNotificationHandler {
   // 初期化
-  static Future<bool> initialize() async {
+  static Future<bool> initialize(BuildContext context) async {
+    print('PushNotificationHandler.initialize');
+
     // ユーザー取得用のトークンを取得
     const storage = FlutterSecureStorage();
     final String? token = await storage.read(key: 'token');
     // トークンがない == ログインしていない 場合は終了
     if (token == null) return false;
 
-    // Firebaseを初期化
-    await Firebase.initializeApp();
+    ;
     // ダイアログで通知の許可をもらう
     await FirebaseMessaging.instance.requestPermission(
       alert: true,
@@ -38,8 +37,9 @@ class PushNotificationHandler {
       await _setAndroidForegroundNotification();
     }
 
-    // 復習のバッジをつける処理
-    _setReviewBadges();
+    // 復習のバッジを同期する処理
+    // await AppBadgerService.syncReviewBadgeOnPushNotification();
+    // 通知をタップした後の遷移先の設定
 
     // プッシュ通知に必要なFCMtoken（デバイスごとに発行されるトークン）を取得。
     final String? fcmToken = await FirebaseMessaging.instance.getToken();
@@ -120,33 +120,22 @@ class PushNotificationHandler {
       }
     });
   }
-  //// Android設定 END ////
 
-  //// 復習のバッジつける処理 ////
-  static Future<void> _setReviewBadges() async {
-    if (await FlutterAppBadger.isAppBadgeSupported() == false) {
-      return;
-    }
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      if (message.data.containsKey('category') == false) {
-        return;
-      }
-      if (message.data['category'] != 'review') {
-        return;
-      }
-      try {
-        final String jsonContent = message.data['content'];
-        Map<String, dynamic> json = jsonDecode(jsonContent);
-        final int reviewsCount = json['reviews_count'] ?? 0;
-        FlutterAppBadger.updateBadgeCount(reviewsCount); //バッジの数を指定
-      } catch (e) {
-        print('_setReviewBadges: $e');
+  // 通知タップ時の画面遷移先の設定
+  static void setTransitonWhenNotificationTapped(BuildContext context) {
+    // アプリが初めて起動されたときの処理
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage? message) {
+      if (message != null) {
+        Navigator.pushNamed(context, message.data['route']);
       }
     });
-
+    // バックグラウンドにある状態で通知がタップされたときの処理
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      FlutterAppBadger.removeBadge(); //バッジを削除
+      print('A new onMessageOpenedApp event was published!');
+      Navigator.pushNamed(context, message.data['route']);
     });
-    return;
   }
+  //// Android設定 END ////
 }

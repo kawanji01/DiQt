@@ -3,6 +3,7 @@ import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/home/home_page.dart';
+import 'package:booqs_mobile/utils/app_badger.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/components/button/large_green_button.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +30,8 @@ class UserLogoutButtonState extends ConsumerState<UserLogoutButton> {
         await RemoteSessions.logout();
         await UserSetup.logOut(user);
         ref.read(currentUserProvider.notifier).updateUser(null);
-        /* ref.read(answerSettingProvider.notifier).state = null;
-        ref.read(todaysAnswersCountProvider.notifier).state = 0;
-        ref.read(todaysCorrectAnswersCountProvider.notifier).state = 0; */
-        // ref.invalidate(asyncCurrentUserProvider);
+        // ホーム画面のアプリのバッジを消す。
+        await AppBadgerService.updateReviewBadge(0);
         // ローディングを消す
         EasyLoading.dismiss();
         if (!mounted) return;

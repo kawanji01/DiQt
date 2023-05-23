@@ -36,7 +36,7 @@ class NoticeIndexPageState extends ConsumerState<NoticeIndexPage> {
   @override
   void initState() {
     super.initState();
-    PushNotificationHandler.initialize();
+    PushNotificationHandler.initialize(context);
   }
 
   @override

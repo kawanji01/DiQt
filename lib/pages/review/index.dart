@@ -42,7 +42,7 @@ class ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
   void initState() {
     super.initState();
     // プッシュ通知の設定
-    PushNotificationHandler.initialize();
+    PushNotificationHandler.initialize(context);
     // 解答済の問題のIDのリストをリセットする。
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(solvedQuizIdsProvider.notifier).state = [];
