@@ -4,6 +4,8 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/language.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
+import 'package:booqs_mobile/utils/push_notification.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -21,6 +23,8 @@ Future<void> main() async {
   purchase.initPlatformState();
   // runApp()を実行する前に Flutter Engine の機能を使いたい場合に呼び出しておくおまじないコード。AdMobの初期化 や 画面の向きの固定 に必要。 ref: https://zenn.dev/sugitlab/books/flutter_poke_app_handson/viewer/step7
   WidgetsFlutterBinding.ensureInitialized();
+  // プッシュ通知でfirebaseのlistenerなどを使うための初期化
+  await Firebase.initializeApp();
   // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
   MobileAds.instance.initialize();
   // 画面の向きの固定 ref: https://qiita.com/osamu1203/items/6172df89f5270060a44d
@@ -60,6 +64,8 @@ class DiQtState extends ConsumerState<DiQt> {
   @override
   void initState() {
     super.initState();
+    // プッシュ通知をタップしたときの画面遷移の設定
+    PushNotificationHandler.setTransitonWhenNotificationTapped(context);
     // localeを設定する
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final User? user = ref.read(currentUserProvider);

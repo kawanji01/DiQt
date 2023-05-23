@@ -68,6 +68,10 @@
 	<string>ca-app-pub-9489251797522277~6073978820</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>Used to select the appropriate advertisements to display.</string>
+	<key>UIBackgroundModes</key>
+    <array>
+        <string>remote-notification</string>
+    </array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>https</string>
