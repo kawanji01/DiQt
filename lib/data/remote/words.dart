@@ -1,144 +1,167 @@
 import 'dart:convert';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:http/http.dart';
 
 class RemoteWords {
   // 取得
   static Future<Map?> show(int wordId) async {
-    final String? token = await LocalUserInfo.authToken();
-    final Map<String, String> headers = {'content-type': 'application/json'};
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId?token=$token');
-    final Response res = await get(
-      url,
-      headers: headers,
-    );
+    try {
+      final String? token = await LocalUserInfo.authToken();
 
-    if (res.statusCode != 200) return null;
+      final Uri url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId?token=$token');
+      final Response res = await HttpService.get(url);
 
-    final Map? resMap = json.decode(res.body);
-    return resMap;
+      if (res.statusCode != 200) return null;
+
+      final Map? resMap = json.decode(res.body);
+      return resMap;
+    } catch (e) {
+      return null;
+    }
   }
 
   static Future<Map?> newWord(int dictionaryId, String keyword) async {
-    final String? token = await LocalUserInfo.authToken();
-    final Map<String, String> headers = {'content-type': 'application/json'};
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/new?dictionary_id=$dictionaryId&keyword=$keyword&token=$token');
-    final Response res = await get(
-      url,
-      headers: headers,
-    );
+    try {
+      final String? token = await LocalUserInfo.authToken();
 
-    if (res.statusCode != 200) return null;
-    final Map? resMap = json.decode(res.body);
-    return resMap;
+      final Uri url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/new?dictionary_id=$dictionaryId&keyword=$keyword&token=$token');
+      final Response res = await HttpService.get(
+        url,
+      );
+
+      if (res.statusCode != 200) return null;
+      final Map? resMap = json.decode(res.body);
+      return resMap;
+    } catch (e) {
+      return null;
+    }
   }
 
   // 編集
   static Future<Map?> edit(int wordId) async {
-    final String? token = await LocalUserInfo.authToken();
-    final Map<String, String> headers = {'content-type': 'application/json'};
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId/edit?token=$token');
-    final Response res = await get(
-      url,
-      headers: headers,
-    );
+    try {
+      final String? token = await LocalUserInfo.authToken();
 
-    if (res.statusCode != 200) return null;
+      final Uri url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId/edit?token=$token');
+      final Response res = await HttpService.get(url);
 
-    final Map? resMap = json.decode(res.body);
-    return resMap;
+      if (res.statusCode != 200) return null;
+
+      final Map? resMap = json.decode(res.body);
+      return resMap;
+    } catch (e) {
+      return null;
+    }
   }
 
   // 新規作成
   static Future<Map?> create(Map<String, dynamic> params) async {
-    final String? token = await LocalUserInfo.authToken();
+    try {
+      final String? token = await LocalUserInfo.authToken();
+      // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
+      final String encodedData =
+          json.encode({'word': params, 'token': '$token'});
 
-    // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
-    final String encodedData = json.encode({'word': params, 'token': '$token'});
-    final Map<String, String> headers = {'content-type': 'application/json'};
+      final Uri url =
+          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words');
+      final Response res = await HttpService.post(
+        url,
+        encodedData,
+      );
+      if (res.statusCode != 200) return null;
 
-    final Uri url =
-        Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words');
-    final Response res = await post(
-      url,
-      headers: headers,
-      body: encodedData,
-    );
-    if (res.statusCode != 200) return null;
-
-    final Map? resMap = json.decode(res.body);
-    return resMap;
+      final Map? resMap = json.decode(res.body);
+      return resMap;
+    } catch (e) {
+      return null;
+    }
   }
 
   // 更新
   static Future<Map?> update(Map<String, dynamic> params) async {
-    final String? token = await LocalUserInfo.authToken();
+    try {
+      final String? token = await LocalUserInfo.authToken();
 
-    // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
-    final String encodedData = json.encode({'word': params, 'token': '$token'});
-    final Map<String, String> headers = {'content-type': 'application/json'};
+      // Map<String, dynamic>をbobyで送信できる型に変換 ref: https://stackoverflow.com/questions/54598879/dart-http-post-with-mapstring-dynamic-as-body
+      final String encodedData =
+          json.encode({'word': params, 'token': '$token'});
 
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/${params['id']}');
-    final Response res = await patch(
-      url,
-      headers: headers,
-      body: encodedData,
-    );
-    if (res.statusCode != 200) return null;
+      final Uri url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/${params['id']}');
+      final Response res = await HttpService.patch(
+        url,
+        encodedData,
+      );
+      if (res.statusCode != 200) return null;
 
-    final Map? resMap = json.decode(res.body);
-    return resMap;
+      final Map? resMap = json.decode(res.body);
+      return resMap;
+    } catch (e) {
+      return null;
+    }
   }
 
   // 削除
   static Future<Map?> destroy(int wordId) async {
-    final String? token = await LocalUserInfo.authToken();
-    final Map<String, String> headers = {'content-type': 'application/json'};
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId?token=$token');
-    final Response res = await delete(
-      url,
-      headers: headers,
-    );
+    try {
+      final String? token = await LocalUserInfo.authToken();
 
-    if (res.statusCode != 200) return null;
+      final Uri url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId');
+      final String encodedData = json.encode({'token': '$token'});
+      final Response res = await HttpService.delete(url, encodedData);
 
-    final Map? resMap = json.decode(res.body);
-    return resMap;
+      if (res.statusCode != 200) return null;
+
+      final Map? resMap = json.decode(res.body);
+      return resMap;
+    } catch (e) {
+      return null;
+    }
   }
 
   //
   static Future<Map?> search(int dictionaryId, String? keyword) async {
-    final String? token = await LocalUserInfo.authToken();
+    try {
+      final String? token = await LocalUserInfo.authToken();
 
-    if (keyword == null) return null;
-    final Uri url =
-        Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/search');
-    final Response res = await post(url, body: {
-      'dictionary_id': '$dictionaryId',
-      'keyword': keyword,
-      'token': '$token'
-    });
-    if (res.statusCode != 200) return null;
-    // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
-    Map resMap = json.decode(res.body);
-    return resMap;
+      if (keyword == null) return null;
+      final Uri url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/search');
+      final String encodedData = json.encode({
+        'dictionary_id': '$dictionaryId',
+        'keyword': keyword,
+        'token': '$token'
+      });
+      final Response res = await HttpService.post(url, encodedData);
+      if (res.statusCode != 200) return null;
+      // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+      Map resMap = json.decode(res.body);
+      return resMap;
+    } catch (e) {
+      return null;
+    }
   }
 
-  // 自動補完
+  // 自動補完 GETGETGET
   static Future<Map?> autocomplete(int dictionaryId, String query) async {
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/autocomplete');
-    final Response res = await post(url,
-        body: {'dictionary_id': '$dictionaryId', 'query': query});
-    if (res.statusCode != 200) return null;
+    try {
+      // 次のアップデートでwords/に戻す。
+      final Uri url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$dictionaryId/autocomplete?query=$query');
 
-    final Map resMap = json.decode(res.body);
-    return resMap;
+      final Response res = await HttpService.get(url);
+      if (res.statusCode != 200) return null;
+
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } catch (e) {
+      return null;
+    }
   }
 }

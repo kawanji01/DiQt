@@ -41,15 +41,19 @@ class AppBadgerService {
 
   // バッジを更新する
   static Future<void> updateReviewBadge(int unsolvedReviewsCount) async {
-    if (await FlutterAppBadger.isAppBadgeSupported() == false) {
-      print('isAppBadgeSupported: false');
-      return;
-    }
+    try {
+      if (await FlutterAppBadger.isAppBadgeSupported() == false) {
+        print('isAppBadgeSupported: false');
+        return;
+      }
 
-    if (unsolvedReviewsCount == 0) {
-      FlutterAppBadger.removeBadge(); //バッジを削除
-    } else {
-      FlutterAppBadger.updateBadgeCount(unsolvedReviewsCount);
+      if (unsolvedReviewsCount == 0) {
+        FlutterAppBadger.removeBadge(); //バッジを削除
+      } else {
+        FlutterAppBadger.updateBadgeCount(unsolvedReviewsCount);
+      }
+    } catch (e) {
+      print('$e');
     }
   }
 }
