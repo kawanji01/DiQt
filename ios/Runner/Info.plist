@@ -67,7 +67,7 @@
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-9489251797522277~6073978820</string>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>Used to select the appropriate advertisements to display.</string>
+	<string>「許可」するとお客様に最適化された広告が表示されます。</string>
 	<key>UIBackgroundModes</key>
     <array>
         <string>remote-notification</string>
