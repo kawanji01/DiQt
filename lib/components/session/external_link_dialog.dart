@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/utils/device_info%20_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
@@ -30,13 +30,11 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
   }
 
   Future _retrivePasscode() async {
-    String? token = await LocalUserInfo.authToken();
     final deviceInfo = DeviceInfoService();
     final String deviceIdentifier = await deviceInfo.getIndentifier();
     final Uri url = Uri.parse(
         '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/onetime_passcode');
-    final http.Response res = await http.post(url, body: {
-      'token': '$token',
+    final http.Response res = await HttpService.post(url, {
       'redirect_path': '$_redirectPath',
       'device_identifier': deviceIdentifier
     });

@@ -6,9 +6,8 @@ import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:http/http.dart' as http;
+import 'http_service.dart';
 
 // RevenueCatのセットアップ
 // ref： https://docs.revenuecat.com/docs/getting-started-1#section-configure-purchases
@@ -118,15 +117,12 @@ class PurchaseService {
       isExecuting = true;
       CustomerInfo purchaserInfo = await Purchases.purchasePackage(package);
       if (purchaserInfo.entitlements.all[entitlementIdentifier]!.isActive) {
-        // Unlock that great "pro" content
-        const storage = FlutterSecureStorage();
-        String? token = await storage.read(key: 'token');
         // DB側の購入情報を同期する
         // パスワードの入力の不要なキャッシュから購入（Vending PurchaserInfo from cache.）された場合、
         // syncSubscription(info)で契約処理を行なってしまうと、isActive: falseのinfoが引き渡されることによって、
         // syncSubscription(info)内のinfo.entitlements.active.isNotEmptyをすり抜けて、契約処理ではなく、解約処理が実行されてしまう。
         // そのため、あらかじめ購入とわかっている場合には、同期にはsyncSubscriptionではなく、getOrCreateSubscriberを使う。
-        final isSubscribed = await getOrCreateSubscriber(token);
+        final isSubscribed = await getOrCreateSubscriber();
         return isSubscribed;
       } else {
         return false;
@@ -198,14 +194,13 @@ class PurchaseService {
       isExecuting = true;
       // クライアント側の購入処理
       await Purchases.purchaseProduct(productID);
-      const storage = FlutterSecureStorage();
-      String? token = await storage.read(key: 'token');
+
       // DB側の購入情報の同期
       // パスワードの入力の不要なキャッシュから購入（Vending PurchaserInfo from cache.）された場合、
       // syncSubscription(info)で契約処理を行なってしまうと、isActive: falseのinfoが引き渡されることによって、
       // syncSubscription(info)内のinfo.entitlements.active.isNotEmptyをすり抜けて、契約処理ではなく、解約処理が実行されてしまう。
       // そのため、あらかじめ購入とわかっている場合には、同期にはsyncSubscriptionではなく、getOrCreateSubscriberを使う。
-      final isSubscribed = await getOrCreateSubscriber(token);
+      final isSubscribed = await getOrCreateSubscriber();
       return isSubscribed;
     } catch (e) {
       print('.subscribe: $e');
@@ -222,26 +217,20 @@ class PurchaseService {
   Future<bool> syncSubscription(CustomerInfo customerInfo) async {
     isExecuting = true;
     bool isSubscribed = false;
-    const storage = FlutterSecureStorage();
-    String? token = await storage.read(key: 'token');
-    // ログインしてない（トークンがない）ならそもそもリクエストを飛ばさない。
-    if (token == null) {
-      isExecuting = false;
-      return isSubscribed;
-    }
+
     // DBの購入状況を同期する。
     // if文は１つでもプレミアムプランがアクティブなら、trueを返す処理 ref: https://docs.revenuecat.com/docs/purchaserinfo#checking-if-a-user-is-subscribed
     // 現状はプランによって提供機能を変えていないためこれで十分
     if (customerInfo.entitlements.active.isNotEmpty) {
       print(".syncSubscription: There is active");
-      isSubscribed = await enablePremiumOnDB(token);
+      isSubscribed = await enablePremiumOnDB();
     } else {
       print(".syncSubscription: There is no active");
       // 有効期限が全て切れていたら、DBのpremiumをfalseにする。
       final bool allExpired = isAllExpired(customerInfo);
       if (allExpired) {
         print(".syncSubscription: All expired");
-        disablePremiumOnDB(token);
+        disablePremiumOnDB();
       }
       isSubscribed = false;
     }
@@ -252,7 +241,7 @@ class PurchaseService {
   // DB側の購入処理（DBとの同期）
   // クライアント側で購入を行なっているので、これはDB側の購入の同期処理。
   // サーバー側でユーザーの契約しているサブスクを取得するか、なければ契約して、契約をDBと同期する。 ref: https://docs.revenuecat.com/reference/subscribers
-  Future<bool> getOrCreateSubscriber(token) async {
+  Future<bool> getOrCreateSubscriber() async {
     String? platform;
     if (Platform.isAndroid) {
       platform = 'android';
@@ -260,10 +249,9 @@ class PurchaseService {
       platform = 'ios';
     }
 
-    var url = Uri.parse(
+    final url = Uri.parse(
         '${DiQtURL.rootWithoutLocale()}}/api/v1/mobile/users/get_or_create_subscriber');
-    var res =
-        await http.post(url, body: {'token': token, 'platform': platform});
+    final res = await HttpService.post(url, {'platform': platform});
 
     if (res.statusCode != 200) {
       // print('.getOrCreateSubscriber: response ${res.statusCode}');
@@ -294,48 +282,58 @@ class PurchaseService {
   }
 
   // DB上で、ユーザーにpremium権限を付与する
-  Future<bool> enablePremiumOnDB(String? token) async {
-    if (token == null) return false;
-    final url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/enable_premium');
-    final res = await http.post(url, body: {'token': token});
-    if (res.statusCode != 200) {
+  Future<bool> enablePremiumOnDB() async {
+    try {
+      final url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/enable_premium');
+      final res = await HttpService.post(url, null);
+      if (res.statusCode != 200) {
+        return false;
+      }
+      final Map resMap = json.decode(res.body);
+      final User user = User.fromJson(resMap['user']);
+      await UserSetup.signIn(user);
+      return true;
+    } catch (e) {
       return false;
     }
-    final Map resMap = json.decode(res.body);
-    final User user = User.fromJson(resMap['user']);
-    await UserSetup.signIn(user);
-    return true;
   }
 
   // DB上で、ユーザーのpremium権限を剥奪する
-  Future<bool> disablePremiumOnDB(String? token) async {
-    if (token == null) return false;
-    final url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/disable_premium');
-    final res = await http.post(url, body: {'token': token});
-    if (res.statusCode != 200) {
+  Future<bool> disablePremiumOnDB() async {
+    try {
+      final url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/disable_premium');
+      final res = await HttpService.post(url, null);
+      if (res.statusCode != 200) {
+        return false;
+      }
+      final Map resMap = json.decode(res.body);
+      final User user = User.fromJson(resMap['user']);
+      await UserSetup.signIn(user);
+      return true;
+    } catch (e) {
       return false;
     }
-    final Map resMap = json.decode(res.body);
-    final User user = User.fromJson(resMap['user']);
-    await UserSetup.signIn(user);
-    return true;
   }
 
   // DB側の解約処理
   // クライアント側に解約APIは用意されていないので、サーバー側（Ruby）の解約APIを叩き、解約をDBと同期する。
-  Future<bool> deleteSubscriber(String? token, String reason) async {
-    final url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/delete_subscriber');
-    final res = await http.post(url, body: {'token': token, 'reason': reason});
-    if (res.statusCode != 200) {
+  Future<bool> deleteSubscriber(String reason) async {
+    try {
+      final url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/delete_subscriber');
+      final res = await HttpService.post(url, {'reason': reason});
+      if (res.statusCode != 200) {
+        return false;
+      }
+      final Map resMap = json.decode(res.body);
+      final User user = User.fromJson(resMap['user']);
+      await UserSetup.signIn(user);
+      return true;
+    } catch (e) {
       return false;
     }
-    final Map resMap = json.decode(res.body);
-    final User user = User.fromJson(resMap['user']);
-    await UserSetup.signIn(user);
-    return true;
   }
 
   // リストア処理 ref: https://docs.revenuecat.com/docs/restoring-purchases

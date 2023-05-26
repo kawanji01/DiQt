@@ -1,23 +1,30 @@
+import 'dart:async';
 import 'dart:convert';
-
-import 'package:booqs_mobile/data/local/user_info.dart';
+import 'dart:io';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:http/http.dart';
 
 class RemoteDrills {
   // 未解答の問題を取得する
   static Future<Map?> unsolved(String publicUid, String order) async {
     try {
-      final String? token = await LocalUserInfo.authToken();
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid/unsolved?token=$token&order=$order');
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid/unsolved?order=$order');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
-      Map<String, dynamic> resMap = json.decode(res.body);
+      final Map<String, dynamic> resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -26,15 +33,21 @@ class RemoteDrills {
   static Future<Map?> solved(
       String publicUid, int pageKey, int pageSize, String order) async {
     try {
-      final String? token = await LocalUserInfo.authToken();
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid/solved?order=$order&page=$pageKey&size=$pageSize&token=$token');
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid/solved?order=$order&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
       final Map<String, dynamic> resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -43,15 +56,21 @@ class RemoteDrills {
   static Future<Map?> show(
       String publicUid, int pageKey, int pageSize, String order) async {
     try {
-      final String? token = await LocalUserInfo.authToken();
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid?order=$order&page=$pageKey&size=$pageSize&token=$token');
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid?order=$order&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
       final Map<String, dynamic> resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -59,19 +78,21 @@ class RemoteDrills {
   // 新しい周回を始める
   static Future<Map?> newLap(String publicUid) async {
     try {
-      final String? token = await LocalUserInfo.authToken();
-      if (token == null) return null;
-
       final Uri url = Uri.parse(
           '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid/new_lap');
-      final String encodedData = json.encode({
-        'token': token,
-      });
-      final Response res = await HttpService.post(url, encodedData);
+
+      final Response res = await HttpService.post(url, null);
       if (res.statusCode != 200) return null;
       final Map<String, dynamic> resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }

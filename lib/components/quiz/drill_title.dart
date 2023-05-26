@@ -1,8 +1,6 @@
-import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -18,20 +16,6 @@ class QuizDrillTitleState extends ConsumerState<QuizDrillTitle> {
   @override
   Widget build(BuildContext context) {
     final Drill drill = widget.drill;
-    // Drillページに遷移
-    Future moveToDrillPage(drill) async {
-      final String? token = await LocalUserInfo.authToken();
-      if (!mounted) return;
-
-      if (token == null) {
-        const snackBar = SnackBar(content: Text('問題を解くにはログインが必要です。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
-      } else {
-        ref.read(drillProvider.notifier).state = drill;
-        DrillUnsolvedPage.push(context);
-      }
-    }
 
     return Container(
       alignment: Alignment.bottomLeft,
@@ -44,7 +28,8 @@ class QuizDrillTitleState extends ConsumerState<QuizDrillTitle> {
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: () {
-          moveToDrillPage(drill);
+          ref.read(drillProvider.notifier).state = drill;
+          DrillUnsolvedPage.push(context);
         },
         child: Text(
           drill.title,

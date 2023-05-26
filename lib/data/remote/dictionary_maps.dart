@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:booqs_mobile/data/local/user_info.dart';
+import 'dart:io';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:http/http.dart' as http;
 
 class RemoteDictionaryMaps {
@@ -11,22 +12,24 @@ class RemoteDictionaryMaps {
     try {
       final Uri url = Uri.parse(
           '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionary_maps/my_dictionaries');
-      final String? token = await LocalUserInfo.authToken();
-      final String encodedData = json.encode({'token': '$token'});
 
-      final http.Response res = await HttpService.post(url, encodedData);
+      final http.Response res = await HttpService.post(url, null);
       if (res.statusCode != 200) {
-        // FirebaseCrashlytics.instance.log('Server responded with status code: ${res.statusCode}');
+        FirebaseCrashlytics.instance
+            .log('Server responded with status code: ${res.statusCode}');
         return null;
       }
 
-      final Map? resMap = json.decode(res.body);
+      final Map resMap = json.decode(res.body);
       return resMap;
-    } on TimeoutException {
-      // FirebaseCrashlytics.instance.recordError(e);
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
-    } catch (e) {
-      // FirebaseCrashlytics.instance.recordError(e);
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -36,23 +39,27 @@ class RemoteDictionaryMaps {
     try {
       final Uri url = Uri.parse(
           '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionary_maps/addition');
-      final String? token = await LocalUserInfo.authToken();
-      final String encodedData =
-          json.encode({'page': pageKey, 'size': pageSize, 'token': '$token'});
-      final http.Response res = await HttpService.post(url, encodedData);
+
+      final Map<String, dynamic> body = {'page': pageKey, 'size': pageSize};
+
+      final http.Response res = await HttpService.post(url, body);
 
       if (res.statusCode != 200) {
-        // FirebaseCrashlytics.instance.log('Server responded with status code: ${res.statusCode}');
+        FirebaseCrashlytics.instance
+            .log('Server responded with status code: ${res.statusCode}');
         return null;
       }
 
       final Map? resMap = json.decode(res.body);
       return resMap;
-    } on TimeoutException catch (e) {
-      // FirebaseCrashlytics.instance.recordError(e);
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
-    } catch (e) {
-      // FirebaseCrashlytics.instance.recordError(e);
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -62,10 +69,11 @@ class RemoteDictionaryMaps {
     try {
       final Uri url = Uri.parse(
           '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionary_maps/add');
-      final String? token = await LocalUserInfo.authToken();
-      final String encodedData = json.encode(
-          {'dictionary_ids': dictionaryIds.join(','), 'token': '$token'});
-      final http.Response res = await HttpService.post(url, encodedData);
+
+      final Map<String, dynamic> body = {
+        'dictionary_ids': dictionaryIds.join(',')
+      };
+      final http.Response res = await HttpService.post(url, body);
 
       if (res.statusCode != 200) {
         // FirebaseCrashlytics.instance.log('Server responded with status code: ${res.statusCode}');
@@ -74,11 +82,14 @@ class RemoteDictionaryMaps {
 
       final Map? resMap = json.decode(res.body);
       return resMap;
-    } on TimeoutException catch (e) {
-      // FirebaseCrashlytics.instance.recordError(e);
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
-    } catch (e) {
-      // FirebaseCrashlytics.instance.recordError(e);
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -88,22 +99,25 @@ class RemoteDictionaryMaps {
     try {
       final Uri url = Uri.parse(
           '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionary_maps/removal');
-      final String? token = await LocalUserInfo.authToken();
-      final String encodedData = json.encode({'token': '$token'});
-      final http.Response res = await HttpService.post(url, encodedData);
+
+      final http.Response res = await HttpService.post(url, null);
 
       if (res.statusCode != 200) {
-        // FirebaseCrashlytics.instance.log('Server responded with status code: ${res.statusCode}');
+        FirebaseCrashlytics.instance
+            .log('Server responded with status code: ${res.statusCode}');
         return null;
       }
 
       final Map? resMap = json.decode(res.body);
       return resMap;
-    } on TimeoutException catch (e) {
-      // FirebaseCrashlytics.instance.recordError(e);
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
-    } catch (e) {
-      // FirebaseCrashlytics.instance.recordError(e);
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -113,23 +127,28 @@ class RemoteDictionaryMaps {
     try {
       final Uri url = Uri.parse(
           '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionary_maps/remove');
-      final String? token = await LocalUserInfo.authToken();
-      final String encodedData = json.encode(
-          {'dictionary_ids': dictionaryIds.join(','), 'token': '$token'});
-      final http.Response res = await HttpService.delete(url, encodedData);
+
+      final Map<String, dynamic> body = {
+        'dictionary_ids': dictionaryIds.join(',')
+      };
+      final http.Response res = await HttpService.delete(url, body);
 
       if (res.statusCode != 200) {
-        // FirebaseCrashlytics.instance.log('Server responded with status code: ${res.statusCode}');
+        FirebaseCrashlytics.instance
+            .log('Server responded with status code: ${res.statusCode}');
         return null;
       }
 
       final Map? resMap = json.decode(res.body);
       return resMap;
-    } on TimeoutException catch (e) {
-      // FirebaseCrashlytics.instance.recordError(e);
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
-    } catch (e) {
-      // FirebaseCrashlytics.instance.recordError(e);
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }

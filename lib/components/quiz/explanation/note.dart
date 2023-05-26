@@ -1,8 +1,6 @@
-import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/remote/notes.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/components/note/form_field.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
@@ -46,15 +44,6 @@ class _QuizExplanationNoteState extends State<QuizExplanationNote> {
   @override
   Widget build(BuildContext context) {
     Future save() async {
-      // ログインしていない場合は、ログインページへ
-      final String? token = await LocalUserInfo.authToken();
-      if (token == null) {
-        const snackBar = SnackBar(content: Text('ノートを利用するためにはログインが必要です。'));
-        if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
-        return;
-      }
       // リクエスト
       Map? resMap;
       EasyLoading.show(status: 'loading...');
