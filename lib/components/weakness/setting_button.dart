@@ -1,9 +1,7 @@
-import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/weaknesses.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/models/weakness.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
 import 'package:flutter/material.dart';
@@ -34,14 +32,6 @@ class WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
   @override
   Widget build(BuildContext context) {
     Future<void> create() async {
-      final String? token = await LocalUserInfo.authToken();
-      if (!mounted) return;
-
-      if (token == null) {
-        const snackBar = SnackBar(content: Text('苦手な問題を設定するにはログインが必要です。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        return UserMyPage.push(context);
-      }
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWeaknesses.create(widget.quizId);
       EasyLoading.dismiss();
@@ -56,8 +46,6 @@ class WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
     }
 
     Future<void> destroy() async {
-      final String? token = await LocalUserInfo.authToken();
-      if (token == null) return;
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteWeaknesses.destroy(_weakness!.id);
       EasyLoading.dismiss();

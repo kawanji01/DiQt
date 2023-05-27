@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:booqs_mobile/utils/device_info%20_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -20,19 +22,26 @@ class RemoteSessions {
 
       final Uri url =
           Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions');
-      final String encodedData = json.encode({
+      final Map<String, dynamic> body = {
         'email': email,
         'password': password,
         'device_identifier': deviceIdentifier,
         'device_name': deviceName,
         'platform': platform,
-      });
-      final Response res = await HttpService.post(url, encodedData);
+      };
+      final Response res = await HttpService.post(url, body);
       if (res.statusCode != 200) return null;
 
       final Map? resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -48,7 +57,7 @@ class RemoteSessions {
 
       final Uri url = Uri.parse(
           '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/twitter');
-      final String encodedData = json.encode({
+      final Map<String, dynamic> body = {
         'uid': '${authResult.user!.id}',
         'name': authResult.user!.name,
         'email': authResult.user!.email,
@@ -56,15 +65,22 @@ class RemoteSessions {
         'device_identifier': deviceIdentifier,
         'platform': platform,
         'device_name': deviceName,
-      });
+      };
 
-      final Response res = await HttpService.post(url, encodedData);
+      final Response res = await HttpService.post(url, body);
 
       if (res.statusCode != 200) return null;
 
       final Map? resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -81,18 +97,25 @@ class RemoteSessions {
 
       final Uri url = Uri.parse(
           '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/google');
-      final String encodedData = json.encode({
+      final Map<String, dynamic> body = {
         'identity_token': googleAuth.idToken,
         'device_identifier': deviceIdentifier,
         'platform': platform,
         'device_name': deviceName,
-      });
-      final Response res = await HttpService.post(url, encodedData);
+      };
+      final Response res = await HttpService.post(url, body);
       if (res.statusCode != 200) return null;
 
       final Map? resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -110,19 +133,26 @@ class RemoteSessions {
 
       final Uri url = Uri.parse(
           '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/apple');
-      final String encodedData = json.encode({
+      final Map<String, dynamic> body = {
         'identity_token': appleCredential.identityToken,
         'authorization_code': appleCredential.authorizationCode,
         'device_identifier': deviceIdentifier,
         'platform': platform,
         'device_name': deviceName,
-      });
-      final Response res = await HttpService.post(url, encodedData);
+      };
+      final Response res = await HttpService.post(url, body);
       if (res.statusCode != 200) return null;
 
       final Map? resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -138,21 +168,28 @@ class RemoteSessions {
       // リクエスト
       final Uri url =
           Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users');
-      final String encodedData = json.encode({
+      final Map<String, dynamic> body = {
         'name': name,
         'email': email,
         'password': password,
         'device_identifier': deviceIdentifier,
         'device_name': deviceName,
         'platform': platform,
-      });
+      };
 
-      final Response res = await HttpService.post(url, encodedData);
+      final Response res = await HttpService.post(url, body);
       if (res.statusCode != 200) return null;
 
       final Map? resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
@@ -160,18 +197,22 @@ class RemoteSessions {
   // ログアウト / sessions/logout
   static Future<Map?> logout() async {
     try {
-      const storage = FlutterSecureStorage();
-      String? token = await storage.read(key: 'token');
       final deviceInfo = DeviceInfoService();
       final String deviceIdentifier = await deviceInfo.getIndentifier();
       var url = Uri.parse(
           '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/logout');
-      final String encodedData = json
-          .encode({'token': '$token', 'device_identifier': deviceIdentifier});
-      Response res = await HttpService.post(url, encodedData);
+      final Map<String, dynamic> body = {'device_identifier': deviceIdentifier};
+      Response res = await HttpService.post(url, body);
       Map? resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }

@@ -1,29 +1,36 @@
+import 'dart:async';
 import 'dart:convert';
-import 'package:booqs_mobile/data/local/user_info.dart';
+import 'dart:io';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:http/http.dart';
 
 class RemoteChapters {
   static Future<Map?> index() async {
     try {
-      final String? token = await LocalUserInfo.authToken();
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters?token=$token');
+      final Uri url =
+          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters');
       final Response res = await HttpService.get(url);
       // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
       final Map<String, dynamic> resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
 
   static Future<Map?> show(String publicUid) async {
     try {
-      final String? token = await LocalUserInfo.authToken();
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/$publicUid?token=$token');
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/$publicUid');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -37,9 +44,8 @@ class RemoteChapters {
   static Future<Map?> activities(
       String publicUid, int pageKey, int pageSize) async {
     try {
-      final String? token = await LocalUserInfo.authToken();
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/$publicUid/activities?page=$pageKey&size=$pageSize&token=$token');
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/$publicUid/activities?page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -66,9 +72,8 @@ class RemoteChapters {
 
   static Future<Map?> school(String publicUid) async {
     try {
-      final String? token = await LocalUserInfo.authToken();
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/school?uid=$publicUid&token=$token');
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/school?uid=$publicUid');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;

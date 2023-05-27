@@ -10,6 +10,7 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		27BF49FBF6E13A96FC50EC40 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDDAFB1977FD912FB3D614A6 /* Pods_Runner.framework */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		6103FBF86FE54A60CF32C882 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBD79B6A2C3C2703A543B334 /* GoogleService-Info.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		7D40ED17275473390005759A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D40ED16275473390005759A /* GoogleService-Info.plist */; };
 		7D46741327B3C94900913F4B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D46741227B3C94900913F4B /* StoreKit.framework */; };
@@ -94,6 +95,7 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDDAFB1977FD912FB3D614A6 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBD79B6A2C3C2703A543B334 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F4C5F48C582AAF750D8F99B8 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +177,7 @@
 				97C146EF1CF9000F007C117D /* Products */,
 				74AB386134D133A85D66680A /* Pods */,
 				0EC07B21AE3BF437886B7E00 /* Frameworks */,
+				CBD79B6A2C3C2703A543B334 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,6 +241,7 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				6E746DF6BC55DFBDCEAD2ABC /* [CP] Embed Pods Frameworks */,
 				7D96DCBE29E43BE300F2AC88 /* Embed Foundation Extensions */,
+				CA9F6037638C66753B136EE5 /* [firebase_crashlytics] Crashlytics Upload Symbols */,
 			);
 			buildRules = (
 			);
@@ -306,6 +310,7 @@
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 				7D69FDA029DD569000EF4562 /* StoreKitTestCertificate.cer in Resources */,
+				6103FBF86FE54A60CF32C882 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +385,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+		};
+		CA9F6037638C66753B136EE5 /* [firebase_crashlytics] Crashlytics Upload Symbols */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}\"",
+				"\"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)\"",
+			);
+			name = "[firebase_crashlytics] Crashlytics Upload Symbols";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/FirebaseCrashlytics/upload-symbols\" --flutter-project \"$PROJECT_DIR/firebase_app_id_file.json\" ";
 		};
 /* End PBXShellScriptBuildPhase section */
 

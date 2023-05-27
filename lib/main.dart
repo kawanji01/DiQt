@@ -6,6 +6,8 @@ import 'package:booqs_mobile/utils/language.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:booqs_mobile/utils/push_notification.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -23,8 +25,10 @@ Future<void> main() async {
   purchase.initPlatformState();
   // runApp()を実行する前に Flutter Engine の機能を使いたい場合に呼び出しておくおまじないコード。AdMobの初期化 や 画面の向きの固定 に必要。 ref: https://zenn.dev/sugitlab/books/flutter_poke_app_handson/viewer/step7
   WidgetsFlutterBinding.ensureInitialized();
-  // プッシュ通知でfirebaseのlistenerなどを使うための初期化
+  // プッシュ通知やfirebaseClashlyticsなど、firebase関連の機能を使うための初期化
   await Firebase.initializeApp();
+  // クラッシュレポートの設定
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
   MobileAds.instance.initialize();
   // 画面の向きの固定 ref: https://qiita.com/osamu1203/items/6172df89f5270060a44d
@@ -43,7 +47,7 @@ Future<void> main() async {
   );
 }
 
-// Dialogs や Toasts の表示に親Widgetから渡したcontextを使ってしまうと、
+// 連続解答報酬モーダルのような、Dialogs や Toasts の表示に親Widgetから渡したcontextを使ってしまうと、
 // 親がdisposeされた後にその処理を実行しようとした際（たとえば１０問解いた後の次の問題の読み込み（dispose）と報酬の表示が被ってしまった場合）に
 // Unhandled Exception: Looking up a deactivated widget's ancestor is unsafe. At this point the state of the widget's element tree is no longer stable.
 // が発生してしまう。

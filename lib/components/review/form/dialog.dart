@@ -1,9 +1,7 @@
 import 'package:booqs_mobile/components/review/form/quiz_button.dart';
-import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -37,15 +35,6 @@ class ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
     final bool premiumEnabled = ref.watch(premiumEnabledProvider);
     // 復習設定を作成するか更新する
     Future update() async {
-      final String? token = await LocalUserInfo.authToken();
-      // ログインしていないユーザーはマイページにリダイレクト
-      if (token == null) {
-        if (!mounted) return;
-        const snackBar = SnackBar(content: Text('復習を設定するためには、ログインが必要です。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
-        return;
-      }
       EasyLoading.show(status: 'loading...');
       Map? resMap;
       // reviews#update
