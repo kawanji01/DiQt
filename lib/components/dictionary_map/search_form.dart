@@ -51,7 +51,7 @@ class DictionaryWordSearchFormState
     Widget dictionaryName() {
       if (dictionary == null) {
         return Text(t.dictionaryMaps.not_selected,
-            style: const TextStyle(fontSize: 12, color: Colors.red));
+            style: const TextStyle(fontSize: 12, color: Colors.black54));
       } else {
         return DictionaryName(dictionary: dictionary);
       }
@@ -113,6 +113,7 @@ class DictionaryWordSearchFormState
               if (value!.isEmpty) {
                 return t.errors.cant_be_blank;
               }
+
               return null;
             },
           ),
