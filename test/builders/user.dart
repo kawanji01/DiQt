@@ -2,10 +2,12 @@ import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/user.dart';
 
 class UserBuilder {
-  User build(
-      {bool premium = false,
-      int langNumber = 41,
-      int learningLangNumber = defaultLangNumber}) {
+  User build({
+    bool premium = false,
+    int langNumber = 41,
+    int learningLangNumber = defaultLangNumber,
+    bool appFavored = false,
+  }) {
     return User(
         id: 1,
         publicUid: '117931',
@@ -13,12 +15,12 @@ class UserBuilder {
         langNumber: langNumber,
         learningLangNumber: learningLangNumber,
         premium: premium,
+        appFavored: appFavored,
         achievementMapsCount: 0,
         amountOfExp: 0,
         answerDaysCount: 0,
         answerHistoriesCount: 0,
         appCancelReportSent: false,
-        appFavored: false,
         continuousAnswerDaysCount: 0,
         continuousGoalAchievementCount: 0,
         continuousReviewCompletionCount: 0,

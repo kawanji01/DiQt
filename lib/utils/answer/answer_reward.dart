@@ -78,7 +78,8 @@ class AnswerReward {
     }
 
     // 継続者にレビューを求める
-    if (await AnswerReward.requestReview(answerCreator, dialogs)) {
+    if (await AnswerReward.requestReview(
+        answerCreator, dialogs, AppReviewService())) {
       await delayed();
     }
   }
@@ -260,8 +261,9 @@ class AnswerReward {
   }
 
   // 継続者にレビューを求める
-  static Future<bool> requestReview(
-      AnswerCreator answerCreator, Dialogs dialogs) async {
+  // 単体テストでmockを使えるように、AppReviewServiceのインスタンスを引数として渡す。
+  static Future<bool> requestReview(AnswerCreator answerCreator,
+      Dialogs dialogs, AppReviewService appReviewService) async {
     final User? user = answerCreator.user;
     if (user == null) return false;
     final int? answerDaysCount = answerCreator.answerDaysCount;
@@ -272,7 +274,7 @@ class AnswerReward {
 
     if (user.appFavored) {
       // アプリを気に入っている場合は、評価モーダルを表示する。
-      await AppReviewService.request();
+      await appReviewService.request();
     } else {
       // まだアプリを気に入っていない場合は、問い合わせフォームを含んだモーダルを表示する。
       dialogs.reward(const AnswerRequestingReviewScreen());
