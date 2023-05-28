@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.4.4+152
+version: 1.4.4+153
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -78,13 +78,14 @@ dependencies:
   font_awesome_flutter: ^10.2.1 # font awesome
   flutter_markdown: ^0.6.14 # マークダウン記法の実装
   markdown: ^7.0.1 # flutter_markdownが依存しているパッケージ
-  dotted_border: ^2.0.0+3 # embedded_sentenceで利用
+  dotted_border: ^2.0.0+3 # DiQt markdownの embedded_sentence で利用
   intl: ^0.17.0 # 日付などの多言語化。DateTimeFormatterなどで利用
   cell_calendar: ^0.8.0 # カレンダー
   slang: ^3.15.0 # 多言語化
   slang_flutter: ^3.15.0 # 多言語化
-  flutter_app_badger: ^1.5.0
-  firebase_crashlytics: ^3.0.17
+  flutter_app_badger: ^1.5.0 # ホーム画面にバッジを表示する
+  firebase_crashlytics: ^3.0.17 # クラッシュレポート
+  mockito: ^5.4.0 # 自動テストのMockライブラリ
 
 
   

@@ -32,8 +32,10 @@ class Dialogs {
     return result == true;
   }
 
-  // 拡大するアニメーションのついた報酬モーダルの表示
-  static Future<void> reward(Widget screen) async {
+  // 主に報酬表示に利用する、拡大するアニメーションのついた報酬モーダルの表示
+  // utils/answer/answer_reward.dartで多用
+  // staticではないのは、static は mockitoで mock できないため。
+  Future<void> reward(Widget screen) async {
     await showAnimatedDialog(
       context: navigatorKey.currentContext!,
       barrierDismissible: true,
