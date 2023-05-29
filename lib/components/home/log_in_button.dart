@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/pages/session/login.dart';
+import 'package:booqs_mobile/pages/session/log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,7 +10,7 @@ class HomeLogInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        SessionLoginPage.push(context);
+        SessionLogInPage.push(context);
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

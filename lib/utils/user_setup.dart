@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/utils/app_badger.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -18,13 +19,13 @@ class UserSetup {
 
   // ログアウトしたときや認証用のtokenが無効だった場合にストレージをリセットしたり、RevenueCatからログアウトする。
   static Future<void> logOut(User? user) async {
-    // RevenueCatからもログアウトする。参照：　https://docs.revenuecat.com/docs/user-ids#logging-out
-    // String? userUid = await storage.read(key: 'public_uid');
-    // await Purchases.logOut();
-    // トークンをローカルストレージから削除
+    // ローカルストレージに保存したデータを削除する
     const storage = FlutterSecureStorage();
     await storage.deleteAll();
+    // ホーム画面のアプリのバッジを消す。
+    await AppBadgerService.updateReviewBadge(0);
     if (user == null) return;
+    // RevenueCatからもログアウトする。参照：　https://docs.revenuecat.com/docs/user-ids#logging-out
     await PurchaseService.logOut(user.id);
   }
 }

@@ -1,9 +1,12 @@
 import 'package:booqs_mobile/consts/language.dart';
+import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/utils/app_badger.dart';
 import 'package:booqs_mobile/utils/language.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CurrentUserState extends StateNotifier<User?> {
@@ -100,4 +103,17 @@ final asyncDrillsInProgress = FutureProvider<List<Drill>>((ref) async {
 
   resMap['drills'].forEach((e) => drills.add(Drill.fromJson(e)));
   return drills;
+});
+
+// ログアウト
+final logoutProvider = FutureProvider<void>((ref) async {
+  final user = ref.watch(currentUserProvider);
+  if (user == null) return;
+
+  EasyLoading.show(status: 'loading...');
+  await RemoteSessions.logout();
+  await UserSetup.logOut(user);
+  ref.read(currentUserProvider.notifier).updateUser(null);
+  await AppBadgerService.updateReviewBadge(0);
+  EasyLoading.dismiss();
 });

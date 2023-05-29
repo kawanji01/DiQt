@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/pages/session/login.dart';
+import 'package:booqs_mobile/pages/session/log_in.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/session/apple_button.dart';
@@ -54,7 +54,7 @@ class SessionSignUpPage extends StatelessWidget {
               // login recommendation
               InkWell(
                 onTap: () {
-                  SessionLoginPage.push(context);
+                  SessionLogInPage.push(context);
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 20),

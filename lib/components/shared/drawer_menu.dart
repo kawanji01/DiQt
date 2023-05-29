@@ -39,7 +39,7 @@ class DrawerMenu extends ConsumerWidget {
           ListTile(
             title: Text(t.home.community, style: const TextStyle(fontSize: 16)),
             onTap: () {
-              CommunityPage.push(context);
+              HomeCommunityPage.push(context);
             },
           ),
           ListTile(
