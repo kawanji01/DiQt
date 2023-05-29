@@ -53,8 +53,8 @@ const communityPage = '/home/community';
 const noticeIndexPage = '/notice/index';
 const noticeHomePage = '/notice/home';
 // セッション
-const signUpPage = '/session/sign_up';
-const logInPage = '/session/log_in';
+const sessionSignUpPage = '/session/sign_up';
+const sessionLogInPage = '/session/log_in';
 const sessionTransitionPage = '/session/transition';
 
 // 辞書
@@ -120,8 +120,8 @@ final routes = {
   noticeIndexPage: (context) => const NoticeIndexPage(),
   noticeHomePage: (context) => const NoticeHomePage(),
   // Session
-  signUpPage: (context) => const SessionSignUpPage(),
-  logInPage: (context) => const SessionLogInPage(),
+  sessionSignUpPage: (context) => const SessionSignUpPage(),
+  sessionLogInPage: (context) => const SessionLogInPage(),
   sessionTransitionPage: (context) => const SessionTransitionPage(),
   // Dictionary
   dictionaryShowPage: (context) => const DictionaryShowPage(),

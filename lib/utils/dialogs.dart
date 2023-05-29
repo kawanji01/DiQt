@@ -38,13 +38,18 @@ class Dialogs {
   Future<void> reward(Widget screen) async {
     await showAnimatedDialog(
       context: navigatorKey.currentContext!,
-      barrierDismissible: true,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return CustomDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          child: screen,
+          // elevation: 0.0, // Set this to zero
+          // ClipRRectを利用することで、画像が各丸からはみ出す問題を防ぐ。
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: screen,
+          ),
         );
       },
       animationType: DialogTransitionType.scale,

@@ -66,22 +66,23 @@ class NoticeUnreceivedAchievementState
       });
     }
 
-    final heading = Container(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-      child: Text('${_achievement!.name}メダル獲得！！',
-          style: TextStyle(
-              fontSize: ResponsiveValues.achievementHeadingFontSize(context),
-              fontWeight: FontWeight.bold,
-              color: Colors.orange)),
-    );
-
     Widget medalImage() {
       final File file = File(_achievement!.imageUrl);
       final filename = basename(file.path);
+      // メダルの大きさは2.4倍までにとどめること。2.5倍にすると背景をはみ出して上端に余白ができてしまう。
       final achievementImageUrl =
-          "https://res.cloudinary.com/hkbyf3jop/image/upload/c_scale,w_2.5,l_achievements:$filename/v1587185448/halo_rainbow.png";
+          "https://res.cloudinary.com/hkbyf3jop/image/upload/e_trim/c_scale,w_2.3,l_achievements:$filename/v1587185448/halo_rainbow.png";
 
-      return Image.network(achievementImageUrl);
+      return Container(
+        width: double.infinity,
+        height:
+            ResponsiveValues.dialogHeight(context) * 0.3, // adjust as needed
+        child: Image.network(
+          achievementImageUrl,
+          fit:
+              BoxFit.cover, // or BoxFit.contain depending on the desired effect
+        ),
+      );
     }
 
     Widget explanation() {
@@ -158,9 +159,17 @@ class NoticeUnreceivedAchievementState
           SingleChildScrollView(
             child: Column(
               children: [
-                heading,
                 medalImage(),
-                const SizedBox(height: 16),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                  child: Text('${_achievement!.name}メダル獲得！！',
+                      style: TextStyle(
+                          fontSize: ResponsiveValues.achievementHeadingFontSize(
+                              context),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orange)),
+                ),
                 explanation(),
                 const SizedBox(height: 24),
                 shareButton(),

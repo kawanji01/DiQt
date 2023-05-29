@@ -21,7 +21,7 @@ class NoticeAchievement extends ConsumerWidget {
     final File file = File(achievement.imageUrl);
     final filename = basename(file.path);
     final achievementImageUrl =
-        "https://res.cloudinary.com/hkbyf3jop/image/upload/c_scale,w_2.5,l_achievements:$filename/v1587185448/halo_rainbow.png";
+        "https://res.cloudinary.com/hkbyf3jop/image/upload/c_scale,w_2.3,l_achievements:$filename/v1587185448/halo_rainbow.png";
 
     final Widget information = RichText(
       text: TextSpan(

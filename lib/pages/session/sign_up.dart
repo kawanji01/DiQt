@@ -13,7 +13,7 @@ class SessionSignUpPage extends StatelessWidget {
   const SessionSignUpPage({super.key});
 
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(signUpPage);
+    return Navigator.of(context).pushNamed(sessionSignUpPage);
   }
 
   @override

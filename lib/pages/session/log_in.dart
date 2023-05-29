@@ -16,7 +16,7 @@ class SessionLogInPage extends ConsumerWidget {
   const SessionLogInPage({super.key});
 
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(logInPage);
+    return Navigator.of(context).pushNamed(sessionLogInPage);
   }
 
   @override
