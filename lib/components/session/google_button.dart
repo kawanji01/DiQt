@@ -3,7 +3,7 @@ import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/home/home_page.dart';
+import 'package:booqs_mobile/pages/session/transition.dart';
 import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -51,7 +51,7 @@ class SessionGoogleButtonState extends ConsumerState<SessionGoogleButton> {
           ref.read(bottomNavbarState.notifier).state = 0;
           final snackBar = SnackBar(content: Text(t.sessions.login_succeeded));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          HomePage.push(context);
+          SessionTransitionPage.push(context, 'logIn');
         }
       } catch (e) {
         EasyLoading.dismiss();

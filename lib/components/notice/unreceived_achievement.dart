@@ -73,7 +73,7 @@ class NoticeUnreceivedAchievementState
       final achievementImageUrl =
           "https://res.cloudinary.com/hkbyf3jop/image/upload/e_trim/c_scale,w_2.3,l_achievements:$filename/v1587185448/halo_rainbow.png";
 
-      return Container(
+      return SizedBox(
         width: double.infinity,
         height:
             ResponsiveValues.dialogHeight(context) * 0.3, // adjust as needed
