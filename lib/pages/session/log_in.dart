@@ -12,11 +12,11 @@ import 'package:booqs_mobile/components/session/twitter_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SessionLoginPage extends ConsumerWidget {
-  const SessionLoginPage({super.key});
+class SessionLogInPage extends ConsumerWidget {
+  const SessionLogInPage({super.key});
 
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(loginPage);
+    return Navigator.of(context).pushNamed(sessionLogInPage);
   }
 
   @override

@@ -47,7 +47,9 @@ Future<void> main() async {
   );
 }
 
-// 連続解答報酬モーダルのような、Dialogs や Toasts の表示に親Widgetから渡したcontextを使ってしまうと、
+//// navigatorKeyの目的： 報酬モーダルの表示 ////
+// utils/answer/answer_reward.dart で定義している連続解答報酬のような Dialogs.reward(screen) の表示において、
+// 親Widgetから渡したcontextを使ってしまうと、
 // 親がdisposeされた後にその処理を実行しようとした際（たとえば１０問解いた後の次の問題の読み込み（dispose）と報酬の表示が被ってしまった場合）に
 // Unhandled Exception: Looking up a deactivated widget's ancestor is unsafe. At this point the state of the widget's element tree is no longer stable.
 // が発生してしまう。

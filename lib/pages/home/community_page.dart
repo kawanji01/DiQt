@@ -7,8 +7,8 @@ import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CommunityPage extends StatelessWidget {
-  const CommunityPage({Key? key}) : super(key: key);
+class HomeCommunityPage extends StatelessWidget {
+  const HomeCommunityPage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(communityPage);

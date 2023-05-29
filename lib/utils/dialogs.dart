@@ -32,17 +32,24 @@ class Dialogs {
     return result == true;
   }
 
-  // 拡大するアニメーションのついた報酬モーダルの表示
-  static Future<void> reward(Widget screen) async {
+  // 主に報酬表示に利用する、拡大するアニメーションのついた報酬モーダルの表示
+  // utils/answer/answer_reward.dartで多用
+  // staticではないのは、static は mockitoで mock できないため。
+  Future<void> reward(Widget screen) async {
     await showAnimatedDialog(
       context: navigatorKey.currentContext!,
-      barrierDismissible: true,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return CustomDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          child: screen,
+          // elevation: 0.0, // Set this to zero
+          // ClipRRectを利用することで、画像が各丸からはみ出す問題を防ぐ。
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: screen,
+          ),
         );
       },
       animationType: DialogTransitionType.scale,

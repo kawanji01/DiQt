@@ -2,7 +2,8 @@ import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:in_app_review/in_app_review.dart';
 
 class AppReviewService {
-  static Future request() async {
+  // mockで検証できるようにインスタンスメソッドにする
+  Future request() async {
     final InAppReview inAppReview = InAppReview.instance;
     if (await inAppReview.isAvailable()) {
       inAppReview.requestReview();

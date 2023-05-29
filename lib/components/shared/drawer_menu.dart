@@ -39,7 +39,7 @@ class DrawerMenu extends ConsumerWidget {
           ListTile(
             title: Text(t.home.community, style: const TextStyle(fontSize: 16)),
             onTap: () {
-              CommunityPage.push(context);
+              HomeCommunityPage.push(context);
             },
           ),
           ListTile(
@@ -50,7 +50,7 @@ class DrawerMenu extends ConsumerWidget {
                 WebPageLauncher.openByWebView('https://www.diqt.net/contact');
               } else {
                 // ログインしているならお問い合わせフィームをモーダル表示
-                Dialogs.reward(const ContactFormScreen());
+                Dialogs().reward(const ContactFormScreen());
               }
             },
           ),
@@ -58,7 +58,7 @@ class DrawerMenu extends ConsumerWidget {
             title:
                 Text(t.home.app_review, style: const TextStyle(fontSize: 16)),
             onTap: () async {
-              await AppReviewService.request();
+              await AppReviewService().request();
             },
           ),
           ListTile(

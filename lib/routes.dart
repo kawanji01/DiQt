@@ -26,8 +26,9 @@ import 'package:booqs_mobile/pages/sense/show.dart';
 import 'package:booqs_mobile/pages/sentence/edit.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
+import 'package:booqs_mobile/pages/session/transition.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
-import 'package:booqs_mobile/pages/session/login.dart';
+import 'package:booqs_mobile/pages/session/log_in.dart';
 import 'package:booqs_mobile/pages/user/cancellation.dart';
 import 'package:booqs_mobile/pages/user/contract_details.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
@@ -52,15 +53,17 @@ const communityPage = '/home/community';
 const noticeIndexPage = '/notice/index';
 const noticeHomePage = '/notice/home';
 // セッション
-const signUpPage = '/session/sign_up';
-const loginPage = '/session/login';
+const sessionSignUpPage = '/session/sign_up';
+const sessionLogInPage = '/session/log_in';
+const sessionTransitionPage = '/session/transition';
+
 // 辞書
 const dictionaryShowPage = '/dictionary/show';
 const dictionaryWordSearchResultsPage = '/dictionary/word_search_results';
 const dictionarySentenceSearchResultsPage =
     '/dictionary/sentence_search_results';
 const dictionaryGuidelinePage = '/dictionary/guideline';
-// 単語
+// 辞書の項目
 const wordShowPage = '/word/show';
 const wordNewPage = '/word/new';
 const wordEditPage = '/word/edit';
@@ -112,13 +115,14 @@ const noteIndexPage = 'note/index';
 
 final routes = {
   indexPage: (context) => const HomePage(),
-  communityPage: (context) => const CommunityPage(),
+  communityPage: (context) => const HomeCommunityPage(),
   // Notification(Notice)
   noticeIndexPage: (context) => const NoticeIndexPage(),
   noticeHomePage: (context) => const NoticeHomePage(),
   // Session
-  signUpPage: (context) => const SessionSignUpPage(),
-  loginPage: (context) => const SessionLoginPage(),
+  sessionSignUpPage: (context) => const SessionSignUpPage(),
+  sessionLogInPage: (context) => const SessionLogInPage(),
+  sessionTransitionPage: (context) => const SessionTransitionPage(),
   // Dictionary
   dictionaryShowPage: (context) => const DictionaryShowPage(),
   dictionaryWordSearchResultsPage: (context) =>

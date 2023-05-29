@@ -20,124 +20,188 @@ import 'package:flutter/material.dart';
 
 class AnswerReward {
   static Future<void> call(AnswerCreator answerCreator) async {
+    // UnitTest で Dialogs の Mock を渡せるように、AnswerRewardでも Dialogs のインスタンスを外部から渡すようにする。
+    final Dialogs dialogs = Dialogs();
     // 問題集周回報酬
-    await AnswerReward.lapClear(answerCreator);
+    if (await AnswerReward.lapClear(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 解答日数報酬
-    await AnswerReward.answerDays(answerCreator);
+    if (await AnswerReward.answerDays(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 連日解答報酬
-    await AnswerReward.continuousAnswerDays(answerCreator);
+    if (await AnswerReward.continuousAnswerDays(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 連続週解答報酬
-    await AnswerReward.continuationAllWeek(answerCreator);
+    if (await AnswerReward.continuationAllWeek(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 連続月解答報酬
-    await AnswerReward.continuationAllMonth(answerCreator);
+    if (await AnswerReward.continuationAllMonth(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 連続年解答報酬
-    await AnswerReward.continuationAllYear(answerCreator);
+    if (await AnswerReward.continuationAllYear(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 復習達成
-    await AnswerReward.reviewCompletion(answerCreator);
+    if (await AnswerReward.reviewCompletion(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 連続復習達成
-    await AnswerReward.continuousReviewCompletion(answerCreator);
+    if (await AnswerReward.continuousReviewCompletion(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 目標達成
-    await AnswerReward.goalAchievement(answerCreator);
+    if (await AnswerReward.goalAchievement(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 連続目標達成
-    await AnswerReward.continuousGoalAvhievement(answerCreator);
+    if (await AnswerReward.continuousGoalAvhievement(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 苦手な問題をすべて解答
-    await AnswerReward.allWeaknessesSolved(answerCreator);
+    if (await AnswerReward.allWeaknessesSolved(answerCreator, dialogs)) {
+      await delayed();
+    }
+
     // 継続者にレビューを求める
-    await AnswerReward.requestReview(answerCreator);
+    if (await AnswerReward.requestReview(
+        answerCreator, dialogs, AppReviewService())) {
+      await delayed();
+    }
+  }
+
+  static Future<void> delayed() async {
+    await Future.delayed(const Duration(seconds: 2));
   }
 
   // 問題集周回報酬
-  static Future<void> lapClear(AnswerCreator answerCreator) async {
+  static Future<bool> lapClear(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final DrillLap? drillLap = answerCreator.drillLap;
 
     if (drillLap != null && answerHistory!.atDrillPage && drillLap.cleared) {
       final Widget screen =
           AnswerDrillLapClearScreen(answerCreator: answerCreator);
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      // await をつけると、このモーダルを閉じるまで次のモーダルを表示しなくなるので外しておく。
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 解答日数報酬
-  static Future<void> answerDays(AnswerCreator answerCreator) async {
+  static Future<bool> answerDays(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? answerDaysCount = answerCreator.answerDaysCount;
     if (answerHistory!.firstOfTheDay && answerDaysCount! > 0) {
       final Widget screen =
           AnswerAnswerDaysScreen(answerCreator: answerCreator);
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 連日解答報酬
-  static Future<void> continuousAnswerDays(AnswerCreator answerCreator) async {
+  static Future<bool> continuousAnswerDays(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuousAnswerDaysCount =
         answerCreator.continuousAnswerDaysCount;
     if (answerHistory!.firstOfTheDay && continuousAnswerDaysCount! > 1) {
       final Widget screen =
           AnswerContinuousAnswerDaysScreen(answerCreator: answerCreator);
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 連続週解答報酬
-  static Future<void> continuationAllWeek(AnswerCreator answerCreator) async {
+  static Future<bool> continuationAllWeek(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuationAllWeekCount =
         answerCreator.continuationAllWeekCount;
     if (answerHistory!.continuationAllWeek && continuationAllWeekCount! > 0) {
       final Widget screen =
           AnswerContinuationAllWeekScreen(answerCreator: answerCreator);
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 連続月解答報酬
-  static Future<void> continuationAllMonth(AnswerCreator answerCreator) async {
+  static Future<bool> continuationAllMonth(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuationAllMonthCount =
         answerCreator.continuationAllMonthCount;
     if (answerHistory!.continuationAllMonth && continuationAllMonthCount! > 0) {
       final Widget screen =
           AnswerContinuationAllMonthScreen(answerCreator: answerCreator);
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 連続年解答報酬
-  static Future<void> continuationAllYear(AnswerCreator answerCreator) async {
+  static Future<bool> continuationAllYear(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuationAllYearCount =
         answerCreator.continuationAllYearCount;
     if (answerHistory!.continuationAllYear && continuationAllYearCount! > 0) {
       final Widget screen =
           AnswerContinuationAllYearScreen(answerCreator: answerCreator);
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 復習達成
-  static Future<void> reviewCompletion(AnswerCreator answerCreator) async {
+  static Future<bool> reviewCompletion(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final bool reviewCompletion = answerHistory!.reviewCompletion;
     if (reviewCompletion) {
       final Widget screen =
           AnswerReviewCompletionScreen(answerCreator: answerCreator);
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 連続復習達成
-  static Future<void> continuousReviewCompletion(
-      AnswerCreator answerCreator) async {
+  static Future<bool> continuousReviewCompletion(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuousReviewCompletionCount =
         answerCreator.continuousReviewCompletionCount;
@@ -145,26 +209,31 @@ class AnswerReward {
     if (reviewCompletion && continuousReviewCompletionCount! > 1) {
       final Widget screen =
           AnswerContinuousReviewCompletionScreen(answerCreator: answerCreator);
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 目標達成報酬
-  static Future<void> goalAchievement(AnswerCreator answerCreator) async {
+  static Future<bool> goalAchievement(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final bool goalAchievement = answerHistory!.goalAchievement;
     if (goalAchievement) {
       final Widget screen =
           AnswerGoalAchievementScreen(answerCreator: answerCreator);
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 連続目標達成
-  static Future<void> continuousGoalAvhievement(
-      AnswerCreator answerCreator) async {
+  static Future<bool> continuousGoalAvhievement(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     final AnswerHistory? answerHistory = answerCreator.answerHistory;
     final int? continuousGoalAchievementCount =
         answerCreator.continuousGoalAchievementCount;
@@ -172,37 +241,44 @@ class AnswerReward {
     if (goalAchievement && continuousGoalAchievementCount! > 1) {
       final Widget screen =
           AnswerContinuousGoalAchievementScreen(answerCreator: answerCreator);
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 苦手な問題をすべて解答
-  static Future<void> allWeaknessesSolved(AnswerCreator answerCreator) async {
+  static Future<bool> allWeaknessesSolved(
+      AnswerCreator answerCreator, Dialogs dialogs) async {
     if (answerCreator.weaknessClear == true) {
       const Widget screen = AnswerWeaknessClearScreen();
-      Dialogs.reward(screen);
-      await Future.delayed(const Duration(seconds: 2));
+      dialogs.reward(screen);
+      return true;
+    } else {
+      return false;
     }
   }
 
   // 継続者にレビューを求める
-  static Future<void> requestReview(AnswerCreator answerCreator) async {
+  // 単体テストでmockを使えるように、AppReviewServiceのインスタンスを引数として渡す。
+  static Future<bool> requestReview(AnswerCreator answerCreator,
+      Dialogs dialogs, AppReviewService appReviewService) async {
     final User? user = answerCreator.user;
-    if (user == null) return;
+    if (user == null) return false;
     final int? answerDaysCount = answerCreator.answerDaysCount;
-    if (answerDaysCount == null) return;
-    if (answerDaysCount < 10) return;
+    if (answerDaysCount == null) return false;
+    if (answerDaysCount < 10) return false;
     // 20日ごとにレビューを求める
-    if (answerDaysCount % 20 != 0) return;
+    if (answerDaysCount % 20 != 0) return false;
 
     if (user.appFavored) {
       // アプリを気に入っている場合は、評価モーダルを表示する。
-      await AppReviewService.request();
+      await appReviewService.request();
     } else {
       // まだアプリを気に入っていない場合は、問い合わせフォームを含んだモーダルを表示する。
-      Dialogs.reward(const AnswerRequestingReviewScreen());
+      dialogs.reward(const AnswerRequestingReviewScreen());
     }
-    await Future.delayed(const Duration(seconds: 2));
+    return true;
   }
 }

@@ -981,6 +981,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  mockito:
+    dependency: "direct main"
+    description:
+      name: mockito
+      sha256: dd61809f04da1838a680926de50a9e87385c1de91c6579629c3d1723946e8059
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.0"
   nonce:
     dependency: "direct main"
     description:
@@ -1306,6 +1314,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.8"
+  source_gen:
+    dependency: transitive
+    description:
+      name: source_gen
+      sha256: "373f96cf5a8744bc9816c1ff41cf5391bbdbe3d7a96fe98c622b6738a8a7bd33"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.2"
   source_span:
     dependency: transitive
     description:

@@ -20,7 +20,6 @@ class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   static Future push(BuildContext context) async {
-    //return Navigator.of(context).pushNamed(indexPage);
     // アニメーションなしで画面遷移させる。 参考： https://stackoverflow.com/questions/49874272/how-to-navigate-to-other-page-without-animation-flutter
     return Navigator.pushReplacement(
       context,
