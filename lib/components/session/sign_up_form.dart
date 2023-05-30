@@ -1,11 +1,11 @@
 import 'package:booqs_mobile/components/button/large_orange_button.dart';
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/session/transition.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/components/session/form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -59,10 +59,11 @@ class SessionSignUpFormState extends ConsumerState<SessionSignUpForm> {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         } else {
           User user = User.fromJson(resMap['user']);
-          await UserSetup.signIn(user);
-          if (!mounted) return;
-          ref.read(currentUserProvider.notifier).updateUser(user);
+          await ref.read(currentUserProvider.notifier).logIn(user);
+          // Localeの更新
+          await ref.read(localeProvider.notifier).setLocale();
           ref.read(bottomNavbarState.notifier).state = 0;
+          if (!mounted) return;
           final snackBar =
               SnackBar(content: Text(t.sessions.sign_up_succeeded));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);

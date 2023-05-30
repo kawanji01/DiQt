@@ -3,7 +3,7 @@ import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/push_notification.dart';
+import 'package:booqs_mobile/utils/push_notification_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/review/unsolved_screen_wrapper.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';

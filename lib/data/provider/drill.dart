@@ -7,7 +7,6 @@ import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final drillProvider = StateProvider<Drill?>((ref) => null);
@@ -28,8 +27,7 @@ final asyncDrillUnsolvedQuizzesProvider =
   if (resMap == null) return quizzes;
 
   final User user = User.fromJson(resMap['user']);
-  await UserSetup.signIn(user);
-  ref.read(currentUserProvider.notifier).updateUser(user);
+  ref.read(currentUserProvider.notifier).update(user);
 
   // 解答済の問題数の更新
   ref.read(drillSolvedQuizzesCountProvider.notifier).state =

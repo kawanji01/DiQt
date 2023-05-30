@@ -1,7 +1,12 @@
 // デフォルトの言語は英語（21）
+const String defaultLangCode = 'en';
 const int defaultLangNumber = 21;
+// 多言語化(i18n)に対応している言語番号
+const List<int> supportedLangNumbers = [21, 44];
 
-// ※ l10nのarbでは - は利用できないので、-を-に変換している。
+// 言語コードと言語番号(ID)の対応づけ。
+// IDで管理しているのは、zh-CN と zh-Hans のように言語コードの表記揺れに対応するため。
+// localeの切り替え以外では、主に揺れのないIDを利用する
 const Map<String, int> languageCodeMap = {
   'undefined': 0,
   'af': 1,
@@ -120,5 +125,3 @@ const Map<String, int> languageCodeMap = {
   'zu': 109,
   // 110はzh（中国語）
 };
-// 多言語化(i18n)に対応している言語番号
-const List<int> supportedLangNumbers = [21, 44];

@@ -60,7 +60,7 @@ class NoticeUnreceivedAchievementState
 
       // ユーザーを更新する
       final User user = User.fromJson(resMap['user']);
-      ref.read(currentUserProvider.notifier).updateUser(user);
+      ref.read(currentUserProvider.notifier).update(user);
       setState(() {
         _isreceived = true;
       });

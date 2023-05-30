@@ -1,13 +1,10 @@
-import 'dart:convert';
 import 'dart:io' show Platform;
 import 'package:booqs_mobile/consts/purchase.dart';
-import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/utils/diqt_url.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
+import 'package:booqs_mobile/data/remote/users.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'http_service.dart';
 
 // RevenueCatのセットアップ
 // ref： https://docs.revenuecat.com/docs/getting-started-1#section-configure-purchases
@@ -242,25 +239,11 @@ class PurchaseService {
   // クライアント側で購入を行なっているので、これはDB側の購入の同期処理。
   // サーバー側でユーザーの契約しているサブスクを取得するか、なければ契約して、契約をDBと同期する。 ref: https://docs.revenuecat.com/reference/subscribers
   Future<bool> getOrCreateSubscriber() async {
-    String? platform;
-    if (Platform.isAndroid) {
-      platform = 'android';
-    } else if (Platform.isIOS) {
-      platform = 'ios';
-    }
-
-    final url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}}/api/v1/mobile/users/get_or_create_subscriber');
-    final res = await HttpService.post(url, {'platform': platform});
-
-    if (res.statusCode != 200) {
+    final Map? result = await RemoteUsers.getOrCreateSubscriber();
+    if (result == null) {
       // print('.getOrCreateSubscriber: response ${res.statusCode}');
       return false;
     }
-
-    Map resMap = json.decode(res.body);
-    User user = User.fromJson(resMap['user']);
-    await UserSetup.signIn(user);
     return true;
   }
 
@@ -283,57 +266,30 @@ class PurchaseService {
 
   // DB上で、ユーザーにpremium権限を付与する
   Future<bool> enablePremiumOnDB() async {
-    try {
-      final url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/enable_premium');
-      final res = await HttpService.post(url, null);
-      if (res.statusCode != 200) {
-        return false;
-      }
-      final Map resMap = json.decode(res.body);
-      final User user = User.fromJson(resMap['user']);
-      await UserSetup.signIn(user);
-      return true;
-    } catch (e) {
+    final Map? resMap = await RemoteUsers.enablePremium();
+    if (resMap == null) {
       return false;
     }
+    return true;
   }
 
   // DB上で、ユーザーのpremium権限を剥奪する
   Future<bool> disablePremiumOnDB() async {
-    try {
-      final url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/disable_premium');
-      final res = await HttpService.post(url, null);
-      if (res.statusCode != 200) {
-        return false;
-      }
-      final Map resMap = json.decode(res.body);
-      final User user = User.fromJson(resMap['user']);
-      await UserSetup.signIn(user);
-      return true;
-    } catch (e) {
+    final Map? resMap = await RemoteUsers.disablePremium();
+    if (resMap == null) {
       return false;
     }
+    return true;
   }
 
   // DB側の解約処理
   // クライアント側に解約APIは用意されていないので、サーバー側（Ruby）の解約APIを叩き、解約をDBと同期する。
   Future<bool> deleteSubscriber(String reason) async {
-    try {
-      final url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/delete_subscriber');
-      final res = await HttpService.post(url, {'reason': reason});
-      if (res.statusCode != 200) {
-        return false;
-      }
-      final Map resMap = json.decode(res.body);
-      final User user = User.fromJson(resMap['user']);
-      await UserSetup.signIn(user);
-      return true;
-    } catch (e) {
+    final Map? resMap = await RemoteUsers.deleteSubscriber(reason);
+    if (resMap == null) {
       return false;
     }
+    return true;
   }
 
   // リストア処理 ref: https://docs.revenuecat.com/docs/restoring-purchases

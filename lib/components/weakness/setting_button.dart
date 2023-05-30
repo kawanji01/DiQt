@@ -39,7 +39,7 @@ class WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
       if (resMap == null) return;
       final Weakness weakness = Weakness.fromJson(resMap['weakness']);
       final User user = User.fromJson(resMap['user']);
-      ref.watch(currentUserProvider.notifier).updateUser(user);
+      ref.watch(currentUserProvider.notifier).update(user);
       setState(() {
         _weakness = weakness;
       });
@@ -51,7 +51,7 @@ class WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
       EasyLoading.dismiss();
       if (resMap == null) return;
       final User user = User.fromJson(resMap['user']);
-      ref.watch(currentUserProvider.notifier).updateUser(user);
+      ref.watch(currentUserProvider.notifier).update(user);
       setState(() {
         _weakness = null;
       });

@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/utils/language.dart';
+import 'package:booqs_mobile/utils/language_handler.dart';
 import 'package:flutter/material.dart';
 
 class SharedLangSetting extends StatelessWidget {
@@ -9,7 +9,7 @@ class SharedLangSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String language = LanguageService.getLanguageFromNumber(langNumber);
+    final String language = LanguageHandler.getLanguageFromNumber(langNumber);
     final String? languageSetting = t['lang.language_setting'];
 
     return Container(

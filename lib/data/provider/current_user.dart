@@ -1,19 +1,41 @@
 import 'package:booqs_mobile/consts/language.dart';
-import 'package:booqs_mobile/data/remote/sessions.dart';
+import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/utils/app_badger.dart';
-import 'package:booqs_mobile/utils/language.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:booqs_mobile/utils/app_badger_service.dart';
+import 'package:booqs_mobile/utils/locale_handler.dart';
+import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class CurrentUserState extends StateNotifier<User?> {
   CurrentUserState() : super(null);
 
-  void updateUser(User? user) {
+  void update(User? user) {
     state = user;
+  }
+
+  Future<void> logIn(User user) async {
+    // サーバーへのリクエストに必要な認証トークンやlocaleは、Provideの寿命より長く持っておきたいのでローカルストレージに保存しておく。
+    await LocalUserInfo.writeAuthToken(user.authToken);
+    await LocalUserInfo.writeLocale(user.langCode());
+    // RevenueCatの認証 参考：https://docs.revenuecat.com/docs/user-ids#logging-back-in
+    await PurchaseService.identify(user.id.toString());
+    state = user;
+  }
+
+  // ログアウトしたときや認証用のtokenが無効だった場合にストレージをリセットしたり、RevenueCatからログアウトする。
+  Future<void> logOut(User? user) async {
+    // ローカルストレージに保存したデータを削除する
+    const storage = FlutterSecureStorage();
+    await storage.deleteAll();
+    // ホーム画面のアプリのバッジを消す。
+    await AppBadgerService.updateReviewBadge(0);
+    if (user == null) return;
+    // RevenueCatからもログアウトする。参照：　https://docs.revenuecat.com/docs/user-ids#logging-out
+    await PurchaseService.logOut(user.id);
+    state = null;
   }
 }
 
@@ -34,14 +56,13 @@ final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
   Map? resMap = await RemoteUsers.current();
   if (resMap == null) {
     // ログインしていない場合
-    await UserSetup.logOut(null);
-    ref.read(currentUserProvider.notifier).updateUser(null);
+    // await ref.read(currentUserProvider.notifier).logOut(null);
+    // ref.read(currentUserProvider.notifier).updateUser(null);
     return null;
   } else {
     // ログインしている場合
     final User user = User.fromJson(resMap['user']);
-    await UserSetup.signIn(user);
-    ref.read(currentUserProvider.notifier).updateUser(user);
+    await ref.read(currentUserProvider.notifier).logIn(user);
     return user;
   }
 });
@@ -52,7 +73,7 @@ final userLangNumberProvider = StateProvider<int>((ref) {
   final int langNumber = ref.watch(currentUserProvider
       .select((user) => user?.langNumber ?? defaultLangNumber));
   // ユーザーの母語はi18nに対応している言語に限定しておく
-  if (LanguageService.langNumberSupported(langNumber)) {
+  if (LocaleHandler.langNumberSupported(langNumber)) {
     return langNumber;
   }
   return defaultLangNumber;
@@ -103,17 +124,4 @@ final asyncDrillsInProgress = FutureProvider<List<Drill>>((ref) async {
 
   resMap['drills'].forEach((e) => drills.add(Drill.fromJson(e)));
   return drills;
-});
-
-// ログアウト
-final logoutProvider = FutureProvider<void>((ref) async {
-  final user = ref.watch(currentUserProvider);
-  if (user == null) return;
-
-  EasyLoading.show(status: 'loading...');
-  await RemoteSessions.logout();
-  await UserSetup.logOut(user);
-  ref.read(currentUserProvider.notifier).updateUser(null);
-  await AppBadgerService.updateReviewBadge(0);
-  EasyLoading.dismiss();
 });

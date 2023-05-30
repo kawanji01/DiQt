@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/pos_tag.dart';
-import 'package:booqs_mobile/utils/language.dart';
+import 'package:booqs_mobile/utils/language_handler.dart';
 
 class Dictionary {
   Dictionary({
@@ -119,10 +119,10 @@ class Dictionary {
 
   // 見出し語の言語
   String languageOfEntry() =>
-      LanguageService.getLanguageFromNumber(langNumberOfEntry);
+      LanguageHandler.getLanguageFromNumber(langNumberOfEntry);
   // 意味の言語
   String languageOfMeaning() =>
-      LanguageService.getLanguageFromNumber(langNumberOfMeaning);
+      LanguageHandler.getLanguageFromNumber(langNumberOfMeaning);
   // 辞書の名前
   String typeName() => '${languageOfEntry()} - ${languageOfMeaning()}';
   //

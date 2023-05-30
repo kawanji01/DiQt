@@ -1,18 +1,14 @@
+/* import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/utils/app_badger.dart';
+import 'package:booqs_mobile/utils/app_badger_service.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart'; */
 
-class UserSetup {
+/* class UserSetup {
   // SignInしたあとに、必要なユーザー情報をローカルストレージに保存したり、RevenueCatで認証する。
   static Future<void> signIn(User user) async {
-    // Providerが利用できないサービスクラスでも利用できるように、
-    // サーバーへのリクエストに必要なパラメーターなどはローカルストレージに保存しておく。
-    const storage = FlutterSecureStorage();
-    await storage.write(key: 'token', value: user.authToken);
-    await storage.write(key: 'publicUid', value: user.publicUid);
-    await storage.write(key: 'premium', value: user.premium.toString());
-    await storage.write(key: 'locale', value: user.locale());
+    // サーバーへのリクエストに必要な認証トークンなどはローカルストレージに保存しておく。
+    LocalUserInfo.writeAuthToken(user.authToken);
     // RevenueCatの認証 参考：https://docs.revenuecat.com/docs/user-ids#logging-back-in
     await PurchaseService.identify(user.id.toString());
   }
@@ -29,3 +25,4 @@ class UserSetup {
     await PurchaseService.logOut(user.id);
   }
 }
+ */

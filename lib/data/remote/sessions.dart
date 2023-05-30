@@ -195,7 +195,7 @@ class RemoteSessions {
   }
 
   // ログアウト / sessions/logout
-  static Future<Map?> logout() async {
+  static Future<Map?> logOut() async {
     try {
       final deviceInfo = DeviceInfoService();
       final String deviceIdentifier = await deviceInfo.getIndentifier();

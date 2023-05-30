@@ -4,7 +4,7 @@ import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/langs.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/utils/language.dart';
+import 'package:booqs_mobile/utils/language_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -50,9 +50,9 @@ class LangLargeTranslationButtonsState
 
     const TextStyle styleText = TextStyle(fontSize: 14, color: Colors.black87);
     final String sourceLanguage =
-        LanguageService.getLanguageFromNumber(widget.sourceLangNumber);
+        LanguageHandler.getLanguageFromNumber(widget.sourceLangNumber);
     final String targetLanguage =
-        LanguageService.getLanguageFromNumber(targetLangNumber);
+        LanguageHandler.getLanguageFromNumber(targetLangNumber);
     final String translationInfo = '$sourceLanguage - $targetLanguage';
 
     Widget loadingSpinner() {

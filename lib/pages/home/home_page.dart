@@ -3,9 +3,11 @@ import 'package:booqs_mobile/components/home/loading_screen.dart';
 import 'package:booqs_mobile/components/home/sign_in_screen.dart';
 
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:upgrader/upgrader.dart';
 
 // This widget is the home page of your application. It is stateful, meaning
 // that it has a State object (defined below) that contains fields that affect
@@ -49,15 +51,24 @@ class HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     //
     return ref.watch(asyncCurrentUserProvider).when(
-        data: (user) {
-          if (user == null) {
-            return const HomeSignInScreen();
-          }
-          return const HomeDictionaryScreen();
-        },
-        error: (e, str) => HomeLoadingScreen(
-              error: '$e',
-            ),
-        loading: () => const HomeLoadingScreen());
+          data: (user) {
+            final String locale = ref.watch(localeProvider);
+            return UpgradeAlert(
+              upgrader: Upgrader(
+                  // debugDisplayAlways: true,
+                  minAppVersion: '1.4.3',
+                  languageCode: locale,
+                  messages: UpgraderMessages(code: locale),
+                  canDismissDialog: true),
+              child: user == null
+                  ? const HomeSignInScreen()
+                  : const HomeDictionaryScreen(),
+            );
+          },
+          error: (e, str) => HomeLoadingScreen(
+            error: '$e',
+          ),
+          loading: () => const HomeLoadingScreen(),
+        );
   }
 }
