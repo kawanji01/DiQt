@@ -21,9 +21,9 @@
 		7D96DCB229E43BE100F2AC88 /* LockScreenWidgetsLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D96DCB129E43BE100F2AC88 /* LockScreenWidgetsLiveActivity.swift */; };
 		7D96DCB429E43BE100F2AC88 /* LockScreenWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D96DCB329E43BE100F2AC88 /* LockScreenWidgets.swift */; };
 		7D96DCB729E43BE300F2AC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D96DCB629E43BE300F2AC88 /* Assets.xcassets */; };
-		7D96DCB929E43BE300F2AC88 /* LockScreenWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7D96DCB529E43BE100F2AC88 /* LockScreenWidgets.intentdefinition */; };
-		7D96DCBA29E43BE300F2AC88 /* LockScreenWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7D96DCB529E43BE100F2AC88 /* LockScreenWidgets.intentdefinition */; };
 		7D96DCBD29E43BE300F2AC88 /* LockScreenWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7D96DCA929E43BE100F2AC88 /* LockScreenWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7DADBDB32A25E8180043A42F /* LockScreenWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7DADBDB62A25E8180043A42F /* LockScreenWidgets.intentdefinition */; };
+		7DADBDB42A25E8180043A42F /* LockScreenWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7DADBDB62A25E8180043A42F /* LockScreenWidgets.intentdefinition */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
@@ -81,9 +81,10 @@
 		7D96DCAF29E43BE100F2AC88 /* LockScreenWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidgetsBundle.swift; sourceTree = "<group>"; };
 		7D96DCB129E43BE100F2AC88 /* LockScreenWidgetsLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidgetsLiveActivity.swift; sourceTree = "<group>"; };
 		7D96DCB329E43BE100F2AC88 /* LockScreenWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidgets.swift; sourceTree = "<group>"; };
-		7D96DCB529E43BE100F2AC88 /* LockScreenWidgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = LockScreenWidgets.intentdefinition; sourceTree = "<group>"; };
 		7D96DCB629E43BE300F2AC88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D96DCB829E43BE300F2AC88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DADBDB52A25E8180043A42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/LockScreenWidgets.intentdefinition; sourceTree = "<group>"; };
+		7DADBDB82A25E8220043A42F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LockScreenWidgets.strings; sourceTree = "<group>"; };
 		7DB4811329DCFD2B0087A77A /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		7DB784E6273CCF42001040D4 /* RunnerRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunnerRelease.entitlements; sourceTree = "<group>"; };
 		7DBAD6C727263BE700FD7A53 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
@@ -148,7 +149,7 @@
 				7D96DCAF29E43BE100F2AC88 /* LockScreenWidgetsBundle.swift */,
 				7D96DCB129E43BE100F2AC88 /* LockScreenWidgetsLiveActivity.swift */,
 				7D96DCB329E43BE100F2AC88 /* LockScreenWidgets.swift */,
-				7D96DCB529E43BE100F2AC88 /* LockScreenWidgets.intentdefinition */,
+				7DADBDB62A25E8180043A42F /* LockScreenWidgets.intentdefinition */,
 				7D96DCB629E43BE300F2AC88 /* Assets.xcassets */,
 				7D96DCB829E43BE300F2AC88 /* Info.plist */,
 			);
@@ -416,7 +417,7 @@
 				7D96DCB429E43BE100F2AC88 /* LockScreenWidgets.swift in Sources */,
 				7D96DCB029E43BE100F2AC88 /* LockScreenWidgetsBundle.swift in Sources */,
 				7D96DCB229E43BE100F2AC88 /* LockScreenWidgetsLiveActivity.swift in Sources */,
-				7D96DCB929E43BE300F2AC88 /* LockScreenWidgets.intentdefinition in Sources */,
+				7DADBDB42A25E8180043A42F /* LockScreenWidgets.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,7 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D96DCBA29E43BE300F2AC88 /* LockScreenWidgets.intentdefinition in Sources */,
+				7DADBDB32A25E8180043A42F /* LockScreenWidgets.intentdefinition in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);
@@ -441,6 +442,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		7DADBDB62A25E8180043A42F /* LockScreenWidgets.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DADBDB52A25E8180043A42F /* Base */,
+				7DADBDB82A25E8220043A42F /* en */,
+			);
+			name = LockScreenWidgets.intentdefinition;
+			sourceTree = "<group>";
+		};
 		97C146FA1CF9000F007C117D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
