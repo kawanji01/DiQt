@@ -3,7 +3,6 @@ import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/session/transition.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:booqs_mobile/components/button/large_green_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -30,17 +29,24 @@ class UserLogoutButtonState extends ConsumerState<UserLogoutButton> {
               setState(() => _isRequesting = true);
               // 画面全体にローディングを表示
               EasyLoading.show(status: 'loading...');
-              await RemoteSessions.logout();
-              await UserSetup.logOut(user);
-              ref.read(currentUserProvider.notifier).updateUser(null);
+              final resMap = await RemoteSessions.logOut();
               // ローディングを消す
               EasyLoading.dismiss();
               setState(() => _isRequesting = false);
               if (!mounted) return;
-              final snackBar =
-                  SnackBar(content: Text(t.sessions.log_out_succeeded));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              SessionTransitionPage.push(context, 'logOut');
+
+              if (resMap == null) {
+                final snackBar =
+                    SnackBar(content: Text(t.errors.error_occured));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              } else {
+                // ログアウトに伴う連携サービスの設定などの処理
+                ref.read(currentUserProvider.notifier).logOut(user);
+                final snackBar =
+                    SnackBar(content: Text(t.sessions.log_out_succeeded));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                SessionTransitionPage.push(context, 'logOut');
+              }
             },
       child: LargeGreenButton(label: t.sessions.log_out, icon: Icons.logout),
     );

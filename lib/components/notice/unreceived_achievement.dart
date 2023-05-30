@@ -60,7 +60,7 @@ class NoticeUnreceivedAchievementState
 
       // ユーザーを更新する
       final User user = User.fromJson(resMap['user']);
-      ref.read(currentUserProvider.notifier).updateUser(user);
+      ref.read(currentUserProvider.notifier).update(user);
       setState(() {
         _isreceived = true;
       });
@@ -73,7 +73,7 @@ class NoticeUnreceivedAchievementState
       final achievementImageUrl =
           "https://res.cloudinary.com/hkbyf3jop/image/upload/e_trim/c_scale,w_2.3,l_achievements:$filename/v1587185448/halo_rainbow.png";
 
-      return Container(
+      return SizedBox(
         width: double.infinity,
         height:
             ResponsiveValues.dialogHeight(context) * 0.3, // adjust as needed

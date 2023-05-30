@@ -181,16 +181,10 @@ class RemoteUsers {
   }
 
   // 退会
-  static Future<Map?> withdrawal() async {
+  static Future<Map?> withdrawal(String publidUid) async {
     try {
-      const storage = FlutterSecureStorage();
-
-      String? uid = await storage.read(key: 'publicUid');
-
-      if (uid == null) return null;
-
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$uid');
+      final Uri url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publidUid');
 
       final Response res = await HttpService.delete(url, null);
 
@@ -294,4 +288,90 @@ class RemoteUsers {
       return null;
     }
   }
+
+  // revenueCatの購入情報を取得する
+  static Future<Map?> getOrCreateSubscriber() async {
+    String? platform;
+    if (Platform.isAndroid) {
+      platform = 'android';
+    } else if (Platform.isIOS) {
+      platform = 'ios';
+    }
+
+    try {
+      final Uri url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}}/api/v1/mobile/users/get_or_create_subscriber');
+      final Response res = await HttpService.post(url, {'platform': platform});
+      if (res.statusCode != 200) return null;
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    }
+  }
+
+  // DB側の解約処理
+  // クライアント側に解約APIは用意されていないので、サーバー側（Ruby）の解約APIを叩き、解約をDBと同期する。
+  static Future<Map?> deleteSubscriber(String reason) async {
+    try {
+      final url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/delete_subscriber');
+      final res = await HttpService.post(url, {'reason': reason});
+      if (res.statusCode != 200) return null;
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    }
+  }
+
+  // ユーザーをプレミアム会員化する
+  static Future<Map?> enablePremium() async {
+    try {
+      final url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/enable_premium');
+      final res = await HttpService.post(url, null);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    }
+  }
+
+  // ユーザーを一般会員に戻す
+  static Future<Map?> disablePremium() async {
+    try {
+      final url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/disable_premium');
+      final res = await HttpService.post(url, null);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    }
+  }
+
+  //
 }

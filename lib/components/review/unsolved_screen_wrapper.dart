@@ -22,7 +22,7 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
     void updateProviders(resMap) {
       // ユーザー情報を更新する
       final User user = User.fromJson(resMap['user']);
-      ref.read(currentUserProvider.notifier).updateUser(user);
+      ref.read(currentUserProvider.notifier).update(user);
     }
 
     // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。

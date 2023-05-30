@@ -24,7 +24,7 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
           AnswerCreator.fromJson(resMap['answer_creator']);
       // ユーザー情報と今日の解答数を更新する
       final User user = User.fromJson(resMap['user']);
-      ref.read(currentUserProvider.notifier).updateUser(user);
+      ref.read(currentUserProvider.notifier).update(user);
 
       // 解答済の問題数を更新する
       ref.read(drillSolvedQuizzesCountProvider.notifier).state =

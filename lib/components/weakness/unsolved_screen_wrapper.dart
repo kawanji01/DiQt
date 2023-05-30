@@ -20,7 +20,7 @@ class WeaknessUnsolvedScreenWrapper extends ConsumerWidget {
     void updateProviders(resMap) {
       // ユーザー情報を更新する
       final User user = User.fromJson(resMap['user']);
-      ref.read(currentUserProvider.notifier).updateUser(user);
+      ref.read(currentUserProvider.notifier).update(user);
       /* ref.read(todaysAnswersCountProvider.notifier).state =
           user.todaysAnswerHistoriesCount;
       ref.read(todaysCorrectAnswersCountProvider.notifier).state =

@@ -3,12 +3,11 @@ import 'package:booqs_mobile/components/user/form/lang_number.dart';
 import 'package:booqs_mobile/components/user/form/learning_lang_number.dart';
 import 'package:booqs_mobile/components/user/form/withdrawal_button.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/utils/language.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -77,9 +76,10 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         } else {
           final updatedUser = User.fromJson(resMap['user']);
-          ref.read(currentUserProvider.notifier).updateUser(user);
-          // 言語設定の切り替え
-          await LanguageService.setLocale(updatedUser);
+          // ユーザーの更新
+          await ref.read(currentUserProvider.notifier).logIn(updatedUser);
+          // Localeの更新
+          await ref.read(localeProvider.notifier).setLocale();
           final snackBar = SnackBar(content: Text(t.shared.update_succeeded));
           if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -147,26 +147,6 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
                     icon: Icons.edit_outlined,
                     fontSize: 18,
                   )),
-              /* SizedBox(
-                height: 48,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity,
-                        40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-                  ),
-                  onPressed: _isRequesting
-                      ? null
-                      : () async {
-                          save(widget.user);
-                        },
-                  icon: const Icon(Icons.edit_outlined, color: Colors.white),
-                  label: Text(
-                    t.shared.update,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ),
-              ), */
               const SizedBox(height: 80),
               const UserFormWithdrawalButton(),
               const SizedBox(height: 80),

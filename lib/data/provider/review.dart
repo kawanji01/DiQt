@@ -4,8 +4,7 @@ import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/utils/app_badger.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
+import 'package:booqs_mobile/utils/app_badger_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final reviewOrderProvider = StateProvider<String>((ref) => 'random-random');
@@ -17,8 +16,7 @@ final asyncUnsolvedReviewsProvider = FutureProvider<List<Review>>((ref) async {
   if (resMap == null) return reviews;
 
   User user = User.fromJson(resMap['user']);
-  await UserSetup.signIn(user);
-  ref.read(currentUserProvider.notifier).updateUser(user);
+  ref.read(currentUserProvider.notifier).update(user);
   // ホーム画面のアプリのバッジを更新する
   await AppBadgerService.updateReviewBadge(user.unsolvedReviewsCount);
 

@@ -33,7 +33,7 @@ class DictionaryMapRadioListState
 
   Future<void> _loadLastSelectedDictionary() async {
     final String? selectedDictionaryIdStr =
-        await LocalUserInfo.getSelectedDictionaryId();
+        await LocalUserInfo.selectedDictionaryId();
     if (selectedDictionaryIdStr == null) return;
     try {
       final int dictionaryId = int.parse(selectedDictionaryIdStr);

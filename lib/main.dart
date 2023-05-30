@@ -1,10 +1,8 @@
-import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/language.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
-import 'package:booqs_mobile/utils/push_notification.dart';
+import 'package:booqs_mobile/utils/push_notification_handler.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
@@ -39,7 +37,7 @@ Future<void> main() async {
   runApp(
     // Riverpodをアプリに適用
     ProviderScope(
-      // i18n ref: https://pub.dev/packages/fast_i18n#getting-started
+      // i18n(slang)の適応 ref: https://pub.dev/packages/slang#getting-started
       child: TranslationProvider(
         child: const DiQt(),
       ),
@@ -48,14 +46,14 @@ Future<void> main() async {
 }
 
 //// navigatorKeyの目的： 報酬モーダルの表示 ////
-// utils/answer/answer_reward.dart で定義している連続解答報酬のような Dialogs.reward(screen) の表示において、
+// 連続解答報酬などの表示で利用する、utils/answer/answer_reward.dart で定義している Dialogs.reward(screen) において、
 // 親Widgetから渡したcontextを使ってしまうと、
 // 親がdisposeされた後にその処理を実行しようとした際（たとえば１０問解いた後の次の問題の読み込み（dispose）と報酬の表示が被ってしまった場合）に
 // Unhandled Exception: Looking up a deactivated widget's ancestor is unsafe. At this point the state of the widget's element tree is no longer stable.
 // が発生してしまう。
-// これを防ぐためには、disposeされないWidgetのcontextを渡す必要がある。
+// これを防ぐためには、disposeされないWidgetのcontextを Dialogs.reward(screen) で利用する必要がある。
 // そのために　navigatorKey　をグローバルに定義する。
-// Dialogで利用するdisposeされないWidgetのcontextとして、navigatorKey.currentContext を利用する。
+// つまり、Dialogで利用するdisposeされないWidgetのcontextとして、navigatorKey.currentContext を利用する。
 // ref: https://stackoverflow.com/questions/56280736/alertdialog-without-context-in-flutter
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -74,8 +72,7 @@ class DiQtState extends ConsumerState<DiQt> {
     PushNotificationHandler.setTransitonWhenNotificationTapped(context);
     // localeを設定する
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final User? user = ref.read(currentUserProvider);
-      await LanguageService.setLocale(user);
+      await ref.read(localeProvider.notifier).setLocale();
     });
   }
 

@@ -4,7 +4,6 @@ import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/weaknesses.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/models/weakness.dart';
-import 'package:booqs_mobile/utils/user_setup.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final weaknessOrderProvider =
@@ -22,8 +21,7 @@ final asyncUnsolvedWeaknessesProvider =
   if (resMap == null) return weaknesses;
 
   final User user = User.fromJson(resMap['user']);
-  await UserSetup.signIn(user);
-  ref.read(currentUserProvider.notifier).updateUser(user);
+  ref.read(currentUserProvider.notifier).update(user);
 
   resMap['weaknesses'].forEach((e) => weaknesses.add(Weakness.fromJson(e)));
   // 画面に描画された問題のID

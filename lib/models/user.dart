@@ -3,7 +3,7 @@ import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/relationship.dart';
-import 'package:booqs_mobile/utils/language.dart';
+import 'package:booqs_mobile/utils/language_handler.dart';
 
 class User {
   User({
@@ -152,10 +152,10 @@ class User {
                 .toList();
 
 // 言語コード
-  String langCode() => LanguageService.getLangCode(langNumber);
+  String langCode() => LanguageHandler.getLangCode(langNumber);
 // Locale
   String locale() {
-    return LanguageService.getLangCode(langNumber);
+    return LanguageHandler.getLangCode(langNumber);
   }
 
 // mapでjsonをList<Chapter>に変換する ref: https://zenn.dev/tris/articles/61c4a9ca398472#map%E3%81%AE%E5%9F%BA%E6%9C%AC

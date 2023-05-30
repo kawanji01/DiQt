@@ -2,7 +2,7 @@ import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/utils/language.dart';
+import 'package:booqs_mobile/utils/language_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -41,7 +41,7 @@ class UserFormLearningLangNumber extends ConsumerWidget {
             items: langNumberItems.map<DropdownMenuItem<int>>((int value) {
               return DropdownMenuItem<int>(
                 value: value,
-                child: Text(LanguageService.getLanguageFromNumber(value),
+                child: Text(LanguageHandler.getLanguageFromNumber(value),
                     style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
