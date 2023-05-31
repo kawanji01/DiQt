@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:booqs_mobile/utils/device_info%20_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -12,7 +13,7 @@ import 'package:twitter_login/entity/auth_result.dart';
 
 class RemoteSessions {
   // メール認証
-  static Future<Map?> login(String email, String password) async {
+  static Future<Map> login(String email, String password) async {
     try {
       // デバイスの識別IDなどを取得する
       final deviceInfo = DeviceInfoService();
@@ -30,19 +31,17 @@ class RemoteSessions {
         'platform': platform,
       };
       final Response res = await HttpService.post(url, body);
-      if (res.statusCode != 200) return null;
+      // エラーを検知して、エラー用のMapを返す。
+      if (ErrorHandler.isError(res)) return ErrorHandler.errorMap(res);
 
-      final Map? resMap = json.decode(res.body);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 
