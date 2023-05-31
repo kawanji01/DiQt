@@ -38,36 +38,28 @@ class SessionLoginFormState extends ConsumerState<SessionLoginForm> {
       if (!_formKey.currentState!.validate()) {
         return;
       }
-      try {
-        final String email = _idController.text;
-        final String password = _passwordController.text;
-        // 画面全体にローディングを表示
-        EasyLoading.show(status: 'loading...');
-        Map? resMap = await RemoteSessions.login(email, password);
-        EasyLoading.dismiss();
-        if (resMap == null) {
-          if (!mounted) return;
-          _passwordController.clear();
-          final snackBar = SnackBar(content: Text(t.sessions.login_failed));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        } else {
-          User user = User.fromJson(resMap['user']);
-          // await UserSetup.signIn(user);
-          //if (!mounted) return;
 
-          await ref.read(currentUserProvider.notifier).logIn(user);
-          // Localeの更新
-          await ref.read(localeProvider.notifier).setLocale();
-          ref.read(bottomNavbarState.notifier).state = 0;
-          final snackBar = SnackBar(content: Text(t.sessions.login_succeeded));
-          if (!mounted) return;
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          SessionTransitionPage.push(context, 'logIn');
-        }
-      } catch (e) {
+      final String email = _idController.text;
+      final String password = _passwordController.text;
+      // 画面全体にローディングを表示
+      EasyLoading.show(status: 'loading...');
+      final Map resMap = await RemoteSessions.login(email, password);
+      EasyLoading.dismiss();
+      if (resMap.containsKey('error')) {
+        if (!mounted) return;
         _passwordController.clear();
-        final snackBar = SnackBar(content: Text(t.errors.error_occured));
+        final snackBar = SnackBar(content: Text(t.sessions.login_failed));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        final User user = User.fromJson(resMap['user']);
+        await ref.read(currentUserProvider.notifier).logIn(user);
+        // Localeの更新
+        await ref.read(localeProvider.notifier).setLocale();
+        ref.read(bottomNavbarState.notifier).state = 0;
+        final snackBar = SnackBar(content: Text(t.sessions.login_succeeded));
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        SessionTransitionPage.push(context, 'logIn');
       }
     }
 

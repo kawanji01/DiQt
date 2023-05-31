@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 961 (480 per locale)
+/// Strings: 1041 (520 per locale)
 ///
-/// Built on 2023-05-22 at 05:48 UTC
+/// Built on 2023-05-31 at 08:46 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -256,6 +256,46 @@ class _TranslationsErrorsEn {
 	String get error_message_505 => 'I\'m so sorry. This is internal server error.';
 	String get cant_be_blank => 'This field can\'t be blank.';
 	String get error_occured => 'Errors have occurred.';
+	String get http_status_400 => '400 Bad Request: Invalid request.';
+	String get http_status_401 => '401 Unauthorized: No access rights or authentication failed.';
+	String get http_status_402 => '402 Payment Required: Sorry, but the requested resource requires payment before it can be accessed. Please check your account status';
+	String get http_status_403 => '403 Forbidden: Sorry, but you do not have permission to access this resource. Please contact the administrator if you think this is a mistake.';
+	String get http_status_404 => '404 Not Found: Sorry, but the resource you requested could not be found on this server.';
+	String get http_status_405 => '405 Method Not Allowed: Sorry, but the HTTP method used in the request is not allowed for the resource.';
+	String get http_status_406 => '406 Not Acceptable: Sorry, but the server cannot provide a response that satisfies your Accept headers. Please modify your request and try again.';
+	String get http_status_407 => '407 Proxy Authentication Required: Sorry, but you need to authenticate yourself with the proxy server first. Please login to continue.';
+	String get http_status_408 => '408 Request Timeout: Sorry, your request timed out. Please check your network connection and try again.';
+	String get http_status_409 => '409 Conflict: Sorry, but there was a conflict with the requested operation. Please check your input and try again.';
+	String get http_status_410 => '410 Gone: Sorry, but the requested resource is no longer available on this server and no forwarding address is known.';
+	String get http_status_411 => '411 Length Required: Sorry, but the server requires a valid Content-Length header field in the request. Please include it and try again.';
+	String get http_status_412 => '412 Precondition Failed: Sorry, but one or more preconditions you gave in the request header fields evaluated to false.';
+	String get http_status_413 => '413 Payload Too Large: Sorry, but the request entity is larger than the server is willing or able to process.';
+	String get http_status_414 => '414 URI Too Long: Sorry, but the URI provided was too long for the server to process. Please shorten it and try again.';
+	String get http_status_415 => '415 Unsupported Media Type: Sorry, but the server does not support the media type indicated in the request. Please check and try again.';
+	String get http_status_416 => '416 Range Not Satisfiable: Sorry, but the client has asked for a portion of the file, but the server cannot supply that portion.';
+	String get http_status_417 => '417 Expectation Failed: Sorry, but the expectation given in the Expect request-header field could not be met by the server.';
+	String get http_status_418 => '418 I\'m a teapot: Sorry, I\'m a teapot. The requested entity body is short and stout, handle is here, spout is there.';
+	String get http_status_421 => '421 Misdirected Request: Sorry, but the request was directed at a server that is not able to produce a response.';
+	String get http_status_422 => '422 Unprocessable Entity: Sorry, but the server understands the content type of the request entity and the syntax of the request entity is correct but was unable to process the contained instructions.';
+	String get http_status_423 => '423 Locked: Sorry, but the resource that you are trying to access is locked.';
+	String get http_status_424 => '424 Failed Dependency: Sorry, but the method could not be performed on the resource because the requested action depended on another action and that action failed.';
+	String get http_status_425 => '425 Too Early: Sorry, but the server is unwilling to risk processing a request that might be replayed.';
+	String get http_status_426 => '426 Upgrade Required: Sorry, but the client should switch to a different protocol such as TLS/1.0, given in the Upgrade header field.';
+	String get http_status_427 => '427 Unassigned: Sorry, but this error code is currently unassigned and cannot be used.';
+	String get http_status_428 => '428 Precondition Required: Sorry, but the origin server requires the request to be conditional. Intended to prevent the "lost update" problem.';
+	String get http_status_429 => '429 Too Many Requests: Sorry, but you have sent too many requests in a given amount of time. Please try again later.';
+	String get http_status_431 => '431 Request Header Fields Too Large: Sorry, but the server is unwilling to process the request because either an individual header field, or all the header fields collectively, are too large.';
+	String get http_status_500 => '500 Internal Server Error: Sorry, but something went wrong on our end. Please try again later.';
+	String get http_status_501 => '501 Not Implemented: Sorry, but the request method is not implemented. Please check and try again.';
+	String get http_status_502 => '502 Bad Gateway: Sorry, but the server received an invalid response from the upstream server. Please try again.';
+	String get http_status_503 => '503 Service Unavailable: Sorry, but the server is currently unavailable. Please try again later.';
+	String get http_status_504 => '504 Gateway Timeout: The server is currently unable to handle the request due to a temporary overloading or maintenance. Please try again later.';
+	String get http_status_505 => '505 HTTP Version Not Supported: Sorry, but the HTTP version used in the request is not supported.';
+	String get http_status_506 => '506 Variant Also Negotiates: The server has an internal configuration error. The chosen variant resource is configured to engage in transparent content negotiation itself, and is therefore not a proper end point in the negotiation process.';
+	String get http_status_507 => '507 Insufficient Storage: Sorry, but the server is unable to store the representation needed to complete the request.';
+	String get http_status_508 => '508 Loop Detected: The server detected an infinite loop while processing the request. This status indicates that the entire operation failed.';
+	String get http_status_510 => '510 Not Extended: Further extensions to the request are required for the server to fulfill it.';
+	String get http_status_511 => '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
 }
 
 // Path: users
@@ -903,6 +943,46 @@ class _TranslationsErrorsJa implements _TranslationsErrorsEn {
 	@override String get error_message_505 => '大変申し訳ございません。サーバーでエラーが発生しました。';
 	@override String get cant_be_blank => 'この項目は空欄にできません。';
 	@override String get error_occured => 'エラーが発生しました。';
+	@override String get http_status_400 => '400 Bad Request: 無効なリクエストです';
+	@override String get http_status_401 => '401 Unauthorized: アクセス権が無いか、あるいは認証に失敗しました。';
+	@override String get http_status_402 => '402 Payment Required: 申し訳ありませんが、要求されたリソースにアクセスする前に支払いが必要です。アカウントの状態を確認してください。';
+	@override String get http_status_403 => '403 Forbidden: 申し訳ありませんが、このリソースにアクセスする権限がありません。これが間違いだと思う場合は、管理者に連絡してください。';
+	@override String get http_status_404 => '404 Not Found: 申し訳ありませんが、要求されたリソースはこのサーバー上に見つかりませんでした。';
+	@override String get http_status_405 => '405 Method Not Allowed: 申し訳ありませんが、リクエストで使用されたHTTPメソッドは、リソースに対して許可されていません。';
+	@override String get http_status_406 => '406 Not Acceptable: 申し訳ありませんが、サーバーはあなたのAcceptヘッダーを満足させるレスポンスを提供できません。リクエストを修正して再試行してください。';
+	@override String get http_status_407 => '407 Proxy Authentication Required: 申し訳ありませんが、まずプロキシサーバーで自分を認証する必要があります。続行するにはログインしてください。';
+	@override String get http_status_408 => '408 Request Timeout: 申し訳ありません、リクエストがタイムアウトしました。ネットワーク接続を確認して、もう一度試してください。';
+	@override String get http_status_409 => '409 Conflict: 申し訳ありませんが、要求された操作との間に競合がありました。入力を確認して再試行してください。';
+	@override String get http_status_410 => '410 Gone: 申し訳ありませんが、要求されたリソースはこのサーバー上で利用できなくなり、転送先のアドレスは不明です。';
+	@override String get http_status_411 => '411 Length Required: 申し訳ありませんが、サーバーはリクエストに有効なContent-Lengthヘッダーフィールドを必要とします。それを含めて再試行してください。';
+	@override String get http_status_412 => '412 Precondition Failed: 申し訳ありませんが、リクエストヘッダーフィールドで指定した1つ以上の前提条件が偽と評価されました。';
+	@override String get http_status_413 => '413 Payload Too Large: 申し訳ありませんが、リクエストエンティティがサーバーが処理する能力を超えています。';
+	@override String get http_status_414 => '414 URI Too Long: 申し訳ありませんが、提供されたURIはサーバーが処理するには長すぎます。短くしてから再試行してください。';
+	@override String get http_status_415 => '415 Unsupported Media Type: 申し訳ありませんが、サーバーはリクエストで示されたメディアタイプをサポートしていません。確認してから再試行してください。';
+	@override String get http_status_416 => '416 Range Not Satisfiable: 申し訳ありませんが、クライアントがファイルの一部を求めていますが、サーバーはその部分を提供できません。';
+	@override String get http_status_417 => '417 Expectation Failed: 申し訳ありませんが、Expectリクエストヘッダーフィールドで指定した期待値はサーバーでは満たすことができませんでした。';
+	@override String get http_status_418 => '418 I\'m a teapot: Sorry, 申し訳ありません、私はティーポットです。要求されたエンティティボディは短くてずんぐりむっくりしていて、取っ手はここ、注ぎ口はそこです。';
+	@override String get http_status_421 => '421 Misdirected Request: 申し訳ありませんが、リクエストはレスポンスを生成できないサーバーに向けられました。';
+	@override String get http_status_422 => '422 Unprocessable Entity: 申し訳ありませんが、サーバーはリクエストエンティティのコンテンツタイプを理解し、リクエストエンティティの構文も正しいのですが、含まれている指示を処理することができませんでした。';
+	@override String get http_status_423 => '423 Locked: 申し訳ありませんが、アクセスしようとしているリソースはロックされています。';
+	@override String get http_status_424 => '424 Failed Dependency: 申し訳ありませんが、要求されたアクションが別のアクションに依存していてそのアクションが失敗したため、リソースに対してメソッドを実行することができませんでした。';
+	@override String get http_status_425 => '425 Too Early: 申し訳ありませんが、サーバーはリプレイされる可能性のあるリクエストを処理するリスクを冒したくありません。';
+	@override String get http_status_426 => '426 Upgrade Required: 申し訳ありませんが、クライアントはUpgradeヘッダーフィールドで指定されているTLS/1.0などの別のプロトコルに切り替える必要があります。';
+	@override String get http_status_427 => '427 Unassigned: 申し訳ありませんが、このエラーコードは現在割り当てられておらず、使用することはできません。';
+	@override String get http_status_428 => '428 Precondition Required: 申し訳ありませんが、オリジンサーバーはリクエストが条件付きであることを要求しています。これは「ロストアップデート」問題を防ぐためのものです。';
+	@override String get http_status_429 => '429 Too Many Requests: 申し訳ありませんが、指定された時間内に送信されるリクエストが多すぎます。後でもう一度お試しください。';
+	@override String get http_status_431 => '431 Request Header Fields Too Large: 申し訳ありませんが、個々のヘッダーフィールドやすべてのヘッダーフィールドがまとめて大きすぎるため、サーバーはリクエストを処理することを拒否しています。';
+	@override String get http_status_500 => '500 Internal Server Error: 申し訳ありません、サーバー側に何か問題が発生しました。後ほどもう一度お試しください。';
+	@override String get http_status_501 => '501 Not Implemented: 申し訳ありませんが、リクエストメソッドは実装されていません。確認して再試行してください。';
+	@override String get http_status_502 => '502 Bad Gateway: 申し訳ありませんが、サーバーは上流のサーバーから無効な応答を受け取りました。再試行してください。';
+	@override String get http_status_503 => '503 Service Unavailable: 申し訳ありませんが、現在サーバーは利用できません。後ほど再試行してください。';
+	@override String get http_status_504 => '504 Gateway Timeout: 一時的な過負荷またはメンテナンスのため、現在サーバーはリクエストを処理できません。後ほど再試行してください。';
+	@override String get http_status_505 => '505 HTTP Version Not Supported: 申し訳ありませんが、リクエストで使用されるHTTPのバージョンはサポートされていません。';
+	@override String get http_status_506 => '506 Variant Also Negotiates: サーバーに内部構成エラーがあります。選択されたバリアントリソースが透過的コンテンツネゴシエーション自体を行うよう設定されているため、ネゴシエーションプロセスの適切な終点ではありません。';
+	@override String get http_status_507 => '507 Insufficient Storage: 申し訳ありませんが、サーバーはリクエストを完了するために必要な表現を保存できません。';
+	@override String get http_status_508 => '508 Loop Detected: サーバーは、リクエストを処理中に無限ループを検出しました。このステータスは、操作全体が失敗したことを示しています。';
+	@override String get http_status_510 => '510 Not Extended: サーバーがリクエストを満たすためには、リクエストにさらなる拡張が必要です。';
+	@override String get http_status_511 => '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
 }
 
 // Path: users
@@ -1491,6 +1571,46 @@ extension on _TranslationsEn {
 			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
 			case 'errors.error_occured': return 'Errors have occurred.';
+			case 'errors.http_status_400': return '400 Bad Request: Invalid request.';
+			case 'errors.http_status_401': return '401 Unauthorized: No access rights or authentication failed.';
+			case 'errors.http_status_402': return '402 Payment Required: Sorry, but the requested resource requires payment before it can be accessed. Please check your account status';
+			case 'errors.http_status_403': return '403 Forbidden: Sorry, but you do not have permission to access this resource. Please contact the administrator if you think this is a mistake.';
+			case 'errors.http_status_404': return '404 Not Found: Sorry, but the resource you requested could not be found on this server.';
+			case 'errors.http_status_405': return '405 Method Not Allowed: Sorry, but the HTTP method used in the request is not allowed for the resource.';
+			case 'errors.http_status_406': return '406 Not Acceptable: Sorry, but the server cannot provide a response that satisfies your Accept headers. Please modify your request and try again.';
+			case 'errors.http_status_407': return '407 Proxy Authentication Required: Sorry, but you need to authenticate yourself with the proxy server first. Please login to continue.';
+			case 'errors.http_status_408': return '408 Request Timeout: Sorry, your request timed out. Please check your network connection and try again.';
+			case 'errors.http_status_409': return '409 Conflict: Sorry, but there was a conflict with the requested operation. Please check your input and try again.';
+			case 'errors.http_status_410': return '410 Gone: Sorry, but the requested resource is no longer available on this server and no forwarding address is known.';
+			case 'errors.http_status_411': return '411 Length Required: Sorry, but the server requires a valid Content-Length header field in the request. Please include it and try again.';
+			case 'errors.http_status_412': return '412 Precondition Failed: Sorry, but one or more preconditions you gave in the request header fields evaluated to false.';
+			case 'errors.http_status_413': return '413 Payload Too Large: Sorry, but the request entity is larger than the server is willing or able to process.';
+			case 'errors.http_status_414': return '414 URI Too Long: Sorry, but the URI provided was too long for the server to process. Please shorten it and try again.';
+			case 'errors.http_status_415': return '415 Unsupported Media Type: Sorry, but the server does not support the media type indicated in the request. Please check and try again.';
+			case 'errors.http_status_416': return '416 Range Not Satisfiable: Sorry, but the client has asked for a portion of the file, but the server cannot supply that portion.';
+			case 'errors.http_status_417': return '417 Expectation Failed: Sorry, but the expectation given in the Expect request-header field could not be met by the server.';
+			case 'errors.http_status_418': return '418 I\'m a teapot: Sorry, I\'m a teapot. The requested entity body is short and stout, handle is here, spout is there.';
+			case 'errors.http_status_421': return '421 Misdirected Request: Sorry, but the request was directed at a server that is not able to produce a response.';
+			case 'errors.http_status_422': return '422 Unprocessable Entity: Sorry, but the server understands the content type of the request entity and the syntax of the request entity is correct but was unable to process the contained instructions.';
+			case 'errors.http_status_423': return '423 Locked: Sorry, but the resource that you are trying to access is locked.';
+			case 'errors.http_status_424': return '424 Failed Dependency: Sorry, but the method could not be performed on the resource because the requested action depended on another action and that action failed.';
+			case 'errors.http_status_425': return '425 Too Early: Sorry, but the server is unwilling to risk processing a request that might be replayed.';
+			case 'errors.http_status_426': return '426 Upgrade Required: Sorry, but the client should switch to a different protocol such as TLS/1.0, given in the Upgrade header field.';
+			case 'errors.http_status_427': return '427 Unassigned: Sorry, but this error code is currently unassigned and cannot be used.';
+			case 'errors.http_status_428': return '428 Precondition Required: Sorry, but the origin server requires the request to be conditional. Intended to prevent the "lost update" problem.';
+			case 'errors.http_status_429': return '429 Too Many Requests: Sorry, but you have sent too many requests in a given amount of time. Please try again later.';
+			case 'errors.http_status_431': return '431 Request Header Fields Too Large: Sorry, but the server is unwilling to process the request because either an individual header field, or all the header fields collectively, are too large.';
+			case 'errors.http_status_500': return '500 Internal Server Error: Sorry, but something went wrong on our end. Please try again later.';
+			case 'errors.http_status_501': return '501 Not Implemented: Sorry, but the request method is not implemented. Please check and try again.';
+			case 'errors.http_status_502': return '502 Bad Gateway: Sorry, but the server received an invalid response from the upstream server. Please try again.';
+			case 'errors.http_status_503': return '503 Service Unavailable: Sorry, but the server is currently unavailable. Please try again later.';
+			case 'errors.http_status_504': return '504 Gateway Timeout: The server is currently unable to handle the request due to a temporary overloading or maintenance. Please try again later.';
+			case 'errors.http_status_505': return '505 HTTP Version Not Supported: Sorry, but the HTTP version used in the request is not supported.';
+			case 'errors.http_status_506': return '506 Variant Also Negotiates: The server has an internal configuration error. The chosen variant resource is configured to engage in transparent content negotiation itself, and is therefore not a proper end point in the negotiation process.';
+			case 'errors.http_status_507': return '507 Insufficient Storage: Sorry, but the server is unable to store the representation needed to complete the request.';
+			case 'errors.http_status_508': return '508 Loop Detected: The server detected an infinite loop while processing the request. This status indicates that the entire operation failed.';
+			case 'errors.http_status_510': return '510 Not Extended: Further extensions to the request are required for the server to fulfill it.';
+			case 'errors.http_status_511': return '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
 			case 'users.anonymous_user': return 'Anonymous user';
 			case 'users.show': return 'User Page';
 			case 'users.edit': return 'Account Setting';
@@ -1979,6 +2099,46 @@ extension on _TranslationsJa {
 			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
 			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';
 			case 'errors.error_occured': return 'エラーが発生しました。';
+			case 'errors.http_status_400': return '400 Bad Request: 無効なリクエストです';
+			case 'errors.http_status_401': return '401 Unauthorized: アクセス権が無いか、あるいは認証に失敗しました。';
+			case 'errors.http_status_402': return '402 Payment Required: 申し訳ありませんが、要求されたリソースにアクセスする前に支払いが必要です。アカウントの状態を確認してください。';
+			case 'errors.http_status_403': return '403 Forbidden: 申し訳ありませんが、このリソースにアクセスする権限がありません。これが間違いだと思う場合は、管理者に連絡してください。';
+			case 'errors.http_status_404': return '404 Not Found: 申し訳ありませんが、要求されたリソースはこのサーバー上に見つかりませんでした。';
+			case 'errors.http_status_405': return '405 Method Not Allowed: 申し訳ありませんが、リクエストで使用されたHTTPメソッドは、リソースに対して許可されていません。';
+			case 'errors.http_status_406': return '406 Not Acceptable: 申し訳ありませんが、サーバーはあなたのAcceptヘッダーを満足させるレスポンスを提供できません。リクエストを修正して再試行してください。';
+			case 'errors.http_status_407': return '407 Proxy Authentication Required: 申し訳ありませんが、まずプロキシサーバーで自分を認証する必要があります。続行するにはログインしてください。';
+			case 'errors.http_status_408': return '408 Request Timeout: 申し訳ありません、リクエストがタイムアウトしました。ネットワーク接続を確認して、もう一度試してください。';
+			case 'errors.http_status_409': return '409 Conflict: 申し訳ありませんが、要求された操作との間に競合がありました。入力を確認して再試行してください。';
+			case 'errors.http_status_410': return '410 Gone: 申し訳ありませんが、要求されたリソースはこのサーバー上で利用できなくなり、転送先のアドレスは不明です。';
+			case 'errors.http_status_411': return '411 Length Required: 申し訳ありませんが、サーバーはリクエストに有効なContent-Lengthヘッダーフィールドを必要とします。それを含めて再試行してください。';
+			case 'errors.http_status_412': return '412 Precondition Failed: 申し訳ありませんが、リクエストヘッダーフィールドで指定した1つ以上の前提条件が偽と評価されました。';
+			case 'errors.http_status_413': return '413 Payload Too Large: 申し訳ありませんが、リクエストエンティティがサーバーが処理する能力を超えています。';
+			case 'errors.http_status_414': return '414 URI Too Long: 申し訳ありませんが、提供されたURIはサーバーが処理するには長すぎます。短くしてから再試行してください。';
+			case 'errors.http_status_415': return '415 Unsupported Media Type: 申し訳ありませんが、サーバーはリクエストで示されたメディアタイプをサポートしていません。確認してから再試行してください。';
+			case 'errors.http_status_416': return '416 Range Not Satisfiable: 申し訳ありませんが、クライアントがファイルの一部を求めていますが、サーバーはその部分を提供できません。';
+			case 'errors.http_status_417': return '417 Expectation Failed: 申し訳ありませんが、Expectリクエストヘッダーフィールドで指定した期待値はサーバーでは満たすことができませんでした。';
+			case 'errors.http_status_418': return '418 I\'m a teapot: Sorry, 申し訳ありません、私はティーポットです。要求されたエンティティボディは短くてずんぐりむっくりしていて、取っ手はここ、注ぎ口はそこです。';
+			case 'errors.http_status_421': return '421 Misdirected Request: 申し訳ありませんが、リクエストはレスポンスを生成できないサーバーに向けられました。';
+			case 'errors.http_status_422': return '422 Unprocessable Entity: 申し訳ありませんが、サーバーはリクエストエンティティのコンテンツタイプを理解し、リクエストエンティティの構文も正しいのですが、含まれている指示を処理することができませんでした。';
+			case 'errors.http_status_423': return '423 Locked: 申し訳ありませんが、アクセスしようとしているリソースはロックされています。';
+			case 'errors.http_status_424': return '424 Failed Dependency: 申し訳ありませんが、要求されたアクションが別のアクションに依存していてそのアクションが失敗したため、リソースに対してメソッドを実行することができませんでした。';
+			case 'errors.http_status_425': return '425 Too Early: 申し訳ありませんが、サーバーはリプレイされる可能性のあるリクエストを処理するリスクを冒したくありません。';
+			case 'errors.http_status_426': return '426 Upgrade Required: 申し訳ありませんが、クライアントはUpgradeヘッダーフィールドで指定されているTLS/1.0などの別のプロトコルに切り替える必要があります。';
+			case 'errors.http_status_427': return '427 Unassigned: 申し訳ありませんが、このエラーコードは現在割り当てられておらず、使用することはできません。';
+			case 'errors.http_status_428': return '428 Precondition Required: 申し訳ありませんが、オリジンサーバーはリクエストが条件付きであることを要求しています。これは「ロストアップデート」問題を防ぐためのものです。';
+			case 'errors.http_status_429': return '429 Too Many Requests: 申し訳ありませんが、指定された時間内に送信されるリクエストが多すぎます。後でもう一度お試しください。';
+			case 'errors.http_status_431': return '431 Request Header Fields Too Large: 申し訳ありませんが、個々のヘッダーフィールドやすべてのヘッダーフィールドがまとめて大きすぎるため、サーバーはリクエストを処理することを拒否しています。';
+			case 'errors.http_status_500': return '500 Internal Server Error: 申し訳ありません、サーバー側に何か問題が発生しました。後ほどもう一度お試しください。';
+			case 'errors.http_status_501': return '501 Not Implemented: 申し訳ありませんが、リクエストメソッドは実装されていません。確認して再試行してください。';
+			case 'errors.http_status_502': return '502 Bad Gateway: 申し訳ありませんが、サーバーは上流のサーバーから無効な応答を受け取りました。再試行してください。';
+			case 'errors.http_status_503': return '503 Service Unavailable: 申し訳ありませんが、現在サーバーは利用できません。後ほど再試行してください。';
+			case 'errors.http_status_504': return '504 Gateway Timeout: 一時的な過負荷またはメンテナンスのため、現在サーバーはリクエストを処理できません。後ほど再試行してください。';
+			case 'errors.http_status_505': return '505 HTTP Version Not Supported: 申し訳ありませんが、リクエストで使用されるHTTPのバージョンはサポートされていません。';
+			case 'errors.http_status_506': return '506 Variant Also Negotiates: サーバーに内部構成エラーがあります。選択されたバリアントリソースが透過的コンテンツネゴシエーション自体を行うよう設定されているため、ネゴシエーションプロセスの適切な終点ではありません。';
+			case 'errors.http_status_507': return '507 Insufficient Storage: 申し訳ありませんが、サーバーはリクエストを完了するために必要な表現を保存できません。';
+			case 'errors.http_status_508': return '508 Loop Detected: サーバーは、リクエストを処理中に無限ループを検出しました。このステータスは、操作全体が失敗したことを示しています。';
+			case 'errors.http_status_510': return '510 Not Extended: サーバーがリクエストを満たすためには、リクエストにさらなる拡張が必要です。';
+			case 'errors.http_status_511': return '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
 			case 'users.anonymous_user': return '匿名ユーザー';
 			case 'users.creating_account_succeeded': return '会員登録が完了しました！ようこそDiQtへ！！';
 			case 'users.show': return 'ユーザーページ';
