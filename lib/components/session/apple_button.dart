@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -66,8 +65,6 @@ class SessionAppleButtonState extends ConsumerState<SessionAppleButton> {
           } else {
             final User user = User.fromJson(resMap['user']);
             await ref.read(currentUserProvider.notifier).logIn(user);
-            // Localeの更新
-            await ref.read(localeProvider.notifier).setLocale();
             ref.read(bottomNavbarState.notifier).state = 0;
             if (!mounted) return;
             final snackBar =

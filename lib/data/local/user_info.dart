@@ -44,7 +44,8 @@ class LocalUserInfo {
       locale = userLocale;
     } else {
       // ローカルストレージにユーザーの有効なlocaleがなければデバイスのlocaleを利用する。
-      locale = WidgetsBinding.instance.window.locale.toLanguageTag();
+      // URLに含めるため、toLanguageTag（en-US）ではなく、languageCode（en）を使う。
+      locale = WidgetsBinding.instance.window.locale.languageCode;
       // その言語がURLが許容されてるlocaleではないなら、デフォルトのlocaleを利用する。
       if (LocaleHandler.langCodeSupported(locale) == false) {
         locale = defaultLangCode;

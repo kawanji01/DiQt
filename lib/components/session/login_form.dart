@@ -60,8 +60,6 @@ class SessionLoginFormState extends ConsumerState<SessionLoginForm> {
         // データの更新（SnackBarやSessionTrasnsitonの上で実行するとテストが通らなくなる）
         ref.read(bottomNavbarState.notifier).state = 0;
         await ref.read(currentUserProvider.notifier).logIn(user);
-        // Localeの更新
-        await ref.read(localeProvider.notifier).setLocale();
       }
     }
 

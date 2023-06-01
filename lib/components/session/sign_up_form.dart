@@ -68,7 +68,6 @@ class SessionSignUpFormState extends ConsumerState<SessionSignUpForm> {
         // 値の更新
         ref.read(bottomNavbarState.notifier).state = 0;
         await ref.read(currentUserProvider.notifier).logIn(user);
-        await ref.read(localeProvider.notifier).setLocale();
       }
     }
 
