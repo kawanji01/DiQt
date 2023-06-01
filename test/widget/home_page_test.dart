@@ -11,7 +11,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../builders/user.dart';
 
 void main() {
-  testWidgets('HomePage builds correctly when user is NOT signed in',
+  testWidgets('HomePage builds correctly when user is NOT logged in',
       (WidgetTester tester) async {
     // Mock the asyncCurrentUserProvider.
     final providerOverride = asyncCurrentUserProvider.overrideWith(
@@ -35,7 +35,7 @@ void main() {
     expect(find.byType(HomeSignInScreen), findsOneWidget);
   });
 
-  testWidgets('HomePage builds correctly when user is signed in',
+  testWidgets('HomePage builds correctly when user is logged in',
       (WidgetTester tester) async {
     // ユーザデータを模倣するオブジェクトを作成します。
     final User user = UserBuilder().build();

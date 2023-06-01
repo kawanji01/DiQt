@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/utils/device_info%20_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
@@ -13,16 +14,17 @@ import 'package:twitter_login/entity/auth_result.dart';
 
 class RemoteSessions {
   // メール認証
-  static Future<Map> login(String email, String password) async {
+  Future<Map> login(String email, String password) async {
     try {
       // デバイスの識別IDなどを取得する
       final deviceInfo = DeviceInfoService();
       final String platform = deviceInfo.getPlatform();
       final String deviceIdentifier = await deviceInfo.getIndentifier();
       final String deviceName = await deviceInfo.getName();
+      final String locale = await LocalUserInfo.localeForAPI();
 
       final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions');
+          Uri.parse('${DiQtURL.rootWithLocale(locale)}/api/v1/mobile/sessions');
       final Map<String, dynamic> body = {
         'email': email,
         'password': password,
@@ -32,7 +34,42 @@ class RemoteSessions {
       };
       final Response res = await HttpService.post(url, body);
       // エラーを検知して、エラー用のMapを返す。
-      if (ErrorHandler.isError(res)) return ErrorHandler.errorMap(res);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
+
+  // 新規登録
+  Future<Map> signUp(String name, String email, String password) async {
+    try {
+      // デバイスの識別IDなどを取得する
+      final deviceInfo = DeviceInfoService();
+      final String platform = deviceInfo.getPlatform();
+      final String deviceIdentifier = await deviceInfo.getIndentifier();
+      final String deviceName = await deviceInfo.getName();
+      final String locale = await LocalUserInfo.localeForAPI();
+      // リクエスト
+      final Uri url =
+          Uri.parse('${DiQtURL.rootWithLocale(locale)}/api/v1/mobile/users');
+      final Map<String, dynamic> body = {
+        'name': name,
+        'email': email,
+        'password': password,
+        'device_identifier': deviceIdentifier,
+        'device_name': deviceName,
+        'platform': platform,
+      };
+
+      final Response res = await HttpService.post(url, body);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
 
       final Map resMap = json.decode(res.body);
       return resMap;
@@ -139,43 +176,6 @@ class RemoteSessions {
         'platform': platform,
         'device_name': deviceName,
       };
-      final Response res = await HttpService.post(url, body);
-      if (res.statusCode != 200) return null;
-
-      final Map? resMap = json.decode(res.body);
-      return resMap;
-    } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    }
-  }
-
-  // 新規登録
-  static Future<Map?> signUp(String name, String email, String password) async {
-    try {
-      // デバイスの識別IDなどを取得する
-      final deviceInfo = DeviceInfoService();
-      final String platform = deviceInfo.getPlatform();
-      final String deviceIdentifier = await deviceInfo.getIndentifier();
-      final String deviceName = await deviceInfo.getName();
-      // リクエスト
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users');
-      final Map<String, dynamic> body = {
-        'name': name,
-        'email': email,
-        'password': password,
-        'device_identifier': deviceIdentifier,
-        'device_name': deviceName,
-        'platform': platform,
-      };
-
       final Response res = await HttpService.post(url, body);
       if (res.statusCode != 200) return null;
 

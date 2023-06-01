@@ -19,6 +19,7 @@ class SessionTransitionPage extends ConsumerStatefulWidget {
       PageRouteBuilder(
         settings: const RouteSettings(name: sessionTransitionPage),
         pageBuilder: (context, animation1, animation2) => SessionTransitionPage(
+          key: const Key('SessionTransitionPage'),
           type: type,
         ),
         transitionDuration: Duration.zero,

@@ -8,6 +8,7 @@ class DictionaryMapSearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: const Key('DictionaryMapSearchScreen'),
       margin: const EdgeInsets.only(top: 16),
       child: Column(
         children: const <Widget>[
