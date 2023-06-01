@@ -15,7 +15,7 @@ class HttpService {
       url,
       headers: headers,
     )
-        .timeout(const Duration(seconds: 10), onTimeout: () {
+        .timeout(const Duration(seconds: 20), onTimeout: () {
       throw TimeoutException('The connection has timed out!');
     });
   }
@@ -33,7 +33,7 @@ class HttpService {
       headers: headers,
       body: encodedBody,
     )
-        .timeout(const Duration(seconds: 10), onTimeout: () {
+        .timeout(const Duration(seconds: 20), onTimeout: () {
       throw TimeoutException('The connection has timed out!');
     });
   }
@@ -51,7 +51,7 @@ class HttpService {
       headers: headers,
       body: encodedBody,
     )
-        .timeout(const Duration(seconds: 10), onTimeout: () {
+        .timeout(const Duration(seconds: 20), onTimeout: () {
       throw TimeoutException('The connection has timed out!');
     });
   }
@@ -68,7 +68,7 @@ class HttpService {
       headers: headers,
       body: encodedBody,
     )
-        .timeout(const Duration(seconds: 10), onTimeout: () {
+        .timeout(const Duration(seconds: 20), onTimeout: () {
       throw TimeoutException('The connection has timed out!');
     });
   }

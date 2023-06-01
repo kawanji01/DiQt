@@ -46,8 +46,6 @@ class SessionGoogleButtonState extends ConsumerState<SessionGoogleButton> {
         } else {
           final User user = User.fromJson(resMap['user']);
           await ref.read(currentUserProvider.notifier).logIn(user);
-          // Localeの更新
-          await ref.read(localeProvider.notifier).setLocale();
           ref.read(bottomNavbarState.notifier).state = 0;
           if (!mounted) return;
           final snackBar = SnackBar(content: Text(t.sessions.login_succeeded));

@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/data/local/user_info.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -54,15 +55,14 @@ final todaysCorrectAnswersCountProvider = StateProvider<int>((ref) => ref.watch(
 // 非同期でログイン済ユーザーを取得する
 final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
   Map? resMap = await RemoteUsers.current();
-  if (resMap == null) {
-    // ログインしていない場合
-    // await ref.read(currentUserProvider.notifier).logOut(null);
-    // ref.read(currentUserProvider.notifier).updateUser(null);
+  if (resMap == null || resMap.containsKey('user') == false) {
     return null;
   } else {
     // ログインしている場合
     final User user = User.fromJson(resMap['user']);
     await ref.read(currentUserProvider.notifier).logIn(user);
+    // locale設定
+    await ref.read(localeProvider.notifier).setLocale();
     return user;
   }
 });

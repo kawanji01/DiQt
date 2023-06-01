@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 // IDとパスワードのフォーム https://flutterawesome.com/basic-login-and-signup-screen-designed-in-flutter/
@@ -6,11 +7,13 @@ class SessionFormField extends StatelessWidget {
       {Key? key,
       required this.label,
       required this.controller,
-      required this.isPassword})
+      required this.isPassword,
+      required this.keyText})
       : super(key: key);
   final String label;
   final TextEditingController controller;
   final bool isPassword;
+  final String keyText;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +30,7 @@ class SessionFormField extends StatelessWidget {
             height: 10,
           ),
           TextFormField(
+            key: Key(keyText),
             controller: controller,
             obscureText: isPassword,
             decoration: const InputDecoration(
@@ -35,7 +39,7 @@ class SessionFormField extends StatelessWidget {
                 filled: true),
             validator: (String? value) {
               if (value == null || value.isEmpty) {
-                return '入力してください。';
+                return t.errors.cant_be_blank;
               }
               return null;
             },

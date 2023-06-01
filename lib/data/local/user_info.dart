@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/utils/locale_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -30,6 +31,25 @@ class LocalUserInfo {
     } else {
       // ローカルストレージにユーザーの有効なlocaleがなければデバイスのlocaleを利用する。
       locale = WidgetsBinding.instance.window.locale.toLanguageTag();
+    }
+    return locale;
+  }
+
+  // APIのURLに含められるlocaleを取得する。
+  static Future<String> localeForAPI() async {
+    const storage = FlutterSecureStorage();
+    final String? userLocale = await storage.read(key: 'locale');
+    String locale;
+    if (userLocale != null && LocaleHandler.langCodeSupported(userLocale)) {
+      locale = userLocale;
+    } else {
+      // ローカルストレージにユーザーの有効なlocaleがなければデバイスのlocaleを利用する。
+      // URLに含めるため、toLanguageTag（en-US）ではなく、languageCode（en）を使う。
+      locale = WidgetsBinding.instance.window.locale.languageCode;
+      // その言語がURLが許容されてるlocaleではないなら、デフォルトのlocaleを利用する。
+      if (LocaleHandler.langCodeSupported(locale) == false) {
+        locale = defaultLangCode;
+      }
     }
     return locale;
   }

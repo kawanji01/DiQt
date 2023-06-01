@@ -6,19 +6,26 @@ import 'package:http/http.dart';
 
 class ErrorHandler {
   // エラーメッセージを返す
-  static String message(Map<String, dynamic> resMap, bool useStystemMessage) {
+  static String message(Map resMap, {bool useServerMessage = false}) {
     final int status = resMap['status'];
     final String message = resMap['message'] ?? '';
     final String systemMessage = t['errors.http_status_$status'];
-    if (useStystemMessage && message != '') {
+    if (useServerMessage && message != '') {
       return message;
     }
     return systemMessage;
   }
 
-  // エラーかどうかを判別する
-  static bool isError(Response res) {
-    return res.statusCode < 200 || res.statusCode >= 300;
+  // レスポンスがエラーか判別する
+  static bool isErrorResponse(Response res) {
+    final int statusCode = res.statusCode;
+    return statusCode < 200 || statusCode >= 300;
+  }
+
+  // Mapがエラーか判別する
+  static bool isErrorMap(Map resMap) {
+    final int statusCode = resMap['status'];
+    return statusCode < 200 || statusCode >= 300;
   }
 
   // エラー用のmapを返す
@@ -27,13 +34,10 @@ class ErrorHandler {
       final Map resMap = json.decode(res.body);
       return {
         'status': res.statusCode,
-        'error': {'status': resMap['status'], 'message': resMap['message']}
+        'message': resMap['message'],
       };
     } catch (e) {
-      return {
-        'status': res.statusCode,
-        'error': {'status': res.statusCode},
-      };
+      return {'status': res.statusCode, 'message': '$e'};
     }
   }
 
@@ -43,10 +47,7 @@ class ErrorHandler {
     StackTrace? stack,
   ) {
     FirebaseCrashlytics.instance.recordError(exception, stack);
-    return {
-      'status': 408,
-      'error': {'status': 408},
-    };
+    return {'status': 408, 'message': '$exception'};
   }
 
   // socketExcecptionのmap
@@ -62,10 +63,7 @@ class ErrorHandler {
   ) {
     FirebaseCrashlytics.instance.recordError(exception, stack);
     // 一番近いステータスコードとして、504 Gateway Timeout（リクエストを送ったサーバからの適切なレスポンスがなくタイムアウト）を返す。
-    return {
-      'status': 504,
-      'error': {'status': 504},
-    };
+    return {'status': 504, 'message': '$exception'};
   }
 
   // Exception用のmapを返す
@@ -74,9 +72,6 @@ class ErrorHandler {
     StackTrace? stack,
   ) {
     FirebaseCrashlytics.instance.recordError(exception, stack);
-    return {
-      'status': 500,
-      'error': {'status': 500},
-    };
+    return {'status': 500, 'message': '$exception'};
   }
 }
