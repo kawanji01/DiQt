@@ -11,6 +11,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class CurrentUserState extends StateNotifier<User?> {
+  // MEMO: CurrentUserState を mockにしてテストできるようにしたい。
+  // ref: https://zenn.dev/ktakayama/articles/88b6e374bf82be
   CurrentUserState() : super(null);
 
   void update(User? user) {
@@ -27,7 +29,8 @@ class CurrentUserState extends StateNotifier<User?> {
   }
 
   // ログアウトしたときや認証用のtokenが無効だった場合にストレージをリセットしたり、RevenueCatからログアウトする。
-  Future<void> logOut(User? user) async {
+  Future<void> logOut() async {
+    final User? user = state;
     // ローカルストレージに保存したデータを削除する
     const storage = FlutterSecureStorage();
     await storage.deleteAll();
