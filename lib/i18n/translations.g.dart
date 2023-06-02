@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1041 (520 per locale)
+/// Strings: 1051 (525 per locale)
 ///
-/// Built on 2023-05-31 at 08:46 UTC
+/// Built on 2023-06-02 at 07:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -152,6 +152,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
 	late final _TranslationsUsersEn users = _TranslationsUsersEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
+	late final _TranslationsNoticeEn notice = _TranslationsNoticeEn._(_root);
 	late final _TranslationsAchievementsEn achievements = _TranslationsAchievementsEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
@@ -343,6 +344,18 @@ class _TranslationsSharedEn {
 	String get undefined => 'Undefined';
 	String get details => 'Details';
 	String please_enter({required Object name}) => 'Please enter "${name}"';
+	String no_more_items({required Object name}) => 'All ${name} loaded';
+	String no_items_found({required Object name}) => 'No ${name} found';
+}
+
+// Path: notice
+class _TranslationsNoticeEn {
+	_TranslationsNoticeEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get notifications => 'Notifications';
 }
 
 // Path: achievements
@@ -627,6 +640,7 @@ class _TranslationsSentencesEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get sentences => 'Sentences';
 	String get sentence => 'Sentence';
 	String get add => 'Add sentence';
 	String get edit => 'Edit sentence';
@@ -664,6 +678,7 @@ class _TranslationsActivitiesEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get activities => 'Activities';
 	String get cheer => 'Cheer!';
 	String get cheered => 'Cheered!';
 }
@@ -839,6 +854,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
 	@override late final _TranslationsUsersJa users = _TranslationsUsersJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
+	@override late final _TranslationsNoticeJa notice = _TranslationsNoticeJa._(_root);
 	@override late final _TranslationsAchievementsJa achievements = _TranslationsAchievementsJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
@@ -1031,6 +1047,18 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get undefined => '未定義';
 	@override String get details => '詳細';
 	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
+	@override String no_more_items({required Object name}) => 'すべての${name}を読み込みました';
+	@override String no_items_found({required Object name}) => '${name}がありません';
+}
+
+// Path: notice
+class _TranslationsNoticeJa implements _TranslationsNoticeEn {
+	_TranslationsNoticeJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get notifications => '通知';
 }
 
 // Path: achievements
@@ -1315,6 +1343,7 @@ class _TranslationsSentencesJa implements _TranslationsSentencesEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get sentences => '例文';
 	@override String get sentence => '例文';
 	@override String get add => '例文を追加する';
 	@override String get edit => '例文を編集する';
@@ -1352,6 +1381,7 @@ class _TranslationsActivitiesJa implements _TranslationsActivitiesEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get activities => '活動';
 	@override String get cheer => '応援する!';
 	@override String get cheered => '応援しました！';
 }
@@ -1640,6 +1670,9 @@ extension on _TranslationsEn {
 			case 'shared.undefined': return 'Undefined';
 			case 'shared.details': return 'Details';
 			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
+			case 'shared.no_more_items': return ({required Object name}) => 'All ${name} loaded';
+			case 'shared.no_items_found': return ({required Object name}) => 'No ${name} found';
+			case 'notice.notifications': return 'Notifications';
 			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -1897,6 +1930,7 @@ extension on _TranslationsEn {
 			case 'lang.uz_UZ': return 'Uzbek (Uzbekistan)';
 			case 'lang.vi_VN': return 'Vietnamese (Vietnam)';
 			case 'lang.zu_ZA': return 'Zulu (South Africa)';
+			case 'sentences.sentences': return 'Sentences';
 			case 'sentences.sentence': return 'Sentence';
 			case 'sentences.add': return 'Add sentence';
 			case 'sentences.edit': return 'Edit sentence';
@@ -1925,6 +1959,7 @@ extension on _TranslationsEn {
 			case 'sentences.updated': return 'Sentence Updated';
 			case 'sentences.update_failed': return 'Failed to update the sentence.';
 			case 'sentences.destroyed': return 'Sentence Destroyed';
+			case 'activities.activities': return 'Activities';
 			case 'activities.cheer': return 'Cheer!';
 			case 'activities.cheered': return 'Cheered!';
 			case 'calendars.sunday': return 'Sun.';
@@ -2169,6 +2204,9 @@ extension on _TranslationsJa {
 			case 'shared.undefined': return '未定義';
 			case 'shared.details': return '詳細';
 			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
+			case 'shared.no_more_items': return ({required Object name}) => 'すべての${name}を読み込みました';
+			case 'shared.no_items_found': return ({required Object name}) => '${name}がありません';
+			case 'notice.notifications': return '通知';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
@@ -2426,6 +2464,7 @@ extension on _TranslationsJa {
 			case 'lang.uz_UZ': return 'ウズベク語（ウズベキスタン）';
 			case 'lang.vi_VN': return 'ベトナム語（ベトナム）';
 			case 'lang.zu_ZA': return 'ズールー語（南アフリカ）';
+			case 'sentences.sentences': return '例文';
 			case 'sentences.sentence': return '例文';
 			case 'sentences.add': return '例文を追加する';
 			case 'sentences.edit': return '例文を編集する';
@@ -2454,6 +2493,7 @@ extension on _TranslationsJa {
 			case 'sentences.updated': return '例文が更新されました。';
 			case 'sentences.update_failed': return '例文の更新に失敗しました。';
 			case 'sentences.destroyed': return '例文が削除されました。';
+			case 'activities.activities': return '活動';
 			case 'activities.cheer': return '応援する!';
 			case 'activities.cheered': return '応援しました！';
 			case 'calendars.sunday': return '日';

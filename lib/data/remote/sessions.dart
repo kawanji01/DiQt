@@ -82,6 +82,28 @@ class RemoteSessions {
     }
   }
 
+  // ログアウト / sessions/logout
+  Future<Map> logOut() async {
+    try {
+      final deviceInfo = DeviceInfoService();
+      final String deviceIdentifier = await deviceInfo.getIndentifier();
+      var url = Uri.parse(
+          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/logout');
+      final Map<String, dynamic> body = {'device_identifier': deviceIdentifier};
+      Response res = await HttpService.post(url, body);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
+
   // Twitter認証
   static Future<Map?> twitter(AuthResult authResult) async {
     try {
@@ -180,29 +202,6 @@ class RemoteSessions {
       if (res.statusCode != 200) return null;
 
       final Map? resMap = json.decode(res.body);
-      return resMap;
-    } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    }
-  }
-
-  // ログアウト / sessions/logout
-  static Future<Map?> logOut() async {
-    try {
-      final deviceInfo = DeviceInfoService();
-      final String deviceIdentifier = await deviceInfo.getIndentifier();
-      var url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/logout');
-      final Map<String, dynamic> body = {'device_identifier': deviceIdentifier};
-      Response res = await HttpService.post(url, body);
-      Map? resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);

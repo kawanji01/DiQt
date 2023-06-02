@@ -54,7 +54,8 @@ void main() {
 
       await tester.tap(find.byKey(const Key('signupSubmitButton')));
       // await tester.pumpAndSettle(); // フレームが安定するまで待つ（これを使うとタイムアウトした）
-      await tester.pump(const Duration(seconds: 1)); // Tapが処理される時間を待つ
+      await tester
+          .pump(const Duration(seconds: 1)); // Tapが処理され、スナックバーが表示される時間を待つ
 
       // Assert
       // SnackBarの成功メッセージの確認

@@ -1,4 +1,7 @@
+import 'package:booqs_mobile/components/shared/no_items_found_indicator.dart';
+import 'package:booqs_mobile/components/shared/no_more_items_indicator.dart';
 import 'package:booqs_mobile/data/remote/notifications.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/achievement_map.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
@@ -120,6 +123,12 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
         newPageProgressIndicatorBuilder: (_) => loader(),
+        noItemsFoundIndicatorBuilder: (_) => NoItemsFoundIndicator(
+          itemName: t.notice.notifications,
+        ),
+        noMoreItemsIndicatorBuilder: (_) => NoMoreItemsIndicator(
+          itemName: t.notice.notifications,
+        ),
       ),
     );
   }

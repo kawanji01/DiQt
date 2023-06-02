@@ -35,7 +35,7 @@ class UserFormWithdrawalButtonState
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         // ログアウトに伴う連携サービスの設定などの処理
-        ref.read(currentUserProvider.notifier).logOut(user);
+        ref.read(currentUserProvider.notifier).logOut();
         if (!mounted) return;
         final snackBar = SnackBar(content: Text('${resMap['message']}'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
