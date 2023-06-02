@@ -1,5 +1,8 @@
 import 'package:booqs_mobile/components/sentence/setting_form/list_item.dart';
+import 'package:booqs_mobile/components/shared/no_items_found_indicator.dart';
+import 'package:booqs_mobile/components/shared/no_more_items_indicator.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
@@ -118,6 +121,12 @@ class _SentenceSettingFormListViewState
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
         newPageProgressIndicatorBuilder: (_) => loader(),
+        noItemsFoundIndicatorBuilder: (_) => NoItemsFoundIndicator(
+          itemName: t.sentences.sentences,
+        ),
+        noMoreItemsIndicatorBuilder: (_) => NoMoreItemsIndicator(
+          itemName: t.sentences.sentences,
+        ),
       ),
     );
   }

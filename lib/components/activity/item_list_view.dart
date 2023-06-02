@@ -1,5 +1,8 @@
+import 'package:booqs_mobile/components/shared/no_items_found_indicator.dart';
+import 'package:booqs_mobile/components/shared/no_more_items_indicator.dart';
 import 'package:booqs_mobile/data/provider/activity.dart';
 import 'package:booqs_mobile/data/remote/activities.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/components/activity/list_item.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
@@ -108,6 +111,12 @@ class ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
         newPageProgressIndicatorBuilder: (_) => loader(),
+        noItemsFoundIndicatorBuilder: (_) => NoItemsFoundIndicator(
+          itemName: t.activities.activities,
+        ),
+        noMoreItemsIndicatorBuilder: (_) => NoMoreItemsIndicator(
+          itemName: t.activities.activities,
+        ),
       ),
     );
   }
