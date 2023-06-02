@@ -7,12 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:booqs_mobile/pages/session/transition.dart';
 import '../builders/user.dart';
+import 'signup_form_test.mocks.dart';
 
-class MockRemoteSessions extends Mock implements RemoteSessions {}
-
+@GenerateMocks([RemoteSessions])
 void main() {
   group('SignUp test', () {
     final mockRemoteSessions = MockRemoteSessions();
@@ -20,11 +21,7 @@ void main() {
     testWidgets('Succeeded', (WidgetTester tester) async {
       // Arrange
       final User user = UserBuilder().build();
-      when(mockRemoteSessions.signUp(
-              // ignore: cast_from_null_always_fails
-              any as String,
-              any as String,
-              any as String))
+      when(mockRemoteSessions.signUp(any, any, any))
           .thenAnswer((_) async => {'status': 200, 'user': user.toJson()});
 
       await tester.pumpWidget(
@@ -67,15 +64,10 @@ void main() {
     testWidgets('Failed', (WidgetTester tester) async {
       const String failMassage = 'Could not signup';
 
-      when(mockRemoteSessions.signUp(
-              // ignore: cast_from_null_always_fails
-              any as String,
-              any as String,
-              any as String))
-          .thenAnswer((_) async => {
-                'status': 401,
-                'message': failMassage,
-              });
+      when(mockRemoteSessions.signUp(any, any, any)).thenAnswer((_) async => {
+            'status': 401,
+            'message': failMassage,
+          });
 
       await tester.pumpWidget(
         ProviderScope(

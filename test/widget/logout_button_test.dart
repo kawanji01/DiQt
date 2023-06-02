@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-class MockRemoteSessions extends Mock implements RemoteSessions {}
+import 'logout_button_test.mocks.dart';
 
+@GenerateMocks([RemoteSessions])
 void main() {
   testWidgets('Successfuly logOut', (WidgetTester tester) async {
     final mockRemoteSessions = MockRemoteSessions();

@@ -189,6 +189,7 @@ class User {
         'school': school,
         'paid_via_native_app': paidViaNativeApp,
         'reward_remained': rewardRemained,
+        'unread_notifications_count': unreadNotificationsCount,
         'unsolved_reviews_count': unsolvedReviewsCount,
         'reviews_count': reviewsCount,
         'unsolved_weaknesses_count': unsolvedWeaknessesCount,
