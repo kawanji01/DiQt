@@ -11,50 +11,52 @@ import 'package:flutter_test/flutter_test.dart';
 import '../builders/user.dart';
 
 void main() {
-  testWidgets('HomePage builds correctly when user is NOT logged in',
-      (WidgetTester tester) async {
-    // Mock the asyncCurrentUserProvider.
-    final providerOverride = asyncCurrentUserProvider.overrideWith(
-      (ref) async => null,
-    );
+  group('HomePage test', () {
+    testWidgets('Display SignIn screen when user is NOT logged in',
+        (WidgetTester tester) async {
+      // Mock the asyncCurrentUserProvider.
+      final providerOverride = asyncCurrentUserProvider.overrideWith(
+        (ref) async => null,
+      );
 
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [providerOverride],
-        child: TranslationProvider(
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [providerOverride],
+          child: TranslationProvider(
+            child: const MaterialApp(home: HomePage()),
+          ),
+        ),
+      );
+
+      // Flutterのすべてのアニメーションや非同期の操作が完了するまで待つ関数。
+      // これにより、ウィジェットが期待通りに更新されるまでテストを待機させることができる。
+      await tester.pumpAndSettle();
+
+      // Check that the HomeSignInScreen widget is found.
+      expect(find.byType(HomeSignInScreen), findsOneWidget);
+    });
+
+    testWidgets('Display dictionary screen when user is logged in',
+        (WidgetTester tester) async {
+      // ユーザデータを模倣するオブジェクトを作成します。
+      final User user = UserBuilder().build();
+
+      // Mock the asyncCurrentUserProvider.
+      final providerOverride = asyncCurrentUserProvider.overrideWith(
+        (ref) async => user, // サインインしているユーザを返すものとして設定する
+      );
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [providerOverride],
           child: const MaterialApp(home: HomePage()),
         ),
-      ),
-    );
+      );
 
-    // Flutterのすべてのアニメーションや非同期の操作が完了するまで待つ関数。
-    // これにより、ウィジェットが期待通りに更新されるまでテストを待機させることができる。
-    await tester.pumpAndSettle();
+      await tester.pumpAndSettle();
 
-    // Check that the HomeSignInScreen widget is found.
-    expect(find.byType(HomeSignInScreen), findsOneWidget);
-  });
-
-  testWidgets('HomePage builds correctly when user is logged in',
-      (WidgetTester tester) async {
-    // ユーザデータを模倣するオブジェクトを作成します。
-    final User user = UserBuilder().build();
-
-    // Mock the asyncCurrentUserProvider.
-    final providerOverride = asyncCurrentUserProvider.overrideWith(
-      (ref) async => user, // サインインしているユーザを返すものとして設定する
-    );
-
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [providerOverride],
-        child: const MaterialApp(home: HomePage()),
-      ),
-    );
-
-    await tester.pumpAndSettle();
-
-    // Check that the HomeDictionaryScreen widget is found.
-    expect(find.byType(HomeDictionaryScreen), findsOneWidget);
+      // Check that the HomeDictionaryScreen widget is found.
+      expect(find.byType(HomeDictionaryScreen), findsOneWidget);
+    });
   });
 }

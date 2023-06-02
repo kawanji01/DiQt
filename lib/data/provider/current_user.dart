@@ -11,7 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class CurrentUserState extends StateNotifier<User?> {
-  // MEMO: CurrentUserState を mockにしてテストできるようにしたい。
+  // TODO: CurrentUserState を mockにしてテストできるようにしたい。
   // ref: https://zenn.dev/ktakayama/articles/88b6e374bf82be
   CurrentUserState() : super(null);
 
