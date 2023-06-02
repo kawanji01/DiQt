@@ -1,5 +1,7 @@
+import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/remote/answer_settings.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/answer_setting/answer_setting.dart';
@@ -20,6 +22,7 @@ class AnswerSettingScreen extends ConsumerStatefulWidget {
 
 class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
   final TextEditingController _dailyGoalController = TextEditingController();
+  bool _isRequesting = false;
 
   @override
   void dispose() {
@@ -35,6 +38,7 @@ class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
     _dailyGoalController.text = '${answerSetting.dailyGoal}';
 
     Future<void> update() async {
+      setState(() => _isRequesting = true);
       Map<String, dynamic> params = {
         'daily_goal': _dailyGoalController.text,
         'question_covered': ref.watch(questionCoveredProvider),
@@ -57,6 +61,7 @@ class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteAnswerSettings.update(params);
       EasyLoading.dismiss();
+      setState(() => _isRequesting = false);
       if (!mounted) return;
       if (resMap == null) {
         const snackBar = SnackBar(content: Text('設定が更新できませんでした。'));
@@ -75,23 +80,25 @@ class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
       return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: ResponsiveValues.horizontalMargin(context),
-          ),
-          padding: const EdgeInsets.only(bottom: 32),
-          color: Colors.white,
-          child: ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(double.infinity, 40),
+            margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context),
             ),
-            onPressed: () => {update()},
-            icon: const Icon(Icons.settings, color: Colors.white),
-            label: const Text(
-              '更新する',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ),
-        ),
+            padding: const EdgeInsets.only(bottom: 32),
+            color: Colors.white,
+            child: SizedBox(
+              height: 56,
+              child: InkWell(
+                  onTap: _isRequesting
+                      ? null
+                      : () {
+                          update();
+                        },
+                  child: MediumGreenButton(
+                    label: t.shared.update,
+                    icon: Icons.settings,
+                    fontSize: 18,
+                  )),
+            )),
       );
     }
 
