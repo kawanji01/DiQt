@@ -9,12 +9,12 @@ class NoMoreItemsIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final String text = t.shared.no_more_items(name: itemName);
     return Container(
-      margin: const EdgeInsets.only(top: 24),
+      margin: const EdgeInsets.symmetric(vertical: 32),
       alignment: Alignment.center,
       child: Text(
         text,
         style: const TextStyle(
-            fontSize: 24, fontWeight: FontWeight.normal, color: Colors.black87),
+            fontSize: 20, fontWeight: FontWeight.normal, color: Colors.black54),
       ),
     );
   }
