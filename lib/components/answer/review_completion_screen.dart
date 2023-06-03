@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -55,8 +56,9 @@ class AnswerReviewCompletionScreenState
     }
 
     const String tweet = '復習をすべて達成しました！！';
+    final String locale = ref.watch(localeProvider);
     final String url =
-        '${DiQtURL.root(context)}/users/${user.publicUid}?review_completion=1';
+        '${DiQtURL.rootWithLocale(locale)}/users/${user.publicUid}?review_completion=1';
 
     return AnswerShareButton(text: tweet, url: url);
   }

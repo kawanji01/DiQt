@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -48,8 +49,9 @@ class AnswerContinuousGoalAchievementScreenState
     if (user == null) return Container();
 
     final String tweet = '$counter日連続で目標を達成しました！！';
+    final String locale = ref.watch(localeProvider);
     final String url =
-        '${DiQtURL.root(context)}/users/${user.publicUid}?continuous_goal_achievement=$counter';
+        '${DiQtURL.rootWithLocale(locale)}/users/${user.publicUid}?continuous_goal_achievement=$counter';
     return AnswerShareButton(text: tweet, url: url);
   }
 
