@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.4.5+156
+version: 1.4.6+157
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -64,7 +64,7 @@ dependencies:
   google_mobile_ads: ^2.3.0 # 広告
   app_tracking_transparency: ^2.0.4 # iOSで広告表示のためにユーザー情報(IDFA（Identifier for Advertiser）)を収集するためのダイアログを表示する
   flutter_riverpod: ^2.3.6 # 状態管理
-  flash: ^2.0.5 # トースト
+  flash: ^2.0.5 # 問題解答時のフィードバックなどに使うトースト
   flutter_animated_dialog: ^2.0.1 # アニメーションするダイアログ
   confetti: ^0.7.0 # 紙吹雪
   audioplayers: ^1.1.1 # 音声の再生
@@ -87,6 +87,7 @@ dependencies:
   firebase_crashlytics: ^3.0.17 # クラッシュレポート
   mockito: ^5.4.0 # 自動テストのMockライブラリ
   upgrader: ^6.0.1 # 強制アップデート
+  firebase_analytics: ^10.4.2 # Google analytics
 
 
   

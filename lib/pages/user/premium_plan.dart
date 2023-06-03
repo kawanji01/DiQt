@@ -1,4 +1,6 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/analytics_service.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/purchase/introduction.dart';
 import 'package:booqs_mobile/components/purchase/introduction_footer.dart';
@@ -21,10 +23,17 @@ class PremiumPlanPage extends StatefulWidget {
 
 class _PremiumPlanPageState extends State<PremiumPlanPage> {
   @override
+  void initState() {
+    super.initState();
+    // analytics に記録する
+    AnalyticsService().setCurrentScreen('PremiumPlanPage');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('プレミアムプラン'),
+        title: Text(t.purchase.premium_plan),
       ),
       body: SingleChildScrollView(
         child: Container(

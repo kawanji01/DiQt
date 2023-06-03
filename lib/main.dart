@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/analytics_service.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,12 +22,15 @@ Future<void> main() async {
   // RevenueCatの初期化
   final purchase = PurchaseService();
   purchase.initPlatformState();
-  // runApp()を実行する前に Flutter Engine の機能を使いたい場合に呼び出しておくおまじないコード。AdMobの初期化 や 画面の向きの固定 に必要。 ref: https://zenn.dev/sugitlab/books/flutter_poke_app_handson/viewer/step7
+  // runApp()を実行する前に Flutter Engine の機能を使いたい場合に呼び出しておくおまじないコード。
+  // AdMobの初期化 や 画面の向きの固定 に必要。 ref: https://zenn.dev/sugitlab/books/flutter_poke_app_handson/viewer/step7
   WidgetsFlutterBinding.ensureInitialized();
   // プッシュ通知やfirebaseClashlyticsなど、firebase関連の機能を使うための初期化
   await Firebase.initializeApp();
   // クラッシュレポートの設定
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  // Google Analyticsの設定
+  await AnalyticsService().logBeginCheckout();
   // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
   MobileAds.instance.initialize();
   // 画面の向きの固定 ref: https://qiita.com/osamu1203/items/6172df89f5270060a44d
@@ -45,7 +49,7 @@ Future<void> main() async {
   );
 }
 
-//// navigatorKeyの目的： 報酬モーダルの表示 ////
+///// navigatorKeyの目的： 報酬モーダルの表示 ////
 // 連続解答報酬などの表示で利用する、utils/answer/answer_reward.dart で定義している Dialogs.reward(screen) において、
 // 親Widgetから渡したcontextを使ってしまうと、
 // 親がdisposeされた後にその処理を実行しようとした際（たとえば１０問解いた後の次の問題の読み込み（dispose）と報酬の表示が被ってしまった場合）に
@@ -80,7 +84,7 @@ class DiQtState extends ConsumerState<DiQt> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'DiQt',
-      // 上述のUnhandled Exception: Looking up a deactivated widget's ancestor is unsafe.対策
+      // 上述の Unhandled Exception: Looking up a deactivated widget's ancestor is unsafe. 対策
       navigatorKey: navigatorKey,
       // 画面全体に被さるローディングの初期化　ref： https://pub.dev/packages/flutter_easyloading
       builder: EasyLoading.init(),

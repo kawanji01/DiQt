@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1051 (525 per locale)
+/// Strings: 1053 (526 per locale)
 ///
-/// Built on 2023-06-02 at 07:25 UTC
+/// Built on 2023-06-03 at 03:37 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -161,6 +161,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsLayoutsEn layouts = _TranslationsLayoutsEn._(_root);
 	late final _TranslationsDictionaryMapsEn dictionaryMaps = _TranslationsDictionaryMapsEn._(_root);
 	late final _TranslationsWordsEn words = _TranslationsWordsEn._(_root);
+	late final _TranslationsPurchaseEn purchase = _TranslationsPurchaseEn._(_root);
 	late final _TranslationsHomeEn home = _TranslationsHomeEn._(_root);
 }
 
@@ -801,6 +802,16 @@ class _TranslationsWordsEn {
 	String get not_found => 'Not Found';
 }
 
+// Path: purchase
+class _TranslationsPurchaseEn {
+	_TranslationsPurchaseEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get premium_plan => 'Premium Plan';
+}
+
 // Path: home
 class _TranslationsHomeEn {
 	_TranslationsHomeEn._(this._root);
@@ -863,6 +874,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
 	@override late final _TranslationsDictionaryMapsJa dictionaryMaps = _TranslationsDictionaryMapsJa._(_root);
 	@override late final _TranslationsWordsJa words = _TranslationsWordsJa._(_root);
+	@override late final _TranslationsPurchaseJa purchase = _TranslationsPurchaseJa._(_root);
 	@override late final _TranslationsHomeJa home = _TranslationsHomeJa._(_root);
 }
 
@@ -1504,6 +1516,16 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get not_found => '該当する単語はありません。';
 }
 
+// Path: purchase
+class _TranslationsPurchaseJa implements _TranslationsPurchaseEn {
+	_TranslationsPurchaseJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get premium_plan => 'プレミアムプラン';
+}
+
 // Path: home
 class _TranslationsHomeJa implements _TranslationsHomeEn {
 	_TranslationsHomeJa._(this._root);
@@ -2044,6 +2066,7 @@ extension on _TranslationsEn {
 			case 'words.view_your_edit': return 'View your edit';
 			case 'words.details': return 'Details';
 			case 'words.not_found': return 'Not Found';
+			case 'purchase.premium_plan': return 'Premium Plan';
 			case 'home.welcome': return 'Welcome to DiQt!';
 			case 'home.welcome_description_1': return 'DiQt is a dictionary app to help you never forget vocabulary.';
 			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
@@ -2578,6 +2601,7 @@ extension on _TranslationsJa {
 			case 'words.view_your_edit': return '編集内容を見る';
 			case 'words.details': return '詳細';
 			case 'words.not_found': return '該当する単語はありません。';
+			case 'purchase.premium_plan': return 'プレミアムプラン';
 			case 'home.welcome': return 'DiQtへようこそ！';
 			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
 			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';
