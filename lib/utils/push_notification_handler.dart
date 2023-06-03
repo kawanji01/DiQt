@@ -129,8 +129,8 @@ class PushNotificationHandler {
       final String deviceName = await deviceInfo.getName();
       // DB側のユーザー（token）とデバイス（device_identifier）と通知用のトークン（fcm_token）の紐付けを更新する。
       // アプリをアンインストールしたときなどにFCMトークンはリセットされるので、こまめな更新が必要。ref： https://qiita.com/unsoluble_sugar/items/bca933735c9d3a2d60c2
-      final url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/update_fcm_token');
+      final url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/update_fcm_token');
       await HttpService.post(url, {
         'fcm_token': fcmToken,
         'device_identifier': deviceIdentifier,

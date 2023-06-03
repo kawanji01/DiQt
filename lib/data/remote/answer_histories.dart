@@ -11,7 +11,7 @@ class RemoteAnswerHistories {
   static Future<Map?> index(int pageKey, int pageSize) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/answer_histories?page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/answer_histories?page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
       final Map resMap = json.decode(res.body);
@@ -32,7 +32,7 @@ class RemoteAnswerHistories {
   static Future<Map?> todaysMistakes(int pageKey, int pageSize) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/answer_histories/todays_mistakes?page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/answer_histories/todays_mistakes?page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
 

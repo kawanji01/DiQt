@@ -11,7 +11,7 @@ class RemoteDictionaryMaps {
   static Future<Map?> myDictionaries() async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionary_maps/my_dictionaries');
+          '${DiQtURL.root()}/api/v1/mobile/dictionary_maps/my_dictionaries');
 
       final http.Response res = await HttpService.post(url, null);
       if (res.statusCode != 200) {
@@ -37,8 +37,8 @@ class RemoteDictionaryMaps {
   // 追加可能な辞書を表示する
   static Future<Map?> addition(int pageKey, int pageSize) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionary_maps/addition');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/dictionary_maps/addition');
 
       final Map<String, dynamic> body = {'page': pageKey, 'size': pageSize};
 
@@ -67,8 +67,8 @@ class RemoteDictionaryMaps {
   // 辞書を追加する
   static Future<Map?> add(List<int> dictionaryIds) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionary_maps/add');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/dictionary_maps/add');
 
       final Map<String, dynamic> body = {
         'dictionary_ids': dictionaryIds.join(',')
@@ -97,8 +97,8 @@ class RemoteDictionaryMaps {
   // 削除可能な辞書を表示する
   static Future<Map?> removal() async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionary_maps/removal');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/dictionary_maps/removal');
 
       final http.Response res = await HttpService.post(url, null);
 
@@ -125,8 +125,8 @@ class RemoteDictionaryMaps {
   // 辞書を削除する
   static Future<Map?> remove(List<int> dictionaryIds) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionary_maps/remove');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/dictionary_maps/remove');
 
       final Map<String, dynamic> body = {
         'dictionary_ids': dictionaryIds.join(',')

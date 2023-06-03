@@ -11,7 +11,7 @@ class RemoteNotes {
   static Future<Map?> index(int pageKey, int pageSize, String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/notes?order=$order&page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/notes?order=$order&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
 
@@ -33,8 +33,7 @@ class RemoteNotes {
   static Future<Map?> create(Map<String, dynamic> params) async {
     try {
       final Map<String, dynamic> body = {'note': params};
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/notes');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/notes');
       final Response res = await HttpService.post(
         url,
         body,
@@ -59,8 +58,8 @@ class RemoteNotes {
     try {
       final Map<String, dynamic> body = {'note': params};
 
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/notes/${params['id']}');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/notes/${params['id']}');
       final Response res = await HttpService.patch(
         url,
         body,

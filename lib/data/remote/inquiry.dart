@@ -16,8 +16,7 @@ class RemoteInquiries {
       final String platform = deviceInfo.getPlatform();
       final String deviceName = await deviceInfo.getName();
 
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/inquiries');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/inquiries');
       final Map<String, dynamic> body = {
         'content': contenct,
         'platform': platform,

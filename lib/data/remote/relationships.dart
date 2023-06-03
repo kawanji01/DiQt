@@ -13,8 +13,8 @@ class RemoteRelationships {
     try {
       final Map<String, dynamic> body = {'public_uid': publicUid};
 
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/relationships');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/relationships');
       final Response res = await HttpService.post(
         url,
         body,
@@ -38,7 +38,7 @@ class RemoteRelationships {
   static Future<Map?> destroy(Relationship relationship) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/relationships/${relationship.id}');
+          '${DiQtURL.root()}/api/v1/mobile/relationships/${relationship.id}');
 
       final Response res = await HttpService.delete(url, null);
       if (res.statusCode != 200) return null;

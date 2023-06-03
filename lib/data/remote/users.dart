@@ -13,8 +13,8 @@ class RemoteUsers {
   // 現在のログインユーザーの取得　　　users/current
   static Future<Map?> current() async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/current');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/current');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -37,7 +37,7 @@ class RemoteUsers {
   static Future<Map?> index(String keyword, int pageKey, int pageSize) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users?keyword=$keyword&page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/users?keyword=$keyword&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -58,8 +58,8 @@ class RemoteUsers {
   // 特定のユーザー情報を取得
   static Future<Map?> show(String publicUid) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/$publicUid');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -85,8 +85,7 @@ class RemoteUsers {
       final Map<String, dynamic> body = {'user': params};
 
       // リクエスト
-      final url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid');
+      final url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/$publicUid');
 
       final Response res = await HttpService.patch(
         url,
@@ -110,8 +109,8 @@ class RemoteUsers {
   // 解答中の問題集の取得
   static Future<Map?> drillsInProgress() async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/drills_in_progress');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/drills_in_progress');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -134,7 +133,7 @@ class RemoteUsers {
   static Future<Map?> achievements(String publicUid) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid/achievements');
+          '${DiQtURL.root()}/api/v1/mobile/users/$publicUid/achievements');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) {
@@ -158,8 +157,8 @@ class RemoteUsers {
   // 参加中の教室
   static Future<Map?> schools(String publicUid) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid/schools');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/$publicUid/schools');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) {
@@ -182,8 +181,8 @@ class RemoteUsers {
   // 退会
   static Future<Map?> withdrawal(String publidUid) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publidUid');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/$publidUid');
 
       final Response res = await HttpService.delete(url, null);
 
@@ -210,8 +209,8 @@ class RemoteUsers {
       final String platform = deviceInfo.getPlatform();
       final String deviceName = await deviceInfo.getName();
 
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/favor_app');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/favor_app');
       final Map<String, dynamic> body = {
         'device_info': '$platform / $deviceName'
       };
@@ -242,7 +241,7 @@ class RemoteUsers {
       final bool inTrial = EntitlementInfoService.inTrial(entitlementInfo);
 
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/send_cancellation_report');
+          '${DiQtURL.root()}/api/v1/mobile/users/send_cancellation_report');
       final Map<String, dynamic> body = {
         'product_identifier': productIdentifier,
         'device': device,
@@ -271,7 +270,7 @@ class RemoteUsers {
       String publicUid, DateTime firstDate, DateTime lastDate) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/$publicUid/calendar?start=$firstDate&end=$lastDate');
+          '${DiQtURL.root()}/api/v1/mobile/users/$publicUid/calendar?start=$firstDate&end=$lastDate');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
       final Map resMap = json.decode(res.body);
@@ -299,7 +298,7 @@ class RemoteUsers {
 
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}}/api/v1/mobile/users/get_or_create_subscriber');
+          '${DiQtURL.root()}}/api/v1/mobile/users/get_or_create_subscriber');
       final Response res = await HttpService.post(url, {'platform': platform});
       if (res.statusCode != 200) return null;
       final Map resMap = json.decode(res.body);
@@ -320,8 +319,8 @@ class RemoteUsers {
   // クライアント側に解約APIは用意されていないので、サーバー側（Ruby）の解約APIを叩き、解約をDBと同期する。
   static Future<Map?> deleteSubscriber(String reason) async {
     try {
-      final url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/delete_subscriber');
+      final url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/delete_subscriber');
       final res = await HttpService.post(url, {'reason': reason});
       if (res.statusCode != 200) return null;
       final Map resMap = json.decode(res.body);
@@ -341,8 +340,8 @@ class RemoteUsers {
   // ユーザーをプレミアム会員化する
   static Future<Map?> enablePremium() async {
     try {
-      final url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/enable_premium');
+      final url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/enable_premium');
       final res = await HttpService.post(url, null);
       final Map resMap = json.decode(res.body);
       return resMap;
@@ -358,8 +357,8 @@ class RemoteUsers {
   // ユーザーを一般会員に戻す
   static Future<Map?> disablePremium() async {
     try {
-      final url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/disable_premium');
+      final url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/disable_premium');
       final res = await HttpService.post(url, null);
       final Map resMap = json.decode(res.body);
       return resMap;

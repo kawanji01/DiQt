@@ -45,7 +45,7 @@ class SessionAppleButtonState extends ConsumerState<SessionAppleButton> {
             webAuthenticationOptions: WebAuthenticationOptions(
               clientId: clientId!,
               redirectUri: Uri.parse(
-                '${DiQtURL.rootWithoutLocale()}/auth/apple/callback_on_android',
+                '${DiQtURL.root()}/auth/apple/callback_on_android',
               ),
             ),
             // nonce : リプレイアタック対策。　参考： https://medium.com/flutter-jp/sign-in-with-apple-d0d123cbbe17

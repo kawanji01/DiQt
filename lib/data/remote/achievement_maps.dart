@@ -10,7 +10,7 @@ class RemoteAchievementMaps {
   static Future<Map?> update(int achievementMapId) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/achievement_maps/$achievementMapId');
+          '${DiQtURL.root()}/api/v1/mobile/achievement_maps/$achievementMapId');
       final Response res = await HttpService.patch(url, null);
       if (res.statusCode != 200) return null;
 

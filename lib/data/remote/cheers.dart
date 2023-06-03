@@ -10,8 +10,7 @@ class RemoteCheers {
   // 応援の作成
   static Future<Map?> create(int activityId) async {
     try {
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/cheers');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/cheers');
 
       final Map<String, dynamic> body = {
         'activity_id': '$activityId',

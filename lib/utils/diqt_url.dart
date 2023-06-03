@@ -3,7 +3,7 @@ class DiQtURL {
   //
   static String root({String? locale}) {
     if (locale == null) {
-      return DiQtURL.rootWithoutLocale();
+      return DiQtURL.root();
     } else {
       return DiQtURL.rootWithLocale(locale);
     }
@@ -15,7 +15,7 @@ class DiQtURL {
   }
 
   //
-  static String rootWithoutLocale() {
+  static String root() {
     return const String.fromEnvironment("rootUrl");
   }
 }

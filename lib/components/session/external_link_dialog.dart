@@ -34,8 +34,8 @@ class ExternalLinkDialogState extends ConsumerState<ExternalLinkDialog> {
   Future _retrivePasscode() async {
     final deviceInfo = DeviceInfoService();
     final String deviceIdentifier = await deviceInfo.getIndentifier();
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/onetime_passcode');
+    final Uri url =
+        Uri.parse('${DiQtURL.root()}/api/v1/mobile/sessions/onetime_passcode');
     final http.Response res = await HttpService.post(url, {
       'redirect_path': '$_redirectPath',
       'device_identifier': deviceIdentifier

@@ -87,8 +87,7 @@ class RemoteSessions {
     try {
       final deviceInfo = DeviceInfoService();
       final String deviceIdentifier = await deviceInfo.getIndentifier();
-      var url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/logout');
+      var url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/sessions/logout');
       final Map<String, dynamic> body = {'device_identifier': deviceIdentifier};
       Response res = await HttpService.post(url, body);
       if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
@@ -113,8 +112,8 @@ class RemoteSessions {
       final String deviceIdentifier = await deviceInfo.getIndentifier();
       final String deviceName = await deviceInfo.getName();
 
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/twitter');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sessions/twitter');
       final Map<String, dynamic> body = {
         'uid': '${authResult.user!.id}',
         'name': authResult.user!.name,
@@ -153,8 +152,8 @@ class RemoteSessions {
       final String deviceName = await deviceInfo.getName();
       ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する(END) ////
 
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/google');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sessions/google');
       final Map<String, dynamic> body = {
         'identity_token': googleAuth.idToken,
         'device_identifier': deviceIdentifier,
@@ -189,8 +188,8 @@ class RemoteSessions {
       final String deviceName = await deviceInfo.getName();
       ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する(END) ////
 
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/apple');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sessions/apple');
       final Map<String, dynamic> body = {
         'identity_token': appleCredential.identityToken,
         'authorization_code': appleCredential.authorizationCode,

@@ -11,7 +11,7 @@ class RemoteDrills {
   static Future<Map?> unsolved(String publicUid, String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid/unsolved?order=$order');
+          '${DiQtURL.root()}/api/v1/mobile/drills/$publicUid/unsolved?order=$order');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -34,7 +34,7 @@ class RemoteDrills {
       String publicUid, int pageKey, int pageSize, String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid/solved?order=$order&page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/drills/$publicUid/solved?order=$order&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -57,7 +57,7 @@ class RemoteDrills {
       String publicUid, int pageKey, int pageSize, String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid?order=$order&page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/drills/$publicUid?order=$order&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -79,7 +79,7 @@ class RemoteDrills {
   static Future<Map?> newLap(String publicUid) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/drills/$publicUid/new_lap');
+          '${DiQtURL.root()}/api/v1/mobile/drills/$publicUid/new_lap');
 
       final Response res = await HttpService.post(url, null);
       if (res.statusCode != 200) return null;

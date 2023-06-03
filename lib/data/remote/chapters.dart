@@ -9,8 +9,7 @@ import 'package:http/http.dart';
 class RemoteChapters {
   static Future<Map?> index() async {
     try {
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/chapters');
       final Response res = await HttpService.get(url);
       // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
       final Map<String, dynamic> resMap = json.decode(res.body);
@@ -29,8 +28,8 @@ class RemoteChapters {
 
   static Future<Map?> show(String publicUid) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/$publicUid');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/chapters/$publicUid');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -45,7 +44,7 @@ class RemoteChapters {
       String publicUid, int pageKey, int pageSize) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/$publicUid/activities?page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/chapters/$publicUid/activities?page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -59,7 +58,7 @@ class RemoteChapters {
   static Future<Map?> ranking(String publicUid) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/$publicUid/ranking');
+          '${DiQtURL.root()}/api/v1/mobile/chapters/$publicUid/ranking');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -73,7 +72,7 @@ class RemoteChapters {
   static Future<Map?> school(String publicUid) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/chapters/school?uid=$publicUid');
+          '${DiQtURL.root()}/api/v1/mobile/chapters/school?uid=$publicUid');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
