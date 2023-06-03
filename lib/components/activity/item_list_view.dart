@@ -6,6 +6,7 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/components/activity/list_item.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -41,10 +42,14 @@ class ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
     _isLoading = true;
 
     final String order = ref.watch(activitiesOrderProvider);
-    final Map? resMap = await RemoteActivities.index(pageKey, _pageSize, order);
+    final Map resMap = await RemoteActivities.index(pageKey, _pageSize, order);
     // ref: https://github.com/EdsonBueno/infinite_scroll_pagination/issues/64
     if (!mounted) return;
-    if (resMap == null) {
+    // エラーの場合の処理
+    if (ErrorHandler.isErrorMap(resMap)) {
+      final String message = ErrorHandler.message(resMap);
+      final snackBar = SnackBar(content: Text(message));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       return setState(() {
         _isLoading = false;
         _isReached = false;
@@ -52,13 +57,11 @@ class ActivityItemListViewState extends ConsumerState<ActivityItemListView> {
     }
     final List<Activity> activities = [];
     resMap['activities'].forEach((e) => activities.add(Activity.fromJson(e)));
-    // print(activities.length);
     final isLastPage = activities.length < _pageSize;
     if (isLastPage) {
       _pagingController.appendLastPage(activities);
     } else {
       _nextPagekey = pageKey + activities.length;
-      //_pagingController.appendLastPage(notices);
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(activities, _nextPagekey);
     }
