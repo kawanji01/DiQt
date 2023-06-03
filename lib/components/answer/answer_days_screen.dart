@@ -69,7 +69,7 @@ class AnswerAnswerDaysScreenState
       final String tweet = '$counter日、問題を解きました！！';
 
       final String url =
-          '${DiQtURL.rootWithLocale(locale)}/users/${user.publicUid}?daily_bonus=$counter';
+          '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?daily_bonus=$counter';
 
       return AnswerShareButton(text: tweet, url: url);
     }

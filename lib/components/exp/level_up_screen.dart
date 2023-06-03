@@ -54,7 +54,7 @@ class ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
       final String tweet = 'Lv.$levelに上がりました！！';
       final String locale = ref.watch(localeProvider);
       final String url =
-          '${DiQtURL.rootWithLocale(locale)}/users/${user.publicUid}?level_up=$level';
+          '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?level_up=$level';
       return AnswerShareButton(text: tweet, url: url);
     }
 

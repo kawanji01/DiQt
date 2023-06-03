@@ -67,7 +67,7 @@ class AnswerContinuationAllYearScreenState
       final String tweet = '$counter年間連続で問題を解きました！！';
       final String locale = ref.watch(localeProvider);
       final String url =
-          '${DiQtURL.rootWithLocale(locale)}/users/${user.publicUid}?yearly_bonus=$counter';
+          '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?yearly_bonus=$counter';
 
       return AnswerShareButton(text: tweet, url: url);
     }

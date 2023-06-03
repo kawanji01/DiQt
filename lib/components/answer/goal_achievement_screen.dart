@@ -76,7 +76,7 @@ class AnswerGoalAchievementScreenState
 
     final String locale = ref.watch(localeProvider);
     final String url =
-        '${DiQtURL.rootWithLocale(locale)}/users/${user.publicUid}?goal=$goalCount';
+        '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?goal=$goalCount';
 
     return Container(
       height: ResponsiveValues.dialogHeight(context),

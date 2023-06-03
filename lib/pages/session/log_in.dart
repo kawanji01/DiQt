@@ -23,7 +23,7 @@ class SessionLogInPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final String locale = ref.watch(localeProvider);
-    final String url = '${DiQtURL.rootWithLocale(locale)}/password_resets/new';
+    final String url = '${DiQtURL.root(locale: locale)}/password_resets/new';
     return Scaffold(
       appBar: AppBar(
         title: Text(t.sessions.log_in),

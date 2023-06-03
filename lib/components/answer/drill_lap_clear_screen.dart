@@ -81,7 +81,7 @@ class AnswerDrillLapClearScreenState
       final String tweet = '「${drill.title}」を$clearsCount周クリアしました！';
       final String locale = ref.watch(localeProvider);
       final String url =
-          '${DiQtURL.rootWithLocale(locale)}/drills/${drill.publicUid}/unsolved?type=all_solved';
+          '${DiQtURL.root(locale: locale)}/drills/${drill.publicUid}/unsolved?type=all_solved';
 
       return AnswerShareButton(text: tweet, url: url);
     }

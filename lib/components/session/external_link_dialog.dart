@@ -53,11 +53,11 @@ class ExternalLinkDialogState extends ConsumerState<ExternalLinkDialog> {
       Navigator.of(context).pop();
       final String locale = ref.watch(localeProvider);
       // ワンタイムパスコードがない場合は、直接URLにリダイレクトする
-      String url = "${DiQtURL.rootWithLocale(locale)}/$_redirectPath";
+      String url = "${DiQtURL.root(locale: locale)}/$_redirectPath";
       // ワンタイムパスコードがある場合は、パスコードを使ってログインさせてからリダイレクトさせる。
       if (_onetimePasscode != null) {
         url =
-            "${DiQtURL.rootWithLocale(locale)}/api/v1/mobile/sessions/verify_onetime_passcode?onetime_passcode=$_onetimePasscode";
+            "${DiQtURL.root(locale: locale)}/api/v1/mobile/sessions/verify_onetime_passcode?onetime_passcode=$_onetimePasscode";
       }
       WebPageLauncher.openByExternalBrowser(url);
     }

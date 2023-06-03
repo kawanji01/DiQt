@@ -13,7 +13,7 @@ class MarkdownIntroductionTextButton extends ConsumerWidget {
     return TextButton.icon(
       onPressed: () {
         WebPageLauncher.openByWebView(
-            "${DiQtURL.rootWithLocale(locale)}/markdown");
+            "${DiQtURL.root(locale: locale)}/markdown");
       },
       icon: const Icon(
         Icons.info_outline,

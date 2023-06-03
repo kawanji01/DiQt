@@ -65,7 +65,7 @@ class AnswerContinuousAnswerDaysScreenState
       final String tweet = '$counter日連続で問題を解きました！！';
       final String locale = ref.watch(localeProvider);
       final String url =
-          '${DiQtURL.rootWithLocale(locale)}/users/${user.publicUid}?continuous=$counter';
+          '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?continuous=$counter';
       return AnswerShareButton(text: tweet, url: url);
     }
 

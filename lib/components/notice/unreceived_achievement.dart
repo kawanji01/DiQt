@@ -115,7 +115,7 @@ class NoticeUnreceivedAchievementState
       const String text = '実績メダルを獲得しました！！';
       final String locale = ref.watch(localeProvider);
       final String url =
-          '${DiQtURL.rootWithLocale(locale)}/users/${user.publicUid}?achievement=${_achievement?.id}';
+          '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?achievement=${_achievement?.id}';
 
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 16),

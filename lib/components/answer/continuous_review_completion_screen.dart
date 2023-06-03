@@ -57,7 +57,7 @@ class AnswerContinuousReviewCompletionScreenState
     final String tweet = '$counter日連続で復習を達成しました！！';
     final String locale = ref.watch(localeProvider);
     final String url =
-        '${DiQtURL.rootWithLocale(locale)}/users/${user.publicUid}?continuous_review_completion=$counter';
+        '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?continuous_review_completion=$counter';
     return AnswerShareButton(text: tweet, url: url);
   }
 

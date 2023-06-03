@@ -24,7 +24,7 @@ class RemoteSessions {
       final String locale = await LocalUserInfo.localeForAPI();
 
       final Uri url =
-          Uri.parse('${DiQtURL.rootWithLocale(locale)}/api/v1/mobile/sessions');
+          Uri.parse('${DiQtURL.root(locale: locale)}/api/v1/mobile/sessions');
       final Map<String, dynamic> body = {
         'email': email,
         'password': password,
@@ -58,7 +58,7 @@ class RemoteSessions {
       final String locale = await LocalUserInfo.localeForAPI();
       // リクエスト
       final Uri url =
-          Uri.parse('${DiQtURL.rootWithLocale(locale)}/api/v1/mobile/users');
+          Uri.parse('${DiQtURL.root(locale: locale)}/api/v1/mobile/users');
       final Map<String, dynamic> body = {
         'name': name,
         'email': email,

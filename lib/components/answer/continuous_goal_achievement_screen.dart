@@ -51,7 +51,7 @@ class AnswerContinuousGoalAchievementScreenState
     final String tweet = '$counter日連続で目標を達成しました！！';
     final String locale = ref.watch(localeProvider);
     final String url =
-        '${DiQtURL.rootWithLocale(locale)}/users/${user.publicUid}?continuous_goal_achievement=$counter';
+        '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?continuous_goal_achievement=$counter';
     return AnswerShareButton(text: tweet, url: url);
   }
 

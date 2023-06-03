@@ -1,9 +1,11 @@
 // DiQt の API の URL を生成する
+import 'package:booqs_mobile/utils/locale_handler.dart';
+
 class DiQtURL {
   //
   static String root({String? locale}) {
     if (locale == null) {
-      return DiQtURL.root();
+      return DiQtURL.rootWithoutLocale();
     } else {
       return DiQtURL.rootWithLocale(locale);
     }
@@ -11,11 +13,12 @@ class DiQtURL {
 
   //
   static String rootWithLocale(String locale) {
-    return '${const String.fromEnvironment("rootUrl")}/$locale';
+    final String supportedLocale = LocaleHandler.localeForAPIByCode(locale);
+    return '${const String.fromEnvironment("rootUrl")}/$supportedLocale';
   }
 
   //
-  static String root() {
+  static String rootWithoutLocale() {
     return const String.fromEnvironment("rootUrl");
   }
 }
