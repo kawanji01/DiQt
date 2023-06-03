@@ -50,7 +50,7 @@ class DrawerMenu extends ConsumerWidget {
                 WebPageLauncher.openByWebView('https://www.diqt.net/contact');
               } else {
                 // ログインしているならお問い合わせフィームをモーダル表示
-                Dialogs().reward(const ContactFormScreen());
+                Dialogs.slideFromBottomFade(const ContactFormScreen());
               }
             },
           ),

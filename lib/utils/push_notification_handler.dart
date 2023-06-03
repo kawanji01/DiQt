@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:booqs_mobile/data/local/user_info.dart';
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/device_info_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -139,7 +139,7 @@ class PushNotificationHandler {
       });
       return true;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.reccordError(e, s);
       return false;
     }
   }

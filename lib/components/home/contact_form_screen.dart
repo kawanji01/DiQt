@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/remote/inquiry.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/button/dialog_close_button.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
               ),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'お問い合わせ内容は空欄にできません。';
+                  return t.errors.cant_be_blank;
                 }
                 return null;
               },
@@ -92,9 +93,10 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                   });
                 },
                 icon: const Icon(Icons.send, color: Colors.white),
-                label: const Text(
-                  '送信する',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                label: Text(
+                  t.shared.send,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               ),
             ),
@@ -111,8 +113,8 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
         child: Column(
           children: [
             const SizedBox(height: 24),
-            const Text('お問い合わせ',
-                style: TextStyle(
+            Text(t.home.inquiry,
+                style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87)),
