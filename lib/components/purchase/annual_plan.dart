@@ -38,7 +38,7 @@ class _PurchaseAnnualPlanState extends State<PurchaseAnnualPlan> {
         clipBehavior: Clip.none,
         children: [
           Container(
-            padding: const EdgeInsets.fromLTRB(33, 24, 33, 24),
+            padding: const EdgeInsets.fromLTRB(32, 24, 32, 45),
             decoration: BoxDecoration(
               color: Colors.white70,
               borderRadius: const BorderRadius.all(Radius.circular(4)),
@@ -67,14 +67,14 @@ class _PurchaseAnnualPlanState extends State<PurchaseAnnualPlan> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Text(
+                /* Text(
                   "417円/月",
                   style: TextStyle(
                     color: Colors.black87,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
-                ),
+                ), */
               ],
             ),
           ),

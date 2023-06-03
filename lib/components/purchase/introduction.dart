@@ -32,11 +32,11 @@ class PurchaseIntroduction extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 32,
-              fontWeight: FontWeight.w800,
+              fontWeight: FontWeight.bold,
               color: Colors.green,
             ),
           ),
-          const Text(
+          /*  const Text(
             '500円 / 月',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -44,7 +44,7 @@ class PurchaseIntroduction extends StatelessWidget {
               fontWeight: FontWeight.w800,
               color: Colors.green,
             ),
-          ),
+          ), */
           const SizedBox(
             height: 32,
           ),
