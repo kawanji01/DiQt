@@ -23,8 +23,9 @@ class DictionaryMapRemovalButton extends StatelessWidget {
           );
         },
         child: MediumRedButton(
-          label: '${t['dictionaryMaps.remove_dictionaries']}',
+          label: t.dictionaryMaps.remove_dictionaries,
           icon: Icons.remove,
+          fontSize: 18,
         ));
   }
 }

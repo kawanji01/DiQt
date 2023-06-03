@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 
 class MediumRedButton extends StatelessWidget {
-  const MediumRedButton({Key? key, required this.label, required this.icon})
+  const MediumRedButton(
+      {Key? key,
+      required this.label,
+      required this.icon,
+      required this.fontSize})
       : super(key: key);
   final String label;
   final IconData? icon;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
     Widget child;
+    final double iconFontSize = fontSize + 4;
     if (icon == null) {
       child = Text(
         label,
-        style: const TextStyle(
-            color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold),
         overflow: TextOverflow.visible,
       );
     } else {
@@ -23,15 +31,15 @@ class MediumRedButton extends StatelessWidget {
           Icon(
             icon,
             color: Colors.white,
-            size: 20.0,
+            size: iconFontSize,
           ),
           const SizedBox(width: 4),
           Flexible(
             child: Text(
               label,
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: fontSize,
                   fontWeight: FontWeight.bold),
               overflow: TextOverflow.visible,
             ),

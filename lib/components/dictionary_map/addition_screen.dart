@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/dictionary_map/addition_list_view.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
@@ -55,7 +56,7 @@ class DictionaryMapAdditionScreenState
             height: 24,
           ),
           HeadingMediumGreen(
-              label: '${t['dictionaryMaps.select_dictionaries_to_use']}',
+              label: t.dictionaryMaps.select_dictionaries_to_use,
               icon: Icons.add),
           const SizedBox(
             height: 24,
@@ -77,21 +78,20 @@ class DictionaryMapAdditionScreenState
           ),
           padding: const EdgeInsets.only(bottom: 32),
           color: Colors.white,
-          child: ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(double.infinity, 48),
-            ),
-            onPressed: _isRequesting
-                ? null
-                : () async {
-                    update();
-                  },
-            icon: const Icon(Icons.add, color: Colors.white),
-            label: Text(
-              '${t['dictionaryMaps.add']}',
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ),
+          child: SizedBox(
+              height: 56,
+              child: InkWell(
+                onTap: _isRequesting
+                    ? null
+                    : () async {
+                        update();
+                      },
+                child: MediumGreenButton(
+                  label: t.dictionaryMaps.add,
+                  icon: Icons.add,
+                  fontSize: 18,
+                ),
+              )),
         ),
       );
     }

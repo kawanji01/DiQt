@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import '../builders/user.dart';
+import 'login_form_test.mocks.dart';
 
-// loginメソッドが呼び出されたときに何を返すべきかを定義します。これにより、実際の外部API呼び出しをせずにテストを行うことができます。
-class MockRemoteSessions extends Mock implements RemoteSessions {}
-
+@GenerateMocks([RemoteSessions])
 void main() {
   group('logIn test', () {
     final mockRemoteSessions = MockRemoteSessions();
@@ -21,8 +21,7 @@ void main() {
     testWidgets('Succeeded', (WidgetTester tester) async {
       // Arrange
       final User user = UserBuilder().build();
-      // ignore: cast_from_null_always_fails
-      when(mockRemoteSessions.login(any as String, any as String))
+      when(mockRemoteSessions.login(any, any))
           .thenAnswer((_) async => {'status': 200, 'user': user.toJson()});
 
       await tester.pumpWidget(
@@ -61,12 +60,10 @@ void main() {
 
     testWidgets('Failed', (WidgetTester tester) async {
       const String failMassage = 'Could not login';
-      // ignore: cast_from_null_always_fails
-      when(mockRemoteSessions.login(any as String, any as String))
-          .thenAnswer((_) async => {
-                'status': 401,
-                'message': failMassage,
-              });
+      when(mockRemoteSessions.login(any, any)).thenAnswer((_) async => {
+            'status': 401,
+            'message': failMassage,
+          });
 
       await tester.pumpWidget(
         ProviderScope(

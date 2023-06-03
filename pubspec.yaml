@@ -101,7 +101,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.1
   flutter_launcher_icons: ^0.9.2 # アイコンの設定。参照：https://zenn.dev/dala/books/flutter-basic-app/viewer/appinfo
-  build_runner: ^2.3.3 # slang用
+  build_runner: ^2.3.3 # slangのlocaleファイルや、テストのmockクラスを生成するのに利用する
   slang_build_runner: ^3.15.0 # slang用
 flutter_icons:
   android: true

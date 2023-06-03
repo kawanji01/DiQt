@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/button/medium_red_button.dart';
 import 'package:booqs_mobile/components/dictionary_map/removal_list_item.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
@@ -96,22 +97,20 @@ class DictionaryMapRemovalScreenState
           ),
           padding: const EdgeInsets.only(bottom: 32),
           color: Colors.white,
-          child: ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(double.infinity, 48),
-              backgroundColor: Colors.red,
-            ),
-            onPressed: _isRequesting
-                ? null
-                : () async {
-                    update();
-                  },
-            icon: const Icon(Icons.remove, color: Colors.white),
-            label: Text(
-              '${t['dictionaryMaps.remove']}',
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ),
+          child: SizedBox(
+              height: 56,
+              child: InkWell(
+                onTap: _isRequesting
+                    ? null
+                    : () async {
+                        update();
+                      },
+                child: MediumRedButton(
+                  label: t.dictionaryMaps.remove,
+                  icon: Icons.remove,
+                  fontSize: 18,
+                ),
+              )),
         ),
       );
     }
