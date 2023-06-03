@@ -10,8 +10,8 @@ class RemoteSentences {
   // 例文の読み込み
   static Future<Map?> show(int sentenceId) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/$sentenceId');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences/$sentenceId');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
 
@@ -33,7 +33,7 @@ class RemoteSentences {
   static Future<Map?> newSentence(int dictionaryId) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/new?dictionary_id=$dictionaryId');
+          '${DiQtURL.root()}/api/v1/mobile/sentences/new?dictionary_id=$dictionaryId');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
 
@@ -55,7 +55,7 @@ class RemoteSentences {
   static Future<Map?> edit(int sentenceId) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/$sentenceId/edit');
+          '${DiQtURL.root()}/api/v1/mobile/sentences/$sentenceId/edit');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
 
@@ -78,8 +78,7 @@ class RemoteSentences {
     try {
       final Map<String, dynamic> body = {'sentence': params};
 
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences');
       final Response res = await HttpService.post(
         url,
         body,
@@ -106,7 +105,7 @@ class RemoteSentences {
       final Map<String, dynamic> body = {'sentence': params};
 
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/${params['id']}');
+          '${DiQtURL.root()}/api/v1/mobile/sentences/${params['id']}');
       final Response res = await HttpService.patch(
         url,
         body,
@@ -130,8 +129,8 @@ class RemoteSentences {
   // 例文の削除
   static Future<Map?> destroy(int sentenceId) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/$sentenceId');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences/$sentenceId');
       final Response res = await HttpService.delete(url, null);
       if (res.statusCode != 200) return null;
 
@@ -160,8 +159,8 @@ class RemoteSentences {
         'size': pageSize
       };
 
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/search');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences/search');
       // 検索条件が長い場合に、getだとURLの文字数制限に引っかかる可能性があるのでpostを使う。
       final Response res = await HttpService.post(
         url,
@@ -201,8 +200,8 @@ class RemoteSentences {
         'temperature': temperature,
       };
 
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sentences/generate');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences/generate');
       final Response res = await HttpService.post(
         url,
         body,

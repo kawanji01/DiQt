@@ -1,0 +1,6 @@
+{
+    "flavor": "prod",
+    "appName": "DiQt",
+    "appIdSuffix": "",
+    "rootUrl": "https://www.diqt.net"
+}

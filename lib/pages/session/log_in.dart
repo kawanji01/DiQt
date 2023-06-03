@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -21,6 +22,8 @@ class SessionLogInPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final String locale = ref.watch(localeProvider);
+    final String url = '${DiQtURL.root(locale: locale)}/password_resets/new';
     return Scaffold(
       appBar: AppBar(
         title: Text(t.sessions.log_in),
@@ -46,11 +49,7 @@ class SessionLogInPage extends ConsumerWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  onPressed: () {
-                    final String url =
-                        '${DiQtURL.root(context)}/password_resets/new';
-                    WebPageLauncher.openByWebView(url);
-                  },
+                  onPressed: () => WebPageLauncher.openByWebView(url),
                   child: Text(t.sessions.forgot_password,
                       style: const TextStyle(color: Colors.black87)),
                 ),

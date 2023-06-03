@@ -22,7 +22,7 @@ class RemoteLangs {
       };
 
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/${user.locale()}/api/v1/mobile/langs/google_translation');
+          '${DiQtURL.root()}/${user.locale()}/api/v1/mobile/langs/google_translation');
       final Response res = await HttpService.post(
         url,
         body,
@@ -57,7 +57,7 @@ class RemoteLangs {
       };
 
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/${user.locale()}/api/v1/mobile/langs/deepl_translation');
+          '${DiQtURL.root()}/${user.locale()}/api/v1/mobile/langs/deepl_translation');
       final Response res = await HttpService.post(
         url,
         body,

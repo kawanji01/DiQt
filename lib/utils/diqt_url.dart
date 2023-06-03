@@ -1,18 +1,24 @@
-import 'package:flutter/material.dart';
-
 // DiQt の API の URL を生成する
+import 'package:booqs_mobile/utils/locale_handler.dart';
+
 class DiQtURL {
-  static String root(BuildContext context) {
-    return "${const String.fromEnvironment("ROOT_URL")}/${Localizations.localeOf(context).languageCode}";
+  //
+  static String root({String? locale}) {
+    if (locale == null) {
+      return DiQtURL.rootWithoutLocale();
+    } else {
+      return DiQtURL.rootWithLocale(locale);
+    }
   }
 
   //
   static String rootWithLocale(String locale) {
-    return '${const String.fromEnvironment("ROOT_URL")}/$locale';
+    final String supportedLocale = LocaleHandler.localeForAPIByCode(locale);
+    return '${const String.fromEnvironment("rootUrl")}/$supportedLocale';
   }
 
   //
   static String rootWithoutLocale() {
-    return const String.fromEnvironment("ROOT_URL");
+    return const String.fromEnvironment("rootUrl");
   }
 }

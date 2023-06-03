@@ -5,7 +5,7 @@ import 'package:booqs_mobile/pages/home/community_page.dart';
 import 'package:booqs_mobile/utils/app_review_service.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
-import 'package:booqs_mobile/components/shared/contact_form_screen.dart';
+import 'package:booqs_mobile/components/home/contact_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -50,7 +50,7 @@ class DrawerMenu extends ConsumerWidget {
                 WebPageLauncher.openByWebView('https://www.diqt.net/contact');
               } else {
                 // ログインしているならお問い合わせフィームをモーダル表示
-                Dialogs().reward(const ContactFormScreen());
+                Dialogs.slideFromBottomFade(const ContactFormScreen());
               }
             },
           ),

@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:booqs_mobile/data/local/user_info.dart';
-import 'package:booqs_mobile/utils/device_info%20_service.dart';
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
+import 'package:booqs_mobile/utils/device_info_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -129,8 +129,8 @@ class PushNotificationHandler {
       final String deviceName = await deviceInfo.getName();
       // DB側のユーザー（token）とデバイス（device_identifier）と通知用のトークン（fcm_token）の紐付けを更新する。
       // アプリをアンインストールしたときなどにFCMトークンはリセットされるので、こまめな更新が必要。ref： https://qiita.com/unsoluble_sugar/items/bca933735c9d3a2d60c2
-      final url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/users/update_fcm_token');
+      final url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/update_fcm_token');
       await HttpService.post(url, {
         'fcm_token': fcmToken,
         'device_identifier': deviceIdentifier,
@@ -139,7 +139,7 @@ class PushNotificationHandler {
       });
       return true;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.reccordError(e, s);
       return false;
     }
   }

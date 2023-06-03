@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:http/http.dart';
 
 class ErrorHandler {
@@ -46,7 +45,7 @@ class ErrorHandler {
     dynamic exception,
     StackTrace? stack,
   ) {
-    FirebaseCrashlytics.instance.recordError(exception, stack);
+    CrashlyticsService.reccordError(exception, stack);
     return {'status': 408, 'message': '$exception'};
   }
 
@@ -61,7 +60,7 @@ class ErrorHandler {
     dynamic exception,
     StackTrace? stack,
   ) {
-    FirebaseCrashlytics.instance.recordError(exception, stack);
+    CrashlyticsService.reccordError(exception, stack);
     // 一番近いステータスコードとして、504 Gateway Timeout（リクエストを送ったサーバからの適切なレスポンスがなくタイムアウト）を返す。
     return {'status': 504, 'message': '$exception'};
   }
@@ -71,7 +70,7 @@ class ErrorHandler {
     dynamic exception,
     StackTrace? stack,
   ) {
-    FirebaseCrashlytics.instance.recordError(exception, stack);
+    CrashlyticsService.reccordError(exception, stack);
     return {'status': 500, 'message': '$exception'};
   }
 }

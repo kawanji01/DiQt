@@ -46,11 +46,15 @@ class AnalyticsService {
 
   // mainに設置して計測を開始する
   Future<void> logBeginCheckout() async {
-    firebaseAnalyticsInstance.logBeginCheckout();
+    if (const String.fromEnvironment("flavor") == 'prod') {
+      firebaseAnalyticsInstance.logBeginCheckout();
+    }
   }
 
   // 測定したい画面のinitStateなどで以下のメソッドを呼び出すことで、そのページをanalyticsに記録する。
   Future<void> setCurrentScreen(String screenName) async {
-    await firebaseAnalyticsInstance.setCurrentScreen(screenName: screenName);
+    if (const String.fromEnvironment("flavor") == 'prod') {
+      await firebaseAnalyticsInstance.setCurrentScreen(screenName: screenName);
+    }
   }
 }

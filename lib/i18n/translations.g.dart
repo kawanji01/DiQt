@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1053 (526 per locale)
+/// Strings: 1057 (528 per locale)
 ///
-/// Built on 2023-06-03 at 03:37 UTC
+/// Built on 2023-06-03 at 07:47 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -342,6 +342,7 @@ class _TranslationsSharedEn {
 	String get reload => 'Reload';
 	String get search => 'Search';
 	String get generate => 'Generate';
+	String get send => 'Send';
 	String get undefined => 'Undefined';
 	String get details => 'Details';
 	String please_enter({required Object name}) => 'Please enter "${name}"';
@@ -833,6 +834,7 @@ class _TranslationsHomeEn {
 	String get community => 'Community';
 	String get community_description => 'DiQt Community is an online community for DiQt users.';
 	String get join_community => 'Join the community';
+	String get inquiry => 'Inquiry';
 }
 
 // Path: <root>
@@ -1056,6 +1058,7 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get reload => '再読み込みする';
 	@override String get search => '検索する';
 	@override String get generate => '生成する';
+	@override String get send => '送信する';
 	@override String get undefined => '未定義';
 	@override String get details => '詳細';
 	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
@@ -1547,6 +1550,7 @@ class _TranslationsHomeJa implements _TranslationsHomeEn {
 	@override String get community => 'コミュニティ';
 	@override String get community_description => 'DiQt Community（ディクト・コミュニティ）は、DiQtユーザーのためのオンラインコミュニティです。';
 	@override String get join_community => 'コミュニティに参加する';
+	@override String get inquiry => 'お問い合わせ';
 }
 
 /// Flat map(s) containing all translations.
@@ -1689,6 +1693,7 @@ extension on _TranslationsEn {
 			case 'shared.reload': return 'Reload';
 			case 'shared.search': return 'Search';
 			case 'shared.generate': return 'Generate';
+			case 'shared.send': return 'Send';
 			case 'shared.undefined': return 'Undefined';
 			case 'shared.details': return 'Details';
 			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
@@ -2081,6 +2086,7 @@ extension on _TranslationsEn {
 			case 'home.community': return 'Community';
 			case 'home.community_description': return 'DiQt Community is an online community for DiQt users.';
 			case 'home.join_community': return 'Join the community';
+			case 'home.inquiry': return 'Inquiry';
 			default: return null;
 		}
 	}
@@ -2224,6 +2230,7 @@ extension on _TranslationsJa {
 			case 'shared.reload': return '再読み込みする';
 			case 'shared.search': return '検索する';
 			case 'shared.generate': return '生成する';
+			case 'shared.send': return '送信する';
 			case 'shared.undefined': return '未定義';
 			case 'shared.details': return '詳細';
 			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
@@ -2616,6 +2623,7 @@ extension on _TranslationsJa {
 			case 'home.community': return 'コミュニティ';
 			case 'home.community_description': return 'DiQt Community（ディクト・コミュニティ）は、DiQtユーザーのためのオンラインコミュニティです。';
 			case 'home.join_community': return 'コミュニティに参加する';
+			case 'home.inquiry': return 'お問い合わせ';
 			default: return null;
 		}
 	}

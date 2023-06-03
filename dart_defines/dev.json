@@ -1,0 +1,6 @@
+{
+    "flavor": "dev",
+    "appName": "DiQt dev",
+    "appIdSuffix": ".dev",
+    "rootUrl": "http://localhost:3000"
+}

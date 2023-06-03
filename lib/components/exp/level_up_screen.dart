@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
@@ -51,8 +52,9 @@ class ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
       if (user == null) return Container();
 
       final String tweet = 'Lv.$levelに上がりました！！';
+      final String locale = ref.watch(localeProvider);
       final String url =
-          '${DiQtURL.root(context)}/users/${user.publicUid}?level_up=$level';
+          '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?level_up=$level';
       return AnswerShareButton(text: tweet, url: url);
     }
 

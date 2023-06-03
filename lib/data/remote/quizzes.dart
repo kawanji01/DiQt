@@ -22,7 +22,7 @@ class RemoteQuizzes {
       };
 
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/${quiz.id}/answer');
+          '${DiQtURL.root()}/api/v1/mobile/quizzes/${quiz.id}/answer');
       final Response res = await HttpService.post(url, body);
 
       if (res.statusCode != 200) return null;
@@ -43,8 +43,8 @@ class RemoteQuizzes {
   // 問題のソース（辞書の項目、例文）を取得する
   static Future<Map?> source(int quizId) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/$quizId/source');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/quizzes/$quizId/source');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -65,8 +65,8 @@ class RemoteQuizzes {
   // 問題の詳細を取得
   static Future<Map?> show(int quizId) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/$quizId');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/quizzes/$quizId');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -87,8 +87,8 @@ class RemoteQuizzes {
 
   static Future<Map?> edit(int quizId) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/$quizId/edit');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/quizzes/$quizId/edit');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -111,8 +111,8 @@ class RemoteQuizzes {
     try {
       final Map<String, dynamic> body = {'quiz': params};
 
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/quizzes/${params['id']}');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/quizzes/${params['id']}');
       final Response res = await HttpService.patch(
         url,
         body,

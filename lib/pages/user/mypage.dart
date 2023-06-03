@@ -6,7 +6,7 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/user/mypage_screen.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/components/shared/drawer_menu.dart';
+import 'package:booqs_mobile/components/home/drawer_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

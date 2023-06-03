@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/achievement_maps.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/achievement_map.dart';
@@ -112,8 +113,9 @@ class NoticeUnreceivedAchievementState
       if (_achievement == null) return Container();
 
       const String text = '実績メダルを獲得しました！！';
+      final String locale = ref.watch(localeProvider);
       final String url =
-          '${DiQtURL.root(context)}/users/${user.publicUid}?achievement=${_achievement?.id}';
+          '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?achievement=${_achievement?.id}';
 
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 16),

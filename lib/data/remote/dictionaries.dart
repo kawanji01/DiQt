@@ -9,8 +9,7 @@ import 'package:http/http.dart';
 class RemoteDictionaries {
   static Future<Map?> index() async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/dictionaries');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -32,7 +31,7 @@ class RemoteDictionaries {
   static Future<Map?> show(int dictionaryId) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$dictionaryId');
+          '${DiQtURL.root()}/api/v1/mobile/dictionaries/$dictionaryId');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -62,7 +61,7 @@ class RemoteDictionaries {
       };
 
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$dictionaryId/search');
+          '${DiQtURL.root()}/api/v1/mobile/dictionaries/$dictionaryId/search');
       final Response res = await HttpService.post(
         url,
         body,
@@ -94,7 +93,7 @@ class RemoteDictionaries {
       };
 
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$dictionaryId/word_search');
+          '${DiQtURL.root()}/api/v1/mobile/dictionaries/$dictionaryId/word_search');
       final Response res = await HttpService.post(
         url,
         body,
@@ -119,7 +118,7 @@ class RemoteDictionaries {
       };
 
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$dictionaryId/sentence_search');
+          '${DiQtURL.root()}/api/v1/mobile/dictionaries/$dictionaryId/sentence_search');
       final Response res = await HttpService.post(
         url,
         body,

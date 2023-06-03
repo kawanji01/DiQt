@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -73,6 +74,10 @@ class AnswerGoalAchievementScreenState
     // 獲得経験値
     final int gainedExp = answerCreator.goalAchievementPoint;
 
+    final String locale = ref.watch(localeProvider);
+    final String url =
+        '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?goal=$goalCount';
+
     return Container(
       height: ResponsiveValues.dialogHeight(context),
       width: ResponsiveValues.dialogWidth(context),
@@ -100,10 +105,7 @@ class AnswerGoalAchievementScreenState
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            AnswerShareButton(
-                text: description,
-                url:
-                    '${DiQtURL.root(context)}/users/${user.publicUid}?goal=$goalCount'),
+            AnswerShareButton(text: description, url: url),
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

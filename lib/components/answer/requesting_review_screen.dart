@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/utils/app_review_service.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/shared/contact_form_screen.dart';
+import 'package:booqs_mobile/components/home/contact_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,21 +1,23 @@
 import 'dart:convert';
-import 'package:booqs_mobile/utils/device_info%20_service.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/utils/device_info_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
-class ExternalLinkDialog extends StatefulWidget {
+class ExternalLinkDialog extends ConsumerStatefulWidget {
   const ExternalLinkDialog({Key? key, this.redirectPath}) : super(key: key);
 
   final String? redirectPath;
   @override
-  createState() => _ExternalLinkDialogState();
+  ExternalLinkDialogState createState() => ExternalLinkDialogState();
 }
 
-class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
+class ExternalLinkDialogState extends ConsumerState<ExternalLinkDialog> {
   String? _redirectPath;
   String? _onetimePasscode;
   bool _initDone = false;
@@ -32,8 +34,8 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
   Future _retrivePasscode() async {
     final deviceInfo = DeviceInfoService();
     final String deviceIdentifier = await deviceInfo.getIndentifier();
-    final Uri url = Uri.parse(
-        '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/sessions/onetime_passcode');
+    final Uri url =
+        Uri.parse('${DiQtURL.root()}/api/v1/mobile/sessions/onetime_passcode');
     final http.Response res = await HttpService.post(url, {
       'redirect_path': '$_redirectPath',
       'device_identifier': deviceIdentifier
@@ -49,12 +51,13 @@ class _ExternalLinkDialogState extends State<ExternalLinkDialog> {
   Widget build(BuildContext context) {
     Future<void> moveToExternalPage() async {
       Navigator.of(context).pop();
+      final String locale = ref.watch(localeProvider);
       // ワンタイムパスコードがない場合は、直接URLにリダイレクトする
-      String url = "${DiQtURL.root(context)}/$_redirectPath";
+      String url = "${DiQtURL.root(locale: locale)}/$_redirectPath";
       // ワンタイムパスコードがある場合は、パスコードを使ってログインさせてからリダイレクトさせる。
       if (_onetimePasscode != null) {
         url =
-            "${DiQtURL.root(context)}/api/v1/mobile/sessions/verify_onetime_passcode?onetime_passcode=$_onetimePasscode";
+            "${DiQtURL.root(locale: locale)}/api/v1/mobile/sessions/verify_onetime_passcode?onetime_passcode=$_onetimePasscode";
       }
       WebPageLauncher.openByExternalBrowser(url);
     }

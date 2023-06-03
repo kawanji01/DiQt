@@ -3,6 +3,7 @@ import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/drill.dart';
@@ -78,8 +79,9 @@ class AnswerDrillLapClearScreenState
       if (drill == null) return Container();
 
       final String tweet = '「${drill.title}」を$clearsCount周クリアしました！';
+      final String locale = ref.watch(localeProvider);
       final String url =
-          '${DiQtURL.root(context)}/drills/${drill.publicUid}/unsolved?type=all_solved';
+          '${DiQtURL.root(locale: locale)}/drills/${drill.publicUid}/unsolved?type=all_solved';
 
       return AnswerShareButton(text: tweet, url: url);
     }

@@ -10,8 +10,8 @@ class RemoteWords {
   // 取得
   static Future<Map?> show(int wordId) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/words/$wordId');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -33,7 +33,7 @@ class RemoteWords {
   static Future<Map?> newWord(int dictionaryId, String keyword) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/new?dictionary_id=$dictionaryId&keyword=$keyword');
+          '${DiQtURL.root()}/api/v1/mobile/words/new?dictionary_id=$dictionaryId&keyword=$keyword');
       final Response res = await HttpService.get(
         url,
       );
@@ -56,8 +56,8 @@ class RemoteWords {
   // 編集
   static Future<Map?> edit(int wordId) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId/edit');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/words/$wordId/edit');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -81,8 +81,7 @@ class RemoteWords {
     try {
       final Map<String, dynamic> body = {'word': params};
 
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/words');
       final Response res = await HttpService.post(
         url,
         body,
@@ -108,8 +107,8 @@ class RemoteWords {
     try {
       final Map<String, dynamic> body = {'word': params};
 
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/${params['id']}');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/words/${params['id']}');
       final Response res = await HttpService.patch(
         url,
         body,
@@ -133,8 +132,8 @@ class RemoteWords {
   // 削除
   static Future<Map?> destroy(int wordId) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/$wordId');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/words/$wordId');
 
       final Response res = await HttpService.delete(url, null);
 
@@ -158,8 +157,7 @@ class RemoteWords {
   static Future<Map?> search(int dictionaryId, String? keyword) async {
     try {
       if (keyword == null) return null;
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/words/search');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/words/search');
       final Map<String, dynamic> body = {
         'dictionary_id': '$dictionaryId',
         'keyword': keyword,
@@ -186,7 +184,7 @@ class RemoteWords {
     try {
       // 次のアップデートでwords/に戻す。
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/dictionaries/$dictionaryId/autocomplete?query=$query');
+          '${DiQtURL.root()}/api/v1/mobile/dictionaries/$dictionaryId/autocomplete?query=$query');
 
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;

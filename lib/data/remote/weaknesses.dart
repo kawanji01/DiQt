@@ -11,7 +11,7 @@ class RemoteWeaknesses {
   static Future<Map?> index(int pageKey, int pageSize, String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses?order=$order&page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/weaknesses?order=$order&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
 
@@ -33,7 +33,7 @@ class RemoteWeaknesses {
   static Future<Map?> list(String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses/list?order=$order');
+          '${DiQtURL.root()}/api/v1/mobile/weaknesses/list?order=$order');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -56,7 +56,7 @@ class RemoteWeaknesses {
   static Future<Map?> unsolved(String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses/unsolved?order=$order');
+          '${DiQtURL.root()}/api/v1/mobile/weaknesses/unsolved?order=$order');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -78,7 +78,7 @@ class RemoteWeaknesses {
   static Future<Map?> solved(int pageKey, int pageSize, String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses/solved?order=$order&page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/weaknesses/solved?order=$order&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
 
@@ -101,8 +101,7 @@ class RemoteWeaknesses {
     try {
       final Map<String, dynamic> body = {'quiz_id': quizId};
 
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/weaknesses');
       final Response res = await HttpService.post(url, body);
 
       if (res.statusCode != 200) return null;
@@ -124,8 +123,8 @@ class RemoteWeaknesses {
   // 苦手な問題から削除する
   static Future<Map?> destroy(int weaknessId) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses/$weaknessId');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/weaknesses/$weaknessId');
       final Response res = await HttpService.delete(url, null);
 
       if (res.statusCode != 200) return null;
@@ -147,8 +146,8 @@ class RemoteWeaknesses {
   // 苦手な問題をすべて未解答に戻す
   static Future<Map?> newLap() async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/weaknesses/new_lap');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/weaknesses/new_lap');
       final Response res = await HttpService.patch(url, null);
 
       if (res.statusCode != 200) return null;

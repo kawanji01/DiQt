@@ -19,7 +19,7 @@ class RemoteAnswerSettings {
       final Map<String, dynamic> body = {'answer_setting': params};
 
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/answer_settings/${params['id']}');
+          '${DiQtURL.root()}/api/v1/mobile/answer_settings/${params['id']}');
       final Response res = await HttpService.patch(url, body);
       if (res.statusCode != 200) return null;
 

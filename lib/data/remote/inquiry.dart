@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:booqs_mobile/utils/device_info%20_service.dart';
+import 'package:booqs_mobile/utils/device_info_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -17,8 +16,7 @@ class RemoteInquiries {
       final String platform = deviceInfo.getPlatform();
       final String deviceName = await deviceInfo.getName();
 
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/inquiries');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/inquiries');
       final Map<String, dynamic> body = {
         'content': contenct,
         'platform': platform,

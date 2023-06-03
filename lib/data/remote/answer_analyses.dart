@@ -7,7 +7,7 @@ class RemoteAnswerAnalyses {
   static Future<Map?> index(int pageKey, int pageSize, String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/answer_analyses?order=$order&page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/answer_analyses?order=$order&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
 

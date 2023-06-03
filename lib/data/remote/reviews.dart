@@ -10,8 +10,8 @@ class RemoteReviews {
   // 復習問題一覧
   static Future<Map?> index(String? order) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews?order=$order');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/reviews?order=$order');
       final Response res = await HttpService.get(url);
 
       if (res.statusCode != 200) return null;
@@ -27,7 +27,7 @@ class RemoteReviews {
   static Future<Map?> scheduled(int pageKey, int pageSize, String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews/scheduled?order=$order&page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/reviews/scheduled?order=$order&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
 
@@ -42,7 +42,7 @@ class RemoteReviews {
   static Future<Map?> all(int pageKey, int pageSize, String order) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews/all?order=$order&page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/reviews/all?order=$order&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
       if (res.statusCode != 200) return null;
 
@@ -56,8 +56,7 @@ class RemoteReviews {
   // 復習設定の新規作成
   static Future<Map?> create(int quizId) async {
     try {
-      final Uri url =
-          Uri.parse('${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews');
+      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/reviews');
       final Map<String, dynamic> body = {
         'quiz_id': '$quizId',
       };
@@ -82,8 +81,8 @@ class RemoteReviews {
   // 復習設定の更新
   static Future<Map?> update(int reviewId, int intervalSetting) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews/$reviewId');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/reviews/$reviewId');
       final Map<String, dynamic> body = {
         'interval_setting': '$intervalSetting'
       };
@@ -109,8 +108,8 @@ class RemoteReviews {
   // 復習設定の削除
   static Future<Map?> destroy(int reviewId) async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews/$reviewId');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/reviews/$reviewId');
 
       final Response res = await HttpService.delete(url, null);
       if (res.statusCode != 200) return null;
@@ -132,8 +131,8 @@ class RemoteReviews {
   // 復習の全削除
   static Future<Map?> destroyAll() async {
     try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.rootWithoutLocale()}/api/v1/mobile/reviews/destroy_all');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/reviews/destroy_all');
 
       final Response res = await HttpService.delete(url, null);
       if (res.statusCode != 200) return null;
