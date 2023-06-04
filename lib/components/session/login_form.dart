@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/components/button/large_orange_button.dart';
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/data/provider/session.dart';
+import 'package:booqs_mobile/data/provider/remote.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/session/transition.dart';

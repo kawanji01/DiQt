@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/components/session/sign_up_form.dart';
-import 'package:booqs_mobile/data/provider/session.dart';
+import 'package:booqs_mobile/data/provider/remote.dart';
 import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
