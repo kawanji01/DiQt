@@ -1,5 +1,5 @@
 # ref: https://zenn.dev/okuzawats/books/say-hello-to-fluter-ci-cd-with-github-actions/viewer/1-test
-name: Unit & Widget test
+name: Auto Testing
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   testing:
-    name: flutter widget test
+    name: Unit & Widget test
     runs-on: ubuntu-latest
     steps:
       - name: set up repository
