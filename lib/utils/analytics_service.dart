@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 // FirebaseAnalyticsのラッパーを、シングルトンクラスで定義する。
@@ -46,14 +47,14 @@ class AnalyticsService {
 
   // mainに設置して計測を開始する
   Future<void> logBeginCheckout() async {
-    if (const String.fromEnvironment("flavor") == 'prod') {
+    if (EnvHandler.isProd()) {
       firebaseAnalyticsInstance.logBeginCheckout();
     }
   }
 
   // 測定したい画面のinitStateなどで以下のメソッドを呼び出すことで、そのページをanalyticsに記録する。
   Future<void> setCurrentScreen(String screenName) async {
-    if (const String.fromEnvironment("flavor") == 'prod') {
+    if (EnvHandler.isProd()) {
       await firebaseAnalyticsInstance.setCurrentScreen(screenName: screenName);
     }
   }

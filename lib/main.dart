@@ -1,9 +1,11 @@
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/firebase_options.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/analytics_service.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
+import 'package:booqs_mobile/utils/remote_config_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
@@ -26,11 +28,15 @@ Future<void> main() async {
   // AdMobの初期化 や 画面の向きの固定 に必要。 ref: https://zenn.dev/sugitlab/books/flutter_poke_app_handson/viewer/step7
   WidgetsFlutterBinding.ensureInitialized();
   // プッシュ通知やfirebaseClashlyticsなど、firebase関連の機能を使うための初期化
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   // クラッシュレポートの設定
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   // Google Analyticsの設定
   await AnalyticsService().logBeginCheckout();
+  // remoteConfigの設定
+  await RemoteConfigService().initRemoteConfig();
   // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
   MobileAds.instance.initialize();
   // 画面の向きの固定 ref: https://qiita.com/osamu1203/items/6172df89f5270060a44d

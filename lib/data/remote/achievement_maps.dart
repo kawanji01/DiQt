@@ -17,13 +17,13 @@ class RemoteAchievementMaps {
       final Map? resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      CrashlyticsService.reccordError(e, s);
+      CrashlyticsService.recordError(e, s);
       return null;
     } on SocketException catch (e, s) {
-      CrashlyticsService.reccordError(e, s);
+      CrashlyticsService.recordError(e, s);
       return null;
     } catch (e, s) {
-      CrashlyticsService.reccordError(e, s);
+      CrashlyticsService.recordError(e, s);
       return null;
     }
   }

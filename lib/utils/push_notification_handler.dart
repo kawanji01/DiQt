@@ -139,7 +139,7 @@ class PushNotificationHandler {
       });
       return true;
     } catch (e, s) {
-      CrashlyticsService.reccordError(e, s);
+      CrashlyticsService.recordError(e, s);
       return false;
     }
   }

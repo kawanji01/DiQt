@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1057 (528 per locale)
+/// Strings: 1063 (531 per locale)
 ///
-/// Built on 2023-06-03 at 07:47 UTC
+/// Built on 2023-06-04 at 07:22 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -835,6 +835,9 @@ class _TranslationsHomeEn {
 	String get community_description => 'DiQt Community is an online community for DiQt users.';
 	String get join_community => 'Join the community';
 	String get inquiry => 'Inquiry';
+	String get maintenance_mode => 'Under maintenance';
+	String get maintenance_description => 'We are very sorry. The DiQt application is currently undergoing maintenance. We hope you will be able to access it again in a while.';
+	String get maintenance_latest_information => 'Click here for the latest information.';
 }
 
 // Path: <root>
@@ -1551,6 +1554,9 @@ class _TranslationsHomeJa implements _TranslationsHomeEn {
 	@override String get community_description => 'DiQt Community（ディクト・コミュニティ）は、DiQtユーザーのためのオンラインコミュニティです。';
 	@override String get join_community => 'コミュニティに参加する';
 	@override String get inquiry => 'お問い合わせ';
+	@override String get maintenance_mode => 'メンテナンス中';
+	@override String get maintenance_description => '大変申し訳ございません。ただ今DiQtのアプリはメンテナンスを行なっております。しばらくしてから、再びアクセスいただければ幸いです。';
+	@override String get maintenance_latest_information => '最新情報はこちら';
 }
 
 /// Flat map(s) containing all translations.
@@ -2087,6 +2093,9 @@ extension on _TranslationsEn {
 			case 'home.community_description': return 'DiQt Community is an online community for DiQt users.';
 			case 'home.join_community': return 'Join the community';
 			case 'home.inquiry': return 'Inquiry';
+			case 'home.maintenance_mode': return 'Under maintenance';
+			case 'home.maintenance_description': return 'We are very sorry. The DiQt application is currently undergoing maintenance. We hope you will be able to access it again in a while.';
+			case 'home.maintenance_latest_information': return 'Click here for the latest information.';
 			default: return null;
 		}
 	}
@@ -2624,6 +2633,9 @@ extension on _TranslationsJa {
 			case 'home.community_description': return 'DiQt Community（ディクト・コミュニティ）は、DiQtユーザーのためのオンラインコミュニティです。';
 			case 'home.join_community': return 'コミュニティに参加する';
 			case 'home.inquiry': return 'お問い合わせ';
+			case 'home.maintenance_mode': return 'メンテナンス中';
+			case 'home.maintenance_description': return '大変申し訳ございません。ただ今DiQtのアプリはメンテナンスを行なっております。しばらくしてから、再びアクセスいただければ幸いです。';
+			case 'home.maintenance_latest_information': return '最新情報はこちら';
 			default: return null;
 		}
 	}

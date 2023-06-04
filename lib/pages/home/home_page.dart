@@ -1,9 +1,10 @@
 import 'package:booqs_mobile/components/home/dictionary_screen.dart';
 import 'package:booqs_mobile/components/home/loading_screen.dart';
+import 'package:booqs_mobile/components/home/maintenance_screen.dart';
 import 'package:booqs_mobile/components/home/sign_in_screen.dart';
-
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/data/provider/util.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,6 +50,11 @@ class HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // remoteConfigで設定したメンテナンスフラグがtrueなら、メンテナンス画面を表示する。
+    if (ref.watch(remoteConfigServiceProvider).isMaintenanceMode()) {
+      return const HomeMaintenanceScreen();
+    }
+
     //
     return ref.watch(asyncCurrentUserProvider).when(
           data: (user) {
