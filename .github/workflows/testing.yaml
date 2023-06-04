@@ -1,5 +1,5 @@
 # ref: https://zenn.dev/okuzawats/books/say-hello-to-fluter-ci-cd-with-github-actions/viewer/1-test
-name: widget test
+name: Unit & Widget test
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  widget_test:
+  testing:
     name: flutter widget test
     runs-on: ubuntu-latest
     steps:
@@ -27,5 +27,5 @@ jobs:
           echo 'VAR_NAME=${{ secrets.VAR_NAME }}' >> .env
       - name: flutter pub get
         run: flutter pub get
-      - name: flutter widget test
-        run: flutter test test/widget_test.dart
+      - name: flutter test
+        run: flutter test
