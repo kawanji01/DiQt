@@ -1,0 +1,28 @@
+# ref: https://zenn.dev/okuzawats/books/say-hello-to-fluter-ci-cd-with-github-actions/viewer/1-test
+name: widget test
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - main
+
+jobs:
+  widget_test:
+    name: flutter widget test
+    runs-on: ubuntu-latest
+    steps:
+      - name: set up repository
+        uses: actions/checkout@v2
+      - name: set up java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '1.22.6'
+      - name: flutter pub get
+        run: flutter pub get
+      - name: flutter widget test
+        run: flutter test test/widget_test.dart
