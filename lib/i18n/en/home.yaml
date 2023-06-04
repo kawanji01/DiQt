@@ -13,3 +13,6 @@ community: 'Community'
 community_description: 'DiQt Community is an online community for DiQt users.'
 join_community: 'Join the community'
 inquiry: "Inquiry"
+maintenance_mode: "Under maintenance"
+maintenance_description: "We are very sorry. DiQt is currently undergoing maintenance. We hope you will be able to access it again in a while."
+maintenance_latest_information: "Click here for the latest information."

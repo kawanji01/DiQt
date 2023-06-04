@@ -13,3 +13,6 @@ community: 'コミュニティ'
 community_description: 'DiQt Community（ディクト・コミュニティ）は、DiQtユーザーのためのオンラインコミュニティです。'
 join_community: 'コミュニティに参加する'
 inquiry: "お問い合わせ"
+maintenance_mode: "メンテナンス中"
+maintenance_description: "大変申し訳ございません。ただ今DiQtはメンテナンスを行なっております。しばらくしてから、再びアクセスいただければ幸いです。"
+maintenance_latest_information: "最新情報はこちら"

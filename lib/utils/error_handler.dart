@@ -45,7 +45,7 @@ class ErrorHandler {
     dynamic exception,
     StackTrace? stack,
   ) {
-    CrashlyticsService.reccordError(exception, stack);
+    CrashlyticsService.recordError(exception, stack);
     return {'status': 408, 'message': '$exception'};
   }
 
@@ -60,7 +60,7 @@ class ErrorHandler {
     dynamic exception,
     StackTrace? stack,
   ) {
-    CrashlyticsService.reccordError(exception, stack);
+    CrashlyticsService.recordError(exception, stack);
     // 一番近いステータスコードとして、504 Gateway Timeout（リクエストを送ったサーバからの適切なレスポンスがなくタイムアウト）を返す。
     return {'status': 504, 'message': '$exception'};
   }
@@ -70,7 +70,7 @@ class ErrorHandler {
     dynamic exception,
     StackTrace? stack,
   ) {
-    CrashlyticsService.reccordError(exception, stack);
+    CrashlyticsService.recordError(exception, stack);
     return {'status': 500, 'message': '$exception'};
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/device_info_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/entitlement_info_service.dart';
@@ -22,13 +23,13 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
       return null;
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
       return null;
     }
   }

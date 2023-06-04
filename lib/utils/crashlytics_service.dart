@@ -1,9 +1,10 @@
+import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 class CrashlyticsService {
-  static reccordError(dynamic exception, StackTrace? stack) {
+  static recordError(dynamic exception, StackTrace? stack) {
     // 本番環境以外では送信しない。
-    if (const String.fromEnvironment("flavor") == 'prod') {
+    if (EnvHandler.isProd()) {
       FirebaseCrashlytics.instance.recordError(exception, stack);
     }
   }

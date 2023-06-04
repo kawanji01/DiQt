@@ -88,6 +88,7 @@ dependencies:
   mockito: ^5.4.0 # 自動テストのMockライブラリ
   upgrader: ^6.0.1 # 強制アップデート
   firebase_analytics: ^10.4.2 # Google analytics
+  firebase_remote_config: ^4.0.0 # メンテナンスモードなどを管理する remote config
 
 
   
