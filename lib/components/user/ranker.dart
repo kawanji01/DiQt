@@ -21,9 +21,9 @@ class UserRanker extends StatelessWidget {
         case 'daily':
           return '解答数： ${user.todaysAnswerHistoriesCount}問';
         case 'weekly':
-          return '週間解答数： ${user.wholeWeeksAnswerHistoriesCount}問';
+          return '週間解答数： ${user.wholeWeekAnswerHistoriesCount}問';
         case 'monthly':
-          return '月間解答数： ${user.wholeMonthsAnswerHistoriesCount}問';
+          return '月間解答数： ${user.wholeMonthAnswerHistoriesCount}問';
         default:
           return '';
       }
