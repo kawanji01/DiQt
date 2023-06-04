@@ -1,0 +1,31 @@
+# ref: https://zenn.dev/okuzawats/books/say-hello-to-fluter-ci-cd-with-github-actions/viewer/1-test
+name: Auto Testing
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - main
+
+jobs:
+  testing:
+    name: Unit & Widget test
+    runs-on: ubuntu-latest
+    steps:
+      - name: set up repository
+        uses: actions/checkout@v2
+      - name: set up java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '3.7.10'
+      - name: set up .env # flutter pub get を成功させるために、空の.envを作成する。
+        run: |
+          echo 'VAR_NAME=${{ secrets.VAR_NAME }}' >> .env
+      - name: flutter pub get
+        run: flutter pub get
+      - name: flutter test
+        run: flutter test
