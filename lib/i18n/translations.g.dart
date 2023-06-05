@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1063 (531 per locale)
+/// Strings: 1064 (532 per locale)
 ///
-/// Built on 2023-06-04 at 07:22 UTC
+/// Built on 2023-06-04 at 13:49 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -308,6 +308,7 @@ class _TranslationsUsersEn {
 
 	// Translations
 	String get anonymous_user => 'Anonymous user';
+	String get creating_account_succeeded => 'Your account registration has been completed! Welcome to DiQt!';
 	String get show => 'User Page';
 	String get edit => 'Account Setting';
 	String get withdraw => 'Withdraw from DiQt';
@@ -836,7 +837,7 @@ class _TranslationsHomeEn {
 	String get join_community => 'Join the community';
 	String get inquiry => 'Inquiry';
 	String get maintenance_mode => 'Under maintenance';
-	String get maintenance_description => 'We are very sorry. The DiQt application is currently undergoing maintenance. We hope you will be able to access it again in a while.';
+	String get maintenance_description => 'We are very sorry. DiQt is currently undergoing maintenance. We hope you will be able to access it again in a while.';
 	String get maintenance_latest_information => 'Click here for the latest information.';
 }
 
@@ -1555,7 +1556,7 @@ class _TranslationsHomeJa implements _TranslationsHomeEn {
 	@override String get join_community => 'コミュニティに参加する';
 	@override String get inquiry => 'お問い合わせ';
 	@override String get maintenance_mode => 'メンテナンス中';
-	@override String get maintenance_description => '大変申し訳ございません。ただ今DiQtのアプリはメンテナンスを行なっております。しばらくしてから、再びアクセスいただければ幸いです。';
+	@override String get maintenance_description => '大変申し訳ございません。ただ今DiQtはメンテナンスを行なっております。しばらくしてから、再びアクセスいただければ幸いです。';
 	@override String get maintenance_latest_information => '最新情報はこちら';
 }
 
@@ -1674,6 +1675,7 @@ extension on _TranslationsEn {
 			case 'errors.http_status_510': return '510 Not Extended: Further extensions to the request are required for the server to fulfill it.';
 			case 'errors.http_status_511': return '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
 			case 'users.anonymous_user': return 'Anonymous user';
+			case 'users.creating_account_succeeded': return 'Your account registration has been completed! Welcome to DiQt!';
 			case 'users.show': return 'User Page';
 			case 'users.edit': return 'Account Setting';
 			case 'users.withdraw': return 'Withdraw from DiQt';
@@ -2094,7 +2096,7 @@ extension on _TranslationsEn {
 			case 'home.join_community': return 'Join the community';
 			case 'home.inquiry': return 'Inquiry';
 			case 'home.maintenance_mode': return 'Under maintenance';
-			case 'home.maintenance_description': return 'We are very sorry. The DiQt application is currently undergoing maintenance. We hope you will be able to access it again in a while.';
+			case 'home.maintenance_description': return 'We are very sorry. DiQt is currently undergoing maintenance. We hope you will be able to access it again in a while.';
 			case 'home.maintenance_latest_information': return 'Click here for the latest information.';
 			default: return null;
 		}
@@ -2634,7 +2636,7 @@ extension on _TranslationsJa {
 			case 'home.join_community': return 'コミュニティに参加する';
 			case 'home.inquiry': return 'お問い合わせ';
 			case 'home.maintenance_mode': return 'メンテナンス中';
-			case 'home.maintenance_description': return '大変申し訳ございません。ただ今DiQtのアプリはメンテナンスを行なっております。しばらくしてから、再びアクセスいただければ幸いです。';
+			case 'home.maintenance_description': return '大変申し訳ございません。ただ今DiQtはメンテナンスを行なっております。しばらくしてから、再びアクセスいただければ幸いです。';
 			case 'home.maintenance_latest_information': return '最新情報はこちら';
 			default: return null;
 		}

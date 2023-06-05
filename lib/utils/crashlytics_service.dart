@@ -6,6 +6,9 @@ class CrashlyticsService {
     // 本番環境以外では送信しない。
     if (EnvHandler.isProd()) {
       FirebaseCrashlytics.instance.recordError(exception, stack);
+    } else {
+      // 開発環境などではコンソールログに出力する。
+      print('$exception');
     }
   }
 }

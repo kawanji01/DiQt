@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:booqs_mobile/consts/purchase.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -34,8 +35,8 @@ class PurchaseService {
 
     // アプリ起動時などのコールバック時に実行され、契約状況をDBと同期する。
     Future<void> purchaserInfoUpdated(CustomerInfo info) async {
-      //print('purchaserInfoUpdated: $isExecuting');
-      print('_purchaserInfoUpdated: isEmpty? ${info.entitlements.all.isEmpty}');
+      // print('purchaserInfoUpdated: $isExecuting');
+      // print('_purchaserInfoUpdated: isEmpty? ${info.entitlements.all.isEmpty}');
       if (isExecuting) return;
       await syncSubscription(info);
     }
@@ -66,18 +67,17 @@ class PurchaseService {
       final String offeringId = PurchaseConsts.offeringId;
       final Offering? offering = offerings.getOffering(offeringId);
       if (offering == null) {
-        print(".fetchMonthlyPackage: offering doesn't exist.");
+        // print(".fetchMonthlyPackage: offering doesn't exist.");
         return null;
       }
       final Package? package = offering.monthly;
       if (package == null) {
-        print("fetchMonthlyPackage: Package doesn't exist.");
+        // print("fetchMonthlyPackage: Package doesn't exist.");
         return null;
       }
       return package;
-    } on PlatformException catch (e) {
-      // optional error handling
-      print('.fetchMonthlyPackage: $e');
+    } on PlatformException catch (e, str) {
+      CrashlyticsService.recordError(e, str);
       return null;
     }
   }
@@ -87,21 +87,20 @@ class PurchaseService {
     try {
       final Offerings offerings = await Purchases.getOfferings();
       final String offeringId = PurchaseConsts.offeringId;
-      print(offeringId);
+      // print(offeringId);
       final Offering? offering = offerings.getOffering(offeringId);
       if (offering == null) {
-        print(".fetchAnnualPackage: offering doesn't exist.");
+        // print(".fetchAnnualPackage: offering doesn't exist.");
         return null;
       }
       final Package? package = offering.annual;
       if (package == null) {
-        print("fetchAnnualPackage: Package doesn't exist.");
+        // print("fetchAnnualPackage: Package doesn't exist.");
         return null;
       }
       return package;
-    } on PlatformException catch (e) {
-      // optional error handling
-      print('.fetchAnnualPackage: $e');
+    } on PlatformException catch (e, str) {
+      CrashlyticsService.recordError(e, str);
       return null;
     }
   }
@@ -124,14 +123,15 @@ class PurchaseService {
       } else {
         return false;
       }
-    } on PlatformException catch (e) {
-      var errorCode = PurchasesErrorHelper.getErrorCode(e);
+    } on PlatformException catch (e, str) {
+      CrashlyticsService.recordError(e, str);
+      /* var errorCode = PurchasesErrorHelper.getErrorCode(e);
       if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
         print('purchasePachage: error: $e');
-      }
+      } */
       return false;
-    } catch (e) {
-      print('purchasePachage: error: $e');
+    } catch (e, str) {
+      CrashlyticsService.recordError(e, str);
       return false;
     } finally {
       // errorであれreturnで外部コードに抜ける前であれ、常に実行する。ref: https://ja.javascript.info/try-catch#ref-1685
@@ -172,12 +172,11 @@ class PurchaseService {
         // Display packages for sale
         StoreProduct product = offerings.current!.monthly!.storeProduct;
         String productID = product.identifier;
-        print('productId: $productID');
+        // print('productId: $productID');
         return productID;
       }
-    } on PlatformException catch (e) {
-      // optional error handling
-      print('.fetchProductID: $e');
+    } on PlatformException catch (e, str) {
+      CrashlyticsService.recordError(e, str);
       return '';
     }
     return '';
@@ -199,8 +198,8 @@ class PurchaseService {
       // そのため、あらかじめ購入とわかっている場合には、同期にはsyncSubscriptionではなく、getOrCreateSubscriberを使う。
       final isSubscribed = await getOrCreateSubscriber();
       return isSubscribed;
-    } catch (e) {
-      print('.subscribe: $e');
+    } catch (e, str) {
+      CrashlyticsService.recordError(e, str);
       return false;
     } finally {
       // errorであれreturnで外部コードに抜ける前であれ、常に実行する。ref: https://ja.javascript.info/try-catch#ref-1685
@@ -219,14 +218,14 @@ class PurchaseService {
     // if文は１つでもプレミアムプランがアクティブなら、trueを返す処理 ref: https://docs.revenuecat.com/docs/purchaserinfo#checking-if-a-user-is-subscribed
     // 現状はプランによって提供機能を変えていないためこれで十分
     if (customerInfo.entitlements.active.isNotEmpty) {
-      print(".syncSubscription: There is active");
+      // print(".syncSubscription: There is active");
       isSubscribed = await enablePremiumOnDB();
     } else {
-      print(".syncSubscription: There is no active");
+      // print(".syncSubscription: There is no active");
       // 有効期限が全て切れていたら、DBのpremiumをfalseにする。
       final bool allExpired = isAllExpired(customerInfo);
       if (allExpired) {
-        print(".syncSubscription: All expired");
+        // print(".syncSubscription: All expired");
         disablePremiumOnDB();
       }
       isSubscribed = false;
@@ -296,14 +295,14 @@ class PurchaseService {
   Future<bool> restore() async {
     try {
       isExecuting = true;
-      CustomerInfo restoredInfo = await Purchases.restorePurchases();
+      final CustomerInfo restoredInfo = await Purchases.restorePurchases();
       // リストアできる購入情報が存在しなければ、falseを返す。
       // if文はアクティブなサブスクが一つもなければtrueを返す処理 ref:  https://docs.revenuecat.com/docs/purchaserinfo#checking-if-a-user-is-subscribed
       if (restoredInfo.entitlements.active.isEmpty) return false;
-      bool result = await syncSubscription(restoredInfo);
+      final bool result = await syncSubscription(restoredInfo);
       return result;
-    } on PlatformException catch (e) {
-      print('.restore: $e');
+    } on PlatformException catch (e, str) {
+      CrashlyticsService.recordError(e, str);
       return false;
     } finally {
       isExecuting = false;

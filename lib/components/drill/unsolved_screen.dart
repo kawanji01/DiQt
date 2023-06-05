@@ -46,7 +46,7 @@ class DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
         // 次の問題が読み込まれるかの判断は、QuizUnsolvedContent で行い、通知している。
         // すべてのWeidgetの描画が終わるまで待たないと、初回から実行されてしまう。
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          print('invalidateAsyncDrillUnsolvedQuizzesProvider');
+          // print('invalidateAsyncDrillUnsolvedQuizzesProvider');
           ref.invalidate(asyncDrillUnsolvedQuizzesProvider);
         });
         // trueを返すことで通知がこれ以上遡らない

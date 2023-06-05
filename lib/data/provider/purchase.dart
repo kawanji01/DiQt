@@ -1,4 +1,5 @@
 // 非同期でログイン済ユーザーを取得する
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -12,9 +13,8 @@ final asyncCustomerInfoProvider = FutureProvider<CustomerInfo?>((ref) async {
     //inal purchase = PurchaseService();
     //await purchase.syncSubscription(customerInfo);
     return customerInfo;
-  } on PlatformException catch (e) {
-    // Error fetching customer info
-    print(e);
+  } on PlatformException catch (e, str) {
+    CrashlyticsService.recordError(e, str);
     return null;
   }
 });

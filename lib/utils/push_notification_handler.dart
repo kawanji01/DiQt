@@ -71,7 +71,6 @@ class PushNotificationHandler {
         ?.createNotificationChannel(channel);
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print("フォアグラウンドでメッセージを受け取りました");
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
       // If `onMessage` is triggered with a notification, construct our own
@@ -108,7 +107,6 @@ class PushNotificationHandler {
     });
     // バックグラウンドにある状態で通知がタップされたときの処理
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('A new onMessageOpenedApp event was published!');
       Navigator.pushNamed(context, message.data['route']);
     });
   }

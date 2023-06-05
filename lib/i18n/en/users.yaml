@@ -1,4 +1,5 @@
 anonymous_user: 'Anonymous user'
+creating_account_succeeded: 'Your account registration has been completed! Welcome to DiQt!'
 show: 'User Page'
 edit: 'Account Setting'
 withdraw: 'Withdraw from DiQt'

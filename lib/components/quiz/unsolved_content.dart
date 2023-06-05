@@ -100,19 +100,19 @@ class QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
           if (_isOpaque == false) {
             // 解答済の問題のID
             final List<int> solvedQuizIds = ref.watch(solvedQuizIdsProvider);
-            print('solvedQuizIds');
-            print(solvedQuizIds);
-            print(solvedQuizIds.length);
+            // print('solvedQuizIds');
+            // print(solvedQuizIds);
+            // print(solvedQuizIds.length);
             // loadedQuizIds から solvedQuizIdsを取り除くことで、
             // 読み込まれた問題（ loadedQuizIds ）のうち、実際に画面に表示されている問題のIDを算出する （読み込まれた問題 - 解いた問題のID （solvedQuizIdsProvider））
             loadedQuizIds
                 .removeWhere((int quizId) => solvedQuizIds.contains(quizId));
-            print('loadedQuizIds');
-            print(loadedQuizIds);
-            print(loadedQuizIds.length);
+            // print('loadedQuizIds');
+            // print(loadedQuizIds);
+            // print(loadedQuizIds.length);
             // 画面に表示されている問題がないか、10の倍数の解答数で、次の問題10件を読み込み始める。
             if (solvedQuizIds.length % 10 == 0 || loadedQuizIds.isEmpty) {
-              print("LoadingNext");
+              // print("LoadingNext");
               // 次の問題を読み込むために親（reviewやdrillのscreen）に通知する。
               LoadingUnsolvedQuizzesNotification(true).dispatch(context);
             }

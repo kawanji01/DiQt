@@ -8,6 +8,7 @@ import 'package:booqs_mobile/components/sentence/form/temperature.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -99,8 +100,8 @@ class _SentenceFormGeneratorScreenState
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           Navigator.pop(context);
         }
-      } catch (e) {
-        print(e);
+      } catch (e, str) {
+        CrashlyticsService.recordError(e, str);
         final snackBar = SnackBar(content: Text(t.errors.error_occured));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }

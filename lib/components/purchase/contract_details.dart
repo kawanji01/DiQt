@@ -2,6 +2,7 @@ import 'package:booqs_mobile/components/purchase/app_subscription.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -36,9 +37,8 @@ class _PurchaseContractDetailsState extends State<PurchaseContractDetails> {
         _customerInfo = customerInfo;
         _initDone = true;
       });
-    } on PlatformException catch (e) {
-      // Error fetching customer info
-      print(e);
+    } on PlatformException catch (e, str) {
+      CrashlyticsService.recordError(e, str);
       return;
     }
   }
