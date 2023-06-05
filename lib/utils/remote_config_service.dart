@@ -29,7 +29,7 @@ class RemoteConfigService {
   bool isMaintenanceMode() {
     final String key = EnvHandler.isProd() ? "maintenance" : "maintenance_dev";
     final bool isMaintenanceMode = FirebaseRemoteConfig.instance.getBool(key);
-    print('$key: $isMaintenanceMode');
+    // print('$key: $isMaintenanceMode');
     return isMaintenanceMode;
   }
 }

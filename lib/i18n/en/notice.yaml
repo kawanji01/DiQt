@@ -1,1 +1,4 @@
 notifications: 'Notifications'
+cheered_message: '${name} has cheered you!'
+followed_message: '${name} has followed you!'
+word_request_accepted_message: 'Your edit has been adopted!'

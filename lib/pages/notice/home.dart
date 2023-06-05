@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/pages/activity/index.dart';
 import 'package:booqs_mobile/pages/notice/index.dart';
@@ -32,8 +33,8 @@ class NoticeHomePage extends StatefulWidget {
 
 class _NoticeHomePageState extends State<NoticeHomePage> {
   final List<TabInfo> _tabs = [
-    TabInfo("通知", const NoticeIndexPage()),
-    TabInfo("活動", const ActivityIndexPage()),
+    TabInfo(t.notice.notifications, const NoticeIndexPage()),
+    TabInfo(t.activities.activities, const ActivityIndexPage()),
   ];
 
   @override
@@ -45,8 +46,8 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
       double width = grid * 40;
       return [
-        SizedBox(width: width, child: const Tab(text: '通知')),
-        SizedBox(width: width, child: const Tab(text: '活動')),
+        SizedBox(width: width, child: Tab(text: t.notice.notifications)),
+        SizedBox(width: width, child: Tab(text: t.activities.activities)),
       ];
     }
 

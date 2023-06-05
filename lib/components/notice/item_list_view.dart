@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/components/shared/no_items_found_indicator.dart';
 import 'package:booqs_mobile/components/shared/no_more_items_indicator.dart';
-import 'package:booqs_mobile/data/remote/notifications.dart';
+import 'package:booqs_mobile/data/remote/notices.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/achievement_map.dart';
 import 'package:booqs_mobile/models/notice.dart';
@@ -8,6 +8,7 @@ import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/components/notice/list_item.dart';
 import 'package:booqs_mobile/components/notice/unreceived_achievement.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -23,7 +24,6 @@ class NoticeItemListView extends StatefulWidget {
 class _NoticeItemListViewState extends State<NoticeItemListView> {
   bool _isLoading = false;
   bool _isReached = true;
-
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const _pageSize = 10;
@@ -52,11 +52,15 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
     if (_isReached == false) return;
     _isLoading = true;
 
-    final Map? resMap = await RemoteNotifications.index(pageKey, _pageSize);
+    final Map resMap = await RemoteNotices.index(pageKey, _pageSize);
     // ref: https://github.com/EdsonBueno/infinite_scroll_pagination/issues/64
     if (!mounted) return;
 
-    if (resMap == null) {
+    // エラーの場合の処理
+    if (ErrorHandler.isErrorMap(resMap)) {
+      final String message = ErrorHandler.message(resMap);
+      final snackBar = SnackBar(content: Text(message));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       return setState(() {
         _isLoading = false;
         _isReached = false;
@@ -71,7 +75,7 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
       _pagingController.appendLastPage(notices);
     } else {
       _nextPagekey = pageKey + notices.length;
-      //_pagingController.appendLastPage(notices);
+      // _pagingController.appendLastPage(notices);
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(notices, _nextPagekey);
     }

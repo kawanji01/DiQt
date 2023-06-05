@@ -1,6 +1,7 @@
+import 'package:booqs_mobile/components/notice/word_request_accepted.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/components/notice/achievement.dart';
-import 'package:booqs_mobile/components/notice/cheering.dart';
+import 'package:booqs_mobile/components/notice/cheered.dart';
 import 'package:booqs_mobile/components/notice/followed.dart';
 import 'package:booqs_mobile/components/notice/monthly_report.dart';
 import 'package:booqs_mobile/components/notice/weekly_report.dart';
@@ -23,15 +24,19 @@ class NoticeListItem extends StatelessWidget {
         return NoticeWeeklyReport(notice: notice);
       case 'monthly_report':
         return NoticeMonthlyReport(notice: notice);
+      // 削除予定
       case 'cheering':
-        return NoticeCheering(notice: notice);
+        return NoticeCheered(notice: notice);
+      case 'accept_word_request':
+        return WordRequestAccepted(notice: notice);
+      //
+      case 'cheered':
+        return NoticeCheered(notice: notice);
+      case 'word_request_accepted':
+        return WordRequestAccepted(notice: notice);
+      // case 'word_request_favored':
+      //     return NoticeContinuousAnswer(notice: notice);
 
-      /* case 'accept_word_request':
-          return NoticeContinuousAnswer(notice: notice);
-        case 'approval_for_word_request':
-          return NoticeContinuousAnswer(notice: notice);
-        case 'inquiry_closed':
-          return NoticeContinuousAnswer(notice: notice); */
       default:
         return Text(notifiedType);
     }

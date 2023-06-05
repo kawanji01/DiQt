@@ -7,6 +7,7 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,8 +42,8 @@ class DictionaryMapRadioListState
       if (resMap == null || resMap['dictionary'] == null) return;
       final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
       ref.read(selectedDictionaryProvider.notifier).state = dictionary;
-    } catch (e) {
-      print(e);
+    } catch (e, str) {
+      CrashlyticsService.recordError(e, str);
     }
   }
 

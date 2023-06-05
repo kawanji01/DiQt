@@ -7,6 +7,7 @@ import 'package:booqs_mobile/models/monthly_report.dart';
 import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/models/weekly_report.dart';
+import 'package:booqs_mobile/models/word_request.dart';
 
 class Notice {
   Notice({
@@ -34,6 +35,7 @@ class Notice {
     this.activity,
     this.cheer,
     this.relationship,
+    this.wordRequest,
   });
 
   int id;
@@ -60,6 +62,7 @@ class Notice {
   Activity? activity;
   Cheer? cheer;
   Relationship? relationship;
+  WordRequest? wordRequest;
 
   Notice.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -97,7 +100,10 @@ class Notice {
         cheer = json['cheer'] == null ? null : Cheer.fromJson(json['cheer']),
         relationship = json['relationship'] == null
             ? null
-            : Relationship.fromJson(json['relationship']);
+            : Relationship.fromJson(json['relationship']),
+        wordRequest = json['word_request'] == null
+            ? null
+            : WordRequest.fromJson(json['word_request']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -124,5 +130,6 @@ class Notice {
         'activity': activity,
         'cheer': cheer,
         'relationship': relationship,
+        'word_request': wordRequest,
       };
 }

@@ -72,7 +72,6 @@ class AppBannerState extends ConsumerState<AppBanner> {
     }
 
     if (widget.adSize == null) {
-      print('widget.adSize == null');
       return Container(
         alignment: Alignment.center,
         height: 90,

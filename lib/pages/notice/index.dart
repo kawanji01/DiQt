@@ -1,6 +1,3 @@
-import 'package:booqs_mobile/components/shared/loading_spinner.dart';
-import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
@@ -31,8 +28,6 @@ class NoticeIndexPage extends ConsumerStatefulWidget {
 }
 
 class NoticeIndexPageState extends ConsumerState<NoticeIndexPage> {
-  User? _user;
-
   @override
   void initState() {
     super.initState();
@@ -41,17 +36,12 @@ class NoticeIndexPageState extends ConsumerState<NoticeIndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    _user = ref.watch(currentUserProvider);
-
-    if (_user == null) return const LoadingSpinner();
-
     return SingleChildScrollView(
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(vertical: 28),
         child: Column(
           children: const <Widget>[
-            //_notificationsPageButton(),
             NoticeItemListView(),
             SizedBox(
               height: 80,

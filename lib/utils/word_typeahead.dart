@@ -9,7 +9,7 @@ class WordTypeahead {
     List<String> entries = [];
 
     if (query.isEmpty && query.length < 3) {
-      print('Query needs to be at least 3 chars');
+      // print('Query needs to be at least 3 chars');
       return Future.value([]);
     }
 

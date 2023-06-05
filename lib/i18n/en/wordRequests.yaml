@@ -1,0 +1,5 @@
+addition: 'Addition'
+modification: 'Modification'
+elimination: 'Deletion'
+rejected: 'Rejected'
+pending: 'Pending'
