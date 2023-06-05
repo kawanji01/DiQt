@@ -23,7 +23,7 @@ void main() {
       final User user = UserBuilder().build();
       when(mockRemoteSessions.signUp(any, any, any))
           .thenAnswer((_) async => {'status': 200, 'user': user.toJson()});
-
+      //
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
@@ -41,20 +41,19 @@ void main() {
         ),
       );
 
-      // Act
+      //
       await tester.enterText(
           find.byKey(const Key('nameField')), 'test@example.com');
       await tester.enterText(
           find.byKey(const Key('emailField')), 'test@example.com');
       await tester.enterText(
           find.byKey(const Key('passwordField')), 'password');
-
-      await tester.tap(find.byKey(const Key('signupSubmitButton')));
-      // await tester.pumpAndSettle(); // フレームが安定するまで待つ（これを使うとタイムアウトした）
+      //
+      await tester.tap(find.byKey(
+          const Key('signupSubmitButton'))); // フレームが安定するまで待つ（これを使うとタイムアウトした）
       await tester
           .pump(const Duration(seconds: 1)); // Tapが処理され、スナックバーが表示される時間を待つ
 
-      // Assert
       // SnackBarの成功メッセージの確認
       expect(find.text(t.sessions.sign_up_succeeded), findsOneWidget);
       // 画面遷移の確認
@@ -85,17 +84,14 @@ void main() {
         ),
       );
 
-      // Act
       await tester.enterText(
           find.byKey(const Key('nameField')), 'test@example.com');
       await tester.enterText(
           find.byKey(const Key('emailField')), 'test@example.com');
       await tester.enterText(
           find.byKey(const Key('passwordField')), 'password');
-
       await tester.tap(find.byKey(const Key('signupSubmitButton')));
       await tester.pump(const Duration(seconds: 1)); // Tapが処理される時間を待つ
-      // Assert
       // SnackBarの失敗メッセージの確認
       // 失敗ではサーバー側のメッセージを利用する。
       expect(find.text(failMassage), findsOneWidget);

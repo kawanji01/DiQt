@@ -24,15 +24,17 @@ class WordRequestAccepted extends StatelessWidget {
 
     final Widget message = Container(
       padding: const EdgeInsets.only(top: 16, bottom: 24),
+      alignment: Alignment.centerLeft,
       child: Text(
         t.notice.word_request_accepted_message,
         style: const TextStyle(
-            fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87),
+            fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black87),
       ),
     );
 
     final Widget reference = Container(
-        padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+        padding:
+            const EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(color: Colors.black26)),

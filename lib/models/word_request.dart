@@ -9,7 +9,6 @@ class WordRequest {
     required this.wordId,
     required this.userId,
     required this.entry,
-    required this.previousEntry,
     required this.addition,
     required this.modification,
     required this.elimination,
@@ -27,7 +26,6 @@ class WordRequest {
   int? wordId;
   int? userId;
   String entry;
-  String previousEntry;
   bool addition;
   bool modification;
   bool elimination;
@@ -45,7 +43,6 @@ class WordRequest {
         wordId = json['word_id'],
         userId = json['user_id'],
         entry = json['entry'],
-        previousEntry = json['previous_entry'],
         addition = json['addition'],
         modification = json['modification'],
         elimination = json['elimination'],
@@ -69,7 +66,6 @@ class WordRequest {
         'word_id': wordId,
         'user_id': userId,
         'entry': entry,
-        'previous_entry': previousEntry,
         'addition': addition,
         'modification': modification,
         'elimination': elimination,

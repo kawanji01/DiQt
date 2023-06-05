@@ -32,4 +32,13 @@ class RemoteConfigService {
     // print('$key: $isMaintenanceMode');
     return isMaintenanceMode;
   }
+
+  // アプリの最低バージョン
+  String minAppVersion() {
+    final String key =
+        EnvHandler.isProd() ? "min_app_version" : "min_app_version_dev";
+    final String minAppVersion = FirebaseRemoteConfig.instance.getString(key);
+    print('$key: $minAppVersion');
+    return minAppVersion;
+  }
 }

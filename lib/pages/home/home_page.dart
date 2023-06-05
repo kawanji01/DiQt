@@ -54,15 +54,18 @@ class HomePageState extends ConsumerState<HomePage> {
     if (ref.watch(remoteConfigServiceProvider).isMaintenanceMode()) {
       return const HomeMaintenanceScreen();
     }
-
     //
+    final String minAppVersion =
+        ref.watch(remoteConfigServiceProvider).minAppVersion();
+
     return ref.watch(asyncCurrentUserProvider).when(
           data: (user) {
             final String locale = ref.watch(localeProvider);
             return UpgradeAlert(
               upgrader: Upgrader(
                   // debugDisplayAlways: true,
-                  minAppVersion: '1.4.3',
+                  // remoteConfigで設定したアプリの最低バージョン以下なら、upgradeダイアログを表示する
+                  minAppVersion: minAppVersion,
                   languageCode: locale,
                   messages: UpgraderMessages(code: locale),
                   canDismissDialog: true),

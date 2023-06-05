@@ -45,4 +45,12 @@ class MockRemoteConfigService extends _i1.Mock
         ),
         returnValue: false,
       ) as bool);
+  @override
+  String minAppVersion() => (super.noSuchMethod(
+        Invocation.method(
+          #minAppVersion,
+          [],
+        ),
+        returnValue: '',
+      ) as String);
 }

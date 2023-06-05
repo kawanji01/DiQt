@@ -26,7 +26,7 @@ class NoticeCheered extends StatelessWidget {
               t.notice.cheered_message(name: user.name),
               style: const TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.normal,
                   color: Colors.black87),
             ),
           ),
