@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1064 (532 per locale)
+/// Strings: 1080 (540 per locale)
 ///
-/// Built on 2023-06-04 at 13:49 UTC
+/// Built on 2023-06-05 at 05:13 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -157,6 +157,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
+	late final _TranslationsWordRequestsEn wordRequests = _TranslationsWordRequestsEn._(_root);
 	late final _TranslationsCalendarsEn calendars = _TranslationsCalendarsEn._(_root);
 	late final _TranslationsLayoutsEn layouts = _TranslationsLayoutsEn._(_root);
 	late final _TranslationsDictionaryMapsEn dictionaryMaps = _TranslationsDictionaryMapsEn._(_root);
@@ -359,6 +360,9 @@ class _TranslationsNoticeEn {
 
 	// Translations
 	String get notifications => 'Notifications';
+	String cheered_message({required Object name}) => '${name} has cheered you!';
+	String followed_message({required Object name}) => '${name} has followed you!';
+	String get word_request_accepted_message => 'Your edit has been adopted!';
 }
 
 // Path: achievements
@@ -686,6 +690,20 @@ class _TranslationsActivitiesEn {
 	String get cheered => 'Cheered!';
 }
 
+// Path: wordRequests
+class _TranslationsWordRequestsEn {
+	_TranslationsWordRequestsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get addition => 'Addition';
+	String get modification => 'Modification';
+	String get elimination => 'Deletion';
+	String get rejected => 'Rejected';
+	String get pending => 'Pending';
+}
+
 // Path: calendars
 class _TranslationsCalendarsEn {
 	_TranslationsCalendarsEn._(this._root);
@@ -876,6 +894,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
+	@override late final _TranslationsWordRequestsJa wordRequests = _TranslationsWordRequestsJa._(_root);
 	@override late final _TranslationsCalendarsJa calendars = _TranslationsCalendarsJa._(_root);
 	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
 	@override late final _TranslationsDictionaryMapsJa dictionaryMaps = _TranslationsDictionaryMapsJa._(_root);
@@ -1078,6 +1097,9 @@ class _TranslationsNoticeJa implements _TranslationsNoticeEn {
 
 	// Translations
 	@override String get notifications => '通知';
+	@override String cheered_message({required Object name}) => '${name}があなたを応援しました！';
+	@override String followed_message({required Object name}) => '${name}があなたをフォローしました！';
+	@override String get word_request_accepted_message => 'あなたの編集が採用されました！';
 }
 
 // Path: achievements
@@ -1405,6 +1427,20 @@ class _TranslationsActivitiesJa implements _TranslationsActivitiesEn {
 	@override String get cheered => '応援しました！';
 }
 
+// Path: wordRequests
+class _TranslationsWordRequestsJa implements _TranslationsWordRequestsEn {
+	_TranslationsWordRequestsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get addition => '追加';
+	@override String get modification => '修正';
+	@override String get elimination => '削除';
+	@override String get rejected => '却下済';
+	@override String get pending => '審査中';
+}
+
 // Path: calendars
 class _TranslationsCalendarsJa implements _TranslationsCalendarsEn {
 	_TranslationsCalendarsJa._(this._root);
@@ -1708,6 +1744,9 @@ extension on _TranslationsEn {
 			case 'shared.no_more_items': return ({required Object name}) => 'All ${name} loaded';
 			case 'shared.no_items_found': return ({required Object name}) => 'No ${name} found';
 			case 'notice.notifications': return 'Notifications';
+			case 'notice.cheered_message': return ({required Object name}) => '${name} has cheered you!';
+			case 'notice.followed_message': return ({required Object name}) => '${name} has followed you!';
+			case 'notice.word_request_accepted_message': return 'Your edit has been adopted!';
 			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -1997,6 +2036,11 @@ extension on _TranslationsEn {
 			case 'activities.activities': return 'Activities';
 			case 'activities.cheer': return 'Cheer!';
 			case 'activities.cheered': return 'Cheered!';
+			case 'wordRequests.addition': return 'Addition';
+			case 'wordRequests.modification': return 'Modification';
+			case 'wordRequests.elimination': return 'Deletion';
+			case 'wordRequests.rejected': return 'Rejected';
+			case 'wordRequests.pending': return 'Pending';
 			case 'calendars.sunday': return 'Sun.';
 			case 'calendars.monday': return 'Mon.';
 			case 'calendars.tuesday': return 'Tue.';
@@ -2248,6 +2292,9 @@ extension on _TranslationsJa {
 			case 'shared.no_more_items': return ({required Object name}) => 'すべての${name}を読み込みました';
 			case 'shared.no_items_found': return ({required Object name}) => '${name}がありません';
 			case 'notice.notifications': return '通知';
+			case 'notice.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
+			case 'notice.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
+			case 'notice.word_request_accepted_message': return 'あなたの編集が採用されました！';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
@@ -2537,6 +2584,11 @@ extension on _TranslationsJa {
 			case 'activities.activities': return '活動';
 			case 'activities.cheer': return '応援する!';
 			case 'activities.cheered': return '応援しました！';
+			case 'wordRequests.addition': return '追加';
+			case 'wordRequests.modification': return '修正';
+			case 'wordRequests.elimination': return '削除';
+			case 'wordRequests.rejected': return '却下済';
+			case 'wordRequests.pending': return '審査中';
 			case 'calendars.sunday': return '日';
 			case 'calendars.monday': return '月';
 			case 'calendars.tuesday': return '火';

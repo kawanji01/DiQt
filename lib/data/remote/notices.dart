@@ -14,7 +14,6 @@ class RemoteNotices {
           '${DiQtURL.root()}/api/v1/mobile/notifications?page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
       if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
-
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {

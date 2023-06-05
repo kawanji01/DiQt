@@ -1,1 +1,4 @@
 notifications: '通知'
+cheered_message: '${name}があなたを応援しました！'
+followed_message: '${name}があなたをフォローしました！'
+word_request_accepted_message: 'あなたの編集が採用されました！'

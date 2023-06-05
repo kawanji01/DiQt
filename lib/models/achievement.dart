@@ -10,7 +10,7 @@ class Achievement {
     required this.lockedImageUrl,
     required this.tutorial,
     required this.numberOfAnswers,
-    //required this.daysAnswered,
+    // required this.daysAnswered,
     required this.master,
     required this.createdAt,
     required this.updatedAt,
@@ -26,7 +26,7 @@ class Achievement {
   String lockedImageUrl;
   bool tutorial;
   bool numberOfAnswers;
-  //bool daysAnswered;
+  // bool daysAnswered;
   bool master;
   DateTime createdAt;
   DateTime updatedAt;

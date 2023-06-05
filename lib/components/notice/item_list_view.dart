@@ -75,7 +75,7 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
       _pagingController.appendLastPage(notices);
     } else {
       _nextPagekey = pageKey + notices.length;
-      //_pagingController.appendLastPage(notices);
+      // _pagingController.appendLastPage(notices);
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
       _pagingController.appendPage(notices, _nextPagekey);
     }
