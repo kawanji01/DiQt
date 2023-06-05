@@ -10,13 +10,14 @@ class WordRequestEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     String editType = '';
     if (wordRequest.addition) {
-      editType = t.wordRequests.addition;
+      editType = '${wordRequest.entry} / ${t.wordRequests.addition}';
     }
     if (wordRequest.modification) {
-      editType = t.wordRequests.modification;
+      editType =
+          '${wordRequest.previousEntry} / ${t.wordRequests.modification}';
     }
     if (wordRequest.elimination) {
-      editType = t.wordRequests.elimination;
+      editType = '${wordRequest.previousEntry} / ${t.wordRequests.elimination}';
     }
 
     String status = '';
@@ -27,7 +28,7 @@ class WordRequestEntry extends StatelessWidget {
     }
 
     return Text(
-      '${wordRequest.entry} - $editType $status',
+      '$editType $status',
       style: const TextStyle(
           fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
     );
