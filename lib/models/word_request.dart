@@ -26,8 +26,8 @@ class WordRequest {
   int dictionaryId;
   int? wordId;
   int? userId;
-  String entry;
-  String previousEntry;
+  String? entry;
+  String? previousEntry;
   bool addition;
   bool modification;
   bool elimination;

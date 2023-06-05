@@ -35,6 +35,7 @@ class Dialogs {
   // 主に報酬表示に利用する、拡大するアニメーションのついた報酬モーダルの表示
   // utils/answer/answer_reward.dartで多用
   // staticではないのは、static は mockitoで mock できないため。
+  // barrierDismissibleがfalseでも画面外のタップでダイアログを閉じられないので注意。それがしたいならstaticメソッドのダイアログを利用する。
   Future<void> reward(Widget screen) async {
     await showAnimatedDialog(
       context: navigatorKey.currentContext!,

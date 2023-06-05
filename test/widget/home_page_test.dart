@@ -22,13 +22,14 @@ void main() {
     final mockRemoteConfigService = MockRemoteConfigService();
     testWidgets('Display SignIn screen when user is NOT logged in',
         (WidgetTester tester) async {
-      // メンテナンスモードはfalse
+      // メンテナンスモードは false
       when(mockRemoteConfigService.isMaintenanceMode())
           .thenAnswer((_) => false);
+      // 最低アプリバージョンは、 Pass
+      when(mockRemoteConfigService.minAppVersion()).thenAnswer((_) => '1.0.0');
       final configProviderOverride = remoteConfigServiceProvider
           .overrideWithValue(mockRemoteConfigService);
-
-      // ユーザーはnull
+      // ユーザーは null
       final userProviderOverride = asyncCurrentUserProvider.overrideWith(
         (ref) async => null,
       );
@@ -45,8 +46,6 @@ void main() {
       // Flutterのすべてのアニメーションや非同期の操作が完了するまで待つ関数。
       // これにより、ウィジェットが期待通りに更新されるまでテストを待機させることができる。
       await tester.pumpAndSettle();
-
-      // Check that the HomeSignInScreen widget is found.
       expect(find.byType(HomeSignInScreen), findsOneWidget);
     });
 
@@ -55,6 +54,8 @@ void main() {
       // メンテナンスモードはfalse
       when(mockRemoteConfigService.isMaintenanceMode())
           .thenAnswer((_) => false);
+      // 最低アプリバージョンは、Pass
+      when(mockRemoteConfigService.minAppVersion()).thenAnswer((_) => '1.0.0');
       final configProviderOverride = remoteConfigServiceProvider
           .overrideWithValue(mockRemoteConfigService);
       // ユーザーは存在する
@@ -62,6 +63,7 @@ void main() {
       final userProviderOverride = asyncCurrentUserProvider.overrideWith(
         (ref) async => user, // サインインしているユーザを返すものとして設定する
       );
+      //
 
       await tester.pumpWidget(
         ProviderScope(
@@ -71,23 +73,22 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-
-      // Check that the HomeDictionaryScreen widget is found.
       expect(find.byType(HomeDictionaryScreen), findsOneWidget);
     });
 
     testWidgets('Display maintenance screen', (WidgetTester tester) async {
-      // メンテナンスモードはtrue
+      // メンテナンスモードは、 true
       when(mockRemoteConfigService.isMaintenanceMode()).thenAnswer((_) => true);
+      // 最低アプリバージョンは、 Pass
+      when(mockRemoteConfigService.minAppVersion()).thenAnswer((_) => '1.0.0');
       final configProviderOverride = remoteConfigServiceProvider
           .overrideWithValue(mockRemoteConfigService);
-
-      // ユーザデータを模倣するオブジェクトを作成する
+      // ユーザーデータ を模倣する オブジェクト を作成する。
       final User user = UserBuilder().build();
+      // サインイン している ユーザー を返すものとして設定する。
       final userProviderOverride = asyncCurrentUserProvider.overrideWith(
-        (ref) async => user, // サインインしているユーザを返すものとして設定する
+        (ref) async => user,
       );
-
       await tester.pumpWidget(
         ProviderScope(
           overrides: [userProviderOverride, configProviderOverride],
@@ -96,8 +97,6 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-
-      // Check that the HomeDictionaryScreen widget is found.
       expect(find.byType(HomeMaintenanceScreen), findsOneWidget);
     });
   });

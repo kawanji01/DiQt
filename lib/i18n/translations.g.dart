@@ -3,7 +3,7 @@
 /// Locales: 2
 /// Strings: 1080 (540 per locale)
 ///
-/// Built on 2023-06-05 at 05:13 UTC
+/// Built on 2023-06-05 at 12:39 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -362,7 +362,7 @@ class _TranslationsNoticeEn {
 	String get notifications => 'Notifications';
 	String cheered_message({required Object name}) => '${name} has cheered you!';
 	String followed_message({required Object name}) => '${name} has followed you!';
-	String get word_request_accepted_message => 'Your edit has been adopted!';
+	String get word_request_accepted_message => 'Your dictionary edit has been adopted!';
 }
 
 // Path: achievements
@@ -1099,7 +1099,7 @@ class _TranslationsNoticeJa implements _TranslationsNoticeEn {
 	@override String get notifications => '通知';
 	@override String cheered_message({required Object name}) => '${name}があなたを応援しました！';
 	@override String followed_message({required Object name}) => '${name}があなたをフォローしました！';
-	@override String get word_request_accepted_message => 'あなたの編集が採用されました！';
+	@override String get word_request_accepted_message => 'あなたの辞書の編集が採用されました！';
 }
 
 // Path: achievements
@@ -1746,7 +1746,7 @@ extension on _TranslationsEn {
 			case 'notice.notifications': return 'Notifications';
 			case 'notice.cheered_message': return ({required Object name}) => '${name} has cheered you!';
 			case 'notice.followed_message': return ({required Object name}) => '${name} has followed you!';
-			case 'notice.word_request_accepted_message': return 'Your edit has been adopted!';
+			case 'notice.word_request_accepted_message': return 'Your dictionary edit has been adopted!';
 			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -2294,7 +2294,7 @@ extension on _TranslationsJa {
 			case 'notice.notifications': return '通知';
 			case 'notice.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
 			case 'notice.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
-			case 'notice.word_request_accepted_message': return 'あなたの編集が採用されました！';
+			case 'notice.word_request_accepted_message': return 'あなたの辞書の編集が採用されました！';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
