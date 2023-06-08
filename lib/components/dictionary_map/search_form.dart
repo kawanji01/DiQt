@@ -118,7 +118,7 @@ class DictionaryWordSearchFormState
             },
           ),
           Container(
-            margin: const EdgeInsets.only(top: 20, bottom: 40),
+            margin: const EdgeInsets.only(top: 20),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
