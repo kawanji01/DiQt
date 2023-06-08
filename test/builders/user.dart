@@ -14,6 +14,7 @@ class UserBuilder {
         name: 'John Doe',
         langNumber: langNumber,
         learningLangNumber: learningLangNumber,
+        timeZoneName: 'Tokyo',
         premium: premium,
         appFavored: appFavored,
         achievementMapsCount: 0,

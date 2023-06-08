@@ -32,6 +32,7 @@ class AnswerHistoryBuilder {
       answerAnalysisId: 1,
       answerDate: DateTime.now(),
       intervalStepUp: false,
+      timeZoneName: 'Tokyo',
       updatedAt: DateTime.now(),
       createdAt: DateTime.now(),
     );

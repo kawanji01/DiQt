@@ -14,6 +14,7 @@ class User {
     this.iconImageUrl,
     required this.langNumber,
     required this.learningLangNumber,
+    required this.timeZoneName,
     required this.amountOfExp,
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
@@ -52,14 +53,13 @@ class User {
   String? iconImageUrl;
   int langNumber;
   int learningLangNumber;
+  String timeZoneName;
   int amountOfExp;
   int answerHistoriesCount;
   int todaysAnswerHistoriesCount;
   int todaysCorrectAnswerHistoriesCount;
   int wholeWeekAnswerHistoriesCount;
-
   int wholeMonthAnswerHistoriesCount;
-
   int answerDaysCount;
   int continuousAnswerDaysCount;
   int continuousGoalAchievementCount;
@@ -92,6 +92,7 @@ class User {
         iconImageUrl = json['icon_image_url'],
         langNumber = json['lang_number'] ?? defaultLangNumber,
         learningLangNumber = json['learning_lang_number'] ?? defaultLangNumber,
+        timeZoneName = json['time_zone_name'] ?? 'Tokyo',
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
@@ -157,6 +158,7 @@ class User {
         'icon_image_url': iconImageUrl,
         'lang_number': langNumber,
         'learning_lang_number': learningLangNumber,
+        'time_zone_name': timeZoneName,
         'amount_of_exp': amountOfExp,
         'answer_histories_count': answerHistoriesCount,
         'todays_answer_histories_count': todaysAnswerHistoriesCount,
@@ -164,7 +166,6 @@ class User {
             todaysCorrectAnswerHistoriesCount,
         'whole_week_answer_histories_count': wholeWeekAnswerHistoriesCount,
         'whole_month_answer_histories_count': wholeMonthAnswerHistoriesCount,
-
         'answer_days_count': answerDaysCount,
         'continuous_answer_days_count': continuousAnswerDaysCount,
         'continuous_goal_achievement_count': continuousGoalAchievementCount,
