@@ -36,8 +36,6 @@ class UserBuilder {
         unsolvedWeaknessesCount: 0,
         weaknessesCount: 0,
         wholeMonthAnswerHistoriesCount: 0,
-        wholeMonthsAnswerHistoriesCount: 0,
-        wholeWeekAnswerHistoriesCount: 0,
-        wholeWeeksAnswerHistoriesCount: 0);
+        wholeWeekAnswerHistoriesCount: 0);
   }
 }
