@@ -24,12 +24,6 @@ class NoticeListItem extends StatelessWidget {
         return NoticeWeeklyReport(notice: notice);
       case 'monthly_report':
         return NoticeMonthlyReport(notice: notice);
-      // 削除予定
-      case 'cheering':
-        return NoticeCheered(notice: notice);
-      case 'accept_word_request':
-        return WordRequestAccepted(notice: notice);
-      //
       case 'cheered':
         return NoticeCheered(notice: notice);
       case 'word_request_accepted':
