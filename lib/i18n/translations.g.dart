@@ -3,7 +3,7 @@
 /// Locales: 2
 /// Strings: 1384 (692 per locale)
 ///
-/// Built on 2023-06-09 at 00:05 UTC
+/// Built on 2023-06-09 at 03:01 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -151,8 +151,8 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsDictionariesEn dictionaries = _TranslationsDictionariesEn._(_root);
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
 	late final _TranslationsUsersEn users = _TranslationsUsersEn._(_root);
+	late final _TranslationsNoticesEn notices = _TranslationsNoticesEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
-	late final _TranslationsNoticeEn notice = _TranslationsNoticeEn._(_root);
 	late final _TranslationsAchievementsEn achievements = _TranslationsAchievementsEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
@@ -329,6 +329,19 @@ class _TranslationsUsersEn {
 	String get notification_deliver => 'Receive email notifications';
 }
 
+// Path: notices
+class _TranslationsNoticesEn {
+	_TranslationsNoticesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get notifications => 'Notifications';
+	String cheered_message({required Object name}) => '${name} has cheered you!';
+	String followed_message({required Object name}) => '${name} has followed you!';
+	String get word_request_accepted_message => 'Your dictionary edit has been adopted!';
+}
+
 // Path: shared
 class _TranslationsSharedEn {
 	_TranslationsSharedEn._(this._root);
@@ -352,19 +365,6 @@ class _TranslationsSharedEn {
 	String please_enter({required Object name}) => 'Please enter "${name}"';
 	String no_more_items({required Object name}) => 'All ${name} loaded';
 	String no_items_found({required Object name}) => 'No ${name} found';
-}
-
-// Path: notice
-class _TranslationsNoticeEn {
-	_TranslationsNoticeEn._(this._root);
-
-	final _TranslationsEn _root; // ignore: unused_field
-
-	// Translations
-	String get notifications => 'Notifications';
-	String cheered_message({required Object name}) => '${name} has cheered you!';
-	String followed_message({required Object name}) => '${name} has followed you!';
-	String get word_request_accepted_message => 'Your dictionary edit has been adopted!';
 }
 
 // Path: achievements
@@ -1050,8 +1050,8 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsDictionariesJa dictionaries = _TranslationsDictionariesJa._(_root);
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
 	@override late final _TranslationsUsersJa users = _TranslationsUsersJa._(_root);
+	@override late final _TranslationsNoticesJa notices = _TranslationsNoticesJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
-	@override late final _TranslationsNoticeJa notice = _TranslationsNoticeJa._(_root);
 	@override late final _TranslationsAchievementsJa achievements = _TranslationsAchievementsJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
@@ -1228,6 +1228,19 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get notification_deliver => 'メールによる通知を受け取る';
 }
 
+// Path: notices
+class _TranslationsNoticesJa implements _TranslationsNoticesEn {
+	_TranslationsNoticesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get notifications => '通知';
+	@override String cheered_message({required Object name}) => '${name}があなたを応援しました！';
+	@override String followed_message({required Object name}) => '${name}があなたをフォローしました！';
+	@override String get word_request_accepted_message => 'あなたの辞書の編集が採用されました！';
+}
+
 // Path: shared
 class _TranslationsSharedJa implements _TranslationsSharedEn {
 	_TranslationsSharedJa._(this._root);
@@ -1251,19 +1264,6 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
 	@override String no_more_items({required Object name}) => 'すべての${name}を読み込みました';
 	@override String no_items_found({required Object name}) => '${name}がありません';
-}
-
-// Path: notice
-class _TranslationsNoticeJa implements _TranslationsNoticeEn {
-	_TranslationsNoticeJa._(this._root);
-
-	@override final _TranslationsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String get notifications => '通知';
-	@override String cheered_message({required Object name}) => '${name}があなたを応援しました！';
-	@override String followed_message({required Object name}) => '${name}があなたをフォローしました！';
-	@override String get word_request_accepted_message => 'あなたの辞書の編集が採用されました！';
 }
 
 // Path: achievements
@@ -2052,6 +2052,10 @@ extension on _TranslationsEn {
 			case 'users.new_password_confirmation': return 'Password Confirmation';
 			case 'users.new_password_confirmation_placeholder': return 'Please enter a new password again';
 			case 'users.notification_deliver': return 'Receive email notifications';
+			case 'notices.notifications': return 'Notifications';
+			case 'notices.cheered_message': return ({required Object name}) => '${name} has cheered you!';
+			case 'notices.followed_message': return ({required Object name}) => '${name} has followed you!';
+			case 'notices.word_request_accepted_message': return 'Your dictionary edit has been adopted!';
 			case 'shared.create': return 'Create';
 			case 'shared.edit': return 'Edit';
 			case 'shared.update': return 'Update';
@@ -2068,10 +2072,6 @@ extension on _TranslationsEn {
 			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
 			case 'shared.no_more_items': return ({required Object name}) => 'All ${name} loaded';
 			case 'shared.no_items_found': return ({required Object name}) => 'No ${name} found';
-			case 'notice.notifications': return 'Notifications';
-			case 'notice.cheered_message': return ({required Object name}) => '${name} has cheered you!';
-			case 'notice.followed_message': return ({required Object name}) => '${name} has followed you!';
-			case 'notice.word_request_accepted_message': return 'Your dictionary edit has been adopted!';
 			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -2752,6 +2752,10 @@ extension on _TranslationsJa {
 			case 'users.new_password_confirmation': return 'パスワード確認';
 			case 'users.new_password_confirmation_placeholder': return 'もう一度パスワードを入力してください。';
 			case 'users.notification_deliver': return 'メールによる通知を受け取る';
+			case 'notices.notifications': return '通知';
+			case 'notices.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
+			case 'notices.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
+			case 'notices.word_request_accepted_message': return 'あなたの辞書の編集が採用されました！';
 			case 'shared.create': return '作成する';
 			case 'shared.edit': return '編集する';
 			case 'shared.update': return '更新する';
@@ -2768,10 +2772,6 @@ extension on _TranslationsJa {
 			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
 			case 'shared.no_more_items': return ({required Object name}) => 'すべての${name}を読み込みました';
 			case 'shared.no_items_found': return ({required Object name}) => '${name}がありません';
-			case 'notice.notifications': return '通知';
-			case 'notice.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
-			case 'notice.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
-			case 'notice.word_request_accepted_message': return 'あなたの辞書の編集が採用されました！';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';

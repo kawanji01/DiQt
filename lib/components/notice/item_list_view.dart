@@ -128,10 +128,10 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
         newPageProgressIndicatorBuilder: (_) => loader(),
         noItemsFoundIndicatorBuilder: (_) => NoItemsFoundIndicator(
-          itemName: t.notice.notifications,
+          itemName: t.notices.notifications,
         ),
         noMoreItemsIndicatorBuilder: (_) => NoMoreItemsIndicator(
-          itemName: t.notice.notifications,
+          itemName: t.notices.notifications,
         ),
       ),
     );

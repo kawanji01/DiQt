@@ -16,7 +16,7 @@ final asyncUnsolvedReviewsProvider = FutureProvider<List<Review>>((ref) async {
   final Map? resMap = await RemoteReviews.index(order);
   if (resMap == null) return reviews;
 
-  User user = User.fromJson(resMap['user']);
+  final User user = User.fromJson(resMap['user']);
   ref.read(currentUserProvider.notifier).update(user);
   // ホーム画面のアプリのバッジを更新する
   await AppBadgerService.updateReviewBadge(user.unsolvedReviewsCount);
@@ -27,6 +27,5 @@ final asyncUnsolvedReviewsProvider = FutureProvider<List<Review>>((ref) async {
   ref.read(loadedQuizIdsProvider.notifier).state = loadedQuizIds;
   // 解答済の問題IDをリセットする
   ref.read(solvedQuizIdsProvider.notifier).state = [];
-
   return reviews;
 });
