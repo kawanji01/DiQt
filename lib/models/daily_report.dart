@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/consts/time_zone.dart';
+
 class DailyReport {
   DailyReport({
     this.id = 0,
@@ -70,7 +72,7 @@ class DailyReport {
         continuousReviewComtpletionCount =
             json['continuous_review_comtpletion_count'],
         reviewsCount = json['reviews_count'],
-        timeZoneName = json['time_zone_name'] ?? 'Tokyo',
+        timeZoneName = json['time_zone_name'] ?? defaultTimeZone,
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']);
 

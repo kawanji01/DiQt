@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/time_zone.dart';
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
@@ -80,7 +81,7 @@ class AnswerHistory {
         continuationAllWeek = json['continuation_all_week'],
         continuationAllMonth = json['continuation_all_month'],
         continuationAllYear = json['continuation_all_year'],
-        timeZoneName = json['time_zone_name'] ?? 'Tokyo',
+        timeZoneName = json['time_zone_name'] ?? defaultTimeZone,
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         user = json['user'] == null ? null : User.fromJson(json['user']),

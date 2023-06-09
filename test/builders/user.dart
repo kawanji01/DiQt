@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/consts/language.dart';
+import 'package:booqs_mobile/consts/time_zone.dart';
 import 'package:booqs_mobile/models/user.dart';
 
 class UserBuilder {
@@ -14,7 +15,7 @@ class UserBuilder {
         name: 'John Doe',
         langNumber: langNumber,
         learningLangNumber: learningLangNumber,
-        timeZoneName: 'Tokyo',
+        timeZoneName: defaultTimeZone,
         premium: premium,
         appFavored: appFavored,
         achievementMapsCount: 0,

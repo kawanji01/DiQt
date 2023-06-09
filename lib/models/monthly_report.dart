@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/consts/time_zone.dart';
+
 class MonthlyReport {
   MonthlyReport({
     this.id = 0,
@@ -34,7 +36,7 @@ class MonthlyReport {
         measuredDate = json['measured_date'] == null
             ? null
             : DateTime.parse(json['measured_date']),
-        timeZoneName = json['time_zone_name'] ?? 'Tokyo',
+        timeZoneName = json['time_zone_name'] ?? defaultTimeZone,
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']);
 

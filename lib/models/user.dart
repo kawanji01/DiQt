@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/consts/language.dart';
+import 'package:booqs_mobile/consts/time_zone.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
@@ -92,7 +93,7 @@ class User {
         iconImageUrl = json['icon_image_url'],
         langNumber = json['lang_number'] ?? defaultLangNumber,
         learningLangNumber = json['learning_lang_number'] ?? defaultLangNumber,
-        timeZoneName = json['time_zone_name'] ?? 'Tokyo',
+        timeZoneName = json['time_zone_name'] ?? defaultTimeZone,
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
