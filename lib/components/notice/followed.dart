@@ -23,7 +23,7 @@ class NoticeFollowed extends StatelessWidget {
           UserFeedIcon(user: user),
           Expanded(
             child: Text(
-              t.notice.followed_message(name: user.name),
+              t.notices.followed_message(name: user.name),
               style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black87,

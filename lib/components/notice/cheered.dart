@@ -23,7 +23,7 @@ class NoticeCheered extends StatelessWidget {
           UserFeedIcon(user: user),
           Expanded(
             child: Text(
-              t.notice.cheered_message(name: user.name),
+              t.notices.cheered_message(name: user.name),
               style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,

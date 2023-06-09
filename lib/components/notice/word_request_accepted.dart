@@ -26,7 +26,7 @@ class WordRequestAccepted extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16, bottom: 24),
       alignment: Alignment.centerLeft,
       child: Text(
-        t.notice.word_request_accepted_message,
+        t.notices.word_request_accepted_message,
         style: const TextStyle(
             fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black87),
       ),

@@ -4,13 +4,14 @@ import 'dart:io';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:http/http.dart';
 
 class RemoteQuizzes {
   // 問題を解答する / quizzes/:id/answer
-  static Future<Map?> answer(
+  static Future<Map> answer(
       AnswerNotification notification, String answerType) async {
     try {
       final Quiz quiz = notification.quiz;
@@ -20,23 +21,21 @@ class RemoteQuizzes {
         'correct': '${notification.correct}',
         'answer_type': answerType,
       };
+      // return ErrorHandler.exceptionMap('Error Test', null);
 
       final Uri url = Uri.parse(
           '${DiQtURL.root()}/api/v1/mobile/quizzes/${quiz.id}/answer');
       final Response res = await HttpService.post(url, body);
 
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 

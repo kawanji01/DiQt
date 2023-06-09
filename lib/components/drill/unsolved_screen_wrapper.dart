@@ -10,6 +10,7 @@ import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/answer/answer_feeback.dart';
 import 'package:booqs_mobile/utils/answer/answer_reward.dart';
 import 'package:booqs_mobile/components/drill/unsolved_screen.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -35,16 +36,25 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
 
     // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。
     Future<void> requestReview(notification) async {
-      Map? resMap = await RemoteQuizzes.answer(notification, 'drill');
-      if (resMap == null) return;
-      updateProviders(resMap);
-      final AnswerCreator answerCreator =
-          AnswerCreator.fromJson(resMap['answer_creator']);
-      AnswerFeedback.call(answerCreator);
-      final bool effectEnabled = ref.watch(effectEnabledProvider);
-      if (effectEnabled == false) return;
-      // 効果設定が有効なら報酬を表示する
-      await AnswerReward.call(answerCreator);
+      final Map resMap = await RemoteQuizzes.answer(notification, 'drill');
+      if (ErrorHandler.isErrorMap(resMap)) {
+        // ネットワーク接続が切れたり、エラーが発生した場合には通知
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+          final String message = ErrorHandler.message(resMap);
+          final snackBar = SnackBar(content: Text(message));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      } else {
+        updateProviders(resMap);
+        final AnswerCreator answerCreator =
+            AnswerCreator.fromJson(resMap['answer_creator']);
+        AnswerFeedback.call(answerCreator);
+        final bool effectEnabled = ref.watch(effectEnabledProvider);
+        if (effectEnabled == false) return;
+        // 効果設定が有効なら報酬を表示する
+        await AnswerReward.call(answerCreator);
+      }
     }
 
     return NotificationListener<AnswerNotification>(

@@ -33,7 +33,7 @@ class NoticeHomePage extends StatefulWidget {
 
 class _NoticeHomePageState extends State<NoticeHomePage> {
   final List<TabInfo> _tabs = [
-    TabInfo(t.notice.notifications, const NoticeIndexPage()),
+    TabInfo(t.notices.notifications, const NoticeIndexPage()),
     TabInfo(t.activities.activities, const ActivityIndexPage()),
   ];
 
@@ -46,7 +46,7 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
       double width = grid * 40;
       return [
-        SizedBox(width: width, child: Tab(text: t.notice.notifications)),
+        SizedBox(width: width, child: Tab(text: t.notices.notifications)),
         SizedBox(width: width, child: Tab(text: t.activities.activities)),
       ];
     }
