@@ -1,11 +1,10 @@
+import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/consts/time_zone.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/time_zone_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../shared/item_label.dart';
 
 class UserFormTimeZoneName extends ConsumerWidget {
   const UserFormTimeZoneName({super.key});
