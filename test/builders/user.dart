@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/consts/language.dart';
+import 'package:booqs_mobile/consts/time_zone.dart';
 import 'package:booqs_mobile/models/user.dart';
 
 class UserBuilder {
@@ -14,6 +15,7 @@ class UserBuilder {
         name: 'John Doe',
         langNumber: langNumber,
         learningLangNumber: learningLangNumber,
+        timeZoneName: defaultTimeZone,
         premium: premium,
         appFavored: appFavored,
         achievementMapsCount: 0,
@@ -36,8 +38,6 @@ class UserBuilder {
         unsolvedWeaknessesCount: 0,
         weaknessesCount: 0,
         wholeMonthAnswerHistoriesCount: 0,
-        wholeMonthsAnswerHistoriesCount: 0,
-        wholeWeekAnswerHistoriesCount: 0,
-        wholeWeeksAnswerHistoriesCount: 0);
+        wholeWeekAnswerHistoriesCount: 0);
   }
 }

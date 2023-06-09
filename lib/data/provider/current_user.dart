@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/consts/language.dart';
+import 'package:booqs_mobile/consts/time_zone.dart';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
@@ -85,6 +86,12 @@ final userLangNumberProvider = StateProvider<int>((ref) {
 final userLearningLangNumberProvider = StateProvider<int>((ref) {
   return ref.watch(currentUserProvider
       .select((user) => user?.learningLangNumber ?? defaultLangNumber));
+});
+
+//
+final userTimeZoneNameProvider = StateProvider<String>((ref) {
+  return ref.watch(currentUserProvider
+      .select((user) => user?.timeZoneName ?? defaultTimeZone));
 });
 
 //// 手動で書き換える必要ないログインユーザーの情報（Providerを利用） ////

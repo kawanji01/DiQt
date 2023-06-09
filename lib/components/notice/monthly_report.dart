@@ -16,9 +16,15 @@ class NoticeMonthlyReport extends StatelessWidget {
       return Text(('InvalidNotification: ID:${notice.id}'));
     }
 
-    final MonthlyReport report = notice.monthlyReport!;
+    final MonthlyReport monthlyReport = notice.monthlyReport!;
+    DateTime? measuredDate = monthlyReport.measuredAt;
+    measuredDate ??= monthlyReport.measuredDate;
+    if (measuredDate == null) {
+      return Container();
+    }
+
     final dateFormat = DateFormat('yyyy年MM月');
-    final String firstDate = dateFormat.format(report.measuredAt);
+    final String firstDate = dateFormat.format(measuredDate);
 
     final Widget messageText = RichText(
       text: TextSpan(
@@ -79,7 +85,7 @@ class NoticeMonthlyReport extends StatelessWidget {
 
     Widget rankImage() {
       final String rankImageUrl =
-          "https://res.cloudinary.com/hkbyf3jop/image/upload/l_text:Sawarabi%20Gothic_56_bold:${report.rank}位,co_rgb:faf0a2,w_360,y_-32/v1589085558/ranking_monthly_gold.png";
+          "https://res.cloudinary.com/hkbyf3jop/image/upload/l_text:Sawarabi%20Gothic_56_bold:${monthlyReport.rank}位,co_rgb:faf0a2,w_360,y_-32/v1589085558/ranking_monthly_gold.png";
       //if (report.rank == null || report.rank! > 100) return Container();
       return CachedNetworkImage(
         imageUrl: rankImageUrl,
@@ -92,7 +98,7 @@ class NoticeMonthlyReport extends StatelessWidget {
       //if (report.rank == null || report.rank! > 100) return Container();
 
       const String label = '月間ランキング';
-      final String value = '${report.rank}位';
+      final String value = '${monthlyReport.rank}位';
       return information(label, value);
     }
 
@@ -104,8 +110,7 @@ class NoticeMonthlyReport extends StatelessWidget {
         rankImage(),
         const SizedBox(height: 8),
         rankInfo(),
-        information('解答数', '${report.numberOfAnswers}回'),
-        //_information('解答日数', '${report.daysAnswered}日'),
+        information('解答数', '${monthlyReport.numberOfAnswers}回'),
         const SizedBox(height: 48),
       ],
     );

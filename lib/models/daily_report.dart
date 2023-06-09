@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/consts/time_zone.dart';
+
 class DailyReport {
   DailyReport({
     this.id = 0,
@@ -20,6 +22,7 @@ class DailyReport {
     required this.strictReviewingMode,
     this.continuousReviewComtpletionCount,
     this.reviewsCount,
+    required this.timeZoneName,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -43,6 +46,7 @@ class DailyReport {
   bool strictReviewingMode;
   int? continuousReviewComtpletionCount;
   int? reviewsCount;
+  String timeZoneName;
   DateTime createdAt;
   DateTime updatedAt;
 
@@ -68,6 +72,7 @@ class DailyReport {
         continuousReviewComtpletionCount =
             json['continuous_review_comtpletion_count'],
         reviewsCount = json['reviews_count'],
+        timeZoneName = json['time_zone_name'] ?? defaultTimeZone,
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']);
 
@@ -92,6 +97,7 @@ class DailyReport {
         'strict_reviewing_mode': strictReviewingMode,
         'continuous_review_comtpletion_count': continuousReviewComtpletionCount,
         'reviews_count': reviewsCount,
+        'time_zone_name': timeZoneName,
         'created_at': createdAt,
         'updated_at': updatedAt,
       };

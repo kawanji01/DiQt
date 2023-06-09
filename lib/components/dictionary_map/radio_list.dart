@@ -102,7 +102,7 @@ class DictionaryMapRadioListState
                     buildListRow(dictionaries, index),
                 separatorBuilder: (context, index) => const Divider(),
                 itemCount: dictionaries.length,
-                padding: const EdgeInsets.only(bottom: 120),
+                padding: const EdgeInsets.only(top: 48, bottom: 120),
               );
             },
             error: (err, stack) => Text('Error: $err'),

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/time_zone.dart';
 import 'package:booqs_mobile/models/answer_history.dart';
 
 class AnswerHistoryBuilder {
@@ -32,6 +33,7 @@ class AnswerHistoryBuilder {
       answerAnalysisId: 1,
       answerDate: DateTime.now(),
       intervalStepUp: false,
+      timeZoneName: defaultTimeZone,
       updatedAt: DateTime.now(),
       createdAt: DateTime.now(),
     );

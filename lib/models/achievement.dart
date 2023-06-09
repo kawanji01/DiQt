@@ -2,6 +2,7 @@ class Achievement {
   Achievement({
     required this.id,
     required this.orderNumber,
+    required this.i18nKey,
     required this.name,
     this.introduction,
     this.praiseText,
@@ -10,7 +11,7 @@ class Achievement {
     required this.lockedImageUrl,
     required this.tutorial,
     required this.numberOfAnswers,
-    // required this.daysAnswered,
+    required this.daysAnswered,
     required this.master,
     required this.createdAt,
     required this.updatedAt,
@@ -18,6 +19,7 @@ class Achievement {
 
   int id;
   int orderNumber;
+  String i18nKey;
   String name;
   String? introduction;
   String? praiseText;
@@ -26,7 +28,7 @@ class Achievement {
   String lockedImageUrl;
   bool tutorial;
   bool numberOfAnswers;
-  // bool daysAnswered;
+  bool daysAnswered;
   bool master;
   DateTime createdAt;
   DateTime updatedAt;
@@ -34,6 +36,7 @@ class Achievement {
   Achievement.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         orderNumber = json['order_number'],
+        i18nKey = json['i18n_key'] ?? '',
         name = json['name'] ?? '',
         introduction = json['introduction'] ?? '',
         praiseText = json['praise_text'] ?? '',
@@ -42,7 +45,7 @@ class Achievement {
         lockedImageUrl = json['cloudinary_image_locked'] ?? '',
         tutorial = json['tutorial'],
         numberOfAnswers = json['number_of_answers'],
-        //daysAnswered = json['days_answered'],
+        daysAnswered = json['days_answered'],
         master = json['master'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']);
@@ -50,6 +53,7 @@ class Achievement {
   Map<String, dynamic> toJson() => {
         'id': id,
         'order_number': orderNumber,
+        'i18n_key': i18nKey,
         'name': name,
         'introduction': introduction,
         'praise_text': praiseText,
@@ -58,7 +62,7 @@ class Achievement {
         'cloudinary_image_locked': lockedImageUrl,
         'tutorial': tutorial,
         'number_of_answers': numberOfAnswers,
-        //'days_answered': daysAnswered,
+        'days_answered': daysAnswered,
         'master': master,
         'created_at': createdAt,
         'updated_at': updatedAt,

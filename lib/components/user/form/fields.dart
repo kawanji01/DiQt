@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/user/form/lang_number.dart';
 import 'package:booqs_mobile/components/user/form/learning_lang_number.dart';
+import 'package:booqs_mobile/components/user/form/time_zone_name.dart';
 import 'package:booqs_mobile/components/user/form/withdrawal_button.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
@@ -62,6 +63,7 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
         'profile': _profileController.text,
         'lang_number': ref.watch(userLangNumberProvider),
         'learning_lang_number': ref.watch(userLearningLangNumberProvider),
+        'time_zone_name': ref.watch(userTimeZoneNameProvider),
       };
       try {
         final Map? resMap = await RemoteUsers.update(params);
@@ -135,6 +137,8 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
               const UserFormLangNumber(),
               const SizedBox(height: 32),
               const UserFormLearningLangNumber(),
+              const SizedBox(height: 32),
+              const UserFormTimeZoneName(),
               const SizedBox(height: 64),
               InkWell(
                   onTap: _isRequesting
