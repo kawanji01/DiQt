@@ -100,7 +100,8 @@ class ReviewSettingSmallButtonState
 
     // 復習の更新ボタン
     Widget editButton(review) {
-      final String label = ReviewHelper.intervalSetting(review.intervalSetting);
+      final String label =
+          ReviewHelper.reviewButtonLabel(review.intervalSetting);
       return InkWell(
         onTap: () {
           updateReview(review);

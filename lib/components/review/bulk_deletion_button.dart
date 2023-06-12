@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/components/review/bulk_deletion_screen.dart';
@@ -13,8 +14,8 @@ class ReviewBulkDeletionButton extends ConsumerWidget {
     final bool isPremium = ref.watch(premiumEnabledProvider);
 
     final RichText richText = RichText(
-        text: const TextSpan(children: [
-      WidgetSpan(
+        text: TextSpan(children: [
+      const WidgetSpan(
         child: Icon(
           Icons.delete,
           color: Colors.red,
@@ -22,8 +23,8 @@ class ReviewBulkDeletionButton extends ConsumerWidget {
         ),
       ),
       TextSpan(
-          text: 'すべての復習を削除する',
-          style: TextStyle(
+          text: t.reviews.cancel_all_schedules,
+          style: const TextStyle(
               color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold))
     ]));
 
@@ -32,8 +33,8 @@ class ReviewBulkDeletionButton extends ConsumerWidget {
         if (isPremium) {
           Dialogs.slideFromBottomFade(const ReviewBulkDeletionScreen());
         } else {
-          const snackBar =
-              SnackBar(content: Text('復習の全削除機能を利用するためには、プレミアムプランへの登録が必要です。'));
+          final snackBar =
+              SnackBar(content: Text(t.plans.this_is_premium_plan_feature));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           PremiumPlanPage.push(context);
         }

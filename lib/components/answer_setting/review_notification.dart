@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/helpers/answer_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -72,8 +73,10 @@ class AnswerSettingReviewNotification extends ConsumerWidget {
 
     Widget reviewNotificationEnabled() {
       return SwitchListTile(
-        title: const Text('通知を受け取る',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(t.answerSettings.review_notification_enabled,
+            style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle:
+            Text(t.answerSettings.review_notification_enabled_description),
         value: ref.watch(reviewNotificationEnabledProvider),
         onChanged: (bool value) {
           ref.read(reviewNotificationEnabledProvider.notifier).state = value;
@@ -84,13 +87,7 @@ class AnswerSettingReviewNotification extends ConsumerWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        heading,
-        const SizedBox(height: 4),
-        explanation,
-        reviewNotificationEnabled(),
-        buildDropDown()
-      ],
+      children: [reviewNotificationEnabled(), buildDropDown()],
     );
   }
 }

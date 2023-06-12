@@ -93,7 +93,8 @@ class _ReviewSettingLargeButtonState extends State<ReviewSettingLargeButton> {
 
     // 復習の更新ボタン
     Widget editButton(Review review) {
-      final String label = ReviewHelper.intervalSetting(review.intervalSetting);
+      final String label =
+          ReviewHelper.reviewButtonLabel(review.intervalSetting);
       return InkWell(
         onTap: () {
           editReview(review);

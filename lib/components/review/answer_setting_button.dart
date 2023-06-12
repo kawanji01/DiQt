@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/review.dart';
 import 'package:booqs_mobile/components/answer_setting/screen.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -37,9 +38,9 @@ class ReviewAnswerSettingButton extends ConsumerWidget {
         Icons.settings,
         color: Colors.black54,
       ),
-      label: const Text(
-        ' 設定を変更する',
-        style: TextStyle(
+      label: Text(
+        ' ${t.answerSettings.change_settings}',
+        style: const TextStyle(
             fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54),
       ),
     );

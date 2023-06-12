@@ -48,9 +48,7 @@ class SessionLoginFormState extends ConsumerState<SessionLoginForm> {
       if (!mounted) return;
       if (ErrorHandler.isErrorMap(resMap)) {
         _passwordController.clear();
-        final message = ErrorHandler.message(resMap, useServerMessage: true);
-        final snackBar = SnackBar(content: Text(message));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        ErrorHandler.showErrorSnackBar(context, resMap);
       } else {
         final User user = User.fromJson(resMap['user']);
         final snackBar = SnackBar(content: Text(t.sessions.login_succeeded));

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class ReviewFormQuizButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.topRight,
+      alignment: Alignment.bottomLeft,
       child: TextButton(
         style: TextButton.styleFrom(
           foregroundColor: Colors.black54,
@@ -20,9 +21,9 @@ class ReviewFormQuizButton extends StatelessWidget {
         onPressed: () {
           QuizShowPage.push(context, review.quizId);
         },
-        child: const Text(
-          '復習する問題',
-          style: TextStyle(
+        child: Text(
+          t.reviews.details_of_the_question,
+          style: const TextStyle(
             decoration: TextDecoration.underline,
           ),
         ),

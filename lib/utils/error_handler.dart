@@ -1,9 +1,22 @@
 import 'dart:convert';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class ErrorHandler {
+  // レスポンスがエラーか判別する
+  static bool isErrorResponse(Response res) {
+    final int statusCode = res.statusCode;
+    return statusCode < 200 || statusCode >= 300;
+  }
+
+  // Mapがエラーか判別する
+  static bool isErrorMap(Map resMap) {
+    final int statusCode = resMap['status'];
+    return statusCode < 200 || statusCode >= 300;
+  }
+
   // エラーメッセージを返す
   static String message(Map resMap, {bool useServerMessage = false}) {
     final int status = resMap['status'];
@@ -15,16 +28,15 @@ class ErrorHandler {
     return systemMessage;
   }
 
-  // レスポンスがエラーか判別する
-  static bool isErrorResponse(Response res) {
-    final int statusCode = res.statusCode;
-    return statusCode < 200 || statusCode >= 300;
-  }
-
-  // Mapがエラーか判別する
-  static bool isErrorMap(Map resMap) {
-    final int statusCode = resMap['status'];
-    return statusCode < 200 || statusCode >= 300;
+  // エラーをスナックバーで表示する
+  static void showErrorSnackBar(BuildContext context, Map resMap,
+      {serverSideMessage = false}) {
+    // 画面に表示されてるスナックバーを消す
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    final message =
+        ErrorHandler.message(resMap, useServerMessage: serverSideMessage);
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   // エラー用のmapを返す

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/components/review/form/destroy_button.dart';
@@ -12,26 +13,27 @@ class ReviewFormStatus extends StatelessWidget {
     final heading = Container(
       alignment: Alignment.center,
       child: RichText(
-          text: const TextSpan(children: [
-        WidgetSpan(
+          text: TextSpan(children: [
+        const WidgetSpan(
           child: Icon(
             Icons.alarm,
             color: Colors.green,
             size: 30,
           ),
         ),
+        const TextSpan(text: ' '),
         TextSpan(
-            text: '復習設定',
-            style: TextStyle(
+            text: t.reviews.set_review,
+            style: const TextStyle(
                 color: Colors.green, fontSize: 28, fontWeight: FontWeight.bold))
       ])),
     );
     // 設定されている復習予定日
     final scheduledDate = RichText(
         text: TextSpan(children: [
-      const TextSpan(
-          text: '復習予定日：',
-          style: TextStyle(
+      TextSpan(
+          text: '${t.reviews.scheduled_date}：',
+          style: const TextStyle(
               color: Colors.black87,
               fontSize: 16,
               fontWeight: FontWeight.normal)),
@@ -46,14 +48,14 @@ class ReviewFormStatus extends StatelessWidget {
     // 設定されている復習間隔
     final reviewInterval = RichText(
         text: TextSpan(children: [
-      const TextSpan(
-          text: '復習間隔：',
-          style: TextStyle(
+      TextSpan(
+          text: '${t.reviews.interval}：',
+          style: const TextStyle(
               color: Colors.black87,
               fontSize: 16,
               fontWeight: FontWeight.normal)),
       TextSpan(
-          text: ReviewHelper.intervalSetting(review.intervalSetting),
+          text: ReviewHelper.intervalText(review.intervalSetting),
           style: const TextStyle(
               color: Colors.black87,
               fontSize: 16,

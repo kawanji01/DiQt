@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1384 (692 per locale)
+/// Strings: 1632 (816 per locale)
 ///
-/// Built on 2023-06-09 at 03:01 UTC
+/// Built on 2023-06-12 at 00:53 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -149,15 +149,18 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	// Translations
 	late final _TranslationsSessionsEn sessions = _TranslationsSessionsEn._(_root);
 	late final _TranslationsDictionariesEn dictionaries = _TranslationsDictionariesEn._(_root);
+	late final _TranslationsReviewsEn reviews = _TranslationsReviewsEn._(_root);
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
 	late final _TranslationsUsersEn users = _TranslationsUsersEn._(_root);
 	late final _TranslationsNoticesEn notices = _TranslationsNoticesEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
+	late final _TranslationsAnswerSettingsEn answerSettings = _TranslationsAnswerSettingsEn._(_root);
 	late final _TranslationsAchievementsEn achievements = _TranslationsAchievementsEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
 	late final _TranslationsTimeZoneEn timeZone = _TranslationsTimeZoneEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
+	late final _TranslationsPlansEn plans = _TranslationsPlansEn._(_root);
 	late final _TranslationsWordRequestsEn wordRequests = _TranslationsWordRequestsEn._(_root);
 	late final _TranslationsCalendarsEn calendars = _TranslationsCalendarsEn._(_root);
 	late final _TranslationsLayoutsEn layouts = _TranslationsLayoutsEn._(_root);
@@ -247,6 +250,45 @@ class _TranslationsDictionariesEn {
 	String get no_addition_permission => 'You don\'t have create permission.';
 	String get no_modification_permission => 'You don\'t have update permission.';
 	String get no_elimination_permission => 'You don\'t have delete permission.';
+}
+
+// Path: reviews
+class _TranslationsReviewsEn {
+	_TranslationsReviewsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get reviews => 'Reviews';
+	String get unreviewed => 'Unreviewed';
+	String get scheduled => 'Scheduled';
+	String get all => 'All';
+	String get order => 'Order';
+	String get random => 'Random';
+	String get scheduled_date_desc => 'Latest scheduled';
+	String get scheduled_date_asc => 'Oldest scheduled';
+	String get empty => 'There are no review questions.';
+	String get memorize => 'Reminder';
+	String get set_review => 'Set Review';
+	String get scheduled_date => 'Scheduled Date';
+	String get interval => 'Review Interval';
+	String get destroy => 'Cancel the review schedule';
+	String get tomorrow => 'Tomorrow';
+	String get after_3_days => '3 days later';
+	String get after_a_week => 'A week later';
+	String get after_2_week => '2 weeks later';
+	String get after_3_week => '3 weeks later';
+	String get after_a_month => 'A month later';
+	String get after_2_month => '2 months later';
+	String get after_3_month => '3 months later';
+	String get after_6_month => '6 months later';
+	String get after_a_year => 'A year later';
+	String review_for({required Object interval}) => 'Review ${interval}';
+	String has_been_set_for({required Object interval}) => 'The review has been set for ${interval}';
+	String get schedule_canceled => 'Review schedule canceled.';
+	String get cancel_all_schedules => 'Cancel All Review Schedules';
+	String get all_schedules_canceled => 'All review schedules cancelled.';
+	String get details_of_the_question => 'Details of the question to be reviewed';
 }
 
 // Path: errors
@@ -360,11 +402,84 @@ class _TranslationsSharedEn {
 	String get search => 'Search';
 	String get generate => 'Generate';
 	String get send => 'Send';
+	String get set_up => 'Set Up';
 	String get undefined => 'Undefined';
 	String get details => 'Details';
+	String get view_details => 'View Details';
+	String get view_more => 'View More';
 	String please_enter({required Object name}) => 'Please enter "${name}"';
 	String no_more_items({required Object name}) => 'All ${name} loaded';
 	String no_items_found({required Object name}) => 'No ${name} found';
+}
+
+// Path: answerSettings
+class _TranslationsAnswerSettingsEn {
+	_TranslationsAnswerSettingsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Answer & Review Setting';
+	String get answer_setting => 'Answer Setting';
+	String get daily_goal => 'Daily target';
+	String get daily_goal_description => 'Set a target number of answers per day.';
+	String get daily_goal_cant_be_changed => 'The target cannot be changed as it has already been achieved today.';
+	String get question_cover => 'Question Cover';
+	String get question_cover_description => 'Questions where the question text is read out loud, and a sheet can be displayed to hide the question text. Mainly useful for strengthening listening skills.';
+	String get choices_cover => 'Choices Cover';
+	String get choices_cover_description => 'In choice questions, you can display a sheet that hides the choices.';
+	String get strict_solving_mode => 'Strict Answer Mode';
+	String get strict_solving_mode_description => 'Unanswered questions in the question booklet are only marked as answered if they are answered correctly, not just answered.';
+	String get se_enabled => 'Sound Effects';
+	String get effect_enabled => 'Display the reward screen';
+	String get review_setting => 'Review Setting';
+	String get strict_reviewing_mode => 'Strict Review Mode';
+	String get strict_reviewing_mode_description => 'The condition for removing a question from the unreviewed is only if it is answered correctly, not just answered.';
+	String get initial_interval => 'Initial Interval';
+	String get initial_interval_description => 'You can decide the interval between review sessions, which are set automatically when you press the \'Remember\' button or make a mistake on a question.';
+	String get interval_step_up_condition => 'Conditions for extending intervals';
+	String get interval_step_up_condition_description => 'Determine the conditions for extending the intervals between reviews.';
+	String get interval_step_up_condition_1 => 'If you answer correctly';
+	String get interval_step_up_condition_2 => 'Two correct answers in a row';
+	String get interval_step_up_condition_3 => 'Three correct answers in a row';
+	String get interval_step_up_condition_4 => 'Four correct answers in a row';
+	String get interval_step_up_condition_5 => 'Five correct answers in a row';
+	String get review_delete_condition => 'Review release conditions';
+	String get review_delete_condition_description => 'You can determine the conditions under which the review is removed.';
+	String get review_delete_condition_0 => 'Correct in the next day\'s review';
+	String get review_delete_condition_1 => 'Correct in three days\' review';
+	String get review_delete_condition_2 => 'Correct in a week\'s review';
+	String get review_delete_condition_3 => 'Correct in two weeks\' review';
+	String get review_delete_condition_4 => 'Correct in three weeks\' review';
+	String get review_delete_condition_5 => 'Correct in a month\'s review';
+	String get review_delete_condition_6 => 'Correct in two months\' review';
+	String get review_delete_condition_7 => 'Correct in three months\' review';
+	String get review_delete_condition_8 => 'Correct in six months\' review';
+	String get review_delete_condition_9 => 'Correct in a year\'s review';
+	String get weakness_setting => 'Weakness Setting';
+	String get weakness_condition => 'Conditions for making it vulnerable';
+	String get weakness_condition_description => 'You can decide which conditions to add questions to your difficulties.';
+	String get weakness_condition_0 => 'Not set up automatically';
+	String get weakness_condition_1 => 'More than one mistake';
+	String get weakness_condition_2 => 'More than two mistakes';
+	String get weakness_condition_3 => 'More than three mistakes';
+	String get weakness_condition_4 => 'More than four mistakes';
+	String get weakness_condition_5 => 'More than five mistakes';
+	String get overcoming_condition => 'Conditions to overcome';
+	String get overcoming_condition_description => 'You can determine the conditions to be removed from the weakness.';
+	String get overcoming_condition_0 => 'If you answer it';
+	String get overcoming_condition_1 => 'If you answer it correctly';
+	String get overcoming_condition_120 => 'Not automatically overcome';
+	String overcoming_condition_i({required Object percentage}) => 'Above ${percentage}% correct answer rate';
+	String get change_settings => 'Change Settings';
+	String get update_succeeded => 'Settings Updated';
+	String get update_failed => 'Failed to update configuration.';
+	String se_switched({required Object state}) => 'Sound effects turned ${state}.';
+	String get review_notification_enabled => 'Review Reminder';
+	String get review_notification_enabled_description => 'Notification is sent at a specified time when there are questions to be reviewed that day.';
+	String get set_review_notification => 'Set review time';
+	String get set_review_notification_description => 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
+	String review_notification_set({required Object hours}) => 'Review reminder set for ${hours}:00.';
 }
 
 // Path: achievements
@@ -852,6 +967,45 @@ class _TranslationsActivitiesEn {
 	String get cheered => 'Cheered!';
 }
 
+// Path: plans
+class _TranslationsPlansEn {
+	_TranslationsPlansEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get premium_plan => 'Premium Plan';
+	String get premium_plan_description => 'This plan allows unlimited use of all DiQt features.';
+	String get trial_period_description => 'Now with a 2-week free trial period!';
+	String get free_plan => 'Free';
+	String get yen => 'Yen';
+	String get answers_limit => 'Number of answers per day';
+	String get unlimited => 'Unlimited';
+	String get translations_limit => 'Number of translations per day';
+	String get ad_free => 'Ad-free';
+	String get weakness => 'The Weakness Questions';
+	String get note => 'Notes';
+	String get answer_analysis => 'Answer Analyses';
+	String get answer_history => 'Answer histories';
+	String get questions_you_got_wrong => 'Questions you got wrong today';
+	String get deletion_of_all_reviews => 'Deletion of all reviews';
+	String get monthly_plan => 'Monthly';
+	String get month => 'Month';
+	String get annual_plan => 'Annual';
+	String get year => 'Year';
+	String get two_months_free => '2 months\' savings!';
+	String get start_free_trial => 'Start Free Trial';
+	String get get_started => 'Get Started';
+	String get registered => 'Registered';
+	String get bank_transfer => 'If you wish to make a bank transfer, please click here';
+	String get stripe_explanation => 'We use Stripe for payments - Stripe is a secure payment system widely used around the world and we do not store your card details on our servers.';
+	String get auto_renew_explanation => 'Plans are auto-renewing. If you cancel via payment settings at least 24 hours before the expiry date, your plan will not be auto-renewed.';
+	String get this_is_premium_plan_feature => 'This is a feature for premium members.';
+	String get all_features_will_be_available => 'All features will be available.';
+	String get notice => 'Seven days\' notice before the charge is made.';
+	String get cancel_at_any_time => 'You can cancel at any time.';
+}
+
 // Path: wordRequests
 class _TranslationsWordRequestsEn {
 	_TranslationsWordRequestsEn._(this._root);
@@ -1048,15 +1202,18 @@ class _TranslationsJa implements _TranslationsEn {
 	// Translations
 	@override late final _TranslationsSessionsJa sessions = _TranslationsSessionsJa._(_root);
 	@override late final _TranslationsDictionariesJa dictionaries = _TranslationsDictionariesJa._(_root);
+	@override late final _TranslationsReviewsJa reviews = _TranslationsReviewsJa._(_root);
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
 	@override late final _TranslationsUsersJa users = _TranslationsUsersJa._(_root);
 	@override late final _TranslationsNoticesJa notices = _TranslationsNoticesJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
+	@override late final _TranslationsAnswerSettingsJa answerSettings = _TranslationsAnswerSettingsJa._(_root);
 	@override late final _TranslationsAchievementsJa achievements = _TranslationsAchievementsJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
 	@override late final _TranslationsTimeZoneJa timeZone = _TranslationsTimeZoneJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
+	@override late final _TranslationsPlansJa plans = _TranslationsPlansJa._(_root);
 	@override late final _TranslationsWordRequestsJa wordRequests = _TranslationsWordRequestsJa._(_root);
 	@override late final _TranslationsCalendarsJa calendars = _TranslationsCalendarsJa._(_root);
 	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
@@ -1146,6 +1303,45 @@ class _TranslationsDictionariesJa implements _TranslationsDictionariesEn {
 	@override String get no_addition_permission => '追加する権限がありません。';
 	@override String get no_modification_permission => '修正する権限がありません。';
 	@override String get no_elimination_permission => '削除する権限がありません。';
+}
+
+// Path: reviews
+class _TranslationsReviewsJa implements _TranslationsReviewsEn {
+	_TranslationsReviewsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get reviews => '復習';
+	@override String get unreviewed => '未復習';
+	@override String get scheduled => '予定';
+	@override String get all => 'すべて';
+	@override String get order => '順番';
+	@override String get random => 'ランダム';
+	@override String get scheduled_date_desc => '予定日が新しい順';
+	@override String get scheduled_date_asc => '予定日が古い順';
+	@override String get empty => '復習問題はありません。';
+	@override String get memorize => '覚える';
+	@override String get set_review => '復習を設定する';
+	@override String get scheduled_date => '復習予定日';
+	@override String get interval => '復習の間隔';
+	@override String get destroy => '復習予定を取り消す';
+	@override String get tomorrow => '翌日';
+	@override String get after_3_days => '3日後';
+	@override String get after_a_week => '1週間後';
+	@override String get after_2_week => '2週間後';
+	@override String get after_3_week => '3週間後';
+	@override String get after_a_month => '1ヶ月後';
+	@override String get after_2_month => '2ヶ月後';
+	@override String get after_3_month => '3ヶ月後';
+	@override String get after_6_month => '6ヶ月後';
+	@override String get after_a_year => '1年後';
+	@override String review_for({required Object interval}) => '${interval}に復習する';
+	@override String has_been_set_for({required Object interval}) => '${interval}に復習を設定しました。';
+	@override String get schedule_canceled => '復習予定を取り消しました。';
+	@override String get cancel_all_schedules => 'すべての復習予定を取り消す';
+	@override String get all_schedules_canceled => 'すべての復習予定を取り消しました。';
+	@override String get details_of_the_question => '復習する問題の詳細';
 }
 
 // Path: errors
@@ -1259,11 +1455,84 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get search => '検索する';
 	@override String get generate => '生成する';
 	@override String get send => '送信する';
+	@override String get set_up => '設定する';
 	@override String get undefined => '未定義';
 	@override String get details => '詳細';
+	@override String get view_details => '詳細を見る';
+	@override String get view_more => 'もっと見る';
 	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
 	@override String no_more_items({required Object name}) => 'すべての${name}を読み込みました';
 	@override String no_items_found({required Object name}) => '${name}がありません';
+}
+
+// Path: answerSettings
+class _TranslationsAnswerSettingsJa implements _TranslationsAnswerSettingsEn {
+	_TranslationsAnswerSettingsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '解答・復習設定';
+	@override String get answer_setting => '解答設定';
+	@override String get daily_goal => '1日の目標';
+	@override String get daily_goal_description => '1日の目標解答数の目標を定めてください。';
+	@override String get daily_goal_cant_be_changed => '本日すでに目標を達成してしまったので、目標を変更できません。';
+	@override String get question_cover => '問題文カバー';
+	@override String get question_cover_description => '問題文が読み上げられる問題で、問題文を隠すシートを表示できます。主にリスニング力の強化に役立ちます。';
+	@override String get choices_cover => '選択肢カバー';
+	@override String get choices_cover_description => '選択問題で、選択肢を隠すシートを表示できます。';
+	@override String get strict_solving_mode => '厳格解答モード';
+	@override String get strict_solving_mode_description => '問題集の未解答の問題を、単なる解答ではなく、正解した場合でのみ解答済にします。';
+	@override String get se_enabled => '効果音を鳴らす';
+	@override String get effect_enabled => '報酬画面を表示する';
+	@override String get review_setting => '復習設定';
+	@override String get strict_reviewing_mode => '厳格復習モード';
+	@override String get strict_reviewing_mode_description => '復習の未解答から問題を取り除く条件を、単なる解答ではなく、正解した場合のみにします。';
+	@override String get initial_interval => '初期間隔';
+	@override String get initial_interval_description => '「覚える」ボタンを押したり、問題に間違えたときに、自動で設定される復習の間隔を決められます。';
+	@override String get interval_step_up_condition => '間隔を伸ばす条件';
+	@override String get interval_step_up_condition_description => '復習の間隔を伸ばすための条件を決めます。';
+	@override String get interval_step_up_condition_1 => '正解した場合';
+	@override String get interval_step_up_condition_2 => '２回連続で正解した場合';
+	@override String get interval_step_up_condition_3 => '３回連続で正解した場合';
+	@override String get interval_step_up_condition_4 => '４回連続で正解した場合';
+	@override String get interval_step_up_condition_5 => '５回連続で正解した場合';
+	@override String get review_delete_condition => '復習の解除条件';
+	@override String get review_delete_condition_description => '復習を取り除く条件を決められます。';
+	@override String get review_delete_condition_0 => '翌日の復習で正解した場合';
+	@override String get review_delete_condition_1 => '３日後の復習で正解した場合';
+	@override String get review_delete_condition_2 => '１週間後の復習で正解した場合';
+	@override String get review_delete_condition_3 => '２週間後の復習で正解した場合';
+	@override String get review_delete_condition_4 => '３週間後の復習で正解した場合';
+	@override String get review_delete_condition_5 => '１ヶ月後の復習で正解した場合';
+	@override String get review_delete_condition_6 => '２ヶ月後の復習で正解した場合';
+	@override String get review_delete_condition_7 => '３ヶ月後の復習で正解した場合';
+	@override String get review_delete_condition_8 => '６ヶ月後の復習で正解した場合';
+	@override String get review_delete_condition_9 => '１年後の復習で正解した場合';
+	@override String get weakness_setting => '弱点設定';
+	@override String get weakness_condition => '弱点にする条件';
+	@override String get weakness_condition_description => '苦手な問題に追加する条件を決められます。';
+	@override String get weakness_condition_0 => '自動で設定しない';
+	@override String get weakness_condition_1 => '１回以上間違えた場合';
+	@override String get weakness_condition_2 => '２回以上間違えた場合';
+	@override String get weakness_condition_3 => '３回以上間違えた場合';
+	@override String get weakness_condition_4 => '４回以上間違えた場合';
+	@override String get weakness_condition_5 => '５回以上間違えた場合';
+	@override String get overcoming_condition => '克服する条件';
+	@override String get overcoming_condition_description => '弱点から取り除く条件を決められます。';
+	@override String get overcoming_condition_0 => '解答時に克服する';
+	@override String get overcoming_condition_1 => '正解時に克服する';
+	@override String get overcoming_condition_120 => '自動で克服しない';
+	@override String overcoming_condition_i({required Object percentage}) => '正答率${percentage}%以上';
+	@override String get change_settings => '設定を変更する';
+	@override String get update_succeeded => '設定を更新しました。';
+	@override String get update_failed => '設定の更新に失敗しました。';
+	@override String se_switched({required Object state}) => '効果音を${state}にしました。';
+	@override String get review_notification_enabled => '復習リマインダー';
+	@override String get review_notification_enabled_description => 'その日に復習すべき問題がある場合に、指定した時刻に通知を送ります。';
+	@override String get set_review_notification => '復習時刻を設定する';
+	@override String get set_review_notification_description => 'あなたが効率的に学習できるように、復習すべき問題があるときにリマインダーを送ります。あなたが学習できる時刻を設定してください。';
+	@override String review_notification_set({required Object hours}) => '${hours}時に復習リマインダーを設定しました。';
 }
 
 // Path: achievements
@@ -1751,6 +2020,45 @@ class _TranslationsActivitiesJa implements _TranslationsActivitiesEn {
 	@override String get cheered => '応援しました！';
 }
 
+// Path: plans
+class _TranslationsPlansJa implements _TranslationsPlansEn {
+	_TranslationsPlansJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get premium_plan => 'プレミアムプラン';
+	@override String get premium_plan_description => 'DiQtのすべての機能が使い放題になるプランです。';
+	@override String get trial_period_description => '今なら２週間の無料体験期間つき！';
+	@override String get free_plan => '無料プラン';
+	@override String get yen => '円';
+	@override String get answers_limit => '1日の解答数';
+	@override String get unlimited => '無制限';
+	@override String get translations_limit => '1日の翻訳できる回数';
+	@override String get ad_free => '広告非表示';
+	@override String get weakness => '弱点問題';
+	@override String get note => 'ノート機能';
+	@override String get answer_analysis => '解答分析';
+	@override String get answer_history => '解答履歴';
+	@override String get questions_you_got_wrong => '今日間違えた問題';
+	@override String get deletion_of_all_reviews => '復習一括削除';
+	@override String get monthly_plan => '月額プラン';
+	@override String get month => '月';
+	@override String get annual_plan => '年額プラン';
+	@override String get year => '年';
+	@override String get two_months_free => '２ヶ月分お得！';
+	@override String get start_free_trial => '無料で試す';
+	@override String get get_started => '登録する';
+	@override String get registered => '登録済み';
+	@override String get bank_transfer => '銀行口座のお振込をご希望の方はこちらから';
+	@override String get stripe_explanation => '決済には、Stripeを利用しております。Stripeは世界中で幅広く利用されている安全な決済システムであり、当社のサーバーでお客様のカード情報を保存することはありません。';
+	@override String get auto_renew_explanation => 'プランは自動更新です。有効期間が終了する２４時間前までにお支払い設定よりご解約いただければ、自動更新はされません。';
+	@override String get this_is_premium_plan_feature => 'プレミアム会員用の機能です';
+	@override String get all_features_will_be_available => 'すべての機能が利用できるようになります。';
+	@override String get notice => '有料化の7日前にお知らせします。';
+	@override String get cancel_at_any_time => 'いつでもキャンセルできます。';
+}
+
 // Path: wordRequests
 class _TranslationsWordRequestsJa implements _TranslationsWordRequestsEn {
 	_TranslationsWordRequestsJa._(this._root);
@@ -1990,6 +2298,36 @@ extension on _TranslationsEn {
 			case 'dictionaries.no_addition_permission': return 'You don\'t have create permission.';
 			case 'dictionaries.no_modification_permission': return 'You don\'t have update permission.';
 			case 'dictionaries.no_elimination_permission': return 'You don\'t have delete permission.';
+			case 'reviews.reviews': return 'Reviews';
+			case 'reviews.unreviewed': return 'Unreviewed';
+			case 'reviews.scheduled': return 'Scheduled';
+			case 'reviews.all': return 'All';
+			case 'reviews.order': return 'Order';
+			case 'reviews.random': return 'Random';
+			case 'reviews.scheduled_date_desc': return 'Latest scheduled';
+			case 'reviews.scheduled_date_asc': return 'Oldest scheduled';
+			case 'reviews.empty': return 'There are no review questions.';
+			case 'reviews.memorize': return 'Reminder';
+			case 'reviews.set_review': return 'Set Review';
+			case 'reviews.scheduled_date': return 'Scheduled Date';
+			case 'reviews.interval': return 'Review Interval';
+			case 'reviews.destroy': return 'Cancel the review schedule';
+			case 'reviews.tomorrow': return 'Tomorrow';
+			case 'reviews.after_3_days': return '3 days later';
+			case 'reviews.after_a_week': return 'A week later';
+			case 'reviews.after_2_week': return '2 weeks later';
+			case 'reviews.after_3_week': return '3 weeks later';
+			case 'reviews.after_a_month': return 'A month later';
+			case 'reviews.after_2_month': return '2 months later';
+			case 'reviews.after_3_month': return '3 months later';
+			case 'reviews.after_6_month': return '6 months later';
+			case 'reviews.after_a_year': return 'A year later';
+			case 'reviews.review_for': return ({required Object interval}) => 'Review ${interval}';
+			case 'reviews.has_been_set_for': return ({required Object interval}) => 'The review has been set for ${interval}';
+			case 'reviews.schedule_canceled': return 'Review schedule canceled.';
+			case 'reviews.cancel_all_schedules': return 'Cancel All Review Schedules';
+			case 'reviews.all_schedules_canceled': return 'All review schedules cancelled.';
+			case 'reviews.details_of_the_question': return 'Details of the question to be reviewed';
 			case 'errors.error_message_404': return 'Page Not Found...';
 			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
@@ -2067,11 +2405,75 @@ extension on _TranslationsEn {
 			case 'shared.search': return 'Search';
 			case 'shared.generate': return 'Generate';
 			case 'shared.send': return 'Send';
+			case 'shared.set_up': return 'Set Up';
 			case 'shared.undefined': return 'Undefined';
 			case 'shared.details': return 'Details';
+			case 'shared.view_details': return 'View Details';
+			case 'shared.view_more': return 'View More';
 			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
 			case 'shared.no_more_items': return ({required Object name}) => 'All ${name} loaded';
 			case 'shared.no_items_found': return ({required Object name}) => 'No ${name} found';
+			case 'answerSettings.title': return 'Answer & Review Setting';
+			case 'answerSettings.answer_setting': return 'Answer Setting';
+			case 'answerSettings.daily_goal': return 'Daily target';
+			case 'answerSettings.daily_goal_description': return 'Set a target number of answers per day.';
+			case 'answerSettings.daily_goal_cant_be_changed': return 'The target cannot be changed as it has already been achieved today.';
+			case 'answerSettings.question_cover': return 'Question Cover';
+			case 'answerSettings.question_cover_description': return 'Questions where the question text is read out loud, and a sheet can be displayed to hide the question text. Mainly useful for strengthening listening skills.';
+			case 'answerSettings.choices_cover': return 'Choices Cover';
+			case 'answerSettings.choices_cover_description': return 'In choice questions, you can display a sheet that hides the choices.';
+			case 'answerSettings.strict_solving_mode': return 'Strict Answer Mode';
+			case 'answerSettings.strict_solving_mode_description': return 'Unanswered questions in the question booklet are only marked as answered if they are answered correctly, not just answered.';
+			case 'answerSettings.se_enabled': return 'Sound Effects';
+			case 'answerSettings.effect_enabled': return 'Display the reward screen';
+			case 'answerSettings.review_setting': return 'Review Setting';
+			case 'answerSettings.strict_reviewing_mode': return 'Strict Review Mode';
+			case 'answerSettings.strict_reviewing_mode_description': return 'The condition for removing a question from the unreviewed is only if it is answered correctly, not just answered.';
+			case 'answerSettings.initial_interval': return 'Initial Interval';
+			case 'answerSettings.initial_interval_description': return 'You can decide the interval between review sessions, which are set automatically when you press the \'Remember\' button or make a mistake on a question.';
+			case 'answerSettings.interval_step_up_condition': return 'Conditions for extending intervals';
+			case 'answerSettings.interval_step_up_condition_description': return 'Determine the conditions for extending the intervals between reviews.';
+			case 'answerSettings.interval_step_up_condition_1': return 'If you answer correctly';
+			case 'answerSettings.interval_step_up_condition_2': return 'Two correct answers in a row';
+			case 'answerSettings.interval_step_up_condition_3': return 'Three correct answers in a row';
+			case 'answerSettings.interval_step_up_condition_4': return 'Four correct answers in a row';
+			case 'answerSettings.interval_step_up_condition_5': return 'Five correct answers in a row';
+			case 'answerSettings.review_delete_condition': return 'Review release conditions';
+			case 'answerSettings.review_delete_condition_description': return 'You can determine the conditions under which the review is removed.';
+			case 'answerSettings.review_delete_condition_0': return 'Correct in the next day\'s review';
+			case 'answerSettings.review_delete_condition_1': return 'Correct in three days\' review';
+			case 'answerSettings.review_delete_condition_2': return 'Correct in a week\'s review';
+			case 'answerSettings.review_delete_condition_3': return 'Correct in two weeks\' review';
+			case 'answerSettings.review_delete_condition_4': return 'Correct in three weeks\' review';
+			case 'answerSettings.review_delete_condition_5': return 'Correct in a month\'s review';
+			case 'answerSettings.review_delete_condition_6': return 'Correct in two months\' review';
+			case 'answerSettings.review_delete_condition_7': return 'Correct in three months\' review';
+			case 'answerSettings.review_delete_condition_8': return 'Correct in six months\' review';
+			case 'answerSettings.review_delete_condition_9': return 'Correct in a year\'s review';
+			case 'answerSettings.weakness_setting': return 'Weakness Setting';
+			case 'answerSettings.weakness_condition': return 'Conditions for making it vulnerable';
+			case 'answerSettings.weakness_condition_description': return 'You can decide which conditions to add questions to your difficulties.';
+			case 'answerSettings.weakness_condition_0': return 'Not set up automatically';
+			case 'answerSettings.weakness_condition_1': return 'More than one mistake';
+			case 'answerSettings.weakness_condition_2': return 'More than two mistakes';
+			case 'answerSettings.weakness_condition_3': return 'More than three mistakes';
+			case 'answerSettings.weakness_condition_4': return 'More than four mistakes';
+			case 'answerSettings.weakness_condition_5': return 'More than five mistakes';
+			case 'answerSettings.overcoming_condition': return 'Conditions to overcome';
+			case 'answerSettings.overcoming_condition_description': return 'You can determine the conditions to be removed from the weakness.';
+			case 'answerSettings.overcoming_condition_0': return 'If you answer it';
+			case 'answerSettings.overcoming_condition_1': return 'If you answer it correctly';
+			case 'answerSettings.overcoming_condition_120': return 'Not automatically overcome';
+			case 'answerSettings.overcoming_condition_i': return ({required Object percentage}) => 'Above ${percentage}% correct answer rate';
+			case 'answerSettings.change_settings': return 'Change Settings';
+			case 'answerSettings.update_succeeded': return 'Settings Updated';
+			case 'answerSettings.update_failed': return 'Failed to update configuration.';
+			case 'answerSettings.se_switched': return ({required Object state}) => 'Sound effects turned ${state}.';
+			case 'answerSettings.review_notification_enabled': return 'Review Reminder';
+			case 'answerSettings.review_notification_enabled_description': return 'Notification is sent at a specified time when there are questions to be reviewed that day.';
+			case 'answerSettings.set_review_notification': return 'Set review time';
+			case 'answerSettings.set_review_notification_description': return 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
+			case 'answerSettings.review_notification_set': return ({required Object hours}) => 'Review reminder set for ${hours}:00.';
 			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -2512,6 +2914,36 @@ extension on _TranslationsEn {
 			case 'activities.activities': return 'Activities';
 			case 'activities.cheer': return 'Cheer!';
 			case 'activities.cheered': return 'Cheered!';
+			case 'plans.premium_plan': return 'Premium Plan';
+			case 'plans.premium_plan_description': return 'This plan allows unlimited use of all DiQt features.';
+			case 'plans.trial_period_description': return 'Now with a 2-week free trial period!';
+			case 'plans.free_plan': return 'Free';
+			case 'plans.yen': return 'Yen';
+			case 'plans.answers_limit': return 'Number of answers per day';
+			case 'plans.unlimited': return 'Unlimited';
+			case 'plans.translations_limit': return 'Number of translations per day';
+			case 'plans.ad_free': return 'Ad-free';
+			case 'plans.weakness': return 'The Weakness Questions';
+			case 'plans.note': return 'Notes';
+			case 'plans.answer_analysis': return 'Answer Analyses';
+			case 'plans.answer_history': return 'Answer histories';
+			case 'plans.questions_you_got_wrong': return 'Questions you got wrong today';
+			case 'plans.deletion_of_all_reviews': return 'Deletion of all reviews';
+			case 'plans.monthly_plan': return 'Monthly';
+			case 'plans.month': return 'Month';
+			case 'plans.annual_plan': return 'Annual';
+			case 'plans.year': return 'Year';
+			case 'plans.two_months_free': return '2 months\' savings!';
+			case 'plans.start_free_trial': return 'Start Free Trial';
+			case 'plans.get_started': return 'Get Started';
+			case 'plans.registered': return 'Registered';
+			case 'plans.bank_transfer': return 'If you wish to make a bank transfer, please click here';
+			case 'plans.stripe_explanation': return 'We use Stripe for payments - Stripe is a secure payment system widely used around the world and we do not store your card details on our servers.';
+			case 'plans.auto_renew_explanation': return 'Plans are auto-renewing. If you cancel via payment settings at least 24 hours before the expiry date, your plan will not be auto-renewed.';
+			case 'plans.this_is_premium_plan_feature': return 'This is a feature for premium members.';
+			case 'plans.all_features_will_be_available': return 'All features will be available.';
+			case 'plans.notice': return 'Seven days\' notice before the charge is made.';
+			case 'plans.cancel_at_any_time': return 'You can cancel at any time.';
 			case 'wordRequests.addition': return 'Addition';
 			case 'wordRequests.modification': return 'Modification';
 			case 'wordRequests.elimination': return 'Deletion';
@@ -2690,6 +3122,36 @@ extension on _TranslationsJa {
 			case 'dictionaries.no_addition_permission': return '追加する権限がありません。';
 			case 'dictionaries.no_modification_permission': return '修正する権限がありません。';
 			case 'dictionaries.no_elimination_permission': return '削除する権限がありません。';
+			case 'reviews.reviews': return '復習';
+			case 'reviews.unreviewed': return '未復習';
+			case 'reviews.scheduled': return '予定';
+			case 'reviews.all': return 'すべて';
+			case 'reviews.order': return '順番';
+			case 'reviews.random': return 'ランダム';
+			case 'reviews.scheduled_date_desc': return '予定日が新しい順';
+			case 'reviews.scheduled_date_asc': return '予定日が古い順';
+			case 'reviews.empty': return '復習問題はありません。';
+			case 'reviews.memorize': return '覚える';
+			case 'reviews.set_review': return '復習を設定する';
+			case 'reviews.scheduled_date': return '復習予定日';
+			case 'reviews.interval': return '復習の間隔';
+			case 'reviews.destroy': return '復習予定を取り消す';
+			case 'reviews.tomorrow': return '翌日';
+			case 'reviews.after_3_days': return '3日後';
+			case 'reviews.after_a_week': return '1週間後';
+			case 'reviews.after_2_week': return '2週間後';
+			case 'reviews.after_3_week': return '3週間後';
+			case 'reviews.after_a_month': return '1ヶ月後';
+			case 'reviews.after_2_month': return '2ヶ月後';
+			case 'reviews.after_3_month': return '3ヶ月後';
+			case 'reviews.after_6_month': return '6ヶ月後';
+			case 'reviews.after_a_year': return '1年後';
+			case 'reviews.review_for': return ({required Object interval}) => '${interval}に復習する';
+			case 'reviews.has_been_set_for': return ({required Object interval}) => '${interval}に復習を設定しました。';
+			case 'reviews.schedule_canceled': return '復習予定を取り消しました。';
+			case 'reviews.cancel_all_schedules': return 'すべての復習予定を取り消す';
+			case 'reviews.all_schedules_canceled': return 'すべての復習予定を取り消しました。';
+			case 'reviews.details_of_the_question': return '復習する問題の詳細';
 			case 'errors.error_message_404': return 'ページが見つかりませんでした。';
 			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
 			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';
@@ -2767,11 +3229,75 @@ extension on _TranslationsJa {
 			case 'shared.search': return '検索する';
 			case 'shared.generate': return '生成する';
 			case 'shared.send': return '送信する';
+			case 'shared.set_up': return '設定する';
 			case 'shared.undefined': return '未定義';
 			case 'shared.details': return '詳細';
+			case 'shared.view_details': return '詳細を見る';
+			case 'shared.view_more': return 'もっと見る';
 			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
 			case 'shared.no_more_items': return ({required Object name}) => 'すべての${name}を読み込みました';
 			case 'shared.no_items_found': return ({required Object name}) => '${name}がありません';
+			case 'answerSettings.title': return '解答・復習設定';
+			case 'answerSettings.answer_setting': return '解答設定';
+			case 'answerSettings.daily_goal': return '1日の目標';
+			case 'answerSettings.daily_goal_description': return '1日の目標解答数の目標を定めてください。';
+			case 'answerSettings.daily_goal_cant_be_changed': return '本日すでに目標を達成してしまったので、目標を変更できません。';
+			case 'answerSettings.question_cover': return '問題文カバー';
+			case 'answerSettings.question_cover_description': return '問題文が読み上げられる問題で、問題文を隠すシートを表示できます。主にリスニング力の強化に役立ちます。';
+			case 'answerSettings.choices_cover': return '選択肢カバー';
+			case 'answerSettings.choices_cover_description': return '選択問題で、選択肢を隠すシートを表示できます。';
+			case 'answerSettings.strict_solving_mode': return '厳格解答モード';
+			case 'answerSettings.strict_solving_mode_description': return '問題集の未解答の問題を、単なる解答ではなく、正解した場合でのみ解答済にします。';
+			case 'answerSettings.se_enabled': return '効果音を鳴らす';
+			case 'answerSettings.effect_enabled': return '報酬画面を表示する';
+			case 'answerSettings.review_setting': return '復習設定';
+			case 'answerSettings.strict_reviewing_mode': return '厳格復習モード';
+			case 'answerSettings.strict_reviewing_mode_description': return '復習の未解答から問題を取り除く条件を、単なる解答ではなく、正解した場合のみにします。';
+			case 'answerSettings.initial_interval': return '初期間隔';
+			case 'answerSettings.initial_interval_description': return '「覚える」ボタンを押したり、問題に間違えたときに、自動で設定される復習の間隔を決められます。';
+			case 'answerSettings.interval_step_up_condition': return '間隔を伸ばす条件';
+			case 'answerSettings.interval_step_up_condition_description': return '復習の間隔を伸ばすための条件を決めます。';
+			case 'answerSettings.interval_step_up_condition_1': return '正解した場合';
+			case 'answerSettings.interval_step_up_condition_2': return '２回連続で正解した場合';
+			case 'answerSettings.interval_step_up_condition_3': return '３回連続で正解した場合';
+			case 'answerSettings.interval_step_up_condition_4': return '４回連続で正解した場合';
+			case 'answerSettings.interval_step_up_condition_5': return '５回連続で正解した場合';
+			case 'answerSettings.review_delete_condition': return '復習の解除条件';
+			case 'answerSettings.review_delete_condition_description': return '復習を取り除く条件を決められます。';
+			case 'answerSettings.review_delete_condition_0': return '翌日の復習で正解した場合';
+			case 'answerSettings.review_delete_condition_1': return '３日後の復習で正解した場合';
+			case 'answerSettings.review_delete_condition_2': return '１週間後の復習で正解した場合';
+			case 'answerSettings.review_delete_condition_3': return '２週間後の復習で正解した場合';
+			case 'answerSettings.review_delete_condition_4': return '３週間後の復習で正解した場合';
+			case 'answerSettings.review_delete_condition_5': return '１ヶ月後の復習で正解した場合';
+			case 'answerSettings.review_delete_condition_6': return '２ヶ月後の復習で正解した場合';
+			case 'answerSettings.review_delete_condition_7': return '３ヶ月後の復習で正解した場合';
+			case 'answerSettings.review_delete_condition_8': return '６ヶ月後の復習で正解した場合';
+			case 'answerSettings.review_delete_condition_9': return '１年後の復習で正解した場合';
+			case 'answerSettings.weakness_setting': return '弱点設定';
+			case 'answerSettings.weakness_condition': return '弱点にする条件';
+			case 'answerSettings.weakness_condition_description': return '苦手な問題に追加する条件を決められます。';
+			case 'answerSettings.weakness_condition_0': return '自動で設定しない';
+			case 'answerSettings.weakness_condition_1': return '１回以上間違えた場合';
+			case 'answerSettings.weakness_condition_2': return '２回以上間違えた場合';
+			case 'answerSettings.weakness_condition_3': return '３回以上間違えた場合';
+			case 'answerSettings.weakness_condition_4': return '４回以上間違えた場合';
+			case 'answerSettings.weakness_condition_5': return '５回以上間違えた場合';
+			case 'answerSettings.overcoming_condition': return '克服する条件';
+			case 'answerSettings.overcoming_condition_description': return '弱点から取り除く条件を決められます。';
+			case 'answerSettings.overcoming_condition_0': return '解答時に克服する';
+			case 'answerSettings.overcoming_condition_1': return '正解時に克服する';
+			case 'answerSettings.overcoming_condition_120': return '自動で克服しない';
+			case 'answerSettings.overcoming_condition_i': return ({required Object percentage}) => '正答率${percentage}%以上';
+			case 'answerSettings.change_settings': return '設定を変更する';
+			case 'answerSettings.update_succeeded': return '設定を更新しました。';
+			case 'answerSettings.update_failed': return '設定の更新に失敗しました。';
+			case 'answerSettings.se_switched': return ({required Object state}) => '効果音を${state}にしました。';
+			case 'answerSettings.review_notification_enabled': return '復習リマインダー';
+			case 'answerSettings.review_notification_enabled_description': return 'その日に復習すべき問題がある場合に、指定した時刻に通知を送ります。';
+			case 'answerSettings.set_review_notification': return '復習時刻を設定する';
+			case 'answerSettings.set_review_notification_description': return 'あなたが効率的に学習できるように、復習すべき問題があるときにリマインダーを送ります。あなたが学習できる時刻を設定してください。';
+			case 'answerSettings.review_notification_set': return ({required Object hours}) => '${hours}時に復習リマインダーを設定しました。';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
@@ -3212,6 +3738,36 @@ extension on _TranslationsJa {
 			case 'activities.activities': return '活動';
 			case 'activities.cheer': return '応援する!';
 			case 'activities.cheered': return '応援しました！';
+			case 'plans.premium_plan': return 'プレミアムプラン';
+			case 'plans.premium_plan_description': return 'DiQtのすべての機能が使い放題になるプランです。';
+			case 'plans.trial_period_description': return '今なら２週間の無料体験期間つき！';
+			case 'plans.free_plan': return '無料プラン';
+			case 'plans.yen': return '円';
+			case 'plans.answers_limit': return '1日の解答数';
+			case 'plans.unlimited': return '無制限';
+			case 'plans.translations_limit': return '1日の翻訳できる回数';
+			case 'plans.ad_free': return '広告非表示';
+			case 'plans.weakness': return '弱点問題';
+			case 'plans.note': return 'ノート機能';
+			case 'plans.answer_analysis': return '解答分析';
+			case 'plans.answer_history': return '解答履歴';
+			case 'plans.questions_you_got_wrong': return '今日間違えた問題';
+			case 'plans.deletion_of_all_reviews': return '復習一括削除';
+			case 'plans.monthly_plan': return '月額プラン';
+			case 'plans.month': return '月';
+			case 'plans.annual_plan': return '年額プラン';
+			case 'plans.year': return '年';
+			case 'plans.two_months_free': return '２ヶ月分お得！';
+			case 'plans.start_free_trial': return '無料で試す';
+			case 'plans.get_started': return '登録する';
+			case 'plans.registered': return '登録済み';
+			case 'plans.bank_transfer': return '銀行口座のお振込をご希望の方はこちらから';
+			case 'plans.stripe_explanation': return '決済には、Stripeを利用しております。Stripeは世界中で幅広く利用されている安全な決済システムであり、当社のサーバーでお客様のカード情報を保存することはありません。';
+			case 'plans.auto_renew_explanation': return 'プランは自動更新です。有効期間が終了する２４時間前までにお支払い設定よりご解約いただければ、自動更新はされません。';
+			case 'plans.this_is_premium_plan_feature': return 'プレミアム会員用の機能です';
+			case 'plans.all_features_will_be_available': return 'すべての機能が利用できるようになります。';
+			case 'plans.notice': return '有料化の7日前にお知らせします。';
+			case 'plans.cancel_at_any_time': return 'いつでもキャンセルできます。';
 			case 'wordRequests.addition': return '追加';
 			case 'wordRequests.modification': return '修正';
 			case 'wordRequests.elimination': return '削除';

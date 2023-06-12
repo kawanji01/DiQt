@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,8 +9,9 @@ class AnswerSettingQuestionCovered extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SwitchListTile(
-      title:
-          const Text('質問文を隠す', style: TextStyle(fontWeight: FontWeight.bold)),
+      title: Text(t.answerSettings.question_cover,
+          style: const TextStyle(fontWeight: FontWeight.bold)),
+      subtitle: Text(t.answerSettings.question_cover_description),
       value: ref.watch(questionCoveredProvider),
       onChanged: (bool value) {
         ref.read(questionCoveredProvider.notifier).state = value;

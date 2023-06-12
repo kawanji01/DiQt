@@ -58,9 +58,7 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
 
     // エラーの場合の処理
     if (ErrorHandler.isErrorMap(resMap)) {
-      final String message = ErrorHandler.message(resMap);
-      final snackBar = SnackBar(content: Text(message));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      ErrorHandler.showErrorSnackBar(context, resMap);
       return setState(() {
         _isLoading = false;
         _isReached = false;

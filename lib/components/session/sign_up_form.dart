@@ -55,10 +55,8 @@ class SessionSignUpFormState extends ConsumerState<SessionSignUpForm> {
       // レスポンスに対する処理
       if (ErrorHandler.isErrorMap(resMap)) {
         _passwordController.text = '';
-        final String message =
-            ErrorHandler.message(resMap, useServerMessage: true);
-        final snackBar = SnackBar(content: Text(message));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        ErrorHandler.showErrorSnackBar(context, resMap,
+            serverSideMessage: true);
       } else {
         final User user = User.fromJson(resMap['user']);
         final snackBar = SnackBar(content: Text(t.sessions.sign_up_succeeded));

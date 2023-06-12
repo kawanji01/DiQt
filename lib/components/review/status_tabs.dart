@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/review/scheduled.dart';
@@ -24,7 +25,9 @@ class ReviewStatusTabs extends ConsumerWidget {
       final style = selected == 'unreviewed' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(text: '未解答\n($unsolvedReviewsCount)', style: style),
+        text: TextSpan(
+            text: '${t.reviews.unreviewed}\n($unsolvedReviewsCount)',
+            style: style),
       );
       return InkWell(
         onTap: () {
@@ -38,7 +41,9 @@ class ReviewStatusTabs extends ConsumerWidget {
       final style = selected == 'scheduled' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(text: '予定\n($solvedReviewsCount)', style: style),
+        text: TextSpan(
+            text: '${t.reviews.scheduled}\n($solvedReviewsCount)',
+            style: style),
       );
       return InkWell(
         onTap: () {
@@ -60,7 +65,7 @@ class ReviewStatusTabs extends ConsumerWidget {
       final style = selected == 'all' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(text: 'すべて\n($reviewsCount)', style: style),
+        text: TextSpan(text: '${t.reviews.all}\n($reviewsCount)', style: style),
       );
       return InkWell(
         onTap: () {

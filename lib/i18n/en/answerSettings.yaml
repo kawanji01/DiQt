@@ -1,0 +1,61 @@
+title: 'Answer & Review Setting'
+answer_setting: 'Answer Setting'
+daily_goal: 'Daily target'
+daily_goal_description: 'Set a target number of answers per day.'
+daily_goal_cant_be_changed: 'The target cannot be changed as it has already been achieved today.'
+question_cover: 'Question Cover'
+question_cover_description: 'Questions where the question text is read out loud, and a sheet can be displayed to hide the question text. Mainly useful for strengthening listening skills.'
+choices_cover: 'Choices Cover'
+choices_cover_description: 'In choice questions, you can display a sheet that hides the choices.'
+strict_solving_mode: 'Strict Answer Mode'
+strict_solving_mode_description: 'Unanswered questions in the question booklet are only marked as answered if they are answered correctly, not just answered.'
+se_enabled: 'Sound Effects'
+effect_enabled: 'Display the reward screen'
+review_setting: 'Review Setting'
+strict_reviewing_mode: 'Strict Review Mode'
+strict_reviewing_mode_description: 'The condition for removing a question from the unreviewed is only if it is answered correctly, not just answered.'
+initial_interval: 'Initial Interval'
+initial_interval_description: "You can decide the interval between review sessions, which are set automatically when you press the 'Remember' button or make a mistake on a question."
+interval_step_up_condition: "Conditions for extending intervals"
+interval_step_up_condition_description: 'Determine the conditions for extending the intervals between reviews.'
+interval_step_up_condition_1: 'If you answer correctly'
+interval_step_up_condition_2: 'Two correct answers in a row'
+interval_step_up_condition_3: 'Three correct answers in a row'
+interval_step_up_condition_4: 'Four correct answers in a row'
+interval_step_up_condition_5: 'Five correct answers in a row'
+review_delete_condition: 'Review release conditions'
+review_delete_condition_description: 'You can determine the conditions under which the review is removed.'
+review_delete_condition_0: "Correct in the next day's review"
+review_delete_condition_1: "Correct in three days' review"
+review_delete_condition_2: "Correct in a week's review"
+review_delete_condition_3: "Correct in two weeks' review"
+review_delete_condition_4: "Correct in three weeks' review"
+review_delete_condition_5: "Correct in a month's review"
+review_delete_condition_6: "Correct in two months' review"
+review_delete_condition_7: "Correct in three months' review"
+review_delete_condition_8: "Correct in six months' review"
+review_delete_condition_9: "Correct in a year's review"
+weakness_setting: 'Weakness Setting'
+weakness_condition: 'Conditions for making it vulnerable'
+weakness_condition_description: 'You can decide which conditions to add questions to your difficulties.'
+weakness_condition_0: 'Not set up automatically'
+weakness_condition_1: 'More than one mistake'
+weakness_condition_2: 'More than two mistakes'
+weakness_condition_3: 'More than three mistakes'
+weakness_condition_4: 'More than four mistakes'
+weakness_condition_5: 'More than five mistakes'
+overcoming_condition: 'Conditions to overcome'
+overcoming_condition_description: 'You can determine the conditions to be removed from the weakness.'
+overcoming_condition_0: 'If you answer it'
+overcoming_condition_1: 'If you answer it correctly'
+overcoming_condition_120: 'Not automatically overcome'
+overcoming_condition_i: 'Above ${percentage}% correct answer rate'
+change_settings: 'Change Settings'
+update_succeeded: 'Settings Updated'
+update_failed: 'Failed to update configuration.'
+se_switched: 'Sound effects turned ${state}.'
+review_notification_enabled: 'Review Reminder'
+review_notification_enabled_description: 'Notification is sent at a specified time when there are questions to be reviewed that day.'
+set_review_notification: 'Set review time'
+set_review_notification_description: 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.'
+review_notification_set: 'Review reminder set for ${hours}:00.'
