@@ -9,6 +9,21 @@ class PurchaseBenefitsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget title(String title) {
+      return Text(
+        title,
+        style: const TextStyle(
+            fontSize: 18, color: Colors.black87, fontWeight: FontWeight.bold),
+      );
+    }
+
+    Widget description(String description) {
+      return Text(
+        description,
+        style: const TextStyle(fontSize: 16, color: Colors.black54),
+      );
+    }
+
     return Container(
       height: ResponsiveValues.dialogHeight(context),
       margin: EdgeInsets.symmetric(
@@ -39,27 +54,53 @@ class PurchaseBenefitsScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 48),
-          Text(
-            t.purchase.unlimited_answers,
-            style: const TextStyle(
-                fontSize: 18,
-                color: Colors.black87,
-                fontWeight: FontWeight.bold),
-          ),
-          Text(
+          title(t.purchase.unlimited_answers),
+          description(
             t.purchase.unlimited_answers_description(
                 number: answersCountLimitForFreeUsers),
-            style: const TextStyle(fontSize: 16, color: Colors.black54),
           ),
           const SizedBox(height: 48),
-          Text(
-            t.purchase.translations_limit,
-            style: const TextStyle(
-                fontSize: 18,
-                color: Colors.black87,
-                fontWeight: FontWeight.bold),
+          title(t.purchase.unlimited_translations),
+          description(
+            t.purchase.unlimited_translations_description(
+                number: answersCountLimitForFreeUsers),
           ),
           const SizedBox(height: 48),
+          title(t.purchase.weakness),
+          description(
+            t.purchase.weakness_description,
+          ),
+          const SizedBox(height: 48),
+          title(t.purchase.note),
+          description(
+            t.purchase.note_description,
+          ),
+          const SizedBox(height: 48),
+          title(t.purchase.answer_analysis),
+          description(
+            t.purchase.answer_analysis_description,
+          ),
+          const SizedBox(height: 48),
+          title(t.purchase.answer_history),
+          description(
+            t.purchase.answer_history_description,
+          ),
+          const SizedBox(height: 48),
+          title(t.purchase.questions_you_got_wrong),
+          description(
+            t.purchase.questions_you_got_wrong_description,
+          ),
+          const SizedBox(height: 48),
+          title(t.purchase.deletion_of_all_reviews),
+          description(
+            t.purchase.deletion_of_all_reviews_description,
+          ),
+          const SizedBox(height: 48),
+          title(t.purchase.ad_free),
+          description(
+            t.purchase.ad_free_description,
+          ),
+          const SizedBox(height: 120),
         ],
       )),
     );

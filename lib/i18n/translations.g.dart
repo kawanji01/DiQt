@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1654 (827 per locale)
+/// Strings: 1670 (835 per locale)
 ///
-/// Built on 2023-06-13 at 01:15 UTC
+/// Built on 2023-06-13 at 04:12 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1157,6 +1157,14 @@ class _TranslationsPurchaseEn {
 	String get unlimited_answers => 'Unlimited Answers';
 	String unlimited_answers_description({required Object number}) => 'Free users can only answer ${number} questions daily, but as a premium member, you can answer as many questions as you like in a day.';
 	String get unlimited_translations => 'Unlimited Translations';
+	String unlimited_translations_description({required Object number}) => 'Free users can only translate ${number} times a day, but premium members can translate as many times a day as they like.';
+	String get weakness_description => 'Premium members can focus on questions with low percentage of correct answers.';
+	String get note_description => 'Premium members will be able to leave notes on answered questions.';
+	String get answer_analysis_description => 'Premium members can analyze the questions they have answered by the percentage of correct answers and the number of mistakes.';
+	String get answer_history_description => 'If you are a premium member, you can view the history of questions you have answered.';
+	String get questions_you_got_wrong_description => 'If you are a premium member, you can review the questions you got wrong that day.';
+	String get deletion_of_all_reviews_description => 'If you are a premium member, you can cancel all the reviews you have set up.';
+	String get ad_free_description => 'If you are a premium member, you will no longer see all adverts in the app.';
 }
 
 // Path: home
@@ -2219,8 +2227,16 @@ class _TranslationsPurchaseJa implements _TranslationsPurchaseEn {
 	@override String get view_premium_plan => 'プレミアムプランを見る';
 	@override String get premium_plan_benefits => 'プレミアムプランの特典';
 	@override String get unlimited_answers => '無制限の解答';
-	@override String unlimited_answers_description({required Object number}) => '無料ユーザーの1日に解答できる問題の数は${number}問ですが、プレミアム会員になれば、1日に何問でも解答できます。';
+	@override String unlimited_answers_description({required Object number}) => '無料ユーザーが1日に解答できる問題の数は${number}問ですが、プレミアム会員なら、1日に何問でも解答できるようになります。';
 	@override String get unlimited_translations => '無制限の翻訳';
+	@override String unlimited_translations_description({required Object number}) => '無料ユーザーが1日に翻訳できる回数は${number}回ですが、プレミアム会員になら、1日に何回でも翻訳できるようになります。';
+	@override String get weakness_description => 'プレミアム会員なら、正答率が低い問題を重点的に学習できるようになります。';
+	@override String get note_description => 'プレミアム会員なら、解いた問題にメモを残すことができるようになります。';
+	@override String get answer_analysis_description => 'プレミアム会員なら、正答率や間違えた回数で解いた問題を分析できるようになります。';
+	@override String get answer_history_description => 'プレミアム会員なら、解答した問題の履歴を閲覧できるようになります。';
+	@override String get questions_you_got_wrong_description => 'プレミアム会員なら、その日に間違えた問題を確認できるようになります。';
+	@override String get deletion_of_all_reviews_description => 'プレミアム会員なら、今までに設定した復習をすべて取り消すことができるようになります。';
+	@override String get ad_free_description => 'プレミアム会員なら、アプリ内のすべての広告が表示されなくなります。';
 }
 
 // Path: home
@@ -3065,6 +3081,14 @@ extension on _TranslationsEn {
 			case 'purchase.unlimited_answers': return 'Unlimited Answers';
 			case 'purchase.unlimited_answers_description': return ({required Object number}) => 'Free users can only answer ${number} questions daily, but as a premium member, you can answer as many questions as you like in a day.';
 			case 'purchase.unlimited_translations': return 'Unlimited Translations';
+			case 'purchase.unlimited_translations_description': return ({required Object number}) => 'Free users can only translate ${number} times a day, but premium members can translate as many times a day as they like.';
+			case 'purchase.weakness_description': return 'Premium members can focus on questions with low percentage of correct answers.';
+			case 'purchase.note_description': return 'Premium members will be able to leave notes on answered questions.';
+			case 'purchase.answer_analysis_description': return 'Premium members can analyze the questions they have answered by the percentage of correct answers and the number of mistakes.';
+			case 'purchase.answer_history_description': return 'If you are a premium member, you can view the history of questions you have answered.';
+			case 'purchase.questions_you_got_wrong_description': return 'If you are a premium member, you can review the questions you got wrong that day.';
+			case 'purchase.deletion_of_all_reviews_description': return 'If you are a premium member, you can cancel all the reviews you have set up.';
+			case 'purchase.ad_free_description': return 'If you are a premium member, you will no longer see all adverts in the app.';
 			case 'home.welcome': return 'Welcome to DiQt!';
 			case 'home.welcome_description_1': return 'DiQt is a dictionary app to help you never forget vocabulary.';
 			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
@@ -3898,8 +3922,16 @@ extension on _TranslationsJa {
 			case 'purchase.view_premium_plan': return 'プレミアムプランを見る';
 			case 'purchase.premium_plan_benefits': return 'プレミアムプランの特典';
 			case 'purchase.unlimited_answers': return '無制限の解答';
-			case 'purchase.unlimited_answers_description': return ({required Object number}) => '無料ユーザーの1日に解答できる問題の数は${number}問ですが、プレミアム会員になれば、1日に何問でも解答できます。';
+			case 'purchase.unlimited_answers_description': return ({required Object number}) => '無料ユーザーが1日に解答できる問題の数は${number}問ですが、プレミアム会員なら、1日に何問でも解答できるようになります。';
 			case 'purchase.unlimited_translations': return '無制限の翻訳';
+			case 'purchase.unlimited_translations_description': return ({required Object number}) => '無料ユーザーが1日に翻訳できる回数は${number}回ですが、プレミアム会員になら、1日に何回でも翻訳できるようになります。';
+			case 'purchase.weakness_description': return 'プレミアム会員なら、正答率が低い問題を重点的に学習できるようになります。';
+			case 'purchase.note_description': return 'プレミアム会員なら、解いた問題にメモを残すことができるようになります。';
+			case 'purchase.answer_analysis_description': return 'プレミアム会員なら、正答率や間違えた回数で解いた問題を分析できるようになります。';
+			case 'purchase.answer_history_description': return 'プレミアム会員なら、解答した問題の履歴を閲覧できるようになります。';
+			case 'purchase.questions_you_got_wrong_description': return 'プレミアム会員なら、その日に間違えた問題を確認できるようになります。';
+			case 'purchase.deletion_of_all_reviews_description': return 'プレミアム会員なら、今までに設定した復習をすべて取り消すことができるようになります。';
+			case 'purchase.ad_free_description': return 'プレミアム会員なら、アプリ内のすべての広告が表示されなくなります。';
 			case 'home.welcome': return 'DiQtへようこそ！';
 			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
 			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';
