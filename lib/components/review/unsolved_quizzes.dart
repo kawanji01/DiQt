@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/components/review/unsolved_quiz_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +14,8 @@ class ReviewUnsolvedQuizzes extends ConsumerWidget {
     if (reviews.isEmpty) {
       return Container(
         alignment: Alignment.center,
-        child: const Text('復習すべき問題はありません',
-            style: TextStyle(
+        child: Text(t.reviews.empty,
+            style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
                 color: Colors.black54,

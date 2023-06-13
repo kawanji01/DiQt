@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/models/user.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({Key? key, required this.user}) : super(key: key);
@@ -13,10 +14,10 @@ class UserProfile extends StatelessWidget {
         return RichText(
             text: TextSpan(children: [
           const WidgetSpan(
-            child: Icon(
-              Icons.star,
+            child: FaIcon(
+              FontAwesomeIcons.crown,
+              size: 30,
               color: Colors.black54,
-              size: 30.0,
             ),
           ),
           TextSpan(

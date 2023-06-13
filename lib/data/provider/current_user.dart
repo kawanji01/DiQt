@@ -47,7 +47,7 @@ class CurrentUserState extends StateNotifier<User?> {
 final currentUserProvider =
     StateNotifierProvider<CurrentUserState, User?>((ref) => CurrentUserState());
 
-// その日に解いた問題数。解答時のインタラクションで「目標まで残りx問」のような形で使う。
+// その日に解いた問題数。解答時のインタラクションで「目標まで残りx問」のような形で使ったり、無料ユーザーに解答制限をかけるために利用する。
 // current_userに格納してある情報だが、問題解答時に前回のリクエストが終わる前に次の問題を解くことズレが出てしまうため独立させる。
 final todaysAnswersCountProvider = StateProvider<int>((ref) => ref.watch(
     currentUserProvider
@@ -55,6 +55,10 @@ final todaysAnswersCountProvider = StateProvider<int>((ref) => ref.watch(
 final todaysCorrectAnswersCountProvider = StateProvider<int>((ref) => ref.watch(
     currentUserProvider
         .select((user) => user?.todaysCorrectAnswerHistoriesCount ?? 0)));
+
+// その日に翻訳した数。無料ユーザーに制限をかけるために利用する。
+final todaysTranslationsCountProvider = StateProvider<int>((ref) => ref.watch(
+    currentUserProvider.select((user) => user?.todaysTranslationsCount ?? 0)));
 
 // 非同期でログイン済ユーザーを取得する
 final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
@@ -88,7 +92,7 @@ final userLearningLangNumberProvider = StateProvider<int>((ref) {
       .select((user) => user?.learningLangNumber ?? defaultLangNumber));
 });
 
-//
+// ユーザーのタイムゾーン
 final userTimeZoneNameProvider = StateProvider<String>((ref) {
   return ref.watch(currentUserProvider
       .select((user) => user?.timeZoneName ?? defaultTimeZone));

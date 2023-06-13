@@ -1,6 +1,8 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PremiumPlanButton extends StatelessWidget {
   const PremiumPlanButton({Key? key, required this.user}) : super(key: key);
@@ -20,10 +22,14 @@ class PremiumPlanButton extends StatelessWidget {
         onPressed: () async {
           await PremiumPlanPage.push(context);
         },
-        icon: const Icon(Icons.grade, color: Colors.white),
-        label: const Text(
-          'プレミアムプラン',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        icon: const FaIcon(
+          FontAwesomeIcons.crown,
+          size: 18,
+          color: Colors.white,
+        ),
+        label: Text(
+          t.purchase.premium_plan,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
       ),
     );

@@ -9,11 +9,6 @@ class AnswerSettingReviewNotification extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const heading =
-        Text('通知', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold));
-    const explanation = Text('その日に復習すべき問題がある場合に、指定した時刻に通知を送ります。',
-        style: TextStyle(fontSize: 14, color: Colors.black54));
-
     // ドロップダウンボタンの生成
     Widget buildDropDown() {
       return Container(

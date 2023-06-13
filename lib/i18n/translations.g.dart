@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1632 (816 per locale)
+/// Strings: 1654 (827 per locale)
 ///
-/// Built on 2023-06-12 at 00:53 UTC
+/// Built on 2023-06-13 at 01:15 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -159,8 +159,8 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
 	late final _TranslationsTimeZoneEn timeZone = _TranslationsTimeZoneEn._(_root);
+	late final _TranslationsAnswerEn answer = _TranslationsAnswerEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
-	late final _TranslationsPlansEn plans = _TranslationsPlansEn._(_root);
 	late final _TranslationsWordRequestsEn wordRequests = _TranslationsWordRequestsEn._(_root);
 	late final _TranslationsCalendarsEn calendars = _TranslationsCalendarsEn._(_root);
 	late final _TranslationsLayoutsEn layouts = _TranslationsLayoutsEn._(_root);
@@ -504,6 +504,7 @@ class _TranslationsLangEn {
 	String get translating => 'Translating...';
 	String get done => 'Done';
 	String get translation_failed => 'Translation Failed';
+	String translation_restricted({required Object number}) => 'Free users are limited to ${number} translations per day.';
 	String get language_setting => 'Language';
 	String get auto_configure => 'Auto_configure';
 	String get undefined => 'Undefined';
@@ -955,6 +956,17 @@ class _TranslationsTimeZoneEn {
 	String get tokelau_is => 'Tokelau Is.';
 }
 
+// Path: answer
+class _TranslationsAnswerEn {
+	_TranslationsAnswerEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get answer_limit_reached => 'Limit Reached';
+	String answer_limit_reached_description({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
+}
+
 // Path: activities
 class _TranslationsActivitiesEn {
 	_TranslationsActivitiesEn._(this._root);
@@ -965,45 +977,6 @@ class _TranslationsActivitiesEn {
 	String get activities => 'Activities';
 	String get cheer => 'Cheer!';
 	String get cheered => 'Cheered!';
-}
-
-// Path: plans
-class _TranslationsPlansEn {
-	_TranslationsPlansEn._(this._root);
-
-	final _TranslationsEn _root; // ignore: unused_field
-
-	// Translations
-	String get premium_plan => 'Premium Plan';
-	String get premium_plan_description => 'This plan allows unlimited use of all DiQt features.';
-	String get trial_period_description => 'Now with a 2-week free trial period!';
-	String get free_plan => 'Free';
-	String get yen => 'Yen';
-	String get answers_limit => 'Number of answers per day';
-	String get unlimited => 'Unlimited';
-	String get translations_limit => 'Number of translations per day';
-	String get ad_free => 'Ad-free';
-	String get weakness => 'The Weakness Questions';
-	String get note => 'Notes';
-	String get answer_analysis => 'Answer Analyses';
-	String get answer_history => 'Answer histories';
-	String get questions_you_got_wrong => 'Questions you got wrong today';
-	String get deletion_of_all_reviews => 'Deletion of all reviews';
-	String get monthly_plan => 'Monthly';
-	String get month => 'Month';
-	String get annual_plan => 'Annual';
-	String get year => 'Year';
-	String get two_months_free => '2 months\' savings!';
-	String get start_free_trial => 'Start Free Trial';
-	String get get_started => 'Get Started';
-	String get registered => 'Registered';
-	String get bank_transfer => 'If you wish to make a bank transfer, please click here';
-	String get stripe_explanation => 'We use Stripe for payments - Stripe is a secure payment system widely used around the world and we do not store your card details on our servers.';
-	String get auto_renew_explanation => 'Plans are auto-renewing. If you cancel via payment settings at least 24 hours before the expiry date, your plan will not be auto-renewed.';
-	String get this_is_premium_plan_feature => 'This is a feature for premium members.';
-	String get all_features_will_be_available => 'All features will be available.';
-	String get notice => 'Seven days\' notice before the charge is made.';
-	String get cancel_at_any_time => 'You can cancel at any time.';
 }
 
 // Path: wordRequests
@@ -1146,6 +1119,44 @@ class _TranslationsPurchaseEn {
 
 	// Translations
 	String get premium_plan => 'Premium Plan';
+	String get premium_plan_description => 'This plan allows unlimited use of all DiQt features.';
+	String get trial_period_description => 'Now with a 2-week free trial period!';
+	String get free_plan => 'Free';
+	String get yen => 'Yen';
+	String get answers_limit => 'Number of answers per day';
+	String get unlimited => 'Unlimited';
+	String get translations_limit => 'Number of translations per day';
+	String get ad_free => 'Ad-free';
+	String get weakness => 'The Weakness Questions';
+	String get note => 'Notes';
+	String get answer_analysis => 'Answer Analyses';
+	String get answer_history => 'Answer histories';
+	String get questions_you_got_wrong => 'Questions you got wrong today';
+	String get deletion_of_all_reviews => 'Deletion of all reviews';
+	String get monthly_plan => 'Monthly';
+	String get month => 'Month';
+	String get annual_plan => 'Annual';
+	String get year => 'Year';
+	String get two_months_free => '2 months\' savings!';
+	String get start_free_trial => 'Start Free Trial';
+	String get get_started => 'Get Started';
+	String get registered => 'Registered';
+	String get bank_transfer => 'If you wish to make a bank transfer, please click here';
+	String get stripe_explanation => 'We use Stripe for payments - Stripe is a secure payment system widely used around the world and we do not store your card details on our servers.';
+	String get auto_renew_explanation => 'Plans are auto-renewing. If you cancel via payment settings at least 24 hours before the expiry date, your plan will not be auto-renewed.';
+	String get this_is_premium_plan_feature => 'This is a feature for premium members.';
+	String get all_features_will_be_available => 'All features will be available.';
+	String get notice => 'Seven days\' notice before the charge is made.';
+	String get cancel_at_any_time => 'You can cancel at any time.';
+	String get monthly_plan_price => '¥500／Month';
+	String get annual_plan_price => '¥5,000／Year';
+	String get purchase_succeded => 'You are now a premium member!';
+	String get view_premium_plan_benefits => 'View Premium Plan benefits';
+	String get view_premium_plan => 'View Premium Plan';
+	String get premium_plan_benefits => 'Premium Plan Benefits';
+	String get unlimited_answers => 'Unlimited Answers';
+	String unlimited_answers_description({required Object number}) => 'Free users can only answer ${number} questions daily, but as a premium member, you can answer as many questions as you like in a day.';
+	String get unlimited_translations => 'Unlimited Translations';
 }
 
 // Path: home
@@ -1212,8 +1223,8 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
 	@override late final _TranslationsTimeZoneJa timeZone = _TranslationsTimeZoneJa._(_root);
+	@override late final _TranslationsAnswerJa answer = _TranslationsAnswerJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
-	@override late final _TranslationsPlansJa plans = _TranslationsPlansJa._(_root);
 	@override late final _TranslationsWordRequestsJa wordRequests = _TranslationsWordRequestsJa._(_root);
 	@override late final _TranslationsCalendarsJa calendars = _TranslationsCalendarsJa._(_root);
 	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
@@ -1557,6 +1568,7 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get translating => '翻訳中...';
 	@override String get done => '完了';
 	@override String get translation_failed => '翻訳できませんでした。';
+	@override String translation_restricted({required Object number}) => '無料ユーザーが1日に翻訳できる回数は、${number}件までです。';
 	@override String get language_setting => '言語設定';
 	@override String get auto_configure => '自動で設定する';
 	@override String get undefined => '未定義';
@@ -2008,6 +2020,17 @@ class _TranslationsTimeZoneJa implements _TranslationsTimeZoneEn {
 	@override String get tokelau_is => 'トケラウ諸島';
 }
 
+// Path: answer
+class _TranslationsAnswerJa implements _TranslationsAnswerEn {
+	_TranslationsAnswerJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get answer_limit_reached => '制限に達しました';
+	@override String answer_limit_reached_description({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
+}
+
 // Path: activities
 class _TranslationsActivitiesJa implements _TranslationsActivitiesEn {
 	_TranslationsActivitiesJa._(this._root);
@@ -2018,45 +2041,6 @@ class _TranslationsActivitiesJa implements _TranslationsActivitiesEn {
 	@override String get activities => '活動';
 	@override String get cheer => '応援する!';
 	@override String get cheered => '応援しました！';
-}
-
-// Path: plans
-class _TranslationsPlansJa implements _TranslationsPlansEn {
-	_TranslationsPlansJa._(this._root);
-
-	@override final _TranslationsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String get premium_plan => 'プレミアムプラン';
-	@override String get premium_plan_description => 'DiQtのすべての機能が使い放題になるプランです。';
-	@override String get trial_period_description => '今なら２週間の無料体験期間つき！';
-	@override String get free_plan => '無料プラン';
-	@override String get yen => '円';
-	@override String get answers_limit => '1日の解答数';
-	@override String get unlimited => '無制限';
-	@override String get translations_limit => '1日の翻訳できる回数';
-	@override String get ad_free => '広告非表示';
-	@override String get weakness => '弱点問題';
-	@override String get note => 'ノート機能';
-	@override String get answer_analysis => '解答分析';
-	@override String get answer_history => '解答履歴';
-	@override String get questions_you_got_wrong => '今日間違えた問題';
-	@override String get deletion_of_all_reviews => '復習一括削除';
-	@override String get monthly_plan => '月額プラン';
-	@override String get month => '月';
-	@override String get annual_plan => '年額プラン';
-	@override String get year => '年';
-	@override String get two_months_free => '２ヶ月分お得！';
-	@override String get start_free_trial => '無料で試す';
-	@override String get get_started => '登録する';
-	@override String get registered => '登録済み';
-	@override String get bank_transfer => '銀行口座のお振込をご希望の方はこちらから';
-	@override String get stripe_explanation => '決済には、Stripeを利用しております。Stripeは世界中で幅広く利用されている安全な決済システムであり、当社のサーバーでお客様のカード情報を保存することはありません。';
-	@override String get auto_renew_explanation => 'プランは自動更新です。有効期間が終了する２４時間前までにお支払い設定よりご解約いただければ、自動更新はされません。';
-	@override String get this_is_premium_plan_feature => 'プレミアム会員用の機能です';
-	@override String get all_features_will_be_available => 'すべての機能が利用できるようになります。';
-	@override String get notice => '有料化の7日前にお知らせします。';
-	@override String get cancel_at_any_time => 'いつでもキャンセルできます。';
 }
 
 // Path: wordRequests
@@ -2199,6 +2183,44 @@ class _TranslationsPurchaseJa implements _TranslationsPurchaseEn {
 
 	// Translations
 	@override String get premium_plan => 'プレミアムプラン';
+	@override String get premium_plan_description => 'DiQtのすべての機能が使い放題になるプランです。';
+	@override String get trial_period_description => '今なら２週間の無料体験期間つき！';
+	@override String get free_plan => '無料プラン';
+	@override String get yen => '円';
+	@override String get answers_limit => '1日の解答数';
+	@override String get unlimited => '無制限';
+	@override String get translations_limit => '1日の翻訳できる回数';
+	@override String get ad_free => '広告非表示';
+	@override String get weakness => '弱点問題';
+	@override String get note => 'ノート機能';
+	@override String get answer_analysis => '解答分析';
+	@override String get answer_history => '解答履歴';
+	@override String get questions_you_got_wrong => '今日間違えた問題';
+	@override String get deletion_of_all_reviews => '復習一括削除';
+	@override String get monthly_plan => '月額プラン';
+	@override String get month => '月';
+	@override String get annual_plan => '年額プラン';
+	@override String get year => '年';
+	@override String get two_months_free => '２ヶ月分お得！';
+	@override String get start_free_trial => '無料で試す';
+	@override String get get_started => '登録する';
+	@override String get registered => '登録済み';
+	@override String get bank_transfer => '銀行口座のお振込をご希望の方はこちらから';
+	@override String get stripe_explanation => '決済には、Stripeを利用しております。Stripeは世界中で幅広く利用されている安全な決済システムであり、当社のサーバーでお客様のカード情報を保存することはありません。';
+	@override String get auto_renew_explanation => 'プランは自動更新です。有効期間が終了する２４時間前までにお支払い設定よりご解約いただければ、自動更新はされません。';
+	@override String get this_is_premium_plan_feature => 'プレミアム会員用の機能です';
+	@override String get all_features_will_be_available => 'すべての機能が利用できるようになります。';
+	@override String get notice => '有料化の7日前にお知らせします。';
+	@override String get cancel_at_any_time => 'いつでもキャンセルできます。';
+	@override String get monthly_plan_price => '500円／月';
+	@override String get annual_plan_price => '5,000円／年';
+	@override String get purchase_succeded => 'プレミアム会員になりました！';
+	@override String get view_premium_plan_benefits => 'プレミアムプランの特典を見る';
+	@override String get view_premium_plan => 'プレミアムプランを見る';
+	@override String get premium_plan_benefits => 'プレミアムプランの特典';
+	@override String get unlimited_answers => '無制限の解答';
+	@override String unlimited_answers_description({required Object number}) => '無料ユーザーの1日に解答できる問題の数は${number}問ですが、プレミアム会員になれば、1日に何問でも解答できます。';
+	@override String get unlimited_translations => '無制限の翻訳';
 }
 
 // Path: home
@@ -2480,6 +2502,7 @@ extension on _TranslationsEn {
 			case 'lang.translating': return 'Translating...';
 			case 'lang.done': return 'Done';
 			case 'lang.translation_failed': return 'Translation Failed';
+			case 'lang.translation_restricted': return ({required Object number}) => 'Free users are limited to ${number} translations per day.';
 			case 'lang.language_setting': return 'Language';
 			case 'lang.auto_configure': return 'Auto_configure';
 			case 'lang.undefined': return 'Undefined';
@@ -2911,39 +2934,11 @@ extension on _TranslationsEn {
 			case 'timeZone.nuku_alofa': return 'Nuku\'alofa';
 			case 'timeZone.samoa': return 'Samoa';
 			case 'timeZone.tokelau_is': return 'Tokelau Is.';
+			case 'answer.answer_limit_reached': return 'Limit Reached';
+			case 'answer.answer_limit_reached_description': return ({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
 			case 'activities.activities': return 'Activities';
 			case 'activities.cheer': return 'Cheer!';
 			case 'activities.cheered': return 'Cheered!';
-			case 'plans.premium_plan': return 'Premium Plan';
-			case 'plans.premium_plan_description': return 'This plan allows unlimited use of all DiQt features.';
-			case 'plans.trial_period_description': return 'Now with a 2-week free trial period!';
-			case 'plans.free_plan': return 'Free';
-			case 'plans.yen': return 'Yen';
-			case 'plans.answers_limit': return 'Number of answers per day';
-			case 'plans.unlimited': return 'Unlimited';
-			case 'plans.translations_limit': return 'Number of translations per day';
-			case 'plans.ad_free': return 'Ad-free';
-			case 'plans.weakness': return 'The Weakness Questions';
-			case 'plans.note': return 'Notes';
-			case 'plans.answer_analysis': return 'Answer Analyses';
-			case 'plans.answer_history': return 'Answer histories';
-			case 'plans.questions_you_got_wrong': return 'Questions you got wrong today';
-			case 'plans.deletion_of_all_reviews': return 'Deletion of all reviews';
-			case 'plans.monthly_plan': return 'Monthly';
-			case 'plans.month': return 'Month';
-			case 'plans.annual_plan': return 'Annual';
-			case 'plans.year': return 'Year';
-			case 'plans.two_months_free': return '2 months\' savings!';
-			case 'plans.start_free_trial': return 'Start Free Trial';
-			case 'plans.get_started': return 'Get Started';
-			case 'plans.registered': return 'Registered';
-			case 'plans.bank_transfer': return 'If you wish to make a bank transfer, please click here';
-			case 'plans.stripe_explanation': return 'We use Stripe for payments - Stripe is a secure payment system widely used around the world and we do not store your card details on our servers.';
-			case 'plans.auto_renew_explanation': return 'Plans are auto-renewing. If you cancel via payment settings at least 24 hours before the expiry date, your plan will not be auto-renewed.';
-			case 'plans.this_is_premium_plan_feature': return 'This is a feature for premium members.';
-			case 'plans.all_features_will_be_available': return 'All features will be available.';
-			case 'plans.notice': return 'Seven days\' notice before the charge is made.';
-			case 'plans.cancel_at_any_time': return 'You can cancel at any time.';
 			case 'wordRequests.addition': return 'Addition';
 			case 'wordRequests.modification': return 'Modification';
 			case 'wordRequests.elimination': return 'Deletion';
@@ -3032,6 +3027,44 @@ extension on _TranslationsEn {
 			case 'words.details': return 'Details';
 			case 'words.not_found': return 'Not Found';
 			case 'purchase.premium_plan': return 'Premium Plan';
+			case 'purchase.premium_plan_description': return 'This plan allows unlimited use of all DiQt features.';
+			case 'purchase.trial_period_description': return 'Now with a 2-week free trial period!';
+			case 'purchase.free_plan': return 'Free';
+			case 'purchase.yen': return 'Yen';
+			case 'purchase.answers_limit': return 'Number of answers per day';
+			case 'purchase.unlimited': return 'Unlimited';
+			case 'purchase.translations_limit': return 'Number of translations per day';
+			case 'purchase.ad_free': return 'Ad-free';
+			case 'purchase.weakness': return 'The Weakness Questions';
+			case 'purchase.note': return 'Notes';
+			case 'purchase.answer_analysis': return 'Answer Analyses';
+			case 'purchase.answer_history': return 'Answer histories';
+			case 'purchase.questions_you_got_wrong': return 'Questions you got wrong today';
+			case 'purchase.deletion_of_all_reviews': return 'Deletion of all reviews';
+			case 'purchase.monthly_plan': return 'Monthly';
+			case 'purchase.month': return 'Month';
+			case 'purchase.annual_plan': return 'Annual';
+			case 'purchase.year': return 'Year';
+			case 'purchase.two_months_free': return '2 months\' savings!';
+			case 'purchase.start_free_trial': return 'Start Free Trial';
+			case 'purchase.get_started': return 'Get Started';
+			case 'purchase.registered': return 'Registered';
+			case 'purchase.bank_transfer': return 'If you wish to make a bank transfer, please click here';
+			case 'purchase.stripe_explanation': return 'We use Stripe for payments - Stripe is a secure payment system widely used around the world and we do not store your card details on our servers.';
+			case 'purchase.auto_renew_explanation': return 'Plans are auto-renewing. If you cancel via payment settings at least 24 hours before the expiry date, your plan will not be auto-renewed.';
+			case 'purchase.this_is_premium_plan_feature': return 'This is a feature for premium members.';
+			case 'purchase.all_features_will_be_available': return 'All features will be available.';
+			case 'purchase.notice': return 'Seven days\' notice before the charge is made.';
+			case 'purchase.cancel_at_any_time': return 'You can cancel at any time.';
+			case 'purchase.monthly_plan_price': return '¥500／Month';
+			case 'purchase.annual_plan_price': return '¥5,000／Year';
+			case 'purchase.purchase_succeded': return 'You are now a premium member!';
+			case 'purchase.view_premium_plan_benefits': return 'View Premium Plan benefits';
+			case 'purchase.view_premium_plan': return 'View Premium Plan';
+			case 'purchase.premium_plan_benefits': return 'Premium Plan Benefits';
+			case 'purchase.unlimited_answers': return 'Unlimited Answers';
+			case 'purchase.unlimited_answers_description': return ({required Object number}) => 'Free users can only answer ${number} questions daily, but as a premium member, you can answer as many questions as you like in a day.';
+			case 'purchase.unlimited_translations': return 'Unlimited Translations';
 			case 'home.welcome': return 'Welcome to DiQt!';
 			case 'home.welcome_description_1': return 'DiQt is a dictionary app to help you never forget vocabulary.';
 			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
@@ -3304,6 +3337,7 @@ extension on _TranslationsJa {
 			case 'lang.translating': return '翻訳中...';
 			case 'lang.done': return '完了';
 			case 'lang.translation_failed': return '翻訳できませんでした。';
+			case 'lang.translation_restricted': return ({required Object number}) => '無料ユーザーが1日に翻訳できる回数は、${number}件までです。';
 			case 'lang.language_setting': return '言語設定';
 			case 'lang.auto_configure': return '自動で設定する';
 			case 'lang.undefined': return '未定義';
@@ -3735,39 +3769,11 @@ extension on _TranslationsJa {
 			case 'timeZone.nuku_alofa': return 'ヌクアロファ';
 			case 'timeZone.samoa': return 'サモア';
 			case 'timeZone.tokelau_is': return 'トケラウ諸島';
+			case 'answer.answer_limit_reached': return '制限に達しました';
+			case 'answer.answer_limit_reached_description': return ({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
 			case 'activities.activities': return '活動';
 			case 'activities.cheer': return '応援する!';
 			case 'activities.cheered': return '応援しました！';
-			case 'plans.premium_plan': return 'プレミアムプラン';
-			case 'plans.premium_plan_description': return 'DiQtのすべての機能が使い放題になるプランです。';
-			case 'plans.trial_period_description': return '今なら２週間の無料体験期間つき！';
-			case 'plans.free_plan': return '無料プラン';
-			case 'plans.yen': return '円';
-			case 'plans.answers_limit': return '1日の解答数';
-			case 'plans.unlimited': return '無制限';
-			case 'plans.translations_limit': return '1日の翻訳できる回数';
-			case 'plans.ad_free': return '広告非表示';
-			case 'plans.weakness': return '弱点問題';
-			case 'plans.note': return 'ノート機能';
-			case 'plans.answer_analysis': return '解答分析';
-			case 'plans.answer_history': return '解答履歴';
-			case 'plans.questions_you_got_wrong': return '今日間違えた問題';
-			case 'plans.deletion_of_all_reviews': return '復習一括削除';
-			case 'plans.monthly_plan': return '月額プラン';
-			case 'plans.month': return '月';
-			case 'plans.annual_plan': return '年額プラン';
-			case 'plans.year': return '年';
-			case 'plans.two_months_free': return '２ヶ月分お得！';
-			case 'plans.start_free_trial': return '無料で試す';
-			case 'plans.get_started': return '登録する';
-			case 'plans.registered': return '登録済み';
-			case 'plans.bank_transfer': return '銀行口座のお振込をご希望の方はこちらから';
-			case 'plans.stripe_explanation': return '決済には、Stripeを利用しております。Stripeは世界中で幅広く利用されている安全な決済システムであり、当社のサーバーでお客様のカード情報を保存することはありません。';
-			case 'plans.auto_renew_explanation': return 'プランは自動更新です。有効期間が終了する２４時間前までにお支払い設定よりご解約いただければ、自動更新はされません。';
-			case 'plans.this_is_premium_plan_feature': return 'プレミアム会員用の機能です';
-			case 'plans.all_features_will_be_available': return 'すべての機能が利用できるようになります。';
-			case 'plans.notice': return '有料化の7日前にお知らせします。';
-			case 'plans.cancel_at_any_time': return 'いつでもキャンセルできます。';
 			case 'wordRequests.addition': return '追加';
 			case 'wordRequests.modification': return '修正';
 			case 'wordRequests.elimination': return '削除';
@@ -3856,6 +3862,44 @@ extension on _TranslationsJa {
 			case 'words.details': return '詳細';
 			case 'words.not_found': return '該当する単語はありません。';
 			case 'purchase.premium_plan': return 'プレミアムプラン';
+			case 'purchase.premium_plan_description': return 'DiQtのすべての機能が使い放題になるプランです。';
+			case 'purchase.trial_period_description': return '今なら２週間の無料体験期間つき！';
+			case 'purchase.free_plan': return '無料プラン';
+			case 'purchase.yen': return '円';
+			case 'purchase.answers_limit': return '1日の解答数';
+			case 'purchase.unlimited': return '無制限';
+			case 'purchase.translations_limit': return '1日の翻訳できる回数';
+			case 'purchase.ad_free': return '広告非表示';
+			case 'purchase.weakness': return '弱点問題';
+			case 'purchase.note': return 'ノート機能';
+			case 'purchase.answer_analysis': return '解答分析';
+			case 'purchase.answer_history': return '解答履歴';
+			case 'purchase.questions_you_got_wrong': return '今日間違えた問題';
+			case 'purchase.deletion_of_all_reviews': return '復習一括削除';
+			case 'purchase.monthly_plan': return '月額プラン';
+			case 'purchase.month': return '月';
+			case 'purchase.annual_plan': return '年額プラン';
+			case 'purchase.year': return '年';
+			case 'purchase.two_months_free': return '２ヶ月分お得！';
+			case 'purchase.start_free_trial': return '無料で試す';
+			case 'purchase.get_started': return '登録する';
+			case 'purchase.registered': return '登録済み';
+			case 'purchase.bank_transfer': return '銀行口座のお振込をご希望の方はこちらから';
+			case 'purchase.stripe_explanation': return '決済には、Stripeを利用しております。Stripeは世界中で幅広く利用されている安全な決済システムであり、当社のサーバーでお客様のカード情報を保存することはありません。';
+			case 'purchase.auto_renew_explanation': return 'プランは自動更新です。有効期間が終了する２４時間前までにお支払い設定よりご解約いただければ、自動更新はされません。';
+			case 'purchase.this_is_premium_plan_feature': return 'プレミアム会員用の機能です';
+			case 'purchase.all_features_will_be_available': return 'すべての機能が利用できるようになります。';
+			case 'purchase.notice': return '有料化の7日前にお知らせします。';
+			case 'purchase.cancel_at_any_time': return 'いつでもキャンセルできます。';
+			case 'purchase.monthly_plan_price': return '500円／月';
+			case 'purchase.annual_plan_price': return '5,000円／年';
+			case 'purchase.purchase_succeded': return 'プレミアム会員になりました！';
+			case 'purchase.view_premium_plan_benefits': return 'プレミアムプランの特典を見る';
+			case 'purchase.view_premium_plan': return 'プレミアムプランを見る';
+			case 'purchase.premium_plan_benefits': return 'プレミアムプランの特典';
+			case 'purchase.unlimited_answers': return '無制限の解答';
+			case 'purchase.unlimited_answers_description': return ({required Object number}) => '無料ユーザーの1日に解答できる問題の数は${number}問ですが、プレミアム会員になれば、1日に何問でも解答できます。';
+			case 'purchase.unlimited_translations': return '無制限の翻訳';
 			case 'home.welcome': return 'DiQtへようこそ！';
 			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
 			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';

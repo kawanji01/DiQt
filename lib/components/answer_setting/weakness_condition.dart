@@ -9,11 +9,6 @@ class AnswerSettingWeaknessCondition extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const heading = Text('苦手にする条件',
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold));
-    const explanation = Text('自動で苦手な問題に追加する条件を決めます。',
-        style: TextStyle(fontSize: 14, color: Colors.black54));
-
     // ドロップダウンボタンの生成
     Widget buildDropDown() {
       return Container(

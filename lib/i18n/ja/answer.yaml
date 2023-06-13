@@ -1,0 +1,2 @@
+answer_limit_reached: '制限に達しました'
+answer_limit_reached_description: '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！'

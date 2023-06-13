@@ -34,7 +34,7 @@ class ReviewBulkDeletionButton extends ConsumerWidget {
           Dialogs.slideFromBottomFade(const ReviewBulkDeletionScreen());
         } else {
           final snackBar =
-              SnackBar(content: Text(t.plans.this_is_premium_plan_feature));
+              SnackBar(content: Text(t.purchase.this_is_premium_plan_feature));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           PremiumPlanPage.push(context);
         }

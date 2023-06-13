@@ -1,10 +1,12 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PurchaseAnnualPlan extends StatefulWidget {
-  const PurchaseAnnualPlan({Key? key}) : super(key: key);
+  const PurchaseAnnualPlan({Key? key, required this.width}) : super(key: key);
+  final double width;
 
   @override
   State<PurchaseAnnualPlan> createState() => _PurchaseAnnualPlanState();
@@ -26,7 +28,7 @@ class _PurchaseAnnualPlanState extends State<PurchaseAnnualPlan> {
       if (!mounted) return;
       // 契約完了したらマイページに画面遷移
       if (subscriptionCompleted) {
-        const snackBar = SnackBar(content: Text('プレミアム会員になりました！'));
+        final snackBar = SnackBar(content: Text(t.purchase.purchase_succeded));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
       }
@@ -38,7 +40,8 @@ class _PurchaseAnnualPlanState extends State<PurchaseAnnualPlan> {
         clipBehavior: Clip.none,
         children: [
           Container(
-            padding: const EdgeInsets.fromLTRB(32, 24, 32, 45),
+            width: widget.width,
+            padding: const EdgeInsets.only(top: 24, bottom: 45),
             decoration: BoxDecoration(
               color: Colors.white70,
               borderRadius: const BorderRadius.all(Radius.circular(4)),
@@ -50,31 +53,23 @@ class _PurchaseAnnualPlanState extends State<PurchaseAnnualPlan> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 Text(
-                  "年額プラン",
-                  style: TextStyle(
+                  t.purchase.annual_plan,
+                  style: const TextStyle(
                     color: Colors.green,
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
-                  "5000円/年",
-                  style: TextStyle(
+                  t.purchase.annual_plan_price,
+                  style: const TextStyle(
                     color: Colors.black87,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                /* Text(
-                  "417円/月",
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ), */
               ],
             ),
           ),
@@ -89,11 +84,11 @@ class _PurchaseAnnualPlanState extends State<PurchaseAnnualPlan> {
                 borderRadius: BorderRadius.circular(12),
                 color: Colors.redAccent,
               ),
-              child: const Text(
-                "２ヶ月分お得！",
-                style: TextStyle(
+              child: Text(
+                t.purchase.two_months_free,
+                style: const TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 10,
+                  fontSize: 12,
                   color: Colors.white,
                 ),
               ),
