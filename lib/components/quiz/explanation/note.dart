@@ -1,22 +1,27 @@
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/notes.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/components/note/form_field.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
+import 'package:booqs_mobile/pages/user/premium_plan.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizExplanationNote extends StatefulWidget {
+class QuizExplanationNote extends ConsumerStatefulWidget {
   const QuizExplanationNote({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
 
   @override
-  State<QuizExplanationNote> createState() => _QuizExplanationNoteState();
+  QuizExplanationNoteState createState() => QuizExplanationNoteState();
 }
 
-class _QuizExplanationNoteState extends State<QuizExplanationNote> {
+class QuizExplanationNoteState extends ConsumerState<QuizExplanationNote> {
   bool _isEdit = true;
   Note? _note;
   final _formKey = GlobalKey<FormState>();
@@ -41,38 +46,52 @@ class _QuizExplanationNoteState extends State<QuizExplanationNote> {
     _noteContentController.dispose();
   }
 
+  Future<void> _save() async {
+    EasyLoading.show(status: 'loading...');
+    final Map resMap = _note == null ? await _create() : await _update();
+    EasyLoading.dismiss();
+    if (!mounted) return;
+    if (ErrorHandler.isErrorMap(resMap)) {
+      return ErrorHandler.showErrorSnackBar(context, resMap);
+    }
+    final Note note = Note.fromJson(resMap['note']);
+    _noteContentController.text = note.content;
+    setState(() {
+      _note = note;
+      _isEdit = false;
+    });
+  }
+
+  Future<Map> _create() async {
+    final Map<String, dynamic> params = {
+      'quiz_id': widget.quiz.id,
+      'content': _noteContentController.text,
+    };
+    final Map resMap = await RemoteNotes.create(params);
+    return resMap;
+  }
+
+  Future<Map> _update() async {
+    // update
+    final Map<String, dynamic> params = {
+      'id': _note!.id,
+      'quiz_id': widget.quiz.id,
+      'content': _noteContentController.text,
+    };
+    final Map resMap = await RemoteNotes.update(params);
+    return resMap;
+  }
+
+  // プレミアムプランページに遷移
+  void _moveToPremiumPlan() {
+    final snackBar = SnackBar(content: Text(t.notes.paywall_message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    PremiumPlanPage.push(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future save() async {
-      // リクエスト
-      Map? resMap;
-      EasyLoading.show(status: 'loading...');
-      if (_note == null) {
-        // create
-        final Map<String, dynamic> params = {
-          'quiz_id': widget.quiz.id,
-          'content': _noteContentController.text,
-        };
-        resMap = await RemoteNotes.create(params);
-      } else {
-        // update
-        final Map<String, dynamic> params = {
-          'id': _note!.id,
-          'quiz_id': widget.quiz.id,
-          'content': _noteContentController.text,
-        };
-        resMap = await RemoteNotes.update(params);
-      }
-      EasyLoading.dismiss();
-      if (resMap == null) return;
-      final Note note = Note.fromJson(resMap['note']);
-      _noteContentController.text = note.content;
-      setState(() {
-        _note = note;
-        _isEdit = false;
-      });
-    }
-
+    final bool isPremium = ref.watch(premiumEnabledProvider);
     if (_isEdit) {
       // Note編集画面
       return Form(
@@ -80,15 +99,14 @@ class _QuizExplanationNoteState extends State<QuizExplanationNote> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const SharedItemLabel(text: 'ノート'),
+            SharedItemLabel(text: t.notes.note),
             const SizedBox(height: 16),
             NoteFormField(noteContentController: _noteContentController),
             const SizedBox(height: 24),
             InkWell(
-              onTap: () {
-                save();
-              },
-              child: const SmallGreenButton(label: '更新する', icon: Icons.update),
+              onTap: isPremium ? _save : _moveToPremiumPlan,
+              child:
+                  SmallGreenButton(label: t.notes.update, icon: Icons.update),
             ),
           ],
         ),
@@ -97,7 +115,7 @@ class _QuizExplanationNoteState extends State<QuizExplanationNote> {
       // Noteのコンテンツ表示
       return Column(
         children: [
-          const SharedItemLabel(text: 'ノート'),
+          SharedItemLabel(text: t.notes.note),
           const SizedBox(height: 8),
           MarkdownWithDictLink(
             text: _note?.content ?? 'Note does not exist.',
@@ -109,10 +127,10 @@ class _QuizExplanationNoteState extends State<QuizExplanationNote> {
           ),
           const SizedBox(height: 16),
           InkWell(
-            onTap: () {
-              setState(() => _isEdit = true);
-            },
-            child: const SmallGreenButton(label: '編集する', icon: Icons.edit),
+            onTap: () => isPremium
+                ? setState(() => _isEdit = true)
+                : _moveToPremiumPlan(),
+            child: SmallGreenButton(label: t.notes.edit, icon: Icons.edit),
           ),
         ],
       );

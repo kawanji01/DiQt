@@ -63,7 +63,7 @@ class PurchaseBenefitsScreen extends StatelessWidget {
           title(t.purchase.unlimited_translations),
           description(
             t.purchase.unlimited_translations_description(
-                number: answersCountLimitForFreeUsers),
+                number: translationsCountLimitForFreeUsers),
           ),
           const SizedBox(height: 48),
           title(t.purchase.weakness),

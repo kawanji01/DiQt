@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1686 (843 per locale)
+/// Strings: 1696 (848 per locale)
 ///
-/// Built on 2023-06-13 at 06:33 UTC
+/// Built on 2023-06-13 at 12:53 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -160,6 +160,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsAchievementsEn achievements = _TranslationsAchievementsEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
+	late final _TranslationsNotesEn notes = _TranslationsNotesEn._(_root);
 	late final _TranslationsTimeZoneEn timeZone = _TranslationsTimeZoneEn._(_root);
 	late final _TranslationsAnswerEn answer = _TranslationsAnswerEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
@@ -823,6 +824,20 @@ class _TranslationsSentencesEn {
 	String get destroyed => 'Sentence Destroyed';
 }
 
+// Path: notes
+class _TranslationsNotesEn {
+	_TranslationsNotesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get note => 'Note';
+	String get note_placeholder => 'Note for yourself on the question.';
+	String get edit => 'Edit';
+	String get update => 'Update';
+	String get paywall_message => 'Premium membership gives you access to the Notes function.';
+}
+
 // Path: timeZone
 class _TranslationsTimeZoneEn {
 	_TranslationsTimeZoneEn._(this._root);
@@ -1270,6 +1285,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsAchievementsJa achievements = _TranslationsAchievementsJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
+	@override late final _TranslationsNotesJa notes = _TranslationsNotesJa._(_root);
 	@override late final _TranslationsTimeZoneJa timeZone = _TranslationsTimeZoneJa._(_root);
 	@override late final _TranslationsAnswerJa answer = _TranslationsAnswerJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
@@ -1931,6 +1947,20 @@ class _TranslationsSentencesJa implements _TranslationsSentencesEn {
 	@override String get updated => '例文が更新されました。';
 	@override String get update_failed => '例文の更新に失敗しました。';
 	@override String get destroyed => '例文が削除されました。';
+}
+
+// Path: notes
+class _TranslationsNotesJa implements _TranslationsNotesEn {
+	_TranslationsNotesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get note => 'ノート';
+	@override String get note_placeholder => '問題に関する自分用のメモです。';
+	@override String get edit => '編集する';
+	@override String get update => '更新する';
+	@override String get paywall_message => 'プレミアム会員になることで、ノート機能をご利用いただけるようになります。';
 }
 
 // Path: timeZone
@@ -2881,6 +2911,11 @@ extension on _TranslationsEn {
 			case 'sentences.updated': return 'Sentence Updated';
 			case 'sentences.update_failed': return 'Failed to update the sentence.';
 			case 'sentences.destroyed': return 'Sentence Destroyed';
+			case 'notes.note': return 'Note';
+			case 'notes.note_placeholder': return 'Note for yourself on the question.';
+			case 'notes.edit': return 'Edit';
+			case 'notes.update': return 'Update';
+			case 'notes.paywall_message': return 'Premium membership gives you access to the Notes function.';
 			case 'timeZone.international_date_line_west': return 'International Date Line West';
 			case 'timeZone.american_samoa': return 'American Samoa';
 			case 'timeZone.midway_island': return 'Midway Island';
@@ -3732,6 +3767,11 @@ extension on _TranslationsJa {
 			case 'sentences.updated': return '例文が更新されました。';
 			case 'sentences.update_failed': return '例文の更新に失敗しました。';
 			case 'sentences.destroyed': return '例文が削除されました。';
+			case 'notes.note': return 'ノート';
+			case 'notes.note_placeholder': return '問題に関する自分用のメモです。';
+			case 'notes.edit': return '編集する';
+			case 'notes.update': return '更新する';
+			case 'notes.paywall_message': return 'プレミアム会員になることで、ノート機能をご利用いただけるようになります。';
 			case 'timeZone.international_date_line_west': return '国際日付変更線西';
 			case 'timeZone.american_samoa': return 'アメリカ領サモア';
 			case 'timeZone.midway_island': return 'ミッドウェー島';

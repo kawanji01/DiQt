@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/markdown/introduction_text_button.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class NoteFormField extends StatelessWidget {
@@ -15,16 +16,16 @@ class NoteFormField extends StatelessWidget {
         keyboardType: TextInputType.multiline,
         maxLines: null,
         style: const TextStyle(color: Colors.black87),
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           filled: true,
           border: InputBorder.none,
-          fillColor: Color(0xfff3f3f4),
-          labelText: "問題に関する自分用のメモ",
-          labelStyle: TextStyle(color: Colors.black54),
+          fillColor: const Color(0xfff3f3f4),
+          labelText: t.notes.note_placeholder,
+          labelStyle: const TextStyle(color: Colors.black54),
         ),
         validator: (value) {
           if (value!.isEmpty) {
-            return '空欄のノートは作成できません。';
+            return t.errors.cant_be_blank;
           }
           return null;
         },
