@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -33,15 +34,17 @@ class AnswerAnalysisIndexPageState
     final String order = ref.watch(answerAnalysisOrderProvider);
     final bool premiumEnabled = ref.watch(premiumEnabledProvider);
 
-    String title = '解答分析';
-    if (order.split('-')[0] == 'last_answered_at') title = '解答履歴';
+    String title = t.answerAnalyses.answer_analyses;
+    if (order.split('-')[0] == 'last_answered_at') {
+      title = t.answerHistories.answer_histories;
+    }
 
     Widget feed() {
       if (premiumEnabled) {
         return const AnswerAnalysisQuizListView();
       } else {
-        return const SharedPremiumRecommendation(
-            explanationText: '解答分析・解答履歴を利用するには、プレミアムプランへの登録が必要です。');
+        return SharedPremiumRecommendation(
+            description: t.shared.premium_recommendation);
       }
     }
 

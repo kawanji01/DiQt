@@ -130,6 +130,18 @@ final solvedReviewsCountProvider = Provider<int>((ref) {
       ref.watch(unsolvedReviewsCountProvider);
 });
 
+// 未解答の弱点の数
+final unsolvedWekanessesCountProvider = Provider<int>(
+  (ref) => ref.watch(
+      currentUserProvider.select((user) => user?.unsolvedWeaknessesCount ?? 0)),
+);
+
+// 弱点の数
+final wekanessesCountProvider = Provider<int>(
+  (ref) => ref
+      .watch(currentUserProvider.select((user) => user?.weaknessesCount ?? 0)),
+);
+
 // 非同期でユーザーが解答中の問題集のリストを取得する
 final asyncDrillsInProgress = FutureProvider<List<Drill>>((ref) async {
   final List<Drill> drills = [];

@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/components/weakness/answer_setting_button.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +25,12 @@ class WeaknessIntroduction extends ConsumerWidget {
       ),
       TextSpan(
           text:
-              ' 苦手な問題（${ref.watch(currentUserProvider.select((user) => user == null ? 0 : user.unsolvedWeaknessesCount))}）',
+              ' ${t.weaknesses.weaknesses}（${ref.watch(unsolvedWekanessesCountProvider)}）',
           style: const TextStyle(
               color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold))
     ]));
 
-    const textStyle = TextStyle(
+    /* const textStyle = TextStyle(
         color: Colors.black87, fontSize: 16, fontWeight: FontWeight.normal);
 
     final weaknessConditionText = RichText(
@@ -62,20 +63,20 @@ class WeaknessIntroduction extends ConsumerWidget {
           style: const TextStyle(
               color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold)),
       const TextSpan(text: ' を超えることで、自動的に問題が取り除かれます。', style: textStyle),
-    ]));
+    ])); */
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         heading,
-        const SizedBox(
+        /* const SizedBox(
           height: 8,
         ),
         weaknessConditionText,
         const SizedBox(
           height: 8,
         ),
-        overComingConditionText,
+        overComingConditionText, */
         const SizedBox(
           height: 16,
         ),

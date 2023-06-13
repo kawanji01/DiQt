@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1670 (835 per locale)
+/// Strings: 1686 (843 per locale)
 ///
-/// Built on 2023-06-13 at 04:12 UTC
+/// Built on 2023-06-13 at 06:33 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -151,16 +151,19 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsDictionariesEn dictionaries = _TranslationsDictionariesEn._(_root);
 	late final _TranslationsReviewsEn reviews = _TranslationsReviewsEn._(_root);
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
+	late final _TranslationsWeaknessesEn weaknesses = _TranslationsWeaknessesEn._(_root);
 	late final _TranslationsUsersEn users = _TranslationsUsersEn._(_root);
 	late final _TranslationsNoticesEn notices = _TranslationsNoticesEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
 	late final _TranslationsAnswerSettingsEn answerSettings = _TranslationsAnswerSettingsEn._(_root);
+	late final _TranslationsAnswerAnalysesEn answerAnalyses = _TranslationsAnswerAnalysesEn._(_root);
 	late final _TranslationsAchievementsEn achievements = _TranslationsAchievementsEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
 	late final _TranslationsTimeZoneEn timeZone = _TranslationsTimeZoneEn._(_root);
 	late final _TranslationsAnswerEn answer = _TranslationsAnswerEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
+	late final _TranslationsAnswerHistoriesEn answerHistories = _TranslationsAnswerHistoriesEn._(_root);
 	late final _TranslationsWordRequestsEn wordRequests = _TranslationsWordRequestsEn._(_root);
 	late final _TranslationsCalendarsEn calendars = _TranslationsCalendarsEn._(_root);
 	late final _TranslationsLayoutsEn layouts = _TranslationsLayoutsEn._(_root);
@@ -344,6 +347,17 @@ class _TranslationsErrorsEn {
 	String get http_status_511 => '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
 }
 
+// Path: weaknesses
+class _TranslationsWeaknessesEn {
+	_TranslationsWeaknessesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get weaknesses => 'Weaknesses';
+	String get premium_recommendation => 'To solve weak questions, you need to register for a premium plan.';
+}
+
 // Path: users
 class _TranslationsUsersEn {
 	_TranslationsUsersEn._(this._root);
@@ -410,6 +424,7 @@ class _TranslationsSharedEn {
 	String please_enter({required Object name}) => 'Please enter "${name}"';
 	String no_more_items({required Object name}) => 'All ${name} loaded';
 	String no_items_found({required Object name}) => 'No ${name} found';
+	String get premium_recommendation => 'To use this function, you need to register for a premium plan.';
 }
 
 // Path: answerSettings
@@ -480,6 +495,18 @@ class _TranslationsAnswerSettingsEn {
 	String get set_review_notification => 'Set review time';
 	String get set_review_notification_description => 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
 	String review_notification_set({required Object hours}) => 'Review reminder set for ${hours}:00.';
+}
+
+// Path: answerAnalyses
+class _TranslationsAnswerAnalysesEn {
+	_TranslationsAnswerAnalysesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get answer_analyses => 'Answer Analyses';
+	String get answer_histories => 'Answer Histories';
+	String get premium_recommendation => 'To access these features, you need to register for a premium plan.';
 }
 
 // Path: achievements
@@ -979,6 +1006,17 @@ class _TranslationsActivitiesEn {
 	String get cheered => 'Cheered!';
 }
 
+// Path: answerHistories
+class _TranslationsAnswerHistoriesEn {
+	_TranslationsAnswerHistoriesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get answer_histories => 'Answer Histories';
+	String get todays_mistakes => 'Today\'s Mistakes';
+}
+
 // Path: wordRequests
 class _TranslationsWordRequestsEn {
 	_TranslationsWordRequestsEn._(this._root);
@@ -1223,16 +1261,19 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsDictionariesJa dictionaries = _TranslationsDictionariesJa._(_root);
 	@override late final _TranslationsReviewsJa reviews = _TranslationsReviewsJa._(_root);
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
+	@override late final _TranslationsWeaknessesJa weaknesses = _TranslationsWeaknessesJa._(_root);
 	@override late final _TranslationsUsersJa users = _TranslationsUsersJa._(_root);
 	@override late final _TranslationsNoticesJa notices = _TranslationsNoticesJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
 	@override late final _TranslationsAnswerSettingsJa answerSettings = _TranslationsAnswerSettingsJa._(_root);
+	@override late final _TranslationsAnswerAnalysesJa answerAnalyses = _TranslationsAnswerAnalysesJa._(_root);
 	@override late final _TranslationsAchievementsJa achievements = _TranslationsAchievementsJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
 	@override late final _TranslationsTimeZoneJa timeZone = _TranslationsTimeZoneJa._(_root);
 	@override late final _TranslationsAnswerJa answer = _TranslationsAnswerJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
+	@override late final _TranslationsAnswerHistoriesJa answerHistories = _TranslationsAnswerHistoriesJa._(_root);
 	@override late final _TranslationsWordRequestsJa wordRequests = _TranslationsWordRequestsJa._(_root);
 	@override late final _TranslationsCalendarsJa calendars = _TranslationsCalendarsJa._(_root);
 	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
@@ -1416,6 +1457,17 @@ class _TranslationsErrorsJa implements _TranslationsErrorsEn {
 	@override String get http_status_511 => '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
 }
 
+// Path: weaknesses
+class _TranslationsWeaknessesJa implements _TranslationsWeaknessesEn {
+	_TranslationsWeaknessesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get weaknesses => '弱点問題';
+	@override String get premium_recommendation => '弱点問題を解くには、プレミアムプランへの登録が必要です。';
+}
+
 // Path: users
 class _TranslationsUsersJa implements _TranslationsUsersEn {
 	_TranslationsUsersJa._(this._root);
@@ -1482,6 +1534,7 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
 	@override String no_more_items({required Object name}) => 'すべての${name}を読み込みました';
 	@override String no_items_found({required Object name}) => '${name}がありません';
+	@override String get premium_recommendation => 'この機能を利用するには、プレミアムプランへの登録が必要です。';
 }
 
 // Path: answerSettings
@@ -1552,6 +1605,18 @@ class _TranslationsAnswerSettingsJa implements _TranslationsAnswerSettingsEn {
 	@override String get set_review_notification => '復習時刻を設定する';
 	@override String get set_review_notification_description => 'あなたが効率的に学習できるように、復習すべき問題があるときにリマインダーを送ります。あなたが学習できる時刻を設定してください。';
 	@override String review_notification_set({required Object hours}) => '${hours}時に復習リマインダーを設定しました。';
+}
+
+// Path: answerAnalyses
+class _TranslationsAnswerAnalysesJa implements _TranslationsAnswerAnalysesEn {
+	_TranslationsAnswerAnalysesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get answer_analyses => '解答分析';
+	@override String get answer_histories => '解答履歴';
+	@override String get premium_recommendation => 'これらの機能を利用するには、プレミアムプランへの登録が必要です。';
 }
 
 // Path: achievements
@@ -2051,6 +2116,17 @@ class _TranslationsActivitiesJa implements _TranslationsActivitiesEn {
 	@override String get cheered => '応援しました！';
 }
 
+// Path: answerHistories
+class _TranslationsAnswerHistoriesJa implements _TranslationsAnswerHistoriesEn {
+	_TranslationsAnswerHistoriesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get answer_histories => '解答履歴';
+	@override String get todays_mistakes => '今日間違えた問題';
+}
+
 // Path: wordRequests
 class _TranslationsWordRequestsJa implements _TranslationsWordRequestsEn {
 	_TranslationsWordRequestsJa._(this._root);
@@ -2410,6 +2486,8 @@ extension on _TranslationsEn {
 			case 'errors.http_status_508': return '508 Loop Detected: The server detected an infinite loop while processing the request. This status indicates that the entire operation failed.';
 			case 'errors.http_status_510': return '510 Not Extended: Further extensions to the request are required for the server to fulfill it.';
 			case 'errors.http_status_511': return '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
+			case 'weaknesses.weaknesses': return 'Weaknesses';
+			case 'weaknesses.premium_recommendation': return 'To solve weak questions, you need to register for a premium plan.';
 			case 'users.anonymous_user': return 'Anonymous user';
 			case 'users.creating_account_succeeded': return 'Your account registration has been completed! Welcome to DiQt!';
 			case 'users.show': return 'User Page';
@@ -2451,6 +2529,7 @@ extension on _TranslationsEn {
 			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
 			case 'shared.no_more_items': return ({required Object name}) => 'All ${name} loaded';
 			case 'shared.no_items_found': return ({required Object name}) => 'No ${name} found';
+			case 'shared.premium_recommendation': return 'To use this function, you need to register for a premium plan.';
 			case 'answerSettings.title': return 'Answer & Review Setting';
 			case 'answerSettings.answer_setting': return 'Answer Setting';
 			case 'answerSettings.daily_goal': return 'Daily target';
@@ -2512,6 +2591,9 @@ extension on _TranslationsEn {
 			case 'answerSettings.set_review_notification': return 'Set review time';
 			case 'answerSettings.set_review_notification_description': return 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
 			case 'answerSettings.review_notification_set': return ({required Object hours}) => 'Review reminder set for ${hours}:00.';
+			case 'answerAnalyses.answer_analyses': return 'Answer Analyses';
+			case 'answerAnalyses.answer_histories': return 'Answer Histories';
+			case 'answerAnalyses.premium_recommendation': return 'To access these features, you need to register for a premium plan.';
 			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -2955,6 +3037,8 @@ extension on _TranslationsEn {
 			case 'activities.activities': return 'Activities';
 			case 'activities.cheer': return 'Cheer!';
 			case 'activities.cheered': return 'Cheered!';
+			case 'answerHistories.answer_histories': return 'Answer Histories';
+			case 'answerHistories.todays_mistakes': return 'Today\'s Mistakes';
 			case 'wordRequests.addition': return 'Addition';
 			case 'wordRequests.modification': return 'Modification';
 			case 'wordRequests.elimination': return 'Deletion';
@@ -3253,6 +3337,8 @@ extension on _TranslationsJa {
 			case 'errors.http_status_508': return '508 Loop Detected: サーバーは、リクエストを処理中に無限ループを検出しました。このステータスは、操作全体が失敗したことを示しています。';
 			case 'errors.http_status_510': return '510 Not Extended: サーバーがリクエストを満たすためには、リクエストにさらなる拡張が必要です。';
 			case 'errors.http_status_511': return '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
+			case 'weaknesses.weaknesses': return '弱点問題';
+			case 'weaknesses.premium_recommendation': return '弱点問題を解くには、プレミアムプランへの登録が必要です。';
 			case 'users.anonymous_user': return '匿名ユーザー';
 			case 'users.creating_account_succeeded': return '会員登録が完了しました！ようこそDiQtへ！！';
 			case 'users.show': return 'ユーザーページ';
@@ -3294,6 +3380,7 @@ extension on _TranslationsJa {
 			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
 			case 'shared.no_more_items': return ({required Object name}) => 'すべての${name}を読み込みました';
 			case 'shared.no_items_found': return ({required Object name}) => '${name}がありません';
+			case 'shared.premium_recommendation': return 'この機能を利用するには、プレミアムプランへの登録が必要です。';
 			case 'answerSettings.title': return '解答・復習設定';
 			case 'answerSettings.answer_setting': return '解答設定';
 			case 'answerSettings.daily_goal': return '1日の目標';
@@ -3355,6 +3442,9 @@ extension on _TranslationsJa {
 			case 'answerSettings.set_review_notification': return '復習時刻を設定する';
 			case 'answerSettings.set_review_notification_description': return 'あなたが効率的に学習できるように、復習すべき問題があるときにリマインダーを送ります。あなたが学習できる時刻を設定してください。';
 			case 'answerSettings.review_notification_set': return ({required Object hours}) => '${hours}時に復習リマインダーを設定しました。';
+			case 'answerAnalyses.answer_analyses': return '解答分析';
+			case 'answerAnalyses.answer_histories': return '解答履歴';
+			case 'answerAnalyses.premium_recommendation': return 'これらの機能を利用するには、プレミアムプランへの登録が必要です。';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
@@ -3798,6 +3888,8 @@ extension on _TranslationsJa {
 			case 'activities.activities': return '活動';
 			case 'activities.cheer': return '応援する!';
 			case 'activities.cheered': return '応援しました！';
+			case 'answerHistories.answer_histories': return '解答履歴';
+			case 'answerHistories.todays_mistakes': return '今日間違えた問題';
 			case 'wordRequests.addition': return '追加';
 			case 'wordRequests.modification': return '修正';
 			case 'wordRequests.elimination': return '削除';

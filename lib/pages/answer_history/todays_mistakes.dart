@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/ad/app_banner.dart';
@@ -36,15 +37,15 @@ class AnswerHistoryTodaysMistakesPageState
 
     Widget feed() {
       if (premiumEnabled == false) {
-        return const SharedPremiumRecommendation(
-            explanationText: '『今日間違えた問題』を確認するには、プレミアムプランへの登録が必要です。');
+        return SharedPremiumRecommendation(
+            description: t.shared.premium_recommendation);
       }
       return const AnswerHistoryIncorrectQuizListView();
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('今日間違えた問題'),
+        title: Text(t.answerHistories.todays_mistakes),
       ),
       body: SingleChildScrollView(
         child: Container(
