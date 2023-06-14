@@ -36,9 +36,7 @@ class UserLogoutButtonState extends ConsumerState<UserLogoutButton> {
               if (!mounted) return;
 
               if (ErrorHandler.isErrorMap(resMap)) {
-                final message = ErrorHandler.message(resMap);
-                final snackBar = SnackBar(content: Text(message));
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                ErrorHandler.showErrorSnackBar(context, resMap);
               } else {
                 // ログアウトに伴う連携サービスの設定などの処理
                 ref.read(currentUserProvider.notifier).logOut();

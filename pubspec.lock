@@ -1578,14 +1578,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
-  twitter_login:
-    dependency: "direct main"
-    description:
-      name: twitter_login
-      sha256: "13d2096bd1709a8076c426d34c45458f22b358e238fea4910d4fca35d079319a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.3"
   typed_data:
     dependency: transitive
     description:

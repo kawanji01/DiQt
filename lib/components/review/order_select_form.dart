@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/review.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/pages/review/scheduled.dart';
 import 'package:flutter/material.dart';
@@ -29,11 +30,11 @@ class ReviewOrderSelectForm extends ConsumerWidget {
     String label(String value) {
       switch (value) {
         case 'scheduled_date-desc':
-          return '予定日が新しい順';
+          return t.reviews.scheduled_date_desc;
         case 'scheduled_date-asc':
-          return '予定日が古い順';
+          return t.reviews.scheduled_date_asc;
         case 'random-random':
-          return 'ランダム';
+          return t.reviews.random;
         default:
           return 'Error';
       }

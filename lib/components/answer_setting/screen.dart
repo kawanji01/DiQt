@@ -3,6 +3,7 @@ import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/remote/answer_settings.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/answer_setting/answer_setting.dart';
 import 'package:booqs_mobile/components/answer_setting/review_setting.dart';
@@ -59,20 +60,19 @@ class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
       };
 
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteAnswerSettings.update(params);
+      final Map resMap = await RemoteAnswerSettings.update(params);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
       if (!mounted) return;
-      if (resMap == null) {
-        const snackBar = SnackBar(content: Text('設定が更新できませんでした。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } else {
-        AnswerSetting answerSetting =
-            AnswerSetting.fromJson(resMap['answer_setting']);
-        ref.read(answerSettingProvider.notifier).state = answerSetting;
-        const snackBar = SnackBar(content: Text('設定を更新しました。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      if (ErrorHandler.isErrorMap(resMap)) {
+        return ErrorHandler.showErrorSnackBar(context, resMap);
       }
+      AnswerSetting answerSetting =
+          AnswerSetting.fromJson(resMap['answer_setting']);
+      ref.read(answerSettingProvider.notifier).state = answerSetting;
+      final snackBar =
+          SnackBar(content: Text(t.answerSettings.update_succeeded));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.of(context).pop();
     }
 

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:flutter/material.dart';
@@ -54,16 +55,16 @@ class UserTodaysMistakesButton extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     const SizedBox(height: 12),
-                    const Text(
-                      '今日間違えた問題',
-                      style: TextStyle(
+                    Text(
+                      t.answerHistories.todays_mistakes,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: Colors.red,
                       ),
                     ),
                     Text(
-                      '$todaysIncorrectAnswersCount問',
+                      '$todaysIncorrectAnswersCount',
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

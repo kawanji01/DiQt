@@ -1,8 +1,8 @@
 import 'package:booqs_mobile/components/review/form/quiz_button.dart';
-import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/pages/user/premium_plan.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
@@ -20,56 +20,42 @@ class ReviewFormDialog extends ConsumerStatefulWidget {
 }
 
 class ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
-  Review? _review;
   int _dropdownValue = 0;
+  bool _isRequesting = false;
 
   @override
   void initState() {
     super.initState();
-    _review = widget.review;
-    _dropdownValue = _review?.intervalSetting ?? 0;
+    _dropdownValue = widget.review.intervalSetting ?? 0;
+  }
+
+  // 復習設定を作成するか更新する
+  Future<void> update() async {
+    setState(() => _isRequesting = true);
+    Review review = widget.review;
+    EasyLoading.show(status: 'loading...');
+    final Map resMap = await RemoteReviews.update(review.id, _dropdownValue);
+    EasyLoading.dismiss();
+    setState(() => _isRequesting = false);
+    if (!mounted) return;
+    if (ErrorHandler.isErrorMap(resMap)) {
+      return ErrorHandler.showErrorSnackBar(context, resMap);
+    }
+    // 復習設定を更新前にすでにその復習設定が削除されていた場合の対応
+    if (resMap['review'] == null) {
+      // 削除が完了したことを伝えるモデルを作成する。
+      review.scheduledDate = 'deleted';
+    } else {
+      // 通常の更新
+      review = Review.fromJson(resMap['review']);
+    }
+    Toasts.reviewSetting(resMap['message']);
+    // ダイアログを閉じて、reviewを返り値にする。
+    Navigator.of(context).pop(review);
   }
 
   @override
   Widget build(BuildContext context) {
-    final bool premiumEnabled = ref.watch(premiumEnabledProvider);
-    // 復習設定を作成するか更新する
-    Future update() async {
-      EasyLoading.show(status: 'loading...');
-      Map? resMap;
-      // reviews#update
-      resMap = await RemoteReviews.update(_review!.id, _dropdownValue);
-      EasyLoading.dismiss();
-      if (resMap == null) return;
-      // 復習設定を更新前にすでにその復習設定が削除されていた場合の対応
-      if (resMap['review'] == null) {
-        // 削除が完了したことを伝えるモデルを作成する。
-        _review?.scheduledDate = 'deleted';
-      } else {
-        // 通常の更新
-        _review = Review.fromJson(resMap['review']);
-      }
-      await Toasts.reviewSetting(resMap['message']);
-      if (!mounted) return;
-      // ダイアログを閉じて、reviewを返り値にする。
-      Navigator.of(context).pop(_review);
-    }
-
-    //
-    Future change(int? newValue) async {
-      if (newValue == null) return;
-
-      if (premiumEnabled == false) {
-        const snackBar =
-            SnackBar(content: Text('復習設定を変更するにはプレミアムプランへの登録が必要です。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        return PremiumPlanPage.push(context);
-      }
-      setState(() {
-        _dropdownValue = newValue;
-      });
-    }
-
     // ドロップダウンボタンの生成
     Widget buildDropDown() {
       return Container(
@@ -82,17 +68,19 @@ class ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
             border: Border.all(color: Colors.black87)),
         child: DropdownButton<int>(
           value: _dropdownValue,
-          //icon: const Icon(Icons.arrow_downward),
           iconSize: 24,
           elevation: 16,
           onChanged: (int? newValue) {
-            change(newValue);
+            if (newValue == null) return;
+            setState(() {
+              _dropdownValue = newValue;
+            });
           },
           items: <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
               .map<DropdownMenuItem<int>>((int value) {
             return DropdownMenuItem<int>(
               value: value,
-              child: Text(ReviewHelper.intervalSetting(value),
+              child: Text(ReviewHelper.reviewButtonLabel(value),
                   style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -134,11 +122,11 @@ class ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
                     minimumSize: const Size(double.infinity,
                         48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
                   ),
-                  onPressed: () => update(),
+                  onPressed: _isRequesting ? null : update,
                   icon: const Icon(Icons.update, color: Colors.white),
-                  label: const Text(
-                    '設定する',
-                    style: TextStyle(
+                  label: Text(
+                    t.shared.set_up,
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         color: Colors.white),

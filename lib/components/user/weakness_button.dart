@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:flutter/material.dart';
@@ -60,16 +61,16 @@ class UserWeaknessButton extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     const SizedBox(height: 12),
-                    const Text(
-                      '苦手な問題',
-                      style: TextStyle(
+                    Text(
+                      t.weaknesses.weaknesses,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: Colors.green,
                       ),
                     ),
                     Text(
-                      '${user.unsolvedWeaknessesCount}問',
+                      '${user.unsolvedWeaknessesCount}',
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

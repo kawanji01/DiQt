@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/weakness.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/shared/premium_recommendation.dart';
@@ -33,8 +34,8 @@ class WeaknessUnsolvedScreenState
   Widget build(BuildContext context) {
     Widget unsolvedQuizzes() {
       if (ref.watch(premiumEnabledProvider) == false) {
-        return const SharedPremiumRecommendation(
-            explanationText: '『苦手な問題』を解くには、プレミアムプランへの登録が必要です。');
+        return SharedPremiumRecommendation(
+            description: t.weaknesses.premium_recommendation);
       }
       return ref.watch(asyncUnsolvedWeaknessesProvider).when(
             skipLoadingOnRefresh: false,

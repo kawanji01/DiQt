@@ -1,69 +1,22 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/utils/helpers/review.dart';
+
 class AnswerSettingHelper {
+  //
+  static String initialIntervalText(int number) {
+    return ReviewHelper.intervalText(number);
+  }
+
+  //
+
   // 復習の間隔の繰り上がり条件
-  static String intervalStepUpConditionText(int settingNumber) {
-    String condition = '';
-    switch (settingNumber) {
-      case 1:
-        condition = '正解する';
-        break;
-      case 2:
-        condition = '２回連続で正解する';
-        break;
-      case 3:
-        condition = '３回連続で正解する';
-        break;
-      case 4:
-        condition = '４回連続で正解する';
-        break;
-      case 5:
-        condition = '５回連続で正解する';
-        break;
-      default:
-        condition = '正解する';
-        break;
-    }
-    return condition;
+  static String intervalStepUpConditionText(int number) {
+    return "${t['answerSettings.interval_step_up_condition_$number']}";
   }
 
   // 復習解除条件
-  static String reviewDeleteConditionText(int settingNumber) {
-    String condition = '';
-    switch (settingNumber) {
-      case 0:
-        condition = '翌日の復習で正解する';
-        break;
-      case 1:
-        condition = '３日後の復習で正解する';
-        break;
-      case 2:
-        condition = '１週間後の復習で正解する';
-        break;
-      case 3:
-        condition = '２週間後の復習で正解する';
-        break;
-      case 4:
-        condition = '３週間後の復習で正解する';
-        break;
-      case 5:
-        condition = '１ヶ月後の復習で正解する';
-        break;
-      case 6:
-        condition = '２ヶ月後の復習で正解する';
-        break;
-      case 7:
-        condition = '３ヶ月後の復習で正解する';
-        break;
-      case 8:
-        condition = '６ヶ月後の復習で正解する';
-        break;
-      case 9:
-        condition = '１年後の復習で正解する';
-        break;
-      default:
-        condition = '翌日の復習で正解する';
-        break;
-    }
-    return condition;
+  static String reviewDeleteConditionText(int number) {
+    return "${t['answerSettings.review_delete_condition_$number']}";
   }
 
   // 復習通知時間
@@ -147,36 +100,16 @@ class AnswerSettingHelper {
   }
 
   // 弱点に指定する条件
-  static String weaknessCondition(int settingNumber) {
-    switch (settingNumber) {
-      case 0:
-        return '自動で設定しない';
-      case 1:
-        return '１回以上間違える';
-      case 2:
-        return '２回以上間違える';
-      case 3:
-        return '３回以上間違える';
-      case 4:
-        return '４回以上間違える';
-      case 5:
-        return '５回以上間違える';
-      default:
-        return '';
-    }
+  static String weaknessCondition(int number) {
+    return "${t['answerSettings.weakness_condition_$number']}";
   }
 
   // 克服する条件
-  static String overcomingCondition(int settingNumber) {
-    switch (settingNumber) {
-      case 0:
-        return '解答時に克服する';
-      case 1:
-        return '正解時に克服する';
-      case 120:
-        return '自動で克服しない';
-      default:
-        return '正答率$settingNumber％以上';
+  static String overcomingCondition(int number) {
+    if ([0, 1, 120].contains(number)) {
+      return "${t['answerSettings.overcoming_condition_$number']}";
+    } else {
+      return t.answerSettings.overcoming_condition_i(percentage: number);
     }
   }
 }

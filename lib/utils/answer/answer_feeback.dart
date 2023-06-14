@@ -38,7 +38,7 @@ class AnswerFeedback {
     final Review? review = answerCreator.review;
     if (review != null && answerCreator.reviewCreated == true) {
       final String interval =
-          ReviewHelper.intervalSetting(review.intervalSetting);
+          ReviewHelper.reviewButtonLabel(review.intervalSetting);
       return reviewMessage(interval);
     }
     return null;
@@ -67,7 +67,7 @@ class AnswerFeedback {
     final Review? review = answerCreator.review;
     if (review != null && answerHistory!.intervalStepUp) {
       final String interval =
-          ReviewHelper.intervalSetting(review.intervalSetting);
+          ReviewHelper.reviewButtonLabel(review.intervalSetting);
       final String text = '繰り上がりで$interval';
       return reviewMessage(text);
     }

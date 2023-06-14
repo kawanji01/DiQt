@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
@@ -64,8 +65,9 @@ class QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
         final int todaysCorrectAnswersCount =
             ref.watch(todaysCorrectAnswersCountProvider);
         final bool premiumEnabled = ref.watch(premiumEnabledProvider);
-        // 無料ユーザーで１００問以上解いたユーザーにはペイウォールを表示する
-        if (todaysAnswersCount > 99 && premiumEnabled == false) {
+        // 30問以上解いたユーザーで無料ユーザーならペイウォールを表示する
+        if (todaysAnswersCount >= answersCountLimitForFreeUsers &&
+            premiumEnabled == false) {
           Dialogs.slideFromBottomFade(const AnswerPaywallScreen());
           // trueを返すことで通知がこれ以上親に伝わらない。
           return true;

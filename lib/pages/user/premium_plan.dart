@@ -4,7 +4,6 @@ import 'package:booqs_mobile/utils/analytics_service.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/purchase/introduction.dart';
 import 'package:booqs_mobile/components/purchase/introduction_footer.dart';
-import 'package:booqs_mobile/components/purchase/subscription_button.dart';
 import 'package:booqs_mobile/components/purchase/restore_button.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +48,7 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
               SizedBox(
                 height: 48,
               ),
-              PurchaseSubscriptionButton(),
+              // PurchaseSubscriptionButton(),
               SizedBox(
                 height: 24,
               ),

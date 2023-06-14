@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
@@ -34,8 +35,8 @@ class WeaknessSolvedPageState extends ConsumerState<WeaknessSolvedPage> {
 
     Widget quizzes() {
       if (premiumEnabled == false) {
-        return const SharedPremiumRecommendation(
-            explanationText: '『苦手な問題』を解くには、プレミアムプランへの登録が必要です。');
+        return SharedPremiumRecommendation(
+            description: t.shared.premium_recommendation);
       }
       return const WeaknessSolvedQuizListView();
     }

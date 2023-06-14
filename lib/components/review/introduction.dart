@@ -29,7 +29,7 @@ class ReviewIntroduction extends ConsumerWidget {
         ),
       ),
       TextSpan(
-          text: '${ReviewHelper.interval(answerSetting.initialInterval)} ',
+          text: '${ReviewHelper.intervalText(answerSetting.initialInterval)} ',
           style: const TextStyle(
               color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold)),
       const TextSpan(text: 'に復習します。', style: textStyle),

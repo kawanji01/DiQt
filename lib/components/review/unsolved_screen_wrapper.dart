@@ -32,10 +32,7 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
       if (ErrorHandler.isErrorMap(resMap)) {
         // ネットワーク接続が切れたり、エラーが発生した場合には通知
         if (context.mounted) {
-          ScaffoldMessenger.of(context).removeCurrentSnackBar();
-          final String message = ErrorHandler.message(resMap);
-          final snackBar = SnackBar(content: Text(message));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          ErrorHandler.showErrorSnackBar(context, resMap);
         }
       } else {
         updateProviders(resMap);
