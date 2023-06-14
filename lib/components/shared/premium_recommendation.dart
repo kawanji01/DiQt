@@ -31,7 +31,7 @@ class SharedPremiumRecommendation extends StatelessWidget {
 
         // premiumButton
         Container(
-          padding: const EdgeInsets.only(bottom: 16, right: 8, left: 8),
+          padding: const EdgeInsets.only(bottom: 16),
           child: Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton.icon(
