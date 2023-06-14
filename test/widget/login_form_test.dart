@@ -4,6 +4,7 @@ import 'package:booqs_mobile/data/remote/sessions.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/session/transition.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -59,11 +60,12 @@ void main() {
     });
 
     testWidgets('Failed', (WidgetTester tester) async {
-      const String failMassage = 'Could not login';
-      when(mockRemoteSessions.login(any, any)).thenAnswer((_) async => {
-            'status': 401,
-            'message': failMassage,
-          });
+      const Map failedResMao = {
+        'status': 401,
+        'message': 'Could not login',
+      };
+      when(mockRemoteSessions.login(any, any))
+          .thenAnswer((_) async => failedResMao);
 
       await tester.pumpWidget(
         ProviderScope(
@@ -90,10 +92,13 @@ void main() {
 
       await tester.tap(find.byKey(const Key('loginSubmitButton')));
       await tester.pump(const Duration(seconds: 1)); // Tapが処理される時間を待つ
+
+      final String errorMessage =
+          ErrorHandler.message(failedResMao, useServerMessage: true);
       // Assert
       // SnackBarの失敗メッセージの確認
       // ログイン失敗ではサーバー側のメッセージを利用する。
-      expect(find.text(failMassage), findsOneWidget);
+      expect(find.text(errorMessage), findsOneWidget);
     });
   });
 }
