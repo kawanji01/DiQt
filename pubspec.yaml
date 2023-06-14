@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.4.8+165
+version: 1.4.8+166
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -44,7 +44,6 @@ dependencies:
   flutter_secure_storage: ^6.1.0 # クライアント側のセキュアなストレージ
   url_launcher: ^6.1.7 # ブラウザを開く
   badges: ^2.0.3 # バッジの表示
-  twitter_login: ^4.2.3 # Twitter認証 
   firebase_core: ^2.3.0 # Push通知の実装に利用。参考：https://zuma-lab.com/posts/flutter-fcm-push-notify-development
   firebase_messaging: ^14.1.2  # Push通知の実装に利用する。参考： https://firebase.flutter.dev/docs/messaging/overview/#installation
   flutter_local_notifications: ^12.0.4 # AndroidでフォアグラウンドでPush通知を送れるようにする。参照：https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_messaging/firebase_messaging/example/pubspec.yaml / https://zenn.dev/rafekun/articles/ef8a22f9fe90bd

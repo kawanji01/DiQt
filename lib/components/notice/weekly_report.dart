@@ -15,13 +15,16 @@ class NoticeWeeklyReport extends StatelessWidget {
     if (notice.weeklyReport == null) {
       return Text(('InvalidNotification: ID:${notice.id}'));
     }
-    final WeeklyReport report = notice.weeklyReport!;
+    final WeeklyReport weeklyReport = notice.weeklyReport!;
     final firstDateFormat = DateFormat('yyyy年MM月dd日');
-    final String firstDate = firstDateFormat
-        .format(DateTimeFormatter.findFirstDateOfTheWeek(report.measuredDate));
+    final String firstDate = firstDateFormat.format(
+        DateTimeFormatter.findFirstDateOfTheWeek(weeklyReport.measuredDate));
     final lastDateFormat = DateFormat('MM月dd日');
-    final String lastDate = lastDateFormat
-        .format(DateTimeFormatter.findLastDateOfTheWeek(report.measuredDate));
+    final String lastDate = lastDateFormat.format(
+        DateTimeFormatter.findLastDateOfTheWeek(weeklyReport.measuredDate));
+
+    int? answersCount = weeklyReport.numberOfAnswers;
+    answersCount ?? weeklyReport.answersCount;
 
     final Widget messageText = RichText(
       text: TextSpan(
@@ -62,7 +65,7 @@ class NoticeWeeklyReport extends StatelessWidget {
 
     Widget rankImage() {
       final String rankImageUrl =
-          "https://res.cloudinary.com/hkbyf3jop/image/upload/l_text:Sawarabi%20Gothic_56_bold:${report.rank}位,co_rgb:faf0a2,w_360,y_-32/v1589085558/ranking_weekly_gold.png";
+          "https://res.cloudinary.com/hkbyf3jop/image/upload/l_text:Sawarabi%20Gothic_56_bold:${weeklyReport.rank}位,co_rgb:faf0a2,w_360,y_-32/v1589085558/ranking_weekly_gold.png";
       // if (report.rank == null || report.rank! > 100) return Container();
 
       //return Image.network(rankImageUrl);
@@ -96,7 +99,7 @@ class NoticeWeeklyReport extends StatelessWidget {
     Widget rankInfo() {
       //if (report.rank == null || report.rank! > 100) return Container();
       const String label = '週間ランキング';
-      final String value = '${report.rank}位';
+      final String value = '${weeklyReport.rank}位';
       return information(label, value);
     }
 
@@ -108,7 +111,7 @@ class NoticeWeeklyReport extends StatelessWidget {
         rankImage(),
         const SizedBox(height: 8),
         rankInfo(),
-        information('解答数', '${report.numberOfAnswers}回'),
+        information('解答数', '$answersCount回'),
         const SizedBox(height: 48),
       ],
     );

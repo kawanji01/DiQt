@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
@@ -29,7 +30,8 @@ class UserMenuPage extends ConsumerWidget {
     if (user == null) return Container();
 
     Widget weaknessAnalysisButton() {
-      final String btnText = '苦手な問題（${user.unsolvedWeaknessesCount}）';
+      final String btnText =
+          '${t.weaknesses.weaknesses}（${user.unsolvedWeaknessesCount}）';
 
       return InkWell(
         onTap: () {
@@ -41,38 +43,36 @@ class UserMenuPage extends ConsumerWidget {
     }
 
     Widget answerHistoriesButton() {
-      const String btnText = '解答履歴';
+      final String btnText = t.answerHistories.answer_histories;
       return InkWell(
         onTap: () {
           ref.read(answerAnalysisOrderProvider.notifier).state =
               'last_answered_at-desc';
           AnswerAnalysisIndexPage.push(context);
         },
-        child: const LargeGreenButton(label: btnText, icon: Icons.history),
+        child: LargeGreenButton(label: btnText, icon: Icons.history),
       );
     }
 
     Widget answerAnalysesButton() {
-      const String btnText = '解答分析';
+      final String btnText = t.answerAnalyses.answer_analyses;
       return InkWell(
         onTap: () {
           ref.read(answerAnalysisOrderProvider.notifier).state =
               'correct_answer_rate-asc';
           AnswerAnalysisIndexPage.push(context);
         },
-        child: const LargeGreenButton(
-            label: btnText, icon: Icons.analytics_outlined),
+        child: LargeGreenButton(label: btnText, icon: Icons.analytics_outlined),
       );
     }
 
     Widget noteListButton() {
-      const String btnText = 'ノート一覧';
+      final String btnText = t.notes.notes;
       return InkWell(
         onTap: () {
           NoteIndexPage.push(context);
         },
-        child: const LargeGreenButton(
-            label: btnText, icon: Icons.note_alt_outlined),
+        child: LargeGreenButton(label: btnText, icon: Icons.note_alt_outlined),
       );
     }
 
@@ -111,7 +111,7 @@ class UserMenuPage extends ConsumerWidget {
     }
 
     Widget answerSettingButton() {
-      const String btnText = '解答・復習設定';
+      final String btnText = t.answerSettings.answer_setting;
       return InkWell(
         onTap: () {
           ScaffoldMessenger.of(context).removeCurrentSnackBar();
@@ -130,7 +130,7 @@ class UserMenuPage extends ConsumerWidget {
             ),
           );
         },
-        child: const LargeGreenButton(label: btnText, icon: Icons.settings),
+        child: LargeGreenButton(label: btnText, icon: Icons.settings),
       );
     }
 

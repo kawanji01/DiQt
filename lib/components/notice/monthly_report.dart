@@ -22,6 +22,8 @@ class NoticeMonthlyReport extends StatelessWidget {
     if (measuredDate == null) {
       return Container();
     }
+    int? answersCount = monthlyReport.numberOfAnswers;
+    answersCount ?? monthlyReport.answersCount;
 
     final dateFormat = DateFormat('yyyy年MM月');
     final String firstDate = dateFormat.format(measuredDate);
@@ -110,7 +112,7 @@ class NoticeMonthlyReport extends StatelessWidget {
         rankImage(),
         const SizedBox(height: 8),
         rankInfo(),
-        information('解答数', '${monthlyReport.numberOfAnswers}回'),
+        information('解答数', '$answersCount回'),
         const SizedBox(height: 48),
       ],
     );

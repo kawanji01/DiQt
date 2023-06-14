@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1696 (848 per locale)
+/// Strings: 1698 (849 per locale)
 ///
-/// Built on 2023-06-13 at 12:53 UTC
+/// Built on 2023-06-14 at 01:34 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -831,6 +831,7 @@ class _TranslationsNotesEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get notes => 'Notes';
 	String get note => 'Note';
 	String get note_placeholder => 'Note for yourself on the question.';
 	String get edit => 'Edit';
@@ -1956,6 +1957,7 @@ class _TranslationsNotesJa implements _TranslationsNotesEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get notes => 'ノート';
 	@override String get note => 'ノート';
 	@override String get note_placeholder => '問題に関する自分用のメモです。';
 	@override String get edit => '編集する';
@@ -2911,6 +2913,7 @@ extension on _TranslationsEn {
 			case 'sentences.updated': return 'Sentence Updated';
 			case 'sentences.update_failed': return 'Failed to update the sentence.';
 			case 'sentences.destroyed': return 'Sentence Destroyed';
+			case 'notes.notes': return 'Notes';
 			case 'notes.note': return 'Note';
 			case 'notes.note_placeholder': return 'Note for yourself on the question.';
 			case 'notes.edit': return 'Edit';
@@ -3767,6 +3770,7 @@ extension on _TranslationsJa {
 			case 'sentences.updated': return '例文が更新されました。';
 			case 'sentences.update_failed': return '例文の更新に失敗しました。';
 			case 'sentences.destroyed': return '例文が削除されました。';
+			case 'notes.notes': return 'ノート';
 			case 'notes.note': return 'ノート';
 			case 'notes.note_placeholder': return '問題に関する自分用のメモです。';
 			case 'notes.edit': return '編集する';
