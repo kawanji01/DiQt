@@ -3,7 +3,7 @@
 /// Locales: 2
 /// Strings: 1698 (849 per locale)
 ///
-/// Built on 2023-06-14 at 01:34 UTC
+/// Built on 2023-06-15 at 12:00 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -833,7 +833,7 @@ class _TranslationsNotesEn {
 	// Translations
 	String get notes => 'Notes';
 	String get note => 'Note';
-	String get note_placeholder => 'Note for yourself on the question.';
+	String get note_placeholder => 'A notebook that only you can view. It can also be used as a hint for the question.';
 	String get edit => 'Edit';
 	String get update => 'Update';
 	String get paywall_message => 'Premium membership gives you access to the Notes function.';
@@ -1959,7 +1959,7 @@ class _TranslationsNotesJa implements _TranslationsNotesEn {
 	// Translations
 	@override String get notes => 'ノート';
 	@override String get note => 'ノート';
-	@override String get note_placeholder => '問題に関する自分用のメモです。';
+	@override String get note_placeholder => 'あなただけが閲覧できるノートです。問題のヒントとしてもご利用いただけます。';
 	@override String get edit => '編集する';
 	@override String get update => '更新する';
 	@override String get paywall_message => 'プレミアム会員になることで、ノート機能をご利用いただけるようになります。';
@@ -2915,7 +2915,7 @@ extension on _TranslationsEn {
 			case 'sentences.destroyed': return 'Sentence Destroyed';
 			case 'notes.notes': return 'Notes';
 			case 'notes.note': return 'Note';
-			case 'notes.note_placeholder': return 'Note for yourself on the question.';
+			case 'notes.note_placeholder': return 'A notebook that only you can view. It can also be used as a hint for the question.';
 			case 'notes.edit': return 'Edit';
 			case 'notes.update': return 'Update';
 			case 'notes.paywall_message': return 'Premium membership gives you access to the Notes function.';
@@ -3772,7 +3772,7 @@ extension on _TranslationsJa {
 			case 'sentences.destroyed': return '例文が削除されました。';
 			case 'notes.notes': return 'ノート';
 			case 'notes.note': return 'ノート';
-			case 'notes.note_placeholder': return '問題に関する自分用のメモです。';
+			case 'notes.note_placeholder': return 'あなただけが閲覧できるノートです。問題のヒントとしてもご利用いただけます。';
 			case 'notes.edit': return '編集する';
 			case 'notes.update': return '更新する';
 			case 'notes.paywall_message': return 'プレミアム会員になることで、ノート機能をご利用いただけるようになります。';
