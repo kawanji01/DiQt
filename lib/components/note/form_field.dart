@@ -20,7 +20,8 @@ class NoteFormField extends StatelessWidget {
           filled: true,
           border: InputBorder.none,
           fillColor: const Color(0xfff3f3f4),
-          labelText: t.notes.note_placeholder,
+          hintText: t.notes.note_placeholder,
+          hintMaxLines: 6,
           labelStyle: const TextStyle(color: Colors.black54),
         ),
         validator: (value) {
