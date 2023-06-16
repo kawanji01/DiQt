@@ -67,7 +67,7 @@ class UserMenuPage extends ConsumerWidget {
     }
 
     Widget noteListButton() {
-      final String btnText = t.notes.notes;
+      final String btnText = '${t.notes.notes}(${user.notesCount})';
       return InkWell(
         onTap: () {
           NoteIndexPage.push(context);

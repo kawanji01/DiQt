@@ -4,3 +4,6 @@ note_placeholder: 'あなただけが閲覧できるノートです。問題の�
 edit: '編集する'
 update: '更新する'
 paywall_message: 'プレミアム会員になることで、ノート機能をご利用いただけるようになります。'
+destroy: '削除する'
+confirmation: '確認'
+confirmation_text: '本当にこのノートを削除してもよろしいですか？'

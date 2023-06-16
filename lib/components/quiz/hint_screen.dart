@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
@@ -49,8 +50,8 @@ class QuizHintScreen extends StatelessWidget {
 
       return Column(
         children: [
-          const Text('ノート',
-              style: TextStyle(
+          Text(t.notes.note,
+              style: const TextStyle(
                   color: Colors.green,
                   fontSize: 22,
                   fontWeight: FontWeight.bold)),

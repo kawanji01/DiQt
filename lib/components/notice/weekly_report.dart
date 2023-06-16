@@ -23,8 +23,7 @@ class NoticeWeeklyReport extends StatelessWidget {
     final String lastDate = lastDateFormat.format(
         DateTimeFormatter.findLastDateOfTheWeek(weeklyReport.measuredDate));
 
-    int? answersCount = weeklyReport.numberOfAnswers;
-    answersCount ?? weeklyReport.answersCount;
+    final int answersCount = weeklyReport.answersCount;
 
     final Widget messageText = RichText(
       text: TextSpan(

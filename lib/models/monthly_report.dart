@@ -5,10 +5,8 @@ class MonthlyReport {
     this.id = 0,
     this.userId = 0,
     this.rank,
-    this.numberOfAnswers,
-    this.answersCount,
-    this.measuredAt,
-    this.measuredDate,
+    required this.answersCount,
+    required this.measuredDate,
     required this.timeZoneName,
     required this.createdAt,
     required this.updatedAt,
@@ -16,10 +14,10 @@ class MonthlyReport {
   int id;
   int userId;
   int? rank;
-  int? numberOfAnswers;
-  int? answersCount;
-  DateTime? measuredAt;
-  DateTime? measuredDate;
+
+  int answersCount;
+
+  DateTime measuredDate;
   String timeZoneName;
   DateTime createdAt;
   DateTime updatedAt;
@@ -28,14 +26,8 @@ class MonthlyReport {
       : id = json['id'],
         userId = json['user_id'],
         rank = json['rank'],
-        numberOfAnswers = json['number_of_answers'] ?? 0,
         answersCount = json['answers_count'] ?? 0,
-        measuredAt = json['measured_at'] == null
-            ? null
-            : DateTime.parse(json['measured_at']),
-        measuredDate = json['measured_date'] == null
-            ? null
-            : DateTime.parse(json['measured_date']),
+        measuredDate = DateTime.parse(json['measured_date']),
         timeZoneName = json['time_zone_name'] ?? defaultTimeZone,
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']);
@@ -44,9 +36,7 @@ class MonthlyReport {
         'id': id,
         'user_id': userId,
         'rank': rank,
-        'number_of_answers': numberOfAnswers,
         'answers_count': answersCount,
-        'measured_at': measuredAt,
         'measured_date': measuredDate,
         'time_zone_name': timeZoneName,
         'created_at': createdAt,
