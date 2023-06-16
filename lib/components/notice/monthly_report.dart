@@ -17,13 +17,9 @@ class NoticeMonthlyReport extends StatelessWidget {
     }
 
     final MonthlyReport monthlyReport = notice.monthlyReport!;
-    DateTime? measuredDate = monthlyReport.measuredAt;
-    measuredDate ??= monthlyReport.measuredDate;
-    if (measuredDate == null) {
-      return Container();
-    }
-    int? answersCount = monthlyReport.numberOfAnswers;
-    answersCount ?? monthlyReport.answersCount;
+    DateTime measuredDate = monthlyReport.measuredDate;
+
+    final int answersCount = monthlyReport.answersCount;
 
     final dateFormat = DateFormat('yyyy年MM月');
     final String firstDate = dateFormat.format(measuredDate);

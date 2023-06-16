@@ -4,8 +4,7 @@ class WeeklyReport {
     this.userId = 0,
     required this.measuredDate,
     this.rank,
-    this.numberOfAnswers,
-    this.answersCount,
+    required this.answersCount,
     this.monthlyRank,
     required this.timeZoneName,
     required this.createdAt,
@@ -16,8 +15,8 @@ class WeeklyReport {
   DateTime measuredDate;
   int? rank;
   int? monthlyRank;
-  int? numberOfAnswers;
-  int? answersCount;
+
+  int answersCount;
   String timeZoneName;
   DateTime createdAt;
   DateTime updatedAt;
@@ -27,8 +26,7 @@ class WeeklyReport {
         userId = json['user_id'],
         measuredDate = DateTime.parse(json['measured_date']),
         rank = json['rank'],
-        numberOfAnswers = json['number_of_answers'],
-        answersCount = json['answers_count'],
+        answersCount = json['answers_count'] ?? 0,
         timeZoneName = json['time_zone_name'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']);
@@ -38,7 +36,6 @@ class WeeklyReport {
         'user_id': userId,
         'measured_date': measuredDate,
         'rank': rank,
-        'number_of_answers': numberOfAnswers,
         'answers_count': answersCount,
         'time_zone_name': timeZoneName,
         'created_at': createdAt,
