@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/note/confirmation_screen.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/notes.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -82,6 +83,21 @@ class QuizExplanationNoteState extends ConsumerState<QuizExplanationNote> {
     return resMap;
   }
 
+  void _destroy() async {
+    EasyLoading.show(status: 'loading...');
+    final Map resMap = await RemoteNotes.destroy(_note!.id);
+    EasyLoading.dismiss();
+    if (!mounted) return;
+    if (ErrorHandler.isErrorMap(resMap)) {
+      return ErrorHandler.showErrorSnackBar(context, resMap);
+    }
+    _noteContentController.text = '';
+    setState(() {
+      _note = null;
+      _isEdit = true;
+    });
+  }
+
   // プレミアムプランページに遷移
   void _moveToPremiumPlan() {
     final snackBar = SnackBar(content: Text(t.notes.paywall_message));
@@ -131,6 +147,39 @@ class QuizExplanationNoteState extends ConsumerState<QuizExplanationNote> {
                 ? setState(() => _isEdit = true)
                 : _moveToPremiumPlan(),
             child: SmallGreenButton(label: t.notes.edit, icon: Icons.edit),
+          ),
+          // 削除ボタン
+          Container(
+            alignment: Alignment.centerRight,
+            child: TextButton.icon(
+              onPressed: () async {
+                if (isPremium == false) {
+                  return _moveToPremiumPlan();
+                }
+                final bool? result = await showDialog<bool>(
+                    context: context,
+                    builder: (BuildContext context) => NoteConfirmationDialog(
+                          noteId: _note!.id,
+                        ));
+                if (result == true) {
+                  _destroy();
+                }
+              },
+              icon: const Icon(
+                Icons.delete,
+                size: 16,
+                color: Colors.red,
+              ),
+              label: Text(t.shared.destroy,
+                  style: const TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 14,
+                      color: Colors.red,
+                      fontWeight: FontWeight.normal)),
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.only(left: 0),
+              ),
+            ),
           ),
         ],
       );

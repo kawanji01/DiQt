@@ -4,3 +4,6 @@ note_placeholder: 'A notebook that only you can view. It can also be used as a h
 edit: 'Edit'
 update: 'Update'
 paywall_message: 'Premium membership gives you access to the Notes function.'
+destroy: 'Delete'
+confirmation: 'Confirmation'
+confirmation_text: 'Are you sure you want to delete this note?'

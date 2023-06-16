@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1698 (849 per locale)
+/// Strings: 1704 (852 per locale)
 ///
-/// Built on 2023-06-15 at 12:00 UTC
+/// Built on 2023-06-16 at 01:30 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -837,6 +837,9 @@ class _TranslationsNotesEn {
 	String get edit => 'Edit';
 	String get update => 'Update';
 	String get paywall_message => 'Premium membership gives you access to the Notes function.';
+	String get destroy => 'Delete';
+	String get confirmation => 'Confirmation';
+	String get confirmation_text => 'Are you sure you want to delete this note?';
 }
 
 // Path: timeZone
@@ -1963,6 +1966,9 @@ class _TranslationsNotesJa implements _TranslationsNotesEn {
 	@override String get edit => '編集する';
 	@override String get update => '更新する';
 	@override String get paywall_message => 'プレミアム会員になることで、ノート機能をご利用いただけるようになります。';
+	@override String get destroy => '削除する';
+	@override String get confirmation => '確認';
+	@override String get confirmation_text => '本当にこのノートを削除してもよろしいですか？';
 }
 
 // Path: timeZone
@@ -2919,6 +2925,9 @@ extension on _TranslationsEn {
 			case 'notes.edit': return 'Edit';
 			case 'notes.update': return 'Update';
 			case 'notes.paywall_message': return 'Premium membership gives you access to the Notes function.';
+			case 'notes.destroy': return 'Delete';
+			case 'notes.confirmation': return 'Confirmation';
+			case 'notes.confirmation_text': return 'Are you sure you want to delete this note?';
 			case 'timeZone.international_date_line_west': return 'International Date Line West';
 			case 'timeZone.american_samoa': return 'American Samoa';
 			case 'timeZone.midway_island': return 'Midway Island';
@@ -3776,6 +3785,9 @@ extension on _TranslationsJa {
 			case 'notes.edit': return '編集する';
 			case 'notes.update': return '更新する';
 			case 'notes.paywall_message': return 'プレミアム会員になることで、ノート機能をご利用いただけるようになります。';
+			case 'notes.destroy': return '削除する';
+			case 'notes.confirmation': return '確認';
+			case 'notes.confirmation_text': return '本当にこのノートを削除してもよろしいですか？';
 			case 'timeZone.international_date_line_west': return '国際日付変更線西';
 			case 'timeZone.american_samoa': return 'アメリカ領サモア';
 			case 'timeZone.midway_island': return 'ミッドウェー島';

@@ -18,7 +18,6 @@ class UserBuilder {
         timeZoneName: defaultTimeZone,
         premium: premium,
         appFavored: appFavored,
-        achievementMapsCount: 0,
         amountOfExp: 0,
         answerDaysCount: 0,
         answerHistoriesCount: 0,
@@ -38,6 +37,8 @@ class UserBuilder {
         unsolvedWeaknessesCount: 0,
         weaknessesCount: 0,
         wholeMonthAnswerHistoriesCount: 0,
-        wholeWeekAnswerHistoriesCount: 0);
+        wholeWeekAnswerHistoriesCount: 0,
+        achievementMapsCount: 0,
+        notesCount: 0);
   }
 }
