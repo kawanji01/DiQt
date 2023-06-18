@@ -10,16 +10,16 @@ import 'package:booqs_mobile/components/sentence/form/temperature.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class SentenceFormGeneratorScreen extends StatefulWidget {
-  const SentenceFormGeneratorScreen(
-      {Key? key,
-      required this.originalController,
+class SentenceSettingGeneratorScreen extends StatefulWidget {
+  const SentenceSettingGeneratorScreen(
+      {super.key,
       required this.keywordController,
       required this.posTagIdController,
       required this.meaningController,
@@ -27,9 +27,7 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
       required this.difficultyController,
       required this.aiModelController,
       required this.temperatureController,
-      required this.dictionary})
-      : super(key: key);
-  final TextEditingController originalController;
+      required this.dictionary});
   final TextEditingController keywordController;
   final TextEditingController posTagIdController;
   final TextEditingController meaningController;
@@ -40,12 +38,12 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
   final Dictionary dictionary;
 
   @override
-  State<SentenceFormGeneratorScreen> createState() =>
-      _SentenceFormGeneratorScreenState();
+  State<SentenceSettingGeneratorScreen> createState() =>
+      _WordFormSentenceGeneratorScreenState();
 }
 
-class _SentenceFormGeneratorScreenState
-    extends State<SentenceFormGeneratorScreen> {
+class _WordFormSentenceGeneratorScreenState
+    extends State<SentenceSettingGeneratorScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isRequesting = false;
 
@@ -61,7 +59,7 @@ class _SentenceFormGeneratorScreenState
     SizeConfig().init(context);
     final double grid = SizeConfig.blockSizeVertical ?? 0;
     final double height = grid * 80;
-    final TextEditingController originalController = widget.originalController;
+
     final TextEditingController keywordController = widget.keywordController;
     final TextEditingController posTagIdController = widget.posTagIdController;
     final TextEditingController meaningController = widget.meaningController;
@@ -83,15 +81,16 @@ class _SentenceFormGeneratorScreenState
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      final Map resMap = await RemoteSentences.generate(
-          keyword: keywordController.text,
-          dictionaryId: dictionaryId,
-          posTagId: posTagIdController.text,
-          meaning: meaningController.text,
-          sentenceType: sentenceTypeController.text,
-          difficulty: difficultyController.text,
-          model: aiModelController.text,
-          temperature: temperatureController.text);
+      final Map resMap = await RemoteSentences.generateAndCreate(
+        keyword: keywordController.text,
+        dictionaryId: dictionaryId,
+        posTagId: posTagIdController.text,
+        meaning: meaningController.text,
+        sentenceType: sentenceTypeController.text,
+        difficulty: difficultyController.text,
+        model: aiModelController.text,
+        temperature: temperatureController.text,
+      );
       EasyLoading.dismiss();
       // リクエストロック終了
       setState(() {
@@ -102,12 +101,11 @@ class _SentenceFormGeneratorScreenState
         ErrorHandler.showErrorSnackBar(context, resMap);
         Navigator.pop(context);
       } else {
-        final String? original = resMap['original'];
-        originalController.text = original ?? '';
+        final Sentence sentence = Sentence.fromJson(resMap['sentence']);
         final snackBar =
             SnackBar(content: Text(t.sentences.sentence_generated));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        Navigator.pop(context);
+        Navigator.of(context).pop({'set': sentence});
       }
     }
 
@@ -130,9 +128,8 @@ class _SentenceFormGeneratorScreenState
                   HeadingMediumGreen(
                     label: t.sentences.generate_sentence,
                   ),
-
                   const SizedBox(
-                    height: 16,
+                    height: 24,
                   ),
                   // キーワードフォーム
                   SentenceFormKeyword(

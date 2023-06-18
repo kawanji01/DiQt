@@ -1,12 +1,13 @@
 import 'package:booqs_mobile/components/sense/form/preview_button.dart';
-import 'package:booqs_mobile/components/sentence/setting_form.dart';
+import 'package:booqs_mobile/components/sentence/setting/setting.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/components/shared/lang_setting.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
-class SenseForm extends StatelessWidget {
+class SenseForm extends StatefulWidget {
   const SenseForm({
     Key? key,
     required this.glossController,
@@ -25,6 +26,23 @@ class SenseForm extends StatelessWidget {
   final Dictionary dictionary;
 
   @override
+  State<SenseForm> createState() => _SenseFormState();
+}
+
+class _SenseFormState extends State<SenseForm> {
+  late TextEditingController _glossController;
+  late TextEditingController _sentenceIdController;
+  final TextEditingController _posTagIdController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _glossController = widget.glossController;
+    _sentenceIdController = widget.sentenceIdController;
+    _posTagIdController.text = '${widget.word.posTagId}';
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +53,7 @@ class SenseForm extends StatelessWidget {
           height: 16,
         ),
         TextFormField(
-          controller: glossController,
+          controller: _glossController,
           minLines: 3,
           keyboardType: TextInputType.multiline,
           maxLines: 8,
@@ -45,24 +63,26 @@ class SenseForm extends StatelessWidget {
               hintText: '意味を入力してください。'),
           validator: (value) {
             if (value!.isEmpty) {
-              return '意味は空欄にできません。';
+              return t.errors.cant_be_blank;
             }
             return null;
           },
         ),
-        SharedLangSetting(langNumber: dictionary.langNumberOfMeaning),
+        SharedLangSetting(langNumber: widget.dictionary.langNumberOfMeaning),
 
         const SizedBox(height: 24),
-        SentenceSettingForm(
-            sentenceIdController: sentenceIdController,
-            keyword: '$keyword',
-            dictionary: dictionary),
+        SentenceSetting(
+          sentenceIdController: _sentenceIdController,
+          entry: '${widget.keyword}',
+          dictionary: widget.dictionary,
+          posTagIdController: _posTagIdController,
+        ),
 
         const SizedBox(height: 40),
         SenseFormPreviewButton(
-            glossController: glossController,
-            sentenceIdController: sentenceIdController,
-            word: word),
+            glossController: _glossController,
+            sentenceIdController: _sentenceIdController,
+            word: widget.word),
       ],
     );
   }

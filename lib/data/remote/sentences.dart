@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:http/http.dart';
@@ -183,15 +184,15 @@ class RemoteSentences {
   }
 
   // AIによる例文の生成
-  static Future<Map?> generate(
-      String keyword,
-      int dictionaryId,
-      String posTagId,
-      String meaning,
-      String sentenceType,
-      String difficulty,
-      String model,
-      String temperature) async {
+  static Future<Map> generate(
+      {required String keyword,
+      required int dictionaryId,
+      required String posTagId,
+      required String meaning,
+      required String sentenceType,
+      required String difficulty,
+      required String model,
+      required String temperature}) async {
     try {
       final Map<String, dynamic> body = {
         'keyword': keyword,
@@ -210,19 +211,55 @@ class RemoteSentences {
         url,
         body,
       );
-      if (res.statusCode != 200) return null;
-
-      final Map? resMap = json.decode(res.body);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
+
+  // AIによる例文の生成
+  static Future<Map> generateAndCreate(
+      {required String keyword,
+      required int dictionaryId,
+      required String posTagId,
+      required String meaning,
+      required String sentenceType,
+      required String difficulty,
+      required String model,
+      required String temperature}) async {
+    try {
+      final Map<String, dynamic> body = {
+        'keyword': keyword,
+        'pos_tag_id': posTagId,
+        'meaning': meaning,
+        'sentence_type': sentenceType,
+        'difficulty': difficulty,
+        'model': model,
+        'temperature': temperature,
+        'dictionary_id': '$dictionaryId',
+      };
+
+      final Uri url = Uri.parse(
+          '${DiQtURL.root()}/api/v1/mobile/sentences/generate_and_create');
+      final Response res = await HttpService.post(
+        url,
+        body,
+      );
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 }

@@ -1,11 +1,13 @@
-import 'package:booqs_mobile/components/sentence/setting_form/list_view.dart';
+import 'package:booqs_mobile/components/sentence/setting/list_view.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
-class SentenceSettingFormSearchModal extends StatelessWidget {
-  const SentenceSettingFormSearchModal(
+class SentenceSettingSearchModal extends StatelessWidget {
+  const SentenceSettingSearchModal(
       {Key? key, required this.keyword, required this.dictionary})
       : super(key: key);
   final String keyword;
@@ -13,6 +15,10 @@ class SentenceSettingFormSearchModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    final double grid = SizeConfig.blockSizeVertical ?? 0;
+    final double height = grid * 80;
+
     // 例文追加ボタン
     Widget buttonToAddSentence() {
       return SizedBox(
@@ -26,9 +32,9 @@ class SentenceSettingFormSearchModal extends StatelessWidget {
             SentenceNewPage.push(context, dictionary.id, keyword);
           },
           icon: const Icon(Icons.add, color: Colors.white),
-          label: const Text(
-            '例文を追加する',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          label: Text(
+            t.sentences.add,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
         ),
       );
@@ -47,8 +53,8 @@ class SentenceSettingFormSearchModal extends StatelessWidget {
           // 引数に{ 'set': null }を渡すことで、例文を取り消す
           return Navigator.of(context).pop({'set': null});
         },
-        child: const Text('例文を取り消す',
-            style: TextStyle(
+        child: Text(t.sentences.remove,
+            style: const TextStyle(
               color: Colors.red,
               fontSize: 12,
             )),
@@ -67,8 +73,8 @@ class SentenceSettingFormSearchModal extends StatelessWidget {
         onPressed: () {
           SentenceNewPage.push(context, dictionary.id, keyword);
         },
-        child: const Text(' / 例文を追加する',
-            style: TextStyle(
+        child: Text(' / ${t.sentences.add}',
+            style: const TextStyle(
               color: Colors.green,
               fontSize: 12,
             )),
@@ -78,7 +84,7 @@ class SentenceSettingFormSearchModal extends StatelessWidget {
     // 例文の取り消しボタン
     Widget heading() {
       return Wrap(children: [
-        Text('"$keyword"の例文 / ', style: const TextStyle(fontSize: 12)),
+        Text('"$keyword" / ', style: const TextStyle(fontSize: 12)),
         removeButton(),
         additionButton()
       ]);
@@ -87,7 +93,7 @@ class SentenceSettingFormSearchModal extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: ResponsiveValues.horizontalMargin(context)),
-      height: 640,
+      height: height,
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -97,8 +103,7 @@ class SentenceSettingFormSearchModal extends StatelessWidget {
             heading(),
             const SizedBox(height: 16),
             //_searchResults(),
-            SentenceSettingFormListView(
-                keyword: keyword, dictionary: dictionary),
+            SentenceSettingListView(keyword: keyword, dictionary: dictionary),
             buttonToAddSentence(),
             const SizedBox(height: 120),
           ],
