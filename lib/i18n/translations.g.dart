@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1704 (852 per locale)
+/// Strings: 1724 (862 per locale)
 ///
-/// Built on 2023-06-16 at 01:30 UTC
+/// Built on 2023-06-18 at 05:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -533,6 +533,9 @@ class _TranslationsLangEn {
 	String get done => 'Done';
 	String get translation_failed => 'Translation Failed';
 	String translation_restricted({required Object number}) => 'Free users are limited to ${number} translations per day.';
+	String deepl_not_supported({required Object language}) => '${language} is not supported by DeepL.';
+	String google_not_supported({required Object language}) => '${language} is not supported by Google.';
+	String get need_to_login => 'You need to log in to use the translation.';
 	String get language_setting => 'Language';
 	String get auto_configure => 'Auto_configure';
 	String get undefined => 'Undefined';
@@ -807,6 +810,13 @@ class _TranslationsSentencesEn {
 	String get pos => 'Part of speech of keywords';
 	String get meaning => 'Meaning of keywords (e.g. synonyms)';
 	String get meaning_placeholder => 'The meaning of the keywords can be specified.';
+	String get difficulty => 'Difficulty';
+	String get easy => 'Easy';
+	String get normal => 'Normal';
+	String get difficult => 'Difficult';
+	String get model => 'AI Type';
+	String get gpt_3_5 => 'GPT-3.5（Fast）';
+	String get gpt_4 => 'GPT-4（Slow but Clever）';
 	String get sentence_type => 'Sentence Type';
 	String get declarative_sentence => 'Declarative sentence';
 	String get interrogative_sentence => 'Interrogative sentence';
@@ -1662,6 +1672,9 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get done => '完了';
 	@override String get translation_failed => '翻訳できませんでした。';
 	@override String translation_restricted({required Object number}) => '無料ユーザーが1日に翻訳できる回数は、${number}件までです。';
+	@override String deepl_not_supported({required Object language}) => '${language}はDeepLが対応していない言語です。';
+	@override String google_not_supported({required Object language}) => '${language}はGoogleが対応していない言語です。';
+	@override String get need_to_login => '翻訳機能を利用するにはログインが必要です。';
 	@override String get language_setting => '言語設定';
 	@override String get auto_configure => '自動で設定する';
 	@override String get undefined => '未定義';
@@ -1936,6 +1949,13 @@ class _TranslationsSentencesJa implements _TranslationsSentencesEn {
 	@override String get pos => 'キーワードの品詞';
 	@override String get meaning => 'キーワードの意味（類義語など）';
 	@override String get meaning_placeholder => 'キーワードの意味を指定できます。';
+	@override String get difficulty => '難易度';
+	@override String get easy => '易しい';
+	@override String get normal => '普通';
+	@override String get difficult => '難しい';
+	@override String get model => 'AIの種類';
+	@override String get gpt_3_5 => 'GPT-3.5（速い）';
+	@override String get gpt_4 => 'GPT-4（遅いが賢い）';
 	@override String get sentence_type => '文の種類';
 	@override String get declarative_sentence => '平叙文';
 	@override String get interrogative_sentence => '疑問文';
@@ -2639,6 +2659,9 @@ extension on _TranslationsEn {
 			case 'lang.done': return 'Done';
 			case 'lang.translation_failed': return 'Translation Failed';
 			case 'lang.translation_restricted': return ({required Object number}) => 'Free users are limited to ${number} translations per day.';
+			case 'lang.deepl_not_supported': return ({required Object language}) => '${language} is not supported by DeepL.';
+			case 'lang.google_not_supported': return ({required Object language}) => '${language} is not supported by Google.';
+			case 'lang.need_to_login': return 'You need to log in to use the translation.';
 			case 'lang.language_setting': return 'Language';
 			case 'lang.auto_configure': return 'Auto_configure';
 			case 'lang.undefined': return 'Undefined';
@@ -2904,6 +2927,13 @@ extension on _TranslationsEn {
 			case 'sentences.pos': return 'Part of speech of keywords';
 			case 'sentences.meaning': return 'Meaning of keywords (e.g. synonyms)';
 			case 'sentences.meaning_placeholder': return 'The meaning of the keywords can be specified.';
+			case 'sentences.difficulty': return 'Difficulty';
+			case 'sentences.easy': return 'Easy';
+			case 'sentences.normal': return 'Normal';
+			case 'sentences.difficult': return 'Difficult';
+			case 'sentences.model': return 'AI Type';
+			case 'sentences.gpt_3_5': return 'GPT-3.5（Fast）';
+			case 'sentences.gpt_4': return 'GPT-4（Slow but Clever）';
 			case 'sentences.sentence_type': return 'Sentence Type';
 			case 'sentences.declarative_sentence': return 'Declarative sentence';
 			case 'sentences.interrogative_sentence': return 'Interrogative sentence';
@@ -3499,6 +3529,9 @@ extension on _TranslationsJa {
 			case 'lang.done': return '完了';
 			case 'lang.translation_failed': return '翻訳できませんでした。';
 			case 'lang.translation_restricted': return ({required Object number}) => '無料ユーザーが1日に翻訳できる回数は、${number}件までです。';
+			case 'lang.deepl_not_supported': return ({required Object language}) => '${language}はDeepLが対応していない言語です。';
+			case 'lang.google_not_supported': return ({required Object language}) => '${language}はGoogleが対応していない言語です。';
+			case 'lang.need_to_login': return '翻訳機能を利用するにはログインが必要です。';
 			case 'lang.language_setting': return '言語設定';
 			case 'lang.auto_configure': return '自動で設定する';
 			case 'lang.undefined': return '未定義';
@@ -3764,6 +3797,13 @@ extension on _TranslationsJa {
 			case 'sentences.pos': return 'キーワードの品詞';
 			case 'sentences.meaning': return 'キーワードの意味（類義語など）';
 			case 'sentences.meaning_placeholder': return 'キーワードの意味を指定できます。';
+			case 'sentences.difficulty': return '難易度';
+			case 'sentences.easy': return '易しい';
+			case 'sentences.normal': return '普通';
+			case 'sentences.difficult': return '難しい';
+			case 'sentences.model': return 'AIの種類';
+			case 'sentences.gpt_3_5': return 'GPT-3.5（速い）';
+			case 'sentences.gpt_4': return 'GPT-4（遅いが賢い）';
 			case 'sentences.sentence_type': return '文の種類';
 			case 'sentences.declarative_sentence': return '平叙文';
 			case 'sentences.interrogative_sentence': return '疑問文';

@@ -189,6 +189,8 @@ class RemoteSentences {
       String posTagId,
       String meaning,
       String sentenceType,
+      String difficulty,
+      String model,
       String temperature) async {
     try {
       final Map<String, dynamic> body = {
@@ -196,6 +198,8 @@ class RemoteSentences {
         'pos_tag_id': posTagId,
         'meaning': meaning,
         'sentence_type': sentenceType,
+        'difficulty': difficulty,
+        'model': model,
         'dictionary_id': '$dictionaryId',
         'temperature': temperature,
       };

@@ -1,5 +1,7 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
+import 'package:booqs_mobile/components/sentence/form/ai_model.dart';
+import 'package:booqs_mobile/components/sentence/form/difficulty.dart';
 import 'package:booqs_mobile/components/sentence/form/keyword.dart';
 import 'package:booqs_mobile/components/sentence/form/meaning.dart';
 import 'package:booqs_mobile/components/sentence/form/pos_tag.dart';
@@ -22,6 +24,8 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
       required this.posTagIdController,
       required this.meaningController,
       required this.sentenceTypeController,
+      required this.difficultyController,
+      required this.aiModelController,
       required this.temperatureController,
       required this.dictionary})
       : super(key: key);
@@ -30,6 +34,8 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
   final TextEditingController posTagIdController;
   final TextEditingController meaningController;
   final TextEditingController sentenceTypeController;
+  final TextEditingController difficultyController;
+  final TextEditingController aiModelController;
   final TextEditingController temperatureController;
   final Dictionary dictionary;
 
@@ -61,6 +67,9 @@ class _SentenceFormGeneratorScreenState
     final TextEditingController meaningController = widget.meaningController;
     final TextEditingController sentenceTypeController =
         widget.sentenceTypeController;
+    final TextEditingController difficultyController =
+        widget.difficultyController;
+    final TextEditingController aiModelController = widget.aiModelController;
     final TextEditingController temperatureController =
         widget.temperatureController;
 
@@ -81,6 +90,8 @@ class _SentenceFormGeneratorScreenState
             posTagIdController.text,
             meaningController.text,
             sentenceTypeController.text,
+            difficultyController.text,
+            aiModelController.text,
             temperatureController.text);
         EasyLoading.dismiss();
         // リクエストロック終了
@@ -168,6 +179,20 @@ class _SentenceFormGeneratorScreenState
                         // 文の種類
                         SentenceFormSentenceType(
                           sentenceTypeController: sentenceTypeController,
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        // 難易度
+                        SentenceFormDifficulty(
+                          difficultyController: difficultyController,
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        // AIモデル
+                        SentenceFormAIModel(
+                          aiModelController: aiModelController,
                         ),
                         const SizedBox(
                           height: 24,
