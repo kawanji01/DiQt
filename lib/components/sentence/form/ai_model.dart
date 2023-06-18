@@ -2,72 +2,50 @@ import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
-class SentenceFormSentenceType extends StatefulWidget {
-  const SentenceFormSentenceType(
-      {super.key, required this.sentenceTypeController});
-  final TextEditingController sentenceTypeController;
+class SentenceFormAIModel extends StatefulWidget {
+  const SentenceFormAIModel({super.key, required this.aiModelController});
+  final TextEditingController aiModelController;
 
   @override
-  State<SentenceFormSentenceType> createState() =>
-      _SentenceFormSentenceTypeState();
+  State<SentenceFormAIModel> createState() => _SentenceFormAIModelState();
 }
 
-class _SentenceFormSentenceTypeState extends State<SentenceFormSentenceType> {
+class _SentenceFormAIModelState extends State<SentenceFormAIModel> {
   @override
   Widget build(BuildContext context) {
-    String dropDownValue = widget.sentenceTypeController.text;
+    String dropDownValue = widget.aiModelController.text;
     if ([
-          '',
-          'Declarative sentence',
-          'Interrogative sentence',
-          'Imperative sentence',
-          'Exclamatory sentence'
+          '0',
+          '3',
+          '4',
         ].contains(dropDownValue) ==
         false) {
-      dropDownValue = '';
+      dropDownValue = '0';
     }
 
     List<DropdownMenuItem<String>> dropDownItems = [
       // 未定義
       DropdownMenuItem<String>(
-        value: '',
+        value: '0',
         child: Text(t.shared.undefined,
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.normal,
                 color: Colors.black87)),
       ),
-      // 平叙文
+      // GPT-3.5
       DropdownMenuItem<String>(
-        value: 'Declarative sentence',
-        child: Text(t.sentences.declarative_sentence,
+        value: '3',
+        child: Text(t.sentences.gpt_3_5,
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.normal,
                 color: Colors.black87)),
       ),
-      // 疑問文
+      // GPT-4
       DropdownMenuItem<String>(
-        value: 'Interrogative sentence',
-        child: Text(t.sentences.interrogative_sentence,
-            style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.normal,
-                color: Colors.black87)),
-      ),
-      // 命令文
-      DropdownMenuItem<String>(
-        value: 'Imperative sentence',
-        child: Text(t.sentences.imperative_sentence,
-            style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.normal,
-                color: Colors.black87)),
-      ),
-      // 感嘆文
-      DropdownMenuItem<String>(
-        value: 'Exclamatory sentence',
-        child: Text(t.sentences.exclamatory_sentence,
+        value: '4',
+        child: Text(t.sentences.gpt_4,
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.normal,
@@ -77,7 +55,7 @@ class _SentenceFormSentenceTypeState extends State<SentenceFormSentenceType> {
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       SharedItemLabel(
-        text: t.sentences.sentence_type,
+        text: t.sentences.model,
       ),
       const SizedBox(height: 16),
       Container(
@@ -93,7 +71,7 @@ class _SentenceFormSentenceTypeState extends State<SentenceFormSentenceType> {
           elevation: 16,
           onChanged: (String? newValue) {
             setState(() {
-              widget.sentenceTypeController.text = '$newValue';
+              widget.aiModelController.text = '$newValue';
             });
           },
           items: dropDownItems,

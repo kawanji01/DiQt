@@ -2,26 +2,23 @@ import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
-class SentenceFormSentenceType extends StatefulWidget {
-  const SentenceFormSentenceType(
-      {super.key, required this.sentenceTypeController});
-  final TextEditingController sentenceTypeController;
+class SentenceFormDifficulty extends StatefulWidget {
+  const SentenceFormDifficulty({super.key, required this.difficultyController});
+  final TextEditingController difficultyController;
 
   @override
-  State<SentenceFormSentenceType> createState() =>
-      _SentenceFormSentenceTypeState();
+  State<SentenceFormDifficulty> createState() => _SentenceFormDifficultyState();
 }
 
-class _SentenceFormSentenceTypeState extends State<SentenceFormSentenceType> {
+class _SentenceFormDifficultyState extends State<SentenceFormDifficulty> {
   @override
   Widget build(BuildContext context) {
-    String dropDownValue = widget.sentenceTypeController.text;
+    String dropDownValue = widget.difficultyController.text;
     if ([
           '',
-          'Declarative sentence',
-          'Interrogative sentence',
-          'Imperative sentence',
-          'Exclamatory sentence'
+          'Easy',
+          'Normal',
+          'Difficult',
         ].contains(dropDownValue) ==
         false) {
       dropDownValue = '';
@@ -37,37 +34,28 @@ class _SentenceFormSentenceTypeState extends State<SentenceFormSentenceType> {
                 fontWeight: FontWeight.normal,
                 color: Colors.black87)),
       ),
-      // 平叙文
+      // easy
       DropdownMenuItem<String>(
-        value: 'Declarative sentence',
-        child: Text(t.sentences.declarative_sentence,
+        value: 'Easy',
+        child: Text(t.sentences.easy,
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.normal,
                 color: Colors.black87)),
       ),
-      // 疑問文
+      // normal
       DropdownMenuItem<String>(
-        value: 'Interrogative sentence',
-        child: Text(t.sentences.interrogative_sentence,
+        value: 'Normal',
+        child: Text(t.sentences.normal,
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.normal,
                 color: Colors.black87)),
       ),
-      // 命令文
+      // difficult
       DropdownMenuItem<String>(
-        value: 'Imperative sentence',
-        child: Text(t.sentences.imperative_sentence,
-            style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.normal,
-                color: Colors.black87)),
-      ),
-      // 感嘆文
-      DropdownMenuItem<String>(
-        value: 'Exclamatory sentence',
-        child: Text(t.sentences.exclamatory_sentence,
+        value: 'Difficult',
+        child: Text(t.sentences.difficult,
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.normal,
@@ -77,7 +65,7 @@ class _SentenceFormSentenceTypeState extends State<SentenceFormSentenceType> {
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       SharedItemLabel(
-        text: t.sentences.sentence_type,
+        text: t.sentences.difficulty,
       ),
       const SizedBox(height: 16),
       Container(
@@ -93,7 +81,7 @@ class _SentenceFormSentenceTypeState extends State<SentenceFormSentenceType> {
           elevation: 16,
           onChanged: (String? newValue) {
             setState(() {
-              widget.sentenceTypeController.text = '$newValue';
+              widget.difficultyController.text = '$newValue';
             });
           },
           items: dropDownItems,

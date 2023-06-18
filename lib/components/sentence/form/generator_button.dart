@@ -26,6 +26,8 @@ class _SentenceFormGeneratorButtonState
   final _posTagIdController = TextEditingController();
   final _meaningController = TextEditingController();
   final _sentenceTypeController = TextEditingController();
+  final _difficultyController = TextEditingController();
+  final _aiModelController = TextEditingController();
   final _temperatureController = TextEditingController();
 
   @override
@@ -68,6 +70,8 @@ class _SentenceFormGeneratorButtonState
                     posTagIdController: _posTagIdController,
                     meaningController: _meaningController,
                     sentenceTypeController: _sentenceTypeController,
+                    difficultyController: _difficultyController,
+                    aiModelController: _aiModelController,
                     temperatureController: _temperatureController,
                     dictionary: widget.dictionary,
                   ));
