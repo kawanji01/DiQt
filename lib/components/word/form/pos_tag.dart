@@ -1,4 +1,4 @@
-
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/pos_tag.dart';
 import 'package:flutter/material.dart';
 
@@ -44,10 +44,10 @@ class WordFormPosTagState extends State<WordFormPosTag> {
       );
     }).toList();
 
-    const undefinePosTag = DropdownMenuItem<String>(
+    final undefinePosTag = DropdownMenuItem<String>(
       value: 'null',
-      child: Text('未定義',
-          style: TextStyle(
+      child: Text(t.shared.undefined,
+          style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.normal,
               color: Colors.black87)),

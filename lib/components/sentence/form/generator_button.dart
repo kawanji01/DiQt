@@ -36,6 +36,8 @@ class _SentenceFormGeneratorButtonState
     _posTagIdController.text = '';
     _meaningController.text = '';
     _sentenceTypeController.text = '';
+    _difficultyController.text = '';
+    _aiModelController.text = '3';
     _temperatureController.text = '7';
     super.initState();
   }
@@ -46,6 +48,8 @@ class _SentenceFormGeneratorButtonState
     _posTagIdController.dispose();
     _meaningController.dispose();
     _sentenceTypeController.dispose();
+    _difficultyController.dispose();
+    _aiModelController.dispose();
     _temperatureController.dispose();
     super.dispose();
   }

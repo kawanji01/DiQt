@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1724 (862 per locale)
+/// Strings: 1744 (872 per locale)
 ///
-/// Built on 2023-06-18 at 05:25 UTC
+/// Built on 2023-06-18 at 13:08 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -536,7 +536,8 @@ class _TranslationsLangEn {
 	String deepl_not_supported({required Object language}) => '${language} is not supported by DeepL.';
 	String google_not_supported({required Object language}) => '${language} is not supported by Google.';
 	String get need_to_login => 'You need to log in to use the translation.';
-	String get language_setting => 'Language';
+	String get language => 'Language';
+	String get language_setting => 'Language Setting';
 	String get auto_configure => 'Auto_configure';
 	String get undefined => 'Undefined';
 	String get af => 'Afrikaans';
@@ -800,6 +801,8 @@ class _TranslationsSentencesEn {
 	String get sentence => 'Sentence';
 	String get add => 'Add sentence';
 	String get edit => 'Edit sentence';
+	String get remove => 'Remove sentence';
+	String get destroy => 'Delete sentence';
 	String get original => 'Original';
 	String get translation => 'Translation';
 	String original_placeholder({required Object language}) => 'Please enter an example sentence in ${language}.';
@@ -1152,7 +1155,14 @@ class _TranslationsWordsEn {
 	String get reading => 'Reading';
 	String get meaning => 'Meaning';
 	String get ipa => 'IPA(Pronunciation)';
-	String get set_example_sentence => 'Search Example Sentences';
+	String get search_sentence => 'Search Example Sentences';
+	String get search_sentence_placeholder => 'Please enter keywords.';
+	String get no_sentence => 'No example sentence is set.';
+	String get set_sentence_with_ai => 'Set an example sentence with AI';
+	String get generate_meaning_with_ai => 'Generate meanings with AI';
+	String get meaning_keyword_placeholder => '【Required】Please enter the headword to generate the meaning.';
+	String get success_to_generate_meanings => 'Successful generation of meanings.';
+	String get failed_to_generate_meanings => 'Generation of meanings failed.';
 	String get etymologies => 'Etymologies';
 	String get explanation => 'Explanation';
 	String get sentence => 'Example Sentence';
@@ -1675,6 +1685,7 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String deepl_not_supported({required Object language}) => '${language}はDeepLが対応していない言語です。';
 	@override String google_not_supported({required Object language}) => '${language}はGoogleが対応していない言語です。';
 	@override String get need_to_login => '翻訳機能を利用するにはログインが必要です。';
+	@override String get language => '言語';
 	@override String get language_setting => '言語設定';
 	@override String get auto_configure => '自動で設定する';
 	@override String get undefined => '未定義';
@@ -1939,6 +1950,8 @@ class _TranslationsSentencesJa implements _TranslationsSentencesEn {
 	@override String get sentence => '例文';
 	@override String get add => '例文を追加する';
 	@override String get edit => '例文を編集する';
+	@override String get remove => '例文を取り除く';
+	@override String get destroy => '例文を削除する';
 	@override String get original => '原文';
 	@override String get translation => '翻訳';
 	@override String original_placeholder({required Object language}) => '【必須】${language}の例文を入力してください。';
@@ -2291,7 +2304,14 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get reading => '読み（ひらがな）';
 	@override String get meaning => '意味';
 	@override String get ipa => 'IPA（発音記号）';
-	@override String get set_example_sentence => '例文を検索する';
+	@override String get search_sentence => '例文を検索する';
+	@override String get search_sentence_placeholder => 'キーワードを入力してください';
+	@override String get no_sentence => '例文が設定されていません。';
+	@override String get set_sentence_with_ai => 'AIで例文を設定する';
+	@override String get generate_meaning_with_ai => 'AIで意味を生成する';
+	@override String get meaning_keyword_placeholder => '【必須】意味を生成する見出し語を入力してください。';
+	@override String get success_to_generate_meanings => '意味を生成しました。';
+	@override String get failed_to_generate_meanings => '意味の生成に失敗しました。';
 	@override String get etymologies => '語源';
 	@override String get explanation => '解説';
 	@override String get sentence => '例文';
@@ -2662,7 +2682,8 @@ extension on _TranslationsEn {
 			case 'lang.deepl_not_supported': return ({required Object language}) => '${language} is not supported by DeepL.';
 			case 'lang.google_not_supported': return ({required Object language}) => '${language} is not supported by Google.';
 			case 'lang.need_to_login': return 'You need to log in to use the translation.';
-			case 'lang.language_setting': return 'Language';
+			case 'lang.language': return 'Language';
+			case 'lang.language_setting': return 'Language Setting';
 			case 'lang.auto_configure': return 'Auto_configure';
 			case 'lang.undefined': return 'Undefined';
 			case 'lang.af': return 'Afrikaans';
@@ -2917,6 +2938,8 @@ extension on _TranslationsEn {
 			case 'sentences.sentence': return 'Sentence';
 			case 'sentences.add': return 'Add sentence';
 			case 'sentences.edit': return 'Edit sentence';
+			case 'sentences.remove': return 'Remove sentence';
+			case 'sentences.destroy': return 'Delete sentence';
 			case 'sentences.original': return 'Original';
 			case 'sentences.translation': return 'Translation';
 			case 'sentences.original_placeholder': return ({required Object language}) => 'Please enter an example sentence in ${language}.';
@@ -3179,7 +3202,14 @@ extension on _TranslationsEn {
 			case 'words.reading': return 'Reading';
 			case 'words.meaning': return 'Meaning';
 			case 'words.ipa': return 'IPA(Pronunciation)';
-			case 'words.set_example_sentence': return 'Search Example Sentences';
+			case 'words.search_sentence': return 'Search Example Sentences';
+			case 'words.search_sentence_placeholder': return 'Please enter keywords.';
+			case 'words.no_sentence': return 'No example sentence is set.';
+			case 'words.set_sentence_with_ai': return 'Set an example sentence with AI';
+			case 'words.generate_meaning_with_ai': return 'Generate meanings with AI';
+			case 'words.meaning_keyword_placeholder': return '【Required】Please enter the headword to generate the meaning.';
+			case 'words.success_to_generate_meanings': return 'Successful generation of meanings.';
+			case 'words.failed_to_generate_meanings': return 'Generation of meanings failed.';
 			case 'words.etymologies': return 'Etymologies';
 			case 'words.explanation': return 'Explanation';
 			case 'words.sentence': return 'Example Sentence';
@@ -3532,6 +3562,7 @@ extension on _TranslationsJa {
 			case 'lang.deepl_not_supported': return ({required Object language}) => '${language}はDeepLが対応していない言語です。';
 			case 'lang.google_not_supported': return ({required Object language}) => '${language}はGoogleが対応していない言語です。';
 			case 'lang.need_to_login': return '翻訳機能を利用するにはログインが必要です。';
+			case 'lang.language': return '言語';
 			case 'lang.language_setting': return '言語設定';
 			case 'lang.auto_configure': return '自動で設定する';
 			case 'lang.undefined': return '未定義';
@@ -3787,6 +3818,8 @@ extension on _TranslationsJa {
 			case 'sentences.sentence': return '例文';
 			case 'sentences.add': return '例文を追加する';
 			case 'sentences.edit': return '例文を編集する';
+			case 'sentences.remove': return '例文を取り除く';
+			case 'sentences.destroy': return '例文を削除する';
 			case 'sentences.original': return '原文';
 			case 'sentences.translation': return '翻訳';
 			case 'sentences.original_placeholder': return ({required Object language}) => '【必須】${language}の例文を入力してください。';
@@ -4049,7 +4082,14 @@ extension on _TranslationsJa {
 			case 'words.reading': return '読み（ひらがな）';
 			case 'words.meaning': return '意味';
 			case 'words.ipa': return 'IPA（発音記号）';
-			case 'words.set_example_sentence': return '例文を検索する';
+			case 'words.search_sentence': return '例文を検索する';
+			case 'words.search_sentence_placeholder': return 'キーワードを入力してください';
+			case 'words.no_sentence': return '例文が設定されていません。';
+			case 'words.set_sentence_with_ai': return 'AIで例文を設定する';
+			case 'words.generate_meaning_with_ai': return 'AIで意味を生成する';
+			case 'words.meaning_keyword_placeholder': return '【必須】意味を生成する見出し語を入力してください。';
+			case 'words.success_to_generate_meanings': return '意味を生成しました。';
+			case 'words.failed_to_generate_meanings': return '意味の生成に失敗しました。';
 			case 'words.etymologies': return '語源';
 			case 'words.explanation': return '解説';
 			case 'words.sentence': return '例文';

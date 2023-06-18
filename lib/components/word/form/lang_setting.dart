@@ -10,7 +10,6 @@ class WordFormLangSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String language = LanguageHandler.getLanguageFromNumber(langNumber);
-    final String? languageSetting = t['lang.language_setting'];
 
     return Container(
       width: double.infinity,
@@ -18,13 +17,13 @@ class WordFormLangSetting extends StatelessWidget {
       child: RichText(
         text: TextSpan(children: [
           TextSpan(
-              text: '$languageSetting:',
+              text: t.lang.language,
               style: const TextStyle(
                   color: Colors.black54,
                   fontSize: 14,
                   fontWeight: FontWeight.normal)),
           TextSpan(
-              text: ' $language',
+              text: ': $language',
               style: const TextStyle(
                   color: Colors.black54,
                   fontSize: 14,

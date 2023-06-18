@@ -5,8 +5,8 @@ import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
 import 'package:flutter/material.dart';
 
-class SentenceSettingFormListItem extends StatelessWidget {
-  const SentenceSettingFormListItem({Key? key, required this.sentence})
+class SentenceSettingListItem extends StatelessWidget {
+  const SentenceSettingListItem({Key? key, required this.sentence})
       : super(key: key);
   final Sentence sentence;
 

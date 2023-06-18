@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/sentence/setting_form.dart';
+import 'package:booqs_mobile/components/sentence/setting/setting.dart';
 import 'package:booqs_mobile/components/word/form/pos_tag.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -91,10 +91,12 @@ class WordFormFields extends StatelessWidget {
         const SizedBox(height: 40),
 
         // 例文設定
-        SentenceSettingForm(
-            sentenceIdController: sentenceIdController,
-            keyword: entryController.text,
-            dictionary: dictionary),
+        SentenceSetting(
+          sentenceIdController: sentenceIdController,
+          entry: entryController.text,
+          dictionary: dictionary,
+          posTagIdController: posTagIdController,
+        ),
         const SizedBox(height: 40),
         // 詳細設定
         WordFormDetailedSettings(

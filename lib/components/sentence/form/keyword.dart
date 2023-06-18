@@ -11,10 +11,10 @@ class SentenceFormKeyword extends StatelessWidget {
       children: [
         Text(t.sentences.keyword_description(limit: 50),
             style: const TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 color: Colors.black87,
                 fontWeight: FontWeight.normal)),
-        const SizedBox(height: 16),
+        const SizedBox(height: 24),
         TextFormField(
           controller: keywordController,
           decoration: InputDecoration(

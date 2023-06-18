@@ -15,12 +15,11 @@ class _SentenceFormAIModelState extends State<SentenceFormAIModel> {
   Widget build(BuildContext context) {
     String dropDownValue = widget.aiModelController.text;
     if ([
-          '0',
           '3',
           '4',
         ].contains(dropDownValue) ==
         false) {
-      dropDownValue = '0';
+      dropDownValue = '3';
     }
 
     List<DropdownMenuItem<String>> dropDownItems = [
