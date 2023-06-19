@@ -23,22 +23,17 @@ class SentenceFormGeneratorButton extends StatefulWidget {
 class _SentenceFormGeneratorButtonState
     extends State<SentenceFormGeneratorButton> {
   final _keywordController = TextEditingController();
-  final _posTagIdController = TextEditingController();
-  final _meaningController = TextEditingController();
-  final _sentenceTypeController = TextEditingController();
-  final _difficultyController = TextEditingController();
-  final _aiModelController = TextEditingController();
-  final _temperatureController = TextEditingController();
+  final _posTagIdController = TextEditingController(text: '');
+  final _meaningController = TextEditingController(text: '');
+  final _sentenceTypeController = TextEditingController(text: '');
+  final _difficultyController = TextEditingController(text: '');
+  final _keepingFormController = TextEditingController(text: '');
+  final _aiModelController = TextEditingController(text: '3');
+  final _temperatureController = TextEditingController(text: '7');
 
   @override
   void initState() {
     _keywordController.text = widget.keyword ?? '';
-    _posTagIdController.text = '';
-    _meaningController.text = '';
-    _sentenceTypeController.text = '';
-    _difficultyController.text = '';
-    _aiModelController.text = '3';
-    _temperatureController.text = '7';
     super.initState();
   }
 
@@ -49,6 +44,7 @@ class _SentenceFormGeneratorButtonState
     _meaningController.dispose();
     _sentenceTypeController.dispose();
     _difficultyController.dispose();
+    _keepingFormController.dispose();
     _aiModelController.dispose();
     _temperatureController.dispose();
     super.dispose();
@@ -75,6 +71,7 @@ class _SentenceFormGeneratorButtonState
                     meaningController: _meaningController,
                     sentenceTypeController: _sentenceTypeController,
                     difficultyController: _difficultyController,
+                    keepingFormController: _keepingFormController,
                     aiModelController: _aiModelController,
                     temperatureController: _temperatureController,
                     dictionary: widget.dictionary,

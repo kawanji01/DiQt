@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1746 (873 per locale)
+/// Strings: 1748 (874 per locale)
 ///
-/// Built on 2023-06-19 at 02:29 UTC
+/// Built on 2023-06-19 at 07:33 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -817,6 +817,7 @@ class _TranslationsSentencesEn {
 	String get easy => 'Easy';
 	String get normal => 'Normal';
 	String get difficult => 'Difficult';
+	String get keeping_form => 'Do not alter keywords';
 	String get model => 'AI Type';
 	String get gpt_3_5 => 'GPT-3.5（Fast）';
 	String get gpt_4 => 'GPT-4（Slow but Clever）';
@@ -1959,7 +1960,7 @@ class _TranslationsSentencesJa implements _TranslationsSentencesEn {
 	@override String translation_placeholder({required Object language}) => '【必須】例文の${language}の訳を入力してください。';
 	@override String get generate_sentence => 'AIで例文を生成する';
 	@override String keyword_description({required Object limit}) => '例文に含めたいキーワードを入力してください(${limit}文字以内)。';
-	@override String get keyword_placeholder => '【必須】例文に含みたいキーワード';
+	@override String get keyword_placeholder => '例文に含むキーワード';
 	@override String get pos => 'キーワードの品詞';
 	@override String get meaning => 'キーワードの意味（類義語など）';
 	@override String get meaning_placeholder => 'キーワードの意味を指定できます。';
@@ -1968,6 +1969,7 @@ class _TranslationsSentencesJa implements _TranslationsSentencesEn {
 	@override String get normal => '普通';
 	@override String get difficult => '難しい';
 	@override String get model => 'AIの種類';
+	@override String get keeping_form => 'キーワードを変化させない';
 	@override String get gpt_3_5 => 'GPT-3.5（速い）';
 	@override String get gpt_4 => 'GPT-4（遅いが賢い）';
 	@override String get sentence_type => '文の種類';
@@ -2956,6 +2958,7 @@ extension on _TranslationsEn {
 			case 'sentences.easy': return 'Easy';
 			case 'sentences.normal': return 'Normal';
 			case 'sentences.difficult': return 'Difficult';
+			case 'sentences.keeping_form': return 'Do not alter keywords';
 			case 'sentences.model': return 'AI Type';
 			case 'sentences.gpt_3_5': return 'GPT-3.5（Fast）';
 			case 'sentences.gpt_4': return 'GPT-4（Slow but Clever）';
@@ -3829,7 +3832,7 @@ extension on _TranslationsJa {
 			case 'sentences.translation_placeholder': return ({required Object language}) => '【必須】例文の${language}の訳を入力してください。';
 			case 'sentences.generate_sentence': return 'AIで例文を生成する';
 			case 'sentences.keyword_description': return ({required Object limit}) => '例文に含めたいキーワードを入力してください(${limit}文字以内)。';
-			case 'sentences.keyword_placeholder': return '【必須】例文に含みたいキーワード';
+			case 'sentences.keyword_placeholder': return '例文に含むキーワード';
 			case 'sentences.pos': return 'キーワードの品詞';
 			case 'sentences.meaning': return 'キーワードの意味（類義語など）';
 			case 'sentences.meaning_placeholder': return 'キーワードの意味を指定できます。';
@@ -3838,6 +3841,7 @@ extension on _TranslationsJa {
 			case 'sentences.normal': return '普通';
 			case 'sentences.difficult': return '難しい';
 			case 'sentences.model': return 'AIの種類';
+			case 'sentences.keeping_form': return 'キーワードを変化させない';
 			case 'sentences.gpt_3_5': return 'GPT-3.5（速い）';
 			case 'sentences.gpt_4': return 'GPT-4（遅いが賢い）';
 			case 'sentences.sentence_type': return '文の種類';
