@@ -1,7 +1,5 @@
 import 'package:booqs_mobile/data/provider/review.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/pages/review/all.dart';
-import 'package:booqs_mobile/pages/review/scheduled.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,12 +14,6 @@ class ReviewOrderSelectForm extends ConsumerWidget {
       switch (type) {
         case 'unreviewed':
           ref.invalidate(asyncUnsolvedReviewsProvider);
-          break;
-        case 'scheduled':
-          ReviewScheduledPage.pushReplacement(context);
-          break;
-        case 'all':
-          ReviewAllPage.pushReplacement(context);
           break;
       }
     }

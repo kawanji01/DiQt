@@ -1,5 +1,9 @@
 import 'package:booqs_mobile/components/review/answer_setting_button.dart';
 import 'package:booqs_mobile/components/review/heading.dart';
+import 'package:booqs_mobile/components/shared/premium_recommendation.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/review.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/review/bulk_deletion_button.dart';
@@ -12,24 +16,26 @@ import 'package:booqs_mobile/components/shared/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReviewAllPage extends ConsumerStatefulWidget {
-  const ReviewAllPage({Key? key}) : super(key: key);
+class ReviewAllPage extends ConsumerWidget {
+  const ReviewAllPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(reviewAllPage);
   }
 
-  static Future pushReplacement(BuildContext context) async {
-    return Navigator.of(context).pushReplacementNamed(reviewAllPage);
-  }
-
   @override
-  ReviewAllPageState createState() => ReviewAllPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    Widget quizzes() {
+      if (ref.watch(premiumEnabledProvider) == false) {
+        return SharedPremiumRecommendation(
+            description: t.shared.premium_recommendation);
+      }
+      return ReviewQuizListView(
+        key: UniqueKey(),
+        order: ref.watch(reviewOrderProvider),
+      );
+    }
 
-class ReviewAllPageState extends ConsumerState<ReviewAllPage> {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: const EmptyAppBar(),
       body: SingleChildScrollView(
@@ -38,21 +44,21 @@ class ReviewAllPageState extends ConsumerState<ReviewAllPage> {
               horizontal: ResponsiveValues.horizontalMargin(context)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              SizedBox(height: 32),
-              ReviewHeading(),
-              ReviewOrderSelectForm(type: 'all'),
-              SizedBox(height: 24),
-              ReviewAnswerSettingButton(),
-              SizedBox(height: 48),
-              ReviewStatusTabs(
+            children: [
+              const SizedBox(height: 32),
+              const ReviewHeading(),
+              const ReviewOrderSelectForm(type: 'all'),
+              const SizedBox(height: 24),
+              const ReviewAnswerSettingButton(),
+              const SizedBox(height: 48),
+              const ReviewStatusTabs(
                 selected: 'all',
               ),
-              SizedBox(height: 40),
-              ReviewBulkDeletionButton(),
-              SizedBox(height: 40),
-              ReviewQuizListView(),
-              SizedBox(height: 120),
+              const SizedBox(height: 40),
+              const ReviewBulkDeletionButton(),
+              const SizedBox(height: 40),
+              quizzes(),
+              const SizedBox(height: 120),
             ],
           ),
         ),

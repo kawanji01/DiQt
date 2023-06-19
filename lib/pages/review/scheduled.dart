@@ -1,5 +1,9 @@
 import 'package:booqs_mobile/components/review/answer_setting_button.dart';
 import 'package:booqs_mobile/components/review/heading.dart';
+import 'package:booqs_mobile/components/shared/premium_recommendation.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/review.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/review/order_select_form.dart';
@@ -11,24 +15,29 @@ import 'package:booqs_mobile/components/shared/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReviewScheduledPage extends ConsumerStatefulWidget {
-  const ReviewScheduledPage({Key? key}) : super(key: key);
+class ReviewScheduledPage extends ConsumerWidget {
+  const ReviewScheduledPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(reviewScheduledPage);
   }
 
-  static Future pushReplacement(BuildContext context) async {
-    return Navigator.of(context).pushReplacementNamed(reviewScheduledPage);
-  }
-
   @override
-  ReviewScheduledPageState createState() => ReviewScheduledPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    Widget quizzes() {
+      if (ref.watch(premiumEnabledProvider) == false) {
+        return Container(
+          margin: const EdgeInsets.only(top: 64),
+          child: SharedPremiumRecommendation(
+              description: t.shared.premium_recommendation),
+        );
+      }
+      return ReviewScheduledQuizListView(
+        key: UniqueKey(),
+        order: ref.watch(reviewOrderProvider),
+      );
+    }
 
-class ReviewScheduledPageState extends ConsumerState<ReviewScheduledPage> {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: const EmptyAppBar(),
       body: SingleChildScrollView(
@@ -37,19 +46,19 @@ class ReviewScheduledPageState extends ConsumerState<ReviewScheduledPage> {
               horizontal: ResponsiveValues.horizontalMargin(context)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              SizedBox(height: 32),
-              ReviewHeading(),
-              ReviewOrderSelectForm(type: 'scheduled'),
-              SizedBox(height: 24),
-              ReviewAnswerSettingButton(),
-              SizedBox(height: 48),
-              ReviewStatusTabs(
+            children: [
+              const SizedBox(height: 32),
+              const ReviewHeading(),
+              const ReviewOrderSelectForm(type: 'scheduled'),
+              const SizedBox(height: 24),
+              const ReviewAnswerSettingButton(),
+              const SizedBox(height: 48),
+              const ReviewStatusTabs(
                 selected: 'scheduled',
               ),
-              SizedBox(height: 8),
-              ReviewScheduledQuizListView(),
-              SizedBox(height: 120),
+              const SizedBox(height: 8),
+              quizzes(),
+              const SizedBox(height: 120),
             ],
           ),
         ),

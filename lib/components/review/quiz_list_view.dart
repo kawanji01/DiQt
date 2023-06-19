@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/review.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/components/review/list_quiz.dart';
@@ -9,7 +8,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class ReviewQuizListView extends ConsumerStatefulWidget {
-  const ReviewQuizListView({Key? key}) : super(key: key);
+  const ReviewQuizListView({Key? key, required this.order}) : super(key: key);
+  final String order;
 
   @override
   ReviewQuizListViewState createState() => ReviewQuizListViewState();
@@ -37,8 +37,8 @@ class ReviewQuizListViewState extends ConsumerState<ReviewQuizListView> {
     if (_isReached == false) return;
     _isLoading = true;
 
-    final String order = ref.watch(reviewOrderProvider);
-    final Map? resMap = await RemoteReviews.all(pageKey, _pageSize, order);
+    final Map? resMap =
+        await RemoteReviews.all(pageKey, _pageSize, widget.order);
     if (!mounted) return;
     if (resMap == null) {
       return setState(() {
