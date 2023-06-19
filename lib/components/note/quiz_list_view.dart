@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/note.dart';
 import 'package:booqs_mobile/data/remote/notes.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/components/note/list_quiz.dart';
@@ -9,7 +8,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class NoteQuizListView extends ConsumerStatefulWidget {
-  const NoteQuizListView({Key? key}) : super(key: key);
+  const NoteQuizListView({Key? key, required this.order}) : super(key: key);
+  final String order;
 
   @override
   NoteQuizListViewState createState() => NoteQuizListViewState();
@@ -37,8 +37,8 @@ class NoteQuizListViewState extends ConsumerState<NoteQuizListView> {
     if (_isReached == false) return;
     _isLoading = true;
 
-    final String order = ref.watch(noteOrderProvider);
-    final Map? resMap = await RemoteNotes.index(pageKey, _pageSize, order);
+    final Map? resMap =
+        await RemoteNotes.index(pageKey, _pageSize, widget.order);
     if (!mounted) return;
     if (resMap == null) {
       return setState(() {

@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1748 (874 per locale)
+/// Strings: 1756 (878 per locale)
 ///
-/// Built on 2023-06-19 at 07:33 UTC
+/// Built on 2023-06-19 at 13:41 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -854,6 +854,10 @@ class _TranslationsNotesEn {
 	String get destroy => 'Delete';
 	String get confirmation => 'Confirmation';
 	String get confirmation_text => 'Are you sure you want to delete this note?';
+	String get updated_at_desc => 'Updated, New to Old';
+	String get updated_at_asc => 'Updated, Old to New';
+	String get created_at_desc => 'Created, New to Old';
+	String get created_at_asc => 'Created, Old to New';
 }
 
 // Path: timeZone
@@ -2005,6 +2009,10 @@ class _TranslationsNotesJa implements _TranslationsNotesEn {
 	@override String get destroy => '削除する';
 	@override String get confirmation => '確認';
 	@override String get confirmation_text => '本当にこのノートを削除してもよろしいですか？';
+	@override String get updated_at_desc => '更新日が新しい順';
+	@override String get updated_at_asc => '更新日が古い順';
+	@override String get created_at_desc => '作成日が新しい順';
+	@override String get created_at_asc => '作成日が古い順';
 }
 
 // Path: timeZone
@@ -2986,6 +2994,10 @@ extension on _TranslationsEn {
 			case 'notes.destroy': return 'Delete';
 			case 'notes.confirmation': return 'Confirmation';
 			case 'notes.confirmation_text': return 'Are you sure you want to delete this note?';
+			case 'notes.updated_at_desc': return 'Updated, New to Old';
+			case 'notes.updated_at_asc': return 'Updated, Old to New';
+			case 'notes.created_at_desc': return 'Created, New to Old';
+			case 'notes.created_at_asc': return 'Created, Old to New';
 			case 'timeZone.international_date_line_west': return 'International Date Line West';
 			case 'timeZone.american_samoa': return 'American Samoa';
 			case 'timeZone.midway_island': return 'Midway Island';
@@ -3868,6 +3880,10 @@ extension on _TranslationsJa {
 			case 'notes.destroy': return '削除する';
 			case 'notes.confirmation': return '確認';
 			case 'notes.confirmation_text': return '本当にこのノートを削除してもよろしいですか？';
+			case 'notes.updated_at_desc': return '更新日が新しい順';
+			case 'notes.updated_at_asc': return '更新日が古い順';
+			case 'notes.created_at_desc': return '作成日が新しい順';
+			case 'notes.created_at_asc': return '作成日が古い順';
 			case 'timeZone.international_date_line_west': return '国際日付変更線西';
 			case 'timeZone.american_samoa': return 'アメリカ領サモア';
 			case 'timeZone.midway_island': return 'ミッドウェー島';

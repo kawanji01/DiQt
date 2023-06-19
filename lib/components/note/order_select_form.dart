@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/data/provider/note.dart';
-import 'package:booqs_mobile/pages/note/index.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,13 +12,13 @@ class NoteOrderSelectForm extends ConsumerWidget {
     String label(String value) {
       switch (value) {
         case 'updated_at-desc':
-          return '更新日が新しい順';
+          return t.notes.updated_at_desc;
         case 'updated_at-asc':
-          return '更新日が古い順';
+          return t.notes.updated_at_asc;
         case 'created_at-desc':
-          return '作成日が新しい順';
+          return t.notes.created_at_desc;
         case 'created_at-asc':
-          return '作成日が古い順';
+          return t.notes.created_at_asc;
         default:
           return 'Error';
       }
@@ -40,7 +40,6 @@ class NoteOrderSelectForm extends ConsumerWidget {
         onChanged: (String? newValue) {
           if (newValue == null) return;
           ref.read(noteOrderProvider.notifier).state = newValue;
-          NoteIndexPage.pushReplacement(context);
         },
         items: <String>[
           'updated_at-desc',
