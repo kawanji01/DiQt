@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1768 (884 per locale)
+/// Strings: 1782 (891 per locale)
 ///
-/// Built on 2023-06-19 at 14:20 UTC
+/// Built on 2023-06-19 at 23:11 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -357,6 +357,13 @@ class _TranslationsWeaknessesEn {
 	// Translations
 	String get weaknesses => 'Weaknesses';
 	String get premium_recommendation => 'To solve weak questions, you need to register for a premium plan.';
+	String get correct_answer_rate_asc => 'Correct Rate, Low to High';
+	String get correct_answer_rate_desc => 'Correct Rate, High to Low';
+	String get incorrect_answers_count_desc => 'Incorrect, Most to Least';
+	String get incorrect_answers_count_asc => 'Incorrect, Least to Most';
+	String get created_at_desc => 'Added, Newest First';
+	String get created_at_asc => 'Added, Oldest First';
+	String get random_random => 'Random';
 }
 
 // Path: users
@@ -1518,6 +1525,13 @@ class _TranslationsWeaknessesJa implements _TranslationsWeaknessesEn {
 	// Translations
 	@override String get weaknesses => '弱点問題';
 	@override String get premium_recommendation => '弱点問題を解くには、プレミアムプランへの登録が必要です。';
+	@override String get correct_answer_rate_asc => '正答率が低い順';
+	@override String get correct_answer_rate_desc => '正答率が高い順';
+	@override String get incorrect_answers_count_desc => '不正解が多い順';
+	@override String get incorrect_answers_count_asc => '不正解が少ない順';
+	@override String get created_at_desc => '追加日が新しい順';
+	@override String get created_at_asc => '追加日が古い順';
+	@override String get random_random => 'ランダム';
 }
 
 // Path: users
@@ -1674,7 +1688,7 @@ class _TranslationsAnswerAnalysesJa implements _TranslationsAnswerAnalysesEn {
 	@override String get incorrect_answer_histories_count_desc => '間違いが多い順';
 	@override String get incorrect_answer_histories_count_asc => '間違いが少ない順';
 	@override String get last_answered_at_desc => '解答履歴：新しい順';
-	@override String get last_answered_at-asc => '解答履歴：古い順';
+	@override String get last_answered_at_asc => '解答履歴：古い順';
 }
 
 // Path: achievements
@@ -2590,6 +2604,13 @@ extension on _TranslationsEn {
 			case 'errors.http_status_511': return '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
 			case 'weaknesses.weaknesses': return 'Weaknesses';
 			case 'weaknesses.premium_recommendation': return 'To solve weak questions, you need to register for a premium plan.';
+			case 'weaknesses.correct_answer_rate_asc': return 'Correct Rate, Low to High';
+			case 'weaknesses.correct_answer_rate_desc': return 'Correct Rate, High to Low';
+			case 'weaknesses.incorrect_answers_count_desc': return 'Incorrect, Most to Least';
+			case 'weaknesses.incorrect_answers_count_asc': return 'Incorrect, Least to Most';
+			case 'weaknesses.created_at_desc': return 'Added, Newest First';
+			case 'weaknesses.created_at_asc': return 'Added, Oldest First';
+			case 'weaknesses.random_random': return 'Random';
 			case 'users.anonymous_user': return 'Anonymous user';
 			case 'users.creating_account_succeeded': return 'Your account registration has been completed! Welcome to DiQt!';
 			case 'users.show': return 'User Page';
@@ -3482,6 +3503,13 @@ extension on _TranslationsJa {
 			case 'errors.http_status_511': return '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
 			case 'weaknesses.weaknesses': return '弱点問題';
 			case 'weaknesses.premium_recommendation': return '弱点問題を解くには、プレミアムプランへの登録が必要です。';
+			case 'weaknesses.correct_answer_rate_asc': return '正答率が低い順';
+			case 'weaknesses.correct_answer_rate_desc': return '正答率が高い順';
+			case 'weaknesses.incorrect_answers_count_desc': return '不正解が多い順';
+			case 'weaknesses.incorrect_answers_count_asc': return '不正解が少ない順';
+			case 'weaknesses.created_at_desc': return '追加日が新しい順';
+			case 'weaknesses.created_at_asc': return '追加日が古い順';
+			case 'weaknesses.random_random': return 'ランダム';
 			case 'users.anonymous_user': return '匿名ユーザー';
 			case 'users.creating_account_succeeded': return '会員登録が完了しました！ようこそDiQtへ！！';
 			case 'users.show': return 'ユーザーページ';
@@ -3593,7 +3621,7 @@ extension on _TranslationsJa {
 			case 'answerAnalyses.incorrect_answer_histories_count_desc': return '間違いが多い順';
 			case 'answerAnalyses.incorrect_answer_histories_count_asc': return '間違いが少ない順';
 			case 'answerAnalyses.last_answered_at_desc': return '解答履歴：新しい順';
-			case 'answerAnalyses.last_answered_at-asc': return '解答履歴：古い順';
+			case 'answerAnalyses.last_answered_at_asc': return '解答履歴：古い順';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';

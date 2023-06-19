@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/data/provider/weakness.dart';
-import 'package:booqs_mobile/pages/weakness/index.dart';
-import 'package:booqs_mobile/pages/weakness/solved.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,12 +16,6 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
         case 'unsolved':
           ref.invalidate(asyncUnsolvedWeaknessesProvider);
           break;
-        case 'solved':
-          WeaknessSolvedPage.pushReplacement(context);
-          break;
-        case 'all':
-          WeaknessIndexPage.pushReplacement(context);
-          break;
       }
     }
 
@@ -30,19 +23,19 @@ class WeaknessOrderSelectForm extends ConsumerWidget {
     String label(String value) {
       switch (value) {
         case 'correct_answer_rate-asc':
-          return '正答率が低い順';
+          return t.weaknesses.correct_answer_rate_asc;
         case 'correct_answer_rate-desc':
-          return '正答率が高い順';
+          return t.weaknesses.correct_answer_rate_desc;
         case 'incorrect_answers_count-desc':
-          return '不正解が多い順';
+          return t.weaknesses.incorrect_answers_count_desc;
         case 'incorrect_answers_count-asc':
-          return '不正解が少ない順';
+          return t.weaknesses.incorrect_answers_count_asc;
         case 'created_at-desc':
-          return '追加日が新しい順';
+          return t.weaknesses.created_at_desc;
         case 'created_at-asc':
-          return '追加日が古い順';
+          return t.weaknesses.created_at_asc;
         case 'random-random':
-          return 'ランダム';
+          return t.weaknesses.random_random;
         default:
           return 'Error';
       }

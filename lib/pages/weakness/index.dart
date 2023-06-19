@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/weakness.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -12,32 +13,24 @@ import 'package:booqs_mobile/components/weakness/status_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WeaknessIndexPage extends ConsumerStatefulWidget {
-  const WeaknessIndexPage({Key? key}) : super(key: key);
+class WeaknessIndexPage extends ConsumerWidget {
+  const WeaknessIndexPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(weaknessIndexPage);
   }
 
-  // 戻らせない画面遷移
-  static Future pushReplacement(BuildContext context) async {
-    return Navigator.of(context).pushReplacementNamed(weaknessIndexPage);
-  }
-
   @override
-  WeaknessIndexPageState createState() => WeaknessIndexPageState();
-}
-
-class WeaknessIndexPageState extends ConsumerState<WeaknessIndexPage> {
-  @override
-  Widget build(BuildContext context) {
-    final bool premiumEnabled = ref.watch(premiumEnabledProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
     Widget quizzes() {
-      if (premiumEnabled == false) {
+      if (ref.watch(premiumEnabledProvider) == false) {
         return SharedPremiumRecommendation(
             description: t.shared.premium_recommendation);
       }
-      return const WeaknessQuizListView();
+      return WeaknessQuizListView(
+        key: UniqueKey(),
+        order: ref.watch(weaknessOrderProvider),
+      );
     }
 
     return Scaffold(
