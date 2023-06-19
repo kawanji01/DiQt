@@ -143,6 +143,7 @@ class SentenceSettingState extends State<SentenceSetting> {
             child: TextFormField(
               controller: _keywordController,
               style: const TextStyle(color: Colors.black87, fontSize: 16),
+              textAlignVertical: TextAlignVertical.bottom,
               decoration: InputDecoration(
                 labelText: t.words.search_sentence,
                 hintText: t.words.search_sentence_placeholder,

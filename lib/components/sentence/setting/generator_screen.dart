@@ -4,7 +4,6 @@ import 'package:booqs_mobile/components/sentence/form/ai_model.dart';
 import 'package:booqs_mobile/components/sentence/form/difficulty.dart';
 import 'package:booqs_mobile/components/sentence/form/keyword.dart';
 import 'package:booqs_mobile/components/sentence/form/meaning.dart';
-import 'package:booqs_mobile/components/sentence/form/pos_tag.dart';
 import 'package:booqs_mobile/components/sentence/form/sentence_type.dart';
 import 'package:booqs_mobile/components/sentence/form/temperature.dart';
 import 'package:booqs_mobile/components/word/form/pos_tag.dart';

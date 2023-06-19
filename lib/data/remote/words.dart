@@ -104,7 +104,7 @@ class RemoteWords {
   }
 
   // 更新
-  static Future<Map?> update(Map<String, dynamic> params) async {
+  static Future<Map> update({required Map<String, dynamic> params}) async {
     try {
       final Map<String, dynamic> body = {'word': params};
 
@@ -114,19 +114,16 @@ class RemoteWords {
         url,
         body,
       );
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
 
-      final Map? resMap = json.decode(res.body);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 
