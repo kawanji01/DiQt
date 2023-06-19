@@ -6,7 +6,6 @@ import 'package:booqs_mobile/components/sentence/form/keyword.dart';
 import 'package:booqs_mobile/components/sentence/form/meaning.dart';
 import 'package:booqs_mobile/components/sentence/form/pos_tag.dart';
 import 'package:booqs_mobile/components/sentence/form/sentence_type.dart';
-import 'package:booqs_mobile/components/sentence/form/temperature.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -191,9 +190,9 @@ class _SentenceFormGeneratorScreenState
                           height: 48,
                         ),
                         // temperature
-                        SentenceFormTemperature(
+                        /* SentenceFormTemperature(
                           temperatureController: temperatureController,
-                        ),
+                        ), */
                       ]),
                   const SizedBox(height: 48),
                   InkWell(

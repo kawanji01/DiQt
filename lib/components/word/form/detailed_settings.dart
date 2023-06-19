@@ -35,7 +35,7 @@ class WordFormDetailedSettings extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 24),
+            const SizedBox(height: 48),
             // IPA
             TextFormField(
               controller: ipaController,
@@ -44,11 +44,7 @@ class WordFormDetailedSettings extends StatelessWidget {
                   labelText: t.words.ipa,
                   hintText: t.shared.please_enter(name: t.words.ipa)),
             ),
-            const SizedBox(height: 24),
-            WordFormSenses(
-              word: word,
-            ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 48),
             // 語源
             TextFormField(
               controller: etymologiesController,
@@ -57,7 +53,12 @@ class WordFormDetailedSettings extends StatelessWidget {
                   labelText: t.words.etymologies,
                   hintText: t.shared.please_enter(name: t.words.etymologies)),
             ),
-            const SizedBox(height: 24),
+
+            WordFormSenses(
+              word: word,
+            ),
+            const SizedBox(height: 48),
+
             // 解説フォーム
             //TextFormField(
             // 複数行のフォーム。 参考： https://stackoverflow.com/questions/54972928/how-to-expand-a-textfield-in-flutter-looks-like-a-text-area
@@ -73,7 +74,7 @@ class WordFormDetailedSettings extends StatelessWidget {
             //),
             // DiQt Markdownの説明
             //const MarkdownIntroductionTextButton(),
-
+/* 
             // 類義語
             TextFormField(
               controller: synonymsController,
@@ -99,7 +100,7 @@ class WordFormDetailedSettings extends StatelessWidget {
                   border: OutlineInputBorder(),
                   labelText: "関連語",
                   hintText: '複数設定する場合は、間に「;」を入力してください'),
-            ),
+            ), */
           ],
         ),
       ],

@@ -1,10 +1,10 @@
 import 'package:booqs_mobile/components/sentence/setting/setting.dart';
+import 'package:booqs_mobile/components/word/form/meaning_generator_button.dart';
 import 'package:booqs_mobile/components/word/form/pos_tag.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/word/form/detailed_settings.dart';
 import 'package:booqs_mobile/components/word/form/lang_setting.dart';
-import 'package:booqs_mobile/components/word/form/preview_button.dart';
 import 'package:booqs_mobile/components/word/form/reading.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
@@ -68,9 +68,11 @@ class WordFormFields extends StatelessWidget {
         const SizedBox(height: 16),
         // 品詞設定
         WordFormPosTag(
-            posTagIdController: posTagIdController,
-            posTags: dictionary.posTags),
-        const SizedBox(height: 40),
+          posTagIdController: posTagIdController,
+          posTags: dictionary.posTags,
+          enabled: true,
+        ),
+        const SizedBox(height: 48),
         // 意味フォーム
         TextFormField(
           // [Flutter/Dart]入力欄（TextField）で折返し表示させる方法 ref: https://minpro.net/flutter-dart-textfield-fold
@@ -88,7 +90,15 @@ class WordFormFields extends StatelessWidget {
           },
         ),
         WordFormLangSetting(langNumber: dictionary.langNumberOfMeaning),
-        const SizedBox(height: 40),
+        const SizedBox(height: 16),
+        // 意味生成ボタン
+        WordFormMeaningGeneratorButton(
+          entry: entryController.text,
+          meaningController: meaningController,
+          posTagIdController: posTagIdController,
+          dictionary: dictionary,
+        ),
+        const SizedBox(height: 48),
 
         // 例文設定
         SentenceSetting(
@@ -97,7 +107,7 @@ class WordFormFields extends StatelessWidget {
           dictionary: dictionary,
           posTagIdController: posTagIdController,
         ),
-        const SizedBox(height: 40),
+        const SizedBox(height: 48),
         // 詳細設定
         WordFormDetailedSettings(
           ipaController: ipaController,
@@ -110,7 +120,7 @@ class WordFormFields extends StatelessWidget {
         ),
 
         const SizedBox(height: 40),
-        WordFormPreviewButton(
+        /*  WordFormPreviewButton(
             entryController: entryController,
             meaningController: meaningController,
             ipaController: ipaController,
@@ -120,7 +130,7 @@ class WordFormFields extends StatelessWidget {
             synonymsController: synonymsController,
             antonymsController: antonymsController,
             relatedController: relatedController,
-            dictionary: dictionary),
+            dictionary: dictionary), */
       ],
     );
   }

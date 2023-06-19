@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1744 (872 per locale)
+/// Strings: 1746 (873 per locale)
 ///
-/// Built on 2023-06-18 at 13:08 UTC
+/// Built on 2023-06-19 at 02:29 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1153,6 +1153,7 @@ class _TranslationsWordsEn {
 	String get destroyed => 'Word Destroyed';
 	String get entry => 'Headword';
 	String get reading => 'Reading';
+	String get pos_tag_id => 'Part of speech';
 	String get meaning => 'Meaning';
 	String get ipa => 'IPA(Pronunciation)';
 	String get search_sentence => 'Search Example Sentences';
@@ -1160,7 +1161,7 @@ class _TranslationsWordsEn {
 	String get no_sentence => 'No example sentence is set.';
 	String get set_sentence_with_ai => 'Set an example sentence with AI';
 	String get generate_meaning_with_ai => 'Generate meanings with AI';
-	String get meaning_keyword_placeholder => '【Required】Please enter the headword to generate the meaning.';
+	String get meaning_generation_keyword_placeholder => 'keywords to generate the meaning.';
 	String get success_to_generate_meanings => 'Successful generation of meanings.';
 	String get failed_to_generate_meanings => 'Generation of meanings failed.';
 	String get etymologies => 'Etymologies';
@@ -2302,6 +2303,7 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get destroyed => 'Word Destroyed';
 	@override String get entry => '見出し語';
 	@override String get reading => '読み（ひらがな）';
+	@override String get pos_tag_id => '品詞';
 	@override String get meaning => '意味';
 	@override String get ipa => 'IPA（発音記号）';
 	@override String get search_sentence => '例文を検索する';
@@ -2309,7 +2311,7 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get no_sentence => '例文が設定されていません。';
 	@override String get set_sentence_with_ai => 'AIで例文を設定する';
 	@override String get generate_meaning_with_ai => 'AIで意味を生成する';
-	@override String get meaning_keyword_placeholder => '【必須】意味を生成する見出し語を入力してください。';
+	@override String get meaning_generation_keyword_placeholder => '意味を生成するキーワード';
 	@override String get success_to_generate_meanings => '意味を生成しました。';
 	@override String get failed_to_generate_meanings => '意味の生成に失敗しました。';
 	@override String get etymologies => '語源';
@@ -3200,6 +3202,7 @@ extension on _TranslationsEn {
 			case 'words.destroyed': return 'Word Destroyed';
 			case 'words.entry': return 'Headword';
 			case 'words.reading': return 'Reading';
+			case 'words.pos_tag_id': return 'Part of speech';
 			case 'words.meaning': return 'Meaning';
 			case 'words.ipa': return 'IPA(Pronunciation)';
 			case 'words.search_sentence': return 'Search Example Sentences';
@@ -3207,7 +3210,7 @@ extension on _TranslationsEn {
 			case 'words.no_sentence': return 'No example sentence is set.';
 			case 'words.set_sentence_with_ai': return 'Set an example sentence with AI';
 			case 'words.generate_meaning_with_ai': return 'Generate meanings with AI';
-			case 'words.meaning_keyword_placeholder': return '【Required】Please enter the headword to generate the meaning.';
+			case 'words.meaning_generation_keyword_placeholder': return 'keywords to generate the meaning.';
 			case 'words.success_to_generate_meanings': return 'Successful generation of meanings.';
 			case 'words.failed_to_generate_meanings': return 'Generation of meanings failed.';
 			case 'words.etymologies': return 'Etymologies';
@@ -4080,6 +4083,7 @@ extension on _TranslationsJa {
 			case 'words.destroyed': return 'Word Destroyed';
 			case 'words.entry': return '見出し語';
 			case 'words.reading': return '読み（ひらがな）';
+			case 'words.pos_tag_id': return '品詞';
 			case 'words.meaning': return '意味';
 			case 'words.ipa': return 'IPA（発音記号）';
 			case 'words.search_sentence': return '例文を検索する';
@@ -4087,7 +4091,7 @@ extension on _TranslationsJa {
 			case 'words.no_sentence': return '例文が設定されていません。';
 			case 'words.set_sentence_with_ai': return 'AIで例文を設定する';
 			case 'words.generate_meaning_with_ai': return 'AIで意味を生成する';
-			case 'words.meaning_keyword_placeholder': return '【必須】意味を生成する見出し語を入力してください。';
+			case 'words.meaning_generation_keyword_placeholder': return '意味を生成するキーワード';
 			case 'words.success_to_generate_meanings': return '意味を生成しました。';
 			case 'words.failed_to_generate_meanings': return '意味の生成に失敗しました。';
 			case 'words.etymologies': return '語源';

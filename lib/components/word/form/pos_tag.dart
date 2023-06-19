@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 
 class WordFormPosTag extends StatefulWidget {
   const WordFormPosTag(
-      {Key? key, required this.posTagIdController, required this.posTags})
+      {Key? key,
+      required this.posTagIdController,
+      required this.posTags,
+      required this.enabled})
       : super(key: key);
   final TextEditingController posTagIdController;
   final List<PosTag>? posTags;
+  final bool enabled;
 
   @override
   State<WordFormPosTag> createState() => WordFormPosTagState();
@@ -32,6 +36,7 @@ class WordFormPosTagState extends State<WordFormPosTag> {
       dropDownValue = 'null';
     }
 
+    // dropDownItemsの生成
     List<DropdownMenuItem<String>> dropDownItems =
         posTags.map<DropdownMenuItem<String>>((PosTag? posTag) {
       return DropdownMenuItem<String>(
@@ -54,14 +59,12 @@ class WordFormPosTagState extends State<WordFormPosTag> {
     );
     dropDownItems.insert(0, undefinePosTag);
 
-    return Container(
-      height: 48,
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
-          border: Border.all(color: Colors.black54)),
-      child: DropdownButton<String>(
+    //
+
+    if (widget.enabled) {
+      return DropdownButtonFormField<String>(
+        decoration:
+            InputDecoration(filled: false, labelText: t.words.pos_tag_id),
         value: dropDownValue,
         iconSize: 24,
         elevation: 16,
@@ -71,7 +74,20 @@ class WordFormPosTagState extends State<WordFormPosTag> {
           });
         },
         items: dropDownItems,
-      ),
-    );
+      );
+    } else {
+      return AbsorbPointer(
+        child: DropdownButtonFormField<String>(
+          icon: const SizedBox.shrink(),
+          decoration: InputDecoration(
+              filled: !widget.enabled, labelText: t.sentences.pos),
+          value: dropDownValue,
+          iconSize: 24,
+          elevation: 16,
+          onChanged: (String? newValue) {},
+          items: dropDownItems,
+        ),
+      );
+    }
   }
 }

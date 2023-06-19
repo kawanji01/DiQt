@@ -7,6 +7,7 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -100,14 +101,13 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
       };
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteWords.update(params);
+      final Map resMap = await RemoteWords.update(params: params);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
       if (!mounted) return;
 
-      if (resMap == null) {
-        final snackBar = SnackBar(content: Text(t.words.update_failed));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      if (ErrorHandler.isErrorMap(resMap)) {
+        ErrorHandler.showErrorSnackBar(context, resMap);
       } else {
         final Word word = Word.fromJson(resMap['word']);
         ref.read(wordProvider.notifier).state = word;
@@ -156,7 +156,7 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
                         : () async {
                             save();
                           },
-                    icon: const Icon(Icons.update, color: Colors.white),
+                    icon: const Icon(Icons.edit, color: Colors.white),
                     label: Text(
                       t.shared.update,
                       style: const TextStyle(
