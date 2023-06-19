@@ -54,16 +54,17 @@ class _SentenceFormGeneratorButtonState
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
+          // ボタンを押したときのTextFieldのフォーカスが解除する。
+          // これをしないとモーダルを閉じたときに、画面がTextFieldまで移動してしまい不便。
+          FocusScope.of(context).unfocus();
           showModalBottomSheet(
               isScrollControlled: true,
               context: context,
-              // 丸み ref: https://www.codegrepper.com/code-examples/whatever/showmodalbottomsheet+rounded+corners
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(15.0),
                     topRight: Radius.circular(15.0)),
               ),
-              // showModalBottomSheetで表示される中身
               builder: (context) => SentenceFormGeneratorScreen(
                     originalController: widget.originalController,
                     keywordController: _keywordController,

@@ -72,6 +72,9 @@ class SentenceSettingState extends State<SentenceSetting> {
 
   //// 例文を生成して設定する ////
   Future _generateSentence() async {
+    // ボタンを押したときのTextFieldのフォーカスが解除する。
+    // これをしないとモーダルを閉じたときに、画面がTextFieldまで移動してしまい不便。
+    FocusScope.of(context).unfocus();
     // settingは null で戻る
     // { 'set': null } で 削除
     // { 'set': sentence } で 設定
@@ -100,6 +103,7 @@ class SentenceSettingState extends State<SentenceSetting> {
 
   //// 例文を検索して設定する ////
   Future _searchSentence() async {
+    FocusScope.of(context).unfocus();
     final Map<String, Sentence?>? setting = await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
