@@ -191,6 +191,7 @@ class RemoteSentences {
       required String meaning,
       required String sentenceType,
       required String difficulty,
+      required String keepingForm,
       required String model,
       required String temperature}) async {
     try {
@@ -200,6 +201,7 @@ class RemoteSentences {
         'meaning': meaning,
         'sentence_type': sentenceType,
         'difficulty': difficulty,
+        'keeping_form': keepingForm,
         'model': model,
         'dictionary_id': '$dictionaryId',
         'temperature': temperature,
@@ -231,6 +233,7 @@ class RemoteSentences {
       required String meaning,
       required String sentenceType,
       required String difficulty,
+      required String keepingForm,
       required String model,
       required String temperature}) async {
     try {
@@ -240,6 +243,7 @@ class RemoteSentences {
         'meaning': meaning,
         'sentence_type': sentenceType,
         'difficulty': difficulty,
+        'keeping_form': keepingForm,
         'model': model,
         'temperature': temperature,
         'dictionary_id': '$dictionaryId',

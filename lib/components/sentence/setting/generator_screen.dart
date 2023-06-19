@@ -2,10 +2,10 @@ import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/components/sentence/form/ai_model.dart';
 import 'package:booqs_mobile/components/sentence/form/difficulty.dart';
+import 'package:booqs_mobile/components/sentence/form/keeping_form.dart';
 import 'package:booqs_mobile/components/sentence/form/keyword.dart';
 import 'package:booqs_mobile/components/sentence/form/meaning.dart';
 import 'package:booqs_mobile/components/sentence/form/sentence_type.dart';
-import 'package:booqs_mobile/components/sentence/form/temperature.dart';
 import 'package:booqs_mobile/components/word/form/pos_tag.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -25,6 +25,7 @@ class SentenceSettingGeneratorScreen extends StatefulWidget {
       required this.meaningController,
       required this.sentenceTypeController,
       required this.difficultyController,
+      required this.keepingFormController,
       required this.aiModelController,
       required this.temperatureController,
       required this.dictionary});
@@ -33,6 +34,7 @@ class SentenceSettingGeneratorScreen extends StatefulWidget {
   final TextEditingController meaningController;
   final TextEditingController sentenceTypeController;
   final TextEditingController difficultyController;
+  final TextEditingController keepingFormController;
   final TextEditingController aiModelController;
   final TextEditingController temperatureController;
   final Dictionary dictionary;
@@ -60,17 +62,6 @@ class _WordFormSentenceGeneratorScreenState
     final double grid = SizeConfig.blockSizeVertical ?? 0;
     final double height = grid * 80;
 
-    final TextEditingController keywordController = widget.keywordController;
-    final TextEditingController posTagIdController = widget.posTagIdController;
-    final TextEditingController meaningController = widget.meaningController;
-    final TextEditingController sentenceTypeController =
-        widget.sentenceTypeController;
-    final TextEditingController difficultyController =
-        widget.difficultyController;
-    final TextEditingController aiModelController = widget.aiModelController;
-    final TextEditingController temperatureController =
-        widget.temperatureController;
-
     Future generate() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
@@ -82,14 +73,15 @@ class _WordFormSentenceGeneratorScreenState
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       final Map resMap = await RemoteSentences.generateAndCreate(
-        keyword: keywordController.text,
+        keyword: widget.keywordController.text,
         dictionaryId: dictionaryId,
-        posTagId: posTagIdController.text,
-        meaning: meaningController.text,
-        sentenceType: sentenceTypeController.text,
-        difficulty: difficultyController.text,
-        model: aiModelController.text,
-        temperature: temperatureController.text,
+        posTagId: widget.posTagIdController.text,
+        meaning: widget.meaningController.text,
+        sentenceType: widget.sentenceTypeController.text,
+        difficulty: widget.difficultyController.text,
+        keepingForm: widget.keepingFormController.text,
+        model: widget.aiModelController.text,
+        temperature: widget.temperatureController.text,
       );
       EasyLoading.dismiss();
       // リクエストロック終了
@@ -133,14 +125,14 @@ class _WordFormSentenceGeneratorScreenState
                   ),
                   // キーワードフォーム
                   SentenceFormKeyword(
-                    keywordController: keywordController,
+                    keywordController: widget.keywordController,
                   ),
                   const SizedBox(
                     height: 48,
                   ),
                   // 品詞
                   WordFormPosTag(
-                    posTagIdController: posTagIdController,
+                    posTagIdController: widget.posTagIdController,
                     posTags: widget.dictionary.posTags,
                     enabled: false,
                   ),
@@ -161,7 +153,7 @@ class _WordFormSentenceGeneratorScreenState
                         ),
                         // 意味
                         SentenceFormMeaning(
-                          meaningController: meaningController,
+                          meaningController: widget.meaningController,
                           dictionary: dictionary,
                         ),
                         const SizedBox(
@@ -169,29 +161,36 @@ class _WordFormSentenceGeneratorScreenState
                         ),
                         // 文の種類
                         SentenceFormSentenceType(
-                          sentenceTypeController: sentenceTypeController,
+                          sentenceTypeController: widget.sentenceTypeController,
                         ),
                         const SizedBox(
                           height: 48,
                         ),
                         // 難易度
                         SentenceFormDifficulty(
-                          difficultyController: difficultyController,
+                          difficultyController: widget.difficultyController,
+                        ),
+                        const SizedBox(
+                          height: 48,
+                        ),
+                        // キーワードの変更有無
+                        SentenceFormKeepingForm(
+                          keepingFormController: widget.keepingFormController,
                         ),
                         const SizedBox(
                           height: 48,
                         ),
                         // AIモデル
                         SentenceFormAIModel(
-                          aiModelController: aiModelController,
+                          aiModelController: widget.aiModelController,
                         ),
                         const SizedBox(
                           height: 48,
                         ),
                         // temperature
-                        SentenceFormTemperature(
+                        /* SentenceFormTemperature(
                           temperatureController: temperatureController,
-                        ),
+                        ), */
                       ]),
                   const SizedBox(height: 48),
                   InkWell(

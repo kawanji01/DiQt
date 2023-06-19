@@ -33,6 +33,7 @@ class SentenceSettingState extends State<SentenceSetting> {
   final _meaningController = TextEditingController(text: '');
   final _sentenceTypeController = TextEditingController(text: '');
   final _difficultyController = TextEditingController(text: '');
+  final _keepingFormController = TextEditingController(text: '');
   final _aiModelController = TextEditingController(text: '3');
   final _temperatureController = TextEditingController(text: '7');
   Sentence? _sentence;
@@ -51,6 +52,7 @@ class SentenceSettingState extends State<SentenceSetting> {
     _meaningController.dispose();
     _sentenceTypeController.dispose();
     _difficultyController.dispose();
+    _keepingFormController.dispose();
     _aiModelController.dispose();
     _temperatureController.dispose();
     super.dispose();
@@ -83,6 +85,7 @@ class SentenceSettingState extends State<SentenceSetting> {
           meaningController: _meaningController,
           sentenceTypeController: _sentenceTypeController,
           difficultyController: _difficultyController,
+          keepingFormController: _keepingFormController,
           aiModelController: _aiModelController,
           temperatureController: _temperatureController,
           dictionary: widget.dictionary,
