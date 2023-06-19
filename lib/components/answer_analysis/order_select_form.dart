@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
-import 'package:booqs_mobile/pages/answer_analysis/index.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,17 +12,17 @@ class AnswerAnalysisOrderSelectForm extends ConsumerWidget {
     String label(String value) {
       switch (value) {
         case 'correct_answer_rate-asc':
-          return '正答率が低い順';
+          return t.answerAnalyses.correct_answer_rate_asc;
         case 'correct_answer_rate-desc':
-          return '正答率が高い順';
+          return t.answerAnalyses.correct_answer_rate_desc;
         case 'incorrect_answer_histories_count-desc':
-          return '間違いが多い順';
+          return t.answerAnalyses.incorrect_answer_histories_count_desc;
         case 'incorrect_answer_histories_count-asc':
-          return '間違いが少ない順';
+          return t.answerAnalyses.incorrect_answer_histories_count_asc;
         case 'last_answered_at-desc':
-          return '解答履歴：新しい順';
+          return t.answerAnalyses.last_answered_at_desc;
         case 'last_answered_at-asc':
-          return '解答履歴：古い順';
+          return t.answerAnalyses.last_answered_at_asc;
         default:
           return 'Error';
       }
@@ -44,7 +44,6 @@ class AnswerAnalysisOrderSelectForm extends ConsumerWidget {
         onChanged: (String? newValue) {
           if (newValue == null) return;
           ref.read(answerAnalysisOrderProvider.notifier).state = newValue;
-          AnswerAnalysisIndexPage.pushReplacement(context);
         },
         items: <String>[
           'correct_answer_rate-asc',

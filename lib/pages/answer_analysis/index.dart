@@ -40,8 +40,12 @@ class AnswerAnalysisIndexPageState
     }
 
     Widget feed() {
+      final String order = ref.watch(answerAnalysisOrderProvider);
       if (premiumEnabled) {
-        return const AnswerAnalysisQuizListView();
+        return AnswerAnalysisQuizListView(
+          key: UniqueKey(),
+          order: order,
+        );
       } else {
         return SharedPremiumRecommendation(
             description: t.shared.premium_recommendation);

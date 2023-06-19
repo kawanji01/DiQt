@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1756 (878 per locale)
+/// Strings: 1768 (884 per locale)
 ///
-/// Built on 2023-06-19 at 13:41 UTC
+/// Built on 2023-06-19 at 14:20 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -508,6 +508,12 @@ class _TranslationsAnswerAnalysesEn {
 	String get answer_analyses => 'Answer Analyses';
 	String get answer_histories => 'Answer Histories';
 	String get premium_recommendation => 'To access these features, you need to register for a premium plan.';
+	String get correct_answer_rate_asc => 'Correct Rate, Low to High';
+	String get correct_answer_rate_desc => 'Correct Rate, High to Low';
+	String get incorrect_answer_histories_count_desc => 'Mistakes, Most to Least';
+	String get incorrect_answer_histories_count_asc => 'Mistakes, Least to Most';
+	String get last_answered_at_desc => 'Answered History, New to Old';
+	String get last_answered_at_asc => 'Answered History, Old to New';
 }
 
 // Path: achievements
@@ -1663,6 +1669,12 @@ class _TranslationsAnswerAnalysesJa implements _TranslationsAnswerAnalysesEn {
 	@override String get answer_analyses => '解答分析';
 	@override String get answer_histories => '解答履歴';
 	@override String get premium_recommendation => 'これらの機能を利用するには、プレミアムプランへの登録が必要です。';
+	@override String get correct_answer_rate_asc => '正答率が低い順';
+	@override String get correct_answer_rate_desc => '正答率が高い順';
+	@override String get incorrect_answer_histories_count_desc => '間違いが多い順';
+	@override String get incorrect_answer_histories_count_asc => '間違いが少ない順';
+	@override String get last_answered_at_desc => '解答履歴：新しい順';
+	@override String get last_answered_at-asc => '解答履歴：古い順';
 }
 
 // Path: achievements
@@ -2684,6 +2696,12 @@ extension on _TranslationsEn {
 			case 'answerAnalyses.answer_analyses': return 'Answer Analyses';
 			case 'answerAnalyses.answer_histories': return 'Answer Histories';
 			case 'answerAnalyses.premium_recommendation': return 'To access these features, you need to register for a premium plan.';
+			case 'answerAnalyses.correct_answer_rate_asc': return 'Correct Rate, Low to High';
+			case 'answerAnalyses.correct_answer_rate_desc': return 'Correct Rate, High to Low';
+			case 'answerAnalyses.incorrect_answer_histories_count_desc': return 'Mistakes, Most to Least';
+			case 'answerAnalyses.incorrect_answer_histories_count_asc': return 'Mistakes, Least to Most';
+			case 'answerAnalyses.last_answered_at_desc': return 'Answered History, New to Old';
+			case 'answerAnalyses.last_answered_at_asc': return 'Answered History, Old to New';
 			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -3570,6 +3588,12 @@ extension on _TranslationsJa {
 			case 'answerAnalyses.answer_analyses': return '解答分析';
 			case 'answerAnalyses.answer_histories': return '解答履歴';
 			case 'answerAnalyses.premium_recommendation': return 'これらの機能を利用するには、プレミアムプランへの登録が必要です。';
+			case 'answerAnalyses.correct_answer_rate_asc': return '正答率が低い順';
+			case 'answerAnalyses.correct_answer_rate_desc': return '正答率が高い順';
+			case 'answerAnalyses.incorrect_answer_histories_count_desc': return '間違いが多い順';
+			case 'answerAnalyses.incorrect_answer_histories_count_asc': return '間違いが少ない順';
+			case 'answerAnalyses.last_answered_at_desc': return '解答履歴：新しい順';
+			case 'answerAnalyses.last_answered_at-asc': return '解答履歴：古い順';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';

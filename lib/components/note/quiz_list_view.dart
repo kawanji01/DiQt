@@ -81,11 +81,9 @@ class NoteQuizListViewState extends ConsumerState<NoteQuizListView> {
           // [visibleFraction] 0で非表示、１で完全表示。0.1は上部が少し表示されている状態 ref: https://pub.dev/documentation/visibility_detector/latest/visibility_detector/VisibilityInfo/visibleFraction.html
           if (info.visibleFraction > 0.1) {
             if (_isLoading) return;
-
             setState(() {
               _isReached = true;
             });
-
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
             _pagingController.notifyPageRequestListeners(_nextPagekey);
           }
