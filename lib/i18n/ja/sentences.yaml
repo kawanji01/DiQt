@@ -10,7 +10,7 @@ original_placeholder: '【必須】${language}の例文を入力してくださ�
 translation_placeholder: '【必須】例文の${language}の訳を入力してください。'
 generate_sentence: 'AIで例文を生成する'
 keyword_description: '例文に含めたいキーワードを入力してください(${limit}文字以内)。'
-keyword_placeholder: '【必須】例文に含みたいキーワード'
+keyword_placeholder: '例文に含むキーワード'
 pos: 'キーワードの品詞'
 meaning: 'キーワードの意味（類義語など）'
 meaning_placeholder: 'キーワードの意味を指定できます。'

@@ -137,12 +137,12 @@ class SentenceSettingState extends State<SentenceSetting> {
     // 例文検索ボタン
     Widget searchButton() {
       return SizedBox(
-        height: 48.0, // You can adjust the height value as per your need.
+        height: 46.0, // You can adjust the height value as per your need.
         child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Expanded(
             child: TextFormField(
               controller: _keywordController,
-              style: const TextStyle(color: Colors.black54, fontSize: 16),
+              style: const TextStyle(color: Colors.black87, fontSize: 16),
               decoration: InputDecoration(
                 labelText: t.words.search_sentence,
                 hintText: t.words.search_sentence_placeholder,
