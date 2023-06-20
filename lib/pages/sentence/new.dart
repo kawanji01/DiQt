@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/remote/sentences.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
@@ -122,9 +123,9 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
                   save();
                 },
           icon: const Icon(Icons.update, color: Colors.white),
-          label: const Text(
-            '作成する',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          label: Text(
+            t.shared.create,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
         ),
       );

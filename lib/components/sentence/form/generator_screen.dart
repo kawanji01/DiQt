@@ -20,6 +20,7 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
   const SentenceFormGeneratorScreen(
       {Key? key,
       required this.originalController,
+      required this.translationController,
       required this.keywordController,
       required this.posTagIdController,
       required this.meaningController,
@@ -31,6 +32,7 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
       required this.dictionary})
       : super(key: key);
   final TextEditingController originalController;
+  final TextEditingController translationController;
   final TextEditingController keywordController;
   final TextEditingController posTagIdController;
   final TextEditingController meaningController;
@@ -74,7 +76,7 @@ class _SentenceFormGeneratorScreenState
 
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      final Map resMap = await RemoteSentences.generate(
+      final Map resMap = await RemoteSentences.generateWithTranslation(
           keyword: widget.keywordController.text,
           dictionaryId: dictionaryId,
           posTagId: widget.posTagIdController.text,
@@ -94,8 +96,8 @@ class _SentenceFormGeneratorScreenState
         ErrorHandler.showErrorSnackBar(context, resMap);
         Navigator.pop(context);
       } else {
-        final String? original = resMap['original'];
-        widget.originalController.text = original ?? '';
+        widget.originalController.text = resMap['original'] ?? '';
+        widget.translationController.text = resMap['translation'] ?? '';
         final snackBar =
             SnackBar(content: Text(t.sentences.sentence_generated));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
