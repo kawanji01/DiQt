@@ -1,16 +1,13 @@
-import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserStudyRecords extends ConsumerWidget {
-  const UserStudyRecords({Key? key}) : super(key: key);
+  const UserStudyRecords({Key? key, required this.user}) : super(key: key);
+  final User user;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? user = ref.watch(currentUserProvider);
-    if (user == null) return Container();
-
     const textStyle = TextStyle(
         fontSize: 28, color: Colors.orange, fontWeight: FontWeight.bold);
 

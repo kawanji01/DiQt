@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1748 (874 per locale)
+/// Strings: 1830 (915 per locale)
 ///
-/// Built on 2023-06-19 at 07:33 UTC
+/// Built on 2023-06-20 at 01:06 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -151,6 +151,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsDictionariesEn dictionaries = _TranslationsDictionariesEn._(_root);
 	late final _TranslationsReviewsEn reviews = _TranslationsReviewsEn._(_root);
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
+	late final _TranslationsDrillsEn drills = _TranslationsDrillsEn._(_root);
 	late final _TranslationsWeaknessesEn weaknesses = _TranslationsWeaknessesEn._(_root);
 	late final _TranslationsUsersEn users = _TranslationsUsersEn._(_root);
 	late final _TranslationsNoticesEn notices = _TranslationsNoticesEn._(_root);
@@ -163,6 +164,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsNotesEn notes = _TranslationsNotesEn._(_root);
 	late final _TranslationsTimeZoneEn timeZone = _TranslationsTimeZoneEn._(_root);
 	late final _TranslationsAnswerEn answer = _TranslationsAnswerEn._(_root);
+	late final _TranslationsQuizzesEn quizzes = _TranslationsQuizzesEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
 	late final _TranslationsAnswerHistoriesEn answerHistories = _TranslationsAnswerHistoriesEn._(_root);
 	late final _TranslationsWordRequestsEn wordRequests = _TranslationsWordRequestsEn._(_root);
@@ -348,6 +350,18 @@ class _TranslationsErrorsEn {
 	String get http_status_511 => '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
 }
 
+// Path: drills
+class _TranslationsDrillsEn {
+	_TranslationsDrillsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get created_at_asc => 'From the beginning';
+	String get created_at_desc => 'From the end';
+	String get random_random => 'Random';
+}
+
 // Path: weaknesses
 class _TranslationsWeaknessesEn {
 	_TranslationsWeaknessesEn._(this._root);
@@ -357,6 +371,13 @@ class _TranslationsWeaknessesEn {
 	// Translations
 	String get weaknesses => 'Weaknesses';
 	String get premium_recommendation => 'To solve weak questions, you need to register for a premium plan.';
+	String get correct_answer_rate_asc => 'Correct Rate, Low to High';
+	String get correct_answer_rate_desc => 'Correct Rate, High to Low';
+	String get incorrect_answers_count_desc => 'Incorrect, Most to Least';
+	String get incorrect_answers_count_asc => 'Incorrect, Least to Most';
+	String get created_at_desc => 'Added, Newest First';
+	String get created_at_asc => 'Added, Oldest First';
+	String get random_random => 'Random';
 }
 
 // Path: users
@@ -508,6 +529,12 @@ class _TranslationsAnswerAnalysesEn {
 	String get answer_analyses => 'Answer Analyses';
 	String get answer_histories => 'Answer Histories';
 	String get premium_recommendation => 'To access these features, you need to register for a premium plan.';
+	String get correct_answer_rate_asc => 'Correct Rate, Low to High';
+	String get correct_answer_rate_desc => 'Correct Rate, High to Low';
+	String get incorrect_answer_histories_count_desc => 'Mistakes, Most to Least';
+	String get incorrect_answer_histories_count_asc => 'Mistakes, Least to Most';
+	String get last_answered_at_desc => 'Answered History, New to Old';
+	String get last_answered_at_asc => 'Answered History, Old to New';
 }
 
 // Path: achievements
@@ -854,6 +881,10 @@ class _TranslationsNotesEn {
 	String get destroy => 'Delete';
 	String get confirmation => 'Confirmation';
 	String get confirmation_text => 'Are you sure you want to delete this note?';
+	String get updated_at_desc => 'Updated, New to Old';
+	String get updated_at_asc => 'Updated, Old to New';
+	String get created_at_desc => 'Created, New to Old';
+	String get created_at_asc => 'Created, Old to New';
 }
 
 // Path: timeZone
@@ -1025,6 +1056,36 @@ class _TranslationsAnswerEn {
 	// Translations
 	String get answer_limit_reached => 'Limit Reached';
 	String answer_limit_reached_description({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
+}
+
+// Path: quizzes
+class _TranslationsQuizzesEn {
+	_TranslationsQuizzesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get quiz => 'Quiz';
+	String get edit => 'Edit';
+	String get answer => 'Answer';
+	String get see_correct_answer => 'See correct answer';
+	String get correct => 'Correct';
+	String get wrong => 'Wrong';
+	String get got_a_correct => 'Got a correct';
+	String get made_a_mistake => 'Made a mistake';
+	String get question => 'Question';
+	String get question_placeholder => '【Required】Please input a question.';
+	String get correct_answer => 'Correct Answer';
+	String get correct_answer_placeholder => '【Required】Please input a correct answer.';
+	String get distractors => 'Distractors';
+	String get distractors_placeholder => 'You can input a distractor.';
+	String get explanation => 'Explanation';
+	String get explanation_placeholder => 'You can input a explanation.';
+	String get hint => 'Hint';
+	String get hint_placeholder => 'You can input a hint for the question.';
+	String get corrected_time_ago => 'Corrected %{time} ago';
+	String get incorrect_time_ago => 'Incorrect %{time} ago';
+	String get correct_answer_rate => '%{percent}% of correct answers';
 }
 
 // Path: activities
@@ -1302,6 +1363,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsDictionariesJa dictionaries = _TranslationsDictionariesJa._(_root);
 	@override late final _TranslationsReviewsJa reviews = _TranslationsReviewsJa._(_root);
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
+	@override late final _TranslationsDrillsJa drills = _TranslationsDrillsJa._(_root);
 	@override late final _TranslationsWeaknessesJa weaknesses = _TranslationsWeaknessesJa._(_root);
 	@override late final _TranslationsUsersJa users = _TranslationsUsersJa._(_root);
 	@override late final _TranslationsNoticesJa notices = _TranslationsNoticesJa._(_root);
@@ -1314,6 +1376,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsNotesJa notes = _TranslationsNotesJa._(_root);
 	@override late final _TranslationsTimeZoneJa timeZone = _TranslationsTimeZoneJa._(_root);
 	@override late final _TranslationsAnswerJa answer = _TranslationsAnswerJa._(_root);
+	@override late final _TranslationsQuizzesJa quizzes = _TranslationsQuizzesJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
 	@override late final _TranslationsAnswerHistoriesJa answerHistories = _TranslationsAnswerHistoriesJa._(_root);
 	@override late final _TranslationsWordRequestsJa wordRequests = _TranslationsWordRequestsJa._(_root);
@@ -1499,6 +1562,18 @@ class _TranslationsErrorsJa implements _TranslationsErrorsEn {
 	@override String get http_status_511 => '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
 }
 
+// Path: drills
+class _TranslationsDrillsJa implements _TranslationsDrillsEn {
+	_TranslationsDrillsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get created_at_asc => '最初から';
+	@override String get created_at_desc => '最後から';
+	@override String get random_random => 'ランダム';
+}
+
 // Path: weaknesses
 class _TranslationsWeaknessesJa implements _TranslationsWeaknessesEn {
 	_TranslationsWeaknessesJa._(this._root);
@@ -1508,6 +1583,13 @@ class _TranslationsWeaknessesJa implements _TranslationsWeaknessesEn {
 	// Translations
 	@override String get weaknesses => '弱点問題';
 	@override String get premium_recommendation => '弱点問題を解くには、プレミアムプランへの登録が必要です。';
+	@override String get correct_answer_rate_asc => '正答率が低い順';
+	@override String get correct_answer_rate_desc => '正答率が高い順';
+	@override String get incorrect_answers_count_desc => '不正解が多い順';
+	@override String get incorrect_answers_count_asc => '不正解が少ない順';
+	@override String get created_at_desc => '追加日が新しい順';
+	@override String get created_at_asc => '追加日が古い順';
+	@override String get random_random => 'ランダム';
 }
 
 // Path: users
@@ -1659,6 +1741,12 @@ class _TranslationsAnswerAnalysesJa implements _TranslationsAnswerAnalysesEn {
 	@override String get answer_analyses => '解答分析';
 	@override String get answer_histories => '解答履歴';
 	@override String get premium_recommendation => 'これらの機能を利用するには、プレミアムプランへの登録が必要です。';
+	@override String get correct_answer_rate_asc => '正答率が低い順';
+	@override String get correct_answer_rate_desc => '正答率が高い順';
+	@override String get incorrect_answer_histories_count_desc => '間違いが多い順';
+	@override String get incorrect_answer_histories_count_asc => '間違いが少ない順';
+	@override String get last_answered_at_desc => '解答履歴：新しい順';
+	@override String get last_answered_at_asc => '解答履歴：古い順';
 }
 
 // Path: achievements
@@ -2005,6 +2093,10 @@ class _TranslationsNotesJa implements _TranslationsNotesEn {
 	@override String get destroy => '削除する';
 	@override String get confirmation => '確認';
 	@override String get confirmation_text => '本当にこのノートを削除してもよろしいですか？';
+	@override String get updated_at_desc => '更新日が新しい順';
+	@override String get updated_at_asc => '更新日が古い順';
+	@override String get created_at_desc => '作成日が新しい順';
+	@override String get created_at_asc => '作成日が古い順';
 }
 
 // Path: timeZone
@@ -2176,6 +2268,36 @@ class _TranslationsAnswerJa implements _TranslationsAnswerEn {
 	// Translations
 	@override String get answer_limit_reached => '制限に達しました';
 	@override String answer_limit_reached_description({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
+}
+
+// Path: quizzes
+class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
+	_TranslationsQuizzesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get quiz => '問題';
+	@override String get edit => '編集する';
+	@override String get answer => '解答する';
+	@override String get see_correct_answer => '正解を見る';
+	@override String get correct => '正解した';
+	@override String get wrong => '間違えた';
+	@override String get got_a_correct => '正解した';
+	@override String get made_a_mistake => '間違えた';
+	@override String get question => '問題文';
+	@override String get question_placeholder => '【必須】問題文を入力してください。';
+	@override String get correct_answer => '正解';
+	@override String get correct_answer_placeholder => '【必須】正解を入力してください。';
+	@override String get distractors => '誤りの選択肢';
+	@override String get distractors_placeholder => '【空欄可】誤りの選択肢を設定できます。';
+	@override String get explanation => '解説';
+	@override String get explanation_placeholder => '【空欄可】解説を設定できます。';
+	@override String get hint => 'ヒント';
+	@override String get hint_placeholder => '【空欄可】ヒントを設定できます。';
+	@override String get corrected_time_ago => '%{time}前に正解';
+	@override String get incorrect_time_ago => '%{time}前に不正解';
+	@override String get correct_answer_rate => '正答率%{percent}%';
 }
 
 // Path: activities
@@ -2568,8 +2690,18 @@ extension on _TranslationsEn {
 			case 'errors.http_status_508': return '508 Loop Detected: The server detected an infinite loop while processing the request. This status indicates that the entire operation failed.';
 			case 'errors.http_status_510': return '510 Not Extended: Further extensions to the request are required for the server to fulfill it.';
 			case 'errors.http_status_511': return '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
+			case 'drills.created_at_asc': return 'From the beginning';
+			case 'drills.created_at_desc': return 'From the end';
+			case 'drills.random_random': return 'Random';
 			case 'weaknesses.weaknesses': return 'Weaknesses';
 			case 'weaknesses.premium_recommendation': return 'To solve weak questions, you need to register for a premium plan.';
+			case 'weaknesses.correct_answer_rate_asc': return 'Correct Rate, Low to High';
+			case 'weaknesses.correct_answer_rate_desc': return 'Correct Rate, High to Low';
+			case 'weaknesses.incorrect_answers_count_desc': return 'Incorrect, Most to Least';
+			case 'weaknesses.incorrect_answers_count_asc': return 'Incorrect, Least to Most';
+			case 'weaknesses.created_at_desc': return 'Added, Newest First';
+			case 'weaknesses.created_at_asc': return 'Added, Oldest First';
+			case 'weaknesses.random_random': return 'Random';
 			case 'users.anonymous_user': return 'Anonymous user';
 			case 'users.creating_account_succeeded': return 'Your account registration has been completed! Welcome to DiQt!';
 			case 'users.show': return 'User Page';
@@ -2676,6 +2808,12 @@ extension on _TranslationsEn {
 			case 'answerAnalyses.answer_analyses': return 'Answer Analyses';
 			case 'answerAnalyses.answer_histories': return 'Answer Histories';
 			case 'answerAnalyses.premium_recommendation': return 'To access these features, you need to register for a premium plan.';
+			case 'answerAnalyses.correct_answer_rate_asc': return 'Correct Rate, Low to High';
+			case 'answerAnalyses.correct_answer_rate_desc': return 'Correct Rate, High to Low';
+			case 'answerAnalyses.incorrect_answer_histories_count_desc': return 'Mistakes, Most to Least';
+			case 'answerAnalyses.incorrect_answer_histories_count_asc': return 'Mistakes, Least to Most';
+			case 'answerAnalyses.last_answered_at_desc': return 'Answered History, New to Old';
+			case 'answerAnalyses.last_answered_at_asc': return 'Answered History, Old to New';
 			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -2986,6 +3124,10 @@ extension on _TranslationsEn {
 			case 'notes.destroy': return 'Delete';
 			case 'notes.confirmation': return 'Confirmation';
 			case 'notes.confirmation_text': return 'Are you sure you want to delete this note?';
+			case 'notes.updated_at_desc': return 'Updated, New to Old';
+			case 'notes.updated_at_asc': return 'Updated, Old to New';
+			case 'notes.created_at_desc': return 'Created, New to Old';
+			case 'notes.created_at_asc': return 'Created, Old to New';
 			case 'timeZone.international_date_line_west': return 'International Date Line West';
 			case 'timeZone.american_samoa': return 'American Samoa';
 			case 'timeZone.midway_island': return 'Midway Island';
@@ -3139,6 +3281,27 @@ extension on _TranslationsEn {
 			case 'timeZone.tokelau_is': return 'Tokelau Is.';
 			case 'answer.answer_limit_reached': return 'Limit Reached';
 			case 'answer.answer_limit_reached_description': return ({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
+			case 'quizzes.quiz': return 'Quiz';
+			case 'quizzes.edit': return 'Edit';
+			case 'quizzes.answer': return 'Answer';
+			case 'quizzes.see_correct_answer': return 'See correct answer';
+			case 'quizzes.correct': return 'Correct';
+			case 'quizzes.wrong': return 'Wrong';
+			case 'quizzes.got_a_correct': return 'Got a correct';
+			case 'quizzes.made_a_mistake': return 'Made a mistake';
+			case 'quizzes.question': return 'Question';
+			case 'quizzes.question_placeholder': return '【Required】Please input a question.';
+			case 'quizzes.correct_answer': return 'Correct Answer';
+			case 'quizzes.correct_answer_placeholder': return '【Required】Please input a correct answer.';
+			case 'quizzes.distractors': return 'Distractors';
+			case 'quizzes.distractors_placeholder': return 'You can input a distractor.';
+			case 'quizzes.explanation': return 'Explanation';
+			case 'quizzes.explanation_placeholder': return 'You can input a explanation.';
+			case 'quizzes.hint': return 'Hint';
+			case 'quizzes.hint_placeholder': return 'You can input a hint for the question.';
+			case 'quizzes.corrected_time_ago': return 'Corrected %{time} ago';
+			case 'quizzes.incorrect_time_ago': return 'Incorrect %{time} ago';
+			case 'quizzes.correct_answer_rate': return '%{percent}% of correct answers';
 			case 'activities.activities': return 'Activities';
 			case 'activities.cheer': return 'Cheer!';
 			case 'activities.cheered': return 'Cheered!';
@@ -3450,8 +3613,18 @@ extension on _TranslationsJa {
 			case 'errors.http_status_508': return '508 Loop Detected: サーバーは、リクエストを処理中に無限ループを検出しました。このステータスは、操作全体が失敗したことを示しています。';
 			case 'errors.http_status_510': return '510 Not Extended: サーバーがリクエストを満たすためには、リクエストにさらなる拡張が必要です。';
 			case 'errors.http_status_511': return '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
+			case 'drills.created_at_asc': return '最初から';
+			case 'drills.created_at_desc': return '最後から';
+			case 'drills.random_random': return 'ランダム';
 			case 'weaknesses.weaknesses': return '弱点問題';
 			case 'weaknesses.premium_recommendation': return '弱点問題を解くには、プレミアムプランへの登録が必要です。';
+			case 'weaknesses.correct_answer_rate_asc': return '正答率が低い順';
+			case 'weaknesses.correct_answer_rate_desc': return '正答率が高い順';
+			case 'weaknesses.incorrect_answers_count_desc': return '不正解が多い順';
+			case 'weaknesses.incorrect_answers_count_asc': return '不正解が少ない順';
+			case 'weaknesses.created_at_desc': return '追加日が新しい順';
+			case 'weaknesses.created_at_asc': return '追加日が古い順';
+			case 'weaknesses.random_random': return 'ランダム';
 			case 'users.anonymous_user': return '匿名ユーザー';
 			case 'users.creating_account_succeeded': return '会員登録が完了しました！ようこそDiQtへ！！';
 			case 'users.show': return 'ユーザーページ';
@@ -3558,6 +3731,12 @@ extension on _TranslationsJa {
 			case 'answerAnalyses.answer_analyses': return '解答分析';
 			case 'answerAnalyses.answer_histories': return '解答履歴';
 			case 'answerAnalyses.premium_recommendation': return 'これらの機能を利用するには、プレミアムプランへの登録が必要です。';
+			case 'answerAnalyses.correct_answer_rate_asc': return '正答率が低い順';
+			case 'answerAnalyses.correct_answer_rate_desc': return '正答率が高い順';
+			case 'answerAnalyses.incorrect_answer_histories_count_desc': return '間違いが多い順';
+			case 'answerAnalyses.incorrect_answer_histories_count_asc': return '間違いが少ない順';
+			case 'answerAnalyses.last_answered_at_desc': return '解答履歴：新しい順';
+			case 'answerAnalyses.last_answered_at_asc': return '解答履歴：古い順';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
@@ -3868,6 +4047,10 @@ extension on _TranslationsJa {
 			case 'notes.destroy': return '削除する';
 			case 'notes.confirmation': return '確認';
 			case 'notes.confirmation_text': return '本当にこのノートを削除してもよろしいですか？';
+			case 'notes.updated_at_desc': return '更新日が新しい順';
+			case 'notes.updated_at_asc': return '更新日が古い順';
+			case 'notes.created_at_desc': return '作成日が新しい順';
+			case 'notes.created_at_asc': return '作成日が古い順';
 			case 'timeZone.international_date_line_west': return '国際日付変更線西';
 			case 'timeZone.american_samoa': return 'アメリカ領サモア';
 			case 'timeZone.midway_island': return 'ミッドウェー島';
@@ -4021,6 +4204,27 @@ extension on _TranslationsJa {
 			case 'timeZone.tokelau_is': return 'トケラウ諸島';
 			case 'answer.answer_limit_reached': return '制限に達しました';
 			case 'answer.answer_limit_reached_description': return ({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
+			case 'quizzes.quiz': return '問題';
+			case 'quizzes.edit': return '編集する';
+			case 'quizzes.answer': return '解答する';
+			case 'quizzes.see_correct_answer': return '正解を見る';
+			case 'quizzes.correct': return '正解した';
+			case 'quizzes.wrong': return '間違えた';
+			case 'quizzes.got_a_correct': return '正解した';
+			case 'quizzes.made_a_mistake': return '間違えた';
+			case 'quizzes.question': return '問題文';
+			case 'quizzes.question_placeholder': return '【必須】問題文を入力してください。';
+			case 'quizzes.correct_answer': return '正解';
+			case 'quizzes.correct_answer_placeholder': return '【必須】正解を入力してください。';
+			case 'quizzes.distractors': return '誤りの選択肢';
+			case 'quizzes.distractors_placeholder': return '【空欄可】誤りの選択肢を設定できます。';
+			case 'quizzes.explanation': return '解説';
+			case 'quizzes.explanation_placeholder': return '【空欄可】解説を設定できます。';
+			case 'quizzes.hint': return 'ヒント';
+			case 'quizzes.hint_placeholder': return '【空欄可】ヒントを設定できます。';
+			case 'quizzes.corrected_time_ago': return '%{time}前に正解';
+			case 'quizzes.incorrect_time_ago': return '%{time}前に不正解';
+			case 'quizzes.correct_answer_rate': return '正答率%{percent}%';
 			case 'activities.activities': return '活動';
 			case 'activities.cheer': return '応援する!';
 			case 'activities.cheered': return '応援しました！';

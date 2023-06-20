@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/note.dart';
 import 'package:booqs_mobile/data/remote/notes.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/components/note/list_quiz.dart';
@@ -9,7 +8,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class NoteQuizListView extends ConsumerStatefulWidget {
-  const NoteQuizListView({Key? key}) : super(key: key);
+  const NoteQuizListView({Key? key, required this.order}) : super(key: key);
+  final String order;
 
   @override
   NoteQuizListViewState createState() => NoteQuizListViewState();
@@ -37,8 +37,8 @@ class NoteQuizListViewState extends ConsumerState<NoteQuizListView> {
     if (_isReached == false) return;
     _isLoading = true;
 
-    final String order = ref.watch(noteOrderProvider);
-    final Map? resMap = await RemoteNotes.index(pageKey, _pageSize, order);
+    final Map? resMap =
+        await RemoteNotes.index(pageKey, _pageSize, widget.order);
     if (!mounted) return;
     if (resMap == null) {
       return setState(() {
@@ -81,11 +81,9 @@ class NoteQuizListViewState extends ConsumerState<NoteQuizListView> {
           // [visibleFraction] 0で非表示、１で完全表示。0.1は上部が少し表示されている状態 ref: https://pub.dev/documentation/visibility_detector/latest/visibility_detector/VisibilityInfo/visibleFraction.html
           if (info.visibleFraction > 0.1) {
             if (_isLoading) return;
-
             setState(() {
               _isReached = true;
             });
-
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
             _pagingController.notifyPageRequestListeners(_nextPagekey);
           }

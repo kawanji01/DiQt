@@ -32,7 +32,6 @@ class AnswerAnalysisIndexPageState
   @override
   Widget build(BuildContext context) {
     final String order = ref.watch(answerAnalysisOrderProvider);
-    final bool premiumEnabled = ref.watch(premiumEnabledProvider);
 
     String title = t.answerAnalyses.answer_analyses;
     if (order.split('-')[0] == 'last_answered_at') {
@@ -40,12 +39,17 @@ class AnswerAnalysisIndexPageState
     }
 
     Widget feed() {
-      if (premiumEnabled) {
-        return const AnswerAnalysisQuizListView();
-      } else {
-        return SharedPremiumRecommendation(
-            description: t.shared.premium_recommendation);
+      if (ref.watch(premiumEnabledProvider) == false) {
+        return Container(
+          margin: const EdgeInsets.only(top: 48),
+          child: SharedPremiumRecommendation(
+              description: t.shared.premium_recommendation),
+        );
       }
+      return AnswerAnalysisQuizListView(
+        key: UniqueKey(),
+        order: order,
+      );
     }
 
     return Scaffold(

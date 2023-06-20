@@ -225,6 +225,47 @@ class RemoteSentences {
     }
   }
 
+  static Future<Map> generateWithTranslation(
+      {required String keyword,
+      required int dictionaryId,
+      required String posTagId,
+      required String meaning,
+      required String sentenceType,
+      required String difficulty,
+      required String keepingForm,
+      required String model,
+      required String temperature}) async {
+    try {
+      final Map<String, dynamic> body = {
+        'keyword': keyword,
+        'pos_tag_id': posTagId,
+        'meaning': meaning,
+        'sentence_type': sentenceType,
+        'difficulty': difficulty,
+        'keeping_form': keepingForm,
+        'model': model,
+        'dictionary_id': '$dictionaryId',
+        'temperature': temperature,
+      };
+
+      final Uri url = Uri.parse(
+          '${DiQtURL.root()}/api/v1/mobile/sentences/generate_with_translation');
+      final Response res = await HttpService.post(
+        url,
+        body,
+      );
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
+
   // AIによる例文の生成
   static Future<Map> generateAndCreate(
       {required String keyword,

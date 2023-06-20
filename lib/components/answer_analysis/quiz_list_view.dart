@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/remote/answer_analyses.dart';
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/components/answer_analysis/list_quiz.dart';
@@ -9,7 +8,9 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class AnswerAnalysisQuizListView extends ConsumerStatefulWidget {
-  const AnswerAnalysisQuizListView({Key? key}) : super(key: key);
+  const AnswerAnalysisQuizListView({Key? key, required this.order})
+      : super(key: key);
+  final String order;
 
   @override
   AnswerAnalysisQuizListViewState createState() =>
@@ -40,9 +41,8 @@ class AnswerAnalysisQuizListViewState
     if (_isReached == false) return;
     _isLoading = true;
 
-    final String order = ref.watch(answerAnalysisOrderProvider);
     final Map? resMap =
-        await RemoteAnswerAnalyses.index(pageKey, _pageSize, order);
+        await RemoteAnswerAnalyses.index(pageKey, _pageSize, widget.order);
     // ref: https://github.com/EdsonBueno/infinite_scroll_pagination/issues/64
     if (!mounted) return;
 

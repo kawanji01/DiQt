@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/weakness.dart';
@@ -144,7 +145,9 @@ class QuizExplanationAnswerAnalysis extends StatelessWidget {
 
     return Column(
       children: [
-        const SharedItemLabel(text: '解答分析'),
+        SharedItemLabel(
+            text: t.answerAnalyses.answer_analyses,
+            icon: Icons.analytics_outlined),
         const SizedBox(height: 8),
         answersCount(),
         const SizedBox(height: 4),

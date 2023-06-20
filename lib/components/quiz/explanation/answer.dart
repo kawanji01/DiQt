@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
@@ -53,7 +54,9 @@ class QuizExplanationAnswer extends StatelessWidget {
     }
 
     return Column(children: <Widget>[
-      const SharedItemLabel(text: '正解'),
+      SharedItemLabel(
+        text: t.quizzes.correct_answer,
+      ),
       const SizedBox(height: 16),
       answer(),
       ttsBtn(),

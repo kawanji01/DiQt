@@ -51,6 +51,9 @@ class _WordFormMeaningGeneratorButtonState
         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
       onPressed: () {
+        // ボタンを押したときのTextFieldのフォーカスが解除する。
+        // これをしないとモーダルを閉じたときに、画面がTextFieldまで移動してしまい不便。
+        FocusScope.of(context).unfocus();
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,

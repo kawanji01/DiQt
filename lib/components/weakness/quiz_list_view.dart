@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/data/provider/weakness.dart';
 import 'package:booqs_mobile/data/remote/weaknesses.dart';
 import 'package:booqs_mobile/models/weakness.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
@@ -9,7 +8,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class WeaknessQuizListView extends ConsumerStatefulWidget {
-  const WeaknessQuizListView({Key? key}) : super(key: key);
+  const WeaknessQuizListView({Key? key, required this.order}) : super(key: key);
+  final String order;
 
   @override
   WeaknessQuizListViewState createState() => WeaknessQuizListViewState();
@@ -37,8 +37,8 @@ class WeaknessQuizListViewState extends ConsumerState<WeaknessQuizListView> {
     if (_isReached == false) return;
     _isLoading = true;
 
-    final String order = ref.watch(weaknessOrderProvider);
-    final Map? resMap = await RemoteWeaknesses.index(pageKey, _pageSize, order);
+    final Map? resMap =
+        await RemoteWeaknesses.index(pageKey, _pageSize, widget.order);
     if (!mounted) return;
     if (resMap == null) {
       return setState(() {

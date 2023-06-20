@@ -1,4 +1,6 @@
+import 'package:booqs_mobile/components/shared/premium_recommendation.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/note.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -6,7 +8,6 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/note/order_select_form.dart';
 import 'package:booqs_mobile/components/note/quiz_list_view.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/components/shared/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,17 +18,30 @@ class NoteIndexPage extends ConsumerWidget {
     return Navigator.of(context).pushNamed(noteIndexPage);
   }
 
-  // 戻らせない画面遷移
-  static Future pushReplacement(BuildContext context) async {
-    return Navigator.of(context).pushReplacementNamed(noteIndexPage);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final User? user = ref.watch(currentUserProvider);
     if (user == null) return Container();
+
+    Widget notes() {
+      if (ref.watch(premiumEnabledProvider) == false) {
+        return Container(
+          margin: const EdgeInsets.only(top: 48),
+          child: SharedPremiumRecommendation(
+              description: t.shared.premium_recommendation),
+        );
+      }
+      // UniqueKeyを設定することで、noteOrderProvider を変更するたびに initState を発火させ、 NoteQuizListView全体を再描画する。
+      return NoteQuizListView(
+        key: UniqueKey(),
+        order: ref.watch(noteOrderProvider),
+      );
+    }
+
     return Scaffold(
-      appBar: const EmptyAppBar(),
+      appBar: AppBar(
+        title: Text('${t.notes.notes}(${user.notesCount})'),
+      ),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(
@@ -35,23 +49,9 @@ class NoteIndexPage extends ConsumerWidget {
               horizontal: ResponsiveValues.horizontalMargin(context)),
           child: Column(
             children: [
-              const SizedBox(height: 32),
-              Row(children: [
-                const Icon(
-                  Icons.note_alt_outlined,
-                  color: Colors.black,
-                  size: 36.0,
-                ),
-                const SizedBox(width: 4),
-                Text('${t.notes.notes}(${user.notesCount})',
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold))
-              ]),
               const NoteOrderSelectForm(),
               const SizedBox(height: 32),
-              const NoteQuizListView(),
+              notes(),
               const SizedBox(height: 240),
             ],
           ),

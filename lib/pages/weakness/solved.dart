@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/weakness.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -12,33 +13,27 @@ import 'package:booqs_mobile/components/weakness/status_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WeaknessSolvedPage extends ConsumerStatefulWidget {
-  const WeaknessSolvedPage({Key? key}) : super(key: key);
+class WeaknessSolvedPage extends ConsumerWidget {
+  const WeaknessSolvedPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(weaknessSolvedPage);
   }
 
-  // 戻らせない画面遷移
-  static Future pushReplacement(BuildContext context) async {
-    return Navigator.of(context).pushReplacementNamed(weaknessSolvedPage);
-  }
-
   @override
-  WeaknessSolvedPageState createState() => WeaknessSolvedPageState();
-}
-
-class WeaknessSolvedPageState extends ConsumerState<WeaknessSolvedPage> {
-  @override
-  Widget build(BuildContext context) {
-    final bool premiumEnabled = ref.watch(premiumEnabledProvider);
-
+  Widget build(BuildContext context, WidgetRef ref) {
     Widget quizzes() {
-      if (premiumEnabled == false) {
-        return SharedPremiumRecommendation(
-            description: t.shared.premium_recommendation);
+      if (ref.watch(premiumEnabledProvider) == false) {
+        return Container(
+          margin: const EdgeInsets.only(top: 64),
+          child: SharedPremiumRecommendation(
+              description: t.shared.premium_recommendation),
+        );
       }
-      return const WeaknessSolvedQuizListView();
+      return WeaknessSolvedQuizListView(
+        key: UniqueKey(),
+        order: ref.watch(weaknessOrderProvider),
+      );
     }
 
     return Scaffold(

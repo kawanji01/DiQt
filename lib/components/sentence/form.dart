@@ -32,6 +32,7 @@ class SentenceForm extends StatelessWidget {
       if (isNew) {
         return SentenceFormGeneratorButton(
           originalController: originalController,
+          translationController: translationController,
           keyword: keyword,
           dictionary: dictionary,
         );

@@ -51,7 +51,7 @@ class UserMypageScreen extends StatelessWidget {
             const SizedBox(
               height: 24,
             ),
-            const UserStudyRecords(),
+            UserStudyRecords(user: user!),
             const SizedBox(
               height: 80,
             ),

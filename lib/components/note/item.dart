@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/note/confirmation_screen.dart';
+import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/notes.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -6,7 +7,6 @@ import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/components/note/form_field.dart';
-import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
@@ -14,15 +14,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizExplanationNote extends ConsumerStatefulWidget {
-  const QuizExplanationNote({Key? key, required this.quiz}) : super(key: key);
+class NoteItem extends ConsumerStatefulWidget {
+  const NoteItem({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
 
   @override
-  QuizExplanationNoteState createState() => QuizExplanationNoteState();
+  NoteItemState createState() => NoteItemState();
 }
 
-class QuizExplanationNoteState extends ConsumerState<QuizExplanationNote> {
+class NoteItemState extends ConsumerState<NoteItem> {
   bool _isEdit = true;
   Note? _note;
   final _formKey = GlobalKey<FormState>();
@@ -115,8 +115,11 @@ class QuizExplanationNoteState extends ConsumerState<QuizExplanationNote> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SharedItemLabel(text: t.notes.note),
-            const SizedBox(height: 16),
+            SharedItemLabel(
+              text: t.notes.note,
+              icon: Icons.note_alt_outlined,
+            ),
+            const SizedBox(height: 24),
             NoteFormField(noteContentController: _noteContentController),
             const SizedBox(height: 24),
             InkWell(
@@ -131,8 +134,11 @@ class QuizExplanationNoteState extends ConsumerState<QuizExplanationNote> {
       // Noteのコンテンツ表示
       return Column(
         children: [
-          SharedItemLabel(text: t.notes.note),
-          const SizedBox(height: 8),
+          SharedItemLabel(
+            text: t.notes.note,
+            icon: Icons.note_alt_outlined,
+          ),
+          const SizedBox(height: 16),
           MarkdownWithDictLink(
             text: _note?.content ?? 'Note does not exist.',
             dictionaryId: widget.quiz.appliedDictionaryId,
@@ -141,7 +147,7 @@ class QuizExplanationNoteState extends ConsumerState<QuizExplanationNote> {
             fontColor: Colors.black87,
             selectable: true,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 24),
           InkWell(
             onTap: () => isPremium
                 ? setState(() => _isEdit = true)

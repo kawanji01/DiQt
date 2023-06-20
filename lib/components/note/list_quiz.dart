@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/note/item.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/note/quiz_header.dart';
@@ -13,11 +14,26 @@ class NoteListQuiz extends StatelessWidget {
     final Quiz? quiz = note.quiz;
     if (quiz == null) return const Text('Quiz does not exist.');
 
-    final header = NoteQuizHeader(note: note);
-    return QuizContent(
-      quiz: quiz,
-      header: header,
-      isShow: false,
-    );
+    return Column(children: [
+      QuizContent(
+        quiz: quiz,
+        header: NoteQuizHeader(note: note),
+        isShow: false,
+      ),
+      const SizedBox(
+        height: 16,
+      ),
+      Container(
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.black12,
+              width: 3,
+            ),
+          ),
+        ),
+        child: NoteItem(quiz: quiz),
+      ),
+    ]);
   }
 }

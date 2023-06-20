@@ -9,7 +9,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class DrillQuizListView extends ConsumerStatefulWidget {
-  const DrillQuizListView({Key? key}) : super(key: key);
+  const DrillQuizListView({Key? key, required this.order}) : super(key: key);
+  final String order;
 
   @override
   DrillQuizListViewState createState() => DrillQuizListViewState();
@@ -37,12 +38,11 @@ class DrillQuizListViewState extends ConsumerState<DrillQuizListView> {
     if (_isReached == false) return;
     _isLoading = true;
 
-    final String order = ref.watch(drillOrderProvider);
     final String publicUid =
         ref.watch(drillProvider.select((drill) => drill!.publicUid));
 
     final Map? resMap =
-        await RemoteDrills.show(publicUid, pageKey, _pageSize, order);
+        await RemoteDrills.show(publicUid, pageKey, _pageSize, widget.order);
     if (!mounted) return;
     if (resMap == null) {
       return setState(() {

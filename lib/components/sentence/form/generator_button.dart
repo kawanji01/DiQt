@@ -8,10 +8,12 @@ class SentenceFormGeneratorButton extends StatefulWidget {
   const SentenceFormGeneratorButton(
       {Key? key,
       required this.originalController,
+      required this.translationController,
       required this.keyword,
       required this.dictionary})
       : super(key: key);
   final TextEditingController originalController;
+  final TextEditingController translationController;
   final String? keyword;
   final Dictionary dictionary;
 
@@ -54,18 +56,20 @@ class _SentenceFormGeneratorButtonState
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
+          // ボタンを押したときのTextFieldのフォーカスが解除する。
+          // これをしないとモーダルを閉じたときに、画面がTextFieldまで移動してしまい不便。
+          FocusScope.of(context).unfocus();
           showModalBottomSheet(
               isScrollControlled: true,
               context: context,
-              // 丸み ref: https://www.codegrepper.com/code-examples/whatever/showmodalbottomsheet+rounded+corners
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(15.0),
                     topRight: Radius.circular(15.0)),
               ),
-              // showModalBottomSheetで表示される中身
               builder: (context) => SentenceFormGeneratorScreen(
                     originalController: widget.originalController,
+                    translationController: widget.translationController,
                     keywordController: _keywordController,
                     posTagIdController: _posTagIdController,
                     meaningController: _meaningController,
