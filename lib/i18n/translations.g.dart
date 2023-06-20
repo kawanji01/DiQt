@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1788 (894 per locale)
+/// Strings: 1830 (915 per locale)
 ///
-/// Built on 2023-06-20 at 00:19 UTC
+/// Built on 2023-06-20 at 01:06 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -164,6 +164,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsNotesEn notes = _TranslationsNotesEn._(_root);
 	late final _TranslationsTimeZoneEn timeZone = _TranslationsTimeZoneEn._(_root);
 	late final _TranslationsAnswerEn answer = _TranslationsAnswerEn._(_root);
+	late final _TranslationsQuizzesEn quizzes = _TranslationsQuizzesEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
 	late final _TranslationsAnswerHistoriesEn answerHistories = _TranslationsAnswerHistoriesEn._(_root);
 	late final _TranslationsWordRequestsEn wordRequests = _TranslationsWordRequestsEn._(_root);
@@ -1057,6 +1058,36 @@ class _TranslationsAnswerEn {
 	String answer_limit_reached_description({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
 }
 
+// Path: quizzes
+class _TranslationsQuizzesEn {
+	_TranslationsQuizzesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get quiz => 'Quiz';
+	String get edit => 'Edit';
+	String get answer => 'Answer';
+	String get see_correct_answer => 'See correct answer';
+	String get correct => 'Correct';
+	String get wrong => 'Wrong';
+	String get got_a_correct => 'Got a correct';
+	String get made_a_mistake => 'Made a mistake';
+	String get question => 'Question';
+	String get question_placeholder => '【Required】Please input a question.';
+	String get correct_answer => 'Correct Answer';
+	String get correct_answer_placeholder => '【Required】Please input a correct answer.';
+	String get distractors => 'Distractors';
+	String get distractors_placeholder => 'You can input a distractor.';
+	String get explanation => 'Explanation';
+	String get explanation_placeholder => 'You can input a explanation.';
+	String get hint => 'Hint';
+	String get hint_placeholder => 'You can input a hint for the question.';
+	String get corrected_time_ago => 'Corrected %{time} ago';
+	String get incorrect_time_ago => 'Incorrect %{time} ago';
+	String get correct_answer_rate => '%{percent}% of correct answers';
+}
+
 // Path: activities
 class _TranslationsActivitiesEn {
 	_TranslationsActivitiesEn._(this._root);
@@ -1345,6 +1376,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsNotesJa notes = _TranslationsNotesJa._(_root);
 	@override late final _TranslationsTimeZoneJa timeZone = _TranslationsTimeZoneJa._(_root);
 	@override late final _TranslationsAnswerJa answer = _TranslationsAnswerJa._(_root);
+	@override late final _TranslationsQuizzesJa quizzes = _TranslationsQuizzesJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
 	@override late final _TranslationsAnswerHistoriesJa answerHistories = _TranslationsAnswerHistoriesJa._(_root);
 	@override late final _TranslationsWordRequestsJa wordRequests = _TranslationsWordRequestsJa._(_root);
@@ -2236,6 +2268,36 @@ class _TranslationsAnswerJa implements _TranslationsAnswerEn {
 	// Translations
 	@override String get answer_limit_reached => '制限に達しました';
 	@override String answer_limit_reached_description({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
+}
+
+// Path: quizzes
+class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
+	_TranslationsQuizzesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get quiz => '問題';
+	@override String get edit => '編集する';
+	@override String get answer => '解答する';
+	@override String get see_correct_answer => '正解を見る';
+	@override String get correct => '正解した';
+	@override String get wrong => '間違えた';
+	@override String get got_a_correct => '正解した';
+	@override String get made_a_mistake => '間違えた';
+	@override String get question => '問題文';
+	@override String get question_placeholder => '【必須】問題文を入力してください。';
+	@override String get correct_answer => '正解';
+	@override String get correct_answer_placeholder => '【必須】正解を入力してください。';
+	@override String get distractors => '誤りの選択肢';
+	@override String get distractors_placeholder => '【空欄可】誤りの選択肢を設定できます。';
+	@override String get explanation => '解説';
+	@override String get explanation_placeholder => '【空欄可】解説を設定できます。';
+	@override String get hint => 'ヒント';
+	@override String get hint_placeholder => '【空欄可】ヒントを設定できます。';
+	@override String get corrected_time_ago => '%{time}前に正解';
+	@override String get incorrect_time_ago => '%{time}前に不正解';
+	@override String get correct_answer_rate => '正答率%{percent}%';
 }
 
 // Path: activities
@@ -3219,6 +3281,27 @@ extension on _TranslationsEn {
 			case 'timeZone.tokelau_is': return 'Tokelau Is.';
 			case 'answer.answer_limit_reached': return 'Limit Reached';
 			case 'answer.answer_limit_reached_description': return ({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
+			case 'quizzes.quiz': return 'Quiz';
+			case 'quizzes.edit': return 'Edit';
+			case 'quizzes.answer': return 'Answer';
+			case 'quizzes.see_correct_answer': return 'See correct answer';
+			case 'quizzes.correct': return 'Correct';
+			case 'quizzes.wrong': return 'Wrong';
+			case 'quizzes.got_a_correct': return 'Got a correct';
+			case 'quizzes.made_a_mistake': return 'Made a mistake';
+			case 'quizzes.question': return 'Question';
+			case 'quizzes.question_placeholder': return '【Required】Please input a question.';
+			case 'quizzes.correct_answer': return 'Correct Answer';
+			case 'quizzes.correct_answer_placeholder': return '【Required】Please input a correct answer.';
+			case 'quizzes.distractors': return 'Distractors';
+			case 'quizzes.distractors_placeholder': return 'You can input a distractor.';
+			case 'quizzes.explanation': return 'Explanation';
+			case 'quizzes.explanation_placeholder': return 'You can input a explanation.';
+			case 'quizzes.hint': return 'Hint';
+			case 'quizzes.hint_placeholder': return 'You can input a hint for the question.';
+			case 'quizzes.corrected_time_ago': return 'Corrected %{time} ago';
+			case 'quizzes.incorrect_time_ago': return 'Incorrect %{time} ago';
+			case 'quizzes.correct_answer_rate': return '%{percent}% of correct answers';
 			case 'activities.activities': return 'Activities';
 			case 'activities.cheer': return 'Cheer!';
 			case 'activities.cheered': return 'Cheered!';
@@ -4121,6 +4204,27 @@ extension on _TranslationsJa {
 			case 'timeZone.tokelau_is': return 'トケラウ諸島';
 			case 'answer.answer_limit_reached': return '制限に達しました';
 			case 'answer.answer_limit_reached_description': return ({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
+			case 'quizzes.quiz': return '問題';
+			case 'quizzes.edit': return '編集する';
+			case 'quizzes.answer': return '解答する';
+			case 'quizzes.see_correct_answer': return '正解を見る';
+			case 'quizzes.correct': return '正解した';
+			case 'quizzes.wrong': return '間違えた';
+			case 'quizzes.got_a_correct': return '正解した';
+			case 'quizzes.made_a_mistake': return '間違えた';
+			case 'quizzes.question': return '問題文';
+			case 'quizzes.question_placeholder': return '【必須】問題文を入力してください。';
+			case 'quizzes.correct_answer': return '正解';
+			case 'quizzes.correct_answer_placeholder': return '【必須】正解を入力してください。';
+			case 'quizzes.distractors': return '誤りの選択肢';
+			case 'quizzes.distractors_placeholder': return '【空欄可】誤りの選択肢を設定できます。';
+			case 'quizzes.explanation': return '解説';
+			case 'quizzes.explanation_placeholder': return '【空欄可】解説を設定できます。';
+			case 'quizzes.hint': return 'ヒント';
+			case 'quizzes.hint_placeholder': return '【空欄可】ヒントを設定できます。';
+			case 'quizzes.corrected_time_ago': return '%{time}前に正解';
+			case 'quizzes.incorrect_time_ago': return '%{time}前に不正解';
+			case 'quizzes.correct_answer_rate': return '正答率%{percent}%';
 			case 'activities.activities': return '活動';
 			case 'activities.cheer': return '応援する!';
 			case 'activities.cheered': return '応援しました！';

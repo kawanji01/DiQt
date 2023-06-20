@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
@@ -80,7 +81,7 @@ class QuizExplanationDistractors extends StatelessWidget {
     }
 
     return Column(children: <Widget>[
-      const SharedItemLabel(text: '誤りの選択肢'),
+      SharedItemLabel(text: t.quizzes.distractors),
       const SizedBox(
         height: 16,
       ),

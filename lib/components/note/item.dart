@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/components/note/confirmation_screen.dart';
-import 'package:booqs_mobile/components/note/label.dart';
+import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/notes.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -115,7 +115,10 @@ class NoteItemState extends ConsumerState<NoteItem> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const NoteLabel(),
+            SharedItemLabel(
+              text: t.notes.note,
+              icon: Icons.note_alt_outlined,
+            ),
             const SizedBox(height: 24),
             NoteFormField(noteContentController: _noteContentController),
             const SizedBox(height: 24),
@@ -131,7 +134,10 @@ class NoteItemState extends ConsumerState<NoteItem> {
       // Noteのコンテンツ表示
       return Column(
         children: [
-          const NoteLabel(),
+          SharedItemLabel(
+            text: t.notes.note,
+            icon: Icons.note_alt_outlined,
+          ),
           const SizedBox(height: 16),
           MarkdownWithDictLink(
             text: _note?.content ?? 'Note does not exist.',

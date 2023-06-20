@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
@@ -61,7 +62,7 @@ class QuizExplanationQuestion extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const SharedItemLabel(text: '問題'),
+          SharedItemLabel(text: t.quizzes.question),
           const SizedBox(height: 16),
           question(),
           ttsBtn(),

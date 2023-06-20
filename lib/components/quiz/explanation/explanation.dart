@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
@@ -16,7 +17,7 @@ class QuizExplanationExplanation extends StatelessWidget {
 
     return Column(
       children: [
-        const SharedItemLabel(text: '解説'),
+        SharedItemLabel(text: t.quizzes.explanation),
         const SizedBox(height: 16),
         MarkdownWithDictLink(
           text: quiz.explanation ?? '',
