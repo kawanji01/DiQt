@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/components/user/calendar.dart';
+import 'package:booqs_mobile/components/user/study_records.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/relationship.dart';
@@ -38,10 +40,17 @@ class UserShowPage extends ConsumerWidget {
           UserExpIndicator(user: user),
           UserAchievementsButton(user: user),
           const SizedBox(
-            height: 80,
+            height: 32,
+          ),
+          UserCalendar(
+            user: user,
           ),
           const SizedBox(
-            height: 48,
+            height: 24,
+          ),
+          UserStudyRecords(user: user),
+          const SizedBox(
+            height: 80,
           ),
           const AppBanner(),
         ],
