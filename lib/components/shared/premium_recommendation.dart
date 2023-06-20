@@ -13,8 +13,23 @@ class SharedPremiumRecommendation extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(description,
-            style: const TextStyle(fontSize: 16, color: Colors.black87)),
+        Row(children: [
+          const Icon(
+            Icons.lock,
+            size: 32,
+            color: Colors.black87,
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          Flexible(
+            child: Text(description,
+                style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.bold)),
+          ),
+        ]),
         const SizedBox(height: 32),
 
         Container(

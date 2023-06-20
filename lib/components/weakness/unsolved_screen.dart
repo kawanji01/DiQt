@@ -34,8 +34,11 @@ class WeaknessUnsolvedScreenState
   Widget build(BuildContext context) {
     Widget unsolvedQuizzes() {
       if (ref.watch(premiumEnabledProvider) == false) {
-        return SharedPremiumRecommendation(
-            description: t.weaknesses.premium_recommendation);
+        return Container(
+          margin: const EdgeInsets.only(top: 64),
+          child: SharedPremiumRecommendation(
+              description: t.shared.premium_recommendation),
+        );
       }
       return ref.watch(asyncUnsolvedWeaknessesProvider).when(
             skipLoadingOnRefresh: false,

@@ -24,8 +24,11 @@ class WeaknessSolvedPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Widget quizzes() {
       if (ref.watch(premiumEnabledProvider) == false) {
-        return SharedPremiumRecommendation(
-            description: t.shared.premium_recommendation);
+        return Container(
+          margin: const EdgeInsets.only(top: 64),
+          child: SharedPremiumRecommendation(
+              description: t.shared.premium_recommendation),
+        );
       }
       return WeaknessSolvedQuizListView(
         key: UniqueKey(),
