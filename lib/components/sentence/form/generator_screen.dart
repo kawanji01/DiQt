@@ -124,7 +124,6 @@ class _SentenceFormGeneratorScreenState
                   HeadingMediumGreen(
                     label: t.sentences.generate_sentence,
                   ),
-
                   const SizedBox(
                     height: 16,
                   ),
