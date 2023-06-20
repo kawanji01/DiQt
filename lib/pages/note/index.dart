@@ -31,8 +31,8 @@ class NoteIndexPage extends ConsumerWidget {
               description: t.shared.premium_recommendation),
         );
       }
+      // UniqueKeyを設定することで、noteOrderProvider を変更するたびに initState を発火させ、 NoteQuizListView全体を再描画する。
       return NoteQuizListView(
-        // UniqueKeyを設定することで、noteOrderProvider を変更するたびに initState を発火させ、 NoteQuizListView全体を再描画する。
         key: UniqueKey(),
         order: ref.watch(noteOrderProvider),
       );
