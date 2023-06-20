@@ -5,6 +5,7 @@ import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/device_info_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/entitlement_info_service.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:http/http.dart';
@@ -79,31 +80,28 @@ class RemoteUsers {
   }
 
   // ユーザー情報の更新
-  static Future<Map?> update(Map<String, dynamic> params) async {
+  static Future<Map> update(
+      {required Map<String, dynamic> params, required String locale}) async {
     try {
       final String publicUid = params['public_uid'];
 
       final Map<String, dynamic> body = {'user': params};
-
-      // リクエスト
-      final url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/$publicUid');
+      final url = Uri.parse(
+          '${DiQtURL.root(locale: locale)}/api/v1/mobile/users/$publicUid');
 
       final Response res = await HttpService.patch(
         url,
         body,
       );
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 

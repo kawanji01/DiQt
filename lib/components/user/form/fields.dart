@@ -1,14 +1,15 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
+import 'package:booqs_mobile/components/user/form/authentication.dart';
 import 'package:booqs_mobile/components/user/form/lang_number.dart';
 import 'package:booqs_mobile/components/user/form/learning_lang_number.dart';
 import 'package:booqs_mobile/components/user/form/time_zone_name.dart';
 import 'package:booqs_mobile/components/user/form/withdrawal_button.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,6 +27,10 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _profileController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController(text: '');
+  final _passwordConfirmationController = TextEditingController(text: '');
+
   bool _isRequesting = false;
 
   @override
@@ -34,70 +39,61 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
   void dispose() {
     _nameController.dispose();
     _profileController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _passwordConfirmationController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _nameController.text = widget.user.name;
-      _profileController.text = widget.user.profile ?? '';
-      setState(() {});
-    });
+    _nameController.text = widget.user.name;
+    _profileController.text = widget.user.profile ?? '';
+    _emailController.text = widget.user.email;
+  }
+
+  Future<void> _save() async {
+    // 各Fieldのvalidatorを呼び出す
+    if (!_formKey.currentState!.validate()) return;
+    setState(() => _isRequesting = true);
+    EasyLoading.show(status: 'loading...');
+    final Map<String, dynamic> params = {
+      'id': widget.user.id,
+      'public_uid': widget.user.publicUid,
+      'name': _nameController.text,
+      'profile': _profileController.text,
+      'lang_number': ref.watch(userLangNumberProvider),
+      'learning_lang_number': ref.watch(userLearningLangNumberProvider),
+      'time_zone_name': ref.watch(userTimeZoneNameProvider),
+      'email': _emailController.text,
+      'password': _passwordController.text,
+      'password_confirmation': _passwordConfirmationController.text,
+    };
+
+    final Map resMap =
+        await RemoteUsers.update(params: params, locale: widget.user.locale());
+    await EasyLoading.dismiss();
+    setState(() => _isRequesting = false);
+    if (!mounted) return;
+    if (ErrorHandler.isErrorMap(resMap)) {
+      // 失敗
+      ErrorHandler.showErrorSnackBar(context, resMap, serverSideMessage: true);
+    } else {
+      // 成功
+      final updatedUser = User.fromJson(resMap['user']);
+      final snackBar = SnackBar(content: Text(t.users.updated));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      UserMyPage.push(context);
+      // ユーザーの更新
+      await ref.read(currentUserProvider.notifier).logIn(updatedUser);
+      // Localeの更新
+      // await ref.read(localeProvider.notifier).setLocale();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // 画像
-    Future save(User user) async {
-      // 各Fieldのvalidatorを呼び出す
-      if (!_formKey.currentState!.validate()) return;
-      setState(() => _isRequesting = true);
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
-      final Map<String, dynamic> params = {
-        'id': user.id,
-        'public_uid': user.publicUid,
-        'name': _nameController.text,
-        'profile': _profileController.text,
-        'lang_number': ref.watch(userLangNumberProvider),
-        'learning_lang_number': ref.watch(userLearningLangNumberProvider),
-        'time_zone_name': ref.watch(userTimeZoneNameProvider),
-      };
-      try {
-        final Map? resMap = await RemoteUsers.update(params);
-        await EasyLoading.dismiss();
-        setState(() => _isRequesting = false);
-
-        if (resMap == null ||
-            resMap['user'] == null ||
-            resMap['message'] == null) {
-          if (!mounted) return;
-          final snackBar = SnackBar(content: Text(t.shared.update_failed));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        } else {
-          final updatedUser = User.fromJson(resMap['user']);
-          // ユーザーの更新
-          await ref.read(currentUserProvider.notifier).logIn(updatedUser);
-          // Localeの更新
-          await ref.read(localeProvider.notifier).setLocale();
-          final snackBar = SnackBar(content: Text(t.shared.update_succeeded));
-          if (!mounted) return;
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          UserMyPage.push(context);
-        }
-      } catch (e) {
-        // エラーハンドリング
-        await EasyLoading.dismiss();
-        setState(() => _isRequesting = false);
-        if (!mounted) return;
-        final snackBar =
-            SnackBar(content: Text('${t.errors.error_occured}: $e'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
-    }
-
     return Form(
         key: _formKey,
         child: Column(
@@ -139,13 +135,15 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
               const UserFormLearningLangNumber(),
               const SizedBox(height: 32),
               const UserFormTimeZoneName(),
-              const SizedBox(height: 64),
+              const SizedBox(height: 48),
+              UserFormAuthentication(
+                emailController: _emailController,
+                passwordController: _passwordController,
+                passwordConfirmationController: _passwordConfirmationController,
+              ),
+              const SizedBox(height: 80),
               InkWell(
-                  onTap: _isRequesting
-                      ? null
-                      : () async {
-                          save(widget.user);
-                        },
+                  onTap: _isRequesting ? null : _save,
                   child: MediumGreenButton(
                     label: t.shared.update,
                     icon: Icons.edit_outlined,

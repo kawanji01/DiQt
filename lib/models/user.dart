@@ -11,6 +11,7 @@ class User {
     required this.id,
     required this.publicUid,
     required this.name,
+    required this.email,
     this.profile,
     this.iconImageUrl,
     required this.langNumber,
@@ -51,6 +52,7 @@ class User {
   int id;
   String publicUid;
   String name;
+  String email;
   String? profile;
   String? iconImageUrl;
   int langNumber;
@@ -91,6 +93,7 @@ class User {
       : id = json['id'],
         publicUid = json['public_uid'],
         name = json['name'],
+        email = json['email'] ?? '',
         profile = json['profile'],
         iconImageUrl = json['icon_image_url'],
         langNumber = json['lang_number'] ?? defaultLangNumber,
@@ -157,6 +160,7 @@ class User {
         'id': id,
         'public_uid': publicUid,
         'name': name,
+        'email': email,
         //'icon': icon,
         'profile': profile,
         'icon_image_url': iconImageUrl,

@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1830 (915 per locale)
+/// Strings: 1844 (922 per locale)
 ///
-/// Built on 2023-06-20 at 01:06 UTC
+/// Built on 2023-06-20 at 08:04 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -390,8 +390,12 @@ class _TranslationsUsersEn {
 	String get anonymous_user => 'Anonymous user';
 	String get creating_account_succeeded => 'Your account registration has been completed! Welcome to DiQt!';
 	String get show => 'User Page';
+	String get menu => 'Menu';
+	String get find_users => 'Find users';
+	String get contract_details => 'Contract details';
 	String get edit => 'Account Setting';
 	String get withdraw => 'Withdraw from DiQt';
+	String get withdraw_confirmation => 'The account will be deleted. Deleted accounts cannot be restored again. Are you sure you still want to do this?';
 	String get name => 'Name';
 	String get profile => 'Profile';
 	String get profile_placeholder => 'Please enter a profile of no more than 500 characters.';
@@ -400,11 +404,14 @@ class _TranslationsUsersEn {
 	String get time_zone_name => 'Time Zone';
 	String get authentication => 'Authentication';
 	String get email => 'Email';
-	String get new_password => 'Password';
+	String get new_password => 'New Password';
 	String get new_password_placeholder => 'At least 6 alphanumeric characters';
 	String get new_password_confirmation => 'Password Confirmation';
 	String get new_password_confirmation_placeholder => 'Please enter a new password again';
 	String get notification_deliver => 'Receive email notifications';
+	String get updated => 'Account Updated.';
+	String get failed_to_update => 'Account could not be updated.';
+	String get destroyed => 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
 }
 
 // Path: notices
@@ -1602,8 +1609,12 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get anonymous_user => '匿名ユーザー';
 	@override String get creating_account_succeeded => '会員登録が完了しました！ようこそDiQtへ！！';
 	@override String get show => 'ユーザーページ';
+	@override String get menu => 'メニュー';
+	@override String get find_users => 'ユーザーを探す';
+	@override String get contract_details => 'ご契約内容';
 	@override String get edit => 'アカウント設定';
 	@override String get withdraw => 'DiQtから退会する';
+	@override String get withdraw_confirmation => 'アカウントを削除いたします。削除したアカウントは二度と復元できません。それでもよろしいですか？';
 	@override String get name => 'ユーザー名';
 	@override String get profile => 'プロフィール';
 	@override String get profile_placeholder => '500文字以内でプロフィールを入力してください。';
@@ -1612,11 +1623,14 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get time_zone_name => 'タイムゾーン';
 	@override String get authentication => '認証設定';
 	@override String get email => 'メールアドレス';
-	@override String get new_password => 'パスワード';
+	@override String get new_password => '新しいパスワード';
 	@override String get new_password_placeholder => '半角英数字６文字以上';
 	@override String get new_password_confirmation => 'パスワード確認';
 	@override String get new_password_confirmation_placeholder => 'もう一度パスワードを入力してください。';
 	@override String get notification_deliver => 'メールによる通知を受け取る';
+	@override String get updated => 'アカウントを更新しました。';
+	@override String get failed_to_update => 'アカウントを更新できませんでした。';
+	@override String get destroyed => '退会が完了しました。ご利用いただき、誠にありがとうございました。';
 }
 
 // Path: notices
@@ -2705,8 +2719,12 @@ extension on _TranslationsEn {
 			case 'users.anonymous_user': return 'Anonymous user';
 			case 'users.creating_account_succeeded': return 'Your account registration has been completed! Welcome to DiQt!';
 			case 'users.show': return 'User Page';
+			case 'users.menu': return 'Menu';
+			case 'users.find_users': return 'Find users';
+			case 'users.contract_details': return 'Contract details';
 			case 'users.edit': return 'Account Setting';
 			case 'users.withdraw': return 'Withdraw from DiQt';
+			case 'users.withdraw_confirmation': return 'The account will be deleted. Deleted accounts cannot be restored again. Are you sure you still want to do this?';
 			case 'users.name': return 'Name';
 			case 'users.profile': return 'Profile';
 			case 'users.profile_placeholder': return 'Please enter a profile of no more than 500 characters.';
@@ -2715,11 +2733,14 @@ extension on _TranslationsEn {
 			case 'users.time_zone_name': return 'Time Zone';
 			case 'users.authentication': return 'Authentication';
 			case 'users.email': return 'Email';
-			case 'users.new_password': return 'Password';
+			case 'users.new_password': return 'New Password';
 			case 'users.new_password_placeholder': return 'At least 6 alphanumeric characters';
 			case 'users.new_password_confirmation': return 'Password Confirmation';
 			case 'users.new_password_confirmation_placeholder': return 'Please enter a new password again';
 			case 'users.notification_deliver': return 'Receive email notifications';
+			case 'users.updated': return 'Account Updated.';
+			case 'users.failed_to_update': return 'Account could not be updated.';
+			case 'users.destroyed': return 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
 			case 'notices.notifications': return 'Notifications';
 			case 'notices.cheered_message': return ({required Object name}) => '${name} has cheered you!';
 			case 'notices.followed_message': return ({required Object name}) => '${name} has followed you!';
@@ -3628,8 +3649,12 @@ extension on _TranslationsJa {
 			case 'users.anonymous_user': return '匿名ユーザー';
 			case 'users.creating_account_succeeded': return '会員登録が完了しました！ようこそDiQtへ！！';
 			case 'users.show': return 'ユーザーページ';
+			case 'users.menu': return 'メニュー';
+			case 'users.find_users': return 'ユーザーを探す';
+			case 'users.contract_details': return 'ご契約内容';
 			case 'users.edit': return 'アカウント設定';
 			case 'users.withdraw': return 'DiQtから退会する';
+			case 'users.withdraw_confirmation': return 'アカウントを削除いたします。削除したアカウントは二度と復元できません。それでもよろしいですか？';
 			case 'users.name': return 'ユーザー名';
 			case 'users.profile': return 'プロフィール';
 			case 'users.profile_placeholder': return '500文字以内でプロフィールを入力してください。';
@@ -3638,11 +3663,14 @@ extension on _TranslationsJa {
 			case 'users.time_zone_name': return 'タイムゾーン';
 			case 'users.authentication': return '認証設定';
 			case 'users.email': return 'メールアドレス';
-			case 'users.new_password': return 'パスワード';
+			case 'users.new_password': return '新しいパスワード';
 			case 'users.new_password_placeholder': return '半角英数字６文字以上';
 			case 'users.new_password_confirmation': return 'パスワード確認';
 			case 'users.new_password_confirmation_placeholder': return 'もう一度パスワードを入力してください。';
 			case 'users.notification_deliver': return 'メールによる通知を受け取る';
+			case 'users.updated': return 'アカウントを更新しました。';
+			case 'users.failed_to_update': return 'アカウントを更新できませんでした。';
+			case 'users.destroyed': return '退会が完了しました。ご利用いただき、誠にありがとうございました。';
 			case 'notices.notifications': return '通知';
 			case 'notices.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
 			case 'notices.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';

@@ -37,7 +37,7 @@ class UserFormWithdrawalButtonState
         // ログアウトに伴う連携サービスの設定などの処理
         ref.read(currentUserProvider.notifier).logOut();
         if (!mounted) return;
-        final snackBar = SnackBar(content: Text('${resMap['message']}'));
+        final snackBar = SnackBar(content: Text(t.users.destroyed));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
       }
@@ -45,16 +45,16 @@ class UserFormWithdrawalButtonState
 
     return GestureDetector(
       onTap: () async {
-        const String title = '退会';
-        const String text = 'アカウントを削除いたします。削除したアカウントは二度と復元できません。それでもよろしいですか？';
+        final String title = t.users.withdraw;
+        final String text = t.users.withdraw_confirmation;
         bool result = await Dialogs.confirm(context, title, text);
         if (result) {
           await withdrawal();
         }
       },
-      child: const Text(
-        '退会する',
-        style: TextStyle(
+      child: Text(
+        t.users.withdraw,
+        style: const TextStyle(
           decoration: TextDecoration.underline,
           fontWeight: FontWeight.w400,
           color: Colors.red,

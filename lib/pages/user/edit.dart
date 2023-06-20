@@ -8,35 +8,18 @@ import 'package:booqs_mobile/components/user/form/fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserEditPage extends ConsumerStatefulWidget {
-  const UserEditPage({Key? key}) : super(key: key);
+class UserEditPage extends ConsumerWidget {
+  const UserEditPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(userEditPage);
   }
 
   @override
-  UserEditPageState createState() => UserEditPageState();
-}
-
-class UserEditPageState extends ConsumerState<UserEditPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final User? user = ref.watch(currentUserProvider);
+    if (user == null) return Container();
 
-    Widget userForm() {
-      if (user == null) {
-        return Container();
-      }
-      return UserFormFields(user: user);
-    }
-
-    // 最終的なアウトプット
     return Scaffold(
       appBar: AppBar(
         title: Text(t.users.edit),
@@ -46,7 +29,7 @@ class UserEditPageState extends ConsumerState<UserEditPage> {
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
           padding: const EdgeInsets.symmetric(vertical: 32),
-          child: userForm(),
+          child: UserFormFields(user: user),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),
