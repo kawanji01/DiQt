@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
-import 'package:booqs_mobile/pages/drill/show.dart';
-import 'package:booqs_mobile/pages/drill/solved.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,12 +15,6 @@ class DrillOrderSelectForm extends ConsumerWidget {
         case 'unsolved':
           ref.invalidate(asyncDrillUnsolvedQuizzesProvider);
           break;
-        case 'solved':
-          DrillSolvedPage.pushReplacement(context);
-          break;
-        case 'all':
-          DrillShowPage.pushReplacement(context);
-          break;
       }
     }
 
@@ -29,11 +22,11 @@ class DrillOrderSelectForm extends ConsumerWidget {
     String label(String value) {
       switch (value) {
         case 'created_at-asc':
-          return '最初から';
+          return t.drills.created_at_asc;
         case 'created_at-desc':
-          return '最後から';
+          return t.drills.created_at_desc;
         case 'random-random':
-          return 'ランダム';
+          return t.drills.random_random;
         default:
           return 'Error';
       }

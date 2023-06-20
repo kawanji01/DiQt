@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1782 (891 per locale)
+/// Strings: 1788 (894 per locale)
 ///
-/// Built on 2023-06-19 at 23:11 UTC
+/// Built on 2023-06-20 at 00:19 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -151,6 +151,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsDictionariesEn dictionaries = _TranslationsDictionariesEn._(_root);
 	late final _TranslationsReviewsEn reviews = _TranslationsReviewsEn._(_root);
 	late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
+	late final _TranslationsDrillsEn drills = _TranslationsDrillsEn._(_root);
 	late final _TranslationsWeaknessesEn weaknesses = _TranslationsWeaknessesEn._(_root);
 	late final _TranslationsUsersEn users = _TranslationsUsersEn._(_root);
 	late final _TranslationsNoticesEn notices = _TranslationsNoticesEn._(_root);
@@ -346,6 +347,18 @@ class _TranslationsErrorsEn {
 	String get http_status_508 => '508 Loop Detected: The server detected an infinite loop while processing the request. This status indicates that the entire operation failed.';
 	String get http_status_510 => '510 Not Extended: Further extensions to the request are required for the server to fulfill it.';
 	String get http_status_511 => '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
+}
+
+// Path: drills
+class _TranslationsDrillsEn {
+	_TranslationsDrillsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get created_at_asc => 'From the beginning';
+	String get created_at_desc => 'From the end';
+	String get random_random => 'Random';
 }
 
 // Path: weaknesses
@@ -1319,6 +1332,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsDictionariesJa dictionaries = _TranslationsDictionariesJa._(_root);
 	@override late final _TranslationsReviewsJa reviews = _TranslationsReviewsJa._(_root);
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
+	@override late final _TranslationsDrillsJa drills = _TranslationsDrillsJa._(_root);
 	@override late final _TranslationsWeaknessesJa weaknesses = _TranslationsWeaknessesJa._(_root);
 	@override late final _TranslationsUsersJa users = _TranslationsUsersJa._(_root);
 	@override late final _TranslationsNoticesJa notices = _TranslationsNoticesJa._(_root);
@@ -1514,6 +1528,18 @@ class _TranslationsErrorsJa implements _TranslationsErrorsEn {
 	@override String get http_status_508 => '508 Loop Detected: サーバーは、リクエストを処理中に無限ループを検出しました。このステータスは、操作全体が失敗したことを示しています。';
 	@override String get http_status_510 => '510 Not Extended: サーバーがリクエストを満たすためには、リクエストにさらなる拡張が必要です。';
 	@override String get http_status_511 => '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
+}
+
+// Path: drills
+class _TranslationsDrillsJa implements _TranslationsDrillsEn {
+	_TranslationsDrillsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get created_at_asc => '最初から';
+	@override String get created_at_desc => '最後から';
+	@override String get random_random => 'ランダム';
 }
 
 // Path: weaknesses
@@ -2602,6 +2628,9 @@ extension on _TranslationsEn {
 			case 'errors.http_status_508': return '508 Loop Detected: The server detected an infinite loop while processing the request. This status indicates that the entire operation failed.';
 			case 'errors.http_status_510': return '510 Not Extended: Further extensions to the request are required for the server to fulfill it.';
 			case 'errors.http_status_511': return '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
+			case 'drills.created_at_asc': return 'From the beginning';
+			case 'drills.created_at_desc': return 'From the end';
+			case 'drills.random_random': return 'Random';
 			case 'weaknesses.weaknesses': return 'Weaknesses';
 			case 'weaknesses.premium_recommendation': return 'To solve weak questions, you need to register for a premium plan.';
 			case 'weaknesses.correct_answer_rate_asc': return 'Correct Rate, Low to High';
@@ -3501,6 +3530,9 @@ extension on _TranslationsJa {
 			case 'errors.http_status_508': return '508 Loop Detected: サーバーは、リクエストを処理中に無限ループを検出しました。このステータスは、操作全体が失敗したことを示しています。';
 			case 'errors.http_status_510': return '510 Not Extended: サーバーがリクエストを満たすためには、リクエストにさらなる拡張が必要です。';
 			case 'errors.http_status_511': return '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
+			case 'drills.created_at_asc': return '最初から';
+			case 'drills.created_at_desc': return '最後から';
+			case 'drills.random_random': return 'ランダム';
 			case 'weaknesses.weaknesses': return '弱点問題';
 			case 'weaknesses.premium_recommendation': return '弱点問題を解くには、プレミアムプランへの登録が必要です。';
 			case 'weaknesses.correct_answer_rate_asc': return '正答率が低い順';
