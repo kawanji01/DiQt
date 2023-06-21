@@ -11,6 +11,20 @@ class UserFormTimeZoneName extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
+    Widget timeZoneLock() {
+      if (todaysAnswersCount > 0) {
+        return Container(
+          margin: const EdgeInsets.symmetric(vertical: 16),
+          child: Text(
+            t.users.you_cant_change_time_zone,
+            style: const TextStyle(color: Colors.red, fontSize: 14),
+          ),
+        );
+      }
+      return Container();
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,6 +43,7 @@ class UserFormTimeZoneName extends ConsumerWidget {
             elevation: 16,
             onChanged: (String? newValue) async {
               if (newValue == null) return;
+              if (todaysAnswersCount > 0) return;
               ref.read(userTimeZoneNameProvider.notifier).state = newValue;
             },
             items: timeZoneNames.map<DropdownMenuItem<String>>((String value) {
@@ -43,6 +58,7 @@ class UserFormTimeZoneName extends ConsumerWidget {
             }).toList(),
           ),
         ),
+        timeZoneLock()
       ],
     );
   }

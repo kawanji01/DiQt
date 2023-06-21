@@ -11,6 +11,7 @@ class User {
     required this.id,
     required this.publicUid,
     required this.name,
+    required this.email,
     this.profile,
     this.iconImageUrl,
     required this.langNumber,
@@ -41,6 +42,7 @@ class User {
     required this.appFavored,
     required this.appCancelReportSent,
     this.authToken,
+    this.passwordBeingSet,
     this.dateCurrent,
     this.answerSetting,
     this.drillInProgress,
@@ -51,6 +53,7 @@ class User {
   int id;
   String publicUid;
   String name;
+  String email;
   String? profile;
   String? iconImageUrl;
   int langNumber;
@@ -81,6 +84,7 @@ class User {
   bool appFavored;
   bool appCancelReportSent;
   String? authToken;
+  bool? passwordBeingSet;
   DateTime? dateCurrent;
   AnswerSetting? answerSetting;
   Drill? drillInProgress;
@@ -91,6 +95,7 @@ class User {
       : id = json['id'],
         publicUid = json['public_uid'],
         name = json['name'],
+        email = json['email'] ?? '',
         profile = json['profile'],
         iconImageUrl = json['icon_image_url'],
         langNumber = json['lang_number'] ?? defaultLangNumber,
@@ -126,6 +131,7 @@ class User {
         appFavored = json['app_favored'],
         appCancelReportSent = json['app_cancel_report_sent'],
         authToken = json['token_for_native_app'],
+        passwordBeingSet = json['password_being_set'],
         dateCurrent = json['date_current'] == null
             ? null
             : DateTime.parse(json['date_current']),
@@ -157,6 +163,7 @@ class User {
         'id': id,
         'public_uid': publicUid,
         'name': name,
+        'email': email,
         //'icon': icon,
         'profile': profile,
         'icon_image_url': iconImageUrl,

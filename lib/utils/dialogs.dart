@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -18,7 +19,7 @@ class Dialogs {
         content: Text(message),
         actions: <Widget>[
           SimpleDialogOption(
-            child: const Text('キャンセル'),
+            child: Text(t.shared.cancel),
             onPressed: () => Navigator.pop(context, false),
           ),
           SimpleDialogOption(

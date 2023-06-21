@@ -77,35 +77,33 @@ class UserMenuPage extends ConsumerWidget {
     }
 
     Widget userSearch() {
-      const String btnText = 'ユーザーを探す';
       return InkWell(
         onTap: () {
           UserSearchPage.push(context, '');
         },
-        child: const LargeGreenButton(label: btnText, icon: Icons.search),
+        child: LargeGreenButton(label: t.users.find_users, icon: Icons.search),
       );
     }
 
     Widget accountSetting() {
-      const String btnText = 'アカウント設定';
+      final String btnText = t.users.edit;
       return InkWell(
           onTap: () {
             UserEditPage.push(context);
           },
-          child: const LargeGreenButton(
+          child: LargeGreenButton(
             label: btnText,
             icon: Icons.manage_accounts,
           ));
     }
 
     Widget contractDetails() {
-      const String btnText = 'ご契約内容';
       return InkWell(
           onTap: () {
             UserContractDetailsPage.push(context);
           },
-          child: const LargeGreenButton(
-            label: btnText,
+          child: LargeGreenButton(
+            label: t.users.contract_details,
             icon: Icons.manage_accounts,
           ));
     }
@@ -136,7 +134,7 @@ class UserMenuPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('メニュー'),
+        title: Text(t.users.menu),
       ),
       body: SingleChildScrollView(
         child: Container(

@@ -13,6 +13,7 @@ class UserBuilder {
         id: 1,
         publicUid: '117931',
         name: 'John Doe',
+        email: 'test@booqs.net',
         langNumber: langNumber,
         learningLangNumber: learningLangNumber,
         timeZoneName: defaultTimeZone,
