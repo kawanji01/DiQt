@@ -43,11 +43,10 @@ class UserFormIconState extends ConsumerState<UserFormIcon> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         setState(() => _isRequesting = false);
-        print('image empty');
       }
     } on PlatformException catch (e) {
       setState(() => _isRequesting = false);
-      print('Failed to pick image: $e');
+
       final snackBar =
           SnackBar(content: Text('${t.errors.error_occured} / $e'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);

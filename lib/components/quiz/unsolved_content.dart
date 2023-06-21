@@ -65,7 +65,7 @@ class QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
         final int todaysCorrectAnswersCount =
             ref.watch(todaysCorrectAnswersCountProvider);
         final bool premiumEnabled = ref.watch(premiumEnabledProvider);
-        // 30問以上解いたユーザーで無料ユーザーならペイウォールを表示する
+        // 指定解答数を超えて解いた無料ユーザーにペイウォールを表示する
         if (todaysAnswersCount >= answersCountLimitForFreeUsers &&
             premiumEnabled == false) {
           Dialogs.slideFromBottomFade(const AnswerPaywallScreen());
