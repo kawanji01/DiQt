@@ -17,6 +17,7 @@ class UserBuilder {
         langNumber: langNumber,
         learningLangNumber: learningLangNumber,
         timeZoneName: defaultTimeZone,
+        mailDelivered: true,
         premium: premium,
         appFavored: appFavored,
         amountOfExp: 0,

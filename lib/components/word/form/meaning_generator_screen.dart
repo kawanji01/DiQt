@@ -80,7 +80,7 @@ class _WordFormMeaningGeneratorScreenState
         final String meaning = resMap['meaning'] ?? '';
         widget.meaningController.text = meaning;
         final snackBar =
-            SnackBar(content: Text(t.sentences.sentence_generated));
+            SnackBar(content: Text(t.words.success_to_generate_meanings));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         Navigator.of(context).pop();
       }

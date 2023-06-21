@@ -98,6 +98,12 @@ final userTimeZoneNameProvider = StateProvider<String>((ref) {
       .select((user) => user?.timeZoneName ?? defaultTimeZone));
 });
 
+// ユーザーへのメール送信許可
+final userMailDeliveredProvider = StateProvider<bool>((ref) {
+  return ref
+      .watch(currentUserProvider.select((user) => user?.mailDelivered ?? true));
+});
+
 //// 手動で書き換える必要ないログインユーザーの情報（Providerを利用） ////
 // プレミアムユーザーの検証
 final premiumEnabledProvider = Provider<bool>(

@@ -84,7 +84,10 @@ class UserFormIconState extends ConsumerState<UserFormIcon> {
                 SizedBox(
                   width: 300,
                   child: InkWell(
-                    onTap: () => _isRequesting ? true : _uploadImage(),
+                    onTap: () {
+                      FocusScope.of(context).unfocus();
+                      _isRequesting ? null : _uploadImage();
+                    },
                     child: SmallOutlineGreenButton(
                       label: t.users.set_icon,
                       icon: Icons.image_outlined,
