@@ -17,6 +17,7 @@ class User {
     required this.langNumber,
     required this.learningLangNumber,
     required this.timeZoneName,
+    required this.mailDelivered,
     required this.amountOfExp,
     required this.answerHistoriesCount,
     required this.todaysAnswerHistoriesCount,
@@ -59,6 +60,7 @@ class User {
   int langNumber;
   int learningLangNumber;
   String timeZoneName;
+  bool mailDelivered;
   int amountOfExp;
   int answerHistoriesCount;
   int todaysAnswerHistoriesCount;
@@ -101,6 +103,7 @@ class User {
         langNumber = json['lang_number'] ?? defaultLangNumber,
         learningLangNumber = json['learning_lang_number'] ?? defaultLangNumber,
         timeZoneName = json['time_zone_name'] ?? defaultTimeZone,
+        mailDelivered = json['mail_delivered'] ?? true,
         amountOfExp = json['amount_of_exp'],
         answerHistoriesCount = json['answer_histories_count'],
         todaysAnswerHistoriesCount = json['todays_answer_histories_count'],
@@ -170,6 +173,7 @@ class User {
         'lang_number': langNumber,
         'learning_lang_number': learningLangNumber,
         'time_zone_name': timeZoneName,
+        'mail_delivered': mailDelivered,
         'amount_of_exp': amountOfExp,
         'answer_histories_count': answerHistoriesCount,
         'todays_answer_histories_count': todaysAnswerHistoriesCount,

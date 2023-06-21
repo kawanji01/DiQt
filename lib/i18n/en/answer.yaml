@@ -1,2 +1,2 @@
-answer_limit_reached: 'Limit Reached'
-answer_limit_reached_description: 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!'
+limit_reached: 'Limit Reached'
+limit_reached_description: 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!'

@@ -20,14 +20,14 @@ class AnswerPaywallScreen extends StatelessWidget {
           Column(children: [
             const SizedBox(height: 16),
             // heading
-            Text(t.answer.answer_limit_reached,
+            Text(t.answer.limit_reached,
                 style: const TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.green)),
             const SizedBox(height: 24),
             SharedPremiumRecommendation(
-              description: t.answer.answer_limit_reached_description(
+              description: t.answer.limit_reached_description(
                   number: answersCountLimitForFreeUsers),
             ),
           ]),

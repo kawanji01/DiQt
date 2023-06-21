@@ -3,7 +3,7 @@
 /// Locales: 2
 /// Strings: 1850 (925 per locale)
 ///
-/// Built on 2023-06-21 at 03:22 UTC
+/// Built on 2023-06-21 at 05:45 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1064,8 +1064,8 @@ class _TranslationsAnswerEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	String get answer_limit_reached => 'Limit Reached';
-	String answer_limit_reached_description({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
+	String get limit_reached => 'Limit Reached';
+	String limit_reached_description({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
 }
 
 // Path: quizzes
@@ -2286,8 +2286,8 @@ class _TranslationsAnswerJa implements _TranslationsAnswerEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get answer_limit_reached => '制限に達しました';
-	@override String answer_limit_reached_description({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
+	@override String get limit_reached => '制限に達しました';
+	@override String limit_reached_description({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
 }
 
 // Path: quizzes
@@ -3309,8 +3309,8 @@ extension on _TranslationsEn {
 			case 'timeZone.nuku_alofa': return 'Nuku\'alofa';
 			case 'timeZone.samoa': return 'Samoa';
 			case 'timeZone.tokelau_is': return 'Tokelau Is.';
-			case 'answer.answer_limit_reached': return 'Limit Reached';
-			case 'answer.answer_limit_reached_description': return ({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
+			case 'answer.limit_reached': return 'Limit Reached';
+			case 'answer.limit_reached_description': return ({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
 			case 'quizzes.quiz': return 'Quiz';
 			case 'quizzes.edit': return 'Edit';
 			case 'quizzes.answer': return 'Answer';
@@ -4242,8 +4242,8 @@ extension on _TranslationsJa {
 			case 'timeZone.nuku_alofa': return 'ヌクアロファ';
 			case 'timeZone.samoa': return 'サモア';
 			case 'timeZone.tokelau_is': return 'トケラウ諸島';
-			case 'answer.answer_limit_reached': return '制限に達しました';
-			case 'answer.answer_limit_reached_description': return ({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
+			case 'answer.limit_reached': return '制限に達しました';
+			case 'answer.limit_reached_description': return ({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
 			case 'quizzes.quiz': return '問題';
 			case 'quizzes.edit': return '編集する';
 			case 'quizzes.answer': return '解答する';
