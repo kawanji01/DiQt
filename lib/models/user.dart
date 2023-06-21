@@ -42,6 +42,7 @@ class User {
     required this.appFavored,
     required this.appCancelReportSent,
     this.authToken,
+    this.passwordBeingSet,
     this.dateCurrent,
     this.answerSetting,
     this.drillInProgress,
@@ -83,6 +84,7 @@ class User {
   bool appFavored;
   bool appCancelReportSent;
   String? authToken;
+  bool? passwordBeingSet;
   DateTime? dateCurrent;
   AnswerSetting? answerSetting;
   Drill? drillInProgress;
@@ -129,6 +131,7 @@ class User {
         appFavored = json['app_favored'],
         appCancelReportSent = json['app_cancel_report_sent'],
         authToken = json['token_for_native_app'],
+        passwordBeingSet = json['password_being_set'],
         dateCurrent = json['date_current'] == null
             ? null
             : DateTime.parse(json['date_current']),

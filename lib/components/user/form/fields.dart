@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/user/form/authentication.dart';
+import 'package:booqs_mobile/components/user/form/icon.dart';
 import 'package:booqs_mobile/components/user/form/lang_number.dart';
 import 'package:booqs_mobile/components/user/form/learning_lang_number.dart';
 import 'package:booqs_mobile/components/user/form/time_zone_name.dart';
@@ -100,8 +101,10 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                //crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  const UserFormIcon(),
+                  const SizedBox(height: 40),
                   // 項目フォーム
                   TextFormField(
                     controller: _nameController,

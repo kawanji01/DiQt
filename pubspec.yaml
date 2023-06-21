@@ -88,6 +88,7 @@ dependencies:
   upgrader: ^6.0.1 # 強制アップデート
   firebase_analytics: ^10.4.2 # Google analytics
   firebase_remote_config: ^4.0.0 # メンテナンスモードなどを管理する remote config
+  image_picker: ^0.8.9 # 画像のアップロード
 
 
   

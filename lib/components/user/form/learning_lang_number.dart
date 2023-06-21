@@ -24,30 +24,39 @@ class UserFormLearningLangNumber extends ConsumerWidget {
           margin: const EdgeInsets.only(top: 16),
           height: 48,
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.only(left: 15.0, right: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               border: Border.all(color: Colors.black87)),
-          child: DropdownButton<int>(
-            value: ref.watch(userLearningLangNumberProvider),
-            iconSize: 24,
-            elevation: 16,
-            onChanged: (int? newValue) async {
-              if (newValue == null) return;
-              ref.read(userLearningLangNumberProvider.notifier).state =
-                  newValue;
-            },
-            // 母語の設定は、i18nに対応しているsupportedLangNumbersに限定する。
-            items: langNumberItems.map<DropdownMenuItem<int>>((int value) {
-              return DropdownMenuItem<int>(
-                value: value,
-                child: Text(LanguageHandler.getLanguageFromNumber(value),
-                    style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87)),
-              );
-            }).toList(),
+          child: Row(
+            children: [
+              Expanded(
+                child: DropdownButton<int>(
+                  isExpanded: true,
+                  value: ref.watch(userLearningLangNumberProvider),
+                  iconSize: 24,
+                  elevation: 16,
+                  onChanged: (int? newValue) async {
+                    if (newValue == null) return;
+                    ref.read(userLearningLangNumberProvider.notifier).state =
+                        newValue;
+                  },
+                  items:
+                      langNumberItems.map<DropdownMenuItem<int>>((int value) {
+                    return DropdownMenuItem<int>(
+                      value: value,
+                      child: Text(LanguageHandler.getLanguageFromNumber(value),
+                          softWrap: true,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black87)),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ],
           ),
         ),
       ],

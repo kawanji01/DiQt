@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 class HttpService {
   // GET
@@ -73,8 +74,26 @@ class HttpService {
     });
   }
 
+  // 画像アップロード
+  static Future<http.StreamedResponse> multipartRequest(
+      {required Uri url, required XFile image}) async {
+    final request = http.MultipartRequest('POST', url);
+    // ヘッダーを追加
+    final Map<String, String> headers =
+        await HttpService.headers(multipart: true);
+    request.headers.addAll(headers);
+    //
+    request.files.add(await http.MultipartFile.fromPath(
+      'image', // サーバ側で受け取るパラメータ名を設定
+      image.path,
+    ));
+    return request.send().timeout(const Duration(seconds: 20), onTimeout: () {
+      throw TimeoutException('The connection has timed out!');
+    });
+  }
+
   // headerを生成する
-  static Future<Map<String, String>> headers() async {
+  static Future<Map<String, String>> headers({bool multipart = false}) async {
     // ネイティブアプリ用のAPIキーとシークレットキー
     final String? apiKey = dotenv.env['NATIVE_API_KEY'];
     final String? secret = dotenv.env['NATIVE_SECRET_KEY'];
@@ -87,6 +106,14 @@ class HttpService {
 
     final String? token = await LocalUserInfo.authToken();
 
+    // multipartRequest用のheader
+    if (multipart) {
+      return <String, String>{
+        'authorization': basicAuth,
+        'X-User-Token': '$token',
+      };
+    }
+    // 通常のリクエストのheader
     return <String, String>{
       'content-type': 'application/json',
       'authorization': basicAuth,

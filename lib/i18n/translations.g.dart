@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1844 (922 per locale)
+/// Strings: 1850 (925 per locale)
 ///
-/// Built on 2023-06-20 at 08:04 UTC
+/// Built on 2023-06-21 at 03:22 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -396,19 +396,22 @@ class _TranslationsUsersEn {
 	String get edit => 'Account Setting';
 	String get withdraw => 'Withdraw from DiQt';
 	String get withdraw_confirmation => 'The account will be deleted. Deleted accounts cannot be restored again. Are you sure you still want to do this?';
+	String get set_icon => 'Set the icon';
 	String get name => 'Name';
 	String get profile => 'Profile';
 	String get profile_placeholder => 'Please enter a profile of no more than 500 characters.';
 	String get lang_number => 'Language Setting(mother tongue)';
 	String get learning_lang_number => 'Learning Language';
 	String get time_zone_name => 'Time Zone';
+	String get you_cant_change_time_zone => 'You can not change TimeZone if you have already answered a quiz today. Please try tomorrow.';
 	String get authentication => 'Authentication';
 	String get email => 'Email';
 	String get new_password => 'New Password';
 	String get new_password_placeholder => 'At least 6 alphanumeric characters';
 	String get new_password_confirmation => 'Password Confirmation';
 	String get new_password_confirmation_placeholder => 'Please enter a new password again';
-	String get notification_deliver => 'Receive email notifications';
+	String get recommend_setting_password => 'Please set a password so that you can also log in via your email address. Unless you set a password, you will not be able to update your account information.';
+	String get mail_delivered => 'Receive email notifications';
 	String get updated => 'Account Updated.';
 	String get failed_to_update => 'Account could not be updated.';
 	String get destroyed => 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
@@ -1615,19 +1618,22 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get edit => 'アカウント設定';
 	@override String get withdraw => 'DiQtから退会する';
 	@override String get withdraw_confirmation => 'アカウントを削除いたします。削除したアカウントは二度と復元できません。それでもよろしいですか？';
+	@override String get set_icon => 'アイコンを設定する';
 	@override String get name => 'ユーザー名';
 	@override String get profile => 'プロフィール';
 	@override String get profile_placeholder => '500文字以内でプロフィールを入力してください。';
 	@override String get lang_number => '言語設定(母語)';
 	@override String get learning_lang_number => '学習言語';
 	@override String get time_zone_name => 'タイムゾーン';
+	@override String get you_cant_change_time_zone => '今日すでに問題に解答してしまっている場合、 タイムゾーンを変更することはできません。明日以降にお試しください。';
 	@override String get authentication => '認証設定';
 	@override String get email => 'メールアドレス';
 	@override String get new_password => '新しいパスワード';
 	@override String get new_password_placeholder => '半角英数字６文字以上';
 	@override String get new_password_confirmation => 'パスワード確認';
 	@override String get new_password_confirmation_placeholder => 'もう一度パスワードを入力してください。';
-	@override String get notification_deliver => 'メールによる通知を受け取る';
+	@override String get recommend_setting_password => 'メールアドレスからもログインできるように、パスワードを設定してください。パスワードを設定しない限り、アカウントの情報を更新することはできません。';
+	@override String get mail_delivered => 'メールによる通知を受け取る';
 	@override String get updated => 'アカウントを更新しました。';
 	@override String get failed_to_update => 'アカウントを更新できませんでした。';
 	@override String get destroyed => '退会が完了しました。ご利用いただき、誠にありがとうございました。';
@@ -2725,19 +2731,22 @@ extension on _TranslationsEn {
 			case 'users.edit': return 'Account Setting';
 			case 'users.withdraw': return 'Withdraw from DiQt';
 			case 'users.withdraw_confirmation': return 'The account will be deleted. Deleted accounts cannot be restored again. Are you sure you still want to do this?';
+			case 'users.set_icon': return 'Set the icon';
 			case 'users.name': return 'Name';
 			case 'users.profile': return 'Profile';
 			case 'users.profile_placeholder': return 'Please enter a profile of no more than 500 characters.';
 			case 'users.lang_number': return 'Language Setting(mother tongue)';
 			case 'users.learning_lang_number': return 'Learning Language';
 			case 'users.time_zone_name': return 'Time Zone';
+			case 'users.you_cant_change_time_zone': return 'You can not change TimeZone if you have already answered a quiz today. Please try tomorrow.';
 			case 'users.authentication': return 'Authentication';
 			case 'users.email': return 'Email';
 			case 'users.new_password': return 'New Password';
 			case 'users.new_password_placeholder': return 'At least 6 alphanumeric characters';
 			case 'users.new_password_confirmation': return 'Password Confirmation';
 			case 'users.new_password_confirmation_placeholder': return 'Please enter a new password again';
-			case 'users.notification_deliver': return 'Receive email notifications';
+			case 'users.recommend_setting_password': return 'Please set a password so that you can also log in via your email address. Unless you set a password, you will not be able to update your account information.';
+			case 'users.mail_delivered': return 'Receive email notifications';
 			case 'users.updated': return 'Account Updated.';
 			case 'users.failed_to_update': return 'Account could not be updated.';
 			case 'users.destroyed': return 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
@@ -3655,19 +3664,22 @@ extension on _TranslationsJa {
 			case 'users.edit': return 'アカウント設定';
 			case 'users.withdraw': return 'DiQtから退会する';
 			case 'users.withdraw_confirmation': return 'アカウントを削除いたします。削除したアカウントは二度と復元できません。それでもよろしいですか？';
+			case 'users.set_icon': return 'アイコンを設定する';
 			case 'users.name': return 'ユーザー名';
 			case 'users.profile': return 'プロフィール';
 			case 'users.profile_placeholder': return '500文字以内でプロフィールを入力してください。';
 			case 'users.lang_number': return '言語設定(母語)';
 			case 'users.learning_lang_number': return '学習言語';
 			case 'users.time_zone_name': return 'タイムゾーン';
+			case 'users.you_cant_change_time_zone': return '今日すでに問題に解答してしまっている場合、 タイムゾーンを変更することはできません。明日以降にお試しください。';
 			case 'users.authentication': return '認証設定';
 			case 'users.email': return 'メールアドレス';
 			case 'users.new_password': return '新しいパスワード';
 			case 'users.new_password_placeholder': return '半角英数字６文字以上';
 			case 'users.new_password_confirmation': return 'パスワード確認';
 			case 'users.new_password_confirmation_placeholder': return 'もう一度パスワードを入力してください。';
-			case 'users.notification_deliver': return 'メールによる通知を受け取る';
+			case 'users.recommend_setting_password': return 'メールアドレスからもログインできるように、パスワードを設定してください。パスワードを設定しない限り、アカウントの情報を更新することはできません。';
+			case 'users.mail_delivered': return 'メールによる通知を受け取る';
 			case 'users.updated': return 'アカウントを更新しました。';
 			case 'users.failed_to_update': return 'アカウントを更新できませんでした。';
 			case 'users.destroyed': return '退会が完了しました。ご利用いただき、誠にありがとうございました。';

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/heading/medium_green.dart';
+import 'package:booqs_mobile/components/user/form/password_setting_recommendation.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class UserFormAuthentication extends StatelessWidget {
     return Column(
       children: [
         HeadingMediumGreen(label: t.users.authentication),
+        const UserFormPasswordSettingRecommendation(),
         const SizedBox(
           height: 24,
         ),

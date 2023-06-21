@@ -9,6 +9,7 @@ import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:http/http.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:purchases_flutter/object_wrappers.dart';
 
 class RemoteUsers {
@@ -370,5 +371,19 @@ class RemoteUsers {
     }
   }
 
-  //
+  // アイコンをアップデート
+  static Future<Map> uploadIcon({required XFile image}) async {
+    try {
+      final url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/upload_icon');
+      final res = await HttpService.multipartRequest(url: url, image: image);
+      return {'status': res.statusCode, 'message': 'Upload Icon'};
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
 }
