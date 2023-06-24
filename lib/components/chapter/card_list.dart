@@ -1,5 +1,5 @@
+import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/models/chapter.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/components/chapter/card.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class ChapterCardList extends StatelessWidget {
       chapterList.add(ChapterCard(chapter: chapter));
     }
     // 一番下に広告を差し込む
-    chapterList.add(const AppBanner());
+    chapterList.add(const AdBanner());
     return Column(
       children: chapterList,
     );

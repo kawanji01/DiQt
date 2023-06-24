@@ -1,8 +1,8 @@
+import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/answer_analysis/order_select_form.dart';
 import 'package:booqs_mobile/components/answer_analysis/quiz_list_view.dart';
@@ -71,7 +71,7 @@ class AnswerAnalysisIndexPageState
               const SizedBox(
                 height: 80,
               ),
-              const AppBanner(),
+              const AdBanner(),
             ],
           ),
         ),

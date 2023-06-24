@@ -1,10 +1,10 @@
+import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/components/user/calendar.dart';
 import 'package:booqs_mobile/components/user/study_records.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/relationship/follow_button.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
@@ -52,7 +52,7 @@ class UserShowPage extends ConsumerWidget {
           const SizedBox(
             height: 80,
           ),
-          const AppBanner(),
+          const AdBanner(),
         ],
       );
     }

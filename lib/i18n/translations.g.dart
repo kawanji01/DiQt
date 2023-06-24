@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1850 (925 per locale)
+/// Strings: 1852 (926 per locale)
 ///
-/// Built on 2023-06-23 at 01:54 UTC
+/// Built on 2023-06-24 at 04:37 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -873,6 +873,7 @@ class _TranslationsSentencesEn {
 	String get updated => 'Sentence Updated';
 	String get update_failed => 'Failed to update the sentence.';
 	String get destroyed => 'Sentence Destroyed';
+	String no_item_found({required Object keyword}) => 'No example sentences containing "${keyword}" were found.';
 }
 
 // Path: notes
@@ -2095,6 +2096,7 @@ class _TranslationsSentencesJa implements _TranslationsSentencesEn {
 	@override String get updated => '例文が更新されました。';
 	@override String get update_failed => '例文の更新に失敗しました。';
 	@override String get destroyed => '例文が削除されました。';
+	@override String no_item_found({required Object keyword}) => '"${keyword}"が含まれる例文は見つかりませんでした。';
 }
 
 // Path: notes
@@ -3145,6 +3147,7 @@ extension on _TranslationsEn {
 			case 'sentences.updated': return 'Sentence Updated';
 			case 'sentences.update_failed': return 'Failed to update the sentence.';
 			case 'sentences.destroyed': return 'Sentence Destroyed';
+			case 'sentences.no_item_found': return ({required Object keyword}) => 'No example sentences containing "${keyword}" were found.';
 			case 'notes.notes': return 'Notes';
 			case 'notes.note': return 'Note';
 			case 'notes.note_placeholder': return 'A notebook that only you can view. It can also be used as a hint for the question.';
@@ -4078,6 +4081,7 @@ extension on _TranslationsJa {
 			case 'sentences.updated': return '例文が更新されました。';
 			case 'sentences.update_failed': return '例文の更新に失敗しました。';
 			case 'sentences.destroyed': return '例文が削除されました。';
+			case 'sentences.no_item_found': return ({required Object keyword}) => '"${keyword}"が含まれる例文は見つかりませんでした。';
 			case 'notes.notes': return 'ノート';
 			case 'notes.note': return 'ノート';
 			case 'notes.note_placeholder': return 'あなただけが閲覧できるノートです。問題のヒントとしてもご利用いただけます。';

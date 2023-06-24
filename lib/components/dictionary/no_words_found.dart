@@ -1,9 +1,9 @@
+import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/components/lang/large_translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/components/dictionary/new_word_button.dart';
 import 'package:booqs_mobile/components/dictionary/search_by_web_button.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ class DictionaryNoWordsFound extends ConsumerWidget {
             sourceLangNumber: dictionary.langNumberOfEntry,
           ),
           const SizedBox(height: 80),
-          const AppBanner(),
+          const AdBanner(),
         ],
       );
     }

@@ -1,8 +1,8 @@
+import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/answer_history/incorrect_quiz_list_view.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
@@ -58,7 +58,7 @@ class AnswerHistoryTodaysMistakesPageState
               const SizedBox(
                 height: 80,
               ),
-              const AppBanner(),
+              const AdBanner(),
             ],
           ),
         ),

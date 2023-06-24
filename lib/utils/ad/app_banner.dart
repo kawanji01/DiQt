@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/utils/env_handler.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,13 +23,7 @@ class AppBannerState extends ConsumerState<AppBanner> {
   // build を実行する前に実行されるメソッド ref: https://zenn.dev/sugitlab/articles/c38ef8d3035289
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _setAd();
-  }
-
-  Future _setAd() async {
-    final bool isPremium = ref.watch(premiumEnabledProvider);
-    if (isPremium) return;
-
+    // 広告をセット
     BannerAd(
       adUnitId: getAdUnitId(),
       size: widget.adSize ?? AdSize.largeBanner,
@@ -55,12 +47,6 @@ class AppBannerState extends ConsumerState<AppBanner> {
         // テスト用の広告
         return 'ca-app-pub-3940256099942544/2934735716';
       }
-      //if (kDebugMode) {
-      // print('debug');
-      // テスト用の広告
-      //  return 'ca-app-pub-3940256099942544/2934735716';
-      //}
-      // print('not debug');
       String? iosBannerAdID = dotenv.env['IOS_BANNER_AD_ID'];
       return '$iosBannerAdID';
     }
@@ -71,7 +57,6 @@ class AppBannerState extends ConsumerState<AppBanner> {
 
   @override
   Widget build(BuildContext context) {
-    // プレミアム会員なら広告を表示しない。（initState時点で広告を読み込まない）
     if (bannerAd == null) {
       return Container(height: 0);
     }

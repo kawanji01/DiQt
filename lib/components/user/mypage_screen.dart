@@ -1,7 +1,7 @@
+import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/user/calendar.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/components/shared/premium_plan_button.dart';
 import 'package:booqs_mobile/components/user/achievements_button.dart';
 import 'package:booqs_mobile/components/user/drill_in_progress.dart';
@@ -59,7 +59,7 @@ class UserMypageScreen extends StatelessWidget {
             const SizedBox(
               height: 48,
             ),
-            const AppBanner(),
+            const AdBanner(),
           ],
         ),
       ),

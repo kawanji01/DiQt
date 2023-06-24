@@ -1,5 +1,5 @@
+import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
 import 'package:booqs_mobile/components/notice/item_list_view.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class NoticeIndexPageState extends ConsumerState<NoticeIndexPage> {
             SizedBox(
               height: 80,
             ),
-            AppBanner(),
+            AdBanner(),
           ],
         ),
       ),
