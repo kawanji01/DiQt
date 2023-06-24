@@ -1,5 +1,6 @@
+import 'package:booqs_mobile/components/ad/banner.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class DictionaryNoSentencesFound extends StatelessWidget {
         onTap: () {
           SentenceNewPage.push(context, dictionaryId, keyword);
         },
-        child: const SmallOutlineGrayButton(label: '例文を追加する', icon: Icons.add),
+        child: SmallOutlineGrayButton(label: t.sentences.add, icon: Icons.add),
       );
     }
 
@@ -26,13 +27,13 @@ class DictionaryNoSentencesFound extends StatelessWidget {
       children: <Widget>[
         const SizedBox(height: 48),
         Text(
-          '"$keyword"が含まれる例文がありません。',
+          t.sentences.no_item_found(keyword: keyword),
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 40),
         newSentenceButton(),
         const SizedBox(height: 80),
-        const AppBanner(),
+        const AdBanner(),
       ],
     );
   }

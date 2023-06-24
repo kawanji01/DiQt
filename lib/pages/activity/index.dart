@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/utils/ad/app_banner.dart';
+import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/components/activity/item_list_view.dart';
 import 'package:booqs_mobile/components/activity/order_select_form.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class ActivityIndexPage extends ConsumerWidget {
             SizedBox(
               height: 80,
             ),
-            AppBanner(),
+            AdBanner(),
           ],
         ),
       ),
