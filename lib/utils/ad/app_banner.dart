@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -50,11 +51,15 @@ class AppBannerState extends ConsumerState<AppBanner> {
     }
 
     if (Platform.isIOS) {
-      if (kDebugMode) {
-        // print('debug');
+      if (EnvHandler.isDev()) {
         // テスト用の広告
         return 'ca-app-pub-3940256099942544/2934735716';
       }
+      //if (kDebugMode) {
+      // print('debug');
+      // テスト用の広告
+      //  return 'ca-app-pub-3940256099942544/2934735716';
+      //}
       // print('not debug');
       String? iosBannerAdID = dotenv.env['IOS_BANNER_AD_ID'];
       return '$iosBannerAdID';
