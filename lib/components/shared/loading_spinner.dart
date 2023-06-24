@@ -13,6 +13,7 @@ class LoadingSpinner extends StatelessWidget {
           ),
           CircularProgressIndicator(
             semanticsLabel: 'Linear progress indicator',
+            color: Colors.green,
           ),
         ],
       ),
