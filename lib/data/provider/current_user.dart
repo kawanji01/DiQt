@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/consts/time_zone.dart';
+import 'package:booqs_mobile/data/local/secrets.dart';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
@@ -9,7 +10,6 @@ import 'package:booqs_mobile/utils/app_badger_service.dart';
 import 'package:booqs_mobile/utils/locale_handler.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class CurrentUserState extends StateNotifier<User?> {
   // TODO: CurrentUserState を mockにしてテストできるようにしたい。
@@ -22,7 +22,7 @@ class CurrentUserState extends StateNotifier<User?> {
 
   Future<void> logIn(User user) async {
     // サーバーへのリクエストに必要な認証トークンやlocaleは、Provideの寿命より長く持っておきたいのでローカルストレージに保存しておく。
-    await LocalUserInfo.writeAuthToken(user.authToken);
+    await LocalSecrets.writeAuthToken(user.authToken);
     await LocalUserInfo.writeLocale(user.langCode());
     // RevenueCatの認証 参考：https://docs.revenuecat.com/docs/user-ids#logging-back-in
     await PurchaseService.identify(user.id.toString());
@@ -32,9 +32,8 @@ class CurrentUserState extends StateNotifier<User?> {
   // ログアウトしたときや認証用のtokenが無効だった場合にストレージをリセットしたり、RevenueCatからログアウトする。
   Future<void> logOut() async {
     final User? user = state;
-    // ローカルストレージに保存したデータを削除する
-    const storage = FlutterSecureStorage();
-    await storage.deleteAll();
+    // ユーザーの認証情報を削除する
+    await LocalSecrets.deleteSecrets();
     // ホーム画面のアプリのバッジを消す。
     await AppBadgerService.updateReviewBadge(0);
     if (user == null) return;

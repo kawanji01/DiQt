@@ -1,10 +1,12 @@
+import 'package:booqs_mobile/consts/orders.dart';
+import 'package:booqs_mobile/data/local/order_info.dart';
 import 'package:booqs_mobile/data/provider/review.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewOrderSelectForm extends ConsumerWidget {
-  const ReviewOrderSelectForm({Key? key, required this.type}) : super(key: key);
+  const ReviewOrderSelectForm({super.key, required this.type});
   final String type;
 
   @override
@@ -20,55 +22,43 @@ class ReviewOrderSelectForm extends ConsumerWidget {
 
     // 値に対応するフォームのラベル
     String label(String value) {
-      switch (value) {
-        case 'scheduled_date-desc':
-          return t.reviews.scheduled_date_desc;
-        case 'scheduled_date-asc':
-          return t.reviews.scheduled_date_asc;
-        case 'random-random':
-          return t.reviews.random;
-        default:
-          return 'Error';
+      if (reviewOrderList.contains(value)) {
+        // slangだと-が使えないので。
+        final String order = value.replaceAll('-', '_');
+        return t['reviews.$order'];
       }
+      return 'error';
     }
 
-    // ドロップダウンボタンの生成
-    Widget buildDropDown() {
-      return Container(
-        margin: const EdgeInsets.only(top: 24),
-        height: 48,
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(color: Colors.black87)),
-        child: DropdownButton<String>(
-          value: ref.watch(reviewOrderProvider),
-          iconSize: 24,
-          elevation: 16,
-          onChanged: (String? newValue) {
-            if (newValue == null) return;
-            ref.read(reviewOrderProvider.notifier).state = newValue;
-            refresh();
-          },
-          items: <String>[
-            'scheduled_date-desc',
-            'scheduled_date-asc',
-            'random-random',
-          ].map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(label(value),
-                  style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87)),
-            );
-          }).toList(),
-        ),
-      );
-    }
-
-    return buildDropDown();
+    return Container(
+      margin: const EdgeInsets.only(top: 24),
+      height: 48,
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          border: Border.all(color: Colors.black87)),
+      child: DropdownButton<String>(
+        value: ref.watch(reviewOrderProvider),
+        iconSize: 24,
+        elevation: 16,
+        onChanged: (String? newValue) {
+          if (newValue == null) return;
+          ref.read(reviewOrderProvider.notifier).state = newValue;
+          LocalOrderInfo.writeReviewInfo(newValue);
+          refresh();
+        },
+        items: reviewOrderList.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(label(value),
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87)),
+          );
+        }).toList(),
+      ),
+    );
   }
 }

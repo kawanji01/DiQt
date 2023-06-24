@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/remote/dictionaries.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 検索用の辞書ID
@@ -16,8 +17,10 @@ final secondDictionaryProvider = StateProvider<Dictionary?>((ref) => null);
 // おまけにプロバイダは参照されなくなっても破棄されないのがデフォルトの動作であるため、この場合はメモリリークにつながります。
 final asyncDictionaryFamily = FutureProvider.autoDispose
     .family<Dictionary?, int>((ref, dictionaryId) async {
-  final Map? resMap = await RemoteDictionaries.show(dictionaryId);
-  if (resMap == null) return null;
+  final Map resMap = await RemoteDictionaries.show(dictionaryId);
+  if (ErrorHandler.isErrorMap(resMap)) {
+    return null;
+  }
   final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
   return dictionary;
 });

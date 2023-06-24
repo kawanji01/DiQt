@@ -1,5 +1,7 @@
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/data/local/order_info.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/review.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -43,9 +45,12 @@ class ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
     super.initState();
     // プッシュ通知の設定
     PushNotificationHandler.initialize(context);
-    // 解答済の問題のIDのリストをリセットする。
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // 解答済の問題のIDのリストをリセットする。
       ref.read(solvedQuizIdsProvider.notifier).state = [];
+      // riverpodの寿命が切れたときに備えて、storageからorderをセットする。
+      final String reviewOrder = await LocalOrderInfo.reviewOrder();
+      ref.read(reviewOrderProvider.notifier).state = reviewOrder;
     });
   }
 
