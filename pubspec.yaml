@@ -41,7 +41,8 @@ dependencies:
   cupertino_icons: ^1.0.5
   http: ^0.13.5 # APIへのリクエスト
   google_fonts: ^3.0.1 # フォント
-  flutter_secure_storage: ^6.1.0 # クライアント側のセキュアなストレージ
+  flutter_secure_storage: ^6.1.0 # セキュアなローカルストレージ（取得は非同期）
+  shared_preferences: ^2.1.2 # 同期的に取得できる平文のローカルストレージ
   url_launcher: ^6.1.7 # ブラウザを開く
   badges: ^2.0.3 # バッジの表示
   firebase_core: ^2.3.0 # Push通知の実装に利用。参考：https://zuma-lab.com/posts/flutter-fcm-push-notify-development

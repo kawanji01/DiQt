@@ -3,7 +3,7 @@
 /// Locales: 2
 /// Strings: 1850 (925 per locale)
 ///
-/// Built on 2023-06-21 at 05:45 UTC
+/// Built on 2023-06-23 at 01:54 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -270,7 +270,7 @@ class _TranslationsReviewsEn {
 	String get scheduled => 'Scheduled';
 	String get all => 'All';
 	String get order => 'Order';
-	String get random => 'Random';
+	String get random_random => 'Random';
 	String get scheduled_date_desc => 'Latest scheduled';
 	String get scheduled_date_asc => 'Oldest scheduled';
 	String get empty => 'There are no review questions.';
@@ -1492,7 +1492,7 @@ class _TranslationsReviewsJa implements _TranslationsReviewsEn {
 	@override String get scheduled => '予定';
 	@override String get all => 'すべて';
 	@override String get order => '順番';
-	@override String get random => 'ランダム';
+	@override String get random_random => 'ランダム';
 	@override String get scheduled_date_desc => '予定日が新しい順';
 	@override String get scheduled_date_asc => '予定日が古い順';
 	@override String get empty => '復習問題はありません。';
@@ -2641,7 +2641,7 @@ extension on _TranslationsEn {
 			case 'reviews.scheduled': return 'Scheduled';
 			case 'reviews.all': return 'All';
 			case 'reviews.order': return 'Order';
-			case 'reviews.random': return 'Random';
+			case 'reviews.random_random': return 'Random';
 			case 'reviews.scheduled_date_desc': return 'Latest scheduled';
 			case 'reviews.scheduled_date_asc': return 'Oldest scheduled';
 			case 'reviews.empty': return 'There are no review questions.';
@@ -3574,7 +3574,7 @@ extension on _TranslationsJa {
 			case 'reviews.scheduled': return '予定';
 			case 'reviews.all': return 'すべて';
 			case 'reviews.order': return '順番';
-			case 'reviews.random': return 'ランダム';
+			case 'reviews.random_random': return 'ランダム';
 			case 'reviews.scheduled_date_desc': return '予定日が新しい順';
 			case 'reviews.scheduled_date_asc': return '予定日が古い順';
 			case 'reviews.empty': return '復習問題はありません。';

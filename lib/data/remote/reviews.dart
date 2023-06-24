@@ -55,7 +55,7 @@ class RemoteReviews {
   }
 
   // 復習設定の新規作成
-  static Future<Map?> create(int quizId) async {
+  static Future<Map> create({required int quizId}) async {
     try {
       final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/reviews');
       final Map<String, dynamic> body = {
@@ -63,19 +63,15 @@ class RemoteReviews {
       };
 
       final Response res = await HttpService.post(url, body);
-      if (res.statusCode != 200) return null;
-
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 

@@ -1,7 +1,7 @@
-import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/review.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:booqs_mobile/components/review/setting/large_green_button.dart';
@@ -23,71 +23,59 @@ class ReviewSettingLargeButton extends StatefulWidget {
 }
 
 class _ReviewSettingLargeButtonState extends State<ReviewSettingLargeButton> {
-  int? _quizId;
+  bool _isRequesting = false;
   Review? _review;
 
   @override
   void initState() {
-    _quizId = widget.quizId;
     _review = widget.review;
     super.initState();
   }
 
+  //// 復習を設定する。 ////
+  Future _createReview() async {
+    setState(() => _isRequesting = true);
+    EasyLoading.show(status: 'loading...');
+    final Map resMap = await RemoteReviews.create(quizId: widget.quizId);
+    EasyLoading.dismiss();
+    setState(() => _isRequesting = false);
+    if (ErrorHandler.isErrorMap(resMap)) {
+      if (!mounted) return;
+      return ErrorHandler.showErrorSnackBar(context, resMap);
+    }
+    Review newReview = Review.fromJson(resMap['review']);
+    await Toasts.reviewSetting(resMap['message']);
+    setState(() {
+      _review = newReview;
+    });
+  }
+
+  //// 復習設定の間隔変更や削除： リマインダー設定ダイアログを表示する＆ダイアログから設定されたreviewを使ってsetStateで再描画する。 ////
+  Future _editReview(Review review) async {
+    final Review? newReview = await showDialog(
+        context: context,
+        builder: (context) {
+          return ReviewFormDialog(review: review);
+        });
+
+    if (newReview == null) return;
+
+    setState(() {
+      if (newReview.scheduledDate == 'deleted') {
+        _review = null;
+      } else {
+        _review = newReview;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    //// 復習を設定する。 ////
-    Future createReview() async {
-      final String? authToken = await LocalUserInfo.authToken();
-      // ログインしていない場合（トークンがない場合）ユーザーはマイページにリダイレクト
-      if (authToken == null) {
-        if (!mounted) return;
-        const snackBar = SnackBar(content: Text('復習を設定するためには、ログインが必要です。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
-        return;
-      }
-
-      EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteReviews.create(_quizId!);
-      EasyLoading.dismiss();
-
-      if (resMap == null) return;
-
-      Review newReview = Review.fromJson(resMap['review']);
-      await Toasts.reviewSetting(resMap['message']);
-
-      setState(() {
-        _review = newReview;
-      });
-    }
-
-    //// 復習設定の間隔変更や削除： リマインダー設定ダイアログを表示する＆ダイアログから設定されたreviewを使ってsetStateで再描画する。 ////
-    Future editReview(Review review) async {
-      final Review? newReview = await showDialog(
-          context: context,
-          builder: (context) {
-            return ReviewFormDialog(review: review);
-          });
-
-      if (newReview == null) return;
-
-      setState(() {
-        if (newReview.scheduledDate == 'deleted') {
-          _review = null;
-        } else {
-          _review = newReview;
-        }
-      });
-    }
-
     // 復習の作成ボタン
     Widget createButton() {
-      const String label = '覚える';
       return InkWell(
-        onTap: () {
-          createReview();
-        },
-        child: const ReviewLargeOutlineButton(label: label),
+        onTap: _isRequesting ? null : () => _createReview(),
+        child: ReviewLargeOutlineButton(label: t.reviews.memorize),
       );
     }
 
@@ -96,9 +84,7 @@ class _ReviewSettingLargeButtonState extends State<ReviewSettingLargeButton> {
       final String label =
           ReviewHelper.reviewButtonLabel(review.intervalSetting);
       return InkWell(
-        onTap: () {
-          editReview(review);
-        },
+        onTap: () => _editReview(review),
         child: ReviewLargeGreenButton(
           label: label,
         ),

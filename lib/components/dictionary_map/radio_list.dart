@@ -7,7 +7,7 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
-import 'package:booqs_mobile/utils/crashlytics_service.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,18 +33,16 @@ class DictionaryMapRadioListState
   }
 
   Future<void> _loadLastSelectedDictionary() async {
-    final String? selectedDictionaryIdStr =
+    final int? selectedDictionaryId =
         await LocalUserInfo.selectedDictionaryId();
-    if (selectedDictionaryIdStr == null) return;
-    try {
-      final int dictionaryId = int.parse(selectedDictionaryIdStr);
-      final Map? resMap = await RemoteDictionaries.show(dictionaryId);
-      if (resMap == null || resMap['dictionary'] == null) return;
-      final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
-      ref.read(selectedDictionaryProvider.notifier).state = dictionary;
-    } catch (e, str) {
-      CrashlyticsService.recordError(e, str);
+    if (selectedDictionaryId == null) return;
+    final Map resMap = await RemoteDictionaries.show(selectedDictionaryId);
+    if (ErrorHandler.isErrorMap(resMap)) {
+      if (!mounted) return;
+      return ErrorHandler.showErrorSnackBar(context, resMap);
     }
+    final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
+    ref.read(selectedDictionaryProvider.notifier).state = dictionary;
   }
 
   @override
