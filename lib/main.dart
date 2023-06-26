@@ -4,7 +4,6 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/analytics_service.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
-import 'package:booqs_mobile/utils/push_notification_handler.dart';
 import 'package:booqs_mobile/utils/remote_config_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -78,10 +77,8 @@ class DiQtState extends ConsumerState<DiQt> {
   @override
   void initState() {
     super.initState();
-    // プッシュ通知をタップしたときの画面遷移の設定
-    PushNotificationHandler.setTransitonWhenNotificationTapped(context);
-    // localeを設定する
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // localeを設定する
       await ref.read(localeProvider.notifier).setLocale();
     });
   }

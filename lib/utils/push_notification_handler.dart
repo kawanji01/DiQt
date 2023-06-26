@@ -96,18 +96,35 @@ class PushNotificationHandler {
   }
 
   // 通知タップ時の画面遷移先の設定
+  // mainで実行される。
   static void setTransitonWhenNotificationTapped(BuildContext context) {
     // アプリが初めて起動されたときの処理
     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage? message) {
+      //print('message: $message');
+      //final date = message?.data;
+      //print('date: $date');
+      //final String caterogy = message?.data['category'];
+      //print('category: $caterogy');
+
+      final String route = message?.data['route'] ?? '/';
+      //print('route: $route');
       if (message != null) {
-        Navigator.pushNamed(context, message.data['route']);
+        Navigator.of(context).pushNamed(route);
       }
     });
     // バックグラウンドにある状態で通知がタップされたときの処理
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      Navigator.pushNamed(context, message.data['route']);
+      //print('message: $message');
+      //final date = message.data;
+      //print('date: $date');
+      //final String caterogy = message.data['category'];
+      //print('category: $caterogy');
+
+      final String route = message.data['route'] ?? '/';
+      // print('route: $route');
+      Navigator.of(context).pushNamed(route);
     });
   }
   //// Android設定 END ////
@@ -142,4 +159,6 @@ class PushNotificationHandler {
     }
   }
   //// サーバーからプッシュ通知を送れるように、DBのユーザーのDeviceSettingにFCMを保存する END ////
+  ///
+  ///
 }
