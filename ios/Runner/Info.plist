@@ -35,6 +35,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.874138930661-08qjbhrovv58l61b8f72gf83tt7j3h2v</string>
+				<string>net.booqs.diqt</string>
 			</array>
 		</dict>
 	</array>
@@ -46,7 +47,6 @@
 	<array>
 		<string>https</string>
 		<string>http</string>
-		<string>twitter</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

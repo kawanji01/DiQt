@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:booqs_mobile/components/home/dictionary_screen.dart';
 import 'package:booqs_mobile/components/home/loading_screen.dart';
 import 'package:booqs_mobile/components/home/maintenance_screen.dart';
@@ -6,9 +8,13 @@ import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/provider/util.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
+import 'package:booqs_mobile/utils/uni_links_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uni_links/uni_links.dart';
 import 'package:upgrader/upgrader.dart';
 
 // This widget is the home page of your application. It is stateful, meaning
@@ -41,9 +47,13 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class HomePageState extends ConsumerState<HomePage> {
+  StreamSubscription? _sub;
+  String? catchLink;
   @override
   void initState() {
     super.initState();
+    // Deeplinks
+    initUniLinks();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.invalidate(asyncCurrentUserProvider);
       // プッシュ通知をタップしたときの画面遷移の設定
@@ -52,12 +62,42 @@ class HomePageState extends ConsumerState<HomePage> {
     });
   }
 
+  Future<void> initUniLinks() async {
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      final String? initialLink = await getInitialLink();
+      // print('initialLink: $initialLink');
+      if (mounted) {
+        UniLinksHandler.push(context, initialLink);
+      }
+    } on PlatformException catch (e, str) {
+      CrashlyticsService.recordError(e, str);
+    }
+    // Attach a listener to the stream
+    _sub = linkStream.listen((String? link) {
+      // print('link: $link');
+      UniLinksHandler.push(context, link);
+    }, onError: (err) {
+      CrashlyticsService.recordError(err, null);
+    });
+  }
+
+  @override
+  void dispose() {
+    if (_sub != null) {
+      _sub?.cancel();
+      _sub = null;
+    }
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // remoteConfigで設定したメンテナンスフラグがtrueなら、メンテナンス画面を表示する。
     if (ref.watch(remoteConfigServiceProvider).isMaintenanceMode()) {
       return const HomeMaintenanceScreen();
     }
+
     //
     final String minAppVersion =
         ref.watch(remoteConfigServiceProvider).minAppVersion();
