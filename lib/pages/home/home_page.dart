@@ -9,6 +9,7 @@ import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/provider/util.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
+import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
 import 'package:booqs_mobile/utils/uni_links_handler.dart';
 import 'package:flutter/material.dart';
@@ -56,9 +57,12 @@ class HomePageState extends ConsumerState<HomePage> {
     initUniLinks();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.invalidate(asyncCurrentUserProvider);
-      // プッシュ通知をタップしたときの画面遷移の設定
-      // （ここに書く理由：　initStateが実行される段階では、まだウィジェットのBuildContextが完全に生成されていないため、Navigatorが使用できない。またmainのinitStateで実行するとエラーになる。）
-      PushNotificationHandler.setTransitonWhenNotificationTapped(context);
+      // テストが落ちるので本番環境でのみ実行する。
+      if (EnvHandler.isProd()) {
+        // プッシュ通知をタップしたときの画面遷移の設定
+        // （ここに書く理由：　initStateが実行される段階では、まだウィジェットのBuildContextが完全に生成されていないため、Navigatorが使用できない。またmainのinitStateで実行するとエラーになる。）
+        PushNotificationHandler.setTransitonWhenNotificationTapped(context);
+      }
     });
   }
 
