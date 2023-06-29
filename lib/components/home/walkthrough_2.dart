@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeWalkthrough2 extends StatelessWidget {
   const HomeWalkthrough2({super.key});
@@ -18,15 +17,19 @@ class HomeWalkthrough2 extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 32),
-          child: Text(
-            t.home.welcome_description_2,
-            style: GoogleFonts.mPlusRounded1c(
+          child: Text(t.home.welcome_description_2,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+                fontWeight: FontWeight.normal,
+              )
+              /* style: GoogleFonts.mPlusRounded1c(
               textStyle: Theme.of(context).textTheme.headlineSmall,
               color: Colors.white,
               fontSize: 20.0,
               fontWeight: FontWeight.normal,
-            ),
-          ),
+            ), */
+              ),
         ),
       ],
     );

@@ -1,7 +1,6 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/session/sign_up.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeSignUpButton extends StatelessWidget {
   const HomeSignUpButton({super.key});
@@ -28,12 +27,17 @@ class HomeSignUpButton extends StatelessWidget {
             color: Colors.white),
         child: Text(
           t.sessions.sign_up,
-          style: GoogleFonts.mPlusRounded1c(
-            textStyle: Theme.of(context).textTheme.headlineMedium,
+          style: const TextStyle(
             color: Colors.green,
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),
+          /* style: GoogleFonts.mPlusRounded1c(
+            textStyle: Theme.of(context).textTheme.headlineMedium,
+            color: Colors.green,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ), */
         ),
       ),
     );

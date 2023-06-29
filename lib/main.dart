@@ -13,7 +13,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 Future<void> main() async {
@@ -93,9 +92,9 @@ class DiQtState extends ConsumerState<DiQt> {
       theme: ThemeData(
         primarySwatch: Colors.green,
         brightness: Brightness.light,
-        textTheme: GoogleFonts.notoSansTextTheme(
+        /* textTheme: GoogleFonts.notoSansTextTheme(
           Theme.of(context).textTheme,
-        ),
+        ), */
       ),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
