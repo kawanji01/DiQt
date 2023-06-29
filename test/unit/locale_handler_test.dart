@@ -13,7 +13,7 @@ void main() {
       expect(LocaleHandler.localeByCode('ja'), equals('ja'));
       // デバイスのlocale（例: en-US）はそのまま返す。
       final String deviceLocale =
-          WidgetsBinding.instance.window.locale.toLanguageTag();
+          WidgetsBinding.instance.platformDispatcher.locale.toLanguageTag();
       expect(LocaleHandler.localeByCode(deviceLocale), equals(deviceLocale));
     });
 
@@ -28,7 +28,7 @@ void main() {
         'LocaleHandler.localeByCode returns device languageTag(languageCode-CountryCode) for unsupported language codes',
         () {
       final String deviceLocale =
-          WidgetsBinding.instance.window.locale.toLanguageTag();
+          WidgetsBinding.instance.platformDispatcher.locale.toLanguageTag();
       expect(
           LocaleHandler.localeByCode(unsupportedLocale), equals(deviceLocale));
     });
@@ -57,7 +57,7 @@ void main() {
         'LocaleHandler.localeForAPIByCode returns device locale for unsupported language codes',
         () {
       final String deviceLangCode =
-          WidgetsBinding.instance.window.locale.languageCode;
+          WidgetsBinding.instance.platformDispatcher.locale.languageCode;
       expect(LocaleHandler.localeForAPIByCode(unsupportedLocale),
           equals(deviceLangCode));
     });

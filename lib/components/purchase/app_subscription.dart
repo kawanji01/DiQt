@@ -18,9 +18,9 @@ class PurchaseAppSubscription extends StatelessWidget {
     Widget productIdentifier() {
       switch (entitlementInfo.productIdentifier) {
         case 'diqt_500_1m_2w0':
-          return Column(
+          return const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   '月額プレミアムプラン',
                   style: TextStyle(
@@ -35,9 +35,9 @@ class PurchaseAppSubscription extends StatelessWidget {
               ]);
 
         case 'diqt_5000_1y_2w0':
-          return Column(
+          return const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   '年額プレミアムプラン',
                   style: TextStyle(

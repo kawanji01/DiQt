@@ -29,8 +29,8 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
   Widget build(BuildContext context) {
     Widget form() {
       if (_isSubmitted) {
-        return Column(
-          children: const [
+        return const Column(
+          children: [
             Text('お問い合わせいただき、誠にありがとうございます！！\n必要に応じて、後日メールにてご返信させていただく場合もございます。',
                 style: TextStyle(
                     fontSize: 18,

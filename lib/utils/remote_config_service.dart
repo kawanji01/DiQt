@@ -29,7 +29,6 @@ class RemoteConfigService {
   bool isMaintenanceMode() {
     final String key = EnvHandler.isProd() ? "maintenance" : "maintenance_dev";
     final bool isMaintenanceMode = FirebaseRemoteConfig.instance.getBool(key);
-    // print('$key: $isMaintenanceMode');
     return isMaintenanceMode;
   }
 
@@ -38,7 +37,6 @@ class RemoteConfigService {
     final String key =
         EnvHandler.isProd() ? "min_app_version" : "min_app_version_dev";
     final String minAppVersion = FirebaseRemoteConfig.instance.getString(key);
-    print('$key: $minAppVersion');
     return minAppVersion;
   }
 }

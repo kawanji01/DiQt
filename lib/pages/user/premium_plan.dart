@@ -39,8 +39,8 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
           color: Colors.transparent,
-          child: Column(
-            children: const <Widget>[
+          child: const Column(
+            children: <Widget>[
               SizedBox(
                 height: 24,
               ),

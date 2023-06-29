@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.4.14+180
+version: 1.4.14+181
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -39,8 +39,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
-  http: ^0.13.5 # APIへのリクエスト
-  google_fonts: ^3.0.1 # フォント
+  http: ^0.13.6 # APIへのリクエスト
+  google_fonts: ^4.0.3  # フォント
   flutter_secure_storage: ^6.1.0 # セキュアなローカルストレージ（取得は非同期）
   shared_preferences: ^2.1.2 # 同期的に取得できる平文のローカルストレージ
   url_launcher: ^6.1.7 # ブラウザを開く
@@ -67,7 +67,7 @@ dependencies:
   flash: ^2.0.5 # 問題解答時のフィードバックなどに使うトースト
   flutter_animated_dialog: ^2.0.1 # アニメーションするダイアログ
   confetti: ^0.7.0 # 紙吹雪
-  audioplayers: ^1.1.1 # 音声の再生
+  audioplayers: ^4.1.0 # 音声の再生
   infinite_scroll_pagination: ^3.2.0 # 無限スクロール
   visibility_detector: ^0.3.3 # 無限スクロールで、次のアイテムを読み込むためにページの下端への到達を検知する
   timeago: ^3.3.0 # ~分前などのタイムスタンプを実装する
@@ -79,11 +79,11 @@ dependencies:
   flutter_markdown: ^0.6.14 # マークダウン記法の実装
   markdown: ^7.0.1 # flutter_markdownが依存しているパッケージ
   dotted_border: ^2.0.0+3 # DiQt markdownの embedded_sentence で利用
-  intl: ^0.17.0 # 日付などの多言語化。DateTimeFormatterなどで利用
+  intl: ^0.18.0 # 日付などの多言語化。DateTimeFormatterなどで利用
   cell_calendar: ^0.8.0 # カレンダー
   slang: ^3.15.0 # 多言語化
   slang_flutter: ^3.15.0 # 多言語化
-  flutter_app_badger: ^1.5.0 # ホーム画面にバッジを表示する
+  flutter_app_badger: ^1.5.0 # 端末のホーム画面のアプリのアイコンにバッジを表示する
   firebase_crashlytics: ^3.0.17 # クラッシュレポート
   mockito: ^5.4.0 # 自動テストのMockライブラリ
   upgrader: ^6.0.1 # 強制アップデート
@@ -91,6 +91,11 @@ dependencies:
   firebase_remote_config: ^4.0.0 # メンテナンスモードなどを管理する remote config
   image_picker: ^0.8.9 # 画像のアップロード
   uni_links: ^0.5.1 # DeepLinksの実装
+dependency_overrides:
+  macos_ui:
+    git:
+      url: https://github.com/Mayb3Nots/macos_ui.git
+      ref: dev
 
 
   

@@ -60,14 +60,14 @@ class HomePageState extends ConsumerState<HomePage> {
       // テストが落ちるので本番環境でのみ実行する。
       if (EnvHandler.isProd()) {
         // プッシュ通知をタップしたときの画面遷移の設定
-        // （ここに書く理由：　initStateが実行される段階では、まだウィジェットのBuildContextが完全に生成されていないため、Navigatorが使用できない。またmainのinitStateで実行するとエラーになる。）
+        // （ここに書く理由：　initStateが実行される段階では、まだウィジェットのBuildContextが完全に生成されていないため、Navigatorが使用できない。
+        // またmainのinitStateで実行すると、routesの読み込みが終わっていないためかエラーになる。）
         PushNotificationHandler.setTransitonWhenNotificationTapped(context);
       }
     });
   }
 
   Future<void> initUniLinks() async {
-    // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       final String? initialLink = await getInitialLink();
       // print('initialLink: $initialLink');
@@ -102,7 +102,7 @@ class HomePageState extends ConsumerState<HomePage> {
       return const HomeMaintenanceScreen();
     }
 
-    //
+    // アプリの最低バージョン
     final String minAppVersion =
         ref.watch(remoteConfigServiceProvider).minAppVersion();
 
@@ -111,7 +111,7 @@ class HomePageState extends ConsumerState<HomePage> {
             final String locale = ref.watch(localeProvider);
             return UpgradeAlert(
               upgrader: Upgrader(
-                  // 開発環境で無理やりダイアログを表示する。本番環境では必ずコメントアウトする。
+                  // 開発環境で無理やりダイアログを表示するフラグ。本番環境では必ずコメントアウトする。
                   // debugDisplayAlways: true,
                   // remoteConfigで設定したアプリの最低バージョン以下なら、upgradeダイアログを表示する
                   minAppVersion: minAppVersion,
