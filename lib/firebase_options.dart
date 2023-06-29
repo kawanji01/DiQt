@@ -25,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -53,6 +50,7 @@ class DefaultFirebaseOptions {
     projectId: 'reference-point-286301',
     authDomain: 'reference-point-286301.firebaseapp.com',
     storageBucket: 'reference-point-286301.appspot.com',
+    measurementId: 'G-NX6PMCQ9WH',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -72,5 +70,16 @@ class DefaultFirebaseOptions {
     androidClientId: '874138930661-2o3baqfd693vqh288iig6ra4u3k97qbj.apps.googleusercontent.com',
     iosClientId: '874138930661-08qjbhrovv58l61b8f72gf83tt7j3h2v.apps.googleusercontent.com',
     iosBundleId: 'com.booqs.booqsMobile',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCti_dQYWJ3H6iGUr6jvzh1Ia1AZvy3MiQ',
+    appId: '1:874138930661:ios:5df0166f014b5df1fdb30c',
+    messagingSenderId: '874138930661',
+    projectId: 'reference-point-286301',
+    storageBucket: 'reference-point-286301.appspot.com',
+    androidClientId: '874138930661-2o3baqfd693vqh288iig6ra4u3k97qbj.apps.googleusercontent.com',
+    iosClientId: '874138930661-1s0o8qqnmhth8kkf62kt67tb5mhlckd0.apps.googleusercontent.com',
+    iosBundleId: 'com.booqs.diqt',
   );
 }

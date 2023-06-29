@@ -182,31 +182,6 @@ class PurchaseService {
     return '';
   }
 
-  // 廃止予定
-  // 購入処理
-  // 購入が完了したらtrueを返す。購入がキャンセルされるか、DBの同期が失敗したらfalseを返す。
-  Future<bool> subscribe(String productID) async {
-    try {
-      isExecuting = true;
-      // クライアント側の購入処理
-      await Purchases.purchaseProduct(productID);
-
-      // DB側の購入情報の同期
-      // パスワードの入力の不要なキャッシュから購入（Vending PurchaserInfo from cache.）された場合、
-      // syncSubscription(info)で契約処理を行なってしまうと、isActive: falseのinfoが引き渡されることによって、
-      // syncSubscription(info)内のinfo.entitlements.active.isNotEmptyをすり抜けて、契約処理ではなく、解約処理が実行されてしまう。
-      // そのため、あらかじめ購入とわかっている場合には、同期にはsyncSubscriptionではなく、getOrCreateSubscriberを使う。
-      final isSubscribed = await getOrCreateSubscriber();
-      return isSubscribed;
-    } catch (e, str) {
-      CrashlyticsService.recordError(e, str);
-      return false;
-    } finally {
-      // errorであれreturnで外部コードに抜ける前であれ、常に実行する。ref: https://ja.javascript.info/try-catch#ref-1685
-      isExecuting = false;
-    }
-  }
-
   // DBの同期処理
   // restoreや_purchaserInfoUpdated（コールバック）で利用
   // PurchaserInfo（購入情報）を引数にして、ユーザーの購入状況（契約中か解約済か）をDB側で同期する。

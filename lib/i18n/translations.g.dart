@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1852 (926 per locale)
+/// Strings: 1854 (927 per locale)
 ///
-/// Built on 2023-06-24 at 04:37 UTC
+/// Built on 2023-06-29 at 09:03 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -160,6 +160,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsAnswerAnalysesEn answerAnalyses = _TranslationsAnswerAnalysesEn._(_root);
 	late final _TranslationsAchievementsEn achievements = _TranslationsAchievementsEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
+	late final _TranslationsExperiencePointsEn experiencePoints = _TranslationsExperiencePointsEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
 	late final _TranslationsNotesEn notes = _TranslationsNotesEn._(_root);
 	late final _TranslationsTimeZoneEn timeZone = _TranslationsTimeZoneEn._(_root);
@@ -827,6 +828,16 @@ class _TranslationsLangEn {
 	String get zu_ZA => 'Zulu (South Africa)';
 }
 
+// Path: experiencePoints
+class _TranslationsExperiencePointsEn {
+	_TranslationsExperiencePointsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String to_the_next_level({required Object points}) => '${points} EXP to the next level.';
+}
+
 // Path: sentences
 class _TranslationsSentencesEn {
 	_TranslationsSentencesEn._(this._root);
@@ -1383,6 +1394,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsAnswerAnalysesJa answerAnalyses = _TranslationsAnswerAnalysesJa._(_root);
 	@override late final _TranslationsAchievementsJa achievements = _TranslationsAchievementsJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
+	@override late final _TranslationsExperiencePointsJa experiencePoints = _TranslationsExperiencePointsJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
 	@override late final _TranslationsNotesJa notes = _TranslationsNotesJa._(_root);
 	@override late final _TranslationsTimeZoneJa timeZone = _TranslationsTimeZoneJa._(_root);
@@ -2048,6 +2060,16 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get uz_UZ => 'ウズベク語（ウズベキスタン）';
 	@override String get vi_VN => 'ベトナム語（ベトナム）';
 	@override String get zu_ZA => 'ズールー語（南アフリカ）';
+}
+
+// Path: experiencePoints
+class _TranslationsExperiencePointsJa implements _TranslationsExperiencePointsEn {
+	_TranslationsExperiencePointsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String to_the_next_level({required Object points}) => '次のレベルまであと${points}EXP';
 }
 
 // Path: sentences
@@ -3108,6 +3130,7 @@ extension on _TranslationsEn {
 			case 'lang.uz_UZ': return 'Uzbek (Uzbekistan)';
 			case 'lang.vi_VN': return 'Vietnamese (Vietnam)';
 			case 'lang.zu_ZA': return 'Zulu (South Africa)';
+			case 'experiencePoints.to_the_next_level': return ({required Object points}) => '${points} EXP to the next level.';
 			case 'sentences.sentences': return 'Sentences';
 			case 'sentences.sentence': return 'Sentence';
 			case 'sentences.add': return 'Add sentence';
@@ -4042,6 +4065,7 @@ extension on _TranslationsJa {
 			case 'lang.uz_UZ': return 'ウズベク語（ウズベキスタン）';
 			case 'lang.vi_VN': return 'ベトナム語（ベトナム）';
 			case 'lang.zu_ZA': return 'ズールー語（南アフリカ）';
+			case 'experiencePoints.to_the_next_level': return ({required Object points}) => '次のレベルまであと${points}EXP';
 			case 'sentences.sentences': return '例文';
 			case 'sentences.sentence': return '例文';
 			case 'sentences.add': return '例文を追加する';

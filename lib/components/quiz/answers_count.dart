@@ -17,25 +17,16 @@ class QuizAnswersCount extends ConsumerWidget {
           context: context,
           duration: const Duration(seconds: 2),
           builder: (context, controller) {
-            // ref: https://resocoder.com/2021/01/30/snackbar-toast-dialog-in-flutter-flash-package/
-            // ref: https://itnext.io/highly-customizable-toast-dialog-snackbar-in-flutter-2c27e533dd63
-            return Flash(
+            return FlashBar(
               controller: controller,
-              barrierDismissible: false,
-              alignment: Alignment.topCenter,
-              borderRadius: BorderRadius.circular(12),
+              position: FlashPosition.top,
               backgroundColor: Colors.black87,
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                child: Text(
-                  "$todaysAnswersCount問解答",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+              content: Text(
+                "$todaysAnswersCount問解答",
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             );

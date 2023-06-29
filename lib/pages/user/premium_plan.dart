@@ -48,7 +48,6 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
               SizedBox(
                 height: 48,
               ),
-              // PurchaseSubscriptionButton(),
               SizedBox(
                 height: 24,
               ),
