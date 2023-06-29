@@ -6,6 +6,8 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 class RemoteConfigService {
   // 初期化
   Future<void> initRemoteConfig() async {
+    // デスクトップでは実行しない
+    if (EnvHandler.isMobile() == false) return;
     // ref: https://firebase.google.com/docs/remote-config/get-started?platform=flutter&hl=ja
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
@@ -27,6 +29,8 @@ class RemoteConfigService {
 
   // メンテナンスモードか検証する
   bool isMaintenanceMode() {
+    // デスクトップでは実行しない
+    if (EnvHandler.isMobile() == false) return false;
     final String key = EnvHandler.isProd() ? "maintenance" : "maintenance_dev";
     final bool isMaintenanceMode = FirebaseRemoteConfig.instance.getBool(key);
     return isMaintenanceMode;
@@ -34,6 +38,9 @@ class RemoteConfigService {
 
   // アプリの最低バージョン
   String minAppVersion() {
+    // デスクトップでは最低バージョンを手動で指定
+    if (EnvHandler.isMobile() == false) return '1.4.14';
+
     final String key =
         EnvHandler.isProd() ? "min_app_version" : "min_app_version_dev";
     final String minAppVersion = FirebaseRemoteConfig.instance.getString(key);

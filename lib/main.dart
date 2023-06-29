@@ -3,11 +3,10 @@ import 'package:booqs_mobile/firebase_options.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/analytics_service.dart';
+import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:booqs_mobile/utils/remote_config_service.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -31,7 +30,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   // クラッシュレポートの設定
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  CrashlyticsService.initialize();
   // Google Analyticsの設定
   await AnalyticsService().logBeginCheckout();
   // remoteConfigの設定
