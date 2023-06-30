@@ -29,7 +29,7 @@ class AnswerGoalAchievementScreenState
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Stack(
           children: [
-            Column(children: const [
+            const Column(children: [
               SizedBox(height: 40),
               Text('こんなにもご利用いただき、本当にありがとうございます！！🙇‍♂️\nDiQtは気に入っていただけましたでしょうか？',
                   style: TextStyle(

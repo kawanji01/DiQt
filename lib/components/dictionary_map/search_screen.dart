@@ -10,8 +10,8 @@ class DictionaryMapSearchScreen extends StatelessWidget {
     return Container(
       key: const Key('DictionaryMapSearchScreen'),
       margin: const EdgeInsets.only(top: 16),
-      child: Column(
-        children: const <Widget>[
+      child: const Column(
+        children: <Widget>[
           SizedBox(height: 16),
           DictionaryMapSearchForm(),
           // FlutterでRenderFlex overflowedのエラーが発生するとき、それは通常、フレックスボックス（Row、Column、Flex）内のウィジェットが利用可能なスペースを超えて拡大しようとしたときに発生する。

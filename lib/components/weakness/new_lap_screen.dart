@@ -66,7 +66,7 @@ class WeaknessNewLapScreenState extends ConsumerState<WeaknessNewLapScreen> {
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
       child: Stack(
         children: [
-          Column(children: const [
+          const Column(children: [
             SizedBox(height: 16),
             explanation,
             SizedBox(height: 16),

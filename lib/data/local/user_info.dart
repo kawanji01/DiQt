@@ -14,7 +14,7 @@ class LocalUserInfo {
       return locale;
     } else {
       // ローカルストレージにユーザーの有効なlocaleがなければデバイスのlocaleを利用する。
-      return WidgetsBinding.instance.window.locale.toLanguageTag();
+      return WidgetsBinding.instance.platformDispatcher.locale.toLanguageTag();
     }
   }
 

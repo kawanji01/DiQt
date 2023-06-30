@@ -1,8 +1,8 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
-class SessionDividerWidget extends StatelessWidget {
-  const SessionDividerWidget({Key? key}) : super(key: key);
+class SessionDivider extends StatelessWidget {
+  const SessionDivider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

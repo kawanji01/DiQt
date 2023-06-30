@@ -9,7 +9,7 @@ class LocaleHandler {
     if (langCodeSupported(langCode)) {
       return langCode!;
     }
-    return WidgetsBinding.instance.window.locale.toLanguageTag();
+    return WidgetsBinding.instance.platformDispatcher.locale.toLanguageTag();
   }
 
   // 言語コードから「API」用のlocale情報を取得する。
@@ -21,7 +21,7 @@ class LocaleHandler {
     }
     // 引数の langCode にAPIが対応していないならデバイスのlangCodeを検討する
     final String deviceLangCode =
-        WidgetsBinding.instance.window.locale.languageCode;
+        WidgetsBinding.instance.platformDispatcher.locale.languageCode;
     if (langCodeSupported(deviceLangCode)) {
       return deviceLangCode;
     }

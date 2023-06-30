@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.4.14+180
+version: 1.4.14+183
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -39,58 +39,61 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
-  http: ^0.13.5 # APIへのリクエスト
-  google_fonts: ^3.0.1 # フォント
-  flutter_secure_storage: ^6.1.0 # セキュアなローカルストレージ（取得は非同期）
+  http: ^0.13.6 # APIへのリクエスト (保留)
+  # google_fonts: ^4.0.3  # フォント (保留) どうにもmacOSでは読み込めないみたい。
+  flutter_secure_storage: ^8.0.0 # セキュアなローカルストレージ（取得は非同期）
   shared_preferences: ^2.1.2 # 同期的に取得できる平文のローカルストレージ
-  url_launcher: ^6.1.7 # ブラウザを開く
-  badges: ^2.0.3 # バッジの表示
-  firebase_core: ^2.3.0 # Push通知の実装に利用。参考：https://zuma-lab.com/posts/flutter-fcm-push-notify-development
-  firebase_messaging: ^14.1.2  # Push通知の実装に利用する。参考： https://firebase.flutter.dev/docs/messaging/overview/#installation
-  flutter_local_notifications: ^12.0.4 # AndroidでフォアグラウンドでPush通知を送れるようにする。参照：https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_messaging/firebase_messaging/example/pubspec.yaml / https://zenn.dev/rafekun/articles/ef8a22f9fe90bd
-  device_info_plus: ^8.0.0 # デバイスのユニークIDやデバイスの名前、OSを取得する。
-  flutter_tts: ^3.6.2 # 読み上げ
-  flutter_dotenv: ^5.0.2 # 環境変数の管理
-  sign_in_with_apple: ^4.2.0 # Apple認証
-  nonce: ^1.2.0 # Apple認証のリプレイアタック対策
-  crypto: ^3.0.2 # Apple認証のリプレイアタック対策
-  google_sign_in: ^5.4.2 # Google認証
+  url_launcher: ^6.1.11 # ブラウザを開く
+  badges: ^3.1.1 # バッジの表示
+  firebase_core: ^2.14.0 # Push通知の実装に利用。参考：https://zuma-lab.com/posts/flutter-fcm-push-notify-development
+  firebase_messaging: ^14.6.4  # Push通知の実装に利用する。参考： https://firebase.flutter.dev/docs/messaging/overview/#installation
+  flutter_local_notifications: ^14.1.1 # AndroidでフォアグラウンドでPush通知を送れるようにする。参照：https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_messaging/firebase_messaging/example/pubspec.yaml / https://zenn.dev/rafekun/articles/ef8a22f9fe90bd
+  device_info_plus: ^9.0.2 # デバイスのユニークIDやデバイスの名前、OSを取得する。
+  share_plus: ^7.0.2 # 連続解答記録のシェアなど
+  firebase_analytics: ^10.4.3 # Google analytics
+  firebase_remote_config: ^4.2.3 # メンテナンスモードなどを管理する remote config
+  firebase_crashlytics: ^3.3.3 # クラッシュレポート
+  flutter_tts: ^3.6.2 # 読み上げ （保留）
+  flutter_dotenv: ^5.1.0 # 環境変数の管理
+  sign_in_with_apple: ^5.0.0 # Apple認証
+  google_sign_in: ^6.1.4 # Google認証
   flutter_easyloading: ^3.0.5 # 画面全体にローディングを表示する
-  in_app_review: ^2.0.4 # アプリ内でレビューできるようにする。ref: https://pub.dev/packages/in_app_review
-  flutter_typeahead: ^3.2.4 # 検索時のautocomplete
-  percent_indicator: ^3.4.0 # 経験値のインジケーター
-  eval_ex: ^1.1.0 # レベル実装のために、log10（ 10 を底とした対数を返すメソッド）が必要なため。
-  purchases_flutter: ^4.11.1 # 課金実装
-  google_mobile_ads: ^2.3.0 # 広告
+  in_app_review: ^2.0.6 # アプリ内でレビューできるようにする。ref: https://pub.dev/packages/in_app_review
+  flutter_typeahead: ^4.6.2 # 検索時のautocomplete
+  percent_indicator: ^4.2.3 # 経験値のインジケーター
+  eval_ex: ^1.1.7 # レベル実装のために、log10（ 10 を底とした対数を返すメソッド）が必要なため。
+  purchases_flutter: ^5.2.3 # 課金実装
+  google_mobile_ads: ^3.0.0 # 広告
   app_tracking_transparency: ^2.0.4 # iOSで広告表示のためにユーザー情報(IDFA（Identifier for Advertiser）)を収集するためのダイアログを表示する
   flutter_riverpod: ^2.3.6 # 状態管理
-  flash: ^2.0.5 # 問題解答時のフィードバックなどに使うトースト
-  flutter_animated_dialog: ^2.0.1 # アニメーションするダイアログ
+  flash: ^3.0.5+1 # 問題解答時のフィードバックなどに使うトースト
+  flutter_animated_dialog: ^2.0.1 # アニメーションするダイアログ （削除予定）
   confetti: ^0.7.0 # 紙吹雪
-  audioplayers: ^1.1.1 # 音声の再生
+  audioplayers: ^4.1.0 # 音声の再生
   infinite_scroll_pagination: ^3.2.0 # 無限スクロール
   visibility_detector: ^0.3.3 # 無限スクロールで、次のアイテムを読み込むためにページの下端への到達を検知する
-  timeago: ^3.3.0 # ~分前などのタイムスタンプを実装する
-  path: ^1.8.2 # Achievementの獲得時の画像で。cloudinaryの画像合成を利用するためにimageのURLからファイル名を取得するために利用
-  cached_network_image: ^3.2.2 # ネットワーク経由で画像を表示し、画像をキャッシュディレクトリに保持する。
-  share_plus: ^6.3.0 # 連続解答記録のシェアなど
-  responsive_builder: ^0.4.3 # 画面幅に合わせたレスポンシブデザイン
-  font_awesome_flutter: ^10.2.1 # font awesome
-  flutter_markdown: ^0.6.14 # マークダウン記法の実装
-  markdown: ^7.0.1 # flutter_markdownが依存しているパッケージ
+  timeago: ^3.4.0 # ~分前などのタイムスタンプを実装する
+  path: ^1.8.3 # Achievementの獲得時の画像で。cloudinaryの画像合成を利用するためにimageのURLからファイル名を取得するために利用
+  cached_network_image: ^3.2.3 # ネットワーク経由で画像を表示し、画像をキャッシュディレクトリに保持する。
+  responsive_builder: ^0.7.0 # 画面幅に合わせたレスポンシブデザイン
+  font_awesome_flutter: ^10.5.0 # font awesome
+  flutter_markdown: ^0.6.15 # マークダウン記法の実装
+  markdown: ^7.1.0 # flutter_markdownが依存しているパッケージ
   dotted_border: ^2.0.0+3 # DiQt markdownの embedded_sentence で利用
-  intl: ^0.17.0 # 日付などの多言語化。DateTimeFormatterなどで利用
+  intl: ^0.18.0 # 日付などの多言語化。DateTimeFormatterなどで利用
   cell_calendar: ^0.8.0 # カレンダー
-  slang: ^3.15.0 # 多言語化
-  slang_flutter: ^3.15.0 # 多言語化
-  flutter_app_badger: ^1.5.0 # ホーム画面にバッジを表示する
-  firebase_crashlytics: ^3.0.17 # クラッシュレポート
-  mockito: ^5.4.0 # 自動テストのMockライブラリ
-  upgrader: ^6.0.1 # 強制アップデート
-  firebase_analytics: ^10.4.2 # Google analytics
-  firebase_remote_config: ^4.0.0 # メンテナンスモードなどを管理する remote config
-  image_picker: ^0.8.9 # 画像のアップロード
+  slang: ^3.19.0 # 多言語化
+  slang_flutter: ^3.19.0 # 多言語化
+  flutter_app_badger: ^1.5.0 # 端末のホーム画面のアプリのアイコンにバッジを表示する
+  mockito: ^5.4.2 # 自動テストのMockライブラリ
+  upgrader: ^7.1.0 # 強制アップデート
+  image_picker: ^1.0.0 # 画像のアップロード
   uni_links: ^0.5.1 # DeepLinksの実装
+dependency_overrides:
+  macos_ui:
+    git:
+      url: https://github.com/Mayb3Nots/macos_ui.git
+      ref: dev
 
 
   

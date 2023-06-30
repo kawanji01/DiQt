@@ -77,9 +77,9 @@ class _PurchaseContractDetailsState extends State<PurchaseContractDetails> {
               border: Border.all(color: Colors.green, width: 1),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text('ご契約プランがありません', style: headingStyle),
                 Text(
                   'entitlementInfo is Empty',

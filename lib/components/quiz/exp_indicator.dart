@@ -84,9 +84,9 @@ class QuizExpIndicatorState extends ConsumerState<QuizExpIndicator> {
           style: const TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         ),
-        linearStrokeCap: LinearStrokeCap.roundAll,
+        barRadius: const Radius.circular(8),
         progressColor: Colors.orange,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        // padding: const EdgeInsets.symmetric(horizontal: 16),
         onAnimationEnd: () {
           setState(() {
             _exp = widget.initialExp + widget.gainedExp;
@@ -109,9 +109,9 @@ class QuizExpIndicatorState extends ConsumerState<QuizExpIndicator> {
           style: const TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         ),
-        linearStrokeCap: LinearStrokeCap.roundAll,
+        barRadius: const Radius.circular(8),
         progressColor: Colors.orange,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        // padding: const EdgeInsets.symmetric(horizontal: 16),
         onAnimationEnd: () {
           afterAnimation();
         },

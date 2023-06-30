@@ -12,8 +12,8 @@ class ActivityIndexPage extends ConsumerWidget {
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(vertical: 28),
-        child: Column(
-          children: const <Widget>[
+        child: const Column(
+          children: <Widget>[
             ActivitiesOrderSelectForm(),
             SizedBox(
               height: 32,

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
@@ -12,8 +11,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:crypto/crypto.dart';
-import 'package:nonce/nonce.dart';
 
 class SessionAppleButton extends ConsumerStatefulWidget {
   const SessionAppleButton({Key? key}) : super(key: key);
@@ -25,8 +22,7 @@ class SessionAppleButton extends ConsumerStatefulWidget {
 class SessionAppleButtonState extends ConsumerState<SessionAppleButton> {
   @override
   Widget build(BuildContext context) {
-    final rawNonce = Nonce.generate();
-    final state = Nonce.generate();
+    
     String? clientId = dotenv.env['IOS_BUNDLE_ID'];
     // AndroidとWebではService IDがclientIdとなる。
     if (Platform.isAndroid) clientId = dotenv.env['ANDROID_SERVICE_ID'];
@@ -48,10 +44,7 @@ class SessionAppleButtonState extends ConsumerState<SessionAppleButton> {
                 '${DiQtURL.root()}/auth/apple/callback_on_android',
               ),
             ),
-            // nonce : リプレイアタック対策。　参考： https://medium.com/flutter-jp/sign-in-with-apple-d0d123cbbe17
-            nonce: sha256.convert(utf8.encode(rawNonce)).toString(),
-            // state: CSRF対策
-            state: state,
+            
           );
           // 画面全体にローディングを表示
           EasyLoading.show(status: 'loading...');

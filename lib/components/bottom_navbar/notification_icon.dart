@@ -10,12 +10,12 @@ class BottomNavbarNotificationIcon extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // 未受領の実績メダルがあるなら、それを伝える
     if (ref.watch(rewardRemainedProvider)) {
-      return badges.Badge(
-        badgeContent: const Icon(
+      return const badges.Badge(
+        badgeContent: Icon(
           Icons.military_tech,
           color: Colors.white,
         ),
-        child: const Icon(Icons.notifications),
+        child: Icon(Icons.notifications),
       );
     }
 

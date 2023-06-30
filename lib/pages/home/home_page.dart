@@ -8,14 +8,11 @@ import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/provider/util.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
 import 'package:booqs_mobile/utils/uni_links_handler.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:uni_links/uni_links.dart';
 import 'package:upgrader/upgrader.dart';
 
 // This widget is the home page of your application. It is stateful, meaning
@@ -60,30 +57,23 @@ class HomePageState extends ConsumerState<HomePage> {
       // テストが落ちるので本番環境でのみ実行する。
       if (EnvHandler.isProd()) {
         // プッシュ通知をタップしたときの画面遷移の設定
-        // （ここに書く理由：　initStateが実行される段階では、まだウィジェットのBuildContextが完全に生成されていないため、Navigatorが使用できない。またmainのinitStateで実行するとエラーになる。）
+        // （ここに書く理由：　initStateが実行される段階では、まだウィジェットのBuildContextが完全に生成されていないため、Navigatorが使用できない。
+        // またmainのinitStateで実行すると、routesの読み込みが終わっていないためかエラーになる。）
         PushNotificationHandler.setTransitonWhenNotificationTapped(context);
       }
     });
   }
 
   Future<void> initUniLinks() async {
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      final String? initialLink = await getInitialLink();
-      // print('initialLink: $initialLink');
-      if (mounted) {
-        UniLinksHandler.push(context, initialLink);
-      }
-    } on PlatformException catch (e, str) {
-      CrashlyticsService.recordError(e, str);
-    }
+    if (EnvHandler.isDesktop()) return;
+
+    final String? initialLink = await UniLinksHandler.getInitLink();
+    // print('initialLink: $initialLink');
+    if (!mounted) return;
+    UniLinksHandler.push(context, initialLink);
+
     // Attach a listener to the stream
-    _sub = linkStream.listen((String? link) {
-      // print('link: $link');
-      UniLinksHandler.push(context, link);
-    }, onError: (err) {
-      CrashlyticsService.recordError(err, null);
-    });
+    _sub = UniLinksHandler.linkStreamListen(context);
   }
 
   @override
@@ -102,7 +92,7 @@ class HomePageState extends ConsumerState<HomePage> {
       return const HomeMaintenanceScreen();
     }
 
-    //
+    // アプリの最低バージョン
     final String minAppVersion =
         ref.watch(remoteConfigServiceProvider).minAppVersion();
 
@@ -111,7 +101,7 @@ class HomePageState extends ConsumerState<HomePage> {
             final String locale = ref.watch(localeProvider);
             return UpgradeAlert(
               upgrader: Upgrader(
-                  // 開発環境で無理やりダイアログを表示する。本番環境では必ずコメントアウトする。
+                  // 開発環境で無理やりダイアログを表示するフラグ。本番環境では必ずコメントアウトする。
                   // debugDisplayAlways: true,
                   // remoteConfigで設定したアプリの最低バージョン以下なら、upgradeダイアログを表示する
                   minAppVersion: minAppVersion,

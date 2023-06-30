@@ -43,9 +43,9 @@ class AnswerWeaknessClearScreenState
       width: ResponsiveValues.dialogWidth(context),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
-      child: Stack(
+      child: const Stack(
         children: [
-          Column(children: const [
+          Column(children: [
             SizedBox(height: 16),
             Text('素晴らしい！！\n苦手な問題をすべて解きました！！',
                 style: TextStyle(
@@ -53,8 +53,8 @@ class AnswerWeaknessClearScreenState
                     fontWeight: FontWeight.bold,
                     color: Colors.orange)),
           ]),
-          const DialogCloseButton(),
-          const DialogConfetti(),
+          DialogCloseButton(),
+          DialogConfetti(),
         ],
       ),
     );

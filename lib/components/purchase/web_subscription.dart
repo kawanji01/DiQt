@@ -21,9 +21,9 @@ class PurchaseWebSubscription extends StatelessWidget {
             border: Border.all(color: Colors.green, width: 1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text('Webで契約しています',
                   style: TextStyle(
                       fontSize: 20,

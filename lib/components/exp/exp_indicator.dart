@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -61,9 +62,9 @@ class ExpExpIndicator extends StatelessWidget {
           style:
               const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        linearStrokeCap: LinearStrokeCap.roundAll,
+        barRadius: const Radius.circular(8),
         progressColor: Colors.orange,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        // padding: const EdgeInsets.symmetric(horizontal: 16),
       );
     }
 
@@ -77,7 +78,8 @@ class ExpExpIndicator extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 16),
             alignment: Alignment.centerLeft,
-            child: Text('次のレベルまであと${expForNextLevel}EXP',
+            child: Text(
+                t.experiencePoints.to_the_next_level(points: expForNextLevel),
                 style: const TextStyle(color: Colors.black87, fontSize: 16)),
           ),
         ],

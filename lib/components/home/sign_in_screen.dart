@@ -17,7 +17,7 @@ class HomeSignInScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           horizontal: ResponsiveValues.horizontalMargin(context),
         ),
-        child: Column(children: const [
+        child: const Column(children: [
           Expanded(
             child: HomeWalkthrough(),
             //child: HomeIntroduction(),

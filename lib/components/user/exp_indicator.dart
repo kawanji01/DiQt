@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
 import 'package:flutter/material.dart';
@@ -78,15 +79,15 @@ class UserExpIndicator extends StatelessWidget {
               style: const TextStyle(
                   color: Colors.white, fontWeight: FontWeight.bold),
             ),
-            linearStrokeCap: LinearStrokeCap.roundAll,
+            barRadius: const Radius.circular(8),
             progressColor: Colors.orange,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
           ),
           //
           Container(
             padding: const EdgeInsets.only(top: 16),
             alignment: Alignment.centerLeft,
-            child: Text('次のレベルまであと${expForNextLevel}EXP',
+            child: Text(
+                t.experiencePoints.to_the_next_level(points: expForNextLevel),
                 style: const TextStyle(color: Colors.black87, fontSize: 16)),
           ),
           status(),

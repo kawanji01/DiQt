@@ -3,6 +3,7 @@ import 'package:booqs_mobile/data/local/secrets.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/device_info_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class PushNotificationHandler {
   //// 初期化 START ////
   static Future<bool> initialize(BuildContext context) async {
+    if (EnvHandler.isDesktop()) return false;
+
     final String? token = await LocalSecrets.authToken();
     // トークンがない == ログインしていない 場合は終了
     if (token == null) return false;
@@ -98,6 +101,8 @@ class PushNotificationHandler {
   // 通知タップ時の画面遷移先の設定
   // mainで実行される。
   static void setTransitonWhenNotificationTapped(BuildContext context) {
+    if (EnvHandler.isDesktop()) return;
+
     // アプリが初めて起動されたときの処理
     FirebaseMessaging.instance
         .getInitialMessage()

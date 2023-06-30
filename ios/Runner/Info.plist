@@ -57,9 +57,9 @@
 	<key>NSUserTrackingUsageDescription</key>
 	<string>「許可」するとお客様に最適化された広告が表示されます。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>アプリが写真を選択するためには、フォトライブラリへのアクセスが必要です。</string>
+	<string>アプリはアイコンを設定するために、フォトライブラリへアクセスします。</string>
 	<key>NSCameraUsageDescription</key>
-	<string>アプリが写真を撮影するためにはカメラへのアクセスが必要です。</string>
+	<string>アプリはアイコンを設定するために、カメラへアクセスします。</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

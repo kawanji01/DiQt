@@ -1,11 +1,8 @@
+import 'package:booqs_mobile/components/session/social_auth.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/session/log_in.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/session/apple_button.dart';
-import 'package:booqs_mobile/components/session/divider_widget.dart';
-import 'package:booqs_mobile/components/session/google_button.dart';
-import 'package:booqs_mobile/components/session/twitter_button.dart';
 import 'package:booqs_mobile/components/session/sign_up_form.dart';
 import 'package:flutter/material.dart';
 
@@ -37,19 +34,8 @@ class SessionSignUpPage extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              const SessionDividerWidget(),
-              const SizedBox(
-                height: 24,
-              ),
-              const SessionGoogleButton(),
-              const SizedBox(
-                height: 24,
-              ),
-              const SessionAppleButton(),
-              const SizedBox(
-                height: 24,
-              ),
-              const SessionTwitterButton(),
+              const SessionSocialAuth(),
+              const SizedBox(height: 24),
 
               // login recommendation
               InkWell(
