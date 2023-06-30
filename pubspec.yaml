@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.4.14+183
+version: 1.4.15+183
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -39,7 +39,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
-  http: ^0.13.6 # APIへのリクエスト (保留)
+  http: ^0.13.6 # APIへのリクエスト (他のパッケージがまだ０に依存してるので１系に挙げられない)
   # google_fonts: ^4.0.3  # フォント (保留) どうにもmacOSでは読み込めないみたい。
   flutter_secure_storage: ^8.0.0 # セキュアなローカルストレージ（取得は非同期）
   shared_preferences: ^2.1.2 # 同期的に取得できる平文のローカルストレージ
@@ -55,7 +55,7 @@ dependencies:
   firebase_crashlytics: ^3.3.3 # クラッシュレポート
   flutter_tts: ^3.6.2 # 読み上げ （保留）
   flutter_dotenv: ^5.1.0 # 環境変数の管理
-  sign_in_with_apple: ^5.0.0 # Apple認証
+  sign_in_with_apple: ^4.3.0 # Apple認証 (５に挙げるとAndroidのビルドが通らなくなる)
   google_sign_in: ^6.1.4 # Google認証
   flutter_easyloading: ^3.0.5 # 画面全体にローディングを表示する
   in_app_review: ^2.0.6 # アプリ内でレビューできるようにする。ref: https://pub.dev/packages/in_app_review
@@ -69,11 +69,11 @@ dependencies:
   flash: ^3.0.5+1 # 問題解答時のフィードバックなどに使うトースト
   flutter_animated_dialog: ^2.0.1 # アニメーションするダイアログ （削除予定）
   confetti: ^0.7.0 # 紙吹雪
-  audioplayers: ^4.1.0 # 音声の再生
+  audioplayers: ^3.0.1 # 音声の再生 （４系に上げるとandroidのビルドに失敗する。ref: https://github.com/bluefireteam/audioplayers/issues/1474 ）
   infinite_scroll_pagination: ^3.2.0 # 無限スクロール
   visibility_detector: ^0.3.3 # 無限スクロールで、次のアイテムを読み込むためにページの下端への到達を検知する
   timeago: ^3.4.0 # ~分前などのタイムスタンプを実装する
-  path: ^1.8.3 # Achievementの獲得時の画像で。cloudinaryの画像合成を利用するためにimageのURLからファイル名を取得するために利用
+  path: ^1.8.3 # Achievementの獲得時の画像で。cloudinaryの画像合成を利用するためにimageのURLからファイル名を取得するために利用。
   cached_network_image: ^3.2.3 # ネットワーク経由で画像を表示し、画像をキャッシュディレクトリに保持する。
   responsive_builder: ^0.7.0 # 画面幅に合わせたレスポンシブデザイン
   font_awesome_flutter: ^10.5.0 # font awesome
