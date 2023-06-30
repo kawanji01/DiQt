@@ -5,13 +5,13 @@ import 'package:flutter/foundation.dart';
 class CrashlyticsService {
   static initialize() {
     // デスクトップでは実行しない
-    if (EnvHandler.isMobile() == false) return;
+    if (EnvHandler.isDesktop()) return;
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   }
 
   static recordError(dynamic exception, StackTrace? stack) {
     // デスクトップでは実行しない
-    if (EnvHandler.isMobile() == false) return;
+    if (EnvHandler.isDesktop()) return;
     // 本番環境以外では送信しない。
     if (EnvHandler.isProd()) {
       FirebaseCrashlytics.instance.recordError(exception, stack);

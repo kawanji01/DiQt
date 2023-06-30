@@ -6,6 +6,10 @@ class EnvHandler {
     return Platform.isAndroid || Platform.isIOS;
   }
 
+  static bool isDesktop() {
+    return !isMobile();
+  }
+
   static bool isDev() {
     return const String.fromEnvironment("flavor") == 'dev';
   }

@@ -1,10 +1,9 @@
+import 'package:booqs_mobile/components/purchase/desktop_screen.dart';
+import 'package:booqs_mobile/components/purchase/mobile_screen.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/analytics_service.dart';
-import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/purchase/introduction.dart';
-import 'package:booqs_mobile/components/purchase/introduction_footer.dart';
-import 'package:booqs_mobile/components/purchase/restore_button.dart';
+import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 
@@ -34,35 +33,9 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
       appBar: AppBar(
         title: Text(t.purchase.premium_plan),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.symmetric(
-              horizontal: ResponsiveValues.horizontalMargin(context)),
-          color: Colors.transparent,
-          child: const Column(
-            children: <Widget>[
-              SizedBox(
-                height: 24,
-              ),
-              PurchaseIntroduction(),
-              SizedBox(
-                height: 48,
-              ),
-              SizedBox(
-                height: 24,
-              ),
-              PurchaseIntroductionFooter(),
-              SizedBox(
-                height: 32,
-              ),
-              PurchaseRestoreButton(),
-              SizedBox(
-                height: 80,
-              ),
-            ],
-          ),
-        ),
-      ),
+      body: EnvHandler.isMobile()
+          ? const PurchaseMobileScreen()
+          : const PurchaseDesktopScreen(),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

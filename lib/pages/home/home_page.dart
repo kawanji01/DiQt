@@ -8,14 +8,11 @@ import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/provider/util.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
 import 'package:booqs_mobile/utils/uni_links_handler.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:uni_links/uni_links.dart';
 import 'package:upgrader/upgrader.dart';
 
 // This widget is the home page of your application. It is stateful, meaning
@@ -68,22 +65,15 @@ class HomePageState extends ConsumerState<HomePage> {
   }
 
   Future<void> initUniLinks() async {
-    try {
-      final String? initialLink = await getInitialLink();
-      // print('initialLink: $initialLink');
-      if (mounted) {
-        UniLinksHandler.push(context, initialLink);
-      }
-    } on PlatformException catch (e, str) {
-      CrashlyticsService.recordError(e, str);
-    }
+    if (EnvHandler.isDesktop()) return;
+
+    final String? initialLink = await UniLinksHandler.getInitLink();
+    // print('initialLink: $initialLink');
+    if (!mounted) return;
+    UniLinksHandler.push(context, initialLink);
+
     // Attach a listener to the stream
-    _sub = linkStream.listen((String? link) {
-      // print('link: $link');
-      UniLinksHandler.push(context, link);
-    }, onError: (err) {
-      CrashlyticsService.recordError(err, null);
-    });
+    _sub = UniLinksHandler.linkStreamListen(context);
   }
 
   @override

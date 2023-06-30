@@ -15,7 +15,6 @@ class RemoteSessions {
   // メール認証
   Future<Map> login(String email, String password) async {
     try {
-      print('login');
       // デバイスの識別IDなどを取得する
       final deviceInfo = DeviceInfoService();
       final String platform = deviceInfo.getPlatform();
@@ -25,7 +24,6 @@ class RemoteSessions {
 
       final Uri url =
           Uri.parse('${DiQtURL.root(locale: locale)}/api/v1/mobile/sessions');
-      print(url);
       final Map<String, dynamic> body = {
         'email': email,
         'password': password,

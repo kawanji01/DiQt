@@ -4,6 +4,7 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/analytics_service.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
+import 'package:booqs_mobile/utils/mobile_ad_service.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:booqs_mobile/utils/remote_config_service.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 Future<void> main() async {
   // 環境変数の読み込み　ref： https://pub.dev/packages/flutter_dotenv
@@ -35,7 +35,8 @@ Future<void> main() async {
   // remoteConfigの設定
   await RemoteConfigService().initRemoteConfig();
   // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
-  MobileAds.instance.initialize();
+  MobileAdsService.initilize();
+  // MobileAds.instance.initialize();
   // 画面の向きの固定 ref: https://qiita.com/osamu1203/items/6172df89f5270060a44d
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp, //縦固定
