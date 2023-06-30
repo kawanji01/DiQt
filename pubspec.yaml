@@ -73,7 +73,7 @@ dependencies:
   infinite_scroll_pagination: ^3.2.0 # 無限スクロール
   visibility_detector: ^0.3.3 # 無限スクロールで、次のアイテムを読み込むためにページの下端への到達を検知する
   timeago: ^3.4.0 # ~分前などのタイムスタンプを実装する
-  path: ^1.8.3 # Achievementの獲得時の画像で。cloudinaryの画像合成を利用するためにimageのURLからファイル名を取得するために利用
+  path: ^1.8.2 # Achievementの獲得時の画像で。cloudinaryの画像合成を利用するためにimageのURLからファイル名を取得するために利用。.3にあげるとgithub actionsのテストに失敗する
   cached_network_image: ^3.2.3 # ネットワーク経由で画像を表示し、画像をキャッシュディレクトリに保持する。
   responsive_builder: ^0.7.0 # 画面幅に合わせたレスポンシブデザイン
   font_awesome_flutter: ^10.5.0 # font awesome
