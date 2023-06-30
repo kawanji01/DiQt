@@ -86,7 +86,7 @@ dependencies:
   slang_flutter: ^3.19.0 # 多言語化
   flutter_app_badger: ^1.5.0 # 端末のホーム画面のアプリのアイコンにバッジを表示する
   mockito: ^5.4.2 # 自動テストのMockライブラリ
-  upgrader: ^7.1.0 # 強制アップデート
+  upgrader: ^7.0.2 # 強制アップデート
   image_picker: ^1.0.0 # 画像のアップロード
   uni_links: ^0.5.1 # DeepLinksの実装
 dependency_overrides:

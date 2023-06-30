@@ -21,7 +21,7 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '3.7.10'
+          flutter-version: '3.10.5'
       - name: set up .env # flutter pub get を成功させるために、空の.envを作成する。
         run: |
           echo 'VAR_NAME=${{ secrets.VAR_NAME }}' >> .env
