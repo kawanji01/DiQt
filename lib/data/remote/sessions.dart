@@ -111,9 +111,10 @@ class RemoteSessions {
       final String deviceIdentifier = await deviceInfo.getIndentifier();
       final String deviceName = await deviceInfo.getName();
       ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する(END) ////
+      final String locale = await LocalUserInfo.localeForAPI();
 
-      final Uri url =
-          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sessions/google');
+      final Uri url = Uri.parse(
+          '${DiQtURL.root(locale: locale)}/api/v1/mobile/sessions/google');
       final Map<String, dynamic> body = {
         'identity_token': googleAuth.idToken,
         'device_identifier': deviceIdentifier,
@@ -147,9 +148,10 @@ class RemoteSessions {
       final String deviceIdentifier = await deviceInfo.getIndentifier();
       final String deviceName = await deviceInfo.getName();
       ////  認証時のリクエストに含めるデバイスの識別IDなどを取得する(END) ////
+      final String locale = await LocalUserInfo.localeForAPI();
 
-      final Uri url =
-          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sessions/apple');
+      final Uri url = Uri.parse(
+          '${DiQtURL.root(locale: locale)}/api/v1/mobile/sessions/apple');
       final Map<String, dynamic> body = {
         'identity_token': appleCredential.identityToken,
         'authorization_code': appleCredential.authorizationCode,

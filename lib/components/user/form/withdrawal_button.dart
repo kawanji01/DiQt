@@ -2,7 +2,7 @@ import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/pages/session/transition.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -39,7 +39,7 @@ class UserFormWithdrawalButtonState
         if (!mounted) return;
         final snackBar = SnackBar(content: Text(t.users.destroyed));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        UserMyPage.push(context);
+        SessionTransitionPage.push(context, 'logOut');
       }
     }
 

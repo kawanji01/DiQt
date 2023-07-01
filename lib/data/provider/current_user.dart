@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/consts/time_zone.dart';
-import 'package:booqs_mobile/data/local/secrets.dart';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/users.dart';

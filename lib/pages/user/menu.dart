@@ -15,6 +15,7 @@ import 'package:booqs_mobile/components/button/large_green_button.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/user/logout_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserMenuPage extends ConsumerWidget {

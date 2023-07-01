@@ -28,6 +28,9 @@ class LocalUserInfo {
   static Future<void> logOut() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
+    //
+    await prefs.remove('locale');
+
     // 次のアップデートで修正
     await LocalSecrets.deleteSecrets();
   }
