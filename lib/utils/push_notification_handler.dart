@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:booqs_mobile/data/local/secrets.dart';
+import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/device_info_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -14,7 +14,7 @@ class PushNotificationHandler {
   static Future<bool> initialize(BuildContext context) async {
     if (EnvHandler.isDesktop()) return false;
 
-    final String? token = await LocalSecrets.authToken();
+    final String? token = await LocalUserInfo.authToken();
     // トークンがない == ログインしていない 場合は終了
     if (token == null) return false;
     // ダイアログで通知の許可をもらう

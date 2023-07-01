@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1854 (927 per locale)
+/// Strings: 1856 (928 per locale)
 ///
-/// Built on 2023-06-29 at 09:03 UTC
+/// Built on 2023-07-01 at 00:52 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1076,6 +1076,7 @@ class _TranslationsAnswerEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String answers_count({required Object count}) => '${count} answers';
 	String get limit_reached => 'Limit Reached';
 	String limit_reached_description({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
 }
@@ -2310,6 +2311,7 @@ class _TranslationsAnswerJa implements _TranslationsAnswerEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String answers_count({required Object count}) => '${count}問解答';
 	@override String get limit_reached => '制限に達しました';
 	@override String limit_reached_description({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
 }
@@ -3335,6 +3337,7 @@ extension on _TranslationsEn {
 			case 'timeZone.nuku_alofa': return 'Nuku\'alofa';
 			case 'timeZone.samoa': return 'Samoa';
 			case 'timeZone.tokelau_is': return 'Tokelau Is.';
+			case 'answer.answers_count': return ({required Object count}) => '${count} answers';
 			case 'answer.limit_reached': return 'Limit Reached';
 			case 'answer.limit_reached_description': return ({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
 			case 'quizzes.quiz': return 'Quiz';
@@ -4270,6 +4273,7 @@ extension on _TranslationsJa {
 			case 'timeZone.nuku_alofa': return 'ヌクアロファ';
 			case 'timeZone.samoa': return 'サモア';
 			case 'timeZone.tokelau_is': return 'トケラウ諸島';
+			case 'answer.answers_count': return ({required Object count}) => '${count}問解答';
 			case 'answer.limit_reached': return '制限に達しました';
 			case 'answer.limit_reached_description': return ({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
 			case 'quizzes.quiz': return '問題';

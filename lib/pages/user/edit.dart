@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -8,7 +9,7 @@ import 'package:booqs_mobile/components/user/form/fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserEditPage extends ConsumerWidget {
+class UserEditPage extends ConsumerStatefulWidget {
   const UserEditPage({super.key});
 
   static Future push(BuildContext context) async {
@@ -16,10 +17,20 @@ class UserEditPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final User? user = ref.watch(currentUserProvider);
-    if (user == null) return Container();
+  UserEditPageState createState() => UserEditPageState();
+}
 
+class UserEditPageState extends ConsumerState<UserEditPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.invalidate(asyncCurrentUserProvider);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(t.users.edit),
@@ -29,7 +40,15 @@ class UserEditPage extends ConsumerWidget {
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context)),
           padding: const EdgeInsets.symmetric(vertical: 32),
-          child: UserFormFields(user: user),
+          child: ref.watch(asyncCurrentUserProvider).when(
+              skipLoadingOnRefresh: false,
+              data: (User? user) {
+                if (user == null) return const Text('User does not exist.');
+                return UserFormFields(user: user);
+                //return Container();
+              },
+              error: (err, str) => Text('Errors: $err'),
+              loading: () => const LoadingSpinner()),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

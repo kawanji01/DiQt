@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,13 +22,26 @@ class QuizAnswersCount extends ConsumerWidget {
               controller: controller,
               position: FlashPosition.top,
               backgroundColor: Colors.black87,
-              content: Text(
-                "$todaysAnswersCount問解答",
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+              content: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.check,
+                    color: Colors.white,
+                    size: 18.0,
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Text(
+                        t.answer.answers_count(count: todaysAnswersCount),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold)),
+                  )
+                ],
               ),
             );
           },

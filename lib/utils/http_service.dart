@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:booqs_mobile/data/local/secrets.dart';
+import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -104,7 +104,7 @@ class HttpService {
     final String basicAuth =
         'Basic ${base64Encode(utf8.encode('$apiKey:$secret'))}';
 
-    final String? token = await LocalSecrets.authToken();
+    final String? token = await LocalUserInfo.authToken();
 
     // multipartRequest用のheader
     if (multipart) {

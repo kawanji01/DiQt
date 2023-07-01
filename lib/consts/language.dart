@@ -1,6 +1,6 @@
-// デフォルトの言語は英語（21）
-const String defaultLangCode = 'en';
-const int defaultLangNumber = 21;
+// デフォルトの言語は日本語（44）
+const String defaultLangCode = 'ja';
+const int defaultLangNumber = 44;
 // 多言語化(i18n)に対応している言語番号
 const List<int> supportedLangNumbers = [21, 44];
 
