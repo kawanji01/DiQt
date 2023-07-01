@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/local/secrets.dart';
 import 'package:booqs_mobile/utils/locale_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -5,6 +6,32 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Providerが消えても保存しておきたいユーザー情報
 // Providerの設定は再起動（Restart）などすると消えるので、authTokenやlocaleなど半永続的に持ちたいデータはLocalStoregeに保存しておく。
 class LocalUserInfo {
+  // ユーザーの認証情報を取得する
+  static Future<String?> authToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    // return token;
+    // 次のアップデートで修正
+    return await LocalSecrets.authToken();
+  }
+
+  // ユーザーの認証情報を書き込む
+  static Future<void> writeAuthToken(String? token) async {
+    if (token == null) return;
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('token', token);
+    // 次のアップデートで修正
+    await LocalSecrets.writeAuthToken(token);
+  }
+
+  // ログアウト時に認証情報を削除する
+  static Future<void> logOut() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('token');
+    // 次のアップデートで修正
+    await LocalSecrets.deleteSecrets();
+  }
+
   // ユーザーのlocaleを取得する
   // Provider が消えても locale設定を維持するために、localeはSecureStoreageに保存しておく。
   static Future<String> locale() async {

@@ -22,7 +22,7 @@ class CurrentUserState extends StateNotifier<User?> {
 
   Future<void> logIn(User user) async {
     // サーバーへのリクエストに必要な認証トークンやlocaleは、Provideの寿命より長く持っておきたいのでローカルストレージに保存しておく。
-    await LocalSecrets.writeAuthToken(user.authToken);
+    await LocalUserInfo.writeAuthToken(user.authToken);
     await LocalUserInfo.writeLocale(user.langCode());
     // RevenueCatの認証 参考：https://docs.revenuecat.com/docs/user-ids#logging-back-in
     await PurchaseService.identify(user.id.toString());
@@ -33,7 +33,7 @@ class CurrentUserState extends StateNotifier<User?> {
   Future<void> logOut() async {
     final User? user = state;
     // ユーザーの認証情報を削除する
-    await LocalSecrets.deleteSecrets();
+    await LocalUserInfo.logOut();
     // ホーム画面のアプリのバッジを消す。
     await AppBadgerService.updateReviewBadge(0);
     if (user == null) return;
