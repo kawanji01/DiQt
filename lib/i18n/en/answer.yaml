@@ -1,2 +1,3 @@
+answers_count: '${count} answers'
 limit_reached: 'Limit Reached'
 limit_reached_description: 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!'
