@@ -2,6 +2,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavbarNotificationIcon extends ConsumerWidget {
   const BottomNavbarNotificationIcon({Key? key}) : super(key: key);
@@ -11,8 +12,9 @@ class BottomNavbarNotificationIcon extends ConsumerWidget {
     // 未受領の実績メダルがあるなら、それを伝える
     if (ref.watch(rewardRemainedProvider)) {
       return const badges.Badge(
-        badgeContent: Icon(
-          Icons.military_tech,
+        badgeContent: FaIcon(
+          FontAwesomeIcons.medal,
+          size: 16,
           color: Colors.white,
         ),
         child: Icon(Icons.notifications),
@@ -35,7 +37,7 @@ class BottomNavbarNotificationIcon extends ConsumerWidget {
     return badges.Badge(
       badgeContent: Text(
         counterStr,
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white, fontSize: 16),
       ),
       child: const Icon(Icons.notifications),
     );
