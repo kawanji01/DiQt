@@ -23,7 +23,7 @@ class BottomNavbarReviewIcon extends ConsumerWidget {
     return badges.Badge(
       badgeContent: Text(
         counterStr,
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white, fontSize: 14),
       ),
       child: const Icon(Icons.access_alarm),
     );

@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class UserAchievementsButton extends ConsumerWidget {
   const UserAchievementsButton({Key? key, required this.user})
@@ -24,7 +25,11 @@ class UserAchievementsButton extends ConsumerWidget {
               40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
         ),
         onPressed: () => {moveToAchievementsPage()},
-        icon: const Icon(Icons.military_tech, color: Colors.white),
+        icon: const FaIcon(
+          FontAwesomeIcons.medal,
+          size: 16,
+          color: Colors.white,
+        ),
         label: Text(
           '獲得メダルをみる(${user.achievementMapsCount}/39)',
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
