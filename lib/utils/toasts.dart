@@ -23,7 +23,7 @@ class Toasts {
   static Future<void> reviewSetting(String text) async {
     Toasts.showBlack(
       Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Icon(
             Icons.alarm,
