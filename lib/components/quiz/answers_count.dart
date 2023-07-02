@@ -17,13 +17,13 @@ class QuizAnswersCount extends ConsumerWidget {
         showFlash(
           context: context,
           duration: const Duration(seconds: 2),
-          builder: (context, controller) {
+          builder: (dialogContext, controller) {
             return FlashBar(
               controller: controller,
               position: FlashPosition.top,
               backgroundColor: Colors.black87,
               content: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(
                     Icons.check,
@@ -33,14 +33,11 @@ class QuizAnswersCount extends ConsumerWidget {
                   const SizedBox(
                     width: 8,
                   ),
-                  Expanded(
-                    child: Text(
-                        t.answer.answers_count(count: todaysAnswersCount),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold)),
-                  )
+                  Text(t.answer.answers_count(count: todaysAnswersCount),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
                 ],
               ),
             );

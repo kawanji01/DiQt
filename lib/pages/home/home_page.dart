@@ -71,10 +71,12 @@ class HomePageState extends ConsumerState<HomePage> {
     final String? initialLink = await UniLinksHandler.getInitLink();
     // print('initialLink: $initialLink');
     if (!mounted) return;
-    UniLinksHandler.push(context, initialLink);
-
-    // Attach a listener to the stream
-    _sub = UniLinksHandler.linkStreamListen(context);
+    if (initialLink != null) {
+      UniLinksHandler.push(context, initialLink);
+    } else {
+      // Attach a listener to the stream
+      _sub = UniLinksHandler.linkStreamListen(context);
+    }
   }
 
   @override
