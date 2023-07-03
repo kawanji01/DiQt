@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:booqs_mobile/data/remote/words.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
 
 // 参考： https://ichi.pro/flutter-de-o-tokonpuri-to-kino-o-jissosuru-hoho-209603487537223
 class WordTypeahead {
@@ -9,16 +11,22 @@ class WordTypeahead {
     List<String> entries = [];
 
     if (query.isEmpty && query.length < 3) {
-      // print('Query needs to be at least 3 chars');
+      if (kDebugMode) {
+        print('Query needs to be at least 3 chars');
+      }
       return Future.value([]);
     }
 
-    final Map? resMap = await RemoteWords.autocomplete(dictionaryId, query);
-
-    if (resMap != null) {
-      resMap['entries'].forEach((entry) => entries.add(entry));
+    final Map resMap = await RemoteWords.autocomplete(dictionaryId, query);
+    if (ErrorHandler.isErrorMap(resMap)) {
+      if (kDebugMode) {
+        print('Error');
+      }
+      return Future.value([]);
     }
 
-    return Future.value(entries);
+    resMap['entries'].forEach((entry) => entries.add(entry));
+    List<String> uniqueEntries = entries.toSet().toList();
+    return Future.value(uniqueEntries);
   }
 }

@@ -58,6 +58,7 @@ class DictionaryMapRadioListState
         groupValue:
             ref.watch(selectedDictionaryProvider.select((value) => value?.id)),
         onChanged: (value) {
+          FocusScope.of(context).unfocus();
           ref.read(selectedDictionaryProvider.notifier).state = dictionary;
           // アプリ再起動時に選択し直さなくても良いように、localStorageに選択した辞書情報を保存しておく。
           LocalUserInfo.writeSelectedDictionaryId(dictionary.id);
