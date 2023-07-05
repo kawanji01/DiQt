@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/dictionary.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/guideline.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -76,9 +77,9 @@ class DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
               DictionaryGuidelinePage.push(context),
             },
             icon: const Icon(Icons.policy_outlined, color: Colors.white),
-            label: const Text(
-              '編集ガイドライン',
-              style: TextStyle(
+            label: Text(
+              t.dictionaries.guideline,
+              style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                   color: Colors.white),

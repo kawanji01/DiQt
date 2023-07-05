@@ -38,10 +38,10 @@ class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
         updateProviders(resMap);
         final AnswerCreator answerCreator =
             AnswerCreator.fromJson(resMap['answer_creator']);
-        // awaitをつけるとAnswerRewardを表示が重なった時にLooking up a deactivated widget's ancestorエラーが起きる
-        AnswerFeedback.call(answerCreator);
         final bool effectEnabled = ref.watch(effectEnabledProvider);
         if (effectEnabled == false) return;
+        // awaitをつけるとAnswerRewardを表示が重なった時にLooking up a deactivated widget's ancestorエラーが起きる
+        AnswerFeedback.call(answerCreator);
         // 効果設定が有効なら報酬を表示する
         await AnswerReward.call(answerCreator);
       }

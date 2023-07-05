@@ -44,6 +44,7 @@ import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
+import 'package:booqs_mobile/pages/word_request/dictionary.dart';
 
 // ホーム
 const indexPage = '/';
@@ -76,6 +77,18 @@ const senseEditPage = '/sense/edit';
 const sentenceNewPage = '/sentence/new';
 const sentenceEditPage = '/sentence/edit';
 const sentenceShowPage = '/sentence/show';
+// 辞書の項目のリクエスト
+const wordRequestDictionaryPage = '/word_request/dictionary';
+const wordRequestShowPage = '/word_request/show';
+// 例文のリクエスト
+const sentenceRequestAcceptedPage = '/sentence_request/accepted';
+const sentenceRequestPendingPage = '/sentence_request/pending';
+const sentenceRequestRejectedPage = '/sentence_request/rejected';
+// 問題のリクエスト
+const quizRequestAcceptedPage = '/quiz_request/accepted';
+const quizRequestPendingPage = '/quiz_request/pending';
+const quizRequestRejectedPage = '/quiz_request/rejected';
+
 // チャプター
 const chapterIndexPage = '/chapter/index';
 const chapterShowPage = '/chapter/show';
@@ -142,6 +155,8 @@ final routes = {
   sentenceNewPage: (context) => const SentenceNewPage(),
   sentenceEditPage: (context) => const SentenceEditPage(),
   sentenceShowPage: (context) => const SentenceShowPage(),
+  // WordRequest
+  wordRequestDictionaryPage: (context) => const WordRequestDictionaryPage(),
   // Chapter
   chapterIndexPage: (context) => const ChapterIndexPage(),
   chapterShowPage: (context) => const ChapterShowPage(),

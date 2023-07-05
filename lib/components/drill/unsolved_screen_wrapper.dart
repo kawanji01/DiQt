@@ -46,10 +46,10 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
         updateProviders(resMap);
         final AnswerCreator answerCreator =
             AnswerCreator.fromJson(resMap['answer_creator']);
-        AnswerFeedback.call(answerCreator);
         final bool effectEnabled = ref.watch(effectEnabledProvider);
         if (effectEnabled == false) return;
-        // 効果設定が有効なら報酬を表示する
+        // 効果設定が有効ならインタラクションと報酬を表示する
+        AnswerFeedback.call(answerCreator);
         await AnswerReward.call(answerCreator);
       }
     }

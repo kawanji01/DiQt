@@ -18,6 +18,7 @@ class Dictionary {
     this.requestScreened = false,
     this.wordsCount = 0,
     this.sentencesCount = 0,
+    this.wordRequestsCount = 0,
     this.acceptedWordRequestsCount = 0,
     this.pendingWordRequestsCount = 0,
     this.acceptedSentenceRequestsCount = 0,
@@ -55,6 +56,7 @@ class Dictionary {
   bool requestScreened;
   int wordsCount;
   int sentencesCount;
+  int wordRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
   int acceptedSentenceRequestsCount;
@@ -92,6 +94,7 @@ class Dictionary {
         requestScreened = json['request_screened'],
         wordsCount = json['words_count'],
         sentencesCount = json['sentences_count'],
+        wordRequestsCount = json['word_requests_count'],
         acceptedWordRequestsCount = json['accepted_word_requests_count'],
         pendingWordRequestsCount = json['pending_word_requests_count'],
         acceptedSentenceRequestsCount =
@@ -117,6 +120,10 @@ class Dictionary {
             ? []
             : json['pos_tags'].map<PosTag>((e) => PosTag.fromJson(e)).toList();
 
+// 却下されたwordRequestのリクエストの数
+  int rejectedWordRequestsCount() =>
+      wordRequestsCount - acceptedWordRequestsCount - pendingWordRequestsCount;
+
   // 見出し語の言語
   String languageOfEntry() =>
       LanguageHandler.getLanguageFromNumber(langNumberOfEntry);
@@ -141,6 +148,7 @@ class Dictionary {
         'request_screened': requestScreened,
         'words_count': wordsCount,
         'sentences_count': sentencesCount,
+        'word_requests_count': wordRequestsCount,
         'accepted_word_requests_count': acceptedWordRequestsCount,
         'pending_word_requests_count': pendingWordRequestsCount,
         'accepted_sentence_requests_count': acceptedSentenceRequestsCount,

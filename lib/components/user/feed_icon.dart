@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/consts/images.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/show.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
@@ -19,7 +19,7 @@ class UserFeedIcon extends ConsumerWidget {
     double paddingRight = grid * 5;
 
     Widget image() {
-      final String imageUrl = '${user.iconImageUrl}';
+      final String imageUrl = user.iconImageUrl ?? notFoundIcon;
       // const String notFoundIconName = 'assets/images/not_found_icon.png';
       final image = CachedNetworkImage(
         imageUrl: imageUrl,
@@ -42,7 +42,7 @@ class UserFeedIcon extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
-        ref.read(userProvider.notifier).state = user;
+        // ref.read(userProvider.notifier).state = user;
         UserShowPage.push(context, user.publicUid);
       },
       child: Container(

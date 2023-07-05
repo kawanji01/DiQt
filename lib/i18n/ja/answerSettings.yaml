@@ -10,7 +10,7 @@ choices_cover_description: '選択問題で、選択肢を隠すシートを表�
 strict_solving_mode: '厳格解答モード'
 strict_solving_mode_description: '問題集の未解答の問題を、単なる解答ではなく、正解した場合でのみ解答済にします。'
 se_enabled: '効果音を鳴らす'
-effect_enabled: '報酬画面を表示する'
+effect_enabled: '報酬やフィードバックを表示する'
 review_setting: '復習設定'
 strict_reviewing_mode: '厳格復習モード'
 strict_reviewing_mode_description: '復習の未解答から問題を取り除く条件を、単なる解答ではなく、正解した場合のみにします。'

@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1856 (928 per locale)
+/// Strings: 1900 (950 per locale)
 ///
-/// Built on 2023-07-01 at 00:52 UTC
+/// Built on 2023-07-05 at 08:24 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -479,7 +479,7 @@ class _TranslationsAnswerSettingsEn {
 	String get strict_solving_mode => 'Strict Answer Mode';
 	String get strict_solving_mode_description => 'Unanswered questions in the question booklet are only marked as answered if they are answered correctly, not just answered.';
 	String get se_enabled => 'Sound Effects';
-	String get effect_enabled => 'Display the reward screen';
+	String get effect_enabled => 'Display rewards and feedbacks';
 	String get review_setting => 'Review Setting';
 	String get strict_reviewing_mode => 'Strict Review Mode';
 	String get strict_reviewing_mode_description => 'The condition for removing a question from the unreviewed is only if it is answered correctly, not just answered.';
@@ -1141,11 +1141,33 @@ class _TranslationsWordRequestsEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	String get addition => 'Addition';
-	String get modification => 'Modification';
-	String get elimination => 'Deletion';
-	String get rejected => 'Rejected';
+	String get word_requests => 'Edit histories of dictionaries';
+	String get edit_histories => 'Edit Histories';
+	String get pending_edits => 'Pending Edits';
+	String get rejected_edits => 'Rejected Edits';
+	String get edit_applied => 'Your edit applied.';
+	String get addition_request_submitted => 'Your addition request submitted.';
+	String get modification_request_submitted => 'Your modification request submitted.';
+	String get elimination_request_submitted => 'Your elimination request submitted.';
+	String get already_submitted => 'You have already submitted a request.';
+	String get addition => 'Addition of item';
+	String get modification => 'Modification of item';
+	String get elimination => 'Deletion of item';
+	String get acceptance => 'Adopted';
+	String get rejection => 'Rejected';
 	String get pending => 'Pending';
+	String get accept => 'Adopt';
+	String get reject => 'Reject';
+	String get editor_comment => 'Editor\'s comment';
+	String get comments => 'Comments';
+	String get cancel => 'Withdraw an request';
+	String get canceled => 'The request has been withdrawn.';
+	String get target => 'Edit Target';
+	String get target_already_deleted => 'The edit target has already been deleted.';
+	String get show_heading => 'Request details';
+	String get accepted => 'The request has been adopted.';
+	String get rejected => 'The request has been rejected.';
+	String edited_at({required Object time}) => 'Edited ${time} ago';
 }
 
 // Path: calendars
@@ -1714,7 +1736,7 @@ class _TranslationsAnswerSettingsJa implements _TranslationsAnswerSettingsEn {
 	@override String get strict_solving_mode => '厳格解答モード';
 	@override String get strict_solving_mode_description => '問題集の未解答の問題を、単なる解答ではなく、正解した場合でのみ解答済にします。';
 	@override String get se_enabled => '効果音を鳴らす';
-	@override String get effect_enabled => '報酬画面を表示する';
+	@override String get effect_enabled => '報酬やフィードバックを表示する';
 	@override String get review_setting => '復習設定';
 	@override String get strict_reviewing_mode => '厳格復習モード';
 	@override String get strict_reviewing_mode_description => '復習の未解答から問題を取り除く条件を、単なる解答ではなく、正解した場合のみにします。';
@@ -2376,11 +2398,33 @@ class _TranslationsWordRequestsJa implements _TranslationsWordRequestsEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get addition => '追加';
-	@override String get modification => '修正';
-	@override String get elimination => '削除';
-	@override String get rejected => '却下済';
+	@override String get word_requests => '辞書の編集履歴';
+	@override String get edit_histories => '編集履歴';
+	@override String get pending_edits => '審査中の編集';
+	@override String get rejected_edits => '却下された編集';
+	@override String get edit_applied => '編集が適応されました。';
+	@override String get addition_request_submitted => '追加リクエストが申請されました。';
+	@override String get modification_request_submitted => '修正リクエストが申請されました。';
+	@override String get elimination_request_submitted => '削除リクエストが申請されました。';
+	@override String get already_submitted => '編集リクエストをすでに申請済みです。';
+	@override String get addition => '項目の追加';
+	@override String get modification => '項目の修正';
+	@override String get elimination => '項目の削除';
+	@override String get acceptance => '採用済';
+	@override String get rejection => '却下済';
 	@override String get pending => '審査中';
+	@override String get accept => '採用';
+	@override String get reject => '却下';
+	@override String get editor_comment => '編集者のコメント';
+	@override String get comments => 'コメント';
+	@override String get cancel => 'リクエストを取り下げる';
+	@override String get canceled => 'リクエストを取り下げました。';
+	@override String get target => '編集先';
+	@override String get target_already_deleted => '編集先がすでに削除されています。';
+	@override String get show_heading => '編集内容';
+	@override String get accepted => 'リクエストが採用されました。';
+	@override String get rejected => 'リクエストが却下されました。';
+	@override String edited_at({required Object time}) => '${time}前に編集';
 }
 
 // Path: calendars
@@ -2812,7 +2856,7 @@ extension on _TranslationsEn {
 			case 'answerSettings.strict_solving_mode': return 'Strict Answer Mode';
 			case 'answerSettings.strict_solving_mode_description': return 'Unanswered questions in the question booklet are only marked as answered if they are answered correctly, not just answered.';
 			case 'answerSettings.se_enabled': return 'Sound Effects';
-			case 'answerSettings.effect_enabled': return 'Display the reward screen';
+			case 'answerSettings.effect_enabled': return 'Display rewards and feedbacks';
 			case 'answerSettings.review_setting': return 'Review Setting';
 			case 'answerSettings.strict_reviewing_mode': return 'Strict Review Mode';
 			case 'answerSettings.strict_reviewing_mode_description': return 'The condition for removing a question from the unreviewed is only if it is answered correctly, not just answered.';
@@ -3366,11 +3410,33 @@ extension on _TranslationsEn {
 			case 'activities.cheered': return 'Cheered!';
 			case 'answerHistories.answer_histories': return 'Answer Histories';
 			case 'answerHistories.todays_mistakes': return 'Today\'s Mistakes';
-			case 'wordRequests.addition': return 'Addition';
-			case 'wordRequests.modification': return 'Modification';
-			case 'wordRequests.elimination': return 'Deletion';
-			case 'wordRequests.rejected': return 'Rejected';
+			case 'wordRequests.word_requests': return 'Edit histories of dictionaries';
+			case 'wordRequests.edit_histories': return 'Edit Histories';
+			case 'wordRequests.pending_edits': return 'Pending Edits';
+			case 'wordRequests.rejected_edits': return 'Rejected Edits';
+			case 'wordRequests.edit_applied': return 'Your edit applied.';
+			case 'wordRequests.addition_request_submitted': return 'Your addition request submitted.';
+			case 'wordRequests.modification_request_submitted': return 'Your modification request submitted.';
+			case 'wordRequests.elimination_request_submitted': return 'Your elimination request submitted.';
+			case 'wordRequests.already_submitted': return 'You have already submitted a request.';
+			case 'wordRequests.addition': return 'Addition of item';
+			case 'wordRequests.modification': return 'Modification of item';
+			case 'wordRequests.elimination': return 'Deletion of item';
+			case 'wordRequests.acceptance': return 'Adopted';
+			case 'wordRequests.rejection': return 'Rejected';
 			case 'wordRequests.pending': return 'Pending';
+			case 'wordRequests.accept': return 'Adopt';
+			case 'wordRequests.reject': return 'Reject';
+			case 'wordRequests.editor_comment': return 'Editor\'s comment';
+			case 'wordRequests.comments': return 'Comments';
+			case 'wordRequests.cancel': return 'Withdraw an request';
+			case 'wordRequests.canceled': return 'The request has been withdrawn.';
+			case 'wordRequests.target': return 'Edit Target';
+			case 'wordRequests.target_already_deleted': return 'The edit target has already been deleted.';
+			case 'wordRequests.show_heading': return 'Request details';
+			case 'wordRequests.accepted': return 'The request has been adopted.';
+			case 'wordRequests.rejected': return 'The request has been rejected.';
+			case 'wordRequests.edited_at': return ({required Object time}) => 'Edited ${time} ago';
 			case 'calendars.sunday': return 'Sun.';
 			case 'calendars.monday': return 'Mon.';
 			case 'calendars.tuesday': return 'Tue.';
@@ -3748,7 +3814,7 @@ extension on _TranslationsJa {
 			case 'answerSettings.strict_solving_mode': return '厳格解答モード';
 			case 'answerSettings.strict_solving_mode_description': return '問題集の未解答の問題を、単なる解答ではなく、正解した場合でのみ解答済にします。';
 			case 'answerSettings.se_enabled': return '効果音を鳴らす';
-			case 'answerSettings.effect_enabled': return '報酬画面を表示する';
+			case 'answerSettings.effect_enabled': return '報酬やフィードバックを表示する';
 			case 'answerSettings.review_setting': return '復習設定';
 			case 'answerSettings.strict_reviewing_mode': return '厳格復習モード';
 			case 'answerSettings.strict_reviewing_mode_description': return '復習の未解答から問題を取り除く条件を、単なる解答ではなく、正解した場合のみにします。';
@@ -4302,11 +4368,33 @@ extension on _TranslationsJa {
 			case 'activities.cheered': return '応援しました！';
 			case 'answerHistories.answer_histories': return '解答履歴';
 			case 'answerHistories.todays_mistakes': return '今日間違えた問題';
-			case 'wordRequests.addition': return '追加';
-			case 'wordRequests.modification': return '修正';
-			case 'wordRequests.elimination': return '削除';
-			case 'wordRequests.rejected': return '却下済';
+			case 'wordRequests.word_requests': return '辞書の編集履歴';
+			case 'wordRequests.edit_histories': return '編集履歴';
+			case 'wordRequests.pending_edits': return '審査中の編集';
+			case 'wordRequests.rejected_edits': return '却下された編集';
+			case 'wordRequests.edit_applied': return '編集が適応されました。';
+			case 'wordRequests.addition_request_submitted': return '追加リクエストが申請されました。';
+			case 'wordRequests.modification_request_submitted': return '修正リクエストが申請されました。';
+			case 'wordRequests.elimination_request_submitted': return '削除リクエストが申請されました。';
+			case 'wordRequests.already_submitted': return '編集リクエストをすでに申請済みです。';
+			case 'wordRequests.addition': return '項目の追加';
+			case 'wordRequests.modification': return '項目の修正';
+			case 'wordRequests.elimination': return '項目の削除';
+			case 'wordRequests.acceptance': return '採用済';
+			case 'wordRequests.rejection': return '却下済';
 			case 'wordRequests.pending': return '審査中';
+			case 'wordRequests.accept': return '採用';
+			case 'wordRequests.reject': return '却下';
+			case 'wordRequests.editor_comment': return '編集者のコメント';
+			case 'wordRequests.comments': return 'コメント';
+			case 'wordRequests.cancel': return 'リクエストを取り下げる';
+			case 'wordRequests.canceled': return 'リクエストを取り下げました。';
+			case 'wordRequests.target': return '編集先';
+			case 'wordRequests.target_already_deleted': return '編集先がすでに削除されています。';
+			case 'wordRequests.show_heading': return '編集内容';
+			case 'wordRequests.accepted': return 'リクエストが採用されました。';
+			case 'wordRequests.rejected': return 'リクエストが却下されました。';
+			case 'wordRequests.edited_at': return ({required Object time}) => '${time}前に編集';
 			case 'calendars.sunday': return '日';
 			case 'calendars.monday': return '月';
 			case 'calendars.tuesday': return '火';
