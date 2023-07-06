@@ -44,6 +44,7 @@ class DictionaryWordSearchFormState
       if (!_formKey.currentState!.validate()) {
         return;
       }
+      FocusScope.of(context).unfocus();
       final String keyword = _keywordController.text;
       DictionaryWordSearchResultsPage.push(context, dictionary.id, keyword);
     }
@@ -68,26 +69,29 @@ class DictionaryWordSearchFormState
           ),
           TypeAheadFormField(
             textFieldConfiguration: TextFieldConfiguration(
-                controller: _keywordController,
-                // 改行を許さず、文字数に応じて自動で改行表示する。
-                keyboardType: TextInputType.text,
-                maxLines: null,
-                decoration: InputDecoration(
-                  labelText: label,
-                  // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
-                  filled: true,
-                  fillColor: Colors.grey.shade200,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: () {
-                      _keywordController.clear();
-                    },
-                  ),
-                )),
+              controller: _keywordController,
+              // 改行を許さず、文字数に応じて自動で改行表示する。
+              keyboardType: TextInputType.text,
+              maxLines: null,
+              decoration: InputDecoration(
+                labelText: label,
+                // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
+                filled: true,
+                fillColor: Colors.grey.shade200,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () {
+                    _keywordController.clear();
+                  },
+                ),
+              ),
+              // Enterキーが押された時に_submitFormを呼ぶ
+              onEditingComplete: search,
+            ),
             suggestionsCallback: (pattern) {
               if (dictionaryId == null) return [];
               return WordTypeahead.getSuggestions(pattern, dictionaryId);
@@ -103,6 +107,11 @@ class DictionaryWordSearchFormState
                 },
               );
             },
+            // 検索結果がない場合は何も表示しない ref: https://pub.dev/packages/flutter_typeahead#customizations
+            hideOnEmpty: true,
+            hideOnLoading: true,
+            hideOnError: true,
+
             transitionBuilder: (context, suggestionsBox, controller) {
               return suggestionsBox;
             },
@@ -123,14 +132,14 @@ class DictionaryWordSearchFormState
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
                 minimumSize: const Size(double.infinity,
-                    48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                    40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
               ),
               onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
               label: Text(
                 t.shared.search,
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
           ),

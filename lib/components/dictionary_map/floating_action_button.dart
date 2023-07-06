@@ -8,6 +8,7 @@ class DictionaryMapFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
+        FocusScope.of(context).unfocus();
         showModalBottomSheet(
           isScrollControlled: true,
           context: context,

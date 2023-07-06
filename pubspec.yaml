@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.4.16+185
+version: 1.4.167+188
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -40,7 +40,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
   http: ^0.13.6 # APIへのリクエスト (他のパッケージがまだ０に依存してるので１系に挙げられない)
-  # google_fonts: ^4.0.3  # フォント (保留) どうにもmacOSでは読み込めないみたい。
+  google_fonts: ^4.0.3  # フォント  / mac appで読み込めない問題を解決する
   flutter_secure_storage: ^8.0.0 # セキュアなローカルストレージ（取得は非同期）
   shared_preferences: ^2.1.2 # 同期的に取得できる平文のローカルストレージ
   url_launcher: ^6.1.11 # ブラウザを開く

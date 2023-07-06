@@ -9,21 +9,20 @@ class DictionaryIntroduction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = CachedNetworkImage(
-      imageUrl: dictionary.thumbnailUrl!,
-      placeholder: (context, url) => const CircularProgressIndicator(),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
-    );
-
-    final introduction = Text(dictionary.introduction!.trimRight(),
-        style: const TextStyle(fontSize: 16, color: Colors.black87));
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        image,
+        Container(
+          alignment: Alignment.center,
+          child: CachedNetworkImage(
+            imageUrl: dictionary.thumbnailUrl!,
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
+        ),
         const SizedBox(height: 16),
-        introduction,
+        Text(dictionary.introduction!.trimRight(),
+            style: const TextStyle(fontSize: 16, color: Colors.black87)),
         const SizedBox(height: 24),
       ],
     );

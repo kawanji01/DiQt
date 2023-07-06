@@ -10,7 +10,7 @@ choices_cover_description: 'In choice questions, you can display a sheet that hi
 strict_solving_mode: 'Strict Answer Mode'
 strict_solving_mode_description: 'Unanswered questions in the question booklet are only marked as answered if they are answered correctly, not just answered.'
 se_enabled: 'Sound Effects'
-effect_enabled: 'Display the reward screen'
+effect_enabled: 'Display rewards and feedbacks'
 review_setting: 'Review Setting'
 strict_reviewing_mode: 'Strict Review Mode'
 strict_reviewing_mode_description: 'The condition for removing a question from the unreviewed is only if it is answered correctly, not just answered.'

@@ -12,6 +12,8 @@ class QuizAnswersCount extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final int todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
+      final bool effectEnabled = ref.watch(effectEnabledProvider);
+      if (effectEnabled == false) return;
       // １０問解答ごとに画面上端に通知を表示する。
       if (todaysAnswersCount % 10 == 0) {
         showFlash(
@@ -72,7 +74,7 @@ class QuizAnswersCount extends ConsumerWidget {
     Widget correctAnswersCount() {
       String message = '';
       if (dailyGoalCount < todaysCorrectAnswersCount) {
-        message = '$todaysAnswersCount問正解';
+        message = '$todaysCorrectAnswersCount問正解';
       } else {
         final int remainedCount = dailyGoalCount - todaysCorrectAnswersCount;
         message = '目標まで残り$remainedCount問正解';

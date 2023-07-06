@@ -12,7 +12,7 @@ import 'package:booqs_mobile/models/word_request.dart';
 class Notice {
   Notice({
     required this.id,
-    this.notifyingId,
+    required this.notifyingId,
     required this.notifiedId,
     this.activityId,
     this.cheerId,
@@ -20,7 +20,10 @@ class Notice {
     this.weeklyReportId,
     this.inquiryId,
     this.achievementId,
+    this.requestCommentId,
     this.wordRequestId,
+    this.sentenceRequestId,
+    this.quizRequestId,
     this.information,
     required this.read,
     required this.notifiedType,
@@ -47,7 +50,10 @@ class Notice {
   int? weeklyReportId;
   int? inquiryId;
   int? achievementId;
+  int? requestCommentId;
   int? wordRequestId;
+  int? sentenceRequestId;
+  int? quizRequestId;
   String? information;
   bool read;
   String? imageUrl;
@@ -74,7 +80,10 @@ class Notice {
         weeklyReportId = json['weekly_report_id'],
         inquiryId = json['inquiry_id'],
         achievementId = json['achievement_id'],
+        requestCommentId = json['request_comment_id'],
         wordRequestId = json['word_request_id'],
+        sentenceRequestId = json['sentence_request_id'],
+        quizRequestId = json['quiz_request_id'],
         information = json['information'],
         read = json['read'],
         imageUrl = json['image_url'],
@@ -115,7 +124,10 @@ class Notice {
         'weekly_report_id': weeklyReportId,
         'inquiry_id': inquiryId,
         'achievement_id': achievementId,
+        'request_comment_id': requestCommentId,
         'word_request_id': wordRequestId,
+        'sentence_request_id': sentenceRequestId,
+        'quiz_request_id': quizRequestId,
         'information': information,
         'read': read,
         'imageUrl': imageUrl,
