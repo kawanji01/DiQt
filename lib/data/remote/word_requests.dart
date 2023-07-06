@@ -28,4 +28,21 @@ class RemoteWordRequests {
       return ErrorHandler.exceptionMap(e, s);
     }
   }
+
+  static Future<Map> show(int wordRequestId) async {
+    try {
+      final Uri url = Uri.parse(
+          '${DiQtURL.root()}/api/v1/mobile/word_requests/$wordRequestId');
+      final Response res = await HttpService.get(url);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
 }

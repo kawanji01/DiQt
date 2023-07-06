@@ -1,5 +1,5 @@
-import 'package:booqs_mobile/components/word_request/item/heading.dart';
-import 'package:booqs_mobile/components/word_request/item/status.dart';
+import 'package:booqs_mobile/components/word_request/item/details_button.dart';
+import 'package:booqs_mobile/components/word_request/item/main_content.dart';
 import 'package:booqs_mobile/models/word_request.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,13 +12,13 @@ class WordRequestAcceptedItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        WordRequestItemHeading(
+        const SizedBox(
+          height: 24,
+        ),
+        WordRequestItemMainContent(
           wordRequest: wordRequest,
         ),
-        const SizedBox(
-          height: 8,
-        ),
-        WordRequestItemStatus(
+        WordRequestItemDetailsButton(
           wordRequest: wordRequest,
         ),
       ],

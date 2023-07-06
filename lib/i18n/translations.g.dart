@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1900 (950 per locale)
+/// Strings: 1902 (951 per locale)
 ///
-/// Built on 2023-07-05 at 08:24 UTC
+/// Built on 2023-07-06 at 08:03 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1164,6 +1164,7 @@ class _TranslationsWordRequestsEn {
 	String get canceled => 'The request has been withdrawn.';
 	String get target => 'Edit Target';
 	String get target_already_deleted => 'The edit target has already been deleted.';
+	String get target_not_found => 'The edit target was not found.';
 	String get show_heading => 'Request details';
 	String get accepted => 'The request has been adopted.';
 	String get rejected => 'The request has been rejected.';
@@ -2421,6 +2422,7 @@ class _TranslationsWordRequestsJa implements _TranslationsWordRequestsEn {
 	@override String get canceled => 'リクエストを取り下げました。';
 	@override String get target => '編集先';
 	@override String get target_already_deleted => '編集先がすでに削除されています。';
+	@override String get target_not_found => '編集先が見つかりませんでした。';
 	@override String get show_heading => '編集内容';
 	@override String get accepted => 'リクエストが採用されました。';
 	@override String get rejected => 'リクエストが却下されました。';
@@ -3433,6 +3435,7 @@ extension on _TranslationsEn {
 			case 'wordRequests.canceled': return 'The request has been withdrawn.';
 			case 'wordRequests.target': return 'Edit Target';
 			case 'wordRequests.target_already_deleted': return 'The edit target has already been deleted.';
+			case 'wordRequests.target_not_found': return 'The edit target was not found.';
 			case 'wordRequests.show_heading': return 'Request details';
 			case 'wordRequests.accepted': return 'The request has been adopted.';
 			case 'wordRequests.rejected': return 'The request has been rejected.';
@@ -4391,6 +4394,7 @@ extension on _TranslationsJa {
 			case 'wordRequests.canceled': return 'リクエストを取り下げました。';
 			case 'wordRequests.target': return '編集先';
 			case 'wordRequests.target_already_deleted': return '編集先がすでに削除されています。';
+			case 'wordRequests.target_not_found': return '編集先が見つかりませんでした。';
 			case 'wordRequests.show_heading': return '編集内容';
 			case 'wordRequests.accepted': return 'リクエストが採用されました。';
 			case 'wordRequests.rejected': return 'リクエストが却下されました。';

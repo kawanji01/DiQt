@@ -2,7 +2,6 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/word_request/dictionary.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
-import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryWordRequestsButton extends StatelessWidget {
@@ -14,14 +13,12 @@ class DictionaryWordRequestsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // 承認済の辞書リクエスト
     Widget acceptedWordRequestsButton() {
-      // final String btnText =
-      //    ;
-      final String redirectPath =
-          'dictionaries/${dictionary.id}/accepted_word_requests';
+      //final String redirectPath =
+      //    'dictionaries/${dictionary.id}/accepted_word_requests';
       return InkWell(
         onTap: () {
-          // WordRequestDictionaryPage.push(context, dictionary.id, 'accepted');
-          DiQtBrowserDialog.open(context, redirectPath);
+          WordRequestDictionaryPage.push(context, dictionary.id, 'accepted');
+          // DiQtBrowserDialog.open(context, redirectPath);
         },
         child: SmallOutlineGrayButton(
             label:
@@ -36,15 +33,14 @@ class DictionaryWordRequestsButton extends StatelessWidget {
       if (pendingRequestsCount == 0) return Container();
       final String btnText =
           '${t.dictionaries.pending_word_requests}($pendingRequestsCount)';
-      final String redirectPath =
-          'dictionaries/${dictionary.id}/pending_word_requests';
+      // final String redirectPath =
+      //     'dictionaries/${dictionary.id}/pending_word_requests';
       return TextButton(
           style: TextButton.styleFrom(
             padding: const EdgeInsets.only(left: 0),
           ),
           onPressed: () {
-            //WordRequestDictionaryPage.push(context, dictionary.id, 'pending');
-            DiQtBrowserDialog.open(context, redirectPath);
+            WordRequestDictionaryPage.push(context, dictionary.id, 'pending');
           },
           child: Text(
             btnText,
