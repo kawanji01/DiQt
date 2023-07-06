@@ -34,6 +34,7 @@ class WordRequestShowPage extends ConsumerWidget {
       ),
       body: Padding(
         padding: EdgeInsets.only(
+          // キーボードが出てきた時に隠れないようにする
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
         child: SingleChildScrollView(
