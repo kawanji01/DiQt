@@ -15,7 +15,7 @@ class WordRequestItemHeading extends StatelessWidget {
     final String name = user?.name ?? t.users.anonymous_user;
 
     return Container(
-      decoration: BoxDecoration(
+      /* decoration: BoxDecoration(
         color: const Color(
           0xFFDDFFDD,
         ),
@@ -23,9 +23,10 @@ class WordRequestItemHeading extends StatelessWidget {
           color: const Color(0xFF88CC88),
           width: 1.0, // Border width
         ),
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+      ), */
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
@@ -42,7 +43,7 @@ class WordRequestItemHeading extends StatelessWidget {
                   name,
                   style: const TextStyle(
                       fontSize: 14,
-                      color: Colors.black87,
+                      color: Colors.black54,
                       fontWeight: FontWeight.bold),
                 ),
               ),
