@@ -10,9 +10,7 @@ class LocalUserInfo {
   static Future<String?> authToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
-    // return token;
-    // 次のアップデートで修正
-    return await LocalSecrets.authToken();
+    return token;
   }
 
   // ユーザーの認証情報を書き込む

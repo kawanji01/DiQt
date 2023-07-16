@@ -1,20 +1,22 @@
-import 'package:booqs_mobile/data/provider/chapter.dart';
-import 'package:booqs_mobile/data/remote/chapters.dart';
-import 'package:booqs_mobile/models/chapter.dart';
+import 'package:booqs_mobile/data/provider/school.dart';
+import 'package:booqs_mobile/data/remote/schools.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/school.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/user/ranker.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChapterSchoolRanking extends ConsumerStatefulWidget {
-  const ChapterSchoolRanking({Key? key}) : super(key: key);
+class SchoolRanking extends ConsumerStatefulWidget {
+  const SchoolRanking({Key? key}) : super(key: key);
 
   @override
-  ChapterSchoolRankingState createState() => ChapterSchoolRankingState();
+  SchoolRankingState createState() => SchoolRankingState();
 }
 
-class ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
+class SchoolRankingState extends ConsumerState<SchoolRanking> {
   final List<User> _dailyRankers = [];
   final List<User> _weeklyRankers = [];
   final List<User> _monthlyRankers = [];
@@ -29,10 +31,11 @@ class ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
   }
 
   Future _loadRankers() async {
-    final Chapter? school = ref.read(schoolProvider);
+    final School? school = ref.read(schoolProvider);
     if (school == null) return;
-    final Map? resMap = await RemoteChapters.ranking(school.publicUid);
-    if (resMap == null) return;
+    final Map resMap = await RemoteSchools.ranking(school.publicUid);
+    // エラーの場合の処理
+    if (ErrorHandler.isErrorMap(resMap)) return;
     resMap['daily_rankers'].forEach((e) => _dailyRankers.add(User.fromJson(e)));
     resMap['weekly_rankers']
         .forEach((e) => _weeklyRankers.add(User.fromJson(e)));
@@ -92,7 +95,7 @@ class ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
       return Text(
         text,
         style: const TextStyle(
-            fontSize: 32, color: Colors.green, fontWeight: FontWeight.bold),
+            fontSize: 28, color: Colors.green, fontWeight: FontWeight.bold),
       );
     }
 
@@ -100,15 +103,15 @@ class ChapterSchoolRankingState extends ConsumerState<ChapterSchoolRanking> {
       child: Column(
         children: [
           const SizedBox(height: 48),
-          heading('今日のランキング'),
+          heading(t.ranking.daily_answerer),
           const SizedBox(height: 16),
           dailyRanking(),
           const SizedBox(height: 48),
-          heading('週間ランキング'),
+          heading(t.ranking.weekly_answerer),
           const SizedBox(height: 16),
           weeklyRanking(),
           const SizedBox(height: 48),
-          heading('月間ランキング'),
+          heading(t.ranking.monthly_answerer),
           monthlyRanking(),
           const SizedBox(height: 120),
         ],

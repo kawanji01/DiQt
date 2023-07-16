@@ -1,22 +1,23 @@
-import 'package:booqs_mobile/data/provider/chapter.dart';
-import 'package:booqs_mobile/data/remote/chapters.dart';
+import 'package:booqs_mobile/data/provider/school.dart';
+import 'package:booqs_mobile/data/remote/schools.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/components/activity/list_item.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class ChapterActivityListView extends ConsumerStatefulWidget {
-  const ChapterActivityListView({Key? key}) : super(key: key);
+class SchoolActivityListView extends ConsumerStatefulWidget {
+  const SchoolActivityListView({Key? key}) : super(key: key);
 
   @override
   ChapterActivityListViewState createState() => ChapterActivityListViewState();
 }
 
 class ChapterActivityListViewState
-    extends ConsumerState<ChapterActivityListView> {
+    extends ConsumerState<SchoolActivityListView> {
   bool _isLoading = false;
   bool _isReached = true;
   int _nextPagekey = 0;
@@ -41,15 +42,18 @@ class ChapterActivityListViewState
     final String publicUid =
         ref.watch(schoolProvider.select((chapter) => chapter!.publicUid));
 
-    final Map? resMap =
-        await RemoteChapters.activities(publicUid, pageKey, _pageSize);
+    final Map resMap =
+        await RemoteSchools.activities(publicUid, pageKey, _pageSize);
     if (!mounted) return;
-    if (resMap == null) {
+    // エラーの場合の処理
+    if (ErrorHandler.isErrorMap(resMap)) {
+      ErrorHandler.showErrorSnackBar(context, resMap);
       return setState(() {
         _isLoading = false;
         _isReached = false;
       });
     }
+
     final List<Activity> activities = [];
     resMap['activities'].forEach((e) => activities.add(Activity.fromJson(e)));
     // print(activities.length);

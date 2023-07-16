@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 1902 (951 per locale)
+/// Strings: 2026 (1013 per locale)
 ///
-/// Built on 2023-07-06 at 08:03 UTC
+/// Built on 2023-07-16 at 13:19 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -154,15 +154,18 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsDrillsEn drills = _TranslationsDrillsEn._(_root);
 	late final _TranslationsWeaknessesEn weaknesses = _TranslationsWeaknessesEn._(_root);
 	late final _TranslationsUsersEn users = _TranslationsUsersEn._(_root);
+	late final _TranslationsSchoolsEn schools = _TranslationsSchoolsEn._(_root);
 	late final _TranslationsNoticesEn notices = _TranslationsNoticesEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
 	late final _TranslationsAnswerSettingsEn answerSettings = _TranslationsAnswerSettingsEn._(_root);
 	late final _TranslationsAnswerAnalysesEn answerAnalyses = _TranslationsAnswerAnalysesEn._(_root);
 	late final _TranslationsAchievementsEn achievements = _TranslationsAchievementsEn._(_root);
 	late final _TranslationsLangEn lang = _TranslationsLangEn._(_root);
+	late final _TranslationsChaptersEn chapters = _TranslationsChaptersEn._(_root);
 	late final _TranslationsExperiencePointsEn experiencePoints = _TranslationsExperiencePointsEn._(_root);
 	late final _TranslationsSentencesEn sentences = _TranslationsSentencesEn._(_root);
 	late final _TranslationsNotesEn notes = _TranslationsNotesEn._(_root);
+	late final _TranslationsRankingEn ranking = _TranslationsRankingEn._(_root);
 	late final _TranslationsTimeZoneEn timeZone = _TranslationsTimeZoneEn._(_root);
 	late final _TranslationsAnswerEn answer = _TranslationsAnswerEn._(_root);
 	late final _TranslationsQuizzesEn quizzes = _TranslationsQuizzesEn._(_root);
@@ -358,6 +361,18 @@ class _TranslationsDrillsEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get drills => 'Drills';
+	String get unsolved => 'Unsolved';
+	String get solved => 'Solved';
+	String get search => 'Search Quizzes';
+	String get pending_requests => 'Pending Requests';
+	String get accepted_requests => 'Accepted Requests';
+	String get create_drill => 'Create drill';
+	String get create_drill_with_csv => 'Create drill with CSV';
+	String get edit_drill => 'Edit drill';
+	String get edit_drill_with_csv => 'Edit drill with csv';
+	String get csv_blank => 'Please attach a CSV file.';
+	String get please_wait => 'Creating drill. Please wait for 10 seconds.';
 	String get created_at_asc => 'From the beginning';
 	String get created_at_desc => 'From the end';
 	String get random_random => 'Random';
@@ -416,6 +431,28 @@ class _TranslationsUsersEn {
 	String get updated => 'Account Updated.';
 	String get failed_to_update => 'Account could not be updated.';
 	String get destroyed => 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
+}
+
+// Path: schools
+class _TranslationsSchoolsEn {
+	_TranslationsSchoolsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get schools => 'Schools';
+	String get school => 'School';
+	String get name => 'Name';
+	String get name_placeholder => 'Enter school name';
+	String get members => 'Members';
+	String get create_member => 'Create member';
+	String get edit_member => 'Edit member';
+	String get invite_member => 'Invite member';
+	String get invite => 'Invite';
+	String get remove => 'Remove';
+	String get invitation_limited => 'You need to increase the number of members to invite new members.';
+	String get invitation_succeeded => 'Invitation succeeded.';
+	String get removal_succeeded => 'Removal succeeded.';
 }
 
 // Path: notices
@@ -828,6 +865,44 @@ class _TranslationsLangEn {
 	String get zu_ZA => 'Zulu (South Africa)';
 }
 
+// Path: chapters
+class _TranslationsChaptersEn {
+	_TranslationsChaptersEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get lang_number => 'Language Setting';
+	String get lang_number_error => '：Auto-configuration failed. Please select language type manually. ';
+	String get chapters => 'Chapters';
+	String get answers => 'answers';
+	String get view_details => 'View Details';
+	String get administrators => 'Administrators';
+	String get moderators => 'Moderators';
+	String get admin_functions => 'Admin Functions';
+	String get subscribers_list => 'Subscribers List';
+	String get manage_moderators => 'Manage Moderators';
+	String get setting => 'Chapter Setting';
+	String get setting_updated => 'Chapter setting updated.';
+	String get new_section => 'Create Section';
+	String get edit_section => 'Edit Section';
+	String get drills => 'Drills';
+	String get post => 'Create Drill';
+	String get view_more => 'View More';
+	String get create_drill => 'Create Drill';
+	String get subscribe => 'Subscribe';
+	String get subscribed => 'Subscribed';
+	String get create_chapter => 'Create Chapter';
+	String get title_placeholder => 'Please input the name of the chapter.';
+	String get introduction => 'Introduction';
+	String get introduction_placeholder => 'Please input an explanation about the chapter.';
+	String get create => 'Create';
+	String get creating_succeeded => 'Creating chapter succeeded';
+	String get creating_failed => 'Creating chapter failed.';
+	String get drill => 'Drill';
+	String get activities => 'Activities';
+}
+
 // Path: experiencePoints
 class _TranslationsExperiencePointsEn {
 	_TranslationsExperiencePointsEn._(this._root);
@@ -907,6 +982,23 @@ class _TranslationsNotesEn {
 	String get updated_at_asc => 'Updated, Old to New';
 	String get created_at_desc => 'Created, New to Old';
 	String get created_at_asc => 'Created, Old to New';
+}
+
+// Path: ranking
+class _TranslationsRankingEn {
+	_TranslationsRankingEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get ranking => 'Ranking';
+	String get daily => 'Daily';
+	String get weekly => 'Weekly';
+	String get monthly => 'Monthly';
+	String get daily_answerer => 'Daily Answerers Ranking';
+	String get weekly_answerer => 'Weekly Answerers Ranking';
+	String get monthly_answerer => 'Monthly Answerers Ranking';
+	String rank({required Object number}) => 'No.${number}';
 }
 
 // Path: timeZone
@@ -1412,15 +1504,18 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsDrillsJa drills = _TranslationsDrillsJa._(_root);
 	@override late final _TranslationsWeaknessesJa weaknesses = _TranslationsWeaknessesJa._(_root);
 	@override late final _TranslationsUsersJa users = _TranslationsUsersJa._(_root);
+	@override late final _TranslationsSchoolsJa schools = _TranslationsSchoolsJa._(_root);
 	@override late final _TranslationsNoticesJa notices = _TranslationsNoticesJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
 	@override late final _TranslationsAnswerSettingsJa answerSettings = _TranslationsAnswerSettingsJa._(_root);
 	@override late final _TranslationsAnswerAnalysesJa answerAnalyses = _TranslationsAnswerAnalysesJa._(_root);
 	@override late final _TranslationsAchievementsJa achievements = _TranslationsAchievementsJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
+	@override late final _TranslationsChaptersJa chapters = _TranslationsChaptersJa._(_root);
 	@override late final _TranslationsExperiencePointsJa experiencePoints = _TranslationsExperiencePointsJa._(_root);
 	@override late final _TranslationsSentencesJa sentences = _TranslationsSentencesJa._(_root);
 	@override late final _TranslationsNotesJa notes = _TranslationsNotesJa._(_root);
+	@override late final _TranslationsRankingJa ranking = _TranslationsRankingJa._(_root);
 	@override late final _TranslationsTimeZoneJa timeZone = _TranslationsTimeZoneJa._(_root);
 	@override late final _TranslationsAnswerJa answer = _TranslationsAnswerJa._(_root);
 	@override late final _TranslationsQuizzesJa quizzes = _TranslationsQuizzesJa._(_root);
@@ -1616,6 +1711,18 @@ class _TranslationsDrillsJa implements _TranslationsDrillsEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get drills => 'ドリル';
+	@override String get unsolved => '未解答';
+	@override String get solved => '解答済';
+	@override String get search => '問題を検索する';
+	@override String get pending_requests => '審査中のリクエスト';
+	@override String get accepted_requests => '承認済のリクエスト';
+	@override String get create_drill => 'ドリルを作成する';
+	@override String get create_drill_with_csv => 'ドリルをCSVで作成する';
+	@override String get edit_drill => 'ドリルを編集する';
+	@override String get edit_drill_with_csv => 'CSVでドリルを編集する';
+	@override String get csv_blank => 'CSVファイルを添付してください。';
+	@override String get please_wait => '作成を開始しました。10秒ほどで出来上がります。';
 	@override String get created_at_asc => '最初から';
 	@override String get created_at_desc => '最後から';
 	@override String get random_random => 'ランダム';
@@ -1674,6 +1781,28 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get updated => 'アカウントを更新しました。';
 	@override String get failed_to_update => 'アカウントを更新できませんでした。';
 	@override String get destroyed => '退会が完了しました。ご利用いただき、誠にありがとうございました。';
+}
+
+// Path: schools
+class _TranslationsSchoolsJa implements _TranslationsSchoolsEn {
+	_TranslationsSchoolsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get schools => '教室';
+	@override String get school => '教室';
+	@override String get name => '名前';
+	@override String get name_placeholder => '教室名を入力してください';
+	@override String get members => 'メンバー';
+	@override String get create_member => 'メンバーを作成する';
+	@override String get edit_member => 'メンバーを編集する';
+	@override String get invite_member => 'メンバーを招待する';
+	@override String get invite => '招待する';
+	@override String get remove => '除名する';
+	@override String get invitation_limited => '新たにメンバーを招待するには、メンバーの上限数を増やしてください。';
+	@override String get invitation_succeeded => '招待に成功しました。';
+	@override String get removal_succeeded => '除名に成功しました。';
 }
 
 // Path: notices
@@ -2086,6 +2215,44 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get zu_ZA => 'ズールー語（南アフリカ）';
 }
 
+// Path: chapters
+class _TranslationsChaptersJa implements _TranslationsChaptersEn {
+	_TranslationsChaptersJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get lang_number => '言語設定';
+	@override String get lang_number_error => '：言語を自動で検出できませんでした。言語の種類を手動で設定してください。';
+	@override String get chapters => 'チャプター';
+	@override String get answers => '解答';
+	@override String get view_details => '詳細を見る';
+	@override String get administrators => '管理者';
+	@override String get moderators => '管理者';
+	@override String get admin_functions => '管理機能';
+	@override String get subscribers_list => '購読者一覧';
+	@override String get manage_moderators => 'モデレータを管理する';
+	@override String get setting => 'チャプター設定';
+	@override String get setting_updated => 'チャプター設定を更新しました。';
+	@override String get new_section => 'セクションを作成する';
+	@override String get edit_section => 'セクションを編集する';
+	@override String get drills => 'ドリル';
+	@override String get post => 'ドリルを作成する';
+	@override String get view_more => 'もっと見る';
+	@override String get create_drill => '問題を作成する';
+	@override String get subscribe => '購読する';
+	@override String get subscribed => '購読中';
+	@override String get create_chapter => 'チャプターを作成する';
+	@override String get title_placeholder => 'チャプターの名前を入力してください。';
+	@override String get introduction => '説明';
+	@override String get introduction_placeholder => 'チャプターの説明を入力してください。';
+	@override String get create => '作成する';
+	@override String get creating_succeeded => 'チャプターを作成しました。';
+	@override String get creating_failed => 'チャプターを作成できませんでした。';
+	@override String get drill => '問題集';
+	@override String get activities => '活動';
+}
+
 // Path: experiencePoints
 class _TranslationsExperiencePointsJa implements _TranslationsExperiencePointsEn {
 	_TranslationsExperiencePointsJa._(this._root);
@@ -2165,6 +2332,23 @@ class _TranslationsNotesJa implements _TranslationsNotesEn {
 	@override String get updated_at_asc => '更新日が古い順';
 	@override String get created_at_desc => '作成日が新しい順';
 	@override String get created_at_asc => '作成日が古い順';
+}
+
+// Path: ranking
+class _TranslationsRankingJa implements _TranslationsRankingEn {
+	_TranslationsRankingJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get ranking => 'ランキング';
+	@override String get daily => '日間';
+	@override String get weekly => '週間';
+	@override String get monthly => '月間';
+	@override String get daily_answerer => '日間解答者ランキング';
+	@override String get weekly_answerer => '週間解答者ランキング';
+	@override String get monthly_answerer => '月間解答者ランキング';
+	@override String rank({required Object number}) => '第${number}位';
 }
 
 // Path: timeZone
@@ -2782,6 +2966,18 @@ extension on _TranslationsEn {
 			case 'errors.http_status_508': return '508 Loop Detected: The server detected an infinite loop while processing the request. This status indicates that the entire operation failed.';
 			case 'errors.http_status_510': return '510 Not Extended: Further extensions to the request are required for the server to fulfill it.';
 			case 'errors.http_status_511': return '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
+			case 'drills.drills': return 'Drills';
+			case 'drills.unsolved': return 'Unsolved';
+			case 'drills.solved': return 'Solved';
+			case 'drills.search': return 'Search Quizzes';
+			case 'drills.pending_requests': return 'Pending Requests';
+			case 'drills.accepted_requests': return 'Accepted Requests';
+			case 'drills.create_drill': return 'Create drill';
+			case 'drills.create_drill_with_csv': return 'Create drill with CSV';
+			case 'drills.edit_drill': return 'Edit drill';
+			case 'drills.edit_drill_with_csv': return 'Edit drill with csv';
+			case 'drills.csv_blank': return 'Please attach a CSV file.';
+			case 'drills.please_wait': return 'Creating drill. Please wait for 10 seconds.';
 			case 'drills.created_at_asc': return 'From the beginning';
 			case 'drills.created_at_desc': return 'From the end';
 			case 'drills.random_random': return 'Random';
@@ -2822,6 +3018,19 @@ extension on _TranslationsEn {
 			case 'users.updated': return 'Account Updated.';
 			case 'users.failed_to_update': return 'Account could not be updated.';
 			case 'users.destroyed': return 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
+			case 'schools.schools': return 'Schools';
+			case 'schools.school': return 'School';
+			case 'schools.name': return 'Name';
+			case 'schools.name_placeholder': return 'Enter school name';
+			case 'schools.members': return 'Members';
+			case 'schools.create_member': return 'Create member';
+			case 'schools.edit_member': return 'Edit member';
+			case 'schools.invite_member': return 'Invite member';
+			case 'schools.invite': return 'Invite';
+			case 'schools.remove': return 'Remove';
+			case 'schools.invitation_limited': return 'You need to increase the number of members to invite new members.';
+			case 'schools.invitation_succeeded': return 'Invitation succeeded.';
+			case 'schools.removal_succeeded': return 'Removal succeeded.';
 			case 'notices.notifications': return 'Notifications';
 			case 'notices.cheered_message': return ({required Object name}) => '${name} has cheered you!';
 			case 'notices.followed_message': return ({required Object name}) => '${name} has followed you!';
@@ -3178,6 +3387,35 @@ extension on _TranslationsEn {
 			case 'lang.uz_UZ': return 'Uzbek (Uzbekistan)';
 			case 'lang.vi_VN': return 'Vietnamese (Vietnam)';
 			case 'lang.zu_ZA': return 'Zulu (South Africa)';
+			case 'chapters.lang_number': return 'Language Setting';
+			case 'chapters.lang_number_error': return '：Auto-configuration failed. Please select language type manually. ';
+			case 'chapters.chapters': return 'Chapters';
+			case 'chapters.answers': return 'answers';
+			case 'chapters.view_details': return 'View Details';
+			case 'chapters.administrators': return 'Administrators';
+			case 'chapters.moderators': return 'Moderators';
+			case 'chapters.admin_functions': return 'Admin Functions';
+			case 'chapters.subscribers_list': return 'Subscribers List';
+			case 'chapters.manage_moderators': return 'Manage Moderators';
+			case 'chapters.setting': return 'Chapter Setting';
+			case 'chapters.setting_updated': return 'Chapter setting updated.';
+			case 'chapters.new_section': return 'Create Section';
+			case 'chapters.edit_section': return 'Edit Section';
+			case 'chapters.drills': return 'Drills';
+			case 'chapters.post': return 'Create Drill';
+			case 'chapters.view_more': return 'View More';
+			case 'chapters.create_drill': return 'Create Drill';
+			case 'chapters.subscribe': return 'Subscribe';
+			case 'chapters.subscribed': return 'Subscribed';
+			case 'chapters.create_chapter': return 'Create Chapter';
+			case 'chapters.title_placeholder': return 'Please input the name of the chapter.';
+			case 'chapters.introduction': return 'Introduction';
+			case 'chapters.introduction_placeholder': return 'Please input an explanation about the chapter.';
+			case 'chapters.create': return 'Create';
+			case 'chapters.creating_succeeded': return 'Creating chapter succeeded';
+			case 'chapters.creating_failed': return 'Creating chapter failed.';
+			case 'chapters.drill': return 'Drill';
+			case 'chapters.activities': return 'Activities';
 			case 'experiencePoints.to_the_next_level': return ({required Object points}) => '${points} EXP to the next level.';
 			case 'sentences.sentences': return 'Sentences';
 			case 'sentences.sentence': return 'Sentence';
@@ -3232,6 +3470,14 @@ extension on _TranslationsEn {
 			case 'notes.updated_at_asc': return 'Updated, Old to New';
 			case 'notes.created_at_desc': return 'Created, New to Old';
 			case 'notes.created_at_asc': return 'Created, Old to New';
+			case 'ranking.ranking': return 'Ranking';
+			case 'ranking.daily': return 'Daily';
+			case 'ranking.weekly': return 'Weekly';
+			case 'ranking.monthly': return 'Monthly';
+			case 'ranking.daily_answerer': return 'Daily Answerers Ranking';
+			case 'ranking.weekly_answerer': return 'Weekly Answerers Ranking';
+			case 'ranking.monthly_answerer': return 'Monthly Answerers Ranking';
+			case 'ranking.rank': return ({required Object number}) => 'No.${number}';
 			case 'timeZone.international_date_line_west': return 'International Date Line West';
 			case 'timeZone.american_samoa': return 'American Samoa';
 			case 'timeZone.midway_island': return 'Midway Island';
@@ -3741,6 +3987,18 @@ extension on _TranslationsJa {
 			case 'errors.http_status_508': return '508 Loop Detected: サーバーは、リクエストを処理中に無限ループを検出しました。このステータスは、操作全体が失敗したことを示しています。';
 			case 'errors.http_status_510': return '510 Not Extended: サーバーがリクエストを満たすためには、リクエストにさらなる拡張が必要です。';
 			case 'errors.http_status_511': return '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
+			case 'drills.drills': return 'ドリル';
+			case 'drills.unsolved': return '未解答';
+			case 'drills.solved': return '解答済';
+			case 'drills.search': return '問題を検索する';
+			case 'drills.pending_requests': return '審査中のリクエスト';
+			case 'drills.accepted_requests': return '承認済のリクエスト';
+			case 'drills.create_drill': return 'ドリルを作成する';
+			case 'drills.create_drill_with_csv': return 'ドリルをCSVで作成する';
+			case 'drills.edit_drill': return 'ドリルを編集する';
+			case 'drills.edit_drill_with_csv': return 'CSVでドリルを編集する';
+			case 'drills.csv_blank': return 'CSVファイルを添付してください。';
+			case 'drills.please_wait': return '作成を開始しました。10秒ほどで出来上がります。';
 			case 'drills.created_at_asc': return '最初から';
 			case 'drills.created_at_desc': return '最後から';
 			case 'drills.random_random': return 'ランダム';
@@ -3781,6 +4039,19 @@ extension on _TranslationsJa {
 			case 'users.updated': return 'アカウントを更新しました。';
 			case 'users.failed_to_update': return 'アカウントを更新できませんでした。';
 			case 'users.destroyed': return '退会が完了しました。ご利用いただき、誠にありがとうございました。';
+			case 'schools.schools': return '教室';
+			case 'schools.school': return '教室';
+			case 'schools.name': return '名前';
+			case 'schools.name_placeholder': return '教室名を入力してください';
+			case 'schools.members': return 'メンバー';
+			case 'schools.create_member': return 'メンバーを作成する';
+			case 'schools.edit_member': return 'メンバーを編集する';
+			case 'schools.invite_member': return 'メンバーを招待する';
+			case 'schools.invite': return '招待する';
+			case 'schools.remove': return '除名する';
+			case 'schools.invitation_limited': return '新たにメンバーを招待するには、メンバーの上限数を増やしてください。';
+			case 'schools.invitation_succeeded': return '招待に成功しました。';
+			case 'schools.removal_succeeded': return '除名に成功しました。';
 			case 'notices.notifications': return '通知';
 			case 'notices.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
 			case 'notices.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
@@ -4137,6 +4408,35 @@ extension on _TranslationsJa {
 			case 'lang.uz_UZ': return 'ウズベク語（ウズベキスタン）';
 			case 'lang.vi_VN': return 'ベトナム語（ベトナム）';
 			case 'lang.zu_ZA': return 'ズールー語（南アフリカ）';
+			case 'chapters.lang_number': return '言語設定';
+			case 'chapters.lang_number_error': return '：言語を自動で検出できませんでした。言語の種類を手動で設定してください。';
+			case 'chapters.chapters': return 'チャプター';
+			case 'chapters.answers': return '解答';
+			case 'chapters.view_details': return '詳細を見る';
+			case 'chapters.administrators': return '管理者';
+			case 'chapters.moderators': return '管理者';
+			case 'chapters.admin_functions': return '管理機能';
+			case 'chapters.subscribers_list': return '購読者一覧';
+			case 'chapters.manage_moderators': return 'モデレータを管理する';
+			case 'chapters.setting': return 'チャプター設定';
+			case 'chapters.setting_updated': return 'チャプター設定を更新しました。';
+			case 'chapters.new_section': return 'セクションを作成する';
+			case 'chapters.edit_section': return 'セクションを編集する';
+			case 'chapters.drills': return 'ドリル';
+			case 'chapters.post': return 'ドリルを作成する';
+			case 'chapters.view_more': return 'もっと見る';
+			case 'chapters.create_drill': return '問題を作成する';
+			case 'chapters.subscribe': return '購読する';
+			case 'chapters.subscribed': return '購読中';
+			case 'chapters.create_chapter': return 'チャプターを作成する';
+			case 'chapters.title_placeholder': return 'チャプターの名前を入力してください。';
+			case 'chapters.introduction': return '説明';
+			case 'chapters.introduction_placeholder': return 'チャプターの説明を入力してください。';
+			case 'chapters.create': return '作成する';
+			case 'chapters.creating_succeeded': return 'チャプターを作成しました。';
+			case 'chapters.creating_failed': return 'チャプターを作成できませんでした。';
+			case 'chapters.drill': return '問題集';
+			case 'chapters.activities': return '活動';
 			case 'experiencePoints.to_the_next_level': return ({required Object points}) => '次のレベルまであと${points}EXP';
 			case 'sentences.sentences': return '例文';
 			case 'sentences.sentence': return '例文';
@@ -4191,6 +4491,14 @@ extension on _TranslationsJa {
 			case 'notes.updated_at_asc': return '更新日が古い順';
 			case 'notes.created_at_desc': return '作成日が新しい順';
 			case 'notes.created_at_asc': return '作成日が古い順';
+			case 'ranking.ranking': return 'ランキング';
+			case 'ranking.daily': return '日間';
+			case 'ranking.weekly': return '週間';
+			case 'ranking.monthly': return '月間';
+			case 'ranking.daily_answerer': return '日間解答者ランキング';
+			case 'ranking.weekly_answerer': return '週間解答者ランキング';
+			case 'ranking.monthly_answerer': return '月間解答者ランキング';
+			case 'ranking.rank': return ({required Object number}) => '第${number}位';
 			case 'timeZone.international_date_line_west': return '国際日付変更線西';
 			case 'timeZone.american_samoa': return 'アメリカ領サモア';
 			case 'timeZone.midway_island': return 'ミッドウェー島';

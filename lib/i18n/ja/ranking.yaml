@@ -1,0 +1,8 @@
+ranking: 'ランキング'
+daily: '日間'
+weekly: '週間'
+monthly: '月間'
+daily_answerer: '日間解答者ランキング'
+weekly_answerer: '週間解答者ランキング'
+monthly_answerer: '月間解答者ランキング'
+rank: '第${number}位'

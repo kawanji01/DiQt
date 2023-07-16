@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/pages/chapter/school.dart';
+import 'package:booqs_mobile/pages/school/show.dart';
 import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
@@ -34,18 +34,15 @@ class BottomNavbarForSchool extends ConsumerWidget {
           HomePage.push(context);
           break;
         case 1:
-          ChapterSchoolPage.pushReplacement(context);
-          break;
-        case 2:
-          //if (_selectedIndex == index) return;
           ReviewIndexPage.pushReplacement(context);
           break;
+        case 2:
+          SchoolShowPage.pushReplacement(context);
+          break;
         case 3:
-          //if (_selectedIndex == index) return;
           NoticeHomePage.push(context, 0);
           break;
         case 4:
-          //if (_selectedIndex == index) return;
           UserMyPage.push(context);
           break;
       }
@@ -59,12 +56,12 @@ class BottomNavbarForSchool extends ConsumerWidget {
           label: dictionary,
         ),
         BottomNavigationBarItem(
-          icon: const Icon(Icons.school),
-          label: school,
-        ),
-        BottomNavigationBarItem(
           icon: const BottomNavbarReviewIcon(),
           label: review,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.school),
+          label: school,
         ),
         BottomNavigationBarItem(
           icon: const BottomNavbarNotificationIcon(),

@@ -1,19 +1,20 @@
-import 'package:booqs_mobile/data/provider/chapter.dart';
+import 'package:booqs_mobile/components/school/activities.dart';
+import 'package:booqs_mobile/components/school/chapters.dart';
+import 'package:booqs_mobile/data/provider/school.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
-import 'package:booqs_mobile/components/chapter/school/drawer.dart';
-import 'package:booqs_mobile/components/chapter/school/ranking.dart';
+import 'package:booqs_mobile/components/school/drawer.dart';
+import 'package:booqs_mobile/components/school/ranking.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
-import 'package:booqs_mobile/components/chapter/school/activities.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/components/chapter/school/drills.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChapterSchoolPage extends ConsumerStatefulWidget {
-  const ChapterSchoolPage({Key? key}) : super(key: key);
+class SchoolShowPage extends ConsumerStatefulWidget {
+  const SchoolShowPage({Key? key}) : super(key: key);
 
   static Future pushReplacement(BuildContext context) async {
     //return Navigator.of(context).pushNamed(reviewIndexPage);
@@ -21,23 +22,23 @@ class ChapterSchoolPage extends ConsumerStatefulWidget {
       context,
       PageRouteBuilder(
         // 画面遷移のログを送信するために、settings.nameを設定する。
-        settings: const RouteSettings(name: chapterSchoolPage),
+        settings: const RouteSettings(name: schoolShowPage),
         pageBuilder: (context, animation1, animation2) =>
-            const ChapterSchoolPage(),
+            const SchoolShowPage(),
         transitionDuration: Duration.zero,
       ),
     );
   }
 
   @override
-  ChapterSchoolPageState createState() => ChapterSchoolPageState();
+  SchoolShowPageState createState() => SchoolShowPageState();
 }
 
-class ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
+class SchoolShowPageState extends ConsumerState<SchoolShowPage> {
   final List<TabInfo> _tabs = [
-    TabInfo("問題集", const ChapterSchoolDrills()),
-    TabInfo("活動", const ChapterSchoolActivities()),
-    TabInfo("ランキング", const ChapterSchoolRanking()),
+    TabInfo(t.chapters.chapters, const SchoolChapters()),
+    TabInfo(t.activities.activities, const SchoolActivities()),
+    TabInfo(t.ranking.ranking, const SchoolRanking()),
   ];
 
   @override
@@ -49,9 +50,9 @@ class ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
       double width = grid * 30;
       return [
-        SizedBox(width: width, child: const Tab(text: '問題集')),
-        SizedBox(width: width, child: const Tab(text: '活動')),
-        SizedBox(width: width, child: const Tab(text: 'ランキング')),
+        SizedBox(width: width, child: Tab(text: t.chapters.chapters)),
+        SizedBox(width: width, child: Tab(text: t.activities.activities)),
+        SizedBox(width: width, child: Tab(text: t.ranking.ranking)),
       ];
     }
 
@@ -61,7 +62,7 @@ class ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
       child: Scaffold(
         appBar: AppBar(
           title: future.when(
-            data: (data) => Text(data?.title ?? ''),
+            data: (data) => Text(data?.name ?? ''),
             error: (err, stack) => Text('Error: $err'),
             loading: () => const Text(''),
           ),
@@ -81,7 +82,7 @@ class ChapterSchoolPageState extends ConsumerState<ChapterSchoolPage> {
           ),
         ),
         bottomNavigationBar: const BottomNavbar(),
-        drawer: const ChapterSchoolDrawer(),
+        drawer: const SchoolDrawer(),
       ),
     );
   }

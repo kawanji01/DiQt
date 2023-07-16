@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
-import 'package:booqs_mobile/pages/chapter/school.dart';
+import 'package:booqs_mobile/pages/school/show.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/guideline.dart';
 import 'package:booqs_mobile/pages/dictionary/sentence_search_results.dart';
@@ -89,11 +89,12 @@ const quizRequestAcceptedPage = '/quiz_request/accepted';
 const quizRequestPendingPage = '/quiz_request/pending';
 const quizRequestRejectedPage = '/quiz_request/rejected';
 
+// 教室
+const schoolShowPage = '/school/show';
 // チャプター
 const chapterIndexPage = '/chapter/index';
 const chapterShowPage = '/chapter/show';
 const chapterDrillsPage = '/chapter/drills';
-const chapterSchoolPage = '/chapter/school';
 // ユーザー
 const userMyPage = '/user/mypage';
 const userShowPage = '/user/show';
@@ -157,10 +158,12 @@ final routes = {
   sentenceShowPage: (context) => const SentenceShowPage(),
   // WordRequest
   wordRequestDictionaryPage: (context) => const WordRequestDictionaryPage(),
+  // School
+  schoolShowPage: (context) => const SchoolShowPage(),
   // Chapter
   chapterIndexPage: (context) => const ChapterIndexPage(),
   chapterShowPage: (context) => const ChapterShowPage(),
-  chapterSchoolPage: (context) => const ChapterSchoolPage(),
+
   // User
   userMyPage: (context) => const UserMyPage(),
   userShowPage: (context) => const UserShowPage(),
