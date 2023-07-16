@@ -1,5 +1,5 @@
-import 'package:booqs_mobile/data/provider/chapter.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/school.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -7,8 +7,8 @@ import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChapterSchoolDrawer extends ConsumerWidget {
-  const ChapterSchoolDrawer({Key? key}) : super(key: key);
+class SchoolDrawer extends ConsumerWidget {
+  const SchoolDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -1,36 +1,36 @@
 class Chapter {
-  Chapter(
-      {required this.id,
-      required this.appliedDictionaryId,
-      required this.title,
-      required this.langNumberOfTitle,
-      required this.introduction,
-      this.imageUrl,
-      required this.thumbnailUrl,
-      this.iconUrl,
-      this.groupType,
-      required this.publicUid,
-      required this.school,
-      required this.private,
-      this.referenceUrl,
-      this.referenceTitle,
-      this.referenceOgp,
-      required this.createdAt,
-      required this.updatedAt,
-      // eager_loadでキャッシュしたdrillの情報
-      this.answerHistoriesCount});
+  Chapter({
+    required this.id,
+    required this.appliedDictionaryId,
+    required this.title,
+    required this.langNumberOfTitle,
+    required this.introduction,
+    required this.thumbnailUrl,
+    this.iconUrl,
+    this.groupType,
+    required this.publicUid,
+    required this.schoolId,
+    required this.private,
+    this.referenceUrl,
+    this.referenceTitle,
+    this.referenceOgp,
+    required this.createdAt,
+    required this.updatedAt,
+    // eager_loadでキャッシュしたdrillの情報
+    this.answerHistoriesCount,
+    // this.school
+  });
 
   int id;
   int appliedDictionaryId;
   String title;
   int langNumberOfTitle;
   String introduction;
-  String? imageUrl;
   String thumbnailUrl;
   String? iconUrl;
   String? groupType;
   String publicUid;
-  bool school;
+  int? schoolId;
   bool private;
   String? referenceUrl;
   String? referenceTitle;
@@ -39,6 +39,7 @@ class Chapter {
   DateTime updatedAt;
   // テーブルを結合してキャッシュしたdrillの情報
   int? answerHistoriesCount;
+  //School? school;
 
   Chapter.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -46,12 +47,11 @@ class Chapter {
         title = json['title'] ?? '',
         langNumberOfTitle = json['langNumberOfTitle'] ?? 44,
         introduction = json['introduction'] ?? '',
-        imageUrl = json['cover_image_url'] ?? '',
         thumbnailUrl = json['thumbnail_url'] ?? '',
         iconUrl = json['icon_image_url'] ?? '',
         groupType = json['group_type'].toString(),
         publicUid = json['public_uid'],
-        school = json['school'],
+        schoolId = json['school_id'],
         private = json['private'],
         referenceUrl = json['reference_url'],
         referenceTitle = json['reference_title'],
@@ -60,18 +60,19 @@ class Chapter {
         updatedAt = DateTime.parse(json['updated_at']),
         // テーブルを結合してキャッシュしたdrillの情報,
         answerHistoriesCount = json['answer_histories_count'] ?? 0;
+  //school =
+  //json['school'] != null ? School.fromJson(json['school']) : null;
 
   Map<String, dynamic> toJson() => {
         'id': id,
         'applied_dictionary_id': appliedDictionaryId,
         'name': title,
         'introduction': introduction,
-        'image_url': imageUrl,
         'thumbnail_url': thumbnailUrl,
         'icon_url': iconUrl,
         'group_type': groupType,
         'public_uid': publicUid,
-        'school': school,
+        'school_id': schoolId,
         'private': private,
         'reference_url': referenceUrl,
         'reference_title': referenceTitle,
@@ -80,5 +81,6 @@ class Chapter {
         'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,
         'answer_histories_count': answerHistoriesCount,
+        //'school': school?.toJson(),
       };
 }

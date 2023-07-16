@@ -1,38 +1,36 @@
-import 'package:booqs_mobile/data/provider/chapter.dart';
-import 'package:booqs_mobile/models/chapter.dart';
-import 'package:booqs_mobile/components/chapter/introduction.dart';
-import 'package:booqs_mobile/components/drill/feed.dart';
+import 'package:booqs_mobile/components/chapter/card_list.dart';
+import 'package:booqs_mobile/data/provider/school.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChapterSchoolDrills extends ConsumerStatefulWidget {
-  const ChapterSchoolDrills({Key? key}) : super(key: key);
+class SchoolChapters extends ConsumerStatefulWidget {
+  const SchoolChapters({Key? key}) : super(key: key);
 
   @override
-  ChapterSchoolDrillsState createState() => ChapterSchoolDrillsState();
+  SchoolChaptersState createState() => SchoolChaptersState();
 }
 
-class ChapterSchoolDrillsState extends ConsumerState<ChapterSchoolDrills> {
+class SchoolChaptersState extends ConsumerState<SchoolChapters> {
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.invalidate(asynSchoolDrillsProvider);
+      ref.invalidate(asynSchoolChaptersProvider);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final Chapter? school = ref.watch(schoolProvider);
-    final future = ref.watch(asynSchoolDrillsProvider);
+    //final School? school = ref.watch(schoolProvider);
+    final future = ref.watch(asynSchoolChaptersProvider);
 
     //
     Widget buildCards() {
       return future.when(
           loading: () => const LoadingSpinner(),
           error: (err, stack) => Text('Error: $err'),
-          data: (drills) => DrillFeed(drills: drills!));
+          data: (chapters) => ChapterCardList(chapters: chapters!));
     }
 
     return SingleChildScrollView(
@@ -42,10 +40,6 @@ class ChapterSchoolDrillsState extends ConsumerState<ChapterSchoolDrills> {
           children: <Widget>[
             const SizedBox(
               height: 16,
-            ),
-            ChapterIntroduction(chapter: school!),
-            const SizedBox(
-              height: 40,
             ),
             buildCards(),
           ],

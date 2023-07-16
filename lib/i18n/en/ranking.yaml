@@ -1,0 +1,8 @@
+ranking: 'Ranking'
+daily: 'Daily'
+weekly: 'Weekly'
+monthly: 'Monthly'
+daily_answerer: 'Daily Answerers Ranking'
+weekly_answerer: 'Weekly Answerers Ranking'
+monthly_answerer: 'Monthly Answerers Ranking'
+rank: 'No.${number}'

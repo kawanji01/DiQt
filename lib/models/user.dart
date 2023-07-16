@@ -4,6 +4,7 @@ import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/relationship.dart';
+import 'package:booqs_mobile/models/school.dart';
 import 'package:booqs_mobile/utils/language_handler.dart';
 
 class User {
@@ -31,7 +32,6 @@ class User {
     required this.achievementMapsCount,
     required this.notesCount,
     required this.premium,
-    required this.school,
     required this.paidViaNativeApp,
     required this.unreadNotificationsCount,
     required this.unsolvedReviewsCount,
@@ -43,12 +43,14 @@ class User {
     required this.appFavored,
     required this.appCancelReportSent,
     this.authToken,
+    this.schoolId,
+    this.schoolParticipation,
     this.passwordBeingSet,
     this.dateCurrent,
     this.answerSetting,
     this.drillInProgress,
     this.relationship,
-    this.participatingChapters,
+    this.participatingSchools,
   });
 
   int id;
@@ -74,7 +76,6 @@ class User {
   int achievementMapsCount;
   int notesCount;
   bool premium;
-  bool school;
   bool paidViaNativeApp;
   int unreadNotificationsCount;
   int unsolvedReviewsCount;
@@ -85,13 +86,15 @@ class User {
   int todaysTranslationsCount;
   bool appFavored;
   bool appCancelReportSent;
+  int? schoolId;
+  bool? schoolParticipation;
   String? authToken;
   bool? passwordBeingSet;
   DateTime? dateCurrent;
   AnswerSetting? answerSetting;
   Drill? drillInProgress;
   Relationship? relationship;
-  List<Chapter>? participatingChapters;
+  List<School>? participatingSchools;
 
   User.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -122,7 +125,6 @@ class User {
         achievementMapsCount = json['achievement_maps_count'],
         notesCount = json['notes_count'],
         premium = json['premium'],
-        school = json['school'],
         paidViaNativeApp = json['paid_via_native_app'],
         unreadNotificationsCount = json['unread_notifications_count'],
         unsolvedReviewsCount = json['unsolved_reviews_count'],
@@ -134,6 +136,8 @@ class User {
         appFavored = json['app_favored'],
         appCancelReportSent = json['app_cancel_report_sent'],
         authToken = json['token_for_native_app'],
+        schoolId = json['school_id'],
+        schoolParticipation = json['school_participation'],
         passwordBeingSet = json['password_being_set'],
         dateCurrent = json['date_current'] == null
             ? null
@@ -147,9 +151,9 @@ class User {
         relationship = json['relationship'] == null
             ? null
             : Relationship.fromJson(json['relationship']),
-        participatingChapters = json['participating_chapters'] == null
+        participatingSchools = json['participating_schools'] == null
             ? []
-            : json['participating_chapters']
+            : json['participating_schools']
                 .map<Chapter>((e) => Chapter.fromJson(e))
                 .toList();
 
@@ -188,7 +192,6 @@ class User {
         'achievement_maps_count': achievementMapsCount,
         'notes_count': notesCount,
         'premium': premium,
-        'school': school,
         'paid_via_native_app': paidViaNativeApp,
         'reward_remained': rewardRemained,
         'unread_notifications_count': unreadNotificationsCount,
@@ -200,9 +203,12 @@ class User {
         'app_favored': appFavored,
         'app_cancel_report_sent': appCancelReportSent,
         'token_for_native_app': authToken,
+        'school_id': schoolId,
+        'school_participation': schoolParticipation,
         'date_current': dateCurrent,
         'answer_setting': answerSetting,
         'drill_in_progress': drillInProgress,
         'relationship': relationship,
+        'participating_schools': participatingSchools,
       };
 }

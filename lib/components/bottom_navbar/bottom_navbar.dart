@@ -11,8 +11,8 @@ class BottomNavbar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(asyncCurrentUserProvider).when(
           data: ((user) {
-            final bool school = user?.school ?? false;
-            if (school) {
+            final bool schoolParticipation = user?.schoolParticipation ?? false;
+            if (schoolParticipation) {
               return const BottomNavbarForSchool();
             }
             return const BottomNavbarForNormal();

@@ -30,7 +30,6 @@ class UserBuilder {
         paidViaNativeApp: false,
         reviewsCount: 0,
         rewardRemained: false,
-        school: false,
         todaysAnswerHistoriesCount: 0,
         todaysCorrectAnswerHistoriesCount: 0,
         todaysTranslationsCount: 0,
