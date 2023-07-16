@@ -95,7 +95,6 @@ class User {
   Drill? drillInProgress;
   Relationship? relationship;
   List<School>? participatingSchools;
-  School? school;
 
   User.fromJson(Map<String, dynamic> json)
       : id = json['id'],

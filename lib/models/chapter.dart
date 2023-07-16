@@ -1,26 +1,25 @@
-import 'package:booqs_mobile/models/school.dart';
-
 class Chapter {
-  Chapter(
-      {required this.id,
-      required this.appliedDictionaryId,
-      required this.title,
-      required this.langNumberOfTitle,
-      required this.introduction,
-      required this.thumbnailUrl,
-      this.iconUrl,
-      this.groupType,
-      required this.publicUid,
-      required this.schoolId,
-      required this.private,
-      this.referenceUrl,
-      this.referenceTitle,
-      this.referenceOgp,
-      required this.createdAt,
-      required this.updatedAt,
-      // eager_loadでキャッシュしたdrillの情報
-      this.answerHistoriesCount,
-      this.school});
+  Chapter({
+    required this.id,
+    required this.appliedDictionaryId,
+    required this.title,
+    required this.langNumberOfTitle,
+    required this.introduction,
+    required this.thumbnailUrl,
+    this.iconUrl,
+    this.groupType,
+    required this.publicUid,
+    required this.schoolId,
+    required this.private,
+    this.referenceUrl,
+    this.referenceTitle,
+    this.referenceOgp,
+    required this.createdAt,
+    required this.updatedAt,
+    // eager_loadでキャッシュしたdrillの情報
+    this.answerHistoriesCount,
+    // this.school
+  });
 
   int id;
   int appliedDictionaryId;
@@ -40,7 +39,7 @@ class Chapter {
   DateTime updatedAt;
   // テーブルを結合してキャッシュしたdrillの情報
   int? answerHistoriesCount;
-  School? school;
+  //School? school;
 
   Chapter.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -60,9 +59,9 @@ class Chapter {
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         // テーブルを結合してキャッシュしたdrillの情報,
-        answerHistoriesCount = json['answer_histories_count'] ?? 0,
-        school =
-            json['school'] != null ? School.fromJson(json['school']) : null;
+        answerHistoriesCount = json['answer_histories_count'] ?? 0;
+  //school =
+  //json['school'] != null ? School.fromJson(json['school']) : null;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -82,6 +81,6 @@ class Chapter {
         'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,
         'answer_histories_count': answerHistoriesCount,
-        'school': school?.toJson(),
+        //'school': school?.toJson(),
       };
 }

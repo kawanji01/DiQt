@@ -8,12 +8,12 @@ class HomeLoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget content() {
       if (error == null) {
-        Text('$error',
-            style: const TextStyle(color: Colors.white, fontSize: 24));
+        return const CircularProgressIndicator(
+          color: Colors.white,
+        );
       }
-      return const CircularProgressIndicator(
-        color: Colors.white,
-      );
+      return Text('$error',
+          style: const TextStyle(color: Colors.white, fontSize: 24));
     }
 
     //
