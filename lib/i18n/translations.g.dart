@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2032 (1016 per locale)
+/// Strings: 2040 (1020 per locale)
 ///
-/// Built on 2023-07-17 at 08:32 UTC
+/// Built on 2023-07-17 at 09:30 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -454,6 +454,10 @@ class _TranslationsSchoolsEn {
 	String get invitation_limited => 'You need to increase the number of members to invite new members.';
 	String get invitation_succeeded => 'Invitation succeeded.';
 	String get removal_succeeded => 'Removal succeeded.';
+	String get owner => 'Founder';
+	String get admin => 'Admin';
+	String get moderator => 'Moderator';
+	String get member => 'Member';
 }
 
 // Path: notices
@@ -1807,6 +1811,10 @@ class _TranslationsSchoolsJa implements _TranslationsSchoolsEn {
 	@override String get invitation_limited => '新たにメンバーを招待するには、メンバーの上限数を増やしてください。';
 	@override String get invitation_succeeded => '招待に成功しました。';
 	@override String get removal_succeeded => '除名に成功しました。';
+	@override String get owner => '創設者';
+	@override String get admin => '管理者';
+	@override String get moderator => 'モデレーター';
+	@override String get member => 'メンバー';
 }
 
 // Path: notices
@@ -3038,6 +3046,10 @@ extension on _TranslationsEn {
 			case 'schools.invitation_limited': return 'You need to increase the number of members to invite new members.';
 			case 'schools.invitation_succeeded': return 'Invitation succeeded.';
 			case 'schools.removal_succeeded': return 'Removal succeeded.';
+			case 'schools.owner': return 'Founder';
+			case 'schools.admin': return 'Admin';
+			case 'schools.moderator': return 'Moderator';
+			case 'schools.member': return 'Member';
 			case 'notices.notifications': return 'Notifications';
 			case 'notices.cheered_message': return ({required Object name}) => '${name} has cheered you!';
 			case 'notices.followed_message': return ({required Object name}) => '${name} has followed you!';
@@ -4062,6 +4074,10 @@ extension on _TranslationsJa {
 			case 'schools.invitation_limited': return '新たにメンバーを招待するには、メンバーの上限数を増やしてください。';
 			case 'schools.invitation_succeeded': return '招待に成功しました。';
 			case 'schools.removal_succeeded': return '除名に成功しました。';
+			case 'schools.owner': return '創設者';
+			case 'schools.admin': return '管理者';
+			case 'schools.moderator': return 'モデレーター';
+			case 'schools.member': return 'メンバー';
 			case 'notices.notifications': return '通知';
 			case 'notices.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
 			case 'notices.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
