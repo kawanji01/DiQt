@@ -99,11 +99,9 @@ class UserDrillListViewState extends State<UserDrillListView> {
       );
     }
 
-    return PagedListView.separated(
+    return PagedListView<int, Drill>(
       pagingController: _pagingController,
-      separatorBuilder: (context, index) => const Divider(
-        thickness: 1,
-      ),
+
       padding: const EdgeInsets.only(top: 40),
       // Vertical viewport was given unbounded heightの解決 ref: https://qiita.com/code-cutlass/items/3a8b759056db1e8f7639
       shrinkWrap: true,

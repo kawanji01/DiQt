@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/shared/cache_network_image.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/drill.dart';
@@ -5,7 +6,6 @@ import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -68,12 +68,8 @@ class DrillListItem extends ConsumerWidget {
               ),
               subtitle: subtitle(),
             ),
-            CachedNetworkImage(
-              imageUrl: drill.thumbnailUrl,
-              placeholder: (context, url) => Container(
-                  alignment: Alignment.center,
-                  child: const CircularProgressIndicator()),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+            SharedCacheNetworkImage(
+              url: drill.thumbnailUrl,
             ),
             Padding(
               padding: const EdgeInsets.only(

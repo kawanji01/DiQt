@@ -38,6 +38,7 @@ class User {
     required this.reviewsCount,
     required this.unsolvedWeaknessesCount,
     required this.weaknessesCount,
+    required this.drillsCount,
     required this.rewardRemained,
     required this.todaysTranslationsCount,
     required this.appFavored,
@@ -82,6 +83,7 @@ class User {
   int reviewsCount;
   int unsolvedWeaknessesCount;
   int weaknessesCount;
+  int drillsCount;
   bool rewardRemained;
   int todaysTranslationsCount;
   bool appFavored;
@@ -132,6 +134,7 @@ class User {
         reviewsCount = json['reviews_count'],
         unsolvedWeaknessesCount = json['unsolved_weaknesses_count'],
         weaknessesCount = json['weaknesses_count'],
+        drillsCount = json['drills_count'],
         rewardRemained = json['reward_remained'],
         todaysTranslationsCount = json['todays_translations_count'],
         appFavored = json['app_favored'],
@@ -203,6 +206,7 @@ class User {
         'reviews_count': reviewsCount,
         'unsolved_weaknesses_count': unsolvedWeaknessesCount,
         'weaknesses_count': weaknessesCount,
+        'drills_count': drillsCount,
         'todays_translations_count': todaysTranslationsCount,
         'app_favored': appFavored,
         'app_cancel_report_sent': appCancelReportSent,
