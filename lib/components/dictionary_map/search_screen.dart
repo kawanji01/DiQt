@@ -10,14 +10,24 @@ class DictionaryMapSearchScreen extends StatelessWidget {
     return Container(
       key: const Key('DictionaryMapSearchScreen'),
       margin: const EdgeInsets.only(top: 16),
-      child: const Column(
+      child: Column(
         children: <Widget>[
-          SizedBox(height: 16),
-          DictionaryMapSearchForm(),
+          const SizedBox(height: 16),
+          const DictionaryMapSearchForm(),
           // FlutterでRenderFlex overflowedのエラーが発生するとき、それは通常、フレックスボックス（Row、Column、Flex）内のウィジェットが利用可能なスペースを超えて拡大しようとしたときに発生する。
           // この場合、画面からはみ出すフレックスボックスの小要素をExpandedをwrapすると解決できる。
           Expanded(
-            child: DictionaryMapRadioList(),
+            child: GestureDetector(
+              onTap: () {
+                // キーボードを閉じる
+                FocusScopeNode currentFocus = FocusScope.of(context);
+                // フォーカスがすでにない状況でunfocus()を呼び出すと、エラーが発生する可能性がある
+                if (!currentFocus.hasPrimaryFocus) {
+                  currentFocus.unfocus();
+                }
+              },
+              child: const DictionaryMapRadioList(),
+            ),
           ),
         ],
       ),

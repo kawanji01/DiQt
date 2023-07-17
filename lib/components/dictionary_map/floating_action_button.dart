@@ -8,7 +8,12 @@ class DictionaryMapFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        FocusScope.of(context).unfocus();
+        // キーボードを閉じる
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        // フォーカスがすでにない状況でunfocus()を呼び出すと、エラーが発生する可能性がある
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
         showModalBottomSheet(
           isScrollControlled: true,
           context: context,
