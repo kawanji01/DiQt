@@ -16,8 +16,8 @@ class School {
   final String name;
   final int langNumberOfName;
   final String publicUid;
-  final String introduction;
-  final String thumbnailUrl;
+  final String? introduction;
+  final String? thumbnailUrl;
   final int membersLimit;
   final int memberMapsCount;
   final int chaptersCount;

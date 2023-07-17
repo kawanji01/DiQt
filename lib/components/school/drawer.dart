@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/shared/cache_network_image.dart';
+import 'package:booqs_mobile/consts/images.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/school.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
@@ -27,7 +28,7 @@ class SchoolDrawer extends ConsumerWidget {
       decoration: const BoxDecoration(
         color: Colors.green,
       ),
-      child: SharedCacheNetworkImage(url: school.thumbnailUrl),
+      child: SharedCacheNetworkImage(url: school.thumbnailUrl ?? diqtNoImage),
     );
 
     Widget tile(School school) {
@@ -35,16 +36,18 @@ class SchoolDrawer extends ConsumerWidget {
         title: Text(school.name, style: const TextStyle(fontSize: 16)),
         onTap: () {
           ref.read(schoolProvider.notifier).state = school;
-          ref.read(schoolUidProvider.notifier).state = school.publicUid;
           ref.invalidate(asyncSchoolProvider);
+          ref.invalidate(asynSchoolChaptersProvider);
           Navigator.of(context).pop();
         },
       );
     }
 
-    List<Widget> drawerList(data) {
+    List<Widget> drawerList(List<School> schools) {
       List<Widget> list = [];
-      data.forEach((school) => list.add(tile(school)));
+      for (var school in schools) {
+        list.add(tile(school));
+      }
       list.insert(0, header);
       return list;
     }
@@ -57,7 +60,7 @@ class SchoolDrawer extends ConsumerWidget {
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: ref.watch(asyncUserSchoolsProvider(user.publicUid)).when(
-              data: (data) => drawerList(data),
+              data: (schools) => drawerList(schools),
               loading: () => [header, const LoadingSpinner()],
               error: (err, stack) => [header, Text('Error: $err')],
             ),

@@ -176,26 +176,21 @@ class RemoteUsers {
   }
 
   // 参加中の教室
-  static Future<Map?> schools(String publicUid) async {
+  static Future<Map> schools(String publicUid) async {
     try {
       final Uri url =
           Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/$publicUid/schools');
       final Response res = await HttpService.get(url);
 
-      if (res.statusCode != 200) {
-        return null;
-      }
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 

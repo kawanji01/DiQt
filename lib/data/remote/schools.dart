@@ -10,13 +10,8 @@ import 'package:http/http.dart';
 class RemoteSchools {
   static Future<Map> show(String publicUid) async {
     try {
-      String uid;
-      if (publicUid == '') {
-        uid = 'me';
-      } else {
-        uid = publicUid;
-      }
-      final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/schools/$uid');
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/schools/$publicUid');
       final Response res = await HttpService.get(url);
       if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
       final Map resMap = json.decode(res.body);

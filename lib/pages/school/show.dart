@@ -65,7 +65,7 @@ class SchoolShowPageState extends ConsumerState<SchoolShowPage> {
       child: Scaffold(
         appBar: AppBar(
           title: future.when(
-            data: (data) => Text(data?.name ?? ''),
+            data: (school) => Text(school?.name ?? ''),
             error: (err, stack) => Text('Error: $err'),
             loading: () => const Text(''),
           ),

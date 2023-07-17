@@ -2,6 +2,7 @@
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/models/school.dart';
 import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final userProvider = StateProvider<User?>((ref) => null);
@@ -27,8 +28,8 @@ final asyncUserFamily =
 final asyncUserSchoolsProvider =
     FutureProvider.family<List<School>, String>((ref, userUid) async {
   final List<School> schools = [];
-  final Map? resMap = await RemoteUsers.schools(userUid);
-  if (resMap == null) return schools;
+  final Map resMap = await RemoteUsers.schools(userUid);
+  if (ErrorHandler.isErrorMap(resMap)) return schools;
 
   resMap['schools'].forEach((e) => schools.add(School.fromJson(e)));
   return schools;
