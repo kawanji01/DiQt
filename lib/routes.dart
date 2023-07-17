@@ -31,6 +31,7 @@ import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/log_in.dart';
 import 'package:booqs_mobile/pages/user/cancellation.dart';
 import 'package:booqs_mobile/pages/user/contract_details.dart';
+import 'package:booqs_mobile/pages/user/drills.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/pages/user/menu.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
@@ -98,6 +99,7 @@ const chapterDrillsPage = '/chapter/drills';
 // ユーザー
 const userMyPage = '/user/mypage';
 const userShowPage = '/user/show';
+const userDrillsPage = '/user/drills';
 const userAchievementsPage = '/user/achievements';
 const userEditPage = '/user/edit';
 const userMenuPage = '/user/menu';
@@ -167,6 +169,7 @@ final routes = {
   // User
   userMyPage: (context) => const UserMyPage(),
   userShowPage: (context) => const UserShowPage(),
+  userDrillsPage: (context) => const UserDrillsPage(),
   userAchievementsPage: (context) => const UserAchievementsPage(),
   userEditPage: (context) => const UserEditPage(),
   userMenuPage: (context) => const UserMenuPage(),

@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2026 (1013 per locale)
+/// Strings: 2040 (1020 per locale)
 ///
-/// Built on 2023-07-16 at 13:19 UTC
+/// Built on 2023-07-17 at 09:30 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -431,6 +431,7 @@ class _TranslationsUsersEn {
 	String get updated => 'Account Updated.';
 	String get failed_to_update => 'Account could not be updated.';
 	String get destroyed => 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
+	String get drills => 'Created Drills';
 }
 
 // Path: schools
@@ -453,6 +454,10 @@ class _TranslationsSchoolsEn {
 	String get invitation_limited => 'You need to increase the number of members to invite new members.';
 	String get invitation_succeeded => 'Invitation succeeded.';
 	String get removal_succeeded => 'Removal succeeded.';
+	String get owner => 'Founder';
+	String get admin => 'Admin';
+	String get moderator => 'Moderator';
+	String get member => 'Member';
 }
 
 // Path: notices
@@ -516,7 +521,9 @@ class _TranslationsAnswerSettingsEn {
 	String get strict_solving_mode => 'Strict Answer Mode';
 	String get strict_solving_mode_description => 'Unanswered questions in the question booklet are only marked as answered if they are answered correctly, not just answered.';
 	String get se_enabled => 'Sound Effects';
+	String get se_enabled_description => 'If you find level-up and other sound effects too noisy, turn them off.';
 	String get effect_enabled => 'Display rewards and feedbacks';
+	String get effect_enabled_description => 'If the rewards and feedback for solving questions seem intrusive, turn it off.';
 	String get review_setting => 'Review Setting';
 	String get strict_reviewing_mode => 'Strict Review Mode';
 	String get strict_reviewing_mode_description => 'The condition for removing a question from the unreviewed is only if it is answered correctly, not just answered.';
@@ -1781,6 +1788,7 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get updated => 'アカウントを更新しました。';
 	@override String get failed_to_update => 'アカウントを更新できませんでした。';
 	@override String get destroyed => '退会が完了しました。ご利用いただき、誠にありがとうございました。';
+	@override String get drills => '作成したドリル';
 }
 
 // Path: schools
@@ -1803,6 +1811,10 @@ class _TranslationsSchoolsJa implements _TranslationsSchoolsEn {
 	@override String get invitation_limited => '新たにメンバーを招待するには、メンバーの上限数を増やしてください。';
 	@override String get invitation_succeeded => '招待に成功しました。';
 	@override String get removal_succeeded => '除名に成功しました。';
+	@override String get owner => '創設者';
+	@override String get admin => '管理者';
+	@override String get moderator => 'モデレーター';
+	@override String get member => 'メンバー';
 }
 
 // Path: notices
@@ -1866,7 +1878,9 @@ class _TranslationsAnswerSettingsJa implements _TranslationsAnswerSettingsEn {
 	@override String get strict_solving_mode => '厳格解答モード';
 	@override String get strict_solving_mode_description => '問題集の未解答の問題を、単なる解答ではなく、正解した場合でのみ解答済にします。';
 	@override String get se_enabled => '効果音を鳴らす';
+	@override String get se_enabled_description => 'レベルアップなどの効果音がうるさいと感じたらOFFにしてください。';
 	@override String get effect_enabled => '報酬やフィードバックを表示する';
+	@override String get effect_enabled_description => '問題解答時の報酬やフィードバックが邪魔に感じたらOFFにしてください。';
 	@override String get review_setting => '復習設定';
 	@override String get strict_reviewing_mode => '厳格復習モード';
 	@override String get strict_reviewing_mode_description => '復習の未解答から問題を取り除く条件を、単なる解答ではなく、正解した場合のみにします。';
@@ -3018,6 +3032,7 @@ extension on _TranslationsEn {
 			case 'users.updated': return 'Account Updated.';
 			case 'users.failed_to_update': return 'Account could not be updated.';
 			case 'users.destroyed': return 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
+			case 'users.drills': return 'Created Drills';
 			case 'schools.schools': return 'Schools';
 			case 'schools.school': return 'School';
 			case 'schools.name': return 'Name';
@@ -3031,6 +3046,10 @@ extension on _TranslationsEn {
 			case 'schools.invitation_limited': return 'You need to increase the number of members to invite new members.';
 			case 'schools.invitation_succeeded': return 'Invitation succeeded.';
 			case 'schools.removal_succeeded': return 'Removal succeeded.';
+			case 'schools.owner': return 'Founder';
+			case 'schools.admin': return 'Admin';
+			case 'schools.moderator': return 'Moderator';
+			case 'schools.member': return 'Member';
 			case 'notices.notifications': return 'Notifications';
 			case 'notices.cheered_message': return ({required Object name}) => '${name} has cheered you!';
 			case 'notices.followed_message': return ({required Object name}) => '${name} has followed you!';
@@ -3067,7 +3086,9 @@ extension on _TranslationsEn {
 			case 'answerSettings.strict_solving_mode': return 'Strict Answer Mode';
 			case 'answerSettings.strict_solving_mode_description': return 'Unanswered questions in the question booklet are only marked as answered if they are answered correctly, not just answered.';
 			case 'answerSettings.se_enabled': return 'Sound Effects';
+			case 'answerSettings.se_enabled_description': return 'If you find level-up and other sound effects too noisy, turn them off.';
 			case 'answerSettings.effect_enabled': return 'Display rewards and feedbacks';
+			case 'answerSettings.effect_enabled_description': return 'If the rewards and feedback for solving questions seem intrusive, turn it off.';
 			case 'answerSettings.review_setting': return 'Review Setting';
 			case 'answerSettings.strict_reviewing_mode': return 'Strict Review Mode';
 			case 'answerSettings.strict_reviewing_mode_description': return 'The condition for removing a question from the unreviewed is only if it is answered correctly, not just answered.';
@@ -4039,6 +4060,7 @@ extension on _TranslationsJa {
 			case 'users.updated': return 'アカウントを更新しました。';
 			case 'users.failed_to_update': return 'アカウントを更新できませんでした。';
 			case 'users.destroyed': return '退会が完了しました。ご利用いただき、誠にありがとうございました。';
+			case 'users.drills': return '作成したドリル';
 			case 'schools.schools': return '教室';
 			case 'schools.school': return '教室';
 			case 'schools.name': return '名前';
@@ -4052,6 +4074,10 @@ extension on _TranslationsJa {
 			case 'schools.invitation_limited': return '新たにメンバーを招待するには、メンバーの上限数を増やしてください。';
 			case 'schools.invitation_succeeded': return '招待に成功しました。';
 			case 'schools.removal_succeeded': return '除名に成功しました。';
+			case 'schools.owner': return '創設者';
+			case 'schools.admin': return '管理者';
+			case 'schools.moderator': return 'モデレーター';
+			case 'schools.member': return 'メンバー';
 			case 'notices.notifications': return '通知';
 			case 'notices.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
 			case 'notices.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
@@ -4088,7 +4114,9 @@ extension on _TranslationsJa {
 			case 'answerSettings.strict_solving_mode': return '厳格解答モード';
 			case 'answerSettings.strict_solving_mode_description': return '問題集の未解答の問題を、単なる解答ではなく、正解した場合でのみ解答済にします。';
 			case 'answerSettings.se_enabled': return '効果音を鳴らす';
+			case 'answerSettings.se_enabled_description': return 'レベルアップなどの効果音がうるさいと感じたらOFFにしてください。';
 			case 'answerSettings.effect_enabled': return '報酬やフィードバックを表示する';
+			case 'answerSettings.effect_enabled_description': return '問題解答時の報酬やフィードバックが邪魔に感じたらOFFにしてください。';
 			case 'answerSettings.review_setting': return '復習設定';
 			case 'answerSettings.strict_reviewing_mode': return '厳格復習モード';
 			case 'answerSettings.strict_reviewing_mode_description': return '復習の未解答から問題を取り除く条件を、単なる解答ではなく、正解した場合のみにします。';

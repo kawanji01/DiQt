@@ -23,11 +23,10 @@ final strictSolvingModeProvider = StateProvider<bool>((ref) => ref.watch(
         .select((setting) => setting?.strictSolvingMode ?? false)));
 // 効果音設定
 final seEnabledProvider = StateProvider<bool>((ref) => ref.watch(
-    answerSettingProvider.select((setting) => setting?.seEnabled ?? false)));
-// 解答時の報酬モーダルの表示設定（OFFでモーダルからポップアップに変更する）
+    answerSettingProvider.select((setting) => setting?.seEnabled ?? true)));
+// 解答時の報酬モーダルや演出の表示設定
 final effectEnabledProvider = StateProvider<bool>((ref) => ref.watch(
-    answerSettingProvider
-        .select((setting) => setting?.effectEnabled ?? false)));
+    answerSettingProvider.select((setting) => setting?.effectEnabled ?? true)));
 //
 
 //// 復習設定用 ////

@@ -1,7 +1,9 @@
+import 'package:booqs_mobile/components/shared/cache_network_image.dart';
+import 'package:booqs_mobile/consts/images.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/school.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
-import 'package:booqs_mobile/models/chapter.dart';
+import 'package:booqs_mobile/models/school.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -16,34 +18,36 @@ class SchoolDrawer extends ConsumerWidget {
     if (user == null) {
       return Container();
     }
-    final future = ref.watch(asyncUserSchoolsProvider(user.publicUid));
+    final School? school = ref.watch(schoolProvider);
+    if (school == null) {
+      return Container();
+    }
 
     // drawerのheader
-    const Widget header = DrawerHeader(
-      decoration: BoxDecoration(
+    final Widget header = DrawerHeader(
+      decoration: const BoxDecoration(
         color: Colors.green,
       ),
-      child: Text(
-        '教室',
-        style: TextStyle(
-            color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
-      ),
+      child: SharedCacheNetworkImage(url: school.thumbnailUrl ?? diqtNoImage),
     );
 
-    Widget tile(Chapter school) {
+    Widget tile(School school) {
       return ListTile(
-        title: Text(school.title, style: const TextStyle(fontSize: 16)),
+        title: Text(school.name, style: const TextStyle(fontSize: 16)),
         onTap: () {
-          ref.read(schoolUidProvider.notifier).state = school.publicUid;
+          ref.read(schoolProvider.notifier).state = school;
           ref.invalidate(asyncSchoolProvider);
+          ref.invalidate(asynSchoolChaptersProvider);
           Navigator.of(context).pop();
         },
       );
     }
 
-    List<Widget> drawerList(data) {
+    List<Widget> drawerList(List<School> schools) {
       List<Widget> list = [];
-      data.forEach((school) => list.add(tile(school)));
+      for (var school in schools) {
+        list.add(tile(school));
+      }
       list.insert(0, header);
       return list;
     }
@@ -55,11 +59,11 @@ class SchoolDrawer extends ConsumerWidget {
       child: ListView(
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
-        children: future.when(
-          loading: () => [header, const LoadingSpinner()],
-          error: (err, stack) => [header, Text('Error: $err')],
-          data: (data) => drawerList(data),
-        ),
+        children: ref.watch(asyncUserSchoolsProvider(user.publicUid)).when(
+              data: (schools) => drawerList(schools),
+              loading: () => [header, const LoadingSpinner()],
+              error: (err, stack) => [header, Text('Error: $err')],
+            ),
       ),
     );
   }

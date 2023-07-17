@@ -39,6 +39,7 @@ class UserBuilder {
         weaknessesCount: 0,
         wholeMonthAnswerHistoriesCount: 0,
         wholeWeekAnswerHistoriesCount: 0,
+        drillsCount: 0,
         achievementMapsCount: 0,
         notesCount: 0);
   }

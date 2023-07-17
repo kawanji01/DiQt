@@ -47,6 +47,8 @@ class HomeDictionaryScreen extends ConsumerWidget {
                     .read(dictionaryMapFloatingActionButtonProvider.notifier)
                     .state = const DictionaryMapFloatingActionButton();
               } else {
+                // tabIndexが0でないときは、FloatingActionButtonを表示しない & キーボードを閉じる
+                FocusScope.of(context).unfocus();
                 ref
                     .read(dictionaryMapFloatingActionButtonProvider.notifier)
                     .state = null;

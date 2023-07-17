@@ -38,6 +38,7 @@ class User {
     required this.reviewsCount,
     required this.unsolvedWeaknessesCount,
     required this.weaknessesCount,
+    required this.drillsCount,
     required this.rewardRemained,
     required this.todaysTranslationsCount,
     required this.appFavored,
@@ -82,6 +83,7 @@ class User {
   int reviewsCount;
   int unsolvedWeaknessesCount;
   int weaknessesCount;
+  int drillsCount;
   bool rewardRemained;
   int todaysTranslationsCount;
   bool appFavored;
@@ -95,6 +97,7 @@ class User {
   Drill? drillInProgress;
   Relationship? relationship;
   List<School>? participatingSchools;
+  List<Drill>? drills;
 
   User.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -131,6 +134,7 @@ class User {
         reviewsCount = json['reviews_count'],
         unsolvedWeaknessesCount = json['unsolved_weaknesses_count'],
         weaknessesCount = json['weaknesses_count'],
+        drillsCount = json['drills_count'],
         rewardRemained = json['reward_remained'],
         todaysTranslationsCount = json['todays_translations_count'],
         appFavored = json['app_favored'],
@@ -151,6 +155,9 @@ class User {
         relationship = json['relationship'] == null
             ? null
             : Relationship.fromJson(json['relationship']),
+        drills = json['drills'] == null
+            ? []
+            : json['drills'].map<Chapter>((e) => Drill.fromJson(e)).toList(),
         participatingSchools = json['participating_schools'] == null
             ? []
             : json['participating_schools']
@@ -199,6 +206,7 @@ class User {
         'reviews_count': reviewsCount,
         'unsolved_weaknesses_count': unsolvedWeaknessesCount,
         'weaknesses_count': weaknessesCount,
+        'drills_count': drillsCount,
         'todays_translations_count': todaysTranslationsCount,
         'app_favored': appFavored,
         'app_cancel_report_sent': appCancelReportSent,
@@ -209,6 +217,7 @@ class User {
         'answer_setting': answerSetting,
         'drill_in_progress': drillInProgress,
         'relationship': relationship,
+        'drills': drills,
         'participating_schools': participatingSchools,
       };
 }

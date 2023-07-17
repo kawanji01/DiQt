@@ -51,24 +51,31 @@ class DictionaryMapRadioListState
       final dictionary = dictionaries[index];
 
       // ref: https://api.flutter.dev/flutter/material/RadioListTile-class.html
-      return RadioListTile(
-        title: Text(dictionary.typeName()),
-        value: dictionary.id,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-        groupValue:
-            ref.watch(selectedDictionaryProvider.select((value) => value?.id)),
-        onChanged: (value) {
-          FocusScope.of(context).unfocus();
-          ref.read(selectedDictionaryProvider.notifier).state = dictionary;
-          // アプリ再起動時に選択し直さなくても良いように、localStorageに選択した辞書情報を保存しておく。
-          LocalUserInfo.writeSelectedDictionaryId(dictionary.id);
+      return Listener(
+        onPointerDown: (_) {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
         },
-        secondary: IconButton(
-          icon: const Icon(Icons.arrow_forward_ios_rounded),
-          onPressed: () {
-            ref.read(dictionaryProvider.notifier).state = dictionary;
-            DictionaryShowPage.push(context, dictionary.id);
+        child: RadioListTile(
+          title: Text(dictionary.typeName()),
+          value: dictionary.id,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+          groupValue: ref
+              .watch(selectedDictionaryProvider.select((value) => value?.id)),
+          onChanged: (value) {
+            ref.read(selectedDictionaryProvider.notifier).state = dictionary;
+            // アプリ再起動時に選択し直さなくても良いように、localStorageに選択した辞書情報を保存しておく。
+            LocalUserInfo.writeSelectedDictionaryId(dictionary.id);
           },
+          secondary: IconButton(
+            icon: const Icon(Icons.arrow_forward_ios_rounded),
+            onPressed: () {
+              ref.read(dictionaryProvider.notifier).state = dictionary;
+              DictionaryShowPage.push(context, dictionary.id);
+            },
+          ),
         ),
       );
     }

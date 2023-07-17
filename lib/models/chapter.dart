@@ -14,6 +14,7 @@ class Chapter {
     this.referenceUrl,
     this.referenceTitle,
     this.referenceOgp,
+    required this.drillsCount,
     required this.createdAt,
     required this.updatedAt,
     // eager_loadでキャッシュしたdrillの情報
@@ -35,6 +36,7 @@ class Chapter {
   String? referenceUrl;
   String? referenceTitle;
   String? referenceOgp;
+  int drillsCount;
   DateTime createdAt;
   DateTime updatedAt;
   // テーブルを結合してキャッシュしたdrillの情報
@@ -56,6 +58,7 @@ class Chapter {
         referenceUrl = json['reference_url'],
         referenceTitle = json['reference_title'],
         referenceOgp = json['reference_ogp'],
+        drillsCount = json['drills_count'] ?? 0,
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         // テーブルを結合してキャッシュしたdrillの情報,
@@ -77,6 +80,7 @@ class Chapter {
         'reference_url': referenceUrl,
         'reference_title': referenceTitle,
         'reference_ogp': referenceOgp,
+        'drills_count': drillsCount,
         'created_at': createdAt,
         'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,

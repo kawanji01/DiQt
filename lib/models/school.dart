@@ -10,18 +10,20 @@ class School {
     required this.chaptersCount,
     required this.private,
     required this.appliedDictionaryId,
+    required this.userId,
   });
 
   final String name;
   final int langNumberOfName;
   final String publicUid;
-  final String introduction;
-  final String thumbnailUrl;
+  final String? introduction;
+  final String? thumbnailUrl;
   final int membersLimit;
   final int memberMapsCount;
   final int chaptersCount;
   final bool private;
   final int appliedDictionaryId;
+  final int userId;
 
   factory School.fromJson(Map<String, dynamic> json) {
     return School(
@@ -35,6 +37,7 @@ class School {
       chaptersCount: json['chapters_count'],
       private: json['private'],
       appliedDictionaryId: json['applied_dictionary_id'],
+      userId: json['user_id'],
     );
   }
 
@@ -49,5 +52,6 @@ class School {
         'chapters_count': chaptersCount,
         'private': private,
         'applied_dictionary_id': appliedDictionaryId,
+        'user_id': userId,
       };
 }

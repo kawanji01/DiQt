@@ -1,10 +1,13 @@
+import 'package:booqs_mobile/components/user/drill_creator_button.dart';
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
 import 'package:booqs_mobile/pages/user/contract_details.dart';
+import 'package:booqs_mobile/pages/user/drills.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
@@ -63,6 +66,17 @@ class UserMenuPage extends ConsumerWidget {
           AnswerAnalysisIndexPage.push(context);
         },
         child: LargeGreenButton(label: btnText, icon: Icons.analytics_outlined),
+      );
+    }
+
+    Widget drillsButon() {
+      final String btnText = t.users.drills;
+      return InkWell(
+        onTap: () {
+          ref.read(userProvider.notifier).state = user;
+          UserDrillsPage.push(context);
+        },
+        child: LargeGreenButton(label: btnText, icon: Icons.question_mark),
       );
     }
 
@@ -157,6 +171,16 @@ class UserMenuPage extends ConsumerWidget {
                 height: 32,
               ),
               answerAnalysesButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              drillsButon(),
+              const SizedBox(
+                height: 32,
+              ),
+              UserDrillCreatorButton(
+                user: user,
+              ),
               const SizedBox(
                 height: 32,
               ),

@@ -16,7 +16,7 @@ class SchoolIntroduction extends StatelessWidget {
           school.name,
           style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
-        Text(school.introduction,
+        Text(school.introduction ?? '',
             style: const TextStyle(fontSize: 16, color: Colors.black87)),
       ],
     );

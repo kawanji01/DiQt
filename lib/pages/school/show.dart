@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/school/activities.dart';
 import 'package:booqs_mobile/components/school/chapters.dart';
+import 'package:booqs_mobile/components/school/members.dart';
 import 'package:booqs_mobile/data/provider/school.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
@@ -39,6 +40,7 @@ class SchoolShowPageState extends ConsumerState<SchoolShowPage> {
     TabInfo(t.chapters.chapters, const SchoolChapters()),
     TabInfo(t.activities.activities, const SchoolActivities()),
     TabInfo(t.ranking.ranking, const SchoolRanking()),
+    TabInfo(t.schools.members, const SchoolMembers()),
   ];
 
   @override
@@ -48,11 +50,12 @@ class SchoolShowPageState extends ConsumerState<SchoolShowPage> {
     List<Widget> tabBars() {
       SizeConfig().init(context);
       double grid = SizeConfig.blockSizeHorizontal ?? 0;
-      double width = grid * 30;
+      double width = grid * 25;
       return [
         SizedBox(width: width, child: Tab(text: t.chapters.chapters)),
         SizedBox(width: width, child: Tab(text: t.activities.activities)),
         SizedBox(width: width, child: Tab(text: t.ranking.ranking)),
+        SizedBox(width: width, child: Tab(text: t.schools.members)),
       ];
     }
 
@@ -62,7 +65,7 @@ class SchoolShowPageState extends ConsumerState<SchoolShowPage> {
       child: Scaffold(
         appBar: AppBar(
           title: future.when(
-            data: (data) => Text(data?.name ?? ''),
+            data: (school) => Text(school?.name ?? ''),
             error: (err, stack) => Text('Error: $err'),
             loading: () => const Text(''),
           ),

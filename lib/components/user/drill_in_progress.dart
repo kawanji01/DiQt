@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/models/drill.dart';
-import 'package:booqs_mobile/components/drill/card.dart';
+import 'package:booqs_mobile/components/drill/list_item.dart';
 import 'package:booqs_mobile/components/user/drills_in_progress_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,7 +46,7 @@ class UserDrillInProgress extends ConsumerWidget {
       child: Column(
         children: [
           const HeadingMediumGreen(label: '続きから', icon: Icons.bookmark_border),
-          DrillCard(drill: drill),
+          DrillListItem(drill: drill),
           drillsInProgressButton,
         ],
       ),

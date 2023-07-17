@@ -4,6 +4,7 @@ import 'package:booqs_mobile/components/dictionary/no_more_words.dart';
 import 'package:booqs_mobile/components/dictionary/no_words_found.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/list_item.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -45,10 +46,15 @@ class DictionaryWordListViewState
     if (_isReached == false) return;
     _isLoading = true;
 
-    final Map? resMap = await RemoteDictionaries.search(
-        widget.dictionaryId, widget.keyword, pageKey, _pageSize);
+    final Map resMap = await RemoteDictionaries.search(
+        dictionaryId: widget.dictionaryId,
+        keyword: widget.keyword,
+        pageKey: pageKey,
+        pageSize: _pageSize);
     if (!mounted) return;
-    if (resMap == null) {
+
+    if (ErrorHandler.isErrorMap(resMap)) {
+      ErrorHandler.showErrorSnackBar(context, resMap);
       return setState(() {
         _isLoading = false;
         _isReached = false;

@@ -49,8 +49,11 @@ class RemoteDictionaries {
 
   // 項目の素早い検索
   // 単語・熟語の検索
-  static Future<Map?> search(
-      int dictionaryId, String keyword, int pageKey, int pageSize) async {
+  static Future<Map> search(
+      {required int dictionaryId,
+      required String keyword,
+      required int pageKey,
+      required int pageSize}) async {
     try {
       final Map<String, dynamic> body = {
         'keyword': keyword,
@@ -64,19 +67,16 @@ class RemoteDictionaries {
         url,
         body,
       );
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
 
-      final Map? resMap = json.decode(res.body);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 

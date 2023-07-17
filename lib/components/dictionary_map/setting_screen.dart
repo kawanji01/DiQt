@@ -27,7 +27,7 @@ class DictionaryMapSettingScreen extends StatelessWidget {
                   height: 24,
                 ),
                 Text(
-                  '${t['dictionaryMaps.set_dictionaries']}',
+                  t.dictionaryMaps.set_dictionaries,
                   style: const TextStyle(fontSize: 16, color: Colors.black87),
                 ),
                 const SizedBox(
