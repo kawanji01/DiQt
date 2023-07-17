@@ -42,7 +42,7 @@ class UserDrillsPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(t.users.drills),
+        title: Text('${t.users.drills}(${user?.drillsCount})'),
       ),
       body: SingleChildScrollView(
         child: Container(

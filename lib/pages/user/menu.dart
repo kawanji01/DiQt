@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/user/drill_creator_button.dart';
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
@@ -174,6 +175,12 @@ class UserMenuPage extends ConsumerWidget {
                 height: 32,
               ),
               drillsButon(),
+              const SizedBox(
+                height: 32,
+              ),
+              UserDrillCreatorButton(
+                user: user,
+              ),
               const SizedBox(
                 height: 32,
               ),
