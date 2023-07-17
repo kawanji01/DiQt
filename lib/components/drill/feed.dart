@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/drill.dart';
-import 'package:booqs_mobile/components/drill/card.dart';
+import 'package:booqs_mobile/components/drill/list_item.dart';
 import 'package:flutter/material.dart';
 
 class DrillFeed extends StatelessWidget {
@@ -21,7 +21,7 @@ class DrillFeed extends StatelessWidget {
           ));
     }
     return Column(
-      children: drills.map((drill) => DrillCard(drill: drill)).toList(),
+      children: drills.map((drill) => DrillListItem(drill: drill)).toList(),
     );
   }
 }

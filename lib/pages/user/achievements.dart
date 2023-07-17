@@ -1,14 +1,15 @@
+import 'package:booqs_mobile/components/achievement/tile.dart';
+import 'package:booqs_mobile/components/user/heading_icon.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
-import 'package:booqs_mobile/components/user/feed_icon.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,7 +39,7 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
   final List<Achievement> _answerMedals = [];
   final List<Achievement> _continuationMedals = [];
   final List<Achievement> _masterMedals = [];
-  List<dynamic> _gotMedalIds = [];
+  List<int> _gotMedalIds = [];
   bool _initDone = false;
 
   @override
@@ -54,7 +55,7 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
     final User? user = ref.read(userProvider);
     if (user == null) return;
 
-    Map? resMap = await RemoteUsers.achievements(user.publicUid);
+    final Map? resMap = await RemoteUsers.achievements(user.publicUid);
     if (resMap == null) {
       return setState(() {
         _initDone = true;
@@ -69,7 +70,8 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
         .forEach((e) => _continuationMedals.add(Achievement.fromJson(e)));
     resMap['master_medals']
         .forEach((e) => _masterMedals.add(Achievement.fromJson(e)));
-    _gotMedalIds = resMap['got_medal_ids'];
+    _gotMedalIds =
+        resMap['got_medal_ids'].map<int>((item) => item as int).toList();
 
     if (!mounted) return;
 
@@ -90,123 +92,78 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
     // 画面幅を百等分した幅
     final double gridWidth = SizeConfig.blockSizeHorizontal ?? 0;
     // メダルの幅
-    final double width = gridWidth * 33;
-
-    // メダル一つ一つのデザイン
-    Widget medal(achievement) {
-      //Image image;
-      String imageUrl;
-      Text name;
-
-      if (_gotMedalIds.contains(achievement.id)) {
-        imageUrl = achievement.imageUrl;
-        // image = Image(image: NetworkImage('${achievement.imageUrl}'));
-        name = Text(achievement.name,
-            style: const TextStyle(fontWeight: FontWeight.bold));
-      } else {
-        imageUrl = achievement.lockedImageUrl;
-        //image = Image(image: NetworkImage('${achievement.lockedImageUrl}'));
-        name = Text(achievement.name);
-      }
-
-      final CachedNetworkImage image = CachedNetworkImage(
-        imageUrl: imageUrl,
-        placeholder: (context, url) => const CircularProgressIndicator(),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
-      );
-
-      return Container(
-        width: width,
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Column(children: <Widget>[image, name]),
-      );
-    }
-
-    // _medal() を並べたもの
-    Widget medalTile(achievements) {
-      List<Widget> medalWidgetList = <Widget>[];
-
-      for (Achievement? achievement in achievements) {
-        Widget achievementWidget = medal(achievement);
-        medalWidgetList.add(achievementWidget);
-      }
-      return Wrap(alignment: WrapAlignment.center, children: medalWidgetList);
-    }
+    final double width = gridWidth * 30;
 
     // _medakTile() の説明 / メダルの種類の説明
     Widget heading(String title, String introduction) {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(children: <Widget>[
-          const SizedBox(height: 40),
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            introduction,
-            style: const TextStyle(fontSize: 16),
-          ),
-          const SizedBox(height: 16),
-        ]),
-      );
-    }
-
-    Widget userInfo() {
-      final User? user = ref.watch(userProvider);
-      if (user == null) return Container();
-
-      return Container(
-        margin: const EdgeInsets.only(top: 24),
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Row(
-          children: [
-            UserFeedIcon(user: user),
-            Expanded(
-              child: Text(
-                user.name,
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87),
-              ),
-            ),
-          ],
+      return Column(children: <Widget>[
+        const SizedBox(height: 40),
+        Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
         ),
-      );
+        const SizedBox(height: 16),
+        Text(
+          introduction,
+          style: const TextStyle(fontSize: 16),
+        ),
+        const SizedBox(height: 16),
+      ]);
     }
 
     // メダル一覧画面
     Widget bodyWidget() {
       if (_initDone == false) return const LoadingSpinner();
 
-      return SingleChildScrollView(
-        child: Column(children: <Widget>[
-          userInfo(),
-          heading('チュートリアルメダル', 'DiQtの基本的操作を達成することで手に入るメダルです。'),
-          medalTile(_tutorialMedals),
-          heading('解答数メダル', '累計の解答数に応じて手に入るメダルです。'),
-          medalTile(_answerMedals),
-          heading('解答日数メダル', '累計の解答日数に応じて手に入るメダルです。'),
-          medalTile(_continuationMedals),
-          heading('マスターメダル', '偉業を成し遂げたときに獲得できるメダルです。'),
-          medalTile(_masterMedals),
-          const SizedBox(height: 80),
-          Text(
-            '獲得メダル数：39個中${_user!.achievementMapsCount}個',
-            style: const TextStyle(fontSize: 16, color: Colors.black87),
-          ),
-          const SizedBox(height: 80),
-        ]),
-      );
+      return Column(children: <Widget>[
+        UserHeadingIcon(
+          user: _user!,
+        ),
+        heading('チュートリアルメダル', 'DiQtの基本的操作を達成することで手に入るメダルです。'),
+        AchievementTile(
+          achievements: _tutorialMedals,
+          gotMedalIds: _gotMedalIds,
+          width: width,
+        ),
+        heading('解答数メダル', '累計の解答数に応じて手に入るメダルです。'),
+        AchievementTile(
+          achievements: _answerMedals,
+          gotMedalIds: _gotMedalIds,
+          width: width,
+        ),
+        heading('解答日数メダル', '累計の解答日数に応じて手に入るメダルです。'),
+        AchievementTile(
+          achievements: _continuationMedals,
+          gotMedalIds: _gotMedalIds,
+          width: width,
+        ),
+        heading('マスターメダル', '偉業を成し遂げたときに獲得できるメダルです。'),
+        AchievementTile(
+          achievements: _masterMedals,
+          gotMedalIds: _gotMedalIds,
+          width: width,
+        ),
+        const SizedBox(height: 80),
+        Text(
+          '獲得メダル数：39個中${_user!.achievementMapsCount}個',
+          style: const TextStyle(fontSize: 16, color: Colors.black87),
+        ),
+        const SizedBox(height: 80),
+      ]);
     }
 
     return Scaffold(
       appBar: AppBar(
         title: Text(t.achievements.medals_won),
       ),
-      body: bodyWidget(),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: bodyWidget(),
+        ),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

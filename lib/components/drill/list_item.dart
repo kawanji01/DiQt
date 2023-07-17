@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class DrillCard extends ConsumerWidget {
-  const DrillCard({Key? key, required this.drill}) : super(key: key);
+class DrillListItem extends ConsumerWidget {
+  const DrillListItem({Key? key, required this.drill}) : super(key: key);
   final Drill drill;
 
   @override

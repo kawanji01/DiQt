@@ -95,6 +95,7 @@ class User {
   Drill? drillInProgress;
   Relationship? relationship;
   List<School>? participatingSchools;
+  List<Drill>? drills;
 
   User.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -151,6 +152,9 @@ class User {
         relationship = json['relationship'] == null
             ? null
             : Relationship.fromJson(json['relationship']),
+        drills = json['drills'] == null
+            ? []
+            : json['drills'].map<Chapter>((e) => Drill.fromJson(e)).toList(),
         participatingSchools = json['participating_schools'] == null
             ? []
             : json['participating_schools']
@@ -209,6 +213,7 @@ class User {
         'answer_setting': answerSetting,
         'drill_in_progress': drillInProgress,
         'relationship': relationship,
+        'drills': drills,
         'participating_schools': participatingSchools,
       };
 }

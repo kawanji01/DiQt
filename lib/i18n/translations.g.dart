@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2026 (1013 per locale)
+/// Strings: 2028 (1014 per locale)
 ///
-/// Built on 2023-07-16 at 13:19 UTC
+/// Built on 2023-07-17 at 04:20 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -431,6 +431,7 @@ class _TranslationsUsersEn {
 	String get updated => 'Account Updated.';
 	String get failed_to_update => 'Account could not be updated.';
 	String get destroyed => 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
+	String get drills => 'Created Drills';
 }
 
 // Path: schools
@@ -1781,6 +1782,7 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get updated => 'アカウントを更新しました。';
 	@override String get failed_to_update => 'アカウントを更新できませんでした。';
 	@override String get destroyed => '退会が完了しました。ご利用いただき、誠にありがとうございました。';
+	@override String get drills => '作成したドリル';
 }
 
 // Path: schools
@@ -3018,6 +3020,7 @@ extension on _TranslationsEn {
 			case 'users.updated': return 'Account Updated.';
 			case 'users.failed_to_update': return 'Account could not be updated.';
 			case 'users.destroyed': return 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
+			case 'users.drills': return 'Created Drills';
 			case 'schools.schools': return 'Schools';
 			case 'schools.school': return 'School';
 			case 'schools.name': return 'Name';
@@ -4039,6 +4042,7 @@ extension on _TranslationsJa {
 			case 'users.updated': return 'アカウントを更新しました。';
 			case 'users.failed_to_update': return 'アカウントを更新できませんでした。';
 			case 'users.destroyed': return '退会が完了しました。ご利用いただき、誠にありがとうございました。';
+			case 'users.drills': return '作成したドリル';
 			case 'schools.schools': return '教室';
 			case 'schools.school': return '教室';
 			case 'schools.name': return '名前';

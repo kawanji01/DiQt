@@ -129,6 +129,27 @@ class RemoteUsers {
     }
   }
 
+  // Drills
+  static Future<Map> drills(
+      {required String userUid,
+      required int pageKey,
+      required int pageSize}) async {
+    try {
+      final Uri url = Uri.parse(
+          '${DiQtURL.root()}/api/v1/mobile/users/$userUid/drills?page=$pageKey&size=$pageSize');
+      final Response res = await HttpService.get(url);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
+
   // 実績メダルの取得
   static Future<Map?> achievements(String publicUid) async {
     try {
