@@ -17,6 +17,17 @@ class ResponsiveValues {
         context: context, mobile: 20, tablet: grid * 10, desktop: grid * 15);
   }
 
+  static double medalWidth(BuildContext context) {
+    SizeConfig().init(context);
+    double grid = SizeConfig.blockSizeHorizontal ?? 0;
+
+    return getValueForScreenType(
+        context: context,
+        mobile: grid * 30,
+        tablet: grid * 26,
+        desktop: grid * 23);
+  }
+
   // CustomDialogを利用する場合の、ダイアログの幅
   static double dialogWidth(BuildContext context) {
     SizeConfig().init(context);

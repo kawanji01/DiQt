@@ -10,7 +10,6 @@ class UserHeadingIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 24),
-      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Row(
         children: [
           UserFeedIcon(user: user),

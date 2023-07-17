@@ -7,7 +7,6 @@ import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -88,11 +87,8 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    // 画面幅を百等分した幅
-    final double gridWidth = SizeConfig.blockSizeHorizontal ?? 0;
     // メダルの幅
-    final double width = gridWidth * 30;
+    final double width = ResponsiveValues.medalWidth(context);
 
     // _medakTile() の説明 / メダルの種類の説明
     Widget heading(String title, String introduction) {
