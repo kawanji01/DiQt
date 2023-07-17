@@ -11,6 +11,7 @@ class AnswerSettingSEEnabled extends ConsumerWidget {
     return SwitchListTile(
         title: Text(t.answerSettings.se_enabled,
             style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(t.answerSettings.se_enabled_description),
         value: ref.watch(seEnabledProvider),
         onChanged: (bool value) {
           ref.read(seEnabledProvider.notifier).state = value;

@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2028 (1014 per locale)
+/// Strings: 2032 (1016 per locale)
 ///
-/// Built on 2023-07-17 at 04:20 UTC
+/// Built on 2023-07-17 at 08:32 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -517,7 +517,9 @@ class _TranslationsAnswerSettingsEn {
 	String get strict_solving_mode => 'Strict Answer Mode';
 	String get strict_solving_mode_description => 'Unanswered questions in the question booklet are only marked as answered if they are answered correctly, not just answered.';
 	String get se_enabled => 'Sound Effects';
+	String get se_enabled_description => 'If you find level-up and other sound effects too noisy, turn them off.';
 	String get effect_enabled => 'Display rewards and feedbacks';
+	String get effect_enabled_description => 'If the rewards and feedback for solving questions seem intrusive, turn it off.';
 	String get review_setting => 'Review Setting';
 	String get strict_reviewing_mode => 'Strict Review Mode';
 	String get strict_reviewing_mode_description => 'The condition for removing a question from the unreviewed is only if it is answered correctly, not just answered.';
@@ -1868,7 +1870,9 @@ class _TranslationsAnswerSettingsJa implements _TranslationsAnswerSettingsEn {
 	@override String get strict_solving_mode => '厳格解答モード';
 	@override String get strict_solving_mode_description => '問題集の未解答の問題を、単なる解答ではなく、正解した場合でのみ解答済にします。';
 	@override String get se_enabled => '効果音を鳴らす';
+	@override String get se_enabled_description => 'レベルアップなどの効果音がうるさいと感じたらOFFにしてください。';
 	@override String get effect_enabled => '報酬やフィードバックを表示する';
+	@override String get effect_enabled_description => '問題解答時の報酬やフィードバックが邪魔に感じたらOFFにしてください。';
 	@override String get review_setting => '復習設定';
 	@override String get strict_reviewing_mode => '厳格復習モード';
 	@override String get strict_reviewing_mode_description => '復習の未解答から問題を取り除く条件を、単なる解答ではなく、正解した場合のみにします。';
@@ -3070,7 +3074,9 @@ extension on _TranslationsEn {
 			case 'answerSettings.strict_solving_mode': return 'Strict Answer Mode';
 			case 'answerSettings.strict_solving_mode_description': return 'Unanswered questions in the question booklet are only marked as answered if they are answered correctly, not just answered.';
 			case 'answerSettings.se_enabled': return 'Sound Effects';
+			case 'answerSettings.se_enabled_description': return 'If you find level-up and other sound effects too noisy, turn them off.';
 			case 'answerSettings.effect_enabled': return 'Display rewards and feedbacks';
+			case 'answerSettings.effect_enabled_description': return 'If the rewards and feedback for solving questions seem intrusive, turn it off.';
 			case 'answerSettings.review_setting': return 'Review Setting';
 			case 'answerSettings.strict_reviewing_mode': return 'Strict Review Mode';
 			case 'answerSettings.strict_reviewing_mode_description': return 'The condition for removing a question from the unreviewed is only if it is answered correctly, not just answered.';
@@ -4092,7 +4098,9 @@ extension on _TranslationsJa {
 			case 'answerSettings.strict_solving_mode': return '厳格解答モード';
 			case 'answerSettings.strict_solving_mode_description': return '問題集の未解答の問題を、単なる解答ではなく、正解した場合でのみ解答済にします。';
 			case 'answerSettings.se_enabled': return '効果音を鳴らす';
+			case 'answerSettings.se_enabled_description': return 'レベルアップなどの効果音がうるさいと感じたらOFFにしてください。';
 			case 'answerSettings.effect_enabled': return '報酬やフィードバックを表示する';
+			case 'answerSettings.effect_enabled_description': return '問題解答時の報酬やフィードバックが邪魔に感じたらOFFにしてください。';
 			case 'answerSettings.review_setting': return '復習設定';
 			case 'answerSettings.strict_reviewing_mode': return '厳格復習モード';
 			case 'answerSettings.strict_reviewing_mode_description': return '復習の未解答から問題を取り除く条件を、単なる解答ではなく、正解した場合のみにします。';

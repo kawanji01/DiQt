@@ -11,6 +11,7 @@ class AnswerSettingEffectEnabled extends ConsumerWidget {
     return SwitchListTile(
         title: Text(t.answerSettings.effect_enabled,
             style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(t.answerSettings.effect_enabled_description),
         value: ref.watch(effectEnabledProvider),
         onChanged: (bool value) {
           ref.read(effectEnabledProvider.notifier).state = value;
