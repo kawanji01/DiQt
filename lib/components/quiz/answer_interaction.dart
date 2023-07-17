@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -81,6 +82,7 @@ class QuizAnswerInteraction extends ConsumerWidget {
 
     Widget expIndicator() {
       if (correct == false) return Container();
+      if (ref.watch(effectEnabledProvider) == false) return Container();
       return QuizExpIndicator(initialExp: initialExp, gainedExp: 3);
     }
 
