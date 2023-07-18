@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/review/invalid_item_error.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/components/quiz/content.dart';
@@ -11,7 +12,9 @@ class ReviewListQuiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Quiz? quiz = review.quiz;
-    if (quiz == null) return const Text('Quiz does not exist.');
+    if (quiz == null) {
+      return const ReviewInvalidItemError();
+    }
 
     final header = ReviewQuizHeader(review: review);
     return QuizContent(

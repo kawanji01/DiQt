@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/weakness/invalid_item_error.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/weakness.dart';
 import 'package:booqs_mobile/components/quiz/content.dart';
@@ -11,7 +12,9 @@ class WeaknessListQuiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Quiz? quiz = weakness.quiz;
-    if (quiz == null) return const Text('Quiz does not exist.');
+    if (quiz == null) {
+      return const WeaknessInvalidItemError();
+    }
 
     final header = WeaknessQuizHeader(weakness: weakness);
     return QuizContent(
