@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/weakness/invalid_item_error.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
@@ -19,18 +20,12 @@ class WeaknessUnsolvedQuizWrapper extends StatelessWidget {
     final Quiz? quiz = weakness.quiz;
 
     if (quiz == null) {
-      return Container(
-          padding: const EdgeInsets.all(24),
-          child: Text(
-              'エラー: quiz-${weakness.quizId}は存在しません。 weakness-${weakness.id}'));
+      return const WeaknessInvalidItemError();
     }
 
     final Drill? drill = quiz.drill;
     if (drill == null) {
-      return Container(
-          padding: const EdgeInsets.all(24),
-          child: Text(
-              'エラー: drill-${quiz.drillId}が存在しません。weakness-${weakness.id}'));
+      return const WeaknessInvalidItemError();
     }
 
     final Review? review = quiz.review;

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/review/invalid_item_error.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
@@ -18,16 +19,12 @@ class ReviewUnsolvedQuizWrapper extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final Quiz? quiz = review.quiz;
     if (quiz == null) {
-      return Container(
-          padding: const EdgeInsets.all(24),
-          child: Text('エラー: quiz-${review.quizId}は存在しません。review-${review.id}'));
+      return const ReviewInvalidItemError();
     }
 
     final Drill? drill = quiz.drill;
     if (drill == null) {
-      return Container(
-          padding: const EdgeInsets.all(24),
-          child: Text('エラー: drill-${quiz.drillId}が存在しない。review-${review.id}'));
+      return const ReviewInvalidItemError();
     }
 
     final header = ReviewQuizHeader(review: review);

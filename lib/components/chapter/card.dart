@@ -35,7 +35,6 @@ class ChapterCard extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              //leading: Image(image: NetworkImage('${chapter.iconUrl}')),
               title: Text(chapter.title,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 18)),

@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2040 (1020 per locale)
+/// Strings: 2052 (1026 per locale)
 ///
-/// Built on 2023-07-17 at 09:30 UTC
+/// Built on 2023-07-18 at 14:05 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -299,6 +299,9 @@ class _TranslationsReviewsEn {
 	String get cancel_all_schedules => 'Cancel All Review Schedules';
 	String get all_schedules_canceled => 'All review schedules cancelled.';
 	String get details_of_the_question => 'Details of the question to be reviewed';
+	String get error_occurred => 'An error about this review occurred.';
+	String get fix_error => 'Fix error';
+	String get error_fixed => 'Error fixed.';
 }
 
 // Path: errors
@@ -500,6 +503,9 @@ class _TranslationsSharedEn {
 	String no_more_items({required Object name}) => 'All ${name} loaded';
 	String no_items_found({required Object name}) => 'No ${name} found';
 	String get premium_recommendation => 'To use this function, you need to register for a premium plan.';
+	String get error_occurred => 'An error occurred.';
+	String get fix_error => 'Fix error';
+	String get error_fixed => 'Error fixed.';
 }
 
 // Path: answerSettings
@@ -1656,6 +1662,9 @@ class _TranslationsReviewsJa implements _TranslationsReviewsEn {
 	@override String get cancel_all_schedules => 'すべての復習予定を取り消す';
 	@override String get all_schedules_canceled => 'すべての復習予定を取り消しました。';
 	@override String get details_of_the_question => '復習する問題の詳細';
+	@override String get error_occurred => '復習にエラーが発生しました。';
+	@override String get fix_error => 'エラーを修正する';
+	@override String get error_fixed => 'エラーを修正しました。';
 }
 
 // Path: errors
@@ -1857,6 +1866,9 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String no_more_items({required Object name}) => 'すべての${name}を読み込みました';
 	@override String no_items_found({required Object name}) => '${name}がありません';
 	@override String get premium_recommendation => 'この機能を利用するには、プレミアムプランへの登録が必要です。';
+	@override String get error_occurred => 'エラーが発生しました。';
+	@override String get fix_error => 'エラーを修正する';
+	@override String get error_fixed => 'エラーを修正しました。';
 }
 
 // Path: answerSettings
@@ -2936,6 +2948,9 @@ extension on _TranslationsEn {
 			case 'reviews.cancel_all_schedules': return 'Cancel All Review Schedules';
 			case 'reviews.all_schedules_canceled': return 'All review schedules cancelled.';
 			case 'reviews.details_of_the_question': return 'Details of the question to be reviewed';
+			case 'reviews.error_occurred': return 'An error about this review occurred.';
+			case 'reviews.fix_error': return 'Fix error';
+			case 'reviews.error_fixed': return 'Error fixed.';
 			case 'errors.error_message_404': return 'Page Not Found...';
 			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
@@ -3074,6 +3089,9 @@ extension on _TranslationsEn {
 			case 'shared.no_more_items': return ({required Object name}) => 'All ${name} loaded';
 			case 'shared.no_items_found': return ({required Object name}) => 'No ${name} found';
 			case 'shared.premium_recommendation': return 'To use this function, you need to register for a premium plan.';
+			case 'shared.error_occurred': return 'An error occurred.';
+			case 'shared.fix_error': return 'Fix error';
+			case 'shared.error_fixed': return 'Error fixed.';
 			case 'answerSettings.title': return 'Answer & Review Setting';
 			case 'answerSettings.answer_setting': return 'Answer Setting';
 			case 'answerSettings.daily_goal': return 'Daily target';
@@ -3964,6 +3982,9 @@ extension on _TranslationsJa {
 			case 'reviews.cancel_all_schedules': return 'すべての復習予定を取り消す';
 			case 'reviews.all_schedules_canceled': return 'すべての復習予定を取り消しました。';
 			case 'reviews.details_of_the_question': return '復習する問題の詳細';
+			case 'reviews.error_occurred': return '復習にエラーが発生しました。';
+			case 'reviews.fix_error': return 'エラーを修正する';
+			case 'reviews.error_fixed': return 'エラーを修正しました。';
 			case 'errors.error_message_404': return 'ページが見つかりませんでした。';
 			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
 			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';
@@ -4102,6 +4123,9 @@ extension on _TranslationsJa {
 			case 'shared.no_more_items': return ({required Object name}) => 'すべての${name}を読み込みました';
 			case 'shared.no_items_found': return ({required Object name}) => '${name}がありません';
 			case 'shared.premium_recommendation': return 'この機能を利用するには、プレミアムプランへの登録が必要です。';
+			case 'shared.error_occurred': return 'エラーが発生しました。';
+			case 'shared.fix_error': return 'エラーを修正する';
+			case 'shared.error_fixed': return 'エラーを修正しました。';
 			case 'answerSettings.title': return '解答・復習設定';
 			case 'answerSettings.answer_setting': return '解答設定';
 			case 'answerSettings.daily_goal': return '1日の目標';
