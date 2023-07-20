@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/request_comment/list_button.dart';
 import 'package:booqs_mobile/components/word_request/item/details_button.dart';
 import 'package:booqs_mobile/components/word_request/item/main_content.dart';
 import 'package:booqs_mobile/models/word_request.dart';
@@ -21,9 +22,9 @@ class WordRequestListItem extends StatelessWidget {
         WordRequestItemDetailsButton(
           wordRequest: wordRequest,
         ),
-        //RequestCommentListButton(
-        //  wordRequest: wordRequest,
-        //),
+        RequestCommentListButton(
+          wordRequest: wordRequest,
+        ),
         //WordRequestItemFooter(wordRequest: wordRequest),
         const Divider(
           thickness: 1,
