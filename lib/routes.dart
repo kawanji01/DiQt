@@ -46,6 +46,7 @@ import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/pages/word_request/dictionary.dart';
+import 'package:booqs_mobile/pages/word_request/show.dart';
 
 // ホーム
 const indexPage = '/';
@@ -160,6 +161,7 @@ final routes = {
   sentenceShowPage: (context) => const SentenceShowPage(),
   // WordRequest
   wordRequestDictionaryPage: (context) => const WordRequestDictionaryPage(),
+  wordRequestShowPage: (context) => const WordRequestShowPage(),
   // School
   schoolShowPage: (context) => const SchoolShowPage(),
   // Chapter

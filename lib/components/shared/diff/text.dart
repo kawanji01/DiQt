@@ -26,6 +26,10 @@ class SharedDiffText extends StatelessWidget {
     final dmp = DiffMatchPatch();
 
     Widget oldLineContainer() {
+      // olsText が '' ということは、新規追加なので - を表示しない。 '\n' は例文対策。
+      if (oldText == '' || oldText == '\n') {
+        return Container();
+      }
       final List<Diff> diffs = dmp.diff(oldText, newText);
       List<TextSpan> spans = [];
 
@@ -69,6 +73,10 @@ class SharedDiffText extends StatelessWidget {
     }
 
     Widget newLineContainer() {
+      // newTextが '' ということは、削除なので + を表示しない。
+      if (newText == '' || newText == '\n') {
+        return Container();
+      }
       final List<Diff> diffs = dmp.diff(oldText, newText);
       List<TextSpan> spans = [];
 

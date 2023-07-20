@@ -21,6 +21,7 @@ class SentenceRequest {
     required this.elimination,
     required this.acceptance,
     required this.rejection,
+    required this.requestCommentsCount,
     required this.createdAt,
     required this.updatedAt,
     this.user,
@@ -44,6 +45,7 @@ class SentenceRequest {
   bool elimination;
   bool acceptance;
   bool rejection;
+  int requestCommentsCount;
   DateTime createdAt;
   DateTime updatedAt;
   Dictionary? dictionary;
@@ -66,6 +68,7 @@ class SentenceRequest {
         elimination = json['elimination'],
         acceptance = json['acceptance'],
         rejection = json['rejection'],
+        requestCommentsCount = json['request_comments_count'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         dictionary = json['dictionary'] == null
@@ -92,6 +95,7 @@ class SentenceRequest {
         'elimination': elimination,
         'acceptance': acceptance,
         'rejection': rejection,
+        'request_comments_count': requestCommentsCount,
         'created_at': createdAt,
         'updated_at': updatedAt,
         'dictionary': dictionary,
