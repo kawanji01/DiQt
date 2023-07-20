@@ -1,8 +1,7 @@
-import 'package:booqs_mobile/components/word_request/accepted_item.dart';
-import 'package:booqs_mobile/components/word_request/pending_item.dart';
-import 'package:booqs_mobile/components/word_request/rejected_item.dart';
+import 'package:booqs_mobile/components/word_request/item/details_button.dart';
+import 'package:booqs_mobile/components/word_request/item/main_content.dart';
 import 'package:booqs_mobile/models/word_request.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class WordRequestListItem extends StatelessWidget {
   const WordRequestListItem({super.key, required this.wordRequest});
@@ -10,12 +9,26 @@ class WordRequestListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (wordRequest.isPending()) {
-      return WordRequestPendingItem(wordRequest: wordRequest);
-    } else if (wordRequest.acceptance) {
-      return WordRequestAcceptedItem(wordRequest: wordRequest);
-    } else {
-      return WordRequestRejectedItem(wordRequest: wordRequest);
-    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 24,
+        ),
+        WordRequestItemMainContent(
+          wordRequest: wordRequest,
+        ),
+        WordRequestItemDetailsButton(
+          wordRequest: wordRequest,
+        ),
+        //RequestCommentListButton(
+        //  wordRequest: wordRequest,
+        //),
+        //WordRequestItemFooter(wordRequest: wordRequest),
+        const Divider(
+          thickness: 1,
+        ),
+      ],
+    );
   }
 }

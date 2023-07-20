@@ -10,19 +10,24 @@ class SharedDiffLines extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (oldText == '' && newText == '') {
+      return Container();
+    }
+
     final List<String> oldLines = oldText.split('\n');
     final List<String> newLines = newText.split('\n');
 
     List<Widget> children = [];
     if (newLines.length >= oldLines.length) {
       newLines.asMap().forEach((index, newLine) {
-        final String oldLine = oldLines[index];
+        // RangeError (index)対策
+        final String oldLine = index < oldLines.length ? oldLines[index] : '';
         final diffLine = SharedDiffText(newText: newLine, oldText: oldLine);
         children.add(diffLine);
       });
     } else {
       oldLines.asMap().forEach((index, oldLine) {
-        final String newLine = newLines[index];
+        final String newLine = index < newLines.length ? newLines[index] : '';
         final diffLine = SharedDiffText(newText: newLine, oldText: oldLine);
         children.add(diffLine);
       });

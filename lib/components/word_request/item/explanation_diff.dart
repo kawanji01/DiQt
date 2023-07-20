@@ -15,6 +15,7 @@ class WordRequestItemExplanationDiff extends StatelessWidget {
     if (explanation == previousExplanation) {
       return Container();
     }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

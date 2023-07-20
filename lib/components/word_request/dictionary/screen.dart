@@ -14,7 +14,7 @@ class WordRequestDictionaryScreen extends StatelessWidget {
       children: [
         WordRequestDictionaryTabs(selected: type, dictionary: dictionary),
         WordRequestDictionaryListView(
-            dictionaryId: dictionary.id, selected: 'accepted')
+            dictionaryId: dictionary.id, selected: type)
       ],
     );
   }

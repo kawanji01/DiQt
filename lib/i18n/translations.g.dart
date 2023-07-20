@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2052 (1026 per locale)
+/// Strings: 2078 (1039 per locale)
 ///
-/// Built on 2023-07-18 at 14:05 UTC
+/// Built on 2023-07-20 at 11:44 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -484,11 +484,16 @@ class _TranslationsSharedEn {
 
 	// Translations
 	String get create => 'Create';
+	String get create_succeeded => 'Created';
+	String get create_failed => 'Create failed';
 	String get edit => 'Edit';
 	String get update => 'Update';
 	String get update_succeeded => 'Updated';
 	String get update_failed => 'Update failed';
 	String get destroy => 'Destroy';
+	String get destroy_confirmation => 'Confirmation';
+	String get destroy_confirmation_description => 'Are you sure you want to delete it?';
+	String get destroy_succeeded => 'Destroyed';
 	String get cancel => 'Cancel';
 	String get reload => 'Reload';
 	String get search => 'Search';
@@ -503,6 +508,14 @@ class _TranslationsSharedEn {
 	String no_more_items({required Object name}) => 'All ${name} loaded';
 	String no_items_found({required Object name}) => 'No ${name} found';
 	String get premium_recommendation => 'To use this function, you need to register for a premium plan.';
+	String get login_recommendation => 'To use this function, you need to log in.';
+	String get processing => 'Processing';
+	String get done => 'Done';
+	String get download => 'Download';
+	String get dictionary_setting => 'Dictionary Setting';
+	String get thumbnail => 'Thumbnail';
+	String get remove_thumbnail => 'Remove Thumbnail';
+	String image_alt({required Object name}) => 'Image of ${name}';
 	String get error_occurred => 'An error occurred.';
 	String get fix_error => 'Fix error';
 	String get error_fixed => 'Error fixed.';
@@ -1847,11 +1860,16 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 
 	// Translations
 	@override String get create => '作成する';
+	@override String get create_succeeded => '作成されました。';
+	@override String get create_failed => '作成に失敗しました。';
 	@override String get edit => '編集する';
 	@override String get update => '更新する';
 	@override String get update_succeeded => '更新されました。';
 	@override String get update_failed => '更新に失敗しました。';
 	@override String get destroy => '削除する';
+	@override String get destroy_confirmation => '確認';
+	@override String get destroy_confirmation_description => '本当に削除してもよろしいですか？';
+	@override String get destroy_succeeded => '削除しました。';
 	@override String get cancel => 'キャンセルする';
 	@override String get reload => '再読み込みする';
 	@override String get search => '検索する';
@@ -1866,6 +1884,14 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String no_more_items({required Object name}) => 'すべての${name}を読み込みました';
 	@override String no_items_found({required Object name}) => '${name}がありません';
 	@override String get premium_recommendation => 'この機能を利用するには、プレミアムプランへの登録が必要です。';
+	@override String get login_recommendation => 'この機能を利用するためには、ログインが必要です。';
+	@override String get processing => '処理中...';
+	@override String get done => '完了';
+	@override String get download => 'ダウンロード';
+	@override String get dictionary_setting => '辞書設定';
+	@override String get thumbnail => 'サムネイル';
+	@override String get remove_thumbnail => 'サムネイルを削除する';
+	@override String image_alt({required Object name}) => '${name}の画像';
 	@override String get error_occurred => 'エラーが発生しました。';
 	@override String get fix_error => 'エラーを修正する';
 	@override String get error_fixed => 'エラーを修正しました。';
@@ -3070,11 +3096,16 @@ extension on _TranslationsEn {
 			case 'notices.followed_message': return ({required Object name}) => '${name} has followed you!';
 			case 'notices.word_request_accepted_message': return 'Your dictionary edit has been adopted!';
 			case 'shared.create': return 'Create';
+			case 'shared.create_succeeded': return 'Created';
+			case 'shared.create_failed': return 'Create failed';
 			case 'shared.edit': return 'Edit';
 			case 'shared.update': return 'Update';
 			case 'shared.update_succeeded': return 'Updated';
 			case 'shared.update_failed': return 'Update failed';
 			case 'shared.destroy': return 'Destroy';
+			case 'shared.destroy_confirmation': return 'Confirmation';
+			case 'shared.destroy_confirmation_description': return 'Are you sure you want to delete it?';
+			case 'shared.destroy_succeeded': return 'Destroyed';
 			case 'shared.cancel': return 'Cancel';
 			case 'shared.reload': return 'Reload';
 			case 'shared.search': return 'Search';
@@ -3089,6 +3120,14 @@ extension on _TranslationsEn {
 			case 'shared.no_more_items': return ({required Object name}) => 'All ${name} loaded';
 			case 'shared.no_items_found': return ({required Object name}) => 'No ${name} found';
 			case 'shared.premium_recommendation': return 'To use this function, you need to register for a premium plan.';
+			case 'shared.login_recommendation': return 'To use this function, you need to log in.';
+			case 'shared.processing': return 'Processing';
+			case 'shared.done': return 'Done';
+			case 'shared.download': return 'Download';
+			case 'shared.dictionary_setting': return 'Dictionary Setting';
+			case 'shared.thumbnail': return 'Thumbnail';
+			case 'shared.remove_thumbnail': return 'Remove Thumbnail';
+			case 'shared.image_alt': return ({required Object name}) => 'Image of ${name}';
 			case 'shared.error_occurred': return 'An error occurred.';
 			case 'shared.fix_error': return 'Fix error';
 			case 'shared.error_fixed': return 'Error fixed.';
@@ -4104,11 +4143,16 @@ extension on _TranslationsJa {
 			case 'notices.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
 			case 'notices.word_request_accepted_message': return 'あなたの辞書の編集が採用されました！';
 			case 'shared.create': return '作成する';
+			case 'shared.create_succeeded': return '作成されました。';
+			case 'shared.create_failed': return '作成に失敗しました。';
 			case 'shared.edit': return '編集する';
 			case 'shared.update': return '更新する';
 			case 'shared.update_succeeded': return '更新されました。';
 			case 'shared.update_failed': return '更新に失敗しました。';
 			case 'shared.destroy': return '削除する';
+			case 'shared.destroy_confirmation': return '確認';
+			case 'shared.destroy_confirmation_description': return '本当に削除してもよろしいですか？';
+			case 'shared.destroy_succeeded': return '削除しました。';
 			case 'shared.cancel': return 'キャンセルする';
 			case 'shared.reload': return '再読み込みする';
 			case 'shared.search': return '検索する';
@@ -4123,6 +4167,14 @@ extension on _TranslationsJa {
 			case 'shared.no_more_items': return ({required Object name}) => 'すべての${name}を読み込みました';
 			case 'shared.no_items_found': return ({required Object name}) => '${name}がありません';
 			case 'shared.premium_recommendation': return 'この機能を利用するには、プレミアムプランへの登録が必要です。';
+			case 'shared.login_recommendation': return 'この機能を利用するためには、ログインが必要です。';
+			case 'shared.processing': return '処理中...';
+			case 'shared.done': return '完了';
+			case 'shared.download': return 'ダウンロード';
+			case 'shared.dictionary_setting': return '辞書設定';
+			case 'shared.thumbnail': return 'サムネイル';
+			case 'shared.remove_thumbnail': return 'サムネイルを削除する';
+			case 'shared.image_alt': return ({required Object name}) => '${name}の画像';
 			case 'shared.error_occurred': return 'エラーが発生しました。';
 			case 'shared.fix_error': return 'エラーを修正する';
 			case 'shared.error_fixed': return 'エラーを修正しました。';
