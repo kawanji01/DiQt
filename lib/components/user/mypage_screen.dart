@@ -5,7 +5,7 @@ import 'package:booqs_mobile/components/user/drills.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/shared/premium_plan_button.dart';
 import 'package:booqs_mobile/components/user/achievements_button.dart';
-import 'package:booqs_mobile/components/user/drill_in_progress.dart';
+import 'package:booqs_mobile/components/user/resuming_drill_lap.dart';
 import 'package:booqs_mobile/components/user/exp_indicator.dart';
 import 'package:booqs_mobile/components/user/menu_button.dart';
 import 'package:booqs_mobile/components/user/profile.dart';
@@ -30,7 +30,7 @@ class UserMypageScreen extends StatelessWidget {
         color: Colors.transparent,
         child: Column(
           children: <Widget>[
-            const UserDrillInProgress(),
+            const UserResumingDrillLap(),
             const UserWeaknessButton(),
             const UserTodaysMistakesButton(),
             UserProfile(user: user!),

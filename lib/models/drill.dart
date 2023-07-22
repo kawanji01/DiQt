@@ -13,7 +13,6 @@ class Drill {
       required this.title,
       required this.langNumberOfTitle,
       required this.introduction,
-      this.imageUrl = '',
       this.referenceUrl,
       required this.thumbnailUrl,
       required this.publicUid,
@@ -34,7 +33,6 @@ class Drill {
   String title;
   int langNumberOfTitle;
   String introduction;
-  String imageUrl;
   String? referenceUrl;
   String thumbnailUrl;
   String publicUid;
@@ -56,7 +54,6 @@ class Drill {
         title = json['title'] ?? '',
         langNumberOfTitle = json['lang_number_of_title'],
         introduction = json['introduction'] ?? '',
-        imageUrl = json['cover_image_url'] ?? '',
         referenceUrl = json['reference_url'] ?? '',
         thumbnailUrl = json['thumbnail_url'] ?? '',
         publicUid = json['public_uid'],
@@ -83,7 +80,6 @@ class Drill {
         'lang_number_of_title': title,
         'langNumberOfTitle': langNumberOfTitle,
         'introduction': introduction,
-        'image_url': imageUrl,
         'reference_url': referenceUrl,
         'thumbnail_url': thumbnailUrl,
         'public_uid': publicUid,

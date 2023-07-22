@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/main.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
-import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/utils/answer/answer_reward.dart';
 import 'package:booqs_mobile/utils/app_review_service.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import '../builders/answer_history.dart';
+import '../builders/drill_lap.dart';
 import '../builders/user.dart';
 import 'answer_reward_test.mocks.dart';
 
@@ -31,7 +31,8 @@ void main() {
       final answerCreator = AnswerCreator();
       answerCreator.answerHistory =
           AnswerHistoryBuilder().build(atDrillPage: true);
-      answerCreator.drillLap = DrillLap(cleared: true, clearsCount: 0);
+      answerCreator.drillLap =
+          DrillLapBuilder().build(cleared: true, clearsCount: 0);
 
       final dialogs = MockDialogs();
 

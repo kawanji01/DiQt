@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/sentence.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence.dart';
@@ -57,7 +58,7 @@ class SentenceShowPageState extends ConsumerState<SentenceShowPage> {
     }
 
     Widget speakingQuiz(Sentence sentence) {
-      final Quiz? quiz = sentence.speakingQuiz;
+      final Quiz? quiz = sentence.reversedQuiz;
       if (quiz == null) return Container();
       return DrillListQuiz(
         quiz: quiz,
@@ -95,7 +96,7 @@ class SentenceShowPageState extends ConsumerState<SentenceShowPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('例文'),
+        title: Text(t.sentences.sentence),
       ),
       body: SingleChildScrollView(
         child: Container(

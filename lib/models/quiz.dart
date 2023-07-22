@@ -51,7 +51,7 @@ class Quiz {
   int? wordId;
   int? referenceWordId;
   int? sentenceId;
-  int? speakingSentenceId;
+  int? reversedSentenceId;
   String question;
   int langNumberOfQuestion;
   bool questionReadAloud;
@@ -79,7 +79,7 @@ class Quiz {
   Word? word;
   Word? referenceWord;
   Sentence? sentence;
-  Sentence? speakingSentence;
+  Sentence? reversedSentence;
 
   Quiz.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -89,7 +89,7 @@ class Quiz {
         wordId = json['word_id'],
         referenceWordId = json['reference_word_id'],
         sentenceId = json['sentence_id'],
-        speakingSentenceId = json['speaking_sentence_id'],
+        reversedSentenceId = json['reversed_sentence_id'],
         question = json['question'],
         langNumberOfQuestion = json['lang_number_of_question'],
         questionReadAloud = json['question_read_aloud'],
@@ -128,9 +128,9 @@ class Quiz {
         sentence = json['sentence'] == null
             ? null
             : Sentence.fromJson(json['sentence']),
-        speakingSentence = json['speaking_sentence'] == null
+        reversedSentence = json['reversed_sentence'] == null
             ? null
-            : Sentence.fromJson(json['speaking_sentence']);
+            : Sentence.fromJson(json['reversed_sentence']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -140,7 +140,7 @@ class Quiz {
         'word_id': wordId,
         'reference_word_id': referenceWordId,
         'sentence_id': sentenceId,
-        'speaking_sentence_id': speakingSentenceId,
+        'reversed_sentence_id': reversedSentenceId,
         'question': question,
         'lang_number_of_question': langNumberOfQuestion,
         'question_read_aloud': questionReadAloud,

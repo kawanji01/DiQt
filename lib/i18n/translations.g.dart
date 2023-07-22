@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2078 (1039 per locale)
+/// Strings: 2082 (1041 per locale)
 ///
-/// Built on 2023-07-20 at 11:44 UTC
+/// Built on 2023-07-21 at 23:32 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -178,6 +178,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsWordsEn words = _TranslationsWordsEn._(_root);
 	late final _TranslationsPurchaseEn purchase = _TranslationsPurchaseEn._(_root);
 	late final _TranslationsHomeEn home = _TranslationsHomeEn._(_root);
+	late final _TranslationsDrillLapsEn drillLaps = _TranslationsDrillLapsEn._(_root);
 }
 
 // Path: sessions
@@ -1498,6 +1499,17 @@ class _TranslationsHomeEn {
 	String get maintenance_latest_information => 'Click here for the latest information.';
 }
 
+// Path: drillLaps
+class _TranslationsDrillLapsEn {
+	_TranslationsDrillLapsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get resume => 'Resume';
+	String get view_more => 'View More';
+}
+
 // Path: <root>
 class _TranslationsJa implements _TranslationsEn {
 
@@ -1554,6 +1566,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsWordsJa words = _TranslationsWordsJa._(_root);
 	@override late final _TranslationsPurchaseJa purchase = _TranslationsPurchaseJa._(_root);
 	@override late final _TranslationsHomeJa home = _TranslationsHomeJa._(_root);
+	@override late final _TranslationsDrillLapsJa drillLaps = _TranslationsDrillLapsJa._(_root);
 }
 
 // Path: sessions
@@ -2874,6 +2887,17 @@ class _TranslationsHomeJa implements _TranslationsHomeEn {
 	@override String get maintenance_latest_information => '最新情報はこちら';
 }
 
+// Path: drillLaps
+class _TranslationsDrillLapsJa implements _TranslationsDrillLapsEn {
+	_TranslationsDrillLapsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get resume => '続きから';
+	@override String get view_more => 'もっと見る';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
@@ -3919,6 +3943,8 @@ extension on _TranslationsEn {
 			case 'home.maintenance_mode': return 'Under maintenance';
 			case 'home.maintenance_description': return 'We are very sorry. DiQt is currently undergoing maintenance. We hope you will be able to access it again in a while.';
 			case 'home.maintenance_latest_information': return 'Click here for the latest information.';
+			case 'drillLaps.resume': return 'Resume';
+			case 'drillLaps.view_more': return 'View More';
 			default: return null;
 		}
 	}
@@ -4966,6 +4992,8 @@ extension on _TranslationsJa {
 			case 'home.maintenance_mode': return 'メンテナンス中';
 			case 'home.maintenance_description': return '大変申し訳ございません。ただ今DiQtはメンテナンスを行なっております。しばらくしてから、再びアクセスいただければ幸いです。';
 			case 'home.maintenance_latest_information': return '最新情報はこちら';
+			case 'drillLaps.resume': return '続きから';
+			case 'drillLaps.view_more': return 'もっと見る';
 			default: return null;
 		}
 	}

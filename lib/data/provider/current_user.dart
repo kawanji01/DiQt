@@ -3,7 +3,6 @@ import 'package:booqs_mobile/consts/time_zone.dart';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
-import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/app_badger_service.dart';
 import 'package:booqs_mobile/utils/locale_handler.dart';
@@ -145,13 +144,3 @@ final wekanessesCountProvider = Provider<int>(
   (ref) => ref
       .watch(currentUserProvider.select((user) => user?.weaknessesCount ?? 0)),
 );
-
-// 非同期でユーザーが解答中の問題集のリストを取得する
-final asyncDrillsInProgress = FutureProvider<List<Drill>>((ref) async {
-  final List<Drill> drills = [];
-  final Map? resMap = await RemoteUsers.drillsInProgress();
-  if (resMap == null) return drills;
-
-  resMap['drills'].forEach((e) => drills.add(Drill.fromJson(e)));
-  return drills;
-});

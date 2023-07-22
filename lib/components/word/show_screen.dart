@@ -31,7 +31,7 @@ class WordShowScreen extends StatelessWidget {
 
     Widget speakingSentenceQuiz() {
       if (sentence == null) return Container();
-      final Quiz? sentenceQuiz = sentence.speakingQuiz;
+      final Quiz? sentenceQuiz = sentence.reversedQuiz;
       if (sentenceQuiz == null) return Container();
       return DrillListQuiz(
         quiz: sentenceQuiz,

@@ -13,7 +13,7 @@ class QuizExplanationWord extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Word? word = quiz.word ?? quiz.referenceWord;
-    final Sentence? sentence = quiz.sentence ?? quiz.speakingSentence;
+    final Sentence? sentence = quiz.sentence ?? quiz.reversedSentence;
 
     if (word != null) {
       return Column(children: [

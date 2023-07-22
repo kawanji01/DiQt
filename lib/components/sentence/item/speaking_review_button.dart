@@ -11,7 +11,7 @@ class SentenceItemSpeakingReviewButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Quiz? quiz = sentence.speakingQuiz;
+    final Quiz? quiz = sentence.reversedQuiz;
     if (quiz == null) {
       return Container();
     }
