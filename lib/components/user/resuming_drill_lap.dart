@@ -1,13 +1,14 @@
 import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/components/drill/list_item.dart';
-import 'package:booqs_mobile/components/user/drills_in_progress_screen.dart';
+import 'package:booqs_mobile/components/user/resuming_drill_laps_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserDrillInProgress extends ConsumerWidget {
-  const UserDrillInProgress({Key? key}) : super(key: key);
+class UserResumingDrillLap extends ConsumerWidget {
+  const UserResumingDrillLap({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,13 +32,13 @@ class UserDrillInProgress extends ConsumerWidget {
                 topRight: Radius.circular(15.0)),
           ),
           // showModalBottomSheetで表示される中身
-          builder: (context) => const UserDrillsInProgressScreen(),
+          builder: (context) => const UserResumingDrillLapsScreen(),
         );
       },
       icon: const Icon(Icons.bookmark, color: Colors.white),
-      label: const Text(
-        'もっと見る',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      label: Text(
+        t.drillLaps.view_more,
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
     );
 
@@ -45,7 +46,8 @@ class UserDrillInProgress extends ConsumerWidget {
       margin: const EdgeInsets.only(top: 32, bottom: 48),
       child: Column(
         children: [
-          const HeadingMediumGreen(label: '続きから', icon: Icons.bookmark_border),
+          HeadingMediumGreen(
+              label: t.drillLaps.resume, icon: Icons.bookmark_border),
           DrillListItem(drill: drill),
           drillsInProgressButton,
         ],

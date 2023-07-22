@@ -37,7 +37,7 @@ class QuizForm extends StatelessWidget {
     bool autoDictLinkOfQuestion;
     bool autoDictLinkOfAnswer;
     int? wordId = quiz?.wordId ?? quiz?.referenceWordId;
-    int? sentenceId = quiz?.sentenceId ?? quiz?.speakingSentenceId;
+    int? sentenceId = quiz?.sentenceId ?? quiz?.reversedSentenceId;
     //bool isConnectedToWord;
     //bool isConnectedToSentence;
     if (quiz == null) {

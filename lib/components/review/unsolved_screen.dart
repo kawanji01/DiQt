@@ -6,7 +6,7 @@ import 'package:booqs_mobile/components/review/order_select_form.dart';
 import 'package:booqs_mobile/components/review/status_tabs.dart';
 import 'package:booqs_mobile/components/review/unsolved_quizzes.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
-import 'package:booqs_mobile/components/user/drill_in_progress.dart';
+import 'package:booqs_mobile/components/user/resuming_drill_lap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -64,7 +64,7 @@ class ReviewUnsolvedScreenState extends ConsumerState<ReviewUnsolvedScreen> {
           const SizedBox(height: 8),
           unsolvedQuizzes(),
           const SizedBox(height: 80),
-          const UserDrillInProgress(),
+          const UserResumingDrillLap(),
         ],
       ),
     );

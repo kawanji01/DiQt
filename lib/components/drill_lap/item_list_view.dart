@@ -1,28 +1,32 @@
-import 'package:booqs_mobile/components/drill/list_item.dart';
+import 'package:booqs_mobile/components/drill_lap/list_item.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/components/shared/no_items_found_indicator.dart';
+import 'package:booqs_mobile/components/shared/no_more_items_indicator.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
-import 'package:booqs_mobile/models/drill.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class UserDrillListView extends StatefulWidget {
-  const UserDrillListView({Key? key, required this.userUid}) : super(key: key);
-  final String userUid;
+class DrillLapItemListView extends StatefulWidget {
+  const DrillLapItemListView({Key? key, required this.type}) : super(key: key);
+  final String type;
 
   @override
-  UserDrillListViewState createState() => UserDrillListViewState();
+  State<DrillLapItemListView> createState() => DrillLapItemListViewState();
 }
 
-class UserDrillListViewState extends State<UserDrillListView> {
+class DrillLapItemListViewState extends State<DrillLapItemListView> {
   bool _isLoading = false;
   bool _isReached = true;
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const _pageSize = 10;
-  final PagingController<int, Drill> _pagingController =
-      PagingController(firstPageKey: 0); // pageのパラメーターの初期値
+  // pageのパラメーターの初期値
+  final PagingController<int, DrillLap> _pagingController =
+      PagingController(firstPageKey: 0);
   @override
   void initState() {
     super.initState();
@@ -37,9 +41,10 @@ class UserDrillListViewState extends State<UserDrillListView> {
     if (_isReached == false) return;
     _isLoading = true;
 
-    final Map resMap = await RemoteUsers.drills(
-        userUid: widget.userUid, pageKey: pageKey, pageSize: _pageSize);
+    final Map resMap = await RemoteUsers.resumeDrillLaps(
+        type: widget.type, pageKey: pageKey, pageSize: _pageSize);
     if (!mounted) return;
+    // エラーの場合の処理
     if (ErrorHandler.isErrorMap(resMap)) {
       ErrorHandler.showErrorSnackBar(context, resMap);
       return setState(() {
@@ -47,19 +52,18 @@ class UserDrillListViewState extends State<UserDrillListView> {
         _isReached = false;
       });
     }
-    final List<Drill> drills = [];
+    final List<DrillLap> drillLaps = [];
 
-    resMap['drills'].forEach((e) => drills.add(Drill.fromJson(e)));
+    resMap['drill_laps'].forEach((e) => drillLaps.add(DrillLap.fromJson(e)));
 
-    // print(activities.length);
-    final isLastPage = drills.length < _pageSize;
+    final isLastPage = drillLaps.length < _pageSize;
     if (isLastPage) {
-      _pagingController.appendLastPage(drills);
+      _pagingController.appendLastPage(drillLaps);
     } else {
-      _nextPagekey = pageKey + drills.length;
-      //_pagingController.appendLastPage(notices);
+      _nextPagekey = pageKey + drillLaps.length;
+      // _pagingController.appendLastPage(notices);
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
-      _pagingController.appendPage(drills, _nextPagekey);
+      _pagingController.appendPage(drillLaps, _nextPagekey);
     }
 
     setState(() {
@@ -76,7 +80,6 @@ class UserDrillListViewState extends State<UserDrillListView> {
 
   @override
   Widget build(BuildContext context) {
-    //
     Widget loader() {
       // ref: https://qiita.com/kikuchy/items/07d10394a4f7aa2a3836
       return VisibilityDetector(
@@ -89,7 +92,6 @@ class UserDrillListViewState extends State<UserDrillListView> {
             setState(() {
               _isReached = true;
             });
-
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
             _pagingController.notifyPageRequestListeners(_nextPagekey);
           }
@@ -101,19 +103,23 @@ class UserDrillListViewState extends State<UserDrillListView> {
       );
     }
 
-    return PagedListView<int, Drill>(
+    return PagedListView<int, DrillLap>(
       pagingController: _pagingController,
-
-      padding: const EdgeInsets.only(top: 40),
       // Vertical viewport was given unbounded heightの解決 ref: https://qiita.com/code-cutlass/items/3a8b759056db1e8f7639
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      builderDelegate: PagedChildBuilderDelegate<Drill>(
-        itemBuilder: (context, item, index) => DrillListItem(
-          drill: item,
+      builderDelegate: PagedChildBuilderDelegate<DrillLap>(
+        itemBuilder: (context, item, index) => DrillLapListItem(
+          drillLap: item,
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
         newPageProgressIndicatorBuilder: (_) => loader(),
+        noItemsFoundIndicatorBuilder: (_) => NoItemsFoundIndicator(
+          itemName: t.drills.drills,
+        ),
+        noMoreItemsIndicatorBuilder: (_) => NoMoreItemsIndicator(
+          itemName: t.drills.drills,
+        ),
       ),
     );
   }

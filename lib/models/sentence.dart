@@ -18,7 +18,7 @@ class Sentence {
     required this.createdAt,
     required this.updatedAt,
     this.quiz,
-    this.speakingQuiz,
+    this.reversedQuiz,
     this.sentenceSource,
     this.dictionary,
   });
@@ -37,7 +37,7 @@ class Sentence {
   DateTime createdAt;
   DateTime updatedAt;
   Quiz? quiz;
-  Quiz? speakingQuiz;
+  Quiz? reversedQuiz;
   SentenceSource? sentenceSource;
   Dictionary? dictionary;
 
@@ -57,9 +57,12 @@ class Sentence {
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
-        speakingQuiz = json['speaking_quiz'] == null
-            ? null
-            : Quiz.fromJson(json['speaking_quiz']),
+        reversedQuiz =
+            json['speaking_quiz'] == null && json['reversed_quiz'] == null
+                ? null
+                : json['speaking_quiz'] == null
+                    ? Quiz.fromJson(json['reversed_quiz'])
+                    : Quiz.fromJson(json['speaking_quiz']),
         sentenceSource = json['sentence_source'] == null
             ? null
             : SentenceSource.fromJson(json['sentence_source']),
@@ -81,7 +84,7 @@ class Sentence {
         'created_at': createdAt,
         'updated_at': updatedAt,
         'quiz': quiz,
-        'speaking_quiz': speakingQuiz,
+        'reversed_quiz': reversedQuiz,
         'sentence_source': sentenceSource,
         'dictionary': dictionary,
       };

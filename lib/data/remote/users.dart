@@ -107,25 +107,25 @@ class RemoteUsers {
   }
 
   // 解答中の問題集の取得
-  static Future<Map?> drillsInProgress() async {
+  static Future<Map> resumeDrillLaps(
+      {required String type,
+      required int pageKey,
+      required int pageSize}) async {
     try {
-      final Uri url =
-          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/drills_in_progress');
+      final Uri url = Uri.parse(
+          '${DiQtURL.root()}/api/v1/mobile/users/resume_drill_laps?type=$type&page=$pageKey&size=$pageSize');
       final Response res = await HttpService.get(url);
 
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
       // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 

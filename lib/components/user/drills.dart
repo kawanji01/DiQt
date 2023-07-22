@@ -16,7 +16,7 @@ class UserDrills extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            '${t.users.drills}( ${user.drillsCount})',
+            '${t.users.drills}(${user.drillsCount})',
             style: const TextStyle(
                 fontSize: 32, fontWeight: FontWeight.bold, color: Colors.green),
           ),

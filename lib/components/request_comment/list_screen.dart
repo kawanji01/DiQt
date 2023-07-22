@@ -59,7 +59,6 @@ class RequestCommentListScreenState
       if (ErrorHandler.isErrorMap(resMap)) {
         return ErrorHandler.showErrorSnackBar(context, resMap);
       }
-
       final snackBar = SnackBar(content: Text(t.shared.create_succeeded));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.of(context).pop();
