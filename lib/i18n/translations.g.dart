@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2082 (1041 per locale)
+/// Strings: 2088 (1044 per locale)
 ///
-/// Built on 2023-07-21 at 23:32 UTC
+/// Built on 2023-07-25 at 02:55 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -245,7 +245,7 @@ class _TranslationsDictionariesEn {
 	String get word_lists => 'Word Lists';
 	String get word_drill => 'WordDrill';
 	String get sentence_drill => 'SentenceDrill';
-	String get speaking_sentence_drill => 'SentenceDrill for writing and speaking';
+	String get reversed_sentence_drill => 'SentenceDrill for writing and speaking';
 	String get sense_drill => 'SenseDrill';
 	String get guideline => 'Editing Guideline';
 	String get credit => 'Credit';
@@ -987,6 +987,9 @@ class _TranslationsSentencesEn {
 	String get update_failed => 'Failed to update the sentence.';
 	String get destroyed => 'Sentence Destroyed';
 	String no_item_found({required Object keyword}) => 'No example sentences containing "${keyword}" were found.';
+	String get review_label => 'Be able to read';
+	String get review_label_listening => 'Be able to listen';
+	String get reversed_review_label => 'be able to speak';
 }
 
 // Path: notes
@@ -1633,7 +1636,7 @@ class _TranslationsDictionariesJa implements _TranslationsDictionariesEn {
 	@override String get word_lists => '単語帳';
 	@override String get word_drill => '辞書問題';
 	@override String get sentence_drill => '例文問題';
-	@override String get speaking_sentence_drill => 'スピーキングとライティングのための例文問題';
+	@override String get reversed_sentence_drill => 'スピーキングとライティングのための例文問題';
 	@override String get sense_drill => '意味問題';
 	@override String get guideline => '編集ガイドライン';
 	@override String get credit => 'クレジット';
@@ -2375,6 +2378,9 @@ class _TranslationsSentencesJa implements _TranslationsSentencesEn {
 	@override String get update_failed => '例文の更新に失敗しました。';
 	@override String get destroyed => '例文が削除されました。';
 	@override String no_item_found({required Object keyword}) => '"${keyword}"が含まれる例文は見つかりませんでした。';
+	@override String get review_label => '読めるようになる';
+	@override String get review_label_listening => '聞き取れるようになる';
+	@override String get reversed_review_label => '話せるようになる';
 }
 
 // Path: notes
@@ -2952,7 +2958,7 @@ extension on _TranslationsEn {
 			case 'dictionaries.word_lists': return 'Word Lists';
 			case 'dictionaries.word_drill': return 'WordDrill';
 			case 'dictionaries.sentence_drill': return 'SentenceDrill';
-			case 'dictionaries.speaking_sentence_drill': return 'SentenceDrill for writing and speaking';
+			case 'dictionaries.reversed_sentence_drill': return 'SentenceDrill for writing and speaking';
 			case 'dictionaries.sense_drill': return 'SenseDrill';
 			case 'dictionaries.guideline': return 'Editing Guideline';
 			case 'dictionaries.credit': return 'Credit';
@@ -3559,6 +3565,9 @@ extension on _TranslationsEn {
 			case 'sentences.update_failed': return 'Failed to update the sentence.';
 			case 'sentences.destroyed': return 'Sentence Destroyed';
 			case 'sentences.no_item_found': return ({required Object keyword}) => 'No example sentences containing "${keyword}" were found.';
+			case 'sentences.review_label': return 'Be able to read';
+			case 'sentences.review_label_listening': return 'Be able to listen';
+			case 'sentences.reversed_review_label': return 'be able to speak';
 			case 'notes.notes': return 'Notes';
 			case 'notes.note': return 'Note';
 			case 'notes.note_placeholder': return 'A notebook that only you can view. It can also be used as a hint for the question.';
@@ -4001,7 +4010,7 @@ extension on _TranslationsJa {
 			case 'dictionaries.word_lists': return '単語帳';
 			case 'dictionaries.word_drill': return '辞書問題';
 			case 'dictionaries.sentence_drill': return '例文問題';
-			case 'dictionaries.speaking_sentence_drill': return 'スピーキングとライティングのための例文問題';
+			case 'dictionaries.reversed_sentence_drill': return 'スピーキングとライティングのための例文問題';
 			case 'dictionaries.sense_drill': return '意味問題';
 			case 'dictionaries.guideline': return '編集ガイドライン';
 			case 'dictionaries.credit': return 'クレジット';
@@ -4608,6 +4617,9 @@ extension on _TranslationsJa {
 			case 'sentences.update_failed': return '例文の更新に失敗しました。';
 			case 'sentences.destroyed': return '例文が削除されました。';
 			case 'sentences.no_item_found': return ({required Object keyword}) => '"${keyword}"が含まれる例文は見つかりませんでした。';
+			case 'sentences.review_label': return '読めるようになる';
+			case 'sentences.review_label_listening': return '聞き取れるようになる';
+			case 'sentences.reversed_review_label': return '話せるようになる';
 			case 'notes.notes': return 'ノート';
 			case 'notes.note': return 'ノート';
 			case 'notes.note_placeholder': return 'あなただけが閲覧できるノートです。問題のヒントとしてもご利用いただけます。';

@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/components/sentence/item/content.dart';
 import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
-import 'package:booqs_mobile/components/sentence/item/reading_review_button.dart';
-import 'package:booqs_mobile/components/sentence/item/speaking_review_button.dart';
+import 'package:booqs_mobile/components/sentence/item/reversed_review_button.dart';
+import 'package:booqs_mobile/components/sentence/item/review_button.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +16,9 @@ class SentenceItem extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       SentenceItemContent(sentence: sentence),
       const SizedBox(height: 24),
-      SentenceItemReadingReviewButton(sentence: sentence),
+      SentenceItemReviewButton(sentence: sentence),
       const SizedBox(height: 16),
-      SentenceItemSpeakingReviewButton(sentence: sentence),
+      SentenceItemReversedReviewButton(sentence: sentence),
       SentenceItemEditButton(
         sentence: sentence,
         isShow: isShow,

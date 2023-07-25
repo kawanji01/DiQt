@@ -13,7 +13,7 @@ class HomeLoadingScreen extends StatelessWidget {
         );
       }
       return Text('$error',
-          style: const TextStyle(color: Colors.white, fontSize: 24));
+          style: const TextStyle(color: Colors.white, fontSize: 16));
     }
 
     //

@@ -57,12 +57,9 @@ class Sentence {
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
-        reversedQuiz =
-            json['speaking_quiz'] == null && json['reversed_quiz'] == null
-                ? null
-                : json['speaking_quiz'] == null
-                    ? Quiz.fromJson(json['reversed_quiz'])
-                    : Quiz.fromJson(json['speaking_quiz']),
+        reversedQuiz = json['reversed_quiz'] == null
+            ? null
+            : Quiz.fromJson(json['reversed_quiz']),
         sentenceSource = json['sentence_source'] == null
             ? null
             : SentenceSource.fromJson(json['sentence_source']),
