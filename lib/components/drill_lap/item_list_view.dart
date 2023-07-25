@@ -53,7 +53,6 @@ class DrillLapItemListViewState extends State<DrillLapItemListView> {
       });
     }
     final List<DrillLap> drillLaps = [];
-
     resMap['drill_laps'].forEach((e) => drillLaps.add(DrillLap.fromJson(e)));
 
     final isLastPage = drillLaps.length < _pageSize;

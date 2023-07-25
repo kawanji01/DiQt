@@ -1,11 +1,12 @@
 import 'package:booqs_mobile/components/review/setting/medium_button.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:flutter/material.dart';
 
-class SentenceItemReadingReviewButton extends StatelessWidget {
-  const SentenceItemReadingReviewButton({Key? key, required this.sentence})
+class SentenceItemReviewButton extends StatelessWidget {
+  const SentenceItemReviewButton({Key? key, required this.sentence})
       : super(key: key);
   final Sentence sentence;
 
@@ -16,9 +17,9 @@ class SentenceItemReadingReviewButton extends StatelessWidget {
       return Container();
     }
     final Review? review = quiz.review;
-    String label = '読めるようになる';
+    String label = t.sentences.review_label;
     if (sentence.langNumberOfOriginal == sentence.langNumberOfTranslation) {
-      label = '聞き取れるようになる';
+      label = t.sentences.review_label_listening;
     }
     return ReviewSettingMediumButton(
       quizId: quiz.id,

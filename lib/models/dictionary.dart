@@ -25,16 +25,6 @@ class Dictionary {
     this.pendingSentenceRequestsCount = 0,
     this.acceptedQuizRequestsCount = 0,
     this.pendingQuizRequestsCount = 0,
-    this.usersAuthorizedToCreate = 4,
-    this.createScreened = false,
-    this.usersAuthorizedToUpdate = 4,
-    this.updateScreened = false,
-    this.usersAuthorizedToDestroy = 1,
-    this.destroyScreened = false,
-    this.usersAuthorizedToVote = 3,
-    this.votesCountToCloseRequest = 3,
-    this.sameEntryScreened = false,
-    this.changingEntryScreened = false,
     required this.createdAt,
     required this.updatedAt,
     // eager_loadでキャッシュしたdrillの情報
@@ -63,16 +53,7 @@ class Dictionary {
   int pendingSentenceRequestsCount;
   int acceptedQuizRequestsCount;
   int pendingQuizRequestsCount;
-  int usersAuthorizedToCreate;
-  bool createScreened;
-  int usersAuthorizedToUpdate;
-  bool updateScreened;
-  int usersAuthorizedToDestroy;
-  bool destroyScreened;
-  int usersAuthorizedToVote;
-  int votesCountToCloseRequest;
-  bool sameEntryScreened;
-  bool changingEntryScreened;
+
   DateTime createdAt;
   DateTime updatedAt;
   // テーブルを結合してキャッシュしたdrillの情報
@@ -102,16 +83,6 @@ class Dictionary {
         pendingSentenceRequestsCount = json['pending_sentence_requests_count'],
         acceptedQuizRequestsCount = json['accepted_quiz_requests_count'],
         pendingQuizRequestsCount = json['pending_quiz_requests_count'],
-        usersAuthorizedToCreate = json['users_authorized_to_create'],
-        createScreened = json['create_screened'],
-        usersAuthorizedToUpdate = json['users_authorized_to_update'],
-        updateScreened = json['update_screened'],
-        usersAuthorizedToDestroy = json['users_authorized_to_destroy'],
-        destroyScreened = json['destroy_screened'],
-        usersAuthorizedToVote = json['users_authorized_to_vote'],
-        votesCountToCloseRequest = json['votes_count_to_close_request'],
-        sameEntryScreened = json['same_entry_screened'],
-        changingEntryScreened = json['changing_entry_screened'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         // テーブルを結合してキャッシュしたdrillの情報,
@@ -155,16 +126,7 @@ class Dictionary {
         'pending_sentence_requests_count': pendingSentenceRequestsCount,
         'accepted_quiz_requests_count': acceptedQuizRequestsCount,
         'pending_quiz_requests_count': pendingQuizRequestsCount,
-        'users_authorized_to_create': usersAuthorizedToCreate,
-        'create_screened': createScreened,
-        'users_authorized_to_update': usersAuthorizedToUpdate,
-        'update_screened': updateScreened,
-        'users_authorized_to_destroy': usersAuthorizedToDestroy,
-        'destroy_screened': destroyScreened,
-        'users_authorized_to_vote': usersAuthorizedToVote,
-        'votes_count_to_close_request': votesCountToCloseRequest,
-        'same_entry_screened': sameEntryScreened,
-        'changing_entry_screened': changingEntryScreened,
+
         'created_at': createdAt,
         'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,

@@ -118,7 +118,7 @@ class HomePageState extends ConsumerState<HomePage> {
             );
           },
           error: (e, str) => HomeLoadingScreen(
-            error: '$e',
+            error: '$e / $str',
           ),
           loading: () => const HomeLoadingScreen(),
         );

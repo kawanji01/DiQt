@@ -29,7 +29,7 @@ class WordShowScreen extends StatelessWidget {
       );
     }
 
-    Widget speakingSentenceQuiz() {
+    Widget reversedSentenceQuiz() {
       if (sentence == null) return Container();
       final Quiz? sentenceQuiz = sentence.reversedQuiz;
       if (sentenceQuiz == null) return Container();
@@ -46,7 +46,7 @@ class WordShowScreen extends StatelessWidget {
         isShow: false,
       ),
       sentenceQuiz(),
-      speakingSentenceQuiz(),
+      reversedSentenceQuiz(),
       const SizedBox(
         height: 120,
       ),

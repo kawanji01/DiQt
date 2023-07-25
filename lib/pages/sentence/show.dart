@@ -57,7 +57,7 @@ class SentenceShowPageState extends ConsumerState<SentenceShowPage> {
       );
     }
 
-    Widget speakingQuiz(Sentence sentence) {
+    Widget reversedQuiz(Sentence sentence) {
       final Quiz? quiz = sentence.reversedQuiz;
       if (quiz == null) return Container();
       return DrillListQuiz(
@@ -88,7 +88,7 @@ class SentenceShowPageState extends ConsumerState<SentenceShowPage> {
           ),
           const SizedBox(height: 16),
           quiz(sentence),
-          speakingQuiz(sentence),
+          reversedQuiz(sentence),
           const SizedBox(height: 48),
         ],
       );
