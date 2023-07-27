@@ -41,7 +41,7 @@ class SharedDiffText extends StatelessWidget {
           textStyle = const TextStyle(
               color: Colors.black,
               fontSize: 16,
-              backgroundColor: Color(0xFFFFC1BF));
+              backgroundColor: Color.fromARGB(255, 255, 193, 191));
         } else if (diff.operation == DIFF_INSERT) {
           continue;
         }
@@ -88,7 +88,7 @@ class SharedDiffText extends StatelessWidget {
           textStyle = const TextStyle(
               color: Colors.black,
               fontSize: 16,
-              backgroundColor: Color(0xFFABF2BB));
+              backgroundColor: Color.fromARGB(255, 171, 242, 187));
         } else if (diff.operation == DIFF_DELETE) {
           continue;
         }
