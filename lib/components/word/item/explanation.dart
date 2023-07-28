@@ -1,7 +1,6 @@
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/components/word/item/label.dart';
-import 'package:booqs_mobile/components/word/item/senses.dart';
 import 'package:flutter/material.dart';
 
 class WordItemExplanation extends StatelessWidget {
@@ -11,7 +10,7 @@ class WordItemExplanation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (word.sensesJson != null && word.sensesJson != ['']) {
-      return WordItemSenses(word: word);
+      //return WordItemSenses(word: word);
     }
 
     if (word.explanation == '') return Container();

@@ -58,12 +58,9 @@ class _WordRequestDictionaryListViewState
       });
     }
     final List<WordRequest> wordRequests = [];
-    try {
-      resMap['word_requests']
-          .forEach((e) => wordRequests.add(WordRequest.fromJson(e)));
-    } catch (e) {
-      print(e);
-    }
+
+    resMap['word_requests']
+        .forEach((e) => wordRequests.add(WordRequest.fromJson(e)));
 
     final isLastPage = wordRequests.length < _pageSize;
     if (isLastPage) {

@@ -1,9 +1,4 @@
-import 'package:booqs_mobile/components/sense/item.dart';
-import 'package:booqs_mobile/components/word/item/new_sense_button.dart';
-import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/sense.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/components/word/item/label.dart';
 import 'package:flutter/material.dart';
 
 class WordItemSenses extends StatelessWidget {
@@ -12,7 +7,8 @@ class WordItemSenses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Sense>? senses = word.senses;
+    return Container();
+    /* final List<Sense>? senses = word.senses;
     if (senses == null) return Container();
 
     // 意味
@@ -46,6 +42,6 @@ class WordItemSenses extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: glossesList,
       ),
-    );
+    ); */
   }
 }

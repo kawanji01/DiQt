@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/components/request_comment/list_button.dart';
 import 'package:booqs_mobile/components/word_request/item/details_button.dart';
 import 'package:booqs_mobile/components/word_request/item/main_content.dart';
 import 'package:booqs_mobile/components/word_request/pending_wrapper.dart';
