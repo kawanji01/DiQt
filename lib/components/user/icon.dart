@@ -21,7 +21,7 @@ class UserIcon extends StatelessWidget {
 
     Widget image() {
       final String imageUrl =
-          user == null ? user?.iconImageUrl ?? notFoundIcon : notFoundIcon;
+          user != null ? user?.iconImageUrl ?? notFoundIcon : notFoundIcon;
       // ref: https://www.codegrepper.com/code-examples/dart/fit+image+in+circle+avatar+flutter
       return CircleAvatar(
         radius: 72.0,
