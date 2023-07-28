@@ -14,7 +14,10 @@ class ResponsiveValues {
     double grid = SizeConfig.blockSizeHorizontal ?? 0;
 
     return getValueForScreenType(
-        context: context, mobile: 20, tablet: grid * 10, desktop: grid * 15);
+        context: context,
+        mobile: grid * 4,
+        tablet: grid * 10,
+        desktop: grid * 15);
   }
 
   static double medalWidth(BuildContext context) {
