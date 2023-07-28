@@ -28,7 +28,7 @@ class NoticeListItem extends StatelessWidget {
         return NoticeCheered(notice: notice);
       case 'word_request_accepted':
         return WordRequestAccepted(notice: notice);
-      // case 'word_request_favored':
+      // case 'word_request_upvoted':
       //     return NoticeContinuousAnswer(notice: notice);
 
       default:

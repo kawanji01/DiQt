@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/components/shared/no_items_found_indicator.dart';
 import 'package:booqs_mobile/components/word_request/list_item.dart';
 import 'package:booqs_mobile/data/remote/word_requests.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -50,12 +51,14 @@ class _WordRequestDictionaryListViewState
         pageSize: _pageSize);
     if (!mounted) return;
     if (ErrorHandler.isErrorMap(resMap)) {
+      ErrorHandler.showErrorSnackBar(context, resMap);
       return setState(() {
         _isLoading = false;
         _isReached = false;
       });
     }
     final List<WordRequest> wordRequests = [];
+
     resMap['word_requests']
         .forEach((e) => wordRequests.add(WordRequest.fromJson(e)));
 
@@ -111,14 +114,16 @@ class _WordRequestDictionaryListViewState
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       builderDelegate: PagedChildBuilderDelegate<WordRequest>(
-          itemBuilder: (context, item, index) => WordRequestListItem(
-                wordRequest: item,
-              ),
-          // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
-          newPageProgressIndicatorBuilder: (_) => loader(),
-          // 検索結果なし
-          noItemsFoundIndicatorBuilder: (_) => Text(
-              t.shared.no_items_found(name: t.wordRequests.edit_histories))),
+        itemBuilder: (context, item, index) => WordRequestListItem(
+          wordRequest: item,
+        ),
+        // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
+        newPageProgressIndicatorBuilder: (_) => loader(),
+        // 検索結果なし
+        noItemsFoundIndicatorBuilder: (_) => NoItemsFoundIndicator(
+          itemName: t.wordRequests.edit_histories,
+        ),
+      ),
     );
   }
 }

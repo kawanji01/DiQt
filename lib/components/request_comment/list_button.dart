@@ -19,11 +19,11 @@ class RequestCommentListButton extends StatelessWidget {
   Widget build(BuildContext context) {
     int commentsCount = 0;
     if (wordRequest != null) {
-      commentsCount = wordRequest?.requestCommentsCount ?? 0;
+      commentsCount = 0;
     } else if (sentenceRequest != null) {
-      commentsCount = sentenceRequest?.requestCommentsCount ?? 0;
+      commentsCount = 0;
     } else if (quizRequest != null) {
-      commentsCount = quizRequest?.requestCommentsCount ?? 0;
+      commentsCount = 0;
     }
     final Word? word = wordRequest?.word;
     if (word == null) {

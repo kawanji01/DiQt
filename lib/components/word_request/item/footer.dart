@@ -13,6 +13,7 @@ class WordRequestItemFooter extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         //
+        // 詳細
         TextButton(
             onPressed: () {
               WordRequestShowPage.push(context, wordRequest.id);

@@ -20,7 +20,6 @@ class Notice {
     this.weeklyReportId,
     this.inquiryId,
     this.achievementId,
-    this.requestCommentId,
     this.wordRequestId,
     this.sentenceRequestId,
     this.quizRequestId,
@@ -50,7 +49,6 @@ class Notice {
   int? weeklyReportId;
   int? inquiryId;
   int? achievementId;
-  int? requestCommentId;
   int? wordRequestId;
   int? sentenceRequestId;
   int? quizRequestId;
@@ -80,7 +78,6 @@ class Notice {
         weeklyReportId = json['weekly_report_id'],
         inquiryId = json['inquiry_id'],
         achievementId = json['achievement_id'],
-        requestCommentId = json['request_comment_id'],
         wordRequestId = json['word_request_id'],
         sentenceRequestId = json['sentence_request_id'],
         quizRequestId = json['quiz_request_id'],
@@ -124,7 +121,6 @@ class Notice {
         'weekly_report_id': weeklyReportId,
         'inquiry_id': inquiryId,
         'achievement_id': achievementId,
-        'request_comment_id': requestCommentId,
         'word_request_id': wordRequestId,
         'sentence_request_id': sentenceRequestId,
         'quiz_request_id': quizRequestId,

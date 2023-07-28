@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/components/word/item/senses.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +10,7 @@ class WordFormSenses extends StatelessWidget {
     if (word == null) {
       return Container();
     }
-    return WordItemSenses(word: word!);
+    //return WordItemSenses(word: word!);
+    return Container();
   }
 }

@@ -50,12 +50,12 @@ class WordRequestDictionaryPageState
       appBar: AppBar(
         title: Text(t.wordRequests.edit_histories),
       ),
-      body: SingleChildScrollView(
-        child: RefreshIndicator(
-          onRefresh: () async {
-            HapticFeedback.mediumImpact();
-            ref.invalidate(asyncDictionaryFamily(dictionaryId));
-          },
+      body: RefreshIndicator(
+        onRefresh: () async {
+          HapticFeedback.mediumImpact();
+          ref.invalidate(asyncDictionaryFamily(dictionaryId));
+        },
+        child: SingleChildScrollView(
           child: Container(
             margin: EdgeInsets.symmetric(
                 vertical: 24,

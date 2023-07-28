@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/pos_tag.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/models/word_request_vote.dart';
 
 class WordRequest {
   WordRequest(
@@ -32,9 +33,12 @@ class WordRequest {
       required this.acceptance,
       required this.rejection,
       required this.comment,
-      required this.requestCommentsCount,
+      required this.upvotesCount,
+      required this.downvotesCount,
       required this.createdAt,
       required this.updatedAt,
+      this.votesCountToClose,
+      this.wordRequestVote,
       this.user,
       this.word,
       this.dictionary,
@@ -69,9 +73,12 @@ class WordRequest {
   bool acceptance;
   bool rejection;
   String? comment;
-  int requestCommentsCount;
+  int upvotesCount;
+  int downvotesCount;
   DateTime createdAt;
   DateTime updatedAt;
+  int? votesCountToClose;
+  WordRequestVote? wordRequestVote;
   Dictionary? dictionary;
   Word? word;
   User? user;
@@ -99,9 +106,14 @@ class WordRequest {
         acceptance = json['acceptance'],
         rejection = json['rejection'],
         comment = json['comment'],
-        requestCommentsCount = json['request_comments_count'],
+        upvotesCount = json['upvotes_count'],
+        downvotesCount = json['downvotes_count'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
+        votesCountToClose = json['votes_count_to_close'],
+        wordRequestVote = json['word_request_vote'] == null
+            ? null
+            : WordRequestVote.fromJson(json['word_request_vote']),
         dictionary = json['dictionary'] == null
             ? null
             : Dictionary.fromJson(json['dictionary']),
@@ -123,6 +135,10 @@ class WordRequest {
     return acceptance == false && rejection == false;
   }
 
+  bool closed() {
+    return acceptance == true || rejection == true;
+  }
+
   Map<String, dynamic> toJson() => {
         'id': id,
         'dictionary_id': dictionaryId,
@@ -138,9 +154,12 @@ class WordRequest {
         'acceptance': acceptance,
         'rejection': rejection,
         'comment': comment,
-        'request_comments_count': requestCommentsCount,
+        'upvotes_count': upvotesCount,
+        'downvotes_count': downvotesCount,
         'created_at': createdAt,
         'updated_at': updatedAt,
+        'votes_count_to_close': votesCountToClose,
+        'word_request_vote': wordRequestVote,
         'dictionary': dictionary,
         'word': word,
         'user': user,

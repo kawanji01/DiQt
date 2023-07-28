@@ -19,7 +19,6 @@ class QuizRequest {
     required this.elimination,
     required this.acceptance,
     required this.rejection,
-    required this.requestCommentsCount,
     required this.createdAt,
     required this.updatedAt,
     this.user,
@@ -42,7 +41,6 @@ class QuizRequest {
   bool elimination;
   bool acceptance;
   bool rejection;
-  int requestCommentsCount;
   DateTime createdAt;
   DateTime updatedAt;
   Dictionary? dictionary;
@@ -67,7 +65,6 @@ class QuizRequest {
         rejection = json['rejection'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
-        requestCommentsCount = json['request_comments_count'],
         user = json['user'] != null ? User.fromJson(json['user']) : null,
         sentence = json['sentence'] != null
             ? Sentence.fromJson(json['sentence'])
@@ -94,7 +91,6 @@ class QuizRequest {
         'elimination': elimination,
         'acceptance': acceptance,
         'rejection': rejection,
-        'request_comments_count': requestCommentsCount,
         'created_at': createdAt.toIso8601String(),
         'updated_at': updatedAt.toIso8601String(),
         'user': user?.toJson(),
