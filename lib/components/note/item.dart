@@ -83,7 +83,7 @@ class NoteItemState extends ConsumerState<NoteItem> {
     return resMap;
   }
 
-  void _destroy() async {
+  Future<void> _destroy() async {
     EasyLoading.show(status: 'loading...');
     final Map resMap = await RemoteNotes.destroy(_note!.id);
     EasyLoading.dismiss();

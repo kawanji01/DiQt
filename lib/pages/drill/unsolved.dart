@@ -15,8 +15,6 @@ class DrillUnsolvedPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO: RouteObserverなりを使って、画面遷移時に解答インタラクションを消すようにしたい。 ref: https://417.run/pg/flutter-dart/flutter-route-aware/
-
     return Scaffold(
       appBar: const EmptyAppBar(),
       body: SingleChildScrollView(

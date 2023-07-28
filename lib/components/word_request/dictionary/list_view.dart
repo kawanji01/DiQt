@@ -50,14 +50,19 @@ class _WordRequestDictionaryListViewState
         pageSize: _pageSize);
     if (!mounted) return;
     if (ErrorHandler.isErrorMap(resMap)) {
+      ErrorHandler.showErrorSnackBar(context, resMap);
       return setState(() {
         _isLoading = false;
         _isReached = false;
       });
     }
     final List<WordRequest> wordRequests = [];
-    resMap['word_requests']
-        .forEach((e) => wordRequests.add(WordRequest.fromJson(e)));
+    try {
+      resMap['word_requests']
+          .forEach((e) => wordRequests.add(WordRequest.fromJson(e)));
+    } catch (e) {
+      print(e);
+    }
 
     final isLastPage = wordRequests.length < _pageSize;
     if (isLastPage) {

@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2088 (1044 per locale)
+/// Strings: 2112 (1056 per locale)
 ///
-/// Built on 2023-07-25 at 02:55 UTC
+/// Built on 2023-07-27 at 12:48 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1280,6 +1280,8 @@ class _TranslationsWordRequestsEn {
 	String get pending => 'Pending';
 	String get accept => 'Adopt';
 	String get reject => 'Reject';
+	String get upvote => 'Upvote';
+	String get downvote => 'Downvote';
 	String get editor_comment => 'Editor\'s comment';
 	String get comments => 'Comments';
 	String get cancel => 'Withdraw an request';
@@ -1290,7 +1292,17 @@ class _TranslationsWordRequestsEn {
 	String get show_heading => 'Request details';
 	String get accepted => 'The request has been adopted.';
 	String get rejected => 'The request has been rejected.';
+	String get approved => 'You have voted for the request.';
+	String get disapproved => 'You have voted against the request.';
+	String get vote_cancelled => 'You have cancelled your vote for the request.';
+	String votes_count_to_close({required Object count}) => 'Number of votes needed for decision: ${count}';
 	String edited_at({required Object time}) => 'Edited ${time} ago';
+	String get pending_text => 'Reason for pending';
+	String get duplicating_entry => 'The same item already exists.';
+	String get changing_entry => 'The item name is about to be changed.';
+	String get destroying_word => 'The item is about to be deleted.';
+	String get unknown => 'Unknown reason';
+	String get not_allowed_to_edit => 'You are not allowed to edit.';
 }
 
 // Path: calendars
@@ -2671,17 +2683,29 @@ class _TranslationsWordRequestsJa implements _TranslationsWordRequestsEn {
 	@override String get pending => '審査中';
 	@override String get accept => '採用';
 	@override String get reject => '却下';
+	@override String get upvote => '賛成';
+	@override String get downvote => '反対';
 	@override String get editor_comment => '編集者のコメント';
 	@override String get comments => 'コメント';
 	@override String get cancel => 'リクエストを取り下げる';
 	@override String get canceled => 'リクエストを取り下げました。';
 	@override String get target => '編集先';
 	@override String get target_already_deleted => '編集先がすでに削除されています。';
-	@override String get target_not_found => '編集先が見つかりませんでした。';
+	@override String get target_not_found => '編集先が見つかりません。';
 	@override String get show_heading => '編集内容';
 	@override String get accepted => 'リクエストが採用されました。';
 	@override String get rejected => 'リクエストが却下されました。';
+	@override String get approved => 'リクエストに賛成しました。';
+	@override String get disapproved => 'リクエストに反対しました。';
+	@override String get vote_cancelled => 'リクエストへの投票を取り消しました。';
+	@override String votes_count_to_close({required Object count}) => '決定に必要な得票数: ${count}';
 	@override String edited_at({required Object time}) => '${time}前に編集';
+	@override String get pending_text => '審査理由';
+	@override String get duplicating_entry => '同じ項目が既に存在しています。';
+	@override String get changing_entry => '項目名が変更されようとしています。';
+	@override String get destroying_word => '項目が削除されようとしています。';
+	@override String get unknown => '不明な理由';
+	@override String get not_allowed_to_edit => '編集権限がありません。';
 }
 
 // Path: calendars
@@ -3786,6 +3810,8 @@ extension on _TranslationsEn {
 			case 'wordRequests.pending': return 'Pending';
 			case 'wordRequests.accept': return 'Adopt';
 			case 'wordRequests.reject': return 'Reject';
+			case 'wordRequests.upvote': return 'Upvote';
+			case 'wordRequests.downvote': return 'Downvote';
 			case 'wordRequests.editor_comment': return 'Editor\'s comment';
 			case 'wordRequests.comments': return 'Comments';
 			case 'wordRequests.cancel': return 'Withdraw an request';
@@ -3796,7 +3822,17 @@ extension on _TranslationsEn {
 			case 'wordRequests.show_heading': return 'Request details';
 			case 'wordRequests.accepted': return 'The request has been adopted.';
 			case 'wordRequests.rejected': return 'The request has been rejected.';
+			case 'wordRequests.approved': return 'You have voted for the request.';
+			case 'wordRequests.disapproved': return 'You have voted against the request.';
+			case 'wordRequests.vote_cancelled': return 'You have cancelled your vote for the request.';
+			case 'wordRequests.votes_count_to_close': return ({required Object count}) => 'Number of votes needed for decision: ${count}';
 			case 'wordRequests.edited_at': return ({required Object time}) => 'Edited ${time} ago';
+			case 'wordRequests.pending_text': return 'Reason for pending';
+			case 'wordRequests.duplicating_entry': return 'The same item already exists.';
+			case 'wordRequests.changing_entry': return 'The item name is about to be changed.';
+			case 'wordRequests.destroying_word': return 'The item is about to be deleted.';
+			case 'wordRequests.unknown': return 'Unknown reason';
+			case 'wordRequests.not_allowed_to_edit': return 'You are not allowed to edit.';
 			case 'calendars.sunday': return 'Sun.';
 			case 'calendars.monday': return 'Mon.';
 			case 'calendars.tuesday': return 'Tue.';
@@ -4838,17 +4874,29 @@ extension on _TranslationsJa {
 			case 'wordRequests.pending': return '審査中';
 			case 'wordRequests.accept': return '採用';
 			case 'wordRequests.reject': return '却下';
+			case 'wordRequests.upvote': return '賛成';
+			case 'wordRequests.downvote': return '反対';
 			case 'wordRequests.editor_comment': return '編集者のコメント';
 			case 'wordRequests.comments': return 'コメント';
 			case 'wordRequests.cancel': return 'リクエストを取り下げる';
 			case 'wordRequests.canceled': return 'リクエストを取り下げました。';
 			case 'wordRequests.target': return '編集先';
 			case 'wordRequests.target_already_deleted': return '編集先がすでに削除されています。';
-			case 'wordRequests.target_not_found': return '編集先が見つかりませんでした。';
+			case 'wordRequests.target_not_found': return '編集先が見つかりません。';
 			case 'wordRequests.show_heading': return '編集内容';
 			case 'wordRequests.accepted': return 'リクエストが採用されました。';
 			case 'wordRequests.rejected': return 'リクエストが却下されました。';
+			case 'wordRequests.approved': return 'リクエストに賛成しました。';
+			case 'wordRequests.disapproved': return 'リクエストに反対しました。';
+			case 'wordRequests.vote_cancelled': return 'リクエストへの投票を取り消しました。';
+			case 'wordRequests.votes_count_to_close': return ({required Object count}) => '決定に必要な得票数: ${count}';
 			case 'wordRequests.edited_at': return ({required Object time}) => '${time}前に編集';
+			case 'wordRequests.pending_text': return '審査理由';
+			case 'wordRequests.duplicating_entry': return '同じ項目が既に存在しています。';
+			case 'wordRequests.changing_entry': return '項目名が変更されようとしています。';
+			case 'wordRequests.destroying_word': return '項目が削除されようとしています。';
+			case 'wordRequests.unknown': return '不明な理由';
+			case 'wordRequests.not_allowed_to_edit': return '編集権限がありません。';
 			case 'calendars.sunday': return '日';
 			case 'calendars.monday': return '月';
 			case 'calendars.tuesday': return '火';
