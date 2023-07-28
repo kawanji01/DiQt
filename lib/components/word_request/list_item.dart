@@ -24,8 +24,11 @@ class WordRequestListItem extends StatelessWidget {
         WordRequestItemDetailsButton(
           wordRequest: wordRequest,
         ),
-        RequestCommentListButton(
-          wordRequest: wordRequest,
+        //RequestCommentListButton(
+        //  wordRequest: wordRequest,
+        //),
+        const SizedBox(
+          height: 8,
         ),
         WordRequestVoteButtons(
           wordRequest: wordRequest,
