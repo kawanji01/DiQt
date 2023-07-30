@@ -1,14 +1,17 @@
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnswerAnalysisQuizHeader extends StatelessWidget {
+class AnswerAnalysisQuizHeader extends ConsumerWidget {
   const AnswerAnalysisQuizHeader({Key? key, required this.answerAnalysis})
       : super(key: key);
   final AnswerAnalysis answerAnalysis;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final String locale = ref.watch(localeProvider);
     Color colors;
     String correctText;
     if (answerAnalysis.lastAnswerCorrect) {
@@ -20,8 +23,8 @@ class AnswerAnalysisQuizHeader extends StatelessWidget {
     }
 
     // 解答日時
-    final String timeAgo =
-        DateTimeFormatter.createTimeAgoString(answerAnalysis.lastAnsweredAt);
+    final String timeAgo = DateTimeFormatter.createTimeAgoString(
+        dateTime: answerAnalysis.lastAnsweredAt, locale: locale);
     // 不正解数
     final String incorrectAnswersCount =
         '不正解${answerAnalysis.incorrectAnswerHistoriesCount}回';

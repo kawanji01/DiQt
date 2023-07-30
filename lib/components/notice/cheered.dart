@@ -1,9 +1,9 @@
+import 'package:booqs_mobile/components/shared/timestamp.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/activity/information.dart';
-import 'package:booqs_mobile/components/notice/timestamp.dart';
 import 'package:booqs_mobile/components/user/feed_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +26,7 @@ class NoticeCheered extends StatelessWidget {
               t.notices.cheered_message(name: user.name),
               style: const TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.bold,
                   color: Colors.black87),
             ),
           ),
@@ -46,7 +46,7 @@ class NoticeCheered extends StatelessWidget {
 
     return Column(
       children: [
-        NoticeTimestamp(notice: notice),
+        SharedTimestamp(timestamp: notice.createdAt),
         message,
         reference,
         const SizedBox(height: 48),

@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2120 (1060 per locale)
+/// Strings: 2136 (1068 per locale)
 ///
-/// Built on 2023-07-30 at 02:02 UTC
+/// Built on 2023-07-30 at 13:27 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -304,6 +304,7 @@ class _TranslationsReviewsEn {
 	String get error_occurred => 'An error about this review occurred.';
 	String get fix_error => 'Fix error';
 	String get error_fixed => 'Error fixed.';
+	String scheduled_at({required Object scheduled_date}) => 'Scheduled at ${scheduled_date}';
 }
 
 // Path: errors
@@ -408,6 +409,8 @@ class _TranslationsUsersEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get users => 'Users';
+	String get user => 'User';
 	String get anonymous_user => 'Anonymous user';
 	String get creating_account_succeeded => 'Your account registration has been completed! Welcome to DiQt!';
 	String get show => 'User Page';
@@ -476,6 +479,7 @@ class _TranslationsNoticesEn {
 	String cheered_message({required Object name}) => '${name} has cheered you!';
 	String followed_message({required Object name}) => '${name} has followed you!';
 	String get word_request_accepted_message => 'Your dictionary edit has been adopted!';
+	String get word_request_commented_message => 'Your dictionary edit has been commented!';
 }
 
 // Path: shared
@@ -611,6 +615,10 @@ class _TranslationsAnswerAnalysesEn {
 	String get incorrect_answer_histories_count_asc => 'Mistakes, Least to Most';
 	String get last_answered_at_desc => 'Answered History, New to Old';
 	String get last_answered_at_asc => 'Answered History, Old to New';
+	String get correct => 'Correct';
+	String get incorrect => 'Incorrect';
+	String last_record({required Object time_ago, required Object result}) => '${time_ago} ${result}';
+	String get correct_answer_rate => 'Correct Rate';
 }
 
 // Path: achievements
@@ -1721,6 +1729,7 @@ class _TranslationsReviewsJa implements _TranslationsReviewsEn {
 	@override String get error_occurred => '復習にエラーが発生しました。';
 	@override String get fix_error => 'エラーを修正する';
 	@override String get error_fixed => 'エラーを修正しました。';
+	@override String scheduled_at({required Object scheduled_date}) => '${scheduled_date}に復習予定';
 }
 
 // Path: errors
@@ -1825,6 +1834,8 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get users => 'ユーザー';
+	@override String get user => 'ユーザー';
 	@override String get anonymous_user => '匿名ユーザー';
 	@override String get creating_account_succeeded => '会員登録が完了しました！ようこそDiQtへ！！';
 	@override String get show => 'ユーザーページ';
@@ -1893,6 +1904,7 @@ class _TranslationsNoticesJa implements _TranslationsNoticesEn {
 	@override String cheered_message({required Object name}) => '${name}があなたを応援しました！';
 	@override String followed_message({required Object name}) => '${name}があなたをフォローしました！';
 	@override String get word_request_accepted_message => 'あなたの辞書の編集が採用されました！';
+	@override String get word_request_commented_message => 'あなたの辞書の編集にコメントがつきました！';
 }
 
 // Path: shared
@@ -2028,6 +2040,10 @@ class _TranslationsAnswerAnalysesJa implements _TranslationsAnswerAnalysesEn {
 	@override String get incorrect_answer_histories_count_asc => '間違いが少ない順';
 	@override String get last_answered_at_desc => '解答履歴：新しい順';
 	@override String get last_answered_at_asc => '解答履歴：古い順';
+	@override String get correct => '正解';
+	@override String get incorrect => '不正解';
+	@override String last_record({required Object time_ago, required Object result}) => '${time_ago}に${result}';
+	@override String get correct_answer_rate => '正答率';
 }
 
 // Path: achievements
@@ -3059,6 +3075,7 @@ extension on _TranslationsEn {
 			case 'reviews.error_occurred': return 'An error about this review occurred.';
 			case 'reviews.fix_error': return 'Fix error';
 			case 'reviews.error_fixed': return 'Error fixed.';
+			case 'reviews.scheduled_at': return ({required Object scheduled_date}) => 'Scheduled at ${scheduled_date}';
 			case 'errors.error_message_404': return 'Page Not Found...';
 			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
@@ -3127,6 +3144,8 @@ extension on _TranslationsEn {
 			case 'weaknesses.created_at_desc': return 'Added, Newest First';
 			case 'weaknesses.created_at_asc': return 'Added, Oldest First';
 			case 'weaknesses.random_random': return 'Random';
+			case 'users.users': return 'Users';
+			case 'users.user': return 'User';
 			case 'users.anonymous_user': return 'Anonymous user';
 			case 'users.creating_account_succeeded': return 'Your account registration has been completed! Welcome to DiQt!';
 			case 'users.show': return 'User Page';
@@ -3177,6 +3196,7 @@ extension on _TranslationsEn {
 			case 'notices.cheered_message': return ({required Object name}) => '${name} has cheered you!';
 			case 'notices.followed_message': return ({required Object name}) => '${name} has followed you!';
 			case 'notices.word_request_accepted_message': return 'Your dictionary edit has been adopted!';
+			case 'notices.word_request_commented_message': return 'Your dictionary edit has been commented!';
 			case 'shared.create': return 'Create';
 			case 'shared.create_succeeded': return 'Created';
 			case 'shared.create_failed': return 'Create failed';
@@ -3285,6 +3305,10 @@ extension on _TranslationsEn {
 			case 'answerAnalyses.incorrect_answer_histories_count_asc': return 'Mistakes, Least to Most';
 			case 'answerAnalyses.last_answered_at_desc': return 'Answered History, New to Old';
 			case 'answerAnalyses.last_answered_at_asc': return 'Answered History, Old to New';
+			case 'answerAnalyses.correct': return 'Correct';
+			case 'answerAnalyses.incorrect': return 'Incorrect';
+			case 'answerAnalyses.last_record': return ({required Object time_ago, required Object result}) => '${time_ago} ${result}';
+			case 'answerAnalyses.correct_answer_rate': return 'Correct Rate';
 			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -4127,6 +4151,7 @@ extension on _TranslationsJa {
 			case 'reviews.error_occurred': return '復習にエラーが発生しました。';
 			case 'reviews.fix_error': return 'エラーを修正する';
 			case 'reviews.error_fixed': return 'エラーを修正しました。';
+			case 'reviews.scheduled_at': return ({required Object scheduled_date}) => '${scheduled_date}に復習予定';
 			case 'errors.error_message_404': return 'ページが見つかりませんでした。';
 			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
 			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';
@@ -4195,6 +4220,8 @@ extension on _TranslationsJa {
 			case 'weaknesses.created_at_desc': return '追加日が新しい順';
 			case 'weaknesses.created_at_asc': return '追加日が古い順';
 			case 'weaknesses.random_random': return 'ランダム';
+			case 'users.users': return 'ユーザー';
+			case 'users.user': return 'ユーザー';
 			case 'users.anonymous_user': return '匿名ユーザー';
 			case 'users.creating_account_succeeded': return '会員登録が完了しました！ようこそDiQtへ！！';
 			case 'users.show': return 'ユーザーページ';
@@ -4245,6 +4272,7 @@ extension on _TranslationsJa {
 			case 'notices.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
 			case 'notices.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
 			case 'notices.word_request_accepted_message': return 'あなたの辞書の編集が採用されました！';
+			case 'notices.word_request_commented_message': return 'あなたの辞書の編集にコメントがつきました！';
 			case 'shared.create': return '作成する';
 			case 'shared.create_succeeded': return '作成されました。';
 			case 'shared.create_failed': return '作成に失敗しました。';
@@ -4353,6 +4381,10 @@ extension on _TranslationsJa {
 			case 'answerAnalyses.incorrect_answer_histories_count_asc': return '間違いが少ない順';
 			case 'answerAnalyses.last_answered_at_desc': return '解答履歴：新しい順';
 			case 'answerAnalyses.last_answered_at_asc': return '解答履歴：古い順';
+			case 'answerAnalyses.correct': return '正解';
+			case 'answerAnalyses.incorrect': return '不正解';
+			case 'answerAnalyses.last_record': return ({required Object time_ago, required Object result}) => '${time_ago}に${result}';
+			case 'answerAnalyses.correct_answer_rate': return '正答率';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';

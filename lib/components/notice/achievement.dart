@@ -1,10 +1,10 @@
 import 'dart:io';
+import 'package:booqs_mobile/components/shared/timestamp.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
-import 'package:booqs_mobile/components/notice/timestamp.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -76,7 +76,7 @@ class NoticeAchievement extends ConsumerWidget {
 
     return Column(
       children: [
-        NoticeTimestamp(notice: notice),
+        SharedTimestamp(timestamp: notice.createdAt),
         notifying,
         achievementImage(),
         const SizedBox(height: 48),

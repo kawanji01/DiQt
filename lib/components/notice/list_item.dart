@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/notice/word_request_accepted.dart';
+import 'package:booqs_mobile/components/notice/word_request_commented.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/components/notice/achievement.dart';
 import 'package:booqs_mobile/components/notice/cheered.dart';
@@ -28,6 +29,8 @@ class NoticeListItem extends StatelessWidget {
         return NoticeCheered(notice: notice);
       case 'word_request_accepted':
         return WordRequestAccepted(notice: notice);
+      case 'word_request_commented':
+        return NoticeWordRequestCommented(notice: notice);
       // case 'word_request_upvoted':
       //     return NoticeContinuousAnswer(notice: notice);
 

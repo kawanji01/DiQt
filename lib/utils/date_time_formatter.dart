@@ -20,12 +20,13 @@ class DateTimeFormatter {
   }
 
   // ~分前のようなタイムスタンプを表示する ref: https://zenn.dev/namioto/articles/0e0034f3b93874
-  static String createTimeAgoString(DateTime dateTime) {
+  static String createTimeAgoString(
+      {required DateTime dateTime, required String locale}) {
     // デフォルトでロードされている英語・スペイン語以外は明示的にロードが必要
     // timeago.setLocaleMessages('ja', timeago.JaMessages());
     final now = DateTime.now();
     final difference = now.difference(dateTime);
-    return timeago.format(now.subtract(difference), locale: 'ja');
+    return timeago.format(now.subtract(difference), locale: locale);
   }
 
 // 週の最初の日を取得する ref: https://coflutter.com/dart-flutter-how-to-find-the-first-date-and-the-last-date-of-a-week/

@@ -1,14 +1,18 @@
+import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DrillQuizHeader extends StatelessWidget {
+class DrillQuizHeader extends ConsumerWidget {
   const DrillQuizHeader({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final String locale = ref.watch(localeProvider);
     final AnswerAnalysis? answerAnalysis = quiz.answerAnalysis;
     if (answerAnalysis == null) return Container();
 
@@ -17,23 +21,23 @@ class DrillQuizHeader extends StatelessWidget {
     String resultText;
     if (answerAnalysis.lastAnswerCorrect) {
       color = Colors.blue;
-      resultText = '正解';
+      resultText = t.answerAnalyses.correct;
     } else {
       color = Colors.red;
-      resultText = '不正解';
+      resultText = t.answerAnalyses.incorrect;
     }
     // 最終解答
-    final String timeAgo =
-        DateTimeFormatter.createTimeAgoString(answerAnalysis.lastAnsweredAt);
+    final String timeAgo = DateTimeFormatter.createTimeAgoString(
+        dateTime: answerAnalysis.lastAnsweredAt, locale: locale);
     // 正答率
     final String correctRate =
-        '正答率${answerAnalysis.correctAnswerRate.floor()}%';
+        '${t.answerAnalyses.correct_answer_rate} ${answerAnalysis.correctAnswerRate.floor()}%';
 
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       alignment: Alignment.centerRight,
       child: Text(
-        '$timeAgoに$resultText / $correctRate',
+        '${t.answerAnalyses.last_record(time_ago: timeAgo, result: resultText)} / $correctRate',
         style:
             TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: color),
       ),

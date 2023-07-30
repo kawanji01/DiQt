@@ -1,7 +1,7 @@
+import 'package:booqs_mobile/components/shared/timestamp.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/models/weekly_report.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
-import 'package:booqs_mobile/components/notice/timestamp.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -105,7 +105,7 @@ class NoticeWeeklyReport extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        NoticeTimestamp(notice: notice),
+        SharedTimestamp(timestamp: notice.createdAt),
         message,
         rankImage(),
         const SizedBox(height: 8),
