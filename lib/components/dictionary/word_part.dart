@@ -1,8 +1,9 @@
+import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/components/dictionary/new_word_button.dart';
 import 'package:booqs_mobile/components/dictionary/word_requests_button.dart';
 import 'package:booqs_mobile/components/dictionary/word_search_form.dart';
+import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryWordPart extends StatelessWidget {
@@ -21,8 +22,10 @@ class DictionaryWordPart extends StatelessWidget {
         DictionaryWordSearchForm(
           dictionary: dictionary,
         ),
-        DictionaryNewWordButton(dictionaryId: dictionary.id, keyword: null),
-        const SizedBox(height: 16),
+        InkWell(
+            onTap: () => WordNewPage.push(context, dictionary.id, ''),
+            child: SmallOutlineGrayButton(label: t.words.add, icon: Icons.add)),
+        const SizedBox(height: 8),
         DictionaryWordRequestsButton(dictionary: dictionary),
       ],
     );

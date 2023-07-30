@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2112 (1056 per locale)
+/// Strings: 2120 (1060 per locale)
 ///
-/// Built on 2023-07-27 at 12:48 UTC
+/// Built on 2023-07-30 at 02:02 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -169,6 +169,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsTimeZoneEn timeZone = _TranslationsTimeZoneEn._(_root);
 	late final _TranslationsAnswerEn answer = _TranslationsAnswerEn._(_root);
 	late final _TranslationsQuizzesEn quizzes = _TranslationsQuizzesEn._(_root);
+	late final _TranslationsWordRequestCommentsEn wordRequestComments = _TranslationsWordRequestCommentsEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
 	late final _TranslationsAnswerHistoriesEn answerHistories = _TranslationsAnswerHistoriesEn._(_root);
 	late final _TranslationsWordRequestsEn wordRequests = _TranslationsWordRequestsEn._(_root);
@@ -1233,6 +1234,19 @@ class _TranslationsQuizzesEn {
 	String get correct_answer_rate => '%{percent}% of correct answers';
 }
 
+// Path: wordRequestComments
+class _TranslationsWordRequestCommentsEn {
+	_TranslationsWordRequestCommentsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get comment => 'Comment';
+	String get comment_to_you => 'Comment to you';
+	String get comment_placeholder => 'Write a comment';
+	String get send => 'Send';
+}
+
 // Path: activities
 class _TranslationsActivitiesEn {
 	_TranslationsActivitiesEn._(this._root);
@@ -1572,6 +1586,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsTimeZoneJa timeZone = _TranslationsTimeZoneJa._(_root);
 	@override late final _TranslationsAnswerJa answer = _TranslationsAnswerJa._(_root);
 	@override late final _TranslationsQuizzesJa quizzes = _TranslationsQuizzesJa._(_root);
+	@override late final _TranslationsWordRequestCommentsJa wordRequestComments = _TranslationsWordRequestCommentsJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
 	@override late final _TranslationsAnswerHistoriesJa answerHistories = _TranslationsAnswerHistoriesJa._(_root);
 	@override late final _TranslationsWordRequestsJa wordRequests = _TranslationsWordRequestsJa._(_root);
@@ -2634,6 +2649,19 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 	@override String get corrected_time_ago => '%{time}前に正解';
 	@override String get incorrect_time_ago => '%{time}前に不正解';
 	@override String get correct_answer_rate => '正答率%{percent}%';
+}
+
+// Path: wordRequestComments
+class _TranslationsWordRequestCommentsJa implements _TranslationsWordRequestCommentsEn {
+	_TranslationsWordRequestCommentsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get comment => 'コメント';
+	@override String get comment_to_you => 'あなたへのコメント';
+	@override String get comment_placeholder => 'コメントを入力してください';
+	@override String get send => '送信する';
 }
 
 // Path: activities
@@ -3788,6 +3816,10 @@ extension on _TranslationsEn {
 			case 'quizzes.corrected_time_ago': return 'Corrected %{time} ago';
 			case 'quizzes.incorrect_time_ago': return 'Incorrect %{time} ago';
 			case 'quizzes.correct_answer_rate': return '%{percent}% of correct answers';
+			case 'wordRequestComments.comment': return 'Comment';
+			case 'wordRequestComments.comment_to_you': return 'Comment to you';
+			case 'wordRequestComments.comment_placeholder': return 'Write a comment';
+			case 'wordRequestComments.send': return 'Send';
 			case 'activities.activities': return 'Activities';
 			case 'activities.cheer': return 'Cheer!';
 			case 'activities.cheered': return 'Cheered!';
@@ -4852,6 +4884,10 @@ extension on _TranslationsJa {
 			case 'quizzes.corrected_time_ago': return '%{time}前に正解';
 			case 'quizzes.incorrect_time_ago': return '%{time}前に不正解';
 			case 'quizzes.correct_answer_rate': return '正答率%{percent}%';
+			case 'wordRequestComments.comment': return 'コメント';
+			case 'wordRequestComments.comment_to_you': return 'あなたへのコメント';
+			case 'wordRequestComments.comment_placeholder': return 'コメントを入力してください';
+			case 'wordRequestComments.send': return '送信する';
 			case 'activities.activities': return '活動';
 			case 'activities.cheer': return '応援する!';
 			case 'activities.cheered': return '応援しました！';

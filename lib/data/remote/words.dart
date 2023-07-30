@@ -128,26 +128,23 @@ class RemoteWords {
   }
 
   // 削除
-  static Future<Map?> destroy(int wordId) async {
+  static Future<Map> destroy(int wordId) async {
     try {
       final Uri url =
           Uri.parse('${DiQtURL.root()}/api/v1/mobile/words/$wordId');
 
       final Response res = await HttpService.delete(url, null);
 
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
 
-      final Map? resMap = json.decode(res.body);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 
