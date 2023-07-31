@@ -36,6 +36,7 @@ class WordRequest {
       required this.upvotesCount,
       required this.downvotesCount,
       required this.wordRequestCommentsCount,
+      required this.pendingReason,
       required this.createdAt,
       required this.updatedAt,
       this.votesCountToClose,
@@ -77,6 +78,7 @@ class WordRequest {
   int upvotesCount;
   int downvotesCount;
   int wordRequestCommentsCount;
+  String? pendingReason;
   DateTime createdAt;
   DateTime updatedAt;
   int? votesCountToClose;
@@ -111,6 +113,7 @@ class WordRequest {
         upvotesCount = json['upvotes_count'],
         downvotesCount = json['downvotes_count'],
         wordRequestCommentsCount = json['word_request_comments_count'],
+        pendingReason = json['pending_reason'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         votesCountToClose = json['votes_count_to_close'],

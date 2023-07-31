@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2138 (1069 per locale)
+/// Strings: 2142 (1071 per locale)
 ///
-/// Built on 2023-07-31 at 09:19 UTC
+/// Built on 2023-07-31 at 10:05 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1320,11 +1320,13 @@ class _TranslationsWordRequestsEn {
 	String get vote_cancelled => 'You have cancelled your vote for the request.';
 	String votes_count_to_close({required Object count}) => 'Number of votes needed for decision: ${count}';
 	String edited_at({required Object time}) => 'Edited ${time} ago';
-	String get pending_text => 'Reason for pending';
+	String get pending_reason => 'Reason for pending';
 	String get duplicating_entry => 'The same item already exists.';
 	String get changing_entry => 'The item name is about to be changed.';
-	String get destroying_word => 'The item is about to be deleted.';
-	String get unknown => 'Unknown reason';
+	String get pending_elimination => 'The item is about to be deleted.';
+	String get pending_modification => 'The item is about to be modified.';
+	String get pending_addition => 'The item is about to be added.';
+	String get unknown_reason => 'Other reasons';
 	String get not_allowed_to_edit => 'You are not allowed to edit.';
 }
 
@@ -2746,11 +2748,13 @@ class _TranslationsWordRequestsJa implements _TranslationsWordRequestsEn {
 	@override String get vote_cancelled => 'リクエストへの投票を取り消しました。';
 	@override String votes_count_to_close({required Object count}) => '決定に必要な得票数: ${count}';
 	@override String edited_at({required Object time}) => '${time}前に編集';
-	@override String get pending_text => '審査理由';
+	@override String get pending_reason => '審査理由';
 	@override String get duplicating_entry => '同じ項目が既に存在しています。';
 	@override String get changing_entry => '項目名が変更されようとしています。';
-	@override String get destroying_word => '項目が削除されようとしています。';
-	@override String get unknown => '不明な理由';
+	@override String get pending_elimination => '項目が削除されようとしています。';
+	@override String get pending_modification => '項目が修正されようとしています。';
+	@override String get pending_addition => '項目が追加されようとしています。';
+	@override String get unknown_reason => 'その他の理由';
 	@override String get not_allowed_to_edit => '編集権限がありません。';
 }
 
@@ -3886,11 +3890,13 @@ extension on _TranslationsEn {
 			case 'wordRequests.vote_cancelled': return 'You have cancelled your vote for the request.';
 			case 'wordRequests.votes_count_to_close': return ({required Object count}) => 'Number of votes needed for decision: ${count}';
 			case 'wordRequests.edited_at': return ({required Object time}) => 'Edited ${time} ago';
-			case 'wordRequests.pending_text': return 'Reason for pending';
+			case 'wordRequests.pending_reason': return 'Reason for pending';
 			case 'wordRequests.duplicating_entry': return 'The same item already exists.';
 			case 'wordRequests.changing_entry': return 'The item name is about to be changed.';
-			case 'wordRequests.destroying_word': return 'The item is about to be deleted.';
-			case 'wordRequests.unknown': return 'Unknown reason';
+			case 'wordRequests.pending_elimination': return 'The item is about to be deleted.';
+			case 'wordRequests.pending_modification': return 'The item is about to be modified.';
+			case 'wordRequests.pending_addition': return 'The item is about to be added.';
+			case 'wordRequests.unknown_reason': return 'Other reasons';
 			case 'wordRequests.not_allowed_to_edit': return 'You are not allowed to edit.';
 			case 'calendars.sunday': return 'Sun.';
 			case 'calendars.monday': return 'Mon.';
@@ -4963,11 +4969,13 @@ extension on _TranslationsJa {
 			case 'wordRequests.vote_cancelled': return 'リクエストへの投票を取り消しました。';
 			case 'wordRequests.votes_count_to_close': return ({required Object count}) => '決定に必要な得票数: ${count}';
 			case 'wordRequests.edited_at': return ({required Object time}) => '${time}前に編集';
-			case 'wordRequests.pending_text': return '審査理由';
+			case 'wordRequests.pending_reason': return '審査理由';
 			case 'wordRequests.duplicating_entry': return '同じ項目が既に存在しています。';
 			case 'wordRequests.changing_entry': return '項目名が変更されようとしています。';
-			case 'wordRequests.destroying_word': return '項目が削除されようとしています。';
-			case 'wordRequests.unknown': return '不明な理由';
+			case 'wordRequests.pending_elimination': return '項目が削除されようとしています。';
+			case 'wordRequests.pending_modification': return '項目が修正されようとしています。';
+			case 'wordRequests.pending_addition': return '項目が追加されようとしています。';
+			case 'wordRequests.unknown_reason': return 'その他の理由';
 			case 'wordRequests.not_allowed_to_edit': return '編集権限がありません。';
 			case 'calendars.sunday': return '日';
 			case 'calendars.monday': return '月';
