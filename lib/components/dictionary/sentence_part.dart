@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
@@ -13,28 +14,24 @@ class DictionarySentencePart extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final heading = Text(
-      '例文（${dictionary.sentencesCount}）',
-      style: const TextStyle(
-          fontSize: 24, color: Colors.black87, fontWeight: FontWeight.bold),
-    );
-
-    Widget newSentenceButton() {
-      return InkWell(
-        onTap: () {
-          SentenceNewPage.push(context, dictionary.id, '');
-        },
-        child: const SmallOutlineGrayButton(label: '例文を追加する', icon: Icons.add),
-      );
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        heading,
+        Text(
+          '${t.sentences.sentences}（${dictionary.sentencesCount}）',
+          style: const TextStyle(
+              fontSize: 24, color: Colors.black87, fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 16),
         DictionarySentenceSearchForm(dictionary: dictionary),
-        newSentenceButton(),
+        InkWell(
+          onTap: () {
+            SentenceNewPage.push(context, dictionary.id, '');
+          },
+          child:
+              SmallOutlineGrayButton(label: t.sentences.add, icon: Icons.add),
+        ),
+        const SizedBox(height: 8),
         DictionarySentenceRequestsButton(dictionary: dictionary),
       ],
     );

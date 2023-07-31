@@ -1,8 +1,8 @@
+import 'package:booqs_mobile/components/shared/timestamp.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/components/notice/timestamp.dart';
 import 'package:booqs_mobile/components/relationship/follow_button.dart';
 import 'package:booqs_mobile/components/user/feed_icon.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +79,7 @@ class NoticeFollowed extends StatelessWidget {
 
     return Column(
       children: [
-        NoticeTimestamp(notice: notice),
+        SharedTimestamp(timestamp: notice.createdAt),
         message,
         reference,
         const SizedBox(height: 48),

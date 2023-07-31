@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
-import 'package:booqs_mobile/components/word_request/edit_target.dart';
-import 'package:booqs_mobile/components/word_request/item/main_content.dart';
+import 'package:booqs_mobile/components/word_request/list_item.dart';
 import 'package:booqs_mobile/data/provider/word_request.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
@@ -25,11 +24,13 @@ class WordRequestShowScreen extends ConsumerWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                WordRequestItemMainContent(wordRequest: wordRequest),
+                WordRequestListItem(
+                  wordRequest: wordRequest,
+                  isShow: true,
+                ),
                 const SizedBox(
                   height: 24,
                 ),
-                WordRequestEditTarget(wordRequest: wordRequest),
               ]),
             ),
           );

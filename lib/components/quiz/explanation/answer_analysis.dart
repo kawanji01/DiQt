@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/quiz.dart';
@@ -6,14 +7,16 @@ import 'package:booqs_mobile/utils/date_time_formatter.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/components/weakness/setting_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizExplanationAnswerAnalysis extends StatelessWidget {
+class QuizExplanationAnswerAnalysis extends ConsumerWidget {
   const QuizExplanationAnswerAnalysis({Key? key, required this.quiz})
       : super(key: key);
   final Quiz quiz;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final String locale = ref.watch(localeProvider);
     final AnswerAnalysis? answerAnalysis = quiz.answerAnalysis;
     final Weakness? weakness = quiz.weakness;
 
@@ -78,7 +81,7 @@ class QuizExplanationAnswerAnalysis extends StatelessWidget {
       }
 
       final label = Text(
-        '正答率： ',
+        '${t.answerAnalyses.correct_answer_rate}： ',
         style:
             TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.bold),
       );
@@ -103,10 +106,10 @@ class QuizExplanationAnswerAnalysis extends StatelessWidget {
 
       Color color = Colors.red;
       IconData icon = Icons.close;
-      String lastAnswer = '不正解';
+      String lastAnswer = t.answerAnalyses.incorrect;
       if (answerAnalysis.lastAnswerCorrect) {
         color = Colors.blue;
-        lastAnswer = '正解';
+        lastAnswer = t.answerAnalyses.correct;
         icon = Icons.circle_outlined;
       }
       final answerInfo = RichText(
@@ -127,8 +130,8 @@ class QuizExplanationAnswerAnalysis extends StatelessWidget {
         style:
             TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.bold),
       );
-      final String answeredAt =
-          DateTimeFormatter.createTimeAgoString(answerAnalysis.lastAnsweredAt);
+      final String answeredAt = DateTimeFormatter.createTimeAgoString(
+          dateTime: answerAnalysis.lastAnsweredAt, locale: locale);
 
       final value = Text(
         '$answeredAtに ',

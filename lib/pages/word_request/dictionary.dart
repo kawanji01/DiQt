@@ -24,6 +24,17 @@ class WordRequestDictionaryPage extends ConsumerStatefulWidget {
     );
   }
 
+  static Future pushReplacement(
+      BuildContext context, int dictionaryId, String type) async {
+    return Navigator.of(context).pushReplacementNamed(
+      wordRequestDictionaryPage,
+      arguments: {
+        'dictionaryId': dictionaryId,
+        'type': type,
+      },
+    );
+  }
+
   @override
   WordRequestDictionaryPageState createState() =>
       WordRequestDictionaryPageState();

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/form/comment.dart';
 import 'package:booqs_mobile/components/sentence/setting/setting.dart';
 import 'package:booqs_mobile/components/word/form/meaning_generator_button.dart';
 import 'package:booqs_mobile/components/word/form/pos_tag.dart';
@@ -23,6 +24,7 @@ class WordFormFields extends StatelessWidget {
     required this.synonymsController,
     required this.antonymsController,
     required this.relatedController,
+    required this.commentController,
     required this.dictionary,
     required this.word,
   }) : super(key: key);
@@ -38,6 +40,7 @@ class WordFormFields extends StatelessWidget {
   final TextEditingController synonymsController;
   final TextEditingController antonymsController;
   final TextEditingController relatedController;
+  final TextEditingController commentController;
   final Dictionary dictionary;
   final Word? word;
 
@@ -118,8 +121,12 @@ class WordFormFields extends StatelessWidget {
           relatedController: relatedController,
           word: word,
         ),
+        const SizedBox(height: 48),
+        FormEditorComment(
+          commentController: commentController,
+        ),
 
-        const SizedBox(height: 40),
+        const SizedBox(height: 48),
         /*  WordFormPreviewButton(
             entryController: entryController,
             meaningController: meaningController,

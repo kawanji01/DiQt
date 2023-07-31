@@ -78,35 +78,32 @@ class RemoteWords {
   }
 
   // 新規作成
-  static Future<Map?> create(Map<String, dynamic> params) async {
+  static Future<Map> create(
+      {required Map<String, dynamic> params, required String comment}) async {
     try {
-      final Map<String, dynamic> body = {'word': params};
-
+      final Map<String, dynamic> body = {'word': params, 'comment': comment};
       final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/words');
       final Response res = await HttpService.post(
         url,
         body,
       );
-      if (res.statusCode != 200) return null;
-
-      final Map? resMap = json.decode(res.body);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 
   // 更新
-  static Future<Map> update({required Map<String, dynamic> params}) async {
+  static Future<Map> update(
+      {required Map<String, dynamic> params, required String comment}) async {
     try {
-      final Map<String, dynamic> body = {'word': params};
+      final Map<String, dynamic> body = {'word': params, 'comment': comment};
 
       final Uri url =
           Uri.parse('${DiQtURL.root()}/api/v1/mobile/words/${params['id']}');
@@ -128,26 +125,25 @@ class RemoteWords {
   }
 
   // 削除
-  static Future<Map?> destroy(int wordId) async {
+  static Future<Map> destroy(
+      {required int wordId, required String comment}) async {
     try {
+      final Map<String, dynamic> body = {'comment': comment};
       final Uri url =
           Uri.parse('${DiQtURL.root()}/api/v1/mobile/words/$wordId');
 
-      final Response res = await HttpService.delete(url, null);
+      final Response res = await HttpService.delete(url, body);
 
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
 
-      final Map? resMap = json.decode(res.body);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 

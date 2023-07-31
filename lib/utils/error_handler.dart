@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
+import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -37,6 +38,14 @@ class ErrorHandler {
         ErrorHandler.message(resMap, useServerMessage: serverSideMessage);
     final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  // エラーをトーストで表示する
+  static void showErrorToast(BuildContext context, Map resMap,
+      {serverSideMessage = false}) {
+    final String message =
+        ErrorHandler.message(resMap, useServerMessage: serverSideMessage);
+    Toasts.showSimple(context, message);
   }
 
   // エラー用のmapを返す

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
 import 'package:booqs_mobile/utils/word_typeahead.dart';
@@ -37,6 +38,9 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
       DictionaryWordSearchResultsPage.push(context, dictionaryId, keyword);
     }
 
+    final String language = dictionary.languageOfEntry();
+    final String label = t.dictionaryMaps.enter(language: language);
+
     return Form(
       key: _formKey,
       child: Column(
@@ -44,8 +48,11 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
           TypeAheadFormField(
             textFieldConfiguration: TextFieldConfiguration(
                 controller: _wordSearchController,
+                // 改行を許さず、文字数に応じて自動で改行表示する。
+                keyboardType: TextInputType.text,
+                maxLines: null,
                 decoration: InputDecoration(
-                  labelText: '単語や熟語を入力してください',
+                  labelText: label,
                   // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
                   filled: true,
                   fillColor: Colors.grey.shade200,
@@ -81,7 +88,7 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
             },
             validator: (value) {
               if (value!.isEmpty) {
-                return '入力してください。';
+                return t.errors.cant_be_blank;
               }
               return null;
             },
@@ -96,9 +103,10 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
               ),
               onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
-              label: const Text(
-                '検索する',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              label: Text(
+                t.shared.search,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
           ),

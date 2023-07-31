@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2112 (1056 per locale)
+/// Strings: 2142 (1071 per locale)
 ///
-/// Built on 2023-07-27 at 12:48 UTC
+/// Built on 2023-07-31 at 10:05 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -169,6 +169,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsTimeZoneEn timeZone = _TranslationsTimeZoneEn._(_root);
 	late final _TranslationsAnswerEn answer = _TranslationsAnswerEn._(_root);
 	late final _TranslationsQuizzesEn quizzes = _TranslationsQuizzesEn._(_root);
+	late final _TranslationsWordRequestCommentsEn wordRequestComments = _TranslationsWordRequestCommentsEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
 	late final _TranslationsAnswerHistoriesEn answerHistories = _TranslationsAnswerHistoriesEn._(_root);
 	late final _TranslationsWordRequestsEn wordRequests = _TranslationsWordRequestsEn._(_root);
@@ -303,6 +304,7 @@ class _TranslationsReviewsEn {
 	String get error_occurred => 'An error about this review occurred.';
 	String get fix_error => 'Fix error';
 	String get error_fixed => 'Error fixed.';
+	String scheduled_at({required Object scheduled_date}) => 'Scheduled at ${scheduled_date}';
 }
 
 // Path: errors
@@ -407,6 +409,8 @@ class _TranslationsUsersEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get users => 'Users';
+	String get user => 'User';
 	String get anonymous_user => 'Anonymous user';
 	String get creating_account_succeeded => 'Your account registration has been completed! Welcome to DiQt!';
 	String get show => 'User Page';
@@ -475,6 +479,8 @@ class _TranslationsNoticesEn {
 	String cheered_message({required Object name}) => '${name} has cheered you!';
 	String followed_message({required Object name}) => '${name} has followed you!';
 	String get word_request_accepted_message => 'Your dictionary edit has been adopted!';
+	String get word_request_commented_message => 'Your dictionary edit has been commented!';
+	String word_request_upvoted_message({required Object name}) => '${name} has upvoted your dictionary edit!';
 }
 
 // Path: shared
@@ -610,6 +616,10 @@ class _TranslationsAnswerAnalysesEn {
 	String get incorrect_answer_histories_count_asc => 'Mistakes, Least to Most';
 	String get last_answered_at_desc => 'Answered History, New to Old';
 	String get last_answered_at_asc => 'Answered History, Old to New';
+	String get correct => 'Correct';
+	String get incorrect => 'Incorrect';
+	String last_record({required Object time_ago, required Object result}) => '${time_ago} ${result}';
+	String get correct_answer_rate => 'Correct Rate';
 }
 
 // Path: achievements
@@ -1233,6 +1243,19 @@ class _TranslationsQuizzesEn {
 	String get correct_answer_rate => '%{percent}% of correct answers';
 }
 
+// Path: wordRequestComments
+class _TranslationsWordRequestCommentsEn {
+	_TranslationsWordRequestCommentsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get comment => 'Comment';
+	String get comment_to_you => 'Comment to you';
+	String get comment_placeholder => 'Write a comment';
+	String get send => 'Send';
+}
+
 // Path: activities
 class _TranslationsActivitiesEn {
 	_TranslationsActivitiesEn._(this._root);
@@ -1297,11 +1320,13 @@ class _TranslationsWordRequestsEn {
 	String get vote_cancelled => 'You have cancelled your vote for the request.';
 	String votes_count_to_close({required Object count}) => 'Number of votes needed for decision: ${count}';
 	String edited_at({required Object time}) => 'Edited ${time} ago';
-	String get pending_text => 'Reason for pending';
+	String get pending_reason => 'Reason for pending';
 	String get duplicating_entry => 'The same item already exists.';
 	String get changing_entry => 'The item name is about to be changed.';
-	String get destroying_word => 'The item is about to be deleted.';
-	String get unknown => 'Unknown reason';
+	String get pending_elimination => 'The item is about to be deleted.';
+	String get pending_modification => 'The item is about to be modified.';
+	String get pending_addition => 'The item is about to be added.';
+	String get unknown_reason => 'Other reasons';
 	String get not_allowed_to_edit => 'You are not allowed to edit.';
 }
 
@@ -1414,14 +1439,14 @@ class _TranslationsWordsEn {
 	String get related => 'Related Words';
 	String sense({required Object number}) => 'sense(${number})';
 	String get detailed_settings => 'Detailed Settings';
-	String get comment => 'Comment';
+	String get comment => 'Editor\'s Comment';
+	String get comment_placeholder => 'Please write your comments here if you have any';
 	String get update => 'Fix';
 	String get diqt_markdown_support => 'DiQt Markdown Support';
 	String get text_preview => 'Preview';
 	String get there_is_no_text => 'There is no text.';
 	String get undefined_lang_number => 'Language is not set.';
 	String get diqt_notation => 'DiQt Notation';
-	String get comment_placeholder => 'You can comment about this.';
 	String get destroy => 'Destroy';
 	String get confirmation => 'Confirmation';
 	String get edit_btn => 'Edit this word';
@@ -1572,6 +1597,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsTimeZoneJa timeZone = _TranslationsTimeZoneJa._(_root);
 	@override late final _TranslationsAnswerJa answer = _TranslationsAnswerJa._(_root);
 	@override late final _TranslationsQuizzesJa quizzes = _TranslationsQuizzesJa._(_root);
+	@override late final _TranslationsWordRequestCommentsJa wordRequestComments = _TranslationsWordRequestCommentsJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
 	@override late final _TranslationsAnswerHistoriesJa answerHistories = _TranslationsAnswerHistoriesJa._(_root);
 	@override late final _TranslationsWordRequestsJa wordRequests = _TranslationsWordRequestsJa._(_root);
@@ -1706,6 +1732,7 @@ class _TranslationsReviewsJa implements _TranslationsReviewsEn {
 	@override String get error_occurred => '復習にエラーが発生しました。';
 	@override String get fix_error => 'エラーを修正する';
 	@override String get error_fixed => 'エラーを修正しました。';
+	@override String scheduled_at({required Object scheduled_date}) => '${scheduled_date}に復習予定';
 }
 
 // Path: errors
@@ -1810,6 +1837,8 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get users => 'ユーザー';
+	@override String get user => 'ユーザー';
 	@override String get anonymous_user => '匿名ユーザー';
 	@override String get creating_account_succeeded => '会員登録が完了しました！ようこそDiQtへ！！';
 	@override String get show => 'ユーザーページ';
@@ -1878,6 +1907,8 @@ class _TranslationsNoticesJa implements _TranslationsNoticesEn {
 	@override String cheered_message({required Object name}) => '${name}があなたを応援しました！';
 	@override String followed_message({required Object name}) => '${name}があなたをフォローしました！';
 	@override String get word_request_accepted_message => 'あなたの辞書の編集が採用されました！';
+	@override String get word_request_commented_message => 'あなたの辞書の編集にコメントがつきました！';
+	@override String word_request_upvoted_message({required Object name}) => '${name}があなたの辞書の編集に賛成しました！';
 }
 
 // Path: shared
@@ -2013,6 +2044,10 @@ class _TranslationsAnswerAnalysesJa implements _TranslationsAnswerAnalysesEn {
 	@override String get incorrect_answer_histories_count_asc => '間違いが少ない順';
 	@override String get last_answered_at_desc => '解答履歴：新しい順';
 	@override String get last_answered_at_asc => '解答履歴：古い順';
+	@override String get correct => '正解';
+	@override String get incorrect => '不正解';
+	@override String last_record({required Object time_ago, required Object result}) => '${time_ago}に${result}';
+	@override String get correct_answer_rate => '正答率';
 }
 
 // Path: achievements
@@ -2636,6 +2671,19 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 	@override String get correct_answer_rate => '正答率%{percent}%';
 }
 
+// Path: wordRequestComments
+class _TranslationsWordRequestCommentsJa implements _TranslationsWordRequestCommentsEn {
+	_TranslationsWordRequestCommentsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get comment => 'コメント';
+	@override String get comment_to_you => 'あなたへのコメント';
+	@override String get comment_placeholder => 'コメントを入力してください';
+	@override String get send => '送信する';
+}
+
 // Path: activities
 class _TranslationsActivitiesJa implements _TranslationsActivitiesEn {
 	_TranslationsActivitiesJa._(this._root);
@@ -2700,11 +2748,13 @@ class _TranslationsWordRequestsJa implements _TranslationsWordRequestsEn {
 	@override String get vote_cancelled => 'リクエストへの投票を取り消しました。';
 	@override String votes_count_to_close({required Object count}) => '決定に必要な得票数: ${count}';
 	@override String edited_at({required Object time}) => '${time}前に編集';
-	@override String get pending_text => '審査理由';
+	@override String get pending_reason => '審査理由';
 	@override String get duplicating_entry => '同じ項目が既に存在しています。';
 	@override String get changing_entry => '項目名が変更されようとしています。';
-	@override String get destroying_word => '項目が削除されようとしています。';
-	@override String get unknown => '不明な理由';
+	@override String get pending_elimination => '項目が削除されようとしています。';
+	@override String get pending_modification => '項目が修正されようとしています。';
+	@override String get pending_addition => '項目が追加されようとしています。';
+	@override String get unknown_reason => 'その他の理由';
 	@override String get not_allowed_to_edit => '編集権限がありません。';
 }
 
@@ -2817,14 +2867,14 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get related => '関連語';
 	@override String sense({required Object number}) => '意味(${number})';
 	@override String get detailed_settings => '詳細設定';
-	@override String get comment => 'コメント';
+	@override String get comment => '編集者のコメント';
+	@override String get comment_placeholder => 'コメントなどあればここに書いてください。';
 	@override String get update => '修正する';
-	@override String get diqt_markdown_support => 'DiQt Markdown対応';
+	@override String get diqt_markdown_support => 'ディクト記法対応';
 	@override String get text_preview => 'プレビュー';
 	@override String get there_is_no_text => 'テキストがありません。';
 	@override String get undefined_lang_number => '言語が設定されていません。';
-	@override String get diqt_notation => 'DiQt記法';
-	@override String get comment_placeholder => '【空欄可】コメントなどあればここに書いてください。';
+	@override String get diqt_notation => 'ディクト記法';
 	@override String get destroy => '削除する';
 	@override String get confirmation => '削除確認';
 	@override String get edit_btn => '項目を編集する';
@@ -3031,6 +3081,7 @@ extension on _TranslationsEn {
 			case 'reviews.error_occurred': return 'An error about this review occurred.';
 			case 'reviews.fix_error': return 'Fix error';
 			case 'reviews.error_fixed': return 'Error fixed.';
+			case 'reviews.scheduled_at': return ({required Object scheduled_date}) => 'Scheduled at ${scheduled_date}';
 			case 'errors.error_message_404': return 'Page Not Found...';
 			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
@@ -3099,6 +3150,8 @@ extension on _TranslationsEn {
 			case 'weaknesses.created_at_desc': return 'Added, Newest First';
 			case 'weaknesses.created_at_asc': return 'Added, Oldest First';
 			case 'weaknesses.random_random': return 'Random';
+			case 'users.users': return 'Users';
+			case 'users.user': return 'User';
 			case 'users.anonymous_user': return 'Anonymous user';
 			case 'users.creating_account_succeeded': return 'Your account registration has been completed! Welcome to DiQt!';
 			case 'users.show': return 'User Page';
@@ -3149,6 +3202,8 @@ extension on _TranslationsEn {
 			case 'notices.cheered_message': return ({required Object name}) => '${name} has cheered you!';
 			case 'notices.followed_message': return ({required Object name}) => '${name} has followed you!';
 			case 'notices.word_request_accepted_message': return 'Your dictionary edit has been adopted!';
+			case 'notices.word_request_commented_message': return 'Your dictionary edit has been commented!';
+			case 'notices.word_request_upvoted_message': return ({required Object name}) => '${name} has upvoted your dictionary edit!';
 			case 'shared.create': return 'Create';
 			case 'shared.create_succeeded': return 'Created';
 			case 'shared.create_failed': return 'Create failed';
@@ -3257,6 +3312,10 @@ extension on _TranslationsEn {
 			case 'answerAnalyses.incorrect_answer_histories_count_asc': return 'Mistakes, Least to Most';
 			case 'answerAnalyses.last_answered_at_desc': return 'Answered History, New to Old';
 			case 'answerAnalyses.last_answered_at_asc': return 'Answered History, Old to New';
+			case 'answerAnalyses.correct': return 'Correct';
+			case 'answerAnalyses.incorrect': return 'Incorrect';
+			case 'answerAnalyses.last_record': return ({required Object time_ago, required Object result}) => '${time_ago} ${result}';
+			case 'answerAnalyses.correct_answer_rate': return 'Correct Rate';
 			case 'achievements.medals_won': return 'Medals won';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
@@ -3788,6 +3847,10 @@ extension on _TranslationsEn {
 			case 'quizzes.corrected_time_ago': return 'Corrected %{time} ago';
 			case 'quizzes.incorrect_time_ago': return 'Incorrect %{time} ago';
 			case 'quizzes.correct_answer_rate': return '%{percent}% of correct answers';
+			case 'wordRequestComments.comment': return 'Comment';
+			case 'wordRequestComments.comment_to_you': return 'Comment to you';
+			case 'wordRequestComments.comment_placeholder': return 'Write a comment';
+			case 'wordRequestComments.send': return 'Send';
 			case 'activities.activities': return 'Activities';
 			case 'activities.cheer': return 'Cheer!';
 			case 'activities.cheered': return 'Cheered!';
@@ -3827,11 +3890,13 @@ extension on _TranslationsEn {
 			case 'wordRequests.vote_cancelled': return 'You have cancelled your vote for the request.';
 			case 'wordRequests.votes_count_to_close': return ({required Object count}) => 'Number of votes needed for decision: ${count}';
 			case 'wordRequests.edited_at': return ({required Object time}) => 'Edited ${time} ago';
-			case 'wordRequests.pending_text': return 'Reason for pending';
+			case 'wordRequests.pending_reason': return 'Reason for pending';
 			case 'wordRequests.duplicating_entry': return 'The same item already exists.';
 			case 'wordRequests.changing_entry': return 'The item name is about to be changed.';
-			case 'wordRequests.destroying_word': return 'The item is about to be deleted.';
-			case 'wordRequests.unknown': return 'Unknown reason';
+			case 'wordRequests.pending_elimination': return 'The item is about to be deleted.';
+			case 'wordRequests.pending_modification': return 'The item is about to be modified.';
+			case 'wordRequests.pending_addition': return 'The item is about to be added.';
+			case 'wordRequests.unknown_reason': return 'Other reasons';
 			case 'wordRequests.not_allowed_to_edit': return 'You are not allowed to edit.';
 			case 'calendars.sunday': return 'Sun.';
 			case 'calendars.monday': return 'Mon.';
@@ -3908,14 +3973,14 @@ extension on _TranslationsEn {
 			case 'words.related': return 'Related Words';
 			case 'words.sense': return ({required Object number}) => 'sense(${number})';
 			case 'words.detailed_settings': return 'Detailed Settings';
-			case 'words.comment': return 'Comment';
+			case 'words.comment': return 'Editor\'s Comment';
+			case 'words.comment_placeholder': return 'Please write your comments here if you have any';
 			case 'words.update': return 'Fix';
 			case 'words.diqt_markdown_support': return 'DiQt Markdown Support';
 			case 'words.text_preview': return 'Preview';
 			case 'words.there_is_no_text': return 'There is no text.';
 			case 'words.undefined_lang_number': return 'Language is not set.';
 			case 'words.diqt_notation': return 'DiQt Notation';
-			case 'words.comment_placeholder': return 'You can comment about this.';
 			case 'words.destroy': return 'Destroy';
 			case 'words.confirmation': return 'Confirmation';
 			case 'words.edit_btn': return 'Edit this word';
@@ -4095,6 +4160,7 @@ extension on _TranslationsJa {
 			case 'reviews.error_occurred': return '復習にエラーが発生しました。';
 			case 'reviews.fix_error': return 'エラーを修正する';
 			case 'reviews.error_fixed': return 'エラーを修正しました。';
+			case 'reviews.scheduled_at': return ({required Object scheduled_date}) => '${scheduled_date}に復習予定';
 			case 'errors.error_message_404': return 'ページが見つかりませんでした。';
 			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
 			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';
@@ -4163,6 +4229,8 @@ extension on _TranslationsJa {
 			case 'weaknesses.created_at_desc': return '追加日が新しい順';
 			case 'weaknesses.created_at_asc': return '追加日が古い順';
 			case 'weaknesses.random_random': return 'ランダム';
+			case 'users.users': return 'ユーザー';
+			case 'users.user': return 'ユーザー';
 			case 'users.anonymous_user': return '匿名ユーザー';
 			case 'users.creating_account_succeeded': return '会員登録が完了しました！ようこそDiQtへ！！';
 			case 'users.show': return 'ユーザーページ';
@@ -4213,6 +4281,8 @@ extension on _TranslationsJa {
 			case 'notices.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
 			case 'notices.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
 			case 'notices.word_request_accepted_message': return 'あなたの辞書の編集が採用されました！';
+			case 'notices.word_request_commented_message': return 'あなたの辞書の編集にコメントがつきました！';
+			case 'notices.word_request_upvoted_message': return ({required Object name}) => '${name}があなたの辞書の編集に賛成しました！';
 			case 'shared.create': return '作成する';
 			case 'shared.create_succeeded': return '作成されました。';
 			case 'shared.create_failed': return '作成に失敗しました。';
@@ -4321,6 +4391,10 @@ extension on _TranslationsJa {
 			case 'answerAnalyses.incorrect_answer_histories_count_asc': return '間違いが少ない順';
 			case 'answerAnalyses.last_answered_at_desc': return '解答履歴：新しい順';
 			case 'answerAnalyses.last_answered_at_asc': return '解答履歴：古い順';
+			case 'answerAnalyses.correct': return '正解';
+			case 'answerAnalyses.incorrect': return '不正解';
+			case 'answerAnalyses.last_record': return ({required Object time_ago, required Object result}) => '${time_ago}に${result}';
+			case 'answerAnalyses.correct_answer_rate': return '正答率';
 			case 'achievements.medals_won': return '獲得メダル';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
@@ -4852,6 +4926,10 @@ extension on _TranslationsJa {
 			case 'quizzes.corrected_time_ago': return '%{time}前に正解';
 			case 'quizzes.incorrect_time_ago': return '%{time}前に不正解';
 			case 'quizzes.correct_answer_rate': return '正答率%{percent}%';
+			case 'wordRequestComments.comment': return 'コメント';
+			case 'wordRequestComments.comment_to_you': return 'あなたへのコメント';
+			case 'wordRequestComments.comment_placeholder': return 'コメントを入力してください';
+			case 'wordRequestComments.send': return '送信する';
 			case 'activities.activities': return '活動';
 			case 'activities.cheer': return '応援する!';
 			case 'activities.cheered': return '応援しました！';
@@ -4891,11 +4969,13 @@ extension on _TranslationsJa {
 			case 'wordRequests.vote_cancelled': return 'リクエストへの投票を取り消しました。';
 			case 'wordRequests.votes_count_to_close': return ({required Object count}) => '決定に必要な得票数: ${count}';
 			case 'wordRequests.edited_at': return ({required Object time}) => '${time}前に編集';
-			case 'wordRequests.pending_text': return '審査理由';
+			case 'wordRequests.pending_reason': return '審査理由';
 			case 'wordRequests.duplicating_entry': return '同じ項目が既に存在しています。';
 			case 'wordRequests.changing_entry': return '項目名が変更されようとしています。';
-			case 'wordRequests.destroying_word': return '項目が削除されようとしています。';
-			case 'wordRequests.unknown': return '不明な理由';
+			case 'wordRequests.pending_elimination': return '項目が削除されようとしています。';
+			case 'wordRequests.pending_modification': return '項目が修正されようとしています。';
+			case 'wordRequests.pending_addition': return '項目が追加されようとしています。';
+			case 'wordRequests.unknown_reason': return 'その他の理由';
 			case 'wordRequests.not_allowed_to_edit': return '編集権限がありません。';
 			case 'calendars.sunday': return '日';
 			case 'calendars.monday': return '月';
@@ -4972,14 +5052,14 @@ extension on _TranslationsJa {
 			case 'words.related': return '関連語';
 			case 'words.sense': return ({required Object number}) => '意味(${number})';
 			case 'words.detailed_settings': return '詳細設定';
-			case 'words.comment': return 'コメント';
+			case 'words.comment': return '編集者のコメント';
+			case 'words.comment_placeholder': return 'コメントなどあればここに書いてください。';
 			case 'words.update': return '修正する';
-			case 'words.diqt_markdown_support': return 'DiQt Markdown対応';
+			case 'words.diqt_markdown_support': return 'ディクト記法対応';
 			case 'words.text_preview': return 'プレビュー';
 			case 'words.there_is_no_text': return 'テキストがありません。';
 			case 'words.undefined_lang_number': return '言語が設定されていません。';
-			case 'words.diqt_notation': return 'DiQt記法';
-			case 'words.comment_placeholder': return '【空欄可】コメントなどあればここに書いてください。';
+			case 'words.diqt_notation': return 'ディクト記法';
 			case 'words.destroy': return '削除する';
 			case 'words.confirmation': return '削除確認';
 			case 'words.edit_btn': return '項目を編集する';

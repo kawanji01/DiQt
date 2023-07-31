@@ -27,7 +27,8 @@ class WordRequestDictionaryTabs extends StatelessWidget {
       );
       return InkWell(
         onTap: () {
-          WordRequestDictionaryPage.push(context, dictionary.id, 'accepted');
+          WordRequestDictionaryPage.pushReplacement(
+              context, dictionary.id, 'accepted');
         },
         child: Container(alignment: Alignment.center, child: text),
       );
@@ -44,7 +45,8 @@ class WordRequestDictionaryTabs extends StatelessWidget {
       );
       return InkWell(
         onTap: () {
-          WordRequestDictionaryPage.push(context, dictionary.id, 'pending');
+          WordRequestDictionaryPage.pushReplacement(
+              context, dictionary.id, 'pending');
         },
         child: Container(
             alignment: Alignment.center,
@@ -69,7 +71,8 @@ class WordRequestDictionaryTabs extends StatelessWidget {
       );
       return InkWell(
         onTap: () {
-          WordRequestDictionaryPage.push(context, dictionary.id, 'rejected');
+          WordRequestDictionaryPage.pushReplacement(
+              context, dictionary.id, 'rejected');
         },
         child: Container(alignment: Alignment.center, child: text),
       );

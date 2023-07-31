@@ -1,6 +1,8 @@
+import 'package:booqs_mobile/components/shared/timestamp.dart';
+import 'package:booqs_mobile/components/word_request/item/dictionary.dart';
 import 'package:booqs_mobile/components/word_request/item/diffs.dart';
-import 'package:booqs_mobile/components/word_request/item/editor_comment.dart';
-import 'package:booqs_mobile/components/word_request/item/heading.dart';
+import 'package:booqs_mobile/components/word_request/item/pending_reason.dart';
+import 'package:booqs_mobile/components/word_request/item/user.dart';
 import 'package:booqs_mobile/components/word_request/item/status.dart';
 import 'package:booqs_mobile/models/word_request.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +16,22 @@ class WordRequestItemMainContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        WordRequestItemHeading(
+        SharedTimestamp(
+          timestamp: wordRequest.createdAt,
+        ),
+        WordRequestItemUser(
           wordRequest: wordRequest,
         ),
         const SizedBox(
           height: 8,
         ),
+        WordRequestItemDictionary(
+          dictionary: wordRequest.dictionary!,
+        ),
         WordRequestItemStatus(
+          wordRequest: wordRequest,
+        ),
+        WordRequestItemPendingReason(
           wordRequest: wordRequest,
         ),
         const SizedBox(
@@ -29,9 +40,6 @@ class WordRequestItemMainContent extends StatelessWidget {
         WordRequestItemDiffs(
           wordRequest: wordRequest,
         ),
-        WordRequestItemEditorComment(
-          wordRequest: wordRequest,
-        )
       ],
     );
   }

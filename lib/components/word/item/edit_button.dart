@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/word.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
@@ -27,9 +28,9 @@ class WordItemEditButton extends ConsumerWidget {
             ref.read(wordProvider.notifier).state = word;
             WordEditPage.push(context, word.id);
           },
-          child: const Text(
-            '項目を編集する',
-            style: TextStyle(
+          child: Text(
+            t.words.edit,
+            style: const TextStyle(
               decoration: TextDecoration.underline,
             ),
           ),
@@ -52,9 +53,9 @@ class WordItemEditButton extends ConsumerWidget {
           onPressed: () {
             WordShowPage.push(context, word.id);
           },
-          child: const Text(
-            '詳細',
-            style: TextStyle(
+          child: Text(
+            t.shared.details,
+            style: const TextStyle(
               decoration: TextDecoration.underline,
             ),
           ),

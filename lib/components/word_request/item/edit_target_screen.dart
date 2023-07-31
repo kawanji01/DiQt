@@ -6,8 +6,8 @@ import 'package:booqs_mobile/models/word_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordRequestItemDetailsScreen extends ConsumerWidget {
-  const WordRequestItemDetailsScreen({super.key, required this.wordRequest});
+class WordRequestItemEditTargetScreen extends ConsumerWidget {
+  const WordRequestItemEditTargetScreen({super.key, required this.wordRequest});
   final WordRequest wordRequest;
 
   @override

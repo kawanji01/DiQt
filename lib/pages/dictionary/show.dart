@@ -15,6 +15,13 @@ class DictionaryShowPage extends ConsumerStatefulWidget {
         arguments: {'dictionaryId': dictionaryId});
   }
 
+  static Future pushReplacement(BuildContext context, int dictionaryId) async {
+    return Navigator.of(context)
+        .pushReplacementNamed(dictionaryShowPage, arguments: {
+      'dictionaryId': dictionaryId,
+    });
+  }
+
   @override
   DictionaryShowPageState createState() => DictionaryShowPageState();
 }

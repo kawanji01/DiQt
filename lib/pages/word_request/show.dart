@@ -20,6 +20,13 @@ class WordRequestShowPage extends ConsumerWidget {
     );
   }
 
+  static Future pushReplacement(BuildContext context, int wordRequestId) async {
+    return Navigator.of(context)
+        .pushReplacementNamed(wordRequestShowPage, arguments: {
+      'wordRequestId': wordRequestId,
+    });
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final args =
