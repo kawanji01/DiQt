@@ -3,9 +3,11 @@ import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/pages/dictionary/show.dart';
+import 'package:booqs_mobile/models/word_request.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
+import 'package:booqs_mobile/pages/word_request/show.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
@@ -45,6 +47,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
   final _synonymsController = TextEditingController();
   final _antonymsController = TextEditingController();
   final _relatedController = TextEditingController();
+  final _commentController = TextEditingController();
 
   @override
   void initState() {
@@ -75,6 +78,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
   // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
   @override
   void dispose() {
+    super.dispose();
     _entryController.dispose();
     _readingController.dispose();
     _meaningController.dispose();
@@ -86,7 +90,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
     _synonymsController.dispose();
     _antonymsController.dispose();
     _relatedController.dispose();
-    super.dispose();
+    _commentController.dispose();
   }
 
   @override
@@ -114,23 +118,25 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
       };
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteWords.create(params);
+      final Map resMap = await RemoteWords.create(
+          params: params, comment: _commentController.text);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
       if (!mounted) return;
 
-      if (resMap == null) {
-        final snackBar = SnackBar(content: Text(t.words.create_failed));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } else {
-        final snackBar = SnackBar(content: Text('${resMap['message']}'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        if (resMap['word'] == null) {
-          return DictionaryShowPage.push(context, _dictionary!.id);
-        }
+      if (ErrorHandler.isErrorMap(resMap)) {
+        return ErrorHandler.showErrorSnackBar(context, resMap);
+      }
+      final snackBar = SnackBar(content: Text('${resMap['message']}'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      final WordRequest wordRequest =
+          WordRequest.fromJson(resMap['word_request']);
+      if (wordRequest.closed()) {
         final Word word = Word.fromJson(resMap['word']);
         ref.read(wordProvider.notifier).state = word;
         WordShowPage.pushReplacement(context, word.id);
+      } else {
+        WordRequestShowPage.pushReplacement(context, wordRequest.id);
       }
     }
 
@@ -158,6 +164,7 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
                     synonymsController: _synonymsController,
                     antonymsController: _antonymsController,
                     relatedController: _relatedController,
+                    commentController: _commentController,
                     dictionary: _dictionary!,
                     word: null,
                   ),

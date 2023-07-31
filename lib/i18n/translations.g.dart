@@ -3,7 +3,7 @@
 /// Locales: 2
 /// Strings: 2136 (1068 per locale)
 ///
-/// Built on 2023-07-30 at 13:27 UTC
+/// Built on 2023-07-30 at 21:27 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1436,14 +1436,14 @@ class _TranslationsWordsEn {
 	String get related => 'Related Words';
 	String sense({required Object number}) => 'sense(${number})';
 	String get detailed_settings => 'Detailed Settings';
-	String get comment => 'Comment';
+	String get comment => 'Editor\'s Comment';
+	String get comment_placeholder => 'Please write your comments here if you have any';
 	String get update => 'Fix';
 	String get diqt_markdown_support => 'DiQt Markdown Support';
 	String get text_preview => 'Preview';
 	String get there_is_no_text => 'There is no text.';
 	String get undefined_lang_number => 'Language is not set.';
 	String get diqt_notation => 'DiQt Notation';
-	String get comment_placeholder => 'You can comment about this.';
 	String get destroy => 'Destroy';
 	String get confirmation => 'Confirmation';
 	String get edit_btn => 'Edit this word';
@@ -2861,14 +2861,14 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get related => '関連語';
 	@override String sense({required Object number}) => '意味(${number})';
 	@override String get detailed_settings => '詳細設定';
-	@override String get comment => 'コメント';
+	@override String get comment => '編集者のコメント';
+	@override String get comment_placeholder => 'コメントなどあればここに書いてください。';
 	@override String get update => '修正する';
-	@override String get diqt_markdown_support => 'DiQt Markdown対応';
+	@override String get diqt_markdown_support => 'ディクト記法対応';
 	@override String get text_preview => 'プレビュー';
 	@override String get there_is_no_text => 'テキストがありません。';
 	@override String get undefined_lang_number => '言語が設定されていません。';
-	@override String get diqt_notation => 'DiQt記法';
-	@override String get comment_placeholder => '【空欄可】コメントなどあればここに書いてください。';
+	@override String get diqt_notation => 'ディクト記法';
 	@override String get destroy => '削除する';
 	@override String get confirmation => '削除確認';
 	@override String get edit_btn => '項目を編集する';
@@ -3964,14 +3964,14 @@ extension on _TranslationsEn {
 			case 'words.related': return 'Related Words';
 			case 'words.sense': return ({required Object number}) => 'sense(${number})';
 			case 'words.detailed_settings': return 'Detailed Settings';
-			case 'words.comment': return 'Comment';
+			case 'words.comment': return 'Editor\'s Comment';
+			case 'words.comment_placeholder': return 'Please write your comments here if you have any';
 			case 'words.update': return 'Fix';
 			case 'words.diqt_markdown_support': return 'DiQt Markdown Support';
 			case 'words.text_preview': return 'Preview';
 			case 'words.there_is_no_text': return 'There is no text.';
 			case 'words.undefined_lang_number': return 'Language is not set.';
 			case 'words.diqt_notation': return 'DiQt Notation';
-			case 'words.comment_placeholder': return 'You can comment about this.';
 			case 'words.destroy': return 'Destroy';
 			case 'words.confirmation': return 'Confirmation';
 			case 'words.edit_btn': return 'Edit this word';
@@ -5040,14 +5040,14 @@ extension on _TranslationsJa {
 			case 'words.related': return '関連語';
 			case 'words.sense': return ({required Object number}) => '意味(${number})';
 			case 'words.detailed_settings': return '詳細設定';
-			case 'words.comment': return 'コメント';
+			case 'words.comment': return '編集者のコメント';
+			case 'words.comment_placeholder': return 'コメントなどあればここに書いてください。';
 			case 'words.update': return '修正する';
-			case 'words.diqt_markdown_support': return 'DiQt Markdown対応';
+			case 'words.diqt_markdown_support': return 'ディクト記法対応';
 			case 'words.text_preview': return 'プレビュー';
 			case 'words.there_is_no_text': return 'テキストがありません。';
 			case 'words.undefined_lang_number': return '言語が設定されていません。';
-			case 'words.diqt_notation': return 'DiQt記法';
-			case 'words.comment_placeholder': return '【空欄可】コメントなどあればここに書いてください。';
+			case 'words.diqt_notation': return 'ディクト記法';
 			case 'words.destroy': return '削除する';
 			case 'words.confirmation': return '削除確認';
 			case 'words.edit_btn': return '項目を編集する';

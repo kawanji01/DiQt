@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/word_request/item/comments_button.dart';
+import 'package:booqs_mobile/components/word_request/item/destroy_button.dart';
 import 'package:booqs_mobile/components/word_request/item/details_button.dart';
 import 'package:booqs_mobile/components/word_request/item/edit_target_button.dart';
 import 'package:booqs_mobile/components/word_request/item/main_content.dart';
@@ -27,6 +28,7 @@ class WordRequestListItem extends StatelessWidget {
         WordRequestItemEditTargetButton(
           wordRequest: wordRequest,
         ),
+        WordRequestItemDestroyButton(wordRequest: wordRequest),
         WordRequestItemCommentsButton(
           wordRequest: wordRequest,
         ),

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/shared/timestamp.dart';
+import 'package:booqs_mobile/components/word_request/item/dictionary.dart';
 import 'package:booqs_mobile/components/word_request/item/diffs.dart';
 import 'package:booqs_mobile/components/word_request/item/user.dart';
 import 'package:booqs_mobile/components/word_request/item/status.dart';
@@ -22,6 +23,9 @@ class WordRequestItemMainContent extends StatelessWidget {
         ),
         const SizedBox(
           height: 8,
+        ),
+        WordRequestItemDictionary(
+          dictionary: wordRequest.dictionary!,
         ),
         WordRequestItemStatus(
           wordRequest: wordRequest,

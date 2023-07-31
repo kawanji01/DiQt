@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/shared/delete_confirmation_screen.dart';
+import 'package:booqs_mobile/components/shared/delete_confirmation.dart';
 import 'package:booqs_mobile/data/provider/word_request.dart';
 import 'package:booqs_mobile/data/remote/word_request_comments.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -44,7 +44,7 @@ class WordRequestCommentItemDeleteButtonState
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: () {
-          final Widget screen = SharedDeleteConfirmationScreen(
+          final Widget screen = SharedDeleteConfirmation(
             onDeletePressed: _destroy,
           );
           Dialogs.slideFromBottomFade(screen);

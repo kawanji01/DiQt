@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SmallOutlineGreenButton extends StatelessWidget {
-  const SmallOutlineGreenButton({
+class SmallOutlineRedButton extends StatelessWidget {
+  const SmallOutlineRedButton({
     Key? key,
     required this.label,
     required this.icon,
@@ -16,7 +16,7 @@ class SmallOutlineGreenButton extends StatelessWidget {
       child = Text(
         label,
         style: const TextStyle(
-            color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold),
+            color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
         overflow: TextOverflow.visible,
       );
     } else {
@@ -25,7 +25,7 @@ class SmallOutlineGreenButton extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: Colors.green,
+            color: Colors.red,
             size: 18,
           ),
           const SizedBox(width: 4),
@@ -33,9 +33,7 @@ class SmallOutlineGreenButton extends StatelessWidget {
             child: Text(
               label,
               style: const TextStyle(
-                  color: Colors.green,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
+                  color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
               overflow: TextOverflow.visible,
             ),
           ),
@@ -52,7 +50,7 @@ class SmallOutlineGreenButton extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 4),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.green, width: 1),
+          border: Border.all(color: Colors.red, width: 1),
           borderRadius: const BorderRadius.all(Radius.circular(5)),
         ),
         child: child,

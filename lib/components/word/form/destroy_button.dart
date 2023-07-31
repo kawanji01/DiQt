@@ -1,9 +1,10 @@
-import 'package:booqs_mobile/components/shared/delete_confirmation_screen.dart';
+import 'package:booqs_mobile/components/shared/delete_confirmation.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/models/word_request.dart';
 import 'package:booqs_mobile/pages/dictionary/show.dart';
-import 'package:booqs_mobile/pages/word/show.dart';
+import 'package:booqs_mobile/pages/word_request/show.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
@@ -11,8 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class WordFormDestroyButton extends StatefulWidget {
-  const WordFormDestroyButton({super.key, required this.word});
+  const WordFormDestroyButton(
+      {super.key, required this.word, required this.commentController});
   final Word word;
+  final TextEditingController commentController;
 
   @override
   State<WordFormDestroyButton> createState() => WordFormDestroyButtonState();
@@ -21,7 +24,8 @@ class WordFormDestroyButton extends StatefulWidget {
 class WordFormDestroyButtonState extends State<WordFormDestroyButton> {
   Future<void> _submit() async {
     EasyLoading.show(status: 'loading...');
-    final Map resMap = await RemoteWords.destroy(widget.word.id);
+    final Map resMap = await RemoteWords.destroy(
+        wordId: widget.word.id, comment: widget.commentController.text);
     EasyLoading.dismiss();
     if (!mounted) return;
     if (ErrorHandler.isErrorMap(resMap)) {
@@ -29,11 +33,13 @@ class WordFormDestroyButtonState extends State<WordFormDestroyButton> {
       return;
     }
     Toasts.showSimple(context, '${resMap['message']}');
+    final WordRequest wordRequest =
+        WordRequest.fromJson(resMap['word_request']);
 
-    if (resMap['word'] == null) {
-      DictionaryShowPage.push(context, widget.word.dictionaryId);
+    if (wordRequest.closed()) {
+      DictionaryShowPage.pushReplacement(context, widget.word.dictionaryId);
     } else {
-      WordShowPage.push(context, widget.word.id);
+      WordRequestShowPage.pushReplacement(context, wordRequest.id);
     }
   }
 
@@ -43,8 +49,9 @@ class WordFormDestroyButtonState extends State<WordFormDestroyButton> {
       alignment: Alignment.centerRight,
       child: TextButton.icon(
         onPressed: () {
-          final Widget screen = SharedDeleteConfirmationScreen(
+          final Widget screen = SharedDeleteConfirmation(
             onDeletePressed: _submit,
+            commentController: widget.commentController,
           );
           Dialogs.slideFromBottomFade(screen);
         },

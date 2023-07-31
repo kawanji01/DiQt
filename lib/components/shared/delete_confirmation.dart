@@ -1,11 +1,13 @@
+import 'package:booqs_mobile/components/form/comment.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
 
-class SharedDeleteConfirmationScreen extends StatelessWidget {
-  const SharedDeleteConfirmationScreen(
-      {super.key, required this.onDeletePressed});
+class SharedDeleteConfirmation extends StatelessWidget {
+  const SharedDeleteConfirmation(
+      {super.key, required this.onDeletePressed, this.commentController});
   final void Function() onDeletePressed;
+  final TextEditingController? commentController;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,11 @@ class SharedDeleteConfirmationScreen extends StatelessWidget {
           const SizedBox(height: 16),
           Text(t.shared.destroy_confirmation_description,
               style: const TextStyle(fontSize: 16, color: Colors.black87)),
-          const SizedBox(height: 32),
+          const SizedBox(height: 16),
+          FormEditorComment(
+            commentController: commentController,
+          ),
+          const SizedBox(height: 16),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,

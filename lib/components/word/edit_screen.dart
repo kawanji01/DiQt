@@ -6,7 +6,9 @@ import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/models/word_request.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
+import 'package:booqs_mobile/pages/word_request/show.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -37,6 +39,7 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
   final _synonymsController = TextEditingController();
   final _antonymsController = TextEditingController();
   final _relatedController = TextEditingController();
+  final _commentController = TextEditingController();
 
   @override
   void initState() {
@@ -59,6 +62,7 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
   // widgetの破棄時にコントローラも破棄する。Controllerを使うなら必ず必要。
   // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
   void dispose() {
+    super.dispose();
     _entryController.dispose();
     _readingController.dispose();
     _meaningController.dispose();
@@ -70,7 +74,7 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
     _synonymsController.dispose();
     _antonymsController.dispose();
     _relatedController.dispose();
-    super.dispose();
+    _commentController.dispose();
   }
 
   @override
@@ -101,20 +105,27 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
       };
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      final Map resMap = await RemoteWords.update(params: params);
+      final Map resMap = await RemoteWords.update(
+          params: params, comment: _commentController.text);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
       if (!mounted) return;
 
       if (ErrorHandler.isErrorMap(resMap)) {
-        ErrorHandler.showErrorSnackBar(context, resMap);
-      } else {
-        final Word word = Word.fromJson(resMap['word']);
-        ref.read(wordProvider.notifier).state = word;
-        final snackBar = SnackBar(content: Text('${resMap['message']}'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        WordShowPage.pushReplacement(context, word.id);
+        return ErrorHandler.showErrorSnackBar(context, resMap);
       }
+      final Word updatedWord = Word.fromJson(resMap['word']);
+      final WordRequest wordRequest =
+          WordRequest.fromJson(resMap['word_request']);
+
+      if (wordRequest.closed()) {
+        ref.read(wordProvider.notifier).state = updatedWord;
+        WordShowPage.pushReplacement(context, updatedWord.id);
+      } else {
+        WordRequestShowPage.pushReplacement(context, wordRequest.id);
+      }
+      final snackBar = SnackBar(content: Text('${resMap['message']}'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
 
     return SingleChildScrollView(
@@ -138,6 +149,7 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
                   synonymsController: _synonymsController,
                   antonymsController: _antonymsController,
                   relatedController: _relatedController,
+                  commentController: _commentController,
                   dictionary: dictionary,
                   word: word,
                 ),
@@ -165,7 +177,10 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
                   ),
                 ),
                 const SizedBox(height: 64),
-                WordFormDestroyButton(word: word),
+                WordFormDestroyButton(
+                  word: word,
+                  commentController: _commentController,
+                ),
                 const SizedBox(height: 160),
               ])),
     );
