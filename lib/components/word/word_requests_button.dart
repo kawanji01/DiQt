@@ -1,5 +1,6 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
+import 'package:booqs_mobile/pages/word_request/word.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
@@ -11,21 +12,20 @@ class WordWordRequestsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget acceptedWordRequestsButton() {
-      final String redirectPath = 'words/${word.id}/accepted_word_requests';
       return InkWell(
           onTap: () {
-            DiQtBrowserDialog.open(context, redirectPath);
+            WordRequestWordPage.push(context, word.id, 'accepted');
           },
           child: SmallOutlineGrayButton(
             icon: Icons.history,
-            label: '項目の改善履歴（${word.acceptedWordRequestsCount}）',
+            label:
+                '${t.wordRequests.edit_histories}（${word.acceptedWordRequestsCount}）',
           ));
     }
 
     Widget pendingWordRequestsButton() {
       if (word.pendingWordRequestsCount == 0) return Container();
 
-      final String redirectPath = 'words/${word.id}/pending_word_requests';
       return TextButton(
         style: TextButton.styleFrom(
           foregroundColor: Colors.green,
@@ -33,10 +33,10 @@ class WordWordRequestsButton extends StatelessWidget {
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {
-          DiQtBrowserDialog.open(context, redirectPath);
+          WordRequestWordPage.push(context, word.id, 'pending');
         },
         child: Text(
-          '${word.pendingWordRequestsCount}件の審査中の編集',
+          '${t.wordRequests.pending_edits}(${word.pendingWordRequestsCount})',
           style: const TextStyle(
             decoration: TextDecoration.underline,
           ),

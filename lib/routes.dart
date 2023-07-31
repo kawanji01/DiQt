@@ -47,6 +47,7 @@ import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/pages/word_request/dictionary.dart';
 import 'package:booqs_mobile/pages/word_request/show.dart';
+import 'package:booqs_mobile/pages/word_request/word.dart';
 
 // ホーム
 const indexPage = '/';
@@ -81,6 +82,7 @@ const sentenceEditPage = '/sentence/edit';
 const sentenceShowPage = '/sentence/show';
 // 辞書の項目のリクエスト
 const wordRequestDictionaryPage = '/word_request/dictionary';
+const wordRequestWordPage = '/word_request/word';
 const wordRequestShowPage = '/word_request/show';
 // 例文のリクエスト
 const sentenceRequestAcceptedPage = '/sentence_request/accepted';
@@ -161,6 +163,7 @@ final routes = {
   sentenceShowPage: (context) => const SentenceShowPage(),
   // WordRequest
   wordRequestDictionaryPage: (context) => const WordRequestDictionaryPage(),
+  wordRequestWordPage: (context) => const WordRequestWordPage(),
   wordRequestShowPage: (context) => const WordRequestShowPage(),
   // School
   schoolShowPage: (context) => const SchoolShowPage(),

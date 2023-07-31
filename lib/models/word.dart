@@ -101,6 +101,9 @@ class Word {
   //    ? []
   //   : json['senses'].map<Sense>((e) => Sense.fromJson(e)).toList();
 
+  // 却下されたwordRequestのリクエストの数
+  int rejectedWordRequestsCount() =>
+      wordRequestsCount - acceptedWordRequestsCount - pendingWordRequestsCount;
   Map<String, dynamic> toJson() => {
         'id': id,
         'dictionary_id': dictionaryId,

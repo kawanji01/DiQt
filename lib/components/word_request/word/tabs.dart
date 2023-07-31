@@ -1,13 +1,13 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/pages/word_request/dictionary.dart';
+import 'package:booqs_mobile/models/word.dart';
+import 'package:booqs_mobile/pages/word_request/word.dart';
 import 'package:flutter/material.dart';
 
-class WordRequestDictionaryTabs extends StatelessWidget {
-  const WordRequestDictionaryTabs(
-      {super.key, required this.selected, required this.dictionary});
+class WordRequestWordTabs extends StatelessWidget {
+  const WordRequestWordTabs(
+      {super.key, required this.selected, required this.word});
   final String selected;
-  final Dictionary dictionary;
+  final Word word;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,12 @@ class WordRequestDictionaryTabs extends StatelessWidget {
         textAlign: TextAlign.center,
         text: TextSpan(
             text:
-                '${t.wordRequests.acceptance}\n(${dictionary.acceptedWordRequestsCount})',
+                '${t.wordRequests.acceptance}\n(${word.acceptedWordRequestsCount})',
             style: style),
       );
       return InkWell(
         onTap: () {
-          WordRequestDictionaryPage.pushReplacement(
-              context, dictionary.id, 'accepted');
+          WordRequestWordPage.pushReplacement(context, word.id, 'accepted');
         },
         child: Container(alignment: Alignment.center, child: text),
       );
@@ -40,13 +39,12 @@ class WordRequestDictionaryTabs extends StatelessWidget {
         textAlign: TextAlign.center,
         text: TextSpan(
             text:
-                '${t.wordRequests.pending}\n(${dictionary.pendingWordRequestsCount})',
+                '${t.wordRequests.pending}\n(${word.pendingWordRequestsCount})',
             style: style),
       );
       return InkWell(
         onTap: () {
-          WordRequestDictionaryPage.pushReplacement(
-              context, dictionary.id, 'pending');
+          WordRequestWordPage.pushReplacement(context, word.id, 'pending');
         },
         child: Container(
             alignment: Alignment.center,
@@ -66,13 +64,12 @@ class WordRequestDictionaryTabs extends StatelessWidget {
         textAlign: TextAlign.center,
         text: TextSpan(
             text:
-                '${t.wordRequests.rejection}\n(${dictionary.rejectedWordRequestsCount()})',
+                '${t.wordRequests.rejection}\n(${word.rejectedWordRequestsCount()})',
             style: style),
       );
       return InkWell(
         onTap: () {
-          WordRequestDictionaryPage.pushReplacement(
-              context, dictionary.id, 'rejected');
+          WordRequestWordPage.pushReplacement(context, word.id, 'rejected');
         },
         child: Container(alignment: Alignment.center, child: text),
       );
