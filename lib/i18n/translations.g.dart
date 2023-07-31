@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2136 (1068 per locale)
+/// Strings: 2138 (1069 per locale)
 ///
-/// Built on 2023-07-30 at 21:27 UTC
+/// Built on 2023-07-31 at 09:19 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -480,6 +480,7 @@ class _TranslationsNoticesEn {
 	String followed_message({required Object name}) => '${name} has followed you!';
 	String get word_request_accepted_message => 'Your dictionary edit has been adopted!';
 	String get word_request_commented_message => 'Your dictionary edit has been commented!';
+	String word_request_upvoted_message({required Object name}) => '${name} has upvoted your dictionary edit!';
 }
 
 // Path: shared
@@ -1905,6 +1906,7 @@ class _TranslationsNoticesJa implements _TranslationsNoticesEn {
 	@override String followed_message({required Object name}) => '${name}があなたをフォローしました！';
 	@override String get word_request_accepted_message => 'あなたの辞書の編集が採用されました！';
 	@override String get word_request_commented_message => 'あなたの辞書の編集にコメントがつきました！';
+	@override String word_request_upvoted_message({required Object name}) => '${name}があなたの辞書の編集に賛成しました！';
 }
 
 // Path: shared
@@ -3197,6 +3199,7 @@ extension on _TranslationsEn {
 			case 'notices.followed_message': return ({required Object name}) => '${name} has followed you!';
 			case 'notices.word_request_accepted_message': return 'Your dictionary edit has been adopted!';
 			case 'notices.word_request_commented_message': return 'Your dictionary edit has been commented!';
+			case 'notices.word_request_upvoted_message': return ({required Object name}) => '${name} has upvoted your dictionary edit!';
 			case 'shared.create': return 'Create';
 			case 'shared.create_succeeded': return 'Created';
 			case 'shared.create_failed': return 'Create failed';
@@ -4273,6 +4276,7 @@ extension on _TranslationsJa {
 			case 'notices.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
 			case 'notices.word_request_accepted_message': return 'あなたの辞書の編集が採用されました！';
 			case 'notices.word_request_commented_message': return 'あなたの辞書の編集にコメントがつきました！';
+			case 'notices.word_request_upvoted_message': return ({required Object name}) => '${name}があなたの辞書の編集に賛成しました！';
 			case 'shared.create': return '作成する';
 			case 'shared.create_succeeded': return '作成されました。';
 			case 'shared.create_failed': return '作成に失敗しました。';
