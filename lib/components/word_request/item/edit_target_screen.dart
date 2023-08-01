@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/show_screen.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
@@ -30,7 +31,17 @@ class WordRequestItemEditTargetScreen extends ConsumerWidget {
                     color: Colors.black87));
           }
           return SingleChildScrollView(
-            child: WordShowScreen(word: word),
+            child: Column(
+              children: [
+                HeadingMediumGreen(
+                  label: t.wordRequests.target,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                WordShowScreen(word: word)
+              ],
+            ),
           );
         },
         error: (err, str) => Text('$err'),

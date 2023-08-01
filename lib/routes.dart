@@ -26,6 +26,9 @@ import 'package:booqs_mobile/pages/sense/show.dart';
 import 'package:booqs_mobile/pages/sentence/edit.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
+import 'package:booqs_mobile/pages/sentence_request/dictionary.dart';
+import 'package:booqs_mobile/pages/sentence_request/show.dart';
+import 'package:booqs_mobile/pages/sentence_request/sentence.dart';
 import 'package:booqs_mobile/pages/session/transition.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:booqs_mobile/pages/session/log_in.dart';
@@ -85,13 +88,13 @@ const wordRequestDictionaryPage = '/word_request/dictionary';
 const wordRequestWordPage = '/word_request/word';
 const wordRequestShowPage = '/word_request/show';
 // 例文のリクエスト
-const sentenceRequestAcceptedPage = '/sentence_request/accepted';
-const sentenceRequestPendingPage = '/sentence_request/pending';
-const sentenceRequestRejectedPage = '/sentence_request/rejected';
+const sentenceRequestDictionaryPage = '/sentence_request/dictionary';
+const sentenceRequestSentencePage = '/sentence_request/sentence';
+const sentenceRequestShowPage = '/sentence_request/show';
 // 問題のリクエスト
-const quizRequestAcceptedPage = '/quiz_request/accepted';
-const quizRequestPendingPage = '/quiz_request/pending';
-const quizRequestRejectedPage = '/quiz_request/rejected';
+const quizRequestDictionaryPage = '/quiz_request/dictionary';
+const quizRequestWordPage = '/quiz_request/word';
+const quizRequestShowPage = '/quiz_request/show';
 
 // 教室
 const schoolShowPage = '/school/show';
@@ -165,6 +168,12 @@ final routes = {
   wordRequestDictionaryPage: (context) => const WordRequestDictionaryPage(),
   wordRequestWordPage: (context) => const WordRequestWordPage(),
   wordRequestShowPage: (context) => const WordRequestShowPage(),
+  // sentenceRequest
+  sentenceRequestDictionaryPage: (context) =>
+      const SentenceRequestDictionaryPage(),
+  sentenceRequestSentencePage: (context) => const SentenceRequestSentencePage(),
+  sentenceRequestShowPage: (context) => const SentenceRequestShowPage(),
+
   // School
   schoolShowPage: (context) => const SchoolShowPage(),
   // Chapter

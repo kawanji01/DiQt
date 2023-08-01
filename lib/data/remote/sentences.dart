@@ -9,24 +9,21 @@ import 'package:http/http.dart';
 
 class RemoteSentences {
   // 例文の読み込み
-  static Future<Map?> show(int sentenceId) async {
+  static Future<Map> show(int sentenceId) async {
     try {
       final Uri url =
           Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences/$sentenceId');
       final Response res = await HttpService.get(url);
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
 
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 
@@ -75,33 +72,29 @@ class RemoteSentences {
   }
 
   // 例文の作成
-  static Future<Map?> create(Map<String, dynamic> params) async {
+  static Future<Map> create(Map<String, dynamic> params) async {
     try {
       final Map<String, dynamic> body = {'sentence': params};
-
       final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences');
       final Response res = await HttpService.post(
         url,
         body,
       );
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
 
-      final Map? resMap = json.decode(res.body);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 
   // 例文の更新
-  static Future<Map?> update(Map<String, dynamic> params) async {
+  static Future<Map> update(Map<String, dynamic> params) async {
     try {
       final Map<String, dynamic> body = {'sentence': params};
 
@@ -111,41 +104,35 @@ class RemoteSentences {
         url,
         body,
       );
-      if (res.statusCode != 200) return null;
-
-      final Map? resMap = json.decode(res.body);
-      return resMap;
-    } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    }
-  }
-
-  // 例文の削除
-  static Future<Map?> destroy(int sentenceId) async {
-    try {
-      final Uri url =
-          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences/$sentenceId');
-      final Response res = await HttpService.delete(url, null);
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
 
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
+
+  // 例文の削除
+  static Future<Map> destroy(int sentenceId) async {
+    try {
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences/$sentenceId');
+      final Response res = await HttpService.delete(url, null);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 

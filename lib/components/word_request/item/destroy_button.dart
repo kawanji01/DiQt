@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/button/small_outline_red_button.dart';
 import 'package:booqs_mobile/components/shared/delete_confirmation.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/word_requests.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word_request.dart';
@@ -8,18 +9,19 @@ import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordRequestItemDestroyButton extends StatefulWidget {
+class WordRequestItemDestroyButton extends ConsumerStatefulWidget {
   const WordRequestItemDestroyButton({super.key, required this.wordRequest});
   final WordRequest wordRequest;
 
   @override
-  State<WordRequestItemDestroyButton> createState() =>
-      _WordRequestItemDestroyButtonState();
+  WordRequestItemDestroyButtonState createState() =>
+      WordRequestItemDestroyButtonState();
 }
 
-class _WordRequestItemDestroyButtonState
-    extends State<WordRequestItemDestroyButton> {
+class WordRequestItemDestroyButtonState
+    extends ConsumerState<WordRequestItemDestroyButton> {
   Future<void> _destroy() async {
     EasyLoading.show(status: 'loading...');
     final Map resMap = await RemoteWordRequests.destroy(widget.wordRequest.id);
@@ -40,6 +42,10 @@ class _WordRequestItemDestroyButtonState
   @override
   Widget build(BuildContext context) {
     if (widget.wordRequest.closed()) return Container();
+
+    final int? userId = widget.wordRequest.user?.id;
+    final int? currentUserId = ref.watch(currentUserProvider)?.id;
+    if (userId != currentUserId) return Container();
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 24),

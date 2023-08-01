@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // ref: https://riverpod.dev/ja/docs/concepts/modifiers/family
@@ -8,8 +9,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // おまけにプロバイダは参照されなくなっても破棄されないのがデフォルトの動作であるため、この場合はメモリリークにつながります。
 final asyncSentenceFamily =
     FutureProvider.autoDispose.family<Sentence?, int>((ref, sentenceId) async {
-  final Map? resMap = await RemoteSentences.show(sentenceId);
-  if (resMap == null) return null;
+  final Map resMap = await RemoteSentences.show(sentenceId);
+  if (ErrorHandler.isErrorMap(resMap)) return null;
   final Sentence sentence = Sentence.fromJson(resMap['sentence']);
   return sentence;
 });

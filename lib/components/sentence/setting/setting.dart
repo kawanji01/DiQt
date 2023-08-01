@@ -6,6 +6,7 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 
 // 項目の例文設定フォーム。
@@ -61,9 +62,12 @@ class SentenceSettingState extends State<SentenceSetting> {
   Future _loadSentence() async {
     final String sentenceId = _sentenceIdController.text;
     if (sentenceId == 'null' || sentenceId == '') return;
-    final Map? resMap = await RemoteSentences.show(int.parse(sentenceId));
-    if (resMap == null) return Container();
-
+    final Map resMap = await RemoteSentences.show(int.parse(sentenceId));
+    if (!mounted) return;
+    if (ErrorHandler.isErrorMap(resMap)) {
+      ErrorHandler.showErrorSnackBar(context, resMap);
+      return;
+    }
     final Sentence sentence = Sentence.fromJson(resMap['sentence']);
     return setState(() {
       _sentence = sentence;

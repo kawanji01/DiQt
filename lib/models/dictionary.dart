@@ -15,16 +15,17 @@ class Dictionary {
     required this.publicUid,
     required this.langNumberOfEntry,
     required this.langNumberOfMeaning,
-    this.requestScreened = false,
-    this.wordsCount = 0,
-    this.sentencesCount = 0,
-    this.wordRequestsCount = 0,
-    this.acceptedWordRequestsCount = 0,
-    this.pendingWordRequestsCount = 0,
-    this.acceptedSentenceRequestsCount = 0,
-    this.pendingSentenceRequestsCount = 0,
-    this.acceptedQuizRequestsCount = 0,
-    this.pendingQuizRequestsCount = 0,
+    required this.wordsCount,
+    required this.sentencesCount,
+    required this.wordRequestsCount,
+    required this.sentenceRequestsCount,
+    required this.quizRequestsCount,
+    required this.acceptedWordRequestsCount,
+    required this.pendingWordRequestsCount,
+    required this.acceptedSentenceRequestsCount,
+    required this.pendingSentenceRequestsCount,
+    required this.acceptedQuizRequestsCount,
+    required this.pendingQuizRequestsCount,
     required this.createdAt,
     required this.updatedAt,
     // eager_loadでキャッシュしたdrillの情報
@@ -43,10 +44,11 @@ class Dictionary {
   String publicUid;
   int langNumberOfEntry;
   int langNumberOfMeaning;
-  bool requestScreened;
   int wordsCount;
   int sentencesCount;
   int wordRequestsCount;
+  int sentenceRequestsCount;
+  int quizRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
   int acceptedSentenceRequestsCount;
@@ -72,10 +74,11 @@ class Dictionary {
         publicUid = json['public_uid'],
         langNumberOfEntry = json['lang_number_of_entry'],
         langNumberOfMeaning = json['lang_number_of_meaning'],
-        requestScreened = json['request_screened'],
         wordsCount = json['words_count'],
         sentencesCount = json['sentences_count'],
         wordRequestsCount = json['word_requests_count'],
+        sentenceRequestsCount = json['sentence_requests_count'],
+        quizRequestsCount = json['quiz_requests_count'],
         acceptedWordRequestsCount = json['accepted_word_requests_count'],
         pendingWordRequestsCount = json['pending_word_requests_count'],
         acceptedSentenceRequestsCount =
@@ -91,9 +94,18 @@ class Dictionary {
             ? []
             : json['pos_tags'].map<PosTag>((e) => PosTag.fromJson(e)).toList();
 
-// 却下されたwordRequestのリクエストの数
+  // 却下されたwordRequestのリクエストの数
   int rejectedWordRequestsCount() =>
       wordRequestsCount - acceptedWordRequestsCount - pendingWordRequestsCount;
+
+  // 却下されたSentenceRequestのリクエストの数
+  int rejectedSentenceRequestsCount() =>
+      sentenceRequestsCount -
+      acceptedSentenceRequestsCount -
+      pendingSentenceRequestsCount;
+
+  int rejectedQuizRequestsCount() =>
+      quizRequestsCount - acceptedQuizRequestsCount - pendingQuizRequestsCount;
 
   // 見出し語の言語
   String languageOfEntry() =>
@@ -116,17 +128,17 @@ class Dictionary {
         'public_uid': publicUid,
         'lang_number_of_entry': langNumberOfEntry,
         'lang_number_of_meaning': langNumberOfMeaning,
-        'request_screened': requestScreened,
         'words_count': wordsCount,
         'sentences_count': sentencesCount,
         'word_requests_count': wordRequestsCount,
+        'sentence_requests_count': sentenceRequestsCount,
+        'quiz_requests_count': quizRequestsCount,
         'accepted_word_requests_count': acceptedWordRequestsCount,
         'pending_word_requests_count': pendingWordRequestsCount,
         'accepted_sentence_requests_count': acceptedSentenceRequestsCount,
         'pending_sentence_requests_count': pendingSentenceRequestsCount,
         'accepted_quiz_requests_count': acceptedQuizRequestsCount,
         'pending_quiz_requests_count': pendingQuizRequestsCount,
-
         'created_at': createdAt,
         'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,

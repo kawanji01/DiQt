@@ -73,7 +73,13 @@ class QuizRequest {
             ? Dictionary.fromJson(json['dictionary'])
             : null;
 
-  bool isPending() => acceptance == false && rejection == false;
+  bool closed() {
+    return acceptance == true || rejection == true;
+  }
+
+  bool notClosed() {
+    return acceptance == false && rejection == false;
+  }
 
   Map<String, dynamic> toJson() => {
         'id': id,
