@@ -2,8 +2,11 @@ import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/models/sentence_request.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
+import 'package:booqs_mobile/pages/sentence_request/show.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/sentence/form.dart';
@@ -87,22 +90,27 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
       };
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteSentences.create(params);
+      final Map resMap = await RemoteSentences.create(params);
       EasyLoading.dismiss();
       // リクエストロック終了
       setState(() {
         _isRequesting = false;
       });
       if (!mounted) return;
+      if (ErrorHandler.isErrorMap(resMap)) {
+        ErrorHandler.showErrorSnackBar(context, resMap);
+        return;
+      }
+      final SentenceRequest sentenceRequest =
+          SentenceRequest.fromJson(resMap['sentence_request']);
+      final snackBar = SnackBar(content: Text('${resMap['message']}'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-      if (resMap == null) {
-        const snackBar = SnackBar(content: Text('辞書を更新できませんでした。'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } else {
+      if (sentenceRequest.closed()) {
         final sentence = Sentence.fromJson(resMap['sentence']);
-        final snackBar = SnackBar(content: Text('${resMap['message']}'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         SentenceShowPage.pushReplacement(context, sentence.id);
+      } else {
+        SentenceRequestShowPage.pushReplacement(context, sentenceRequest.id);
       }
     }
 
@@ -159,7 +167,7 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('例文の追加'),
+        title: Text(t.sentences.add),
       ),
       body: SingleChildScrollView(
         child: Container(

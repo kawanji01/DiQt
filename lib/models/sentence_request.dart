@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/models/sentence_request_vote.dart';
 import 'package:booqs_mobile/models/user.dart';
 
 class SentenceRequest {
@@ -21,8 +22,15 @@ class SentenceRequest {
     required this.elimination,
     required this.acceptance,
     required this.rejection,
+    required this.comment,
+    required this.sentenceRequestCommentsCount,
+    required this.upvotesCount,
+    required this.downvotesCount,
+    required this.pendingReason,
     required this.createdAt,
     required this.updatedAt,
+    this.votesCountToClose,
+    this.sentenceRequestVote,
     this.user,
     this.sentence,
     this.dictionary,
@@ -44,8 +52,15 @@ class SentenceRequest {
   bool elimination;
   bool acceptance;
   bool rejection;
+  String? comment;
+  int sentenceRequestCommentsCount;
+  int upvotesCount;
+  int downvotesCount;
+  String? pendingReason;
   DateTime createdAt;
   DateTime updatedAt;
+  int? votesCountToClose;
+  SentenceRequestVote? sentenceRequestVote;
   Dictionary? dictionary;
   Sentence? sentence;
   User? user;
@@ -66,8 +81,17 @@ class SentenceRequest {
         elimination = json['elimination'],
         acceptance = json['acceptance'],
         rejection = json['rejection'],
+        comment = json['comment'],
+        sentenceRequestCommentsCount = json['sentence_request_comments_count'],
+        upvotesCount = json['upvotes_count'],
+        downvotesCount = json['downvotes_count'],
+        pendingReason = json['pending_reason'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
+        votesCountToClose = json['votes_count_to_close'],
+        sentenceRequestVote = json['sentence_request_vote'] == null
+            ? null
+            : SentenceRequestVote.fromJson(json['sentence_request_vote']),
         dictionary = json['dictionary'] == null
             ? null
             : Dictionary.fromJson(json['dictionary']),
@@ -76,7 +100,13 @@ class SentenceRequest {
             : Sentence.fromJson(json['sentence']),
         user = json['user'] == null ? null : User.fromJson(json['user']);
 
-  bool isPending() => acceptance == false && rejection == false;
+  bool notClosed() {
+    return acceptance == false && rejection == false;
+  }
+
+  bool closed() {
+    return acceptance == true || rejection == true;
+  }
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -92,8 +122,15 @@ class SentenceRequest {
         'elimination': elimination,
         'acceptance': acceptance,
         'rejection': rejection,
+        'comment': comment,
+        'sentence_request_comments_count': sentenceRequestCommentsCount,
+        'upvotes_count': upvotesCount,
+        'downvotes_count': downvotesCount,
+        'pending_reason': pendingReason,
         'created_at': createdAt,
         'updated_at': updatedAt,
+        'votes_count_to_close': votesCountToClose,
+        'sentence_request_vote': sentenceRequestVote,
         'dictionary': dictionary,
         'sentence': sentence,
         'user': user,

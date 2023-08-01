@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2142 (1071 per locale)
+/// Strings: 2176 (1088 per locale)
 ///
-/// Built on 2023-07-31 at 10:05 UTC
+/// Built on 2023-07-31 at 22:58 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -154,6 +154,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsDrillsEn drills = _TranslationsDrillsEn._(_root);
 	late final _TranslationsWeaknessesEn weaknesses = _TranslationsWeaknessesEn._(_root);
 	late final _TranslationsUsersEn users = _TranslationsUsersEn._(_root);
+	late final _TranslationsSentenceRequestsEn sentenceRequests = _TranslationsSentenceRequestsEn._(_root);
 	late final _TranslationsSchoolsEn schools = _TranslationsSchoolsEn._(_root);
 	late final _TranslationsNoticesEn notices = _TranslationsNoticesEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
@@ -412,6 +413,7 @@ class _TranslationsUsersEn {
 	String get users => 'Users';
 	String get user => 'User';
 	String get anonymous_user => 'Anonymous user';
+	String get deleted_user => 'Deleted user';
 	String get creating_account_succeeded => 'Your account registration has been completed! Welcome to DiQt!';
 	String get show => 'User Page';
 	String get menu => 'Menu';
@@ -440,6 +442,30 @@ class _TranslationsUsersEn {
 	String get failed_to_update => 'Account could not be updated.';
 	String get destroyed => 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
 	String get drills => 'Created Drills';
+}
+
+// Path: sentenceRequests
+class _TranslationsSentenceRequestsEn {
+	_TranslationsSentenceRequestsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get sentence_requests => 'Edit histories of example sentences';
+	String get edit_histories => 'Edit Histories';
+	String get pending_edits => 'Pending Edits';
+	String get rejected_edits => 'Rejected Edits';
+	String get edit_applied => 'Your edit applied.';
+	String get addition_request_submitted => 'Your addition request submitted.';
+	String get modification_request_submitted => 'Your modification request submitted.';
+	String get elimination_request_submitted => 'Your elimination request submitted.';
+	String get already_submitted => 'You have already submitted a request.';
+	String get addition => 'Addition of sentence';
+	String get modification => 'Modification of sentence';
+	String get elimination => 'Deletion of sentence';
+	String get acceptance => 'Adopted';
+	String get rejection => 'Rejected';
+	String get pending => 'Pending';
 }
 
 // Path: schools
@@ -967,6 +993,7 @@ class _TranslationsSentencesEn {
 	String get translation => 'Translation';
 	String original_placeholder({required Object language}) => 'Please enter an example sentence in ${language}.';
 	String translation_placeholder({required Object language}) => 'Please enter a ${language} translation of the example sentence.';
+	String get explanation => 'Explanation';
 	String get generate_sentence => 'Generate an example sentence with AI';
 	String keyword_description({required Object limit}) => 'Enter the keywords you wish to include in the examples (max. ${limit} characters).';
 	String get keyword_placeholder => 'Keywords to be included in the sentence';
@@ -1582,6 +1609,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsDrillsJa drills = _TranslationsDrillsJa._(_root);
 	@override late final _TranslationsWeaknessesJa weaknesses = _TranslationsWeaknessesJa._(_root);
 	@override late final _TranslationsUsersJa users = _TranslationsUsersJa._(_root);
+	@override late final _TranslationsSentenceRequestsJa sentenceRequests = _TranslationsSentenceRequestsJa._(_root);
 	@override late final _TranslationsSchoolsJa schools = _TranslationsSchoolsJa._(_root);
 	@override late final _TranslationsNoticesJa notices = _TranslationsNoticesJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
@@ -1840,6 +1868,7 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get users => 'ユーザー';
 	@override String get user => 'ユーザー';
 	@override String get anonymous_user => '匿名ユーザー';
+	@override String get deleted_user => '退会ユーザー';
 	@override String get creating_account_succeeded => '会員登録が完了しました！ようこそDiQtへ！！';
 	@override String get show => 'ユーザーページ';
 	@override String get menu => 'メニュー';
@@ -1868,6 +1897,30 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get failed_to_update => 'アカウントを更新できませんでした。';
 	@override String get destroyed => '退会が完了しました。ご利用いただき、誠にありがとうございました。';
 	@override String get drills => '作成したドリル';
+}
+
+// Path: sentenceRequests
+class _TranslationsSentenceRequestsJa implements _TranslationsSentenceRequestsEn {
+	_TranslationsSentenceRequestsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get sentence_requests => '例文の編集履歴';
+	@override String get edit_histories => '編集履歴';
+	@override String get pending_edits => '審査中の編集';
+	@override String get rejected_edits => '拒否された編集';
+	@override String get edit_applied => '編集が適応されました。';
+	@override String get addition_request_submitted => '追加リクエストが申請されました。';
+	@override String get modification_request_submitted => '修正リクエストが申請されました。';
+	@override String get elimination_request_submitted => '削除リクエストが申請されました。';
+	@override String get already_submitted => '編集リクエストをすでに申請済みです。';
+	@override String get addition => '例文の追加';
+	@override String get modification => '例文の修正';
+	@override String get elimination => '例文の削除';
+	@override String get acceptance => '採用済';
+	@override String get rejection => '却下済';
+	@override String get pending => '審査中';
 }
 
 // Path: schools
@@ -2395,6 +2448,7 @@ class _TranslationsSentencesJa implements _TranslationsSentencesEn {
 	@override String get translation => '翻訳';
 	@override String original_placeholder({required Object language}) => '【必須】${language}の例文を入力してください。';
 	@override String translation_placeholder({required Object language}) => '【必須】例文の${language}の訳を入力してください。';
+	@override String get explanation => '解説';
 	@override String get generate_sentence => 'AIで例文を生成する';
 	@override String keyword_description({required Object limit}) => '例文に含めたいキーワードを入力してください(${limit}文字以内)。';
 	@override String get keyword_placeholder => '例文に含むキーワード';
@@ -3153,6 +3207,7 @@ extension on _TranslationsEn {
 			case 'users.users': return 'Users';
 			case 'users.user': return 'User';
 			case 'users.anonymous_user': return 'Anonymous user';
+			case 'users.deleted_user': return 'Deleted user';
 			case 'users.creating_account_succeeded': return 'Your account registration has been completed! Welcome to DiQt!';
 			case 'users.show': return 'User Page';
 			case 'users.menu': return 'Menu';
@@ -3181,6 +3236,21 @@ extension on _TranslationsEn {
 			case 'users.failed_to_update': return 'Account could not be updated.';
 			case 'users.destroyed': return 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
 			case 'users.drills': return 'Created Drills';
+			case 'sentenceRequests.sentence_requests': return 'Edit histories of example sentences';
+			case 'sentenceRequests.edit_histories': return 'Edit Histories';
+			case 'sentenceRequests.pending_edits': return 'Pending Edits';
+			case 'sentenceRequests.rejected_edits': return 'Rejected Edits';
+			case 'sentenceRequests.edit_applied': return 'Your edit applied.';
+			case 'sentenceRequests.addition_request_submitted': return 'Your addition request submitted.';
+			case 'sentenceRequests.modification_request_submitted': return 'Your modification request submitted.';
+			case 'sentenceRequests.elimination_request_submitted': return 'Your elimination request submitted.';
+			case 'sentenceRequests.already_submitted': return 'You have already submitted a request.';
+			case 'sentenceRequests.addition': return 'Addition of sentence';
+			case 'sentenceRequests.modification': return 'Modification of sentence';
+			case 'sentenceRequests.elimination': return 'Deletion of sentence';
+			case 'sentenceRequests.acceptance': return 'Adopted';
+			case 'sentenceRequests.rejection': return 'Rejected';
+			case 'sentenceRequests.pending': return 'Pending';
 			case 'schools.schools': return 'Schools';
 			case 'schools.school': return 'School';
 			case 'schools.name': return 'Name';
@@ -3618,6 +3688,7 @@ extension on _TranslationsEn {
 			case 'sentences.translation': return 'Translation';
 			case 'sentences.original_placeholder': return ({required Object language}) => 'Please enter an example sentence in ${language}.';
 			case 'sentences.translation_placeholder': return ({required Object language}) => 'Please enter a ${language} translation of the example sentence.';
+			case 'sentences.explanation': return 'Explanation';
 			case 'sentences.generate_sentence': return 'Generate an example sentence with AI';
 			case 'sentences.keyword_description': return ({required Object limit}) => 'Enter the keywords you wish to include in the examples (max. ${limit} characters).';
 			case 'sentences.keyword_placeholder': return 'Keywords to be included in the sentence';
@@ -4232,6 +4303,7 @@ extension on _TranslationsJa {
 			case 'users.users': return 'ユーザー';
 			case 'users.user': return 'ユーザー';
 			case 'users.anonymous_user': return '匿名ユーザー';
+			case 'users.deleted_user': return '退会ユーザー';
 			case 'users.creating_account_succeeded': return '会員登録が完了しました！ようこそDiQtへ！！';
 			case 'users.show': return 'ユーザーページ';
 			case 'users.menu': return 'メニュー';
@@ -4260,6 +4332,21 @@ extension on _TranslationsJa {
 			case 'users.failed_to_update': return 'アカウントを更新できませんでした。';
 			case 'users.destroyed': return '退会が完了しました。ご利用いただき、誠にありがとうございました。';
 			case 'users.drills': return '作成したドリル';
+			case 'sentenceRequests.sentence_requests': return '例文の編集履歴';
+			case 'sentenceRequests.edit_histories': return '編集履歴';
+			case 'sentenceRequests.pending_edits': return '審査中の編集';
+			case 'sentenceRequests.rejected_edits': return '拒否された編集';
+			case 'sentenceRequests.edit_applied': return '編集が適応されました。';
+			case 'sentenceRequests.addition_request_submitted': return '追加リクエストが申請されました。';
+			case 'sentenceRequests.modification_request_submitted': return '修正リクエストが申請されました。';
+			case 'sentenceRequests.elimination_request_submitted': return '削除リクエストが申請されました。';
+			case 'sentenceRequests.already_submitted': return '編集リクエストをすでに申請済みです。';
+			case 'sentenceRequests.addition': return '例文の追加';
+			case 'sentenceRequests.modification': return '例文の修正';
+			case 'sentenceRequests.elimination': return '例文の削除';
+			case 'sentenceRequests.acceptance': return '採用済';
+			case 'sentenceRequests.rejection': return '却下済';
+			case 'sentenceRequests.pending': return '審査中';
 			case 'schools.schools': return '教室';
 			case 'schools.school': return '教室';
 			case 'schools.name': return '名前';
@@ -4697,6 +4784,7 @@ extension on _TranslationsJa {
 			case 'sentences.translation': return '翻訳';
 			case 'sentences.original_placeholder': return ({required Object language}) => '【必須】${language}の例文を入力してください。';
 			case 'sentences.translation_placeholder': return ({required Object language}) => '【必須】例文の${language}の訳を入力してください。';
+			case 'sentences.explanation': return '解説';
 			case 'sentences.generate_sentence': return 'AIで例文を生成する';
 			case 'sentences.keyword_description': return ({required Object limit}) => '例文に含めたいキーワードを入力してください(${limit}文字以内)。';
 			case 'sentences.keyword_placeholder': return '例文に含むキーワード';

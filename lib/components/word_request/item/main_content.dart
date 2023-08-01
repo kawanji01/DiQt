@@ -20,7 +20,7 @@ class WordRequestItemMainContent extends StatelessWidget {
           timestamp: wordRequest.createdAt,
         ),
         WordRequestItemUser(
-          wordRequest: wordRequest,
+          user: wordRequest.user,
         ),
         const SizedBox(
           height: 8,

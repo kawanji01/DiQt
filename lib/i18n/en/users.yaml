@@ -1,6 +1,7 @@
 users: 'Users'
 user: 'User'
 anonymous_user: 'Anonymous user'
+deleted_user: 'Deleted user'
 creating_account_succeeded: 'Your account registration has been completed! Welcome to DiQt!'
 show: 'User Page'
 menu: 'Menu'

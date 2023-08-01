@@ -1,6 +1,7 @@
 users: 'ユーザー'
 user: 'ユーザー'
 anonymous_user: '匿名ユーザー'
+deleted_user: '退会ユーザー'
 creating_account_succeeded: '会員登録が完了しました！ようこそDiQtへ！！'
 show: 'ユーザーページ'
 menu: 'メニュー'

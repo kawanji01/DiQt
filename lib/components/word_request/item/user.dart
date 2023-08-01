@@ -1,17 +1,15 @@
 import 'package:booqs_mobile/components/user/icon.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/models/word_request.dart';
 import 'package:flutter/material.dart';
 
 class WordRequestItemUser extends StatelessWidget {
-  const WordRequestItemUser({super.key, required this.wordRequest});
-  final WordRequest wordRequest;
+  const WordRequestItemUser({super.key, required this.user});
+  final User? user;
 
   @override
   Widget build(BuildContext context) {
-    final User? user = wordRequest.user;
-    final String name = user?.name ?? t.users.anonymous_user;
+    final String name = user?.name ?? t.users.deleted_user;
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),

@@ -27,7 +27,7 @@ class WordRequestItemStatus extends StatelessWidget {
     } else if (wordRequest.rejection) {
       status = t.wordRequests.rejection;
       color = Colors.red;
-    } else if (wordRequest.isPending()) {
+    } else if (wordRequest.notClosed()) {
       status = t.wordRequests.pending;
       color = Colors.black54;
     } else {

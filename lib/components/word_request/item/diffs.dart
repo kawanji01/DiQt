@@ -1,10 +1,6 @@
-import 'package:booqs_mobile/components/word_request/item/entry_diff.dart';
-import 'package:booqs_mobile/components/word_request/item/explanation_diff.dart';
-import 'package:booqs_mobile/components/word_request/item/ipa_diff.dart';
-import 'package:booqs_mobile/components/word_request/item/meaning_diff.dart';
-import 'package:booqs_mobile/components/word_request/item/pos_diff.dart';
-import 'package:booqs_mobile/components/word_request/item/reading_diff.dart';
+import 'package:booqs_mobile/components/shared/diff/diff_with_label.dart';
 import 'package:booqs_mobile/components/word_request/item/sentence_diff.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word_request.dart';
 import 'package:flutter/material.dart';
 
@@ -17,26 +13,39 @@ class WordRequestItemDiffs extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        WordRequestEntryDiff(
-          wordRequest: wordRequest,
+        SharedDiffWithLabel(
+          label: t.words.entry,
+          oldText: wordRequest.previousEntry,
+          newText: wordRequest.entry,
+          alwaysShow: true,
         ),
-        WordRequestItemReadingDiff(
-          wordRequest: wordRequest,
+        SharedDiffWithLabel(
+          label: t.words.reading,
+          oldText: wordRequest.previousReading,
+          newText: wordRequest.reading,
         ),
-        WordRequestItemPosDiff(
-          wordRequest: wordRequest,
+        SharedDiffWithLabel(
+          label: t.words.pos_tag_id,
+          oldText: wordRequest.previousPosTag?.name,
+          newText: wordRequest.previousPosTag?.name,
         ),
-        WordRequestItemIpaDiff(
-          wordRequest: wordRequest,
+        SharedDiffWithLabel(
+          label: t.words.ipa,
+          oldText: wordRequest.previousIpa,
+          newText: wordRequest.ipa,
         ),
-        WordRequestItemMeaningDiff(
-          wordRequest: wordRequest,
+        SharedDiffWithLabel(
+          label: t.words.meaning,
+          oldText: wordRequest.previousMeaning,
+          newText: wordRequest.meaning,
         ),
         WordRequestItemSentenceDiff(
           wordRequest: wordRequest,
         ),
-        WordRequestItemExplanationDiff(
-          wordRequest: wordRequest,
+        SharedDiffWithLabel(
+          label: t.words.explanation,
+          oldText: wordRequest.previousExplanation,
+          newText: wordRequest.explanation,
         ),
       ],
     );

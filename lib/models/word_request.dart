@@ -137,12 +137,12 @@ class WordRequest {
             ? null
             : Sentence.fromJson(json['previous_sentence']);
 
-  bool isPending() {
-    return acceptance == false && rejection == false;
-  }
-
   bool closed() {
     return acceptance == true || rejection == true;
+  }
+
+  bool notClosed() {
+    return acceptance == false && rejection == false;
   }
 
   Map<String, dynamic> toJson() => {

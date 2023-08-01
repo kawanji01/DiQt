@@ -10,44 +10,50 @@ class WordRequestItemEditorComment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String editorComment = wordRequest.comment ?? '';
-    if (editorComment.isNotEmpty) {
-      return DottedBorder(
-          color: Colors.black54,
-          strokeWidth: 1,
-          padding:
-              const EdgeInsets.only(top: 10, bottom: 16, left: 16, right: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Icon(
-                    Icons.comment,
-                    size: 14,
-                    color: Colors.black54,
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    t.wordRequests.editor_comment,
-                    style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black54,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                editorComment,
-                style: const TextStyle(fontSize: 16, color: Colors.black87),
-              ),
-            ],
-          ));
+    if (editorComment.isEmpty) {
+      return Container();
     }
-    return Container();
+    return DottedBorder(
+        color: Colors.black54,
+        strokeWidth: 1,
+        padding:
+            const EdgeInsets.only(top: 10, bottom: 16, left: 16, right: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 24,
+            ),
+            Row(
+              children: [
+                const Icon(
+                  Icons.comment,
+                  size: 14,
+                  color: Colors.black54,
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  t.wordRequests.editor_comment,
+                  style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Text(
+              editorComment,
+              style: const TextStyle(fontSize: 16, color: Colors.black87),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+          ],
+        ));
   }
 }

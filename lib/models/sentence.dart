@@ -67,6 +67,11 @@ class Sentence {
             ? null
             : Dictionary.fromJson(json['dictionary']);
 
+  // 却下されたwordRequestのリクエストの数
+  int rejectedSentenceRequestsCount() =>
+      sentenceRequestsCount -
+      acceptedSentenceRequestsCount -
+      pendingSentenceRequestsCount;
   Map<String, dynamic> toJson() => {
         'id': id,
         'dictionary_id': dictionaryId,

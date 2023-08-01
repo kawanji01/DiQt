@@ -5,7 +5,10 @@ import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/sentence.dart';
+import 'package:booqs_mobile/models/sentence_request.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
+import 'package:booqs_mobile/pages/sentence_request/show.dart';
+import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -67,21 +70,27 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
       };
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      final Map? resMap = await RemoteSentences.update(params);
+      final Map resMap = await RemoteSentences.update(params);
       EasyLoading.dismiss();
       setState(() {
         _isRequesting = false;
       });
       if (!mounted) return;
-
-      if (resMap == null) {
-        final snackBar = SnackBar(content: Text(t.sentences.update_failed));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } else {
+      if (ErrorHandler.isErrorMap(resMap)) {
+        ErrorHandler.showErrorSnackBar(context, resMap);
+        return;
+      }
+      final SentenceRequest sentenceRequest =
+          SentenceRequest.fromJson(resMap['sentence_request']);
+      if (sentenceRequest.closed()) {
         final sentence = Sentence.fromJson(resMap['sentence']);
         final snackBar = SnackBar(content: Text(t.sentences.updated));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         SentenceShowPage.pushReplacement(context, sentence.id);
+      } else {
+        final snackBar = SnackBar(content: Text(resMap['message']));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        SentenceRequestShowPage.pushReplacement(context, sentenceRequest.id);
       }
     }
 

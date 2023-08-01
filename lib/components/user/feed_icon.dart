@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserFeedIcon extends ConsumerWidget {
   const UserFeedIcon({Key? key, required this.user}) : super(key: key);
-  final User user;
+  final User? user;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,7 +19,7 @@ class UserFeedIcon extends ConsumerWidget {
     double paddingRight = grid * 5;
 
     Widget image() {
-      final String imageUrl = user.iconImageUrl ?? notFoundIcon;
+      final String imageUrl = user?.iconImageUrl ?? notFoundIcon;
       // const String notFoundIconName = 'assets/images/not_found_icon.png';
       final image = CachedNetworkImage(
         imageUrl: imageUrl,
@@ -41,10 +41,11 @@ class UserFeedIcon extends ConsumerWidget {
     }
 
     return InkWell(
-      onTap: () {
-        // ref.read(userProvider.notifier).state = user;
-        UserShowPage.push(context, user.publicUid);
-      },
+      onTap: user == null
+          ? null
+          : () {
+              UserShowPage.push(context, user?.publicUid ?? '');
+            },
       child: Container(
         height: 56,
         width: width,

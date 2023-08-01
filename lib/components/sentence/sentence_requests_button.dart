@@ -1,5 +1,6 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
+import 'package:booqs_mobile/pages/sentence_request/sentence.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
@@ -10,24 +11,8 @@ class SentenceSentenceRequestsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget acceptedSentenceRequestsButton() {
-      final String redirectPath =
-          'sentences/${sentence.id}/accepted_sentence_requests';
-      return InkWell(
-          onTap: () {
-            DiQtBrowserDialog.open(context, redirectPath);
-          },
-          child: SmallOutlineGrayButton(
-            icon: Icons.history,
-            label: '例文の改善履歴（${sentence.acceptedSentenceRequestsCount}）',
-          ));
-    }
-
     Widget pendingSentenceRequestsButton() {
       if (sentence.pendingSentenceRequestsCount == 0) return Container();
-
-      final String redirectPath =
-          'sentences/${sentence.id}/pending_sentence_requests';
       return TextButton(
         style: TextButton.styleFrom(
           foregroundColor: Colors.green,
@@ -35,10 +20,10 @@ class SentenceSentenceRequestsButton extends StatelessWidget {
           textStyle: const TextStyle(fontSize: 16),
         ),
         onPressed: () {
-          DiQtBrowserDialog.open(context, redirectPath);
+          SentenceRequestSentencePage.push(context, sentence.id, 'pending');
         },
         child: Text(
-          '${sentence.pendingSentenceRequestsCount}件の審査中の編集',
+          '${t.dictionaries.pending_sentence_requests}(${sentence.pendingSentenceRequestsCount})',
           style: const TextStyle(
             decoration: TextDecoration.underline,
           ),
@@ -49,7 +34,16 @@ class SentenceSentenceRequestsButton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        acceptedSentenceRequestsButton(),
+        InkWell(
+            onTap: () {
+              SentenceRequestSentencePage.push(
+                  context, sentence.id, 'accepted');
+            },
+            child: SmallOutlineGrayButton(
+              icon: Icons.history,
+              label:
+                  '${t.dictionaries.accepted_sentence_requests}（${sentence.acceptedSentenceRequestsCount}）',
+            )),
         pendingSentenceRequestsButton()
       ],
     );
