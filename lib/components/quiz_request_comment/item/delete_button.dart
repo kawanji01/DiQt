@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/shared/delete_confirmation.dart';
 import 'package:booqs_mobile/data/provider/quiz_request.dart';
+import 'package:booqs_mobile/data/remote/quiz_request_comments.dart';
 import 'package:booqs_mobile/data/remote/sentence_request_comments.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz_request_comment.dart';
@@ -25,8 +26,8 @@ class QuizRequestCommentItemDeleteButtonButtonState
   // destroy
   Future<void> _destroy() async {
     EasyLoading.show();
-    final Map resMap = await RemoteSentenceRequestComments.destroy(
-        widget.quizRequestComment.id);
+    final Map resMap =
+        await RemoteQuizRequestComments.destroy(widget.quizRequestComment.id);
     EasyLoading.dismiss();
     if (!mounted) return;
     if (ErrorHandler.isErrorMap(resMap)) {

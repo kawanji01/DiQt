@@ -61,6 +61,7 @@ class RemoteSentenceRequestComments {
 
   static Future<Map> destroy(int sentenceRequestCommentId) async {
     try {
+      print('sentenceRequestCommentId: $sentenceRequestCommentId');
       final Uri url = Uri.parse(
           '${DiQtURL.root()}/api/v1/mobile/sentence_request_comments/$sentenceRequestCommentId');
       final Response res = await HttpService.delete(url, null);

@@ -84,29 +84,7 @@ class RemoteQuizzes {
     }
   }
 
-  static Future<Map?> edit(int quizId) async {
-    try {
-      final Uri url =
-          Uri.parse('${DiQtURL.root()}/api/v1/mobile/quizzes/$quizId/edit');
-      final Response res = await HttpService.get(url);
-
-      if (res.statusCode != 200) return null;
-
-      final Map resMap = json.decode(res.body);
-      return resMap;
-    } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
-    }
-  }
-
-  static Future<Map?> update(Map params) async {
+  static Future<Map> update(Map params) async {
     try {
       final Map<String, dynamic> body = {'quiz': params};
 
@@ -116,19 +94,16 @@ class RemoteQuizzes {
         url,
         body,
       );
-      if (res.statusCode != 200) return null;
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
 
-      final Map? resMap = json.decode(res.body);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 }
