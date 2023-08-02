@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2176 (1088 per locale)
+/// Strings: 2236 (1118 per locale)
 ///
-/// Built on 2023-07-31 at 22:58 UTC
+/// Built on 2023-08-02 at 08:58 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -147,6 +147,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsEn _root = this; // ignore: unused_field
 
 	// Translations
+	late final _TranslationsQuizRequestsEn quizRequests = _TranslationsQuizRequestsEn._(_root);
 	late final _TranslationsSessionsEn sessions = _TranslationsSessionsEn._(_root);
 	late final _TranslationsDictionariesEn dictionaries = _TranslationsDictionariesEn._(_root);
 	late final _TranslationsReviewsEn reviews = _TranslationsReviewsEn._(_root);
@@ -181,6 +182,28 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsPurchaseEn purchase = _TranslationsPurchaseEn._(_root);
 	late final _TranslationsHomeEn home = _TranslationsHomeEn._(_root);
 	late final _TranslationsDrillLapsEn drillLaps = _TranslationsDrillLapsEn._(_root);
+}
+
+// Path: quizRequests
+class _TranslationsQuizRequestsEn {
+	_TranslationsQuizRequestsEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get quiz_requests => 'Edit Histories of quizzes';
+	String get edit_histories => 'Edit Histories';
+	String get pending_edits => 'Pending Edits';
+	String get edit_applied => 'Your edit applied.';
+	String get addition_request_submitted => 'Your addition request submitted.';
+	String get modification_request_submitted => 'Your modification request submitted.';
+	String get elimination_request_submitted => 'Your elimination request submitted.';
+	String get addition => 'Addition of quiz';
+	String get modification => 'Modification of quiz';
+	String get elimination => 'Deletion of quiz';
+	String get acceptance => 'Adopted';
+	String get rejection => 'Rejected';
+	String get pending => 'Pending';
 }
 
 // Path: sessions
@@ -507,6 +530,12 @@ class _TranslationsNoticesEn {
 	String get word_request_accepted_message => 'Your dictionary edit has been adopted!';
 	String get word_request_commented_message => 'Your dictionary edit has been commented!';
 	String word_request_upvoted_message({required Object name}) => '${name} has upvoted your dictionary edit!';
+	String get sentence_request_accepted_message => 'Your example sentence edit has been adopted!';
+	String get sentence_request_commented_message => 'Your example sentence edit has been commented!';
+	String sentence_request_upvoted_message({required Object name}) => '${name} has upvoted your example sentence edit!';
+	String get quiz_request_accepted_message => 'Your quiz edit has been adopted!';
+	String get quiz_request_commented_message => 'Your quiz edit has been commented!';
+	String quiz_request_upvoted_message({required Object name}) => '${name} has upvoted your quiz edit!';
 }
 
 // Path: shared
@@ -1257,17 +1286,28 @@ class _TranslationsQuizzesEn {
 	String get made_a_mistake => 'Made a mistake';
 	String get question => 'Question';
 	String get question_placeholder => '【Required】Please input a question.';
+	String get lang_number_of_question => 'Language of question';
+	String get reading_out_question => 'Reading out the question';
+	String get question_hidden => 'Hide the question';
 	String get correct_answer => 'Correct Answer';
 	String get correct_answer_placeholder => '【Required】Please input a correct answer.';
+	String get lang_number_of_answer => 'Language of answer';
+	String get reading_out_answer => 'Reading out the answer';
+	String get short_answer_enabled => 'Let them enter the answer';
 	String get distractors => 'Distractors';
+	String get distractor => 'Distractor';
 	String get distractors_placeholder => 'You can input a distractor.';
 	String get explanation => 'Explanation';
 	String get explanation_placeholder => 'You can input a explanation.';
 	String get hint => 'Hint';
 	String get hint_placeholder => 'You can input a hint for the question.';
-	String get corrected_time_ago => 'Corrected %{time} ago';
-	String get incorrect_time_ago => 'Incorrect %{time} ago';
-	String get correct_answer_rate => '%{percent}% of correct answers';
+	String corrected_time_ago({required Object time}) => 'Corrected ${time} ago';
+	String incorrect_time_ago({required Object time}) => 'Incorrect ${time} ago';
+	String correct_answer_rate({required Object percent}) => '${percent}% of correct answers';
+	String get question_cover_text => 'Show question';
+	String get choices_cover_text => 'Show choices';
+	String get choices_cover_keys => 'Tap or Enter key';
+	String get please_input_answer => 'Please input an answer.';
 }
 
 // Path: wordRequestComments
@@ -1602,6 +1642,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsJa _root = this; // ignore: unused_field
 
 	// Translations
+	@override late final _TranslationsQuizRequestsJa quizRequests = _TranslationsQuizRequestsJa._(_root);
 	@override late final _TranslationsSessionsJa sessions = _TranslationsSessionsJa._(_root);
 	@override late final _TranslationsDictionariesJa dictionaries = _TranslationsDictionariesJa._(_root);
 	@override late final _TranslationsReviewsJa reviews = _TranslationsReviewsJa._(_root);
@@ -1636,6 +1677,28 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsPurchaseJa purchase = _TranslationsPurchaseJa._(_root);
 	@override late final _TranslationsHomeJa home = _TranslationsHomeJa._(_root);
 	@override late final _TranslationsDrillLapsJa drillLaps = _TranslationsDrillLapsJa._(_root);
+}
+
+// Path: quizRequests
+class _TranslationsQuizRequestsJa implements _TranslationsQuizRequestsEn {
+	_TranslationsQuizRequestsJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get quiz_requests => '問題の編集履歴';
+	@override String get edit_histories => '編集履歴';
+	@override String get pending_edits => '審査中の編集';
+	@override String get edit_applied => '編集が適応されました。';
+	@override String get addition_request_submitted => '追加リクエストが申請されました。';
+	@override String get modification_request_submitted => '修正リクエストが申請されました。';
+	@override String get elimination_request_submitted => '削除リクエストが申請されました。';
+	@override String get addition => '問題の追加';
+	@override String get modification => '問題の修正';
+	@override String get elimination => '問題の削除';
+	@override String get acceptance => '採用済';
+	@override String get rejection => '却下済';
+	@override String get pending => '審査中';
 }
 
 // Path: sessions
@@ -1962,6 +2025,12 @@ class _TranslationsNoticesJa implements _TranslationsNoticesEn {
 	@override String get word_request_accepted_message => 'あなたの辞書の編集が採用されました！';
 	@override String get word_request_commented_message => 'あなたの辞書の編集にコメントがつきました！';
 	@override String word_request_upvoted_message({required Object name}) => '${name}があなたの辞書の編集に賛成しました！';
+	@override String get sentence_request_accepted_message => 'あなたの例文の編集が採用されました！';
+	@override String get sentence_request_commented_message => 'あなたの例文の編集にコメントがつきました！';
+	@override String sentence_request_upvoted_message({required Object name}) => '${name}があなたの例文の編集に賛成しました！';
+	@override String get quiz_request_accepted_message => 'あなたの問題の編集が採用されました！';
+	@override String get quiz_request_commented_message => 'あなたの問題の編集にコメントがつきました！';
+	@override String quiz_request_upvoted_message({required Object name}) => '${name}があなたの問題の編集に賛成しました！';
 }
 
 // Path: shared
@@ -2712,17 +2781,28 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 	@override String get made_a_mistake => '間違えた';
 	@override String get question => '問題文';
 	@override String get question_placeholder => '【必須】問題文を入力してください。';
+	@override String get lang_number_of_question => '問題の言語';
+	@override String get reading_out_question => '問題の読み上げ';
+	@override String get question_hidden => '問題文の非表示';
 	@override String get correct_answer => '正解';
 	@override String get correct_answer_placeholder => '【必須】正解を入力してください。';
+	@override String get lang_number_of_answer => '答えの言語';
+	@override String get reading_out_answer => '答えの読み上げ';
+	@override String get short_answer_enabled => '答えを入力式にする';
 	@override String get distractors => '誤りの選択肢';
+	@override String get distractor => '誤りの選択肢';
 	@override String get distractors_placeholder => '【空欄可】誤りの選択肢を設定できます。';
 	@override String get explanation => '解説';
 	@override String get explanation_placeholder => '【空欄可】解説を設定できます。';
 	@override String get hint => 'ヒント';
 	@override String get hint_placeholder => '【空欄可】ヒントを設定できます。';
-	@override String get corrected_time_ago => '%{time}前に正解';
-	@override String get incorrect_time_ago => '%{time}前に不正解';
-	@override String get correct_answer_rate => '正答率%{percent}%';
+	@override String corrected_time_ago({required Object time}) => '${time}前に正解';
+	@override String incorrect_time_ago({required Object time}) => '${time}前に不正解';
+	@override String correct_answer_rate({required Object percent}) => '正答率${percent}%';
+	@override String get question_cover_text => '問題文を表示する';
+	@override String get choices_cover_text => '選択肢を表示する';
+	@override String get choices_cover_keys => 'タップまたはEnterキー';
+	@override String get please_input_answer => '解答を入力してください。';
 }
 
 // Path: wordRequestComments
@@ -3038,6 +3118,19 @@ class _TranslationsDrillLapsJa implements _TranslationsDrillLapsEn {
 extension on _TranslationsEn {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'quizRequests.quiz_requests': return 'Edit Histories of quizzes';
+			case 'quizRequests.edit_histories': return 'Edit Histories';
+			case 'quizRequests.pending_edits': return 'Pending Edits';
+			case 'quizRequests.edit_applied': return 'Your edit applied.';
+			case 'quizRequests.addition_request_submitted': return 'Your addition request submitted.';
+			case 'quizRequests.modification_request_submitted': return 'Your modification request submitted.';
+			case 'quizRequests.elimination_request_submitted': return 'Your elimination request submitted.';
+			case 'quizRequests.addition': return 'Addition of quiz';
+			case 'quizRequests.modification': return 'Modification of quiz';
+			case 'quizRequests.elimination': return 'Deletion of quiz';
+			case 'quizRequests.acceptance': return 'Adopted';
+			case 'quizRequests.rejection': return 'Rejected';
+			case 'quizRequests.pending': return 'Pending';
 			case 'sessions.log_in': return 'Log in';
 			case 'sessions.sign_up': return 'Sign up';
 			case 'sessions.register': return 'Register';
@@ -3274,6 +3367,12 @@ extension on _TranslationsEn {
 			case 'notices.word_request_accepted_message': return 'Your dictionary edit has been adopted!';
 			case 'notices.word_request_commented_message': return 'Your dictionary edit has been commented!';
 			case 'notices.word_request_upvoted_message': return ({required Object name}) => '${name} has upvoted your dictionary edit!';
+			case 'notices.sentence_request_accepted_message': return 'Your example sentence edit has been adopted!';
+			case 'notices.sentence_request_commented_message': return 'Your example sentence edit has been commented!';
+			case 'notices.sentence_request_upvoted_message': return ({required Object name}) => '${name} has upvoted your example sentence edit!';
+			case 'notices.quiz_request_accepted_message': return 'Your quiz edit has been adopted!';
+			case 'notices.quiz_request_commented_message': return 'Your quiz edit has been commented!';
+			case 'notices.quiz_request_upvoted_message': return ({required Object name}) => '${name} has upvoted your quiz edit!';
 			case 'shared.create': return 'Create';
 			case 'shared.create_succeeded': return 'Created';
 			case 'shared.create_failed': return 'Create failed';
@@ -3907,17 +4006,28 @@ extension on _TranslationsEn {
 			case 'quizzes.made_a_mistake': return 'Made a mistake';
 			case 'quizzes.question': return 'Question';
 			case 'quizzes.question_placeholder': return '【Required】Please input a question.';
+			case 'quizzes.lang_number_of_question': return 'Language of question';
+			case 'quizzes.reading_out_question': return 'Reading out the question';
+			case 'quizzes.question_hidden': return 'Hide the question';
 			case 'quizzes.correct_answer': return 'Correct Answer';
 			case 'quizzes.correct_answer_placeholder': return '【Required】Please input a correct answer.';
+			case 'quizzes.lang_number_of_answer': return 'Language of answer';
+			case 'quizzes.reading_out_answer': return 'Reading out the answer';
+			case 'quizzes.short_answer_enabled': return 'Let them enter the answer';
 			case 'quizzes.distractors': return 'Distractors';
+			case 'quizzes.distractor': return 'Distractor';
 			case 'quizzes.distractors_placeholder': return 'You can input a distractor.';
 			case 'quizzes.explanation': return 'Explanation';
 			case 'quizzes.explanation_placeholder': return 'You can input a explanation.';
 			case 'quizzes.hint': return 'Hint';
 			case 'quizzes.hint_placeholder': return 'You can input a hint for the question.';
-			case 'quizzes.corrected_time_ago': return 'Corrected %{time} ago';
-			case 'quizzes.incorrect_time_ago': return 'Incorrect %{time} ago';
-			case 'quizzes.correct_answer_rate': return '%{percent}% of correct answers';
+			case 'quizzes.corrected_time_ago': return ({required Object time}) => 'Corrected ${time} ago';
+			case 'quizzes.incorrect_time_ago': return ({required Object time}) => 'Incorrect ${time} ago';
+			case 'quizzes.correct_answer_rate': return ({required Object percent}) => '${percent}% of correct answers';
+			case 'quizzes.question_cover_text': return 'Show question';
+			case 'quizzes.choices_cover_text': return 'Show choices';
+			case 'quizzes.choices_cover_keys': return 'Tap or Enter key';
+			case 'quizzes.please_input_answer': return 'Please input an answer.';
 			case 'wordRequestComments.comment': return 'Comment';
 			case 'wordRequestComments.comment_to_you': return 'Comment to you';
 			case 'wordRequestComments.comment_placeholder': return 'Write a comment';
@@ -4134,6 +4244,19 @@ extension on _TranslationsEn {
 extension on _TranslationsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'quizRequests.quiz_requests': return '問題の編集履歴';
+			case 'quizRequests.edit_histories': return '編集履歴';
+			case 'quizRequests.pending_edits': return '審査中の編集';
+			case 'quizRequests.edit_applied': return '編集が適応されました。';
+			case 'quizRequests.addition_request_submitted': return '追加リクエストが申請されました。';
+			case 'quizRequests.modification_request_submitted': return '修正リクエストが申請されました。';
+			case 'quizRequests.elimination_request_submitted': return '削除リクエストが申請されました。';
+			case 'quizRequests.addition': return '問題の追加';
+			case 'quizRequests.modification': return '問題の修正';
+			case 'quizRequests.elimination': return '問題の削除';
+			case 'quizRequests.acceptance': return '採用済';
+			case 'quizRequests.rejection': return '却下済';
+			case 'quizRequests.pending': return '審査中';
 			case 'sessions.log_in': return 'ログインする';
 			case 'sessions.sign_up': return '新規登録する';
 			case 'sessions.register': return '登録する';
@@ -4370,6 +4493,12 @@ extension on _TranslationsJa {
 			case 'notices.word_request_accepted_message': return 'あなたの辞書の編集が採用されました！';
 			case 'notices.word_request_commented_message': return 'あなたの辞書の編集にコメントがつきました！';
 			case 'notices.word_request_upvoted_message': return ({required Object name}) => '${name}があなたの辞書の編集に賛成しました！';
+			case 'notices.sentence_request_accepted_message': return 'あなたの例文の編集が採用されました！';
+			case 'notices.sentence_request_commented_message': return 'あなたの例文の編集にコメントがつきました！';
+			case 'notices.sentence_request_upvoted_message': return ({required Object name}) => '${name}があなたの例文の編集に賛成しました！';
+			case 'notices.quiz_request_accepted_message': return 'あなたの問題の編集が採用されました！';
+			case 'notices.quiz_request_commented_message': return 'あなたの問題の編集にコメントがつきました！';
+			case 'notices.quiz_request_upvoted_message': return ({required Object name}) => '${name}があなたの問題の編集に賛成しました！';
 			case 'shared.create': return '作成する';
 			case 'shared.create_succeeded': return '作成されました。';
 			case 'shared.create_failed': return '作成に失敗しました。';
@@ -5003,17 +5132,28 @@ extension on _TranslationsJa {
 			case 'quizzes.made_a_mistake': return '間違えた';
 			case 'quizzes.question': return '問題文';
 			case 'quizzes.question_placeholder': return '【必須】問題文を入力してください。';
+			case 'quizzes.lang_number_of_question': return '問題の言語';
+			case 'quizzes.reading_out_question': return '問題の読み上げ';
+			case 'quizzes.question_hidden': return '問題文の非表示';
 			case 'quizzes.correct_answer': return '正解';
 			case 'quizzes.correct_answer_placeholder': return '【必須】正解を入力してください。';
+			case 'quizzes.lang_number_of_answer': return '答えの言語';
+			case 'quizzes.reading_out_answer': return '答えの読み上げ';
+			case 'quizzes.short_answer_enabled': return '答えを入力式にする';
 			case 'quizzes.distractors': return '誤りの選択肢';
+			case 'quizzes.distractor': return '誤りの選択肢';
 			case 'quizzes.distractors_placeholder': return '【空欄可】誤りの選択肢を設定できます。';
 			case 'quizzes.explanation': return '解説';
 			case 'quizzes.explanation_placeholder': return '【空欄可】解説を設定できます。';
 			case 'quizzes.hint': return 'ヒント';
 			case 'quizzes.hint_placeholder': return '【空欄可】ヒントを設定できます。';
-			case 'quizzes.corrected_time_ago': return '%{time}前に正解';
-			case 'quizzes.incorrect_time_ago': return '%{time}前に不正解';
-			case 'quizzes.correct_answer_rate': return '正答率%{percent}%';
+			case 'quizzes.corrected_time_ago': return ({required Object time}) => '${time}前に正解';
+			case 'quizzes.incorrect_time_ago': return ({required Object time}) => '${time}前に不正解';
+			case 'quizzes.correct_answer_rate': return ({required Object percent}) => '正答率${percent}%';
+			case 'quizzes.question_cover_text': return '問題文を表示する';
+			case 'quizzes.choices_cover_text': return '選択肢を表示する';
+			case 'quizzes.choices_cover_keys': return 'タップまたはEnterキー';
+			case 'quizzes.please_input_answer': return '解答を入力してください。';
 			case 'wordRequestComments.comment': return 'コメント';
 			case 'wordRequestComments.comment_to_you': return 'あなたへのコメント';
 			case 'wordRequestComments.comment_placeholder': return 'コメントを入力してください';

@@ -132,6 +132,9 @@ class Quiz {
             ? null
             : Sentence.fromJson(json['reversed_sentence']);
 
+  // 却下されたQuizRequestのリクエストの数
+  int rejectedQuizRequestsCount() =>
+      quizRequestsCount - acceptedQuizRequestsCount - pendingQuizRequestsCount;
   Map<String, dynamic> toJson() => {
         'id': id,
         'drill_id': drillId,

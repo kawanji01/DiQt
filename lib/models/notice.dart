@@ -4,11 +4,16 @@ import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/cheer.dart';
 import 'package:booqs_mobile/models/monthly_report.dart';
+import 'package:booqs_mobile/models/quiz_request.dart';
+import 'package:booqs_mobile/models/quiz_request_comment.dart';
 import 'package:booqs_mobile/models/relationship.dart';
+import 'package:booqs_mobile/models/sentence_request.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/models/weekly_report.dart';
 import 'package:booqs_mobile/models/word_request.dart';
 import 'package:booqs_mobile/models/word_request_comment.dart';
+
+import 'sentence_request_comment.dart';
 
 class Notice {
   Notice({
@@ -40,6 +45,10 @@ class Notice {
     this.relationship,
     this.wordRequest,
     this.wordRequestComment,
+    this.sentenceRequest,
+    this.sentenceRequestComment,
+    this.quizRequest,
+    this.quizRequestComment,
   });
 
   int id;
@@ -70,6 +79,10 @@ class Notice {
   Relationship? relationship;
   WordRequest? wordRequest;
   WordRequestComment? wordRequestComment;
+  SentenceRequest? sentenceRequest;
+  SentenceRequestComment? sentenceRequestComment;
+  QuizRequest? quizRequest;
+  QuizRequestComment? quizRequestComment;
 
   Notice.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -115,7 +128,19 @@ class Notice {
             : WordRequest.fromJson(json['word_request']),
         wordRequestComment = json['word_request_comment'] == null
             ? null
-            : WordRequestComment.fromJson(json['word_request_comment']);
+            : WordRequestComment.fromJson(json['word_request_comment']),
+        sentenceRequest = json['sentence_request'] == null
+            ? null
+            : SentenceRequest.fromJson(json['sentence_request']),
+        sentenceRequestComment = json['sentence_request_comment'] == null
+            ? null
+            : SentenceRequestComment.fromJson(json['sentence_request_comment']),
+        quizRequest = json['quiz_request'] == null
+            ? null
+            : QuizRequest.fromJson(json['quiz_request']),
+        quizRequestComment = json['quiz_request_comment'] == null
+            ? null
+            : QuizRequestComment.fromJson(json['quiz_request_comment']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -146,5 +171,9 @@ class Notice {
         'relationship': relationship,
         'word_request': wordRequest,
         'word_request_comment': wordRequestComment,
+        'sentence_request': sentenceRequest,
+        'sentence_request_comment': sentenceRequestComment,
+        'quiz_request': quizRequest,
+        'quiz_request_comment': quizRequestComment,
       };
 }

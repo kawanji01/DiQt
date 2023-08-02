@@ -4,19 +4,12 @@ import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizDrillTitle extends ConsumerStatefulWidget {
-  const QuizDrillTitle({Key? key, required this.drill}) : super(key: key);
+class QuizDrillTitle extends ConsumerWidget {
+  const QuizDrillTitle({super.key, required this.drill});
   final Drill drill;
 
   @override
-  QuizDrillTitleState createState() => QuizDrillTitleState();
-}
-
-class QuizDrillTitleState extends ConsumerState<QuizDrillTitle> {
-  @override
-  Widget build(BuildContext context) {
-    final Drill drill = widget.drill;
-
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       alignment: Alignment.bottomLeft,
       margin: const EdgeInsets.only(bottom: 4),

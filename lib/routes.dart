@@ -1,6 +1,9 @@
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
+import 'package:booqs_mobile/pages/quiz_request/dictionary.dart';
+import 'package:booqs_mobile/pages/quiz_request/quiz.dart';
+import 'package:booqs_mobile/pages/quiz_request/show.dart';
 import 'package:booqs_mobile/pages/school/show.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:booqs_mobile/pages/dictionary/guideline.dart';
@@ -93,7 +96,9 @@ const sentenceRequestSentencePage = '/sentence_request/sentence';
 const sentenceRequestShowPage = '/sentence_request/show';
 // 問題のリクエスト
 const quizRequestDictionaryPage = '/quiz_request/dictionary';
-const quizRequestWordPage = '/quiz_request/word';
+const quizRequestSchoolPage = '/quiz_request/dictionary';
+const quizRequestDrillPage = '/quiz_request/dictionary';
+const quizRequestQuizPage = '/quiz_request/word';
 const quizRequestShowPage = '/quiz_request/show';
 
 // 教室
@@ -168,11 +173,15 @@ final routes = {
   wordRequestDictionaryPage: (context) => const WordRequestDictionaryPage(),
   wordRequestWordPage: (context) => const WordRequestWordPage(),
   wordRequestShowPage: (context) => const WordRequestShowPage(),
-  // sentenceRequest
+  // SentenceRequest
   sentenceRequestDictionaryPage: (context) =>
       const SentenceRequestDictionaryPage(),
   sentenceRequestSentencePage: (context) => const SentenceRequestSentencePage(),
   sentenceRequestShowPage: (context) => const SentenceRequestShowPage(),
+  // QuizRequest
+  quizRequestDictionaryPage: (context) => const QuizRequestDictionaryPage(),
+  quizRequestQuizPage: (context) => const QuizRequestQuizPage(),
+  quizRequestShowPage: (context) => const QuizRequestShowPage(),
 
   // School
   schoolShowPage: (context) => const SchoolShowPage(),

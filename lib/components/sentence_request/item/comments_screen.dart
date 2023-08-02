@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/sentence_request/new_form.dart';
+import 'package:booqs_mobile/components/sentence_request_comment/new_form.dart';
 import 'package:booqs_mobile/components/sentence_request_comment/item_list.dart';
 import 'package:booqs_mobile/data/provider/sentence_request.dart';
 import 'package:booqs_mobile/models/sentence_request.dart';

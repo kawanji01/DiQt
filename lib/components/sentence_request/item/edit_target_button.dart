@@ -17,7 +17,7 @@ class SentenceRequestItemEditTargetButton extends StatelessWidget {
     if (sentence == null) {
       return Container();
     }
-    sentence.dictionary = sentenceRequest.dictionary;
+
     return InkWell(
         child: SmallOutlineGrayButton(
           label: t.wordRequests.target,
