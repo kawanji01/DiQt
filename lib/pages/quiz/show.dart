@@ -1,11 +1,8 @@
+import 'package:booqs_mobile/components/quiz/show_screen.dart';
 import 'package:booqs_mobile/data/provider/quiz.dart';
-import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/drill/list_quiz.dart';
-import 'package:booqs_mobile/components/quiz/edit_button.dart';
-import 'package:booqs_mobile/components/quiz/explanation/answer_analysis.dart';
-import 'package:booqs_mobile/components/quiz/quiz_requests_button.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
@@ -44,40 +41,24 @@ class QuizShowPageState extends ConsumerState<QuizShowPage> {
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
     final int quizId = arguments['quizId'];
-    final future = ref.watch(asyncQuizFamily(quizId));
-
-    Widget screen(Quiz? quiz) {
-      if (quiz == null) return const Text('Quiz does not exist.');
-
-      return Column(
-        children: [
-          DrillListQuiz(
-            quiz: quiz,
-            isShow: true,
-          ),
-          QuizEditButton(quiz: quiz, isShow: true),
-          QuizQuizRequestsButton(quiz: quiz),
-          const SizedBox(height: 48),
-          QuizExplanationAnswerAnalysis(quiz: quiz),
-          const SizedBox(height: 40),
-        ],
-      );
-    }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('問題の詳細'),
+        title: Text(t.quizzes.quiz),
       ),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(
               horizontal: ResponsiveValues.horizontalMargin(context),
               vertical: 24),
-          child: future.when(
-            data: (quiz) => screen(quiz),
-            error: (err, stack) => Text('Error: $err'),
-            loading: () => const LoadingSpinner(),
-          ),
+          child: ref.watch(asyncQuizFamily(quizId)).when(
+                data: (quiz) {
+                  if (quiz == null) return const Text('Quiz does not exist.');
+                  return QuizShowScreen(quiz: quiz);
+                },
+                error: (err, stack) => Text('Error: $err'),
+                loading: () => const LoadingSpinner(),
+              ),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),

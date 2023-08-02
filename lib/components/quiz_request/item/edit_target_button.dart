@@ -1,20 +1,19 @@
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
-import 'package:booqs_mobile/components/sentence_request/item/edit_target_screen.dart';
+import 'package:booqs_mobile/components/quiz_request/item/edit_target_screen.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/models/sentence_request.dart';
+import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/models/quiz_request.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
 
-class SentenceRequestItemEditTargetButton extends StatelessWidget {
-  const SentenceRequestItemEditTargetButton(
-      {super.key, required this.sentenceRequest});
-  final SentenceRequest sentenceRequest;
+class QuizRequestItemEditTargetButton extends StatelessWidget {
+  const QuizRequestItemEditTargetButton({super.key, required this.quizRequest});
+  final QuizRequest quizRequest;
 
   @override
   Widget build(BuildContext context) {
-    final Sentence? sentence = sentenceRequest.sentence;
-    if (sentence == null) {
+    final Quiz? quiz = quizRequest.quiz;
+    if (quiz == null) {
       return Container();
     }
 
@@ -44,8 +43,8 @@ class SentenceRequestItemEditTargetButton extends StatelessWidget {
                   // 80%の高さで表示させる
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height * 0.8,
-                    child: SentenceRequestItemEditTargetScreen(
-                        sentenceRequest: sentenceRequest),
+                    child: QuizRequestItemEditTargetScreen(
+                        quizRequest: quizRequest),
                   ),
                 );
               });

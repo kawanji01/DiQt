@@ -1,5 +1,6 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
+import 'package:booqs_mobile/pages/quiz_request/dictionary.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
@@ -10,41 +11,37 @@ class DictionaryQuizRequestsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget acceptedQuizRequestsButton() {
-      final String btnText = '問題の改善履歴（${dictionary.acceptedQuizRequestsCount}）';
-      final String redirectPath =
-          'dictionaries/${dictionary.id}/accepted_quiz_requests';
-      return InkWell(
-        onTap: () {
-          DiQtBrowserDialog.open(context, redirectPath);
-        },
-        child: SmallOutlineGrayButton(label: btnText, icon: Icons.history),
-      );
-    }
-
     Widget pendingQuizRequestsButton() {
       int requestsCount = dictionary.pendingQuizRequestsCount;
       if (requestsCount == 0) return Container();
 
-      final String btnText = '$requestsCount件の審査中の編集';
-      final String redirectPath =
-          'dictionaries/${dictionary.id}/pending_quiz_requests';
       return TextButton(
           style: TextButton.styleFrom(
             padding: const EdgeInsets.only(left: 0),
           ),
           onPressed: () {
-            DiQtBrowserDialog.open(context, redirectPath);
+            QuizRequestDictionaryPage.push(context, dictionary.id, 'pending');
           },
           child: Text(
-            btnText,
+            '${t.dictionaries.pending_quiz_requests}(${dictionary.pendingQuizRequestsCount})',
             style: const TextStyle(color: Colors.green, fontSize: 16),
           ));
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [acceptedQuizRequestsButton(), pendingQuizRequestsButton()],
+      children: [
+        InkWell(
+          onTap: () {
+            QuizRequestDictionaryPage.push(context, dictionary.id, 'accepted');
+          },
+          child: SmallOutlineGrayButton(
+              label:
+                  '${t.dictionaries.accepted_quiz_requests}(${dictionary.acceptedQuizRequestsCount})',
+              icon: Icons.history),
+        ),
+        pendingQuizRequestsButton()
+      ],
     );
   }
 }
