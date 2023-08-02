@@ -1,7 +1,6 @@
 import 'package:booqs_mobile/components/shared/delete_confirmation.dart';
 import 'package:booqs_mobile/data/provider/quiz_request.dart';
 import 'package:booqs_mobile/data/remote/quiz_request_comments.dart';
-import 'package:booqs_mobile/data/remote/sentence_request_comments.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz_request_comment.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
