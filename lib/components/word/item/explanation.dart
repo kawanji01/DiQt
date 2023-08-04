@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/components/word/item/label.dart';
@@ -9,7 +10,7 @@ class WordItemExplanation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (word.sensesJson != null && word.sensesJson != ['']) {
+    if (word.sensesJson != null) {
       //return WordItemSenses(word: word);
     }
 
@@ -20,7 +21,7 @@ class WordItemExplanation extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 24),
-          const WordItemLabel(text: '解説'),
+          WordItemLabel(text: t.words.explanation),
           const SizedBox(height: 8),
           MarkdownWithDictLink(
             text: word.explanation ?? '',

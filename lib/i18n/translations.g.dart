@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2236 (1118 per locale)
+/// Strings: 2246 (1123 per locale)
 ///
-/// Built on 2023-08-02 at 08:58 UTC
+/// Built on 2023-08-04 at 12:19 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -304,7 +304,12 @@ class _TranslationsReviewsEn {
 	String get scheduled_date_desc => 'Latest scheduled';
 	String get scheduled_date_asc => 'Oldest scheduled';
 	String get empty => 'There are no review questions.';
-	String get memorize => 'Reminder';
+	String get memorize => 'Remember';
+	String get word_label => 'Remember the meaning';
+	String get reversed_word_label => 'Remember the word';
+	String get sentence_label => 'Be able to read';
+	String get reversed_sentence_label => 'be able to speak';
+	String get listening_sentence_label => 'Be able to listen';
 	String get set_review => 'Set Review';
 	String get scheduled_date => 'Scheduled Date';
 	String get interval => 'Review Interval';
@@ -1800,6 +1805,11 @@ class _TranslationsReviewsJa implements _TranslationsReviewsEn {
 	@override String get scheduled_date_asc => '予定日が古い順';
 	@override String get empty => '復習問題はありません。';
 	@override String get memorize => '覚える';
+	@override String get word_label => '意味を覚える';
+	@override String get reversed_word_label => '単語を覚える';
+	@override String get sentence_label => '読めるようになる';
+	@override String get reversed_sentence_label => '話せるようになる';
+	@override String get listening_sentence_label => '聞き取れるようになる';
 	@override String get set_review => '復習を設定する';
 	@override String get scheduled_date => '復習予定日';
 	@override String get interval => '復習の間隔';
@@ -3204,7 +3214,12 @@ extension on _TranslationsEn {
 			case 'reviews.scheduled_date_desc': return 'Latest scheduled';
 			case 'reviews.scheduled_date_asc': return 'Oldest scheduled';
 			case 'reviews.empty': return 'There are no review questions.';
-			case 'reviews.memorize': return 'Reminder';
+			case 'reviews.memorize': return 'Remember';
+			case 'reviews.word_label': return 'Remember the meaning';
+			case 'reviews.reversed_word_label': return 'Remember the word';
+			case 'reviews.sentence_label': return 'Be able to read';
+			case 'reviews.reversed_sentence_label': return 'be able to speak';
+			case 'reviews.listening_sentence_label': return 'Be able to listen';
 			case 'reviews.set_review': return 'Set Review';
 			case 'reviews.scheduled_date': return 'Scheduled Date';
 			case 'reviews.interval': return 'Review Interval';
@@ -4331,6 +4346,11 @@ extension on _TranslationsJa {
 			case 'reviews.scheduled_date_asc': return '予定日が古い順';
 			case 'reviews.empty': return '復習問題はありません。';
 			case 'reviews.memorize': return '覚える';
+			case 'reviews.word_label': return '意味を覚える';
+			case 'reviews.reversed_word_label': return '単語を覚える';
+			case 'reviews.sentence_label': return '読めるようになる';
+			case 'reviews.reversed_sentence_label': return '話せるようになる';
+			case 'reviews.listening_sentence_label': return '聞き取れるようになる';
 			case 'reviews.set_review': return '復習を設定する';
 			case 'reviews.scheduled_date': return '復習予定日';
 			case 'reviews.interval': return '復習の間隔';

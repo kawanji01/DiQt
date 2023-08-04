@@ -57,6 +57,9 @@ class WordFormPreviewButton extends StatelessWidget {
           dictionaryId: dictionary.id,
           langNumberOfEntry: dictionary.langNumberOfEntry,
           langNumberOfMeaning: dictionary.langNumberOfMeaning,
+          acceptedWordRequestsCount: 0,
+          pendingWordRequestsCount: 0,
+          wordRequestsCount: 0,
         );
 
         showModalBottomSheet(

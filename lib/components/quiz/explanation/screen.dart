@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/quiz.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -72,8 +73,8 @@ class QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
     // 復習
     Widget reviewButton() {
       return future.when(
-        data: (date) =>
-            ReviewSettingLargeButton(quizId: date!.id, review: date.review),
+        data: (date) => ReviewSettingLargeButton(
+            quizId: date!.id, review: date.review, label: t.reviews.memorize),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const LoadingSpinner(),
       );

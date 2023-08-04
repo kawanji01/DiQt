@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/pos_tag.dart';
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/models/sense.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word_tag.dart';
 
@@ -23,16 +24,17 @@ class Word {
     this.antonyms,
     this.related,
     this.sensesJson,
-    this.wordRequestsCount = 0,
-    this.acceptedWordRequestsCount = 0,
-    this.pendingWordRequestsCount = 0,
+    required this.wordRequestsCount,
+    required this.acceptedWordRequestsCount,
+    required this.pendingWordRequestsCount,
     // 結合したテーブル
     this.sentence,
     this.dictionary,
     this.posTag,
     this.quiz,
+    this.reversedQuiz,
     this.wordTags,
-    //this.senses,
+    this.senses,
   });
 
   int id;
@@ -51,7 +53,7 @@ class Word {
   String? synonyms;
   String? antonyms;
   String? related;
-  List? sensesJson;
+  String? sensesJson;
   int wordRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
@@ -59,8 +61,9 @@ class Word {
   Dictionary? dictionary;
   PosTag? posTag;
   Quiz? quiz;
+  Quiz? reversedQuiz;
   List<WordTag>? wordTags;
-  //List<Sense>? senses;
+  List<Sense>? senses;
 
   Word.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -92,14 +95,17 @@ class Word {
         posTag =
             json['pos_tag'] == null ? null : PosTag.fromJson(json['pos_tag']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
+        reversedQuiz = json['reversed_quiz'] == null
+            ? null
+            : Quiz.fromJson(json['reversed_quiz']),
         wordTags = json['word_tags'] == null
             ? []
             : json['word_tags']
                 .map<WordTag>((e) => WordTag.fromJson(e))
-                .toList();
-  //senses = json['senses'] == null
-  //    ? []
-  //   : json['senses'].map<Sense>((e) => Sense.fromJson(e)).toList();
+                .toList(),
+        senses = json['senses'] == null
+            ? []
+            : json['senses'].map<Sense>((e) => Sense.fromJson(e)).toList();
 
   // 却下されたwordRequestのリクエストの数
   int rejectedWordRequestsCount() =>
@@ -129,5 +135,7 @@ class Word {
         'dictionary': dictionary,
         'pos_tag': posTag,
         'quiz': quiz,
+        'reversed_quiz': reversedQuiz,
+        'senses': senses,
       };
 }
