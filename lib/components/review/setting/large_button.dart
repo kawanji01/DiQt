@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/data/remote/reviews.dart';
-import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/helpers/review.dart';
@@ -12,10 +11,14 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ReviewSettingLargeButton extends StatefulWidget {
   const ReviewSettingLargeButton(
-      {Key? key, required this.quizId, required this.review})
+      {Key? key,
+      required this.quizId,
+      required this.review,
+      required this.label})
       : super(key: key);
   final int quizId;
   final Review? review;
+  final String label;
 
   @override
   State<ReviewSettingLargeButton> createState() =>
@@ -33,7 +36,7 @@ class _ReviewSettingLargeButtonState extends State<ReviewSettingLargeButton> {
   }
 
   //// 復習を設定する。 ////
-  Future _createReview() async {
+  Future<void> _createReview() async {
     setState(() => _isRequesting = true);
     EasyLoading.show(status: 'loading...');
     final Map resMap = await RemoteReviews.create(quizId: widget.quizId);
@@ -51,7 +54,7 @@ class _ReviewSettingLargeButtonState extends State<ReviewSettingLargeButton> {
   }
 
   //// 復習設定の間隔変更や削除： リマインダー設定ダイアログを表示する＆ダイアログから設定されたreviewを使ってsetStateで再描画する。 ////
-  Future _editReview(Review review) async {
+  Future<void> _editReview(Review review) async {
     final Review? newReview = await showDialog(
         context: context,
         builder: (context) {
@@ -71,30 +74,20 @@ class _ReviewSettingLargeButtonState extends State<ReviewSettingLargeButton> {
 
   @override
   Widget build(BuildContext context) {
-    // 復習の作成ボタン
-    Widget createButton() {
+    if (_review == null) {
+      // 復習の作成ボタン
       return InkWell(
         onTap: _isRequesting ? null : () => _createReview(),
-        child: ReviewLargeOutlineButton(label: t.reviews.memorize),
+        child: ReviewLargeOutlineButton(label: widget.label),
       );
-    }
-
-    // 復習の更新ボタン
-    Widget editButton(Review review) {
-      final String label =
-          ReviewHelper.reviewButtonLabel(review.intervalSetting);
+    } else {
+      // 復習の更新ボタン
       return InkWell(
-        onTap: () => _editReview(review),
+        onTap: () => _editReview(_review!),
         child: ReviewLargeGreenButton(
-          label: label,
+          label: ReviewHelper.reviewButtonLabel(_review?.intervalSetting),
         ),
       );
-    }
-
-    if (_review == null) {
-      return createButton();
-    } else {
-      return editButton(_review!);
     }
   }
 }
