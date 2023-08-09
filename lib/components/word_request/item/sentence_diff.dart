@@ -1,25 +1,25 @@
 import 'package:booqs_mobile/components/shared/diff/text.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
-import 'package:booqs_mobile/models/word_request.dart';
+import 'package:booqs_mobile/models/sentence.dart';
 import 'package:flutter/material.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 
 class WordRequestItemSentenceDiff extends StatelessWidget {
-  const WordRequestItemSentenceDiff({super.key, required this.wordRequest});
-  final WordRequest wordRequest;
+  const WordRequestItemSentenceDiff(
+      {super.key, required this.sentence, required this.previousSentence});
+  final Sentence? sentence;
+  final Sentence? previousSentence;
 
   @override
   Widget build(BuildContext context) {
-    final String original = wordRequest.sentence?.original ?? '';
-    final String previousOriginal =
-        wordRequest.previousSentence?.original ?? '';
+    final String original = sentence?.original ?? '';
+    final String previousOriginal = previousSentence?.original ?? '';
     if (original == previousOriginal) {
       return Container();
     }
 
-    final String translaion = wordRequest.sentence?.translation ?? '';
-    final String previousTranslation =
-        wordRequest.previousSentence?.translation ?? '';
+    final String translaion = sentence?.translation ?? '';
+    final String previousTranslation = previousSentence?.translation ?? '';
 
     Widget diff() {
       if (translaion == previousTranslation) {

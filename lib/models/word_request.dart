@@ -25,8 +25,8 @@ class WordRequest {
       required this.previousPosTagId,
       required this.sentenceId,
       required this.previousSentenceId,
-      required this.explanation,
-      required this.previousExplanation,
+      required this.sensesJson,
+      required this.previousSensesJson,
       required this.addition,
       required this.modification,
       required this.elimination,
@@ -67,8 +67,8 @@ class WordRequest {
   int? previousPosTagId;
   int? sentenceId;
   int? previousSentenceId;
-  String? explanation;
-  String? previousExplanation;
+  String? sensesJson;
+  String? previousSensesJson;
   bool addition;
   bool modification;
   bool elimination;
@@ -102,8 +102,8 @@ class WordRequest {
         meaning = json['meaning'],
         previousMeaning = json['previous_meaning'],
         langNumberOfMeaning = json['lang_number_of_meaning'],
-        explanation = json['explanation'],
-        previousExplanation = json['previous_explanation'],
+        sensesJson = json['senses_json'],
+        previousSensesJson = json['previous_senses_json'],
         addition = json['addition'],
         modification = json['modification'],
         elimination = json['elimination'],
@@ -154,6 +154,9 @@ class WordRequest {
         'previous_entry': previousEntry,
         'meaning': meaning,
         'previous_meaning': previousMeaning,
+        'lang_number_of_meaning': langNumberOfMeaning,
+        'senses_json': sensesJson,
+        'previous_senses_json': previousSensesJson,
         'addition': addition,
         'modification': modification,
         'elimination': elimination,
