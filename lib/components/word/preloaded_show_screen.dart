@@ -4,11 +4,9 @@ import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/item/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
-import 'package:booqs_mobile/components/word/item/etymologies.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/components/word/item/reading.dart';
-import 'package:booqs_mobile/components/word/item/related_words.dart';
 import 'package:booqs_mobile/components/word/item/tags.dart';
 import 'package:booqs_mobile/components/word/word_requests_button.dart';
 import 'package:flutter/material.dart';
@@ -48,10 +46,6 @@ class WordPreloadedShowScreen extends StatelessWidget {
             height: 24,
           ),
           const LoadingSpinner(),
-          WordItemEtymologies(word: word!),
-          //WordItemExplanation(word: word!),
-          const LoadingSpinner(),
-          WordItemRelatedWords(word: word!),
           const SizedBox(
             height: 16,
           ),

@@ -1,57 +1,59 @@
-import 'package:booqs_mobile/components/form/comment.dart';
+import 'package:booqs_mobile/components/form/editor_comment.dart';
+import 'package:booqs_mobile/components/form/white_text_form_field.dart';
 import 'package:booqs_mobile/components/sentence/setting/setting.dart';
 import 'package:booqs_mobile/components/word/form/meaning_generator_button.dart';
 import 'package:booqs_mobile/components/word/form/pos_tag.dart';
+import 'package:booqs_mobile/components/word/form/senses.dart';
+import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/components/word/form/detailed_settings.dart';
 import 'package:booqs_mobile/components/word/form/lang_setting.dart';
 import 'package:booqs_mobile/components/word/form/reading.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordFormFields extends StatelessWidget {
-  const WordFormFields({
-    Key? key,
-    required this.entryController,
-    required this.readingController,
-    required this.meaningController,
-    required this.posTagIdController,
-    required this.ipaController,
-    required this.etymologiesController,
-    required this.explanationController,
-    required this.sentenceIdController,
-    required this.synonymsController,
-    required this.antonymsController,
-    required this.relatedController,
-    required this.commentController,
-    required this.dictionary,
-    required this.word,
-  }) : super(key: key);
-
-  final TextEditingController entryController;
-  final TextEditingController readingController;
-  final TextEditingController meaningController;
-  final TextEditingController posTagIdController;
-  final TextEditingController ipaController;
-  final TextEditingController etymologiesController;
-  final TextEditingController explanationController;
-  final TextEditingController sentenceIdController;
-  final TextEditingController synonymsController;
-  final TextEditingController antonymsController;
-  final TextEditingController relatedController;
-  final TextEditingController commentController;
-  final Dictionary dictionary;
+class WordFormFields extends ConsumerWidget {
+  const WordFormFields(
+      {Key? key,
+      required this.word,
+      required this.dictionary,
+      required this.commentController})
+      : super(key: key);
   final Word? word;
+  final Dictionary dictionary;
+  final TextEditingController commentController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final Map<String, TextEditingController> wordControllerMap =
+        ref.watch(wordControllerMapProvider);
+    final TextEditingController entryController =
+        wordControllerMap['entry'] ?? TextEditingController();
+    final TextEditingController readingController =
+        wordControllerMap['reading'] ?? TextEditingController();
+    final TextEditingController meaningController =
+        wordControllerMap['meaning'] ?? TextEditingController();
+    final TextEditingController posTagIdController =
+        wordControllerMap['pos_tag_id'] ?? TextEditingController();
+    final TextEditingController sentenceIdController =
+        wordControllerMap['sentence_id'] ?? TextEditingController();
+    final TextEditingController ipaController =
+        wordControllerMap['ipa'] ?? TextEditingController();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // 項目フォーム
-        TextFormField(
+        FormWhiteTextFormField(
           controller: entryController,
+          label: t.words.entry,
+          hint: t.shared.please_enter(name: t.words.entry),
+          emptyValidation: true,
+          lineBreak: false,
+        ),
+        /* TextFormField(
+          controller: wordControllerMap['entry'],
           decoration: InputDecoration(
               border: const OutlineInputBorder(),
               labelText: t.words.entry,
@@ -62,7 +64,7 @@ class WordFormFields extends StatelessWidget {
             }
             return null;
           },
-        ),
+        ), */
         WordFormReading(
           readingController: readingController,
           langNumberOfEntry: dictionary.langNumberOfEntry,
@@ -111,14 +113,17 @@ class WordFormFields extends StatelessWidget {
           posTagIdController: posTagIdController,
         ),
         const SizedBox(height: 48),
-        // 詳細設定
-        WordFormDetailedSettings(
-          ipaController: ipaController,
-          etymologiesController: etymologiesController,
-          explanationController: explanationController,
-          synonymsController: synonymsController,
-          antonymsController: antonymsController,
-          relatedController: relatedController,
+        // IPA
+        FormWhiteTextFormField(
+          controller: ipaController,
+          label: t.words.ipa,
+          hint: t.shared.please_enter(name: t.words.ipa),
+          emptyValidation: false,
+          lineBreak: false,
+        ),
+
+        const SizedBox(height: 48),
+        WordFormSenses(
           word: word,
         ),
         const SizedBox(height: 48),
@@ -127,17 +132,6 @@ class WordFormFields extends StatelessWidget {
         ),
 
         const SizedBox(height: 48),
-        /*  WordFormPreviewButton(
-            entryController: entryController,
-            meaningController: meaningController,
-            ipaController: ipaController,
-            sentenceIdController: sentenceIdController,
-            etymologiesController: etymologiesController,
-            explanationController: explanationController,
-            synonymsController: synonymsController,
-            antonymsController: antonymsController,
-            relatedController: relatedController,
-            dictionary: dictionary), */
       ],
     );
   }

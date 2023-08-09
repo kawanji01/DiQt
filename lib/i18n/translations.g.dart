@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2246 (1123 per locale)
+/// Strings: 2254 (1127 per locale)
 ///
-/// Built on 2023-08-04 at 12:19 UTC
+/// Built on 2023-08-08 at 04:16 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -172,6 +172,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsAnswerEn answer = _TranslationsAnswerEn._(_root);
 	late final _TranslationsQuizzesEn quizzes = _TranslationsQuizzesEn._(_root);
 	late final _TranslationsWordRequestCommentsEn wordRequestComments = _TranslationsWordRequestCommentsEn._(_root);
+	late final _TranslationsSensesEn senses = _TranslationsSensesEn._(_root);
 	late final _TranslationsActivitiesEn activities = _TranslationsActivitiesEn._(_root);
 	late final _TranslationsAnswerHistoriesEn answerHistories = _TranslationsAnswerHistoriesEn._(_root);
 	late final _TranslationsWordRequestsEn wordRequests = _TranslationsWordRequestsEn._(_root);
@@ -1328,6 +1329,19 @@ class _TranslationsWordRequestCommentsEn {
 	String get send => 'Send';
 }
 
+// Path: senses
+class _TranslationsSensesEn {
+	_TranslationsSensesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get senses => 'Senses';
+	String get sense => 'Sense';
+	String get gloss => 'Gloss';
+	String get add => 'Add sense';
+}
+
 // Path: activities
 class _TranslationsActivitiesEn {
 	_TranslationsActivitiesEn._(this._root);
@@ -1672,6 +1686,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsAnswerJa answer = _TranslationsAnswerJa._(_root);
 	@override late final _TranslationsQuizzesJa quizzes = _TranslationsQuizzesJa._(_root);
 	@override late final _TranslationsWordRequestCommentsJa wordRequestComments = _TranslationsWordRequestCommentsJa._(_root);
+	@override late final _TranslationsSensesJa senses = _TranslationsSensesJa._(_root);
 	@override late final _TranslationsActivitiesJa activities = _TranslationsActivitiesJa._(_root);
 	@override late final _TranslationsAnswerHistoriesJa answerHistories = _TranslationsAnswerHistoriesJa._(_root);
 	@override late final _TranslationsWordRequestsJa wordRequests = _TranslationsWordRequestsJa._(_root);
@@ -2826,6 +2841,19 @@ class _TranslationsWordRequestCommentsJa implements _TranslationsWordRequestComm
 	@override String get comment_to_you => 'あなたへのコメント';
 	@override String get comment_placeholder => 'コメントを入力してください';
 	@override String get send => '送信する';
+}
+
+// Path: senses
+class _TranslationsSensesJa implements _TranslationsSensesEn {
+	_TranslationsSensesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get senses => '意味';
+	@override String get sense => '意味';
+	@override String get gloss => '意味';
+	@override String get add => '意味を追加する';
 }
 
 // Path: activities
@@ -4047,6 +4075,10 @@ extension on _TranslationsEn {
 			case 'wordRequestComments.comment_to_you': return 'Comment to you';
 			case 'wordRequestComments.comment_placeholder': return 'Write a comment';
 			case 'wordRequestComments.send': return 'Send';
+			case 'senses.senses': return 'Senses';
+			case 'senses.sense': return 'Sense';
+			case 'senses.gloss': return 'Gloss';
+			case 'senses.add': return 'Add sense';
 			case 'activities.activities': return 'Activities';
 			case 'activities.cheer': return 'Cheer!';
 			case 'activities.cheered': return 'Cheered!';
@@ -5178,6 +5210,10 @@ extension on _TranslationsJa {
 			case 'wordRequestComments.comment_to_you': return 'あなたへのコメント';
 			case 'wordRequestComments.comment_placeholder': return 'コメントを入力してください';
 			case 'wordRequestComments.send': return '送信する';
+			case 'senses.senses': return '意味';
+			case 'senses.sense': return '意味';
+			case 'senses.gloss': return '意味';
+			case 'senses.add': return '意味を追加する';
 			case 'activities.activities': return '活動';
 			case 'activities.cheer': return '応援する!';
 			case 'activities.cheered': return '応援しました！';

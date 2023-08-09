@@ -34,9 +34,10 @@ class WordRequestItemEditTargetButton extends StatelessWidget {
               ),
               builder: (context) {
                 return Container(
+                  color: Colors.transparent,
                   margin: EdgeInsets.symmetric(
-                      horizontal: ResponsiveValues.horizontalMargin(context),
-                      vertical: 32),
+                    horizontal: ResponsiveValues.horizontalMargin(context),
+                  ),
                   padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom,
                   ),

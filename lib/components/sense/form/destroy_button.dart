@@ -1,12 +1,12 @@
-import 'package:booqs_mobile/components/sense/form/destroy_confirmation_screen.dart';
-import 'package:booqs_mobile/models/sense.dart';
+import 'package:booqs_mobile/components/shared/delete_confirmation.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:flutter/material.dart';
 
 class SenseFormDestroyButton extends StatelessWidget {
-  const SenseFormDestroyButton({Key? key, required this.sense})
+  const SenseFormDestroyButton({Key? key, required this.onPressed})
       : super(key: key);
-  final Sense sense;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class SenseFormDestroyButton extends StatelessWidget {
       child: TextButton.icon(
         onPressed: () {
           final Widget screen =
-              SenseFormDestroyConfirmationScreen(sense: sense);
+              SharedDeleteConfirmation(onDeletePressed: onPressed);
           Dialogs.slideFromBottomFade(screen);
         },
         icon: const Icon(
@@ -23,8 +23,8 @@ class SenseFormDestroyButton extends StatelessWidget {
           size: 18,
           color: Colors.red,
         ),
-        label: const Text('削除する',
-            style: TextStyle(
+        label: Text(t.shared.destroy,
+            style: const TextStyle(
                 decoration: TextDecoration.underline,
                 fontSize: 16,
                 color: Colors.red,

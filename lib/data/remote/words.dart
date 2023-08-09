@@ -31,7 +31,7 @@ class RemoteWords {
     }
   }
 
-  static Future<Map?> newWord(int dictionaryId, String keyword) async {
+  static Future<Map> newWord(int dictionaryId, String keyword) async {
     try {
       final Uri url = Uri.parse(
           '${DiQtURL.root()}/api/v1/mobile/words/new?dictionary_id=$dictionaryId&keyword=$keyword');
@@ -39,18 +39,15 @@ class RemoteWords {
         url,
       );
 
-      if (res.statusCode != 200) return null;
-      final Map? resMap = json.decode(res.body);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 

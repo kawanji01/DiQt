@@ -33,18 +33,24 @@ class WordRequestItemEditTargetScreen extends ConsumerWidget {
           return SingleChildScrollView(
             child: Column(
               children: [
+                const SizedBox(
+                  height: 32,
+                ),
                 HeadingMediumGreen(
                   label: t.wordRequests.target,
                 ),
                 const SizedBox(
                   height: 24,
                 ),
-                WordShowScreen(word: word)
+                WordShowScreen(word: word),
+                const SizedBox(
+                  height: 40,
+                ),
               ],
             ),
           );
         },
-        error: (err, str) => Text('$err'),
+        error: (err, str) => Text('$err, $str'),
         loading: () => const LoadingSpinner());
   }
 }
