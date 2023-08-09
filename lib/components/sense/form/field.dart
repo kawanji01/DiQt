@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/sense/form/destroy_button.dart';
 import 'package:booqs_mobile/components/sense/form/gloss.dart';
+import 'package:booqs_mobile/components/sense/form/sentence_setting.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/data/provider/sense.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -46,7 +47,9 @@ class SenseFormFieldState extends ConsumerState<SenseFormField> {
           height: 16,
         ),
         SenseFormGloss(glossController: glossController),
-        //SentenceSetting(sentenceIdController: sentenceIdController, entry: entry, posTagIdController: posTagIdController, dictionary: dictionary),
+        SenseFormSentenceSetting(
+          sentenceIdController: sentenceIdController,
+        ),
         SenseFormDestroyButton(onPressed: () {
           final String senseIdStr = senseIdController.text;
           if (senseIdStr == '') {

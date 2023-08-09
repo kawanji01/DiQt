@@ -12,7 +12,9 @@ class WordItemSenses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Sense>? senses = word.senses;
-    if (senses == null) return Container();
+    if (senses == null || senses.isEmpty) {
+      return Container();
+    }
 
     // 意味
     Widget gloss(int number, Sense sense) {

@@ -7,7 +7,6 @@ import 'package:booqs_mobile/components/word/form/senses.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/components/word/form/detailed_settings.dart';
 import 'package:booqs_mobile/components/word/form/lang_setting.dart';
 import 'package:booqs_mobile/components/word/form/reading.dart';
 import 'package:booqs_mobile/models/word.dart';

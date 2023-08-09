@@ -19,8 +19,9 @@ class SenseControllerMapListState
         final Map<String, TextEditingController> senseMap = {
           'id': TextEditingController(text: sense.id.toString()),
           'gloss': TextEditingController(text: sense.gloss),
-          'sentence_id':
-              TextEditingController(text: sense.sentenceId.toString()),
+          'sentence_id': TextEditingController(
+              text:
+                  sense.sentenceId == null ? '' : sense.sentenceId.toString()),
           '_destroy': TextEditingController(text: 'false')
         };
         senseList.add(senseMap);

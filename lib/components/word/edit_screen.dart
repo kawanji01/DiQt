@@ -67,7 +67,6 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
       Map<String, dynamic> params = wordControllerMapNotifier.requestParams();
       Map<String, dynamic> senseParams =
           ref.watch(senseControllerMapListProvider.notifier).requestParams();
-      print('${senseParams}');
       params['senses_attributes'] = senseParams;
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');

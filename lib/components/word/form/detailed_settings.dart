@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
 class WordFormDetailedSettings extends StatelessWidget {
