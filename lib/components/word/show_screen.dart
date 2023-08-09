@@ -11,15 +11,26 @@ class WordShowScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Quiz? quiz = word.quiz;
-    final Sentence? sentence = word.sentence;
+    Widget reversedQuiz() {
+      final Quiz? quiz = word.reversedQuiz;
+      if (quiz == null) return Container();
+      return DrillListQuiz(
+        quiz: quiz,
+        isShow: false,
+      );
+    }
 
-    // 問題がなければ早期リターン
-    if (quiz == null) {
-      return WordDetailedItem(word: word);
+    Widget quiz() {
+      final Quiz? quiz = word.quiz;
+      if (quiz == null) return Container();
+      return DrillListQuiz(
+        quiz: quiz,
+        isShow: false,
+      );
     }
 
     Widget sentenceQuiz() {
+      final Sentence? sentence = word.sentence;
       if (sentence == null) return Container();
       final Quiz? sentenceQuiz = sentence.quiz;
       if (sentenceQuiz == null) return Container();
@@ -30,6 +41,7 @@ class WordShowScreen extends StatelessWidget {
     }
 
     Widget reversedSentenceQuiz() {
+      final Sentence? sentence = word.sentence;
       if (sentence == null) return Container();
       final Quiz? sentenceQuiz = sentence.reversedQuiz;
       if (sentenceQuiz == null) return Container();
@@ -41,10 +53,8 @@ class WordShowScreen extends StatelessWidget {
 
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       WordDetailedItem(word: word),
-      DrillListQuiz(
-        quiz: quiz,
-        isShow: false,
-      ),
+      quiz(),
+      reversedQuiz(),
       sentenceQuiz(),
       reversedSentenceQuiz(),
       const SizedBox(

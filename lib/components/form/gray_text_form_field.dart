@@ -51,7 +51,7 @@ class FormGrayTextFormField extends StatelessWidget {
     }
     return TextFormField(
       controller: controller,
-      keyboardType: TextInputType.text,
+      keyboardType: lineBreak ? TextInputType.multiline : TextInputType.text,
       maxLines: null,
       decoration: InputDecoration(
         labelText: label,

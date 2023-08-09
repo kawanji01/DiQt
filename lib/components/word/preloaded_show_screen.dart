@@ -1,7 +1,6 @@
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
-import 'package:booqs_mobile/components/review/setting/large_outline_button.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/item/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
@@ -48,9 +47,7 @@ class WordPreloadedShowScreen extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          const ReviewLargeOutlineButton(
-            label: '覚える',
-          ),
+          const LoadingSpinner(),
           WordItemEtymologies(word: word!),
           //WordItemExplanation(word: word!),
           const LoadingSpinner(),
