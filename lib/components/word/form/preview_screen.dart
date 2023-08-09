@@ -4,11 +4,9 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
-import 'package:booqs_mobile/components/word/item/etymologies.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/components/word/item/reading.dart';
-import 'package:booqs_mobile/components/word/item/related_words.dart';
 import 'package:flutter/material.dart';
 
 class WordFormPreviewScreen extends StatelessWidget {
@@ -54,12 +52,6 @@ class WordFormPreviewScreen extends StatelessWidget {
             height: 24,
           ),
           SentencePreview(sentenceIdStr: '${word.sentenceId}'),
-          WordItemEtymologies(word: word),
-          // WordItemExplanation(word: word),
-          const SizedBox(
-            height: 40,
-          ),
-          WordItemRelatedWords(word: word),
           const SizedBox(
             height: 80,
           ),
