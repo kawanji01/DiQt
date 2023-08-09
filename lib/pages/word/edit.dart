@@ -5,7 +5,6 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,8 +13,18 @@ class WordEditPage extends ConsumerWidget {
   const WordEditPage({super.key});
 
   static Future push(BuildContext context, int wordId) async {
-    return Navigator.of(context)
-        .pushNamed(wordEditPage, arguments: {'wordId': wordId});
+    return Navigator.push(
+        context,
+        MaterialPageRoute(
+            // 画面遷移のログを送信するために、settings.nameを設定する。
+            settings: RouteSettings(
+              name: wordEditPage,
+              arguments: {'wordId': wordId},
+            ),
+            builder: (BuildContext context) {
+              return const WordEditPage();
+            },
+            fullscreenDialog: true));
   }
 
   @override
@@ -41,7 +50,6 @@ class WordEditPage extends ConsumerWidget {
             error: (err, str) => Text('Errors: $err'),
             loading: () => const LoadingSpinner()),
       ),
-      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

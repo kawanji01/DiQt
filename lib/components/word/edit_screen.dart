@@ -1,6 +1,6 @@
-import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/word/form/destroy_button.dart';
 import 'package:booqs_mobile/components/word/form/fields.dart';
+import 'package:booqs_mobile/data/provider/sense.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -25,37 +25,24 @@ class WordEditScreen extends ConsumerStatefulWidget {
 }
 
 class WordEditScreenState extends ConsumerState<WordEditScreen> {
+  late final wordControllerMapNotifier =
+      ref.read(wordControllerMapProvider.notifier);
+
   bool _isRequesting = false;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
-  final _entryController = TextEditingController();
-  final _readingController = TextEditingController();
-  final _meaningController = TextEditingController();
-  final _posTagIdController = TextEditingController();
-  final _ipaController = TextEditingController();
-  final _etymologiesController = TextEditingController();
-  final _explanationController = TextEditingController();
-  final _sentenceIdController = TextEditingController();
-  final _synonymsController = TextEditingController();
-  final _antonymsController = TextEditingController();
-  final _relatedController = TextEditingController();
   final _commentController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    final Word word = widget.word;
-    _entryController.text = word.entry;
-    _readingController.text = word.reading ?? '';
-    _meaningController.text = word.meaning;
-    _posTagIdController.text = word.posTagId.toString();
-    _ipaController.text = word.ipa ?? '';
-    _etymologiesController.text = word.etymologies ?? '';
-    _explanationController.text = word.explanation ?? '';
-    _sentenceIdController.text = word.sentenceId.toString();
-    _synonymsController.text = word.synonyms ?? '';
-    _antonymsController.text = word.antonyms ?? '';
-    _relatedController.text = word.related ?? '';
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      wordControllerMapNotifier.initialize(
+          dictionaryId: widget.dictionary.id, word: widget.word);
+      ref.read(editWordProvider.notifier).state = widget.word;
+      ref.read(editWordDictionaryProvider.notifier).state = widget.dictionary;
+      setState(() {});
+    });
   }
 
   @override
@@ -63,46 +50,25 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
   // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
   void dispose() {
     super.dispose();
-    _entryController.dispose();
-    _readingController.dispose();
-    _meaningController.dispose();
-    _posTagIdController.dispose();
-    _ipaController.dispose();
-    _etymologiesController.dispose();
-    _explanationController.dispose();
-    _sentenceIdController.dispose();
-    _synonymsController.dispose();
-    _antonymsController.dispose();
-    _relatedController.dispose();
     _commentController.dispose();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      wordControllerMapNotifier.disposeAllItems();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final Word word = widget.word;
-    final Dictionary dictionary = widget.dictionary;
-
     // 更新処理
     Future save() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
       setState(() => _isRequesting = true);
 
-      final Map<String, dynamic> params = {
-        'id': word.id,
-        'entry': _entryController.text,
-        'reading': _readingController.text,
-        'meaning': _meaningController.text,
-        'pos_tag_id': _posTagIdController.text,
-        'ipa': _ipaController.text,
-        'etymologies': _etymologiesController.text,
-        'explanation': _explanationController.text,
-        'sentence_id': _sentenceIdController.text,
-        'synonyms': _synonymsController.text,
-        'antonyms': _antonymsController.text,
-        'related_entries': _relatedController.text,
-        'dictionary_id': dictionary.id,
-      };
+      Map<String, dynamic> params = wordControllerMapNotifier.requestParams();
+      Map<String, dynamic> senseParams =
+          ref.watch(senseControllerMapListProvider.notifier).requestParams();
+      print('${senseParams}');
+      params['senses_attributes'] = senseParams;
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       final Map resMap = await RemoteWords.update(
@@ -135,23 +101,12 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 24),
-                DictionaryName(dictionary: dictionary),
+                // DictionaryName(dictionary: _dictionary),
                 const SizedBox(height: 32),
                 WordFormFields(
-                  entryController: _entryController,
-                  readingController: _readingController,
-                  meaningController: _meaningController,
-                  posTagIdController: _posTagIdController,
-                  ipaController: _ipaController,
-                  etymologiesController: _etymologiesController,
-                  explanationController: _explanationController,
-                  sentenceIdController: _sentenceIdController,
-                  synonymsController: _synonymsController,
-                  antonymsController: _antonymsController,
-                  relatedController: _relatedController,
+                  word: widget.word,
+                  dictionary: widget.dictionary,
                   commentController: _commentController,
-                  dictionary: dictionary,
-                  word: word,
                 ),
                 const SizedBox(height: 40),
                 // SubmitBtn
@@ -178,7 +133,7 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
                 ),
                 const SizedBox(height: 64),
                 WordFormDestroyButton(
-                  word: word,
+                  word: widget.word,
                   commentController: _commentController,
                 ),
                 const SizedBox(height: 160),

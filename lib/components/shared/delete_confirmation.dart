@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/form/comment.dart';
+import 'package:booqs_mobile/components/form/editor_comment.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';

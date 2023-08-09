@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/word/item/pos_tag.dart';
 import 'package:booqs_mobile/components/word/item/reversed_review_button.dart';
+import 'package:booqs_mobile/components/word/item/senses.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
@@ -51,10 +52,10 @@ class WordDetailedItem extends StatelessWidget {
           height: 24,
         ),
         WordItemSentence(word: word),
-        WordItemEtymologies(word: word),
-        // WordItemExplanation(word: word),
-        // WordItemSenses(word: word),
-        WordItemRelatedWords(word: word),
+        const SizedBox(
+          height: 16,
+        ),
+        WordItemSenses(word: word),
         const SizedBox(
           height: 16,
         ),

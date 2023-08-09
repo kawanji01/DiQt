@@ -1,29 +1,36 @@
-import 'package:booqs_mobile/data/provider/word.dart';
+import 'package:booqs_mobile/components/word/new_screen.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/models/word_request.dart';
-import 'package:booqs_mobile/pages/word/show.dart';
-import 'package:booqs_mobile/pages/word_request/show.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
-import 'package:booqs_mobile/components/word/form/fields.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordNewPage extends ConsumerStatefulWidget {
   const WordNewPage({Key? key}) : super(key: key);
 
+  //static Future push(
+  //    BuildContext context, int dictionaryId, String keyword) async {
+  //  return Navigator.of(context).pushNamed(wordNewPage,
+  //      arguments: {'dictionaryId': dictionaryId, 'keyword': keyword});
+  //}
   static Future push(
       BuildContext context, int dictionaryId, String keyword) async {
-    return Navigator.of(context).pushNamed(wordNewPage,
-        arguments: {'dictionaryId': dictionaryId, 'keyword': keyword});
+    return Navigator.push(
+        context,
+        MaterialPageRoute(
+            // 画面遷移のログを送信するために、settings.nameを設定する。
+            settings: RouteSettings(
+                name: wordNewPage,
+                arguments: {'dictionaryId': dictionaryId, 'keyword': keyword}),
+            builder: (BuildContext context) {
+              return const WordNewPage();
+            },
+            fullscreenDialog: true));
   }
 
   @override
@@ -32,22 +39,9 @@ class WordNewPage extends ConsumerStatefulWidget {
 
 class WordNewPageState extends ConsumerState<WordNewPage> {
   Dictionary? _dictionary;
+  String keyword = '';
+  String translation = '';
   bool _isLoading = true;
-  bool _isRequesting = false;
-  // validatorを利用するために必要なkey
-  final _formKey = GlobalKey<FormState>();
-  final _entryController = TextEditingController();
-  final _readingController = TextEditingController();
-  final _meaningController = TextEditingController();
-  final _posTagIdController = TextEditingController();
-  final _ipaController = TextEditingController();
-  final _etymologiesController = TextEditingController();
-  final _explanationController = TextEditingController();
-  final _sentenceIdController = TextEditingController();
-  final _synonymsController = TextEditingController();
-  final _antonymsController = TextEditingController();
-  final _relatedController = TextEditingController();
-  final _commentController = TextEditingController();
 
   @override
   void initState() {
@@ -60,139 +54,31 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
     });
   }
 
+  // キーワードの翻訳を取得する
   Future _initialize(Map arguments) async {
     final int dictionaryId = arguments['dictionaryId'];
-    final String keyword = arguments['keyword'];
-    final Map? resMap = await RemoteWords.newWord(dictionaryId, keyword);
+    keyword = arguments['keyword'] ?? '';
+    final Map resMap = await RemoteWords.newWord(dictionaryId, keyword);
     _isLoading = false;
-    if (resMap == null) {
+    if (!mounted) return;
+    if (ErrorHandler.isErrorMap(resMap)) {
+      ErrorHandler.showErrorSnackBar(context, resMap);
       return setState(() => _isLoading);
     }
     _dictionary = Dictionary.fromJson(resMap['dictionary']);
-    _entryController.text = keyword;
-    _meaningController.text = resMap['translation'] ?? '';
+    translation = resMap['translation'] ?? '';
     setState(() => _isLoading);
-  }
-
-  // widgetの破棄時にコントローラも破棄する。Controllerを使うなら必ず必要。
-  // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
-  @override
-  void dispose() {
-    super.dispose();
-    _entryController.dispose();
-    _readingController.dispose();
-    _meaningController.dispose();
-    _posTagIdController.dispose();
-    _ipaController.dispose();
-    _etymologiesController.dispose();
-    _explanationController.dispose();
-    _sentenceIdController.dispose();
-    _synonymsController.dispose();
-    _antonymsController.dispose();
-    _relatedController.dispose();
-    _commentController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // 項目の作成
-    Future create() async {
-      // 各Fieldのvalidatorを呼び出す
-      if (!_formKey.currentState!.validate()) return;
-
-      setState(() => _isRequesting = true);
-
-      final Map<String, dynamic> params = {
-        'entry': _entryController.text,
-        'reading': _readingController.text,
-        'meaning': _meaningController.text,
-        'pos_tag_id': _posTagIdController.text,
-        'ipa': _ipaController.text,
-        'etymologies': _etymologiesController.text,
-        'explanation': _explanationController.text,
-        'sentence_id': _sentenceIdController.text,
-        'synonyms': _synonymsController.text,
-        'antonyms': _antonymsController.text,
-        'related_entries': _relatedController.text,
-        'dictionary_id': _dictionary!.id,
-      };
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
-      final Map resMap = await RemoteWords.create(
-          params: params, comment: _commentController.text);
-      EasyLoading.dismiss();
-      setState(() => _isRequesting = false);
-      if (!mounted) return;
-
-      if (ErrorHandler.isErrorMap(resMap)) {
-        return ErrorHandler.showErrorSnackBar(context, resMap);
-      }
-      final snackBar = SnackBar(content: Text('${resMap['message']}'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      final WordRequest wordRequest =
-          WordRequest.fromJson(resMap['word_request']);
-      if (wordRequest.closed()) {
-        final Word word = Word.fromJson(resMap['word']);
-        ref.read(wordProvider.notifier).state = word;
-        WordShowPage.pushReplacement(context, word.id);
-      } else {
-        WordRequestShowPage.pushReplacement(context, wordRequest.id);
-      }
-    }
-
     Widget body() {
       if (_isLoading) return const LoadingSpinner();
-      if (_dictionary == null) return const Text('Dictionary does not exist.');
-      return SingleChildScrollView(
-        child: Form(
-            key: _formKey,
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(height: 24),
-                  DictionaryName(dictionary: _dictionary!),
-                  const SizedBox(height: 32),
-                  WordFormFields(
-                    entryController: _entryController,
-                    readingController: _readingController,
-                    meaningController: _meaningController,
-                    posTagIdController: _posTagIdController,
-                    ipaController: _ipaController,
-                    etymologiesController: _etymologiesController,
-                    explanationController: _explanationController,
-                    sentenceIdController: _sentenceIdController,
-                    synonymsController: _synonymsController,
-                    antonymsController: _antonymsController,
-                    relatedController: _relatedController,
-                    commentController: _commentController,
-                    dictionary: _dictionary!,
-                    word: null,
-                  ),
-                  const SizedBox(height: 40),
-                  // 作成ボタン
-                  SizedBox(
-                    height: 48,
-                    child: ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        minimumSize: const Size(double.infinity, 40),
-                      ),
-                      onPressed: _isRequesting
-                          ? null
-                          : () async {
-                              create();
-                            },
-                      icon: const Icon(Icons.update, color: Colors.white),
-                      label: Text(
-                        t.shared.create,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-                ])),
-      );
+      if (_dictionary == null) {
+        return Text(t.shared.no_items_found(name: t.dictionaries.dictionary));
+      }
+      return WordNewScreen(
+          dictionary: _dictionary!, keyword: keyword, translation: translation);
     }
 
     return Scaffold(
@@ -204,7 +90,6 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
             horizontal: ResponsiveValues.horizontalMargin(context)),
         child: body(),
       ),
-      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }
