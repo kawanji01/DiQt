@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/pages/sentence/edit.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
@@ -26,9 +27,9 @@ class SentenceItemEditButton extends ConsumerWidget {
           onPressed: () {
             SentenceEditPage.push(context, sentence.id);
           },
-          child: const Text(
-            '例文を編集する',
-            style: TextStyle(
+          child: Text(
+            t.sentences.edit,
+            style: const TextStyle(
               decoration: TextDecoration.underline,
             ),
           ),
@@ -51,9 +52,9 @@ class SentenceItemEditButton extends ConsumerWidget {
           onPressed: () {
             SentenceShowPage.push(context, sentence.id);
           },
-          child: const Text(
-            '詳細',
-            style: TextStyle(
+          child: Text(
+            t.shared.details,
+            style: const TextStyle(
               decoration: TextDecoration.underline,
             ),
           ),

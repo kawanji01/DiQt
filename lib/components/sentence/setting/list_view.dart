@@ -109,8 +109,12 @@ class _SentenceSettingListViewState extends State<SentenceSettingListView> {
       );
     }
 
-    return PagedListView<int, Sentence>(
+    return PagedListView.separated(
       pagingController: _pagingController,
+      separatorBuilder: (context, index) => const Divider(
+        thickness: 1,
+      ),
+      padding: const EdgeInsets.only(top: 40),
       // Vertical viewport was given unbounded heightの解決 ref: https://qiita.com/code-cutlass/items/3a8b759056db1e8f7639
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -120,9 +124,11 @@ class _SentenceSettingListViewState extends State<SentenceSettingListView> {
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
         newPageProgressIndicatorBuilder: (_) => loader(),
+        // 検索結果なし
         noItemsFoundIndicatorBuilder: (_) => NoItemsFoundIndicator(
           itemName: t.sentences.sentences,
         ),
+        // すべての検索結果の読み込み完了
         noMoreItemsIndicatorBuilder: (_) => NoMoreItemsIndicator(
           itemName: t.sentences.sentences,
         ),
