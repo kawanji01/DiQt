@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/form/destroy_button.dart';
 import 'package:booqs_mobile/components/word/form/fields.dart';
 import 'package:booqs_mobile/data/provider/sense.dart';
@@ -29,6 +30,7 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
       ref.read(wordControllerMapProvider.notifier);
 
   bool _isRequesting = false;
+  bool _isLoading = true;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _commentController = TextEditingController();
@@ -41,7 +43,9 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
           dictionaryId: widget.dictionary.id, word: widget.word);
       ref.read(editWordProvider.notifier).state = widget.word;
       ref.read(editWordDictionaryProvider.notifier).state = widget.dictionary;
-      setState(() {});
+      setState(() {
+        _isLoading = false;
+      });
     });
   }
 
@@ -91,6 +95,11 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
       }
       final snackBar = SnackBar(content: Text('${resMap['message']}'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+
+    // この処理がないと、wordControllerMapNotifier.initializeが終わる前にフォームが描画されることで例文が表示されなくなる。
+    if (_isLoading) {
+      return const LoadingSpinner();
     }
 
     return SingleChildScrollView(

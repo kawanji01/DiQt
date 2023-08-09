@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/sentence/setting/search_modal.dart';
+import 'package:booqs_mobile/components/sentence/setting/search_screen.dart';
 import 'package:booqs_mobile/components/sentence/setting/generator_screen.dart';
 import 'package:booqs_mobile/components/sentence/setting/sentence_preview.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
@@ -25,7 +25,7 @@ class SentenceSetting extends StatefulWidget {
   final Dictionary dictionary;
 
   @override
-  createState() => SentenceSettingState();
+  SentenceSettingState createState() => SentenceSettingState();
 }
 
 class SentenceSettingState extends State<SentenceSetting> {
@@ -112,7 +112,7 @@ class SentenceSettingState extends State<SentenceSetting> {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return SentenceSettingSearchModal(
+        return SentenceSettingSearchScreen(
             keyword: _keywordController.text, dictionary: widget.dictionary);
       },
     );
