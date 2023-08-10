@@ -43,12 +43,14 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
     });
   }
 
-  @override
+  /* @override
   void dispose() {
     super.dispose();
-    // 画面遷移を許可するために、編集中を解除する。
-    ref.read(sharedEditingContentProvider.notifier).offEdit();
-  }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // 画面遷移を許可するために、編集中を解除する。
+      ref.read(sharedEditingContentProvider.notifier).offEdit();
+    });
+  } */
 
   @override
   Widget build(BuildContext context) {
