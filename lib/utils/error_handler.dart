@@ -20,9 +20,10 @@ class ErrorHandler {
 
   // エラーメッセージを返す
   static String message(Map resMap, {bool useServerMessage = false}) {
-    final int status = resMap['status'];
+    final int status = resMap['status'] ?? 500;
     final String message = resMap['message'] ?? '';
-    final String systemMessage = t['errors.http_status_$status'];
+    final String systemMessage =
+        t['errors.http_status_$status'] ?? t.errors.http_status_500;
     if (useServerMessage && message != '') {
       return message;
     }

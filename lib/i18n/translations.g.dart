@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2254 (1127 per locale)
+/// Strings: 2270 (1135 per locale)
 ///
-/// Built on 2023-08-08 at 04:16 UTC
+/// Built on 2023-08-10 at 04:04 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -558,11 +558,14 @@ class _TranslationsSharedEn {
 	String get update => 'Update';
 	String get update_succeeded => 'Updated';
 	String get update_failed => 'Update failed';
+	String get return_confirmation => 'Confirmation';
+	String get return_confirmation_description => 'Discard the edit and return. Are you sure?';
 	String get destroy => 'Destroy';
-	String get destroy_confirmation => 'Confirmation';
+	String get destroy_confirmation => 'Delete Confirmation';
 	String get destroy_confirmation_description => 'Are you sure you want to delete it?';
 	String get destroy_succeeded => 'Destroyed';
 	String get cancel => 'Cancel';
+	String get ok => 'OK';
 	String get reload => 'Reload';
 	String get search => 'Search';
 	String get generate => 'Generate';
@@ -1283,6 +1286,7 @@ class _TranslationsQuizzesEn {
 
 	// Translations
 	String get quiz => 'Quiz';
+	String get quizzes => 'Quizzes';
 	String get edit => 'Edit';
 	String get answer => 'Answer';
 	String get see_correct_answer => 'See correct answer';
@@ -1307,6 +1311,8 @@ class _TranslationsQuizzesEn {
 	String get explanation_placeholder => 'You can input a explanation.';
 	String get hint => 'Hint';
 	String get hint_placeholder => 'You can input a hint for the question.';
+	String get source_word => 'Source Word';
+	String get source_sentence => 'Source Sentence';
 	String corrected_time_ago({required Object time}) => 'Corrected ${time} ago';
 	String incorrect_time_ago({required Object time}) => 'Incorrect ${time} ago';
 	String correct_answer_rate({required Object percent}) => '${percent}% of correct answers';
@@ -1497,6 +1503,8 @@ class _TranslationsWordsEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get words => 'Words';
+	String get word => 'Word';
 	String get add => 'Add Word';
 	String get edit => 'Edit Word';
 	String get created => 'Word Created';
@@ -2072,11 +2080,14 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get update => '更新する';
 	@override String get update_succeeded => '更新されました。';
 	@override String get update_failed => '更新に失敗しました。';
+	@override String get return_confirmation => '確認';
+	@override String get return_confirmation_description => '編集を破棄して戻ります。よろしいですか？';
 	@override String get destroy => '削除する';
-	@override String get destroy_confirmation => '確認';
+	@override String get destroy_confirmation => '削除の確認';
 	@override String get destroy_confirmation_description => '本当に削除してもよろしいですか？';
 	@override String get destroy_succeeded => '削除しました。';
 	@override String get cancel => 'キャンセルする';
+	@override String get ok => 'OK';
 	@override String get reload => '再読み込みする';
 	@override String get search => '検索する';
 	@override String get generate => '生成する';
@@ -2797,6 +2808,7 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 
 	// Translations
 	@override String get quiz => '問題';
+	@override String get quizzes => '問題';
 	@override String get edit => '編集する';
 	@override String get answer => '解答する';
 	@override String get see_correct_answer => '正解を見る';
@@ -2821,6 +2833,8 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 	@override String get explanation_placeholder => '【空欄可】解説を設定できます。';
 	@override String get hint => 'ヒント';
 	@override String get hint_placeholder => '【空欄可】ヒントを設定できます。';
+	@override String get source_word => '元となった辞書の項目';
+	@override String get source_sentence => '元となった例文';
 	@override String corrected_time_ago({required Object time}) => '${time}前に正解';
 	@override String incorrect_time_ago({required Object time}) => '${time}前に不正解';
 	@override String correct_answer_rate({required Object percent}) => '正答率${percent}%';
@@ -3011,6 +3025,8 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get words => '項目';
+	@override String get word => '項目';
 	@override String get add => '項目を追加する';
 	@override String get edit => '項目を編集する';
 	@override String get created => '項目を作成しました。';
@@ -3423,11 +3439,14 @@ extension on _TranslationsEn {
 			case 'shared.update': return 'Update';
 			case 'shared.update_succeeded': return 'Updated';
 			case 'shared.update_failed': return 'Update failed';
+			case 'shared.return_confirmation': return 'Confirmation';
+			case 'shared.return_confirmation_description': return 'Discard the edit and return. Are you sure?';
 			case 'shared.destroy': return 'Destroy';
-			case 'shared.destroy_confirmation': return 'Confirmation';
+			case 'shared.destroy_confirmation': return 'Delete Confirmation';
 			case 'shared.destroy_confirmation_description': return 'Are you sure you want to delete it?';
 			case 'shared.destroy_succeeded': return 'Destroyed';
 			case 'shared.cancel': return 'Cancel';
+			case 'shared.ok': return 'OK';
 			case 'shared.reload': return 'Reload';
 			case 'shared.search': return 'Search';
 			case 'shared.generate': return 'Generate';
@@ -4040,6 +4059,7 @@ extension on _TranslationsEn {
 			case 'answer.limit_reached': return 'Limit Reached';
 			case 'answer.limit_reached_description': return ({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
 			case 'quizzes.quiz': return 'Quiz';
+			case 'quizzes.quizzes': return 'Quizzes';
 			case 'quizzes.edit': return 'Edit';
 			case 'quizzes.answer': return 'Answer';
 			case 'quizzes.see_correct_answer': return 'See correct answer';
@@ -4064,6 +4084,8 @@ extension on _TranslationsEn {
 			case 'quizzes.explanation_placeholder': return 'You can input a explanation.';
 			case 'quizzes.hint': return 'Hint';
 			case 'quizzes.hint_placeholder': return 'You can input a hint for the question.';
+			case 'quizzes.source_word': return 'Source Word';
+			case 'quizzes.source_sentence': return 'Source Sentence';
 			case 'quizzes.corrected_time_ago': return ({required Object time}) => 'Corrected ${time} ago';
 			case 'quizzes.incorrect_time_ago': return ({required Object time}) => 'Incorrect ${time} ago';
 			case 'quizzes.correct_answer_rate': return ({required Object percent}) => '${percent}% of correct answers';
@@ -4173,6 +4195,8 @@ extension on _TranslationsEn {
 			case 'dictionaryMaps.set': return 'Set';
 			case 'dictionaryMaps.update_success': return 'My Dictionaries Set';
 			case 'dictionaryMaps.update_failed': return 'Setting My Dictionaries Failed';
+			case 'words.words': return 'Words';
+			case 'words.word': return 'Word';
 			case 'words.add': return 'Add Word';
 			case 'words.edit': return 'Edit Word';
 			case 'words.created': return 'Word Created';
@@ -4558,11 +4582,14 @@ extension on _TranslationsJa {
 			case 'shared.update': return '更新する';
 			case 'shared.update_succeeded': return '更新されました。';
 			case 'shared.update_failed': return '更新に失敗しました。';
+			case 'shared.return_confirmation': return '確認';
+			case 'shared.return_confirmation_description': return '編集を破棄して戻ります。よろしいですか？';
 			case 'shared.destroy': return '削除する';
-			case 'shared.destroy_confirmation': return '確認';
+			case 'shared.destroy_confirmation': return '削除の確認';
 			case 'shared.destroy_confirmation_description': return '本当に削除してもよろしいですか？';
 			case 'shared.destroy_succeeded': return '削除しました。';
 			case 'shared.cancel': return 'キャンセルする';
+			case 'shared.ok': return 'OK';
 			case 'shared.reload': return '再読み込みする';
 			case 'shared.search': return '検索する';
 			case 'shared.generate': return '生成する';
@@ -5175,6 +5202,7 @@ extension on _TranslationsJa {
 			case 'answer.limit_reached': return '制限に達しました';
 			case 'answer.limit_reached_description': return ({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
 			case 'quizzes.quiz': return '問題';
+			case 'quizzes.quizzes': return '問題';
 			case 'quizzes.edit': return '編集する';
 			case 'quizzes.answer': return '解答する';
 			case 'quizzes.see_correct_answer': return '正解を見る';
@@ -5199,6 +5227,8 @@ extension on _TranslationsJa {
 			case 'quizzes.explanation_placeholder': return '【空欄可】解説を設定できます。';
 			case 'quizzes.hint': return 'ヒント';
 			case 'quizzes.hint_placeholder': return '【空欄可】ヒントを設定できます。';
+			case 'quizzes.source_word': return '元となった辞書の項目';
+			case 'quizzes.source_sentence': return '元となった例文';
 			case 'quizzes.corrected_time_ago': return ({required Object time}) => '${time}前に正解';
 			case 'quizzes.incorrect_time_ago': return ({required Object time}) => '${time}前に不正解';
 			case 'quizzes.correct_answer_rate': return ({required Object percent}) => '正答率${percent}%';
@@ -5308,6 +5338,8 @@ extension on _TranslationsJa {
 			case 'dictionaryMaps.set': return '設定する';
 			case 'dictionaryMaps.update_success': return 'My辞書を設定しました。';
 			case 'dictionaryMaps.update_failed': return 'My辞書が設定できませんでした。';
+			case 'words.words': return '項目';
+			case 'words.word': return '項目';
 			case 'words.add': return '項目を追加する';
 			case 'words.edit': return '項目を編集する';
 			case 'words.created': return '項目を作成しました。';

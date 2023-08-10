@@ -40,7 +40,6 @@ class Quiz {
     this.answerAnalysis,
     this.weakness,
     this.word,
-    this.referenceWord,
     this.sentence,
   });
 
@@ -77,9 +76,7 @@ class Quiz {
   AnswerAnalysis? answerAnalysis;
   Weakness? weakness;
   Word? word;
-  Word? referenceWord;
   Sentence? sentence;
-  Sentence? reversedSentence;
 
   Quiz.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -122,15 +119,9 @@ class Quiz {
             ? null
             : Weakness.fromJson(json['weakness']),
         word = json['word'] == null ? null : Word.fromJson(json['word']),
-        referenceWord = json['reference_word'] == null
-            ? null
-            : Word.fromJson(json['reference_word']),
         sentence = json['sentence'] == null
             ? null
-            : Sentence.fromJson(json['sentence']),
-        reversedSentence = json['reversed_sentence'] == null
-            ? null
-            : Sentence.fromJson(json['reversed_sentence']);
+            : Sentence.fromJson(json['sentence']);
 
   // 却下されたQuizRequestのリクエストの数
   int rejectedQuizRequestsCount() =>

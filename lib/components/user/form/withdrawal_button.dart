@@ -47,7 +47,8 @@ class UserFormWithdrawalButtonState
       onTap: () async {
         final String title = t.users.withdraw;
         final String text = t.users.withdraw_confirmation;
-        bool result = await Dialogs.confirm(context, title, text);
+        bool result = await Dialogs.confirm(
+            context: context, title: title, message: text);
         if (result) {
           await withdrawal();
         }

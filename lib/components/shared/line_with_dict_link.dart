@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/pages/dictionary/word_search_results.dart';
+import 'package:booqs_mobile/components/markdown/dict_link_screen.dart';
 import 'package:booqs_mobile/components/markdown/markdown_without_dict_link.dart';
 import 'package:flutter/material.dart';
 
@@ -43,8 +43,18 @@ class LineWithDictLink extends StatelessWidget {
     );
 
     Future goToWordSearchPage(keyword) async {
-      await DictionaryWordSearchResultsPage.push(
-          context, dictionaryId!, keyword);
+      return showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
+        ),
+        builder: (context) => MarkdownDictLinkScreen(
+          dictionaryId: dictionaryId!,
+          keyword: keyword,
+        ),
+      );
     }
 
     // 記法なしの単語
@@ -80,10 +90,6 @@ class LineWithDictLink extends StatelessWidget {
     Widget wordWithDictLink(String word) {
       final linkedWord = word.replaceFirst('[[', '').replaceFirst(']]', '');
       Color textColor = Colors.green;
-      // オートリンクの場合は、オートリンクとwiki記法のリンクの区別がつかないので、wiki記法のリンクの色をオレンジにする。
-      //if (autoLinkEnabled) {
-      //  textColor = Colors.orange;
-      ///}
 
       // [[diplayedWord|searchedWord]]の場合
       if (linkedWord.contains('|')) {

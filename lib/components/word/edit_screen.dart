@@ -2,6 +2,7 @@ import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/form/destroy_button.dart';
 import 'package:booqs_mobile/components/word/form/fields.dart';
 import 'package:booqs_mobile/data/provider/sense.dart';
+import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -39,10 +40,11 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // wordのフォーム用のコントローラーをセットする。
       wordControllerMapNotifier.initialize(
           dictionaryId: widget.dictionary.id, word: widget.word);
-      ref.read(editWordProvider.notifier).state = widget.word;
-      ref.read(editWordDictionaryProvider.notifier).state = widget.dictionary;
+      // Wordの親の辞書を設定。
+      ref.read(wordEditDictionaryProvider.notifier).state = widget.dictionary;
       setState(() {
         _isLoading = false;
       });
@@ -56,6 +58,7 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
     super.dispose();
     _commentController.dispose();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // メモリリークを防ぐために、すべてのControllerを破棄する。
       wordControllerMapNotifier.disposeAllItems();
     });
   }
@@ -86,7 +89,8 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
       final Word updatedWord = Word.fromJson(resMap['word']);
       final WordRequest wordRequest =
           WordRequest.fromJson(resMap['word_request']);
-
+      // 編集状態を解除
+      ref.read(sharedEditingContentProvider.notifier).offEdit();
       if (wordRequest.closed()) {
         ref.read(wordProvider.notifier).state = updatedWord;
         WordShowPage.pushReplacement(context, updatedWord.id);
