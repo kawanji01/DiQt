@@ -7,6 +7,7 @@ import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/sentence_request.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -87,54 +88,61 @@ class _SentenceSettingAdditionScreenState
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        margin: EdgeInsets.symmetric(
-            vertical: 24,
-            horizontal: ResponsiveValues.horizontalMargin(context)),
-        child: Form(
-          key: _formKey,
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(height: 32),
-                SentenceForm(
-                  originalController: _originalController,
-                  translationController: _translationController,
-                  explanationController: _explanationController,
-                  dictionary: widget.dictionary,
-                  isNew: true,
-                  keyword: widget.keyword,
-                ),
-                const SizedBox(height: 40),
-                SizedBox(
-                  height: 48,
-                  child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      minimumSize: const Size(double.infinity,
-                          40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-                    ),
-                    onPressed: _isRequesting ? null : _save,
-                    icon: const Icon(Icons.update, color: Colors.white),
-                    label: Text(
-                      t.shared.create,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16),
+    SizeConfig().init(context);
+    final double grid = SizeConfig.blockSizeVertical ?? 0;
+    final double height = grid * 80;
+
+    return SizedBox(
+      height: height,
+      child: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: Form(
+            key: _formKey,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(height: 32),
+                  SentenceForm(
+                    originalController: _originalController,
+                    translationController: _translationController,
+                    explanationController: _explanationController,
+                    dictionary: widget.dictionary,
+                    isNew: true,
+                    keyword: widget.keyword,
+                  ),
+                  const SizedBox(height: 40),
+                  SizedBox(
+                    height: 48,
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        minimumSize: const Size(double.infinity,
+                            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                      ),
+                      onPressed: _isRequesting ? null : _save,
+                      icon: const Icon(Icons.update, color: Colors.white),
+                      label: Text(
+                        t.shared.create,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 48),
-                InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: SmallOutlineRedButton(
-                      label: t.shared.cancel,
-                      icon: Icons.cancel_outlined,
-                    )),
-                const SizedBox(height: 48),
-              ]),
+                  const SizedBox(height: 48),
+                  InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: SmallOutlineRedButton(
+                        label: t.shared.cancel,
+                        icon: Icons.cancel_outlined,
+                      )),
+                  const SizedBox(height: 48),
+                ]),
+          ),
         ),
       ),
     );
