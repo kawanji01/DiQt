@@ -57,7 +57,6 @@ class WordNewScreenState extends ConsumerState<WordNewScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // メモリリークを防ぐために、すべてのControllerを破棄する。
       wordControllerMapNotifier.disposeAllItems();
-      ref.read(wordEditDictionaryProvider.notifier).state = null;
     });
   }
 
