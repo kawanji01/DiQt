@@ -85,17 +85,21 @@ class SentenceRequestVoteButtonsState
 
   @override
   Widget build(BuildContext context) {
-    if (_sentenceRequest.closed()) {
-      return Container();
+    Widget decisionCondtion() {
+      if (_sentenceRequest.closed()) {
+        return Container();
+      }
+      return Text(
+        t.wordRequests.votes_count_to_close(
+            count: _sentenceRequest.votesCountToClose ?? 0),
+        style: const TextStyle(fontSize: 14, color: Colors.black54),
+      );
     }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          t.wordRequests.votes_count_to_close(
-              count: _sentenceRequest.votesCountToClose ?? 0),
-          style: const TextStyle(fontSize: 14, color: Colors.black54),
-        ),
+        decisionCondtion(),
         const SizedBox(height: 4),
         Row(
           children: [
