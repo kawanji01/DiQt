@@ -1,13 +1,22 @@
+import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/data/provider/shared.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/pages/quiz/show.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizDetailButton extends StatelessWidget {
+class QuizDetailButton extends ConsumerWidget {
   const QuizDetailButton({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bool isEditing = ref.watch(sharedEditingContentProvider);
+    final String locale = ref.watch(localeProvider);
+    final String url = '${DiQtURL.root(locale: locale)}/quizzes/${quiz.id}';
     return Container(
       // 左寄せ
       alignment: Alignment.centerRight,
@@ -18,11 +27,15 @@ class QuizDetailButton extends StatelessWidget {
           textStyle: const TextStyle(fontSize: 15),
         ),
         onPressed: () {
-          QuizShowPage.push(context, quiz.id);
+          if (isEditing) {
+            WebPageLauncher.openByExternalBrowser(url);
+          } else {
+            QuizShowPage.push(context, quiz.id);
+          }
         },
-        child: const Text(
-          '詳細',
-          style: TextStyle(
+        child: Text(
+          t.shared.details,
+          style: const TextStyle(
             decoration: TextDecoration.underline,
           ),
         ),

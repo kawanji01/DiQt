@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2264 (1132 per locale)
+/// Strings: 2270 (1135 per locale)
 ///
-/// Built on 2023-08-10 at 02:07 UTC
+/// Built on 2023-08-10 at 04:04 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1286,6 +1286,7 @@ class _TranslationsQuizzesEn {
 
 	// Translations
 	String get quiz => 'Quiz';
+	String get quizzes => 'Quizzes';
 	String get edit => 'Edit';
 	String get answer => 'Answer';
 	String get see_correct_answer => 'See correct answer';
@@ -1310,6 +1311,8 @@ class _TranslationsQuizzesEn {
 	String get explanation_placeholder => 'You can input a explanation.';
 	String get hint => 'Hint';
 	String get hint_placeholder => 'You can input a hint for the question.';
+	String get source_word => 'Source Word';
+	String get source_sentence => 'Source Sentence';
 	String corrected_time_ago({required Object time}) => 'Corrected ${time} ago';
 	String incorrect_time_ago({required Object time}) => 'Incorrect ${time} ago';
 	String correct_answer_rate({required Object percent}) => '${percent}% of correct answers';
@@ -2805,6 +2808,7 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 
 	// Translations
 	@override String get quiz => '問題';
+	@override String get quizzes => '問題';
 	@override String get edit => '編集する';
 	@override String get answer => '解答する';
 	@override String get see_correct_answer => '正解を見る';
@@ -2829,6 +2833,8 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 	@override String get explanation_placeholder => '【空欄可】解説を設定できます。';
 	@override String get hint => 'ヒント';
 	@override String get hint_placeholder => '【空欄可】ヒントを設定できます。';
+	@override String get source_word => '元となった辞書の項目';
+	@override String get source_sentence => '元となった例文';
 	@override String corrected_time_ago({required Object time}) => '${time}前に正解';
 	@override String incorrect_time_ago({required Object time}) => '${time}前に不正解';
 	@override String correct_answer_rate({required Object percent}) => '正答率${percent}%';
@@ -4053,6 +4059,7 @@ extension on _TranslationsEn {
 			case 'answer.limit_reached': return 'Limit Reached';
 			case 'answer.limit_reached_description': return ({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
 			case 'quizzes.quiz': return 'Quiz';
+			case 'quizzes.quizzes': return 'Quizzes';
 			case 'quizzes.edit': return 'Edit';
 			case 'quizzes.answer': return 'Answer';
 			case 'quizzes.see_correct_answer': return 'See correct answer';
@@ -4077,6 +4084,8 @@ extension on _TranslationsEn {
 			case 'quizzes.explanation_placeholder': return 'You can input a explanation.';
 			case 'quizzes.hint': return 'Hint';
 			case 'quizzes.hint_placeholder': return 'You can input a hint for the question.';
+			case 'quizzes.source_word': return 'Source Word';
+			case 'quizzes.source_sentence': return 'Source Sentence';
 			case 'quizzes.corrected_time_ago': return ({required Object time}) => 'Corrected ${time} ago';
 			case 'quizzes.incorrect_time_ago': return ({required Object time}) => 'Incorrect ${time} ago';
 			case 'quizzes.correct_answer_rate': return ({required Object percent}) => '${percent}% of correct answers';
@@ -5193,6 +5202,7 @@ extension on _TranslationsJa {
 			case 'answer.limit_reached': return '制限に達しました';
 			case 'answer.limit_reached_description': return ({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
 			case 'quizzes.quiz': return '問題';
+			case 'quizzes.quizzes': return '問題';
 			case 'quizzes.edit': return '編集する';
 			case 'quizzes.answer': return '解答する';
 			case 'quizzes.see_correct_answer': return '正解を見る';
@@ -5217,6 +5227,8 @@ extension on _TranslationsJa {
 			case 'quizzes.explanation_placeholder': return '【空欄可】解説を設定できます。';
 			case 'quizzes.hint': return 'ヒント';
 			case 'quizzes.hint_placeholder': return '【空欄可】ヒントを設定できます。';
+			case 'quizzes.source_word': return '元となった辞書の項目';
+			case 'quizzes.source_sentence': return '元となった例文';
 			case 'quizzes.corrected_time_ago': return ({required Object time}) => '${time}前に正解';
 			case 'quizzes.incorrect_time_ago': return ({required Object time}) => '${time}前に不正解';
 			case 'quizzes.correct_answer_rate': return ({required Object percent}) => '正答率${percent}%';

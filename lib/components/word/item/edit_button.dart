@@ -34,7 +34,8 @@ class WordItemEditButton extends ConsumerWidget {
           ),
           onPressed: () {
             if (isEditing) {
-              WebPageLauncher.openByWebView('$url/edit');
+              // 画面遷移を防ぎ、フォーム情報の干渉を防ぐために、外部ブラウザでページを開く。
+              WebPageLauncher.openByExternalBrowser('$url/edit');
             } else {
               ref.read(wordProvider.notifier).state = word;
               WordEditPage.push(context, word.id);
@@ -64,7 +65,7 @@ class WordItemEditButton extends ConsumerWidget {
           ),
           onPressed: () {
             if (isEditing) {
-              WebPageLauncher.openByWebView(url);
+              WebPageLauncher.openByExternalBrowser(url);
             } else {
               WordShowPage.push(context, word.id);
             }

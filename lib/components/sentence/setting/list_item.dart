@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/components/sentence/item/content.dart';
-import 'package:booqs_mobile/components/sentence/setting/edit_button.dart';
+import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
@@ -26,7 +26,9 @@ class SentenceSettingListItem extends StatelessWidget {
                 child: SmallGreenButton(
                     label: t.shared.set_up, icon: Icons.check)),
             const SizedBox(height: 8),
-            SentenceSettingEditButton(sentence: sentence),
+            SentenceItemEditButton(
+              sentence: sentence,
+            ),
           ]),
     );
   }

@@ -1,3 +1,6 @@
+import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/data/provider/shared.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
@@ -5,16 +8,23 @@ import 'package:booqs_mobile/pages/quiz/edit.dart';
 import 'package:booqs_mobile/components/quiz/detail_button.dart';
 import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/edit_button.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizEditButton extends StatelessWidget {
-  const QuizEditButton({Key? key, required this.quiz, required this.isShow})
+class QuizEditButton extends ConsumerWidget {
+  const QuizEditButton({Key? key, required this.quiz, this.isShow = false})
       : super(key: key);
   final Quiz quiz;
   final bool isShow;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bool isEditing = ref.watch(sharedEditingContentProvider);
+    final String locale = ref.watch(localeProvider);
+    final String url = '${DiQtURL.root(locale: locale)}/quizzes/${quiz.id}';
+
     Widget editButton() {
       return Container(
         // 左寄せ
@@ -26,11 +36,15 @@ class QuizEditButton extends StatelessWidget {
             textStyle: const TextStyle(fontSize: 16),
           ),
           onPressed: () {
-            QuizEditPage.push(context, quiz.id);
+            if (isEditing) {
+              WebPageLauncher.openByExternalBrowser('$url/edit');
+            } else {
+              QuizEditPage.push(context, quiz.id);
+            }
           },
-          child: const Text(
-            '問題を編集する',
-            style: TextStyle(
+          child: Text(
+            t.quizzes.edit,
+            style: const TextStyle(
               decoration: TextDecoration.underline,
             ),
           ),
@@ -44,7 +58,7 @@ class QuizEditButton extends StatelessWidget {
     }
 
     Widget sourceEditButton() {
-      final Word? word = quiz.word ?? quiz.referenceWord;
+      final Word? word = quiz.word;
       final Sentence? sentence = quiz.sentence;
       if (word != null) {
         return WordItemEditButton(word: word, isShow: isShow);
