@@ -4,26 +4,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
 class Dialogs {
-  static Future<bool> confirm(
-    BuildContext context,
-    String title,
-    String message,
-  ) async {
+  static Future<bool> confirm({
+    required BuildContext context,
+    required String title,
+    required String message,
+  }) async {
     final result = await showDialog<bool>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Text(
           title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(
+              fontWeight: FontWeight.bold, color: Colors.black87),
         ),
         content: Text(message),
         actions: <Widget>[
           SimpleDialogOption(
-            child: Text(t.shared.cancel),
+            child: Text(t.shared.cancel,
+                style: const TextStyle(
+                    color: Colors.green,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
             onPressed: () => Navigator.pop(context, false),
           ),
           SimpleDialogOption(
-            child: const Text('OK'),
+            child: Text(
+              t.shared.ok,
+              style: const TextStyle(
+                  color: Colors.green,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            ),
             onPressed: () => Navigator.pop(context, true),
           ),
         ],

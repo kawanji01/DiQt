@@ -19,8 +19,7 @@ final asyncWordFamily =
 
 final wordProvider = StateProvider<Word?>((ref) => null);
 
-final editWordProvider = StateProvider<Word?>((ref) => null);
-final editWordDictionaryProvider = StateProvider<Dictionary?>((ref) => null);
+final wordEditDictionaryProvider = StateProvider<Dictionary?>((ref) => null);
 
 //
 class WordControllerMapState

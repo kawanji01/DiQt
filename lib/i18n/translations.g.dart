@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2254 (1127 per locale)
+/// Strings: 2264 (1132 per locale)
 ///
-/// Built on 2023-08-08 at 04:16 UTC
+/// Built on 2023-08-10 at 02:07 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -558,11 +558,14 @@ class _TranslationsSharedEn {
 	String get update => 'Update';
 	String get update_succeeded => 'Updated';
 	String get update_failed => 'Update failed';
+	String get return_confirmation => 'Confirmation';
+	String get return_confirmation_description => 'Discard the edit and return. Are you sure?';
 	String get destroy => 'Destroy';
-	String get destroy_confirmation => 'Confirmation';
+	String get destroy_confirmation => 'Delete Confirmation';
 	String get destroy_confirmation_description => 'Are you sure you want to delete it?';
 	String get destroy_succeeded => 'Destroyed';
 	String get cancel => 'Cancel';
+	String get ok => 'OK';
 	String get reload => 'Reload';
 	String get search => 'Search';
 	String get generate => 'Generate';
@@ -1497,6 +1500,8 @@ class _TranslationsWordsEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get words => 'Words';
+	String get word => 'Word';
 	String get add => 'Add Word';
 	String get edit => 'Edit Word';
 	String get created => 'Word Created';
@@ -2072,11 +2077,14 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get update => '更新する';
 	@override String get update_succeeded => '更新されました。';
 	@override String get update_failed => '更新に失敗しました。';
+	@override String get return_confirmation => '確認';
+	@override String get return_confirmation_description => '編集を破棄して戻ります。よろしいですか？';
 	@override String get destroy => '削除する';
-	@override String get destroy_confirmation => '確認';
+	@override String get destroy_confirmation => '削除の確認';
 	@override String get destroy_confirmation_description => '本当に削除してもよろしいですか？';
 	@override String get destroy_succeeded => '削除しました。';
 	@override String get cancel => 'キャンセルする';
+	@override String get ok => 'OK';
 	@override String get reload => '再読み込みする';
 	@override String get search => '検索する';
 	@override String get generate => '生成する';
@@ -3011,6 +3019,8 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get words => '項目';
+	@override String get word => '項目';
 	@override String get add => '項目を追加する';
 	@override String get edit => '項目を編集する';
 	@override String get created => '項目を作成しました。';
@@ -3423,11 +3433,14 @@ extension on _TranslationsEn {
 			case 'shared.update': return 'Update';
 			case 'shared.update_succeeded': return 'Updated';
 			case 'shared.update_failed': return 'Update failed';
+			case 'shared.return_confirmation': return 'Confirmation';
+			case 'shared.return_confirmation_description': return 'Discard the edit and return. Are you sure?';
 			case 'shared.destroy': return 'Destroy';
-			case 'shared.destroy_confirmation': return 'Confirmation';
+			case 'shared.destroy_confirmation': return 'Delete Confirmation';
 			case 'shared.destroy_confirmation_description': return 'Are you sure you want to delete it?';
 			case 'shared.destroy_succeeded': return 'Destroyed';
 			case 'shared.cancel': return 'Cancel';
+			case 'shared.ok': return 'OK';
 			case 'shared.reload': return 'Reload';
 			case 'shared.search': return 'Search';
 			case 'shared.generate': return 'Generate';
@@ -4173,6 +4186,8 @@ extension on _TranslationsEn {
 			case 'dictionaryMaps.set': return 'Set';
 			case 'dictionaryMaps.update_success': return 'My Dictionaries Set';
 			case 'dictionaryMaps.update_failed': return 'Setting My Dictionaries Failed';
+			case 'words.words': return 'Words';
+			case 'words.word': return 'Word';
 			case 'words.add': return 'Add Word';
 			case 'words.edit': return 'Edit Word';
 			case 'words.created': return 'Word Created';
@@ -4558,11 +4573,14 @@ extension on _TranslationsJa {
 			case 'shared.update': return '更新する';
 			case 'shared.update_succeeded': return '更新されました。';
 			case 'shared.update_failed': return '更新に失敗しました。';
+			case 'shared.return_confirmation': return '確認';
+			case 'shared.return_confirmation_description': return '編集を破棄して戻ります。よろしいですか？';
 			case 'shared.destroy': return '削除する';
-			case 'shared.destroy_confirmation': return '確認';
+			case 'shared.destroy_confirmation': return '削除の確認';
 			case 'shared.destroy_confirmation_description': return '本当に削除してもよろしいですか？';
 			case 'shared.destroy_succeeded': return '削除しました。';
 			case 'shared.cancel': return 'キャンセルする';
+			case 'shared.ok': return 'OK';
 			case 'shared.reload': return '再読み込みする';
 			case 'shared.search': return '検索する';
 			case 'shared.generate': return '生成する';
@@ -5308,6 +5326,8 @@ extension on _TranslationsJa {
 			case 'dictionaryMaps.set': return '設定する';
 			case 'dictionaryMaps.update_success': return 'My辞書を設定しました。';
 			case 'dictionaryMaps.update_failed': return 'My辞書が設定できませんでした。';
+			case 'words.words': return '項目';
+			case 'words.word': return '項目';
 			case 'words.add': return '項目を追加する';
 			case 'words.edit': return '項目を編集する';
 			case 'words.created': return '項目を作成しました。';

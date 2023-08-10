@@ -1,8 +1,12 @@
+import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,6 +18,10 @@ class WordItemEditButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final bool isEditing = ref.watch(sharedEditingContentProvider);
+    final String locale = ref.watch(localeProvider);
+    final String url = '${DiQtURL.root(locale: locale)}/words/${word.id}';
+
     // 編集ボタン
     Widget editButton() {
       return Align(
@@ -25,8 +33,12 @@ class WordItemEditButton extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 15),
           ),
           onPressed: () {
-            ref.read(wordProvider.notifier).state = word;
-            WordEditPage.push(context, word.id);
+            if (isEditing) {
+              WebPageLauncher.openByWebView('$url/edit');
+            } else {
+              ref.read(wordProvider.notifier).state = word;
+              WordEditPage.push(context, word.id);
+            }
           },
           child: Text(
             t.words.edit,
@@ -51,7 +63,11 @@ class WordItemEditButton extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 15),
           ),
           onPressed: () {
-            WordShowPage.push(context, word.id);
+            if (isEditing) {
+              WebPageLauncher.openByWebView(url);
+            } else {
+              WordShowPage.push(context, word.id);
+            }
           },
           child: Text(
             t.shared.details,

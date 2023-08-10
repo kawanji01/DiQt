@@ -17,7 +17,7 @@ class SenseFormSentenceSetting extends ConsumerWidget {
         wordControllerMap['entry'] ?? TextEditingController();
     final TextEditingController posTagIdController =
         wordControllerMap['pos_tag_id'] ?? TextEditingController();
-    final Dictionary? dictionary = ref.watch(editWordDictionaryProvider);
+    final Dictionary? dictionary = ref.watch(wordEditDictionaryProvider);
     if (dictionary == null) {
       return Container();
     }

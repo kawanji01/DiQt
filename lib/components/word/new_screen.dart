@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/word/form/fields.dart';
 import 'package:booqs_mobile/data/provider/sense.dart';
+import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -39,10 +40,13 @@ class WordNewScreenState extends ConsumerState<WordNewScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // wordのフォーム用のControllerを設定する、
       wordControllerMapNotifier.initialize(
           dictionaryId: widget.dictionary.id,
           keyword: widget.keyword,
           translation: widget.translation);
+      // wordの親となる辞書を設定する。
+      ref.read(wordEditDictionaryProvider.notifier).state = widget.dictionary;
     });
   }
 
@@ -51,7 +55,9 @@ class WordNewScreenState extends ConsumerState<WordNewScreen> {
     super.dispose();
     _commentController.dispose();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // メモリリークを防ぐために、すべてのControllerを破棄する。
       wordControllerMapNotifier.disposeAllItems();
+      ref.read(wordEditDictionaryProvider.notifier).state = null;
     });
   }
 
@@ -80,6 +86,8 @@ class WordNewScreenState extends ConsumerState<WordNewScreen> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
     final WordRequest wordRequest =
         WordRequest.fromJson(resMap['word_request']);
+    // 画面遷移を許可するために、編集中を解除する。
+    ref.read(sharedEditingContentProvider.notifier).offEdit();
     if (wordRequest.closed()) {
       final Word word = Word.fromJson(resMap['word']);
       ref.read(wordProvider.notifier).state = word;

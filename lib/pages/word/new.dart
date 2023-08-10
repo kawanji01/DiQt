@@ -1,8 +1,10 @@
 import 'package:booqs_mobile/components/word/new_screen.dart';
+import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
@@ -12,11 +14,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class WordNewPage extends ConsumerStatefulWidget {
   const WordNewPage({Key? key}) : super(key: key);
 
-  //static Future push(
-  //    BuildContext context, int dictionaryId, String keyword) async {
-  //  return Navigator.of(context).pushNamed(wordNewPage,
-  //      arguments: {'dictionaryId': dictionaryId, 'keyword': keyword});
-  //}
   static Future push(
       BuildContext context, int dictionaryId, String keyword) async {
     return Navigator.push(
@@ -48,6 +45,8 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
     // 複数の引数を受け取る。参考： https://stackoverflow.com/questions/53304340/navigator-pass-arguments-with-pushnamed
     // exeception回避
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // 画面遷移を防ぐために、編集中にする。
+      ref.read(sharedEditingContentProvider.notifier).onEdit();
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
       _initialize(arguments);
     });
@@ -70,6 +69,13 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    // 画面遷移を許可するために、編集中を解除する。
+    ref.read(sharedEditingContentProvider.notifier).offEdit();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Widget body() {
       if (_isLoading) return const LoadingSpinner();
@@ -80,14 +86,29 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
           dictionary: _dictionary!, keyword: keyword, translation: translation);
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(t.words.add),
-      ),
-      body: Container(
-        margin: EdgeInsets.symmetric(
-            horizontal: ResponsiveValues.horizontalMargin(context)),
-        child: body(),
+    return WillPopScope(
+      onWillPop: () async {
+        final bool result = await Dialogs.confirm(
+            context: context,
+            title: t.shared.return_confirmation,
+            message: t.shared.return_confirmation_description);
+        if (result) {
+          // 画面遷移を許可するために、編集中を解除する。
+          ref.read(sharedEditingContentProvider.notifier).offEdit();
+          return true; // trueを返すことで画面遷移を許可
+        } else {
+          return false;
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(t.words.add),
+        ),
+        body: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: ResponsiveValues.horizontalMargin(context)),
+          child: body(),
+        ),
       ),
     );
   }
