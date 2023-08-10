@@ -41,6 +41,8 @@ class WordFormFields extends ConsumerWidget {
     final TextEditingController ipaController =
         wordControllerMap['ipa'] ?? TextEditingController();
 
+    print('entry: ${entryController.text}');
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[

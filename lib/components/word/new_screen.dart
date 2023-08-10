@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/form/fields.dart';
 import 'package:booqs_mobile/data/provider/sense.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
@@ -32,6 +33,7 @@ class WordNewScreenState extends ConsumerState<WordNewScreen> {
   late final wordControllerMapNotifier =
       ref.read(wordControllerMapProvider.notifier);
   bool _isRequesting = false;
+  bool _isLoading = true;
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _commentController = TextEditingController();
@@ -47,6 +49,9 @@ class WordNewScreenState extends ConsumerState<WordNewScreen> {
           translation: widget.translation);
       // wordの親となる辞書を設定する。
       ref.read(wordEditDictionaryProvider.notifier).state = widget.dictionary;
+      setState(() {
+        _isLoading = false;
+      });
     });
   }
 
@@ -98,6 +103,11 @@ class WordNewScreenState extends ConsumerState<WordNewScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // initStateが終わる前にformを描画すると、Controller同時の情報の連携にバグが生じる。
+    // （意味のキーワードにentryControllerの情報が同期されないとか、生成した例文のIDがsentenceIdControllerに設定されないなど）
+    if (_isLoading) {
+      return const LoadingSpinner();
+    }
     return SingleChildScrollView(
       child: Form(
           key: _formKey,
@@ -134,7 +144,7 @@ class WordNewScreenState extends ConsumerState<WordNewScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 160),
               ])),
     );
   }

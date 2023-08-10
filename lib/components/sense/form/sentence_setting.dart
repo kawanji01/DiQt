@@ -21,10 +21,12 @@ class SenseFormSentenceSetting extends ConsumerWidget {
     if (dictionary == null) {
       return Container();
     }
+    final String entry = entryController.text;
+    print('entry: $entry');
 
     return SentenceSetting(
         sentenceIdController: sentenceIdController,
-        entry: entryController.text,
+        entry: entry,
         posTagIdController: posTagIdController,
         dictionary: dictionary);
   }
