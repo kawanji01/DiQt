@@ -18,7 +18,7 @@ class ReviewQuizHeader extends ConsumerWidget {
     if (quiz == null) return const Text('Quiz does not exist.');
     final AnswerAnalysis? answerAnalysis = quiz.answerAnalysis;
     final String scheduledAt =
-        t.reviews.scheduled_at(scheduled_date: '${review.scheduledDate}}');
+        t.reviews.scheduled_at(scheduled_date: '${review.scheduledDate}');
     // まだ一回も問題を解いていない場合
     if (answerAnalysis == null) {
       return Container(

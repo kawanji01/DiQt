@@ -81,17 +81,21 @@ class _WordRequestVoteButtonsState extends State<WordRequestVoteButtons> {
 
   @override
   Widget build(BuildContext context) {
-    if (_wordRequest.closed()) {
-      return Container();
+    Widget decisionCondtion() {
+      if (_wordRequest.closed()) {
+        return Container();
+      }
+      return Text(
+        t.wordRequests
+            .votes_count_to_close(count: _wordRequest.votesCountToClose ?? 0),
+        style: const TextStyle(fontSize: 14, color: Colors.black54),
+      );
     }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          t.wordRequests
-              .votes_count_to_close(count: _wordRequest.votesCountToClose ?? 0),
-          style: const TextStyle(fontSize: 14, color: Colors.black54),
-        ),
+        decisionCondtion(),
         const SizedBox(height: 4),
         Row(
           children: [

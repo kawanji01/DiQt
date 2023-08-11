@@ -21,6 +21,11 @@ class WordRequestItemDiffs extends StatelessWidget {
           alwaysShow: true,
         ),
         SharedDiffWithLabel(
+          label: t.words.pos_tag_id,
+          oldText: wordRequest.previousPosTag?.name,
+          newText: wordRequest.posTag?.name,
+        ),
+        SharedDiffWithLabel(
           label: t.words.reading,
           oldText: wordRequest.previousReading,
           newText: wordRequest.reading,

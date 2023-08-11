@@ -65,6 +65,11 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // initStateが終わる前にWordFormFieldsを描画してしまうと、wordControllerMapNotifier.initializeが終わる前にフォームが描画されることで例文が表示されなくなる。
+    if (_isLoading) {
+      return const LoadingSpinner();
+    }
+
     // 更新処理
     Future save() async {
       // 各Fieldのvalidatorを呼び出す
@@ -99,11 +104,6 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
       }
       final snackBar = SnackBar(content: Text('${resMap['message']}'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-
-    // この処理がないと、wordControllerMapNotifier.initializeが終わる前にフォームが描画されることで例文が表示されなくなる。
-    if (_isLoading) {
-      return const LoadingSpinner();
     }
 
     return SingleChildScrollView(
