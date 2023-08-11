@@ -22,7 +22,6 @@ class SenseFormSentenceSetting extends ConsumerWidget {
       return Container();
     }
     final String entry = entryController.text;
-    print('entry: $entry');
 
     return SentenceSetting(
         sentenceIdController: sentenceIdController,
