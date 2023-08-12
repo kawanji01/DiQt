@@ -30,6 +30,8 @@ login_recommendation:  'この機能を利用するためには、ログイン�
 processing: '処理中...'
 done: '完了'
 download: 'ダウンロード'
+diqt_markdown: 'ディクト記法'
+diqt_markdown_supported: 'ディクト記法対応'
 dictionary_setting: '辞書設定'
 thumbnail: 'サムネイル'
 remove_thumbnail: 'サムネイルを削除する'

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,8 @@ class MarkdownIntroductionTextButton extends ConsumerWidget {
         size: 16,
         color: Colors.green,
       ),
-      label: const Text('DiQt Markdown対応',
-          style: TextStyle(
+      label: Text(t.shared.diqt_markdown_supported,
+          style: const TextStyle(
               fontSize: 14,
               color: Colors.green,
               fontWeight: FontWeight.normal)),

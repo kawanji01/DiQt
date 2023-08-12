@@ -6,7 +6,7 @@ class SentenceRequestComment {
     required this.id,
     required this.sentenceRequestId,
     required this.body,
-    required this.appliedDictionaryId,
+    required this.dictionaryId,
     required this.createdAt,
     required this.updatedAt,
     this.user,
@@ -15,7 +15,7 @@ class SentenceRequestComment {
   final int id;
   final int sentenceRequestId;
   final String body;
-  final int? appliedDictionaryId;
+  final int? dictionaryId;
   final String createdAt;
   final String updatedAt;
   final User? user;
@@ -26,7 +26,7 @@ class SentenceRequestComment {
       id: json['id'],
       sentenceRequestId: json['sentence_request_id'],
       body: json['body'],
-      appliedDictionaryId: json['applied_dictionary_id'],
+      dictionaryId: json['dictionary_id'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
       user: json['user'] != null ? User.fromJson(json['user']) : null,
@@ -41,7 +41,7 @@ class SentenceRequestComment {
       'id': id,
       'sentence_request_id': sentenceRequestId,
       'body': body,
-      'applied_dictionary_id': appliedDictionaryId,
+      'dictionary_id': dictionaryId,
       'created_at': createdAt,
       'updated_at': updatedAt,
       'user': user,
