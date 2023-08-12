@@ -1,8 +1,9 @@
 import 'package:booqs_mobile/components/markdown/dict_link_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MarkdownDictLinkText extends StatelessWidget {
+class MarkdownDictLinkText extends ConsumerWidget {
   const MarkdownDictLinkText(
       {super.key,
       required this.searchedWord,
@@ -17,7 +18,7 @@ class MarkdownDictLinkText extends StatelessWidget {
   final TextStyle? textStyle;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return RichText(
       text: TextSpan(
         style: preferredStyle,

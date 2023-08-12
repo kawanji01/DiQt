@@ -18,6 +18,7 @@ final asyncMyDictionariesProvider =
 
 // 選択中の辞書
 final selectedDictionaryProvider = StateProvider<Dictionary?>((ref) => null);
+final selectedDictionaryIdProvider = StateProvider<int?>((ref) => null);
 
 // My辞書設定のためのfloatingActionButton
 final dictionaryMapFloatingActionButtonProvider =
