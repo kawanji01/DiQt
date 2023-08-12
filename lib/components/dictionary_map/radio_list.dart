@@ -1,11 +1,10 @@
 import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
+import 'package:booqs_mobile/components/dictionary_map/radio_list_tile.dart';
 import 'package:booqs_mobile/data/local/user_info.dart';
-import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/data/remote/dictionaries.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/pages/dictionary/show.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
@@ -47,49 +46,6 @@ class DictionaryMapRadioListState
 
   @override
   Widget build(BuildContext context) {
-    Widget buildListRow(List<Dictionary> dictionaries, int index) {
-      final dictionary = dictionaries[index];
-
-      // ref: https://api.flutter.dev/flutter/material/RadioListTile-class.html
-      return Listener(
-        onPointerDown: (_) {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
-        child: RadioListTile(
-          title: Text(dictionary.typeName()),
-          value: dictionary.id,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-          groupValue: ref
-              .watch(selectedDictionaryProvider.select((value) => value?.id)),
-          onChanged: (value) {
-            ref.read(selectedDictionaryProvider.notifier).state = dictionary;
-            // アプリ再起動時に選択し直さなくても良いように、localStorageに選択した辞書情報を保存しておく。
-            LocalUserInfo.writeSelectedDictionaryId(dictionary.id);
-          },
-          secondary: IconButton(
-            icon: const Icon(Icons.arrow_forward_ios_rounded),
-            onPressed: () {
-              ref.read(dictionaryProvider.notifier).state = dictionary;
-              DictionaryShowPage.push(context, dictionary.id);
-            },
-          ),
-        ),
-      );
-    }
-
-    Widget reloadButton() {
-      return InkWell(
-          onTap: () {
-            HapticFeedback.mediumImpact();
-            ref.invalidate(asyncMyDictionariesProvider);
-          },
-          child: SmallOutlineGreenButton(
-              label: t.shared.reload, icon: Icons.refresh));
-    }
-
     return RefreshIndicator(
       onRefresh: () async {
         HapticFeedback.mediumImpact();
@@ -99,13 +55,24 @@ class DictionaryMapRadioListState
       child: ref.watch(asyncMyDictionariesProvider).when(
             data: (List<Dictionary>? dictionaries) {
               if (dictionaries == null) {
-                return reloadButton();
+                // リロードボタンを表示
+                return InkWell(
+                    onTap: () {
+                      HapticFeedback.mediumImpact();
+                      ref.invalidate(asyncMyDictionariesProvider);
+                    },
+                    child: SmallOutlineGreenButton(
+                        label: t.shared.reload, icon: Icons.refresh));
               }
-
+              // ラジオボタンを表示
               return ListView.separated(
                 shrinkWrap: true,
-                itemBuilder: (context, index) =>
-                    buildListRow(dictionaries, index),
+                itemBuilder: (context, index) {
+                  final dictionary = dictionaries[index];
+                  return DictionaryMapRadioListTile(
+                    dictionary: dictionary,
+                  );
+                },
                 separatorBuilder: (context, index) => const Divider(),
                 itemCount: dictionaries.length,
                 padding: const EdgeInsets.only(top: 48, bottom: 120),

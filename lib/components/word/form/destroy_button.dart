@@ -23,6 +23,8 @@ class WordFormDestroyButton extends StatefulWidget {
 
 class WordFormDestroyButtonState extends State<WordFormDestroyButton> {
   Future<void> _submit() async {
+    // ダイアログを閉じる。
+    Navigator.of(context).pop();
     EasyLoading.show(status: 'loading...');
     final Map resMap = await RemoteWords.destroy(
         wordId: widget.word.id, comment: widget.commentController.text);

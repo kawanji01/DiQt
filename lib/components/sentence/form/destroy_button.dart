@@ -21,6 +21,8 @@ class SentenceFormDestroyButton extends StatefulWidget {
 
 class _SentenceFormDestroyButtonState extends State<SentenceFormDestroyButton> {
   Future<void> _destroy() async {
+    // ダイアログを閉じる。
+    Navigator.of(context).pop();
     // 画面全体にローディングを表示
     EasyLoading.show(status: 'loading...');
     final Map resMap = await RemoteSentences.destroy(widget.sentence.id);

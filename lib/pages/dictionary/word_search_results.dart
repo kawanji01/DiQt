@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/dictionary/name.dart';
+import 'package:booqs_mobile/components/dictionary/search_select_form.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -17,6 +17,22 @@ class DictionaryWordSearchResultsPage extends ConsumerStatefulWidget {
       BuildContext context, int dictionaryId, String keyword) async {
     return Navigator.of(context).pushNamed(dictionaryWordSearchResultsPage,
         arguments: {'dictionaryId': dictionaryId, 'keyword': keyword});
+  }
+
+  static Future pushReplacement(
+      BuildContext context, int dictionaryId, String keyword) async {
+    return Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        // 画面遷移のログを送信するために、settings.nameを設定する。
+        settings: RouteSettings(
+            name: reviewIndexPage,
+            arguments: {'dictionaryId': dictionaryId, 'keyword': keyword}),
+        pageBuilder: (context, animation1, animation2) =>
+            const DictionaryWordSearchResultsPage(),
+        transitionDuration: Duration.zero,
+      ),
+    );
   }
 
   @override
@@ -62,7 +78,8 @@ class DictionaryWordSearchResultsPageState
       return future.when(
           data: (dictionary) {
             if (dictionary == null) return Container();
-            return DictionaryName(dictionary: dictionary);
+            return DictionarySelectForm(
+                dictionary: dictionary, keyword: keyword);
           },
           error: (e, str) => Text('$e'),
           loading: () => Container());

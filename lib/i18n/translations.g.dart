@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2270 (1135 per locale)
+/// Strings: 2274 (1137 per locale)
 ///
-/// Built on 2023-08-10 at 04:04 UTC
+/// Built on 2023-08-12 at 08:48 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -583,6 +583,8 @@ class _TranslationsSharedEn {
 	String get processing => 'Processing';
 	String get done => 'Done';
 	String get download => 'Download';
+	String get diqt_markdown => 'DiQt Markdown';
+	String get diqt_markdown_supported => 'DiQt Markdown Supported';
 	String get dictionary_setting => 'Dictionary Setting';
 	String get thumbnail => 'Thumbnail';
 	String get remove_thumbnail => 'Remove Thumbnail';
@@ -2105,6 +2107,8 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get processing => '処理中...';
 	@override String get done => '完了';
 	@override String get download => 'ダウンロード';
+	@override String get diqt_markdown => 'ディクト記法';
+	@override String get diqt_markdown_supported => 'ディクト記法対応';
 	@override String get dictionary_setting => '辞書設定';
 	@override String get thumbnail => 'サムネイル';
 	@override String get remove_thumbnail => 'サムネイルを削除する';
@@ -3464,6 +3468,8 @@ extension on _TranslationsEn {
 			case 'shared.processing': return 'Processing';
 			case 'shared.done': return 'Done';
 			case 'shared.download': return 'Download';
+			case 'shared.diqt_markdown': return 'DiQt Markdown';
+			case 'shared.diqt_markdown_supported': return 'DiQt Markdown Supported';
 			case 'shared.dictionary_setting': return 'Dictionary Setting';
 			case 'shared.thumbnail': return 'Thumbnail';
 			case 'shared.remove_thumbnail': return 'Remove Thumbnail';
@@ -4607,6 +4613,8 @@ extension on _TranslationsJa {
 			case 'shared.processing': return '処理中...';
 			case 'shared.done': return '完了';
 			case 'shared.download': return 'ダウンロード';
+			case 'shared.diqt_markdown': return 'ディクト記法';
+			case 'shared.diqt_markdown_supported': return 'ディクト記法対応';
 			case 'shared.dictionary_setting': return '辞書設定';
 			case 'shared.thumbnail': return 'サムネイル';
 			case 'shared.remove_thumbnail': return 'サムネイルを削除する';

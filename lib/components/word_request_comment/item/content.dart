@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/components/user/feed_icon.dart';
 import 'package:booqs_mobile/components/word_request_comment/item/edit_buttons.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -19,6 +20,7 @@ class WordRequestCommentItemContent extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: 16, bottom: 24),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           UserFeedIcon(user: user),
           Expanded(
@@ -35,12 +37,13 @@ class WordRequestCommentItemContent extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                Text(
-                  wordRequestComment.body,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black87,
-                  ),
+                MarkdownWithDictLink(
+                  text: wordRequestComment.body,
+                  dictionaryId: wordRequestComment.dictionaryId,
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  fontColor: Colors.black87,
+                  selectable: true,
                 ),
                 const SizedBox(
                   height: 8,
