@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word_request.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,8 @@ class WordRequestItemPendingReason extends StatelessWidget {
         String reasonText;
         switch (reason) {
           case 'duplicating_entry':
-            reasonText = t.wordRequests.duplicating_entry;
+            reasonText =
+                '${t.wordRequests.duplicating_entry}([[${wordRequest.entry}]])';
             break;
           case 'changing_entry':
             reasonText = t.wordRequests.changing_entry;
@@ -37,13 +39,14 @@ class WordRequestItemPendingReason extends StatelessWidget {
             reasonText = t.wordRequests.unknown_reason;
             break;
         }
-        return Text(
-          '・$reasonText',
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-            color: Color(0xFF721c24),
-          ),
+
+        return MarkdownWithDictLink(
+          text: '・$reasonText',
+          dictionaryId: wordRequest.dictionaryId,
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          fontColor: const Color(0xFF721c24),
+          selectable: false,
         );
       }).toList();
     }
