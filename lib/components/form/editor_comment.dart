@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/form/white_text_form_field.dart';
+import 'package:booqs_mobile/components/markdown/introduction_text_button.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,14 @@ class FormEditorComment extends StatelessWidget {
       return Container();
     }
     // コメント
-    return FormWhiteTextFormField(
-      controller: commentController!,
-      label: t.words.comment,
-      hint: t.words.comment_placeholder,
-      lineBreak: true,
-    );
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      FormWhiteTextFormField(
+        controller: commentController!,
+        label: t.words.comment,
+        hint: t.words.comment_placeholder,
+        lineBreak: true,
+      ),
+      const MarkdownIntroductionTextButton()
+    ]);
   }
 }

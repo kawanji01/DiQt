@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2274 (1137 per locale)
+/// Strings: 2276 (1138 per locale)
 ///
-/// Built on 2023-08-12 at 08:48 UTC
+/// Built on 2023-08-13 at 03:09 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -585,6 +585,7 @@ class _TranslationsSharedEn {
 	String get download => 'Download';
 	String get diqt_markdown => 'DiQt Markdown';
 	String get diqt_markdown_supported => 'DiQt Markdown Supported';
+	String get required => 'Required';
 	String get dictionary_setting => 'Dictionary Setting';
 	String get thumbnail => 'Thumbnail';
 	String get remove_thumbnail => 'Remove Thumbnail';
@@ -1344,7 +1345,7 @@ class _TranslationsSensesEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	String get senses => 'Senses';
+	String get senses => 'Meaning details.';
 	String get sense => 'Sense';
 	String get gloss => 'Gloss';
 	String get add => 'Add sense';
@@ -2109,6 +2110,7 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get download => 'ダウンロード';
 	@override String get diqt_markdown => 'ディクト記法';
 	@override String get diqt_markdown_supported => 'ディクト記法対応';
+	@override String get required => '必須';
 	@override String get dictionary_setting => '辞書設定';
 	@override String get thumbnail => 'サムネイル';
 	@override String get remove_thumbnail => 'サムネイルを削除する';
@@ -2868,7 +2870,7 @@ class _TranslationsSensesJa implements _TranslationsSensesEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get senses => '意味';
+	@override String get senses => '意味の詳細';
 	@override String get sense => '意味';
 	@override String get gloss => '意味';
 	@override String get add => '意味を追加する';
@@ -3037,9 +3039,9 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get create_failed => '項目の作成に失敗しました。';
 	@override String get updated => '項目を更新しました。';
 	@override String get update_failed => '項目の更新に失敗しました。';
-	@override String get destroyed => 'Word Destroyed';
+	@override String get destroyed => '項目を削除しました。';
 	@override String get entry => '見出し語';
-	@override String get reading => '読み（ひらがな）';
+	@override String get reading => '読み';
 	@override String get pos_tag_id => '品詞';
 	@override String get meaning => '意味';
 	@override String get ipa => 'IPA（発音記号）';
@@ -3470,6 +3472,7 @@ extension on _TranslationsEn {
 			case 'shared.download': return 'Download';
 			case 'shared.diqt_markdown': return 'DiQt Markdown';
 			case 'shared.diqt_markdown_supported': return 'DiQt Markdown Supported';
+			case 'shared.required': return 'Required';
 			case 'shared.dictionary_setting': return 'Dictionary Setting';
 			case 'shared.thumbnail': return 'Thumbnail';
 			case 'shared.remove_thumbnail': return 'Remove Thumbnail';
@@ -4103,7 +4106,7 @@ extension on _TranslationsEn {
 			case 'wordRequestComments.comment_to_you': return 'Comment to you';
 			case 'wordRequestComments.comment_placeholder': return 'Write a comment';
 			case 'wordRequestComments.send': return 'Send';
-			case 'senses.senses': return 'Senses';
+			case 'senses.senses': return 'Meaning details.';
 			case 'senses.sense': return 'Sense';
 			case 'senses.gloss': return 'Gloss';
 			case 'senses.add': return 'Add sense';
@@ -4615,6 +4618,7 @@ extension on _TranslationsJa {
 			case 'shared.download': return 'ダウンロード';
 			case 'shared.diqt_markdown': return 'ディクト記法';
 			case 'shared.diqt_markdown_supported': return 'ディクト記法対応';
+			case 'shared.required': return '必須';
 			case 'shared.dictionary_setting': return '辞書設定';
 			case 'shared.thumbnail': return 'サムネイル';
 			case 'shared.remove_thumbnail': return 'サムネイルを削除する';
@@ -5248,7 +5252,7 @@ extension on _TranslationsJa {
 			case 'wordRequestComments.comment_to_you': return 'あなたへのコメント';
 			case 'wordRequestComments.comment_placeholder': return 'コメントを入力してください';
 			case 'wordRequestComments.send': return '送信する';
-			case 'senses.senses': return '意味';
+			case 'senses.senses': return '意味の詳細';
 			case 'senses.sense': return '意味';
 			case 'senses.gloss': return '意味';
 			case 'senses.add': return '意味を追加する';
@@ -5354,9 +5358,9 @@ extension on _TranslationsJa {
 			case 'words.create_failed': return '項目の作成に失敗しました。';
 			case 'words.updated': return '項目を更新しました。';
 			case 'words.update_failed': return '項目の更新に失敗しました。';
-			case 'words.destroyed': return 'Word Destroyed';
+			case 'words.destroyed': return '項目を削除しました。';
 			case 'words.entry': return '見出し語';
-			case 'words.reading': return '読み（ひらがな）';
+			case 'words.reading': return '読み';
 			case 'words.pos_tag_id': return '品詞';
 			case 'words.meaning': return '意味';
 			case 'words.ipa': return 'IPA（発音記号）';
