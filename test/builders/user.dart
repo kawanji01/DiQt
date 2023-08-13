@@ -28,6 +28,7 @@ class UserBuilder {
         continuousGoalAchievementCount: 0,
         continuousReviewCompletionCount: 0,
         paidViaNativeApp: false,
+        activated: true,
         reviewsCount: 0,
         rewardRemained: false,
         todaysAnswerHistoriesCount: 0,

@@ -29,7 +29,7 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _profileController = TextEditingController();
-  final _emailController = TextEditingController();
+
   final _passwordController = TextEditingController(text: '');
   final _passwordConfirmationController = TextEditingController(text: '');
 
@@ -41,7 +41,6 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
   void dispose() {
     _nameController.dispose();
     _profileController.dispose();
-    _emailController.dispose();
     _passwordController.dispose();
     _passwordConfirmationController.dispose();
     super.dispose();
@@ -52,7 +51,6 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
     super.initState();
     _nameController.text = widget.user.name;
     _profileController.text = widget.user.profile ?? '';
-    _emailController.text = widget.user.email;
   }
 
   Future<void> _save() async {
@@ -69,7 +67,6 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
       'learning_lang_number': ref.watch(userLearningLangNumberProvider),
       'time_zone_name': ref.watch(userTimeZoneNameProvider),
       'mail_delivered': ref.watch(userMailDeliveredProvider),
-      'email': _emailController.text,
       'password': _passwordController.text,
       'password_confirmation': _passwordConfirmationController.text,
     };
@@ -144,7 +141,7 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
               const UserFormMailDelivered(),
               const SizedBox(height: 48),
               UserFormAuthentication(
-                emailController: _emailController,
+                user: widget.user,
                 passwordController: _passwordController,
                 passwordConfirmationController: _passwordConfirmationController,
               ),

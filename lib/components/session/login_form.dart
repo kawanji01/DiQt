@@ -22,6 +22,7 @@ class SessionLoginFormState extends ConsumerState<SessionLoginForm> {
   final _formKey = GlobalKey<FormState>();
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isRequesting = false;
 
   @override
   void dispose() {
@@ -37,6 +38,7 @@ class SessionLoginFormState extends ConsumerState<SessionLoginForm> {
       if (!_formKey.currentState!.validate()) {
         return;
       }
+      setState(() => _isRequesting = true);
 
       final String email = _idController.text;
       final String password = _passwordController.text;
@@ -45,6 +47,7 @@ class SessionLoginFormState extends ConsumerState<SessionLoginForm> {
       final Map resMap =
           await ref.watch(remoteSessionsProvider).login(email, password);
       EasyLoading.dismiss();
+      setState(() => _isRequesting = false);
       if (!mounted) return;
       if (ErrorHandler.isErrorMap(resMap)) {
         _passwordController.clear();
@@ -80,9 +83,11 @@ class SessionLoginFormState extends ConsumerState<SessionLoginForm> {
           const SizedBox(height: 20),
           InkWell(
               key: const Key('loginSubmitButton'),
-              onTap: () {
-                submit();
-              },
+              onTap: _isRequesting
+                  ? null
+                  : () {
+                      submit();
+                    },
               child: LargeOrangeButton(
                 label: t.sessions.log_in,
               )),

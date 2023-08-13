@@ -69,7 +69,6 @@ class SentenceForm extends StatelessWidget {
         //const SizedBox(height: 16),
         sentenceGeneratorButton(),
         const SizedBox(height: 40),
-
         SentenceFormTranslation(
           translationController: translationController,
           dictionary: dictionary,
