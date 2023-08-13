@@ -17,7 +17,7 @@ class MarkdownIntroductionTextButton extends ConsumerWidget {
             "${DiQtURL.root(locale: locale)}/markdown");
       },
       icon: const Icon(
-        Icons.info_outline,
+        Icons.lightbulb_outline,
         size: 16,
         color: Colors.green,
       ),

@@ -45,7 +45,7 @@ class WordFormSensesState extends ConsumerState<WordFormSenses> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      HeadingMediumGreen(label: t.senses.senses),
+      HeadingMediumGreen(label: t.words.senses),
       const SenseForm(),
       const SizedBox(
         height: 16,

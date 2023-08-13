@@ -23,6 +23,7 @@ class SessionSignUpFormState extends ConsumerState<SessionSignUpForm> {
   final _nameController = TextEditingController();
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isRequesting = false;
 
   @override
   void dispose() {
@@ -42,6 +43,7 @@ class SessionSignUpFormState extends ConsumerState<SessionSignUpForm> {
       if (!_formKey.currentState!.validate()) {
         return;
       }
+      setState(() => _isRequesting = true);
 
       final String name = _nameController.text;
       final String email = _idController.text;
@@ -51,6 +53,7 @@ class SessionSignUpFormState extends ConsumerState<SessionSignUpForm> {
       final Map resMap =
           await ref.watch(remoteSessionsProvider).signUp(name, email, password);
       EasyLoading.dismiss();
+      setState(() => _isRequesting = false);
       if (!mounted) return;
       // レスポンスに対する処理
       if (ErrorHandler.isErrorMap(resMap)) {
@@ -94,9 +97,11 @@ class SessionSignUpFormState extends ConsumerState<SessionSignUpForm> {
           // SubmitButton
           InkWell(
               key: const Key('signupSubmitButton'),
-              onTap: () {
-                submit();
-              },
+              onTap: _isRequesting
+                  ? null
+                  : () {
+                      submit();
+                    },
               child: LargeOrangeButton(label: t.sessions.register)),
         ],
       ),

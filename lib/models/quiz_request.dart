@@ -67,7 +67,7 @@ class QuizRequest {
   int? quizId;
   int? drillId;
   int? userId;
-  int dictionaryId;
+  int? dictionaryId;
   String? question;
   String? previousQuestion;
   int? langNumberOfQuestion;

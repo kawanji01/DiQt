@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2274 (1137 per locale)
+/// Strings: 2314 (1157 per locale)
 ///
-/// Built on 2023-08-12 at 08:48 UTC
+/// Built on 2023-08-13 at 05:34 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -471,6 +471,24 @@ class _TranslationsUsersEn {
 	String get failed_to_update => 'Account could not be updated.';
 	String get destroyed => 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
 	String get drills => 'Created Drills';
+	String get resume => 'Resume';
+	String get status => 'Status';
+	String get please_set_email => 'Please set your email address.';
+	String get please_activate_email => 'Please verify your email address.';
+	String get already_activated => 'Your email address has already been verified.';
+	String get activation => 'Verification';
+	String get activation_cta_text => 'Click on the button below to send an email confirming your identity. Then click on the button in the email.';
+	String get activation_description => 'This is to confirm that your registered email address is your own and is an important security operation, for example, to prevent identity theft. Verifying your email address also allows you to reset your password if you forget it, for example. We frequently receive inquiries from users who have logged out without verifying their identity, forgotten their password, and cannot log in (we will, of course, take care of this for you). (Of course, we will take care of this).';
+	String get send_activation_email => 'Send verification email';
+	String get activation_email_resent => 'We have sent you a verification email. Please click on the link in the email to complete the verification.';
+	String get email_change => 'Change email address';
+	String get email_change_cta_text => 'Set up a new email address and press the button below to send the email address change email. Then click on the button in the email.';
+	String get change_email => 'Change email address';
+	String get new_email => 'New email address';
+	String get already_taken => 'This email address is already in use.';
+	String get email_change_email_resent => 'We have sent you an email to change your email address. Please click on the link in the email to complete the change.';
+	String get email_changed => 'Your email address has been changed.';
+	String get expired => 'The link has expired.';
 }
 
 // Path: sentenceRequests
@@ -585,6 +603,7 @@ class _TranslationsSharedEn {
 	String get download => 'Download';
 	String get diqt_markdown => 'DiQt Markdown';
 	String get diqt_markdown_supported => 'DiQt Markdown Supported';
+	String get required => 'Required';
 	String get dictionary_setting => 'Dictionary Setting';
 	String get thumbnail => 'Thumbnail';
 	String get remove_thumbnail => 'Remove Thumbnail';
@@ -1344,7 +1363,7 @@ class _TranslationsSensesEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	String get senses => 'Senses';
+	String get senses => 'Meaning details';
 	String get sense => 'Sense';
 	String get gloss => 'Gloss';
 	String get add => 'Add sense';
@@ -1533,6 +1552,7 @@ class _TranslationsWordsEn {
 	String get synonyms => 'Synonyms';
 	String get antonyms => 'Antonyms';
 	String get related => 'Related Words';
+	String get senses => 'Meaning details';
 	String sense({required Object number}) => 'sense(${number})';
 	String get detailed_settings => 'Detailed Settings';
 	String get comment => 'Editor\'s Comment';
@@ -1995,6 +2015,24 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get failed_to_update => 'アカウントを更新できませんでした。';
 	@override String get destroyed => '退会が完了しました。ご利用いただき、誠にありがとうございました。';
 	@override String get drills => '作成したドリル';
+	@override String get resume => '続きから';
+	@override String get status => 'ステータス';
+	@override String get please_set_email => 'メールアドレスを設定してください。';
+	@override String get please_activate_email => 'メールアドレスのご本人確認を行ってください。';
+	@override String get already_activated => 'すでにご本人確認済みです。';
+	@override String get activation => 'ご本人様確認';
+	@override String get activation_cta_text => '以下のボタンを押して、ご本人確認メールを送信してください。そして、メールの中のボタンをクリックしてください。';
+	@override String get activation_description => 'これは登録したメールアドレスがあなた自身のものであることを確認するためのもので、なりすましの防止など、セキュリティのために重要な操作です。またメールアドレスのご本人確認を行うことによって、パスワードを忘れてしまった場合のパスワードリセット機能などがご利用いただけるようになります。残念ながら、たびたび、ご本人確認を行わずにログアウトしてしまい、パスワードを忘れてしまってログインできないというお問い合わせをいただきます（もちろん、その場合もご対応いたします）。';
+	@override String get send_activation_email => 'ご本人確認メールを送信する';
+	@override String get activation_email_resent => 'ご本人確認メールを送信しました。メールのリンクをクリックして、ご本人確認を完了してください。';
+	@override String get email_change => 'メールアドレス変更';
+	@override String get email_change_cta_text => '新しいメールアドレスを設定し、以下のボタンを押して、メールアドレス変更メールを送信してください。そして、メールの中のボタンをクリックしてください。';
+	@override String get change_email => 'メールアドレスを変更する';
+	@override String get new_email => '新しいメールアドレス';
+	@override String get already_taken => 'このメールアドレスはすでに使用されています。';
+	@override String get email_change_email_resent => 'メールアドレス変更メールを送信しました。メールのリンクをクリックして、メールアドレス変更を完了してください。';
+	@override String get email_changed => 'メールアドレスを変更しました。';
+	@override String get expired => '有効期限が切れています。';
 }
 
 // Path: sentenceRequests
@@ -2109,6 +2147,7 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get download => 'ダウンロード';
 	@override String get diqt_markdown => 'ディクト記法';
 	@override String get diqt_markdown_supported => 'ディクト記法対応';
+	@override String get required => '必須';
 	@override String get dictionary_setting => '辞書設定';
 	@override String get thumbnail => 'サムネイル';
 	@override String get remove_thumbnail => 'サムネイルを削除する';
@@ -2868,7 +2907,7 @@ class _TranslationsSensesJa implements _TranslationsSensesEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get senses => '意味';
+	@override String get senses => '意味の詳細';
 	@override String get sense => '意味';
 	@override String get gloss => '意味';
 	@override String get add => '意味を追加する';
@@ -3037,9 +3076,9 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get create_failed => '項目の作成に失敗しました。';
 	@override String get updated => '項目を更新しました。';
 	@override String get update_failed => '項目の更新に失敗しました。';
-	@override String get destroyed => 'Word Destroyed';
+	@override String get destroyed => '項目を削除しました。';
 	@override String get entry => '見出し語';
-	@override String get reading => '読み（ひらがな）';
+	@override String get reading => '読み';
 	@override String get pos_tag_id => '品詞';
 	@override String get meaning => '意味';
 	@override String get ipa => 'IPA（発音記号）';
@@ -3057,6 +3096,7 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get synonyms => '類義語';
 	@override String get antonyms => '対義語';
 	@override String get related => '関連語';
+	@override String get senses => '意味の詳細';
 	@override String sense({required Object number}) => '意味(${number})';
 	@override String get detailed_settings => '詳細設定';
 	@override String get comment => '編集者のコメント';
@@ -3392,6 +3432,24 @@ extension on _TranslationsEn {
 			case 'users.failed_to_update': return 'Account could not be updated.';
 			case 'users.destroyed': return 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
 			case 'users.drills': return 'Created Drills';
+			case 'users.resume': return 'Resume';
+			case 'users.status': return 'Status';
+			case 'users.please_set_email': return 'Please set your email address.';
+			case 'users.please_activate_email': return 'Please verify your email address.';
+			case 'users.already_activated': return 'Your email address has already been verified.';
+			case 'users.activation': return 'Verification';
+			case 'users.activation_cta_text': return 'Click on the button below to send an email confirming your identity. Then click on the button in the email.';
+			case 'users.activation_description': return 'This is to confirm that your registered email address is your own and is an important security operation, for example, to prevent identity theft. Verifying your email address also allows you to reset your password if you forget it, for example. We frequently receive inquiries from users who have logged out without verifying their identity, forgotten their password, and cannot log in (we will, of course, take care of this for you). (Of course, we will take care of this).';
+			case 'users.send_activation_email': return 'Send verification email';
+			case 'users.activation_email_resent': return 'We have sent you a verification email. Please click on the link in the email to complete the verification.';
+			case 'users.email_change': return 'Change email address';
+			case 'users.email_change_cta_text': return 'Set up a new email address and press the button below to send the email address change email. Then click on the button in the email.';
+			case 'users.change_email': return 'Change email address';
+			case 'users.new_email': return 'New email address';
+			case 'users.already_taken': return 'This email address is already in use.';
+			case 'users.email_change_email_resent': return 'We have sent you an email to change your email address. Please click on the link in the email to complete the change.';
+			case 'users.email_changed': return 'Your email address has been changed.';
+			case 'users.expired': return 'The link has expired.';
 			case 'sentenceRequests.sentence_requests': return 'Edit histories of example sentences';
 			case 'sentenceRequests.edit_histories': return 'Edit Histories';
 			case 'sentenceRequests.pending_edits': return 'Pending Edits';
@@ -3470,6 +3528,7 @@ extension on _TranslationsEn {
 			case 'shared.download': return 'Download';
 			case 'shared.diqt_markdown': return 'DiQt Markdown';
 			case 'shared.diqt_markdown_supported': return 'DiQt Markdown Supported';
+			case 'shared.required': return 'Required';
 			case 'shared.dictionary_setting': return 'Dictionary Setting';
 			case 'shared.thumbnail': return 'Thumbnail';
 			case 'shared.remove_thumbnail': return 'Remove Thumbnail';
@@ -4103,7 +4162,7 @@ extension on _TranslationsEn {
 			case 'wordRequestComments.comment_to_you': return 'Comment to you';
 			case 'wordRequestComments.comment_placeholder': return 'Write a comment';
 			case 'wordRequestComments.send': return 'Send';
-			case 'senses.senses': return 'Senses';
+			case 'senses.senses': return 'Meaning details';
 			case 'senses.sense': return 'Sense';
 			case 'senses.gloss': return 'Gloss';
 			case 'senses.add': return 'Add sense';
@@ -4229,6 +4288,7 @@ extension on _TranslationsEn {
 			case 'words.synonyms': return 'Synonyms';
 			case 'words.antonyms': return 'Antonyms';
 			case 'words.related': return 'Related Words';
+			case 'words.senses': return 'Meaning details';
 			case 'words.sense': return ({required Object number}) => 'sense(${number})';
 			case 'words.detailed_settings': return 'Detailed Settings';
 			case 'words.comment': return 'Editor\'s Comment';
@@ -4537,6 +4597,24 @@ extension on _TranslationsJa {
 			case 'users.failed_to_update': return 'アカウントを更新できませんでした。';
 			case 'users.destroyed': return '退会が完了しました。ご利用いただき、誠にありがとうございました。';
 			case 'users.drills': return '作成したドリル';
+			case 'users.resume': return '続きから';
+			case 'users.status': return 'ステータス';
+			case 'users.please_set_email': return 'メールアドレスを設定してください。';
+			case 'users.please_activate_email': return 'メールアドレスのご本人確認を行ってください。';
+			case 'users.already_activated': return 'すでにご本人確認済みです。';
+			case 'users.activation': return 'ご本人様確認';
+			case 'users.activation_cta_text': return '以下のボタンを押して、ご本人確認メールを送信してください。そして、メールの中のボタンをクリックしてください。';
+			case 'users.activation_description': return 'これは登録したメールアドレスがあなた自身のものであることを確認するためのもので、なりすましの防止など、セキュリティのために重要な操作です。またメールアドレスのご本人確認を行うことによって、パスワードを忘れてしまった場合のパスワードリセット機能などがご利用いただけるようになります。残念ながら、たびたび、ご本人確認を行わずにログアウトしてしまい、パスワードを忘れてしまってログインできないというお問い合わせをいただきます（もちろん、その場合もご対応いたします）。';
+			case 'users.send_activation_email': return 'ご本人確認メールを送信する';
+			case 'users.activation_email_resent': return 'ご本人確認メールを送信しました。メールのリンクをクリックして、ご本人確認を完了してください。';
+			case 'users.email_change': return 'メールアドレス変更';
+			case 'users.email_change_cta_text': return '新しいメールアドレスを設定し、以下のボタンを押して、メールアドレス変更メールを送信してください。そして、メールの中のボタンをクリックしてください。';
+			case 'users.change_email': return 'メールアドレスを変更する';
+			case 'users.new_email': return '新しいメールアドレス';
+			case 'users.already_taken': return 'このメールアドレスはすでに使用されています。';
+			case 'users.email_change_email_resent': return 'メールアドレス変更メールを送信しました。メールのリンクをクリックして、メールアドレス変更を完了してください。';
+			case 'users.email_changed': return 'メールアドレスを変更しました。';
+			case 'users.expired': return '有効期限が切れています。';
 			case 'sentenceRequests.sentence_requests': return '例文の編集履歴';
 			case 'sentenceRequests.edit_histories': return '編集履歴';
 			case 'sentenceRequests.pending_edits': return '審査中の編集';
@@ -4615,6 +4693,7 @@ extension on _TranslationsJa {
 			case 'shared.download': return 'ダウンロード';
 			case 'shared.diqt_markdown': return 'ディクト記法';
 			case 'shared.diqt_markdown_supported': return 'ディクト記法対応';
+			case 'shared.required': return '必須';
 			case 'shared.dictionary_setting': return '辞書設定';
 			case 'shared.thumbnail': return 'サムネイル';
 			case 'shared.remove_thumbnail': return 'サムネイルを削除する';
@@ -5248,7 +5327,7 @@ extension on _TranslationsJa {
 			case 'wordRequestComments.comment_to_you': return 'あなたへのコメント';
 			case 'wordRequestComments.comment_placeholder': return 'コメントを入力してください';
 			case 'wordRequestComments.send': return '送信する';
-			case 'senses.senses': return '意味';
+			case 'senses.senses': return '意味の詳細';
 			case 'senses.sense': return '意味';
 			case 'senses.gloss': return '意味';
 			case 'senses.add': return '意味を追加する';
@@ -5354,9 +5433,9 @@ extension on _TranslationsJa {
 			case 'words.create_failed': return '項目の作成に失敗しました。';
 			case 'words.updated': return '項目を更新しました。';
 			case 'words.update_failed': return '項目の更新に失敗しました。';
-			case 'words.destroyed': return 'Word Destroyed';
+			case 'words.destroyed': return '項目を削除しました。';
 			case 'words.entry': return '見出し語';
-			case 'words.reading': return '読み（ひらがな）';
+			case 'words.reading': return '読み';
 			case 'words.pos_tag_id': return '品詞';
 			case 'words.meaning': return '意味';
 			case 'words.ipa': return 'IPA（発音記号）';
@@ -5374,6 +5453,7 @@ extension on _TranslationsJa {
 			case 'words.synonyms': return '類義語';
 			case 'words.antonyms': return '対義語';
 			case 'words.related': return '関連語';
+			case 'words.senses': return '意味の詳細';
 			case 'words.sense': return ({required Object number}) => '意味(${number})';
 			case 'words.detailed_settings': return '詳細設定';
 			case 'words.comment': return '編集者のコメント';

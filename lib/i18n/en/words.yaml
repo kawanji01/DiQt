@@ -26,6 +26,7 @@ sentence: 'Example Sentence'
 synonyms: 'Synonyms'
 antonyms: 'Antonyms'
 related: 'Related Words'
+senses: 'Meaning details'
 sense: 'sense(${number})'
 detailed_settings: 'Detailed Settings'
 comment: "Editor's Comment"

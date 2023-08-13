@@ -2,6 +2,7 @@ import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/user/calendar.dart';
 import 'package:booqs_mobile/components/user/drills.dart';
+import 'package:booqs_mobile/components/user/required_action.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/shared/premium_plan_button.dart';
 import 'package:booqs_mobile/components/user/achievements_button.dart';
@@ -34,6 +35,7 @@ class UserMypageScreen extends StatelessWidget {
             const UserWeaknessButton(),
             const UserTodaysMistakesButton(),
             UserProfile(user: user!),
+            UserRequiredAction(user: user!),
             const SizedBox(
               height: 24,
             ),

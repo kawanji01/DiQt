@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/sentence_request.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -47,9 +48,13 @@ class SentenceRequestItemEditorComment extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            Text(
-              editorComment,
-              style: const TextStyle(fontSize: 16, color: Colors.black87),
+            MarkdownWithDictLink(
+              text: editorComment,
+              dictionaryId: sentenceRequest.dictionaryId,
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontColor: Colors.black87,
+              selectable: true,
             ),
             const SizedBox(
               height: 8,
