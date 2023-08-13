@@ -39,7 +39,7 @@ class QuizRequestCommentItemContent extends StatelessWidget {
                 ),
                 MarkdownWithDictLink(
                   text: quizRequestComment.body,
-                  dictionaryId: quizRequestComment.appliedDictionaryId,
+                  dictionaryId: quizRequestComment.dictionaryId,
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
                   fontColor: Colors.black87,
