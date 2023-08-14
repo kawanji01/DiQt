@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2314 (1157 per locale)
+/// Strings: 2326 (1163 per locale)
 ///
-/// Built on 2023-08-13 at 05:34 UTC
+/// Built on 2023-08-14 at 12:20 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1538,22 +1538,28 @@ class _TranslationsWordsEn {
 	String get pos_tag_id => 'Part of speech';
 	String get meaning => 'Meaning';
 	String get ipa => 'IPA(Pronunciation)';
+	String get senses => 'Meaning details';
+	String sense({required Object number}) => 'sense(${number})';
+	String get show_senses => 'Show meaning details';
 	String get search_sentence => 'Search Example Sentences';
-	String get search_sentence_placeholder => 'Please enter keywords.';
+	String get search_sentence_placeholder => 'Please enter the sentence you want to search for';
 	String get no_sentence => 'No example sentence is set.';
 	String get set_sentence_with_ai => 'Set an example sentence with AI';
 	String get generate_meaning_with_ai => 'Generate meanings with AI';
-	String get meaning_generation_keyword_placeholder => 'keywords to generate the meaning.';
+	String get meaning_generation_keyword_placeholder => '【Required】Please enter the headword to generate the meaning.';
 	String get success_to_generate_meanings => 'Successful generation of meanings.';
 	String get failed_to_generate_meanings => 'Generation of meanings failed.';
+	String get generate_ipa_with_ai => 'Generate IPA with AI';
+	String get ipa_generation_keyword_placeholder => '【Required】Please enter the headword to generate the IPA.';
+	String get regional_pronunciation => 'Generate regional pronunciations';
+	String get success_to_generate_ipa => 'Successful generation of IPA.';
+	String get failed_to_generate_ipa => 'Generation of IPA failed.';
 	String get etymologies => 'Etymologies';
 	String get explanation => 'Explanation';
 	String get sentence => 'Example Sentence';
 	String get synonyms => 'Synonyms';
 	String get antonyms => 'Antonyms';
 	String get related => 'Related Words';
-	String get senses => 'Meaning details';
-	String sense({required Object number}) => 'sense(${number})';
 	String get detailed_settings => 'Detailed Settings';
 	String get comment => 'Editor\'s Comment';
 	String get comment_placeholder => 'Please write your comments here if you have any';
@@ -3082,22 +3088,28 @@ class _TranslationsWordsJa implements _TranslationsWordsEn {
 	@override String get pos_tag_id => '品詞';
 	@override String get meaning => '意味';
 	@override String get ipa => 'IPA（発音記号）';
+	@override String get senses => '意味の詳細';
+	@override String sense({required Object number}) => '意味(${number})';
+	@override String get show_senses => '意味の詳細を表示する';
 	@override String get search_sentence => '例文を検索する';
-	@override String get search_sentence_placeholder => 'キーワードを入力してください';
+	@override String get search_sentence_placeholder => '例文に含まれるキーワードを入力してください';
 	@override String get no_sentence => '例文が設定されていません。';
 	@override String get set_sentence_with_ai => 'AIで例文を設定する';
 	@override String get generate_meaning_with_ai => 'AIで意味を生成する';
-	@override String get meaning_generation_keyword_placeholder => '意味を生成するキーワード';
+	@override String get meaning_generation_keyword_placeholder => '【必須】意味を生成する見出し語を入力してください。';
 	@override String get success_to_generate_meanings => '意味を生成しました。';
 	@override String get failed_to_generate_meanings => '意味の生成に失敗しました。';
+	@override String get generate_ipa_with_ai => 'AIで発音記号を生成する';
+	@override String get ipa_generation_keyword_placeholder => '【必須】発音記号を生成する見出し語を入力してください。';
+	@override String get regional_pronunciation => '地域ごとの発音を生成する';
+	@override String get success_to_generate_ipa => '発音記号を生成しました。';
+	@override String get failed_to_generate_ipa => '発音記号の生成に失敗しました。';
 	@override String get etymologies => '語源';
 	@override String get explanation => '解説';
 	@override String get sentence => '例文';
 	@override String get synonyms => '類義語';
 	@override String get antonyms => '対義語';
 	@override String get related => '関連語';
-	@override String get senses => '意味の詳細';
-	@override String sense({required Object number}) => '意味(${number})';
 	@override String get detailed_settings => '詳細設定';
 	@override String get comment => '編集者のコメント';
 	@override String get comment_placeholder => 'コメントなどあればここに書いてください。';
@@ -4274,22 +4286,28 @@ extension on _TranslationsEn {
 			case 'words.pos_tag_id': return 'Part of speech';
 			case 'words.meaning': return 'Meaning';
 			case 'words.ipa': return 'IPA(Pronunciation)';
+			case 'words.senses': return 'Meaning details';
+			case 'words.sense': return ({required Object number}) => 'sense(${number})';
+			case 'words.show_senses': return 'Show meaning details';
 			case 'words.search_sentence': return 'Search Example Sentences';
-			case 'words.search_sentence_placeholder': return 'Please enter keywords.';
+			case 'words.search_sentence_placeholder': return 'Please enter the sentence you want to search for';
 			case 'words.no_sentence': return 'No example sentence is set.';
 			case 'words.set_sentence_with_ai': return 'Set an example sentence with AI';
 			case 'words.generate_meaning_with_ai': return 'Generate meanings with AI';
-			case 'words.meaning_generation_keyword_placeholder': return 'keywords to generate the meaning.';
+			case 'words.meaning_generation_keyword_placeholder': return '【Required】Please enter the headword to generate the meaning.';
 			case 'words.success_to_generate_meanings': return 'Successful generation of meanings.';
 			case 'words.failed_to_generate_meanings': return 'Generation of meanings failed.';
+			case 'words.generate_ipa_with_ai': return 'Generate IPA with AI';
+			case 'words.ipa_generation_keyword_placeholder': return '【Required】Please enter the headword to generate the IPA.';
+			case 'words.regional_pronunciation': return 'Generate regional pronunciations';
+			case 'words.success_to_generate_ipa': return 'Successful generation of IPA.';
+			case 'words.failed_to_generate_ipa': return 'Generation of IPA failed.';
 			case 'words.etymologies': return 'Etymologies';
 			case 'words.explanation': return 'Explanation';
 			case 'words.sentence': return 'Example Sentence';
 			case 'words.synonyms': return 'Synonyms';
 			case 'words.antonyms': return 'Antonyms';
 			case 'words.related': return 'Related Words';
-			case 'words.senses': return 'Meaning details';
-			case 'words.sense': return ({required Object number}) => 'sense(${number})';
 			case 'words.detailed_settings': return 'Detailed Settings';
 			case 'words.comment': return 'Editor\'s Comment';
 			case 'words.comment_placeholder': return 'Please write your comments here if you have any';
@@ -5439,22 +5457,28 @@ extension on _TranslationsJa {
 			case 'words.pos_tag_id': return '品詞';
 			case 'words.meaning': return '意味';
 			case 'words.ipa': return 'IPA（発音記号）';
+			case 'words.senses': return '意味の詳細';
+			case 'words.sense': return ({required Object number}) => '意味(${number})';
+			case 'words.show_senses': return '意味の詳細を表示する';
 			case 'words.search_sentence': return '例文を検索する';
-			case 'words.search_sentence_placeholder': return 'キーワードを入力してください';
+			case 'words.search_sentence_placeholder': return '例文に含まれるキーワードを入力してください';
 			case 'words.no_sentence': return '例文が設定されていません。';
 			case 'words.set_sentence_with_ai': return 'AIで例文を設定する';
 			case 'words.generate_meaning_with_ai': return 'AIで意味を生成する';
-			case 'words.meaning_generation_keyword_placeholder': return '意味を生成するキーワード';
+			case 'words.meaning_generation_keyword_placeholder': return '【必須】意味を生成する見出し語を入力してください。';
 			case 'words.success_to_generate_meanings': return '意味を生成しました。';
 			case 'words.failed_to_generate_meanings': return '意味の生成に失敗しました。';
+			case 'words.generate_ipa_with_ai': return 'AIで発音記号を生成する';
+			case 'words.ipa_generation_keyword_placeholder': return '【必須】発音記号を生成する見出し語を入力してください。';
+			case 'words.regional_pronunciation': return '地域ごとの発音を生成する';
+			case 'words.success_to_generate_ipa': return '発音記号を生成しました。';
+			case 'words.failed_to_generate_ipa': return '発音記号の生成に失敗しました。';
 			case 'words.etymologies': return '語源';
 			case 'words.explanation': return '解説';
 			case 'words.sentence': return '例文';
 			case 'words.synonyms': return '類義語';
 			case 'words.antonyms': return '対義語';
 			case 'words.related': return '関連語';
-			case 'words.senses': return '意味の詳細';
-			case 'words.sense': return ({required Object number}) => '意味(${number})';
 			case 'words.detailed_settings': return '詳細設定';
 			case 'words.comment': return '編集者のコメント';
 			case 'words.comment_placeholder': return 'コメントなどあればここに書いてください。';

@@ -1,6 +1,8 @@
 import 'package:booqs_mobile/components/form/white_text_form_field.dart';
+import 'package:booqs_mobile/components/word/form/ipa_generator_button.dart';
 import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:flutter/material.dart';
 
 class WordFormReading extends StatelessWidget {
@@ -8,14 +10,17 @@ class WordFormReading extends StatelessWidget {
       {Key? key,
       required this.ipaController,
       required this.readingController,
-      required this.langNumberOfEntry})
+      required this.entryController,
+      required this.dictionary})
       : super(key: key);
   final TextEditingController ipaController;
   final TextEditingController readingController;
-  final int langNumberOfEntry;
+  final TextEditingController entryController;
+  final Dictionary dictionary;
 
   @override
   Widget build(BuildContext context) {
+    final int langNumberOfEntry = dictionary.langNumberOfEntry;
     if (langNumberOfEntry == languageCodeMap['ja']) {
       // 日本語の読み方
       return TextFormField(
@@ -34,12 +39,21 @@ class WordFormReading extends StatelessWidget {
     }
 
     // IPA
-    return FormWhiteTextFormField(
-      controller: ipaController,
-      label: t.words.ipa,
-      hint: t.shared.please_enter(name: t.words.ipa),
-      emptyValidation: false,
-      lineBreak: false,
-    );
+    return Column(children: [
+      FormWhiteTextFormField(
+        controller: ipaController,
+        label: t.words.ipa,
+        hint: t.shared.please_enter(name: t.words.ipa),
+        emptyValidation: false,
+        lineBreak: false,
+      ),
+      const SizedBox(height: 8),
+      // ignore: prefer_const_constructors
+      WordFormIPAGeneratorButton(
+        entryController: entryController,
+        ipaController: ipaController,
+        dictionary: dictionary,
+      ),
+    ]);
   }
 }

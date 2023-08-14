@@ -41,7 +41,8 @@ class WordFormEntry extends StatelessWidget {
         WordFormReading(
           ipaController: ipaController,
           readingController: readingController,
-          langNumberOfEntry: dictionary.langNumberOfEntry,
+          entryController: entryController,
+          dictionary: dictionary,
         ),
         // WordFormLangSetting(langNumber: dictionary.langNumberOfEntry),
         const SizedBox(height: 16),
