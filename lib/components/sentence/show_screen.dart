@@ -38,7 +38,7 @@ class SentenceShowScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 24),
-          DictionaryName(dictionary: dictionary),
+          DictionaryName(dictionary: dictionary, linked: true),
           const SizedBox(height: 24),
           SentenceListItem(
             sentence: sentence,

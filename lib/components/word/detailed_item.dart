@@ -27,7 +27,7 @@ class WordDetailedItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DictionaryName(dictionary: dictionary),
+        DictionaryName(dictionary: dictionary, linked: true),
         const SizedBox(height: 10),
         WordItemTags(
           word: word,

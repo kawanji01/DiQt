@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/form/fields.dart';
 import 'package:booqs_mobile/data/provider/sense.dart';
@@ -115,7 +116,7 @@ class WordNewScreenState extends ConsumerState<WordNewScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 24),
-                // DictionaryName(dictionary: _dictionary!),
+                DictionaryName(dictionary: widget.dictionary, linked: false),
                 const SizedBox(height: 32),
                 WordFormFields(
                   word: null,

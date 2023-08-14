@@ -100,7 +100,7 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              DictionaryName(dictionary: dictionary),
+              DictionaryName(dictionary: dictionary, linked: false),
               const SizedBox(height: 32),
               SentenceForm(
                 originalController: _originalController,
