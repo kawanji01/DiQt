@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2326 (1163 per locale)
+/// Strings: 2328 (1164 per locale)
 ///
-/// Built on 2023-08-14 at 12:20 UTC
+/// Built on 2023-08-15 at 01:55 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1308,7 +1308,8 @@ class _TranslationsQuizzesEn {
 	// Translations
 	String get quiz => 'Quiz';
 	String get quizzes => 'Quizzes';
-	String get edit => 'Edit';
+	String get add => 'Add Quiz';
+	String get edit => 'Edit Quiz';
 	String get answer => 'Answer';
 	String get see_correct_answer => 'See correct answer';
 	String get correct => 'Correct';
@@ -2858,7 +2859,8 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 	// Translations
 	@override String get quiz => '問題';
 	@override String get quizzes => '問題';
-	@override String get edit => '編集する';
+	@override String get add => '問題を追加する';
+	@override String get edit => '問題を編集する';
 	@override String get answer => '解答する';
 	@override String get see_correct_answer => '正解を見る';
 	@override String get correct => '正解した';
@@ -4137,7 +4139,8 @@ extension on _TranslationsEn {
 			case 'answer.limit_reached_description': return ({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
 			case 'quizzes.quiz': return 'Quiz';
 			case 'quizzes.quizzes': return 'Quizzes';
-			case 'quizzes.edit': return 'Edit';
+			case 'quizzes.add': return 'Add Quiz';
+			case 'quizzes.edit': return 'Edit Quiz';
 			case 'quizzes.answer': return 'Answer';
 			case 'quizzes.see_correct_answer': return 'See correct answer';
 			case 'quizzes.correct': return 'Correct';
@@ -5308,7 +5311,8 @@ extension on _TranslationsJa {
 			case 'answer.limit_reached_description': return ({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
 			case 'quizzes.quiz': return '問題';
 			case 'quizzes.quizzes': return '問題';
-			case 'quizzes.edit': return '編集する';
+			case 'quizzes.add': return '問題を追加する';
+			case 'quizzes.edit': return '問題を編集する';
 			case 'quizzes.answer': return '解答する';
 			case 'quizzes.see_correct_answer': return '正解を見る';
 			case 'quizzes.correct': return '正解した';
