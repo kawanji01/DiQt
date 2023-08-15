@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
@@ -7,8 +8,14 @@ class SenseFormAdditionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: onPressed,
+      child: SmallGreenButton(label: t.senses.add, icon: Icons.add),
+    );
+
+    /* return Container(
       margin: const EdgeInsets.only(top: 24),
+      height: 40,
       width: double.infinity,
       child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
@@ -21,6 +28,6 @@ class SenseFormAdditionButton extends StatelessWidget {
                   fontSize: 16,
                   color: Colors.white,
                   fontWeight: FontWeight.bold))),
-    );
+    ); */
   }
 }

@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/button/small_green_button.dart';
+import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
 import 'package:booqs_mobile/components/sentence/form/generator_screen.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -81,7 +81,7 @@ class _SentenceFormGeneratorButtonState
                     dictionary: widget.dictionary,
                   ));
         },
-        child: SmallGreenButton(
+        child: SmallOutlineGreenButton(
             label: t.sentences.generate_sentence, icon: Icons.auto_fix_high));
   }
 }

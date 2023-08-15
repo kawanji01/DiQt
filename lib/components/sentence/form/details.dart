@@ -16,6 +16,7 @@ class SentenceFormDetails extends StatelessWidget {
       ),
       //collapsedBackgroundColor: const Color(0xfff3f3f4),
       collapsedBackgroundColor: Colors.grey.shade200,
+      expandedCrossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const SizedBox(height: 24),
         // 解説フォーム

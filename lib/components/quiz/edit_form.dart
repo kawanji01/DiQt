@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/components/drill/name.dart';
-import 'package:booqs_mobile/components/quiz/form/form.dart';
+import 'package:booqs_mobile/components/quiz/form/fields.dart';
 import 'package:booqs_mobile/data/remote/quizzes.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/drill.dart';
@@ -116,7 +116,7 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
             const SizedBox(height: 24),
             DrillName(drill: drill),
             const SizedBox(height: 32),
-            QuizForm(
+            QuizFormFields(
               questionController: _questionController,
               correctAnswerController: _correctAnswerController,
               distractor1Controller: _distractor1Controller,
@@ -127,7 +127,7 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
               appliedDictionaryIdController: _appliedDictionaryIdController,
               quiz: _quiz,
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 64),
             SizedBox(
               height: 48,
               child: ElevatedButton.icon(
@@ -145,7 +145,7 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 80),
           ]),
     );
   }

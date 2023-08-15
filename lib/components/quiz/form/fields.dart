@@ -4,8 +4,8 @@ import 'package:booqs_mobile/components/quiz/form/question_and_answer.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:flutter/material.dart';
 
-class QuizForm extends StatelessWidget {
-  const QuizForm({
+class QuizFormFields extends StatelessWidget {
+  const QuizFormFields({
     Key? key,
     required this.questionController,
     required this.correctAnswerController,
