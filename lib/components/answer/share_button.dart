@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -17,15 +18,15 @@ class AnswerShareButton extends StatelessWidget {
 
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.green,
         minimumSize: const Size(double.infinity,
             40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
       ),
       onPressed: () => {shareText(sharedText, 'DiQt')},
       icon: const Icon(Icons.share, color: Colors.white),
-      label: const Text(
-        '記録をシェアする',
-        style: TextStyle(
+      label: Text(
+        t.shared.share,
+        style: const TextStyle(
             fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
       ),
     );

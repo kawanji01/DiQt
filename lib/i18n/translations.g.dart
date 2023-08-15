@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2340 (1170 per locale)
+/// Strings: 2342 (1171 per locale)
 ///
-/// Built on 2023-08-15 at 06:12 UTC
+/// Built on 2023-08-15 at 07:24 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -589,6 +589,7 @@ class _TranslationsSharedEn {
 	String get generate => 'Generate';
 	String get send => 'Send';
 	String get set_up => 'Set Up';
+	String get share => 'Share';
 	String get undefined => 'Undefined';
 	String get details => 'Details';
 	String get view_details => 'View Details';
@@ -2146,6 +2147,7 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get generate => '生成する';
 	@override String get send => '送信する';
 	@override String get set_up => '設定する';
+	@override String get share => 'シェアする';
 	@override String get undefined => '未定義';
 	@override String get details => '詳細';
 	@override String get view_details => '詳細を見る';
@@ -3540,6 +3542,7 @@ extension on _TranslationsEn {
 			case 'shared.generate': return 'Generate';
 			case 'shared.send': return 'Send';
 			case 'shared.set_up': return 'Set Up';
+			case 'shared.share': return 'Share';
 			case 'shared.undefined': return 'Undefined';
 			case 'shared.details': return 'Details';
 			case 'shared.view_details': return 'View Details';
@@ -4718,6 +4721,7 @@ extension on _TranslationsJa {
 			case 'shared.generate': return '生成する';
 			case 'shared.send': return '送信する';
 			case 'shared.set_up': return '設定する';
+			case 'shared.share': return 'シェアする';
 			case 'shared.undefined': return '未定義';
 			case 'shared.details': return '詳細';
 			case 'shared.view_details': return '詳細を見る';
