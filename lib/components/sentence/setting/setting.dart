@@ -1,10 +1,10 @@
+import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
 import 'package:booqs_mobile/components/sentence/setting/search_screen.dart';
 import 'package:booqs_mobile/components/sentence/setting/generator_screen.dart';
 import 'package:booqs_mobile/components/sentence/setting/sentence_preview.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
@@ -141,7 +141,7 @@ class SentenceSettingState extends State<SentenceSetting> {
     Widget generateButton() {
       return InkWell(
           onTap: () => _generateSentence(),
-          child: SmallGreenButton(
+          child: SmallOutlineGreenButton(
               label: t.sentences.generate_sentence, icon: Icons.auto_fix_high));
     }
 

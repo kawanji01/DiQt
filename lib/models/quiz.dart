@@ -14,6 +14,7 @@ class Quiz {
     this.dictionaryId,
     required this.appliedDictionaryId,
     this.wordId,
+    this.reversedWordId,
     this.referenceWordId,
     this.sentenceId,
     required this.question,
@@ -48,6 +49,7 @@ class Quiz {
   int? dictionaryId;
   int appliedDictionaryId;
   int? wordId;
+  int? reversedWordId;
   int? referenceWordId;
   int? sentenceId;
   int? reversedSentenceId;
@@ -84,6 +86,7 @@ class Quiz {
         dictionaryId = json['dictionary_id'],
         appliedDictionaryId = json['applied_dictionary_id'],
         wordId = json['word_id'],
+        reversedWordId = json['reversed_word_id'],
         referenceWordId = json['reference_word_id'],
         sentenceId = json['sentence_id'],
         reversedSentenceId = json['reversed_sentence_id'],
@@ -122,6 +125,12 @@ class Quiz {
         sentence = json['sentence'] == null
             ? null
             : Sentence.fromJson(json['sentence']);
+
+  int? belongedWordId() => wordId ?? reversedWordId ?? referenceWordId;
+  int? belongedSentenceId() => sentenceId ?? reversedSentenceId;
+  bool belongsToWord() => belongedWordId() != null;
+  bool belongsToSentence() => belongedSentenceId() != null;
+  bool belongsToDictionary() => belongsToWord() || belongsToSentence();
 
   // 却下されたQuizRequestのリクエストの数
   int rejectedQuizRequestsCount() =>

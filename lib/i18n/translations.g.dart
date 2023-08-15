@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2328 (1164 per locale)
+/// Strings: 2342 (1171 per locale)
 ///
-/// Built on 2023-08-15 at 01:55 UTC
+/// Built on 2023-08-15 at 07:24 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -589,6 +589,7 @@ class _TranslationsSharedEn {
 	String get generate => 'Generate';
 	String get send => 'Send';
 	String get set_up => 'Set Up';
+	String get share => 'Share';
 	String get undefined => 'Undefined';
 	String get details => 'Details';
 	String get view_details => 'View Details';
@@ -1329,6 +1330,9 @@ class _TranslationsQuizzesEn {
 	String get distractors => 'Distractors';
 	String get distractor => 'Distractor';
 	String get distractors_placeholder => 'You can input a distractor.';
+	String get generate_distractors => 'Generate distractors';
+	String get distractors_generated => 'Distractors generated';
+	String get distractors_generation_failed => 'Distractors generation failed';
 	String get explanation => 'Explanation';
 	String get explanation_placeholder => 'You can input a explanation.';
 	String get hint => 'Hint';
@@ -1342,6 +1346,9 @@ class _TranslationsQuizzesEn {
 	String get choices_cover_text => 'Show choices';
 	String get choices_cover_keys => 'Tap or Enter key';
 	String get please_input_answer => 'Please input an answer.';
+	String get modified => 'Modified the quiz.';
+	String get word_quiz_edit_prevention => 'This quiz is based on the information of the dictionary, so you need to edit the dictionary item to change it.';
+	String get sentence_quiz_edit_prevention => 'This quiz is based on the information of the sentence, so you need to edit the sentence to change it.';
 }
 
 // Path: wordRequestComments
@@ -2140,6 +2147,7 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get generate => '生成する';
 	@override String get send => '送信する';
 	@override String get set_up => '設定する';
+	@override String get share => 'シェアする';
 	@override String get undefined => '未定義';
 	@override String get details => '詳細';
 	@override String get view_details => '詳細を見る';
@@ -2880,6 +2888,9 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 	@override String get distractors => '誤りの選択肢';
 	@override String get distractor => '誤りの選択肢';
 	@override String get distractors_placeholder => '【空欄可】誤りの選択肢を設定できます。';
+	@override String get generate_distractors => '誤りの選択肢を自動生成する';
+	@override String get distractors_generated => '誤りの選択肢を自動生成しました。';
+	@override String get distractors_generation_failed => '誤りの選択肢を自動生成できませんでした。';
 	@override String get explanation => '解説';
 	@override String get explanation_placeholder => '【空欄可】解説を設定できます。';
 	@override String get hint => 'ヒント';
@@ -2893,6 +2904,9 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 	@override String get choices_cover_text => '選択肢を表示する';
 	@override String get choices_cover_keys => 'タップまたはEnterキー';
 	@override String get please_input_answer => '解答を入力してください。';
+	@override String get modified => '問題を修正しました。';
+	@override String get word_quiz_edit_prevention => 'この問題は辞書の情報に基づいているため、変更するには辞書の項目の編集が必要です。';
+	@override String get sentence_quiz_edit_prevention => 'この問題は例文の情報に基づいているため、変更するには例文の編集が必要です。';
 }
 
 // Path: wordRequestComments
@@ -3528,6 +3542,7 @@ extension on _TranslationsEn {
 			case 'shared.generate': return 'Generate';
 			case 'shared.send': return 'Send';
 			case 'shared.set_up': return 'Set Up';
+			case 'shared.share': return 'Share';
 			case 'shared.undefined': return 'Undefined';
 			case 'shared.details': return 'Details';
 			case 'shared.view_details': return 'View Details';
@@ -4160,6 +4175,9 @@ extension on _TranslationsEn {
 			case 'quizzes.distractors': return 'Distractors';
 			case 'quizzes.distractor': return 'Distractor';
 			case 'quizzes.distractors_placeholder': return 'You can input a distractor.';
+			case 'quizzes.generate_distractors': return 'Generate distractors';
+			case 'quizzes.distractors_generated': return 'Distractors generated';
+			case 'quizzes.distractors_generation_failed': return 'Distractors generation failed';
 			case 'quizzes.explanation': return 'Explanation';
 			case 'quizzes.explanation_placeholder': return 'You can input a explanation.';
 			case 'quizzes.hint': return 'Hint';
@@ -4173,6 +4191,9 @@ extension on _TranslationsEn {
 			case 'quizzes.choices_cover_text': return 'Show choices';
 			case 'quizzes.choices_cover_keys': return 'Tap or Enter key';
 			case 'quizzes.please_input_answer': return 'Please input an answer.';
+			case 'quizzes.modified': return 'Modified the quiz.';
+			case 'quizzes.word_quiz_edit_prevention': return 'This quiz is based on the information of the dictionary, so you need to edit the dictionary item to change it.';
+			case 'quizzes.sentence_quiz_edit_prevention': return 'This quiz is based on the information of the sentence, so you need to edit the sentence to change it.';
 			case 'wordRequestComments.comment': return 'Comment';
 			case 'wordRequestComments.comment_to_you': return 'Comment to you';
 			case 'wordRequestComments.comment_placeholder': return 'Write a comment';
@@ -4700,6 +4721,7 @@ extension on _TranslationsJa {
 			case 'shared.generate': return '生成する';
 			case 'shared.send': return '送信する';
 			case 'shared.set_up': return '設定する';
+			case 'shared.share': return 'シェアする';
 			case 'shared.undefined': return '未定義';
 			case 'shared.details': return '詳細';
 			case 'shared.view_details': return '詳細を見る';
@@ -5332,6 +5354,9 @@ extension on _TranslationsJa {
 			case 'quizzes.distractors': return '誤りの選択肢';
 			case 'quizzes.distractor': return '誤りの選択肢';
 			case 'quizzes.distractors_placeholder': return '【空欄可】誤りの選択肢を設定できます。';
+			case 'quizzes.generate_distractors': return '誤りの選択肢を自動生成する';
+			case 'quizzes.distractors_generated': return '誤りの選択肢を自動生成しました。';
+			case 'quizzes.distractors_generation_failed': return '誤りの選択肢を自動生成できませんでした。';
 			case 'quizzes.explanation': return '解説';
 			case 'quizzes.explanation_placeholder': return '【空欄可】解説を設定できます。';
 			case 'quizzes.hint': return 'ヒント';
@@ -5345,6 +5370,9 @@ extension on _TranslationsJa {
 			case 'quizzes.choices_cover_text': return '選択肢を表示する';
 			case 'quizzes.choices_cover_keys': return 'タップまたはEnterキー';
 			case 'quizzes.please_input_answer': return '解答を入力してください。';
+			case 'quizzes.modified': return '問題を修正しました。';
+			case 'quizzes.word_quiz_edit_prevention': return 'この問題は辞書の情報に基づいているため、変更するには辞書の項目の編集が必要です。';
+			case 'quizzes.sentence_quiz_edit_prevention': return 'この問題は例文の情報に基づいているため、変更するには例文の編集が必要です。';
 			case 'wordRequestComments.comment': return 'コメント';
 			case 'wordRequestComments.comment_to_you': return 'あなたへのコメント';
 			case 'wordRequestComments.comment_placeholder': return 'コメントを入力してください';

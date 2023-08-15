@@ -106,4 +106,34 @@ class RemoteQuizzes {
       return ErrorHandler.exceptionMap(e, s);
     }
   }
+
+  static Future<Map> generateDistractors(
+      {required String question,
+      required String correctAnswer,
+      required String model}) async {
+    try {
+      final Map<String, dynamic> body = {
+        'question': question,
+        'correct_answer': correctAnswer,
+        'model': model,
+      };
+
+      final Uri url = Uri.parse(
+          '${DiQtURL.root()}/api/v1/mobile/quizzes/generate_distractors');
+      final Response res = await HttpService.post(
+        url,
+        body,
+      );
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
 }
