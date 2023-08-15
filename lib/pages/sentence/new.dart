@@ -1,19 +1,13 @@
-import 'package:booqs_mobile/data/remote/sentences.dart';
+import 'package:booqs_mobile/components/sentence/new_screen.dart';
+import 'package:booqs_mobile/data/provider/dictionary.dart';
+import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/dictionary.dart';
-import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/models/sentence_request.dart';
-import 'package:booqs_mobile/pages/sentence/show.dart';
-import 'package:booqs_mobile/pages/sentence_request/show.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/error_handler.dart';
+import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/dictionary/name.dart';
-import 'package:booqs_mobile/components/sentence/form.dart';
 import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SentenceNewPage extends ConsumerStatefulWidget {
@@ -21,8 +15,18 @@ class SentenceNewPage extends ConsumerStatefulWidget {
 
   static Future push(
       BuildContext context, int dictionaryId, String keyword) async {
-    return Navigator.of(context).pushNamed(sentenceNewPage,
-        arguments: {'dictionaryId': dictionaryId, 'keyword': keyword});
+    return Navigator.push(
+        context,
+        MaterialPageRoute(
+            // 画面遷移のログを送信するために、settings.nameを設定する。
+            settings: RouteSettings(
+              name: sentenceNewPage,
+              arguments: {'dictionaryId': dictionaryId, 'keyword': keyword},
+            ),
+            builder: (BuildContext context) {
+              return const SentenceNewPage();
+            },
+            fullscreenDialog: true));
   }
 
   @override
@@ -30,12 +34,8 @@ class SentenceNewPage extends ConsumerStatefulWidget {
 }
 
 class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
-  Dictionary? _dictionary;
-  String _keyword = '';
-  bool _isLoading = true;
-  bool _isRequesting = false;
-  // validatorを利用するために必要なkey
-  final _formKey = GlobalKey<FormState>();
+  late String _keyword;
+  late int _dictionaryId;
   final _originalController = TextEditingController();
   final _translationController = TextEditingController();
   final _explanationController = TextEditingController();
@@ -43,23 +43,16 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-      _initialize(arguments);
-    });
   }
 
-  // 辞書とキーワードを読み込んでから、loadingを完了する。
-  Future _initialize(Map arguments) async {
+  // initState() メソッドの中で context を使用して継承ウィジェットにアクセスすることは推奨されていない。
+  // 代わりに、このような初期化は didChangeDependencies() メソッドの中で行うのが良い。
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final arguments = ModalRoute.of(context)!.settings.arguments as Map;
     _keyword = arguments['keyword'];
-    final int dictionaryId = arguments['dictionaryId'];
-    final Map? resMap = await RemoteSentences.newSentence(dictionaryId);
-    _isLoading = false;
-    if (resMap == null) {
-      return setState(() => _isLoading);
-    }
-    _dictionary = Dictionary.fromJson(resMap['dictionary']);
-    setState(() => _isLoading);
+    _dictionaryId = arguments['dictionaryId'];
   }
 
   @override
@@ -74,110 +67,47 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future save() async {
-      // 各Fieldのvalidatorを呼び出す
-      if (!_formKey.currentState!.validate()) return;
-      // リクエストロック開始
-      setState(() {
-        _isRequesting = true;
-      });
-
-      Map<String, dynamic> params = {
-        'original': _originalController.text,
-        'translation': _translationController.text,
-        'explanation': _explanationController.text,
-        'dictionary_id': _dictionary!.id
-      };
-      // 画面全体にローディングを表示
-      EasyLoading.show(status: 'loading...');
-      final Map resMap = await RemoteSentences.create(params);
-      EasyLoading.dismiss();
-      // リクエストロック終了
-      setState(() {
-        _isRequesting = false;
-      });
-      if (!mounted) return;
-      if (ErrorHandler.isErrorMap(resMap)) {
-        ErrorHandler.showErrorSnackBar(context, resMap);
-        return;
-      }
-      final SentenceRequest sentenceRequest =
-          SentenceRequest.fromJson(resMap['sentence_request']);
-      final snackBar = SnackBar(content: Text('${resMap['message']}'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-      if (sentenceRequest.closed()) {
-        final sentence = Sentence.fromJson(resMap['sentence']);
-        SentenceShowPage.pushReplacement(context, sentence.id);
-      } else {
-        SentenceRequestShowPage.pushReplacement(context, sentenceRequest.id);
-      }
-    }
-
-    // 更新ボタン
-    Widget submitButton() {
-      return SizedBox(
-        height: 48,
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.green,
-            minimumSize: const Size(double.infinity,
-                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
-          ),
-          // 二重リクエスト防止
-          onPressed: _isRequesting
-              ? null
-              : () async {
-                  save();
-                },
-          icon: const Icon(Icons.update, color: Colors.white),
-          label: Text(
-            t.shared.create,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
+    return WillPopScope(
+      onWillPop: () async {
+        final bool result = await Dialogs.confirm(
+            context: context,
+            title: t.shared.return_confirmation,
+            message: t.shared.return_confirmation_description);
+        if (result) {
+          // 画面遷移を許可するために、編集中を解除する。
+          ref.read(sharedEditingContentProvider.notifier).offEdit();
+          return true; // trueを返すことで画面遷移を許可
+        } else {
+          return false;
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(t.sentences.add),
         ),
-      );
-    }
-
-    Widget body() {
-      if (_isLoading) return const LoadingSpinner();
-      if (_dictionary == null) return const Text('Dictionary does not exist.');
-
-      return Form(
-        key: _formKey,
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              DictionaryName(dictionary: _dictionary!),
-              const SizedBox(height: 32),
-              SentenceForm(
-                originalController: _originalController,
-                translationController: _translationController,
-                explanationController: _explanationController,
-                dictionary: _dictionary!,
-                isNew: true,
-                keyword: _keyword,
-              ),
-              const SizedBox(height: 40),
-              submitButton(),
-              const SizedBox(height: 40),
-            ]),
-      );
-    }
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(t.sentences.add),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.symmetric(
-              vertical: 24,
-              horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: body(),
+        body: SingleChildScrollView(
+          child: Container(
+              margin: EdgeInsets.symmetric(
+                  vertical: 24,
+                  horizontal: ResponsiveValues.horizontalMargin(context)),
+              child: ref.watch(asyncDictionaryFamily(_dictionaryId)).when(
+                  data: (dictionary) {
+                    if (dictionary == null) {
+                      return Text(t.shared
+                          .no_items_found(name: t.dictionaries.dictionary));
+                    }
+                    return SentenceNewScreen(
+                        originalController: _originalController,
+                        translationController: _translationController,
+                        explanationController: _explanationController,
+                        keyword: _keyword,
+                        dictionary: dictionary);
+                  },
+                  loading: () => const LoadingSpinner(),
+                  error: (err, stack) => Text('$err'))),
         ),
+        bottomNavigationBar: const BottomNavbar(),
       ),
-      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }

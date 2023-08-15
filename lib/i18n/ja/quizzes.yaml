@@ -1,6 +1,7 @@
 quiz: '問題'
 quizzes: '問題'
-edit: '編集する'
+add: '問題を追加する'
+edit: '問題を編集する'
 answer: '解答する'
 see_correct_answer: '正解を見る'
 correct: '正解した'

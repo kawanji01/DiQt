@@ -54,7 +54,10 @@ class DictionaryWordSearchFormState
         return Text(t.dictionaryMaps.not_selected,
             style: const TextStyle(fontSize: 12, color: Colors.black54));
       } else {
-        return DictionaryName(dictionary: dictionary);
+        return DictionaryName(
+          dictionary: dictionary,
+          linked: true,
+        );
       }
     }
 

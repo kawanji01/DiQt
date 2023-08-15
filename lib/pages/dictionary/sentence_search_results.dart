@@ -44,7 +44,7 @@ class DictionarySentenceSearchResultsPageState
 
     Widget dictionaryName(Dictionary? dictionary) {
       if (dictionary == null) return const Text('Dictionary does not exist.');
-      return DictionaryName(dictionary: dictionary);
+      return DictionaryName(dictionary: dictionary, linked: true);
     }
 
     Widget heading() {

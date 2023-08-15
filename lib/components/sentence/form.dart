@@ -5,7 +5,6 @@ import 'package:booqs_mobile/components/sentence/form/generator_button.dart';
 import 'package:booqs_mobile/components/sentence/form/preview_button.dart';
 import 'package:booqs_mobile/components/sentence/form/translation.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
-import 'package:booqs_mobile/components/shared/lang_setting.dart';
 import 'package:flutter/material.dart';
 
 class SentenceForm extends StatelessWidget {
@@ -44,7 +43,8 @@ class SentenceForm extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // 例文フォーム
-        SharedItemLabel(text: t.sentences.original),
+        SharedItemLabel(
+            text: '${t.sentences.original}(${dictionary.languageOfEntry()})'),
         const SizedBox(
           height: 16,
         ),
@@ -65,8 +65,7 @@ class SentenceForm extends StatelessWidget {
             return null;
           },
         ),
-        SharedLangSetting(langNumber: dictionary.langNumberOfEntry),
-        //const SizedBox(height: 16),
+        const SizedBox(height: 24),
         sentenceGeneratorButton(),
         const SizedBox(height: 40),
         SentenceFormTranslation(

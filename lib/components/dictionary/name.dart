@@ -5,53 +5,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryName extends ConsumerWidget {
-  const DictionaryName({Key? key, required this.dictionary}) : super(key: key);
+  const DictionaryName(
+      {Key? key, required this.dictionary, required this.linked})
+      : super(key: key);
   final Dictionary dictionary;
+  final bool linked;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /* final button = InkWell(
-      onTap: () {
-        ref.read(dictionaryProvider.notifier).state = dictionary;
-        DictionaryShowPage.push(context, dictionary.id);
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-        alignment: Alignment.topLeft,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          border: Border.all(color: Colors.green, width: 1),
-        ),
-        child: RichText(
-          text: TextSpan(
-            style: const TextStyle(
-                fontSize: 14, color: Colors.green, fontWeight: FontWeight.bold),
-            children: [
-              const WidgetSpan(
-                child: Icon(
-                  Icons.search,
-                  size: 16,
-                  color: Colors.green,
-                ),
-              ),
-              TextSpan(
-                text: dictionary.typeName(),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-
-    //return button;
-    return Row(mainAxisAlignment: MainAxisAlignment.start, children: [button]); */
-
-    return InkWell(
-        onTap: () {
-          ref.read(dictionaryProvider.notifier).state = dictionary;
-          DictionaryShowPage.push(context, dictionary.id);
-        },
-        child: Text(dictionary.typeName(),
-            style: const TextStyle(fontSize: 12, color: Colors.black54)));
+    if (linked) {
+      return InkWell(
+          onTap: () {
+            ref.read(dictionaryProvider.notifier).state = dictionary;
+            DictionaryShowPage.push(context, dictionary.id);
+          },
+          child: Text(dictionary.typeName(),
+              style: const TextStyle(fontSize: 12, color: Colors.black54)));
+    } else {
+      return Text(dictionary.typeName(),
+          style: const TextStyle(fontSize: 12, color: Colors.black54));
+    }
   }
 }

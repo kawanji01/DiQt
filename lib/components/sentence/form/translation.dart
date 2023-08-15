@@ -2,7 +2,6 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/sentence/form/translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
-import 'package:booqs_mobile/components/shared/lang_setting.dart';
 import 'package:flutter/material.dart';
 
 class SentenceFormTranslation extends StatelessWidget {
@@ -24,7 +23,9 @@ class SentenceFormTranslation extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SharedItemLabel(text: t.sentences.translation),
+        SharedItemLabel(
+            text:
+                '${t.sentences.translation}(${dictionary.languageOfMeaning()})'),
         const SizedBox(
           height: 16,
         ),
@@ -45,7 +46,6 @@ class SentenceFormTranslation extends StatelessWidget {
             return null;
           },
         ),
-        SharedLangSetting(langNumber: dictionary.langNumberOfMeaning),
         SentenceFormTranslationButtons(
           originalController: originalController,
           translationController: translationController,

@@ -1,6 +1,7 @@
 quiz: 'Quiz'
 quizzes: 'Quizzes'
-edit: 'Edit'
+add: 'Add Quiz'
+edit: 'Edit Quiz'
 answer: 'Answer'
 see_correct_answer: 'See correct answer'
 correct: 'Correct'
