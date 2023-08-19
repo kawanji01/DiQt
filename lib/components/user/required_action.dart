@@ -17,14 +17,14 @@ class UserRequiredAction extends ConsumerWidget {
     if (user.id != currentUser?.id) {
       return Container();
     }
-    if (user.email == null || user.email == '') {
+    if (user.passwordBeingSet == false) {
       return InkWell(
           onTap: () {
             UserEditPage.push(context);
           },
           child: SmallOutlineGreenButton(
-            icon: Icons.mail,
-            label: t.users.please_set_email,
+            icon: Icons.verified_user,
+            label: t.users.please_set_password,
           ));
     } else if (user.activated == false) {
       return InkWell(

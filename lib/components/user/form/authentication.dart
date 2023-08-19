@@ -20,7 +20,9 @@ class UserFormAuthentication extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HeadingMediumGreen(label: t.users.authentication),
+        Center(
+          child: HeadingMediumGreen(label: t.users.authentication),
+        ),
         const UserFormPasswordSettingRecommendation(),
         const SizedBox(
           height: 24,

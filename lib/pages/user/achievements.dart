@@ -115,25 +115,29 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
         UserHeadingIcon(
           user: _user!,
         ),
-        heading('チュートリアルメダル', 'DiQtの基本的操作を達成することで手に入るメダルです。'),
+        heading(t.achievements.tutorial_medal,
+            t.achievements.tutorial_medal_introduction),
         AchievementTile(
           achievements: _tutorialMedals,
           gotMedalIds: _gotMedalIds,
           width: width,
         ),
-        heading('解答数メダル', '累計の解答数に応じて手に入るメダルです。'),
+        heading(t.achievements.answers_medal,
+            t.achievements.answers_medal_introduction),
         AchievementTile(
           achievements: _answerMedals,
           gotMedalIds: _gotMedalIds,
           width: width,
         ),
-        heading('解答日数メダル', '累計の解答日数に応じて手に入るメダルです。'),
+        heading(t.achievements.answer_days_medal,
+            t.achievements.answers_medal_introduction),
         AchievementTile(
           achievements: _continuationMedals,
           gotMedalIds: _gotMedalIds,
           width: width,
         ),
-        heading('マスターメダル', '偉業を成し遂げたときに獲得できるメダルです。'),
+        heading(t.achievements.master_medal,
+            t.achievements.master_medal_introduction),
         AchievementTile(
           achievements: _masterMedals,
           gotMedalIds: _gotMedalIds,
@@ -141,7 +145,7 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
         ),
         const SizedBox(height: 80),
         Text(
-          '獲得メダル数：39個中${_user!.achievementMapsCount}個',
+          '${t.achievements.got_medals}：${_user!.achievementMapsCount}/39',
           style: const TextStyle(fontSize: 16, color: Colors.black87),
         ),
         const SizedBox(height: 80),
@@ -150,7 +154,7 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(t.achievements.medals_won),
+        title: Text(t.achievements.got_medals),
       ),
       body: SingleChildScrollView(
         child: Container(
