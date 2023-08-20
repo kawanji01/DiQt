@@ -45,7 +45,6 @@ class UserEditPageState extends ConsumerState<UserEditPage> {
               data: (User? user) {
                 if (user == null) return const Text('User does not exist.');
                 return UserFormFields(user: user);
-                //return Container();
               },
               error: (err, str) => Text('Errors: $err'),
               loading: () => const LoadingSpinner()),

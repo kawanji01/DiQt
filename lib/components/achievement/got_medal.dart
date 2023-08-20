@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class AchievementGotMedal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String name = t['achievements.${achievement.i18nKey}_name'];
     return SizedBox(
       width: width,
       child: Column(children: <Widget>[
@@ -20,7 +22,7 @@ class AchievementGotMedal extends StatelessWidget {
         ),
         Container(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(achievement.name,
+            child: Text(name,
                 style: const TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.black87))),
       ]),

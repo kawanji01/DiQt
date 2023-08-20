@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/achievements.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +13,6 @@ class UserAchievementsButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Future moveToAchievementsPage() async {
-      ref.read(userProvider.notifier).state = user;
-      await UserAchievementsPage.pushDialog(context);
-    }
-
     return SizedBox(
       height: 40,
       child: ElevatedButton.icon(
@@ -24,14 +20,17 @@ class UserAchievementsButton extends ConsumerWidget {
           minimumSize: const Size(double.infinity,
               40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
         ),
-        onPressed: () => {moveToAchievementsPage()},
+        onPressed: () async {
+          ref.read(userProvider.notifier).state = user;
+          UserAchievementsPage.pushDialog(context);
+        },
         icon: const FaIcon(
           FontAwesomeIcons.medal,
           size: 16,
           color: Colors.white,
         ),
         label: Text(
-          '獲得メダルをみる(${user.achievementMapsCount}/39)',
+          '${t.achievements.view_got_medals}(${user.achievementMapsCount}/39)',
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
       ),

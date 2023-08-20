@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/achievement_maps.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/achievement_map.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -13,6 +14,7 @@ import 'package:booqs_mobile/components/exp/gained_exp_indicator.dart';
 import 'package:booqs_mobile/components/shared/dialog_confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path/path.dart';
 
 class NoticeUnreceivedAchievement extends ConsumerStatefulWidget {
@@ -49,23 +51,25 @@ class NoticeUnreceivedAchievementState
     });
   }
 
+  // 報酬の受け取り処理
+  Future<void> _receive() async {
+    final Map? resMap = await RemoteAchievementMaps.update(_achievementMap!.id);
+    if (resMap == null) return;
+
+    // ユーザーを更新する
+    final User user = User.fromJson(resMap['user']);
+    ref.read(currentUserProvider.notifier).update(user);
+    setState(() {
+      _isreceived = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_achievementMap == null) return Container();
+    if (_achievement == null) return Container();
 
-    // 報酬の受け取り処理
-    Future<void> receive() async {
-      final Map? resMap =
-          await RemoteAchievementMaps.update(_achievementMap!.id);
-      if (resMap == null) return;
-
-      // ユーザーを更新する
-      final User user = User.fromJson(resMap['user']);
-      ref.read(currentUserProvider.notifier).update(user);
-      setState(() {
-        _isreceived = true;
-      });
-    }
+    final String medalName = t['achievements.${_achievement?.i18nKey}_name'];
 
     Widget medalImage() {
       final File file = File(_achievement!.imageUrl);
@@ -95,7 +99,7 @@ class NoticeUnreceivedAchievementState
         );
       }
 
-      final String praiseText = _achievement!.praiseText ?? '';
+      final String praiseText = t.achievements.praise_text(name: medalName);
 
       return Container(
         padding: const EdgeInsets.only(left: 16, right: 16),
@@ -112,7 +116,7 @@ class NoticeUnreceivedAchievementState
       if (user == null) return Container();
       if (_achievement == null) return Container();
 
-      const String text = '実績メダルを獲得しました！！';
+      final String text = t.achievements.getting_medal;
       final String locale = ref.watch(localeProvider);
       final String url =
           '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?achievement=${_achievement?.id}';
@@ -141,11 +145,15 @@ class NoticeUnreceivedAchievementState
               minimumSize: const Size(double.infinity,
                   56), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
             ),
-            onPressed: () => {receive()},
-            icon: const Icon(Icons.military_tech, color: Colors.white),
-            label: const Text(
-              ' 報酬を受け取る',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            onPressed: () => {_receive()},
+            icon: const FaIcon(
+              FontAwesomeIcons.medal,
+              size: 22,
+              color: Colors.white,
+            ),
+            label: Text(
+              ' ${t.achievements.receive_reward}',
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
         ),
@@ -165,7 +173,7 @@ class NoticeUnreceivedAchievementState
                 Container(
                   padding:
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                  child: Text('${_achievement!.name}メダル獲得！！',
+                  child: Text(t.achievements.getting_medal_for(name: medalName),
                       style: TextStyle(
                           fontSize: ResponsiveValues.achievementHeadingFontSize(
                               context),
