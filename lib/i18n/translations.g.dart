@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2528 (1264 per locale)
+/// Strings: 2562 (1281 per locale)
 ///
-/// Built on 2023-08-19 at 05:05 UTC
+/// Built on 2023-08-21 at 10:15 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -398,20 +398,37 @@ class _TranslationsDrillsEn {
 
 	// Translations
 	String get drills => 'Drills';
+	String get private_drill => 'This drill is private';
+	String answers({required Object number}) => '${number} answers';
+	String laps_count({required Object number}) => 'Laps: ${number} ';
+	String clears_count({required Object number}) => 'Clears: ${number}';
 	String get unsolved => 'Unsolved';
 	String get solved => 'Solved';
+	String get all => 'All';
 	String get search => 'Search Quizzes';
 	String get pending_requests => 'Pending Requests';
 	String get accepted_requests => 'Accepted Requests';
+	String get rejected_requests => 'Rejected Requests';
 	String get create_drill => 'Create drill';
 	String get create_drill_with_csv => 'Create drill with CSV';
 	String get edit_drill => 'Edit drill';
 	String get edit_drill_with_csv => 'Edit drill with csv';
 	String get csv_blank => 'Please attach a CSV file.';
 	String get please_wait => 'Creating drill. Please wait for 10 seconds.';
+	String get title_placeholder => 'Please enter the title of the drill';
+	String get introduction => 'Introduction';
+	String get over_item_limit => 'If you have more than 100 questions, please edit the questions from here';
+	String get order => 'Order';
 	String get created_at_asc => 'From the beginning';
 	String get created_at_desc => 'From the end';
 	String get random_random => 'Random';
+	String get edit_setting => 'Edit Setting';
+	String get owner => 'Owner';
+	String get following_users => 'Following Users';
+	String get followed_users => 'Followed Users';
+	String get users => 'Users';
+	String get settings => 'Settings';
+	String get edit_tags => 'Edit Tags';
 }
 
 // Path: weaknesses
@@ -2049,20 +2066,37 @@ class _TranslationsDrillsJa implements _TranslationsDrillsEn {
 
 	// Translations
 	@override String get drills => 'ドリル';
+	@override String get private_drill => 'このドリルは非公開です';
+	@override String answers({required Object number}) => '${number}解答';
+	@override String laps_count({required Object number}) => '${number}週目';
+	@override String clears_count({required Object number}) => '${number}周クリア';
 	@override String get unsolved => '未解答';
 	@override String get solved => '解答済';
+	@override String get all => 'すべて';
 	@override String get search => '問題を検索する';
-	@override String get pending_requests => '審査中のリクエスト';
-	@override String get accepted_requests => '承認済のリクエスト';
+	@override String get pending_requests => '審査中の編集';
+	@override String get accepted_requests => '承認済の編集';
+	@override String get rejected_requests => '拒否済の編集';
 	@override String get create_drill => 'ドリルを作成する';
 	@override String get create_drill_with_csv => 'ドリルをCSVで作成する';
 	@override String get edit_drill => 'ドリルを編集する';
 	@override String get edit_drill_with_csv => 'CSVでドリルを編集する';
 	@override String get csv_blank => 'CSVファイルを添付してください。';
 	@override String get please_wait => '作成を開始しました。10秒ほどで出来上がります。';
+	@override String get title_placeholder => '【必須】ドリルのタイトルを入力してください。';
+	@override String get introduction => '紹介';
+	@override String get over_item_limit => '100問を超える場合、問題の編集はこちらから行ってください。';
+	@override String get order => '並び順';
 	@override String get created_at_asc => '最初から';
 	@override String get created_at_desc => '最後から';
 	@override String get random_random => 'ランダム';
+	@override String get edit_setting => 'Edit settings for quizzes';
+	@override String get owner => '作成者';
+	@override String get following_users => 'フォロー中のユーザー';
+	@override String get followed_users => 'フォロワー';
+	@override String get users => 'ユーザー';
+	@override String get settings => '設定';
+	@override String get edit_tags => 'タグを編集する';
 }
 
 // Path: weaknesses
@@ -3591,20 +3625,37 @@ extension on _TranslationsEn {
 			case 'errors.http_status_510': return '510 Not Extended: Further extensions to the request are required for the server to fulfill it.';
 			case 'errors.http_status_511': return '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
 			case 'drills.drills': return 'Drills';
+			case 'drills.private_drill': return 'This drill is private';
+			case 'drills.answers': return ({required Object number}) => '${number} answers';
+			case 'drills.laps_count': return ({required Object number}) => 'Laps: ${number} ';
+			case 'drills.clears_count': return ({required Object number}) => 'Clears: ${number}';
 			case 'drills.unsolved': return 'Unsolved';
 			case 'drills.solved': return 'Solved';
+			case 'drills.all': return 'All';
 			case 'drills.search': return 'Search Quizzes';
 			case 'drills.pending_requests': return 'Pending Requests';
 			case 'drills.accepted_requests': return 'Accepted Requests';
+			case 'drills.rejected_requests': return 'Rejected Requests';
 			case 'drills.create_drill': return 'Create drill';
 			case 'drills.create_drill_with_csv': return 'Create drill with CSV';
 			case 'drills.edit_drill': return 'Edit drill';
 			case 'drills.edit_drill_with_csv': return 'Edit drill with csv';
 			case 'drills.csv_blank': return 'Please attach a CSV file.';
 			case 'drills.please_wait': return 'Creating drill. Please wait for 10 seconds.';
+			case 'drills.title_placeholder': return 'Please enter the title of the drill';
+			case 'drills.introduction': return 'Introduction';
+			case 'drills.over_item_limit': return 'If you have more than 100 questions, please edit the questions from here';
+			case 'drills.order': return 'Order';
 			case 'drills.created_at_asc': return 'From the beginning';
 			case 'drills.created_at_desc': return 'From the end';
 			case 'drills.random_random': return 'Random';
+			case 'drills.edit_setting': return 'Edit Setting';
+			case 'drills.owner': return 'Owner';
+			case 'drills.following_users': return 'Following Users';
+			case 'drills.followed_users': return 'Followed Users';
+			case 'drills.users': return 'Users';
+			case 'drills.settings': return 'Settings';
+			case 'drills.edit_tags': return 'Edit Tags';
 			case 'weaknesses.weaknesses': return 'Weaknesses';
 			case 'weaknesses.premium_recommendation': return 'To solve weak questions, you need to register for a premium plan.';
 			case 'weaknesses.correct_answer_rate_asc': return 'Correct Rate, Low to High';
@@ -4863,20 +4914,37 @@ extension on _TranslationsJa {
 			case 'errors.http_status_510': return '510 Not Extended: サーバーがリクエストを満たすためには、リクエストにさらなる拡張が必要です。';
 			case 'errors.http_status_511': return '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
 			case 'drills.drills': return 'ドリル';
+			case 'drills.private_drill': return 'このドリルは非公開です';
+			case 'drills.answers': return ({required Object number}) => '${number}解答';
+			case 'drills.laps_count': return ({required Object number}) => '${number}週目';
+			case 'drills.clears_count': return ({required Object number}) => '${number}周クリア';
 			case 'drills.unsolved': return '未解答';
 			case 'drills.solved': return '解答済';
+			case 'drills.all': return 'すべて';
 			case 'drills.search': return '問題を検索する';
-			case 'drills.pending_requests': return '審査中のリクエスト';
-			case 'drills.accepted_requests': return '承認済のリクエスト';
+			case 'drills.pending_requests': return '審査中の編集';
+			case 'drills.accepted_requests': return '承認済の編集';
+			case 'drills.rejected_requests': return '拒否済の編集';
 			case 'drills.create_drill': return 'ドリルを作成する';
 			case 'drills.create_drill_with_csv': return 'ドリルをCSVで作成する';
 			case 'drills.edit_drill': return 'ドリルを編集する';
 			case 'drills.edit_drill_with_csv': return 'CSVでドリルを編集する';
 			case 'drills.csv_blank': return 'CSVファイルを添付してください。';
 			case 'drills.please_wait': return '作成を開始しました。10秒ほどで出来上がります。';
+			case 'drills.title_placeholder': return '【必須】ドリルのタイトルを入力してください。';
+			case 'drills.introduction': return '紹介';
+			case 'drills.over_item_limit': return '100問を超える場合、問題の編集はこちらから行ってください。';
+			case 'drills.order': return '並び順';
 			case 'drills.created_at_asc': return '最初から';
 			case 'drills.created_at_desc': return '最後から';
 			case 'drills.random_random': return 'ランダム';
+			case 'drills.edit_setting': return 'Edit settings for quizzes';
+			case 'drills.owner': return '作成者';
+			case 'drills.following_users': return 'フォロー中のユーザー';
+			case 'drills.followed_users': return 'フォロワー';
+			case 'drills.users': return 'ユーザー';
+			case 'drills.settings': return '設定';
+			case 'drills.edit_tags': return 'タグを編集する';
 			case 'weaknesses.weaknesses': return '弱点問題';
 			case 'weaknesses.premium_recommendation': return '弱点問題を解くには、プレミアムプランへの登録が必要です。';
 			case 'weaknesses.correct_answer_rate_asc': return '正答率が低い順';
