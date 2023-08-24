@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/components/answer_setting/screen.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,9 +39,9 @@ class DrillAnswerSettingButton extends ConsumerWidget {
         Icons.settings,
         color: Colors.black54,
       ),
-      label: const Text(
-        ' 解答設定',
-        style: TextStyle(
+      label: Text(
+        ' ${t.answerSettings.answer_setting}}',
+        style: const TextStyle(
             fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54),
       ),
     );

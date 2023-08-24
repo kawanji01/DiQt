@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2562 (1281 per locale)
+/// Strings: 2566 (1283 per locale)
 ///
-/// Built on 2023-08-21 at 10:15 UTC
+/// Built on 2023-08-21 at 10:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -447,6 +447,8 @@ class _TranslationsWeaknessesEn {
 	String get created_at_desc => 'Added, Newest First';
 	String get created_at_asc => 'Added, Oldest First';
 	String get random_random => 'Random';
+	String get set_to_weakness => 'Add to Weakness';
+	String get remove_from_weakness => 'Remove from Weakness';
 }
 
 // Path: users
@@ -2115,6 +2117,8 @@ class _TranslationsWeaknessesJa implements _TranslationsWeaknessesEn {
 	@override String get created_at_desc => '追加日が新しい順';
 	@override String get created_at_asc => '追加日が古い順';
 	@override String get random_random => 'ランダム';
+	@override String get set_to_weakness => '問題を弱点に追加する';
+	@override String get remove_from_weakness => '弱点から取り除く';
 }
 
 // Path: users
@@ -3665,6 +3669,8 @@ extension on _TranslationsEn {
 			case 'weaknesses.created_at_desc': return 'Added, Newest First';
 			case 'weaknesses.created_at_asc': return 'Added, Oldest First';
 			case 'weaknesses.random_random': return 'Random';
+			case 'weaknesses.set_to_weakness': return 'Add to Weakness';
+			case 'weaknesses.remove_from_weakness': return 'Remove from Weakness';
 			case 'users.users': return 'Users';
 			case 'users.user': return 'User';
 			case 'users.anonymous_user': return 'Anonymous user';
@@ -4954,6 +4960,8 @@ extension on _TranslationsJa {
 			case 'weaknesses.created_at_desc': return '追加日が新しい順';
 			case 'weaknesses.created_at_asc': return '追加日が古い順';
 			case 'weaknesses.random_random': return 'ランダム';
+			case 'weaknesses.set_to_weakness': return '問題を弱点に追加する';
+			case 'weaknesses.remove_from_weakness': return '弱点から取り除く';
 			case 'users.users': return 'ユーザー';
 			case 'users.user': return 'ユーザー';
 			case 'users.anonymous_user': return '匿名ユーザー';
