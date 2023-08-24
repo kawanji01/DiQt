@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/weaknesses.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/models/weakness.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
@@ -62,8 +63,8 @@ class WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
         onTap: () {
           create();
         },
-        child: const SmallOutlineGreenButton(
-          label: '苦手な問題に追加する',
+        child: SmallOutlineGreenButton(
+          label: t.weaknesses.set_to_weakness,
           icon: Icons.check_circle_outline,
         ),
       );
@@ -73,8 +74,8 @@ class WeaknessSettingButtonState extends ConsumerState<WeaknessSettingButton> {
       onTap: () {
         destroy();
       },
-      child: const SmallGreenButton(
-        label: '苦手な問題から取り除く',
+      child: SmallGreenButton(
+        label: t.weaknesses.remove_from_weakness,
         icon: Icons.check_circle_outline,
       ),
     );

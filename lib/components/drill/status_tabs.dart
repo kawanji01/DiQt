@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/drill/show.dart';
 import 'package:booqs_mobile/pages/drill/solved.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
@@ -25,7 +26,9 @@ class DrillStatusTabs extends ConsumerWidget {
       final style = selected == 'unsolved' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(text: '未解答\n($unsolvedQuizzesCount)', style: style),
+        text: TextSpan(
+            text: '${t.drills.unsolved}\n($unsolvedQuizzesCount)',
+            style: style),
       );
       return InkWell(
         onTap: () {
@@ -39,7 +42,8 @@ class DrillStatusTabs extends ConsumerWidget {
       final style = selected == 'solved' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(text: '解答済\n($solvedQuizzesCount)', style: style),
+        text: TextSpan(
+            text: '${t.drills.solved}\n($solvedQuizzesCount)', style: style),
       );
       return InkWell(
         onTap: () {
@@ -61,7 +65,7 @@ class DrillStatusTabs extends ConsumerWidget {
       final style = selected == 'all' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(text: 'すべて\n($quizzesCount)', style: style),
+        text: TextSpan(text: '${t.drills.all}\n($quizzesCount)', style: style),
       );
       return InkWell(
         onTap: () {
