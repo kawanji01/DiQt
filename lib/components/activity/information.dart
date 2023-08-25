@@ -1,8 +1,6 @@
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/activity/achievement.dart';
-import 'package:booqs_mobile/components/activity/continuous_answer.dart';
-import 'package:booqs_mobile/components/activity/daily_goal.dart';
 import 'package:booqs_mobile/components/activity/drill_lap_clear.dart';
 import 'package:booqs_mobile/components/activity/first_of_the_day.dart';
 import 'package:booqs_mobile/components/activity/goal_achievement.dart';
@@ -23,12 +21,6 @@ class ActivityInformation extends StatelessWidget {
     final String activityType = activity.activityType;
 
     switch (activityType) {
-      case 'continuous_answer':
-        return ActivityContinuousAnswer(
-          activity: activity,
-        );
-      case 'daily_goal':
-        return ActivityDailyGoal(activity: activity);
       case 'first_of_the_day':
         return ActivityFirstOfTheDay(activity: activity);
       case 'goal_achievement':

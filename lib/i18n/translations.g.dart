@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2566 (1283 per locale)
+/// Strings: 2640 (1320 per locale)
 ///
-/// Built on 2023-08-21 at 10:25 UTC
+/// Built on 2023-08-25 at 13:06 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -467,6 +467,7 @@ class _TranslationsUsersEn {
 	String get menu => 'Menu';
 	String get find_users => 'Find users';
 	String get contract_details => 'Contract details';
+	String get cancel_subscription => 'Cancel subscription';
 	String get edit => 'Account Setting';
 	String get withdraw => 'Withdraw from DiQt';
 	String get withdraw_confirmation => 'The account will be deleted. Deleted accounts cannot be restored again. Are you sure you still want to do this?';
@@ -490,6 +491,7 @@ class _TranslationsUsersEn {
 	String get failed_to_update => 'Account could not be updated.';
 	String get destroyed => 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
 	String get drills => 'Created drills';
+	String get follow => 'Follow';
 	String get following => 'Following';
 	String get resume => 'Resume';
 	String get status => 'Status';
@@ -502,6 +504,8 @@ class _TranslationsUsersEn {
 	String get activation_description => 'This is to confirm that your registered email address is your own and is an important security operation, for example, to prevent identity theft. Verifying your email address also allows you to reset your password if you forget it, for example. We frequently receive inquiries from users who have logged out without verifying their identity, forgotten their password, and cannot log in (we will, of course, take care of this for you). (Of course, we will take care of this).';
 	String get send_activation_email => 'Send verification email';
 	String get activation_email_resent => 'We have sent you a verification email. Please click on the link in the email to complete the verification.';
+	String get activated => 'Your email address has been verified.';
+	String get activation_failed => 'Invalid link. Verification failed.';
 	String get email_change => 'Change email address';
 	String get email_change_cta_text => 'Set up a new email address and press the button below to send the email address change email. Then click on the button in the email.';
 	String get change_email => 'Change email address';
@@ -510,6 +514,18 @@ class _TranslationsUsersEn {
 	String get email_change_email_resent => 'We have sent you an email to change your email address. Please click on the link in the email to complete the change.';
 	String get email_changed => 'Your email address has been changed.';
 	String get expired => 'The link has expired.';
+	String get accumulated_experience => 'Accumulated experience';
+	String get total_answers_count => 'Total number of answers';
+	String get total_answer_days_count => 'Total number of answer days';
+	String get todays_answers_count => 'Number of answers today';
+	String get weekly_answers_count => 'Number of answers this week';
+	String get monthly_answers_count => 'Number of answers this month';
+	String answers_count({required Object count}) => '${count} answers';
+	String answer_days_count({required Object count}) => '${count} days';
+	String exp_for_next_level({required Object exp}) => '${exp} more EXP to the next level';
+	String continuous_answer_days_count({required Object count}) => '${count} days of continuous answers!';
+	String continuous_goal_achievement_count({required Object count}) => '${count} days of continuous goal achievement!';
+	String continuous_review_completion_count({required Object count}) => '${count} days of continuous review completion!';
 }
 
 // Path: sentenceRequests
@@ -581,6 +597,8 @@ class _TranslationsNoticesEn {
 	String get quiz_request_accepted_message => 'Your quiz edit has been adopted!';
 	String get quiz_request_commented_message => 'Your quiz edit has been commented!';
 	String quiz_request_upvoted_message({required Object name}) => '${name} has upvoted your quiz edit!';
+	String get reply => 'Reply';
+	String achievement_acquired_message({required Object name}) => 'You have acquired "${name} medal"!';
 }
 
 // Path: shared
@@ -1497,8 +1515,27 @@ class _TranslationsActivitiesEn {
 
 	// Translations
 	String get activities => 'Activities';
-	String get cheer => 'Cheer!';
-	String get cheered => 'Cheered!';
+	String get display => 'Display';
+	String get all => 'All users';
+	String get following => 'Following users';
+	String get myself => 'Myself';
+	String get cheer => 'Cheer';
+	String get cheered => 'Cheered';
+	String answer_days({required Object name, required Object number}) => '${name} answered ${number} days!';
+	String continuation_count({required Object number}) => '${number} days in a row!';
+	String all_week_continuation_count({required Object number}) => '${number} weeks in a row!';
+	String all_month_continuation_count({required Object number}) => '${number} months in a row!';
+	String all_year_continuation_count({required Object number}) => '${number} years in a row!';
+	String goal_achievement({required Object name, required Object number}) => '${name} achieved the daily goal (${number} answers)!';
+	String strict_goal_achievement({required Object name, required Object number}) => '${name} achieved the daily goal in strict mode (${number} correct answers)!';
+	String continuous_goal_achievement({required Object number}) => 'The goal was achieved for ${number} consecutive days!';
+	String review_completion({required Object name}) => '${name} completed the review!';
+	String strict_review_completion({required Object name}) => '${name} completed the review in strict mode!';
+	String continuous_review_completion({required Object number}) => 'The review was completed for ${number} consecutive days!';
+	String drill_clear({required Object name, required Object drill_title, required Object number}) => '${name} cleared "${drill_title}" ${number} times!';
+	String strict_drill_clear({required Object name, required Object drill_title, required Object number}) => '${name} cleared "${drill_title}" ${number} times in strict mode!';
+	String level_up({required Object name, required Object number}) => '${name} became Lv.${number}!';
+	String achievement({required Object name, required Object achievement_name}) => '${name} earned the ${achievement_name} medal!';
 }
 
 // Path: answerHistories
@@ -2137,6 +2174,7 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get menu => 'メニュー';
 	@override String get find_users => 'ユーザーを探す';
 	@override String get contract_details => 'ご契約内容';
+	@override String get cancel_subscription => '解約する';
 	@override String get edit => 'アカウント設定';
 	@override String get withdraw => 'DiQtから退会する';
 	@override String get withdraw_confirmation => 'アカウントを削除いたします。削除したアカウントは二度と復元できません。それでもよろしいですか？';
@@ -2160,7 +2198,8 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get failed_to_update => 'アカウントを更新できませんでした。';
 	@override String get destroyed => '退会が完了しました。ご利用いただき、誠にありがとうございました。';
 	@override String get drills => '作成したドリル';
-	@override String get following => 'フォロー';
+	@override String get follow => 'フォローする';
+	@override String get following => 'フォロー中';
 	@override String get resume => '続きから';
 	@override String get status => 'ステータス';
 	@override String get please_set_password => 'パスワードを設定してください。';
@@ -2172,6 +2211,8 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get activation_description => 'これは登録したメールアドレスがあなた自身のものであることを確認するためのもので、なりすましの防止など、セキュリティのために重要な操作です。またメールアドレスのご本人確認を行うことによって、パスワードを忘れてしまった場合のパスワードリセット機能などがご利用いただけるようになります。残念ながら、たびたび、ご本人確認を行わずにログアウトしてしまい、パスワードを忘れてしまってログインできないというお問い合わせをいただきます（もちろん、その場合もご対応いたします）。';
 	@override String get send_activation_email => '本人確認メールを送信する';
 	@override String get activation_email_resent => 'ご本人確認メールを送信しました。メールのリンクをクリックして、ご本人確認を完了してください。';
+	@override String get activated => 'ご本人確認が完了しました。';
+	@override String get activation_failed => '無効なリンクです。ご本人確認できませんでした。';
 	@override String get email_change => 'メールアドレス変更';
 	@override String get email_change_cta_text => '新しいメールアドレスを設定し、以下のボタンを押して、メールアドレス変更メールを送信してください。そして、メールの中のボタンをクリックしてください。';
 	@override String get change_email => 'メールアドレスを変更する';
@@ -2180,6 +2221,18 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get email_change_email_resent => 'メールアドレス変更メールを送信しました。メールのリンクをクリックして、メールアドレス変更を完了してください。';
 	@override String get email_changed => 'メールアドレスを変更しました。';
 	@override String get expired => '有効期限が切れています。';
+	@override String get accumulated_experience => '累積経験値';
+	@override String get total_answers_count => '総合解答数';
+	@override String get total_answer_days_count => '総合解答日数';
+	@override String get todays_answers_count => '今日の解答数';
+	@override String get weekly_answers_count => '今週の解答数';
+	@override String get monthly_answers_count => '今月の解答数';
+	@override String answers_count({required Object count}) => '${count}解答';
+	@override String answer_days_count({required Object count}) => '${count}日';
+	@override String exp_for_next_level({required Object exp}) => '次のレベルまであと${exp}EXP';
+	@override String continuous_answer_days_count({required Object count}) => '${count}日連続解答中！';
+	@override String continuous_goal_achievement_count({required Object count}) => '${count}日連続目標達成中！';
+	@override String continuous_review_completion_count({required Object count}) => '${count}日連続復習達成中！';
 }
 
 // Path: sentenceRequests
@@ -2251,6 +2304,8 @@ class _TranslationsNoticesJa implements _TranslationsNoticesEn {
 	@override String get quiz_request_accepted_message => 'あなたの問題の編集が採用されました！';
 	@override String get quiz_request_commented_message => 'あなたの問題の編集にコメントがつきました！';
 	@override String quiz_request_upvoted_message({required Object name}) => '${name}があなたの問題の編集に賛成しました！';
+	@override String get reply => '返信する';
+	@override String achievement_acquired_message({required Object name}) => '${name}メダルを獲得しました！';
 }
 
 // Path: shared
@@ -3167,8 +3222,27 @@ class _TranslationsActivitiesJa implements _TranslationsActivitiesEn {
 
 	// Translations
 	@override String get activities => '活動';
-	@override String get cheer => '応援する!';
-	@override String get cheered => '応援しました！';
+	@override String get display => '表示';
+	@override String get all => 'すべてユーザー';
+	@override String get following => 'フォロー中のユーザー';
+	@override String get myself => '自分';
+	@override String get cheer => '応援する';
+	@override String get cheered => '応援しました';
+	@override String answer_days({required Object name, required Object number}) => '${name}が${number}日解答しました！';
+	@override String continuation_count({required Object number}) => '${number}日連続で解答しました！';
+	@override String all_week_continuation_count({required Object number}) => '${number}週間連続で解答しました！';
+	@override String all_month_continuation_count({required Object number}) => '${number}ヶ月連続で解答しました！';
+	@override String all_year_continuation_count({required Object number}) => '${number}年連続で解答しました！';
+	@override String goal_achievement({required Object name, required Object number}) => '${name}が1日の目標（${number}問解答）を達成しました！';
+	@override String strict_goal_achievement({required Object name, required Object number}) => '${name}が厳格解答モードで1日の目標（${number}問正解）を達成しました！';
+	@override String continuous_goal_achievement({required Object number}) => '${number}日連続で目標を達成しました！';
+	@override String review_completion({required Object name}) => '${name}が復習を達成しました！';
+	@override String strict_review_completion({required Object name}) => '${name}が厳格復習モードで復習を達成しました！';
+	@override String continuous_review_completion({required Object number}) => '${number}日連続で復習を達成しました！';
+	@override String drill_clear({required Object name, required Object drill_title, required Object number}) => '${name}が「${drill_title}」を${number}周クリアしました！';
+	@override String strict_drill_clear({required Object name, required Object drill_title, required Object number}) => '${name}が厳格解答モードで「${drill_title}」を${number}周クリアしました！';
+	@override String level_up({required Object name, required Object number}) => '${name}がLv.${number}になりました！';
+	@override String achievement({required Object name, required Object achievement_name}) => '${name}が${achievement_name}メダルを獲得しました！';
 }
 
 // Path: answerHistories
@@ -3680,6 +3754,7 @@ extension on _TranslationsEn {
 			case 'users.menu': return 'Menu';
 			case 'users.find_users': return 'Find users';
 			case 'users.contract_details': return 'Contract details';
+			case 'users.cancel_subscription': return 'Cancel subscription';
 			case 'users.edit': return 'Account Setting';
 			case 'users.withdraw': return 'Withdraw from DiQt';
 			case 'users.withdraw_confirmation': return 'The account will be deleted. Deleted accounts cannot be restored again. Are you sure you still want to do this?';
@@ -3703,6 +3778,7 @@ extension on _TranslationsEn {
 			case 'users.failed_to_update': return 'Account could not be updated.';
 			case 'users.destroyed': return 'Your membership withdrawal has been completed. Thank you very much for using DiQt.';
 			case 'users.drills': return 'Created drills';
+			case 'users.follow': return 'Follow';
 			case 'users.following': return 'Following';
 			case 'users.resume': return 'Resume';
 			case 'users.status': return 'Status';
@@ -3715,6 +3791,8 @@ extension on _TranslationsEn {
 			case 'users.activation_description': return 'This is to confirm that your registered email address is your own and is an important security operation, for example, to prevent identity theft. Verifying your email address also allows you to reset your password if you forget it, for example. We frequently receive inquiries from users who have logged out without verifying their identity, forgotten their password, and cannot log in (we will, of course, take care of this for you). (Of course, we will take care of this).';
 			case 'users.send_activation_email': return 'Send verification email';
 			case 'users.activation_email_resent': return 'We have sent you a verification email. Please click on the link in the email to complete the verification.';
+			case 'users.activated': return 'Your email address has been verified.';
+			case 'users.activation_failed': return 'Invalid link. Verification failed.';
 			case 'users.email_change': return 'Change email address';
 			case 'users.email_change_cta_text': return 'Set up a new email address and press the button below to send the email address change email. Then click on the button in the email.';
 			case 'users.change_email': return 'Change email address';
@@ -3723,6 +3801,18 @@ extension on _TranslationsEn {
 			case 'users.email_change_email_resent': return 'We have sent you an email to change your email address. Please click on the link in the email to complete the change.';
 			case 'users.email_changed': return 'Your email address has been changed.';
 			case 'users.expired': return 'The link has expired.';
+			case 'users.accumulated_experience': return 'Accumulated experience';
+			case 'users.total_answers_count': return 'Total number of answers';
+			case 'users.total_answer_days_count': return 'Total number of answer days';
+			case 'users.todays_answers_count': return 'Number of answers today';
+			case 'users.weekly_answers_count': return 'Number of answers this week';
+			case 'users.monthly_answers_count': return 'Number of answers this month';
+			case 'users.answers_count': return ({required Object count}) => '${count} answers';
+			case 'users.answer_days_count': return ({required Object count}) => '${count} days';
+			case 'users.exp_for_next_level': return ({required Object exp}) => '${exp} more EXP to the next level';
+			case 'users.continuous_answer_days_count': return ({required Object count}) => '${count} days of continuous answers!';
+			case 'users.continuous_goal_achievement_count': return ({required Object count}) => '${count} days of continuous goal achievement!';
+			case 'users.continuous_review_completion_count': return ({required Object count}) => '${count} days of continuous review completion!';
 			case 'sentenceRequests.sentence_requests': return 'Edit histories of example sentences';
 			case 'sentenceRequests.edit_histories': return 'Edit Histories';
 			case 'sentenceRequests.pending_edits': return 'Pending Edits';
@@ -3767,6 +3857,8 @@ extension on _TranslationsEn {
 			case 'notices.quiz_request_accepted_message': return 'Your quiz edit has been adopted!';
 			case 'notices.quiz_request_commented_message': return 'Your quiz edit has been commented!';
 			case 'notices.quiz_request_upvoted_message': return ({required Object name}) => '${name} has upvoted your quiz edit!';
+			case 'notices.reply': return 'Reply';
+			case 'notices.achievement_acquired_message': return ({required Object name}) => 'You have acquired "${name} medal"!';
 			case 'shared.create': return 'Create';
 			case 'shared.create_succeeded': return 'Created';
 			case 'shared.create_failed': return 'Create failed';
@@ -4539,8 +4631,27 @@ extension on _TranslationsEn {
 			case 'senses.gloss': return 'Gloss';
 			case 'senses.add': return 'Add sense';
 			case 'activities.activities': return 'Activities';
-			case 'activities.cheer': return 'Cheer!';
-			case 'activities.cheered': return 'Cheered!';
+			case 'activities.display': return 'Display';
+			case 'activities.all': return 'All users';
+			case 'activities.following': return 'Following users';
+			case 'activities.myself': return 'Myself';
+			case 'activities.cheer': return 'Cheer';
+			case 'activities.cheered': return 'Cheered';
+			case 'activities.answer_days': return ({required Object name, required Object number}) => '${name} answered ${number} days!';
+			case 'activities.continuation_count': return ({required Object number}) => '${number} days in a row!';
+			case 'activities.all_week_continuation_count': return ({required Object number}) => '${number} weeks in a row!';
+			case 'activities.all_month_continuation_count': return ({required Object number}) => '${number} months in a row!';
+			case 'activities.all_year_continuation_count': return ({required Object number}) => '${number} years in a row!';
+			case 'activities.goal_achievement': return ({required Object name, required Object number}) => '${name} achieved the daily goal (${number} answers)!';
+			case 'activities.strict_goal_achievement': return ({required Object name, required Object number}) => '${name} achieved the daily goal in strict mode (${number} correct answers)!';
+			case 'activities.continuous_goal_achievement': return ({required Object number}) => 'The goal was achieved for ${number} consecutive days!';
+			case 'activities.review_completion': return ({required Object name}) => '${name} completed the review!';
+			case 'activities.strict_review_completion': return ({required Object name}) => '${name} completed the review in strict mode!';
+			case 'activities.continuous_review_completion': return ({required Object number}) => 'The review was completed for ${number} consecutive days!';
+			case 'activities.drill_clear': return ({required Object name, required Object drill_title, required Object number}) => '${name} cleared "${drill_title}" ${number} times!';
+			case 'activities.strict_drill_clear': return ({required Object name, required Object drill_title, required Object number}) => '${name} cleared "${drill_title}" ${number} times in strict mode!';
+			case 'activities.level_up': return ({required Object name, required Object number}) => '${name} became Lv.${number}!';
+			case 'activities.achievement': return ({required Object name, required Object achievement_name}) => '${name} earned the ${achievement_name} medal!';
 			case 'answerHistories.answer_histories': return 'Answer Histories';
 			case 'answerHistories.todays_mistakes': return 'Today\'s Mistakes';
 			case 'wordRequests.word_requests': return 'Edit histories of dictionaries';
@@ -4971,6 +5082,7 @@ extension on _TranslationsJa {
 			case 'users.menu': return 'メニュー';
 			case 'users.find_users': return 'ユーザーを探す';
 			case 'users.contract_details': return 'ご契約内容';
+			case 'users.cancel_subscription': return '解約する';
 			case 'users.edit': return 'アカウント設定';
 			case 'users.withdraw': return 'DiQtから退会する';
 			case 'users.withdraw_confirmation': return 'アカウントを削除いたします。削除したアカウントは二度と復元できません。それでもよろしいですか？';
@@ -4994,7 +5106,8 @@ extension on _TranslationsJa {
 			case 'users.failed_to_update': return 'アカウントを更新できませんでした。';
 			case 'users.destroyed': return '退会が完了しました。ご利用いただき、誠にありがとうございました。';
 			case 'users.drills': return '作成したドリル';
-			case 'users.following': return 'フォロー';
+			case 'users.follow': return 'フォローする';
+			case 'users.following': return 'フォロー中';
 			case 'users.resume': return '続きから';
 			case 'users.status': return 'ステータス';
 			case 'users.please_set_password': return 'パスワードを設定してください。';
@@ -5006,6 +5119,8 @@ extension on _TranslationsJa {
 			case 'users.activation_description': return 'これは登録したメールアドレスがあなた自身のものであることを確認するためのもので、なりすましの防止など、セキュリティのために重要な操作です。またメールアドレスのご本人確認を行うことによって、パスワードを忘れてしまった場合のパスワードリセット機能などがご利用いただけるようになります。残念ながら、たびたび、ご本人確認を行わずにログアウトしてしまい、パスワードを忘れてしまってログインできないというお問い合わせをいただきます（もちろん、その場合もご対応いたします）。';
 			case 'users.send_activation_email': return '本人確認メールを送信する';
 			case 'users.activation_email_resent': return 'ご本人確認メールを送信しました。メールのリンクをクリックして、ご本人確認を完了してください。';
+			case 'users.activated': return 'ご本人確認が完了しました。';
+			case 'users.activation_failed': return '無効なリンクです。ご本人確認できませんでした。';
 			case 'users.email_change': return 'メールアドレス変更';
 			case 'users.email_change_cta_text': return '新しいメールアドレスを設定し、以下のボタンを押して、メールアドレス変更メールを送信してください。そして、メールの中のボタンをクリックしてください。';
 			case 'users.change_email': return 'メールアドレスを変更する';
@@ -5014,6 +5129,18 @@ extension on _TranslationsJa {
 			case 'users.email_change_email_resent': return 'メールアドレス変更メールを送信しました。メールのリンクをクリックして、メールアドレス変更を完了してください。';
 			case 'users.email_changed': return 'メールアドレスを変更しました。';
 			case 'users.expired': return '有効期限が切れています。';
+			case 'users.accumulated_experience': return '累積経験値';
+			case 'users.total_answers_count': return '総合解答数';
+			case 'users.total_answer_days_count': return '総合解答日数';
+			case 'users.todays_answers_count': return '今日の解答数';
+			case 'users.weekly_answers_count': return '今週の解答数';
+			case 'users.monthly_answers_count': return '今月の解答数';
+			case 'users.answers_count': return ({required Object count}) => '${count}解答';
+			case 'users.answer_days_count': return ({required Object count}) => '${count}日';
+			case 'users.exp_for_next_level': return ({required Object exp}) => '次のレベルまであと${exp}EXP';
+			case 'users.continuous_answer_days_count': return ({required Object count}) => '${count}日連続解答中！';
+			case 'users.continuous_goal_achievement_count': return ({required Object count}) => '${count}日連続目標達成中！';
+			case 'users.continuous_review_completion_count': return ({required Object count}) => '${count}日連続復習達成中！';
 			case 'sentenceRequests.sentence_requests': return '例文の編集履歴';
 			case 'sentenceRequests.edit_histories': return '編集履歴';
 			case 'sentenceRequests.pending_edits': return '審査中の編集';
@@ -5058,6 +5185,8 @@ extension on _TranslationsJa {
 			case 'notices.quiz_request_accepted_message': return 'あなたの問題の編集が採用されました！';
 			case 'notices.quiz_request_commented_message': return 'あなたの問題の編集にコメントがつきました！';
 			case 'notices.quiz_request_upvoted_message': return ({required Object name}) => '${name}があなたの問題の編集に賛成しました！';
+			case 'notices.reply': return '返信する';
+			case 'notices.achievement_acquired_message': return ({required Object name}) => '${name}メダルを獲得しました！';
 			case 'shared.create': return '作成する';
 			case 'shared.create_succeeded': return '作成されました。';
 			case 'shared.create_failed': return '作成に失敗しました。';
@@ -5830,8 +5959,27 @@ extension on _TranslationsJa {
 			case 'senses.gloss': return '意味';
 			case 'senses.add': return '意味を追加する';
 			case 'activities.activities': return '活動';
-			case 'activities.cheer': return '応援する!';
-			case 'activities.cheered': return '応援しました！';
+			case 'activities.display': return '表示';
+			case 'activities.all': return 'すべてユーザー';
+			case 'activities.following': return 'フォロー中のユーザー';
+			case 'activities.myself': return '自分';
+			case 'activities.cheer': return '応援する';
+			case 'activities.cheered': return '応援しました';
+			case 'activities.answer_days': return ({required Object name, required Object number}) => '${name}が${number}日解答しました！';
+			case 'activities.continuation_count': return ({required Object number}) => '${number}日連続で解答しました！';
+			case 'activities.all_week_continuation_count': return ({required Object number}) => '${number}週間連続で解答しました！';
+			case 'activities.all_month_continuation_count': return ({required Object number}) => '${number}ヶ月連続で解答しました！';
+			case 'activities.all_year_continuation_count': return ({required Object number}) => '${number}年連続で解答しました！';
+			case 'activities.goal_achievement': return ({required Object name, required Object number}) => '${name}が1日の目標（${number}問解答）を達成しました！';
+			case 'activities.strict_goal_achievement': return ({required Object name, required Object number}) => '${name}が厳格解答モードで1日の目標（${number}問正解）を達成しました！';
+			case 'activities.continuous_goal_achievement': return ({required Object number}) => '${number}日連続で目標を達成しました！';
+			case 'activities.review_completion': return ({required Object name}) => '${name}が復習を達成しました！';
+			case 'activities.strict_review_completion': return ({required Object name}) => '${name}が厳格復習モードで復習を達成しました！';
+			case 'activities.continuous_review_completion': return ({required Object number}) => '${number}日連続で復習を達成しました！';
+			case 'activities.drill_clear': return ({required Object name, required Object drill_title, required Object number}) => '${name}が「${drill_title}」を${number}周クリアしました！';
+			case 'activities.strict_drill_clear': return ({required Object name, required Object drill_title, required Object number}) => '${name}が厳格解答モードで「${drill_title}」を${number}周クリアしました！';
+			case 'activities.level_up': return ({required Object name, required Object number}) => '${name}がLv.${number}になりました！';
+			case 'activities.achievement': return ({required Object name, required Object achievement_name}) => '${name}が${achievement_name}メダルを獲得しました！';
 			case 'answerHistories.answer_histories': return '解答履歴';
 			case 'answerHistories.todays_mistakes': return '今日間違えた問題';
 			case 'wordRequests.word_requests': return '辞書の編集履歴';

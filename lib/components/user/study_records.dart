@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +17,7 @@ class UserStudyRecords extends ConsumerWidget {
       if (continuousAnswers < 2) return Container();
 
       return Text(
-        '$continuousAnswers日連続解答中！！',
+        t.users.continuous_answer_days_count(count: continuousAnswers),
         style: textStyle,
       );
     }
@@ -25,7 +26,8 @@ class UserStudyRecords extends ConsumerWidget {
       final int continuousGoalAchievement = user.continuousGoalAchievementCount;
       if (continuousGoalAchievement < 2) return Container();
       return Text(
-        '$continuousGoalAchievement日連続目標達成中！！',
+        t.users.continuous_goal_achievement_count(
+            count: continuousGoalAchievement),
         style: textStyle,
       );
     }
@@ -35,7 +37,8 @@ class UserStudyRecords extends ConsumerWidget {
           user.continuousReviewCompletionCount;
       if (continuousReviewCompletion < 2) return Container();
       return Text(
-        '$continuousReviewCompletion日連続復習達成中！！',
+        t.users.continuous_review_completion_count(
+            count: continuousReviewCompletion),
         style: textStyle,
       );
     }

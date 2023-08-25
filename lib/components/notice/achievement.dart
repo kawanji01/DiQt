@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:booqs_mobile/components/shared/timestamp.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/achievement.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -23,62 +24,38 @@ class NoticeAchievement extends ConsumerWidget {
     final achievementImageUrl =
         "https://res.cloudinary.com/hkbyf3jop/image/upload/c_scale,w_2.3,l_achievements:$filename/v1587185448/halo_rainbow.png";
 
-    final Widget information = RichText(
-      text: TextSpan(
-        children: [
-          const WidgetSpan(
-            child: Icon(
-              Icons.military_tech,
-              color: Colors.green,
-              size: 18.0,
-            ),
-          ),
-          TextSpan(
-              text: ' ${achievement.name}メダル',
-              style: const TextStyle(
-                  color: Colors.green,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          const TextSpan(
-              text: 'を獲得しました！！',
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal)),
-        ],
-      ),
-    );
-
-    final Widget notifying = Container(
-      padding: const EdgeInsets.only(top: 16, bottom: 24),
-      child: Row(
-        children: [
-          Expanded(
-            child: information,
-          ),
-        ],
-      ),
-    );
-
-    Widget achievementImage() {
-      return InkWell(
-        onTap: () {
-          ref.read(userProvider.notifier).state = user;
-          UserAchievementsPage.pushDialog(context);
-        },
-        child: CachedNetworkImage(
-          imageUrl: achievementImageUrl,
-          placeholder: (context, url) => const CircularProgressIndicator(),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
-        ),
-      );
-    }
+    final String? name = t['achievements.${achievement.i18nKey}_name'];
 
     return Column(
       children: [
         SharedTimestamp(timestamp: notice.createdAt),
-        notifying,
-        achievementImage(),
+        Container(
+          padding: const EdgeInsets.only(top: 16, bottom: 24),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  t.notices.achievement_acquired_message(name: '$name'),
+                  style: const TextStyle(
+                      color: Colors.black87,
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal),
+                ),
+              ),
+            ],
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            ref.read(userProvider.notifier).state = user;
+            UserAchievementsPage.pushDialog(context);
+          },
+          child: CachedNetworkImage(
+            imageUrl: achievementImageUrl,
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
+        ),
         const SizedBox(height: 48),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -18,57 +19,51 @@ class ActivityDrillLapClear extends ConsumerWidget {
     final User user = activity.user!;
     final Drill drill = activity.drill!;
     final String? drillImageUrl = activity.imageUrl;
-
     const TextStyle textBlack = TextStyle(
-        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.normal);
+        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.bold);
 
-    const TextStyle textGreen = TextStyle(
-        color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold);
-
-    final Widget information = RichText(
-      text: TextSpan(
-        children: [
-          TextSpan(text: user.name, style: textGreen),
-          const TextSpan(text: 'が', style: textBlack),
-          TextSpan(text: ' ${drill.title}', style: textGreen),
-          const TextSpan(text: 'を', style: textBlack),
-          TextSpan(text: ' ${activity.amount}周クリア', style: textGreen),
-          const TextSpan(text: 'しました！', style: textBlack),
-        ],
-      ),
-    );
-
-    final Widget message = Container(
-      width: double.infinity,
-      padding: const EdgeInsets.only(top: 16, bottom: 24),
-      child: Row(
-        children: [
-          UserFeedIcon(user: user),
-          Expanded(
-            child: information,
-          ),
-        ],
-      ),
-    );
-
-    Widget achievementImage() {
-      return InkWell(
-        onTap: () {
-          ref.read(drillProvider.notifier).state = drill;
-          DrillUnsolvedPage.push(context);
-        },
-        child: CachedNetworkImage(
-          imageUrl: drillImageUrl!,
-          placeholder: (context, url) => const CircularProgressIndicator(),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
-        ),
-      );
+    Widget message() {
+      if (activity.information == 'strict_mode') {
+        return Text(
+            t.activities.strict_drill_clear(
+                name: user.name,
+                drill_title: drill.title,
+                number: '${activity.amount}'),
+            style: textBlack);
+      }
+      return Text(
+          t.activities.drill_clear(
+              name: user.name,
+              drill_title: drill.title,
+              number: '${activity.amount}'),
+          style: textBlack);
     }
 
     return Column(
       children: [
-        message,
-        achievementImage(),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.only(top: 16, bottom: 24),
+          child: Row(
+            children: [
+              UserFeedIcon(user: user),
+              Expanded(
+                child: message(),
+              ),
+            ],
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            ref.read(drillProvider.notifier).state = drill;
+            DrillUnsolvedPage.push(context);
+          },
+          child: CachedNetworkImage(
+            imageUrl: drillImageUrl!,
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
+        ),
       ],
     );
   }

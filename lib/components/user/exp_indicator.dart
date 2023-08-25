@@ -45,9 +45,14 @@ class UserExpIndicator extends StatelessWidget {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('獲得経験値：${exp}EXP', style: textStyle),
-              Text('解答回数：${user.answerHistoriesCount}回', style: textStyle),
-              Text('解答日数：${user.answerDaysCount}日', style: textStyle),
+              Text('${t.users.accumulated_experience}：${exp}EXP',
+                  style: textStyle),
+              Text(
+                  '${t.users.total_answers_count}：${t.users.answers_count(count: user.answerHistoriesCount)}',
+                  style: textStyle),
+              Text(
+                  '${t.users.total_answer_days_count}：${t.users.answer_days_count(count: user.answerDaysCount)}',
+                  style: textStyle),
             ]),
       );
     }

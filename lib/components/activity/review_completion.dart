@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/user/feed_icon.dart';
@@ -11,34 +12,35 @@ class ActivityReviewCompletion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final User user = activity.user!;
-
     const TextStyle textBlack = TextStyle(
-        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.normal);
+        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.bold);
 
-    const TextStyle textGreen = TextStyle(
-        color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold);
-
-    final Widget information = RichText(
-        text: TextSpan(children: [
-      TextSpan(text: user.name, style: textGreen),
-      const TextSpan(text: 'が', style: textBlack),
-      const TextSpan(text: '復習', style: textGreen),
-      const TextSpan(text: 'を', style: textBlack),
-      TextSpan(
-          text: activity.information == 'strict_mode' ? '厳格復習モードで' : '',
-          style: textGreen),
-      const TextSpan(text: '達成しました！', style: textBlack),
-    ]));
+    Widget information() {
+      if (activity.information == 'strict_mode') {
+        return Text(
+            t.activities.strict_review_completion(
+              name: user.name,
+            ),
+            style: textBlack);
+      }
+      return Text(
+          t.activities.review_completion(
+            name: user.name,
+          ),
+          style: textBlack);
+    }
 
     Widget continuationCount() {
       if (activity.continuationCount! < 2) {
         return Container();
       }
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(text: '${activity.continuationCount}日連続', style: textGreen),
-        const TextSpan(text: 'で達成しました！', style: textBlack),
-      ]));
+      return Container(
+        margin: const EdgeInsets.only(top: 8),
+        child: Text(
+            t.activities.continuous_review_completion(
+                number: '${activity.continuationCount}'),
+            style: textBlack),
+      );
     }
 
     return Container(
@@ -50,7 +52,7 @@ class ActivityReviewCompletion extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                information,
+                information(),
                 continuationCount(),
               ],
             ),

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/activity.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,11 +13,11 @@ class ActivitiesOrderSelectForm extends ConsumerWidget {
     String label(String value) {
       switch (value) {
         case 'all':
-          return 'すべてのユーザー';
+          return t.activities.all;
         case 'following':
-          return 'フォロー中のユーザー';
+          return t.activities.following;
         case 'myself':
-          return '自分';
+          return t.activities.myself;
         default:
           return 'Error';
       }

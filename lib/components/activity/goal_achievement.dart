@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/user/feed_icon.dart';
@@ -13,39 +14,32 @@ class ActivityGoalAchievement extends StatelessWidget {
     final User user = activity.user!;
 
     const TextStyle textBlack = TextStyle(
-        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.normal);
-
-    const TextStyle textGreen = TextStyle(
-        color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold);
+        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.bold);
 
     Widget information() {
       if (activity.information == 'strict_solving_mode') {
-        return RichText(
-            text: TextSpan(children: [
-          TextSpan(text: user.name, style: textGreen),
-          const TextSpan(text: 'が', style: textBlack),
-          TextSpan(text: '厳格解答モードで目標（${activity.amount}問正解）', style: textGreen),
-          const TextSpan(text: 'を達成しました！', style: textBlack),
-        ]));
+        return Text(
+            t.activities.strict_goal_achievement(
+                name: user.name, number: '${activity.amount}'),
+            style: textBlack);
       }
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(text: user.name, style: textGreen),
-        const TextSpan(text: 'が', style: textBlack),
-        TextSpan(text: '目標（${activity.amount}問）', style: textGreen),
-        const TextSpan(text: 'を達成しました！', style: textBlack),
-      ]));
+      return Text(
+          t.activities
+              .goal_achievement(name: user.name, number: '${activity.amount}'),
+          style: textBlack);
     }
 
     Widget continuationCount() {
       if (activity.continuationCount! < 2) {
         return Container();
       }
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(text: '${activity.continuationCount}日連続', style: textGreen),
-        const TextSpan(text: 'で達成しました！', style: textBlack),
-      ]));
+      return Container(
+        margin: const EdgeInsets.only(top: 8),
+        child: Text(
+            t.activities.continuous_goal_achievement(
+                number: '${activity.continuationCount}'),
+            style: textBlack),
+      );
     }
 
     return Container(

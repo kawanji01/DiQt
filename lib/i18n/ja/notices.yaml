@@ -10,3 +10,5 @@ sentence_request_upvoted_message: '${name}があなたの例文の編集に賛�
 quiz_request_accepted_message: 'あなたの問題の編集が採用されました！'
 quiz_request_commented_message: 'あなたの問題の編集にコメントがつきました！'
 quiz_request_upvoted_message: '${name}があなたの問題の編集に賛成しました！'
+reply: '返信する'
+achievement_acquired_message: '${name}メダルを獲得しました！'
