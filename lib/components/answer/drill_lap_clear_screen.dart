@@ -4,6 +4,7 @@ import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/drill.dart';
@@ -51,17 +52,12 @@ class AnswerDrillLapClearScreenState
   @override
   Widget build(BuildContext context) {
     final User? user = ref.watch(currentUserProvider);
+    final Drill? drill = ref.watch(drillProvider);
+    final bool drillStrict = drill?.strictSolvingMode ?? false;
     if (user == null) return Container();
     final AnswerSetting? answerSetting = ref.watch(answerSettingProvider);
     if (answerSetting == null) return Container();
 
-    final bool strictSolvingMode = answerSetting.strictSolvingMode;
-    String description;
-    if (strictSolvingMode) {
-      description = '厳格解答モードで全ての問題に正解しました！';
-    } else {
-      description = '全ての問題を解きました！';
-    }
     final AnswerCreator answerCreator = widget.answerCreator;
     // 開始経験値（基準 + 問題集周回報酬）
     final int initialExp = answerCreator.startPoint;
@@ -72,18 +68,29 @@ class AnswerDrillLapClearScreenState
     // クリア回数
     final int clearsCount = drillLap.clearsCount;
 
-    Widget twitterShareButton() {
-      final User? user = ref.watch(currentUserProvider);
-      if (user == null) return Container();
-      final Drill? drill = ref.watch(drillProvider);
+    // 厳格解答モード
+    final bool strictSolvingMode =
+        answerSetting.strictSolvingMode || drillStrict;
+    // メッセージ
+    String message;
+    String description;
+    if (strictSolvingMode) {
+      message = '${t.answer.drill_clear}(${t.answer.strict_solving_mode})';
+      description =
+          t.answer.strict_drill_clear_description(laps_count: clearsCount);
+    } else {
+      message = t.answer.drill_clear;
+      description = t.answer.drill_clear_description(laps_count: clearsCount);
+    }
+
+    Widget shareButton() {
       if (drill == null) return Container();
 
-      final String tweet = '「${drill.title}」を$clearsCount周クリアしました！';
       final String locale = ref.watch(localeProvider);
       final String url =
           '${DiQtURL.root(locale: locale)}/drills/${drill.publicUid}/unsolved?type=all_solved';
 
-      return AnswerShareButton(text: tweet, url: url);
+      return AnswerShareButton(text: message, url: url);
     }
 
     return Container(
@@ -96,7 +103,7 @@ class AnswerDrillLapClearScreenState
           Column(children: [
             const SizedBox(height: 16),
             // heading
-            Text('$clearsCount周クリア',
+            Text(message,
                 style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -113,7 +120,7 @@ class AnswerDrillLapClearScreenState
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            twitterShareButton()
+            shareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

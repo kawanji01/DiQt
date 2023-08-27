@@ -3,6 +3,7 @@ import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -45,16 +46,6 @@ class AnswerContinuousGoalAchievementScreenState
     super.dispose();
   }
 
-  Widget _twitterShareButton(User? user, int counter) {
-    if (user == null) return Container();
-
-    final String tweet = '$counter日連続で目標を達成しました！！';
-    final String locale = ref.watch(localeProvider);
-    final String url =
-        '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?continuous_goal_achievement=$counter';
-    return AnswerShareButton(text: tweet, url: url);
-  }
-
   @override
   Widget build(BuildContext context) {
     final User? user = ref.watch(currentUserProvider);
@@ -75,6 +66,18 @@ class AnswerContinuousGoalAchievementScreenState
     // 記録
     final int counter = answerCreator.continuousGoalAchievementCount ?? 0;
 
+    final String message =
+        t.answer.continuous_goal_achievement(count: '$counter');
+
+    Widget shareButton(User? user, int counter) {
+      if (user == null) return Container();
+
+      final String locale = ref.watch(localeProvider);
+      final String url =
+          '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?continuous_goal_achievement=$counter';
+      return AnswerShareButton(text: message, url: url);
+    }
+
     return Container(
       height: ResponsiveValues.dialogHeight(context),
       width: ResponsiveValues.dialogWidth(context),
@@ -84,7 +87,7 @@ class AnswerContinuousGoalAchievementScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            Text('$counter日連続目標達成',
+            Text(message,
                 style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -94,7 +97,7 @@ class AnswerContinuousGoalAchievementScreenState
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton(user, counter)
+            shareButton(user, counter)
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

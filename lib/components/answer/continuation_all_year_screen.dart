@@ -3,6 +3,7 @@ import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -60,16 +61,17 @@ class AnswerContinuationAllYearScreenState
     // 記録
     final int counter = answerCreator.continuationAllYearCount ?? 0;
 
-    Widget twitterShareButton() {
+    final String message = t.answer.yearly_bonus(count: '$counter');
+
+    Widget shareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
-      final String tweet = '$counter年間連続で問題を解きました！！';
       final String locale = ref.watch(localeProvider);
       final String url =
           '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?yearly_bonus=$counter';
 
-      return AnswerShareButton(text: tweet, url: url);
+      return AnswerShareButton(text: message, url: url);
     }
 
     return Container(
@@ -81,7 +83,7 @@ class AnswerContinuationAllYearScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            Text('$counter年間連続解答',
+            Text(message,
                 style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -91,7 +93,7 @@ class AnswerContinuationAllYearScreenState
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            twitterShareButton()
+            shareButton()
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

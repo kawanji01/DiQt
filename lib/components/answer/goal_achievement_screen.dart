@@ -3,6 +3,7 @@ import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -53,11 +54,11 @@ class AnswerGoalAchievementScreenState
     if (answerSetting == null) return Container();
     final int goalCount = answerSetting.dailyGoal;
     final bool strictSolvingMode = answerSetting.strictSolvingMode;
-    String description;
+    String message;
     if (strictSolvingMode) {
-      description = '厳格解答モードで1日の目標($goalCount問正解)を達成しました！';
+      message = '${t.answer.goal_achievement}(${t.answer.strict_solving_mode})';
     } else {
-      description = '1日の目標($goalCount問)を達成しました！';
+      message = t.answer.goal_achievement;
     }
 
     final AnswerCreator answerCreator = widget.answerCreator;
@@ -88,24 +89,19 @@ class AnswerGoalAchievementScreenState
           Column(children: [
             const SizedBox(height: 16),
             // haeding
-            const Text('目標達成',
-                style: TextStyle(
+            Text(message,
+                style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                     color: Colors.orange)),
             const SizedBox(height: 16),
-            // explanation
-            Text(description,
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87)),
+
             ExpGainedExpIndicator(
               initialExp: initialExp,
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            AnswerShareButton(text: description, url: url),
+            AnswerShareButton(text: message, url: url),
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

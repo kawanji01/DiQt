@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/pages/dictionary/sentence_search_results.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,9 @@ class _DictionarySentenceSearchFormState
     final Dictionary dictionary = widget.dictionary;
     final int dictionaryId = dictionary.id;
 
+    final String language = dictionary.languageOfEntry();
+    final String label = t.dictionaryMaps.enter(language: language);
+
     void search() {
       if (!_formKey.currentState!.validate()) {
         return;
@@ -43,7 +47,7 @@ class _DictionarySentenceSearchFormState
           TextFormField(
             controller: _sentenceSearchController,
             decoration: InputDecoration(
-              labelText: 'キーワードを入力してください',
+              labelText: label,
               // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
               filled: true,
               fillColor: Colors.grey.shade200,
@@ -60,7 +64,7 @@ class _DictionarySentenceSearchFormState
             ),
             validator: (String? value) {
               if (value == null || value.isEmpty) {
-                return 'キーワードを入力してください。';
+                return t.errors.cant_be_blank;
               }
               return null;
             },
@@ -75,9 +79,10 @@ class _DictionarySentenceSearchFormState
               ),
               onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
-              label: const Text(
-                '検索する',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              label: Text(
+                t.shared.search,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
           ),

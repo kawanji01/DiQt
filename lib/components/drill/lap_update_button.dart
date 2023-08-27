@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/drill_lap.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/components/button/large_green_button.dart';
@@ -13,12 +14,11 @@ class DrillLapUpdateButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final DrillLap? drillLap = ref.watch(drillLapProvider);
     if (drillLap == null) return Container();
-    final int newLapNumber = drillLap.clearsCount + 1;
 
     return Column(children: [
       const SizedBox(height: 32),
       Text(
-        '${drillLap.clearsCount}周クリアしました',
+        t.drills.clears_count(number: '${drillLap.clearsCount}'),
         style: const TextStyle(
             fontSize: 32, color: Colors.black54, fontWeight: FontWeight.bold),
       ),
@@ -28,7 +28,7 @@ class DrillLapUpdateButton extends ConsumerWidget {
           const screen = DrillLapUpdateScreen();
           Dialogs.slideFromBottomFade(screen);
         },
-        child: LargeGreenButton(label: '$newLapNumber周目を始める', icon: null),
+        child: LargeGreenButton(label: t.drills.new_lap, icon: null),
       ),
     ]);
   }

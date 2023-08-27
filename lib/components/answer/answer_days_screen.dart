@@ -3,6 +3,7 @@ import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -55,23 +56,18 @@ class AnswerAnswerDaysScreenState
     // 獲得経験値
     final int gainedExp = answerCreator.answerDaysPoint;
 
-    Widget heading() {
-      return Text('${answerCreator.answerDaysCount}日解答',
-          style: const TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
-    }
+    final String message =
+        t.answer.daily_bonus(count: '${answerCreator.answerDaysCount}');
 
-    Widget twitterShareButton() {
+    Widget shareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
       final String locale = ref.watch(localeProvider);
-      final String tweet = '$counter日、問題を解きました！！';
-
       final String url =
           '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?daily_bonus=$counter';
 
-      return AnswerShareButton(text: tweet, url: url);
+      return AnswerShareButton(text: message, url: url);
     }
 
     return Container(
@@ -83,13 +79,17 @@ class AnswerAnswerDaysScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            heading(),
+            Text(message,
+                style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange)),
             ExpGainedExpIndicator(
               initialExp: initialExp,
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            twitterShareButton(),
+            shareButton(),
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

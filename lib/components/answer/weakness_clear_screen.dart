@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/button/dialog_close_button.dart';
 import 'package:booqs_mobile/components/shared/dialog_confetti.dart';
@@ -38,23 +39,33 @@ class AnswerWeaknessClearScreenState
 
   @override
   Widget build(BuildContext context) {
+    final String message = t.answer.weakness_clear;
+    final String description = t.answer.weakness_clear_description;
     return Container(
       height: ResponsiveValues.dialogHeight(context),
       width: ResponsiveValues.dialogWidth(context),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
-      child: const Stack(
+      child: Stack(
         children: [
           Column(children: [
-            SizedBox(height: 16),
-            Text('素晴らしい！！\n苦手な問題をすべて解きました！！',
-                style: TextStyle(
+            const SizedBox(height: 16),
+            // heading
+            Text(message,
+                style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                     color: Colors.orange)),
+            const SizedBox(height: 16),
+            // explanation
+            Text(description,
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87)),
           ]),
-          DialogCloseButton(),
-          DialogConfetti(),
+          const DialogCloseButton(),
+          const DialogConfetti(),
         ],
       ),
     );

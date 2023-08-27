@@ -3,6 +3,7 @@ import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -45,25 +46,8 @@ class AnswerContinuousReviewCompletionScreenState
     super.dispose();
   }
 
-  Widget _heading(int counter) {
-    return Text('$counter日連続復習達成',
-        style: const TextStyle(
-            fontSize: 32, fontWeight: FontWeight.bold, color: Colors.orange));
-  }
-
-  Widget _twitterShareButton(User? user, int counter) {
-    if (user == null) return Container();
-
-    final String tweet = '$counter日連続で復習を達成しました！！';
-    final String locale = ref.watch(localeProvider);
-    final String url =
-        '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?continuous_review_completion=$counter';
-    return AnswerShareButton(text: tweet, url: url);
-  }
-
   @override
   Widget build(BuildContext context) {
-    final User? user = ref.watch(currentUserProvider);
     final AnswerCreator answerCreator = widget.answerCreator;
     // 開始経験値（基準 + 問題集周回報酬 + 解答日数報酬 + 連続解答日数報酬 + 連続週解答報酬 + 連続月解答報酬 + 連続年解答報酬 + 復習達成報酬）
     final int initialExp = answerCreator.startPoint +
@@ -79,6 +63,18 @@ class AnswerContinuousReviewCompletionScreenState
     // 記録
     final int counter = answerCreator.continuousReviewCompletionCount ?? 0;
 
+    final String message =
+        t.answer.continuous_review_completion(count: '$counter');
+
+    Widget shareButton() {
+      final User? user = ref.watch(currentUserProvider);
+      if (user == null) return Container();
+      final String locale = ref.watch(localeProvider);
+      final String url =
+          '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?continuous_review_completion=$counter';
+      return AnswerShareButton(text: message, url: url);
+    }
+
     return Container(
       height: ResponsiveValues.dialogHeight(context),
       width: ResponsiveValues.dialogWidth(context),
@@ -88,13 +84,17 @@ class AnswerContinuousReviewCompletionScreenState
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            _heading(counter),
+            Text(message,
+                style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange)),
             ExpGainedExpIndicator(
               initialExp: initialExp,
               gainedExp: gainedExp,
             ),
             const SizedBox(height: 16),
-            _twitterShareButton(user, counter)
+            shareButton(),
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

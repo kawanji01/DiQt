@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2640 (1320 per locale)
+/// Strings: 2730 (1365 per locale)
 ///
-/// Built on 2023-08-25 at 13:06 UTC
+/// Built on 2023-08-27 at 02:45 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -429,6 +429,10 @@ class _TranslationsDrillsEn {
 	String get users => 'Users';
 	String get settings => 'Settings';
 	String get edit_tags => 'Edit Tags';
+	String get open => 'Open';
+	String get new_lap => 'New Lap';
+	String get new_lap_description => 'Return all questions unanswered. Are you sure?';
+	String get new_lap_started => 'All questions were returned unanswered and a new round started.';
 }
 
 // Path: weaknesses
@@ -438,8 +442,11 @@ class _TranslationsWeaknessesEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get weakness => 'Weakness';
 	String get weaknesses => 'Weaknesses';
+	String quizzes_count({required Object count}) => '${count} quizzes';
 	String get premium_recommendation => 'To solve weak questions, you need to register for a premium plan.';
+	String get order => 'Order';
 	String get correct_answer_rate_asc => 'Correct Rate, Low to High';
 	String get correct_answer_rate_desc => 'Correct Rate, High to Low';
 	String get incorrect_answers_count_desc => 'Incorrect, Most to Least';
@@ -449,6 +456,19 @@ class _TranslationsWeaknessesEn {
 	String get random_random => 'Random';
 	String get set_to_weakness => 'Add to Weakness';
 	String get remove_from_weakness => 'Remove from Weakness';
+	String get weakness_condition => 'Addition Condition';
+	String weakness_condition_description({required Object number}) => 'Questions that are answered incorrectly more than ${number} times are automatically added to the weakness.';
+	String get overcoming_condition => 'Overcoming Condition';
+	String overcoming_condition_description({required Object number}) => 'When the correct answer rate is ${number} or more, it is automatically removed from the weakness.';
+	String get edit => 'Edit weakness settings';
+	String get unsolved => 'Uncorrected';
+	String get solved => 'Corrected';
+	String get all => 'All';
+	String added_at({required Object time_ago}) => 'Added ${time_ago} ago';
+	String get weakness_overcame => 'Weakness overcame';
+	String get new_lap => 'New rounds of weakness';
+	String get new_lap_description => 'Return all questions that have been answered correctly to uncorrected. Are you sure?';
+	String get new_lap_started => 'All questions returned as uncorrected.';
 }
 
 // Path: users
@@ -623,6 +643,8 @@ class _TranslationsSharedEn {
 	String get destroy_succeeded => 'Destroyed';
 	String get cancel => 'Cancel';
 	String get ok => 'OK';
+	String get yes => 'Yes';
+	String get no => 'No';
 	String get reload => 'Reload';
 	String get search => 'Search';
 	String get generate => 'Generate';
@@ -636,6 +658,8 @@ class _TranslationsSharedEn {
 	String please_enter({required Object name}) => 'Please enter "${name}"';
 	String no_more_items({required Object name}) => 'All ${name} loaded';
 	String no_items_found({required Object name}) => 'No ${name} found';
+	String no_name_found({required Object name}) => 'No ${name} found';
+	String get no_item_found => 'No item found';
 	String get premium_recommendation => 'To use this function, you need to register for a premium plan.';
 	String get login_recommendation => 'To use this function, you need to log in.';
 	String get processing => 'Processing';
@@ -1425,9 +1449,30 @@ class _TranslationsAnswerEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	String answers_count({required Object count}) => '${count} answers';
 	String get limit_reached => 'Limit Reached';
-	String limit_reached_description({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
+	String limit_reached_description({required Object number}) => 'Free users can answer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
+	String daily_bonus({required Object count}) => '${count} days of answers';
+	String continuous_answers({required Object count}) => '${count} days of continuous answers';
+	String continuous_goal_achievement({required Object count}) => '${count} days of continuous goal achievement';
+	String continuous_review_completion({required Object count}) => '${count} days of continuous review completion';
+	String get goal_achievement => 'Goal achievement';
+	String get review_completion => 'Review completion';
+	String get strict_solving_mode => 'Strict answer mode';
+	String get strict_reviewing_mode => 'Strict review mode';
+	String weekly_bonus({required Object count}) => '${count} weeks of continuous answers';
+	String monthly_bonus({required Object count}) => '${count} months of continuous answers';
+	String yearly_bonus({required Object count}) => '${count} years of continuous answers';
+	String get answers => 'answers';
+	String answers_count({required Object count}) => '${count} answers';
+	String same_mistake_message({required Object count}) => 'You made this mistake ${count} times.';
+	String get drill_clear => 'Drill Clear';
+	String drill_clear_description({required Object laps_count}) => 'Congratulations! You have answered all the questions in the drill! (${laps_count})';
+	String strict_drill_clear_description({required Object laps_count}) => 'Congratulations! You have answered all the questions in the drill correctly! (${laps_count})';
+	String get weakness_clear => 'Weakness Clear';
+	String get weakness_clear_description => 'Congratulations! You have answered all the questions in the weakness correctly!';
+	String get requesting_app_review => 'Thank you very much for using DiQt so much! Did you like DiQt?';
+	String review_step_up({required Object interval}) => 'Set review for ${interval} as step-up';
+	String get review_released => 'Review released';
 }
 
 // Path: quizzes
@@ -2136,6 +2181,10 @@ class _TranslationsDrillsJa implements _TranslationsDrillsEn {
 	@override String get users => 'ユーザー';
 	@override String get settings => '設定';
 	@override String get edit_tags => 'タグを編集する';
+	@override String get open => '開く';
+	@override String get new_lap => '新たに周回する';
+	@override String get new_lap_description => 'すべての問題を未解答に戻します。よろしいですか？';
+	@override String get new_lap_started => 'すべての問題を未解答に戻し、新たな周回を始めました。';
 }
 
 // Path: weaknesses
@@ -2145,8 +2194,11 @@ class _TranslationsWeaknessesJa implements _TranslationsWeaknessesEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get weakness => '弱点問題';
 	@override String get weaknesses => '弱点問題';
+	@override String quizzes_count({required Object count}) => '${count}問';
 	@override String get premium_recommendation => '弱点問題を解くには、プレミアムプランへの登録が必要です。';
+	@override String get order => '並び順';
 	@override String get correct_answer_rate_asc => '正答率が低い順';
 	@override String get correct_answer_rate_desc => '正答率が高い順';
 	@override String get incorrect_answers_count_desc => '不正解が多い順';
@@ -2156,6 +2208,19 @@ class _TranslationsWeaknessesJa implements _TranslationsWeaknessesEn {
 	@override String get random_random => 'ランダム';
 	@override String get set_to_weakness => '問題を弱点に追加する';
 	@override String get remove_from_weakness => '弱点から取り除く';
+	@override String get weakness_condition => '追加条件';
+	@override String weakness_condition_description({required Object number}) => '${number}回以上間違えた問題が自動で弱点に追加されます。';
+	@override String get overcoming_condition => '克服条件';
+	@override String overcoming_condition_description({required Object number}) => '正答率が${number}以上になると、自動で弱点から取り除かれます。';
+	@override String get edit => '弱点設定を変更する';
+	@override String get unsolved => '未正解';
+	@override String get solved => '正解済';
+	@override String get all => '全て';
+	@override String added_at({required Object time_ago}) => '${time_ago}前に追加';
+	@override String get weakness_overcame => '弱点を克服しました。';
+	@override String get new_lap => '弱点を新たに周回する';
+	@override String get new_lap_description => '正解済の問題をすべて未正解に戻します。よろしいですか？';
+	@override String get new_lap_started => 'すべての問題を未正解に戻しました。';
 }
 
 // Path: users
@@ -2330,6 +2395,8 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get destroy_succeeded => '削除しました。';
 	@override String get cancel => 'キャンセルする';
 	@override String get ok => 'OK';
+	@override String get yes => 'はい';
+	@override String get no => 'いいえ';
 	@override String get reload => '再読み込みする';
 	@override String get search => '検索する';
 	@override String get generate => '生成する';
@@ -2343,6 +2410,8 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String please_enter({required Object name}) => '"${name}"を入力してください。';
 	@override String no_more_items({required Object name}) => 'すべての${name}を読み込みました';
 	@override String no_items_found({required Object name}) => '${name}がありません';
+	@override String no_name_found({required Object name}) => '${name}が見つかりません';
+	@override String get no_item_found => 'アイテムがありません';
 	@override String get premium_recommendation => 'この機能を利用するには、プレミアムプランへの登録が必要です。';
 	@override String get login_recommendation => 'この機能を利用するためには、ログインが必要です。';
 	@override String get processing => '処理中...';
@@ -3132,9 +3201,30 @@ class _TranslationsAnswerJa implements _TranslationsAnswerEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String answers_count({required Object count}) => '${count}問解答';
 	@override String get limit_reached => '制限に達しました';
 	@override String limit_reached_description({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
+	@override String daily_bonus({required Object count}) => '${count}日解答';
+	@override String continuous_answers({required Object count}) => '${count}日連続解答';
+	@override String continuous_goal_achievement({required Object count}) => '${count}日連続目標達成';
+	@override String continuous_review_completion({required Object count}) => '${count}日連続復習達成';
+	@override String get goal_achievement => '目標達成';
+	@override String get review_completion => '復習達成';
+	@override String get strict_solving_mode => '厳格解答モード';
+	@override String get strict_reviewing_mode => '厳格復習モード';
+	@override String weekly_bonus({required Object count}) => '${count}週間連続解答';
+	@override String monthly_bonus({required Object count}) => '${count}ヶ月連続解答';
+	@override String yearly_bonus({required Object count}) => '${count}年連続解答';
+	@override String get answers => '問解答';
+	@override String answers_count({required Object count}) => '${count}問解答';
+	@override String same_mistake_message({required Object count}) => 'この間違いは${count}回目です';
+	@override String get drill_clear => 'ドリルクリア';
+	@override String drill_clear_description({required Object laps_count}) => 'おめでとうございます！ドリルを全問解答しました！（${laps_count}）';
+	@override String strict_drill_clear_description({required Object laps_count}) => 'おめでとうございます！ドリルを全問正解しました！（${laps_count}）';
+	@override String get weakness_clear => '弱点クリア';
+	@override String get weakness_clear_description => 'おめでとうございます！弱点を全問正解しました！';
+	@override String get requesting_app_review => 'これほどまでにご利用いただき、本当にありがとうございます！！ディクトは気に入っていただけましたでしょうか？';
+	@override String review_step_up({required Object interval}) => '繰り上がりで${interval}に復習';
+	@override String get review_released => '復習が解除されました。';
 }
 
 // Path: quizzes
@@ -3734,8 +3824,15 @@ extension on _TranslationsEn {
 			case 'drills.users': return 'Users';
 			case 'drills.settings': return 'Settings';
 			case 'drills.edit_tags': return 'Edit Tags';
+			case 'drills.open': return 'Open';
+			case 'drills.new_lap': return 'New Lap';
+			case 'drills.new_lap_description': return 'Return all questions unanswered. Are you sure?';
+			case 'drills.new_lap_started': return 'All questions were returned unanswered and a new round started.';
+			case 'weaknesses.weakness': return 'Weakness';
 			case 'weaknesses.weaknesses': return 'Weaknesses';
+			case 'weaknesses.quizzes_count': return ({required Object count}) => '${count} quizzes';
 			case 'weaknesses.premium_recommendation': return 'To solve weak questions, you need to register for a premium plan.';
+			case 'weaknesses.order': return 'Order';
 			case 'weaknesses.correct_answer_rate_asc': return 'Correct Rate, Low to High';
 			case 'weaknesses.correct_answer_rate_desc': return 'Correct Rate, High to Low';
 			case 'weaknesses.incorrect_answers_count_desc': return 'Incorrect, Most to Least';
@@ -3745,6 +3842,19 @@ extension on _TranslationsEn {
 			case 'weaknesses.random_random': return 'Random';
 			case 'weaknesses.set_to_weakness': return 'Add to Weakness';
 			case 'weaknesses.remove_from_weakness': return 'Remove from Weakness';
+			case 'weaknesses.weakness_condition': return 'Addition Condition';
+			case 'weaknesses.weakness_condition_description': return ({required Object number}) => 'Questions that are answered incorrectly more than ${number} times are automatically added to the weakness.';
+			case 'weaknesses.overcoming_condition': return 'Overcoming Condition';
+			case 'weaknesses.overcoming_condition_description': return ({required Object number}) => 'When the correct answer rate is ${number} or more, it is automatically removed from the weakness.';
+			case 'weaknesses.edit': return 'Edit weakness settings';
+			case 'weaknesses.unsolved': return 'Uncorrected';
+			case 'weaknesses.solved': return 'Corrected';
+			case 'weaknesses.all': return 'All';
+			case 'weaknesses.added_at': return ({required Object time_ago}) => 'Added ${time_ago} ago';
+			case 'weaknesses.weakness_overcame': return 'Weakness overcame';
+			case 'weaknesses.new_lap': return 'New rounds of weakness';
+			case 'weaknesses.new_lap_description': return 'Return all questions that have been answered correctly to uncorrected. Are you sure?';
+			case 'weaknesses.new_lap_started': return 'All questions returned as uncorrected.';
 			case 'users.users': return 'Users';
 			case 'users.user': return 'User';
 			case 'users.anonymous_user': return 'Anonymous user';
@@ -3874,6 +3984,8 @@ extension on _TranslationsEn {
 			case 'shared.destroy_succeeded': return 'Destroyed';
 			case 'shared.cancel': return 'Cancel';
 			case 'shared.ok': return 'OK';
+			case 'shared.yes': return 'Yes';
+			case 'shared.no': return 'No';
 			case 'shared.reload': return 'Reload';
 			case 'shared.search': return 'Search';
 			case 'shared.generate': return 'Generate';
@@ -3887,6 +3999,8 @@ extension on _TranslationsEn {
 			case 'shared.please_enter': return ({required Object name}) => 'Please enter "${name}"';
 			case 'shared.no_more_items': return ({required Object name}) => 'All ${name} loaded';
 			case 'shared.no_items_found': return ({required Object name}) => 'No ${name} found';
+			case 'shared.no_name_found': return ({required Object name}) => 'No ${name} found';
+			case 'shared.no_item_found': return 'No item found';
 			case 'shared.premium_recommendation': return 'To use this function, you need to register for a premium plan.';
 			case 'shared.login_recommendation': return 'To use this function, you need to log in.';
 			case 'shared.processing': return 'Processing';
@@ -4577,9 +4691,30 @@ extension on _TranslationsEn {
 			case 'timeZone.nuku_alofa': return 'Nuku\'alofa';
 			case 'timeZone.samoa': return 'Samoa';
 			case 'timeZone.tokelau_is': return 'Tokelau Is.';
-			case 'answer.answers_count': return ({required Object count}) => '${count} answers';
 			case 'answer.limit_reached': return 'Limit Reached';
-			case 'answer.limit_reached_description': return ({required Object number}) => 'Free users can anwer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
+			case 'answer.limit_reached_description': return ({required Object number}) => 'Free users can answer up to ${number} questions per day. Become a premium member and answer unlimited questions!';
+			case 'answer.daily_bonus': return ({required Object count}) => '${count} days of answers';
+			case 'answer.continuous_answers': return ({required Object count}) => '${count} days of continuous answers';
+			case 'answer.continuous_goal_achievement': return ({required Object count}) => '${count} days of continuous goal achievement';
+			case 'answer.continuous_review_completion': return ({required Object count}) => '${count} days of continuous review completion';
+			case 'answer.goal_achievement': return 'Goal achievement';
+			case 'answer.review_completion': return 'Review completion';
+			case 'answer.strict_solving_mode': return 'Strict answer mode';
+			case 'answer.strict_reviewing_mode': return 'Strict review mode';
+			case 'answer.weekly_bonus': return ({required Object count}) => '${count} weeks of continuous answers';
+			case 'answer.monthly_bonus': return ({required Object count}) => '${count} months of continuous answers';
+			case 'answer.yearly_bonus': return ({required Object count}) => '${count} years of continuous answers';
+			case 'answer.answers': return 'answers';
+			case 'answer.answers_count': return ({required Object count}) => '${count} answers';
+			case 'answer.same_mistake_message': return ({required Object count}) => 'You made this mistake ${count} times.';
+			case 'answer.drill_clear': return 'Drill Clear';
+			case 'answer.drill_clear_description': return ({required Object laps_count}) => 'Congratulations! You have answered all the questions in the drill! (${laps_count})';
+			case 'answer.strict_drill_clear_description': return ({required Object laps_count}) => 'Congratulations! You have answered all the questions in the drill correctly! (${laps_count})';
+			case 'answer.weakness_clear': return 'Weakness Clear';
+			case 'answer.weakness_clear_description': return 'Congratulations! You have answered all the questions in the weakness correctly!';
+			case 'answer.requesting_app_review': return 'Thank you very much for using DiQt so much! Did you like DiQt?';
+			case 'answer.review_step_up': return ({required Object interval}) => 'Set review for ${interval} as step-up';
+			case 'answer.review_released': return 'Review released';
 			case 'quizzes.quiz': return 'Quiz';
 			case 'quizzes.quizzes': return 'Quizzes';
 			case 'quizzes.add': return 'Add Quiz';
@@ -5062,8 +5197,15 @@ extension on _TranslationsJa {
 			case 'drills.users': return 'ユーザー';
 			case 'drills.settings': return '設定';
 			case 'drills.edit_tags': return 'タグを編集する';
+			case 'drills.open': return '開く';
+			case 'drills.new_lap': return '新たに周回する';
+			case 'drills.new_lap_description': return 'すべての問題を未解答に戻します。よろしいですか？';
+			case 'drills.new_lap_started': return 'すべての問題を未解答に戻し、新たな周回を始めました。';
+			case 'weaknesses.weakness': return '弱点問題';
 			case 'weaknesses.weaknesses': return '弱点問題';
+			case 'weaknesses.quizzes_count': return ({required Object count}) => '${count}問';
 			case 'weaknesses.premium_recommendation': return '弱点問題を解くには、プレミアムプランへの登録が必要です。';
+			case 'weaknesses.order': return '並び順';
 			case 'weaknesses.correct_answer_rate_asc': return '正答率が低い順';
 			case 'weaknesses.correct_answer_rate_desc': return '正答率が高い順';
 			case 'weaknesses.incorrect_answers_count_desc': return '不正解が多い順';
@@ -5073,6 +5215,19 @@ extension on _TranslationsJa {
 			case 'weaknesses.random_random': return 'ランダム';
 			case 'weaknesses.set_to_weakness': return '問題を弱点に追加する';
 			case 'weaknesses.remove_from_weakness': return '弱点から取り除く';
+			case 'weaknesses.weakness_condition': return '追加条件';
+			case 'weaknesses.weakness_condition_description': return ({required Object number}) => '${number}回以上間違えた問題が自動で弱点に追加されます。';
+			case 'weaknesses.overcoming_condition': return '克服条件';
+			case 'weaknesses.overcoming_condition_description': return ({required Object number}) => '正答率が${number}以上になると、自動で弱点から取り除かれます。';
+			case 'weaknesses.edit': return '弱点設定を変更する';
+			case 'weaknesses.unsolved': return '未正解';
+			case 'weaknesses.solved': return '正解済';
+			case 'weaknesses.all': return '全て';
+			case 'weaknesses.added_at': return ({required Object time_ago}) => '${time_ago}前に追加';
+			case 'weaknesses.weakness_overcame': return '弱点を克服しました。';
+			case 'weaknesses.new_lap': return '弱点を新たに周回する';
+			case 'weaknesses.new_lap_description': return '正解済の問題をすべて未正解に戻します。よろしいですか？';
+			case 'weaknesses.new_lap_started': return 'すべての問題を未正解に戻しました。';
 			case 'users.users': return 'ユーザー';
 			case 'users.user': return 'ユーザー';
 			case 'users.anonymous_user': return '匿名ユーザー';
@@ -5202,6 +5357,8 @@ extension on _TranslationsJa {
 			case 'shared.destroy_succeeded': return '削除しました。';
 			case 'shared.cancel': return 'キャンセルする';
 			case 'shared.ok': return 'OK';
+			case 'shared.yes': return 'はい';
+			case 'shared.no': return 'いいえ';
 			case 'shared.reload': return '再読み込みする';
 			case 'shared.search': return '検索する';
 			case 'shared.generate': return '生成する';
@@ -5215,6 +5372,8 @@ extension on _TranslationsJa {
 			case 'shared.please_enter': return ({required Object name}) => '"${name}"を入力してください。';
 			case 'shared.no_more_items': return ({required Object name}) => 'すべての${name}を読み込みました';
 			case 'shared.no_items_found': return ({required Object name}) => '${name}がありません';
+			case 'shared.no_name_found': return ({required Object name}) => '${name}が見つかりません';
+			case 'shared.no_item_found': return 'アイテムがありません';
 			case 'shared.premium_recommendation': return 'この機能を利用するには、プレミアムプランへの登録が必要です。';
 			case 'shared.login_recommendation': return 'この機能を利用するためには、ログインが必要です。';
 			case 'shared.processing': return '処理中...';
@@ -5905,9 +6064,30 @@ extension on _TranslationsJa {
 			case 'timeZone.nuku_alofa': return 'ヌクアロファ';
 			case 'timeZone.samoa': return 'サモア';
 			case 'timeZone.tokelau_is': return 'トケラウ諸島';
-			case 'answer.answers_count': return ({required Object count}) => '${count}問解答';
 			case 'answer.limit_reached': return '制限に達しました';
 			case 'answer.limit_reached_description': return ({required Object number}) => '無料ユーザーが解けるのは、１日に${number}問までです。プレミアム会員になって、無制限に問題を解きましょう！';
+			case 'answer.daily_bonus': return ({required Object count}) => '${count}日解答';
+			case 'answer.continuous_answers': return ({required Object count}) => '${count}日連続解答';
+			case 'answer.continuous_goal_achievement': return ({required Object count}) => '${count}日連続目標達成';
+			case 'answer.continuous_review_completion': return ({required Object count}) => '${count}日連続復習達成';
+			case 'answer.goal_achievement': return '目標達成';
+			case 'answer.review_completion': return '復習達成';
+			case 'answer.strict_solving_mode': return '厳格解答モード';
+			case 'answer.strict_reviewing_mode': return '厳格復習モード';
+			case 'answer.weekly_bonus': return ({required Object count}) => '${count}週間連続解答';
+			case 'answer.monthly_bonus': return ({required Object count}) => '${count}ヶ月連続解答';
+			case 'answer.yearly_bonus': return ({required Object count}) => '${count}年連続解答';
+			case 'answer.answers': return '問解答';
+			case 'answer.answers_count': return ({required Object count}) => '${count}問解答';
+			case 'answer.same_mistake_message': return ({required Object count}) => 'この間違いは${count}回目です';
+			case 'answer.drill_clear': return 'ドリルクリア';
+			case 'answer.drill_clear_description': return ({required Object laps_count}) => 'おめでとうございます！ドリルを全問解答しました！（${laps_count}）';
+			case 'answer.strict_drill_clear_description': return ({required Object laps_count}) => 'おめでとうございます！ドリルを全問正解しました！（${laps_count}）';
+			case 'answer.weakness_clear': return '弱点クリア';
+			case 'answer.weakness_clear_description': return 'おめでとうございます！弱点を全問正解しました！';
+			case 'answer.requesting_app_review': return 'これほどまでにご利用いただき、本当にありがとうございます！！ディクトは気に入っていただけましたでしょうか？';
+			case 'answer.review_step_up': return ({required Object interval}) => '繰り上がりで${interval}に復習';
+			case 'answer.review_released': return '復習が解除されました。';
 			case 'quizzes.quiz': return '問題';
 			case 'quizzes.quizzes': return '問題';
 			case 'quizzes.add': return '問題を追加する';
