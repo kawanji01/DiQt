@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
@@ -52,9 +53,9 @@ class QuizFlashcardState extends ConsumerState<QuizFlashcard> {
             answer(true),
           },
           icon: const Icon(Icons.circle_outlined, color: Colors.white),
-          label: const Text(
-            '正解した',
-            style: TextStyle(
+          label: Text(
+            t.quizzes.got_a_correct,
+            style: const TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
           ),
         ),
@@ -67,16 +68,15 @@ class QuizFlashcardState extends ConsumerState<QuizFlashcard> {
         child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.red,
-            minimumSize: const Size(double.infinity,
-                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+            minimumSize: const Size(double.infinity, 40),
           ),
           onPressed: () => {
             answer(false),
           },
           icon: const Icon(Icons.close, color: Colors.white),
-          label: const Text(
-            '間違えた',
-            style: TextStyle(
+          label: Text(
+            t.quizzes.made_a_mistake,
+            style: const TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
           ),
         ),
@@ -84,9 +84,9 @@ class QuizFlashcardState extends ConsumerState<QuizFlashcard> {
     }
 
     return ExpansionTile(
-      title: const Text(
-        'タップして答えを表示する',
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      title: Text(
+        t.quizzes.see_correct_answer,
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
       //collapsedBackgroundColor: const Color(0xfff3f3f4),
       collapsedBackgroundColor: Colors.grey.shade200,
@@ -109,6 +109,7 @@ class QuizFlashcardState extends ConsumerState<QuizFlashcard> {
                 Expanded(flex: 1, child: incorrectButton()),
               ],
             ),
+            const SizedBox(height: 32),
           ],
         ),
       ],

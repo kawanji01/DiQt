@@ -1,0 +1,8 @@
+inquiry: 'Inquiry'
+inquireis: 'Inquiries'
+content: 'Inquiry content'
+contact_form: 'Contact form'
+contact_form_placeholder: 'If you have any questions or concerns about DiQt, please feel free to contact us. We may reply to you by email at a later date if necessary.'
+contact_description: 'Please feel free to contact ${name} from the following.'
+inquiry_sent: 'Your inquiry has been sent. We may reply to you by email at a later date if necessary.'
+sending_inquiry_failed: 'Failed to send inquiry.'

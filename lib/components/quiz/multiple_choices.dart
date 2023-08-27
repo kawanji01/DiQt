@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
@@ -112,8 +113,8 @@ class QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
           borderRadius: const BorderRadius.all(Radius.circular(5)),
         ),
         child: RichText(
-            text: const TextSpan(children: [
-          WidgetSpan(
+            text: TextSpan(children: [
+          const WidgetSpan(
             child: Icon(
               Icons.lock,
               color: Colors.green,
@@ -121,8 +122,8 @@ class QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
             ),
           ),
           TextSpan(
-              text: ' タップして選択肢を表示',
-              style: TextStyle(
+              text: ' ${t.quizzes.choices_cover_text}',
+              style: const TextStyle(
                   color: Colors.green,
                   fontSize: 16,
                   fontWeight: FontWeight.bold))

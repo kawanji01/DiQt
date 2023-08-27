@@ -13,28 +13,25 @@ class AnswerHistoryQuizHeader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final String locale = ref.watch(localeProvider);
-    Color colors;
-    String correctText;
-    if (answerHistory.correct) {
-      colors = Colors.blue;
-      correctText = t.answerAnalyses.correct;
-    } else {
-      colors = Colors.red;
-      correctText = t.answerAnalyses.incorrect;
-    }
-
     // 解答日時
     final String timeAgo = DateTimeFormatter.createTimeAgoString(
         dateTime: answerHistory.createdAt, locale: locale);
-
-    final information = Text(
-      t.answerAnalyses.last_record(time_ago: timeAgo, result: correctText),
-      style: TextStyle(color: colors, fontWeight: FontWeight.bold),
-    );
+    Color colors;
+    String answeredAt;
+    if (answerHistory.correct) {
+      colors = Colors.blue;
+      answeredAt = t.answerAnalyses.correct_at(time_ago: timeAgo);
+    } else {
+      colors = Colors.red;
+      answeredAt = t.answerAnalyses.incorrect_at(time_ago: timeAgo);
+    }
 
     return Container(
         margin: const EdgeInsets.only(bottom: 8),
         alignment: Alignment.centerRight,
-        child: information);
+        child: Text(
+          answeredAt,
+          style: TextStyle(color: colors, fontWeight: FontWeight.bold),
+        ));
   }
 }

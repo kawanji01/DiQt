@@ -45,3 +45,10 @@ answer_history_description: 'If you are a premium member, you can view the histo
 questions_you_got_wrong_description: 'If you are a premium member, you can review the questions you got wrong that day.'
 deletion_of_all_reviews_description: 'If you are a premium member, you can cancel all the reviews you have set up.'
 ad_free_description: 'If you are a premium member, you will no longer see all adverts in the app.'
+restore: 'Click here if you have previously purchased.'
+restore_success: 'Your purchase has been restored.'
+restore_error: 'Your purchase could not be restored.'
+footer_description: '・The premium subscription period is automatically renewed every month from the start date. \n
+・The first payment starts at the end of the two-week free trial period. \n
+・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n 
+・Please check the following before registering. \n'

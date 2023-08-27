@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
@@ -25,9 +26,10 @@ class QuizHintButton extends StatelessWidget {
         Dialogs.normal(screen);
       },
       icon: const Icon(Icons.lightbulb_outline_sharp, color: Colors.black87),
-      label: const Text(
-        'ヒント',
-        style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black87),
+      label: Text(
+        t.quizzes.hint,
+        style:
+            const TextStyle(fontWeight: FontWeight.w700, color: Colors.black87),
       ),
     );
   }

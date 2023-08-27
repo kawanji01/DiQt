@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/user/feed_icon.dart';
@@ -10,20 +11,8 @@ class ActivityLevelUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final User user = activity.user!;
-
     const TextStyle textBlack = TextStyle(
-        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.normal);
-
-    const TextStyle textGreen = TextStyle(
-        color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold);
-
-    final Widget information = RichText(
-        text: TextSpan(children: [
-      TextSpan(text: user.name, style: textGreen),
-      const TextSpan(text: 'が', style: textBlack),
-      TextSpan(text: 'Lv.${activity.amount}', style: textGreen),
-      const TextSpan(text: 'になりました！', style: textBlack),
-    ]));
+        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.bold);
 
     return Container(
       padding: const EdgeInsets.only(top: 16, bottom: 24),
@@ -31,7 +20,11 @@ class ActivityLevelUp extends StatelessWidget {
         children: [
           UserFeedIcon(user: user),
           Expanded(
-            child: information,
+            child: Text(
+              t.activities
+                  .level_up(name: user.name, number: '${activity.amount}'),
+              style: textBlack,
+            ),
           )
         ],
       ),

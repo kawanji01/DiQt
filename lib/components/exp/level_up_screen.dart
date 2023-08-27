@@ -1,8 +1,10 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/components/answer/effect_setting.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/level_calculator.dart';
@@ -45,17 +47,17 @@ class ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
   @override
   Widget build(BuildContext context) {
     final int totalExp = widget.totalExp;
+    final String message = t.answer.level_up;
 
     Widget shareButton() {
       final int level = LevelCalculator.levelForExp(totalExp).floor();
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
-      final String tweet = 'Lv.$levelに上がりました！！';
       final String locale = ref.watch(localeProvider);
       final String url =
           '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?level_up=$level';
-      return AnswerShareButton(text: tweet, url: url);
+      return AnswerShareButton(text: message, url: url);
     }
 
     return Container(
@@ -65,19 +67,22 @@ class ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
       child: Stack(
         children: [
-          Column(children: [
-            const SizedBox(height: 16),
-            const Text('レベルアップ',
-                style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.orange)),
-            ExpExpIndicator(
-              exp: totalExp,
-            ),
-            const SizedBox(height: 16),
-            shareButton()
-          ]),
+          SingleChildScrollView(
+            child: Column(children: [
+              const SizedBox(height: 16),
+              Text(message,
+                  style: const TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange)),
+              ExpExpIndicator(
+                exp: totalExp,
+              ),
+              const SizedBox(height: 16),
+              shareButton(),
+              const AnswerEffectSetting(),
+            ]),
+          ),
           const DialogCloseButton(),
           const DialogConfetti(),
         ],

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/markdown/markdown_without_dict_link.dart';
 import 'package:flutter/material.dart';
@@ -47,8 +48,8 @@ class QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
           borderRadius: const BorderRadius.all(Radius.circular(5)),
         ),
         child: RichText(
-            text: const TextSpan(children: [
-          WidgetSpan(
+            text: TextSpan(children: [
+          const WidgetSpan(
             child: Icon(
               Icons.lock,
               color: Colors.green,
@@ -56,8 +57,8 @@ class QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
             ),
           ),
           TextSpan(
-              text: ' タップして問題文を表示',
-              style: TextStyle(
+              text: ' ${t.quizzes.question_cover_text}',
+              style: const TextStyle(
                   color: Colors.green,
                   fontSize: 16,
                   fontWeight: FontWeight.bold))

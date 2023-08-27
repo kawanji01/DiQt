@@ -1,0 +1,8 @@
+inquiry: 'お問い合わせ'
+inquireis: 'お問い合わせ'
+content: 'お問い合わせ内容'
+contact_form: 'お問い合わせフォーム'
+contact_form_placeholder: 'ディクトについて疑問点やご質問などございましたら、なんでもお気軽にご記入ください。必要に応じて、後日メールにてご返信させていただく場合もございます。'
+contact_description: '${name}へは、お気軽に以下からご連絡ください。'
+inquiry_sent: 'お問い合わせを送信しました。必要に応じて、後日メールにてご返信させていただく場合もございます。'
+sending_inquiry_failed: 'お問い合わせの送信に失敗しました。'

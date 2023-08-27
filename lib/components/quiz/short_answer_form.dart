@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
@@ -59,7 +60,7 @@ class QuizShortAnswerFormState extends ConsumerState<QuizShortAnswerForm> {
         TextField(
             controller: _answerController,
             decoration: InputDecoration(
-              hintText: '答えを入力してください',
+              hintText: t.quizzes.please_input_answer,
               // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
               filled: true,
               fillColor: Colors.grey.shade200,
@@ -93,8 +94,9 @@ class QuizShortAnswerFormState extends ConsumerState<QuizShortAnswerForm> {
             minimumSize: const Size(double.infinity, 40),
             backgroundColor: Colors.green,
           ),
-          child: const Text('解答する',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          child: Text(t.quizzes.answer,
+              style:
+                  const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         ),
       ],
     );

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/activity.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/user/feed_icon.dart';
@@ -11,67 +12,59 @@ class ActivityFirstOfTheDay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final User user = activity.user!;
-
     const TextStyle textBlack = TextStyle(
-        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.normal);
-
-    const TextStyle textGreen = TextStyle(
-        color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold);
-
-    final Widget answerDaysCount = RichText(
-        text: TextSpan(children: [
-      TextSpan(text: user.name, style: textGreen),
-      const TextSpan(text: 'が', style: textBlack),
-      TextSpan(text: '${activity.amount}日', style: textGreen),
-      const TextSpan(text: '解答しました！', style: textBlack),
-    ]));
+        color: Colors.black87, fontSize: 16, fontWeight: FontWeight.bold);
 
     Widget continuationCount() {
       if (activity.continuationCount! < 2) {
         return Container();
       }
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(text: '${activity.continuationCount}日連続', style: textGreen),
-        const TextSpan(text: 'で解答しました！', style: textBlack),
-      ]));
+      return Container(
+        margin: const EdgeInsets.only(top: 8),
+        child: Text(
+            t.activities
+                .continuation_count(number: '${activity.continuationCount}'),
+            style: textBlack),
+      );
     }
 
     Widget allWeekContinuationCount() {
       if (activity.allWeekContinuationCount == null) {
         return Container();
       }
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(
-            text: '${activity.allWeekContinuationCount}週間連続', style: textGreen),
-        const TextSpan(text: 'で解答しました！', style: textBlack),
-      ]));
+      return Container(
+        margin: const EdgeInsets.only(top: 8),
+        child: Text(
+            t.activities.all_week_continuation_count(
+                number: '${activity.allWeekContinuationCount}'),
+            style: textBlack),
+      );
     }
 
     Widget allMonthContinuationCount() {
       if (activity.allMonthContinuationCount == null) {
         return Container();
       }
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(
-            text: '${activity.allMonthContinuationCount}ヶ月連続',
-            style: textGreen),
-        const TextSpan(text: 'で解答しました！', style: textBlack),
-      ]));
+      return Container(
+        margin: const EdgeInsets.only(top: 8),
+        child: Text(
+            t.activities.all_month_continuation_count(
+                number: '${activity.allMonthContinuationCount}'),
+            style: textBlack),
+      );
     }
 
     Widget allYearContinuationCount() {
       if (activity.allYearContinuationCount == null) {
         return Container();
       }
-      return RichText(
-          text: TextSpan(children: [
-        TextSpan(
-            text: '${activity.allYearContinuationCount}年間連続', style: textGreen),
-        const TextSpan(text: 'で解答しました！', style: textBlack),
-      ]));
+      return Container(
+        margin: const EdgeInsets.only(top: 8),
+        child: Text(
+            t.activities.all_year_continuation_count(
+                number: '${activity.allYearContinuationCount}'),
+            style: textBlack),
+      );
     }
 
     return Container(
@@ -83,7 +76,10 @@ class ActivityFirstOfTheDay extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                answerDaysCount,
+                Text(
+                    t.activities.answer_days(
+                        name: user.name, number: '${activity.amount}'),
+                    style: textBlack),
                 continuationCount(),
                 allWeekContinuationCount(),
                 allMonthContinuationCount(),

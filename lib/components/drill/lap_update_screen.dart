@@ -1,8 +1,7 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
-import 'package:booqs_mobile/data/provider/drill_lap.dart';
 import 'package:booqs_mobile/data/remote/drills.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/drill.dart';
-import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -19,8 +18,6 @@ class DrillLapUpdateScreenState extends ConsumerState<DrillLapUpdateScreen> {
   @override
   Widget build(BuildContext context) {
     final Drill? drill = ref.watch(drillProvider);
-    final DrillLap? drillLap = ref.watch(drillLapProvider);
-    final int newLapNumber = drillLap!.clearsCount + 1;
 
     Future<void> startNewLap() async {
       Navigator.of(context).pop();
@@ -31,7 +28,7 @@ class DrillLapUpdateScreenState extends ConsumerState<DrillLapUpdateScreen> {
       EasyLoading.dismiss();
       if (resMap == null) return;
       if (!mounted) return;
-      final snackBar = SnackBar(content: Text('${resMap['message']}'));
+      final snackBar = SnackBar(content: Text(t.drills.new_lap_started));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.of(context).pop();
       ref.invalidate(asyncDrillUnsolvedQuizzesProvider);
@@ -48,8 +45,8 @@ class DrillLapUpdateScreenState extends ConsumerState<DrillLapUpdateScreen> {
               Icons.thumb_up,
               color: Colors.white,
             ),
-            label: const Text('OK',
-                style: TextStyle(
+            label: Text(t.shared.ok,
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 16)),
@@ -73,7 +70,7 @@ class DrillLapUpdateScreenState extends ConsumerState<DrillLapUpdateScreen> {
         children: [
           Column(children: [
             const SizedBox(height: 16),
-            Text('解答済の問題をすべて未解答に戻して、$newLapNumber周目を始めます。\nよろしいですか？',
+            Text(t.drills.new_lap_description,
                 style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

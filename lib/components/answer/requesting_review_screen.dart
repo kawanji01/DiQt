@@ -1,6 +1,7 @@
+import 'package:booqs_mobile/components/inquiry/screen.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/app_review_service.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/home/contact_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +21,7 @@ class AnswerGoalAchievementScreenState
     Widget screen() {
       // 問い合わせフォーム
       if (_isNo) {
-        return const ContactFormScreen();
+        return const InquiryScreen();
       }
       // 気に入ったかどうかのクローズドクエスション画面
       return Container(
@@ -29,14 +30,14 @@ class AnswerGoalAchievementScreenState
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Stack(
           children: [
-            const Column(children: [
-              SizedBox(height: 40),
-              Text('こんなにもご利用いただき、本当にありがとうございます！！🙇‍♂️\nDiQtは気に入っていただけましたでしょうか？',
-                  style: TextStyle(
+            Column(children: [
+              const SizedBox(height: 40),
+              Text(t.answer.requesting_app_review,
+                  style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87)),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
             ]),
             // 評価ボタン
             Container(
@@ -62,8 +63,8 @@ class AnswerGoalAchievementScreenState
                               size: 18,
                               color: Colors.red,
                             ),
-                            label: const Text('いいえ',
-                                style: TextStyle(
+                            label: Text(t.shared.no,
+                                style: const TextStyle(
                                     fontSize: 16,
                                     color: Colors.red,
                                     fontWeight: FontWeight.bold)),
@@ -81,8 +82,8 @@ class AnswerGoalAchievementScreenState
                               Icons.thumb_up,
                               color: Colors.white,
                             ),
-                            label: const Text('はい',
-                                style: TextStyle(
+                            label: Text(t.shared.yes,
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18)),

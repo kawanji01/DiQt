@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/weakness.dart';
 import 'package:booqs_mobile/data/remote/weaknesses.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,7 +25,7 @@ class WeaknessNewLapScreenState extends ConsumerState<WeaknessNewLapScreen> {
       if (resMap == null) return;
       if (!mounted) return;
 
-      const snackBar = SnackBar(content: Text('すべての問題を未正解に戻しました。'));
+      final snackBar = SnackBar(content: Text(t.weaknesses.new_lap_started));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       ref.invalidate(asyncUnsolvedWeaknessesProvider);
     }
@@ -39,8 +40,8 @@ class WeaknessNewLapScreenState extends ConsumerState<WeaknessNewLapScreen> {
               Icons.thumb_up,
               color: Colors.white,
             ),
-            label: const Text('OK',
-                style: TextStyle(
+            label: Text(t.shared.ok,
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 16)),
@@ -56,20 +57,20 @@ class WeaknessNewLapScreenState extends ConsumerState<WeaknessNewLapScreen> {
       );
     }
 
-    const explanation = Text('正解済の問題をすべて未正解に戻します。\nよろしいですか？',
-        style: TextStyle(
-            fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87));
-
     return Container(
       height: 240,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
       child: Stack(
         children: [
-          const Column(children: [
-            SizedBox(height: 16),
-            explanation,
-            SizedBox(height: 16),
+          Column(children: [
+            const SizedBox(height: 16),
+            Text(t.weaknesses.new_lap_description,
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87)),
+            const SizedBox(height: 16),
           ]),
           updateButton(),
         ],

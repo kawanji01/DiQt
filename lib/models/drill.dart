@@ -16,6 +16,7 @@ class Drill {
       this.referenceUrl,
       required this.thumbnailUrl,
       required this.publicUid,
+      required this.strictSolvingMode,
       required this.answerHistoriesCount,
       required this.quizzesCount,
       required this.createdAt,
@@ -36,6 +37,7 @@ class Drill {
   String? referenceUrl;
   String thumbnailUrl;
   String publicUid;
+  bool strictSolvingMode;
   DateTime createdAt;
   DateTime updatedAt;
   int answerHistoriesCount;
@@ -57,6 +59,7 @@ class Drill {
         referenceUrl = json['reference_url'] ?? '',
         thumbnailUrl = json['thumbnail_url'] ?? '',
         publicUid = json['public_uid'],
+        strictSolvingMode = json['strict_solving_mode'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         answerHistoriesCount = json['answer_histories_count'],
@@ -83,6 +86,7 @@ class Drill {
         'reference_url': referenceUrl,
         'thumbnail_url': thumbnailUrl,
         'public_uid': publicUid,
+        'strict_solving_mode': strictSolvingMode,
         'created_at': createdAt,
         'updated_at': updatedAt,
         'answer_histories_count': answerHistoriesCount,

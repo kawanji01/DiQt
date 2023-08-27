@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/components/quiz/explanation/screen.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,9 @@ class QuizExplanationOpenButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
-      child: const Text('解説をみる',
-          style: TextStyle(fontWeight: FontWeight.w700, color: Colors.grey)),
+      child: Text(t.answer.view_explanation,
+          style:
+              const TextStyle(fontWeight: FontWeight.w700, color: Colors.grey)),
       onPressed: () {
         // 解説モーダル内の辞書リンクで遷移後のページでも解答インタラクションが表示されてしまうので、
         // bottomSheetを表示するときにインタラクションも消しておく

@@ -15,20 +15,21 @@ class DrillQuizHeader extends ConsumerWidget {
     final String locale = ref.watch(localeProvider);
     final AnswerAnalysis? answerAnalysis = quiz.answerAnalysis;
     if (answerAnalysis == null) return Container();
-
-    // 以前に問題を解いたことがある場合
-    Color color;
-    String resultText;
-    if (answerAnalysis.lastAnswerCorrect) {
-      color = Colors.blue;
-      resultText = t.answerAnalyses.correct;
-    } else {
-      color = Colors.red;
-      resultText = t.answerAnalyses.incorrect;
-    }
     // 最終解答
     final String timeAgo = DateTimeFormatter.createTimeAgoString(
         dateTime: answerAnalysis.lastAnsweredAt, locale: locale);
+
+    // 以前に問題を解いたことがある場合
+    Color color;
+    String answeredAt;
+    if (answerAnalysis.lastAnswerCorrect) {
+      color = Colors.blue;
+      answeredAt = t.answerAnalyses.correct_at(time_ago: timeAgo);
+    } else {
+      color = Colors.red;
+      answeredAt = t.answerAnalyses.incorrect_at(time_ago: timeAgo);
+    }
+
     // 正答率
     final String correctRate =
         '${t.answerAnalyses.correct_answer_rate} ${answerAnalysis.correctAnswerRate.floor()}%';
@@ -37,7 +38,7 @@ class DrillQuizHeader extends ConsumerWidget {
       margin: const EdgeInsets.only(bottom: 8),
       alignment: Alignment.centerRight,
       child: Text(
-        '${t.answerAnalyses.last_record(time_ago: timeAgo, result: resultText)} / $correctRate',
+        '$answeredAt / $correctRate',
         style:
             TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: color),
       ),

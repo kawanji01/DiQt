@@ -19,8 +19,7 @@ class AnswerShareButton extends StatelessWidget {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.green,
-        minimumSize: const Size(double.infinity,
-            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+        minimumSize: const Size(double.infinity, 40),
       ),
       onPressed: () => {shareText(sharedText, 'DiQt')},
       icon: const Icon(Icons.share, color: Colors.white),

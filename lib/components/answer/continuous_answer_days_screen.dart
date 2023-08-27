@@ -1,8 +1,10 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/components/answer/effect_setting.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -58,15 +60,16 @@ class AnswerContinuousAnswerDaysScreenState
     // 記録
     final int counter = answerCreator.continuousAnswerDaysCount ?? 0;
 
-    Widget twitterShareButton() {
+    final String message = t.answer.continuous_answers(count: '$counter');
+
+    Widget shareButton() {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return Container();
 
-      final String tweet = '$counter日連続で問題を解きました！！';
       final String locale = ref.watch(localeProvider);
       final String url =
           '${DiQtURL.root(locale: locale)}/users/${user.publicUid}?continuous=$counter';
-      return AnswerShareButton(text: tweet, url: url);
+      return AnswerShareButton(text: message, url: url);
     }
 
     return Container(
@@ -76,20 +79,24 @@ class AnswerContinuousAnswerDaysScreenState
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
       child: Stack(
         children: [
-          Column(children: [
-            const SizedBox(height: 16),
-            Text('$counter日連続解答',
-                style: const TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.orange)),
-            ExpGainedExpIndicator(
-              initialExp: initialExp,
-              gainedExp: gainedExp,
-            ),
-            const SizedBox(height: 16),
-            twitterShareButton()
-          ]),
+          SingleChildScrollView(
+            child: Column(children: [
+              const SizedBox(height: 16),
+              Text(message,
+                  style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange)),
+              const SizedBox(height: 16),
+              ExpGainedExpIndicator(
+                initialExp: initialExp,
+                gainedExp: gainedExp,
+              ),
+              const SizedBox(height: 16),
+              shareButton(),
+              const AnswerEffectSetting(),
+            ]),
+          ),
           const DialogCloseButton(),
           const DialogConfetti(),
         ],

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_creator.dart';
 import 'package:booqs_mobile/models/answer_history.dart';
 import 'package:booqs_mobile/models/review.dart';
@@ -68,7 +69,8 @@ class AnswerFeedback {
     if (review != null && answerHistory!.intervalStepUp) {
       final String interval =
           ReviewHelper.reviewButtonLabel(review.intervalSetting);
-      final String text = '繰り上がりで$interval';
+      final String text = t.answer.review_step_up(interval: interval);
+
       return reviewMessage(text);
     }
     return null;
@@ -77,7 +79,7 @@ class AnswerFeedback {
   // 復習設定が解除された通知
   static Widget? messageForReviewReleased(AnswerCreator answerCreator) {
     if (answerCreator.reviewReleased == true) {
-      String text = '復習が解除されました';
+      final String text = t.answer.review_released;
       return reviewMessage(text);
     }
     return null;
@@ -97,7 +99,7 @@ class AnswerFeedback {
           ),
         ),
         TextSpan(
-            text: ' この間違いは$sameMistakeCount回目です',
+            text: ' ${t.answer.same_mistake_message(count: sameMistakeCount)}',
             style: const TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
       ]));
@@ -110,8 +112,8 @@ class AnswerFeedback {
     if (answerCreator.overcoming == null) return null;
     if (answerCreator.overcoming == true) {
       return RichText(
-          text: const TextSpan(children: [
-        WidgetSpan(
+          text: TextSpan(children: [
+        const WidgetSpan(
           child: Icon(
             Icons.check_circle_outline,
             color: Colors.white,
@@ -119,8 +121,8 @@ class AnswerFeedback {
           ),
         ),
         TextSpan(
-            text: ' 弱点を克服しました',
-            style: TextStyle(
+            text: t.weaknesses.weakness_overcame,
+            style: const TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold))
       ]));
     }

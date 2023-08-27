@@ -22,26 +22,14 @@ class QuizExplanationAnswerAnalysis extends ConsumerWidget {
 
     Widget answersCount() {
       if (answerAnalysis == null) {
-        return const Text('まだ解答したことがありません。', style: TextStyle(fontSize: 16));
+        return Text(t.answerAnalyses.not_yet_answered,
+            style: const TextStyle(fontSize: 16));
       }
       final int answersCount = answerAnalysis.answerHistoriesCount;
-      const label = Text(
-        '回数数： ',
-        style: TextStyle(
-            fontSize: 16, color: Colors.black87, fontWeight: FontWeight.bold),
-      );
-
-      final value = Text(
-        '$answersCount回',
+      return Text(
+        t.answerAnalyses.answers_count(count: answersCount),
         style: const TextStyle(
-          fontSize: 16,
-          color: Colors.black87,
-        ),
-      );
-
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [label, value],
+            fontSize: 16, color: Colors.black87, fontWeight: FontWeight.bold),
       );
     }
 
@@ -51,22 +39,10 @@ class QuizExplanationAnswerAnalysis extends ConsumerWidget {
       }
       final int incorrectAnswersCount =
           answerAnalysis.incorrectAnswerHistoriesCount;
-      const label = Text(
-        '間違えた回数： ',
-        style: TextStyle(
-            fontSize: 16, color: Colors.black87, fontWeight: FontWeight.bold),
-      );
-      final value = Text(
-        '$incorrectAnswersCount回',
+      return Text(
+        t.answerAnalyses.incorrect_answers_count(count: incorrectAnswersCount),
         style: const TextStyle(
-          fontSize: 16,
-          color: Colors.black87,
-        ),
-      );
-
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [label, value],
+            fontSize: 16, color: Colors.black87, fontWeight: FontWeight.bold),
       );
     }
 
@@ -80,22 +56,10 @@ class QuizExplanationAnswerAnalysis extends ConsumerWidget {
         color = Colors.red;
       }
 
-      final label = Text(
-        '${t.answerAnalyses.correct_answer_rate}： ',
+      return Text(
+        '${t.answerAnalyses.correct_answer_rate}： $correctAnswerRate%',
         style:
             TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.bold),
-      );
-      final value = Text(
-        '$correctAnswerRate%',
-        style: TextStyle(
-          fontSize: 16,
-          color: color,
-        ),
-      );
-
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [label, value],
       );
     }
 
@@ -104,45 +68,21 @@ class QuizExplanationAnswerAnalysis extends ConsumerWidget {
         return Container();
       }
 
-      Color color = Colors.red;
-      IconData icon = Icons.close;
-      String lastAnswer = t.answerAnalyses.incorrect;
-      if (answerAnalysis.lastAnswerCorrect) {
-        color = Colors.blue;
-        lastAnswer = t.answerAnalyses.correct;
-        icon = Icons.circle_outlined;
-      }
-      final answerInfo = RichText(
-          text: TextSpan(children: [
-        WidgetSpan(
-          child: Icon(
-            icon,
-            color: color,
-            size: 18.0,
-          ),
-        ),
-        TextSpan(
-            text: ' $lastAnswer', style: TextStyle(color: color, fontSize: 16))
-      ]));
-
-      final label = Text(
-        '前回の解答： ',
-        style:
-            TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.bold),
-      );
       final String answeredAt = DateTimeFormatter.createTimeAgoString(
           dateTime: answerAnalysis.lastAnsweredAt, locale: locale);
 
-      final value = Text(
-        '$answeredAtに ',
+      Color color = Colors.red;
+
+      String lastAnswerAt = t.answerAnalyses.incorrect_at(time_ago: answeredAt);
+      if (answerAnalysis.lastAnswerCorrect) {
+        color = Colors.blue;
+        lastAnswerAt = t.answerAnalyses.correct_at(time_ago: answeredAt);
+      }
+
+      return Text(
+        lastAnswerAt,
         style: TextStyle(
-          fontSize: 16,
-          color: color,
-        ),
-      );
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [label, value, answerInfo],
+            fontSize: 16, color: color, fontWeight: FontWeight.normal),
       );
     }
 
@@ -159,7 +99,7 @@ class QuizExplanationAnswerAnalysis extends ConsumerWidget {
         correctAnswerRate(),
         const SizedBox(height: 4),
         lastAnswerDate(),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
         WeaknessSettingButton(quizId: quiz.id, weakness: weakness),
         const SizedBox(height: 80),
       ],

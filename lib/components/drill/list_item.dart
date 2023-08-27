@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/shared/cache_network_image.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -25,7 +26,7 @@ class DrillListItem extends ConsumerWidget {
     void moveToDrillPage(drill) {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) {
-        const snackBar = SnackBar(content: Text('問題を解くにはログインが必要です。'));
+        final snackBar = SnackBar(content: Text(t.shared.login_recommendation));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
       } else {
@@ -37,12 +38,12 @@ class DrillListItem extends ConsumerWidget {
     Widget subtitle() {
       if (drillLap == null) {
         return Text(
-          '$answerHistoriesCount解答',
+          t.drills.answers(number: answerHistoriesCount),
           style: TextStyle(color: Colors.black.withOpacity(0.6)),
         );
       }
       return Text(
-        '$answerHistoriesCount解答 / ${drillLap.clearsCount}周クリア',
+        '${t.drills.answers(number: answerHistoriesCount)} / ${t.drills.clears_count(number: drillLap.clearsCount)}',
         style: TextStyle(color: Colors.black.withOpacity(0.6)),
       );
     }

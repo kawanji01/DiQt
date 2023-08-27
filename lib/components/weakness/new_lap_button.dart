@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/components/button/large_green_button.dart';
 import 'package:booqs_mobile/components/weakness/new_lap_screen.dart';
@@ -14,16 +15,15 @@ class WeaknessNewLapButton extends ConsumerWidget {
     final int? weaknessesCount =
         ref.watch(currentUserProvider.select((user) => user?.weaknessesCount));
     if (weaknessesCount == null || weaknessesCount == 0) {
-      return const Text('苦手な問題はありません',
+      return Text(t.shared.no_name_found(name: t.weaknesses.weakness),
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
               color: Colors.black54,
               height: 4));
     }
 
-    const btnText = '周回する';
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 48),
       child: InkWell(
@@ -31,7 +31,7 @@ class WeaknessNewLapButton extends ConsumerWidget {
           const screen = WeaknessNewLapScreen();
           Dialogs.slideFromBottomFade(screen);
         },
-        child: const LargeGreenButton(label: btnText, icon: null),
+        child: LargeGreenButton(label: t.weaknesses.new_lap, icon: null),
       ),
     );
   }
