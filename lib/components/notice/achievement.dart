@@ -39,7 +39,7 @@ class NoticeAchievement extends ConsumerWidget {
                   style: const TextStyle(
                       color: Colors.black87,
                       fontSize: 16,
-                      fontWeight: FontWeight.normal),
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ],

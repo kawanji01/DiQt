@@ -59,10 +59,12 @@ class QuizAnswersCount extends ConsumerWidget {
     Widget answersCount() {
       String message = '';
       if (dailyGoalCount < todaysAnswersCount) {
-        message = '$todaysAnswersCount問解答';
+        message = '${t.answer.answers_on_normal_mode} $todaysAnswersCount';
       } else {
-        final int remainedCount = dailyGoalCount - todaysAnswersCount;
-        message = '目標まで残り$remainedCount問';
+        //final int remainedCount = dailyGoalCount - todaysAnswersCount;
+        //message = '目標まで残り$remainedCount問';
+        message =
+            '${t.answer.answers_on_normal_mode} $todaysAnswersCount / $dailyGoalCount';
       }
       return Text(
         message,
@@ -74,10 +76,13 @@ class QuizAnswersCount extends ConsumerWidget {
     Widget correctAnswersCount() {
       String message = '';
       if (dailyGoalCount < todaysCorrectAnswersCount) {
-        message = '$todaysCorrectAnswersCount問正解';
+        message =
+            '${t.answer.answers_on_strict_solving_mode} $todaysCorrectAnswersCount';
       } else {
-        final int remainedCount = dailyGoalCount - todaysCorrectAnswersCount;
-        message = '目標まで残り$remainedCount問正解';
+        //final int remainedCount = dailyGoalCount - todaysCorrectAnswersCount;
+        //message = '目標まで残り$remainedCount問正解';
+        message =
+            '${t.answer.answers_on_strict_solving_mode} $todaysCorrectAnswersCount / $dailyGoalCount';
       }
       return Text(
         message,

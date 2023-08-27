@@ -22,3 +22,8 @@ weakness_clear_description: 'Congratulations! You have answered all the question
 requesting_app_review: 'Thank you very much for using DiQt so much! Did you like DiQt?'
 review_step_up: 'Set review for ${interval} as step-up'
 review_released: 'Review released'
+answers_on_normal_mode: 'Answers: '
+answers_on_strict_solving_mode: 'Correct Answers: '
+view_explanation: 'View Explanation'
+level_up: 'Level Up'
+level: 'Lv.${level}'

@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/components/answer/effect_setting.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
@@ -95,6 +96,7 @@ class AnswerContinuousReviewCompletionScreenState
             ),
             const SizedBox(height: 16),
             shareButton(),
+            const AnswerEffectSetting(),
           ]),
           const DialogCloseButton(),
           const DialogConfetti(),

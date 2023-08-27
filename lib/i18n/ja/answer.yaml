@@ -22,3 +22,8 @@ weakness_clear_description: 'おめでとうございます！弱点を全問正
 requesting_app_review: 'これほどまでにご利用いただき、本当にありがとうございます！！ディクトは気に入っていただけましたでしょうか？'
 review_step_up: '繰り上がりで${interval}に復習'
 review_released: '復習が解除されました。'
+answers_on_normal_mode: '解答数： '
+answers_on_strict_solving_mode: '正解数: '
+view_explanation: '解説を見る'
+level_up: 'レベルアップ'
+level: 'Lv.${level}'

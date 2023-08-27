@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2730 (1365 per locale)
+/// Strings: 2766 (1383 per locale)
 ///
-/// Built on 2023-08-27 at 02:45 UTC
+/// Built on 2023-08-27 at 05:42 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -159,6 +159,7 @@ class _TranslationsEn implements BaseTranslations<AppLocale, _TranslationsEn> {
 	late final _TranslationsSchoolsEn schools = _TranslationsSchoolsEn._(_root);
 	late final _TranslationsNoticesEn notices = _TranslationsNoticesEn._(_root);
 	late final _TranslationsSharedEn shared = _TranslationsSharedEn._(_root);
+	late final _TranslationsInquiriesEn inquiries = _TranslationsInquiriesEn._(_root);
 	late final _TranslationsAnswerSettingsEn answerSettings = _TranslationsAnswerSettingsEn._(_root);
 	late final _TranslationsAnswerAnalysesEn answerAnalyses = _TranslationsAnswerAnalysesEn._(_root);
 	late final _TranslationsAchievementsEn achievements = _TranslationsAchievementsEn._(_root);
@@ -651,6 +652,7 @@ class _TranslationsSharedEn {
 	String get send => 'Send';
 	String get set_up => 'Set Up';
 	String get share => 'Share';
+	String get close => 'Close';
 	String get undefined => 'Undefined';
 	String get details => 'Details';
 	String get view_details => 'View Details';
@@ -675,6 +677,23 @@ class _TranslationsSharedEn {
 	String get error_occurred => 'An error occurred.';
 	String get fix_error => 'Fix error';
 	String get error_fixed => 'Error fixed.';
+}
+
+// Path: inquiries
+class _TranslationsInquiriesEn {
+	_TranslationsInquiriesEn._(this._root);
+
+	final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	String get inquiry => 'Inquiry';
+	String get inquireis => 'Inquiries';
+	String get content => 'Inquiry content';
+	String get contact_form => 'Contact form';
+	String get contact_form_placeholder => 'If you have any questions or concerns about DiQt, please feel free to contact us. We may reply to you by email at a later date if necessary.';
+	String contact_description({required Object name}) => 'Please feel free to contact ${name} from the following.';
+	String get inquiry_sent => 'Your inquiry has been sent. We may reply to you by email at a later date if necessary.';
+	String get sending_inquiry_failed => 'Failed to send inquiry.';
 }
 
 // Path: answerSettings
@@ -1473,6 +1492,11 @@ class _TranslationsAnswerEn {
 	String get requesting_app_review => 'Thank you very much for using DiQt so much! Did you like DiQt?';
 	String review_step_up({required Object interval}) => 'Set review for ${interval} as step-up';
 	String get review_released => 'Review released';
+	String get answers_on_normal_mode => 'Answers: ';
+	String get answers_on_strict_solving_mode => 'Correct Answers: ';
+	String get view_explanation => 'View Explanation';
+	String get level_up => 'Level Up';
+	String level({required Object level}) => 'Lv.${level}';
 }
 
 // Path: quizzes
@@ -1834,6 +1858,10 @@ class _TranslationsPurchaseEn {
 	String get questions_you_got_wrong_description => 'If you are a premium member, you can review the questions you got wrong that day.';
 	String get deletion_of_all_reviews_description => 'If you are a premium member, you can cancel all the reviews you have set up.';
 	String get ad_free_description => 'If you are a premium member, you will no longer see all adverts in the app.';
+	String get restore => 'Click here if you have previously purchased.';
+	String get restore_success => 'Your purchase has been restored.';
+	String get restore_error => 'Your purchase could not be restored.';
+	String get footer_description => '・The premium subscription period is automatically renewed every month from the start date. \n ・The first payment starts at the end of the two-week free trial period. \n ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n ・Please check the following before registering. \n';
 }
 
 // Path: home
@@ -1911,6 +1939,7 @@ class _TranslationsJa implements _TranslationsEn {
 	@override late final _TranslationsSchoolsJa schools = _TranslationsSchoolsJa._(_root);
 	@override late final _TranslationsNoticesJa notices = _TranslationsNoticesJa._(_root);
 	@override late final _TranslationsSharedJa shared = _TranslationsSharedJa._(_root);
+	@override late final _TranslationsInquiriesJa inquiries = _TranslationsInquiriesJa._(_root);
 	@override late final _TranslationsAnswerSettingsJa answerSettings = _TranslationsAnswerSettingsJa._(_root);
 	@override late final _TranslationsAnswerAnalysesJa answerAnalyses = _TranslationsAnswerAnalysesJa._(_root);
 	@override late final _TranslationsAchievementsJa achievements = _TranslationsAchievementsJa._(_root);
@@ -2403,6 +2432,7 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get send => '送信する';
 	@override String get set_up => '設定する';
 	@override String get share => 'シェアする';
+	@override String get close => '閉じる';
 	@override String get undefined => '未定義';
 	@override String get details => '詳細';
 	@override String get view_details => '詳細を見る';
@@ -2427,6 +2457,23 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get error_occurred => 'エラーが発生しました。';
 	@override String get fix_error => 'エラーを修正する';
 	@override String get error_fixed => 'エラーを修正しました。';
+}
+
+// Path: inquiries
+class _TranslationsInquiriesJa implements _TranslationsInquiriesEn {
+	_TranslationsInquiriesJa._(this._root);
+
+	@override final _TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get inquiry => 'お問い合わせ';
+	@override String get inquireis => 'お問い合わせ';
+	@override String get content => 'お問い合わせ内容';
+	@override String get contact_form => 'お問い合わせフォーム';
+	@override String get contact_form_placeholder => 'ディクトについて疑問点やご質問などございましたら、なんでもお気軽にご記入ください。必要に応じて、後日メールにてご返信させていただく場合もございます。';
+	@override String contact_description({required Object name}) => '${name}へは、お気軽に以下からご連絡ください。';
+	@override String get inquiry_sent => 'お問い合わせを送信しました。必要に応じて、後日メールにてご返信させていただく場合もございます。';
+	@override String get sending_inquiry_failed => 'お問い合わせの送信に失敗しました。';
 }
 
 // Path: answerSettings
@@ -3225,6 +3272,11 @@ class _TranslationsAnswerJa implements _TranslationsAnswerEn {
 	@override String get requesting_app_review => 'これほどまでにご利用いただき、本当にありがとうございます！！ディクトは気に入っていただけましたでしょうか？';
 	@override String review_step_up({required Object interval}) => '繰り上がりで${interval}に復習';
 	@override String get review_released => '復習が解除されました。';
+	@override String get answers_on_normal_mode => '解答数： ';
+	@override String get answers_on_strict_solving_mode => '正解数: ';
+	@override String get view_explanation => '解説を見る';
+	@override String get level_up => 'レベルアップ';
+	@override String level({required Object level}) => 'Lv.${level}';
 }
 
 // Path: quizzes
@@ -3586,6 +3638,10 @@ class _TranslationsPurchaseJa implements _TranslationsPurchaseEn {
 	@override String get questions_you_got_wrong_description => 'プレミアム会員なら、その日に間違えた問題を確認できるようになります。';
 	@override String get deletion_of_all_reviews_description => 'プレミアム会員なら、今までに設定した復習をすべて取り消すことができるようになります。';
 	@override String get ad_free_description => 'プレミアム会員なら、アプリ内のすべての広告が表示されなくなります。';
+	@override String get restore => '以前に購入された方はこちら';
+	@override String get restore_success => '購入が復元されました。';
+	@override String get restore_error => '購入の復元に失敗しました。';
+	@override String get footer_description => '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n ・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n ・以下をご確認の上、ご登録ください。\n';
 }
 
 // Path: home
@@ -3992,6 +4048,7 @@ extension on _TranslationsEn {
 			case 'shared.send': return 'Send';
 			case 'shared.set_up': return 'Set Up';
 			case 'shared.share': return 'Share';
+			case 'shared.close': return 'Close';
 			case 'shared.undefined': return 'Undefined';
 			case 'shared.details': return 'Details';
 			case 'shared.view_details': return 'View Details';
@@ -4016,6 +4073,14 @@ extension on _TranslationsEn {
 			case 'shared.error_occurred': return 'An error occurred.';
 			case 'shared.fix_error': return 'Fix error';
 			case 'shared.error_fixed': return 'Error fixed.';
+			case 'inquiries.inquiry': return 'Inquiry';
+			case 'inquiries.inquireis': return 'Inquiries';
+			case 'inquiries.content': return 'Inquiry content';
+			case 'inquiries.contact_form': return 'Contact form';
+			case 'inquiries.contact_form_placeholder': return 'If you have any questions or concerns about DiQt, please feel free to contact us. We may reply to you by email at a later date if necessary.';
+			case 'inquiries.contact_description': return ({required Object name}) => 'Please feel free to contact ${name} from the following.';
+			case 'inquiries.inquiry_sent': return 'Your inquiry has been sent. We may reply to you by email at a later date if necessary.';
+			case 'inquiries.sending_inquiry_failed': return 'Failed to send inquiry.';
 			case 'answerSettings.title': return 'Answer & Review Setting';
 			case 'answerSettings.answer_setting': return 'Answer Setting';
 			case 'answerSettings.daily_goal': return 'Daily target';
@@ -4715,6 +4780,11 @@ extension on _TranslationsEn {
 			case 'answer.requesting_app_review': return 'Thank you very much for using DiQt so much! Did you like DiQt?';
 			case 'answer.review_step_up': return ({required Object interval}) => 'Set review for ${interval} as step-up';
 			case 'answer.review_released': return 'Review released';
+			case 'answer.answers_on_normal_mode': return 'Answers: ';
+			case 'answer.answers_on_strict_solving_mode': return 'Correct Answers: ';
+			case 'answer.view_explanation': return 'View Explanation';
+			case 'answer.level_up': return 'Level Up';
+			case 'answer.level': return ({required Object level}) => 'Lv.${level}';
 			case 'quizzes.quiz': return 'Quiz';
 			case 'quizzes.quizzes': return 'Quizzes';
 			case 'quizzes.add': return 'Add Quiz';
@@ -4977,6 +5047,10 @@ extension on _TranslationsEn {
 			case 'purchase.questions_you_got_wrong_description': return 'If you are a premium member, you can review the questions you got wrong that day.';
 			case 'purchase.deletion_of_all_reviews_description': return 'If you are a premium member, you can cancel all the reviews you have set up.';
 			case 'purchase.ad_free_description': return 'If you are a premium member, you will no longer see all adverts in the app.';
+			case 'purchase.restore': return 'Click here if you have previously purchased.';
+			case 'purchase.restore_success': return 'Your purchase has been restored.';
+			case 'purchase.restore_error': return 'Your purchase could not be restored.';
+			case 'purchase.footer_description': return '・The premium subscription period is automatically renewed every month from the start date. \n ・The first payment starts at the end of the two-week free trial period. \n ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n ・Please check the following before registering. \n';
 			case 'home.welcome': return 'Welcome to DiQt!';
 			case 'home.welcome_description_1': return 'DiQt is a dictionary app to help you never forget vocabulary.';
 			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
@@ -5365,6 +5439,7 @@ extension on _TranslationsJa {
 			case 'shared.send': return '送信する';
 			case 'shared.set_up': return '設定する';
 			case 'shared.share': return 'シェアする';
+			case 'shared.close': return '閉じる';
 			case 'shared.undefined': return '未定義';
 			case 'shared.details': return '詳細';
 			case 'shared.view_details': return '詳細を見る';
@@ -5389,6 +5464,14 @@ extension on _TranslationsJa {
 			case 'shared.error_occurred': return 'エラーが発生しました。';
 			case 'shared.fix_error': return 'エラーを修正する';
 			case 'shared.error_fixed': return 'エラーを修正しました。';
+			case 'inquiries.inquiry': return 'お問い合わせ';
+			case 'inquiries.inquireis': return 'お問い合わせ';
+			case 'inquiries.content': return 'お問い合わせ内容';
+			case 'inquiries.contact_form': return 'お問い合わせフォーム';
+			case 'inquiries.contact_form_placeholder': return 'ディクトについて疑問点やご質問などございましたら、なんでもお気軽にご記入ください。必要に応じて、後日メールにてご返信させていただく場合もございます。';
+			case 'inquiries.contact_description': return ({required Object name}) => '${name}へは、お気軽に以下からご連絡ください。';
+			case 'inquiries.inquiry_sent': return 'お問い合わせを送信しました。必要に応じて、後日メールにてご返信させていただく場合もございます。';
+			case 'inquiries.sending_inquiry_failed': return 'お問い合わせの送信に失敗しました。';
 			case 'answerSettings.title': return '解答・復習設定';
 			case 'answerSettings.answer_setting': return '解答設定';
 			case 'answerSettings.daily_goal': return '1日の目標';
@@ -6088,6 +6171,11 @@ extension on _TranslationsJa {
 			case 'answer.requesting_app_review': return 'これほどまでにご利用いただき、本当にありがとうございます！！ディクトは気に入っていただけましたでしょうか？';
 			case 'answer.review_step_up': return ({required Object interval}) => '繰り上がりで${interval}に復習';
 			case 'answer.review_released': return '復習が解除されました。';
+			case 'answer.answers_on_normal_mode': return '解答数： ';
+			case 'answer.answers_on_strict_solving_mode': return '正解数: ';
+			case 'answer.view_explanation': return '解説を見る';
+			case 'answer.level_up': return 'レベルアップ';
+			case 'answer.level': return ({required Object level}) => 'Lv.${level}';
 			case 'quizzes.quiz': return '問題';
 			case 'quizzes.quizzes': return '問題';
 			case 'quizzes.add': return '問題を追加する';
@@ -6350,6 +6438,10 @@ extension on _TranslationsJa {
 			case 'purchase.questions_you_got_wrong_description': return 'プレミアム会員なら、その日に間違えた問題を確認できるようになります。';
 			case 'purchase.deletion_of_all_reviews_description': return 'プレミアム会員なら、今までに設定した復習をすべて取り消すことができるようになります。';
 			case 'purchase.ad_free_description': return 'プレミアム会員なら、アプリ内のすべての広告が表示されなくなります。';
+			case 'purchase.restore': return '以前に購入された方はこちら';
+			case 'purchase.restore_success': return '購入が復元されました。';
+			case 'purchase.restore_error': return '購入の復元に失敗しました。';
+			case 'purchase.footer_description': return '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n ・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n ・以下をご確認の上、ご登録ください。\n';
 			case 'home.welcome': return 'DiQtへようこそ！';
 			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
 			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';

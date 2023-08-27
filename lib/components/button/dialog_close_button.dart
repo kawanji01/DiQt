@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class DialogCloseButton extends StatelessWidget {
@@ -14,9 +15,9 @@ class DialogCloseButton extends StatelessWidget {
             Icons.close,
             color: Colors.white,
           ),
-          label: const Text('閉じる',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          label: Text(t.shared.close,
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold)),
           onPressed: () {
             Navigator.pop(context);
           },

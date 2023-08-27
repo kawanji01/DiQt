@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/chapter.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/pages/chapter/show.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -39,7 +40,7 @@ class ChapterCard extends ConsumerWidget {
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 18)),
               subtitle: Text(
-                '$answerHistoriesCount解答',
+                t.drills.answers(number: answerHistoriesCount),
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ),

@@ -45,3 +45,10 @@ answer_history_description: 'プレミアム会員なら、解答した問題の
 questions_you_got_wrong_description: 'プレミアム会員なら、その日に間違えた問題を確認できるようになります。'
 deletion_of_all_reviews_description: 'プレミアム会員なら、今までに設定した復習をすべて取り消すことができるようになります。'
 ad_free_description: 'プレミアム会員なら、アプリ内のすべての広告が表示されなくなります。'
+restore: '以前に購入された方はこちら'
+restore_success: '購入が復元されました。'
+restore_error: '購入の復元に失敗しました。'
+footer_description: '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n
+・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n
+・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n
+・以下をご確認の上、ご登録ください。\n'

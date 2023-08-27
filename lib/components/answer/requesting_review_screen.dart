@@ -1,7 +1,7 @@
+import 'package:booqs_mobile/components/inquiry/screen.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/app_review_service.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/home/contact_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,7 +21,7 @@ class AnswerGoalAchievementScreenState
     Widget screen() {
       // 問い合わせフォーム
       if (_isNo) {
-        return const ContactFormScreen();
+        return const InquiryScreen();
       }
       // 気に入ったかどうかのクローズドクエスション画面
       return Container(

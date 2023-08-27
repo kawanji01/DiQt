@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:flutter/material.dart';
@@ -25,17 +26,17 @@ class _PurchaseRestoreButtonState extends State<PurchaseRestoreButton> {
         EasyLoading.dismiss();
         if (!mounted) return;
         if (subscriptionRestored) {
-          const snackBar = SnackBar(content: Text('購入情報を復元しました。'));
+          final snackBar = SnackBar(content: Text(t.purchase.restore_success));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           UserMyPage.push(context);
         } else {
-          const snackBar = SnackBar(content: Text('復元できる購入情報がありません。'));
+          final snackBar = SnackBar(content: Text(t.purchase.restore_error));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       },
-      child: const Text(
-        '以前購入した方はこちら',
-        style: TextStyle(
+      child: Text(
+        t.purchase.restore,
+        style: const TextStyle(
           decoration: TextDecoration.underline,
           fontWeight: FontWeight.w400,
           fontSize: 12,
