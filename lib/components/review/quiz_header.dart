@@ -31,32 +31,28 @@ class ReviewQuizHeader extends ConsumerWidget {
         ),
       );
     }
-
-    // 以前に問題を解いたことがある場合
-    Color color;
-    String resultText;
-    if (answerAnalysis.lastAnswerCorrect) {
-      color = Colors.blue;
-      resultText = t.answerAnalyses.correct;
-    } else {
-      color = Colors.red;
-      resultText = t.answerAnalyses.incorrect;
-    }
     // 最終解答
     final String timeAgo = DateTimeFormatter.createTimeAgoString(
       dateTime: answerAnalysis.lastAnsweredAt,
       locale: locale,
     );
-    final String lastRecord = t.answerAnalyses.last_record(
-      time_ago: timeAgo,
-      result: resultText,
-    );
+
+    // 以前に問題を解いたことがある場合
+    Color color;
+    String answeredAt;
+    if (answerAnalysis.lastAnswerCorrect) {
+      color = Colors.blue;
+      answeredAt = t.answerAnalyses.correct_at(time_ago: timeAgo);
+    } else {
+      color = Colors.red;
+      answeredAt = t.answerAnalyses.incorrect_at(time_ago: timeAgo);
+    }
 
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       alignment: Alignment.centerRight,
       child: Text(
-        '$scheduledAt / $lastRecord',
+        '$scheduledAt / $answeredAt',
         style:
             TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: color),
       ),

@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2766 (1383 per locale)
+/// Strings: 2788 (1394 per locale)
 ///
-/// Built on 2023-08-27 at 05:42 UTC
+/// Built on 2023-08-27 at 08:31 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -775,19 +775,30 @@ class _TranslationsAnswerAnalysesEn {
 	final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	String get answer_analysis => 'Answer Analysis';
 	String get answer_analyses => 'Answer Analyses';
 	String get answer_histories => 'Answer Histories';
 	String get premium_recommendation => 'To access these features, you need to register for a premium plan.';
+	String get order => 'Display';
 	String get correct_answer_rate_asc => 'Correct Rate, Low to High';
 	String get correct_answer_rate_desc => 'Correct Rate, High to Low';
 	String get incorrect_answer_histories_count_desc => 'Mistakes, Most to Least';
 	String get incorrect_answer_histories_count_asc => 'Mistakes, Least to Most';
 	String get last_answered_at_desc => 'Answered History, New to Old';
 	String get last_answered_at_asc => 'Answered History, Old to New';
+	String get analyze => 'Analyze';
 	String get correct => 'Correct';
 	String get incorrect => 'Incorrect';
-	String last_record({required Object time_ago, required Object result}) => '${time_ago} ${result}';
+	String last_record({required Object time_ago, required Object result}) => '${time_ago} - ${result}';
+	String correct_at({required Object time_ago}) => 'Correct ${time_ago}';
+	String incorrect_at({required Object time_ago}) => 'Incorrect ${time_ago}';
 	String get correct_answer_rate => 'Correct Rate';
+	String get not_yet_answered => 'You have not answered yet.';
+	String answers_count({required Object count}) => '${count} answers';
+	String correct_answers_count({required Object count}) => '${count} correct answers';
+	String incorrect_answers_count({required Object count}) => '${count} incorrect answers';
+	String get last_answer => 'Last Answer';
+	String get status => 'Status';
 }
 
 // Path: achievements
@@ -2555,19 +2566,30 @@ class _TranslationsAnswerAnalysesJa implements _TranslationsAnswerAnalysesEn {
 	@override final _TranslationsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get answer_analysis => '解答分析';
 	@override String get answer_analyses => '解答分析';
 	@override String get answer_histories => '解答履歴';
 	@override String get premium_recommendation => 'これらの機能を利用するには、プレミアムプランへの登録が必要です。';
+	@override String get order => '表示';
 	@override String get correct_answer_rate_asc => '正答率が低い順';
 	@override String get correct_answer_rate_desc => '正答率が高い順';
 	@override String get incorrect_answer_histories_count_desc => '間違いが多い順';
 	@override String get incorrect_answer_histories_count_asc => '間違いが少ない順';
 	@override String get last_answered_at_desc => '解答履歴：新しい順';
 	@override String get last_answered_at_asc => '解答履歴：古い順';
+	@override String get analyze => '分析する';
 	@override String get correct => '正解';
 	@override String get incorrect => '不正解';
 	@override String last_record({required Object time_ago, required Object result}) => '${time_ago}に${result}';
+	@override String correct_at({required Object time_ago}) => '${time_ago}に正解';
+	@override String incorrect_at({required Object time_ago}) => '${time_ago}に不正解';
 	@override String get correct_answer_rate => '正答率';
+	@override String get not_yet_answered => 'まだ解答したことがありません。';
+	@override String answers_count({required Object count}) => '${count}回解答';
+	@override String correct_answers_count({required Object count}) => '${count}回正解';
+	@override String incorrect_answers_count({required Object count}) => '${count}回不正解';
+	@override String get last_answer => '最後の解答';
+	@override String get status => '状態';
 }
 
 // Path: achievements
@@ -4144,19 +4166,30 @@ extension on _TranslationsEn {
 			case 'answerSettings.set_review_notification': return 'Set review time';
 			case 'answerSettings.set_review_notification_description': return 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
 			case 'answerSettings.review_notification_set': return ({required Object hours}) => 'Review reminder set for ${hours}:00.';
+			case 'answerAnalyses.answer_analysis': return 'Answer Analysis';
 			case 'answerAnalyses.answer_analyses': return 'Answer Analyses';
 			case 'answerAnalyses.answer_histories': return 'Answer Histories';
 			case 'answerAnalyses.premium_recommendation': return 'To access these features, you need to register for a premium plan.';
+			case 'answerAnalyses.order': return 'Display';
 			case 'answerAnalyses.correct_answer_rate_asc': return 'Correct Rate, Low to High';
 			case 'answerAnalyses.correct_answer_rate_desc': return 'Correct Rate, High to Low';
 			case 'answerAnalyses.incorrect_answer_histories_count_desc': return 'Mistakes, Most to Least';
 			case 'answerAnalyses.incorrect_answer_histories_count_asc': return 'Mistakes, Least to Most';
 			case 'answerAnalyses.last_answered_at_desc': return 'Answered History, New to Old';
 			case 'answerAnalyses.last_answered_at_asc': return 'Answered History, Old to New';
+			case 'answerAnalyses.analyze': return 'Analyze';
 			case 'answerAnalyses.correct': return 'Correct';
 			case 'answerAnalyses.incorrect': return 'Incorrect';
-			case 'answerAnalyses.last_record': return ({required Object time_ago, required Object result}) => '${time_ago} ${result}';
+			case 'answerAnalyses.last_record': return ({required Object time_ago, required Object result}) => '${time_ago} - ${result}';
+			case 'answerAnalyses.correct_at': return ({required Object time_ago}) => 'Correct ${time_ago}';
+			case 'answerAnalyses.incorrect_at': return ({required Object time_ago}) => 'Incorrect ${time_ago}';
 			case 'answerAnalyses.correct_answer_rate': return 'Correct Rate';
+			case 'answerAnalyses.not_yet_answered': return 'You have not answered yet.';
+			case 'answerAnalyses.answers_count': return ({required Object count}) => '${count} answers';
+			case 'answerAnalyses.correct_answers_count': return ({required Object count}) => '${count} correct answers';
+			case 'answerAnalyses.incorrect_answers_count': return ({required Object count}) => '${count} incorrect answers';
+			case 'answerAnalyses.last_answer': return 'Last Answer';
+			case 'answerAnalyses.status': return 'Status';
 			case 'achievements.view_got_medals': return 'View Got Medals';
 			case 'achievements.getting_medal': return 'Medal acquisition!!';
 			case 'achievements.getting_medal_for': return ({required Object name}) => '${name} Medal acquisition!!';
@@ -5535,19 +5568,30 @@ extension on _TranslationsJa {
 			case 'answerSettings.set_review_notification': return '復習時刻を設定する';
 			case 'answerSettings.set_review_notification_description': return 'あなたが効率的に学習できるように、復習すべき問題があるときにリマインダーを送ります。あなたが学習できる時刻を設定してください。';
 			case 'answerSettings.review_notification_set': return ({required Object hours}) => '${hours}時に復習リマインダーを設定しました。';
+			case 'answerAnalyses.answer_analysis': return '解答分析';
 			case 'answerAnalyses.answer_analyses': return '解答分析';
 			case 'answerAnalyses.answer_histories': return '解答履歴';
 			case 'answerAnalyses.premium_recommendation': return 'これらの機能を利用するには、プレミアムプランへの登録が必要です。';
+			case 'answerAnalyses.order': return '表示';
 			case 'answerAnalyses.correct_answer_rate_asc': return '正答率が低い順';
 			case 'answerAnalyses.correct_answer_rate_desc': return '正答率が高い順';
 			case 'answerAnalyses.incorrect_answer_histories_count_desc': return '間違いが多い順';
 			case 'answerAnalyses.incorrect_answer_histories_count_asc': return '間違いが少ない順';
 			case 'answerAnalyses.last_answered_at_desc': return '解答履歴：新しい順';
 			case 'answerAnalyses.last_answered_at_asc': return '解答履歴：古い順';
+			case 'answerAnalyses.analyze': return '分析する';
 			case 'answerAnalyses.correct': return '正解';
 			case 'answerAnalyses.incorrect': return '不正解';
 			case 'answerAnalyses.last_record': return ({required Object time_ago, required Object result}) => '${time_ago}に${result}';
+			case 'answerAnalyses.correct_at': return ({required Object time_ago}) => '${time_ago}に正解';
+			case 'answerAnalyses.incorrect_at': return ({required Object time_ago}) => '${time_ago}に不正解';
 			case 'answerAnalyses.correct_answer_rate': return '正答率';
+			case 'answerAnalyses.not_yet_answered': return 'まだ解答したことがありません。';
+			case 'answerAnalyses.answers_count': return ({required Object count}) => '${count}回解答';
+			case 'answerAnalyses.correct_answers_count': return ({required Object count}) => '${count}回正解';
+			case 'answerAnalyses.incorrect_answers_count': return ({required Object count}) => '${count}回不正解';
+			case 'answerAnalyses.last_answer': return '最後の解答';
+			case 'answerAnalyses.status': return '状態';
 			case 'achievements.view_got_medals': return '獲得メダルを見る';
 			case 'achievements.getting_medal': return '実績メダル獲得！！';
 			case 'achievements.getting_medal_for': return ({required Object name}) => '${name}メダル獲得！！';

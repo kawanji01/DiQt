@@ -20,8 +20,8 @@ class QuizHintScreen extends StatelessWidget {
       return Column(
         children: [
           // heading
-          const Text('ヒント',
-              style: TextStyle(
+          Text(t.quizzes.hint,
+              style: const TextStyle(
                   color: Colors.green,
                   fontSize: 22,
                   fontWeight: FontWeight.bold)),
