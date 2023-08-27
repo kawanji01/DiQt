@@ -14,7 +14,7 @@ class AnswerEffectSetting extends StatelessWidget {
         AnswerEffectSwitch(),
         SizedBox(height: 24),
         AnswerSESwitch(),
-        SizedBox(height: 48),
+        SizedBox(height: 80),
       ],
     );
   }

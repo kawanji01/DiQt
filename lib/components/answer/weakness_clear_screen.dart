@@ -49,23 +49,25 @@ class AnswerWeaknessClearScreenState
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
       child: Stack(
         children: [
-          Column(children: [
-            const SizedBox(height: 16),
-            // heading
-            Text(message,
-                style: const TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.orange)),
-            const SizedBox(height: 16),
-            // explanation
-            Text(description,
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87)),
-            const AnswerEffectSetting(),
-          ]),
+          SingleChildScrollView(
+            child: Column(children: [
+              const SizedBox(height: 16),
+              // heading
+              Text(message,
+                  style: const TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange)),
+              const SizedBox(height: 16),
+              // explanation
+              Text(description,
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87)),
+              const AnswerEffectSetting(),
+            ]),
+          ),
           const DialogCloseButton(),
           const DialogConfetti(),
         ],

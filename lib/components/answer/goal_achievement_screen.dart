@@ -87,24 +87,25 @@ class AnswerGoalAchievementScreenState
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
       child: Stack(
         children: [
-          Column(children: [
-            const SizedBox(height: 16),
-            // haeding
-            Text(message,
-                style: const TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.orange)),
-            const SizedBox(height: 16),
-
-            ExpGainedExpIndicator(
-              initialExp: initialExp,
-              gainedExp: gainedExp,
-            ),
-            const SizedBox(height: 16),
-            AnswerShareButton(text: message, url: url),
-            const AnswerEffectSetting(),
-          ]),
+          SingleChildScrollView(
+            child: Column(children: [
+              const SizedBox(height: 16),
+              // haeding
+              Text(message,
+                  style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange)),
+              const SizedBox(height: 24),
+              ExpGainedExpIndicator(
+                initialExp: initialExp,
+                gainedExp: gainedExp,
+              ),
+              const SizedBox(height: 16),
+              AnswerShareButton(text: message, url: url),
+              const AnswerEffectSetting(),
+            ]),
+          ),
           const DialogCloseButton(),
           const DialogConfetti(),
         ],

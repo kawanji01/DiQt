@@ -67,20 +67,22 @@ class ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
       // 閉じるボタンを下端に固定 ref: https://www.choge-blog.com/programming/flutter-bottom-button/
       child: Stack(
         children: [
-          Column(children: [
-            const SizedBox(height: 16),
-            Text(message,
-                style: const TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.orange)),
-            ExpExpIndicator(
-              exp: totalExp,
-            ),
-            const SizedBox(height: 16),
-            shareButton(),
-            const AnswerEffectSetting(),
-          ]),
+          SingleChildScrollView(
+            child: Column(children: [
+              const SizedBox(height: 16),
+              Text(message,
+                  style: const TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange)),
+              ExpExpIndicator(
+                exp: totalExp,
+              ),
+              const SizedBox(height: 16),
+              shareButton(),
+              const AnswerEffectSetting(),
+            ]),
+          ),
           const DialogCloseButton(),
           const DialogConfetti(),
         ],
