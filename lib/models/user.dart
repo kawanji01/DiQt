@@ -43,6 +43,7 @@ class User {
     required this.todaysTranslationsCount,
     required this.appFavored,
     required this.appCancelReportSent,
+    required this.langInitialized,
     required this.activated,
     this.authToken,
     this.schoolId,
@@ -89,6 +90,7 @@ class User {
   int todaysTranslationsCount;
   bool appFavored;
   bool appCancelReportSent;
+  bool langInitialized;
   bool activated;
   int? schoolId;
   bool? schoolParticipation;
@@ -141,6 +143,7 @@ class User {
         todaysTranslationsCount = json['todays_translations_count'],
         appFavored = json['app_favored'],
         appCancelReportSent = json['app_cancel_report_sent'],
+        langInitialized = json['lang_initialized'],
         activated = json['activated'],
         authToken = json['token_for_native_app'],
         schoolId = json['school_id'],
@@ -213,6 +216,7 @@ class User {
         'todays_translations_count': todaysTranslationsCount,
         'app_favored': appFavored,
         'app_cancel_report_sent': appCancelReportSent,
+        'lang_initialized': langInitialized,
         'activated': activated,
         'token_for_native_app': authToken,
         'school_id': schoolId,

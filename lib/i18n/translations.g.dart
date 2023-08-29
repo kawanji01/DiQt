@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2788 (1394 per locale)
+/// Strings: 2792 (1396 per locale)
 ///
-/// Built on 2023-08-27 at 08:31 UTC
+/// Built on 2023-08-29 at 02:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -499,6 +499,7 @@ class _TranslationsUsersEn {
 	String get lang_number => 'Language Setting(mother tongue)';
 	String get learning_lang_number => 'Learning Language';
 	String get time_zone_name => 'Time Zone';
+	String get time_zone_description => 'By setting the time zone, you can solve the problem of time difference and receive more accurate notifications such as review notifications.';
 	String get you_cant_change_time_zone => 'You can not change TimeZone if you have already answered a quiz today. Please try tomorrow.';
 	String get authentication => 'Authentication';
 	String get email => 'Email';
@@ -547,6 +548,7 @@ class _TranslationsUsersEn {
 	String continuous_answer_days_count({required Object count}) => '${count} days of continuous answers!';
 	String continuous_goal_achievement_count({required Object count}) => '${count} days of continuous goal achievement!';
 	String continuous_review_completion_count({required Object count}) => '${count} days of continuous review completion!';
+	String get language_settings => 'Language settings';
 }
 
 // Path: sentenceRequests
@@ -2290,6 +2292,7 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String get lang_number => '言語設定(母語)';
 	@override String get learning_lang_number => '学習言語';
 	@override String get time_zone_name => 'タイムゾーン';
+	@override String get time_zone_description => 'タイムゾーンを設定することで、時差の問題を解決し、復習通知などをより正確な時刻で受け取れるようになります。';
 	@override String get you_cant_change_time_zone => '今日すでに問題に解答してしまっている場合、 タイムゾーンを変更することはできません。明日以降にお試しください。';
 	@override String get authentication => '認証設定';
 	@override String get email => 'メールアドレス';
@@ -2338,6 +2341,7 @@ class _TranslationsUsersJa implements _TranslationsUsersEn {
 	@override String continuous_answer_days_count({required Object count}) => '${count}日連続解答中！';
 	@override String continuous_goal_achievement_count({required Object count}) => '${count}日連続目標達成中！';
 	@override String continuous_review_completion_count({required Object count}) => '${count}日連続復習達成中！';
+	@override String get language_settings => '言語設定';
 }
 
 // Path: sentenceRequests
@@ -3953,6 +3957,7 @@ extension on _TranslationsEn {
 			case 'users.lang_number': return 'Language Setting(mother tongue)';
 			case 'users.learning_lang_number': return 'Learning Language';
 			case 'users.time_zone_name': return 'Time Zone';
+			case 'users.time_zone_description': return 'By setting the time zone, you can solve the problem of time difference and receive more accurate notifications such as review notifications.';
 			case 'users.you_cant_change_time_zone': return 'You can not change TimeZone if you have already answered a quiz today. Please try tomorrow.';
 			case 'users.authentication': return 'Authentication';
 			case 'users.email': return 'Email';
@@ -4001,6 +4006,7 @@ extension on _TranslationsEn {
 			case 'users.continuous_answer_days_count': return ({required Object count}) => '${count} days of continuous answers!';
 			case 'users.continuous_goal_achievement_count': return ({required Object count}) => '${count} days of continuous goal achievement!';
 			case 'users.continuous_review_completion_count': return ({required Object count}) => '${count} days of continuous review completion!';
+			case 'users.language_settings': return 'Language settings';
 			case 'sentenceRequests.sentence_requests': return 'Edit histories of example sentences';
 			case 'sentenceRequests.edit_histories': return 'Edit Histories';
 			case 'sentenceRequests.pending_edits': return 'Pending Edits';
@@ -5355,6 +5361,7 @@ extension on _TranslationsJa {
 			case 'users.lang_number': return '言語設定(母語)';
 			case 'users.learning_lang_number': return '学習言語';
 			case 'users.time_zone_name': return 'タイムゾーン';
+			case 'users.time_zone_description': return 'タイムゾーンを設定することで、時差の問題を解決し、復習通知などをより正確な時刻で受け取れるようになります。';
 			case 'users.you_cant_change_time_zone': return '今日すでに問題に解答してしまっている場合、 タイムゾーンを変更することはできません。明日以降にお試しください。';
 			case 'users.authentication': return '認証設定';
 			case 'users.email': return 'メールアドレス';
@@ -5403,6 +5410,7 @@ extension on _TranslationsJa {
 			case 'users.continuous_answer_days_count': return ({required Object count}) => '${count}日連続解答中！';
 			case 'users.continuous_goal_achievement_count': return ({required Object count}) => '${count}日連続目標達成中！';
 			case 'users.continuous_review_completion_count': return ({required Object count}) => '${count}日連続復習達成中！';
+			case 'users.language_settings': return '言語設定';
 			case 'sentenceRequests.sentence_requests': return '例文の編集履歴';
 			case 'sentenceRequests.edit_histories': return '編集履歴';
 			case 'sentenceRequests.pending_edits': return '審査中の編集';

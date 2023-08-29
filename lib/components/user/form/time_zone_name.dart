@@ -22,7 +22,13 @@ class UserFormTimeZoneName extends ConsumerWidget {
           ),
         );
       }
-      return Container();
+      return Container(
+        margin: const EdgeInsets.symmetric(vertical: 16),
+        child: Text(
+          t.users.time_zone_description,
+          style: const TextStyle(color: Colors.black54, fontSize: 14),
+        ),
+      );
     }
 
     return Column(
@@ -32,12 +38,13 @@ class UserFormTimeZoneName extends ConsumerWidget {
         Container(
           margin: const EdgeInsets.only(top: 16),
           height: 48,
-          width: MediaQuery.of(context).size.width,
+          //width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.only(left: 15.0, right: 10.0),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               border: Border.all(color: Colors.black87)),
           child: DropdownButton<String>(
+            isExpanded: true,
             value: ref.watch(userTimeZoneNameProvider),
             iconSize: 24,
             elevation: 16,
@@ -51,9 +58,11 @@ class UserFormTimeZoneName extends ConsumerWidget {
                 value: value,
                 child: Text(TimeZoneHandler.nameToI18n(value),
                     style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87)),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                      overflow: TextOverflow.ellipsis,
+                    )),
               );
             }).toList(),
           ),
