@@ -1,10 +1,8 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/user/form/authentication.dart';
 import 'package:booqs_mobile/components/user/form/icon.dart';
-import 'package:booqs_mobile/components/user/form/lang_number.dart';
-import 'package:booqs_mobile/components/user/form/learning_lang_number.dart';
+import 'package:booqs_mobile/components/user/form/lang_settings.dart';
 import 'package:booqs_mobile/components/user/form/mail_delivered.dart';
-import 'package:booqs_mobile/components/user/form/time_zone_name.dart';
 import 'package:booqs_mobile/components/user/form/withdrawal_button.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
@@ -132,11 +130,7 @@ class UserFormFieldsState extends ConsumerState<UserFormFields> {
                 ],
               ),
               const SizedBox(height: 40),
-              const UserFormLangNumber(),
-              const SizedBox(height: 32),
-              const UserFormLearningLangNumber(),
-              const SizedBox(height: 32),
-              const UserFormTimeZoneName(),
+              const UserFormLangSettings(),
               const SizedBox(height: 48),
               const UserFormMailDelivered(),
               const SizedBox(height: 48),

@@ -40,7 +40,7 @@ class DrillAnswerSettingButton extends ConsumerWidget {
         color: Colors.black54,
       ),
       label: Text(
-        ' ${t.answerSettings.answer_setting}}',
+        ' ${t.answerSettings.answer_setting}',
         style: const TextStyle(
             fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54),
       ),

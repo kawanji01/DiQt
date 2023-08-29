@@ -1,9 +1,35 @@
 import 'package:booqs_mobile/components/dictionary_map/radio_list.dart';
 import 'package:booqs_mobile/components/dictionary_map/search_form.dart';
+import 'package:booqs_mobile/components/user/lang_init_screen.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/models/user.dart';
+import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DictionaryMapSearchScreen extends StatelessWidget {
+class DictionaryMapSearchScreen extends ConsumerStatefulWidget {
   const DictionaryMapSearchScreen({super.key});
+
+  @override
+  ConsumerState<DictionaryMapSearchScreen> createState() =>
+      _DictionaryMapSearchScreenState();
+}
+
+class _DictionaryMapSearchScreenState
+    extends ConsumerState<DictionaryMapSearchScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final User? user = ref.watch(currentUserProvider);
+      if (user == null) return;
+
+      if (user.langInitialized == false) {
+        const screen = UserLangInitScreen();
+        Dialogs.slideFromBottomFade(screen);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

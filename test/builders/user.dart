@@ -24,6 +24,7 @@ class UserBuilder {
         answerDaysCount: 0,
         answerHistoriesCount: 0,
         appCancelReportSent: false,
+        langInitialized: false,
         continuousAnswerDaysCount: 0,
         continuousGoalAchievementCount: 0,
         continuousReviewCompletionCount: 0,

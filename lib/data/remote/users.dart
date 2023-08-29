@@ -439,4 +439,26 @@ class RemoteUsers {
       return ErrorHandler.exceptionMap(e, s);
     }
   }
+
+  static Future<Map> updateLangs(
+      {required int langNumber,
+      required int learningLangNumber,
+      required String timeZoneName}) async {
+    try {
+      final url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/update_langs');
+      final Map<String, dynamic> body = {
+        'user': {'lang_number': langNumber}
+      };
+      final res = await HttpService.patch(url, body);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
 }
