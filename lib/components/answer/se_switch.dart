@@ -39,13 +39,16 @@ class _AnswerSESwitchState extends ConsumerState<AnswerSESwitch> {
     }
 
     return SwitchListTile(
-        title: Text(t.answerSettings.se_enabled,
-            style: const TextStyle(fontWeight: FontWeight.bold)),
-        value: ref.watch(seEnabledProvider),
-        onChanged: (bool value) {
-          if (_isRequesting) return;
-          switchSE();
-        },
-        secondary: const Icon(Icons.volume_up));
+      title: Text(t.answerSettings.se_enabled,
+          style: const TextStyle(
+              fontWeight: FontWeight.normal,
+              color: Colors.black87,
+              fontSize: 14)),
+      value: ref.watch(seEnabledProvider),
+      onChanged: (bool value) {
+        if (_isRequesting) return;
+        switchSE();
+      },
+    );
   }
 }

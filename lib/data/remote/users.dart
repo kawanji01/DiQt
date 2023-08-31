@@ -461,4 +461,28 @@ class RemoteUsers {
       return ErrorHandler.exceptionMap(e, s);
     }
   }
+
+  static Future<Map> setReviewTimer(
+      {required String timeZoneName,
+      required int reviewNotificationTimer,
+      required bool reviewNotificationEnabled}) async {
+    try {
+      final url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/set_review_timer');
+      final Map<String, dynamic> body = {
+        'time_zone_name': timeZoneName,
+        'review_notification_timer': reviewNotificationTimer,
+        'review_notification_enabled': reviewNotificationEnabled
+      };
+      final res = await HttpService.patch(url, body);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
 }
