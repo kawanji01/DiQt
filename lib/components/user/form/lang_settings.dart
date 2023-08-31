@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/user/form/lang_number.dart';
 import 'package:booqs_mobile/components/user/form/learning_lang_number.dart';
-import 'package:booqs_mobile/components/user/form/time_zone_name.dart';
 import 'package:flutter/material.dart';
 
 class UserFormLangSettings extends StatelessWidget {
@@ -15,7 +14,7 @@ class UserFormLangSettings extends StatelessWidget {
         SizedBox(height: 32),
         UserFormLearningLangNumber(),
         SizedBox(height: 32),
-        UserFormTimeZoneName(),
+        // UserFormTimeZoneName(),
       ],
     );
   }

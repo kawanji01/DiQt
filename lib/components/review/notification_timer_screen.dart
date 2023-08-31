@@ -1,33 +1,38 @@
+import 'package:booqs_mobile/components/answer_setting/review_notification.dart';
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
-import 'package:booqs_mobile/components/user/form/lang_settings.dart';
+import 'package:booqs_mobile/components/user/form/time_zone_name.dart';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/user.dart';
-import 'package:booqs_mobile/pages/home/home_page.dart';
+import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserLangInitScreen extends ConsumerStatefulWidget {
-  const UserLangInitScreen({super.key});
+class ReviewNotificationTimerScreen extends ConsumerStatefulWidget {
+  const ReviewNotificationTimerScreen({super.key});
 
   @override
-  ConsumerState<UserLangInitScreen> createState() => _UserLangInitScreenState();
+  ConsumerState<ReviewNotificationTimerScreen> createState() =>
+      _ReviewNotificationTimerScreenState();
 }
 
-class _UserLangInitScreenState extends ConsumerState<UserLangInitScreen> {
+class _ReviewNotificationTimerScreenState
+    extends ConsumerState<ReviewNotificationTimerScreen> {
   bool _isReqeusting = false;
 
   Future<void> update() async {
     setState(() => _isReqeusting = true);
     EasyLoading.show();
-    final Map resMap = await RemoteUsers.updateLangs(
-      langNumber: ref.watch(userLangNumberProvider),
-      learningLangNumber: ref.watch(userLearningLangNumberProvider),
+    final Map resMap = await RemoteUsers.setReviewTimer(
+      reviewNotificationTimer: ref.watch(reviewNotificationTimerProvider),
+      reviewNotificationEnabled: ref.watch(reviewNotificationEnabledProvider),
       timeZoneName: ref.watch(userTimeZoneNameProvider),
     );
     EasyLoading.dismiss();
@@ -37,12 +42,15 @@ class _UserLangInitScreenState extends ConsumerState<UserLangInitScreen> {
       ErrorHandler.showErrorToast(context, resMap);
       return;
     }
-    final SnackBar snackBar =
-        SnackBar(content: Text(t.shared.update_succeeded));
+    final String message = resMap['message'] ?? t.shared.update_succeeded;
+    final SnackBar snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
     final User user = User.fromJson(resMap['user']);
     ref.read(currentUserProvider.notifier).update(user);
-    HomePage.push(context);
+    final AnswerSetting answerSetting =
+        AnswerSetting.fromJson(resMap['answer_setting']);
+    ref.read(answerSettingProvider.notifier).state = answerSetting;
+    ReviewIndexPage.push(context);
   }
 
   @override
@@ -57,14 +65,17 @@ class _UserLangInitScreenState extends ConsumerState<UserLangInitScreen> {
           SingleChildScrollView(
             child: Column(
               children: [
-                HeadingMediumGreen(label: t.users.language_settings),
+                HeadingMediumGreen(
+                    label: t.answerSettings.set_review_notification),
                 const SizedBox(height: 24),
-                const UserFormLangSettings(),
+                const AnswerSettingReviewNotification(),
+                const SizedBox(height: 24),
+                const UserFormTimeZoneName(),
                 const SizedBox(height: 40),
                 InkWell(
                     onTap: _isReqeusting ? null : () => update(),
                     child: MediumGreenButton(
-                      label: t.shared.update,
+                      label: t.shared.set_up,
                       fontSize: 18,
                       icon: Icons.update,
                     )),

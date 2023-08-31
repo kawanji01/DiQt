@@ -1,10 +1,14 @@
+import 'package:booqs_mobile/components/review/notification_timer_screen.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/local/order_info.dart';
+import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/review.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
+import 'package:booqs_mobile/models/answer_setting.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/review/unsolved_screen_wrapper.dart';
@@ -51,7 +55,18 @@ class ReviewIndexPageState extends ConsumerState<ReviewIndexPage> {
       // riverpodの寿命が切れたときに備えて、storageからorderをセットする。
       final String reviewOrder = await LocalOrderInfo.reviewOrder();
       ref.read(reviewOrderProvider.notifier).state = reviewOrder;
+      setReviewTimer();
     });
+  }
+
+  void setReviewTimer() {
+    final AnswerSetting? answerSetting = ref.watch(answerSettingProvider);
+    if (answerSetting == null) return;
+    if (answerSetting.reviewNotificationTimerSet == false) {
+      // 言語設定画面を表示
+      const screen = ReviewNotificationTimerScreen();
+      Dialogs.slideFromBottomFade(screen);
+    }
   }
 
   @override
