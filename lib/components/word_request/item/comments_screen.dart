@@ -30,21 +30,31 @@ class WordRequestItemCommentsScreenState
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: ResponsiveValues.dialogHeight(context),
-      child: Stack(
-        children: [
-          SingleChildScrollView(
-            child: WordRequestCommentItemList(
-              wordRequest: widget.wordRequest,
+    return GestureDetector(
+      onTap: () {
+        // キーボードを閉じる
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        // フォーカスがすでにない状況でunfocus()を呼び出すと、エラーが発生する可能性がある
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: SizedBox(
+        width: double.infinity,
+        height: ResponsiveValues.dialogHeight(context),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: WordRequestCommentItemList(
+                wordRequest: widget.wordRequest,
+              ),
             ),
-          ),
-          WordRequestCommentNewForm(
-            wordRequest: widget.wordRequest,
-            commentController: widget.commentController,
-          ),
-        ],
+            WordRequestCommentNewForm(
+              wordRequest: widget.wordRequest,
+              commentController: widget.commentController,
+            ),
+          ],
+        ),
       ),
     );
   }
