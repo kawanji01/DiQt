@@ -34,10 +34,17 @@ class SentenceRequestItemCommentsButtonState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(
+          height: 8,
+        ),
         // 編集者のコメント
         SentenceRequestItemEditorComment(
           sentenceRequest: sentenceRequest,
         ),
+        const SizedBox(
+          height: 8,
+        ),
+        // 編集
         // コメントボタン
         InkWell(
             child: SmallOutlineGrayButton(

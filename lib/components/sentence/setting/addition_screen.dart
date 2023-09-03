@@ -30,6 +30,7 @@ class _SentenceSettingAdditionScreenState
   final _originalController = TextEditingController();
   final _translationController = TextEditingController();
   final _explanationController = TextEditingController();
+  final _commentController = TextEditingController();
 
   @override
   void initState() {
@@ -41,6 +42,7 @@ class _SentenceSettingAdditionScreenState
     _originalController.dispose();
     _translationController.dispose();
     _explanationController.dispose();
+    _commentController.dispose();
     super.dispose();
   }
 
@@ -60,7 +62,8 @@ class _SentenceSettingAdditionScreenState
     };
     // 画面全体にローディングを表示
     EasyLoading.show(status: 'loading...');
-    final Map resMap = await RemoteSentences.create(params);
+    final Map resMap = await RemoteSentences.create(
+        params: params, comment: _commentController.text);
     EasyLoading.dismiss();
     // リクエストロック終了
     setState(() {
@@ -109,6 +112,7 @@ class _SentenceSettingAdditionScreenState
                     originalController: _originalController,
                     translationController: _translationController,
                     explanationController: _explanationController,
+                    commentController: _commentController,
                     dictionary: widget.dictionary,
                     isNew: true,
                     keyword: widget.keyword,

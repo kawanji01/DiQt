@@ -29,6 +29,7 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
   final _originalController = TextEditingController();
   final _translationController = TextEditingController();
   final _explanationController = TextEditingController();
+  final _commentController = TextEditingController();
 
   @override
   void initState() {
@@ -46,6 +47,7 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
     _originalController.dispose();
     _translationController.dispose();
     _explanationController.dispose();
+    _commentController.dispose();
     super.dispose();
   }
 
@@ -70,7 +72,8 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
       };
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
-      final Map resMap = await RemoteSentences.update(params);
+      final Map resMap = await RemoteSentences.update(
+          params: params, comment: _commentController.text);
       EasyLoading.dismiss();
       setState(() {
         _isRequesting = false;
@@ -106,6 +109,7 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
                 originalController: _originalController,
                 translationController: _translationController,
                 explanationController: _explanationController,
+                commentController: _commentController,
                 dictionary: sentence.dictionary!,
                 isNew: false,
                 keyword: '',

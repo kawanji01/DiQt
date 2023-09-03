@@ -17,11 +17,13 @@ class SentenceNewScreen extends StatefulWidget {
       required this.originalController,
       required this.translationController,
       required this.explanationController,
+      required this.commentController,
       required this.keyword,
       required this.dictionary});
   final TextEditingController originalController;
   final TextEditingController translationController;
   final TextEditingController explanationController;
+  final TextEditingController commentController;
   final String keyword;
   final Dictionary dictionary;
 
@@ -50,7 +52,8 @@ class _SentenceNewScreenState extends State<SentenceNewScreen> {
     };
     // 画面全体にローディングを表示
     EasyLoading.show(status: 'loading...');
-    final Map resMap = await RemoteSentences.create(params);
+    final Map resMap = await RemoteSentences.create(
+        params: params, comment: widget.commentController.text);
     EasyLoading.dismiss();
     // リクエストロック終了
     setState(() {
@@ -87,6 +90,7 @@ class _SentenceNewScreenState extends State<SentenceNewScreen> {
               originalController: widget.originalController,
               translationController: widget.translationController,
               explanationController: widget.explanationController,
+              commentController: widget.commentController,
               dictionary: widget.dictionary,
               isNew: true,
               keyword: widget.keyword,

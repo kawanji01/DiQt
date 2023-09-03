@@ -115,6 +115,10 @@ class Dictionary {
       LanguageHandler.getLanguageFromNumber(langNumberOfMeaning);
   // 辞書の名前
   String typeName() => '${languageOfEntry()} - ${languageOfMeaning()}';
+  // モノリンガルかどうか
+  bool monolingual() => langNumberOfMeaning == langNumberOfEntry;
+  // バイリンガルかどうか
+  bool bilingual() => langNumberOfMeaning != langNumberOfEntry;
   //
   Map<String, dynamic> toJson() => {
         'id': id,
