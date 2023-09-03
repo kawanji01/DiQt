@@ -1,8 +1,8 @@
 import 'package:booqs_mobile/components/markdown/markdown_without_dict_link.dart';
 import 'package:flutter/material.dart';
 
-class QuizChoiceButton extends StatelessWidget {
-  const QuizChoiceButton(
+class QuizItemChoiceButton extends StatelessWidget {
+  const QuizItemChoiceButton(
       {Key? key, required this.answerText, required this.selected})
       : super(key: key);
   final String answerText;

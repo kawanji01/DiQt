@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/quiz/drill_title.dart';
+import 'package:booqs_mobile/components/quiz/item/drill_title.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz_request.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +11,6 @@ class QuizRequestItemDrill extends StatelessWidget {
   Widget build(BuildContext context) {
     final Drill? drill = quizRequest.drill;
     if (drill == null) return Container();
-    return QuizDrillTitle(drill: drill);
+    return QuizItemDrillTitle(drill: drill);
   }
 }

@@ -39,6 +39,7 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   final _originalController = TextEditingController();
   final _translationController = TextEditingController();
   final _explanationController = TextEditingController();
+  final _commentController = TextEditingController();
 
   @override
   void initState() {
@@ -62,6 +63,7 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
     _originalController.dispose();
     _translationController.dispose();
     _explanationController.dispose();
+    _commentController.dispose();
     super.dispose();
   }
 
@@ -100,6 +102,7 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
                         originalController: _originalController,
                         translationController: _translationController,
                         explanationController: _explanationController,
+                        commentController: _commentController,
                         keyword: _keyword,
                         dictionary: dictionary);
                   },

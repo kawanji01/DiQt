@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/answer_analysis/quiz_header.dart';
-import 'package:booqs_mobile/components/quiz/content.dart';
+import 'package:booqs_mobile/components/quiz/item.dart';
 import 'package:flutter/material.dart';
 
 class AnswerAnalysisListQuiz extends StatelessWidget {
@@ -17,6 +17,6 @@ class AnswerAnalysisListQuiz extends StatelessWidget {
     if (quiz == null) return const Text('Quiz does not exist.');
 
     final header = AnswerAnalysisQuizHeader(answerAnalysis: answerAnalysis);
-    return QuizContent(quiz: quiz, header: header, isShow: isShow);
+    return QuizItem(quiz: quiz, header: header, isShow: isShow);
   }
 }

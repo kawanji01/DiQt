@@ -22,7 +22,8 @@ class WordRequestItemSentenceDiff extends StatelessWidget {
     final String previousTranslation = previousSentence?.translation ?? '';
 
     Widget diff() {
-      if (translaion == previousTranslation) {
+      if (translaion == previousTranslation ||
+          sentence?.monolingual() == true) {
         return SharedDiffText(
           oldText: previousOriginal,
           newText: original,

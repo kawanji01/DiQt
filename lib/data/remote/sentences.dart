@@ -28,9 +28,13 @@ class RemoteSentences {
   }
 
   // 例文の作成
-  static Future<Map> create(Map<String, dynamic> params) async {
+  static Future<Map> create(
+      {required Map<String, dynamic> params, required String comment}) async {
     try {
-      final Map<String, dynamic> body = {'sentence': params};
+      final Map<String, dynamic> body = {
+        'sentence': params,
+        'comment': comment
+      };
       final Uri url = Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences');
       final Response res = await HttpService.post(
         url,
@@ -50,9 +54,13 @@ class RemoteSentences {
   }
 
   // 例文の更新
-  static Future<Map> update(Map<String, dynamic> params) async {
+  static Future<Map> update(
+      {required Map<String, dynamic> params, required String comment}) async {
     try {
-      final Map<String, dynamic> body = {'sentence': params};
+      final Map<String, dynamic> body = {
+        'sentence': params,
+        'comment': comment
+      };
 
       final Uri url = Uri.parse(
           '${DiQtURL.root()}/api/v1/mobile/sentences/${params['id']}');

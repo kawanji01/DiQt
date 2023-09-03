@@ -2,15 +2,15 @@ import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
-import 'package:booqs_mobile/components/quiz/answer_part.dart';
+import 'package:booqs_mobile/components/quiz/item/answer_part.dart';
 import 'package:booqs_mobile/components/quiz/explanation/screen.dart';
-import 'package:booqs_mobile/components/quiz/footer.dart';
-import 'package:booqs_mobile/components/quiz/question_part.dart';
+import 'package:booqs_mobile/components/quiz/item/footer.dart';
+import 'package:booqs_mobile/components/quiz/item/question_part.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizContent extends ConsumerWidget {
-  const QuizContent(
+class QuizItem extends ConsumerWidget {
+  const QuizItem(
       {Key? key,
       required this.quiz,
       required this.header,
@@ -25,12 +25,12 @@ class QuizContent extends ConsumerWidget {
     final Drill? drill = quiz.drill;
     if (drill == null) return const Text('Drill does not exist.');
     final Review? review = quiz.review;
-    final question = QuizQuestionPart(quiz: quiz, drill: drill);
-    final answer = QuizAnswerPart(
+    final question = QuizItemQuestionPart(quiz: quiz, drill: drill);
+    final answer = QuizItemAnswerPart(
       quiz: quiz,
       unsolved: false,
     );
-    final footer = QuizFooter(
+    final footer = QuizItemFooter(
       quiz: quiz,
       review: review,
       isShow: isShow,

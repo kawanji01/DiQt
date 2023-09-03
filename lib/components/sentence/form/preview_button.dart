@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/sentence/form/preview_screen.dart';
 import 'package:flutter/material.dart';
@@ -41,9 +42,9 @@ class SentenceFormPreviewButton extends StatelessWidget {
                 dictionary: dictionary))
       },
       icon: const Icon(Icons.visibility, color: Colors.white),
-      label: const Text(
-        'プレビューを見る',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      label: Text(
+        t.words.text_preview,
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
     );
   }

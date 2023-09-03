@@ -33,10 +33,17 @@ class QuizRequestItemCommentsButtonState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(
+          height: 8,
+        ),
         // 編集者のコメント
         QuizRequestItemEditorComment(
           quizRequest: quizRequest,
         ),
+        const SizedBox(
+          height: 8,
+        ),
+        // 編集者の
         // コメントボタン
         InkWell(
             child: SmallOutlineGrayButton(

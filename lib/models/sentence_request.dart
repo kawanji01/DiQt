@@ -108,6 +108,10 @@ class SentenceRequest {
     return acceptance == true || rejection == true;
   }
 
+  bool monolingual() {
+    return langNumberOfOriginal == langNumberOfTranslation;
+  }
+
   Map<String, dynamic> toJson() => {
         'id': id,
         'dictionary_id': dictionaryId,

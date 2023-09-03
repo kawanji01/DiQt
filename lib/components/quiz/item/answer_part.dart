@@ -1,11 +1,12 @@
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/components/quiz/flashcard.dart';
-import 'package:booqs_mobile/components/quiz/short_answer_form.dart';
-import 'package:booqs_mobile/components/quiz/multiple_choices.dart';
+import 'package:booqs_mobile/components/quiz/item/flashcard.dart';
+import 'package:booqs_mobile/components/quiz/item/short_answer_form.dart';
+import 'package:booqs_mobile/components/quiz/item/multiple_choices.dart';
 import 'package:flutter/material.dart';
 
-class QuizAnswerPart extends StatelessWidget {
-  const QuizAnswerPart({Key? key, required this.quiz, required this.unsolved})
+class QuizItemAnswerPart extends StatelessWidget {
+  const QuizItemAnswerPart(
+      {Key? key, required this.quiz, required this.unsolved})
       : super(key: key);
   final Quiz quiz;
   final bool unsolved;
@@ -15,7 +16,7 @@ class QuizAnswerPart extends StatelessWidget {
     Widget answerForm() {
       if (quiz.shortAnswerEnabled) {
         // 入力型
-        return QuizShortAnswerForm(
+        return QuizItemShortAnswerForm(
           quiz: quiz,
           unsolved: unsolved,
         );
@@ -30,14 +31,14 @@ class QuizAnswerPart extends StatelessWidget {
         answerTextList.removeWhere((value) => value == '');
         answerTextList.shuffle();
         // リビルド時に選択肢がシャッフルし直されるのを防ぐために、外部から選択肢のリストを渡す。
-        return QuizMultipleChoices(
+        return QuizItemMultipleChoices(
           quiz: quiz,
           answerTextList: answerTextList,
           unsolved: unsolved,
         );
       } else {
         // 単語カード型
-        return QuizFlashcard(
+        return QuizItemFlashcard(
           quiz: quiz,
           unsolved: unsolved,
         );

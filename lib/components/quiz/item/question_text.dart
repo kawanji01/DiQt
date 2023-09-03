@@ -5,15 +5,15 @@ import 'package:booqs_mobile/components/markdown/markdown_without_dict_link.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizQuestionText extends ConsumerStatefulWidget {
-  const QuizQuestionText({Key? key, required this.quiz}) : super(key: key);
+class QuizItemQuestionText extends ConsumerStatefulWidget {
+  const QuizItemQuestionText({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
 
   @override
-  QuizQuestionTextState createState() => QuizQuestionTextState();
+  QuizItemQuestionTextState createState() => QuizItemQuestionTextState();
 }
 
-class QuizQuestionTextState extends ConsumerState<QuizQuestionText> {
+class QuizItemQuestionTextState extends ConsumerState<QuizItemQuestionText> {
   bool _isCovered = false;
 
   @override

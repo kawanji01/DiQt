@@ -1,16 +1,17 @@
+import 'package:booqs_mobile/components/quiz/item/answer_cover.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
-import 'package:booqs_mobile/components/quiz/choice_button.dart';
+import 'package:booqs_mobile/components/quiz/item/choice_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizMultipleChoices extends ConsumerStatefulWidget {
-  const QuizMultipleChoices(
+class QuizItemMultipleChoices extends ConsumerStatefulWidget {
+  const QuizItemMultipleChoices(
       {Key? key,
       required this.quiz,
       required this.answerTextList,
@@ -21,10 +22,11 @@ class QuizMultipleChoices extends ConsumerStatefulWidget {
   final bool unsolved;
 
   @override
-  QuizMultipleChoicesState createState() => QuizMultipleChoicesState();
+  QuizItemMultipleChoicesState createState() => QuizItemMultipleChoicesState();
 }
 
-class QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
+class QuizItemMultipleChoicesState
+    extends ConsumerState<QuizItemMultipleChoices> {
   String? _selectedAnswer;
   bool _isCovered = false;
   bool _isDisabled = false;
@@ -74,7 +76,7 @@ class QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
                 );
                 setState(() => _isDisabled = false);
               },
-        child: QuizChoiceButton(
+        child: QuizItemChoiceButton(
           answerText: answerText,
           selected: selected,
         ),
@@ -92,48 +94,20 @@ class QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
       return buttonList;
     }
 
+    if (_isCovered) {
+      // 選択肢カバー
+      return QuizItemAnswerCover(
+        label: t.quizzes.choices_cover_text,
+        onTap: () {
+          setState(() {
+            _isCovered = false;
+          });
+        },
+      );
+    }
     // 多肢選択肢
-    final Widget multipleChoices = Column(
+    return Column(
       children: choiceButtons(answerTextList),
     );
-
-    // 選択肢カバー
-    final Widget cover = InkWell(
-      onTap: () {
-        setState(() {
-          _isCovered = false;
-        });
-      },
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 8),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.green, width: 1),
-          borderRadius: const BorderRadius.all(Radius.circular(5)),
-        ),
-        child: RichText(
-            text: TextSpan(children: [
-          const WidgetSpan(
-            child: Icon(
-              Icons.lock,
-              color: Colors.green,
-              size: 18.0,
-            ),
-          ),
-          TextSpan(
-              text: ' ${t.quizzes.choices_cover_text}',
-              style: const TextStyle(
-                  color: Colors.green,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold))
-        ])),
-      ),
-    );
-
-    if (_isCovered) {
-      return cover;
-    }
-    return multipleChoices;
   }
 }

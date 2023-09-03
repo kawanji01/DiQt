@@ -29,21 +29,31 @@ class QuizRequestItemCommentsScreenState
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: ResponsiveValues.dialogHeight(context),
-      child: Stack(
-        children: [
-          SingleChildScrollView(
-            child: QuizRequestCommentItemList(
-              quizRequest: widget.quizRequest,
+    return GestureDetector(
+      onTap: () {
+        // キーボードを閉じる
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        // フォーカスがすでにない状況でunfocus()を呼び出すと、エラーが発生する可能性がある
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: SizedBox(
+        width: double.infinity,
+        height: ResponsiveValues.dialogHeight(context),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: QuizRequestCommentItemList(
+                quizRequest: widget.quizRequest,
+              ),
             ),
-          ),
-          QuizRequestCommentNewForm(
-            quizRequest: widget.quizRequest,
-            commentController: widget.commentController,
-          ),
-        ],
+            QuizRequestCommentNewForm(
+              quizRequest: widget.quizRequest,
+              commentController: widget.commentController,
+            ),
+          ],
+        ),
       ),
     );
   }

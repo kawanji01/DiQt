@@ -1,11 +1,16 @@
+import 'package:booqs_mobile/components/form/editor_comment.dart';
 import 'package:booqs_mobile/components/markdown/introduction_text_button.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class SentenceFormDetails extends StatelessWidget {
-  const SentenceFormDetails({Key? key, required this.explanationController})
+  const SentenceFormDetails(
+      {Key? key,
+      required this.explanationController,
+      required this.commentController})
       : super(key: key);
   final TextEditingController explanationController;
+  final TextEditingController commentController;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +37,8 @@ class SentenceFormDetails extends StatelessWidget {
           ),
         ),
         const MarkdownIntroductionTextButton(),
+        const SizedBox(height: 24),
+        FormEditorComment(commentController: commentController),
         const SizedBox(height: 24),
       ],
     );

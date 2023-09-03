@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/drill/name.dart';
+import 'package:booqs_mobile/components/form/editor_comment.dart';
 import 'package:booqs_mobile/components/quiz/form/fields.dart';
 import 'package:booqs_mobile/data/remote/quizzes.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -33,6 +34,7 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
   final _hintController = TextEditingController();
   final _explanationController = TextEditingController();
   final _appliedDictionaryIdController = TextEditingController();
+  final _commentController = TextEditingController();
 
   @override
   void initState() {
@@ -46,6 +48,22 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
     _hintController.text = _quiz.hint ?? '';
     _explanationController.text = _quiz.explanation ?? '';
     _appliedDictionaryIdController.text = '${_quiz.appliedDictionaryId}';
+  }
+
+  @override
+  // widgetの破棄時にコントローラも破棄する。Controllerを使うなら必ず必要。
+  // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
+  void dispose() {
+    super.dispose();
+    _questionController.dispose();
+    _correctAnswerController.dispose();
+    _distractor1Controller.dispose();
+    _distractor2Controller.dispose();
+    _distractor3Controller.dispose();
+    _hintController.dispose();
+    _explanationController.dispose();
+    _appliedDictionaryIdController.dispose();
+    _commentController.dispose();
   }
 
   Future<void> _save() async {
@@ -66,7 +84,8 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
     };
     // 画面全体にローディングを表示
     EasyLoading.show(status: 'loading...');
-    final Map resMap = await RemoteQuizzes.update(params);
+    final Map resMap = await RemoteQuizzes.update(
+        params: params, comment: _commentController.text);
     EasyLoading.dismiss();
     setState(() => _isRequesting = false);
     if (!mounted) return;
@@ -84,21 +103,6 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
     } else {
       QuizRequestShowPage.pushReplacement(context, quizRequest.id);
     }
-  }
-
-  @override
-  // widgetの破棄時にコントローラも破棄する。Controllerを使うなら必ず必要。
-  // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
-  void dispose() {
-    super.dispose();
-    _questionController.dispose();
-    _correctAnswerController.dispose();
-    _distractor1Controller.dispose();
-    _distractor2Controller.dispose();
-    _distractor3Controller.dispose();
-    _hintController.dispose();
-    _explanationController.dispose();
-    _appliedDictionaryIdController.dispose();
   }
 
   @override
@@ -127,6 +131,8 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
               appliedDictionaryIdController: _appliedDictionaryIdController,
               quiz: _quiz,
             ),
+            const SizedBox(height: 40),
+            FormEditorComment(commentController: _commentController),
             const SizedBox(height: 64),
             SizedBox(
               height: 48,

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
@@ -25,6 +26,26 @@ class SentenceFormPreviewScreen extends ConsumerWidget {
     final double grid = SizeConfig.blockSizeVertical ?? 0;
     final double height = grid * 80;
 
+    Widget translationPreview() {
+      if (dictionary.bilingual()) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SharedItemLabel(text: t.sentences.translation),
+            const SizedBox(
+              height: 16,
+            ),
+            Text(translation,
+                style: const TextStyle(fontSize: 16, color: Colors.black87)),
+            const SizedBox(
+              height: 32,
+            ),
+          ],
+        );
+      }
+      return Container();
+    }
+
     return Container(
       height: height,
       padding: EdgeInsets.symmetric(
@@ -36,15 +57,15 @@ class SentenceFormPreviewScreen extends ConsumerWidget {
           const SizedBox(
             height: 24,
           ),
-          const Text('例文のプレビュー',
-              style: TextStyle(
+          Text(t.words.text_preview,
+              style: const TextStyle(
                   fontSize: 24,
                   color: Colors.black87,
                   fontWeight: FontWeight.bold)),
           const SizedBox(
             height: 16,
           ),
-          const SharedItemLabel(text: '例文'),
+          SharedItemLabel(text: t.sentences.original),
           const SizedBox(
             height: 16,
           ),
@@ -62,17 +83,9 @@ class SentenceFormPreviewScreen extends ConsumerWidget {
           const SizedBox(
             height: 32,
           ),
-          const SharedItemLabel(text: '訳'),
-          const SizedBox(
-            height: 16,
-          ),
-          Text(translation,
-              style: const TextStyle(fontSize: 16, color: Colors.black87)),
-          const SizedBox(
-            height: 32,
-          ),
-          const SharedItemLabel(text: '解説'),
-          TextWithDictLink(
+          translationPreview(),
+
+          /* TextWithDictLink(
             text: explanation,
             langNumber: dictionary.langNumberOfEntry,
             dictionaryId: dictionary.id,
@@ -82,7 +95,7 @@ class SentenceFormPreviewScreen extends ConsumerWidget {
             fontWeight: FontWeight.normal,
             fontColor: Colors.black87,
             selectable: true,
-          ),
+          ), */
           const SizedBox(
             height: 64,
           ),

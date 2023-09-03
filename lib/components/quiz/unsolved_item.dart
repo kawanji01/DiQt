@@ -14,8 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 必要なWidgetは外から渡す。そうしないとコンテンツが解かれて消えるまでにコンテンツがリビルドされて、選択肢が一瞬ランダムに表示されるなど不細工なことになる。ref: https://qiita.com/chooyan_eng/items/ec11f6dcf714f7a2fa3d
-class QuizUnsolvedContent extends ConsumerStatefulWidget {
-  const QuizUnsolvedContent(
+class QuizUnsolvedItem extends ConsumerStatefulWidget {
+  const QuizUnsolvedItem(
       {Key? key,
       required this.quiz,
       required this.header,
@@ -31,10 +31,10 @@ class QuizUnsolvedContent extends ConsumerStatefulWidget {
   final Widget footer;
 
   @override
-  QuizUnsolvedContentState createState() => QuizUnsolvedContentState();
+  QuizUnsolvedItemState createState() => QuizUnsolvedItemState();
 }
 
-class QuizUnsolvedContentState extends ConsumerState<QuizUnsolvedContent> {
+class QuizUnsolvedItemState extends ConsumerState<QuizUnsolvedItem> {
   bool _isVisible = true;
   bool _isOpaque = true;
 

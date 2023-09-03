@@ -5,7 +5,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/quiz/edit.dart';
-import 'package:booqs_mobile/components/quiz/detail_button.dart';
+import 'package:booqs_mobile/components/quiz/item/detail_button.dart';
 import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/edit_button.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -13,8 +13,8 @@ import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizEditButton extends ConsumerWidget {
-  const QuizEditButton({Key? key, required this.quiz, this.isShow = false})
+class QuizItemEditButton extends ConsumerWidget {
+  const QuizItemEditButton({Key? key, required this.quiz, this.isShow = false})
       : super(key: key);
   final Quiz quiz;
   final bool isShow;
@@ -54,7 +54,7 @@ class QuizEditButton extends ConsumerWidget {
 
     Widget detailButton() {
       if (isShow) return Container();
-      return QuizDetailButton(quiz: quiz);
+      return QuizItemDetailButton(quiz: quiz);
     }
 
     Widget sourceEditButton() {

@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/components/drill/list_quiz.dart';
-import 'package:booqs_mobile/components/quiz/edit_button.dart';
+import 'package:booqs_mobile/components/quiz/item/edit_button.dart';
 import 'package:booqs_mobile/components/quiz/explanation/answer_analysis.dart';
 import 'package:booqs_mobile/components/quiz/quiz_requests_button.dart';
 import 'package:booqs_mobile/models/quiz.dart';
@@ -17,7 +17,7 @@ class QuizShowScreen extends StatelessWidget {
           quiz: quiz,
           isShow: true,
         ),
-        QuizEditButton(quiz: quiz, isShow: true),
+        QuizItemEditButton(quiz: quiz, isShow: true),
         QuizQuizRequestsButton(quiz: quiz),
         const SizedBox(height: 48),
         QuizExplanationAnswerAnalysis(quiz: quiz),

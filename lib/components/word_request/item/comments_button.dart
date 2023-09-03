@@ -33,10 +33,17 @@ class _WordRequestItemCommentsButtonState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(
+          height: 8,
+        ),
         // 編集者のコメント
         WordRequestItemEditorComment(
           wordRequest: wordRequest,
         ),
+        const SizedBox(
+          height: 8,
+        ),
+        // 編集者の
         // コメントボタン
         InkWell(
             child: SmallOutlineGrayButton(

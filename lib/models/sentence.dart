@@ -72,6 +72,8 @@ class Sentence {
       sentenceRequestsCount -
       acceptedSentenceRequestsCount -
       pendingSentenceRequestsCount;
+
+  bool monolingual() => langNumberOfOriginal == langNumberOfTranslation;
   Map<String, dynamic> toJson() => {
         'id': id,
         'dictionary_id': dictionaryId,
