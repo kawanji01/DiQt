@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/sentence_request/item/translation_diff.dart';
 import 'package:booqs_mobile/components/shared/diff/diff_with_label.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/sentence_request.dart';
@@ -18,16 +19,8 @@ class SentenceRequestItemDiffs extends StatelessWidget {
           newText: sentenceRequest.original,
           alwaysShow: true,
         ),
-        SharedDiffWithLabel(
-          label: t.sentences.translation,
-          oldText: sentenceRequest.previousTranslation,
-          newText: sentenceRequest.translation,
-          alwaysShow: true,
-        ),
-        SharedDiffWithLabel(
-          label: t.sentences.explanation,
-          oldText: sentenceRequest.previousExplanation,
-          newText: sentenceRequest.explanation,
+        SentenceRequestTranslationDiff(
+          sentenceRequest: sentenceRequest,
         ),
       ],
     );

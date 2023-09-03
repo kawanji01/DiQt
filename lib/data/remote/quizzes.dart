@@ -84,9 +84,10 @@ class RemoteQuizzes {
     }
   }
 
-  static Future<Map> update(Map params) async {
+  static Future<Map> update(
+      {required Map params, required String comment}) async {
     try {
-      final Map<String, dynamic> body = {'quiz': params};
+      final Map<String, dynamic> body = {'quiz': params, 'comment': comment};
 
       final Uri url =
           Uri.parse('${DiQtURL.root()}/api/v1/mobile/quizzes/${params['id']}');

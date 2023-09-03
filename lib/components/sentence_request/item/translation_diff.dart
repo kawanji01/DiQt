@@ -11,6 +11,9 @@ class SentenceRequestTranslationDiff extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (sentenceRequest.monolingual()) {
+      return Container();
+    }
     final String translation = sentenceRequest.translation ?? '';
     final String previousTranslation =
         sentenceRequest.previousTranslation ?? '';
