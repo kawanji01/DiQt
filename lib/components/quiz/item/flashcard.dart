@@ -1,9 +1,13 @@
+import 'package:booqs_mobile/components/quiz/item/answer_button.dart';
+import 'package:booqs_mobile/components/quiz/item/answer_cover.dart';
+import 'package:booqs_mobile/components/shared/tts_button.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/components/markdown/markdown_without_dict_link.dart';
+import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,6 +25,8 @@ class QuizItemFlashcard extends ConsumerStatefulWidget {
 
 class QuizItemFlashcardState extends ConsumerState<QuizItemFlashcard> {
   bool _isDisabled = false;
+  bool _isCovered = true;
+  bool? _isCorrect;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +36,9 @@ class QuizItemFlashcardState extends ConsumerState<QuizItemFlashcard> {
 
     void answer(bool correct) async {
       if (_isDisabled) return;
+      setState(() {
+        _isCorrect = correct;
+      });
       HapticFeedback.mediumImpact();
       AnswerNotification('', correct, quiz, user!, true).dispatch(context);
       setState(() => _isDisabled = true);
@@ -41,78 +50,57 @@ class QuizItemFlashcardState extends ConsumerState<QuizItemFlashcard> {
       setState(() => _isDisabled = false);
     }
 
-    Widget correctButton() {
-      return Container(
-        padding: const EdgeInsets.only(right: 8),
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            minimumSize: const Size(double.infinity,
-                40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+    Widget ttsButton() {
+      // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す
+      final String correctAnswer = Sanitizer.removeDiQtLink(quiz.correctAnswer);
+      if (quiz.answerReadAloud) {
+        return Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: TtsButton(
+            speechText: correctAnswer,
+            langNumber: quiz.langNumberOfAnswer,
           ),
-          onPressed: () => {
-            answer(true),
-          },
-          icon: const Icon(Icons.circle_outlined, color: Colors.white),
-          label: Text(
-            t.quizzes.got_a_correct,
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
-          ),
-        ),
+        );
+      }
+      return Container();
+    }
+
+    if (_isCovered) {
+      // 答えカバー
+      return QuizItemAnswerCover(
+        label: t.quizzes.see_correct_answer,
+        onTap: () {
+          setState(() {
+            _isCovered = false;
+          });
+        },
       );
     }
 
-    Widget incorrectButton() {
-      return Container(
-        padding: const EdgeInsets.only(left: 8),
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
-            minimumSize: const Size(double.infinity, 40),
-          ),
-          onPressed: () => {
-            answer(false),
-          },
-          icon: const Icon(Icons.close, color: Colors.white),
-          label: Text(
-            t.quizzes.made_a_mistake,
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
-          ),
+    return Column(
+      children: [
+        // 答え
+        MarkdownWithoutDictLink(
+          text: quiz.correctAnswer,
+          fontSize: 17,
+          fontColor: Colors.black87,
+          fontWeight: FontWeight.bold,
+          selectable: true,
         ),
-      );
-    }
-
-    return ExpansionTile(
-      title: Text(
-        t.quizzes.see_correct_answer,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-      ),
-      //collapsedBackgroundColor: const Color(0xfff3f3f4),
-      collapsedBackgroundColor: Colors.grey.shade200,
-      children: <Widget>[
-        Column(
-          children: [
-            // 答え
-            MarkdownWithoutDictLink(
-              text: quiz.correctAnswer,
-              fontSize: 17,
-              fontColor: Colors.black87,
-              fontWeight: FontWeight.bold,
-              selectable: true,
-            ),
-            const SizedBox(height: 32),
-            // 解答ボタン
-            Row(
-              children: [
-                Expanded(flex: 1, child: correctButton()),
-                Expanded(flex: 1, child: incorrectButton()),
-              ],
-            ),
-            const SizedBox(height: 32),
-          ],
-        ),
+        ttsButton(),
+        const SizedBox(height: 32),
+        // 正解ボタン
+        QuizItemAnswerButton(
+            label: t.quizzes.got_a_correct,
+            icon: Icons.circle_outlined,
+            onPressed: () => answer(true),
+            selected: _isCorrect == true),
+        // 不正解ボタン
+        QuizItemAnswerButton(
+            label: t.quizzes.made_a_mistake,
+            icon: Icons.close,
+            onPressed: () => answer(false),
+            selected: _isCorrect == false),
       ],
     );
   }

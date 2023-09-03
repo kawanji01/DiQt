@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/quiz/item/answer_cover.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -93,48 +94,20 @@ class QuizItemMultipleChoicesState
       return buttonList;
     }
 
+    if (_isCovered) {
+      // 選択肢カバー
+      return QuizItemAnswerCover(
+        label: t.quizzes.choices_cover_text,
+        onTap: () {
+          setState(() {
+            _isCovered = false;
+          });
+        },
+      );
+    }
     // 多肢選択肢
-    final Widget multipleChoices = Column(
+    return Column(
       children: choiceButtons(answerTextList),
     );
-
-    // 選択肢カバー
-    final Widget cover = InkWell(
-      onTap: () {
-        setState(() {
-          _isCovered = false;
-        });
-      },
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 8),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.green, width: 1),
-          borderRadius: const BorderRadius.all(Radius.circular(5)),
-        ),
-        child: RichText(
-            text: TextSpan(children: [
-          const WidgetSpan(
-            child: Icon(
-              Icons.lock,
-              color: Colors.green,
-              size: 18.0,
-            ),
-          ),
-          TextSpan(
-              text: ' ${t.quizzes.choices_cover_text}',
-              style: const TextStyle(
-                  color: Colors.green,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold))
-        ])),
-      ),
-    );
-
-    if (_isCovered) {
-      return cover;
-    }
-    return multipleChoices;
   }
 }
