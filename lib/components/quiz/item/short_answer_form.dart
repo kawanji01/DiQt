@@ -8,18 +8,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizShortAnswerForm extends ConsumerStatefulWidget {
-  const QuizShortAnswerForm(
+class QuizItemShortAnswerForm extends ConsumerStatefulWidget {
+  const QuizItemShortAnswerForm(
       {Key? key, required this.quiz, required this.unsolved})
       : super(key: key);
   final Quiz quiz;
   final bool unsolved;
 
   @override
-  QuizShortAnswerFormState createState() => QuizShortAnswerFormState();
+  QuizItemShortAnswerFormState createState() => QuizItemShortAnswerFormState();
 }
 
-class QuizShortAnswerFormState extends ConsumerState<QuizShortAnswerForm> {
+class QuizItemShortAnswerFormState
+    extends ConsumerState<QuizItemShortAnswerForm> {
   bool _isDisabled = false;
   final _answerController = TextEditingController();
 

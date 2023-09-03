@@ -4,8 +4,8 @@ import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizDrillTitle extends ConsumerWidget {
-  const QuizDrillTitle({super.key, required this.drill});
+class QuizItemDrillTitle extends ConsumerWidget {
+  const QuizItemDrillTitle({super.key, required this.drill});
   final Drill drill;
 
   @override

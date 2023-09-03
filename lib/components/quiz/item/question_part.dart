@@ -2,14 +2,14 @@ import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:booqs_mobile/components/drill/icon.dart';
-import 'package:booqs_mobile/components/quiz/drill_title.dart';
-import 'package:booqs_mobile/components/quiz/hint_button.dart';
-import 'package:booqs_mobile/components/quiz/question_text.dart';
+import 'package:booqs_mobile/components/quiz/item/drill_title.dart';
+import 'package:booqs_mobile/components/quiz/item/hint_button.dart';
+import 'package:booqs_mobile/components/quiz/item/question_text.dart';
 import 'package:booqs_mobile/components/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 
-class QuizQuestionPart extends StatelessWidget {
-  const QuizQuestionPart({
+class QuizItemQuestionPart extends StatelessWidget {
+  const QuizItemQuestionPart({
     Key? key,
     required this.quiz,
     required this.drill,
@@ -42,13 +42,13 @@ class QuizQuestionPart extends StatelessWidget {
         Expanded(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            QuizDrillTitle(drill: drill),
-            QuizQuestionText(
+            QuizItemDrillTitle(drill: drill),
+            QuizItemQuestionText(
               quiz: quiz,
             ),
             const SizedBox(height: 8),
             ttsBtn(),
-            QuizHintButton(quiz: quiz),
+            QuizItemHintButton(quiz: quiz),
           ]),
         ),
       ],

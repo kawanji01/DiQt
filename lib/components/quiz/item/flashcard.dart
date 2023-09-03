@@ -8,17 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizFlashcard extends ConsumerStatefulWidget {
-  const QuizFlashcard({Key? key, required this.quiz, required this.unsolved})
+class QuizItemFlashcard extends ConsumerStatefulWidget {
+  const QuizItemFlashcard(
+      {Key? key, required this.quiz, required this.unsolved})
       : super(key: key);
   final Quiz quiz;
   final bool unsolved;
 
   @override
-  QuizFlashcardState createState() => QuizFlashcardState();
+  QuizItemFlashcardState createState() => QuizItemFlashcardState();
 }
 
-class QuizFlashcardState extends ConsumerState<QuizFlashcard> {
+class QuizItemFlashcardState extends ConsumerState<QuizItemFlashcard> {
   bool _isDisabled = false;
 
   @override

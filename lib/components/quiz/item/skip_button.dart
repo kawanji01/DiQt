@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizSkipButton extends ConsumerStatefulWidget {
-  const QuizSkipButton({Key? key, required this.quiz}) : super(key: key);
+class QuizItemSkipButton extends ConsumerStatefulWidget {
+  const QuizItemSkipButton({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
 
   @override
-  QuizSkipButtonState createState() => QuizSkipButtonState();
+  QuizItemSkipButtonState createState() => QuizItemSkipButtonState();
 }
 
-class QuizSkipButtonState extends ConsumerState<QuizSkipButton> {
+class QuizItemSkipButtonState extends ConsumerState<QuizItemSkipButton> {
   bool _selected = false;
 
   @override

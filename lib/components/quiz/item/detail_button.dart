@@ -8,8 +8,8 @@ import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizDetailButton extends ConsumerWidget {
-  const QuizDetailButton({Key? key, required this.quiz}) : super(key: key);
+class QuizItemDetailButton extends ConsumerWidget {
+  const QuizItemDetailButton({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
 
   @override

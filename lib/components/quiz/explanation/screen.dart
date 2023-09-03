@@ -4,7 +4,7 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
-import 'package:booqs_mobile/components/quiz/edit_button.dart';
+import 'package:booqs_mobile/components/quiz/item/edit_button.dart';
 import 'package:booqs_mobile/components/quiz/explanation/answer.dart';
 import 'package:booqs_mobile/components/quiz/explanation/answer_analysis.dart';
 import 'package:booqs_mobile/components/quiz/explanation/distractors.dart';
@@ -91,7 +91,7 @@ class QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
 
     Widget editButtons() {
       return future.when(
-        data: (date) => QuizEditButton(
+        data: (date) => QuizItemEditButton(
           quiz: date!,
           isShow: false,
         ),

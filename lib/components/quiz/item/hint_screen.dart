@@ -4,8 +4,8 @@ import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
-class QuizHintScreen extends StatelessWidget {
-  const QuizHintScreen({Key? key, required this.quiz, required this.note})
+class QuizItemHintScreen extends StatelessWidget {
+  const QuizItemHintScreen({Key? key, required this.quiz, required this.note})
       : super(key: key);
   final Quiz quiz;
   final Note? note;

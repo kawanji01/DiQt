@@ -4,13 +4,13 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
-import 'package:booqs_mobile/components/quiz/choice_button.dart';
+import 'package:booqs_mobile/components/quiz/item/choice_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizMultipleChoices extends ConsumerStatefulWidget {
-  const QuizMultipleChoices(
+class QuizItemMultipleChoices extends ConsumerStatefulWidget {
+  const QuizItemMultipleChoices(
       {Key? key,
       required this.quiz,
       required this.answerTextList,
@@ -21,10 +21,11 @@ class QuizMultipleChoices extends ConsumerStatefulWidget {
   final bool unsolved;
 
   @override
-  QuizMultipleChoicesState createState() => QuizMultipleChoicesState();
+  QuizItemMultipleChoicesState createState() => QuizItemMultipleChoicesState();
 }
 
-class QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
+class QuizItemMultipleChoicesState
+    extends ConsumerState<QuizItemMultipleChoices> {
   String? _selectedAnswer;
   bool _isCovered = false;
   bool _isDisabled = false;
@@ -74,7 +75,7 @@ class QuizMultipleChoicesState extends ConsumerState<QuizMultipleChoices> {
                 );
                 setState(() => _isDisabled = false);
               },
-        child: QuizChoiceButton(
+        child: QuizItemChoiceButton(
           answerText: answerText,
           selected: selected,
         ),
