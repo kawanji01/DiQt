@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/ad/banner.dart';
+import 'package:booqs_mobile/components/layouts/other_apps_button.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/user/calendar.dart';
 import 'package:booqs_mobile/components/user/drills.dart';
@@ -57,6 +58,10 @@ class UserMypageScreen extends StatelessWidget {
             UserStudyRecords(user: user!),
             const SizedBox(
               height: 80,
+            ),
+            const OtherAppsButton(),
+            const SizedBox(
+              height: 48,
             ),
             PremiumPlanButton(user: user!),
             const SizedBox(

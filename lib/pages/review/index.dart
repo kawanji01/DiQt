@@ -12,7 +12,7 @@ import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/review/unsolved_screen_wrapper.dart';
-import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/home/drawer_menu.dart';
 import 'package:booqs_mobile/components/shared/empty_app_bar.dart';
 import 'package:flutter/material.dart';

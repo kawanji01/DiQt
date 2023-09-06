@@ -8,7 +8,7 @@ import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/relationship/follow_button.dart';
-import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/user/achievements_button.dart';
 import 'package:booqs_mobile/components/user/exp_indicator.dart';

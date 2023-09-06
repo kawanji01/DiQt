@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/components/bottom_navbar/for_normal.dart';
-import 'package:booqs_mobile/components/bottom_navbar/for_school.dart';
+import 'package:booqs_mobile/components/layouts/bottom_navbar/for_normal.dart';
+import 'package:booqs_mobile/components/layouts/bottom_navbar/for_school.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

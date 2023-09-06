@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/chapter/index.dart';
 import 'package:booqs_mobile/components/dictionary_map/floating_action_button.dart';
 import 'package:booqs_mobile/components/dictionary_map/search_screen.dart';

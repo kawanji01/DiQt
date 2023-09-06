@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/error/scaffold_404.dart';
 import 'package:booqs_mobile/components/sentence_request/show_screen.dart';
 import 'package:booqs_mobile/data/provider/sentence_request.dart';
