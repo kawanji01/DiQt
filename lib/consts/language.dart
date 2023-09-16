@@ -3,6 +3,7 @@ const String defaultLangCode = 'ja';
 const int defaultLangNumber = 44;
 // 多言語化(i18n)に対応している言語番号
 const List<int> supportedLangNumbers = [21, 44];
+const List<int> supportedTTSLangNumbers = [21, 44];
 
 // 言語コードと言語番号(ID)の対応づけ。
 // IDで管理しているのは、zh-CN と zh-Hans のように言語コードの表記揺れに対応するため。
