@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/note/item.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/note/quiz_header.dart';
@@ -12,28 +12,12 @@ class NoteListQuiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Quiz? quiz = note.quiz;
-    if (quiz == null) return const Text('Quiz does not exist.');
+    if (quiz == null) return Text(t.shared.no_name_found(name: t.notes.note));
 
-    return Column(children: [
-      QuizItem(
-        quiz: quiz,
-        header: NoteQuizHeader(note: note),
-        isShow: false,
-      ),
-      const SizedBox(
-        height: 16,
-      ),
-      Container(
-        decoration: const BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: Colors.black12,
-              width: 3,
-            ),
-          ),
-        ),
-        child: NoteItem(quiz: quiz),
-      ),
-    ]);
+    return QuizItem(
+      quiz: quiz,
+      header: NoteQuizHeader(note: note),
+      isShow: false,
+    );
   }
 }
