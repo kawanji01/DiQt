@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/utils/text_to_speech.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,9 @@ class TtsButton extends StatelessWidget {
       await flutterTts.setPitch(1.0);
       await flutterTts.speak(speechText);
     } */
+    if (supportedTTSLangNumbers.contains(langNumber) == false) {
+      return Container();
+    }
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
