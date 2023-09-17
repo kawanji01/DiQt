@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/no_items_found_indicator.dart';
 import 'package:booqs_mobile/components/user/drill_list_view.dart';
 import 'package:booqs_mobile/components/user/heading_icon.dart';

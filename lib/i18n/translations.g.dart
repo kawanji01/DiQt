@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2792 (1396 per locale)
+/// Strings: 2800 (1400 per locale)
 ///
-/// Built on 2023-08-29 at 02:25 UTC
+/// Built on 2023-09-06 at 01:27 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1732,6 +1732,10 @@ class _TranslationsLayoutsEn {
 	String get commercial_transaction_act => 'Specified Commercial Transaction Act';
 	String get term_of_service => 'Terms of service';
 	String get privacy_policy => 'Privacy policy';
+	String get other_apps => 'How to make DiQt more useful!';
+	String get other_apps_description => 'DiQt provides not only apps but also browser extensions and websites.';
+	String get chrome_extension => 'Google Chrome Extension';
+	String get chrome_extension_description => 'If you install the Google Chrome extension, you can set a review for a word just by clicking on it on a web page.';
 }
 
 // Path: dictionaryMaps
@@ -3525,6 +3529,10 @@ class _TranslationsLayoutsJa implements _TranslationsLayoutsEn {
 	@override String get commercial_transaction_act => '特定商取引法に基づく表記';
 	@override String get term_of_service => '利用規約';
 	@override String get privacy_policy => 'プライバシーポリシー';
+	@override String get other_apps => 'ディクトをもっと便利にする方法！';
+	@override String get other_apps_description => 'ディクトは、アプリだけでなく、ブラウザ拡張機能や、Webサイトも提供しています。';
+	@override String get chrome_extension => 'Google Chrome拡張機能';
+	@override String get chrome_extension_description => 'Google Chrome拡張機能をインストールすると、Webページ上の単語をクリックするだけで、単語に復習を設定できるようになります。';
 }
 
 // Path: dictionaryMaps
@@ -4974,6 +4982,10 @@ extension on _TranslationsEn {
 			case 'layouts.commercial_transaction_act': return 'Specified Commercial Transaction Act';
 			case 'layouts.term_of_service': return 'Terms of service';
 			case 'layouts.privacy_policy': return 'Privacy policy';
+			case 'layouts.other_apps': return 'How to make DiQt more useful!';
+			case 'layouts.other_apps_description': return 'DiQt provides not only apps but also browser extensions and websites.';
+			case 'layouts.chrome_extension': return 'Google Chrome Extension';
+			case 'layouts.chrome_extension_description': return 'If you install the Google Chrome extension, you can set a review for a word just by clicking on it on a web page.';
 			case 'dictionaryMaps.please_select': return 'Please select a dictionary';
 			case 'dictionaryMaps.not_selected': return 'Dictionary not selected';
 			case 'dictionaryMaps.enter': return ({required Object language}) => 'Please enter ${language}';
@@ -6378,6 +6390,10 @@ extension on _TranslationsJa {
 			case 'layouts.commercial_transaction_act': return '特定商取引法に基づく表記';
 			case 'layouts.term_of_service': return '利用規約';
 			case 'layouts.privacy_policy': return 'プライバシーポリシー';
+			case 'layouts.other_apps': return 'ディクトをもっと便利にする方法！';
+			case 'layouts.other_apps_description': return 'ディクトは、アプリだけでなく、ブラウザ拡張機能や、Webサイトも提供しています。';
+			case 'layouts.chrome_extension': return 'Google Chrome拡張機能';
+			case 'layouts.chrome_extension_description': return 'Google Chrome拡張機能をインストールすると、Webページ上の単語をクリックするだけで、単語に復習を設定できるようになります。';
 			case 'dictionaryMaps.please_select': return '辞書を選択してください';
 			case 'dictionaryMaps.not_selected': return '辞書が選択されていません';
 			case 'dictionaryMaps.enter': return ({required Object language}) => '${language}を入力してください';

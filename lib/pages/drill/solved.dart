@@ -5,7 +5,7 @@ import 'package:booqs_mobile/components/drill/introduction.dart';
 import 'package:booqs_mobile/components/drill/order_select_form.dart';
 import 'package:booqs_mobile/components/drill/solved_quiz_list_view.dart';
 import 'package:booqs_mobile/components/drill/status_tabs.dart';
-import 'package:booqs_mobile/components/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
