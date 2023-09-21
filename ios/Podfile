@@ -36,11 +36,15 @@ target 'Runner' do
 end
 
 post_install do |installer|
-  # ref: https://zenn.dev/ischca/articles/a00c3adf626ea0
   installer.generated_projects.each do |project|
     project.targets.each do |target|
+      # ref: https://stackoverflow.com/questions/77136958/flutter-xcode-15-error-xcode-dt-toolchain-dir-cannot-be-used-to-evaluate-libr
+      flutter_additional_ios_build_settings(target)
       target.build_configurations.each do |config|
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+        xcconfig_path = config.base_configuration_reference.real_path
+        xcconfig = File.read(xcconfig_path)
+        xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+        File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
       end
    end
   end
