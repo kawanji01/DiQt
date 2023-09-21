@@ -86,6 +86,8 @@ class SentenceRequest {
         upvotesCount = json['upvotes_count'],
         downvotesCount = json['downvotes_count'],
         pendingReason = json['pending_reason'],
+        langNumberOfOriginal = json['lang_number_of_original'],
+        langNumberOfTranslation = json['lang_number_of_translation'],
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         votesCountToClose = json['votes_count_to_close'],
