@@ -1,9 +1,9 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 2
-/// Strings: 2800 (1400 per locale)
+/// Strings: 2808 (1404 per locale)
 ///
-/// Built on 2023-09-06 at 01:27 UTC
+/// Built on 2023-09-28 at 10:11 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1733,9 +1733,13 @@ class _TranslationsLayoutsEn {
 	String get term_of_service => 'Terms of service';
 	String get privacy_policy => 'Privacy policy';
 	String get other_apps => 'How to make DiQt more useful!';
-	String get other_apps_description => 'DiQt provides not only apps but also browser extensions and websites.';
+	String get other_apps_description => 'DiQt offers not only an application, but also a browser extension and a website. By using these together, you can learn vocabulary more conveniently and efficiently.';
 	String get chrome_extension => 'Google Chrome Extension';
 	String get chrome_extension_description => 'If you install the Google Chrome extension, you can set a review for a word just by clicking on it on a web page.';
+	String get free => 'Free';
+	String get app_store_url => 'https://apps.apple.com/us/app/diqt/id1594559036?uo=4';
+	String get play_store_url => 'https://play.google.com/store/apps/details?id=com.booqs.booqs_mobile&hl=en';
+	String get chrome_web_store_url => 'https://chrome.google.com/webstore/detail/booqs-dictionary/khgjdchimekphdebkmcknjkphkbpbpkj?hl=en&authuser=0';
 }
 
 // Path: dictionaryMaps
@@ -3530,9 +3534,13 @@ class _TranslationsLayoutsJa implements _TranslationsLayoutsEn {
 	@override String get term_of_service => '利用規約';
 	@override String get privacy_policy => 'プライバシーポリシー';
 	@override String get other_apps => 'ディクトをもっと便利にする方法！';
-	@override String get other_apps_description => 'ディクトは、アプリだけでなく、ブラウザ拡張機能や、Webサイトも提供しています。';
+	@override String get other_apps_description => 'ディクトは、アプリだけでなく、ブラウザ拡張機能や、Webサイトも提供しています。これらを併用することで、より便利に、より効率的に語彙を覚えられるようになります。';
 	@override String get chrome_extension => 'Google Chrome拡張機能';
 	@override String get chrome_extension_description => 'Google Chrome拡張機能をインストールすると、Webページ上の単語をクリックするだけで、単語に復習を設定できるようになります。';
+	@override String get free => '無料';
+	@override String get app_store_url => 'https://apps.apple.com/jp/app/diqt/id1594559036?uo=4';
+	@override String get play_store_url => 'https://play.google.com/store/apps/details?id=com.booqs.booqs_mobile&hl=ja';
+	@override String get chrome_web_store_url => 'https://chrome.google.com/webstore/detail/booqs-dictionary/khgjdchimekphdebkmcknjkphkbpbpkj?hl=ja&authuser=0';
 }
 
 // Path: dictionaryMaps
@@ -4983,9 +4991,13 @@ extension on _TranslationsEn {
 			case 'layouts.term_of_service': return 'Terms of service';
 			case 'layouts.privacy_policy': return 'Privacy policy';
 			case 'layouts.other_apps': return 'How to make DiQt more useful!';
-			case 'layouts.other_apps_description': return 'DiQt provides not only apps but also browser extensions and websites.';
+			case 'layouts.other_apps_description': return 'DiQt offers not only an application, but also a browser extension and a website. By using these together, you can learn vocabulary more conveniently and efficiently.';
 			case 'layouts.chrome_extension': return 'Google Chrome Extension';
 			case 'layouts.chrome_extension_description': return 'If you install the Google Chrome extension, you can set a review for a word just by clicking on it on a web page.';
+			case 'layouts.free': return 'Free';
+			case 'layouts.app_store_url': return 'https://apps.apple.com/us/app/diqt/id1594559036?uo=4';
+			case 'layouts.play_store_url': return 'https://play.google.com/store/apps/details?id=com.booqs.booqs_mobile&hl=en';
+			case 'layouts.chrome_web_store_url': return 'https://chrome.google.com/webstore/detail/booqs-dictionary/khgjdchimekphdebkmcknjkphkbpbpkj?hl=en&authuser=0';
 			case 'dictionaryMaps.please_select': return 'Please select a dictionary';
 			case 'dictionaryMaps.not_selected': return 'Dictionary not selected';
 			case 'dictionaryMaps.enter': return ({required Object language}) => 'Please enter ${language}';
@@ -6391,9 +6403,13 @@ extension on _TranslationsJa {
 			case 'layouts.term_of_service': return '利用規約';
 			case 'layouts.privacy_policy': return 'プライバシーポリシー';
 			case 'layouts.other_apps': return 'ディクトをもっと便利にする方法！';
-			case 'layouts.other_apps_description': return 'ディクトは、アプリだけでなく、ブラウザ拡張機能や、Webサイトも提供しています。';
+			case 'layouts.other_apps_description': return 'ディクトは、アプリだけでなく、ブラウザ拡張機能や、Webサイトも提供しています。これらを併用することで、より便利に、より効率的に語彙を覚えられるようになります。';
 			case 'layouts.chrome_extension': return 'Google Chrome拡張機能';
 			case 'layouts.chrome_extension_description': return 'Google Chrome拡張機能をインストールすると、Webページ上の単語をクリックするだけで、単語に復習を設定できるようになります。';
+			case 'layouts.free': return '無料';
+			case 'layouts.app_store_url': return 'https://apps.apple.com/jp/app/diqt/id1594559036?uo=4';
+			case 'layouts.play_store_url': return 'https://play.google.com/store/apps/details?id=com.booqs.booqs_mobile&hl=ja';
+			case 'layouts.chrome_web_store_url': return 'https://chrome.google.com/webstore/detail/booqs-dictionary/khgjdchimekphdebkmcknjkphkbpbpkj?hl=ja&authuser=0';
 			case 'dictionaryMaps.please_select': return '辞書を選択してください';
 			case 'dictionaryMaps.not_selected': return '辞書が選択されていません';
 			case 'dictionaryMaps.enter': return ({required Object language}) => '${language}を入力してください';
