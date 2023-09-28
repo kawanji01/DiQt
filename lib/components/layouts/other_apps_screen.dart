@@ -1,9 +1,11 @@
-import 'package:booqs_mobile/components/shared/cache_network_image.dart';
+import 'package:booqs_mobile/components/button/medium_green_button.dart';
+import 'package:booqs_mobile/components/shared/hero.dart';
 import 'package:booqs_mobile/consts/images.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -66,32 +68,40 @@ class OtherAppsScreen extends ConsumerWidget {
               const SizedBox(
                 height: 24,
               ),
-              SharedCacheNetworkImage(
+              SharedHero(
+                  tag: 'chromeSearch',
                   url: '$mainImagesUrl/chrome_search_$locale.png'),
               const SizedBox(
-                height: 16,
+                height: 24,
               ),
-              SharedCacheNetworkImage(
+              SharedHero(
+                  tag: 'chromeSettingReview',
                   url: '$mainImagesUrl/chrome_setting_review_$locale.png'),
               const SizedBox(
-                height: 16,
+                height: 24,
               ),
-              SharedCacheNetworkImage(
+              SharedHero(
+                  tag: 'chromeReview',
                   url: '$mainImagesUrl/chrome_review_$locale.png'),
               const SizedBox(
-                height: 16,
+                height: 24,
               ),
-              SharedCacheNetworkImage(
+              SharedHero(
+                  tag: 'chromeTranslation',
                   url: '$mainImagesUrl/chrome_translation_$locale.png'),
               const SizedBox(
-                height: 16,
+                height: 24,
               ),
-              const Text(
-                '他のアプリ',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              InkWell(
+                onTap: () => WebPageLauncher.openByExternalBrowser(
+                    t.layouts.chrome_web_store_url),
+                child: MediumGreenButton(
+                    label: t.layouts.chrome_extension,
+                    fontSize: 16,
+                    icon: Icons.download),
               ),
               const SizedBox(
-                height: 24,
+                height: 80,
               ),
             ],
           ),
