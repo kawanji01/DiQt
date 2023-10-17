@@ -1,9 +1,12 @@
 /// Generated file. Do not edit.
 ///
-/// Locales: 2
-/// Strings: 2808 (1404 per locale)
+/// Original: lib/i18n
+/// To regenerate, run: `dart run slang`
 ///
-/// Built on 2023-09-28 at 10:11 UTC
+/// Locales: 2
+/// Strings: 2816 (1408 per locale)
+///
+/// Built on 2023-10-16 at 10:11 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1762,6 +1765,10 @@ class _TranslationsDictionaryMapsEn {
 	String get set => 'Set';
 	String get update_success => 'My Dictionaries Set';
 	String get update_failed => 'Setting My Dictionaries Failed';
+	String get search_menu => 'Search Menu';
+	String get search_by_speech => 'Search by speech';
+	String get start_speech_recognition => 'Start';
+	String get stop_speech_recognition => 'OK';
 }
 
 // Path: words
@@ -3563,6 +3570,10 @@ class _TranslationsDictionaryMapsJa implements _TranslationsDictionaryMapsEn {
 	@override String get set => '設定する';
 	@override String get update_success => 'My辞書を設定しました。';
 	@override String get update_failed => 'My辞書が設定できませんでした。';
+	@override String get search_menu => '検索メニュー';
+	@override String get search_by_speech => '音声で検索する';
+	@override String get start_speech_recognition => '開始する';
+	@override String get stop_speech_recognition => '完了';
 }
 
 // Path: words
@@ -5011,6 +5022,10 @@ extension on _TranslationsEn {
 			case 'dictionaryMaps.set': return 'Set';
 			case 'dictionaryMaps.update_success': return 'My Dictionaries Set';
 			case 'dictionaryMaps.update_failed': return 'Setting My Dictionaries Failed';
+			case 'dictionaryMaps.search_menu': return 'Search Menu';
+			case 'dictionaryMaps.search_by_speech': return 'Search by speech';
+			case 'dictionaryMaps.start_speech_recognition': return 'Start';
+			case 'dictionaryMaps.stop_speech_recognition': return 'OK';
 			case 'words.words': return 'Words';
 			case 'words.word': return 'Word';
 			case 'words.add': return 'Add Word';
@@ -6423,6 +6438,10 @@ extension on _TranslationsJa {
 			case 'dictionaryMaps.set': return '設定する';
 			case 'dictionaryMaps.update_success': return 'My辞書を設定しました。';
 			case 'dictionaryMaps.update_failed': return 'My辞書が設定できませんでした。';
+			case 'dictionaryMaps.search_menu': return '検索メニュー';
+			case 'dictionaryMaps.search_by_speech': return '音声で検索する';
+			case 'dictionaryMaps.start_speech_recognition': return '開始する';
+			case 'dictionaryMaps.stop_speech_recognition': return '完了';
 			case 'words.words': return '項目';
 			case 'words.word': return '項目';
 			case 'words.add': return '項目を追加する';
