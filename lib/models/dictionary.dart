@@ -107,6 +107,11 @@ class Dictionary {
   int rejectedQuizRequestsCount() =>
       quizRequestsCount - acceptedQuizRequestsCount - pendingQuizRequestsCount;
 
+// 見出し語の言語コード
+  String langCodeOfEntry() => LanguageHandler.getLangCode(langNumberOfEntry);
+  // 意味の言語コード
+  String langCodeOfMeaning() =>
+      LanguageHandler.getLangCode(langNumberOfMeaning);
   // 見出し語の言語
   String languageOfEntry() =>
       LanguageHandler.getLanguageFromNumber(langNumberOfEntry);

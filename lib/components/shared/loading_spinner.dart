@@ -5,17 +5,23 @@ class LoadingSpinner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 80,
-          ),
-          CircularProgressIndicator(
-            semanticsLabel: 'Linear progress indicator',
-            color: Colors.green,
-          ),
-        ],
+    return Theme(
+      data: Theme.of(context).copyWith(
+        hintColor: Colors.green,
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.green),
+      ),
+      child: const Center(
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 80,
+            ),
+            CircularProgressIndicator(
+              semanticsLabel: 'Linear progress indicator',
+              color: Colors.green,
+            ),
+          ],
+        ),
       ),
     );
   }

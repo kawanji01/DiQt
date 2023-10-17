@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
+import 'package:booqs_mobile/pages/dictionary/speech_test.dart';
 import 'package:booqs_mobile/pages/quiz_request/dictionary.dart';
 import 'package:booqs_mobile/pages/quiz_request/quiz.dart';
 import 'package:booqs_mobile/pages/quiz_request/show.dart';
@@ -70,6 +71,8 @@ const dictionaryWordSearchResultsPage = '/dictionary/word_search_results';
 const dictionarySentenceSearchResultsPage =
     '/dictionary/sentence_search_results';
 const dictionaryGuidelinePage = '/dictionary/guideline';
+// テスト
+const dictionarySpeechTestPage = '/dictionary/speech_test';
 // 辞書の項目
 const wordShowPage = '/word/show';
 const wordNewPage = '/word/new';
@@ -150,6 +153,8 @@ final routes = {
   dictionarySentenceSearchResultsPage: (context) =>
       const DictionarySentenceSearchResultsPage(),
   dictionaryGuidelinePage: (context) => const DictionaryGuidelinePage(),
+  // Test
+  dictionarySpeechTestPage: (context) => const DictionarySpeechTestPage(),
   // Word
   wordShowPage: (context) => const WordShowPage(),
   wordNewPage: (context) => const WordNewPage(),

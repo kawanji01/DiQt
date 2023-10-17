@@ -60,6 +60,10 @@
 	<string>アプリはアイコンを設定するために、フォトライブラリへアクセスします。</string>
 	<key>NSCameraUsageDescription</key>
 	<string>アプリはアイコンを設定するために、カメラへアクセスします。</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>アプリは音声から辞書を検索するために、音声認識へアクセスします。</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>アプリは発話から辞書を検索するために、マイクへアクセスします。</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
