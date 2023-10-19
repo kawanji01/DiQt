@@ -33,6 +33,7 @@ class DictionaryNoMoreWords extends ConsumerWidget {
         LangLargeTranslationButtons(
           original: keyword,
           sourceLangNumber: dictionary.langNumberOfEntry,
+          targetLangNumber: dictionary.langNumberOfMeaning,
         ),
         const SizedBox(height: 48),
         const SizedBox(height: 120),

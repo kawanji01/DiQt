@@ -20,10 +20,10 @@ class DictionaryName extends ConsumerWidget {
             DictionaryShowPage.push(context, dictionary.id);
           },
           child: Text(dictionary.typeName(),
-              style: const TextStyle(fontSize: 12, color: Colors.black54)));
+              style: const TextStyle(fontSize: 12, color: Colors.black87)));
     } else {
       return Text(dictionary.typeName(),
-          style: const TextStyle(fontSize: 12, color: Colors.black54));
+          style: const TextStyle(fontSize: 12, color: Colors.black87));
     }
   }
 }

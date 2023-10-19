@@ -80,6 +80,7 @@ class DictionaryWordSearchFormState
               label: label,
               dictionaryId: dictionaryId,
               search: search),
+
           DictionaryMapSearchButton(
             onPressed: search,
           ),

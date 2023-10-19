@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.4.38+214
+version: 1.4.39+215
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -39,7 +39,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
-  http: ^0.13.6 # APIへのリクエスト (他のパッケージがまだ０に依存してるので１系に挙げられない)
+  http: ^1.1.0 # APIへのリクエスト
   google_fonts: ^4.0.3  # フォント  / mac appで読み込めない問題を解決する
   flutter_secure_storage: ^8.0.0 # セキュアなローカルストレージ（取得は非同期）
   shared_preferences: ^2.1.2 # 同期的に取得できる平文のローカルストレージ
@@ -69,7 +69,7 @@ dependencies:
   flash: ^3.0.5+1 # 問題解答時のフィードバックなどに使うトースト
   flutter_animated_dialog: ^2.0.1 # アニメーションするダイアログ （削除予定）
   confetti: ^0.7.0 # 紙吹雪
-  audioplayers: ^3.0.1 # 音声の再生 （４系に上げるとandroidのビルドに失敗する。ref: https://github.com/bluefireteam/audioplayers/issues/1474 ）
+  audioplayers: ^5.2.0 # 音声の再生
   infinite_scroll_pagination: ^4.0.0 # 無限スクロール
   visibility_detector: ^0.3.3 # 無限スクロールで、次のアイテムを読み込むためにページの下端への到達を検知する
   timeago: ^3.4.0 # ~分前などのタイムスタンプを実装する
@@ -88,10 +88,12 @@ dependencies:
   mockito: ^5.4.2 # 自動テストのMockライブラリ
   upgrader: ^7.1.0 # 強制アップデート
   image_picker: ^1.0.0 # 画像のアップロード
+  image_cropper: ^5.0.0 # 画像のトリミング
+  photo_view: ^0.14.0 # 画像の拡大表示
   uni_links: ^0.5.1 # DeepLinksの実装
   diff_match_patch: ^0.4.1 # diffを取得する
-  photo_view: ^0.14.0 # 画像の拡大表示
   speech_to_text: ^6.3.0 # 音声認識
+  html: ^0.15.4
 dependency_overrides:
   macos_ui:
     git:

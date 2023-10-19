@@ -33,7 +33,7 @@ class DictionaryNewWordButton extends ConsumerWidget {
     if (keyword == null || keyword == '') {
       label = t.words.add;
     } else {
-      label = t.dictionaries.add_keyword_to_dictionary(keyword: keyword ?? '');
+      label = t.dictionaries.register_keyword;
     }
 
     return InkWell(

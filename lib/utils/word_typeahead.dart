@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -13,6 +14,13 @@ class WordTypeahead {
     if (query.isEmpty && query.length < 3) {
       if (kDebugMode) {
         print('Query needs to be at least 3 chars');
+      }
+      return Future.value([]);
+    }
+    // 辞書に登録できる文字数を超えた場合
+    if (query.length > entryLengthLimitation) {
+      if (kDebugMode) {
+        print('Query needs to be less than $entryLengthLimitation chars');
       }
       return Future.value([]);
     }

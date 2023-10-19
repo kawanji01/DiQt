@@ -87,7 +87,7 @@ class DictionaryWordSearchResultsPageState
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(t.dictionaries.search_results_of(query: keyword)),
+        title: Text(t.dictionaries.search_results),
         actions: [
           actions(),
         ],

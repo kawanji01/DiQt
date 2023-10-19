@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/user/form/password_setting_recommendation.dart';
@@ -27,10 +29,13 @@ class UserFormIconState extends ConsumerState<UserFormIcon> {
     try {
       setState(() => _isRequesting = true);
       // 画像を選択
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final XFile? image =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image != null) {
         EasyLoading.show(status: 'loading...');
-        final Map resMap = await RemoteUsers.uploadIcon(image: image);
+        // XFileをFileに変換してアップロード
+        final Map resMap =
+            await RemoteUsers.uploadIcon(image: File(image.path));
         EasyLoading.dismiss();
         setState(() => _isRequesting = false);
         if (!mounted) return;
@@ -46,7 +51,7 @@ class UserFormIconState extends ConsumerState<UserFormIcon> {
       }
     } on PlatformException catch (e) {
       setState(() => _isRequesting = false);
-
+      if (!mounted) return;
       final snackBar =
           SnackBar(content: Text('${t.errors.error_occured} / $e'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);

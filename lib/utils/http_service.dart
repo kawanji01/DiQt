@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 
 class HttpService {
   // GET
@@ -76,17 +76,23 @@ class HttpService {
 
   // 画像アップロード
   static Future<http.StreamedResponse> multipartRequest(
-      {required Uri url, required XFile image}) async {
+      {required Uri url,
+      required File image,
+      required Map<String, String>? body}) async {
     final request = http.MultipartRequest('POST', url);
     // ヘッダーを追加
     final Map<String, String> headers =
         await HttpService.headers(multipart: true);
     request.headers.addAll(headers);
-    //
+    // ファイルを追加
     request.files.add(await http.MultipartFile.fromPath(
       'image', // サーバ側で受け取るパラメータ名を設定
       image.path,
     ));
+    // ボディデータを追加
+    if (body != null) {
+      request.fields.addAll(body);
+    }
     return request.send().timeout(const Duration(seconds: 20), onTimeout: () {
       throw TimeoutException('The connection has timed out!');
     });

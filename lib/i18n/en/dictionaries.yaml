@@ -32,11 +32,15 @@ credit: 'Credit'
 pos_tags: 'Part of Speech'
 grammars: 'Grammars'
 no_applied_dictionary: 'DictionarySetting: None'
+keyword: 'Keyword'
+search_results: 'Search results'
 search_results_of: 'Search results of "${query}"'
 entry_not_found: '"${query}" is not found.'
+keyword_not_found: 'The keyword is not registered in the dictionary.'
 search_by_web: 'Search by Web'
 search_by_another: 'Search by ${name}'
 add_keyword_to_dictionary: 'Add "${keyword}" to the dictionary'
+register_keyword: 'Register keyword to the dictionary'
 no_permission: "You don't have permission."
 no_addition_permission: "You don't have create permission."
 no_modification_permission: "You don't have update permission."

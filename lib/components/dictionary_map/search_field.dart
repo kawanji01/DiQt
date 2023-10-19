@@ -22,7 +22,8 @@ class DictionaryMapSearchField extends StatelessWidget {
         controller: keywordController,
         // 改行を許さず、文字数に応じて自動で改行表示する。
         keyboardType: TextInputType.text,
-        maxLines: null,
+        minLines: 1,
+        maxLines: 4,
         decoration: InputDecoration(
           labelText: label,
           // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
@@ -44,6 +45,7 @@ class DictionaryMapSearchField extends StatelessWidget {
       ),
       suggestionsCallback: (pattern) {
         if (dictionaryId == null) return [];
+
         return WordTypeahead.getSuggestions(pattern, dictionaryId!);
       },
       itemBuilder: (context, dynamic suggestion) {

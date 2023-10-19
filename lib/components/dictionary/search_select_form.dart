@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
+import 'package:booqs_mobile/components/dictionary/searched_keyword.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -47,36 +48,43 @@ class _DictionarySelectFormState extends ConsumerState<DictionarySelectForm> {
                 dictionaries.map((e) => e.id).toList();
             final bool containsDictionary =
                 dictionaryIds.contains(widget.dictionary.id);
-            // ラジオボタンを表示
-            return Container(
-              margin: const EdgeInsets.only(top: 24),
-              height: 48,
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  border: Border.all(color: Colors.black87)),
-              child: DropdownButton<int>(
-                isExpanded: true,
-                value: containsDictionary ? widget.dictionary.id : null,
-                hint: Text(widget.dictionary.typeName(), style: titleStyle),
-                iconSize: 24,
-                elevation: 16,
-                onChanged: (int? newValue) {
-                  if (newValue == null) return;
-                  DictionaryWordSearchResultsPage.pushReplacement(
-                      context, newValue, widget.keyword);
-                },
-                items: dictionaryIds.map<DropdownMenuItem<int>>((int value) {
-                  final Dictionary dictionary =
-                      dictionaries.firstWhere((e) => e.id == value);
-                  return DropdownMenuItem<int>(
-                    value: value,
-                    child: Text(dictionary.typeName(), style: titleStyle),
-                  );
-                }).toList(),
+
+            return Column(children: [
+              // セレクトフォーム
+              Container(
+                margin: const EdgeInsets.only(top: 24),
+                height: 48,
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.only(left: 15.0, right: 10.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(color: Colors.black87)),
+                child: DropdownButton<int>(
+                  isExpanded: true,
+                  value: containsDictionary ? widget.dictionary.id : null,
+                  hint: Text(widget.dictionary.typeName(), style: titleStyle),
+                  iconSize: 24,
+                  elevation: 16,
+                  onChanged: (int? newValue) {
+                    if (newValue == null) return;
+                    DictionaryWordSearchResultsPage.pushReplacement(
+                        context, newValue, widget.keyword);
+                  },
+                  items: dictionaryIds.map<DropdownMenuItem<int>>((int value) {
+                    final Dictionary dictionary =
+                        dictionaries.firstWhere((e) => e.id == value);
+                    return DropdownMenuItem<int>(
+                      value: value,
+                      child: Text(dictionary.typeName(), style: titleStyle),
+                    );
+                  }).toList(),
+                ),
               ),
-            );
+              const SizedBox(height: 24),
+              // 検索キーワード
+              DictionarySearchedKeyword(
+                  dictionary: widget.dictionary, keyword: widget.keyword)
+            ]);
           },
           error: (err, stack) => Text('Error: $err'),
           loading: () => const LoadingSpinner(),

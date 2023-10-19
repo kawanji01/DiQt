@@ -15,9 +15,11 @@ class LangLargeTranslationButtons extends ConsumerStatefulWidget {
     Key? key,
     required this.original,
     required this.sourceLangNumber,
+    required this.targetLangNumber,
   }) : super(key: key);
   final String original;
   final int sourceLangNumber;
+  final int targetLangNumber;
 
   @override
   LangLargeTranslationButtonsState createState() =>
@@ -36,8 +38,8 @@ class LangLargeTranslationButtonsState
   // Google翻訳
   Future<void> _googleTranslate(User user) async {
     setState(() => _googleTranslating = true);
-    final Map? resMap = await RemoteLangs.googleTranslation(
-        widget.original, widget.sourceLangNumber, user.langNumber, user);
+    final Map? resMap = await RemoteLangs.googleTranslation(widget.original,
+        widget.sourceLangNumber, widget.targetLangNumber, user);
     ref.read(todaysTranslationsCountProvider.notifier).state += 1;
     setState(() {
       _translationByGoogle = resMap == null ? null : resMap['translation'];
@@ -49,8 +51,8 @@ class LangLargeTranslationButtonsState
   // DeepL翻訳
   Future<void> _deeplTranslate(User user) async {
     setState(() => _deeplTranslating = true);
-    final Map? resMap = await RemoteLangs.deeplTranslation(
-        widget.original, widget.sourceLangNumber, user.langNumber, user);
+    final Map? resMap = await RemoteLangs.deeplTranslation(widget.original,
+        widget.sourceLangNumber, widget.targetLangNumber, user);
     ref.read(todaysTranslationsCountProvider.notifier).state += 1;
 
     setState(() {
@@ -75,11 +77,6 @@ class LangLargeTranslationButtonsState
     if (user == null) {
       return const Text('not Logged in');
     }
-    // 原文がユーザーの母語なら翻訳ボタンを表示しない。
-    if (user.langNumber == widget.sourceLangNumber) {
-      return Container();
-    }
-   
 
     // 無料ユーザーが翻訳上限を超えたかどうかを判定
     final bool translationsLimited = user.premium == false &&
@@ -135,14 +132,14 @@ class LangLargeTranslationButtonsState
         googleButton(),
         LangGoogleTranslationResults(
           sourceLangNumber: widget.sourceLangNumber,
-          targetLangNumber: user.langNumber,
+          targetLangNumber: widget.targetLangNumber,
           results: _translationByGoogle,
         ),
         const SizedBox(height: 16),
         deeplButton(),
         LangDeeplTranslationResults(
           sourceLangNumber: widget.sourceLangNumber,
-          targetLangNumber: user.langNumber,
+          targetLangNumber: widget.targetLangNumber,
           results: _translationByDeepl,
         ),
       ],
