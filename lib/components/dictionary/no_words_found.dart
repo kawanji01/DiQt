@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/components/lang/large_translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -26,7 +27,9 @@ class DictionaryNoWordsFound extends ConsumerWidget {
         children: <Widget>[
           const SizedBox(height: 48),
           Text(
-            t.dictionaries.entry_not_found(query: keyword),
+            entryLengthLimitation < keyword.length
+                ? ''
+                : t.dictionaries.keyword_not_found,
             style: const TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 40),
@@ -41,6 +44,7 @@ class DictionaryNoWordsFound extends ConsumerWidget {
           LangLargeTranslationButtons(
             original: keyword,
             sourceLangNumber: dictionary.langNumberOfEntry,
+            targetLangNumber: dictionary.langNumberOfMeaning,
           ),
           const SizedBox(height: 80),
           const AdBanner(),

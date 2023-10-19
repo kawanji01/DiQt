@@ -24,7 +24,6 @@ class LangGoogleTranslationResults extends StatelessWidget {
         LanguageHandler.getLanguageFromNumber(targetLangNumber);
     final String translationInfo = '$sourceLanguage - $targetLanguage';
 
-    //
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -34,7 +33,7 @@ class LangGoogleTranslationResults extends StatelessWidget {
           style: const TextStyle(
               fontSize: 14, fontWeight: FontWeight.bold, color: Colors.green),
         ),
-        Text('$results',
+        SelectableText('$results',
             style: const TextStyle(fontSize: 14, color: Colors.black87)),
       ],
     );

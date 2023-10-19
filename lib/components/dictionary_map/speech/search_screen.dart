@@ -5,6 +5,7 @@ import 'package:booqs_mobile/components/dictionary_map/speech/language_options.d
 import 'package:booqs_mobile/components/dictionary_map/speech/recognition_button.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
@@ -122,7 +123,16 @@ class _DictionaryMapSpeechSearchScreenState
       );
     }
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(
+          height: 16,
+        ),
+        Text(
+          t.dictionaryMaps.search_by_speech,
+          style: const TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black87),
+        ),
         const SizedBox(
           height: 16,
         ),

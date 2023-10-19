@@ -24,9 +24,7 @@ class LanguageHandler {
     return langNumber;
   }
 
-  // 言語名を取得
-  static String getLanguageFromNumber(int number) {
-    String langCode = getLangCode(number);
+  static String getLanguageFromCode(String langCode) {
     if (langCode == 'undefined') return 'undefined';
     // 詳しくはi18n/en/langの　Icelandic　を参照。
     if (langCode == 'is') {
@@ -36,5 +34,11 @@ class LanguageHandler {
     langCode = langCode.replaceAll('-', '_');
     final String? language = t['lang.$langCode'];
     return language ?? 'undefined';
+  }
+
+  // 言語番号から言語名を取得
+  static String getLanguageFromNumber(int number) {
+    String langCode = getLangCode(number);
+    return getLanguageFromCode(langCode);
   }
 }

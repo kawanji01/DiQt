@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 2816 (1408 per locale)
+/// Strings: 2842 (1421 per locale)
 ///
-/// Built on 2023-10-16 at 10:11 UTC
+/// Built on 2023-10-19 at 06:31 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -282,11 +282,15 @@ class _TranslationsDictionariesEn {
 	String get pos_tags => 'Part of Speech';
 	String get grammars => 'Grammars';
 	String get no_applied_dictionary => 'DictionarySetting: None';
+	String get keyword => 'Keyword';
+	String get search_results => 'Search results';
 	String search_results_of({required Object query}) => 'Search results of "${query}"';
 	String entry_not_found({required Object query}) => '"${query}" is not found.';
+	String get keyword_not_found => 'The keyword is not registered in the dictionary.';
 	String get search_by_web => 'Search by Web';
 	String search_by_another({required Object name}) => 'Search by ${name}';
 	String add_keyword_to_dictionary({required Object keyword}) => 'Add "${keyword}" to the dictionary';
+	String get register_keyword => 'Register keyword to the dictionary';
 	String get no_permission => 'You don\'t have permission.';
 	String get no_addition_permission => 'You don\'t have create permission.';
 	String get no_modification_permission => 'You don\'t have update permission.';
@@ -941,8 +945,10 @@ class _TranslationsLangEn {
 	String get ca => 'Catalan';
 	String get ceb => 'Cebuano';
 	String get zh_CN => 'Chinese (Simplified)';
+	String get zh_Hans => 'Chinese (Simplified)';
 	String get zh => 'Chinese';
 	String get zh_TW => 'Chinese (Traditional)';
+	String get zh_Hant => 'Chinese (Traditional)';
 	String get co => 'Corsican';
 	String get hr => 'Croatian';
 	String get cs => 'Czech';
@@ -996,12 +1002,14 @@ class _TranslationsLangEn {
 	String get mn => 'Mongolian';
 	String get my => 'Myanmar (Burmese)';
 	String get ne => 'Nepali';
+	String get nb => 'Norwegian (Bokmål)';
 	String get no => 'Norwegian';
 	String get ny => 'Nyanja (Chichewa)';
 	String get or => 'Odia (Oriya)';
 	String get ps => 'Pashto';
 	String get fa => 'Persian';
 	String get pl => 'Polish';
+	String get prs => 'Dari';
 	String get pt => 'Portuguese (Portugal, Brazil)';
 	String get pa => 'Punjabi';
 	String get ro => 'Romanian';
@@ -1009,6 +1017,8 @@ class _TranslationsLangEn {
 	String get sm => 'Samoan';
 	String get gd => 'Scots Gaelic';
 	String get sr => 'Serbian';
+	String get sr_Cryl => 'Serbian (Cyrillic)';
+	String get sr_Latn => 'Serbian (Latin)';
 	String get st => 'Sesotho';
 	String get sn => 'Shona';
 	String get sd => 'Sindhi';
@@ -1769,6 +1779,9 @@ class _TranslationsDictionaryMapsEn {
 	String get search_by_speech => 'Search by speech';
 	String get start_speech_recognition => 'Start';
 	String get stop_speech_recognition => 'OK';
+	String get search_by_image => 'Search by image';
+	String get image_for_ocr => 'An image to load text';
+	String get upload => 'Upload';
 }
 
 // Path: words
@@ -2087,11 +2100,15 @@ class _TranslationsDictionariesJa implements _TranslationsDictionariesEn {
 	@override String get pos_tags => '品詞';
 	@override String get grammars => '文法';
 	@override String get no_applied_dictionary => '辞書設定：なし';
+	@override String get keyword => 'キーワード';
+	@override String get search_results => '検索結果';
 	@override String search_results_of({required Object query}) => '『${query}』の検索結果';
 	@override String entry_not_found({required Object query}) => '"${query}"は辞書に登録されていません。';
+	@override String get keyword_not_found => 'キーワードは辞書に登録されていません。';
 	@override String get search_by_web => 'Webで検索する';
 	@override String search_by_another({required Object name}) => '${name}で検索する';
 	@override String add_keyword_to_dictionary({required Object keyword}) => '"${keyword}"を辞書に追加する';
+	@override String get register_keyword => 'キーワードを辞書に登録する';
 	@override String get no_permission => '権限がありません。';
 	@override String get no_addition_permission => '追加する権限がありません。';
 	@override String get no_modification_permission => '修正する権限がありません。';
@@ -2746,8 +2763,10 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get ca => 'カタロニア語';
 	@override String get ceb => 'セブ語';
 	@override String get zh_CN => '中国語（簡体）';
+	@override String get zh_Hans => '中国語（簡体）';
 	@override String get zh => '中国語';
 	@override String get zh_TW => '中国語（繁体）';
+	@override String get zh_Hant => '中国語（繁体）';
 	@override String get co => 'コルシカ語';
 	@override String get hr => 'クロアチア語';
 	@override String get cs => 'チェコ語';
@@ -2801,12 +2820,14 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get mn => 'モンゴル語';
 	@override String get my => 'ミャンマー語（ビルマ語）';
 	@override String get ne => 'ネパール語';
+	@override String get nb => 'ノルウェー語（ブークモール）';
 	@override String get no => 'ノルウェー語';
 	@override String get ny => 'ニャンジャ語（チェワ語）';
 	@override String get or => 'オリヤ語';
 	@override String get ps => 'パシュト語';
 	@override String get fa => 'ペルシャ語';
 	@override String get pl => 'ポーランド語';
+	@override String get prs => 'ダリー語';
 	@override String get pt => 'ポルトガル語（ポルトガル、ブラジル）';
 	@override String get pa => 'パンジャブ語';
 	@override String get ro => 'ルーマニア語';
@@ -2814,6 +2835,8 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get sm => 'サモア語';
 	@override String get gd => 'スコットランド ゲール語';
 	@override String get sr => 'セルビア語';
+	@override String get sr_Cryl => 'セルビア語（キリル）';
+	@override String get sr_Latn => 'セルビア語（ラテン）';
 	@override String get st => 'セソト語';
 	@override String get sn => 'ショナ語';
 	@override String get sd => 'シンド語';
@@ -3574,6 +3597,9 @@ class _TranslationsDictionaryMapsJa implements _TranslationsDictionaryMapsEn {
 	@override String get search_by_speech => '音声で検索する';
 	@override String get start_speech_recognition => '開始する';
 	@override String get stop_speech_recognition => '完了';
+	@override String get search_by_image => '画像で検索する';
+	@override String get image_for_ocr => '文字を読み込む画像';
+	@override String get upload => 'アップロードする';
 }
 
 // Path: words
@@ -3809,11 +3835,15 @@ extension on _TranslationsEn {
 			case 'dictionaries.pos_tags': return 'Part of Speech';
 			case 'dictionaries.grammars': return 'Grammars';
 			case 'dictionaries.no_applied_dictionary': return 'DictionarySetting: None';
+			case 'dictionaries.keyword': return 'Keyword';
+			case 'dictionaries.search_results': return 'Search results';
 			case 'dictionaries.search_results_of': return ({required Object query}) => 'Search results of "${query}"';
 			case 'dictionaries.entry_not_found': return ({required Object query}) => '"${query}" is not found.';
+			case 'dictionaries.keyword_not_found': return 'The keyword is not registered in the dictionary.';
 			case 'dictionaries.search_by_web': return 'Search by Web';
 			case 'dictionaries.search_by_another': return ({required Object name}) => 'Search by ${name}';
 			case 'dictionaries.add_keyword_to_dictionary': return ({required Object keyword}) => 'Add "${keyword}" to the dictionary';
+			case 'dictionaries.register_keyword': return 'Register keyword to the dictionary';
 			case 'dictionaries.no_permission': return 'You don\'t have permission.';
 			case 'dictionaries.no_addition_permission': return 'You don\'t have create permission.';
 			case 'dictionaries.no_modification_permission': return 'You don\'t have update permission.';
@@ -4342,8 +4372,10 @@ extension on _TranslationsEn {
 			case 'lang.ca': return 'Catalan';
 			case 'lang.ceb': return 'Cebuano';
 			case 'lang.zh_CN': return 'Chinese (Simplified)';
+			case 'lang.zh_Hans': return 'Chinese (Simplified)';
 			case 'lang.zh': return 'Chinese';
 			case 'lang.zh_TW': return 'Chinese (Traditional)';
+			case 'lang.zh_Hant': return 'Chinese (Traditional)';
 			case 'lang.co': return 'Corsican';
 			case 'lang.hr': return 'Croatian';
 			case 'lang.cs': return 'Czech';
@@ -4397,12 +4429,14 @@ extension on _TranslationsEn {
 			case 'lang.mn': return 'Mongolian';
 			case 'lang.my': return 'Myanmar (Burmese)';
 			case 'lang.ne': return 'Nepali';
+			case 'lang.nb': return 'Norwegian (Bokmål)';
 			case 'lang.no': return 'Norwegian';
 			case 'lang.ny': return 'Nyanja (Chichewa)';
 			case 'lang.or': return 'Odia (Oriya)';
 			case 'lang.ps': return 'Pashto';
 			case 'lang.fa': return 'Persian';
 			case 'lang.pl': return 'Polish';
+			case 'lang.prs': return 'Dari';
 			case 'lang.pt': return 'Portuguese (Portugal, Brazil)';
 			case 'lang.pa': return 'Punjabi';
 			case 'lang.ro': return 'Romanian';
@@ -4410,6 +4444,8 @@ extension on _TranslationsEn {
 			case 'lang.sm': return 'Samoan';
 			case 'lang.gd': return 'Scots Gaelic';
 			case 'lang.sr': return 'Serbian';
+			case 'lang.sr_Cryl': return 'Serbian (Cyrillic)';
+			case 'lang.sr_Latn': return 'Serbian (Latin)';
 			case 'lang.st': return 'Sesotho';
 			case 'lang.sn': return 'Shona';
 			case 'lang.sd': return 'Sindhi';
@@ -5026,6 +5062,9 @@ extension on _TranslationsEn {
 			case 'dictionaryMaps.search_by_speech': return 'Search by speech';
 			case 'dictionaryMaps.start_speech_recognition': return 'Start';
 			case 'dictionaryMaps.stop_speech_recognition': return 'OK';
+			case 'dictionaryMaps.search_by_image': return 'Search by image';
+			case 'dictionaryMaps.image_for_ocr': return 'An image to load text';
+			case 'dictionaryMaps.upload': return 'Upload';
 			case 'words.words': return 'Words';
 			case 'words.word': return 'Word';
 			case 'words.add': return 'Add Word';
@@ -5225,11 +5264,15 @@ extension on _TranslationsJa {
 			case 'dictionaries.pos_tags': return '品詞';
 			case 'dictionaries.grammars': return '文法';
 			case 'dictionaries.no_applied_dictionary': return '辞書設定：なし';
+			case 'dictionaries.keyword': return 'キーワード';
+			case 'dictionaries.search_results': return '検索結果';
 			case 'dictionaries.search_results_of': return ({required Object query}) => '『${query}』の検索結果';
 			case 'dictionaries.entry_not_found': return ({required Object query}) => '"${query}"は辞書に登録されていません。';
+			case 'dictionaries.keyword_not_found': return 'キーワードは辞書に登録されていません。';
 			case 'dictionaries.search_by_web': return 'Webで検索する';
 			case 'dictionaries.search_by_another': return ({required Object name}) => '${name}で検索する';
 			case 'dictionaries.add_keyword_to_dictionary': return ({required Object keyword}) => '"${keyword}"を辞書に追加する';
+			case 'dictionaries.register_keyword': return 'キーワードを辞書に登録する';
 			case 'dictionaries.no_permission': return '権限がありません。';
 			case 'dictionaries.no_addition_permission': return '追加する権限がありません。';
 			case 'dictionaries.no_modification_permission': return '修正する権限がありません。';
@@ -5758,8 +5801,10 @@ extension on _TranslationsJa {
 			case 'lang.ca': return 'カタロニア語';
 			case 'lang.ceb': return 'セブ語';
 			case 'lang.zh_CN': return '中国語（簡体）';
+			case 'lang.zh_Hans': return '中国語（簡体）';
 			case 'lang.zh': return '中国語';
 			case 'lang.zh_TW': return '中国語（繁体）';
+			case 'lang.zh_Hant': return '中国語（繁体）';
 			case 'lang.co': return 'コルシカ語';
 			case 'lang.hr': return 'クロアチア語';
 			case 'lang.cs': return 'チェコ語';
@@ -5813,12 +5858,14 @@ extension on _TranslationsJa {
 			case 'lang.mn': return 'モンゴル語';
 			case 'lang.my': return 'ミャンマー語（ビルマ語）';
 			case 'lang.ne': return 'ネパール語';
+			case 'lang.nb': return 'ノルウェー語（ブークモール）';
 			case 'lang.no': return 'ノルウェー語';
 			case 'lang.ny': return 'ニャンジャ語（チェワ語）';
 			case 'lang.or': return 'オリヤ語';
 			case 'lang.ps': return 'パシュト語';
 			case 'lang.fa': return 'ペルシャ語';
 			case 'lang.pl': return 'ポーランド語';
+			case 'lang.prs': return 'ダリー語';
 			case 'lang.pt': return 'ポルトガル語（ポルトガル、ブラジル）';
 			case 'lang.pa': return 'パンジャブ語';
 			case 'lang.ro': return 'ルーマニア語';
@@ -5826,6 +5873,8 @@ extension on _TranslationsJa {
 			case 'lang.sm': return 'サモア語';
 			case 'lang.gd': return 'スコットランド ゲール語';
 			case 'lang.sr': return 'セルビア語';
+			case 'lang.sr_Cryl': return 'セルビア語（キリル）';
+			case 'lang.sr_Latn': return 'セルビア語（ラテン）';
 			case 'lang.st': return 'セソト語';
 			case 'lang.sn': return 'ショナ語';
 			case 'lang.sd': return 'シンド語';
@@ -6442,6 +6491,9 @@ extension on _TranslationsJa {
 			case 'dictionaryMaps.search_by_speech': return '音声で検索する';
 			case 'dictionaryMaps.start_speech_recognition': return '開始する';
 			case 'dictionaryMaps.stop_speech_recognition': return '完了';
+			case 'dictionaryMaps.search_by_image': return '画像で検索する';
+			case 'dictionaryMaps.image_for_ocr': return '文字を読み込む画像';
+			case 'dictionaryMaps.upload': return 'アップロードする';
 			case 'words.words': return '項目';
 			case 'words.word': return '項目';
 			case 'words.add': return '項目を追加する';

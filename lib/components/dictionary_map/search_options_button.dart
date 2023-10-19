@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/dictionary_map/image/search_button.dart';
 import 'package:booqs_mobile/components/dictionary_map/speech/search_button.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,10 @@ class DictionaryMapSearchOptionsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        //SpeechTestButton(dictionary: dictionary!),
+        DictionaryMapImageSearchButton(
+          dictionary: dictionary,
+          keywordController: keywordController,
+        ),
         DictionaryMapSpeechSearchButton(
           dictionary: dictionary,
           keywordController: keywordController,

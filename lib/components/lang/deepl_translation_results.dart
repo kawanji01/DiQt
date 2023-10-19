@@ -34,7 +34,7 @@ class LangDeeplTranslationResults extends StatelessWidget {
           style: const TextStyle(
               fontSize: 14, fontWeight: FontWeight.bold, color: Colors.green),
         ),
-        Text('$results',
+        SelectableText('$results',
             style: const TextStyle(fontSize: 14, color: Colors.black87)),
       ],
     );
