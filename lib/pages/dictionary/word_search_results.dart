@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/dictionary/search_select_form.dart';
+import 'package:booqs_mobile/components/dictionary/search_info.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -78,7 +78,7 @@ class DictionaryWordSearchResultsPageState
       return future.when(
           data: (dictionary) {
             if (dictionary == null) return Container();
-            return DictionarySelectForm(
+            return DictionarySearchInfo(
                 dictionary: dictionary, keyword: keyword);
           },
           error: (e, str) => Text('$e'),

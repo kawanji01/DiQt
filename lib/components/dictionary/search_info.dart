@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
 import 'package:booqs_mobile/components/dictionary/searched_keyword.dart';
+import 'package:booqs_mobile/components/lang/small_translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -9,18 +10,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DictionarySelectForm extends ConsumerStatefulWidget {
-  const DictionarySelectForm(
+class DictionarySearchInfo extends ConsumerStatefulWidget {
+  const DictionarySearchInfo(
       {super.key, required this.dictionary, required this.keyword});
   final Dictionary dictionary;
   final String keyword;
 
   @override
-  ConsumerState<DictionarySelectForm> createState() =>
-      _DictionarySelectFormState();
+  ConsumerState<DictionarySearchInfo> createState() =>
+      _DictionarySearchInfoState();
 }
 
-class _DictionarySelectFormState extends ConsumerState<DictionarySelectForm> {
+class _DictionarySearchInfoState extends ConsumerState<DictionarySearchInfo> {
   @override
   void initState() {
     super.initState();
@@ -83,7 +84,13 @@ class _DictionarySelectFormState extends ConsumerState<DictionarySelectForm> {
               const SizedBox(height: 24),
               // 検索キーワード
               DictionarySearchedKeyword(
-                  dictionary: widget.dictionary, keyword: widget.keyword)
+                  dictionary: widget.dictionary, keyword: widget.keyword),
+              LangSmallTranslationButtons(
+                original: widget.keyword,
+                sourceLangNumber: widget.dictionary.langNumberOfEntry,
+                targetLangNumber: widget.dictionary.langNumberOfMeaning,
+              ),
+              const SizedBox(height: 24),
             ]);
           },
           error: (err, stack) => Text('Error: $err'),

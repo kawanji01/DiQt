@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
-import 'package:booqs_mobile/components/lang/deepl_translation_results.dart';
-import 'package:booqs_mobile/components/lang/google_translation_results.dart';
+import 'package:booqs_mobile/components/lang/translation_results.dart';
 import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/langs.dart';
@@ -38,8 +37,12 @@ class LangLargeTranslationButtonsState
   // Google翻訳
   Future<void> _googleTranslate(User user) async {
     setState(() => _googleTranslating = true);
-    final Map? resMap = await RemoteLangs.googleTranslation(widget.original,
-        widget.sourceLangNumber, widget.targetLangNumber, user);
+    final Map? resMap = await RemoteLangs.googleTranslation(
+      original: widget.original,
+      sourceLangNumber: widget.sourceLangNumber,
+      targetLangNumber: widget.targetLangNumber,
+    );
+
     ref.read(todaysTranslationsCountProvider.notifier).state += 1;
     setState(() {
       _translationByGoogle = resMap == null ? null : resMap['translation'];
@@ -51,8 +54,10 @@ class LangLargeTranslationButtonsState
   // DeepL翻訳
   Future<void> _deeplTranslate(User user) async {
     setState(() => _deeplTranslating = true);
-    final Map? resMap = await RemoteLangs.deeplTranslation(widget.original,
-        widget.sourceLangNumber, widget.targetLangNumber, user);
+    final Map? resMap = await RemoteLangs.deeplTranslation(
+        original: widget.original,
+        sourceLangNumber: widget.sourceLangNumber,
+        targetLangNumber: widget.targetLangNumber);
     ref.read(todaysTranslationsCountProvider.notifier).state += 1;
 
     setState(() {
@@ -130,14 +135,16 @@ class LangLargeTranslationButtonsState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         googleButton(),
-        LangGoogleTranslationResults(
+        LangTranslationResults(
+          label: t.lang.google_translation,
           sourceLangNumber: widget.sourceLangNumber,
           targetLangNumber: widget.targetLangNumber,
           results: _translationByGoogle,
         ),
         const SizedBox(height: 16),
         deeplButton(),
-        LangDeeplTranslationResults(
+        LangTranslationResults(
+          label: t.lang.deepl_translation,
           sourceLangNumber: widget.sourceLangNumber,
           targetLangNumber: widget.targetLangNumber,
           results: _translationByDeepl,

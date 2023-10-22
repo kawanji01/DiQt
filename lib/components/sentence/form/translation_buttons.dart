@@ -41,10 +41,10 @@ class SentenceFormTranslationButtonsState
     EasyLoading.show(status: 'loading...');
 
     final Map? resMap = await RemoteLangs.googleTranslation(
-        widget.originalController.text,
-        widget.sourceLangNumber,
-        widget.targetLangNumber,
-        user);
+      original: widget.originalController.text,
+      sourceLangNumber: widget.sourceLangNumber,
+      targetLangNumber: widget.targetLangNumber,
+    );
     EasyLoading.dismiss();
     // リクエストロック終了
     setState(() {
@@ -71,10 +71,10 @@ class SentenceFormTranslationButtonsState
     // 画面全体にローディングを表示
     EasyLoading.show(status: 'loading...');
     final Map? resMap = await RemoteLangs.deeplTranslation(
-        widget.originalController.text,
-        widget.sourceLangNumber,
-        widget.targetLangNumber,
-        user);
+      original: widget.originalController.text,
+      sourceLangNumber: widget.sourceLangNumber,
+      targetLangNumber: widget.targetLangNumber,
+    );
     EasyLoading.dismiss();
     // リクエストロック終了
     setState(() {

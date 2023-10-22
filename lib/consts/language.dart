@@ -5,6 +5,15 @@ const int defaultLangNumber = 44;
 const List<int> supportedLangNumbers = [21, 44];
 const List<int> supportedTTSLangNumbers = [21, 44];
 
+// 分かち書きが必要な言語は、日本語、中国語、中国語(繁体字)、中国語（簡体字）、タイ語
+const List<int> segmentationNeededLangNumbers = [
+  44,
+  110,
+  14,
+  15,
+  97,
+];
+
 // 言語コードと言語番号(ID)の対応づけ。
 // IDで管理しているのは、zh-CN と zh-Hans のように言語コードの表記揺れに対応するため。
 // localeの切り替え以外では、主に揺れのないIDを利用する

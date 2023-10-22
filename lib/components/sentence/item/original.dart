@@ -1,8 +1,7 @@
 import 'package:booqs_mobile/components/lang/small_translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
-import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,19 +11,15 @@ class SentenceItemOriginal extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final User? user = ref.watch(currentUserProvider);
-
     Widget translationButton() {
-      if (user == null) {
-        return Container();
-      }
-      if (sentence.langNumberOfTranslation == user.langNumber) {
+      final int localeNumber = ref.watch(localeProvider.notifier).langNumber;
+      if (sentence.langNumberOfTranslation == localeNumber) {
         return Container();
       }
       return LangSmallTranslationButtons(
-        original: sentence.original,
-        sourceLangNumber: sentence.langNumberOfOriginal,
-      );
+          original: sentence.original,
+          sourceLangNumber: sentence.langNumberOfOriginal,
+          targetLangNumber: localeNumber);
     }
 
     return Column(
@@ -40,7 +35,7 @@ class SentenceItemOriginal extends ConsumerWidget {
           fontColor: Colors.black87,
           selectable: true,
         ),
-        translationButton()
+        translationButton(),
       ],
     );
   }
