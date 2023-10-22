@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/components/ad/banner.dart';
-import 'package:booqs_mobile/components/lang/large_translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
@@ -39,12 +38,6 @@ class DictionaryNoWordsFound extends ConsumerWidget {
           DictionarySearchByWebButton(
             keyword: keyword,
             langNumberOfKeyword: dictionary.langNumberOfEntry,
-          ),
-          const SizedBox(height: 16),
-          LangLargeTranslationButtons(
-            original: keyword,
-            sourceLangNumber: dictionary.langNumberOfEntry,
-            targetLangNumber: dictionary.langNumberOfMeaning,
           ),
           const SizedBox(height: 80),
           const AdBanner(),

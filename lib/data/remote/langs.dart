@@ -77,7 +77,8 @@ class RemoteLangs {
   }
 
   // 形態素解析による分かち書き
-  static Future<Map?> wordSegmantation(String keyword, int langNumber) async {
+  static Future<Map> wordSegmentation(
+      {required String keyword, required int langNumber}) async {
     try {
       final String sanitizedKeyword = Sanitizer.removeDiQtLink(keyword);
 
@@ -88,24 +89,20 @@ class RemoteLangs {
       };
 
       final Uri url =
-          Uri.parse('${DiQtURL.root()}/api/v1/mobile/langs/word_segmantation');
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/langs/word_segmentation');
       final Response res = await HttpService.post(
         url,
         body,
       );
-      if (res.statusCode != 200) return null;
-
-      final Map? resMap = json.decode(res.body);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
-      return null;
+      return ErrorHandler.exceptionMap(e, s);
     }
   }
 }

@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/dictionary/new_word_button.dart';
 import 'package:booqs_mobile/components/dictionary/search_by_web_button.dart';
-import 'package:booqs_mobile/components/lang/large_translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -30,11 +29,6 @@ class DictionaryNoMoreWords extends ConsumerWidget {
           langNumberOfKeyword: dictionary.langNumberOfEntry,
         ),
         const SizedBox(height: 16),
-        LangLargeTranslationButtons(
-          original: keyword,
-          sourceLangNumber: dictionary.langNumberOfEntry,
-          targetLangNumber: dictionary.langNumberOfMeaning,
-        ),
         const SizedBox(height: 48),
         const SizedBox(height: 120),
       ]);

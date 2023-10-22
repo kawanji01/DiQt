@@ -44,6 +44,7 @@ class LangTranslationButton extends StatelessWidget {
             color: Colors.green,
             fontSize: 14,
             fontWeight: FontWeight.w500,
+            decoration: TextDecoration.underline,
           )),
     );
   }

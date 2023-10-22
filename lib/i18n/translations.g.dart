@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 2842 (1421 per locale)
+/// Strings: 2844 (1422 per locale)
 ///
-/// Built on 2023-10-19 at 06:31 UTC
+/// Built on 2023-10-22 at 15:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -283,6 +283,7 @@ class _TranslationsDictionariesEn {
 	String get grammars => 'Grammars';
 	String get no_applied_dictionary => 'DictionarySetting: None';
 	String get keyword => 'Keyword';
+	String get word_segmentation => 'Word Segmentation';
 	String get search_results => 'Search results';
 	String search_results_of({required Object query}) => 'Search results of "${query}"';
 	String entry_not_found({required Object query}) => '"${query}" is not found.';
@@ -2100,15 +2101,16 @@ class _TranslationsDictionariesJa implements _TranslationsDictionariesEn {
 	@override String get pos_tags => '品詞';
 	@override String get grammars => '文法';
 	@override String get no_applied_dictionary => '辞書設定：なし';
-	@override String get keyword => 'キーワード';
+	@override String get keyword => '検索内容';
+	@override String get word_segmentation => '単語に分割する';
 	@override String get search_results => '検索結果';
 	@override String search_results_of({required Object query}) => '『${query}』の検索結果';
 	@override String entry_not_found({required Object query}) => '"${query}"は辞書に登録されていません。';
-	@override String get keyword_not_found => 'キーワードは辞書に登録されていません。';
+	@override String get keyword_not_found => '検索内容は辞書に登録されていません。';
 	@override String get search_by_web => 'Webで検索する';
 	@override String search_by_another({required Object name}) => '${name}で検索する';
 	@override String add_keyword_to_dictionary({required Object keyword}) => '"${keyword}"を辞書に追加する';
-	@override String get register_keyword => 'キーワードを辞書に登録する';
+	@override String get register_keyword => '検索内容を辞書に登録する';
 	@override String get no_permission => '権限がありません。';
 	@override String get no_addition_permission => '追加する権限がありません。';
 	@override String get no_modification_permission => '修正する権限がありません。';
@@ -3836,6 +3838,7 @@ extension on _TranslationsEn {
 			case 'dictionaries.grammars': return 'Grammars';
 			case 'dictionaries.no_applied_dictionary': return 'DictionarySetting: None';
 			case 'dictionaries.keyword': return 'Keyword';
+			case 'dictionaries.word_segmentation': return 'Word Segmentation';
 			case 'dictionaries.search_results': return 'Search results';
 			case 'dictionaries.search_results_of': return ({required Object query}) => 'Search results of "${query}"';
 			case 'dictionaries.entry_not_found': return ({required Object query}) => '"${query}" is not found.';
@@ -5264,15 +5267,16 @@ extension on _TranslationsJa {
 			case 'dictionaries.pos_tags': return '品詞';
 			case 'dictionaries.grammars': return '文法';
 			case 'dictionaries.no_applied_dictionary': return '辞書設定：なし';
-			case 'dictionaries.keyword': return 'キーワード';
+			case 'dictionaries.keyword': return '検索内容';
+			case 'dictionaries.word_segmentation': return '単語に分割する';
 			case 'dictionaries.search_results': return '検索結果';
 			case 'dictionaries.search_results_of': return ({required Object query}) => '『${query}』の検索結果';
 			case 'dictionaries.entry_not_found': return ({required Object query}) => '"${query}"は辞書に登録されていません。';
-			case 'dictionaries.keyword_not_found': return 'キーワードは辞書に登録されていません。';
+			case 'dictionaries.keyword_not_found': return '検索内容は辞書に登録されていません。';
 			case 'dictionaries.search_by_web': return 'Webで検索する';
 			case 'dictionaries.search_by_another': return ({required Object name}) => '${name}で検索する';
 			case 'dictionaries.add_keyword_to_dictionary': return ({required Object keyword}) => '"${keyword}"を辞書に追加する';
-			case 'dictionaries.register_keyword': return 'キーワードを辞書に登録する';
+			case 'dictionaries.register_keyword': return '検索内容を辞書に登録する';
 			case 'dictionaries.no_permission': return '権限がありません。';
 			case 'dictionaries.no_addition_permission': return '追加する権限がありません。';
 			case 'dictionaries.no_modification_permission': return '修正する権限がありません。';
