@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/lang/deepl_translation_results.dart';
+import 'package:booqs_mobile/components/lang/google_tranlsation_button.dart';
 import 'package:booqs_mobile/components/lang/google_translation_results.dart';
 import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
@@ -14,9 +15,11 @@ class LangSmallTranslationButtons extends ConsumerStatefulWidget {
     Key? key,
     required this.original,
     required this.sourceLangNumber,
+    required this.targetLangNumber,
   }) : super(key: key);
   final String original;
   final int sourceLangNumber;
+  final int targetLangNumber;
 
   @override
   LangSmallTranslationButtonsState createState() =>
@@ -31,10 +34,13 @@ class LangSmallTranslationButtonsState
   bool _deeplTranslating = false;
 
   // Google翻訳
-  Future<void> _googleTranslate(User user) async {
+  Future<void> _googleTranslate() async {
     setState(() => _googleTranslating = true);
     final Map? resMap = await RemoteLangs.googleTranslation(
-        widget.original, widget.sourceLangNumber, user.langNumber, user);
+      original: widget.original,
+      sourceLangNumber: widget.sourceLangNumber,
+      targetLangNumber: widget.targetLangNumber,
+    );
     ref.read(todaysTranslationsCountProvider.notifier).state += 1;
     setState(() {
       _translationByGoogle = resMap == null ? null : resMap['translation'];
@@ -42,10 +48,12 @@ class LangSmallTranslationButtonsState
   }
 
   // DeepL翻訳
-  Future<void> _deeplTranslate(User user) async {
+  Future<void> _deeplTranslate() async {
     setState(() => _deeplTranslating = true);
     final Map? resMap = await RemoteLangs.deeplTranslation(
-        widget.original, widget.sourceLangNumber, user.langNumber, user);
+        original: widget.original,
+        sourceLangNumber: widget.sourceLangNumber,
+        targetLangNumber: widget.targetLangNumber);
     ref.read(todaysTranslationsCountProvider.notifier).state += 1;
 
     setState(() {
@@ -64,75 +72,36 @@ class LangSmallTranslationButtonsState
 
   @override
   Widget build(BuildContext context) {
-    final User? user = ref.watch(currentUserProvider);
-    if (user == null) {
-      return const Text('not Logged in');
-    }
     // 原文がユーザーの母語なら翻訳ボタンを表示しない。
-    if (user.langNumber == widget.sourceLangNumber) {
+    if (widget.targetLangNumber == widget.sourceLangNumber) {
       return Container();
     }
 
     // 無料ユーザーが翻訳上限を超えたかどうかを判定
-    final bool translationsLimited = user.premium == false &&
-        ref.watch(todaysTranslationsCountProvider) >=
-            translationsCountLimitForFreeUsers;
-
-    const TextStyle styleText = TextStyle(fontSize: 14, color: Colors.black87);
+    final bool translationsLimited =
+        ref.watch(premiumEnabledProvider) == false &&
+            ref.watch(todaysTranslationsCountProvider) >=
+                translationsCountLimitForFreeUsers;
 
     Widget googleButton() {
-      if (_googleTranslating) {
-        if (_translationByGoogle == null) {
-          return Text(
-            t.lang.translating,
-            style: styleText,
-          );
-        }
-        return Text(
-          t.lang.done,
-          style: styleText,
-        );
-      }
-      return TextButton(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        onPressed: () =>
-            translationsLimited ? _moveToPremiumPlan() : _googleTranslate(user),
-        child: Text(t.lang.google_translation,
-            style: const TextStyle(color: Colors.green)),
+      return LangTranslationButton(
+        label: t.lang.google_translation,
+        isTranslating: _googleTranslating,
+        translation: _translationByGoogle,
+        translationLmited: translationsLimited,
+        translate: _googleTranslate,
+        moveToPremiumPlan: _moveToPremiumPlan,
       );
     }
 
     Widget deeplButton() {
-      if (_deeplTranslating) {
-        if (_translationByDeepl == null) {
-          return Text(
-            t.lang.translating,
-            style: styleText,
-          );
-        }
-        return Text(
-          t.lang.done,
-          style: styleText,
-        );
-      }
-      return TextButton(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        onPressed: () async =>
-            translationsLimited ? _moveToPremiumPlan() : _deeplTranslate(user),
-        child: Text(t.lang.deepl_translation,
-            style: const TextStyle(color: Colors.green)),
+      return LangTranslationButton(
+        label: t.lang.deepl_translation,
+        isTranslating: _deeplTranslating,
+        translation: _translationByDeepl,
+        translationLmited: translationsLimited,
+        translate: _deeplTranslate,
+        moveToPremiumPlan: _moveToPremiumPlan,
       );
     }
 
@@ -144,7 +113,7 @@ class LangSmallTranslationButtonsState
             googleButton(),
             const Text(
               ' / ',
-              style: styleText,
+              style: TextStyle(fontSize: 14, color: Colors.black87),
             ),
             deeplButton()
           ],
@@ -154,12 +123,12 @@ class LangSmallTranslationButtonsState
           children: [
             LangGoogleTranslationResults(
               sourceLangNumber: widget.sourceLangNumber,
-              targetLangNumber: user.langNumber,
+              targetLangNumber: widget.targetLangNumber,
               results: _translationByGoogle,
             ),
             LangDeeplTranslationResults(
               sourceLangNumber: widget.sourceLangNumber,
-              targetLangNumber: user.langNumber,
+              targetLangNumber: widget.targetLangNumber,
               results: _translationByDeepl,
             ),
           ],

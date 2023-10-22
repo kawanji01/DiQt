@@ -9,18 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DictionarySelectForm extends ConsumerStatefulWidget {
-  const DictionarySelectForm(
+class DictionarySearchInfo extends ConsumerStatefulWidget {
+  const DictionarySearchInfo(
       {super.key, required this.dictionary, required this.keyword});
   final Dictionary dictionary;
   final String keyword;
 
   @override
-  ConsumerState<DictionarySelectForm> createState() =>
-      _DictionarySelectFormState();
+  ConsumerState<DictionarySearchInfo> createState() =>
+      _DictionarySearchInfoState();
 }
 
-class _DictionarySelectFormState extends ConsumerState<DictionarySelectForm> {
+class _DictionarySearchInfoState extends ConsumerState<DictionarySearchInfo> {
   @override
   void initState() {
     super.initState();

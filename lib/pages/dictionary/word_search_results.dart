@@ -78,7 +78,7 @@ class DictionaryWordSearchResultsPageState
       return future.when(
           data: (dictionary) {
             if (dictionary == null) return Container();
-            return DictionarySelectForm(
+            return DictionarySearchInfo(
                 dictionary: dictionary, keyword: keyword);
           },
           error: (e, str) => Text('$e'),
