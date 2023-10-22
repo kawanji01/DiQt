@@ -1,11 +1,9 @@
-import 'package:booqs_mobile/components/lang/deepl_translation_results.dart';
-import 'package:booqs_mobile/components/lang/google_tranlsation_button.dart';
-import 'package:booqs_mobile/components/lang/google_translation_results.dart';
+import 'package:booqs_mobile/components/lang/translation_button.dart';
+import 'package:booqs_mobile/components/lang/translation_results.dart';
 import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/langs.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -83,50 +81,53 @@ class LangSmallTranslationButtonsState
             ref.watch(todaysTranslationsCountProvider) >=
                 translationsCountLimitForFreeUsers;
 
-    Widget googleButton() {
-      return LangTranslationButton(
-        label: t.lang.google_translation,
-        isTranslating: _googleTranslating,
-        translation: _translationByGoogle,
-        translationLmited: translationsLimited,
-        translate: _googleTranslate,
-        moveToPremiumPlan: _moveToPremiumPlan,
-      );
-    }
-
-    Widget deeplButton() {
-      return LangTranslationButton(
-        label: t.lang.deepl_translation,
-        isTranslating: _deeplTranslating,
-        translation: _translationByDeepl,
-        translationLmited: translationsLimited,
-        translate: _deeplTranslate,
-        moveToPremiumPlan: _moveToPremiumPlan,
+    Widget translationButtons() {
+      if (_translationByGoogle != null && _translationByDeepl != null) {
+        return Container();
+      }
+      return Row(
+        children: [
+          // Google翻訳
+          LangTranslationButton(
+            label: t.lang.google_translation,
+            isTranslating: _googleTranslating,
+            translation: _translationByGoogle,
+            translationLmited: translationsLimited,
+            translate: _googleTranslate,
+            moveToPremiumPlan: _moveToPremiumPlan,
+          ),
+          const Text(
+            ' / ',
+            style: TextStyle(fontSize: 14, color: Colors.black87),
+          ),
+          // Deepl翻訳
+          LangTranslationButton(
+            label: t.lang.deepl_translation,
+            isTranslating: _deeplTranslating,
+            translation: _translationByDeepl,
+            translationLmited: translationsLimited,
+            translate: _deeplTranslate,
+            moveToPremiumPlan: _moveToPremiumPlan,
+          ),
+        ],
       );
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            googleButton(),
-            const Text(
-              ' / ',
-              style: TextStyle(fontSize: 14, color: Colors.black87),
-            ),
-            deeplButton()
-          ],
-        ),
+        translationButtons(),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LangGoogleTranslationResults(
+            LangTranslationResults(
+              label: t.lang.google_translation,
               sourceLangNumber: widget.sourceLangNumber,
               targetLangNumber: widget.targetLangNumber,
               results: _translationByGoogle,
             ),
-            LangDeeplTranslationResults(
+            LangTranslationResults(
+              label: t.lang.deepl_translation,
               sourceLangNumber: widget.sourceLangNumber,
               targetLangNumber: widget.targetLangNumber,
               results: _translationByDeepl,

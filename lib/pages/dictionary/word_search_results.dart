@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/dictionary/search_select_form.dart';
+import 'package:booqs_mobile/components/dictionary/search_info.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';

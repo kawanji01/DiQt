@@ -33,15 +33,18 @@ class LangTranslationButton extends StatelessWidget {
       );
     }
     return TextButton(
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 0),
-        textStyle: const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(EdgeInsets.zero),
+        minimumSize: MaterialStateProperty.all(Size.zero),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
       onPressed: translationLmited ? moveToPremiumPlan : translate,
-      child: Text(label, style: const TextStyle(color: Colors.green)),
+      child: Text(label,
+          style: const TextStyle(
+            color: Colors.green,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          )),
     );
   }
 }

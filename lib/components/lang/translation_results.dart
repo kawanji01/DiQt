@@ -1,13 +1,14 @@
-import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/language_handler.dart';
 import 'package:flutter/material.dart';
 
-class LangGoogleTranslationResults extends StatelessWidget {
-  const LangGoogleTranslationResults(
+class LangTranslationResults extends StatelessWidget {
+  const LangTranslationResults(
       {super.key,
+      required this.label,
       required this.sourceLangNumber,
       required this.targetLangNumber,
       required this.results});
+  final String label;
   final int sourceLangNumber;
   final int targetLangNumber;
   final String? results;
@@ -29,7 +30,7 @@ class LangGoogleTranslationResults extends StatelessWidget {
       children: [
         const SizedBox(height: 8),
         Text(
-          '${t.lang.google_translation} ($translationInfo)：',
+          '$label ($translationInfo)：',
           style: const TextStyle(
               fontSize: 14, fontWeight: FontWeight.bold, color: Colors.green),
         ),

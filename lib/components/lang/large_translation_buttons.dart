@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
-import 'package:booqs_mobile/components/lang/deepl_translation_results.dart';
-import 'package:booqs_mobile/components/lang/google_translation_results.dart';
+import 'package:booqs_mobile/components/lang/translation_results.dart';
 import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/langs.dart';
@@ -136,14 +135,16 @@ class LangLargeTranslationButtonsState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         googleButton(),
-        LangGoogleTranslationResults(
+        LangTranslationResults(
+          label: t.lang.google_translation,
           sourceLangNumber: widget.sourceLangNumber,
           targetLangNumber: widget.targetLangNumber,
           results: _translationByGoogle,
         ),
         const SizedBox(height: 16),
         deeplButton(),
-        LangDeeplTranslationResults(
+        LangTranslationResults(
+          label: t.lang.deepl_translation,
           sourceLangNumber: widget.sourceLangNumber,
           targetLangNumber: widget.targetLangNumber,
           results: _translationByDeepl,
