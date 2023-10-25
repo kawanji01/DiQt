@@ -5,7 +5,6 @@ import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:booqs_mobile/utils/sanitizer.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:http/http.dart';
 
 class RemoteLangs {
