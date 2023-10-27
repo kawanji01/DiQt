@@ -18,7 +18,7 @@ class DictionaryAIResults extends StatelessWidget {
       return Container();
     }
     final String result = '${aiSearcher?.results}';
-    final String prompt = t['lang.${aiSearcher?.promptKey}'];
+    final String prompt = '${t['lang.${aiSearcher?.promptKey}']}:';
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(prompt,
           style: const TextStyle(
