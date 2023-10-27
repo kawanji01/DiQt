@@ -86,6 +86,7 @@ class _DictionarySearchInfoState extends ConsumerState<DictionarySearchInfo> {
               // 検索キーワード
               DictionarySearchedKeyword(
                   dictionary: widget.dictionary, keyword: widget.keyword),
+              // 翻訳ボタン
               LangSmallTranslationButtons(
                 original: widget.keyword,
                 sourceLangNumber: widget.dictionary.langNumberOfEntry,

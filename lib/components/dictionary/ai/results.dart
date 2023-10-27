@@ -24,7 +24,7 @@ class DictionaryAIResults extends StatelessWidget {
           style: const TextStyle(
               fontSize: 16, color: Colors.green, fontWeight: FontWeight.bold)),
       const SizedBox(height: 16),
-      Text(result,
+      SelectableText(result,
           style: const TextStyle(
               fontSize: 16,
               color: Colors.black87,
