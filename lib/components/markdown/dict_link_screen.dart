@@ -37,7 +37,9 @@ class MarkdownDictLinkScreen extends ConsumerWidget {
                         return Text(t.errors.http_status_404);
                       }
                       return MarkdownDictLinkSearchInfo(
-                          dictionary: dictionary, keyword: keyword);
+                        dictionary: dictionary,
+                        keyword: keyword,
+                      );
                     },
                     loading: () => const LoadingSpinner(),
                     error: (e, s) => Text(e.toString())),

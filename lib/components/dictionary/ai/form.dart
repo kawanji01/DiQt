@@ -37,7 +37,7 @@ class _DictionaryAIFormState extends ConsumerState<DictionaryAIForm> {
     if (!mounted) return;
     // エラーの場合の処理
     if (ErrorHandler.isErrorMap(resMap)) {
-      ErrorHandler.showErrorSnackBar(context, resMap);
+      ErrorHandler.showErrorToast(context, resMap);
       return setState(() {
         _isRequesting = false;
       });
@@ -59,6 +59,9 @@ class _DictionaryAIFormState extends ConsumerState<DictionaryAIForm> {
           margin: const EdgeInsets.only(bottom: 16),
           width: double.infinity,
           child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+            ),
             onPressed: _isRequesting ? null : _performAISearch,
             child: Text(t.lang.ask_ai,
                 style: const TextStyle(fontWeight: FontWeight.bold)),
