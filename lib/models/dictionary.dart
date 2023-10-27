@@ -62,6 +62,18 @@ class Dictionary {
   Drill? drill;
   List<PosTag>? posTags;
 
+  // START: HotRestart時、辞書選択における RadioListTile の groupValue が以前選択された辞書と一致しない問題を解決するために、==とhashCodeを実装する。
+  // ref: https://chat.openai.com/share/2a53cfb0-fc2c-4fbe-a26c-0868937b5a3b
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is Dictionary && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
+  // END
+
   Dictionary.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         title = json['title'],

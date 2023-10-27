@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/components/dictionary/word_list_view.dart';
-import 'package:booqs_mobile/components/markdown/dict_link_select_form.dart';
+import 'package:booqs_mobile/components/markdown/dict_link_search_info.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -36,8 +36,10 @@ class MarkdownDictLinkScreen extends ConsumerWidget {
                       if (dictionary == null) {
                         return Text(t.errors.http_status_404);
                       }
-                      return MarkdownDictLinkSelectForm(
-                          dictionary: dictionary, keyword: keyword);
+                      return MarkdownDictLinkSearchInfo(
+                        dictionary: dictionary,
+                        keyword: keyword,
+                      );
                     },
                     loading: () => const LoadingSpinner(),
                     error: (e, s) => Text(e.toString())),

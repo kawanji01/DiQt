@@ -24,3 +24,6 @@ final asyncDictionaryFamily = FutureProvider.autoDispose
   final Dictionary dictionary = Dictionary.fromJson(resMap['dictionary']);
   return dictionary;
 });
+
+final dictionaryAIPromptKeyProvider =
+    StateProvider<String>((ref) => 'explain_meaning');

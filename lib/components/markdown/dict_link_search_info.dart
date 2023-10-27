@@ -1,5 +1,7 @@
 import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
+import 'package:booqs_mobile/components/dictionary/ai/form.dart';
 import 'package:booqs_mobile/components/dictionary/searched_keyword.dart';
+import 'package:booqs_mobile/components/lang/small_translation_buttons.dart';
 import 'package:booqs_mobile/components/markdown/dict_link_screen.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
@@ -9,19 +11,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MarkdownDictLinkSelectForm extends ConsumerStatefulWidget {
-  const MarkdownDictLinkSelectForm(
+class MarkdownDictLinkSearchInfo extends ConsumerStatefulWidget {
+  const MarkdownDictLinkSearchInfo(
       {super.key, required this.dictionary, required this.keyword});
   final Dictionary dictionary;
   final String keyword;
 
   @override
-  ConsumerState<MarkdownDictLinkSelectForm> createState() =>
-      MarkdownDictLinkSelectFormState();
+  ConsumerState<MarkdownDictLinkSearchInfo> createState() =>
+      MarkdownDictLinkSearchInfoState();
 }
 
-class MarkdownDictLinkSelectFormState
-    extends ConsumerState<MarkdownDictLinkSelectForm> {
+class MarkdownDictLinkSearchInfoState
+    extends ConsumerState<MarkdownDictLinkSearchInfo> {
   @override
   void initState() {
     super.initState();
@@ -52,7 +54,7 @@ class MarkdownDictLinkSelectFormState
 
             return Column(
               children: [
-                // セレクトフォーム
+                // 辞書の選択フォーム
                 Container(
                   margin: const EdgeInsets.only(top: 24),
                   height: 48,
@@ -100,7 +102,19 @@ class MarkdownDictLinkSelectFormState
                 const SizedBox(height: 24),
                 // 検索キーワード
                 DictionarySearchedKeyword(
-                    dictionary: widget.dictionary, keyword: widget.keyword)
+                    dictionary: widget.dictionary, keyword: widget.keyword),
+                // 翻訳ボタン
+                LangSmallTranslationButtons(
+                  original: widget.keyword,
+                  sourceLangNumber: widget.dictionary.langNumberOfEntry,
+                  targetLangNumber: widget.dictionary.langNumberOfMeaning,
+                ),
+                const SizedBox(height: 24),
+                // AIに聞く
+                DictionaryAIForm(
+                  keyword: widget.keyword,
+                  dictionary: widget.dictionary,
+                ),
               ],
             );
           },

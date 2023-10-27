@@ -61,7 +61,6 @@ class UserFormTimeZoneName extends ConsumerWidget {
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: Colors.black87,
-                      overflow: TextOverflow.ellipsis,
                     )),
               );
             }).toList(),
