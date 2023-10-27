@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
-import 'package:booqs_mobile/components/dictionary/ai_search.dart';
+import 'package:booqs_mobile/components/dictionary/ai/form.dart';
 import 'package:booqs_mobile/components/dictionary/searched_keyword.dart';
 import 'package:booqs_mobile/components/lang/small_translation_buttons.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
@@ -92,8 +92,8 @@ class _DictionarySearchInfoState extends ConsumerState<DictionarySearchInfo> {
                 targetLangNumber: widget.dictionary.langNumberOfMeaning,
               ),
               const SizedBox(height: 24),
-              // AI Seaarch
-              DictionaryAISearch(
+              // AIに聞く
+              DictionaryAIForm(
                 keyword: widget.keyword,
                 dictionary: widget.dictionary,
               ),

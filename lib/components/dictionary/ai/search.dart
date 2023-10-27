@@ -6,6 +6,7 @@ import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/utils/chat_service.dart';
 import 'package:flutter/material.dart';
 
+//
 class DictionaryAISearch extends StatefulWidget {
   const DictionaryAISearch(
       {super.key, required this.keyword, required this.dictionary});
@@ -18,11 +19,21 @@ class DictionaryAISearch extends StatefulWidget {
 
 class _DictionaryAISearchState extends State<DictionaryAISearch> {
   bool _isRequesting = false;
-  List<String> collectedChunks = []; // このリストにストリームからのチャンクを保存します。
+  List<String> collectedChunks = []; // このリストにストリームからのチャンクを保存する。
 
   Stream<String?> chatGPTStream(
       {required String prompt, required int version}) {
     final StreamController<String?> controller = StreamController<String?>();
+    String bufferedChunk = ""; // 不完全なJSONへの対策用
+
+    bool isValidJson(String input) {
+      try {
+        json.decode(input);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
 
     Future<void> fetchData() async {
       try {
@@ -31,36 +42,44 @@ class _DictionaryAISearchState extends State<DictionaryAISearch> {
 
         if (streamedResponse.statusCode == 200) {
           streamedResponse.stream.transform(utf8.decoder).listen((chunk) {
-            // START
-            List<String> splitChunks =
-                chunk.split('\n').where((s) => s.trim().isNotEmpty).toList();
+            bufferedChunk += chunk; // 不完全なJSON対策に、バッファにデータを追加
+
+            // バッファ内のチャンクを取得
+            List<String> splitChunks = bufferedChunk
+                .split('\n')
+                .where((line) => line.trim().startsWith('data: '))
+                .toList();
 
             for (String singleChunk in splitChunks) {
-              try {
-                if (singleChunk.startsWith('data: ')) {
-                  singleChunk = singleChunk.substring(6); // 'data: 'の部分を取り除く
-                }
-                Map<String, dynamic> parsedData = json.decode(singleChunk);
+              String modifiedText =
+                  singleChunk.replaceFirst("data:", "").trim();
 
-                if (parsedData['choices'] != null &&
-                    parsedData['choices'].isNotEmpty) {
-                  String? content =
-                      parsedData['choices'][0]['delta']['content'];
-                  print('content: $content');
-                  // `content`を保存する
-                  if (content != null) {
-                    collectedChunks.add(content);
-                  }
-                  // Send each chunk to the StreamController
-                  controller.add(content);
-                }
-              } catch (e) {
-                // print("Error decoding chunk: $e");
-                // デコード中にエラーが発生した場合、エラーメッセージを表示して次のチャンクに移ります
+              if (modifiedText == '[DONE]') {
+                // END OF STREAM
                 continue;
               }
+
+              if (!isValidJson(modifiedText)) {
+                // このチャンクが不完全なJSONである場合、このイテレーションをスキップして次のチャンクを待ちます。
+                continue;
+              }
+
+              Map<String, dynamic> parsedData = json.decode(modifiedText);
+
+              if (parsedData['choices'] != null &&
+                  parsedData['choices'].isNotEmpty) {
+                String? content = parsedData['choices'][0]['delta']['content'];
+                print('content: $content');
+
+                if (content != null) {
+                  collectedChunks.add(content);
+                }
+                controller.add(content);
+              }
+
+              // ここでバッファからこのチャンクを削除
+              bufferedChunk = bufferedChunk.replaceFirst(singleChunk, "");
             }
-            // END
           }, onDone: () {
             controller.close();
           }, onError: (error) {
@@ -100,9 +119,10 @@ class _DictionaryAISearchState extends State<DictionaryAISearch> {
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           }
-          // ここで結果を出力します。
+          // ここで結果を出力する。
           String fullReplyContent = collectedChunks.join();
-          return Text(fullReplyContent);
+          return SelectableText(fullReplyContent,
+              style: const TextStyle(fontSize: 14, color: Colors.black87));
         },
       );
     } else {

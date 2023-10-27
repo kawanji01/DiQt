@@ -12,12 +12,13 @@ class ChatService {
   // streamで取得する場合
   static Future<http.StreamedResponse> stream(
       {required String prompt, required int version}) async {
+    final String? endpoint = dotenv.env['AZURE_OPENAI_endpoint'];
     final Map<String, String> deploymentAndModel =
         ChatService.deploymentAndModel(version: version);
     final String deployment = deploymentAndModel['deployment']!;
     final String model = deploymentAndModel['model']!;
     final Uri chatUri = Uri.parse(
-        "https://diqt-ja.openai.azure.com/openai/deployments/$deployment/chat/completions?api-version=2023-07-01-preview");
+        "https://$endpoint.openai.azure.com/openai/deployments/$deployment/chat/completions?api-version=2023-07-01-preview");
 
     final Map<String, String> headers = header();
     final ChatRequest request = ChatRequest(
