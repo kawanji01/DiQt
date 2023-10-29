@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 2860 (1430 per locale)
+/// Strings: 2862 (1431 per locale)
 ///
-/// Built on 2023-10-27 at 08:52 UTC
+/// Built on 2023-10-29 at 03:50 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -930,10 +930,11 @@ class _TranslationsLangEn {
 	String get need_to_login => 'You need to log in to use the translation.';
 	String get ask_ai => 'Ask AI';
 	String get explain_meaning => 'What does it mean?';
-	String get explain_usage => 'Please explain the usage';
-	String get explain_synonym => 'Please explain the synonym';
-	String get explain_antonym => 'Please explain the antonym';
-	String get explain_conjugation => 'Please explain the conjugation';
+	String get explain_usage => 'Please explain the usage.';
+	String get explain_example => 'Please explain the example.';
+	String get explain_synonym => 'Please explain the synonym.';
+	String get explain_antonym => 'Please explain the antonym.';
+	String get explain_conjugation => 'Please explain the conjugation.';
 	String get explain_grammar => 'Please explain the grammar and syntax in the sentence.';
 	String get proofread_sentence => 'Please proofread the sentence';
 	String get language => 'Language';
@@ -2758,6 +2759,7 @@ class _TranslationsLangJa implements _TranslationsLangEn {
 	@override String get ask_ai => 'AIに聞く';
 	@override String get explain_meaning => '意味を教えてください';
 	@override String get explain_usage => '用法を教えてください';
+	@override String get explain_example => '用例を教えてください';
 	@override String get explain_synonym => '類義語を教えてください';
 	@override String get explain_antonym => '反意語を教えてください';
 	@override String get explain_conjugation => '活用形を教えてください';
@@ -4375,10 +4377,11 @@ extension on _TranslationsEn {
 			case 'lang.need_to_login': return 'You need to log in to use the translation.';
 			case 'lang.ask_ai': return 'Ask AI';
 			case 'lang.explain_meaning': return 'What does it mean?';
-			case 'lang.explain_usage': return 'Please explain the usage';
-			case 'lang.explain_synonym': return 'Please explain the synonym';
-			case 'lang.explain_antonym': return 'Please explain the antonym';
-			case 'lang.explain_conjugation': return 'Please explain the conjugation';
+			case 'lang.explain_usage': return 'Please explain the usage.';
+			case 'lang.explain_example': return 'Please explain the example.';
+			case 'lang.explain_synonym': return 'Please explain the synonym.';
+			case 'lang.explain_antonym': return 'Please explain the antonym.';
+			case 'lang.explain_conjugation': return 'Please explain the conjugation.';
 			case 'lang.explain_grammar': return 'Please explain the grammar and syntax in the sentence.';
 			case 'lang.proofread_sentence': return 'Please proofread the sentence';
 			case 'lang.language': return 'Language';
@@ -5814,6 +5817,7 @@ extension on _TranslationsJa {
 			case 'lang.ask_ai': return 'AIに聞く';
 			case 'lang.explain_meaning': return '意味を教えてください';
 			case 'lang.explain_usage': return '用法を教えてください';
+			case 'lang.explain_example': return '用例を教えてください';
 			case 'lang.explain_synonym': return '類義語を教えてください';
 			case 'lang.explain_antonym': return '反意語を教えてください';
 			case 'lang.explain_conjugation': return '活用形を教えてください';

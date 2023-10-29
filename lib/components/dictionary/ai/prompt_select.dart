@@ -34,6 +34,7 @@ class DictionaryAIPromptSelect extends ConsumerWidget {
         items: <String>[
           'explain_meaning',
           'explain_usage',
+          'explain_example',
           'explain_synonym',
           'explain_antonym',
           'explain_conjugation',
