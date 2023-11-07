@@ -10,7 +10,6 @@ import 'package:booqs_mobile/data/provider/util.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
-import 'package:booqs_mobile/utils/uni_links_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:upgrader/upgrader.dart';
@@ -50,8 +49,6 @@ class HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
-    // Deeplinks
-    initUniLinks();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.invalidate(asyncCurrentUserProvider);
       // テストが落ちるので本番環境でのみ実行する。
@@ -62,20 +59,6 @@ class HomePageState extends ConsumerState<HomePage> {
         PushNotificationHandler.setTransitonWhenNotificationTapped(context);
       }
     });
-  }
-
-  Future<void> initUniLinks() async {
-    if (EnvHandler.isDesktop()) return;
-
-    final String? initialLink = await UniLinksHandler.getInitLink();
-    // print('initialLink: $initialLink');
-    if (!mounted) return;
-    if (initialLink != null) {
-      UniLinksHandler.push(context, initialLink);
-    } else {
-      // Attach a listener to the stream
-      _sub = UniLinksHandler.linkStreamListen(context);
-    }
   }
 
   @override
