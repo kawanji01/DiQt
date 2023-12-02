@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/session/social_auth.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -22,8 +23,8 @@ class SessionLogInPage extends ConsumerWidget {
     final String locale = ref.watch(localeProvider);
     final String url = '${DiQtURL.root(locale: locale)}/password_resets/new';
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.sessions.log_in),
+      appBar: AppBarDefault(
+        title: t.sessions.log_in,
       ),
       body: Container(
         padding: EdgeInsets.symmetric(
