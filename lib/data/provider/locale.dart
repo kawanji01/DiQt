@@ -3,6 +3,7 @@ import 'package:booqs_mobile/data/local/user_info.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
 import 'package:booqs_mobile/utils/language_handler.dart';
+import 'package:booqs_mobile/utils/locale_handler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LocaleState extends StateNotifier<String> {
@@ -21,8 +22,12 @@ class LocaleState extends StateNotifier<String> {
     return locale;
   }
 
+  String get langCode {
+    return LocaleHandler.localeForAPIByCode(state);
+  }
+
   int get langNumber {
-    return LanguageHandler.getLangNumber(state);
+    return LanguageHandler.getLangNumber(langCode);
   }
 }
 

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/session/social_auth.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/session/log_in.dart';
@@ -16,8 +17,8 @@ class SessionSignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.sessions.sign_up),
+      appBar: AppBarDefault(
+        title: t.sessions.sign_up,
       ),
       body: Container(
         margin: EdgeInsets.symmetric(
