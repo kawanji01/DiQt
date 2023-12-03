@@ -92,6 +92,7 @@ class DiQtState extends ConsumerState<DiQt> {
       // 画面全体に被さるローディングの初期化　ref： https://pub.dev/packages/flutter_easyloading
       builder: EasyLoading.init(),
       theme: ThemeData(
+        useMaterial3: false,
         primarySwatch: Colors.green,
         brightness: Brightness.light,
         textTheme: GoogleFonts.notoSansTextTheme(
