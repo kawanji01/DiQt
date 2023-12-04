@@ -9,14 +9,14 @@ class HomeWalkthrough3 extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String locale = ref.watch(localeProvider);
+    final String langCode = ref.watch(localeProvider.notifier).langCode;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
           child: Container(
             padding: const EdgeInsets.only(top: 32),
-            child: Image.asset('assets/images/walkthrough_3_$locale.png'),
+            child: Image.asset('assets/images/walkthrough_3_$langCode.png'),
           ),
         ),
         Padding(
