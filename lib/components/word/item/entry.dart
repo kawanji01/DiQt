@@ -15,7 +15,7 @@ class WordItemEntry extends StatelessWidget {
       width: double.infinity,
       child: Wrap(
         children: <Widget>[
-          Text(
+          SelectableText(
             word!.entry,
             textAlign: TextAlign.left,
             style: TextStyle(

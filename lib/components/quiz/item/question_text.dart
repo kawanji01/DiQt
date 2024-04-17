@@ -69,13 +69,14 @@ class QuizItemQuestionTextState extends ConsumerState<QuizItemQuestionText> {
     if (_isCovered && quiz.questionReadAloud) {
       return cover;
     }
+    print('selectable 3');
     return SizedBox(
         width: double.infinity,
         child: MarkdownWithoutDictLink(
           fontColor: Colors.black87,
           fontSize: 16,
           fontWeight: FontWeight.normal,
-          selectable: false,
+          selectable: true,
           text: quiz.question,
         ));
   }

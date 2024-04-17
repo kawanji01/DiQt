@@ -53,7 +53,8 @@ class MarkdownWithDictLink extends StatelessWidget {
             softLineBreak: true,
             shrinkWrap: true,
             // selectableをtrueにするとDiQtLinkの後に不自然な改行が発生するため常にfalse
-            selectable: false,
+            // 選択したいというユーザーがいるので selectable を設定
+            selectable: selectable,
             extensionSet: md.ExtensionSet(
               md.ExtensionSet.gitHubFlavored.blockSyntaxes,
               // インライン構文のリスト
