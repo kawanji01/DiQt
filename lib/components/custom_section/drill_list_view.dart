@@ -1,30 +1,32 @@
-import 'package:booqs_mobile/data/provider/school.dart';
-import 'package:booqs_mobile/data/remote/schools.dart';
-import 'package:booqs_mobile/models/activity.dart';
-import 'package:booqs_mobile/components/activity/list_item.dart';
+import 'package:booqs_mobile/components/drill/list_item.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/data/remote/custom_sections.dart';
+import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class SchoolActivityListView extends ConsumerStatefulWidget {
-  const SchoolActivityListView({Key? key}) : super(key: key);
+class CustomSectionDrillListView extends ConsumerStatefulWidget {
+  const CustomSectionDrillListView({Key? key, required this.customSectionId})
+      : super(key: key);
+  final int customSectionId;
 
   @override
-  ChapterActivityListViewState createState() => ChapterActivityListViewState();
+  CustomSectionDrillListViewState createState() =>
+      CustomSectionDrillListViewState();
 }
 
-class ChapterActivityListViewState
-    extends ConsumerState<SchoolActivityListView> {
+class CustomSectionDrillListViewState
+    extends ConsumerState<CustomSectionDrillListView> {
   bool _isLoading = false;
   bool _isReached = true;
   int _nextPagekey = 0;
   // 一度に読み込むアイテム数
   static const int _pageSize = 10;
-  final PagingController<int, Activity> _pagingController =
-      PagingController(firstPageKey: 0); // pageのパラメーターの初期値
+  final PagingController<int, Drill> _pagingController = PagingController(
+      firstPageKey: 0, invisibleItemsThreshold: 100); // pageのパラメーターの初期値
   @override
   void initState() {
     super.initState();
@@ -39,11 +41,10 @@ class ChapterActivityListViewState
     if (_isReached == false) return;
     _isLoading = true;
 
-    final String publicUid =
-        ref.watch(schoolProvider.select((school) => school!.publicUid));
+    final int customSectionId = widget.customSectionId;
 
-    final Map resMap = await RemoteSchools.activities(
-        publicUid: publicUid, pageKey: pageKey, pageSize: _pageSize);
+    final Map resMap = await RemoteCustomSections.drills(
+        id: customSectionId, pageKey: pageKey, pageSize: _pageSize);
     if (!mounted) return;
     // エラーの場合の処理
     if (ErrorHandler.isErrorMap(resMap)) {
@@ -54,19 +55,17 @@ class ChapterActivityListViewState
       });
     }
 
-    final List<Activity> activities = [];
-    resMap['activities'].forEach((e) => activities.add(Activity.fromJson(e)));
-    // print(activities.length);
-    final isLastPage = activities.length < _pageSize;
+    final List<Drill> drills = [];
+    resMap['drills'].forEach((e) => drills.add(Drill.fromJson(e)));
+    final isLastPage = drills.length < _pageSize;
     if (isLastPage) {
-      _pagingController.appendLastPage(activities);
+      _pagingController.appendLastPage(drills);
     } else {
-      _nextPagekey = pageKey + activities.length;
+      _nextPagekey = pageKey + drills.length;
       //_pagingController.appendLastPage(notices);
       // pageKeyにnullを渡すことで、addPageRequestListener の発火を防ぎ、自動で次のアイテムを読み込まないようにする。
-      _pagingController.appendPage(activities, _nextPagekey);
+      _pagingController.appendPage(drills, _nextPagekey);
     }
-
     setState(() {
       _isReached = false;
       _isLoading = false;
@@ -93,7 +92,6 @@ class ChapterActivityListViewState
             setState(() {
               _isReached = true;
             });
-
             // 最下部までスクロールしたら、次のアイテムを読み込む ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagingController/notifyPageRequestListeners.html
             _pagingController.notifyPageRequestListeners(_nextPagekey);
           }
@@ -105,14 +103,14 @@ class ChapterActivityListViewState
       );
     }
 
-    return PagedListView<int, Activity>(
+    return PagedListView<int, Drill>(
       pagingController: _pagingController,
       // Vertical viewport was given unbounded heightの解決 ref: https://qiita.com/code-cutlass/items/3a8b759056db1e8f7639
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      builderDelegate: PagedChildBuilderDelegate<Activity>(
-        itemBuilder: (context, item, index) => ActivityListItem(
-          activity: item,
+      builderDelegate: PagedChildBuilderDelegate<Drill>(
+        itemBuilder: (context, item, index) => DrillListItem(
+          drill: item,
         ),
         // 最下部のローディング ref: https://pub.dev/documentation/infinite_scroll_pagination/latest/infinite_scroll_pagination/PagedChildBuilderDelegate-class.html
         newPageProgressIndicatorBuilder: (_) => loader(),

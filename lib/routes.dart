@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
+import 'package:booqs_mobile/pages/custom_section/show.dart';
 import 'package:booqs_mobile/pages/dictionary/speech_test.dart';
 import 'package:booqs_mobile/pages/quiz_request/dictionary.dart';
 import 'package:booqs_mobile/pages/quiz_request/quiz.dart';
@@ -103,6 +104,8 @@ const schoolShowPage = '/school/show';
 const chapterIndexPage = '/chapter/index';
 const chapterShowPage = '/chapter/show';
 const chapterDrillsPage = '/chapter/drills';
+// カスタムセクション
+const customSectionShowPage = '/custom_section/show';
 // ユーザー
 const userMyPage = '/user/mypage';
 const userShowPage = '/user/show';
@@ -182,6 +185,8 @@ final routes = {
   // Chapter
   chapterIndexPage: (context) => const ChapterIndexPage(),
   chapterShowPage: (context) => const ChapterShowPage(),
+  // CustomSection
+  customSectionShowPage: (context) => const CustomSectionShowPage(),
 
   // User
   userMyPage: (context) => const UserMyPage(),

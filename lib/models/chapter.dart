@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/models/custom_section.dart';
 import 'package:booqs_mobile/models/school.dart';
 
 class Chapter {
@@ -15,11 +16,13 @@ class Chapter {
       this.referenceTitle,
       this.referenceOgp,
       required this.drillsCount,
+      required this.customSectionsCount,
       required this.createdAt,
       required this.updatedAt,
       // eager_loadでキャッシュしたdrillの情報
       this.answerHistoriesCount,
-      this.school});
+      this.school,
+      this.customSections});
 
   int id;
   int appliedDictionaryId;
@@ -34,11 +37,13 @@ class Chapter {
   String? referenceTitle;
   String? referenceOgp;
   int drillsCount;
+  int customSectionsCount;
   DateTime createdAt;
   DateTime updatedAt;
   // テーブルを結合してキャッシュしたdrillの情報
   int? answerHistoriesCount;
   School? school;
+  List<CustomSection>? customSections;
 
   Chapter.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -54,12 +59,18 @@ class Chapter {
         referenceTitle = json['reference_title'],
         referenceOgp = json['reference_ogp'],
         drillsCount = json['drills_count'] ?? 0,
+        customSectionsCount = json['custom_sections_count'] ?? 0,
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         // テーブルを結合してキャッシュしたdrillの情報,
         answerHistoriesCount = json['answer_histories_count'] ?? 0,
         school =
-            json['school'] != null ? School.fromJson(json['school']) : null;
+            json['school'] != null ? School.fromJson(json['school']) : null,
+        customSections = json['custom_sections'] == null
+            ? []
+            : json['custom_sections']
+                .map<CustomSection>((e) => CustomSection.fromJson(e))
+                .toList();
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -67,7 +78,6 @@ class Chapter {
         'name': title,
         'introduction': introduction,
         'thumbnail_url': thumbnailUrl,
-
         'public_uid': publicUid,
         'school_id': schoolId,
         'private': private,
@@ -75,6 +85,7 @@ class Chapter {
         'reference_title': referenceTitle,
         'reference_ogp': referenceOgp,
         'drills_count': drillsCount,
+        'custom_sections_count': customSectionsCount,
         'created_at': createdAt,
         'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,
