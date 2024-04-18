@@ -1,28 +1,28 @@
-import 'package:booqs_mobile/components/chapter/show.dart';
-import 'package:booqs_mobile/data/provider/chapter.dart';
+import 'package:booqs_mobile/components/custom_section/show_screen.dart';
+import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
+import 'package:booqs_mobile/data/provider/custom_sections.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/chapter.dart';
+import 'package:booqs_mobile/models/custom_section.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChapterShowPage extends ConsumerWidget {
-  const ChapterShowPage({Key? key}) : super(key: key);
+class CustomSectionShowPage extends ConsumerWidget {
+  const CustomSectionShowPage({Key? key}) : super(key: key);
 
   // メモ：遷移の処理は、いちいち描き直す必要はないので、createStateの上に置く。
   static Future push(BuildContext context) async {
-    return Navigator.of(context).pushNamed(chapterShowPage);
+    return Navigator.of(context).pushNamed(customSectionShowPage);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Chapter? chapter = ref.watch(chapterProvider);
-    if (chapter == null) {
+    final CustomSection? customSection = ref.watch(customSectionProvider);
+    if (customSection == null) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(t.chapters.chapters),
+          title: const Text('404 not found'),
         ),
         body: Container(
           margin: EdgeInsets.symmetric(
@@ -30,7 +30,7 @@ class ChapterShowPage extends ConsumerWidget {
           ),
           child: Container(
             margin: const EdgeInsets.only(top: 32),
-            child: Text(t.shared.no_items_found(name: t.chapters.chapters)),
+            child: Text(t.errors.http_status_404),
           ),
         ),
         bottomNavigationBar: const BottomNavbar(),
@@ -38,16 +38,13 @@ class ChapterShowPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(chapter.title),
-      ),
+      appBar: AppBar(),
       body: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: ResponsiveValues.horizontalMargin(context),
-          ),
-          child: SingleChildScrollView(
-            child: ChapterShow(chapter: chapter),
-          )),
+        margin: EdgeInsets.symmetric(
+          horizontal: ResponsiveValues.horizontalMargin(context),
+        ),
+        child: CustomSectionShowScreen(customSection: customSection),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }

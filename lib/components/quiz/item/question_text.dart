@@ -75,7 +75,7 @@ class QuizItemQuestionTextState extends ConsumerState<QuizItemQuestionText> {
           fontColor: Colors.black87,
           fontSize: 16,
           fontWeight: FontWeight.normal,
-          selectable: false,
+          selectable: true,
           text: quiz.question,
         ));
   }

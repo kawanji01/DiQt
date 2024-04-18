@@ -28,6 +28,7 @@ class QuizExplanationQuestion extends StatelessWidget {
           selectable: true,
         );
       }
+
       return Container(
           width: double.infinity,
           alignment: Alignment.center,
