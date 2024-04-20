@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/layouts/bottom_navbar/account_icon.dart';
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/school/show.dart';
 import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
@@ -16,9 +17,10 @@ class BottomNavbarForSchool extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final String dictionary = t.layouts.dictionary;
+    final String wordList = t.layouts.word_list;
+    final String school = t.layouts.school;
     final String review = t.layouts.review;
     final String myPage = t.layouts.my_page;
-    final String school = t.layouts.school;
 
     final int selectedIndex = ref.watch(bottomNavbarState);
 
@@ -32,14 +34,13 @@ class BottomNavbarForSchool extends ConsumerWidget {
           HomePage.push(context);
           break;
         case 1:
-          ReviewIndexPage.pushReplacement(context);
+          ChapterIndexPage.push(context);
           break;
         case 2:
           SchoolShowPage.pushReplacement(context);
           break;
         case 3:
-          // NoticeHomePage.push(context, 0);
-          UserMyPage.push(context);
+          ReviewIndexPage.pushReplacement(context);
           break;
         case 4:
           UserMyPage.push(context);
@@ -55,17 +56,17 @@ class BottomNavbarForSchool extends ConsumerWidget {
           label: dictionary,
         ),
         BottomNavigationBarItem(
-          icon: const BottomNavbarReviewIcon(),
-          label: review,
+          icon: const Icon(Icons.text_format),
+          label: wordList,
         ),
         BottomNavigationBarItem(
           icon: const Icon(Icons.school),
           label: school,
         ),
-        //BottomNavigationBarItem(
-        //  icon: const BottomNavbarNotificationIcon(),
-        //  label: notification,
-        //),
+        BottomNavigationBarItem(
+          icon: const BottomNavbarReviewIcon(),
+          label: review,
+        ),
         BottomNavigationBarItem(
           icon: const BottomNavbarAccountIcon(),
           label: myPage,

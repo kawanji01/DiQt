@@ -1,6 +1,7 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
+// TODO: 動くようにしておく。
 // 紙吹雪を全画面に表示するためのラッパー
 // ref: https://chat.openai.com/share/8d797633-6ff1-407a-b95f-dc97c8d7b289
 class DialogConfettiWrapper extends StatefulWidget {
