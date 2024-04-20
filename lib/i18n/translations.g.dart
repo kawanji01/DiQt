@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 2862 (1431 per locale)
 ///
-/// Built on 2023-10-29 at 03:50 UTC
+/// Built on 2024-04-20 at 03:16 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -1775,9 +1775,9 @@ class _TranslationsDictionaryMapsEn {
 	String get please_select => 'Please select a dictionary';
 	String get not_selected => 'Dictionary not selected';
 	String enter({required Object language}) => 'Please enter ${language}';
-	String get set_dictionaries => 'Set My dictionaries';
-	String get add_dictionaries => 'Add My dictionaries';
-	String get remove_dictionaries => 'Remove My dictionaries';
+	String get set_dictionaries => 'Set dictionaries';
+	String get add_dictionaries => 'Add dictionaries';
+	String get remove_dictionaries => 'Remove dictionaries';
 	String get select_dictionaries_to_use => 'Select dictionaries to add';
 	String get add => 'Add';
 	String get select_dictionaries_to_remove => 'Select dictionaries to remove';
@@ -3603,9 +3603,9 @@ class _TranslationsDictionaryMapsJa implements _TranslationsDictionaryMapsEn {
 	@override String get please_select => '辞書を選択してください';
 	@override String get not_selected => '辞書が選択されていません';
 	@override String enter({required Object language}) => '${language}を入力してください';
-	@override String get set_dictionaries => 'My辞書を設定する';
-	@override String get add_dictionaries => 'My辞書を追加する';
-	@override String get remove_dictionaries => 'My辞書を削除する';
+	@override String get set_dictionaries => '辞書を設定する';
+	@override String get add_dictionaries => '辞書を追加する';
+	@override String get remove_dictionaries => '辞書を削除する';
 	@override String get select_dictionaries_to_use => '追加する辞書を選択してください';
 	@override String get add => '追加する';
 	@override String get select_dictionaries_to_remove => '削除する辞書を選択してください';
@@ -5078,9 +5078,9 @@ extension on _TranslationsEn {
 			case 'dictionaryMaps.please_select': return 'Please select a dictionary';
 			case 'dictionaryMaps.not_selected': return 'Dictionary not selected';
 			case 'dictionaryMaps.enter': return ({required Object language}) => 'Please enter ${language}';
-			case 'dictionaryMaps.set_dictionaries': return 'Set My dictionaries';
-			case 'dictionaryMaps.add_dictionaries': return 'Add My dictionaries';
-			case 'dictionaryMaps.remove_dictionaries': return 'Remove My dictionaries';
+			case 'dictionaryMaps.set_dictionaries': return 'Set dictionaries';
+			case 'dictionaryMaps.add_dictionaries': return 'Add dictionaries';
+			case 'dictionaryMaps.remove_dictionaries': return 'Remove dictionaries';
 			case 'dictionaryMaps.select_dictionaries_to_use': return 'Select dictionaries to add';
 			case 'dictionaryMaps.add': return 'Add';
 			case 'dictionaryMaps.select_dictionaries_to_remove': return 'Select dictionaries to remove';
@@ -6517,9 +6517,9 @@ extension on _TranslationsJa {
 			case 'dictionaryMaps.please_select': return '辞書を選択してください';
 			case 'dictionaryMaps.not_selected': return '辞書が選択されていません';
 			case 'dictionaryMaps.enter': return ({required Object language}) => '${language}を入力してください';
-			case 'dictionaryMaps.set_dictionaries': return 'My辞書を設定する';
-			case 'dictionaryMaps.add_dictionaries': return 'My辞書を追加する';
-			case 'dictionaryMaps.remove_dictionaries': return 'My辞書を削除する';
+			case 'dictionaryMaps.set_dictionaries': return '辞書を設定する';
+			case 'dictionaryMaps.add_dictionaries': return '辞書を追加する';
+			case 'dictionaryMaps.remove_dictionaries': return '辞書を削除する';
 			case 'dictionaryMaps.select_dictionaries_to_use': return '追加する辞書を選択してください';
 			case 'dictionaryMaps.add': return '追加する';
 			case 'dictionaryMaps.select_dictionaries_to_remove': return '削除する辞書を選択してください';

@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/shared/cache_network_image.dart';
+import 'package:booqs_mobile/components/drill/thumbnail.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -18,8 +18,14 @@ class DrillListItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 1,000のようなdelimiterを使って解答数を整形する。参考： https://stackoverflow.com/questions/62580280/how-to-format-numbers-as-thousands-separators-in-dart
-    final formatter = NumberFormat('#,###,000');
-    final answerHistoriesCount = formatter.format(drill.answerHistoriesCount);
+
+    String answerHistoriesCountText = '';
+    // 1000以下の回答数は表示しない。
+    if (drill.answerHistoriesCount > 1000) {
+      final formatter = NumberFormat('#,###,000');
+      final answerHistoriesCount = formatter.format(drill.answerHistoriesCount);
+      answerHistoriesCountText = t.drills.answers(number: answerHistoriesCount);
+    }
     final DrillLap? drillLap = drill.drillLap;
 
     // Drillページに遷移
@@ -38,12 +44,12 @@ class DrillListItem extends ConsumerWidget {
     Widget subtitle() {
       if (drillLap == null) {
         return Text(
-          t.drills.answers(number: answerHistoriesCount),
+          answerHistoriesCountText,
           style: TextStyle(color: Colors.black.withOpacity(0.6)),
         );
       }
       return Text(
-        '${t.drills.answers(number: answerHistoriesCount)} / ${t.drills.clears_count(number: drillLap.clearsCount)}',
+        '${answerHistoriesCountText == '' ? '' : '$answerHistoriesCountText / '}${t.drills.clears_count(number: drillLap.clearsCount)}',
         style: TextStyle(color: Colors.black.withOpacity(0.6)),
       );
     }
@@ -69,9 +75,7 @@ class DrillListItem extends ConsumerWidget {
               ),
               subtitle: subtitle(),
             ),
-            SharedCacheNetworkImage(
-              url: drill.thumbnailUrl,
-            ),
+            DrillThumbnail(drill: drill, drillLap: drillLap),
             Padding(
               padding: const EdgeInsets.only(
                   right: 16.0, left: 16, top: 16, bottom: 32),

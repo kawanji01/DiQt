@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/layouts/bottom_navbar/account_icon.dart';
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/home/home_page.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
@@ -16,6 +17,7 @@ class BottomNavbarForNormal extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final String dictionary = t.layouts.dictionary;
     final String review = t.layouts.review;
+    final String wordList = t.layouts.word_list;
     final String myPage = t.layouts.my_page;
 
     int selectedIndex = ref.watch(bottomNavbarState);
@@ -34,11 +36,10 @@ class BottomNavbarForNormal extends ConsumerWidget {
           HomePage.push(context);
           break;
         case 1:
-          ReviewIndexPage.pushReplacement(context);
+          ChapterIndexPage.push(context);
           break;
         case 2:
-          // NoticeHomePage.push(context, 0);
-          UserMyPage.push(context);
+          ReviewIndexPage.pushReplacement(context);
           break;
         case 3:
           UserMyPage.push(context);
@@ -54,13 +55,13 @@ class BottomNavbarForNormal extends ConsumerWidget {
           label: dictionary,
         ),
         BottomNavigationBarItem(
+          icon: const Icon(Icons.text_format),
+          label: wordList,
+        ),
+        BottomNavigationBarItem(
           icon: const BottomNavbarReviewIcon(),
           label: review,
         ),
-        //BottomNavigationBarItem(
-        //  icon: const BottomNavbarNotificationIcon(),
-        //  label: notification,
-        //),
         BottomNavigationBarItem(
           icon: const BottomNavbarAccountIcon(),
           label: myPage,
