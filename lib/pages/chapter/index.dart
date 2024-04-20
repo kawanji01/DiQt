@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/chapter/index.dart';
@@ -25,7 +26,7 @@ class ChapterIndexPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('単語帳'),
+        title: Text(t.layouts.word_list),
       ),
       body: SingleChildScrollView(
         child: Container(

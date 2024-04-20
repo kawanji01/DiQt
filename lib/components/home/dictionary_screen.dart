@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/dictionary_map/search_screen.dart';
+import 'package:booqs_mobile/components/layouts/drawer_menu.dart';
 import 'package:booqs_mobile/components/user/lang_init_screen.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/dictionary_map.dart';
@@ -113,7 +114,9 @@ class _HomeDictionaryScreenState extends ConsumerState<HomeDictionaryScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text(dictionary),
-          automaticallyImplyLeading: false,
+          // automaticallyImplyLeading: false,
+          // drawarを表示するためにtrueにする
+          automaticallyImplyLeading: true,
         ),
         body: Container(
           margin: EdgeInsets.symmetric(
@@ -122,6 +125,7 @@ class _HomeDictionaryScreenState extends ConsumerState<HomeDictionaryScreen> {
           child: const DictionaryMapSearchScreen(),
         ),
         bottomNavigationBar: const BottomNavbar(),
+        drawer: const DrawerMenu(),
         floatingActionButton: ref.watch(
             dictionaryMapFloatingActionButtonProvider) // tabIndexが0でないときは、FloatingActionButtonを表示しない
         );

@@ -86,7 +86,7 @@ class DrawerMenu extends ConsumerWidget {
           ListTile(
             title: Text(t.home.company, style: const TextStyle(fontSize: 16)),
             onTap: () {
-              WebPageLauncher.openByWebView('https://www.diqt.net/ja/about');
+              WebPageLauncher.openByWebView('https://www.booqs.net');
             },
           ),
         ],
