@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/components/drill/thumbnail.dart';
-import 'package:booqs_mobile/components/shared/cache_network_image.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
