@@ -1,10 +1,9 @@
+import 'package:booqs_mobile/components/layouts/bottom_navbar/account_icon.dart';
 import 'package:booqs_mobile/data/provider/bottom_navbar_state.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/home/home_page.dart';
-import 'package:booqs_mobile/pages/notice/home.dart';
 import 'package:booqs_mobile/pages/review/index.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
-import 'package:booqs_mobile/components/layouts/bottom_navbar/notification_icon.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/review_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -17,7 +16,6 @@ class BottomNavbarForNormal extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final String dictionary = t.layouts.dictionary;
     final String review = t.layouts.review;
-    final String notification = t.layouts.notification;
     final String myPage = t.layouts.my_page;
 
     int selectedIndex = ref.watch(bottomNavbarState);
@@ -39,7 +37,8 @@ class BottomNavbarForNormal extends ConsumerWidget {
           ReviewIndexPage.pushReplacement(context);
           break;
         case 2:
-          NoticeHomePage.push(context, 0);
+          // NoticeHomePage.push(context, 0);
+          UserMyPage.push(context);
           break;
         case 3:
           UserMyPage.push(context);
@@ -58,12 +57,12 @@ class BottomNavbarForNormal extends ConsumerWidget {
           icon: const BottomNavbarReviewIcon(),
           label: review,
         ),
+        //BottomNavigationBarItem(
+        //  icon: const BottomNavbarNotificationIcon(),
+        //  label: notification,
+        //),
         BottomNavigationBarItem(
-          icon: const BottomNavbarNotificationIcon(),
-          label: notification,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.account_circle),
+          icon: const BottomNavbarAccountIcon(),
           label: myPage,
         ),
       ],

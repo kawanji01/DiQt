@@ -35,6 +35,26 @@ class RemoteUsers {
     }
   }
 
+  // 解答中の問題集の取得
+  static Future<Map> unreceivedAchievementMaps() async {
+    try {
+      final Uri url = Uri.parse(
+          '${DiQtURL.root()}/api/v1/mobile/users/unreceived_achievement_maps');
+      final Response res = await HttpService.get(url);
+
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      // Convert JSON into map. ref: https://qiita.com/rkowase/items/f397513f2149a41b6dd2
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
+
   // ユーザーの検索
   static Future<Map?> index(String keyword, int pageKey, int pageSize) async {
     try {
