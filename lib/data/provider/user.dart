@@ -24,7 +24,7 @@ final asyncUserFamily =
   }
 });
 
-// 非同期でユーザーの参加中のchapterを取得する
+// 非同期でユーザーの参加中の school を取得する
 final asyncUserSchoolsProvider =
     FutureProvider.family<List<School>, String>((ref, userUid) async {
   final List<School> schools = [];

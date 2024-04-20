@@ -2,11 +2,8 @@ import 'package:booqs_mobile/components/shared/no_items_found_indicator.dart';
 import 'package:booqs_mobile/components/shared/no_more_items_indicator.dart';
 import 'package:booqs_mobile/data/remote/notices.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/achievement_map.dart';
 import 'package:booqs_mobile/models/notice.dart';
-import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/components/notice/list_item.dart';
-import 'package:booqs_mobile/components/notice/unreceived_achievement.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
@@ -37,15 +34,6 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
     });
   }
 
-  // 未受領の実績メダルをモーダル表示
-  void _displayUnreceivedAchievement(Map resMap) {
-    final achievementMapJson = resMap['achievement_map'];
-    if (achievementMapJson == null) return;
-    final AchievementMap map = AchievementMap.fromJson(achievementMapJson);
-    final screen = NoticeUnreceivedAchievement(achievementMap: map);
-    Dialogs.slideFromBottomFade(screen);
-  }
-
   // ページに合わせてアイテムを読み込む
   Future<void> _fetchPage(int pageKey) async {
     if (_isLoading) return;
@@ -66,8 +54,7 @@ class _NoticeItemListViewState extends State<NoticeItemListView> {
     }
     final List<Notice> notices = [];
     resMap['notifications'].forEach((e) => notices.add(Notice.fromJson(e)));
-    // 未受領の実績メダルをモーダル表示
-    _displayUnreceivedAchievement(resMap);
+
     final isLastPage = notices.length < _pageSize;
     if (isLastPage) {
       _pagingController.appendLastPage(notices);

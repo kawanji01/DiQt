@@ -1,4 +1,9 @@
 import 'dart:io';
+
+import 'package:booqs_mobile/components/answer/share_button.dart';
+import 'package:booqs_mobile/components/button/dialog_close_button.dart';
+import 'package:booqs_mobile/components/exp/gained_exp_indicator.dart';
+import 'package:booqs_mobile/components/shared/dialog_confetti.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/remote/achievement_maps.dart';
@@ -8,27 +13,23 @@ import 'package:booqs_mobile/models/achievement_map.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/answer/share_button.dart';
-import 'package:booqs_mobile/components/button/dialog_close_button.dart';
-import 'package:booqs_mobile/components/exp/gained_exp_indicator.dart';
-import 'package:booqs_mobile/components/shared/dialog_confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path/path.dart';
 
-class NoticeUnreceivedAchievement extends ConsumerStatefulWidget {
-  const NoticeUnreceivedAchievement({Key? key, required this.achievementMap})
-      : super(key: key);
+class AchievementUnreceivedItemScreen extends ConsumerStatefulWidget {
+  const AchievementUnreceivedItemScreen(
+      {super.key, required this.achievementMap});
   final AchievementMap achievementMap;
 
   @override
-  NoticeUnreceivedAchievementState createState() =>
-      NoticeUnreceivedAchievementState();
+  ConsumerState<AchievementUnreceivedItemScreen> createState() =>
+      _AchievementUnreceivedItemScreenState();
 }
 
-class NoticeUnreceivedAchievementState
-    extends ConsumerState<NoticeUnreceivedAchievement> {
+class _AchievementUnreceivedItemScreenState
+    extends ConsumerState<AchievementUnreceivedItemScreen> {
   bool _isreceived = false;
   AchievementMap? _achievementMap;
   Achievement? _achievement;

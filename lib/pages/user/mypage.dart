@@ -1,12 +1,17 @@
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:booqs_mobile/components/achievement/unreceived_item_screen.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/components/user/notification_button.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/achievement_map.dart';
+import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/user/mypage_screen.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
-import 'package:booqs_mobile/components/home/drawer_menu.dart';
+import 'package:booqs_mobile/components/layouts/drawer_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -48,6 +53,8 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
       ref.invalidate(asyncCurrentUserProvider);
       // ATT(App Tracking Transparency)対応 ref: https://zenn.dev/toshinobu/articles/0f7d4eebcf1f80
       initATT();
+      // 未受領の実績メダルをモーダル表示
+      _displayUnreceivedAchievementDialogs();
     });
   }
 
@@ -63,11 +70,30 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
     }
   }
 
+  // 未受領の実績メダルをモーダル表示
+  Future<void> _displayUnreceivedAchievementDialogs() async {
+    if (ref.read(rewardRemainedProvider) == false) return;
+
+    final Map resMap = await RemoteUsers.unreceivedAchievementMaps();
+    if (resMap.containsKey('achievement_maps') == false) return;
+
+    final List<AchievementMap> achievementMaps = resMap['achievement_maps']
+        .map<AchievementMap>((e) => AchievementMap.fromJson(e))
+        .toList();
+    if (achievementMaps.isEmpty) return;
+    final map = achievementMaps.first;
+    final screen = AchievementUnreceivedItemScreen(achievementMap: map);
+    Dialogs.slideFromBottomFade(screen);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(t.layouts.my_page),
+        actions: const <Widget>[
+          UserNotificationButton(),
+        ],
       ),
       body: Container(
         margin: EdgeInsets.symmetric(
