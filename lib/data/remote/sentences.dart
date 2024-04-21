@@ -82,11 +82,13 @@ class RemoteSentences {
   }
 
   // 例文の削除
-  static Future<Map> destroy(int sentenceId) async {
+  static Future<Map> destroy(
+      {required int sentenceId, required String comment}) async {
     try {
+      final Map<String, dynamic> body = {'comment': comment};
       final Uri url =
           Uri.parse('${DiQtURL.root()}/api/v1/mobile/sentences/$sentenceId');
-      final Response res = await HttpService.delete(url, null);
+      final Response res = await HttpService.delete(url, body);
       if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
 
       final Map resMap = json.decode(res.body);

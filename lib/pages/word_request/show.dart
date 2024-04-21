@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordRequestShowPage extends ConsumerWidget {
+class WordRequestShowPage extends ConsumerStatefulWidget {
   const WordRequestShowPage({super.key});
 
   static Future push(BuildContext context, int wordRequestId) async {
@@ -29,7 +29,26 @@ class WordRequestShowPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<WordRequestShowPage> createState() =>
+      _WordRequestShowPageState();
+}
+
+class _WordRequestShowPageState extends ConsumerState<WordRequestShowPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      final int? wordRequestId = args['wordRequestId'];
+      if (wordRequestId != null) {
+        ref.invalidate(asyncWordRequestFamily(wordRequestId));
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final int? wordRequestId = args['wordRequestId'];
@@ -45,12 +64,12 @@ class WordRequestShowPage extends ConsumerWidget {
           // キーボードが出てきた時に隠れないようにする
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        child: SingleChildScrollView(
-          child: RefreshIndicator(
-            onRefresh: () async {
-              HapticFeedback.mediumImpact();
-              ref.invalidate(asyncWordRequestFamily(wordRequestId));
-            },
+        child: RefreshIndicator(
+          onRefresh: () async {
+            HapticFeedback.mediumImpact();
+            ref.invalidate(asyncWordRequestFamily(wordRequestId));
+          },
+          child: SingleChildScrollView(
             child: Container(
               margin: EdgeInsets.symmetric(
                   vertical: 24,

@@ -1,4 +1,5 @@
-import 'package:booqs_mobile/components/shared/delete_confirmation.dart';
+import 'package:booqs_mobile/components/shared/delete_confirmation_with_comment.dart';
+import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
@@ -10,24 +11,34 @@ import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordFormDestroyButton extends StatefulWidget {
-  const WordFormDestroyButton(
-      {super.key, required this.word, required this.commentController});
+class WordFormDestroyButton extends ConsumerStatefulWidget {
+  const WordFormDestroyButton({super.key, required this.word});
   final Word word;
-  final TextEditingController commentController;
 
   @override
-  State<WordFormDestroyButton> createState() => WordFormDestroyButtonState();
+  ConsumerState<WordFormDestroyButton> createState() =>
+      WordFormDestroyButtonState();
 }
 
-class WordFormDestroyButtonState extends State<WordFormDestroyButton> {
+class WordFormDestroyButtonState extends ConsumerState<WordFormDestroyButton> {
+  final _formKey = GlobalKey<FormState>();
+  final _deleteCommentController = TextEditingController();
+
+  @override
+  void dispose() {
+    _deleteCommentController.dispose();
+    super.dispose();
+  }
+
   Future<void> _submit() async {
+    if (!_formKey.currentState!.validate()) return;
     // ダイアログを閉じる。
     Navigator.of(context).pop();
     EasyLoading.show(status: 'loading...');
     final Map resMap = await RemoteWords.destroy(
-        wordId: widget.word.id, comment: widget.commentController.text);
+        wordId: widget.word.id, comment: _deleteCommentController.text);
     EasyLoading.dismiss();
     if (!mounted) return;
     if (ErrorHandler.isErrorMap(resMap)) {
@@ -38,6 +49,8 @@ class WordFormDestroyButtonState extends State<WordFormDestroyButton> {
     final WordRequest wordRequest =
         WordRequest.fromJson(resMap['word_request']);
 
+    // 画面遷移を許可するために、編集中を解除する。
+    ref.read(sharedEditingContentProvider.notifier).offEdit();
     if (wordRequest.closed()) {
       DictionaryShowPage.pushReplacement(context, widget.word.dictionaryId);
     } else {
@@ -51,9 +64,11 @@ class WordFormDestroyButtonState extends State<WordFormDestroyButton> {
       alignment: Alignment.centerRight,
       child: TextButton.icon(
         onPressed: () {
-          final Widget screen = SharedDeleteConfirmation(
+          final Widget screen = SharedDeleteConfirmationWithComment(
             onDeletePressed: _submit,
-            commentController: widget.commentController,
+            formKey: _formKey,
+            commentController: _deleteCommentController,
+            emptyValidation: true,
           );
           Dialogs.slideFromBottomFade(screen);
         },

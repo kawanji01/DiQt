@@ -147,7 +147,6 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
                 const SizedBox(height: 64),
                 WordFormDestroyButton(
                   word: widget.word,
-                  commentController: _commentController,
                 ),
                 const SizedBox(height: 160),
               ])),

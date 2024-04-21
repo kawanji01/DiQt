@@ -1,4 +1,5 @@
-import 'package:booqs_mobile/components/shared/delete_confirmation.dart';
+import 'package:booqs_mobile/components/shared/delete_confirmation_with_comment.dart';
+import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/sentence.dart';
@@ -9,23 +10,36 @@ import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceFormDestroyButton extends StatefulWidget {
+class SentenceFormDestroyButton extends ConsumerStatefulWidget {
   const SentenceFormDestroyButton({super.key, required this.sentence});
   final Sentence sentence;
 
   @override
-  State<SentenceFormDestroyButton> createState() =>
+  ConsumerState<SentenceFormDestroyButton> createState() =>
       _SentenceFormDestroyButtonState();
 }
 
-class _SentenceFormDestroyButtonState extends State<SentenceFormDestroyButton> {
+class _SentenceFormDestroyButtonState
+    extends ConsumerState<SentenceFormDestroyButton> {
+  final _formKey = GlobalKey<FormState>();
+  final _deleteCommentController = TextEditingController();
+
+  @override
+  void dispose() {
+    _deleteCommentController.dispose();
+    super.dispose();
+  }
+
   Future<void> _destroy() async {
+    if (!_formKey.currentState!.validate()) return;
     // ダイアログを閉じる。
     Navigator.of(context).pop();
     // 画面全体にローディングを表示
     EasyLoading.show(status: 'loading...');
-    final Map resMap = await RemoteSentences.destroy(widget.sentence.id);
+    final Map resMap = await RemoteSentences.destroy(
+        sentenceId: widget.sentence.id, comment: _deleteCommentController.text);
     EasyLoading.dismiss();
     if (!mounted) return;
     if (ErrorHandler.isErrorMap(resMap)) {
@@ -36,6 +50,8 @@ class _SentenceFormDestroyButtonState extends State<SentenceFormDestroyButton> {
         SentenceRequest.fromJson(resMap['sentence_request']);
     final snackBar = SnackBar(content: Text(resMap['message']));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    // 画面遷移を許可するために、編集中を解除する。
+    ref.read(sharedEditingContentProvider.notifier).offEdit();
 
     if (sentenceRequest.closed()) {
       SentenceShowPage.pushReplacement(context, widget.sentence.id);
@@ -50,8 +66,11 @@ class _SentenceFormDestroyButtonState extends State<SentenceFormDestroyButton> {
       alignment: Alignment.centerRight,
       child: TextButton.icon(
         onPressed: () {
-          final Widget screen =
-              SharedDeleteConfirmation(onDeletePressed: _destroy);
+          final Widget screen = SharedDeleteConfirmationWithComment(
+              onDeletePressed: _destroy,
+              formKey: _formKey,
+              commentController: _deleteCommentController,
+              emptyValidation: true);
           Dialogs.slideFromBottomFade(screen);
         },
         icon: const Icon(
