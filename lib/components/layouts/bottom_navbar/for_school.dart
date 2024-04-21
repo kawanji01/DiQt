@@ -56,7 +56,7 @@ class BottomNavbarForSchool extends ConsumerWidget {
           label: dictionary,
         ),
         BottomNavigationBarItem(
-          icon: const Icon(Icons.text_format),
+          icon: const Icon(Icons.book),
           label: wordList,
         ),
         BottomNavigationBarItem(
