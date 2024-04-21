@@ -132,7 +132,10 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
               quiz: _quiz,
             ),
             const SizedBox(height: 40),
-            FormEditorComment(commentController: _commentController),
+            FormEditorComment(
+              commentController: _commentController,
+              emptyValidation: false,
+            ),
             const SizedBox(height: 64),
             SizedBox(
               height: 48,

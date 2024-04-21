@@ -10,6 +10,8 @@ return_confirmation_description: '編集を破棄して戻ります。よろし�
 destroy: '削除する'
 destroy_confirmation: '削除の確認'
 destroy_confirmation_description: '本当に削除してもよろしいですか？'
+destroy_comment: '削除する理由'
+destroy_comment_placeholder: '削除する理由を入力してください。'
 destroy_succeeded: '削除しました。'
 cancel: 'キャンセルする'
 ok: 'OK'

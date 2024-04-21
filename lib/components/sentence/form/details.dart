@@ -38,7 +38,10 @@ class SentenceFormDetails extends StatelessWidget {
         ),
         const MarkdownIntroductionTextButton(),
         const SizedBox(height: 24),
-        FormEditorComment(commentController: commentController),
+        FormEditorComment(
+          commentController: commentController,
+          emptyValidation: false,
+        ),
         const SizedBox(height: 24),
       ],
     );

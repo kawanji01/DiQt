@@ -77,7 +77,8 @@ class SentenceForm extends StatelessWidget {
         ),
 
         const SizedBox(height: 40),
-        FormEditorComment(commentController: commentController),
+        FormEditorComment(
+            commentController: commentController, emptyValidation: false),
         //SentenceFormDetails(
         //    explanationController: explanationController,
         //    commentController: commentController),

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceRequestShowPage extends ConsumerWidget {
+class SentenceRequestShowPage extends ConsumerStatefulWidget {
   const SentenceRequestShowPage({super.key});
 
   static Future push(BuildContext context, int sentenceRequestId) async {
@@ -30,7 +30,27 @@ class SentenceRequestShowPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SentenceRequestShowPage> createState() =>
+      _SentenceRequestShowPageState();
+}
+
+class _SentenceRequestShowPageState
+    extends ConsumerState<SentenceRequestShowPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      final int? sentenceRequestId = args['sentenceRequestId'];
+      if (sentenceRequestId != null) {
+        ref.invalidate(asyncSentenceRequestFamily(sentenceRequestId));
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final int? sentenceRequestId = args['sentenceRequestId'];
@@ -46,12 +66,12 @@ class SentenceRequestShowPage extends ConsumerWidget {
           // キーボードが出てきた時に隠れないようにする
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        child: SingleChildScrollView(
-          child: RefreshIndicator(
-            onRefresh: () async {
-              HapticFeedback.mediumImpact();
-              ref.invalidate(asyncSentenceRequestFamily(sentenceRequestId));
-            },
+        child: RefreshIndicator(
+          onRefresh: () async {
+            HapticFeedback.mediumImpact();
+            ref.invalidate(asyncSentenceRequestFamily(sentenceRequestId));
+          },
+          child: SingleChildScrollView(
             child: Container(
               margin: EdgeInsets.symmetric(
                   vertical: 24,

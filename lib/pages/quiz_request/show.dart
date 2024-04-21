@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizRequestShowPage extends ConsumerWidget {
+class QuizRequestShowPage extends ConsumerStatefulWidget {
   const QuizRequestShowPage({super.key});
 
   static Future push(BuildContext context, int quizRequestId) async {
@@ -29,7 +29,13 @@ class QuizRequestShowPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<QuizRequestShowPage> createState() =>
+      _QuizRequestShowPageState();
+}
+
+class _QuizRequestShowPageState extends ConsumerState<QuizRequestShowPage> {
+  @override
+  Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final int? quizRequestId = args['quizRequestId'];
@@ -45,12 +51,12 @@ class QuizRequestShowPage extends ConsumerWidget {
           // キーボードが出てきた時に隠れないようにする
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        child: SingleChildScrollView(
-          child: RefreshIndicator(
-            onRefresh: () async {
-              HapticFeedback.mediumImpact();
-              ref.invalidate(asyncQuizRequestFamily(quizRequestId));
-            },
+        child: RefreshIndicator(
+          onRefresh: () async {
+            HapticFeedback.mediumImpact();
+            ref.invalidate(asyncQuizRequestFamily(quizRequestId));
+          },
+          child: SingleChildScrollView(
             child: Container(
               margin: EdgeInsets.symmetric(
                   vertical: 24,

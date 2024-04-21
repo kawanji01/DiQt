@@ -72,6 +72,7 @@ class WordFormFields extends ConsumerWidget {
         const SizedBox(height: 48),
         FormEditorComment(
           commentController: commentController,
+          emptyValidation: false,
         ),
 
         const SizedBox(height: 48),

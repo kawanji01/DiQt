@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 2862 (1431 per locale)
+/// Strings: 2866 (1433 per locale)
 ///
-/// Built on 2024-04-20 at 03:16 UTC
+/// Built on 2024-04-21 at 08:39 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -651,6 +651,8 @@ class _TranslationsSharedEn {
 	String get destroy => 'Destroy';
 	String get destroy_confirmation => 'Delete Confirmation';
 	String get destroy_confirmation_description => 'Are you sure you want to delete it?';
+	String get destroy_comment => 'Delete Reason';
+	String get destroy_comment_placeholder => 'Please enter the reason for deletion';
 	String get destroy_succeeded => 'Destroyed';
 	String get cancel => 'Cancel';
 	String get ok => 'OK';
@@ -2479,6 +2481,8 @@ class _TranslationsSharedJa implements _TranslationsSharedEn {
 	@override String get destroy => '削除する';
 	@override String get destroy_confirmation => '削除の確認';
 	@override String get destroy_confirmation_description => '本当に削除してもよろしいですか？';
+	@override String get destroy_comment => '削除する理由';
+	@override String get destroy_comment_placeholder => '削除する理由を入力してください。';
 	@override String get destroy_succeeded => '削除しました。';
 	@override String get cancel => 'キャンセルする';
 	@override String get ok => 'OK';
@@ -4143,6 +4147,8 @@ extension on _TranslationsEn {
 			case 'shared.destroy': return 'Destroy';
 			case 'shared.destroy_confirmation': return 'Delete Confirmation';
 			case 'shared.destroy_confirmation_description': return 'Are you sure you want to delete it?';
+			case 'shared.destroy_comment': return 'Delete Reason';
+			case 'shared.destroy_comment_placeholder': return 'Please enter the reason for deletion';
 			case 'shared.destroy_succeeded': return 'Destroyed';
 			case 'shared.cancel': return 'Cancel';
 			case 'shared.ok': return 'OK';
@@ -5582,6 +5588,8 @@ extension on _TranslationsJa {
 			case 'shared.destroy': return '削除する';
 			case 'shared.destroy_confirmation': return '削除の確認';
 			case 'shared.destroy_confirmation_description': return '本当に削除してもよろしいですか？';
+			case 'shared.destroy_comment': return '削除する理由';
+			case 'shared.destroy_comment_placeholder': return '削除する理由を入力してください。';
 			case 'shared.destroy_succeeded': return '削除しました。';
 			case 'shared.cancel': return 'キャンセルする';
 			case 'shared.ok': return 'OK';
