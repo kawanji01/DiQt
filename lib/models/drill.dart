@@ -15,7 +15,6 @@ class Drill {
       required this.introduction,
       this.referenceUrl,
       required this.thumbnailUrl,
-      required this.clearImageUrl,
       required this.publicUid,
       required this.strictSolvingMode,
       required this.answerHistoriesCount,
@@ -37,7 +36,6 @@ class Drill {
   String introduction;
   String? referenceUrl;
   String thumbnailUrl;
-  String clearImageUrl;
   String publicUid;
   bool strictSolvingMode;
   DateTime createdAt;
@@ -60,8 +58,6 @@ class Drill {
         introduction = json['introduction'] ?? '',
         referenceUrl = json['reference_url'] ?? '',
         thumbnailUrl = json['thumbnail_url'] ?? '',
-        clearImageUrl = json['clear_image_url'] ??
-            'https://res.cloudinary.com/hkbyf3jop/image/upload/w_1200,h_620/a_345,l_all_solved_stamp/v1663380933/DiQt_no_image.png',
         publicUid = json['public_uid'],
         strictSolvingMode = json['strict_solving_mode'],
         createdAt = DateTime.parse(json['created_at']),
@@ -89,7 +85,6 @@ class Drill {
         'introduction': introduction,
         'reference_url': referenceUrl,
         'thumbnail_url': thumbnailUrl,
-        'clear_image_url': clearImageUrl,
         'public_uid': publicUid,
         'strict_solving_mode': strictSolvingMode,
         'created_at': createdAt,
