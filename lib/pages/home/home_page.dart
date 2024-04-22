@@ -87,14 +87,13 @@ class HomePageState extends ConsumerState<HomePage> {
             final String locale = ref.watch(localeProvider);
             return UpgradeAlert(
               upgrader: Upgrader(
-                  // 開発環境で無理やりダイアログを表示するフラグ。本番環境では必ずコメントアウトする。
-                  // debugDisplayAlways: true,
-                  // remoteConfigで設定したアプリの最低バージョン以下なら、upgradeダイアログを表示する
-                  minAppVersion: minAppVersion,
-                  languageCode: locale,
-                  messages: UpgraderMessages(code: locale),
-                  // 閉じるのを許さない。
-                  canDismissDialog: false),
+                // 開発環境で無理やりダイアログを表示するフラグ。本番環境では必ずコメントアウトする。
+                // debugDisplayAlways: true,
+                // remoteConfigで設定したアプリの最低バージョン以下なら、upgradeダイアログを表示する
+                minAppVersion: minAppVersion,
+                languageCode: locale,
+                messages: UpgraderMessages(code: locale),
+              ),
               child: user == null
                   ? const HomeSignInScreen()
                   : const HomeDictionaryScreen(),
