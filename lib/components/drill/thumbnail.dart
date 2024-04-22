@@ -11,13 +11,13 @@ class DrillThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (drillLap == null || drillLap?.clearsCount == 0) {
-      return SharedCacheNetworkImage(
-        url: drill.thumbnailUrl,
-      );
-    }
+    //if (drillLap == null || drillLap?.clearsCount == 0) {
     return SharedCacheNetworkImage(
-      url: drill.clearImageUrl,
+      url: drill.thumbnailUrl,
     );
+    //}
+    //return SharedCacheNetworkImage(
+    //  url: drill.clearImageUrl,
+    //);
   }
 }
