@@ -74,7 +74,7 @@ class WordFormIPAGeneratorScreenState
       setState(() {
         _isRequesting = false;
       });
-      if (!mounted) return;
+      if (!context.mounted) return;
       if (ErrorHandler.isErrorMap(resMap)) {
         ErrorHandler.showErrorSnackBar(context, resMap);
         Navigator.pop(context);

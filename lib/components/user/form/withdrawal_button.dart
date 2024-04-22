@@ -30,13 +30,13 @@ class UserFormWithdrawalButtonState
       EasyLoading.dismiss();
 
       if (resMap == null) {
-        if (!mounted) return;
+        if (!context.mounted) return;
         final snackBar = SnackBar(content: Text(t.errors.error_occured));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         // ログアウトに伴う連携サービスの設定などの処理
         ref.read(currentUserProvider.notifier).logOut();
-        if (!mounted) return;
+        if (!context.mounted) return;
         final snackBar = SnackBar(content: Text(t.users.destroyed));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         SessionTransitionPage.push(context, 'logOut');

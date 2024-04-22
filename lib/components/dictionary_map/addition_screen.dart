@@ -33,7 +33,7 @@ class DictionaryMapAdditionScreenState
       final Map? resMap = await RemoteDictionaryMaps.add(dictionaryIdList);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
-      if (!mounted) return;
+      if (!context.mounted) return;
 
       Navigator.of(context).pop();
 

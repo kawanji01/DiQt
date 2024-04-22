@@ -27,7 +27,7 @@ class _SenseFormDestroyConfirmationScreenState
       EasyLoading.show(status: 'loading...');
       final Map? resMap = await RemoteSenses.destroy(sense.id);
       EasyLoading.dismiss();
-      if (!mounted) return;
+      if (!context.mounted) return;
       if (resMap == null) return;
       final snackBar = SnackBar(content: Text(resMap['message']));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);

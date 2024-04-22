@@ -35,7 +35,7 @@ class DictionaryMapRemovalScreenState
       final Map? resMap = await RemoteDictionaryMaps.remove(dictionaryIdList);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
-      if (!mounted) return;
+      if (!context.mounted) return;
 
       Navigator.of(context).pop();
 

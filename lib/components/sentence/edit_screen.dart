@@ -78,7 +78,7 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
       setState(() {
         _isRequesting = false;
       });
-      if (!mounted) return;
+      if (!context.mounted) return;
       if (ErrorHandler.isErrorMap(resMap)) {
         ErrorHandler.showErrorSnackBar(context, resMap);
         return;

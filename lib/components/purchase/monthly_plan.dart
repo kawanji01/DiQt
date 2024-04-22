@@ -25,7 +25,7 @@ class _PurchaseMonthlyplanState extends State<PurchaseMonthlyplan> {
       final bool subscriptionCompleted = await purchase.purchaseMonthlyPlan();
       // 画面全体のローディングを消す。
       EasyLoading.dismiss();
-      if (!mounted) return;
+      if (!context.mounted) return;
       // 契約完了したらマイページに画面遷移
       if (subscriptionCompleted) {
         final snackBar = SnackBar(content: Text(t.purchase.purchase_succeded));

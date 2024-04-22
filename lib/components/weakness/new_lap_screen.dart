@@ -23,7 +23,7 @@ class WeaknessNewLapScreenState extends ConsumerState<WeaknessNewLapScreen> {
       final Map? resMap = await RemoteWeaknesses.newLap();
       EasyLoading.dismiss();
       if (resMap == null) return;
-      if (!mounted) return;
+      if (!context.mounted) return;
 
       final snackBar = SnackBar(content: Text(t.weaknesses.new_lap_started));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);

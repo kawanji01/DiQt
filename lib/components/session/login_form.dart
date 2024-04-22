@@ -48,7 +48,7 @@ class SessionLoginFormState extends ConsumerState<SessionLoginForm> {
           await ref.watch(remoteSessionsProvider).login(email, password);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
-      if (!mounted) return;
+      if (!context.mounted) return;
       if (ErrorHandler.isErrorMap(resMap)) {
         _passwordController.clear();
         ErrorHandler.showErrorSnackBar(context, resMap,

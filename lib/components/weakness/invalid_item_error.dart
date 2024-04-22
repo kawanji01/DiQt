@@ -44,7 +44,7 @@ class WeaknessInvalidItemErrorState
                   ref.invalidate(asyncUnsolvedWeaknessesProvider);
                   final snackBar =
                       SnackBar(content: Text(t.shared.error_fixed));
-                  if (!mounted) return;
+                  if (!context.mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
           child: MediumGreenButton(

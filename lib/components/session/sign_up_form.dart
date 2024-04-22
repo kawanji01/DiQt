@@ -54,7 +54,7 @@ class SessionSignUpFormState extends ConsumerState<SessionSignUpForm> {
           await ref.watch(remoteSessionsProvider).signUp(name, email, password);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
-      if (!mounted) return;
+      if (!context.mounted) return;
       // レスポンスに対する処理
       if (ErrorHandler.isErrorMap(resMap)) {
         _passwordController.text = '';
