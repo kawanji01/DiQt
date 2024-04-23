@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
-version: 1.4.47+227
+version: 1.4.47+228
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -51,7 +51,7 @@ dependencies:
   flutter_local_notifications: ^17.1.0 # AndroidでフォアグラウンドでPush通知を送れるようにする。参照：https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_messaging/firebase_messaging/example/pubspec.yaml / https://zenn.dev/rafekun/articles/ef8a22f9fe90bd
   device_info_plus: ^10.1.0 # デバイスのユニークIDやデバイスの名前、OSを取得する。
   share_plus: ^7.0.2 # 連続解答記録のシェアなど
-  firebase_analytics: ^10.10.2 # Google analytics
+  # firebase_analytics: ^10.10.2 # Google analytics
   firebase_remote_config: ^4.4.2 # メンテナンスモードなどを管理する remote config
   firebase_crashlytics: ^3.5.2 # クラッシュレポート
   flutter_tts: ^3.6.2 # 読み上げ （保留）
