@@ -76,7 +76,8 @@
             android:value="2" />
             
         <!-- local notification START 参考： https://github.com/sajee1dw/Local-Notification/blob/master/android/app/src/main/AndroidManifest.xml  -->
-        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver" 
+        android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"></action>
             </intent-filter>
