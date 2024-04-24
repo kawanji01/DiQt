@@ -27,7 +27,7 @@ class DrillLapUpdateScreenState extends ConsumerState<DrillLapUpdateScreen> {
       Map? resMap = await RemoteDrills.newLap(drill!.publicUid);
       EasyLoading.dismiss();
       if (resMap == null) return;
-      if (!mounted) return;
+      if (!context.mounted) return;
       final snackBar = SnackBar(content: Text(t.drills.new_lap_started));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.of(context).pop();

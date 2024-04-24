@@ -63,7 +63,7 @@ class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
       final Map resMap = await RemoteAnswerSettings.update(params);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
-      if (!mounted) return;
+      if (!context.mounted) return;
       if (ErrorHandler.isErrorMap(resMap)) {
         return ErrorHandler.showErrorSnackBar(context, resMap);
       }

@@ -87,7 +87,7 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
           params: params, comment: _commentController.text);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
-      if (!mounted) return;
+      if (!context.mounted) return;
 
       if (ErrorHandler.isErrorMap(resMap)) {
         return ErrorHandler.showErrorSnackBar(context, resMap);

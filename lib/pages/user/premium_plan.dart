@@ -2,7 +2,6 @@ import 'package:booqs_mobile/components/purchase/desktop_screen.dart';
 import 'package:booqs_mobile/components/purchase/mobile_screen.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/analytics_service.dart';
 import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
   void initState() {
     super.initState();
     // analytics に記録する
-    AnalyticsService().setCurrentScreen('PremiumPlanPage');
+    // AnalyticsService().setCurrentScreen('PremiumPlanPage');
   }
 
   @override

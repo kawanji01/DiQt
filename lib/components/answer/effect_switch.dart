@@ -27,7 +27,7 @@ class AnswerEffectSwitchState extends ConsumerState<AnswerEffectSwitch> {
       final Map resMap = await RemoteAnswerSettings.switchEffect(settingId);
       EasyLoading.dismiss();
       setState(() => _isRequesting = false);
-      if (!mounted) return;
+      if (!context.mounted) return;
       if (ErrorHandler.isErrorMap(resMap)) {
         final snackBar = SnackBar(content: Text(t.shared.update_failed));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);

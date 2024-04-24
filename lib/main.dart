@@ -2,7 +2,6 @@ import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/firebase_options.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
-import 'package:booqs_mobile/utils/analytics_service.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/mobile_ad_service.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
@@ -32,7 +31,7 @@ Future<void> main() async {
   // クラッシュレポートの設定
   CrashlyticsService.initialize();
   // Google Analyticsの設定
-  await AnalyticsService().logBeginCheckout();
+  //await AnalyticsService().logBeginCheckout();
   // remoteConfigの設定
   await RemoteConfigService().initRemoteConfig();
   // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios

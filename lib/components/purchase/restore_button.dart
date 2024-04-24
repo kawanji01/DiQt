@@ -24,7 +24,7 @@ class _PurchaseRestoreButtonState extends State<PurchaseRestoreButton> {
         final subscriptionRestored = await purchase.restore();
         // 画面全体のローディングを消す。
         EasyLoading.dismiss();
-        if (!mounted) return;
+        if (!context.mounted) return;
         if (subscriptionRestored) {
           final snackBar = SnackBar(content: Text(t.purchase.restore_success));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);

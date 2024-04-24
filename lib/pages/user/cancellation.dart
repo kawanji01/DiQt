@@ -80,7 +80,7 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
       setState(() {
         _isRequesting = false;
       });
-      if (!mounted) return;
+      if (!context.mounted) return;
 
       if (resMap == null) {
         const snackBar = SnackBar(content: Text('通信エラーが発生しました。'));

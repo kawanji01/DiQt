@@ -22,7 +22,6 @@ class SessionAppleButton extends ConsumerStatefulWidget {
 class SessionAppleButtonState extends ConsumerState<SessionAppleButton> {
   @override
   Widget build(BuildContext context) {
-    
     String? clientId = dotenv.env['IOS_BUNDLE_ID'];
     // AndroidとWebではService IDがclientIdとなる。
     if (Platform.isAndroid) clientId = dotenv.env['ANDROID_SERVICE_ID'];
@@ -44,7 +43,6 @@ class SessionAppleButtonState extends ConsumerState<SessionAppleButton> {
                 '${DiQtURL.root()}/auth/apple/callback_on_android',
               ),
             ),
-            
           );
           // 画面全体にローディングを表示
           EasyLoading.show(status: 'loading...');
@@ -52,14 +50,14 @@ class SessionAppleButtonState extends ConsumerState<SessionAppleButton> {
           EasyLoading.dismiss();
 
           if (resMap == null) {
-            if (!mounted) return;
+            if (!context.mounted) return;
             final snackBar = SnackBar(content: Text(t.sessions.login_failed));
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           } else {
             final User user = User.fromJson(resMap['user']);
             await ref.read(currentUserProvider.notifier).logIn(user);
             ref.read(bottomNavbarState.notifier).state = 0;
-            if (!mounted) return;
+            if (!context.mounted) return;
             final snackBar =
                 SnackBar(content: Text(t.sessions.login_succeeded));
             ScaffoldMessenger.of(context).showSnackBar(snackBar);

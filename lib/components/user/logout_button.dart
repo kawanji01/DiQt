@@ -33,7 +33,7 @@ class UserLogoutButtonState extends ConsumerState<UserLogoutButton> {
               // ローディングを消す
               EasyLoading.dismiss();
               setState(() => _isRequesting = false);
-              if (!mounted) return;
+              if (!context.mounted) return;
 
               if (ErrorHandler.isErrorMap(resMap)) {
                 ErrorHandler.showErrorSnackBar(context, resMap);

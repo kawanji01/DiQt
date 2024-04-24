@@ -38,15 +38,16 @@ class SessionGoogleButtonState extends ConsumerState<SessionGoogleButton> {
         final Map? resMap = await RemoteSessions.google(googleAuth);
         // 画面全体のローディングを消す。
         EasyLoading.dismiss();
+
         if (resMap == null) {
-          if (!mounted) return;
+          if (!context.mounted) return;
           final snackBar = SnackBar(content: Text(t.sessions.login_failed));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         } else {
           final User user = User.fromJson(resMap['user']);
           await ref.read(currentUserProvider.notifier).logIn(user);
           ref.read(bottomNavbarState.notifier).state = 0;
-          if (!mounted) return;
+          if (!context.mounted) return;
           final snackBar = SnackBar(content: Text(t.sessions.login_succeeded));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           SessionTransitionPage.push(context, 'logIn');
