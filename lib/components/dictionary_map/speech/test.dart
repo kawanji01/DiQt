@@ -122,12 +122,8 @@ class _DictionaryMapSpeechTestState extends State<DictionaryMapSpeechTest> {
       onResult: resultListener,
       listenFor: Duration(seconds: listenFor ?? 30),
       pauseFor: Duration(seconds: pauseFor ?? 3),
-      partialResults: true,
       localeId: _currentLocaleId,
       onSoundLevelChange: soundLevelListener,
-      cancelOnError: true,
-      listenMode: ListenMode.confirmation,
-      onDevice: _onDevice,
     );
     setState(() {});
   }

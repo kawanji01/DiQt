@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
-version: 1.4.47+228
+version: 1.4.47+229
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -93,7 +93,7 @@ dependencies:
   photo_view: ^0.14.0 # 画像の拡大表示
   # uni_links: ^0.5.1 # DeepLinksの実装 # 画面がフリーズする問題がiOSでもAndroidでも発生するので、一旦コメントアウト。詳しくは #609の issueを参照
   diff_match_patch: ^0.4.1 # diffを取得する
-  # speech_to_text: ^6.3.0 # 音声認識
+  speech_to_text: ^6.3.0 # 音声認識
   html: ^0.15.4
 dependency_overrides:
   macos_ui:
