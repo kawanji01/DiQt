@@ -2,7 +2,6 @@ import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/answer_history/todays_mistakes.dart';
 import 'package:booqs_mobile/pages/chapter/index.dart';
 import 'package:booqs_mobile/pages/custom_section/show.dart';
-import 'package:booqs_mobile/pages/dictionary/speech_test.dart';
 import 'package:booqs_mobile/pages/quiz_request/dictionary.dart';
 import 'package:booqs_mobile/pages/quiz_request/quiz.dart';
 import 'package:booqs_mobile/pages/quiz_request/show.dart';
@@ -156,8 +155,6 @@ final routes = {
   dictionarySentenceSearchResultsPage: (context) =>
       const DictionarySentenceSearchResultsPage(),
   dictionaryGuidelinePage: (context) => const DictionaryGuidelinePage(),
-  // Test
-  dictionarySpeechTestPage: (context) => const DictionarySpeechTestPage(),
   // Word
   wordShowPage: (context) => const WordShowPage(),
   wordNewPage: (context) => const WordNewPage(),
