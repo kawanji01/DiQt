@@ -33,7 +33,7 @@ class _DictionaryMapSpeechSearchScreenState
   final _audioPlayer = AudioPlayer();
   bool _hasSpeech = false;
   final bool _logEvents = false;
-  final bool _onDevice = false;
+  //final bool _onDevice = false;
   final int _pauseFor = 3;
   final int _listenFor = 30;
   double level = 0.0;
@@ -176,12 +176,8 @@ class _DictionaryMapSpeechSearchScreenState
       onResult: resultListener,
       listenFor: Duration(seconds: _listenFor),
       pauseFor: Duration(seconds: _pauseFor),
-      partialResults: true,
       localeId: _currentLocaleId,
       onSoundLevelChange: soundLevelListener,
-      cancelOnError: true,
-      listenMode: ListenMode.confirmation,
-      onDevice: _onDevice,
     );
     // 音声認識開始の効果音
     _audioPlayer.play(AssetSource(micStartSound), volume: 0.8);
