@@ -15,7 +15,7 @@ class Quiz {
     required this.appliedDictionaryId,
     this.wordId,
     this.reversedWordId,
-    this.referenceWordId,
+    this.syncedWordId,
     this.sentenceId,
     required this.question,
     required this.langNumberOfQuestion,
@@ -50,7 +50,7 @@ class Quiz {
   int appliedDictionaryId;
   int? wordId;
   int? reversedWordId;
-  int? referenceWordId;
+  int? syncedWordId;
   int? sentenceId;
   int? reversedSentenceId;
   String question;
@@ -87,7 +87,7 @@ class Quiz {
         appliedDictionaryId = json['applied_dictionary_id'],
         wordId = json['word_id'],
         reversedWordId = json['reversed_word_id'],
-        referenceWordId = json['reference_word_id'],
+        syncedWordId = json['synced_word_id'],
         sentenceId = json['sentence_id'],
         reversedSentenceId = json['reversed_sentence_id'],
         question = json['question'],
@@ -126,7 +126,7 @@ class Quiz {
             ? null
             : Sentence.fromJson(json['sentence']);
 
-  int? belongedWordId() => wordId ?? reversedWordId ?? referenceWordId;
+  int? belongedWordId() => wordId ?? reversedWordId ?? syncedWordId;
   int? belongedSentenceId() => sentenceId ?? reversedSentenceId;
   bool belongsToWord() => belongedWordId() != null;
   bool belongsToSentence() => belongedSentenceId() != null;
@@ -141,7 +141,7 @@ class Quiz {
         'dictionary_id': dictionaryId,
         'applied_dictionary_id': appliedDictionaryId,
         'word_id': wordId,
-        'reference_word_id': referenceWordId,
+        'synced_word_id': syncedWordId,
         'sentence_id': sentenceId,
         'reversed_sentence_id': reversedSentenceId,
         'question': question,
