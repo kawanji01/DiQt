@@ -9,6 +9,7 @@ class Sentence {
     this.sentenceSourceId,
     required this.original,
     required this.langNumberOfOriginal,
+    this.originalAudioUrl,
     required this.translation,
     required this.langNumberOfTranslation,
     this.explanation,
@@ -28,6 +29,7 @@ class Sentence {
   int? sentenceSourceId;
   String original;
   int langNumberOfOriginal;
+  String? originalAudioUrl;
   String translation;
   int langNumberOfTranslation;
   String? explanation;
@@ -47,6 +49,7 @@ class Sentence {
         sentenceSourceId = json['sentence_source_id'],
         original = json['original'],
         langNumberOfOriginal = json['lang_number_of_original'],
+        originalAudioUrl = json['original_audio_url'],
         translation = json['translation'] ?? '',
         langNumberOfTranslation = json['lang_number_of_translation'],
         explanation = json['explanation'],
@@ -80,6 +83,7 @@ class Sentence {
         'sentence_source_id': sentenceSourceId,
         'original': original,
         'lang_number_of_original': langNumberOfOriginal,
+        'original_audio_url': originalAudioUrl,
         'translation': translation,
         'lang_number_of_translation': langNumberOfTranslation,
         'accepted_sentence_requests_count': acceptedSentenceRequestsCount,

@@ -39,7 +39,8 @@ class AnswerDrillLapClearScreenState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // 効果音
       if (ref.read(seEnabledProvider)) {
-        audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
+        audioPlayer.play(AssetSource(achievementSound),
+            volume: 0.8, mode: PlayerMode.lowLatency);
       }
     });
   }

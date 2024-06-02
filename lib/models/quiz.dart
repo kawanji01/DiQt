@@ -14,15 +14,16 @@ class Quiz {
     this.dictionaryId,
     required this.appliedDictionaryId,
     this.wordId,
-    this.reversedWordId,
-    this.referenceWordId,
+    this.syncedWordId,
     this.sentenceId,
     required this.question,
     required this.langNumberOfQuestion,
     required this.questionReadAloud,
+    this.questionAudioUrl,
     required this.correctAnswer,
     required this.langNumberOfAnswer,
     required this.answerReadAloud,
+    this.answerAudioUrl,
     this.distractor1,
     this.distractor2,
     this.distractor3,
@@ -50,13 +51,15 @@ class Quiz {
   int appliedDictionaryId;
   int? wordId;
   int? reversedWordId;
-  int? referenceWordId;
+  int? syncedWordId;
   int? sentenceId;
   int? reversedSentenceId;
   String question;
   int langNumberOfQuestion;
   bool questionReadAloud;
+  String? questionAudioUrl;
   String correctAnswer;
+  String? answerAudioUrl;
   int langNumberOfAnswer;
   bool answerReadAloud;
   bool questionHidden;
@@ -87,15 +90,17 @@ class Quiz {
         appliedDictionaryId = json['applied_dictionary_id'],
         wordId = json['word_id'],
         reversedWordId = json['reversed_word_id'],
-        referenceWordId = json['reference_word_id'],
+        syncedWordId = json['synced_word_id'],
         sentenceId = json['sentence_id'],
         reversedSentenceId = json['reversed_sentence_id'],
         question = json['question'],
         langNumberOfQuestion = json['lang_number_of_question'],
         questionReadAloud = json['question_read_aloud'],
+        questionAudioUrl = json['question_audio_url'],
         correctAnswer = json['correct_answer'] ?? '',
         langNumberOfAnswer = json['lang_number_of_answer'],
         answerReadAloud = json['answer_read_aloud'],
+        answerAudioUrl = json['answer_audio_url'],
         distractor1 = json['distractor_1'],
         distractor2 = json['distractor_2'],
         distractor3 = json['distractor_3'],
@@ -126,7 +131,7 @@ class Quiz {
             ? null
             : Sentence.fromJson(json['sentence']);
 
-  int? belongedWordId() => wordId ?? reversedWordId ?? referenceWordId;
+  int? belongedWordId() => wordId ?? reversedWordId ?? syncedWordId;
   int? belongedSentenceId() => sentenceId ?? reversedSentenceId;
   bool belongsToWord() => belongedWordId() != null;
   bool belongsToSentence() => belongedSentenceId() != null;
@@ -141,15 +146,17 @@ class Quiz {
         'dictionary_id': dictionaryId,
         'applied_dictionary_id': appliedDictionaryId,
         'word_id': wordId,
-        'reference_word_id': referenceWordId,
+        'synced_word_id': syncedWordId,
         'sentence_id': sentenceId,
         'reversed_sentence_id': reversedSentenceId,
         'question': question,
         'lang_number_of_question': langNumberOfQuestion,
+        'question_audio_url': questionAudioUrl,
         'question_read_aloud': questionReadAloud,
         'correct_answer': correctAnswer,
         'lang_number_of_answer': langNumberOfAnswer,
         'answer_read_aloud': answerReadAloud,
+        'answer_audio_url': answerAudioUrl,
         'distractor_1': distractor1,
         'distractor_2': distractor2,
         'distractor_3': distractor3,

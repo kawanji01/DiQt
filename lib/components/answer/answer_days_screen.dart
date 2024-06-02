@@ -35,7 +35,8 @@ class AnswerAnswerDaysScreenState
     // 効果音
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (ref.read(seEnabledProvider)) {
-        _audioPlayer.play(AssetSource(continousSound), volume: 0.8);
+        _audioPlayer.play(AssetSource(continousSound),
+            volume: 0.8, mode: PlayerMode.lowLatency);
       }
     });
   }

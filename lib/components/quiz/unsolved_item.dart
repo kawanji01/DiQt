@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
@@ -37,10 +38,17 @@ class QuizUnsolvedItem extends ConsumerStatefulWidget {
 class QuizUnsolvedItemState extends ConsumerState<QuizUnsolvedItem> {
   bool _isVisible = true;
   bool _isOpaque = true;
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
   }
 
   @override
@@ -51,7 +59,17 @@ class QuizUnsolvedItemState extends ConsumerState<QuizUnsolvedItem> {
     // 正解を読み上げる
     void speakCorrectAnswer(notification) {
       final Quiz quiz = notification.quiz;
-      if (quiz.answerReadAloud) {
+      if (quiz.answerReadAloud == false) {
+        return;
+      }
+      if (quiz.answerAudioUrl != null && quiz.answerAudioUrl != '') {
+        try {
+          _audioPlayer.play(UrlSource(quiz.answerAudioUrl!),
+              mode: PlayerMode.lowLatency);
+        } catch (e) {
+          print('Error playing audio: $e');
+        }
+      } else {
         final int langNumber = quiz.langNumberOfAnswer;
         // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す
         final String speechText = Sanitizer.removeDiQtLink(quiz.correctAnswer);

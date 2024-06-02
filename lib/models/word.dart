@@ -43,6 +43,7 @@ class Word {
   int? posTagId;
   String entry;
   int langNumberOfEntry;
+  String? entryAudioUrl;
   String meaning;
   int langNumberOfMeaning;
   String? explanation;
@@ -72,6 +73,7 @@ class Word {
         posTagId = json['pos_tag_id'],
         entry = json['entry'],
         langNumberOfEntry = json['lang_number_of_entry'],
+        entryAudioUrl = json['entry_audio_url'],
         meaning = json['meaning'],
         langNumberOfMeaning = json['lang_number_of_meaning'],
         explanation = json['explanation'],
@@ -117,6 +119,7 @@ class Word {
         'pos_tag_id': posTagId,
         'entry': entry,
         'lang_number_of_entry': langNumberOfEntry,
+        'entry_audio_url': entryAudioUrl,
         'meaning': meaning,
         'lang_number_of_meaning': langNumberOfMeaning,
         'explanation': explanation,

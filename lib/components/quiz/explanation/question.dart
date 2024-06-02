@@ -1,10 +1,9 @@
+import 'package:booqs_mobile/components/quiz/item/question_audio_button.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
-import 'package:booqs_mobile/components/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 
 class QuizExplanationQuestion extends StatelessWidget {
@@ -42,23 +41,6 @@ class QuizExplanationQuestion extends StatelessWidget {
           ));
     }
 
-    Widget ttsBtn() {
-      if (quiz.questionReadAloud) {
-        // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す
-        final String questionPlainText =
-            Sanitizer.removeDiQtLink(quiz.question);
-        return Container(
-          margin: const EdgeInsets.only(top: 4),
-          alignment: Alignment.center,
-          child: TtsButton(
-            speechText: questionPlainText,
-            langNumber: quiz.langNumberOfQuestion,
-          ),
-        );
-      }
-      return Container();
-    }
-
     return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -66,8 +48,12 @@ class QuizExplanationQuestion extends StatelessWidget {
           SharedItemLabel(text: t.quizzes.question),
           const SizedBox(height: 16),
           question(),
-          ttsBtn(),
-          const SizedBox(height: 24),
+          Container(
+            margin: const EdgeInsets.only(top: 8),
+            alignment: Alignment.bottomCenter,
+            child: QuizItemQuestionAudioButton(quiz: quiz),
+          ),
+          const SizedBox(height: 32),
         ]);
   }
 }

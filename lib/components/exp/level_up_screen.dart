@@ -33,7 +33,8 @@ class ExpLevelUpScreenState extends ConsumerState<ExpLevelUpScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // 効果音を鳴らす
       if (ref.read(seEnabledProvider)) {
-        audioPlayer.play(AssetSource(levelUpSound), volume: 0.8);
+        audioPlayer.play(AssetSource(levelUpSound),
+            volume: 0.8, mode: PlayerMode.lowLatency);
       }
     });
   }
