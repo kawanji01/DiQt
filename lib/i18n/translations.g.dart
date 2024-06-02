@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 2866 (1433 per locale)
 ///
-/// Built on 2024-04-21 at 08:39 UTC
+/// Built on 2024-06-02 at 08:53 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -3380,8 +3380,8 @@ class _TranslationsQuizzesJa implements _TranslationsQuizzesEn {
 	@override String get edit => '問題を編集する';
 	@override String get answer => '解答する';
 	@override String get see_correct_answer => '正解を見る';
-	@override String get correct => '正解した';
-	@override String get wrong => '間違えた';
+	@override String get correct => '正解';
+	@override String get wrong => '不正解';
 	@override String get got_a_correct => '正解した';
 	@override String get made_a_mistake => '間違えた';
 	@override String get question => '問題文';
@@ -6370,8 +6370,8 @@ extension on _TranslationsJa {
 			case 'quizzes.edit': return '問題を編集する';
 			case 'quizzes.answer': return '解答する';
 			case 'quizzes.see_correct_answer': return '正解を見る';
-			case 'quizzes.correct': return '正解した';
-			case 'quizzes.wrong': return '間違えた';
+			case 'quizzes.correct': return '正解';
+			case 'quizzes.wrong': return '不正解';
 			case 'quizzes.got_a_correct': return '正解した';
 			case 'quizzes.made_a_mistake': return '間違えた';
 			case 'quizzes.question': return '問題文';

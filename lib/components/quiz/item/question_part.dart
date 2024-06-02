@@ -1,7 +1,6 @@
 import 'package:booqs_mobile/components/quiz/item/question_audio_button.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/components/drill/icon.dart';
 import 'package:booqs_mobile/components/quiz/item/drill_title.dart';
 import 'package:booqs_mobile/components/quiz/item/hint_button.dart';
 import 'package:booqs_mobile/components/quiz/item/question_text.dart';
@@ -18,22 +17,35 @@ class QuizItemQuestionPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        DrillIcon(drill: drill),
-        Expanded(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            QuizItemDrillTitle(drill: drill),
-            QuizItemQuestionText(
-              quiz: quiz,
-            ),
-            const SizedBox(height: 8),
-            QuizItemQuestionAudioButton(quiz: quiz),
-            QuizItemHintButton(quiz: quiz),
-          ]),
-        ),
-      ],
-    );
+    // return Row(
+    //   children: [
+    //     DrillIcon(drill: drill),
+    //     Expanded(
+    //       child:
+    //           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    //         QuizItemDrillTitle(drill: drill),
+    //         QuizItemQuestionText(
+    //           quiz: quiz,
+    //         ),
+    //         const SizedBox(height: 8),
+    //         QuizItemQuestionAudioButton(quiz: quiz),
+    //         QuizItemHintButton(quiz: quiz),
+    //       ]),
+    //     ),
+    //   ],
+    // );
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      QuizItemDrillTitle(drill: drill),
+      const SizedBox(height: 4),
+      QuizItemQuestionText(
+        quiz: quiz,
+      ),
+      Container(
+        margin: const EdgeInsets.only(top: 8),
+        alignment: Alignment.center,
+        child: QuizItemQuestionAudioButton(quiz: quiz),
+      ),
+      QuizItemHintButton(quiz: quiz),
+    ]);
   }
 }
