@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/shared/audio_button.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/shared/tts_button.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,15 @@ class WordItemEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (word == null) return Container();
+
+    Widget pronunciationButton() {
+      if (word!.entryAudioUrl == null || word!.entryAudioUrl == '') {
+        return TtsButton(
+            speechText: word!.ipa!, langNumber: word!.langNumberOfEntry);
+      } else {
+        return AudioButton(url: word!.entryAudioUrl!);
+      }
+    }
 
     // 左寄せできない問題の解決策としてdouble.infinityを設定する。https://techsmeme.com/flutter-text-left-right/
     return SizedBox(
@@ -24,8 +34,7 @@ class WordItemEntry extends StatelessWidget {
               color: Colors.green.shade700,
             ),
           ),
-          TtsButton(
-              speechText: word!.entry, langNumber: word!.langNumberOfEntry),
+          pronunciationButton(),
         ],
       ),
     );

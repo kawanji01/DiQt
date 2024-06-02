@@ -1,13 +1,12 @@
+import 'package:booqs_mobile/components/quiz/item/answer_audio_button.dart';
 import 'package:booqs_mobile/components/quiz/item/answer_button.dart';
 import 'package:booqs_mobile/components/quiz/item/answer_cover.dart';
-import 'package:booqs_mobile/components/shared/tts_button.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/components/markdown/markdown_without_dict_link.dart';
-import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,21 +49,6 @@ class QuizItemFlashcardState extends ConsumerState<QuizItemFlashcard> {
       setState(() => _isDisabled = false);
     }
 
-    Widget ttsButton() {
-      // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す
-      final String correctAnswer = Sanitizer.removeDiQtLink(quiz.correctAnswer);
-      if (quiz.answerReadAloud) {
-        return Container(
-          margin: const EdgeInsets.only(top: 8),
-          child: TtsButton(
-            speechText: correctAnswer,
-            langNumber: quiz.langNumberOfAnswer,
-          ),
-        );
-      }
-      return Container();
-    }
-
     if (_isCovered) {
       // 答えカバー
       return QuizItemAnswerCover(
@@ -87,7 +71,8 @@ class QuizItemFlashcardState extends ConsumerState<QuizItemFlashcard> {
           fontWeight: FontWeight.bold,
           selectable: true,
         ),
-        ttsButton(),
+        const SizedBox(height: 8),
+        QuizItemAnswerAudioButton(quiz: quiz),
         const SizedBox(height: 32),
         // 正解ボタン
         QuizItemAnswerButton(

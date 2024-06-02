@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/sentence/item/original.dart';
 import 'package:booqs_mobile/components/sentence/item/translation.dart';
+import 'package:booqs_mobile/components/shared/audio_button.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/components/sentence/item/tts_button.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,17 @@ class SentenceItemContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget audioButton() {
+      if (sentence.originalAudioUrl == null ||
+          sentence.originalAudioUrl == '') {
+        return SentenceItemTTSButton(
+          sentence: sentence,
+        );
+      } else {
+        return AudioButton(url: sentence.originalAudioUrl!);
+      }
+    }
+
     return Row(
       children: [
         Expanded(
@@ -25,9 +37,7 @@ class SentenceItemContent extends StatelessWidget {
             ],
           ),
         ),
-        SentenceItemTTSButton(
-          sentence: sentence,
-        ),
+        audioButton(),
       ],
     );
   }

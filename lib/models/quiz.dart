@@ -14,15 +14,16 @@ class Quiz {
     this.dictionaryId,
     required this.appliedDictionaryId,
     this.wordId,
-    this.reversedWordId,
     this.syncedWordId,
     this.sentenceId,
     required this.question,
     required this.langNumberOfQuestion,
     required this.questionReadAloud,
+    this.questionAudioUrl,
     required this.correctAnswer,
     required this.langNumberOfAnswer,
     required this.answerReadAloud,
+    this.answerAudioUrl,
     this.distractor1,
     this.distractor2,
     this.distractor3,
@@ -56,7 +57,9 @@ class Quiz {
   String question;
   int langNumberOfQuestion;
   bool questionReadAloud;
+  String? questionAudioUrl;
   String correctAnswer;
+  String? answerAudioUrl;
   int langNumberOfAnswer;
   bool answerReadAloud;
   bool questionHidden;
@@ -93,9 +96,11 @@ class Quiz {
         question = json['question'],
         langNumberOfQuestion = json['lang_number_of_question'],
         questionReadAloud = json['question_read_aloud'],
+        questionAudioUrl = json['question_audio_url'],
         correctAnswer = json['correct_answer'] ?? '',
         langNumberOfAnswer = json['lang_number_of_answer'],
         answerReadAloud = json['answer_read_aloud'],
+        answerAudioUrl = json['answer_audio_url'],
         distractor1 = json['distractor_1'],
         distractor2 = json['distractor_2'],
         distractor3 = json['distractor_3'],
@@ -146,10 +151,12 @@ class Quiz {
         'reversed_sentence_id': reversedSentenceId,
         'question': question,
         'lang_number_of_question': langNumberOfQuestion,
+        'question_audio_url': questionAudioUrl,
         'question_read_aloud': questionReadAloud,
         'correct_answer': correctAnswer,
         'lang_number_of_answer': langNumberOfAnswer,
         'answer_read_aloud': answerReadAloud,
+        'answer_audio_url': answerAudioUrl,
         'distractor_1': distractor1,
         'distractor_2': distractor2,
         'distractor_3': distractor3,
