@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -42,7 +43,9 @@ class QuizAnswerInteraction extends ConsumerWidget {
             // Expandedを使うと短い文章でも幅全体を埋めてしまい、結果的に左寄せになってしまうので Flexible を使う。
             Flexible(
               child: MarkdownWithoutDictLink(
-                text: correctAnswer,
+                // text: correctAnswer,
+                // フィ＝度バックで次の問題が隠れて邪魔という声があるので、正解の時は「正解」とだけ表示する。
+                text: correct ? t.quizzes.correct : correctAnswer,
                 fontSize: fontSize,
                 fontColor: fontColor,
                 fontWeight: fontWeight,

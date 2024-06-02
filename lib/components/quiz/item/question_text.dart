@@ -60,7 +60,7 @@ class QuizItemQuestionTextState extends ConsumerState<QuizItemQuestionText> {
               text: ' ${t.quizzes.question_cover_text}',
               style: const TextStyle(
                   color: Colors.green,
-                  fontSize: 16,
+                  fontSize: 1,
                   fontWeight: FontWeight.bold))
         ])),
       ),
@@ -73,7 +73,7 @@ class QuizItemQuestionTextState extends ConsumerState<QuizItemQuestionText> {
         width: double.infinity,
         child: MarkdownWithoutDictLink(
           fontColor: Colors.black87,
-          fontSize: 16,
+          fontSize: 18,
           fontWeight: FontWeight.normal,
           selectable: true,
           text: quiz.question,
