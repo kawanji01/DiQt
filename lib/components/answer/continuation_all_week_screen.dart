@@ -36,7 +36,8 @@ class AnswerContinuationAllWeekScreenState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (ref.read(seEnabledProvider)) {
         // 効果音を鳴らす
-        audioPlayer.play(AssetSource(continousSound), volume: 0.8);
+        audioPlayer.play(AssetSource(continousSound),
+            volume: 0.8, mode: PlayerMode.lowLatency);
       }
     });
   }

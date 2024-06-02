@@ -63,8 +63,12 @@ class QuizUnsolvedItemState extends ConsumerState<QuizUnsolvedItem> {
         return;
       }
       if (quiz.answerAudioUrl != null && quiz.answerAudioUrl != '') {
-        _audioPlayer.play(UrlSource(quiz.answerAudioUrl!),
-            mode: PlayerMode.lowLatency);
+        try {
+          _audioPlayer.play(UrlSource(quiz.answerAudioUrl!),
+              mode: PlayerMode.lowLatency);
+        } catch (e) {
+          print('Error playing audio: $e');
+        }
       } else {
         final int langNumber = quiz.langNumberOfAnswer;
         // TTSできちんと読み上げるためにDiQtリンクを取り除いた平文を渡す

@@ -39,8 +39,12 @@ class _AudioButtonState extends State<AudioButton> {
         ),
       ),
       onPressed: () {
-        _audioPlayer.play(UrlSource(widget.url),
-            mode: PlayerMode.lowLatency, position: Duration.zero);
+        try {
+          _audioPlayer.play(UrlSource(widget.url),
+              mode: PlayerMode.lowLatency, position: Duration.zero);
+        } catch (e) {
+          print('Error playing audio: $e');
+        }
       },
       child: const Icon(
         Icons.volume_up,

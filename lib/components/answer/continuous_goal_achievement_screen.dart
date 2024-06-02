@@ -36,7 +36,8 @@ class AnswerContinuousGoalAchievementScreenState
     // 効果音
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (ref.read(seEnabledProvider)) {
-        audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
+        audioPlayer.play(AssetSource(achievementSound),
+            volume: 0.8, mode: PlayerMode.lowLatency);
       }
     });
   }
