@@ -16,7 +16,7 @@ class AnswerShareButton extends StatelessWidget {
     }
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 120),
+      margin: const EdgeInsets.only(bottom: 80),
       //decoration: BoxDecoration(
       //border: Border.all(color: Colors.black54, width: 2),
       //borderRadius: BorderRadius.circular(24),
