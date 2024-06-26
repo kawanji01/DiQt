@@ -36,8 +36,7 @@ class AnswerContinuousGoalAchievementScreenState
     // 効果音
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (ref.read(seEnabledProvider)) {
-        audioPlayer.play(AssetSource(achievementSound),
-            volume: 0.8, mode: PlayerMode.lowLatency);
+        audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
       }
     });
   }
@@ -101,8 +100,8 @@ class AnswerContinuousGoalAchievementScreenState
                 gainedExp: gainedExp,
               ),
               const SizedBox(height: 16),
-              shareButton(user, counter),
               const AnswerEffectSetting(),
+              shareButton(user, counter),
             ]),
           ),
           const DialogCloseButton(),

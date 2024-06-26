@@ -39,8 +39,7 @@ class AnswerDrillLapClearScreenState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // 効果音
       if (ref.read(seEnabledProvider)) {
-        audioPlayer.play(AssetSource(achievementSound),
-            volume: 0.8, mode: PlayerMode.lowLatency);
+        audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
       }
     });
   }
@@ -124,8 +123,8 @@ class AnswerDrillLapClearScreenState
                 gainedExp: gainedExp,
               ),
               const SizedBox(height: 16),
-              shareButton(),
               const AnswerEffectSetting(),
+              shareButton(),
             ]),
           ),
           const DialogCloseButton(),

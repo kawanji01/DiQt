@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -16,17 +15,21 @@ class AnswerShareButton extends StatelessWidget {
       await Share.share(text, subject: subject);
     }
 
-    return ElevatedButton.icon(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.green,
-        minimumSize: const Size(double.infinity, 40),
-      ),
-      onPressed: () => {shareText(sharedText, 'DiQt')},
-      icon: const Icon(Icons.share, color: Colors.white),
-      label: Text(
-        t.shared.share,
-        style: const TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 80),
+      //decoration: BoxDecoration(
+      //border: Border.all(color: Colors.black54, width: 2),
+      //borderRadius: BorderRadius.circular(24),
+      //  ),
+      child: IconButton(
+        icon: const Icon(Icons.share, color: Colors.black54),
+        iconSize: 24,
+        onPressed: () => {shareText(sharedText, 'DiQt')},
+        padding: EdgeInsets.zero, // サイズを指定するためにパディングをゼロに設定
+        constraints: const BoxConstraints(
+          minWidth: 48,
+          minHeight: 48,
+        ),
       ),
     );
   }

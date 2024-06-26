@@ -37,8 +37,7 @@ class AnswerContinuationAllMonthScreenState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (ref.read(seEnabledProvider)) {
         // 効果音を鳴らす
-        _audioPlayer.play(AssetSource(achievementSound),
-            volume: 0.8, mode: PlayerMode.lowLatency);
+        _audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
       }
     });
   }
@@ -97,8 +96,8 @@ class AnswerContinuationAllMonthScreenState
                 gainedExp: gainedExp,
               ),
               const SizedBox(height: 16),
-              shareButton(),
               const AnswerEffectSetting(),
+              shareButton(),
             ]),
           ),
           const DialogCloseButton(),

@@ -64,8 +64,9 @@ class QuizUnsolvedItemState extends ConsumerState<QuizUnsolvedItem> {
       }
       if (quiz.answerAudioUrl != null && quiz.answerAudioUrl != '') {
         try {
-          _audioPlayer.play(UrlSource(quiz.answerAudioUrl!),
-              mode: PlayerMode.lowLatency);
+          _audioPlayer.play(
+            UrlSource(quiz.answerAudioUrl!),
+          );
         } catch (e) {
           print('Error playing audio: $e');
         }
