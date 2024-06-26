@@ -36,8 +36,7 @@ class AnswerContinuationAllYearScreenState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (ref.read(seEnabledProvider)) {
         // 効果音を鳴らす
-        audioPlayer.play(AssetSource(achievementSound),
-            volume: 0.8, mode: PlayerMode.lowLatency);
+        audioPlayer.play(AssetSource(achievementSound), volume: 0.8);
       }
     });
   }
@@ -97,8 +96,8 @@ class AnswerContinuationAllYearScreenState
                 gainedExp: gainedExp,
               ),
               const SizedBox(height: 16),
-              shareButton(),
               const AnswerEffectSetting(),
+              shareButton(),
             ]),
           ),
           const DialogCloseButton(),

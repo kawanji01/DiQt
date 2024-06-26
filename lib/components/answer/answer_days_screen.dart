@@ -35,8 +35,7 @@ class AnswerAnswerDaysScreenState
     // 効果音
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (ref.read(seEnabledProvider)) {
-        _audioPlayer.play(AssetSource(continousSound),
-            volume: 0.8, mode: PlayerMode.lowLatency);
+        _audioPlayer.play(AssetSource(continousSound), volume: 0.8);
       }
     });
   }
@@ -93,8 +92,8 @@ class AnswerAnswerDaysScreenState
                 gainedExp: gainedExp,
               ),
               const SizedBox(height: 16),
-              shareButton(),
               const AnswerEffectSetting(),
+              shareButton(),
             ]),
           ),
           const DialogCloseButton(),
