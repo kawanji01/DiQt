@@ -184,7 +184,6 @@ class _AchievementUnreceivedItemScreenState
                 explanation(),
                 const SizedBox(height: 24),
                 shareButton(),
-                const SizedBox(height: 120),
               ],
             ),
           ),
