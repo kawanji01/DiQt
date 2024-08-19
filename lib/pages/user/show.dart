@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/ad/banner.dart';
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/user/calendar.dart';
 import 'package:booqs_mobile/components/user/drills.dart';
 import 'package:booqs_mobile/components/user/study_records.dart';
@@ -64,8 +65,8 @@ class UserShowPage extends ConsumerWidget {
 
     // 最終的なアウトプット
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.users.show),
+      appBar: AppBarDefault(
+        title: t.users.show,
       ),
       body: SingleChildScrollView(
         child: Container(

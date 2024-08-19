@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/sentence/edit_screen.dart';
 import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
@@ -50,8 +51,8 @@ class SentenceEditPage extends ConsumerWidget {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(t.sentences.edit),
+        appBar: AppBarDefault(
+          title: t.sentences.edit,
         ),
         body: Container(
           margin: EdgeInsets.symmetric(

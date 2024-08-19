@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -56,8 +57,8 @@ class DictionarySentenceSearchResultsPageState
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('$keywordの検索結果'),
+      appBar: AppBarDefault(
+        title: '$keywordの検索結果',
       ),
       body: SingleChildScrollView(
         child: Container(

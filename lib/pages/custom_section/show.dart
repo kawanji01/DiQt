@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/custom_section/show_screen.dart';
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/data/provider/custom_sections.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -21,8 +22,8 @@ class CustomSectionShowPage extends ConsumerWidget {
     final CustomSection? customSection = ref.watch(customSectionProvider);
     if (customSection == null) {
       return Scaffold(
-        appBar: AppBar(
-          title: const Text('404 not found'),
+        appBar: const AppBarDefault(
+          title: '404 not found',
         ),
         body: Container(
           margin: EdgeInsets.symmetric(
@@ -38,7 +39,7 @@ class CustomSectionShowPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const AppBarDefault(),
       body: Container(
         margin: EdgeInsets.symmetric(
           horizontal: ResponsiveValues.horizontalMargin(context),

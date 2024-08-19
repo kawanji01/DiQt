@@ -1,7 +1,9 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -92,8 +94,8 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('解約の確認'),
+      appBar: const AppBarDefault(
+        title: '解約の確認',
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -162,9 +164,10 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
                       : () async {
                           sendCancellationReport(_entitlementInfo!);
                         },
-                  child: const Text(
-                    '解約する',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  child: Text(
+                    t.users.cancel_subscription,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                 ),
               ],

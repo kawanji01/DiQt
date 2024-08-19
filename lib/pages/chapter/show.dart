@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/chapter/show.dart';
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/data/provider/chapter.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/chapter.dart';
@@ -21,8 +22,8 @@ class ChapterShowPage extends ConsumerWidget {
     final Chapter? chapter = ref.watch(chapterProvider);
     if (chapter == null) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(t.chapters.chapters),
+        appBar: AppBarDefault(
+          title: t.chapters.chapters,
         ),
         body: Container(
           margin: EdgeInsets.symmetric(
@@ -38,8 +39,8 @@ class ChapterShowPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(chapter.title),
+      appBar: AppBarDefault(
+        title: chapter.title,
       ),
       body: Container(
           margin: EdgeInsets.symmetric(

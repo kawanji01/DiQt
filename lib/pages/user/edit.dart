@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -32,8 +33,8 @@ class UserEditPageState extends ConsumerState<UserEditPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.users.edit),
+      appBar: AppBarDefault(
+        title: t.users.edit,
       ),
       body: SingleChildScrollView(
         child: Container(

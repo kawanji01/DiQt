@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/word/new_screen.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
@@ -94,8 +95,8 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(t.words.add),
+        appBar: AppBarDefault(
+          title: t.words.add,
         ),
         body: Container(
           margin: EdgeInsets.symmetric(

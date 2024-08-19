@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/word/show_action.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
@@ -47,14 +48,6 @@ class WordShowPageState extends ConsumerState<WordShowPage> {
     final Word? word = ref.watch(wordProvider);
     final future = ref.watch(asyncWordFamily(wordId));
 
-    Widget title() {
-      return future.when(
-        data: (date) => Text(date?.entry ?? ''),
-        error: (err, stack) => const Text('Error'),
-        loading: () => Text(word?.entry ?? ''),
-      );
-    }
-
     Widget action() {
       return future.when(
         data: (date) => WordShowAction(word: date),
@@ -64,8 +57,12 @@ class WordShowPageState extends ConsumerState<WordShowPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: title(),
+      appBar: AppBarDefault(
+        title: future.when(
+          data: (date) => date?.entry ?? '',
+          error: (err, stack) => 'Error',
+          loading: () => word?.entry ?? '',
+        ),
         actions: [action()],
       ),
       body: RefreshIndicator(

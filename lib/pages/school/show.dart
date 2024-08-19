@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/school/activities.dart';
 import 'package:booqs_mobile/components/school/chapters.dart';
 import 'package:booqs_mobile/components/school/members.dart';
@@ -63,11 +64,11 @@ class SchoolShowPageState extends ConsumerState<SchoolShowPage> {
       initialIndex: 0,
       length: _tabs.length,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AppBarDefault(
           title: future.when(
-            data: (school) => Text(school?.name ?? ''),
-            error: (err, stack) => Text('Error: $err'),
-            loading: () => const Text(''),
+            data: (school) => school?.name ?? '',
+            error: (err, stack) => 'Error: $err',
+            loading: () => '',
           ),
           bottom: TabBar(isScrollable: true, tabs: tabBars()),
           // タイトル部分を消す ref: https://blog.mrym.tv/2019/09/flutter-tabbar-without-appbar-title/

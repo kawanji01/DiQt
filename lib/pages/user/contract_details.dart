@@ -1,7 +1,9 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/purchase/contract_details_screen.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/data/provider/purchase.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +37,8 @@ class UserContractDetailsPageState
     final future = ref.watch(asyncCustomerInfoProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ご契約内容'),
+      appBar: AppBarDefault(
+        title: t.users.contract_details,
       ),
       body: Container(
         margin: EdgeInsets.symmetric(

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/shared/no_items_found_indicator.dart';
 import 'package:booqs_mobile/components/user/drill_list_view.dart';
@@ -41,8 +42,8 @@ class UserDrillsPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('${t.users.drills}(${user?.drillsCount})'),
+      appBar: AppBarDefault(
+        title: '${t.users.drills}(${user?.drillsCount})',
       ),
       body: SingleChildScrollView(
         child: Container(

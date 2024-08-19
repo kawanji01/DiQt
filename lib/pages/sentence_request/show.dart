@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/error/scaffold_404.dart';
 import 'package:booqs_mobile/components/sentence_request/show_screen.dart';
@@ -58,8 +59,8 @@ class _SentenceRequestShowPageState
       return ErrorScaffold404(appBarTitle: t.wordRequests.edit_histories);
     }
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.wordRequests.edit_histories),
+      appBar: AppBarDefault(
+        title: t.wordRequests.edit_histories,
       ),
       body: Padding(
         padding: EdgeInsets.only(

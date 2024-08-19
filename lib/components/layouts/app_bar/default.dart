@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 
 class AppBarDefault extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarDefault({super.key, required this.title});
-  final String title;
+  const AppBarDefault(
+      {super.key,
+      this.title,
+      this.automaticallyImplyLeading = true,
+      this.actions,
+      this.flexibleSpace,
+      this.bottom});
+  final String? title;
+  final bool automaticallyImplyLeading;
+  final List<Widget>? actions;
+  final Widget? flexibleSpace;
+  final PreferredSizeWidget? bottom;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title),
+      title: title == null ? null : Text('$title'),
+      automaticallyImplyLeading: automaticallyImplyLeading,
       backgroundColor: const Color.fromRGBO(76, 175, 80, 1),
       foregroundColor: Colors.white,
       actionsIconTheme: const IconThemeData(color: Colors.white),
@@ -16,6 +27,9 @@ class AppBarDefault extends StatelessWidget implements PreferredSizeWidget {
         fontSize: 20.0,
         fontWeight: FontWeight.normal,
       ),
+      actions: actions,
+      flexibleSpace: flexibleSpace,
+      bottom: bottom,
     );
   }
 
