@@ -108,6 +108,15 @@ class DiQtState extends ConsumerState<DiQt> {
           backgroundColor: Colors.white,
           surfaceTintColor: Colors.transparent,
         ),
+        // card
+        cardTheme: const CardTheme(
+          color: Colors.white,
+          elevation: 1,
+          shadowColor: Colors.black87,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+          ),
+        ),
       ),
       // ダークモードの設定
       //darkTheme: ThemeData(
