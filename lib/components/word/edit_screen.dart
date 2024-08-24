@@ -127,6 +127,7 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
                   height: 48,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
                       backgroundColor: Colors.green,
                       minimumSize: const Size(double.infinity,
                           40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent

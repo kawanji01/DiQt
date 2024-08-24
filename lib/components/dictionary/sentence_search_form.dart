@@ -81,8 +81,10 @@ class _DictionarySentenceSearchFormState
               icon: const Icon(Icons.search, color: Colors.white),
               label: Text(
                 t.shared.search,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.white),
               ),
             ),
           ),

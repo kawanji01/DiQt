@@ -119,8 +119,7 @@ class ReviewFormDialogState extends ConsumerState<ReviewFormDialog> {
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
-                    minimumSize: const Size(double.infinity,
-                        48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                    minimumSize: const Size(double.infinity, 48),
                   ),
                   onPressed: _isRequesting ? null : update,
                   icon: const Icon(Icons.update, color: Colors.white),

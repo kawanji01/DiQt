@@ -35,19 +35,19 @@ class DictionaryMapImageUploader extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.image,
-                            color: Theme.of(context).highlightColor,
+                            color: Colors.black38,
                             size: 80.0,
                           ),
                           const SizedBox(height: 24.0),
                           Text(
                             t.dictionaryMaps.image_for_ocr,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    color: Theme.of(context).highlightColor),
+                            style: const TextStyle(
+                              color: Colors.black38,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           )
                         ],
                       ),
@@ -58,6 +58,14 @@ class DictionaryMapImageUploader extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24.0),
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    minimumSize: const Size(200.0, 48.0),
+                  ),
                   onPressed: upload,
                   child: Text(
                     t.dictionaryMaps.upload,

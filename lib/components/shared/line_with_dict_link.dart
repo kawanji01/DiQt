@@ -44,6 +44,7 @@ class LineWithDictLink extends StatelessWidget {
 
     Future goToWordSearchPage(keyword) async {
       return showModalBottomSheet(
+        backgroundColor: Colors.white,
         isScrollControlled: true,
         context: context,
         shape: const RoundedRectangleBorder(

@@ -162,7 +162,7 @@ class SentenceSettingState extends State<SentenceSetting> {
                 filled: true,
                 labelStyle: const TextStyle(
                   fontSize: 16,
-                  color: Colors.green,
+                  color: Colors.black54,
                 ),
                 border: const OutlineInputBorder(
                   borderSide: BorderSide.none,

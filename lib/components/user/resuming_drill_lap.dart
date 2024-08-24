@@ -19,8 +19,9 @@ class UserResumingDrillLap extends ConsumerWidget {
     // 解答中の問題集の一覧を表示するボタン
     final drillsInProgressButton = ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        minimumSize: const Size(double.infinity,
-            40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
+        minimumSize: const Size(double.infinity, 40),
       ),
       onPressed: () {
         showModalBottomSheet(

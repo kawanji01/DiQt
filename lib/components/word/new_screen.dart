@@ -129,6 +129,7 @@ class WordNewScreenState extends ConsumerState<WordNewScreen> {
                   height: 48,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
                       backgroundColor: Colors.green,
                       minimumSize: const Size(double.infinity, 40),
                     ),

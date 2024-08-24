@@ -92,13 +92,29 @@ class DiQtState extends ConsumerState<DiQt> {
       builder: EasyLoading.init(),
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.green,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         //appBarTheme: const AppBarTheme(elevation: 0),
         brightness: Brightness.light,
         textTheme: GoogleFonts.notoSansTextTheme(
           Theme.of(context).textTheme,
         ),
+        // Dialogを完全に白にする ref: https://note.com/waiwai_waiyade/n/naa840028dc80
+        dialogTheme: const DialogTheme(
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.transparent,
+        ),
+        // bottomSheetTheme の背景を完全に白にする
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.transparent,
+        ),
       ),
+      // ダークモードの設定
+      //darkTheme: ThemeData(
+      //  colorSchemeSeed: Colors.green,
+      //  useMaterial3: true,
+      //  brightness: Brightness.dark,
+      //),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

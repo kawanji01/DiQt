@@ -28,7 +28,7 @@ class DictionaryMapFloatingActionButton extends StatelessWidget {
         );
       },
       backgroundColor: Colors.green,
-      child: const Icon(Icons.settings),
+      child: const Icon(Icons.settings, color: Colors.white),
     );
   }
 }

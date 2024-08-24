@@ -61,6 +61,7 @@ class _DictionaryAIFormState extends ConsumerState<DictionaryAIForm> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
+              foregroundColor: Colors.white,
             ),
             onPressed: _isRequesting ? null : _performAISearch,
             child: Text(t.lang.ask_ai,
