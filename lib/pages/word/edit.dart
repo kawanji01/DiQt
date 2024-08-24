@@ -57,18 +57,32 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
     final int wordId = arguments['wordId'];
-    return WillPopScope(
-      onWillPop: () async {
-        final bool result = await Dialogs.confirm(
-            context: context,
-            title: t.shared.return_confirmation,
-            message: t.shared.return_confirmation_description);
-        if (result) {
-          // 画面遷移を許可するために、編集中を解除する。
-          ref.read(sharedEditingContentProvider.notifier).offEdit();
-          return true; // trueを返すことで画面遷移を許可
-        } else {
-          return false;
+    final NavigatorState navigator = Navigator.of(context);
+
+    Future<bool?> showBackDialog() async {
+      final bool result = await Dialogs.confirm(
+          context: context,
+          title: t.shared.return_confirmation,
+          message: t.shared.return_confirmation_description);
+      if (result) {
+        // 画面遷移を許可するために、編集中を解除する。
+        ref.read(sharedEditingContentProvider.notifier).offEdit();
+        return true; // trueを返すことで画面遷移を許可
+      } else {
+        return false;
+      }
+    }
+
+    // ref: https://zenn.dev/yu1ro/articles/6d7db85990bb82
+    return PopScope(
+      canPop: false, // 戻るキーの動作で戻ることを一旦防ぐ
+      onPopInvoked: (didPop) async {
+        if (didPop) {
+          return;
+        }
+        final bool? shouldPop = await showBackDialog(); // ダイアログで戻るか確認
+        if (shouldPop == true) {
+          navigator.pop(); // 戻るを選択した場合のみpopを明示的に呼ぶ
         }
       },
       child: Scaffold(
