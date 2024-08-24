@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/dictionary/show_screen.dart';
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -50,11 +51,11 @@ class DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBarDefault(
         title: future.when(
-          data: (date) => Text('${date?.typeName()}'),
-          error: (err, stack) => Text('Error: $err'),
-          loading: () => Text('${dictionary?.typeName()}'),
+          data: (date) => '${date?.typeName()}',
+          error: (err, stack) => 'Error: $err',
+          loading: () => '${dictionary?.typeName()}',
         ),
       ),
       body: future.when(

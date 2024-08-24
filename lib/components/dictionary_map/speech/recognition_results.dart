@@ -21,7 +21,7 @@ class RecognitionResults extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Container(
-                color: Theme.of(context).secondaryHeaderColor,
+                color: Theme.of(context).highlightColor.withOpacity(0.2),
                 child: Center(
                   child: Text(
                     lastWords,

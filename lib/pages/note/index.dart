@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/shared/premium_recommendation.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/note.dart';
@@ -39,8 +40,8 @@ class NoteIndexPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('${t.notes.notes}(${user.notesCount})'),
+      appBar: AppBarDefault(
+        title: '${t.notes.notes}(${user.notesCount})',
       ),
       body: SingleChildScrollView(
         child: Container(

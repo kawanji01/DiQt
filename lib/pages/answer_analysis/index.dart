@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/ad/banner.dart';
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -53,8 +54,8 @@ class AnswerAnalysisIndexPageState
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
+      appBar: AppBarDefault(
+        title: title,
       ),
       body: SingleChildScrollView(
         child: Container(

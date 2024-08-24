@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/dictionary/search_info.dart';
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -86,8 +87,8 @@ class DictionaryWordSearchResultsPageState
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.dictionaries.search_results),
+      appBar: AppBarDefault(
+        title: t.dictionaries.search_results,
         actions: [
           actions(),
         ],

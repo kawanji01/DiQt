@@ -48,6 +48,7 @@ class _QuizFormDistractorsGeneratorButtonState
         // これをしないとモーダルを閉じたときに、画面がTextFieldまで移動してしまい不便。
         FocusScope.of(context).unfocus();
         showModalBottomSheet(
+            backgroundColor: Colors.white,
             context: context,
             isScrollControlled: true,
             shape: const RoundedRectangleBorder(

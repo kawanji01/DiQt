@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/error/scaffold_404.dart';
 import 'package:booqs_mobile/components/quiz_request/quiz/screen.dart';
@@ -55,8 +56,8 @@ class QuizRequestQuizPageState extends ConsumerState<QuizRequestQuizPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.wordRequests.edit_histories),
+      appBar: AppBarDefault(
+        title: t.wordRequests.edit_histories,
       ),
       body: RefreshIndicator(
         onRefresh: () async {

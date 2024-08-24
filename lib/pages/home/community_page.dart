@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -17,8 +18,8 @@ class HomeCommunityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.home.community),
+      appBar: AppBarDefault(
+        title: t.home.community,
       ),
       body: Container(
         margin: EdgeInsets.symmetric(

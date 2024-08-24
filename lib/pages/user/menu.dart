@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/user/drill_creator_button.dart';
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
@@ -147,8 +148,8 @@ class UserMenuPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.users.menu),
+      appBar: AppBarDefault(
+        title: t.users.menu,
       ),
       body: SingleChildScrollView(
         child: Container(

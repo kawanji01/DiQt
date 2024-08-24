@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/achievement/tile.dart';
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/user/heading_icon.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
@@ -153,8 +154,8 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.achievements.got_medals),
+      appBar: AppBarDefault(
+        title: t.achievements.got_medals,
       ),
       body: SingleChildScrollView(
         child: Container(

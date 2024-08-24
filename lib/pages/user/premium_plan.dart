@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/purchase/desktop_screen.dart';
 import 'package:booqs_mobile/components/purchase/mobile_screen.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -29,8 +30,8 @@ class _PremiumPlanPageState extends State<PremiumPlanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.purchase.premium_plan),
+      appBar: AppBarDefault(
+        title: t.purchase.premium_plan,
       ),
       body: EnvHandler.isMobile()
           ? const PurchaseMobileScreen()

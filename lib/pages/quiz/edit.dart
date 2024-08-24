@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/quiz/edit_form.dart';
 import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
@@ -50,8 +51,8 @@ class QuizEditPage extends ConsumerWidget {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(t.quizzes.edit),
+        appBar: AppBarDefault(
+          title: t.quizzes.edit,
         ),
         body: SingleChildScrollView(
           child: Container(

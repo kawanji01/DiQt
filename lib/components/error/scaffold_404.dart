@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,8 @@ class ErrorScaffold404 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(appBarTitle == '' ? '404 Not Found' : appBarTitle),
-      ),
+      appBar: AppBarDefault(
+          title: appBarTitle == '' ? '404 Not Found' : appBarTitle),
       body: Container(
         color: Colors.green,
         padding: EdgeInsets.symmetric(

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/ad/banner.dart';
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -44,8 +45,8 @@ class AnswerHistoryTodaysMistakesPageState
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.answerHistories.todays_mistakes),
+      appBar: AppBarDefault(
+        title: t.answerHistories.todays_mistakes,
       ),
       body: SingleChildScrollView(
         child: Container(

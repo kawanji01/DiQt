@@ -49,6 +49,7 @@ class UserDrillCreatorButton extends StatelessWidget {
       onTap: () {
         ScaffoldMessenger.of(context).removeCurrentSnackBar();
         showModalBottomSheet(
+            backgroundColor: Colors.white,
             isScrollControlled: true,
             context: context,
             // 丸み ref: https://www.codegrepper.com/code-examples/whatever/showmodalbottomsheet+rounded+corners

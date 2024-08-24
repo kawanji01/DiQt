@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/tab_info.dart';
 import 'package:booqs_mobile/pages/activity/index.dart';
@@ -56,13 +57,19 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
       length: 2,
       //length: _tabs.length,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AppBarDefault(
           automaticallyImplyLeading: false,
           // タイトル部分を消す ref: https://blog.mrym.tv/2019/09/flutter-tabbar-without-appbar-title/
           flexibleSpace: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              TabBar(isScrollable: true, tabs: tabBars()),
+              TabBar(
+                isScrollable: true,
+                tabs: tabBars(),
+                labelColor: Colors.white,
+                indicatorColor: Colors.white,
+                unselectedLabelColor: Colors.white.withOpacity(0.5),
+              ),
             ],
           ),
         ),

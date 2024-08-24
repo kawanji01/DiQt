@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/sentence/new_screen.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
@@ -84,8 +85,8 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(t.sentences.add),
+        appBar: AppBarDefault(
+          title: t.sentences.add,
         ),
         body: SingleChildScrollView(
           child: Container(

@@ -20,6 +20,7 @@ class DictionaryMapImageMenu extends StatelessWidget {
         FloatingActionButton(
           onPressed: clear,
           backgroundColor: Colors.redAccent,
+          foregroundColor: Colors.white,
           tooltip: 'Delete',
           child: const Icon(Icons.delete),
         ),

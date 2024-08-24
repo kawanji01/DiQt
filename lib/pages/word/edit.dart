@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/word/edit_screen.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
@@ -71,8 +72,8 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(t.words.edit),
+        appBar: AppBarDefault(
+          title: t.words.edit,
         ),
         body: Container(
           margin: EdgeInsets.symmetric(

@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
@@ -32,8 +34,8 @@ class _UserSearchPageState extends State<UserSearchPage> {
 
     // 最終的なアウトプット
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ユーザーを探す'),
+      appBar: AppBarDefault(
+        title: t.users.find_users,
       ),
       body: SingleChildScrollView(
         child: Container(

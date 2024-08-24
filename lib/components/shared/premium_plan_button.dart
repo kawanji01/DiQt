@@ -16,8 +16,9 @@ class PremiumPlanButton extends StatelessWidget {
       height: 40,
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
-          minimumSize: const Size(double.infinity,
-              40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
+          minimumSize: const Size(double.infinity, 40),
         ),
         onPressed: () async {
           await PremiumPlanPage.push(context);

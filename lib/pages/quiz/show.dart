@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/quiz/show_screen.dart';
 import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -43,8 +44,8 @@ class QuizShowPageState extends ConsumerState<QuizShowPage> {
     final int quizId = arguments['quizId'];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.quizzes.quiz),
+      appBar: AppBarDefault(
+        title: t.quizzes.quiz,
       ),
       body: SingleChildScrollView(
         child: Container(

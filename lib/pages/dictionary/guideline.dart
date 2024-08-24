@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -35,8 +36,8 @@ class DictionaryGuidelinePage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.dictionaries.guideline),
+      appBar: AppBarDefault(
+        title: t.dictionaries.guideline,
       ),
       body: SingleChildScrollView(
         child: Container(
