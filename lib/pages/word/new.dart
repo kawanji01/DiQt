@@ -71,6 +71,8 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
 
   @override
   Widget build(BuildContext context) {
+    final NavigatorState navigator = Navigator.of(context);
+
     Widget body() {
       if (_isLoading) return const LoadingSpinner();
       if (_dictionary == null) {
@@ -80,18 +82,29 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
           dictionary: _dictionary!, keyword: keyword, translation: translation);
     }
 
-    return WillPopScope(
-      onWillPop: () async {
-        final bool result = await Dialogs.confirm(
-            context: context,
-            title: t.shared.return_confirmation,
-            message: t.shared.return_confirmation_description);
-        if (result) {
-          // 画面遷移を許可するために、編集中を解除する。
-          ref.read(sharedEditingContentProvider.notifier).offEdit();
-          return true; // trueを返すことで画面遷移を許可
-        } else {
-          return false;
+    Future<bool?> showBackDialog() async {
+      final bool result = await Dialogs.confirm(
+          context: context,
+          title: t.shared.return_confirmation,
+          message: t.shared.return_confirmation_description);
+      if (result) {
+        // 画面遷移を許可するために、編集中を解除する。
+        ref.read(sharedEditingContentProvider.notifier).offEdit();
+        return true; // trueを返すことで画面遷移を許可
+      } else {
+        return false;
+      }
+    }
+
+    return PopScope(
+      canPop: false, // 戻るキーの動作で戻ることを一旦防ぐ
+      onPopInvoked: (didPop) async {
+        if (didPop) {
+          return;
+        }
+        final bool? shouldPop = await showBackDialog(); // ダイアログで戻るか確認
+        if (shouldPop == true) {
+          navigator.pop(); // 戻るを選択した場合のみpopを明示的に呼ぶ
         }
       },
       child: Scaffold(
