@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 
 class AppBarDefault extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarDefault(
-      {super.key,
-      this.title,
-      this.automaticallyImplyLeading = true,
-      this.actions,
-      this.flexibleSpace,
-      this.bottom});
+  const AppBarDefault({
+    super.key,
+    this.title,
+    this.automaticallyImplyLeading = true,
+    this.actions,
+    this.flexibleSpace,
+    this.bottom,
+  });
   final String? title;
   final bool automaticallyImplyLeading;
   final List<Widget>? actions;
   final Widget? flexibleSpace;
   final PreferredSizeWidget? bottom;
+
+// AppBarの高さを設定する
+  double toolbarHeight(bottom) {
+    if (bottom == null) {
+      return kToolbarHeight;
+    } else {
+      return kToolbarHeight + bottom.preferredSize.height;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,5 +44,5 @@ class AppBarDefault extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(toolbarHeight(bottom));
 }
