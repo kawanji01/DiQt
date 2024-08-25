@@ -27,6 +27,7 @@ class AudioButton extends ConsumerWidget {
         try {
           // 音声を再生
           await audioPlayerNotifier.setSourceUrl(url);
+          await audioPlayerNotifier.setVolume(2.0);
           await audioPlayerNotifier.play();
         } catch (e) {
           print('Error playing audio: $e');

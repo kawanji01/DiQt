@@ -66,6 +66,7 @@ class QuizUnsolvedItemState extends ConsumerState<QuizUnsolvedItem> {
         try {
           _audioPlayer.play(
             UrlSource(quiz.answerAudioUrl!),
+            volume: 2.0,
           );
         } catch (e) {
           print('Error playing audio: $e');

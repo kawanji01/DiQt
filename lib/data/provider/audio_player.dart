@@ -5,12 +5,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class AudioPlayerNotifier extends StateNotifier<AudioPlayer> {
   AudioPlayerNotifier() : super(AudioPlayer());
 
+  // 音声ファイルのURLを設定
   Future<void> setSourceUrl(String url) async {
     await state.setSourceUrl(url);
   }
 
+  // 音量を設定
+  Future<void> setVolume(double volume) async {
+    await state.setVolume(volume);
+  }
+
+  // 再生
   Future<void> play() async {
     await state.seek(Duration.zero);
+
     await state.resume();
   }
 
