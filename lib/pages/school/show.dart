@@ -70,7 +70,13 @@ class SchoolShowPageState extends ConsumerState<SchoolShowPage> {
             error: (err, stack) => 'Error: $err',
             loading: () => '',
           ),
-          bottom: TabBar(isScrollable: true, tabs: tabBars()),
+          bottom: TabBar(
+            isScrollable: true,
+            tabs: tabBars(),
+            labelColor: Colors.white,
+            indicatorColor: Colors.white,
+            unselectedLabelColor: Colors.white.withOpacity(0.5),
+          ),
           // タイトル部分を消す ref: https://blog.mrym.tv/2019/09/flutter-tabbar-without-appbar-title/
         ),
         body: Container(

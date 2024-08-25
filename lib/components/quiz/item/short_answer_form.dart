@@ -93,6 +93,7 @@ class QuizItemShortAnswerFormState
                 },
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 40),
+            foregroundColor: Colors.white,
             backgroundColor: Colors.green,
           ),
           child: Text(t.quizzes.answer,
