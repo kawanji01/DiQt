@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/utils/word_typeahead.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -17,10 +18,12 @@ class DictionaryMapSearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TypeAheadField(
+    return TypeAheadField<Word>(
+      controller: keywordController,
       builder: (context, controller, focusNode) {
         return TextFormField(
-          controller: keywordController,
+          controller: controller,
+          focusNode: focusNode,
           // 改行を許さず、文字数に応じて自動で改行表示する。
           keyboardType: TextInputType.text,
           minLines: 1,
@@ -47,7 +50,6 @@ class DictionaryMapSearchField extends StatelessWidget {
             if (value!.isEmpty) {
               return t.errors.cant_be_blank;
             }
-
             return null;
           },
         );
@@ -56,13 +58,12 @@ class DictionaryMapSearchField extends StatelessWidget {
         if (dictionaryId == null) return [];
         return WordTypeahead.getSuggestions(pattern, dictionaryId!);
       },
-      itemBuilder: (context, dynamic suggestion) {
-        final String suggestedEntry = suggestion as String;
+      itemBuilder: (context, word) {
         // 候補をタップしたときに検索画面に遷移する。参考： https://stackoverflow.com/questions/68375774/use-the-typeaheadformfield-inside-a-form-flutter
         return ListTile(
-          title: Text(suggestedEntry),
+          title: Text(word.entry),
           onTap: () {
-            keywordController.text = suggestedEntry;
+            keywordController.text = word.entry;
             search();
           },
         );
@@ -71,11 +72,15 @@ class DictionaryMapSearchField extends StatelessWidget {
       hideOnEmpty: true,
       hideOnLoading: true,
       hideOnError: true,
-      //transitionBuilder: (context, suggestionsBox, controller) {
-      //  return suggestionsBox;
-      //},
       onSelected: (suggestion) {
         keywordController.text = "$suggestion";
+      },
+      transitionBuilder: (context, animation, child) {
+        return FadeTransition(
+          opacity:
+              CurvedAnimation(parent: animation, curve: Curves.fastOutSlowIn),
+          child: child,
+        );
       },
     );
   }
