@@ -1,7 +1,7 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
 class Dialogs {
   static Future<bool> confirm({
@@ -49,62 +49,43 @@ class Dialogs {
   // staticではないのは、static は mockitoで mock できないため。
   // barrierDismissibleがfalseでも画面外のタップでダイアログを閉じられないので注意。それがしたいならstaticメソッドのダイアログを利用する。
   Future<void> reward(Widget screen) async {
-    await showAnimatedDialog(
+    await AwesomeDialog(
       context: navigatorKey.currentContext!,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return CustomDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          // elevation: 0.0, // Set this to zero
-          // ClipRRectを利用することで、画像が各丸からはみ出す問題を防ぐ。
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: screen,
-          ),
-        );
-      },
-      animationType: DialogTransitionType.scale,
-      curve: Curves.fastOutSlowIn,
-      duration: const Duration(milliseconds: 700),
-    );
+      animType: AnimType.scale,
+      dialogType: DialogType.noHeader,
+      bodyHeaderDistance: 0,
+      padding: const EdgeInsets.all(0),
+      body: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: screen,
+      ),
+    ).show();
   }
 
   // 下からふわっと表示されるダイアログ
   static Future<void> slideFromBottomFade(Widget screen) async {
-    await showAnimatedDialog(
+    await AwesomeDialog(
       context: navigatorKey.currentContext!,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return CustomDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: screen,
-        );
-      },
-      animationType: DialogTransitionType.slideFromBottomFade,
-      curve: Curves.fastOutSlowIn,
-      duration: const Duration(milliseconds: 700),
-    );
+      animType: AnimType.bottomSlide,
+      dialogType: DialogType.noHeader,
+      bodyHeaderDistance: 0,
+      padding: const EdgeInsets.all(0),
+      body: screen,
+    ).show();
   }
 
   // 下からふわっと表示されるダイアログ
   static Future<void> normal(Widget screen) async {
-    await showAnimatedDialog(
+    await AwesomeDialog(
       context: navigatorKey.currentContext!,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return CustomDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: screen,
-        );
-      },
-      animationType: DialogTransitionType.none,
-      duration: const Duration(milliseconds: 0),
-    );
+      animType: AnimType.bottomSlide,
+      dialogType: DialogType.noHeader,
+      bodyHeaderDistance: 0,
+      padding: const EdgeInsets.all(0),
+      body: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: screen,
+      ),
+    ).show();
   }
 }

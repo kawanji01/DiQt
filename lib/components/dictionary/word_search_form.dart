@@ -40,8 +40,9 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
 
     final String language = dictionary.languageOfEntry();
     final String label = t.dictionaryMaps.enter(language: language);
+    return Container();
 
-    return Form(
+    /* return Form(
       key: _formKey,
       child: Column(
         children: [
@@ -114,6 +115,6 @@ class _DictionaryWordSearchFormState extends State<DictionaryWordSearchForm> {
           ),
         ],
       ),
-    );
+    ); */
   }
 }
