@@ -12,8 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';
 
 class ActivityAchievement extends ConsumerWidget {
-  const ActivityAchievement({Key? key, required this.activity})
-      : super(key: key);
+  const ActivityAchievement({super.key, required this.activity});
   final Activity activity;
 
   @override

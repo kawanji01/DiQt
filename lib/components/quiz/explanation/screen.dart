@@ -18,8 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizExplanationScreen extends ConsumerStatefulWidget {
-  const QuizExplanationScreen({Key? key, required this.answerNotification})
-      : super(key: key);
+  const QuizExplanationScreen({super.key, required this.answerNotification});
   final AnswerNotification answerNotification;
 
   @override

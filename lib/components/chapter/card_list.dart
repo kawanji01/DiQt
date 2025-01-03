@@ -5,7 +5,7 @@ import 'package:booqs_mobile/components/chapter/card.dart';
 import 'package:flutter/material.dart';
 
 class ChapterCardList extends StatelessWidget {
-  const ChapterCardList({Key? key, required this.chapters}) : super(key: key);
+  const ChapterCardList({super.key, required this.chapters});
   final List<Chapter> chapters;
 
   @override

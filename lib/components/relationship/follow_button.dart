@@ -9,8 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RelationshipFollowButton extends ConsumerStatefulWidget {
   const RelationshipFollowButton(
-      {Key? key, required this.user, required this.relationship})
-      : super(key: key);
+      {super.key, required this.user, required this.relationship});
   final User user;
   final Relationship? relationship;
 

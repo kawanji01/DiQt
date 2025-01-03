@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 class MediumGreenButton extends StatelessWidget {
   const MediumGreenButton(
-      {Key? key,
+      {super.key,
       required this.label,
       required this.fontSize,
-      required this.icon})
-      : super(key: key);
+      required this.icon});
   final String label;
   final double fontSize;
   final IconData? icon;

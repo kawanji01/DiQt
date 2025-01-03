@@ -10,14 +10,14 @@ import 'package:markdown/markdown.dart' as md;
 
 class MarkdownWithDictLink extends StatelessWidget {
   const MarkdownWithDictLink({
-    Key? key,
+    super.key,
     required this.text,
     required this.dictionaryId,
     required this.fontSize,
     required this.fontWeight,
     required this.fontColor,
     required this.selectable,
-  }) : super(key: key);
+  });
   final String text;
   final int? dictionaryId;
   final double fontSize;

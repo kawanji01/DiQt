@@ -18,7 +18,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class SentenceFormGeneratorScreen extends StatefulWidget {
   const SentenceFormGeneratorScreen(
-      {Key? key,
+      {super.key,
       required this.originalController,
       required this.translationController,
       required this.keywordController,
@@ -29,8 +29,7 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
       required this.keepingFormController,
       required this.aiModelController,
       required this.temperatureController,
-      required this.dictionary})
-      : super(key: key);
+      required this.dictionary});
   final TextEditingController originalController;
   final TextEditingController translationController;
   final TextEditingController keywordController;

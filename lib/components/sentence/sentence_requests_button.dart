@@ -5,8 +5,7 @@ import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
 class SentenceSentenceRequestsButton extends StatelessWidget {
-  const SentenceSentenceRequestsButton({Key? key, required this.sentence})
-      : super(key: key);
+  const SentenceSentenceRequestsButton({super.key, required this.sentence});
   final Sentence sentence;
 
   @override

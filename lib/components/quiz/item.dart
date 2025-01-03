@@ -11,11 +11,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizItem extends ConsumerWidget {
   const QuizItem(
-      {Key? key,
+      {super.key,
       required this.quiz,
       required this.header,
-      required this.isShow})
-      : super(key: key);
+      required this.isShow});
   final Quiz quiz;
   final Widget header;
   final bool isShow;

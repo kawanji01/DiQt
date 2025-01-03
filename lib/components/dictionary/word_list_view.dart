@@ -13,8 +13,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 // NOTE: 引数を dictionary ではなく dictionaryId にしているのは、DiQtMarkdownの辞書リンクからでも遷移できるようにするため。
 class DictionaryWordListView extends ConsumerStatefulWidget {
   const DictionaryWordListView(
-      {Key? key, required this.dictionaryId, required this.keyword})
-      : super(key: key);
+      {super.key, required this.dictionaryId, required this.keyword});
   final int dictionaryId;
   final String keyword;
 

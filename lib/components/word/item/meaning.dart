@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordItemMeaning extends ConsumerWidget {
-  const WordItemMeaning({Key? key, required this.word}) : super(key: key);
+  const WordItemMeaning({super.key, required this.word});
   final Word word;
 
   @override

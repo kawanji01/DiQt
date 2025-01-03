@@ -16,7 +16,7 @@ import 'package:booqs_mobile/components/word/word_requests_button.dart';
 import 'package:flutter/material.dart';
 
 class WordDetailedItem extends StatelessWidget {
-  const WordDetailedItem({Key? key, required this.word}) : super(key: key);
+  const WordDetailedItem({super.key, required this.word});
   final Word word;
 
   @override

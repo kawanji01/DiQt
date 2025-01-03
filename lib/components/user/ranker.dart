@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 class UserRanker extends StatelessWidget {
   const UserRanker(
-      {Key? key, required this.user, required this.rank, required this.type})
-      : super(key: key);
+      {super.key, required this.user, required this.rank, required this.type});
   final User user;
   final int rank;
   final String type;

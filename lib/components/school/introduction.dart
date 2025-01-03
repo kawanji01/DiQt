@@ -2,7 +2,7 @@ import 'package:booqs_mobile/models/school.dart';
 import 'package:flutter/material.dart';
 
 class SchoolIntroduction extends StatelessWidget {
-  const SchoolIntroduction({Key? key, required this.school}) : super(key: key);
+  const SchoolIntroduction({super.key, required this.school});
   final School school;
 
   @override

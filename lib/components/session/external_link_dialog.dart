@@ -10,7 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 class ExternalLinkDialog extends ConsumerStatefulWidget {
-  const ExternalLinkDialog({Key? key, this.redirectPath}) : super(key: key);
+  const ExternalLinkDialog({super.key, this.redirectPath});
 
   final String? redirectPath;
   @override

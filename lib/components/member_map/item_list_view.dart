@@ -10,7 +10,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class MemberMapItemListView extends ConsumerStatefulWidget {
-  const MemberMapItemListView({Key? key}) : super(key: key);
+  const MemberMapItemListView({super.key});
 
   @override
   MemberMapItemListViewState createState() => MemberMapItemListViewState();

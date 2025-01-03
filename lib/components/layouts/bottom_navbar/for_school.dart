@@ -12,7 +12,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BottomNavbarForSchool extends ConsumerWidget {
-  const BottomNavbarForSchool({Key? key}) : super(key: key);
+  const BottomNavbarForSchool({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

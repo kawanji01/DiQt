@@ -7,7 +7,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class UserItemListView extends StatefulWidget {
-  const UserItemListView({Key? key, required this.keyword}) : super(key: key);
+  const UserItemListView({super.key, required this.keyword});
   final String keyword;
 
   @override

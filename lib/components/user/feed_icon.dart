@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserFeedIcon extends ConsumerWidget {
-  const UserFeedIcon({Key? key, required this.user}) : super(key: key);
+  const UserFeedIcon({super.key, required this.user});
   final User? user;
 
   @override

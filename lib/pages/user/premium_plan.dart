@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 // プレミアムプランの紹介・課金ページ
 class PremiumPlanPage extends StatefulWidget {
-  const PremiumPlanPage({Key? key}) : super(key: key);
+  const PremiumPlanPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(userPremiumPlanPage);

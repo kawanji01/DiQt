@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerSettingOvercomingCondition extends ConsumerWidget {
-  const AnswerSettingOvercomingCondition({Key? key}) : super(key: key);
+  const AnswerSettingOvercomingCondition({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

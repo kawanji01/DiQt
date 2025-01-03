@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 
 class LineWithDictLink extends StatelessWidget {
   const LineWithDictLink(
-      {Key? key,
+      {super.key,
       required this.line,
       required this.dictionaryId,
       required this.autoLinkEnabled,
       required this.fontSize,
       required this.fontWeight,
       required this.fontColor,
-      required this.selectable})
-      : super(key: key);
+      required this.selectable});
   final String line;
   final int? dictionaryId;
   final bool autoLinkEnabled;

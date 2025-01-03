@@ -7,7 +7,7 @@ import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
 class PurchaseIntroduction extends StatelessWidget {
-  const PurchaseIntroduction({Key? key}) : super(key: key);
+  const PurchaseIntroduction({super.key});
 
   @override
   Widget build(BuildContext context) {

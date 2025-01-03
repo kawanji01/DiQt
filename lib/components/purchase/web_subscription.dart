@@ -3,8 +3,7 @@ import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:flutter/material.dart';
 
 class PurchaseWebSubscription extends StatelessWidget {
-  const PurchaseWebSubscription({Key? key, required this.user})
-      : super(key: key);
+  const PurchaseWebSubscription({super.key, required this.user});
   final User user;
 
   @override

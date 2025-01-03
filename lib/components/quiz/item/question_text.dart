@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizItemQuestionText extends ConsumerStatefulWidget {
-  const QuizItemQuestionText({Key? key, required this.quiz}) : super(key: key);
+  const QuizItemQuestionText({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

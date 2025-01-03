@@ -7,7 +7,7 @@ import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
 
 class UserCalendar extends StatefulWidget {
-  const UserCalendar({Key? key, required this.user}) : super(key: key);
+  const UserCalendar({super.key, required this.user});
   final User user;
 
   @override

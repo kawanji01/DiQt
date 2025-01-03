@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SentencePreview extends ConsumerWidget {
-  const SentencePreview({Key? key, required this.sentenceIdStr})
-      : super(key: key);
+  const SentencePreview({super.key, required this.sentenceIdStr});
   final String sentenceIdStr;
 
   @override

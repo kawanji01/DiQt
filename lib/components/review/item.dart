@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewItem extends ConsumerWidget {
-  const ReviewItem({Key? key, required this.reviews, required this.index})
-      : super(key: key);
+  const ReviewItem({super.key, required this.reviews, required this.index});
   final List<Review> reviews;
   final int index;
 

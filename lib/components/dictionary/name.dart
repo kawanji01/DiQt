@@ -6,8 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryName extends ConsumerWidget {
   const DictionaryName(
-      {Key? key, required this.dictionary, required this.linked})
-      : super(key: key);
+      {super.key, required this.dictionary, required this.linked});
   final Dictionary dictionary;
   final bool linked;
 

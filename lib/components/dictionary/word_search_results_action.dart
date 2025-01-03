@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 
 class DictionaryWordSearchResultsAction extends StatelessWidget {
   const DictionaryWordSearchResultsAction(
-      {Key? key, required this.keyword, required this.dictionary})
-      : super(key: key);
+      {super.key, required this.keyword, required this.dictionary});
   final String keyword;
   final Dictionary dictionary;
 

@@ -5,8 +5,7 @@ import 'package:booqs_mobile/components/quiz/item.dart';
 import 'package:flutter/material.dart';
 
 class AnswerHistoryListQuiz extends StatelessWidget {
-  const AnswerHistoryListQuiz({Key? key, required this.answerHistory})
-      : super(key: key);
+  const AnswerHistoryListQuiz({super.key, required this.answerHistory});
   final AnswerHistory answerHistory;
 
   @override

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrillIcon extends ConsumerWidget {
-  const DrillIcon({Key? key, required this.drill}) : super(key: key);
+  const DrillIcon({super.key, required this.drill});
   final Drill drill;
 
   @override

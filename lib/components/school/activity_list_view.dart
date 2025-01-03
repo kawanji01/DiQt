@@ -10,7 +10,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class SchoolActivityListView extends ConsumerStatefulWidget {
-  const SchoolActivityListView({Key? key}) : super(key: key);
+  const SchoolActivityListView({super.key});
 
   @override
   ChapterActivityListViewState createState() => ChapterActivityListViewState();

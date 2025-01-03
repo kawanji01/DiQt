@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ChapterShowPage extends ConsumerWidget {
-  const ChapterShowPage({Key? key}) : super(key: key);
+  const ChapterShowPage({super.key});
 
   // メモ：遷移の処理は、いちいち描き直す必要はないので、createStateの上に置く。
   static Future push(BuildContext context) async {

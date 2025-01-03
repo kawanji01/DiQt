@@ -18,8 +18,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerContinuousReviewCompletionScreen extends ConsumerStatefulWidget {
   const AnswerContinuousReviewCompletionScreen(
-      {Key? key, required this.answerCreator})
-      : super(key: key);
+      {super.key, required this.answerCreator});
   final AnswerCreator answerCreator;
 
   @override

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessAnswerSettingButton extends ConsumerWidget {
-  const WeaknessAnswerSettingButton({Key? key}) : super(key: key);
+  const WeaknessAnswerSettingButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

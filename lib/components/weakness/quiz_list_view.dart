@@ -8,7 +8,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class WeaknessQuizListView extends ConsumerStatefulWidget {
-  const WeaknessQuizListView({Key? key, required this.order}) : super(key: key);
+  const WeaknessQuizListView({super.key, required this.order});
   final String order;
 
   @override

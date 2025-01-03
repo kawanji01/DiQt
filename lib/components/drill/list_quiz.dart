@@ -4,8 +4,7 @@ import 'package:booqs_mobile/components/quiz/item.dart';
 import 'package:flutter/material.dart';
 
 class DrillListQuiz extends StatelessWidget {
-  const DrillListQuiz({Key? key, required this.quiz, required this.isShow})
-      : super(key: key);
+  const DrillListQuiz({super.key, required this.quiz, required this.isShow});
   final Quiz quiz;
   final bool isShow;
 

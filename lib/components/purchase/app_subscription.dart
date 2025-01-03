@@ -6,8 +6,7 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 
 // entitlementInfoの値などについては ref: https://www.revenuecat.com/docs/customer-info
 class PurchaseAppSubscription extends StatelessWidget {
-  const PurchaseAppSubscription({Key? key, required this.entitlementInfo})
-      : super(key: key);
+  const PurchaseAppSubscription({super.key, required this.entitlementInfo});
   final EntitlementInfo entitlementInfo;
 
   @override

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // ref: https://blog.dalt.me/2478
 // ref: https://gist.github.com/derekedelaney/0bd36b370daceaf56712a22bd097cdc8
 class DialogConfetti extends StatefulWidget {
-  const DialogConfetti({Key? key}) : super(key: key);
+  const DialogConfetti({super.key});
 
   @override
   State<DialogConfetti> createState() => _DialogConfettiState();

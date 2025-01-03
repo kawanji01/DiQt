@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrillUnsolvedScreen extends ConsumerStatefulWidget {
-  const DrillUnsolvedScreen({Key? key}) : super(key: key);
+  const DrillUnsolvedScreen({super.key});
 
   @override
   DrillUnsolvedScreenState createState() => DrillUnsolvedScreenState();

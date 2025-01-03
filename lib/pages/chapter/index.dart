@@ -8,7 +8,7 @@ import 'package:booqs_mobile/components/layouts/drawer_menu.dart';
 import 'package:flutter/material.dart';
 
 class ChapterIndexPage extends StatelessWidget {
-  const ChapterIndexPage({Key? key}) : super(key: key);
+  const ChapterIndexPage({super.key});
 
   static Future push(BuildContext context) {
     return Navigator.pushReplacement(

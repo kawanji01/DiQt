@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryAIPromptSelect extends ConsumerWidget {
-  const DictionaryAIPromptSelect({Key? key}) : super(key: key);
+  const DictionaryAIPromptSelect({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

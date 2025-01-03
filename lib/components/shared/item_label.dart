@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SharedItemLabel extends StatelessWidget {
-  const SharedItemLabel({Key? key, required this.text, this.icon})
-      : super(key: key);
+  const SharedItemLabel({super.key, required this.text, this.icon});
   final String text;
   final IconData? icon;
 

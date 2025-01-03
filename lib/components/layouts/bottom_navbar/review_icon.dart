@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BottomNavbarReviewIcon extends ConsumerWidget {
-  const BottomNavbarReviewIcon({Key? key}) : super(key: key);
+  const BottomNavbarReviewIcon({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

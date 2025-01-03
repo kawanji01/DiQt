@@ -6,8 +6,7 @@ import 'package:booqs_mobile/models/sentence.dart';
 import 'package:flutter/material.dart';
 
 class SentenceItemReviewButton extends StatelessWidget {
-  const SentenceItemReviewButton({Key? key, required this.sentence})
-      : super(key: key);
+  const SentenceItemReviewButton({super.key, required this.sentence});
   final Sentence sentence;
 
   @override

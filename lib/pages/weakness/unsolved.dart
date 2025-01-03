@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessUnsolvedPage extends ConsumerStatefulWidget {
-  const WeaknessUnsolvedPage({Key? key}) : super(key: key);
+  const WeaknessUnsolvedPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(weaknessUnsolvedPage);

@@ -9,7 +9,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class DrillQuizListView extends ConsumerStatefulWidget {
-  const DrillQuizListView({Key? key, required this.order}) : super(key: key);
+  const DrillQuizListView({super.key, required this.order});
   final String order;
 
   @override

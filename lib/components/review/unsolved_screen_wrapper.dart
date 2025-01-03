@@ -15,7 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ReviewUnsolvedScreenよりも下で報酬を表示しようとすると、次の１０問の読み込みと重なったときに、
 // Looking up a deactivated widget's ancestor〜 になる。
 class ReviewUnsolvedScreenWrapper extends ConsumerWidget {
-  const ReviewUnsolvedScreenWrapper({Key? key}) : super(key: key);
+  const ReviewUnsolvedScreenWrapper({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

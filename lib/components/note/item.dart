@@ -13,7 +13,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NoteItem extends ConsumerStatefulWidget {
-  const NoteItem({Key? key, required this.quiz}) : super(key: key);
+  const NoteItem({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryMapSearchForm extends ConsumerStatefulWidget {
-  const DictionaryMapSearchForm({Key? key}) : super(key: key);
+  const DictionaryMapSearchForm({super.key});
 
   @override
   DictionaryWordSearchFormState createState() =>

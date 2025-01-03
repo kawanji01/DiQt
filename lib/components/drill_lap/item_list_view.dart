@@ -11,7 +11,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class DrillLapItemListView extends StatefulWidget {
-  const DrillLapItemListView({Key? key, required this.type}) : super(key: key);
+  const DrillLapItemListView({super.key, required this.type});
   final String type;
 
   @override

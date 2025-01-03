@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserAchievementsPage extends ConsumerStatefulWidget {
-  const UserAchievementsPage({Key? key}) : super(key: key);
+  const UserAchievementsPage({super.key});
 
   // モーダルによる画面遷移
   static Future pushDialog(BuildContext context) async {

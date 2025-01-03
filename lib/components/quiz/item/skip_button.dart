@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizItemSkipButton extends ConsumerStatefulWidget {
-  const QuizItemSkipButton({Key? key, required this.quiz}) : super(key: key);
+  const QuizItemSkipButton({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

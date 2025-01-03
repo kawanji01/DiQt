@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class NoticeWeeklyReport extends StatelessWidget {
-  const NoticeWeeklyReport({Key? key, required this.notice}) : super(key: key);
+  const NoticeWeeklyReport({super.key, required this.notice});
   final Notice notice;
 
   @override

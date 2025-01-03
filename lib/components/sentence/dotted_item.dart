@@ -4,8 +4,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
 class SentenceDottedItem extends StatelessWidget {
-  const SentenceDottedItem({Key? key, required this.sentence})
-      : super(key: key);
+  const SentenceDottedItem({super.key, required this.sentence});
   final Sentence sentence;
 
   @override

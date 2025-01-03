@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizShowPage extends ConsumerStatefulWidget {
-  const QuizShowPage({Key? key}) : super(key: key);
+  const QuizShowPage({super.key});
 
   static Future push(BuildContext context, int quizId) async {
     return Navigator.of(context)

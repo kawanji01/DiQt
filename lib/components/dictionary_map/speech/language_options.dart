@@ -4,8 +4,7 @@ import 'package:speech_to_text/speech_to_text.dart';
 class SpeechLanguageOptions extends StatelessWidget {
   const SpeechLanguageOptions(
       this.currentLocaleId, this.switchLang, this.localeNames,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   final String currentLocaleId;
   final void Function(String?) switchLang;

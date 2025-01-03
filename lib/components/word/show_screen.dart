@@ -6,7 +6,7 @@ import 'package:booqs_mobile/components/word/detailed_item.dart';
 import 'package:flutter/material.dart';
 
 class WordShowScreen extends StatelessWidget {
-  const WordShowScreen({Key? key, required this.word}) : super(key: key);
+  const WordShowScreen({super.key, required this.word});
   final Word word;
 
   @override

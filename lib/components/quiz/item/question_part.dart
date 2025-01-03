@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 
 class QuizItemQuestionPart extends StatelessWidget {
   const QuizItemQuestionPart({
-    Key? key,
+    super.key,
     required this.quiz,
     required this.drill,
-  }) : super(key: key);
+  });
   final Quiz quiz;
   final Drill drill;
 

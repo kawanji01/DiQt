@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessStatusTabs extends ConsumerWidget {
-  const WeaknessStatusTabs({Key? key, required this.selected})
-      : super(key: key);
+  const WeaknessStatusTabs({super.key, required this.selected});
   final String selected;
 
   @override

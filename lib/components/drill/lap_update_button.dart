@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrillLapUpdateButton extends ConsumerWidget {
-  const DrillLapUpdateButton({Key? key}) : super(key: key);
+  const DrillLapUpdateButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

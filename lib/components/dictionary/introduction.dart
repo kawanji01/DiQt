@@ -3,8 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryIntroduction extends StatelessWidget {
-  const DictionaryIntroduction({Key? key, required this.dictionary})
-      : super(key: key);
+  const DictionaryIntroduction({super.key, required this.dictionary});
   final Dictionary dictionary;
 
   @override

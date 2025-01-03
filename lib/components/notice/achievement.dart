@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';
 
 class NoticeAchievement extends ConsumerWidget {
-  const NoticeAchievement({Key? key, required this.notice}) : super(key: key);
+  const NoticeAchievement({super.key, required this.notice});
   final Notice notice;
 
   @override

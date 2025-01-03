@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrillUnsolvedPage extends ConsumerWidget {
-  const DrillUnsolvedPage({Key? key}) : super(key: key);
+  const DrillUnsolvedPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(drillUnsolvedPage);

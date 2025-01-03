@@ -17,13 +17,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // 必要なWidgetは外から渡す。そうしないとコンテンツが解かれて消えるまでにコンテンツがリビルドされて、選択肢が一瞬ランダムに表示されるなど不細工なことになる。ref: https://qiita.com/chooyan_eng/items/ec11f6dcf714f7a2fa3d
 class QuizUnsolvedItem extends ConsumerStatefulWidget {
   const QuizUnsolvedItem(
-      {Key? key,
+      {super.key,
       required this.quiz,
       required this.header,
       required this.question,
       required this.answer,
-      required this.footer})
-      : super(key: key);
+      required this.footer});
 
   final Quiz quiz;
   final Widget header;

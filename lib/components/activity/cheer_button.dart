@@ -12,8 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ActivityCheerButton extends ConsumerStatefulWidget {
-  const ActivityCheerButton({Key? key, required this.activity, this.cheer})
-      : super(key: key);
+  const ActivityCheerButton({super.key, required this.activity, this.cheer});
   final Activity activity;
   final Cheer? cheer;
 

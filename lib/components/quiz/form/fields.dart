@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class QuizFormFields extends StatelessWidget {
   const QuizFormFields({
-    Key? key,
+    super.key,
     required this.questionController,
     required this.correctAnswerController,
     required this.distractor1Controller,
@@ -16,7 +16,7 @@ class QuizFormFields extends StatelessWidget {
     required this.hintController,
     required this.appliedDictionaryIdController,
     required this.quiz,
-  }) : super(key: key);
+  });
 
   final TextEditingController questionController;
   final TextEditingController correctAnswerController;

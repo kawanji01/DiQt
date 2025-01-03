@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class SenseFormDestroyConfirmationScreen extends StatefulWidget {
-  const SenseFormDestroyConfirmationScreen({Key? key, required this.sense})
-      : super(key: key);
+  const SenseFormDestroyConfirmationScreen({super.key, required this.sense});
   final Sense sense;
 
   @override

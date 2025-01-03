@@ -11,8 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryNoWordsFound extends ConsumerWidget {
   const DictionaryNoWordsFound(
-      {Key? key, required this.dictionaryId, required this.keyword})
-      : super(key: key);
+      {super.key, required this.dictionaryId, required this.keyword});
   final String keyword;
   final int dictionaryId;
 

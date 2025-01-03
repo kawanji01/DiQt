@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WordItemTags extends ConsumerWidget {
-  const WordItemTags({Key? key, required this.word}) : super(key: key);
+  const WordItemTags({super.key, required this.word});
   final Word word;
 
   @override

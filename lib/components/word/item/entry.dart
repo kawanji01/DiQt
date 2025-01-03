@@ -4,7 +4,7 @@ import 'package:booqs_mobile/components/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 
 class WordItemEntry extends StatelessWidget {
-  const WordItemEntry({Key? key, required this.word}) : super(key: key);
+  const WordItemEntry({super.key, required this.word});
   final Word? word;
 
   @override

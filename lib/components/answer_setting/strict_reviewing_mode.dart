@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerSettingStrictReviewMode extends ConsumerWidget {
-  const AnswerSettingStrictReviewMode({Key? key}) : super(key: key);
+  const AnswerSettingStrictReviewMode({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

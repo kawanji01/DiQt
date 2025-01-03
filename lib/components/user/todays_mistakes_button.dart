@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserTodaysMistakesButton extends ConsumerWidget {
-  const UserTodaysMistakesButton({Key? key}) : super(key: key);
+  const UserTodaysMistakesButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

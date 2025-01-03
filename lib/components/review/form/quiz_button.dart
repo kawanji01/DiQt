@@ -4,8 +4,7 @@ import 'package:booqs_mobile/pages/quiz/show.dart';
 import 'package:flutter/material.dart';
 
 class ReviewFormQuizButton extends StatelessWidget {
-  const ReviewFormQuizButton({Key? key, required this.review})
-      : super(key: key);
+  const ReviewFormQuizButton({super.key, required this.review});
   final Review review;
 
   @override

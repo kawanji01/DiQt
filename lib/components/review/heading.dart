@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewHeading extends ConsumerWidget {
-  const ReviewHeading({Key? key}) : super(key: key);
+  const ReviewHeading({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

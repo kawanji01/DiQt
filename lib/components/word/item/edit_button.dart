@@ -11,8 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordItemEditButton extends ConsumerWidget {
-  const WordItemEditButton({Key? key, required this.word, required this.isShow})
-      : super(key: key);
+  const WordItemEditButton({super.key, required this.word, required this.isShow});
   final Word word;
   final bool isShow;
 

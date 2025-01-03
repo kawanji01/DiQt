@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ActivityIndexPage extends ConsumerWidget {
-  const ActivityIndexPage({Key? key}) : super(key: key);
+  const ActivityIndexPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SingleChildScrollView(

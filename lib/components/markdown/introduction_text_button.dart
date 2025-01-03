@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MarkdownIntroductionTextButton extends ConsumerWidget {
-  const MarkdownIntroductionTextButton({Key? key}) : super(key: key);
+  const MarkdownIntroductionTextButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

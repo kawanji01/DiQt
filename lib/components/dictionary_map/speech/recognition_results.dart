@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 /// Displays the most recently recognized words and the sound level.
 class RecognitionResults extends StatelessWidget {
   const RecognitionResults(
-      {Key? key,
+      {super.key,
       required this.lastWords,
       required this.level,
-      required this.startListening})
-      : super(key: key);
+      required this.startListening});
 
   final String lastWords;
   final double level;

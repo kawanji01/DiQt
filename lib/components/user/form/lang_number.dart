@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserFormLangNumber extends ConsumerWidget {
-  const UserFormLangNumber({Key? key}) : super(key: key);
+  const UserFormLangNumber({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

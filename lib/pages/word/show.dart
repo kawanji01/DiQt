@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordShowPage extends ConsumerStatefulWidget {
-  const WordShowPage({Key? key}) : super(key: key);
+  const WordShowPage({super.key});
 
   // メモ：遷移の処理は、いちいち描き直す必要はないので、createStateの上に置く。
   static Future push(BuildContext context, int wordId) async {

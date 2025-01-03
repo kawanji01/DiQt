@@ -6,8 +6,7 @@ import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizExplanationDistractors extends StatelessWidget {
-  const QuizExplanationDistractors({Key? key, required this.quiz})
-      : super(key: key);
+  const QuizExplanationDistractors({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

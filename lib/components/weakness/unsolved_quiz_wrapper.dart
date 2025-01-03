@@ -11,8 +11,7 @@ import 'package:booqs_mobile/components/weakness/quiz_header.dart';
 import 'package:flutter/material.dart';
 
 class WeaknessUnsolvedQuizWrapper extends StatelessWidget {
-  const WeaknessUnsolvedQuizWrapper({Key? key, required this.weakness})
-      : super(key: key);
+  const WeaknessUnsolvedQuizWrapper({super.key, required this.weakness});
   final Weakness weakness;
 
   @override

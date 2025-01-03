@@ -5,8 +5,7 @@ import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
 class WordWordRequestsButton extends StatelessWidget {
-  const WordWordRequestsButton({Key? key, required this.word})
-      : super(key: key);
+  const WordWordRequestsButton({super.key, required this.word});
   final Word word;
 
   @override

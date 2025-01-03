@@ -5,8 +5,7 @@ import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
 class QuizQuizRequestsButton extends StatelessWidget {
-  const QuizQuizRequestsButton({Key? key, required this.quiz})
-      : super(key: key);
+  const QuizQuizRequestsButton({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

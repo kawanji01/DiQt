@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 
 class SentenceFormPreviewButton extends StatelessWidget {
   const SentenceFormPreviewButton(
-      {Key? key,
+      {super.key,
       required this.originalController,
       required this.translationController,
       required this.explanationController,
-      required this.dictionary})
-      : super(key: key);
+      required this.dictionary});
   final TextEditingController originalController;
   final TextEditingController translationController;
   final TextEditingController explanationController;

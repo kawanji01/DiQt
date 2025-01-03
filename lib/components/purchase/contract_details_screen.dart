@@ -8,8 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/object_wrappers.dart';
 
 class PurchaseContractDetailsScreen extends ConsumerWidget {
-  const PurchaseContractDetailsScreen({Key? key, required this.customerInfo})
-      : super(key: key);
+  const PurchaseContractDetailsScreen({super.key, required this.customerInfo});
   final CustomerInfo? customerInfo;
 
   @override

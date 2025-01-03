@@ -11,8 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewUnsolvedQuizWrapper extends ConsumerWidget {
-  const ReviewUnsolvedQuizWrapper({Key? key, required this.review})
-      : super(key: key);
+  const ReviewUnsolvedQuizWrapper({super.key, required this.review});
   final Review review;
 
   @override

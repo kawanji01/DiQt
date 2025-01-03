@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../models/sense.dart';
 
 class SenseItemGloss extends ConsumerWidget {
-  const SenseItemGloss({Key? key, required this.sense}) : super(key: key);
+  const SenseItemGloss({super.key, required this.sense});
   final Sense sense;
 
   @override

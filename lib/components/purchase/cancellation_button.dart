@@ -7,8 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/object_wrappers.dart';
 
 class PurchaseCancellationButton extends ConsumerWidget {
-  const PurchaseCancellationButton({Key? key, required this.entitlementInfo})
-      : super(key: key);
+  const PurchaseCancellationButton({super.key, required this.entitlementInfo});
   final EntitlementInfo entitlementInfo;
 
   @override

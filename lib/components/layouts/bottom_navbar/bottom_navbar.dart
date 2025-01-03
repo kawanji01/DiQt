@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BottomNavbar extends ConsumerWidget {
-  const BottomNavbar({Key? key}) : super(key: key);
+  const BottomNavbar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerWeaknessClearScreen extends ConsumerStatefulWidget {
-  const AnswerWeaknessClearScreen({Key? key}) : super(key: key);
+  const AnswerWeaknessClearScreen({super.key});
 
   @override
   AnswerWeaknessClearScreenState createState() =>

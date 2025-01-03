@@ -11,11 +11,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordFormFields extends ConsumerWidget {
   const WordFormFields(
-      {Key? key,
+      {super.key,
       required this.word,
       required this.dictionary,
-      required this.commentController})
-      : super(key: key);
+      required this.commentController});
   final Word? word;
   final Dictionary dictionary;
   final TextEditingController commentController;

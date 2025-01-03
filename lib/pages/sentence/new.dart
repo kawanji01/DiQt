@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SentenceNewPage extends ConsumerStatefulWidget {
-  const SentenceNewPage({Key? key}) : super(key: key);
+  const SentenceNewPage({super.key});
 
   static Future push(
       BuildContext context, int dictionaryId, String keyword) async {

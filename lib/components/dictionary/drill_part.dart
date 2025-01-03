@@ -4,8 +4,7 @@ import 'package:booqs_mobile/components/dictionary/quiz_requests_button.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryDrillPart extends StatelessWidget {
-  const DictionaryDrillPart({Key? key, required this.dictionary})
-      : super(key: key);
+  const DictionaryDrillPart({super.key, required this.dictionary});
   final Dictionary dictionary;
 
   @override

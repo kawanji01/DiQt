@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class SmallOutlineGreenButton extends StatelessWidget {
   const SmallOutlineGreenButton({
-    Key? key,
+    super.key,
     required this.label,
     required this.icon,
-  }) : super(key: key);
+  });
   final String label;
   final IconData? icon;
 

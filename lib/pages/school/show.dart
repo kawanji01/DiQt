@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SchoolShowPage extends ConsumerStatefulWidget {
-  const SchoolShowPage({Key? key}) : super(key: key);
+  const SchoolShowPage({super.key});
 
   static Future pushReplacement(BuildContext context) async {
     //return Navigator.of(context).pushNamed(reviewIndexPage);

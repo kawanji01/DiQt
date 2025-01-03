@@ -66,7 +66,7 @@ Future<void> main() async {
 final navigatorKey = GlobalKey<NavigatorState>();
 
 class DiQt extends ConsumerStatefulWidget {
-  const DiQt({Key? key}) : super(key: key);
+  const DiQt({super.key});
 
   @override
   DiQtState createState() => DiQtState();

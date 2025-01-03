@@ -8,8 +8,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class ReviewScheduledQuizListView extends ConsumerStatefulWidget {
-  const ReviewScheduledQuizListView({Key? key, required this.order})
-      : super(key: key);
+  const ReviewScheduledQuizListView({super.key, required this.order});
   final String order;
 
   @override

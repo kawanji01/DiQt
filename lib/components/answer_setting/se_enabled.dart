@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerSettingSEEnabled extends ConsumerWidget {
-  const AnswerSettingSEEnabled({Key? key}) : super(key: key);
+  const AnswerSettingSEEnabled({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

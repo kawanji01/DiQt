@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewQuizHeader extends ConsumerWidget {
-  const ReviewQuizHeader({Key? key, required this.review}) : super(key: key);
+  const ReviewQuizHeader({super.key, required this.review});
   final Review review;
 
   @override

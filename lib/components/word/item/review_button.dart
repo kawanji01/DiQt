@@ -6,7 +6,7 @@ import 'package:booqs_mobile/components/review/setting/large_button.dart';
 import 'package:flutter/material.dart';
 
 class WordItemReviewButton extends StatelessWidget {
-  const WordItemReviewButton({Key? key, required this.word}) : super(key: key);
+  const WordItemReviewButton({super.key, required this.word});
   final Word word;
 
   @override

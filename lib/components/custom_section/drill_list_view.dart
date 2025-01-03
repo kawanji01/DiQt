@@ -9,8 +9,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class CustomSectionDrillListView extends ConsumerStatefulWidget {
-  const CustomSectionDrillListView({Key? key, required this.customSectionId})
-      : super(key: key);
+  const CustomSectionDrillListView({super.key, required this.customSectionId});
   final int customSectionId;
 
   @override

@@ -6,7 +6,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessNewLapScreen extends ConsumerStatefulWidget {
-  const WeaknessNewLapScreen({Key? key}) : super(key: key);
+  const WeaknessNewLapScreen({super.key});
 
   @override
   WeaknessNewLapScreenState createState() => WeaknessNewLapScreenState();

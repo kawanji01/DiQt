@@ -17,7 +17,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:booqs_mobile/components/answer/share_button.dart';
 
 class ExpLevelUpScreen extends ConsumerStatefulWidget {
-  const ExpLevelUpScreen({Key? key, required this.totalExp}) : super(key: key);
+  const ExpLevelUpScreen({super.key, required this.totalExp});
   final int totalExp;
 
   @override

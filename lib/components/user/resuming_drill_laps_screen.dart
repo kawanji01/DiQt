@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserResumingDrillLapsScreen extends ConsumerStatefulWidget {
-  const UserResumingDrillLapsScreen({Key? key}) : super(key: key);
+  const UserResumingDrillLapsScreen({super.key});
 
   @override
   UserResumingDrillLapsScreenState createState() =>

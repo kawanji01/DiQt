@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerAnalysisIndexPage extends ConsumerStatefulWidget {
-  const AnswerAnalysisIndexPage({Key? key}) : super(key: key);
+  const AnswerAnalysisIndexPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(answerAnalysisIndexPage);

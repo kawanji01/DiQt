@@ -7,12 +7,11 @@ import 'package:flutter/material.dart';
 
 class WordFormReading extends StatelessWidget {
   const WordFormReading(
-      {Key? key,
+      {super.key,
       required this.ipaController,
       required this.readingController,
       required this.entryController,
-      required this.dictionary})
-      : super(key: key);
+      required this.dictionary});
   final TextEditingController ipaController;
   final TextEditingController readingController;
   final TextEditingController entryController;

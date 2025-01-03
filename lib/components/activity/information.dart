@@ -9,8 +9,7 @@ import 'package:booqs_mobile/components/activity/review_completion.dart';
 import 'package:flutter/material.dart';
 
 class ActivityInformation extends StatelessWidget {
-  const ActivityInformation({Key? key, required this.activity})
-      : super(key: key);
+  const ActivityInformation({super.key, required this.activity});
   final Activity activity;
 
   @override

@@ -3,8 +3,7 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class NoteFormField extends StatelessWidget {
-  const NoteFormField({Key? key, required this.noteContentController})
-      : super(key: key);
+  const NoteFormField({super.key, required this.noteContentController});
   final TextEditingController noteContentController;
 
   @override

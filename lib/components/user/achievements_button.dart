@@ -7,8 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class UserAchievementsButton extends ConsumerWidget {
-  const UserAchievementsButton({Key? key, required this.user})
-      : super(key: key);
+  const UserAchievementsButton({super.key, required this.user});
   final User user;
 
   @override

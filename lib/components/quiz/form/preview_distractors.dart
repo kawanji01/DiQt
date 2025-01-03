@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 
 class QuizFormPreviewDistractors extends StatelessWidget {
   const QuizFormPreviewDistractors(
-      {Key? key,
+      {super.key,
       required this.distractor1,
       required this.distractor2,
       required this.distractor3,
       required this.dictionaryId,
       required this.langNumberOfAnswer,
-      required this.autoDictLinkOfAnswer})
-      : super(key: key);
+      required this.autoDictLinkOfAnswer});
   final String distractor1;
   final String distractor2;
   final String distractor3;

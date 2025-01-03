@@ -11,7 +11,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BottomNavbarForNormal extends ConsumerWidget {
-  const BottomNavbarForNormal({Key? key}) : super(key: key);
+  const BottomNavbarForNormal({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

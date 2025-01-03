@@ -12,8 +12,7 @@ import 'package:booqs_mobile/components/word/word_requests_button.dart';
 import 'package:flutter/material.dart';
 
 class WordPreloadedShowScreen extends StatelessWidget {
-  const WordPreloadedShowScreen({Key? key, required this.word})
-      : super(key: key);
+  const WordPreloadedShowScreen({super.key, required this.word});
   final Word? word;
 
   @override

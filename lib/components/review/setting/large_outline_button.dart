@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ReviewLargeOutlineButton extends StatelessWidget {
-  const ReviewLargeOutlineButton({Key? key, required this.label})
-      : super(key: key);
+  const ReviewLargeOutlineButton({super.key, required this.label});
   final String label;
 
   @override

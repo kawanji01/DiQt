@@ -8,7 +8,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class UserDrillListView extends StatefulWidget {
-  const UserDrillListView({Key? key, required this.userUid}) : super(key: key);
+  const UserDrillListView({super.key, required this.userUid});
   final String userUid;
 
   @override

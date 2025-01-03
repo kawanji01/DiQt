@@ -11,8 +11,7 @@ import 'package:flutter/material.dart';
 
 class WordFormPreviewScreen extends StatelessWidget {
   const WordFormPreviewScreen(
-      {Key? key, required this.word, required this.dictionary})
-      : super(key: key);
+      {super.key, required this.word, required this.dictionary});
   final Word word;
   final Dictionary dictionary;
 

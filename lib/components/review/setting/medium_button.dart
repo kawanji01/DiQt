@@ -9,11 +9,10 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ReviewSettingMediumButton extends StatefulWidget {
   const ReviewSettingMediumButton(
-      {Key? key,
+      {super.key,
       required this.quizId,
       required this.review,
-      required this.label})
-      : super(key: key);
+      required this.label});
   final int quizId;
   final Review? review;
   final String label;

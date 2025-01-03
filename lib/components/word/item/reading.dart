@@ -3,7 +3,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
 class WordItemReading extends StatelessWidget {
-  const WordItemReading({Key? key, required this.word}) : super(key: key);
+  const WordItemReading({super.key, required this.word});
   final Word word;
 
   @override

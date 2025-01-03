@@ -12,7 +12,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SessionSignUpForm extends ConsumerStatefulWidget {
-  const SessionSignUpForm({Key? key}) : super(key: key);
+  const SessionSignUpForm({super.key});
 
   @override
   SessionSignUpFormState createState() => SessionSignUpFormState();

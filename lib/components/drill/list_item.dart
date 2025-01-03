@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 class DrillListItem extends ConsumerWidget {
-  const DrillListItem({Key? key, required this.drill}) : super(key: key);
+  const DrillListItem({super.key, required this.drill});
   final Drill drill;
 
   @override

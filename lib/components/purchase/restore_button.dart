@@ -6,7 +6,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 // サブスクのリストアボタン
 class PurchaseRestoreButton extends StatefulWidget {
-  const PurchaseRestoreButton({Key? key}) : super(key: key);
+  const PurchaseRestoreButton({super.key});
 
   @override
   State<PurchaseRestoreButton> createState() => _PurchaseRestoreButtonState();

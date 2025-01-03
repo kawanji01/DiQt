@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class QuizFormPreviewButton extends StatelessWidget {
   const QuizFormPreviewButton(
-      {Key? key,
+      {super.key,
       required this.questionController,
       required this.langNumberOfQuestion,
       required this.correctAnswerController,
@@ -15,8 +15,7 @@ class QuizFormPreviewButton extends StatelessWidget {
       required this.explanationController,
       required this.autoDictLinkOfQuestion,
       required this.autoDictLinkOfAnswer,
-      required this.appliedDictionaryId})
-      : super(key: key);
+      required this.appliedDictionaryId});
   final TextEditingController questionController;
   final int langNumberOfQuestion;
   final TextEditingController correctAnswerController;

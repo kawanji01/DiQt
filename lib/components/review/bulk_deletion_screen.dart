@@ -7,7 +7,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewBulkDeletionScreen extends ConsumerStatefulWidget {
-  const ReviewBulkDeletionScreen({Key? key}) : super(key: key);
+  const ReviewBulkDeletionScreen({super.key});
 
   @override
   ReviewBulkDeletionScreenState createState() =>

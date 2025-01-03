@@ -8,8 +8,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class ExpGainedExpIndicator extends ConsumerStatefulWidget {
   const ExpGainedExpIndicator(
-      {Key? key, required this.initialExp, required this.gainedExp})
-      : super(key: key);
+      {super.key, required this.initialExp, required this.gainedExp});
 
   final int initialExp;
   final int gainedExp;

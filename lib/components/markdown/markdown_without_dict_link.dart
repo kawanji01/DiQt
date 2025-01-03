@@ -9,13 +9,12 @@ import 'package:markdown/markdown.dart' as md;
 
 class MarkdownWithoutDictLink extends StatelessWidget {
   const MarkdownWithoutDictLink(
-      {Key? key,
+      {super.key,
       required this.text,
       required this.fontSize,
       required this.fontWeight,
       required this.fontColor,
-      required this.selectable})
-      : super(key: key);
+      required this.selectable});
   final String text;
   final double fontSize;
   final FontWeight fontWeight;

@@ -10,8 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordFormPreviewSentence extends ConsumerWidget {
-  const WordFormPreviewSentence({Key? key, required this.word})
-      : super(key: key);
+  const WordFormPreviewSentence({super.key, required this.word});
   final Word word;
 
   @override

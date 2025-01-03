@@ -11,8 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SentenceItemEditButton extends ConsumerWidget {
   const SentenceItemEditButton(
-      {Key? key, required this.sentence, this.isShow = false})
-      : super(key: key);
+      {super.key, required this.sentence, this.isShow = false});
   final Sentence sentence;
   final bool isShow;
 

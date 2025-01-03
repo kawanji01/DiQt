@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 
 class SenseFormPreviewButton extends StatelessWidget {
   const SenseFormPreviewButton(
-      {Key? key,
+      {super.key,
       required this.glossController,
       required this.sentenceIdController,
-      required this.word})
-      : super(key: key);
+      required this.word});
   final TextEditingController glossController;
   final TextEditingController sentenceIdController;
   final Word word;

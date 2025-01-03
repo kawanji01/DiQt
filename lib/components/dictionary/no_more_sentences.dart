@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 class DictionaryNoMoreSentences extends StatelessWidget {
   const DictionaryNoMoreSentences(
-      {Key? key, required this.dictionaryId, required this.keyword})
-      : super(key: key);
+      {super.key, required this.dictionaryId, required this.keyword});
   final int dictionaryId;
   final String keyword;
 

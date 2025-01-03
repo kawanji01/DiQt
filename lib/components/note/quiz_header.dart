@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NoteQuizHeader extends ConsumerWidget {
-  const NoteQuizHeader({Key? key, required this.note}) : super(key: key);
+  const NoteQuizHeader({super.key, required this.note});
   final Note note;
 
   @override

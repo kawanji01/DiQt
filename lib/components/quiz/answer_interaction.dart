@@ -11,8 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizAnswerInteraction extends ConsumerWidget {
-  const QuizAnswerInteraction({Key? key, required this.notification})
-      : super(key: key);
+  const QuizAnswerInteraction({super.key, required this.notification});
   final AnswerNotification notification;
 
   @override

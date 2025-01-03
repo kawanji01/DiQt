@@ -5,8 +5,7 @@ import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class QuizExplanationExplanation extends StatelessWidget {
-  const QuizExplanationExplanation({Key? key, required this.quiz})
-      : super(key: key);
+  const QuizExplanationExplanation({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

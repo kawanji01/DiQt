@@ -9,7 +9,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserFormWithdrawalButton extends ConsumerStatefulWidget {
-  const UserFormWithdrawalButton({Key? key}) : super(key: key);
+  const UserFormWithdrawalButton({super.key});
 
   @override
   UserFormWithdrawalButtonState createState() =>

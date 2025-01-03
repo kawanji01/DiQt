@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SentenceShowPage extends ConsumerStatefulWidget {
-  const SentenceShowPage({Key? key}) : super(key: key);
+  const SentenceShowPage({super.key});
 
   static Future push(BuildContext context, int sentenceId) async {
     return Navigator.of(context)

@@ -16,7 +16,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserFormFields extends ConsumerStatefulWidget {
-  const UserFormFields({Key? key, required this.user}) : super(key: key);
+  const UserFormFields({super.key, required this.user});
   final User user;
 
   @override

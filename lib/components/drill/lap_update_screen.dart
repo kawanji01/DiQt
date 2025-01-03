@@ -8,7 +8,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrillLapUpdateScreen extends ConsumerStatefulWidget {
-  const DrillLapUpdateScreen({Key? key}) : super(key: key);
+  const DrillLapUpdateScreen({super.key});
 
   @override
   DrillLapUpdateScreenState createState() => DrillLapUpdateScreenState();

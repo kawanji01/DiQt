@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavbarAccountIcon extends ConsumerWidget {
-  const BottomNavbarAccountIcon({Key? key}) : super(key: key);
+  const BottomNavbarAccountIcon({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

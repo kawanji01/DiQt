@@ -4,7 +4,7 @@ import 'package:booqs_mobile/models/sense.dart';
 import 'package:flutter/material.dart';
 
 class SenseItem extends StatelessWidget {
-  const SenseItem({Key? key, required this.sense}) : super(key: key);
+  const SenseItem({super.key, required this.sense});
   final Sense sense;
 
   @override
