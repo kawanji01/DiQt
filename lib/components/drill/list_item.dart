@@ -45,12 +45,12 @@ class DrillListItem extends ConsumerWidget {
       if (drillLap == null) {
         return Text(
           answerHistoriesCountText,
-          style: TextStyle(color: Colors.black.withOpacity(0.6)),
+          style: TextStyle(color: Colors.black.withValues(alpha: 0.6)),
         );
       }
       return Text(
         '${answerHistoriesCountText == '' ? '' : '$answerHistoriesCountText / '}${t.drills.clears_count(number: drillLap.clearsCount)}',
-        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+        style: TextStyle(color: Colors.black.withValues(alpha: 0.6)),
       );
     }
 
@@ -81,7 +81,7 @@ class DrillListItem extends ConsumerWidget {
                   right: 16.0, left: 16, top: 16, bottom: 32),
               child: Text(
                 drill.introduction,
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                style: TextStyle(color: Colors.black.withValues(alpha: 0.6)),
               ),
             ),
           ],

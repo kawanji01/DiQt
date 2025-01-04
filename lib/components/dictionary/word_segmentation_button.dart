@@ -24,8 +24,8 @@ class DictionaryWordSegmentationButton extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       child: TextButton(
         style: ButtonStyle(
-          padding: MaterialStateProperty.all(EdgeInsets.zero),
-          minimumSize: MaterialStateProperty.all(Size.zero),
+          padding: WidgetStateProperty.all(EdgeInsets.zero),
+          minimumSize: WidgetStateProperty.all(Size.zero),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: performWordSegmentation,

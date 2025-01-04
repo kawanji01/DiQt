@@ -68,7 +68,7 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
                 tabs: tabBars(),
                 labelColor: Colors.white,
                 indicatorColor: Colors.white,
-                unselectedLabelColor: Colors.white.withOpacity(0.5),
+                unselectedLabelColor: Colors.white.withValues(alpha: 0.5),
               ),
             ],
           ),

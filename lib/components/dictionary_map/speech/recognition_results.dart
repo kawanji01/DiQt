@@ -20,7 +20,7 @@ class RecognitionResults extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Container(
-                color: Theme.of(context).highlightColor.withOpacity(0.2),
+                color: Theme.of(context).highlightColor.withValues(alpha: 0.2),
                 child: Center(
                   child: Text(
                     lastWords,
@@ -42,7 +42,7 @@ class RecognitionResults extends StatelessWidget {
                         BoxShadow(
                             blurRadius: .26,
                             spreadRadius: level * 1.5,
-                            color: Colors.black.withOpacity(.05))
+                            color: Colors.black.withValues(alpha: .05))
                       ],
                       color: Colors.white,
                       borderRadius: const BorderRadius.all(Radius.circular(50)),

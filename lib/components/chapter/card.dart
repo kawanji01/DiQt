@@ -56,7 +56,9 @@ class ChapterCard extends ConsumerWidget {
                   right: 16.0, left: 16, top: 16, bottom: 32),
               child: Text(
                 chapter.introduction,
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                style: TextStyle(
+                  color: Colors.black.withValues(alpha: 0.6),
+                ),
               ),
             ),
           ],

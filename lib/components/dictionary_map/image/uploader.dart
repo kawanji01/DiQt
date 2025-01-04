@@ -29,7 +29,8 @@ class DictionaryMapImageUploader extends StatelessWidget {
                     radius: const Radius.circular(12.0),
                     borderType: BorderType.RRect,
                     dashPattern: const [8, 4],
-                    color: Theme.of(context).highlightColor.withOpacity(0.4),
+                    color:
+                        Theme.of(context).highlightColor.withValues(alpha: 0.4),
                     child: Center(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
