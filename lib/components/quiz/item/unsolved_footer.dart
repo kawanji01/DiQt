@@ -5,8 +5,7 @@ import 'package:booqs_mobile/components/review/setting/small_buttton.dart';
 import 'package:flutter/material.dart';
 
 class QuizItemUnsolvedFooter extends StatelessWidget {
-  const QuizItemUnsolvedFooter({Key? key, required this.quiz, this.review})
-      : super(key: key);
+  const QuizItemUnsolvedFooter({super.key, required this.quiz, this.review});
   final Quiz quiz;
   final Review? review;
 

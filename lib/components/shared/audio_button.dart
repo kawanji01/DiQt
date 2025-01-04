@@ -36,6 +36,7 @@ class AudioButton extends ConsumerWidget {
       child: const Icon(
         Icons.volume_up,
         size: 28.0,
+        color: Colors.white,
       ),
     );
   }

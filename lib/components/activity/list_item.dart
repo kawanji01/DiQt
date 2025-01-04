@@ -6,7 +6,7 @@ import 'package:booqs_mobile/components/activity/information.dart';
 import 'package:flutter/material.dart';
 
 class ActivityListItem extends StatelessWidget {
-  const ActivityListItem({Key? key, required this.activity}) : super(key: key);
+  const ActivityListItem({super.key, required this.activity});
   final Activity activity;
 
   @override

@@ -13,8 +13,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewSettingSmallButton extends ConsumerStatefulWidget {
-  const ReviewSettingSmallButton({Key? key, required this.quiz, this.review})
-      : super(key: key);
+  const ReviewSettingSmallButton({super.key, required this.quiz, this.review});
   final Quiz quiz;
   final Review? review;
 

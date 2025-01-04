@@ -6,8 +6,7 @@ import 'package:booqs_mobile/components/button/small_green_button.dart';
 import 'package:flutter/material.dart';
 
 class SentenceSettingListItem extends StatelessWidget {
-  const SentenceSettingListItem({Key? key, required this.sentence})
-      : super(key: key);
+  const SentenceSettingListItem({super.key, required this.sentence});
   final Sentence sentence;
 
   @override

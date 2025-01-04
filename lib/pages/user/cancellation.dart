@@ -15,7 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/object_wrappers.dart';
 
 class UserCancellationPage extends ConsumerStatefulWidget {
-  const UserCancellationPage({Key? key}) : super(key: key);
+  const UserCancellationPage({super.key});
 
   static Future push(
       BuildContext context, EntitlementInfo entitlementInfo) async {

@@ -2,7 +2,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
 class WordItemIPA extends StatelessWidget {
-  const WordItemIPA({Key? key, required this.word}) : super(key: key);
+  const WordItemIPA({super.key, required this.word});
   final Word word;
 
   @override

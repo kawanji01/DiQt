@@ -5,12 +5,12 @@ import 'package:speech_to_text/speech_to_text.dart';
 /// Display the current status of the listener
 class SpeechRecognitionButton extends StatelessWidget {
   const SpeechRecognitionButton({
-    Key? key,
+    super.key,
     required this.speech,
     required this.isStarting,
     required this.startListening,
     required this.stopListening,
-  }) : super(key: key);
+  });
 
   final SpeechToText speech;
   final bool isStarting;

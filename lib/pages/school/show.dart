@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SchoolShowPage extends ConsumerStatefulWidget {
-  const SchoolShowPage({Key? key}) : super(key: key);
+  const SchoolShowPage({super.key});
 
   static Future pushReplacement(BuildContext context) async {
     //return Navigator.of(context).pushNamed(reviewIndexPage);
@@ -75,7 +75,7 @@ class SchoolShowPageState extends ConsumerState<SchoolShowPage> {
             tabs: tabBars(),
             labelColor: Colors.white,
             indicatorColor: Colors.white,
-            unselectedLabelColor: Colors.white.withOpacity(0.5),
+            unselectedLabelColor: Colors.white.withValues(alpha: 0.5),
           ),
           // タイトル部分を消す ref: https://blog.mrym.tv/2019/09/flutter-tabbar-without-appbar-title/
         ),

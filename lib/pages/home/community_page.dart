@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeCommunityPage extends StatelessWidget {
-  const HomeCommunityPage({Key? key}) : super(key: key);
+  const HomeCommunityPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(communityPage);

@@ -13,12 +13,11 @@ import 'package:flutter/material.dart';
 // 検索条件はentryControllerを利用する
 class SentenceSetting extends StatefulWidget {
   const SentenceSetting(
-      {Key? key,
+      {super.key,
       required this.sentenceIdController,
       required this.entry,
       required this.posTagIdController,
-      required this.dictionary})
-      : super(key: key);
+      required this.dictionary});
   final TextEditingController sentenceIdController;
   final String entry;
   final TextEditingController posTagIdController;
@@ -172,7 +171,7 @@ class SentenceSettingState extends State<SentenceSetting> {
           ),
           ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+              backgroundColor: WidgetStateProperty.all<Color>(Colors.green),
             ),
             child: const Icon(
               Icons.search,

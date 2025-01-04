@@ -5,7 +5,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
 class WordItemPosTag extends StatelessWidget {
-  const WordItemPosTag({Key? key, required this.word}) : super(key: key);
+  const WordItemPosTag({super.key, required this.word});
   final Word word;
 
   @override

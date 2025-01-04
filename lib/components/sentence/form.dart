@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class SentenceForm extends StatelessWidget {
   const SentenceForm({
-    Key? key,
+    super.key,
     required this.originalController,
     required this.translationController,
     required this.explanationController,
@@ -17,7 +17,7 @@ class SentenceForm extends StatelessWidget {
     required this.dictionary,
     required this.isNew,
     this.keyword,
-  }) : super(key: key);
+  });
 
   final TextEditingController originalController;
   final TextEditingController translationController;

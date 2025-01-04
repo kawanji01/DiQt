@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewUnsolvedScreen extends ConsumerStatefulWidget {
-  const ReviewUnsolvedScreen({Key? key}) : super(key: key);
+  const ReviewUnsolvedScreen({super.key});
 
   @override
   ReviewUnsolvedScreenState createState() => ReviewUnsolvedScreenState();

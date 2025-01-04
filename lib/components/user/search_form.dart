@@ -2,7 +2,7 @@ import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:flutter/material.dart';
 
 class UserSearchForm extends StatefulWidget {
-  const UserSearchForm({Key? key, required this.keyword}) : super(key: key);
+  const UserSearchForm({super.key, required this.keyword});
   final String keyword;
 
   @override

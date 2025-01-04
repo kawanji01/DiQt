@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerHistoryQuizHeader extends ConsumerWidget {
-  const AnswerHistoryQuizHeader({Key? key, required this.answerHistory})
-      : super(key: key);
+  const AnswerHistoryQuizHeader({super.key, required this.answerHistory});
   final AnswerHistory answerHistory;
 
   @override

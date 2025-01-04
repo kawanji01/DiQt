@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryShowPage extends ConsumerStatefulWidget {
-  const DictionaryShowPage({Key? key}) : super(key: key);
+  const DictionaryShowPage({super.key});
 
   static Future push(BuildContext context, int dictionaryId) async {
     return Navigator.of(context).pushNamed(dictionaryShowPage,
@@ -54,7 +54,10 @@ class DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
       appBar: AppBarDefault(
         title: future.when(
           data: (date) => '${date?.typeName()}',
-          error: (err, stack) => 'Error: $err',
+          error: (err, stack) {
+            print('Error: $err stack: $stack');
+            return 'Error: $err';
+          },
           loading: () => '${dictionary?.typeName()}',
         ),
       ),

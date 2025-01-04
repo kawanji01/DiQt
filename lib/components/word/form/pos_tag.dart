@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 
 class WordFormPosTag extends StatefulWidget {
   const WordFormPosTag(
-      {Key? key,
+      {super.key,
       required this.posTagIdController,
       required this.posTags,
-      required this.enabled})
-      : super(key: key);
+      required this.enabled});
   final TextEditingController posTagIdController;
   final List<PosTag>? posTags;
   final bool enabled;

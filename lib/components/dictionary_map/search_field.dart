@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/utils/word_typeahead.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -17,44 +18,52 @@ class DictionaryMapSearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TypeAheadFormField(
-      textFieldConfiguration: TextFieldConfiguration(
-        controller: keywordController,
-        // 改行を許さず、文字数に応じて自動で改行表示する。
-        keyboardType: TextInputType.text,
-        minLines: 1,
-        maxLines: 4,
-        decoration: InputDecoration(
-          labelText: label,
-          // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
-          filled: true,
-          fillColor: Colors.grey.shade200,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
+    return TypeAheadField<Word>(
+      controller: keywordController,
+      builder: (context, controller, focusNode) {
+        return TextFormField(
+          controller: controller,
+          focusNode: focusNode,
+          // 改行を許さず、文字数に応じて自動で改行表示する。
+          keyboardType: TextInputType.text,
+          minLines: 1,
+          maxLines: 4,
+          decoration: InputDecoration(
+            labelText: label,
+            // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
+            filled: true,
+            fillColor: Colors.grey.shade200,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide.none,
+            ),
+            suffixIcon: IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: () {
+                keywordController.clear();
+              },
+            ),
           ),
-          suffixIcon: IconButton(
-            icon: const Icon(Icons.clear),
-            onPressed: () {
-              keywordController.clear();
-            },
-          ),
-        ),
-        // Enterキーが押された時に_submitFormを呼ぶ
-        onEditingComplete: search,
-      ),
+          // Enterキーが押された時に_submitFormを呼ぶ
+          onEditingComplete: search,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return t.errors.cant_be_blank;
+            }
+            return null;
+          },
+        );
+      },
       suggestionsCallback: (pattern) {
         if (dictionaryId == null) return [];
-
         return WordTypeahead.getSuggestions(pattern, dictionaryId!);
       },
-      itemBuilder: (context, dynamic suggestion) {
-        final String suggestedEntry = suggestion as String;
+      itemBuilder: (context, word) {
         // 候補をタップしたときに検索画面に遷移する。参考： https://stackoverflow.com/questions/68375774/use-the-typeaheadformfield-inside-a-form-flutter
         return ListTile(
-          title: Text(suggestedEntry),
+          title: Text(word.entry),
           onTap: () {
-            keywordController.text = suggestedEntry;
+            keywordController.text = word.entry;
             search();
           },
         );
@@ -63,18 +72,15 @@ class DictionaryMapSearchField extends StatelessWidget {
       hideOnEmpty: true,
       hideOnLoading: true,
       hideOnError: true,
-      transitionBuilder: (context, suggestionsBox, controller) {
-        return suggestionsBox;
-      },
-      onSuggestionSelected: (suggestion) {
+      onSelected: (suggestion) {
         keywordController.text = "$suggestion";
       },
-      validator: (value) {
-        if (value!.isEmpty) {
-          return t.errors.cant_be_blank;
-        }
-
-        return null;
+      transitionBuilder: (context, animation, child) {
+        return FadeTransition(
+          opacity:
+              CurvedAnimation(parent: animation, curve: Curves.fastOutSlowIn),
+          child: child,
+        );
       },
     );
   }

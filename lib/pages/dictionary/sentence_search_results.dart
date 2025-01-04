@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionarySentenceSearchResultsPage extends ConsumerStatefulWidget {
-  const DictionarySentenceSearchResultsPage({Key? key}) : super(key: key);
+  const DictionarySentenceSearchResultsPage({super.key});
 
   static Future push(
       BuildContext context, int dictionaryId, String keyword) async {

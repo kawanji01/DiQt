@@ -4,7 +4,7 @@ import 'package:booqs_mobile/components/drill/list_item.dart';
 import 'package:flutter/material.dart';
 
 class DrillFeed extends StatelessWidget {
-  const DrillFeed({Key? key, required this.drills}) : super(key: key);
+  const DrillFeed({super.key, required this.drills});
   final List<Drill> drills;
 
   @override

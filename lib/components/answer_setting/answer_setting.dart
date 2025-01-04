@@ -12,8 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerSettingAnswerSetting extends ConsumerWidget {
   const AnswerSettingAnswerSetting(
-      {Key? key, required this.dailyGoalController})
-      : super(key: key);
+      {super.key, required this.dailyGoalController});
   final TextEditingController dailyGoalController;
 
   @override

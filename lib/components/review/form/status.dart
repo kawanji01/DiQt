@@ -5,7 +5,7 @@ import 'package:booqs_mobile/components/review/form/destroy_button.dart';
 import 'package:flutter/material.dart';
 
 class ReviewFormStatus extends StatelessWidget {
-  const ReviewFormStatus({Key? key, required this.review}) : super(key: key);
+  const ReviewFormStatus({super.key, required this.review});
   final Review review;
 
   @override

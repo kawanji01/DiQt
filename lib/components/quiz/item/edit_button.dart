@@ -14,8 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizItemEditButton extends ConsumerWidget {
-  const QuizItemEditButton({Key? key, required this.quiz, this.isShow = false})
-      : super(key: key);
+  const QuizItemEditButton({super.key, required this.quiz, this.isShow = false});
   final Quiz quiz;
   final bool isShow;
 

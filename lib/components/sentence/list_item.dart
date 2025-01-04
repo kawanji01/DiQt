@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 class SentenceListItem extends StatelessWidget {
   const SentenceListItem(
-      {Key? key, required this.sentence, required this.isShow})
-      : super(key: key);
+      {super.key, required this.sentence, required this.isShow});
   final Sentence sentence;
   final bool isShow;
 

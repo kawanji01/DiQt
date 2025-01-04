@@ -10,11 +10,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LangSmallTranslationButtons extends ConsumerStatefulWidget {
   const LangSmallTranslationButtons({
-    Key? key,
+    super.key,
     required this.original,
     required this.sourceLangNumber,
     required this.targetLangNumber,
-  }) : super(key: key);
+  });
   final String original;
   final int sourceLangNumber;
   final int targetLangNumber;

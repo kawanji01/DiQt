@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrillStatusTabs extends ConsumerWidget {
-  const DrillStatusTabs({Key? key, required this.selected}) : super(key: key);
+  const DrillStatusTabs({super.key, required this.selected});
   final String selected;
 
   @override

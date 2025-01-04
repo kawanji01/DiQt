@@ -13,8 +13,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerSettingScreen extends ConsumerStatefulWidget {
-  const AnswerSettingScreen({Key? key, required this.primary})
-      : super(key: key);
+  const AnswerSettingScreen({super.key, required this.primary});
   final String primary;
 
   @override

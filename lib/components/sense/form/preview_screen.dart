@@ -8,11 +8,10 @@ import 'package:flutter/material.dart';
 
 class SenseFormPreviewScreen extends StatelessWidget {
   const SenseFormPreviewScreen(
-      {Key? key,
+      {super.key,
       required this.gloss,
       required this.sentenceIdStr,
-      required this.word})
-      : super(key: key);
+      required this.word});
   final String gloss;
   final String sentenceIdStr;
   final Word word;

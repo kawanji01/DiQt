@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 
 class SentenceFormPosTag extends StatefulWidget {
   const SentenceFormPosTag(
-      {Key? key, required this.posTagIdController, required this.posTags})
-      : super(key: key);
+      {super.key, required this.posTagIdController, required this.posTags});
   final TextEditingController posTagIdController;
   final List<PosTag>? posTags;
 

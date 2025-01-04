@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizExplanationOpenButton extends ConsumerWidget {
-  const QuizExplanationOpenButton({Key? key, required this.answerNotification})
-      : super(key: key);
+  const QuizExplanationOpenButton({super.key, required this.answerNotification});
   final AnswerNotification answerNotification;
 
   @override

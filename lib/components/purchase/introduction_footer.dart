@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 // 購入ボタンの下に表示する注意書きなど
 class PurchaseIntroductionFooter extends StatelessWidget {
-  const PurchaseIntroductionFooter({Key? key}) : super(key: key);
+  const PurchaseIntroductionFooter({super.key});
 
   @override
   Widget build(BuildContext context) {

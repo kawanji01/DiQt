@@ -3,8 +3,7 @@ import 'package:booqs_mobile/utils/text_to_speech.dart';
 import 'package:flutter/material.dart';
 
 class TtsButton extends StatelessWidget {
-  const TtsButton({Key? key, required this.speechText, this.langNumber})
-      : super(key: key);
+  const TtsButton({super.key, required this.speechText, this.langNumber});
 
   final String speechText;
   final int? langNumber;

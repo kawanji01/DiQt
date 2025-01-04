@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 
 class DictionarySearchByWebButton extends StatelessWidget {
   const DictionarySearchByWebButton(
-      {Key? key, required this.keyword, required this.langNumberOfKeyword})
-      : super(key: key);
+      {super.key, required this.keyword, required this.langNumberOfKeyword});
   final String keyword;
   final int langNumberOfKeyword;
 

@@ -13,8 +13,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 // 編集画面を複数跨ぐこともできるので、フォームでは値を画面内で完結させるために、状態管理にProviderは利用しない。
 class SentenceSettingListView extends StatefulWidget {
   const SentenceSettingListView(
-      {Key? key, required this.keyword, required this.dictionary})
-      : super(key: key);
+      {super.key, required this.keyword, required this.dictionary});
   final String keyword;
   final Dictionary dictionary;
 

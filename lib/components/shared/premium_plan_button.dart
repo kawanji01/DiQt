@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PremiumPlanButton extends StatelessWidget {
-  const PremiumPlanButton({Key? key, required this.user}) : super(key: key);
+  const PremiumPlanButton({super.key, required this.user});
   final User user;
 
   @override

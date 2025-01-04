@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 
 class AnswerAnalysisListQuiz extends StatelessWidget {
   const AnswerAnalysisListQuiz(
-      {Key? key, required this.answerAnalysis, required this.isShow})
-      : super(key: key);
+      {super.key, required this.answerAnalysis, required this.isShow});
   final AnswerAnalysis answerAnalysis;
   final bool isShow;
 

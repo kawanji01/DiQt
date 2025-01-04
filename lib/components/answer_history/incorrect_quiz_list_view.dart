@@ -7,7 +7,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 // 今日間違えた問題の数はそれほど多くはならないはずなので、スクロールなしに次々に読み込む形にする。
 class AnswerHistoryIncorrectQuizListView extends StatefulWidget {
-  const AnswerHistoryIncorrectQuizListView({Key? key}) : super(key: key);
+  const AnswerHistoryIncorrectQuizListView({super.key});
 
   @override
   State<AnswerHistoryIncorrectQuizListView> createState() =>

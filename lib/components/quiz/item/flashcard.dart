@@ -13,8 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizItemFlashcard extends ConsumerStatefulWidget {
   const QuizItemFlashcard(
-      {Key? key, required this.quiz, required this.unsolved})
-      : super(key: key);
+      {super.key, required this.quiz, required this.unsolved});
   final Quiz quiz;
   final bool unsolved;
 

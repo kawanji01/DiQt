@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerSettingReviewSetting extends ConsumerWidget {
-  const AnswerSettingReviewSetting({Key? key}) : super(key: key);
+  const AnswerSettingReviewSetting({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

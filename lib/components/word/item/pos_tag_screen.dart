@@ -4,8 +4,7 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
 
 class WordItemPosTagScreen extends StatelessWidget {
-  const WordItemPosTagScreen({Key? key, required this.posTag})
-      : super(key: key);
+  const WordItemPosTagScreen({super.key, required this.posTag});
   final PosTag posTag;
 
   @override

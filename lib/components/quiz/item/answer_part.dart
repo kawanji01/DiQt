@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 
 class QuizItemAnswerPart extends StatelessWidget {
   const QuizItemAnswerPart(
-      {Key? key, required this.quiz, required this.unsolved})
-      : super(key: key);
+      {super.key, required this.quiz, required this.unsolved});
   final Quiz quiz;
   final bool unsolved;
 

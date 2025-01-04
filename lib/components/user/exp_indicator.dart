@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class UserExpIndicator extends StatelessWidget {
-  const UserExpIndicator({Key? key, required this.user}) : super(key: key);
+  const UserExpIndicator({super.key, required this.user});
   final User user;
 
   @override

@@ -10,7 +10,7 @@ import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart
 import 'package:flutter/material.dart';
 
 class NoticeHomePage extends StatefulWidget {
-  const NoticeHomePage({Key? key, this.initialndex}) : super(key: key);
+  const NoticeHomePage({super.key, this.initialndex});
   final int? initialndex;
 
   static Future push(BuildContext context, int initialndex) async {
@@ -68,7 +68,7 @@ class _NoticeHomePageState extends State<NoticeHomePage> {
                 tabs: tabBars(),
                 labelColor: Colors.white,
                 indicatorColor: Colors.white,
-                unselectedLabelColor: Colors.white.withOpacity(0.5),
+                unselectedLabelColor: Colors.white.withValues(alpha: 0.5),
               ),
             ],
           ),

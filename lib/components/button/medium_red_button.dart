@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 class MediumRedButton extends StatelessWidget {
   const MediumRedButton(
-      {Key? key,
+      {super.key,
       required this.label,
       required this.icon,
-      required this.fontSize})
-      : super(key: key);
+      required this.fontSize});
   final String label;
   final IconData? icon;
   final double fontSize;

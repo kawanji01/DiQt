@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerSettingInitialInterval extends ConsumerWidget {
-  const AnswerSettingInitialInterval({Key? key}) : super(key: key);
+  const AnswerSettingInitialInterval({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

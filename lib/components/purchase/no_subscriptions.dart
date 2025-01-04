@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 class PurchaseNoSubscriptions extends StatelessWidget {
   const PurchaseNoSubscriptions(
-      {Key? key, required this.heading, required this.text})
-      : super(key: key);
+      {super.key, required this.heading, required this.text});
   final String heading;
   final String text;
 

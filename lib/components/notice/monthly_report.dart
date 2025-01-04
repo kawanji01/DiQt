@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class NoticeMonthlyReport extends StatelessWidget {
-  const NoticeMonthlyReport({Key? key, required this.notice}) : super(key: key);
+  const NoticeMonthlyReport({super.key, required this.notice});
   final Notice notice;
 
   @override

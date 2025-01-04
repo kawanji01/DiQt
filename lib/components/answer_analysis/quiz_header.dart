@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerAnalysisQuizHeader extends ConsumerWidget {
-  const AnswerAnalysisQuizHeader({Key? key, required this.answerAnalysis})
-      : super(key: key);
+  const AnswerAnalysisQuizHeader({super.key, required this.answerAnalysis});
   final AnswerAnalysis answerAnalysis;
 
   @override

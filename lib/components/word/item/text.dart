@@ -4,8 +4,7 @@ import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 
 class WordItemText extends StatelessWidget {
-  const WordItemText({Key? key, required this.word, required this.text})
-      : super(key: key);
+  const WordItemText({super.key, required this.word, required this.text});
   final Word word;
   final String text;
 

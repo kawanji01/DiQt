@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
 class AnswerShareButton extends StatelessWidget {
-  const AnswerShareButton({Key? key, required this.text, required this.url})
-      : super(key: key);
+  const AnswerShareButton({super.key, required this.text, required this.url});
   final String text;
   final String url;
 

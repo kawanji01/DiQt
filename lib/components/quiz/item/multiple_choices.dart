@@ -12,11 +12,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizItemMultipleChoices extends ConsumerStatefulWidget {
   const QuizItemMultipleChoices(
-      {Key? key,
+      {super.key,
       required this.quiz,
       required this.answerTextList,
-      required this.unsolved})
-      : super(key: key);
+      required this.unsolved});
   final Quiz quiz;
   final List<String> answerTextList;
   final bool unsolved;

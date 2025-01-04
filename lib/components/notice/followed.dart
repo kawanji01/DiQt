@@ -8,7 +8,7 @@ import 'package:booqs_mobile/components/user/feed_icon.dart';
 import 'package:flutter/material.dart';
 
 class NoticeFollowed extends StatelessWidget {
-  const NoticeFollowed({Key? key, required this.notice}) : super(key: key);
+  const NoticeFollowed({super.key, required this.notice});
   final Notice notice;
 
   @override

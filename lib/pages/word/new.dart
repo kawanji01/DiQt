@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
+import 'package:booqs_mobile/components/word/new_action_buttons.dart';
 import 'package:booqs_mobile/components/word/new_screen.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
@@ -13,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordNewPage extends ConsumerStatefulWidget {
-  const WordNewPage({Key? key}) : super(key: key);
+  const WordNewPage({super.key});
 
   static Future push(
       BuildContext context, int dictionaryId, String keyword) async {
@@ -110,6 +111,11 @@ class WordNewPageState extends ConsumerState<WordNewPage> {
       child: Scaffold(
         appBar: AppBarDefault(
           title: t.words.add,
+          actions: [
+            WordNewActionButtons(
+              dictionaryId: _dictionary?.id,
+            )
+          ],
         ),
         body: Container(
           margin: EdgeInsets.symmetric(

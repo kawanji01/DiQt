@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionarySentencePart extends ConsumerWidget {
-  const DictionarySentencePart({Key? key, required this.dictionary})
-      : super(key: key);
+  const DictionarySentencePart({super.key, required this.dictionary});
   final Dictionary dictionary;
 
   @override

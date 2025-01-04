@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerSettingReviewDeleteCondition extends ConsumerWidget {
-  const AnswerSettingReviewDeleteCondition({Key? key}) : super(key: key);
+  const AnswerSettingReviewDeleteCondition({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

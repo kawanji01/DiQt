@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessUnsolvedScreen extends ConsumerStatefulWidget {
-  const WeaknessUnsolvedScreen({Key? key}) : super(key: key);
+  const WeaknessUnsolvedScreen({super.key});
 
   @override
   WeaknessUnsolvedScreenState createState() => WeaknessUnsolvedScreenState();

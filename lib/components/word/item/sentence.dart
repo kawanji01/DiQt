@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class WordItemSentence extends StatelessWidget {
   const WordItemSentence({
-    Key? key,
+    super.key,
     required this.word,
-  }) : super(key: key);
+  });
   final Word word;
 
   @override

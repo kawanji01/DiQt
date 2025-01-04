@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class TextWithDictLink extends StatelessWidget {
   const TextWithDictLink(
-      {Key? key,
+      {super.key,
       required this.text,
       required this.langNumber,
       required this.autoLinkEnabled,
@@ -12,8 +12,7 @@ class TextWithDictLink extends StatelessWidget {
       required this.fontSize,
       required this.fontWeight,
       required this.fontColor,
-      required this.selectable})
-      : super(key: key);
+      required this.selectable});
   final String text;
   final int? langNumber;
   final int? dictionaryId;

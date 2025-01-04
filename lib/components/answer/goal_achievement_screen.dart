@@ -18,8 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerGoalAchievementScreen extends ConsumerStatefulWidget {
-  const AnswerGoalAchievementScreen({Key? key, required this.answerCreator})
-      : super(key: key);
+  const AnswerGoalAchievementScreen({super.key, required this.answerCreator});
   final AnswerCreator answerCreator;
 
   @override

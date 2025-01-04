@@ -10,8 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizExplanationAnswerAnalysis extends ConsumerWidget {
-  const QuizExplanationAnswerAnalysis({Key? key, required this.quiz})
-      : super(key: key);
+  const QuizExplanationAnswerAnalysis({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

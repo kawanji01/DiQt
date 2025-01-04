@@ -12,7 +12,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 // infinite-scrollを利用した通知一覧 ref: https://pub.dev/packages/infinite_scroll_pagination
 class NoticeItemListView extends StatefulWidget {
-  const NoticeItemListView({Key? key}) : super(key: key);
+  const NoticeItemListView({super.key});
 
   @override
   State<NoticeItemListView> createState() => _NoticeItemListViewState();

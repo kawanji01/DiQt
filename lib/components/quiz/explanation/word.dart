@@ -8,7 +8,7 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
 class QuizExplanationWord extends StatelessWidget {
-  const QuizExplanationWord({Key? key, required this.quiz}) : super(key: key);
+  const QuizExplanationWord({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

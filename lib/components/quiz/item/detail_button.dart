@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizItemDetailButton extends ConsumerWidget {
-  const QuizItemDetailButton({Key? key, required this.quiz}) : super(key: key);
+  const QuizItemDetailButton({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

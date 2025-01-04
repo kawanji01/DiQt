@@ -11,8 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessSettingButton extends ConsumerStatefulWidget {
   const WeaknessSettingButton(
-      {Key? key, required this.quizId, required this.weakness})
-      : super(key: key);
+      {super.key, required this.quizId, required this.weakness});
   final Weakness? weakness;
   final int quizId;
 

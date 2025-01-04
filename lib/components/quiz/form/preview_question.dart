@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 
 class QuizFormPreviewQuestion extends StatelessWidget {
   const QuizFormPreviewQuestion(
-      {Key? key,
+      {super.key,
       required this.question,
       required this.langNumberOfQuestion,
       required this.autoDictLinkOfQuestion,
-      required this.dictionaryId})
-      : super(key: key);
+      required this.dictionaryId});
   final String question;
   final int langNumberOfQuestion;
   final bool autoDictLinkOfQuestion;

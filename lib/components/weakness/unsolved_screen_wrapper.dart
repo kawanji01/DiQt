@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessUnsolvedScreenWrapper extends ConsumerWidget {
-  const WeaknessUnsolvedScreenWrapper({Key? key}) : super(key: key);
+  const WeaknessUnsolvedScreenWrapper({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

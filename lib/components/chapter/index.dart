@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ChapterIndex extends ConsumerWidget {
-  const ChapterIndex({Key? key}) : super(key: key);
+  const ChapterIndex({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

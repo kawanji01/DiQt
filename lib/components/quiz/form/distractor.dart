@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 class QuizFormDistractor extends StatelessWidget {
   const QuizFormDistractor(
-      {Key? key, required this.distractorController, required this.number})
-      : super(key: key);
+      {super.key, required this.distractorController, required this.number});
   final TextEditingController distractorController;
   final int number;
 

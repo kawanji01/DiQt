@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessQuizHeader extends ConsumerWidget {
-  const WeaknessQuizHeader({Key? key, required this.weakness})
-      : super(key: key);
+  const WeaknessQuizHeader({super.key, required this.weakness});
   final Weakness weakness;
 
   @override

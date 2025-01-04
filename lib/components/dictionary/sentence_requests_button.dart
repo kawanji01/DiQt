@@ -5,8 +5,7 @@ import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
 
 class DictionarySentenceRequestsButton extends StatelessWidget {
-  const DictionarySentenceRequestsButton({Key? key, required this.dictionary})
-      : super(key: key);
+  const DictionarySentenceRequestsButton({super.key, required this.dictionary});
   final Dictionary dictionary;
 
   @override

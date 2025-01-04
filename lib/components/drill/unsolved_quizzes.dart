@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrillUnsolvedQuizzes extends ConsumerWidget {
-  const DrillUnsolvedQuizzes({Key? key, required this.quizzes})
-      : super(key: key);
+  const DrillUnsolvedQuizzes({super.key, required this.quizzes});
   final List<Quiz> quizzes;
 
   @override

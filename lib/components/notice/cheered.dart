@@ -8,7 +8,7 @@ import 'package:booqs_mobile/components/user/feed_icon.dart';
 import 'package:flutter/material.dart';
 
 class NoticeCheered extends StatelessWidget {
-  const NoticeCheered({Key? key, required this.notice}) : super(key: key);
+  const NoticeCheered({super.key, required this.notice});
   final Notice notice;
 
   @override

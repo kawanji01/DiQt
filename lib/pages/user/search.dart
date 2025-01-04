@@ -8,7 +8,7 @@ import 'package:booqs_mobile/components/user/search_form.dart';
 import 'package:flutter/material.dart';
 
 class UserSearchPage extends StatefulWidget {
-  const UserSearchPage({Key? key}) : super(key: key);
+  const UserSearchPage({super.key});
 
   //
   static Future push(BuildContext context, String keyword) async {

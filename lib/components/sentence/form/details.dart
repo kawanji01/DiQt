@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 
 class SentenceFormDetails extends StatelessWidget {
   const SentenceFormDetails(
-      {Key? key,
+      {super.key,
       required this.explanationController,
-      required this.commentController})
-      : super(key: key);
+      required this.commentController});
   final TextEditingController explanationController;
   final TextEditingController commentController;
 

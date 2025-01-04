@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class ExpExpIndicator extends StatelessWidget {
-  const ExpExpIndicator({Key? key, required this.exp}) : super(key: key);
+  const ExpExpIndicator({super.key, required this.exp});
   final int exp;
 
   @override

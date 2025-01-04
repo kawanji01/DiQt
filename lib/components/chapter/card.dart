@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 class ChapterCard extends ConsumerWidget {
-  const ChapterCard({Key? key, required this.chapter}) : super(key: key);
+  const ChapterCard({super.key, required this.chapter});
   final Chapter chapter;
 
   @override
@@ -41,7 +41,7 @@ class ChapterCard extends ConsumerWidget {
                       fontWeight: FontWeight.bold, fontSize: 18)),
               subtitle: Text(
                 t.drills.answers(number: answerHistoriesCount),
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                style: TextStyle(color: Colors.black.withValues(alpha: 0.6)),
               ),
             ),
             CachedNetworkImage(
@@ -56,7 +56,9 @@ class ChapterCard extends ConsumerWidget {
                   right: 16.0, left: 16, top: 16, bottom: 32),
               child: Text(
                 chapter.introduction,
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                style: TextStyle(
+                  color: Colors.black.withValues(alpha: 0.6),
+                ),
               ),
             ),
           ],

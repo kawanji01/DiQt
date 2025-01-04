@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NoteOrderSelectForm extends ConsumerWidget {
-  const NoteOrderSelectForm({Key? key}) : super(key: key);
+  const NoteOrderSelectForm({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SessionTwitterButton extends ConsumerStatefulWidget {
-  const SessionTwitterButton({Key? key}) : super(key: key);
+  const SessionTwitterButton({super.key});
 
   @override
   SessionTwitterButtonState createState() => SessionTwitterButtonState();

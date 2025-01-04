@@ -11,8 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryNewWordButton extends ConsumerWidget {
   const DictionaryNewWordButton(
-      {Key? key, required this.dictionaryId, required this.keyword})
-      : super(key: key);
+      {super.key, required this.dictionaryId, required this.keyword});
   final int dictionaryId;
   final String? keyword;
 

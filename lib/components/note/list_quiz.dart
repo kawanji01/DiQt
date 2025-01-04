@@ -6,7 +6,7 @@ import 'package:booqs_mobile/components/quiz/item.dart';
 import 'package:flutter/material.dart';
 
 class NoteListQuiz extends StatelessWidget {
-  const NoteListQuiz({Key? key, required this.note}) : super(key: key);
+  const NoteListQuiz({super.key, required this.note});
   final Note note;
 
   @override

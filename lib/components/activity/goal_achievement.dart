@@ -5,8 +5,7 @@ import 'package:booqs_mobile/components/user/feed_icon.dart';
 import 'package:flutter/material.dart';
 
 class ActivityGoalAchievement extends StatelessWidget {
-  const ActivityGoalAchievement({Key? key, required this.activity})
-      : super(key: key);
+  const ActivityGoalAchievement({super.key, required this.activity});
   final Activity activity;
 
   @override

@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 // IDとパスワードのフォーム https://flutterawesome.com/basic-login-and-signup-screen-designed-in-flutter/
 class SessionFormField extends StatelessWidget {
   const SessionFormField(
-      {Key? key,
+      {super.key,
       required this.label,
       required this.controller,
       required this.isPassword,
-      required this.keyText})
-      : super(key: key);
+      required this.keyText});
   final String label;
   final TextEditingController controller;
   final bool isPassword;

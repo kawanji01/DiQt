@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class WordFormPreviewButton extends StatelessWidget {
   const WordFormPreviewButton(
-      {Key? key,
+      {super.key,
       required this.entryController,
       required this.meaningController,
       required this.ipaController,
@@ -16,8 +16,7 @@ class WordFormPreviewButton extends StatelessWidget {
       required this.synonymsController,
       required this.antonymsController,
       required this.relatedController,
-      required this.dictionary})
-      : super(key: key);
+      required this.dictionary});
   final TextEditingController entryController;
   final TextEditingController meaningController;
   final TextEditingController ipaController;

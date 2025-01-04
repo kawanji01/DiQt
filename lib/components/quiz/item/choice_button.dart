@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 class QuizItemChoiceButton extends StatelessWidget {
   const QuizItemChoiceButton(
-      {Key? key, required this.answerText, required this.selected})
-      : super(key: key);
+      {super.key, required this.answerText, required this.selected});
   final String answerText;
   final bool selected;
 

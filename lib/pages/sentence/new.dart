@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
+import 'package:booqs_mobile/components/sentence/new_action_buttons.dart';
 import 'package:booqs_mobile/components/sentence/new_screen.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -11,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SentenceNewPage extends ConsumerStatefulWidget {
-  const SentenceNewPage({Key? key}) : super(key: key);
+  const SentenceNewPage({super.key});
 
   static Future push(
       BuildContext context, int dictionaryId, String keyword) async {
@@ -97,6 +98,11 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
       child: Scaffold(
         appBar: AppBarDefault(
           title: t.sentences.add,
+          actions: [
+            SentenceNewActionButtons(
+              dictionaryId: _dictionaryId,
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Container(

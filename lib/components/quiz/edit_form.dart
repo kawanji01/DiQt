@@ -150,7 +150,9 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
                 label: Text(
                   t.shared.update,
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white),
                 ),
               ),
             ),

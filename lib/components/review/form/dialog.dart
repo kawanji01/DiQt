@@ -12,7 +12,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewFormDialog extends ConsumerStatefulWidget {
-  const ReviewFormDialog({Key? key, required this.review}) : super(key: key);
+  const ReviewFormDialog({super.key, required this.review});
 
   final Review review;
   @override

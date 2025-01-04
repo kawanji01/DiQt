@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ChapterDrills extends ConsumerStatefulWidget {
-  const ChapterDrills({Key? key}) : super(key: key);
+  const ChapterDrills({super.key});
 
   @override
   ChapterDrillsState createState() => ChapterDrillsState();

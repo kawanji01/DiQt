@@ -6,8 +6,7 @@ import 'package:booqs_mobile/models/sentence.dart';
 import 'package:flutter/material.dart';
 
 class SentenceItem extends StatelessWidget {
-  const SentenceItem({Key? key, required this.sentence, required this.isShow})
-      : super(key: key);
+  const SentenceItem({super.key, required this.sentence, required this.isShow});
   final Sentence sentence;
   final bool isShow;
 

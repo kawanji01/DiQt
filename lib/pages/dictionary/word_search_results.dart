@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // NOTE: 引数を dictionary ではなく dictionaryId にしているのは、DiQtMarkdownの辞書リンクからでも遷移できるようにするため。
 class DictionaryWordSearchResultsPage extends ConsumerStatefulWidget {
-  const DictionaryWordSearchResultsPage({Key? key}) : super(key: key);
+  const DictionaryWordSearchResultsPage({super.key});
 
   static Future push(
       BuildContext context, int dictionaryId, String keyword) async {

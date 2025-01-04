@@ -8,7 +8,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class DictionaryMapAdditionListView extends ConsumerStatefulWidget {
-  const DictionaryMapAdditionListView({Key? key}) : super(key: key);
+  const DictionaryMapAdditionListView({super.key});
 
   @override
   DictionaryMapAdditionListViewState createState() =>

@@ -11,11 +11,10 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ReviewSettingLargeButton extends StatefulWidget {
   const ReviewSettingLargeButton(
-      {Key? key,
+      {super.key,
       required this.quizId,
       required this.review,
-      required this.label})
-      : super(key: key);
+      required this.label});
   final int quizId;
   final Review? review;
   final String label;

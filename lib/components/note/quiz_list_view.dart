@@ -8,7 +8,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class NoteQuizListView extends ConsumerStatefulWidget {
-  const NoteQuizListView({Key? key, required this.order}) : super(key: key);
+  const NoteQuizListView({super.key, required this.order});
   final String order;
 
   @override

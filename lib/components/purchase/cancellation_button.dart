@@ -7,8 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/object_wrappers.dart';
 
 class PurchaseCancellationButton extends ConsumerWidget {
-  const PurchaseCancellationButton({Key? key, required this.entitlementInfo})
-      : super(key: key);
+  const PurchaseCancellationButton({super.key, required this.entitlementInfo});
   final EntitlementInfo entitlementInfo;
 
   @override
@@ -21,8 +20,8 @@ class PurchaseCancellationButton extends ConsumerWidget {
       margin: const EdgeInsets.only(top: 4),
       child: TextButton(
         style: ButtonStyle(
-          padding: MaterialStateProperty.all(EdgeInsets.zero),
-          minimumSize: MaterialStateProperty.all(Size.zero),
+          padding: WidgetStateProperty.all(EdgeInsets.zero),
+          minimumSize: WidgetStateProperty.all(Size.zero),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: () {

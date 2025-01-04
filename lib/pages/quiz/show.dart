@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
+import 'package:booqs_mobile/components/quiz/show_action_buttons.dart';
 import 'package:booqs_mobile/components/quiz/show_screen.dart';
 import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class QuizShowPage extends ConsumerStatefulWidget {
-  const QuizShowPage({Key? key}) : super(key: key);
+  const QuizShowPage({super.key});
 
   static Future push(BuildContext context, int quizId) async {
     return Navigator.of(context)
@@ -46,6 +47,7 @@ class QuizShowPageState extends ConsumerState<QuizShowPage> {
     return Scaffold(
       appBar: AppBarDefault(
         title: t.quizzes.quiz,
+        actions: [QuizShowActionButtons(quizId: quizId)],
       ),
       body: SingleChildScrollView(
         child: Container(

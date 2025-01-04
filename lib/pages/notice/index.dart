@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NoticeIndexPage extends ConsumerStatefulWidget {
-  const NoticeIndexPage({Key? key}) : super(key: key);
+  const NoticeIndexPage({super.key});
 
   static Future push(BuildContext context) async {
     // return Navigator.of(context).pushNamed(notificationIndexPage);

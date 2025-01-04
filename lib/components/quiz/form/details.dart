@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 
 class QuizFormDetails extends StatelessWidget {
   const QuizFormDetails(
-      {Key? key,
+      {super.key,
       required this.explanationController,
-      required this.hintController})
-      : super(key: key);
+      required this.hintController});
   final TextEditingController explanationController;
   final TextEditingController hintController;
 

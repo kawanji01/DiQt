@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerRequestingReviewScreen extends ConsumerStatefulWidget {
-  const AnswerRequestingReviewScreen({Key? key}) : super(key: key);
+  const AnswerRequestingReviewScreen({super.key});
 
   @override
   AnswerGoalAchievementScreenState createState() =>

@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserMenuPage extends ConsumerWidget {
-  const UserMenuPage({Key? key}) : super(key: key);
+  const UserMenuPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(userMenuPage);

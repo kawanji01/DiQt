@@ -2,7 +2,7 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class DialogCloseButton extends StatelessWidget {
-  const DialogCloseButton({Key? key}) : super(key: key);
+  const DialogCloseButton({super.key});
 
   @override
   Widget build(BuildContext context) {

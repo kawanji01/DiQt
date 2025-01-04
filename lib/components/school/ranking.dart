@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SchoolRanking extends ConsumerStatefulWidget {
-  const SchoolRanking({Key? key}) : super(key: key);
+  const SchoolRanking({super.key});
 
   @override
   SchoolRankingState createState() => SchoolRankingState();

@@ -16,7 +16,7 @@ import 'package:booqs_mobile/components/notice/weekly_report.dart';
 import 'package:flutter/material.dart';
 
 class NoticeListItem extends StatelessWidget {
-  const NoticeListItem({Key? key, required this.notice}) : super(key: key);
+  const NoticeListItem({super.key, required this.notice});
   final Notice notice;
 
   @override

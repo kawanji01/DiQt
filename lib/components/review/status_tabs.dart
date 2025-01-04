@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewStatusTabs extends ConsumerWidget {
-  const ReviewStatusTabs({Key? key, required this.selected}) : super(key: key);
+  const ReviewStatusTabs({super.key, required this.selected});
   final String selected;
 
   @override

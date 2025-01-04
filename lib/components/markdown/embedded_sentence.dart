@@ -9,8 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MarkdownEmbeddedSentence extends ConsumerWidget {
   const MarkdownEmbeddedSentence(
-      {Key? key, required this.sentenceId, required this.fontSize})
-      : super(key: key);
+      {super.key, required this.sentenceId, required this.fontSize});
   final int sentenceId;
   final double fontSize;
 

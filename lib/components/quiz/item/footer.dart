@@ -6,11 +6,10 @@ import 'package:flutter/material.dart';
 
 class QuizItemFooter extends StatelessWidget {
   const QuizItemFooter(
-      {Key? key,
+      {super.key,
       required this.quiz,
       required this.review,
-      required this.isShow})
-      : super(key: key);
+      required this.isShow});
   final Quiz quiz;
   final Review? review;
   final bool isShow;

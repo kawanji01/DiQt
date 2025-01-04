@@ -24,7 +24,7 @@ import 'package:upgrader/upgrader.dart';
 // always marked "final".
 
 class HomePage extends ConsumerStatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   static Future push(BuildContext context) async {
     // アニメーションなしで画面遷移させる。 参考： https://stackoverflow.com/questions/49874272/how-to-navigate-to-other-page-without-animation-flutter

@@ -10,8 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ActivityDrillLapClear extends ConsumerWidget {
-  const ActivityDrillLapClear({Key? key, required this.activity})
-      : super(key: key);
+  const ActivityDrillLapClear({super.key, required this.activity});
   final Activity activity;
 
   @override

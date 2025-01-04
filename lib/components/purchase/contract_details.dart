@@ -8,8 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 class PurchaseContractDetails extends StatefulWidget {
-  const PurchaseContractDetails({Key? key, required this.user})
-      : super(key: key);
+  const PurchaseContractDetails({super.key, required this.user});
   final User user;
 
   @override

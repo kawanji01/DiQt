@@ -6,8 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AppBanner extends ConsumerStatefulWidget {
-  const AppBanner({Key? key, this.adSize, this.adUnitId = ''})
-      : super(key: key);
+  const AppBanner({super.key, this.adSize, this.adUnitId = ''});
 
   final AdSize? adSize;
   final String adUnitId;

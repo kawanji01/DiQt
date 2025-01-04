@@ -9,8 +9,7 @@ import 'package:flutter/material.dart';
 
 class SentenceSettingSearchScreen extends StatelessWidget {
   const SentenceSettingSearchScreen(
-      {Key? key, required this.keyword, required this.dictionary})
-      : super(key: key);
+      {super.key, required this.keyword, required this.dictionary});
   final String keyword;
   final Dictionary dictionary;
 

@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 
 class SentenceFormTranslation extends StatelessWidget {
   const SentenceFormTranslation({
-    Key? key,
+    super.key,
     required this.translationController,
     required this.dictionary,
     required this.originalController,
-  }) : super(key: key);
+  });
   final TextEditingController translationController;
   final Dictionary dictionary;
   final TextEditingController originalController;

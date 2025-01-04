@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessUnsolvedQuizzes extends ConsumerWidget {
-  const WeaknessUnsolvedQuizzes({Key? key, required this.weaknesses})
-      : super(key: key);
+  const WeaknessUnsolvedQuizzes({super.key, required this.weaknesses});
   final List<Weakness> weaknesses;
 
   @override

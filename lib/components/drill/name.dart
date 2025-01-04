@@ -3,7 +3,7 @@ import 'package:booqs_mobile/components/drill/icon.dart';
 import 'package:flutter/material.dart';
 
 class DrillName extends StatelessWidget {
-  const DrillName({Key? key, required this.drill}) : super(key: key);
+  const DrillName({super.key, required this.drill});
   final Drill drill;
 
   @override

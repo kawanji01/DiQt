@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserStudyRecords extends ConsumerWidget {
-  const UserStudyRecords({Key? key, required this.user}) : super(key: key);
+  const UserStudyRecords({super.key, required this.user});
   final User user;
 
   @override

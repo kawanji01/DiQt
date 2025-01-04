@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordListItem extends ConsumerWidget {
-  const WordListItem({Key? key, required this.word}) : super(key: key);
+  const WordListItem({super.key, required this.word});
   final Word word;
 
   @override

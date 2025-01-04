@@ -17,7 +17,7 @@ import 'package:booqs_mobile/components/user/weakness_button.dart';
 import 'package:flutter/material.dart';
 
 class UserMypageScreen extends StatelessWidget {
-  const UserMypageScreen({Key? key, required this.user}) : super(key: key);
+  const UserMypageScreen({super.key, required this.user});
   final User? user;
 
   @override

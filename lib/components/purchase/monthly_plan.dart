@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PurchaseMonthlyplan extends StatefulWidget {
-  const PurchaseMonthlyplan({Key? key, required this.width}) : super(key: key);
+  const PurchaseMonthlyplan({super.key, required this.width});
   final double width;
 
   @override

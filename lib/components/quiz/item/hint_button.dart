@@ -6,7 +6,7 @@ import 'package:booqs_mobile/components/quiz/item/hint_screen.dart';
 import 'package:flutter/material.dart';
 
 class QuizItemHintButton extends StatelessWidget {
-  const QuizItemHintButton({Key? key, required this.quiz}) : super(key: key);
+  const QuizItemHintButton({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

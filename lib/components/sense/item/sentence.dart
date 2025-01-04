@@ -4,7 +4,7 @@ import 'package:booqs_mobile/models/sentence.dart';
 import 'package:flutter/material.dart';
 
 class SenseItemSentence extends StatelessWidget {
-  const SenseItemSentence({Key? key, required this.sense}) : super(key: key);
+  const SenseItemSentence({super.key, required this.sense});
   final Sense sense;
 
   @override

@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeaknessOrderSelectForm extends ConsumerWidget {
-  const WeaknessOrderSelectForm({Key? key, required this.type})
-      : super(key: key);
+  const WeaknessOrderSelectForm({super.key, required this.type});
   final String type;
 
   @override

@@ -6,8 +6,7 @@ import 'package:booqs_mobile/models/sentence.dart';
 import 'package:flutter/material.dart';
 
 class SentenceItemReversedReviewButton extends StatelessWidget {
-  const SentenceItemReversedReviewButton({Key? key, required this.sentence})
-      : super(key: key);
+  const SentenceItemReversedReviewButton({super.key, required this.sentence});
   final Sentence sentence;
 
   @override

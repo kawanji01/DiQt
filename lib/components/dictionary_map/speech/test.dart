@@ -209,10 +209,10 @@ class _DictionaryMapSpeechTestState extends State<DictionaryMapSpeechTest> {
 /// Displays the most recently recognized words and the sound level.
 class RecognitionResultsWidget extends StatelessWidget {
   const RecognitionResultsWidget({
-    Key? key,
+    super.key,
     required this.lastWords,
     required this.level,
-  }) : super(key: key);
+  });
 
   final String lastWords;
   final double level;
@@ -252,7 +252,7 @@ class RecognitionResultsWidget extends StatelessWidget {
                         BoxShadow(
                             blurRadius: .26,
                             spreadRadius: level * 1.5,
-                            color: Colors.black.withOpacity(.05))
+                            color: Colors.black.withValues(alpha: .05))
                       ],
                       color: Colors.white,
                       borderRadius: const BorderRadius.all(Radius.circular(50)),
@@ -276,9 +276,9 @@ class RecognitionResultsWidget extends StatelessWidget {
 /// recognizer
 class ErrorWidget extends StatelessWidget {
   const ErrorWidget({
-    Key? key,
+    super.key,
     required this.lastError,
-  }) : super(key: key);
+  });
 
   final String lastError;
 
@@ -304,8 +304,7 @@ class ErrorWidget extends StatelessWidget {
 class SpeechControlWidget extends StatelessWidget {
   const SpeechControlWidget(this.hasSpeech, this.isListening,
       this.startListening, this.stopListening, this.cancelListening,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   final bool hasSpeech;
   final bool isListening;
@@ -346,8 +345,7 @@ class SessionOptionsWidget extends StatelessWidget {
       this.listenForController,
       this.onDevice,
       this.switchOnDevice,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   final String currentLocaleId;
   final void Function(String?) switchLang;
@@ -432,8 +430,7 @@ class SessionOptionsWidget extends StatelessWidget {
 }
 
 class InitSpeechWidget extends StatelessWidget {
-  const InitSpeechWidget(this.hasSpeech, this.initSpeechState, {Key? key})
-      : super(key: key);
+  const InitSpeechWidget(this.hasSpeech, this.initSpeechState, {super.key});
 
   final bool hasSpeech;
   final Future<void> Function() initSpeechState;
@@ -455,9 +452,9 @@ class InitSpeechWidget extends StatelessWidget {
 /// Display the current status of the listener
 class SpeechStatusWidget extends StatelessWidget {
   const SpeechStatusWidget({
-    Key? key,
+    super.key,
     required this.speech,
-  }) : super(key: key);
+  });
 
   final SpeechToText speech;
 
@@ -465,7 +462,7 @@ class SpeechStatusWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
-      color: Theme.of(context).colorScheme.background,
+      color: Theme.of(context).colorScheme.surface,
       child: Center(
         child: speech.isListening
             ? const Text(

@@ -18,7 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserMyPage extends ConsumerStatefulWidget {
-  const UserMyPage({Key? key}) : super(key: key);
+  const UserMyPage({super.key});
 
   static Future push(BuildContext context) async {
     //return Navigator.of(context).pushNamed(userMyPage);

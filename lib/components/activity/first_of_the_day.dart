@@ -5,8 +5,7 @@ import 'package:booqs_mobile/components/user/feed_icon.dart';
 import 'package:flutter/material.dart';
 
 class ActivityFirstOfTheDay extends StatelessWidget {
-  const ActivityFirstOfTheDay({Key? key, required this.activity})
-      : super(key: key);
+  const ActivityFirstOfTheDay({super.key, required this.activity});
   final Activity activity;
 
   @override

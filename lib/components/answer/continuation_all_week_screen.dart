@@ -17,8 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerContinuationAllWeekScreen extends ConsumerStatefulWidget {
-  const AnswerContinuationAllWeekScreen({Key? key, required this.answerCreator})
-      : super(key: key);
+  const AnswerContinuationAllWeekScreen({super.key, required this.answerCreator});
   final AnswerCreator answerCreator;
 
   @override

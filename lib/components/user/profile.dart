@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class UserProfile extends StatelessWidget {
-  const UserProfile({Key? key, required this.user}) : super(key: key);
+  const UserProfile({super.key, required this.user});
   final User user;
 
   @override

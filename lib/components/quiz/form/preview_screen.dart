@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class QuizFormPreviewScreen extends StatelessWidget {
   const QuizFormPreviewScreen(
-      {Key? key,
+      {super.key,
       required this.question,
       required this.langNumberOfQuestion,
       required this.correctAnswer,
@@ -20,8 +20,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
       required this.explanation,
       required this.autoDictLinkOfQuestion,
       required this.autoDictLinkOfAnswer,
-      required this.appliedDictionaryId})
-      : super(key: key);
+      required this.appliedDictionaryId});
   final String question;
   final int langNumberOfQuestion;
   final String correctAnswer;

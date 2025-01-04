@@ -4,8 +4,7 @@ import 'package:booqs_mobile/components/shared/tts_button.dart';
 import 'package:flutter/material.dart';
 
 class SentenceItemTTSButton extends StatelessWidget {
-  const SentenceItemTTSButton({Key? key, required this.sentence})
-      : super(key: key);
+  const SentenceItemTTSButton({super.key, required this.sentence});
   final Sentence sentence;
 
   @override

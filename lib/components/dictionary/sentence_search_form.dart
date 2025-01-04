@@ -4,8 +4,7 @@ import 'package:booqs_mobile/pages/dictionary/sentence_search_results.dart';
 import 'package:flutter/material.dart';
 
 class DictionarySentenceSearchForm extends StatefulWidget {
-  const DictionarySentenceSearchForm({Key? key, required this.dictionary})
-      : super(key: key);
+  const DictionarySentenceSearchForm({super.key, required this.dictionary});
   final Dictionary dictionary;
 
   @override

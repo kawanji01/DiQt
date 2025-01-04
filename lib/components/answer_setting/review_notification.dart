@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerSettingReviewNotification extends ConsumerWidget {
-  const AnswerSettingReviewNotification({Key? key}) : super(key: key);
+  const AnswerSettingReviewNotification({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

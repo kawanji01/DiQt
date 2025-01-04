@@ -40,8 +40,11 @@ entry_not_found: '"${query}" is not found.'
 keyword_not_found: 'The keyword is not registered in the dictionary.'
 search_by_web: 'Search by Web'
 search_by_another: 'Search by ${name}'
+edit_by_web: 'Edit by Web'
 add_keyword_to_dictionary: 'Add "${keyword}" to the dictionary'
+add_by_web: 'Add by Web'
 register_keyword: 'Register keyword to the dictionary'
+open_by_web: 'Open by Web'
 no_permission: "You don't have permission."
 no_addition_permission: "You don't have create permission."
 no_modification_permission: "You don't have update permission."

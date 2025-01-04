@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrillQuizHeader extends ConsumerWidget {
-  const DrillQuizHeader({Key? key, required this.quiz}) : super(key: key);
+  const DrillQuizHeader({super.key, required this.quiz});
   final Quiz quiz;
 
   @override

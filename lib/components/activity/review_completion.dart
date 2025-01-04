@@ -5,8 +5,7 @@ import 'package:booqs_mobile/components/user/feed_icon.dart';
 import 'package:flutter/material.dart';
 
 class ActivityReviewCompletion extends StatelessWidget {
-  const ActivityReviewCompletion({Key? key, required this.activity})
-      : super(key: key);
+  const ActivityReviewCompletion({super.key, required this.activity});
   final Activity activity;
 
   @override

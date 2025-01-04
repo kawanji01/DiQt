@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LargeGreenButton extends StatelessWidget {
-  const LargeGreenButton({Key? key, required this.label, required this.icon})
-      : super(key: key);
+  const LargeGreenButton({super.key, required this.label, required this.icon});
   final String label;
   final IconData? icon;
 

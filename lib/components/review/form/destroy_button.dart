@@ -7,8 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ReviewFormDestroyButton extends StatefulWidget {
-  const ReviewFormDestroyButton({Key? key, required this.review})
-      : super(key: key);
+  const ReviewFormDestroyButton({super.key, required this.review});
   final Review review;
 
   @override

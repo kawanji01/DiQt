@@ -18,8 +18,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerContinuousGoalAchievementScreen extends ConsumerStatefulWidget {
   const AnswerContinuousGoalAchievementScreen(
-      {Key? key, required this.answerCreator})
-      : super(key: key);
+      {super.key, required this.answerCreator});
   final AnswerCreator answerCreator;
 
   @override

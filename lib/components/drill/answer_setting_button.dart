@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrillAnswerSettingButton extends ConsumerWidget {
-  const DrillAnswerSettingButton({Key? key}) : super(key: key);
+  const DrillAnswerSettingButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

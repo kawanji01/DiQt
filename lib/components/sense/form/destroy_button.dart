@@ -4,8 +4,7 @@ import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:flutter/material.dart';
 
 class SenseFormDestroyButton extends StatelessWidget {
-  const SenseFormDestroyButton({Key? key, required this.onPressed})
-      : super(key: key);
+  const SenseFormDestroyButton({super.key, required this.onPressed});
   final VoidCallback onPressed;
 
   @override

@@ -8,12 +8,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SentenceFormTranslationButtons extends ConsumerStatefulWidget {
   const SentenceFormTranslationButtons(
-      {Key? key,
+      {super.key,
       required this.originalController,
       required this.translationController,
       required this.sourceLangNumber,
-      required this.targetLangNumber})
-      : super(key: key);
+      required this.targetLangNumber});
   final TextEditingController originalController;
   final TextEditingController translationController;
   final int sourceLangNumber;

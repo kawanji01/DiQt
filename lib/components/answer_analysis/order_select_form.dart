@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnswerAnalysisOrderSelectForm extends ConsumerWidget {
-  const AnswerAnalysisOrderSelectForm({Key? key}) : super(key: key);
+  const AnswerAnalysisOrderSelectForm({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

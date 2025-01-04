@@ -10,8 +10,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 class DictionarySentenceListView extends StatefulWidget {
   const DictionarySentenceListView(
-      {Key? key, required this.dictionaryId, required this.keyword})
-      : super(key: key);
+      {super.key, required this.dictionaryId, required this.keyword});
 
   final int dictionaryId;
   final String keyword;

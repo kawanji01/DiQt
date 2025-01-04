@@ -5,7 +5,7 @@ import 'package:booqs_mobile/components/user/feed_icon.dart';
 import 'package:flutter/material.dart';
 
 class ActivityLevelUp extends StatelessWidget {
-  const ActivityLevelUp({Key? key, required this.activity}) : super(key: key);
+  const ActivityLevelUp({super.key, required this.activity});
   final Activity activity;
 
   @override

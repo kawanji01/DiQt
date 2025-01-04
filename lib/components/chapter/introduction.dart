@@ -3,8 +3,7 @@ import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 
 class ChapterIntroduction extends StatelessWidget {
-  const ChapterIntroduction({Key? key, required this.chapter})
-      : super(key: key);
+  const ChapterIntroduction({super.key, required this.chapter});
   final Chapter chapter;
 
   @override

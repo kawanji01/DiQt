@@ -9,12 +9,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SentenceFormPreviewScreen extends ConsumerWidget {
   const SentenceFormPreviewScreen(
-      {Key? key,
+      {super.key,
       required this.original,
       required this.translation,
       required this.explanation,
-      required this.dictionary})
-      : super(key: key);
+      required this.dictionary});
   final String original;
   final String translation;
   final String explanation;

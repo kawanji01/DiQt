@@ -1,15 +1,19 @@
+import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/edit.dart';
+import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordShowAction extends StatelessWidget {
-  const WordShowAction({Key? key, required this.word}) : super(key: key);
+class WordShowActionButtons extends ConsumerWidget {
+  const WordShowActionButtons({super.key, required this.word});
   final Word? word;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final String locale = ref.watch(localeProvider);
     if (word == null) {
       return Container();
     }
@@ -23,6 +27,11 @@ class WordShowAction extends StatelessWidget {
           // Webで検索する
           WebPageLauncher.searchEntryByGoogle(
               word.entry, word.langNumberOfEntry);
+          break;
+        case 2:
+          // Webで開く
+          WebPageLauncher.openByWebView(
+              '${DiQtURL.root(locale: locale)}/words/${word.id}');
           break;
       }
     }
@@ -44,6 +53,13 @@ class WordShowAction extends StatelessWidget {
           value: 1,
           child: Text(
             t.dictionaries.search_by_web,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ),
+        PopupMenuItem(
+          value: 2,
+          child: Text(
+            t.dictionaries.open_by_web,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         )

@@ -6,8 +6,7 @@ import 'package:booqs_mobile/components/sentence/item/tts_button.dart';
 import 'package:flutter/material.dart';
 
 class SentenceItemContent extends StatelessWidget {
-  const SentenceItemContent({Key? key, required this.sentence})
-      : super(key: key);
+  const SentenceItemContent({super.key, required this.sentence});
   final Sentence sentence;
 
   @override

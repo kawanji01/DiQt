@@ -7,8 +7,7 @@ import 'package:booqs_mobile/pages/word/new.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryWordPart extends StatelessWidget {
-  const DictionaryWordPart({Key? key, required this.dictionary})
-      : super(key: key);
+  const DictionaryWordPart({super.key, required this.dictionary});
   final Dictionary dictionary;
 
   @override

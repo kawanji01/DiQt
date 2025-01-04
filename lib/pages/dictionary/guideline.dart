@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryGuidelinePage extends ConsumerWidget {
-  const DictionaryGuidelinePage({Key? key}) : super(key: key);
+  const DictionaryGuidelinePage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(dictionaryGuidelinePage);

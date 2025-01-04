@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ReviewIndexPage extends ConsumerStatefulWidget {
-  const ReviewIndexPage({Key? key}) : super(key: key);
+  const ReviewIndexPage({super.key});
 
   static Future push(BuildContext context) async {
     return Navigator.of(context).pushNamed(reviewIndexPage);

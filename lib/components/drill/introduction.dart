@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrillIntroduction extends ConsumerWidget {
-  const DrillIntroduction({Key? key}) : super(key: key);
+  const DrillIntroduction({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

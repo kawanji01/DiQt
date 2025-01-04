@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryMapRadioList extends ConsumerStatefulWidget {
-  const DictionaryMapRadioList({Key? key}) : super(key: key);
+  const DictionaryMapRadioList({super.key});
 
   @override
   DictionaryMapRadioListState createState() => DictionaryMapRadioListState();

@@ -6,7 +6,7 @@ import 'package:booqs_mobile/components/review/quiz_header.dart';
 import 'package:flutter/material.dart';
 
 class ReviewListQuiz extends StatelessWidget {
-  const ReviewListQuiz({Key? key, required this.review}) : super(key: key);
+  const ReviewListQuiz({super.key, required this.review});
   final Review review;
 
   @override

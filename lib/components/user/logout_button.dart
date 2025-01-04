@@ -9,7 +9,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserLogoutButton extends ConsumerStatefulWidget {
-  const UserLogoutButton({Key? key}) : super(key: key);
+  const UserLogoutButton({super.key});
 
   @override
   UserLogoutButtonState createState() => UserLogoutButtonState();

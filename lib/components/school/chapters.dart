@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SchoolChapters extends ConsumerStatefulWidget {
-  const SchoolChapters({Key? key}) : super(key: key);
+  const SchoolChapters({super.key});
 
   @override
   SchoolChaptersState createState() => SchoolChaptersState();

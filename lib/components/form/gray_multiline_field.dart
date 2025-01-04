@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 class FormGrayMultilineField extends StatelessWidget {
   const FormGrayMultilineField(
-      {Key? key, required this.hintText, required this.controller})
-      : super(key: key);
+      {super.key, required this.hintText, required this.controller});
   final String hintText;
   final TextEditingController controller;
 
