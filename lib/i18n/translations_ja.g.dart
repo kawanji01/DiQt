@@ -471,8 +471,11 @@ class _TranslationsDictionariesJa implements TranslationsDictionariesEn {
 	@override String get keyword_not_found => '検索内容は辞書に登録されていません。';
 	@override String get search_by_web => 'Webで検索する';
 	@override String search_by_another({required Object name}) => '${name}で検索する';
+	@override String get edit_by_web => 'Webで編集する';
 	@override String add_keyword_to_dictionary({required Object keyword}) => '"${keyword}"を辞書に追加する';
+	@override String get add_by_web => 'Webで追加する';
 	@override String get register_keyword => '検索内容を辞書に登録する';
+	@override String get open_by_web => 'Webで開く';
 	@override String get no_permission => '権限がありません。';
 	@override String get no_addition_permission => '追加する権限がありません。';
 	@override String get no_modification_permission => '修正する権限がありません。';
@@ -2163,8 +2166,11 @@ extension on TranslationsJa {
 			case 'dictionaries.keyword_not_found': return '検索内容は辞書に登録されていません。';
 			case 'dictionaries.search_by_web': return 'Webで検索する';
 			case 'dictionaries.search_by_another': return ({required Object name}) => '${name}で検索する';
+			case 'dictionaries.edit_by_web': return 'Webで編集する';
 			case 'dictionaries.add_keyword_to_dictionary': return ({required Object keyword}) => '"${keyword}"を辞書に追加する';
+			case 'dictionaries.add_by_web': return 'Webで追加する';
 			case 'dictionaries.register_keyword': return '検索内容を辞書に登録する';
+			case 'dictionaries.open_by_web': return 'Webで開く';
 			case 'dictionaries.no_permission': return '権限がありません。';
 			case 'dictionaries.no_addition_permission': return '追加する権限がありません。';
 			case 'dictionaries.no_modification_permission': return '修正する権限がありません。';

@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
+import 'package:booqs_mobile/components/sentence/show_action_buttons.dart';
 import 'package:booqs_mobile/components/sentence/show_screen.dart';
 import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -45,6 +46,7 @@ class SentenceShowPageState extends ConsumerState<SentenceShowPage> {
     return Scaffold(
       appBar: AppBarDefault(
         title: t.sentences.sentence,
+        actions: [SentenceShowActionButtons(sentenceId: sentenceId)],
       ),
       body: Container(
         margin: EdgeInsets.symmetric(

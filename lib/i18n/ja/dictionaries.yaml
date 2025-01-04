@@ -40,8 +40,11 @@ entry_not_found: '"${query}"は辞書に登録されていません。'
 keyword_not_found: '検索内容は辞書に登録されていません。'
 search_by_web: 'Webで検索する'
 search_by_another: '${name}で検索する'
+edit_by_web: 'Webで編集する'
 add_keyword_to_dictionary: '"${keyword}"を辞書に追加する'
+add_by_web: 'Webで追加する'
 register_keyword: '検索内容を辞書に登録する'
+open_by_web: 'Webで開く'
 no_permission: "権限がありません。"
 no_addition_permission: "追加する権限がありません。"
 no_modification_permission: "修正する権限がありません。"

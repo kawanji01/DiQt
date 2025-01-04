@@ -475,8 +475,11 @@ class TranslationsDictionariesEn {
 	String get keyword_not_found => 'The keyword is not registered in the dictionary.';
 	String get search_by_web => 'Search by Web';
 	String search_by_another({required Object name}) => 'Search by ${name}';
+	String get edit_by_web => 'Edit by Web';
 	String add_keyword_to_dictionary({required Object keyword}) => 'Add "${keyword}" to the dictionary';
+	String get add_by_web => 'Add by Web';
 	String get register_keyword => 'Register keyword to the dictionary';
+	String get open_by_web => 'Open by Web';
 	String get no_permission => 'You don\'t have permission.';
 	String get no_addition_permission => 'You don\'t have create permission.';
 	String get no_modification_permission => 'You don\'t have update permission.';
@@ -2167,8 +2170,11 @@ extension on Translations {
 			case 'dictionaries.keyword_not_found': return 'The keyword is not registered in the dictionary.';
 			case 'dictionaries.search_by_web': return 'Search by Web';
 			case 'dictionaries.search_by_another': return ({required Object name}) => 'Search by ${name}';
+			case 'dictionaries.edit_by_web': return 'Edit by Web';
 			case 'dictionaries.add_keyword_to_dictionary': return ({required Object keyword}) => 'Add "${keyword}" to the dictionary';
+			case 'dictionaries.add_by_web': return 'Add by Web';
 			case 'dictionaries.register_keyword': return 'Register keyword to the dictionary';
+			case 'dictionaries.open_by_web': return 'Open by Web';
 			case 'dictionaries.no_permission': return 'You don\'t have permission.';
 			case 'dictionaries.no_addition_permission': return 'You don\'t have create permission.';
 			case 'dictionaries.no_modification_permission': return 'You don\'t have update permission.';

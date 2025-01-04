@@ -54,7 +54,10 @@ class DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
       appBar: AppBarDefault(
         title: future.when(
           data: (date) => '${date?.typeName()}',
-          error: (err, stack) => 'Error: $err',
+          error: (err, stack) {
+            print('Error: $err stack: $stack');
+            return 'Error: $err';
+          },
           loading: () => '${dictionary?.typeName()}',
         ),
       ),

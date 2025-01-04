@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
+import 'package:booqs_mobile/components/sentence/edit_action_buttons.dart';
 import 'package:booqs_mobile/components/sentence/edit_screen.dart';
 import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
@@ -65,6 +66,7 @@ class SentenceEditPage extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBarDefault(
           title: t.sentences.edit,
+          actions: [SentenceEditActionButtons(sentenceId: sentenceId)],
         ),
         body: Container(
           margin: EdgeInsets.symmetric(
