@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
+import 'package:booqs_mobile/components/quiz/show_action_buttons.dart';
 import 'package:booqs_mobile/components/quiz/show_screen.dart';
 import 'package:booqs_mobile/data/provider/quiz.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -46,6 +47,7 @@ class QuizShowPageState extends ConsumerState<QuizShowPage> {
     return Scaffold(
       appBar: AppBarDefault(
         title: t.quizzes.quiz,
+        actions: [QuizShowActionButtons(quizId: quizId)],
       ),
       body: SingleChildScrollView(
         child: Container(
