@@ -113,7 +113,9 @@ class _SentenceNewScreenState extends State<SentenceNewScreen> {
                 label: Text(
                   t.shared.create,
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 16),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.white),
                 ),
               ),
             ),
