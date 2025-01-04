@@ -53,6 +53,7 @@ class Dialogs {
       context: navigatorKey.currentContext!,
       animType: AnimType.scale,
       dialogType: DialogType.noHeader,
+      dialogBackgroundColor: Colors.white,
       bodyHeaderDistance: 0,
       padding: const EdgeInsets.all(0),
       body: ClipRRect(
@@ -68,6 +69,7 @@ class Dialogs {
       context: navigatorKey.currentContext!,
       animType: AnimType.bottomSlide,
       dialogType: DialogType.noHeader,
+      dialogBackgroundColor: Colors.white,
       bodyHeaderDistance: 0,
       padding: const EdgeInsets.all(0),
       body: screen,
@@ -80,6 +82,7 @@ class Dialogs {
       context: navigatorKey.currentContext!,
       animType: AnimType.bottomSlide,
       dialogType: DialogType.noHeader,
+      dialogBackgroundColor: Colors.white,
       bodyHeaderDistance: 0,
       padding: const EdgeInsets.all(0),
       body: ClipRRect(
