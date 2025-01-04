@@ -1,5 +1,5 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
-import 'package:booqs_mobile/components/word/show_action.dart';
+import 'package:booqs_mobile/components/word/show_action_buttons.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/routes.dart';
@@ -50,9 +50,9 @@ class WordShowPageState extends ConsumerState<WordShowPage> {
 
     Widget action() {
       return future.when(
-        data: (date) => WordShowAction(word: date),
+        data: (date) => WordShowActionButtons(word: date),
         error: (err, stack) => Container(),
-        loading: () => WordShowAction(word: word),
+        loading: () => WordShowActionButtons(word: word),
       );
     }
 

@@ -4,8 +4,8 @@ import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 
-class WordShowAction extends StatelessWidget {
-  const WordShowAction({super.key, required this.word});
+class WordShowActionButtons extends StatelessWidget {
+  const WordShowActionButtons({super.key, required this.word});
   final Word? word;
 
   @override
