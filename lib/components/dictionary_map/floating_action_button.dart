@@ -28,6 +28,7 @@ class DictionaryMapFloatingActionButton extends StatelessWidget {
         );
       },
       backgroundColor: Colors.green,
+      shape: const CircleBorder(), // 円にする
       child: const Icon(Icons.settings, color: Colors.white),
     );
   }
