@@ -132,7 +132,9 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
                   label: Text(
                     t.shared.update,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 16),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Colors.white),
                   ),
                 ),
               ),
