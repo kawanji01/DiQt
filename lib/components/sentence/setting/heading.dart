@@ -15,8 +15,8 @@ class SentenceSettingHeading extends StatelessWidget {
       TextButton(
         style: ButtonStyle(
           // paddingを消す
-          padding: MaterialStateProperty.all(EdgeInsets.zero),
-          minimumSize: MaterialStateProperty.all(Size.zero),
+          padding: WidgetStateProperty.all(EdgeInsets.zero),
+          minimumSize: WidgetStateProperty.all(Size.zero),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: () {
@@ -33,8 +33,8 @@ class SentenceSettingHeading extends StatelessWidget {
       TextButton(
         style: ButtonStyle(
           // paddingを消す
-          padding: MaterialStateProperty.all(EdgeInsets.zero),
-          minimumSize: MaterialStateProperty.all(Size.zero),
+          padding: WidgetStateProperty.all(EdgeInsets.zero),
+          minimumSize: WidgetStateProperty.all(Size.zero),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: additionPressed,

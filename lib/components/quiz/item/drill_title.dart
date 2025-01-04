@@ -16,8 +16,8 @@ class QuizItemDrillTitle extends ConsumerWidget {
       child: TextButton(
         // デフォルトのpadddingを消す ref: https://crieit.net/posts/Flutter-TextButton
         style: ButtonStyle(
-          padding: MaterialStateProperty.all(EdgeInsets.zero),
-          minimumSize: MaterialStateProperty.all(Size.zero),
+          padding: WidgetStateProperty.all(EdgeInsets.zero),
+          minimumSize: WidgetStateProperty.all(Size.zero),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: () {

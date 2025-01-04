@@ -171,7 +171,7 @@ class SentenceSettingState extends State<SentenceSetting> {
           ),
           ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+              backgroundColor: WidgetStateProperty.all<Color>(Colors.green),
             ),
             child: const Icon(
               Icons.search,

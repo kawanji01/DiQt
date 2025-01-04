@@ -36,8 +36,8 @@ class LineWithDictLink extends StatelessWidget {
 
     final ButtonStyle buttonStyle = ButtonStyle(
       // paddingを消す
-      padding: MaterialStateProperty.all(EdgeInsets.zero),
-      minimumSize: MaterialStateProperty.all(Size.zero),
+      padding: WidgetStateProperty.all(EdgeInsets.zero),
+      minimumSize: WidgetStateProperty.all(Size.zero),
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
 
