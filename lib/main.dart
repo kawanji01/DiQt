@@ -93,7 +93,8 @@ class DiQtState extends ConsumerState<DiQt> {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        //appBarTheme: const AppBarTheme(elevation: 0),
+        // 背景を白にする
+        scaffoldBackgroundColor: Colors.white,
         brightness: Brightness.light,
         textTheme: GoogleFonts.notoSansTextTheme(
           Theme.of(context).textTheme,
@@ -116,6 +117,11 @@ class DiQtState extends ConsumerState<DiQt> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)),
           ),
+        ),
+        // タブバーを白にする
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+          elevation: 2,
         ),
       ),
       // ダークモードの設定
