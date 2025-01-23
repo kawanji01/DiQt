@@ -1,6 +1,7 @@
+import 'package:booqs_mobile/components/word/item/explanation.dart';
+import 'package:booqs_mobile/components/word/item/meaning_image.dart';
 import 'package:booqs_mobile/components/word/item/pos_tag.dart';
 import 'package:booqs_mobile/components/word/item/reversed_review_button.dart';
-import 'package:booqs_mobile/components/word/item/senses.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
@@ -11,7 +12,7 @@ import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/components/word/item/reading.dart';
 import 'package:booqs_mobile/components/word/item/review_button.dart';
 import 'package:booqs_mobile/components/word/item/sentence.dart';
-import 'package:booqs_mobile/components/word/item/tags.dart';
+import 'package:booqs_mobile/components/word/item/word_tags.dart';
 import 'package:booqs_mobile/components/word/word_requests_button.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class WordDetailedItem extends StatelessWidget {
       children: [
         DictionaryName(dictionary: dictionary, linked: true),
         const SizedBox(height: 10),
-        WordItemTags(
+        WordItemWordTags(
           word: word,
         ),
         const SizedBox(height: 10),
@@ -53,7 +54,9 @@ class WordDetailedItem extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        WordItemSenses(word: word),
+        WordItemExplanation(word: word),
+        WordItemMeaningImage(word: word),
+        // WordItemSenses(word: word),
         const SizedBox(
           height: 16,
         ),
