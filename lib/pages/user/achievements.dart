@@ -131,7 +131,7 @@ class UserAchievementsPageState extends ConsumerState<UserAchievementsPage> {
           width: width,
         ),
         heading(t.achievements.answer_days_medal,
-            t.achievements.answers_medal_introduction),
+            t.achievements.answer_days_medal_introduction),
         AchievementTile(
           achievements: _continuationMedals,
           gotMedalIds: _gotMedalIds,
