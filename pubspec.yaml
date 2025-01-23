@@ -86,7 +86,7 @@ dependencies:
   cell_calendar: ^0.8.0 # カレンダー
   slang: ^4.4.1 # 多言語化
   slang_flutter: ^4.0.0 # 多言語化
-  flutter_app_badger: ^1.5.0 # 端末のホーム画面のアプリのアイコンにバッジを表示する
+  # flutter_app_badger: ^1.5.0 # 端末のホーム画面のアプリのアイコンにバッジを表示する。Discontinuedなので廃止
   mockito: ^5.4.2 # 自動テストのMockライブラリ
   upgrader: ^11.3.1 # 強制アップデート
   image_picker: ^1.0.0 # 画像のアップロード
