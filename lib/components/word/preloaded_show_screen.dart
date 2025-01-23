@@ -7,7 +7,7 @@ import 'package:booqs_mobile/components/word/item/entry.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/components/word/item/reading.dart';
-import 'package:booqs_mobile/components/word/item/tags.dart';
+import 'package:booqs_mobile/components/word/item/word_tags.dart';
 import 'package:booqs_mobile/components/word/word_requests_button.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +30,7 @@ class WordPreloadedShowScreen extends StatelessWidget {
         children: [
           DictionaryName(dictionary: dictionary, linked: true),
           const SizedBox(height: 10),
-          WordItemTags(
+          WordItemWordTags(
             word: word!,
           ),
           const SizedBox(height: 10),

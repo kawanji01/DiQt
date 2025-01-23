@@ -52,6 +52,7 @@ import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/pages/word_request/dictionary.dart';
 import 'package:booqs_mobile/pages/word_request/show.dart';
 import 'package:booqs_mobile/pages/word_request/word.dart';
+import 'package:booqs_mobile/pages/word_tag/show.dart';
 
 // ホーム
 const indexPage = '/';
@@ -105,6 +106,8 @@ const chapterShowPage = '/chapter/show';
 const chapterDrillsPage = '/chapter/drills';
 // カスタムセクション
 const customSectionShowPage = '/custom_section/show';
+// WordTag
+const wordTagShowPage = '/word_tag/show';
 // ユーザー
 const userMyPage = '/user/mypage';
 const userShowPage = '/user/show';
@@ -184,6 +187,8 @@ final routes = {
   chapterShowPage: (context) => const ChapterShowPage(),
   // CustomSection
   customSectionShowPage: (context) => const CustomSectionShowPage(),
+  // WordTag
+  wordTagShowPage: (context) => const WordTagShowPage(),
 
   // User
   userMyPage: (context) => const UserMyPage(),
