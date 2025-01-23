@@ -16,6 +16,7 @@ class Word {
     required this.meaning,
     required this.langNumberOfMeaning,
     this.explanation = '',
+    this.meaningImageUrl,
     this.pos,
     this.ipa,
     this.reading,
@@ -47,6 +48,7 @@ class Word {
   String meaning;
   int langNumberOfMeaning;
   String? explanation;
+  String? meaningImageUrl;
   String? pos;
   String? ipa;
   String? reading;
@@ -77,6 +79,7 @@ class Word {
         meaning = json['meaning'],
         langNumberOfMeaning = json['lang_number_of_meaning'],
         explanation = json['explanation'],
+        meaningImageUrl = json['meaning_image_url'],
         pos = json['pos'],
         ipa = json['ipa'],
         reading = json['reading'],
@@ -123,6 +126,7 @@ class Word {
         'meaning': meaning,
         'lang_number_of_meaning': langNumberOfMeaning,
         'explanation': explanation,
+        'meaning_image_url': meaningImageUrl,
         'pos': pos,
         'ipa': ipa,
         'reading': reading,

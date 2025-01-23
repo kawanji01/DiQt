@@ -1,13 +1,12 @@
-import 'package:booqs_mobile/data/provider/chapter.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/models/word_tag.dart';
-import 'package:booqs_mobile/pages/chapter/show.dart';
+import 'package:booqs_mobile/pages/word_tag/show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class WordItemTags extends ConsumerWidget {
-  const WordItemTags({super.key, required this.word});
+class WordItemWordTags extends ConsumerWidget {
+  const WordItemWordTags({super.key, required this.word});
   final Word word;
 
   @override
@@ -24,8 +23,7 @@ class WordItemTags extends ConsumerWidget {
     Widget tagButton(WordTag wordTag) {
       return InkWell(
         onTap: () {
-          ref.invalidate(asyncChapterFamily(wordTag.chapterUid));
-          ChapterShowPage.push(context);
+          WordTagShowPage.push(context, wordTag.id);
         },
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
