@@ -1,16 +1,16 @@
 buildscript {
-    ext.kotlin_version = '1.8.21'
+    ext.kotlin_version = '1.8.21'  // ✅ ここを統一
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-    classpath 'com.android.tools.build:gradle:7.4.2'
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20"
-    classpath 'com.google.gms:google-services:4.3.15'
-    classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
-}
+        classpath 'com.android.tools.build:gradle:8.1.1' // ✅ 最新バージョンを維持
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21" // ✅ Kotlin のバージョンを統一
+        classpath 'com.google.gms:google-services:4.3.15'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
+    }
 }
 
 allprojects {
@@ -20,12 +20,13 @@ allprojects {
     }
 }
 
-rootProject.buildDir = '../build'	
+// ✅ Gradle 8 以降では不要なので削除
+rootProject.buildDir = '../build'
 subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-    project.evaluationDependsOn(':app')	
-}	
+     project.buildDir = "${rootProject.buildDir}/${project.name}"
+     project.evaluationDependsOn(':app')  // ❌ 削除（Gradle 8 では不要）
+ }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir	
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
 }
