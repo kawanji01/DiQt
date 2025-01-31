@@ -1,6 +1,8 @@
 // lib/components/dictionary_map/setting_button.dart
 import 'package:flutter/material.dart';
 import 'package:booqs_mobile/components/dictionary_map/setting_screen.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
+
 
 class DictionaryMapSettingButton extends StatelessWidget {
   const DictionaryMapSettingButton({super.key});
@@ -36,8 +38,8 @@ class DictionaryMapSettingButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
         ),
-        child: const Text(
-          '辞書を設定する',
+        child: Text(
+          t.dictionaryMaps.set_dictionaries,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,

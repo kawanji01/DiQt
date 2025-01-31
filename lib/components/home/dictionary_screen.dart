@@ -5,7 +5,6 @@ import 'package:booqs_mobile/components/dictionary_map/setting_dictionary_button
 import 'package:booqs_mobile/components/layouts/drawer_menu.dart';
 import 'package:booqs_mobile/components/user/lang_init_screen.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
