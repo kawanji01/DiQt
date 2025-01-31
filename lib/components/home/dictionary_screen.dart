@@ -67,8 +67,6 @@ class _HomeDictionaryScreenState extends ConsumerState<HomeDictionaryScreen> {
         ),
         bottomNavigationBar: const BottomNavbar(),
         drawer: const DrawerMenu(),
-        // floatingActionButton: ref.watch(
-        //     dictionaryMapFloatingActionButtonProvider) // tabIndexが0でないときは、FloatingActionButtonを表示しない
         );
   }
 }
