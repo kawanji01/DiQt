@@ -44,6 +44,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final TranslationsAnswerHistoriesEn answerHistories = TranslationsAnswerHistoriesEn._(_root);
 	late final TranslationsAnswerSettingsEn answerSettings = TranslationsAnswerSettingsEn._(_root);
 	late final TranslationsCalendarsEn calendars = TranslationsCalendarsEn._(_root);
+	late final TranslationsCancellationEn cancellation = TranslationsCancellationEn._(_root);
 	late final TranslationsChaptersEn chapters = TranslationsChaptersEn._(_root);
 	late final TranslationsDictionariesEn dictionaries = TranslationsDictionariesEn._(_root);
 	late final TranslationsDictionaryMapsEn dictionaryMaps = TranslationsDictionaryMapsEn._(_root);
@@ -386,6 +387,28 @@ class TranslationsCalendarsEn {
 	String get day => 'Day';
 	String answers({required Object count}) => '${count}';
 	String get reviewed => 'Review';
+}
+
+// Path: cancellation
+class TranslationsCancellationEn {
+	TranslationsCancellationEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get cancel_subscription => 'Cancel Subscription';
+	String get please_login => 'Please sign in';
+	String get communication_error => 'Network error occurred';
+	String get confirm_cancellation => 'Cancel Your Subscription';
+	String user_name_suffix({required Object user}) => 'Hi ${user}!';
+	String get premium_thanks => 'Thanks for being a DiQt Premium member.';
+	String get apology_message => 'We\'re sorry we didn\'t meet your expectations.';
+	String feedback_request({required Object user}) => '${user}, would you mind sharing what led to your decision to cancel? Your feedback will help us improve DiQt for everyone.';
+	String get apology_for_trouble => 'Sorry for the hassle.';
+	String get honest_feedback_request => 'We\'d love to hear your thoughts.';
+	String get cancellation_reason_title => 'Why are you leaving?';
+	String get cancellation_reason_request => 'Help us understand why you\'re canceling';
+	String get cancellation_reason_required => 'Please provide a reason for cancellation';
 }
 
 // Path: chapters
@@ -1621,7 +1644,6 @@ class TranslationsUsersEn {
 	String get menu => 'Menu';
 	String get find_users => 'Find users';
 	String get contract_details => 'Contract details';
-	String get cancel_subscription => 'Cancel subscription';
 	String get edit => 'Account Setting';
 	String get withdraw => 'Withdraw from DiQt';
 	String get withdraw_confirmation => 'The account will be deleted. Deleted accounts cannot be restored again. Are you sure you still want to do this?';
@@ -2099,6 +2121,19 @@ extension on Translations {
 			case 'calendars.day': return 'Day';
 			case 'calendars.answers': return ({required Object count}) => '${count}';
 			case 'calendars.reviewed': return 'Review';
+			case 'cancellation.cancel_subscription': return 'Cancel Subscription';
+			case 'cancellation.please_login': return 'Please sign in';
+			case 'cancellation.communication_error': return 'Network error occurred';
+			case 'cancellation.confirm_cancellation': return 'Cancel Your Subscription';
+			case 'cancellation.user_name_suffix': return ({required Object user}) => 'Hi ${user}!';
+			case 'cancellation.premium_thanks': return 'Thanks for being a DiQt Premium member.';
+			case 'cancellation.apology_message': return 'We\'re sorry we didn\'t meet your expectations.';
+			case 'cancellation.feedback_request': return ({required Object user}) => '${user}, would you mind sharing what led to your decision to cancel? Your feedback will help us improve DiQt for everyone.';
+			case 'cancellation.apology_for_trouble': return 'Sorry for the hassle.';
+			case 'cancellation.honest_feedback_request': return 'We\'d love to hear your thoughts.';
+			case 'cancellation.cancellation_reason_title': return 'Why are you leaving?';
+			case 'cancellation.cancellation_reason_request': return 'Help us understand why you\'re canceling';
+			case 'cancellation.cancellation_reason_required': return 'Please provide a reason for cancellation';
 			case 'chapters.lang_number': return 'Language Setting';
 			case 'chapters.lang_number_error': return '：Auto-configuration failed. Please select language type manually. ';
 			case 'chapters.chapters': return 'Chapters';
@@ -3100,7 +3135,6 @@ extension on Translations {
 			case 'users.menu': return 'Menu';
 			case 'users.find_users': return 'Find users';
 			case 'users.contract_details': return 'Contract details';
-			case 'users.cancel_subscription': return 'Cancel subscription';
 			case 'users.edit': return 'Account Setting';
 			case 'users.withdraw': return 'Withdraw from DiQt';
 			case 'users.withdraw_confirmation': return 'The account will be deleted. Deleted accounts cannot be restored again. Are you sure you still want to do this?';
