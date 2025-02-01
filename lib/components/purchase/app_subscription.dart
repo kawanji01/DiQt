@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/components/purchase/cancellation_button.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
 import 'package:booqs_mobile/utils/entitlement_info_service.dart';
@@ -17,35 +18,35 @@ class PurchaseAppSubscription extends StatelessWidget {
     Widget productIdentifier() {
       switch (entitlementInfo.productIdentifier) {
         case 'diqt_500_1m_2w0':
-          return const Column(
+          return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '月額プレミアムプラン',
+                  t.purchase.monthly_premium_plan,
                   style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.green),
                 ),
                 Text(
-                  '価格： 500円/月',
+                  '${t.purchase.price}: ${t.purchase.monthly_plan_price}',
                   style: normalTextStyle,
                 ),
               ]);
 
         case 'diqt_5000_1y_2w0':
-          return const Column(
+          return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '年額プレミアムプラン',
+                  t.purchase.annual_premium_plan,
                   style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.green),
                 ),
                 Text(
-                  '価格： 5000円/年',
+                  '${t.purchase.price}: ${t.purchase.annual_plan_price}',
                   style: normalTextStyle,
                 ),
               ]);
@@ -58,7 +59,7 @@ class PurchaseAppSubscription extends StatelessWidget {
     Widget date(String label, String? strDatetime) {
       if (strDatetime == null) {
         return Text(
-          '$label: なし',
+          t.purchase.no_label(label: label),
           style: normalTextStyle,
         );
       }
@@ -69,10 +70,10 @@ class PurchaseAppSubscription extends StatelessWidget {
 
     Widget willRenew() {
       if (entitlementInfo.willRenew) {
-        return const Text('自動更新: ON', style: normalTextStyle);
+        return Text('${t.purchase.auto_renewal}: ON', style: normalTextStyle);
       } else {
-        return const Text(
-          '自動更新: OFF',
+        return Text(
+          '${t.purchase.auto_renewal}: OFF',
           style: normalTextStyle,
         );
       }
@@ -80,8 +81,8 @@ class PurchaseAppSubscription extends StatelessWidget {
 
     Widget periodType() {
       if (EntitlementInfoService.inTrial(entitlementInfo)) {
-        return const Text(
-          '無料お試し期間中',
+        return Text(
+          t.purchase.trial_period,
           style: normalTextStyle,
         );
       }
@@ -91,13 +92,13 @@ class PurchaseAppSubscription extends StatelessWidget {
     Widget store() {
       final String device = EntitlementInfoService.device(entitlementInfo);
       if (device == 'ios') {
-        return const Text(
-          '契約ストア： AppStore(iOS)',
+        return Text(
+          '${t.purchase.subscription_store}: AppStore(iOS)',
           style: normalTextStyle,
         );
       } else {
-        return const Text(
-          '契約ストア： PlayStore(Android)',
+        return Text(
+          '${t.purchase.subscription_store}: PlayStore(Android)',
           style: normalTextStyle,
         );
       }
@@ -110,7 +111,7 @@ class PurchaseAppSubscription extends StatelessWidget {
             DateTime.parse('${entitlementInfo.expirationDate}');
         final String date = DateTimeFormatter.date(datetime);
         return Text(
-          '$dateに解約されます',
+          t.purchase.cancellation_date(date: date),
           style: normalTextStyle,
         );
       }
@@ -120,8 +121,8 @@ class PurchaseAppSubscription extends StatelessWidget {
           entitlementInfo: entitlementInfo,
         );
       }
-      return const Text(
-        '解約済',
+      return Text(
+        t.purchase.subscription_cancelled,
         style: normalTextStyle,
       );
     }
@@ -137,8 +138,8 @@ class PurchaseAppSubscription extends StatelessWidget {
         // Text(entitlementInfo.identifier),
         productIdentifier(),
         // Text('契約開始日: ${entitlementInfo.originalPurchaseDate}'),
-        date('契約更新日', entitlementInfo.latestPurchaseDate),
-        date('有効期限日', entitlementInfo.expirationDate),
+        date(t.purchase.renewal_date, entitlementInfo.latestPurchaseDate),
+        date(t.purchase.expiry_date, entitlementInfo.expirationDate),
         willRenew(),
         periodType(),
         store(),

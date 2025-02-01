@@ -1119,6 +1119,17 @@ class _TranslationsPurchaseJa implements TranslationsPurchaseEn {
 	@override String get restore_success => '購入が復元されました。';
 	@override String get restore_error => '購入の復元に失敗しました。';
 	@override String get footer_description => '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n ・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n ・以下をご確認の上、ご登録ください。\n';
+	@override String get monthly_premium_plan => '月額プレミアムプラン';
+	@override String get annual_premium_plan => '年額プレミアムプラン';
+	@override String get price => '価格';
+	@override String no_label({required Object label}) => '${label}: なし';
+	@override String get auto_renewal => '自動更新';
+	@override String get trial_period => '無料お試し期間中';
+	@override String get subscription_store => '契約ストア';
+	@override String cancellation_date({required Object date}) => '${date}に解約されます';
+	@override String get subscription_cancelled => '解約済';
+	@override String get renewal_date => '契約更新日';
+	@override String get expiry_date => '有効期限日';
 }
 
 // Path: quizRequests
@@ -2723,6 +2734,17 @@ extension on TranslationsJa {
 			case 'purchase.restore_success': return '購入が復元されました。';
 			case 'purchase.restore_error': return '購入の復元に失敗しました。';
 			case 'purchase.footer_description': return '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n ・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n ・以下をご確認の上、ご登録ください。\n';
+			case 'purchase.monthly_premium_plan': return '月額プレミアムプラン';
+			case 'purchase.annual_premium_plan': return '年額プレミアムプラン';
+			case 'purchase.price': return '価格';
+			case 'purchase.no_label': return ({required Object label}) => '${label}: なし';
+			case 'purchase.auto_renewal': return '自動更新';
+			case 'purchase.trial_period': return '無料お試し期間中';
+			case 'purchase.subscription_store': return '契約ストア';
+			case 'purchase.cancellation_date': return ({required Object date}) => '${date}に解約されます';
+			case 'purchase.subscription_cancelled': return '解約済';
+			case 'purchase.renewal_date': return '契約更新日';
+			case 'purchase.expiry_date': return '有効期限日';
 			case 'quizRequests.quiz_requests': return '問題の編集履歴';
 			case 'quizRequests.edit_histories': return '編集履歴';
 			case 'quizRequests.pending_edits': return '審査中の編集';

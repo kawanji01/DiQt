@@ -52,3 +52,14 @@ footer_description: '・プレミアム契約期間は開始日から起算し�
 ・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n
 ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n
 ・以下をご確認の上、ご登録ください。\n'
+monthly_premium_plan: '月額プレミアムプラン'
+annual_premium_plan: '年額プレミアムプラン'
+price: '価格'
+no_label: '${label}: なし'
+auto_renewal: '自動更新'
+trial_period: '無料お試し期間中'
+subscription_store: '契約ストア'
+cancellation_date: '${date}に解約されます'
+subscription_cancelled: '解約済'
+renewal_date: '契約更新日'
+expiry_date: '有効期限日'

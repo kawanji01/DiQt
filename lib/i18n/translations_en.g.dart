@@ -1123,6 +1123,17 @@ class TranslationsPurchaseEn {
 	String get restore_success => 'Your purchase has been restored.';
 	String get restore_error => 'Your purchase could not be restored.';
 	String get footer_description => '・The premium subscription period is automatically renewed every month from the start date. \n ・The first payment starts at the end of the two-week free trial period. \n ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n ・Please check the following before registering. \n';
+	String get monthly_premium_plan => 'Monthly Premium Plan';
+	String get annual_premium_plan => 'Annual Premium Plan';
+	String get price => 'Price';
+	String no_label({required Object label}) => '${label}: None';
+	String get auto_renewal => 'Auto-Renewal';
+	String get trial_period => 'Free Trial Period';
+	String get subscription_store => 'Purchase Platform';
+	String cancellation_date({required Object date}) => 'Will be cancelled on ${date}';
+	String get subscription_cancelled => 'Cancelled';
+	String get renewal_date => 'Renewal Date';
+	String get expiry_date => 'Expiration Date';
 }
 
 // Path: quizRequests
@@ -2727,6 +2738,17 @@ extension on Translations {
 			case 'purchase.restore_success': return 'Your purchase has been restored.';
 			case 'purchase.restore_error': return 'Your purchase could not be restored.';
 			case 'purchase.footer_description': return '・The premium subscription period is automatically renewed every month from the start date. \n ・The first payment starts at the end of the two-week free trial period. \n ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n ・Please check the following before registering. \n';
+			case 'purchase.monthly_premium_plan': return 'Monthly Premium Plan';
+			case 'purchase.annual_premium_plan': return 'Annual Premium Plan';
+			case 'purchase.price': return 'Price';
+			case 'purchase.no_label': return ({required Object label}) => '${label}: None';
+			case 'purchase.auto_renewal': return 'Auto-Renewal';
+			case 'purchase.trial_period': return 'Free Trial Period';
+			case 'purchase.subscription_store': return 'Purchase Platform';
+			case 'purchase.cancellation_date': return ({required Object date}) => 'Will be cancelled on ${date}';
+			case 'purchase.subscription_cancelled': return 'Cancelled';
+			case 'purchase.renewal_date': return 'Renewal Date';
+			case 'purchase.expiry_date': return 'Expiration Date';
 			case 'quizRequests.quiz_requests': return 'Edit Histories of quizzes';
 			case 'quizRequests.edit_histories': return 'Edit Histories';
 			case 'quizRequests.pending_edits': return 'Pending Edits';

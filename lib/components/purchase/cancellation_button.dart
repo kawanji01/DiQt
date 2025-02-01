@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/cancellation.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
@@ -33,8 +34,8 @@ class PurchaseCancellationButton extends ConsumerWidget {
             UserCancellationPage.push(context, entitlementInfo);
           }
         },
-        child: const Text(
-          '解約する',
+        child: Text(
+          t.cancellation.cancel_subscription,
           style: TextStyle(
             color: Colors.red,
             fontSize: 14,
