@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +16,10 @@ class AnswerAnalysisQuizHeader extends ConsumerWidget {
     String correctText;
     if (answerAnalysis.lastAnswerCorrect) {
       colors = Colors.blue;
-      correctText = '正解';
+      correctText = t.answerAnalyses.correct;
     } else {
       colors = Colors.red;
-      correctText = '不正解';
+      correctText = t.answerAnalyses.incorrect;
     }
 
     // 解答日時
@@ -26,13 +27,13 @@ class AnswerAnalysisQuizHeader extends ConsumerWidget {
         dateTime: answerAnalysis.lastAnsweredAt, locale: locale);
     // 不正解数
     final String incorrectAnswersCount =
-        '不正解${answerAnalysis.incorrectAnswerHistoriesCount}回';
+        t.answerAnalyses.incorrect_answers_count(count: answerAnalysis.incorrectAnswerHistoriesCount);
     // 正答率
     final String correctRate =
-        '正答率${answerAnalysis.correctAnswerRate.floor()}%';
+        '${t.answerAnalyses.correct_answer_rate} ${answerAnalysis.correctAnswerRate.floor()}%';
 
     final information = Text(
-      '$timeAgoに$correctText / $incorrectAnswersCount / $correctRate',
+      '${t.answerAnalyses.last_record(result: correctText, time_ago: timeAgo)} / $incorrectAnswersCount / $correctRate',
       style: TextStyle(color: colors, fontWeight: FontWeight.bold),
     );
 
