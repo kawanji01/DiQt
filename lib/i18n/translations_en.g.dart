@@ -1402,9 +1402,12 @@ class TranslationsSessionsEn {
 	String get login_failed => 'Could not log in.';
 	String get cancelled => 'cancelled';
 	String get or => 'or';
+	String get okay => 'OK';
 	String get continue_with_apple => 'Continue with Apple';
 	String get continue_with_google => 'Continue with Google';
 	String get continue_with_twitter => 'Continue with Twitter';
+	String get confirm_web_diqt => 'Open DiQt in your web browser?';
+	String get external_link => 'External link';
 	String get log_out => 'Log out';
 	String get log_out_succeeded => 'Logged out';
 }
@@ -2920,9 +2923,12 @@ extension on Translations {
 			case 'sessions.login_failed': return 'Could not log in.';
 			case 'sessions.cancelled': return 'cancelled';
 			case 'sessions.or': return 'or';
+			case 'sessions.okay': return 'OK';
 			case 'sessions.continue_with_apple': return 'Continue with Apple';
 			case 'sessions.continue_with_google': return 'Continue with Google';
 			case 'sessions.continue_with_twitter': return 'Continue with Twitter';
+			case 'sessions.confirm_web_diqt': return 'Open DiQt in your web browser?';
+			case 'sessions.external_link': return 'External link';
 			case 'sessions.log_out': return 'Log out';
 			case 'sessions.log_out_succeeded': return 'Logged out';
 			case 'shared.create': return 'Create';

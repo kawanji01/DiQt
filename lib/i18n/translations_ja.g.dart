@@ -1398,9 +1398,12 @@ class _TranslationsSessionsJa implements TranslationsSessionsEn {
 	@override String get login_failed => 'ログインに失敗しました。';
 	@override String get cancelled => 'キャンセルされました。';
 	@override String get or => 'あるいは';
+	@override String get okay => 'OK';
 	@override String get continue_with_apple => 'Appleで続ける';
 	@override String get continue_with_google => 'Googleで続ける';
 	@override String get continue_with_twitter => 'Twitterで続ける';
+	@override String get confirm_web_diqt => 'Web版DiQtに移動します。よろしいですか？';
+	@override String get external_link => '外部リンク';
 	@override String get log_out => 'ログアウトする';
 	@override String get log_out_succeeded => 'ログアウトしました。';
 }
@@ -2916,9 +2919,12 @@ extension on TranslationsJa {
 			case 'sessions.login_failed': return 'ログインに失敗しました。';
 			case 'sessions.cancelled': return 'キャンセルされました。';
 			case 'sessions.or': return 'あるいは';
+			case 'sessions.okay': return 'OK';
 			case 'sessions.continue_with_apple': return 'Appleで続ける';
 			case 'sessions.continue_with_google': return 'Googleで続ける';
 			case 'sessions.continue_with_twitter': return 'Twitterで続ける';
+			case 'sessions.confirm_web_diqt': return 'Web版DiQtに移動します。よろしいですか？';
+			case 'sessions.external_link': return '外部リンク';
 			case 'sessions.log_out': return 'ログアウトする';
 			case 'sessions.log_out_succeeded': return 'ログアウトしました。';
 			case 'shared.create': return '作成する';
