@@ -40,6 +40,7 @@ class TranslationsJa implements Translations {
 	@override late final _TranslationsAnswerHistoriesJa answerHistories = _TranslationsAnswerHistoriesJa._(_root);
 	@override late final _TranslationsAnswerSettingsJa answerSettings = _TranslationsAnswerSettingsJa._(_root);
 	@override late final _TranslationsCalendarsJa calendars = _TranslationsCalendarsJa._(_root);
+	@override late final _TranslationsCancellationJa cancellation = _TranslationsCancellationJa._(_root);
 	@override late final _TranslationsChaptersJa chapters = _TranslationsChaptersJa._(_root);
 	@override late final _TranslationsDictionariesJa dictionaries = _TranslationsDictionariesJa._(_root);
 	@override late final _TranslationsDictionaryMapsJa dictionaryMaps = _TranslationsDictionaryMapsJa._(_root);
@@ -382,6 +383,28 @@ class _TranslationsCalendarsJa implements TranslationsCalendarsEn {
 	@override String get day => '日';
 	@override String answers({required Object count}) => '${count}問';
 	@override String get reviewed => '復習了';
+}
+
+// Path: cancellation
+class _TranslationsCancellationJa implements TranslationsCancellationEn {
+	_TranslationsCancellationJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get cancel_subscription => '解約する';
+	@override String get please_login => 'ログインしてください';
+	@override String get communication_error => '通信エラーが発生しました。';
+	@override String get confirm_cancellation => '解約の確認';
+	@override String user_name_suffix({required Object user}) => '${user}さま';
+	@override String get premium_thanks => 'これまでDiQtのプレミアムプランをご利用いただき、誠にありがとうございました...!';
+	@override String get apology_message => 'そして、今回ご期待に沿えなかったこと、大変申し訳なく思います....。';
+	@override String feedback_request({required Object user}) => 'よろしければ、ぜひ今後のサービス改善のために、${user}さまがこの度プランをご解約されるにいたった理由を教えていただけないでしょうか...？';
+	@override String get apology_for_trouble => 'お手数をおかけして大変申し訳ございません...!';
+	@override String get honest_feedback_request => 'なにとぞ率直なご感想を、どうかよろしくお願いいたします...！！🙇‍♂️';
+	@override String get cancellation_reason_title => '解約理由';
+	@override String get cancellation_reason_request => '解約に至った理由を教えてください...!🙇‍♂️';
+	@override String get cancellation_reason_required => '解約理由は空欄にできません。';
 }
 
 // Path: chapters
@@ -1617,7 +1640,6 @@ class _TranslationsUsersJa implements TranslationsUsersEn {
 	@override String get menu => 'メニュー';
 	@override String get find_users => 'ユーザーを探す';
 	@override String get contract_details => 'ご契約内容';
-	@override String get cancel_subscription => '解約する';
 	@override String get edit => 'アカウント設定';
 	@override String get withdraw => 'DiQtから退会する';
 	@override String get withdraw_confirmation => 'アカウントを削除いたします。削除したアカウントは二度と復元できません。それでもよろしいですか？';
@@ -2095,6 +2117,19 @@ extension on TranslationsJa {
 			case 'calendars.day': return '日';
 			case 'calendars.answers': return ({required Object count}) => '${count}問';
 			case 'calendars.reviewed': return '復習了';
+			case 'cancellation.cancel_subscription': return '解約する';
+			case 'cancellation.please_login': return 'ログインしてください';
+			case 'cancellation.communication_error': return '通信エラーが発生しました。';
+			case 'cancellation.confirm_cancellation': return '解約の確認';
+			case 'cancellation.user_name_suffix': return ({required Object user}) => '${user}さま';
+			case 'cancellation.premium_thanks': return 'これまでDiQtのプレミアムプランをご利用いただき、誠にありがとうございました...!';
+			case 'cancellation.apology_message': return 'そして、今回ご期待に沿えなかったこと、大変申し訳なく思います....。';
+			case 'cancellation.feedback_request': return ({required Object user}) => 'よろしければ、ぜひ今後のサービス改善のために、${user}さまがこの度プランをご解約されるにいたった理由を教えていただけないでしょうか...？';
+			case 'cancellation.apology_for_trouble': return 'お手数をおかけして大変申し訳ございません...!';
+			case 'cancellation.honest_feedback_request': return 'なにとぞ率直なご感想を、どうかよろしくお願いいたします...！！🙇‍♂️';
+			case 'cancellation.cancellation_reason_title': return '解約理由';
+			case 'cancellation.cancellation_reason_request': return '解約に至った理由を教えてください...!🙇‍♂️';
+			case 'cancellation.cancellation_reason_required': return '解約理由は空欄にできません。';
 			case 'chapters.lang_number': return '言語設定';
 			case 'chapters.lang_number_error': return '：言語を自動で検出できませんでした。言語の種類を手動で設定してください。';
 			case 'chapters.chapters': return 'チャプター';
@@ -3096,7 +3131,6 @@ extension on TranslationsJa {
 			case 'users.menu': return 'メニュー';
 			case 'users.find_users': return 'ユーザーを探す';
 			case 'users.contract_details': return 'ご契約内容';
-			case 'users.cancel_subscription': return '解約する';
 			case 'users.edit': return 'アカウント設定';
 			case 'users.withdraw': return 'DiQtから退会する';
 			case 'users.withdraw_confirmation': return 'アカウントを削除いたします。削除したアカウントは二度と復元できません。それでもよろしいですか？';

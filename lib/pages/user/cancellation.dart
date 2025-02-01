@@ -60,7 +60,7 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
     if (user == null) {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 32),
-        child: const Text('Please login.'),
+        child: Text(t.cancellation.please_login),
       );
     }
 
@@ -85,7 +85,7 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
       if (!context.mounted) return;
 
       if (resMap == null) {
-        const snackBar = SnackBar(content: Text('通信エラーが発生しました。'));
+        final snackBar = SnackBar(content: Text(t.cancellation.communication_error));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         UserMyPage.push(context);
@@ -108,27 +108,27 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${user.name}さま',
-                  style: textStyle,
-                ),
-                const Text(
-                  'これまでDiQtのプレミアムプランをご利用いただき、誠にありがとうございました...!',
-                  style: textStyle,
-                ),
-                const Text(
-                  'そして、今回ご期待に沿えなかったこと、大変申し訳なく思います....。',
+                  t.cancellation.user_name_suffix(user: user.name),
                   style: textStyle,
                 ),
                 Text(
-                  'よろしければ、ぜひ今後のサービス改善のために、${user.name}さまがこの度プランをご解約されるにいたった理由を教えていただけないでしょうか...？',
+                  t.cancellation.premium_thanks,
                   style: textStyle,
                 ),
-                const Text(
-                  'お手数をおかけして大変申し訳ございません...!',
+                Text(
+                  t.cancellation.apology_message,
                   style: textStyle,
                 ),
-                const Text(
-                  'なにとぞ率直なご感想を、どうかよろしくお願いいたします...！！🙇‍♂️',
+                Text(
+                  t.cancellation.feedback_request(user: user.name),
+                  style: textStyle,
+                ),
+                Text(
+                  t.cancellation.apology_for_trouble,
+                  style: textStyle,
+                ),
+                Text(
+                  t.cancellation.honest_feedback_request,
                   style: textStyle,
                 ),
                 const SizedBox(
@@ -139,13 +139,13 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
                   minLines: 6,
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: "解約理由",
-                      hintText: '解約に至った理由を教えてください...!🙇‍♂️'),
+                      labelText: t.cancellation.cancellation_reason_title,
+                      hintText: t.cancellation.cancellation_reason_request),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return '解約理由は空欄にできません。';
+                      return t.cancellation.cancellation_reason_required;
                     }
                     return null;
                   },
@@ -165,7 +165,7 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
                           sendCancellationReport(_entitlementInfo!);
                         },
                   child: Text(
-                    t.users.cancel_subscription,
+                    t.cancellation.cancel_subscription,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 18),
                   ),
