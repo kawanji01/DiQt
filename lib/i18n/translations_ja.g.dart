@@ -1717,6 +1717,7 @@ class _TranslationsWeaknessesJa implements TranslationsWeaknessesEn {
 	@override String quizzes_count({required Object count}) => '${count}問';
 	@override String get premium_recommendation => '弱点問題を解くには、プレミアムプランへの登録が必要です。';
 	@override String get order => '並び順';
+	@override String get correct_answer_rate => '正答率';
 	@override String get correct_answer_rate_asc => '正答率が低い順';
 	@override String get correct_answer_rate_desc => '正答率が高い順';
 	@override String get incorrect_answers_count_desc => '不正解が多い順';
@@ -1734,7 +1735,8 @@ class _TranslationsWeaknessesJa implements TranslationsWeaknessesEn {
 	@override String get unsolved => '未正解';
 	@override String get solved => '正解済';
 	@override String get all => '全て';
-	@override String added_at({required Object time_ago}) => '${time_ago}前に追加';
+	@override String added_at({required Object time_ago}) => '${time_ago}に追加';
+	@override String incorrect_answers_count({required Object count}) => '不正解：${count}回';
 	@override String get weakness_overcame => '弱点を克服しました。';
 	@override String get new_lap => '弱点を新たに周回する';
 	@override String get new_lap_description => '正解済の問題をすべて未正解に戻します。よろしいですか？';
@@ -3202,6 +3204,7 @@ extension on TranslationsJa {
 			case 'weaknesses.quizzes_count': return ({required Object count}) => '${count}問';
 			case 'weaknesses.premium_recommendation': return '弱点問題を解くには、プレミアムプランへの登録が必要です。';
 			case 'weaknesses.order': return '並び順';
+			case 'weaknesses.correct_answer_rate': return '正答率';
 			case 'weaknesses.correct_answer_rate_asc': return '正答率が低い順';
 			case 'weaknesses.correct_answer_rate_desc': return '正答率が高い順';
 			case 'weaknesses.incorrect_answers_count_desc': return '不正解が多い順';
@@ -3219,7 +3222,8 @@ extension on TranslationsJa {
 			case 'weaknesses.unsolved': return '未正解';
 			case 'weaknesses.solved': return '正解済';
 			case 'weaknesses.all': return '全て';
-			case 'weaknesses.added_at': return ({required Object time_ago}) => '${time_ago}前に追加';
+			case 'weaknesses.added_at': return ({required Object time_ago}) => '${time_ago}に追加';
+			case 'weaknesses.incorrect_answers_count': return ({required Object count}) => '不正解：${count}回';
 			case 'weaknesses.weakness_overcame': return '弱点を克服しました。';
 			case 'weaknesses.new_lap': return '弱点を新たに周回する';
 			case 'weaknesses.new_lap_description': return '正解済の問題をすべて未正解に戻します。よろしいですか？';

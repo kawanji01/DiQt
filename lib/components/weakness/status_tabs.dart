@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/weakness/index.dart';
 import 'package:booqs_mobile/pages/weakness/solved.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
@@ -27,7 +28,7 @@ class WeaknessStatusTabs extends ConsumerWidget {
       final style = selected == 'unsolved' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(text: '未正解\n($unsolvedWeaknessesCount)', style: style),
+        text: TextSpan(text: '${t.weaknesses.unsolved}\n($unsolvedWeaknessesCount)', style: style),
       );
       return InkWell(
         onTap: () {
@@ -41,7 +42,7 @@ class WeaknessStatusTabs extends ConsumerWidget {
       final style = selected == 'solved' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(text: '正解済\n($solvedWeaknessesCount)', style: style),
+        text: TextSpan(text: '${t.weaknesses.solved}\n($solvedWeaknessesCount)', style: style),
       );
       return InkWell(
         onTap: () {
@@ -63,7 +64,7 @@ class WeaknessStatusTabs extends ConsumerWidget {
       final style = selected == 'all' ? selectedStyle : normalStyle;
       final text = RichText(
         textAlign: TextAlign.center,
-        text: TextSpan(text: 'すべて\n($weaknessesCount)', style: style),
+        text: TextSpan(text: '${t.weaknesses.all}\n($weaknessesCount)', style: style),
       );
       return InkWell(
         onTap: () {

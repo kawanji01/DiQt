@@ -1721,6 +1721,7 @@ class TranslationsWeaknessesEn {
 	String quizzes_count({required Object count}) => '${count} quizzes';
 	String get premium_recommendation => 'To solve weak questions, you need to register for a premium plan.';
 	String get order => 'Order';
+	String get correct_answer_rate => 'Correct Rate';
 	String get correct_answer_rate_asc => 'Correct Rate, Low to High';
 	String get correct_answer_rate_desc => 'Correct Rate, High to Low';
 	String get incorrect_answers_count_desc => 'Incorrect, Most to Least';
@@ -1738,7 +1739,8 @@ class TranslationsWeaknessesEn {
 	String get unsolved => 'Incorrect';
 	String get solved => 'Correct';
 	String get all => 'All';
-	String added_at({required Object time_ago}) => 'Added ${time_ago} ago';
+	String added_at({required Object time_ago}) => 'Added ${time_ago}';
+	String incorrect_answers_count({required Object count}) => '${count} Incorrect';
 	String get weakness_overcame => 'Weakness overcame';
 	String get new_lap => 'New rounds of weakness';
 	String get new_lap_description => 'Return all questions that have been answered correctly to uncorrected. Are you sure?';
@@ -3206,6 +3208,7 @@ extension on Translations {
 			case 'weaknesses.quizzes_count': return ({required Object count}) => '${count} quizzes';
 			case 'weaknesses.premium_recommendation': return 'To solve weak questions, you need to register for a premium plan.';
 			case 'weaknesses.order': return 'Order';
+			case 'weaknesses.correct_answer_rate': return 'Correct Rate';
 			case 'weaknesses.correct_answer_rate_asc': return 'Correct Rate, Low to High';
 			case 'weaknesses.correct_answer_rate_desc': return 'Correct Rate, High to Low';
 			case 'weaknesses.incorrect_answers_count_desc': return 'Incorrect, Most to Least';
@@ -3223,7 +3226,8 @@ extension on Translations {
 			case 'weaknesses.unsolved': return 'Incorrect';
 			case 'weaknesses.solved': return 'Correct';
 			case 'weaknesses.all': return 'All';
-			case 'weaknesses.added_at': return ({required Object time_ago}) => 'Added ${time_ago} ago';
+			case 'weaknesses.added_at': return ({required Object time_ago}) => 'Added ${time_ago}';
+			case 'weaknesses.incorrect_answers_count': return ({required Object count}) => '${count} Incorrect';
 			case 'weaknesses.weakness_overcame': return 'Weakness overcame';
 			case 'weaknesses.new_lap': return 'New rounds of weakness';
 			case 'weaknesses.new_lap_description': return 'Return all questions that have been answered correctly to uncorrected. Are you sure?';
