@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/device_info_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
@@ -64,7 +65,7 @@ class ExternalLinkDialogState extends ConsumerState<ExternalLinkDialog> {
 
     // ダイアログの中身を生成する
     Widget buildExternalLinkDialog() {
-      return const Text('Web版DiQtに移動します。よろしいですか？');
+      return Text(t.sessions.confirm_web_diqt);
     }
 
     Widget linkButton() {
@@ -78,7 +79,7 @@ class ExternalLinkDialogState extends ConsumerState<ExternalLinkDialog> {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black45, //ボタンの背景色
             ),
-            child: const Text('OK',
+            child: Text(t.sessions.okay,
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
@@ -95,8 +96,8 @@ class ExternalLinkDialogState extends ConsumerState<ExternalLinkDialog> {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green, //ボタンの背景色
             ),
-            child: const Text(
-              'OK',
+            child: Text(
+              t.sessions.okay,
               style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
@@ -110,8 +111,8 @@ class ExternalLinkDialogState extends ConsumerState<ExternalLinkDialog> {
     return AlertDialog(
       insetPadding: EdgeInsets.symmetric(
           horizontal: ResponsiveValues.horizontalMargin(context)),
-      title: const Text(
-        '外部リンク',
+      title: Text(
+        t.sessions.external_link,
         style: TextStyle(fontWeight: FontWeight.w800),
       ),
       content: buildExternalLinkDialog(),

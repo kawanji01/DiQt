@@ -1119,6 +1119,17 @@ class _TranslationsPurchaseJa implements TranslationsPurchaseEn {
 	@override String get restore_success => '購入が復元されました。';
 	@override String get restore_error => '購入の復元に失敗しました。';
 	@override String get footer_description => '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n ・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n ・以下をご確認の上、ご登録ください。\n';
+	@override String get monthly_premium_plan => '月額プレミアムプラン';
+	@override String get annual_premium_plan => '年額プレミアムプラン';
+	@override String get price => '価格';
+	@override String no_label({required Object label}) => '${label}: なし';
+	@override String get auto_renewal => '自動更新';
+	@override String get trial_period => '無料お試し期間中';
+	@override String get subscription_store => '契約ストア';
+	@override String cancellation_date({required Object date}) => '${date}に解約されます';
+	@override String get subscription_cancelled => '解約済';
+	@override String get renewal_date => '契約更新日';
+	@override String get expiry_date => '有効期限日';
 }
 
 // Path: quizRequests
@@ -1398,9 +1409,12 @@ class _TranslationsSessionsJa implements TranslationsSessionsEn {
 	@override String get login_failed => 'ログインに失敗しました。';
 	@override String get cancelled => 'キャンセルされました。';
 	@override String get or => 'あるいは';
+	@override String get okay => 'OK';
 	@override String get continue_with_apple => 'Appleで続ける';
 	@override String get continue_with_google => 'Googleで続ける';
 	@override String get continue_with_twitter => 'Twitterで続ける';
+	@override String get confirm_web_diqt => 'Web版DiQtに移動します。よろしいですか？';
+	@override String get external_link => '外部リンク';
 	@override String get log_out => 'ログアウトする';
 	@override String get log_out_succeeded => 'ログアウトしました。';
 }
@@ -1714,6 +1728,7 @@ class _TranslationsWeaknessesJa implements TranslationsWeaknessesEn {
 	@override String quizzes_count({required Object count}) => '${count}問';
 	@override String get premium_recommendation => '弱点問題を解くには、プレミアムプランへの登録が必要です。';
 	@override String get order => '並び順';
+	@override String get correct_answer_rate => '正答率';
 	@override String get correct_answer_rate_asc => '正答率が低い順';
 	@override String get correct_answer_rate_desc => '正答率が高い順';
 	@override String get incorrect_answers_count_desc => '不正解が多い順';
@@ -1731,7 +1746,8 @@ class _TranslationsWeaknessesJa implements TranslationsWeaknessesEn {
 	@override String get unsolved => '未正解';
 	@override String get solved => '正解済';
 	@override String get all => '全て';
-	@override String added_at({required Object time_ago}) => '${time_ago}前に追加';
+	@override String added_at({required Object time_ago}) => '${time_ago}に追加';
+	@override String incorrect_answers_count({required Object count}) => '不正解：${count}回';
 	@override String get weakness_overcame => '弱点を克服しました。';
 	@override String get new_lap => '弱点を新たに周回する';
 	@override String get new_lap_description => '正解済の問題をすべて未正解に戻します。よろしいですか？';
@@ -2718,6 +2734,17 @@ extension on TranslationsJa {
 			case 'purchase.restore_success': return '購入が復元されました。';
 			case 'purchase.restore_error': return '購入の復元に失敗しました。';
 			case 'purchase.footer_description': return '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n ・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n ・以下をご確認の上、ご登録ください。\n';
+			case 'purchase.monthly_premium_plan': return '月額プレミアムプラン';
+			case 'purchase.annual_premium_plan': return '年額プレミアムプラン';
+			case 'purchase.price': return '価格';
+			case 'purchase.no_label': return ({required Object label}) => '${label}: なし';
+			case 'purchase.auto_renewal': return '自動更新';
+			case 'purchase.trial_period': return '無料お試し期間中';
+			case 'purchase.subscription_store': return '契約ストア';
+			case 'purchase.cancellation_date': return ({required Object date}) => '${date}に解約されます';
+			case 'purchase.subscription_cancelled': return '解約済';
+			case 'purchase.renewal_date': return '契約更新日';
+			case 'purchase.expiry_date': return '有効期限日';
 			case 'quizRequests.quiz_requests': return '問題の編集履歴';
 			case 'quizRequests.edit_histories': return '編集履歴';
 			case 'quizRequests.pending_edits': return '審査中の編集';
@@ -2916,9 +2943,12 @@ extension on TranslationsJa {
 			case 'sessions.login_failed': return 'ログインに失敗しました。';
 			case 'sessions.cancelled': return 'キャンセルされました。';
 			case 'sessions.or': return 'あるいは';
+			case 'sessions.okay': return 'OK';
 			case 'sessions.continue_with_apple': return 'Appleで続ける';
 			case 'sessions.continue_with_google': return 'Googleで続ける';
 			case 'sessions.continue_with_twitter': return 'Twitterで続ける';
+			case 'sessions.confirm_web_diqt': return 'Web版DiQtに移動します。よろしいですか？';
+			case 'sessions.external_link': return '外部リンク';
 			case 'sessions.log_out': return 'ログアウトする';
 			case 'sessions.log_out_succeeded': return 'ログアウトしました。';
 			case 'shared.create': return '作成する';
@@ -3196,6 +3226,7 @@ extension on TranslationsJa {
 			case 'weaknesses.quizzes_count': return ({required Object count}) => '${count}問';
 			case 'weaknesses.premium_recommendation': return '弱点問題を解くには、プレミアムプランへの登録が必要です。';
 			case 'weaknesses.order': return '並び順';
+			case 'weaknesses.correct_answer_rate': return '正答率';
 			case 'weaknesses.correct_answer_rate_asc': return '正答率が低い順';
 			case 'weaknesses.correct_answer_rate_desc': return '正答率が高い順';
 			case 'weaknesses.incorrect_answers_count_desc': return '不正解が多い順';
@@ -3213,7 +3244,8 @@ extension on TranslationsJa {
 			case 'weaknesses.unsolved': return '未正解';
 			case 'weaknesses.solved': return '正解済';
 			case 'weaknesses.all': return '全て';
-			case 'weaknesses.added_at': return ({required Object time_ago}) => '${time_ago}前に追加';
+			case 'weaknesses.added_at': return ({required Object time_ago}) => '${time_ago}に追加';
+			case 'weaknesses.incorrect_answers_count': return ({required Object count}) => '不正解：${count}回';
 			case 'weaknesses.weakness_overcame': return '弱点を克服しました。';
 			case 'weaknesses.new_lap': return '弱点を新たに周回する';
 			case 'weaknesses.new_lap_description': return '正解済の問題をすべて未正解に戻します。よろしいですか？';

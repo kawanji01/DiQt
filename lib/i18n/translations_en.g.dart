@@ -268,14 +268,14 @@ class TranslationsAnswerAnalysesEn {
 	String get analyze => 'Analyze';
 	String get correct => 'Correct';
 	String get incorrect => 'Incorrect';
-	String last_record({required Object time_ago, required Object result}) => '${time_ago} - ${result}';
+	String last_record({required Object result, required Object time_ago}) => '${result} - ${time_ago}';
 	String correct_at({required Object time_ago}) => 'Correct ${time_ago}';
 	String incorrect_at({required Object time_ago}) => 'Incorrect ${time_ago}';
 	String get correct_answer_rate => 'Correct Rate';
 	String get not_yet_answered => 'You have not answered yet.';
-	String answers_count({required Object count}) => '${count} answers';
-	String correct_answers_count({required Object count}) => '${count} correct answers';
-	String incorrect_answers_count({required Object count}) => '${count} incorrect answers';
+	String answers_count({required Object count}) => '${count} attempts';
+	String correct_answers_count({required Object count}) => '${count} Correct';
+	String incorrect_answers_count({required Object count}) => '${count} Incorrect';
 	String get last_answer => 'Last Answer';
 	String get status => 'Status';
 }
@@ -1123,6 +1123,17 @@ class TranslationsPurchaseEn {
 	String get restore_success => 'Your purchase has been restored.';
 	String get restore_error => 'Your purchase could not be restored.';
 	String get footer_description => '・The premium subscription period is automatically renewed every month from the start date. \n ・The first payment starts at the end of the two-week free trial period. \n ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n ・Please check the following before registering. \n';
+	String get monthly_premium_plan => 'Monthly Premium Plan';
+	String get annual_premium_plan => 'Annual Premium Plan';
+	String get price => 'Price';
+	String no_label({required Object label}) => '${label}: None';
+	String get auto_renewal => 'Auto-Renewal';
+	String get trial_period => 'Free Trial Period';
+	String get subscription_store => 'Purchase Platform';
+	String cancellation_date({required Object date}) => 'Will be cancelled on ${date}';
+	String get subscription_cancelled => 'Cancelled';
+	String get renewal_date => 'Renewal Date';
+	String get expiry_date => 'Expiration Date';
 }
 
 // Path: quizRequests
@@ -1402,9 +1413,12 @@ class TranslationsSessionsEn {
 	String get login_failed => 'Could not log in.';
 	String get cancelled => 'cancelled';
 	String get or => 'or';
+	String get okay => 'OK';
 	String get continue_with_apple => 'Continue with Apple';
 	String get continue_with_google => 'Continue with Google';
 	String get continue_with_twitter => 'Continue with Twitter';
+	String get confirm_web_diqt => 'Open DiQt in your web browser?';
+	String get external_link => 'External link';
 	String get log_out => 'Log out';
 	String get log_out_succeeded => 'Logged out';
 }
@@ -1718,6 +1732,7 @@ class TranslationsWeaknessesEn {
 	String quizzes_count({required Object count}) => '${count} quizzes';
 	String get premium_recommendation => 'To solve weak questions, you need to register for a premium plan.';
 	String get order => 'Order';
+	String get correct_answer_rate => 'Correct Rate';
 	String get correct_answer_rate_asc => 'Correct Rate, Low to High';
 	String get correct_answer_rate_desc => 'Correct Rate, High to Low';
 	String get incorrect_answers_count_desc => 'Incorrect, Most to Least';
@@ -1732,10 +1747,11 @@ class TranslationsWeaknessesEn {
 	String get overcoming_condition => 'Overcoming Condition';
 	String overcoming_condition_description({required Object number}) => 'When the correct answer rate is ${number} or more, it is automatically removed from the weakness.';
 	String get edit => 'Edit weakness settings';
-	String get unsolved => 'Uncorrected';
-	String get solved => 'Corrected';
+	String get unsolved => 'Incorrect';
+	String get solved => 'Correct';
 	String get all => 'All';
-	String added_at({required Object time_ago}) => 'Added ${time_ago} ago';
+	String added_at({required Object time_ago}) => 'Added ${time_ago}';
+	String incorrect_answers_count({required Object count}) => '${count} Incorrect';
 	String get weakness_overcame => 'Weakness overcame';
 	String get new_lap => 'New rounds of weakness';
 	String get new_lap_description => 'Return all questions that have been answered correctly to uncorrected. Are you sure?';
@@ -2029,14 +2045,14 @@ extension on Translations {
 			case 'answerAnalyses.analyze': return 'Analyze';
 			case 'answerAnalyses.correct': return 'Correct';
 			case 'answerAnalyses.incorrect': return 'Incorrect';
-			case 'answerAnalyses.last_record': return ({required Object time_ago, required Object result}) => '${time_ago} - ${result}';
+			case 'answerAnalyses.last_record': return ({required Object result, required Object time_ago}) => '${result} - ${time_ago}';
 			case 'answerAnalyses.correct_at': return ({required Object time_ago}) => 'Correct ${time_ago}';
 			case 'answerAnalyses.incorrect_at': return ({required Object time_ago}) => 'Incorrect ${time_ago}';
 			case 'answerAnalyses.correct_answer_rate': return 'Correct Rate';
 			case 'answerAnalyses.not_yet_answered': return 'You have not answered yet.';
-			case 'answerAnalyses.answers_count': return ({required Object count}) => '${count} answers';
-			case 'answerAnalyses.correct_answers_count': return ({required Object count}) => '${count} correct answers';
-			case 'answerAnalyses.incorrect_answers_count': return ({required Object count}) => '${count} incorrect answers';
+			case 'answerAnalyses.answers_count': return ({required Object count}) => '${count} attempts';
+			case 'answerAnalyses.correct_answers_count': return ({required Object count}) => '${count} Correct';
+			case 'answerAnalyses.incorrect_answers_count': return ({required Object count}) => '${count} Incorrect';
 			case 'answerAnalyses.last_answer': return 'Last Answer';
 			case 'answerAnalyses.status': return 'Status';
 			case 'answerHistories.answer_histories': return 'Answer Histories';
@@ -2722,6 +2738,17 @@ extension on Translations {
 			case 'purchase.restore_success': return 'Your purchase has been restored.';
 			case 'purchase.restore_error': return 'Your purchase could not be restored.';
 			case 'purchase.footer_description': return '・The premium subscription period is automatically renewed every month from the start date. \n ・The first payment starts at the end of the two-week free trial period. \n ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n ・Please check the following before registering. \n';
+			case 'purchase.monthly_premium_plan': return 'Monthly Premium Plan';
+			case 'purchase.annual_premium_plan': return 'Annual Premium Plan';
+			case 'purchase.price': return 'Price';
+			case 'purchase.no_label': return ({required Object label}) => '${label}: None';
+			case 'purchase.auto_renewal': return 'Auto-Renewal';
+			case 'purchase.trial_period': return 'Free Trial Period';
+			case 'purchase.subscription_store': return 'Purchase Platform';
+			case 'purchase.cancellation_date': return ({required Object date}) => 'Will be cancelled on ${date}';
+			case 'purchase.subscription_cancelled': return 'Cancelled';
+			case 'purchase.renewal_date': return 'Renewal Date';
+			case 'purchase.expiry_date': return 'Expiration Date';
 			case 'quizRequests.quiz_requests': return 'Edit Histories of quizzes';
 			case 'quizRequests.edit_histories': return 'Edit Histories';
 			case 'quizRequests.pending_edits': return 'Pending Edits';
@@ -2920,9 +2947,12 @@ extension on Translations {
 			case 'sessions.login_failed': return 'Could not log in.';
 			case 'sessions.cancelled': return 'cancelled';
 			case 'sessions.or': return 'or';
+			case 'sessions.okay': return 'OK';
 			case 'sessions.continue_with_apple': return 'Continue with Apple';
 			case 'sessions.continue_with_google': return 'Continue with Google';
 			case 'sessions.continue_with_twitter': return 'Continue with Twitter';
+			case 'sessions.confirm_web_diqt': return 'Open DiQt in your web browser?';
+			case 'sessions.external_link': return 'External link';
 			case 'sessions.log_out': return 'Log out';
 			case 'sessions.log_out_succeeded': return 'Logged out';
 			case 'shared.create': return 'Create';
@@ -3200,6 +3230,7 @@ extension on Translations {
 			case 'weaknesses.quizzes_count': return ({required Object count}) => '${count} quizzes';
 			case 'weaknesses.premium_recommendation': return 'To solve weak questions, you need to register for a premium plan.';
 			case 'weaknesses.order': return 'Order';
+			case 'weaknesses.correct_answer_rate': return 'Correct Rate';
 			case 'weaknesses.correct_answer_rate_asc': return 'Correct Rate, Low to High';
 			case 'weaknesses.correct_answer_rate_desc': return 'Correct Rate, High to Low';
 			case 'weaknesses.incorrect_answers_count_desc': return 'Incorrect, Most to Least';
@@ -3214,10 +3245,11 @@ extension on Translations {
 			case 'weaknesses.overcoming_condition': return 'Overcoming Condition';
 			case 'weaknesses.overcoming_condition_description': return ({required Object number}) => 'When the correct answer rate is ${number} or more, it is automatically removed from the weakness.';
 			case 'weaknesses.edit': return 'Edit weakness settings';
-			case 'weaknesses.unsolved': return 'Uncorrected';
-			case 'weaknesses.solved': return 'Corrected';
+			case 'weaknesses.unsolved': return 'Incorrect';
+			case 'weaknesses.solved': return 'Correct';
 			case 'weaknesses.all': return 'All';
-			case 'weaknesses.added_at': return ({required Object time_ago}) => 'Added ${time_ago} ago';
+			case 'weaknesses.added_at': return ({required Object time_ago}) => 'Added ${time_ago}';
+			case 'weaknesses.incorrect_answers_count': return ({required Object count}) => '${count} Incorrect';
 			case 'weaknesses.weakness_overcame': return 'Weakness overcame';
 			case 'weaknesses.new_lap': return 'New rounds of weakness';
 			case 'weaknesses.new_lap_description': return 'Return all questions that have been answered correctly to uncorrected. Are you sure?';

@@ -94,8 +94,8 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
     }
 
     return Scaffold(
-      appBar: const AppBarDefault(
-        title: '解約の確認',
+      appBar: AppBarDefault(
+        title: t.cancellation.confirm_cancellation,
       ),
       body: SingleChildScrollView(
         child: Container(

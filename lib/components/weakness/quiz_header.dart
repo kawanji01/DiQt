@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/weakness.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class WeaknessQuizHeader extends ConsumerWidget {
         dateTime: weakness.createdAt, locale: locale);
 
     final correctRateText = Text(
-      '正答率：${correctRate.floor()}% / 不正解：$incorrectAnswersCount回 / $timeAgoに追加',
+      '${t.weaknesses.correct_answer_rate}：${correctRate.floor()}% / ${t.weaknesses.incorrect_answers_count(count: incorrectAnswersCount)} / ${t.weaknesses.added_at(time_ago: timeAgo)}',
       style: TextStyle(color: colors, fontWeight: FontWeight.bold),
     );
 
