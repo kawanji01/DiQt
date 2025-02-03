@@ -1,10 +1,10 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/dictionary_map/search_screen.dart';
-import 'package:booqs_mobile/components/dictionary_map/setting_dictionary_button.dart';
 import 'package:booqs_mobile/components/layouts/drawer_menu.dart';
 import 'package:booqs_mobile/components/user/lang_init_screen.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/dialogs.dart';
@@ -52,20 +52,12 @@ class _HomeDictionaryScreenState extends ConsumerState<HomeDictionaryScreen> {
           margin: EdgeInsets.symmetric(
             horizontal: ResponsiveValues.horizontalMargin(context),
           ),
-          // child: const DictionaryMapSearchScreen(),
-          child: Column(
-            children: [
-              // メインコンテンツ（スクロール可能）
-              const Expanded(
-                child: DictionaryMapSearchScreen(),
-              ),
-              // 設定ボタン
-              const DictionaryMapSettingButton(),
-            ],
-          ),
+          child: const DictionaryMapSearchScreen(),
         ),
         bottomNavigationBar: const BottomNavbar(),
         drawer: const DrawerMenu(),
+        floatingActionButton: ref.watch(
+            dictionaryMapFloatingActionButtonProvider) // tabIndexが0でないときは、FloatingActionButtonを表示しない
         );
   }
 }
