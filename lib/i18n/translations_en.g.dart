@@ -1718,6 +1718,7 @@ class TranslationsUsersEn {
 	String continuous_goal_achievement_count({required Object count}) => '${count} days of continuous goal achievement!';
 	String continuous_review_completion_count({required Object count}) => '${count} days of continuous review completion!';
 	String get language_settings => 'Language settings';
+	String invitation_message({required Object name}) => 'Hey! ${name} wants you to join DiQt✨\nLet\'s learn languages together!';
 }
 
 // Path: weaknesses
@@ -3225,6 +3226,7 @@ extension on Translations {
 			case 'users.continuous_goal_achievement_count': return ({required Object count}) => '${count} days of continuous goal achievement!';
 			case 'users.continuous_review_completion_count': return ({required Object count}) => '${count} days of continuous review completion!';
 			case 'users.language_settings': return 'Language settings';
+			case 'users.invitation_message': return ({required Object name}) => 'Hey! ${name} wants you to join DiQt✨\nLet\'s learn languages together!';
 			case 'weaknesses.weakness': return 'Weakness';
 			case 'weaknesses.weaknesses': return 'Weaknesses';
 			case 'weaknesses.quizzes_count': return ({required Object count}) => '${count} quizzes';

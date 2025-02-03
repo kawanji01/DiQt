@@ -8,12 +8,14 @@ class AppBarDefault extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.flexibleSpace,
     this.bottom,
+    this.centerTitle = true, 
   });
   final String? title;
   final bool automaticallyImplyLeading;
   final List<Widget>? actions;
   final Widget? flexibleSpace;
   final PreferredSizeWidget? bottom;
+  final bool centerTitle;
 
 // AppBarの高さを設定する
   double toolbarHeight(bottom) {
@@ -28,6 +30,7 @@ class AppBarDefault extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: title == null ? null : Text('$title'),
+      centerTitle: centerTitle,
       automaticallyImplyLeading: automaticallyImplyLeading,
       backgroundColor: const Color.fromRGBO(76, 175, 80, 1),
       foregroundColor: Colors.white,
