@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/shared/timestamp.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:booqs_mobile/models/weekly_report.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
@@ -16,10 +17,10 @@ class NoticeWeeklyReport extends StatelessWidget {
       return Text(('InvalidNotification: ID:${notice.id}'));
     }
     final WeeklyReport weeklyReport = notice.weeklyReport!;
-    final firstDateFormat = DateFormat('yyyy年MM月dd日');
+    final firstDateFormat = DateFormat(t.notices.weekly_first_date_format);
     final String firstDate = firstDateFormat.format(
         DateTimeFormatter.findFirstDateOfTheWeek(weeklyReport.measuredDate));
-    final lastDateFormat = DateFormat('MM月dd日');
+    final lastDateFormat = DateFormat(t.notices.weekly_last_date_format);
     final String lastDate = lastDateFormat.format(
         DateTimeFormatter.findLastDateOfTheWeek(weeklyReport.measuredDate));
 
@@ -35,8 +36,8 @@ class NoticeWeeklyReport extends StatelessWidget {
               size: 18.0,
             ),
           ),
-          const TextSpan(
-              text: ' 【週報】',
+          TextSpan(
+              text: t.notices.weekly_report,
               style: TextStyle(
                   color: Colors.green,
                   fontSize: 16,
@@ -97,8 +98,8 @@ class NoticeWeeklyReport extends StatelessWidget {
 
     Widget rankInfo() {
       //if (report.rank == null || report.rank! > 100) return Container();
-      const String label = '週間ランキング';
-      final String value = '${weeklyReport.rank}位';
+      final String label = t.notices.weekly_ranking;
+      final String value = t.notices.ranking_position(rank: weeklyReport.rank ?? 0);
       return information(label, value);
     }
 
@@ -110,7 +111,7 @@ class NoticeWeeklyReport extends StatelessWidget {
         rankImage(),
         const SizedBox(height: 8),
         rankInfo(),
-        information('解答数', '$answersCount回'),
+        information(t.notices.answers_count, t.notices.answer_times(count: answersCount)),
         const SizedBox(height: 48),
       ],
     );

@@ -22,7 +22,7 @@ class NoticeMonthlyReport extends StatelessWidget {
 
     final int answersCount = monthlyReport.answersCount;
 
-    final dateFormat = DateFormat(t.notices.date_format);
+    final dateFormat = DateFormat(t.notices.monthly_date_format);
     final String firstDate = dateFormat.format(measuredDate);
 
     final Widget messageText = RichText(
