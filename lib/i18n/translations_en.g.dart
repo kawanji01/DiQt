@@ -447,6 +447,7 @@ class TranslationsChaptersEn {
 	String get creating_failed => 'Creating chapter failed.';
 	String get drill => 'Drill';
 	String get activities => 'Activities';
+	String get external_reference_link => 'External Link';
 }
 
 // Path: dictionaries
@@ -592,6 +593,7 @@ class TranslationsDrillsEn {
 	String get new_lap => 'New Lap';
 	String get new_lap_description => 'Return all questions unanswered. Are you sure?';
 	String get new_lap_started => 'All questions were returned unanswered and a new round started.';
+	String get require_login => 'Please log in to solve problems.';
 }
 
 // Path: errors
@@ -1040,6 +1042,7 @@ class TranslationsNotesEn {
 	String get updated_at_asc => 'Updated, Old to New';
 	String get created_at_desc => 'Created, New to Old';
 	String get created_at_asc => 'Created, Old to New';
+	String timestamp_info({required Object updatedAtTimeAgo, required Object createdAtTimeAgo}) => 'Updated: ${updatedAtTimeAgo} / Created: ${createdAtTimeAgo}';
 }
 
 // Path: notices
@@ -1063,6 +1066,16 @@ class TranslationsNoticesEn {
 	String quiz_request_upvoted_message({required Object name}) => '${name} has upvoted your quiz edit!';
 	String get reply => 'Reply';
 	String achievement_acquired_message({required Object name}) => 'You have acquired "${name} medal"!';
+	String get monthly_date_format => 'MMM yyyy';
+	String get monthly_report => '[Monthly Report]';
+	String get monthly_ranking => 'Monthly Ranking';
+	String get weekly_first_date_format => 'MMM dd, yyyy';
+	String get weekly_last_date_format => 'MMM dd';
+	String get weekly_report => '[Weekly Report]';
+	String get weekly_ranking => 'Weekly Ranking';
+	String ranking_position({required Object rank}) => '#${rank}';
+	String get answers_count => 'Total Answers';
+	String answer_times({required Object count}) => '${count} times';
 }
 
 // Path: purchase
@@ -2180,6 +2193,7 @@ extension on Translations {
 			case 'chapters.creating_failed': return 'Creating chapter failed.';
 			case 'chapters.drill': return 'Drill';
 			case 'chapters.activities': return 'Activities';
+			case 'chapters.external_reference_link': return 'External Link';
 			case 'dictionaries.dictionaries': return 'Dictionaries';
 			case 'dictionaries.dictionary': return 'Dictionary';
 			case 'dictionaries.search': return 'Search';
@@ -2289,6 +2303,7 @@ extension on Translations {
 			case 'drills.new_lap': return 'New Lap';
 			case 'drills.new_lap_description': return 'Return all questions unanswered. Are you sure?';
 			case 'drills.new_lap_started': return 'All questions were returned unanswered and a new round started.';
+			case 'drills.require_login': return 'Please log in to solve problems.';
 			case 'errors.error_message_404': return 'Page Not Found...';
 			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';
@@ -2674,6 +2689,7 @@ extension on Translations {
 			case 'notes.updated_at_asc': return 'Updated, Old to New';
 			case 'notes.created_at_desc': return 'Created, New to Old';
 			case 'notes.created_at_asc': return 'Created, Old to New';
+			case 'notes.timestamp_info': return ({required Object updatedAtTimeAgo, required Object createdAtTimeAgo}) => 'Updated: ${updatedAtTimeAgo} / Created: ${createdAtTimeAgo}';
 			case 'notices.notifications': return 'Notifications';
 			case 'notices.cheered_message': return ({required Object name}) => '${name} has cheered you!';
 			case 'notices.followed_message': return ({required Object name}) => '${name} has followed you!';
@@ -2688,6 +2704,16 @@ extension on Translations {
 			case 'notices.quiz_request_upvoted_message': return ({required Object name}) => '${name} has upvoted your quiz edit!';
 			case 'notices.reply': return 'Reply';
 			case 'notices.achievement_acquired_message': return ({required Object name}) => 'You have acquired "${name} medal"!';
+			case 'notices.monthly_date_format': return 'MMM yyyy';
+			case 'notices.monthly_report': return '[Monthly Report]';
+			case 'notices.monthly_ranking': return 'Monthly Ranking';
+			case 'notices.weekly_first_date_format': return 'MMM dd, yyyy';
+			case 'notices.weekly_last_date_format': return 'MMM dd';
+			case 'notices.weekly_report': return '[Weekly Report]';
+			case 'notices.weekly_ranking': return 'Weekly Ranking';
+			case 'notices.ranking_position': return ({required Object rank}) => '#${rank}';
+			case 'notices.answers_count': return 'Total Answers';
+			case 'notices.answer_times': return ({required Object count}) => '${count} times';
 			case 'purchase.premium_plan': return 'Premium Plan';
 			case 'purchase.premium_plan_description': return 'This plan allows unlimited use of all DiQt features.';
 			case 'purchase.trial_period_description': return 'Now with a 2-week free trial period!';

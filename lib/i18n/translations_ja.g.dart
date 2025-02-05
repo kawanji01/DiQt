@@ -443,6 +443,7 @@ class _TranslationsChaptersJa implements TranslationsChaptersEn {
 	@override String get creating_failed => 'チャプターを作成できませんでした。';
 	@override String get drill => '問題集';
 	@override String get activities => '活動';
+	@override String get external_reference_link => '外部参照リンク';
 }
 
 // Path: dictionaries
@@ -588,6 +589,7 @@ class _TranslationsDrillsJa implements TranslationsDrillsEn {
 	@override String get new_lap => '新たに周回する';
 	@override String get new_lap_description => 'すべての問題を未解答に戻します。よろしいですか？';
 	@override String get new_lap_started => 'すべての問題を未解答に戻し、新たな周回を始めました。';
+	@override String get require_login => '問題を解くにはログインが必要です。';
 }
 
 // Path: errors
@@ -1036,6 +1038,7 @@ class _TranslationsNotesJa implements TranslationsNotesEn {
 	@override String get updated_at_asc => '更新日が古い順';
 	@override String get created_at_desc => '作成日が新しい順';
 	@override String get created_at_asc => '作成日が古い順';
+	@override String timestamp_info({required Object updatedAtTimeAgo, required Object createdAtTimeAgo}) => '更新：${updatedAtTimeAgo} / 作成：${createdAtTimeAgo}';
 }
 
 // Path: notices
@@ -1059,6 +1062,16 @@ class _TranslationsNoticesJa implements TranslationsNoticesEn {
 	@override String quiz_request_upvoted_message({required Object name}) => '${name}があなたの問題の編集に賛成しました！';
 	@override String get reply => '返信する';
 	@override String achievement_acquired_message({required Object name}) => '${name}メダルを獲得しました！';
+	@override String get monthly_date_format => 'yyyy年MM月';
+	@override String get monthly_report => '【月報】';
+	@override String get monthly_ranking => '月間ランキング';
+	@override String get weekly_first_date_format => 'yyyy年MM月dd日';
+	@override String get weekly_last_date_format => 'MM月dd日';
+	@override String get weekly_report => '【週報】';
+	@override String get weekly_ranking => '週間ランキング';
+	@override String ranking_position({required Object rank}) => '${rank}位';
+	@override String get answers_count => '解答数';
+	@override String answer_times({required Object count}) => '${count}回';
 }
 
 // Path: purchase
@@ -2176,6 +2189,7 @@ extension on TranslationsJa {
 			case 'chapters.creating_failed': return 'チャプターを作成できませんでした。';
 			case 'chapters.drill': return '問題集';
 			case 'chapters.activities': return '活動';
+			case 'chapters.external_reference_link': return '外部参照リンク';
 			case 'dictionaries.dictionaries': return '辞書一覧';
 			case 'dictionaries.dictionary': return '辞書';
 			case 'dictionaries.search': return '検索する';
@@ -2285,6 +2299,7 @@ extension on TranslationsJa {
 			case 'drills.new_lap': return '新たに周回する';
 			case 'drills.new_lap_description': return 'すべての問題を未解答に戻します。よろしいですか？';
 			case 'drills.new_lap_started': return 'すべての問題を未解答に戻し、新たな周回を始めました。';
+			case 'drills.require_login': return '問題を解くにはログインが必要です。';
 			case 'errors.error_message_404': return 'ページが見つかりませんでした。';
 			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
 			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';
@@ -2670,6 +2685,7 @@ extension on TranslationsJa {
 			case 'notes.updated_at_asc': return '更新日が古い順';
 			case 'notes.created_at_desc': return '作成日が新しい順';
 			case 'notes.created_at_asc': return '作成日が古い順';
+			case 'notes.timestamp_info': return ({required Object updatedAtTimeAgo, required Object createdAtTimeAgo}) => '更新：${updatedAtTimeAgo} / 作成：${createdAtTimeAgo}';
 			case 'notices.notifications': return '通知';
 			case 'notices.cheered_message': return ({required Object name}) => '${name}があなたを応援しました！';
 			case 'notices.followed_message': return ({required Object name}) => '${name}があなたをフォローしました！';
@@ -2684,6 +2700,16 @@ extension on TranslationsJa {
 			case 'notices.quiz_request_upvoted_message': return ({required Object name}) => '${name}があなたの問題の編集に賛成しました！';
 			case 'notices.reply': return '返信する';
 			case 'notices.achievement_acquired_message': return ({required Object name}) => '${name}メダルを獲得しました！';
+			case 'notices.monthly_date_format': return 'yyyy年MM月';
+			case 'notices.monthly_report': return '【月報】';
+			case 'notices.monthly_ranking': return '月間ランキング';
+			case 'notices.weekly_first_date_format': return 'yyyy年MM月dd日';
+			case 'notices.weekly_last_date_format': return 'MM月dd日';
+			case 'notices.weekly_report': return '【週報】';
+			case 'notices.weekly_ranking': return '週間ランキング';
+			case 'notices.ranking_position': return ({required Object rank}) => '${rank}位';
+			case 'notices.answers_count': return '解答数';
+			case 'notices.answer_times': return ({required Object count}) => '${count}回';
 			case 'purchase.premium_plan': return 'プレミアムプラン';
 			case 'purchase.premium_plan_description': return 'DiQtのすべての機能が使い放題になるプランです。';
 			case 'purchase.trial_period_description': return '今なら２週間の無料体験期間つき！';
