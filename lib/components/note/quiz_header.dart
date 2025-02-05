@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/locale.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/note.dart';
 import 'package:booqs_mobile/utils/date_time_formatter.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class NoteQuizHeader extends ConsumerWidget {
         dateTime: note.updatedAt, locale: locale);
 
     final timeStamp = Text(
-      '更新：$updatedAtTimeAgo / 作成：$createdAtTimeAgo',
+      t.notes.timestamp_info(updatedAtTimeAgo: updatedAtTimeAgo, createdAtTimeAgo: createdAtTimeAgo),
       style:
           const TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
     );
