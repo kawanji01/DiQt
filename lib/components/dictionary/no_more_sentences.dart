@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class DictionaryNoMoreSentences extends StatelessWidget {
         onTap: () {
           SentenceNewPage.push(context, dictionaryId, keyword);
         },
-        child: const SmallOutlineGrayButton(label: '例文を追加する', icon: Icons.add),
+        child: SmallOutlineGrayButton(label: t.sentences.add, icon: Icons.add),
       );
     }
 

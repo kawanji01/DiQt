@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/shared/timestamp.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/monthly_report.dart';
 import 'package:booqs_mobile/models/notice.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -21,7 +22,7 @@ class NoticeMonthlyReport extends StatelessWidget {
 
     final int answersCount = monthlyReport.answersCount;
 
-    final dateFormat = DateFormat('yyyy年MM月');
+    final dateFormat = DateFormat(t.notices.monthly_date_format);
     final String firstDate = dateFormat.format(measuredDate);
 
     final Widget messageText = RichText(
@@ -34,8 +35,8 @@ class NoticeMonthlyReport extends StatelessWidget {
               size: 18.0,
             ),
           ),
-          const TextSpan(
-              text: ' 【月報】',
+          TextSpan(
+              text: t.notices.monthly_report,
               style: TextStyle(
                   color: Colors.green,
                   fontSize: 16,
@@ -95,8 +96,8 @@ class NoticeMonthlyReport extends StatelessWidget {
     Widget rankInfo() {
       //if (report.rank == null || report.rank! > 100) return Container();
 
-      const String label = '月間ランキング';
-      final String value = '${monthlyReport.rank}位';
+      final String label = t.notices.monthly_ranking;
+      final String value = t.notices.ranking_position(rank: monthlyReport.rank ?? 0);
       return information(label, value);
     }
 
@@ -108,7 +109,7 @@ class NoticeMonthlyReport extends StatelessWidget {
         rankImage(),
         const SizedBox(height: 8),
         rankInfo(),
-        information('解答数', '$answersCount回'),
+        information(t.notices.answers_count, t.notices.answer_times(count: answersCount)),
         const SizedBox(height: 48),
       ],
     );

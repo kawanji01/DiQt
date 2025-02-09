@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/drill.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
@@ -27,7 +28,7 @@ class DrillIcon extends ConsumerWidget {
       child: InkWell(
         onTap: () {
           if (currentUser == null) {
-            const snackBar = SnackBar(content: Text('問題を解くにはログインが必要です。'));
+            final snackBar = SnackBar(content: Text(t.drills.require_login));
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
             UserMyPage.push(context);
           } else {

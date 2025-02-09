@@ -2,6 +2,7 @@ import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/firebase_options.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
+import 'package:booqs_mobile/route_generator.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/mobile_ad_service.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
@@ -139,6 +140,7 @@ class DiQtState extends ConsumerState<DiQt> {
       supportedLocales: AppLocaleUtils.supportedLocales,
       locale: TranslationProvider.of(context).flutterLocale,
       routes: routes,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
@@ -22,9 +21,8 @@ class UserInvitationButton extends ConsumerWidget {
       );
     }
 
-    final String locale = ref.watch(localeProvider);
     final String url =
-        '${DiQtURL.root(locale: locale)}/users/${user.publicUid}';
+        '${DiQtURL.root(locale: null)}/users/${user.publicUid}';
     final String sharedText =
         '${t.users.invitation_message(name: user.name)}\n$url';
 

@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
@@ -39,8 +40,8 @@ class ChapterIntroduction extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.black54),
                 ),
-                const Text(
-                  '外部参照リンク',
+                Text(
+                  t.chapters.external_reference_link,
                   style: TextStyle(fontSize: 14, color: Colors.black54),
                 ),
               ],
