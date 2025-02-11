@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/pages/user/search.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class UserSearchForm extends StatefulWidget {
@@ -38,7 +39,7 @@ class _UserSearchFormState extends State<UserSearchForm> {
           TextFormField(
             controller: _searchController,
             decoration: InputDecoration(
-              labelText: 'キーワードを入力してください',
+              labelText: t.users.enter_keyword,
               // design ref: https://qiita.com/OzWay_Jin/items/60c90ff297aec4ac743c
               filled: true,
               fillColor: Colors.grey.shade200,
@@ -55,7 +56,7 @@ class _UserSearchFormState extends State<UserSearchForm> {
             ),
             validator: (String? value) {
               if (value == null || value.isEmpty) {
-                return 'キーワードを入力してください。';
+                return t.users.enter_keyword;
               }
               return null;
             },
@@ -69,8 +70,8 @@ class _UserSearchFormState extends State<UserSearchForm> {
               ),
               onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
-              label: const Text(
-                '検索する',
+              label: Text(
+                t.users.search,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
