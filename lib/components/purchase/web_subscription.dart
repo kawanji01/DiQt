@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,10 @@ class PurchaseWebSubscription extends StatelessWidget {
             border: Border.all(color: Colors.green, width: 1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Webで契約しています',
+              Text(t.purchase.subscribed_via_web,
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
