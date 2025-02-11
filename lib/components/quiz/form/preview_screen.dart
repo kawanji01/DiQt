@@ -4,6 +4,7 @@ import 'package:booqs_mobile/components/quiz/form/preview_distractors.dart';
 import 'package:booqs_mobile/components/quiz/form/preview_question.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class QuizFormPreviewScreen extends StatelessWidget {
@@ -49,7 +50,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          const Text('問題のプレビュー',
+          Text(t.quizzes.question_preview,
               style: TextStyle(
                   fontSize: 24,
                   color: Colors.black87,
@@ -84,7 +85,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 32,
           ),
-          const SharedItemLabel(text: 'ヒント'),
+          SharedItemLabel(text: t.quizzes.hint),
           MarkdownWithDictLink(
             text: hint,
             dictionaryId: appliedDictionaryId,
@@ -96,7 +97,7 @@ class QuizFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 32,
           ),
-          const SharedItemLabel(text: '解説'),
+          SharedItemLabel(text: t.quizzes.explanation),
           MarkdownWithDictLink(
             text: explanation,
             dictionaryId: appliedDictionaryId,
