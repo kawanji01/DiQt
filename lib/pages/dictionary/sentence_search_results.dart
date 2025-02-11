@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -58,7 +59,7 @@ class DictionarySentenceSearchResultsPageState
 
     return Scaffold(
       appBar: AppBarDefault(
-        title: '$keywordの検索結果',
+        title: t.dictionaries.search_results_of(query: keyword),
       ),
       body: SingleChildScrollView(
         child: Container(
