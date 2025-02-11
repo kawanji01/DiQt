@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/quiz/form/preview_screen.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class QuizFormPreviewButton extends StatelessWidget {
@@ -38,8 +39,8 @@ class QuizFormPreviewButton extends StatelessWidget {
             40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
       ),
       icon: const Icon(Icons.visibility, color: Colors.white),
-      label: const Text(
-        'プレビューを見る',
+      label: Text(
+        t.quizzes.show_preview,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
       onPressed: () => {
