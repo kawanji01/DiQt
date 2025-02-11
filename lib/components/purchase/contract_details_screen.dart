@@ -2,6 +2,7 @@ import 'package:booqs_mobile/components/purchase/no_subscriptions.dart';
 import 'package:booqs_mobile/components/purchase/app_subscription.dart';
 import 'package:booqs_mobile/components/purchase/web_subscription.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,8 +24,8 @@ class PurchaseContractDetailsScreen extends ConsumerWidget {
         return PurchaseWebSubscription(user: user);
       }
       if (customerInfo == null) {
-        return const PurchaseNoSubscriptions(
-          heading: 'ご契約プランがありません',
+        return PurchaseNoSubscriptions(
+          heading: t.purchase.no_contract,
           text: "CustomerInfo doesn't exist.",
         );
       }
@@ -35,8 +36,8 @@ class PurchaseContractDetailsScreen extends ConsumerWidget {
 
       // 契約プランがない場合 ref: https://www.revenuecat.com/docs/customer-info#checking-if-a-user-is-subscribed
       if (entitlementInfoMap.isEmpty) {
-        return const PurchaseNoSubscriptions(
-          heading: 'ご契約プランがありません',
+        return PurchaseNoSubscriptions(
+          heading: t.purchase.no_contract,
           text: "EntitlementInfo doesn't exist.",
         );
       }
