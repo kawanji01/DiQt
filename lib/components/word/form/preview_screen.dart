@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/sentence/preview.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -32,7 +33,7 @@ class WordFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          const Text('項目のプレビュー',
+          Text(t.words.text_preview,
               style: TextStyle(
                   fontSize: 24,
                   color: Colors.black87,

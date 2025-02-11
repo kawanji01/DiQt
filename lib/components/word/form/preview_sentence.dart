@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/sentence.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/sentence.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/sentence/item/edit_button.dart';
@@ -27,7 +28,7 @@ class WordFormPreviewSentence extends ConsumerWidget {
       }
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const SizedBox(height: 24),
-        const WordItemLabel(text: '例文'),
+        WordItemLabel(text: t.words.sentence),
         const SizedBox(height: 8),
         TextWithDictLink(
           text: sentence.original,
