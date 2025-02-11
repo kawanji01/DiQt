@@ -1147,6 +1147,8 @@ class TranslationsPurchaseEn {
 	String get subscription_cancelled => 'Cancelled';
 	String get renewal_date => 'Renewal Date';
 	String get expiry_date => 'Expiration Date';
+	String get no_contract => 'You don\'t have a subscription plan';
+	String get subscribed_via_web => 'Subscribed via web';
 }
 
 // Path: quizRequests
@@ -1193,6 +1195,8 @@ class TranslationsQuizzesEn {
 	String get lang_number_of_question => 'Language of question';
 	String get reading_out_question => 'Reading out the question';
 	String get question_hidden => 'Hide the question';
+	String get question_preview => 'Question Preview';
+	String get show_preview => 'Show Preview';
 	String get correct_answer => 'Correct Answer';
 	String get correct_answer_placeholder => '【Required】Please input a correct answer.';
 	String get lang_number_of_answer => 'Language of answer';
@@ -1220,6 +1224,7 @@ class TranslationsQuizzesEn {
 	String get modified => 'Modified the quiz.';
 	String get word_quiz_edit_prevention => 'This quiz is based on the information of the dictionary, so you need to edit the dictionary item to change it.';
 	String get sentence_quiz_edit_prevention => 'This quiz is based on the information of the sentence, so you need to edit the sentence to change it.';
+	String get do_not_know => 'Pass';
 }
 
 // Path: ranking
@@ -1237,6 +1242,10 @@ class TranslationsRankingEn {
 	String get weekly_answerer => 'Weekly Answerers Ranking';
 	String get monthly_answerer => 'Monthly Answerers Ranking';
 	String rank({required Object number}) => 'No.${number}';
+	String user_ranking({required Object rank, required Object name}) => '#${rank}: ${name}';
+	String daily_answer_count({required Object count}) => 'Answers Today: ${count}';
+	String weekly_answer_count({required Object count}) => 'Answers This Week: ${count}';
+	String monthly_answer_count({required Object count}) => 'Answers This Month: ${count}';
 }
 
 // Path: reviews
@@ -1285,6 +1294,11 @@ class TranslationsReviewsEn {
 	String get fix_error => 'Fix error';
 	String get error_fixed => 'Error fixed.';
 	String scheduled_at({required Object scheduled_date}) => 'Scheduled at ${scheduled_date}';
+	String get delete_all_reviews_completed => 'All reviews have been deleted.';
+	String get cancel => 'Cancel';
+	String get confirm_deletion => 'Delete Confirmation';
+	String get execute => 'Delete';
+	String get delete_all_reviews_confirmation => 'All reviews will be deleted. This operation cannot be undone. Are you sure you want to proceed?';
 }
 
 // Path: schools
@@ -1324,6 +1338,11 @@ class TranslationsSensesEn {
 	String get sense => 'Sense';
 	String get gloss => 'Gloss';
 	String get add => 'Add sense';
+	String get show_preview => 'Show preview';
+	String get meaning_preview => 'Preview definition';
+	String get destroy => 'Delete';
+	String get confirm_destroy => 'Confirm Deletion';
+	String get confirm_destroy_message => 'Are you sure you want to request deletion of this definition?';
 }
 
 // Path: sentenceRequests
@@ -1670,6 +1689,8 @@ class TranslationsUsersEn {
 	String get show => 'User Page';
 	String get menu => 'Menu';
 	String get find_users => 'Find users';
+	String get search => 'Search';
+	String get enter_keyword => 'Enter keyword';
 	String get contract_details => 'Contract details';
 	String get edit => 'Account Setting';
 	String get withdraw => 'Withdraw from DiQt';
@@ -2776,6 +2797,8 @@ extension on Translations {
 			case 'purchase.subscription_cancelled': return 'Cancelled';
 			case 'purchase.renewal_date': return 'Renewal Date';
 			case 'purchase.expiry_date': return 'Expiration Date';
+			case 'purchase.no_contract': return 'You don\'t have a subscription plan';
+			case 'purchase.subscribed_via_web': return 'Subscribed via web';
 			case 'quizRequests.quiz_requests': return 'Edit Histories of quizzes';
 			case 'quizRequests.edit_histories': return 'Edit Histories';
 			case 'quizRequests.pending_edits': return 'Pending Edits';
@@ -2804,6 +2827,8 @@ extension on Translations {
 			case 'quizzes.lang_number_of_question': return 'Language of question';
 			case 'quizzes.reading_out_question': return 'Reading out the question';
 			case 'quizzes.question_hidden': return 'Hide the question';
+			case 'quizzes.question_preview': return 'Question Preview';
+			case 'quizzes.show_preview': return 'Show Preview';
 			case 'quizzes.correct_answer': return 'Correct Answer';
 			case 'quizzes.correct_answer_placeholder': return '【Required】Please input a correct answer.';
 			case 'quizzes.lang_number_of_answer': return 'Language of answer';
@@ -2831,6 +2856,7 @@ extension on Translations {
 			case 'quizzes.modified': return 'Modified the quiz.';
 			case 'quizzes.word_quiz_edit_prevention': return 'This quiz is based on the information of the dictionary, so you need to edit the dictionary item to change it.';
 			case 'quizzes.sentence_quiz_edit_prevention': return 'This quiz is based on the information of the sentence, so you need to edit the sentence to change it.';
+			case 'quizzes.do_not_know': return 'Pass';
 			case 'ranking.ranking': return 'Ranking';
 			case 'ranking.daily': return 'Daily';
 			case 'ranking.weekly': return 'Weekly';
@@ -2839,6 +2865,10 @@ extension on Translations {
 			case 'ranking.weekly_answerer': return 'Weekly Answerers Ranking';
 			case 'ranking.monthly_answerer': return 'Monthly Answerers Ranking';
 			case 'ranking.rank': return ({required Object number}) => 'No.${number}';
+			case 'ranking.user_ranking': return ({required Object rank, required Object name}) => '#${rank}: ${name}';
+			case 'ranking.daily_answer_count': return ({required Object count}) => 'Answers Today: ${count}';
+			case 'ranking.weekly_answer_count': return ({required Object count}) => 'Answers This Week: ${count}';
+			case 'ranking.monthly_answer_count': return ({required Object count}) => 'Answers This Month: ${count}';
 			case 'reviews.reviews': return 'Reviews';
 			case 'reviews.unreviewed': return 'Unreviewed';
 			case 'reviews.scheduled': return 'Scheduled';
@@ -2878,6 +2908,11 @@ extension on Translations {
 			case 'reviews.fix_error': return 'Fix error';
 			case 'reviews.error_fixed': return 'Error fixed.';
 			case 'reviews.scheduled_at': return ({required Object scheduled_date}) => 'Scheduled at ${scheduled_date}';
+			case 'reviews.delete_all_reviews_completed': return 'All reviews have been deleted.';
+			case 'reviews.cancel': return 'Cancel';
+			case 'reviews.confirm_deletion': return 'Delete Confirmation';
+			case 'reviews.execute': return 'Delete';
+			case 'reviews.delete_all_reviews_confirmation': return 'All reviews will be deleted. This operation cannot be undone. Are you sure you want to proceed?';
 			case 'schools.schools': return 'Schools';
 			case 'schools.school': return 'School';
 			case 'schools.name': return 'Name';
@@ -2899,6 +2934,11 @@ extension on Translations {
 			case 'senses.sense': return 'Sense';
 			case 'senses.gloss': return 'Gloss';
 			case 'senses.add': return 'Add sense';
+			case 'senses.show_preview': return 'Show preview';
+			case 'senses.meaning_preview': return 'Preview definition';
+			case 'senses.destroy': return 'Delete';
+			case 'senses.confirm_destroy': return 'Confirm Deletion';
+			case 'senses.confirm_destroy_message': return 'Are you sure you want to request deletion of this definition?';
 			case 'sentenceRequests.sentence_requests': return 'Edit histories of example sentences';
 			case 'sentenceRequests.edit_histories': return 'Edit Histories';
 			case 'sentenceRequests.pending_edits': return 'Pending Edits';
@@ -3191,6 +3231,8 @@ extension on Translations {
 			case 'users.show': return 'User Page';
 			case 'users.menu': return 'Menu';
 			case 'users.find_users': return 'Find users';
+			case 'users.search': return 'Search';
+			case 'users.enter_keyword': return 'Enter keyword';
 			case 'users.contract_details': return 'Contract details';
 			case 'users.edit': return 'Account Setting';
 			case 'users.withdraw': return 'Withdraw from DiQt';

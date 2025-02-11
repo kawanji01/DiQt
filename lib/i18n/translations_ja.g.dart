@@ -1143,6 +1143,8 @@ class _TranslationsPurchaseJa implements TranslationsPurchaseEn {
 	@override String get subscription_cancelled => '解約済';
 	@override String get renewal_date => '契約更新日';
 	@override String get expiry_date => '有効期限日';
+	@override String get no_contract => 'ご契約プランがありません';
+	@override String get subscribed_via_web => 'Webで契約しています';
 }
 
 // Path: quizRequests
@@ -1189,6 +1191,8 @@ class _TranslationsQuizzesJa implements TranslationsQuizzesEn {
 	@override String get lang_number_of_question => '問題の言語';
 	@override String get reading_out_question => '問題の読み上げ';
 	@override String get question_hidden => '問題文の非表示';
+	@override String get question_preview => '問題のプレビュー';
+	@override String get show_preview => 'プレビューを見る';
 	@override String get correct_answer => '正解';
 	@override String get correct_answer_placeholder => '【必須】正解を入力してください。';
 	@override String get lang_number_of_answer => '答えの言語';
@@ -1216,6 +1220,7 @@ class _TranslationsQuizzesJa implements TranslationsQuizzesEn {
 	@override String get modified => '問題を修正しました。';
 	@override String get word_quiz_edit_prevention => 'この問題は辞書の情報に基づいているため、変更するには辞書の項目の編集が必要です。';
 	@override String get sentence_quiz_edit_prevention => 'この問題は例文の情報に基づいているため、変更するには例文の編集が必要です。';
+	@override String get do_not_know => 'わからない';
 }
 
 // Path: ranking
@@ -1233,6 +1238,10 @@ class _TranslationsRankingJa implements TranslationsRankingEn {
 	@override String get weekly_answerer => '週間解答者ランキング';
 	@override String get monthly_answerer => '月間解答者ランキング';
 	@override String rank({required Object number}) => '第${number}位';
+	@override String user_ranking({required Object rank, required Object name}) => '${rank}位: ${name}';
+	@override String daily_answer_count({required Object count}) => '解答数: ${count}';
+	@override String weekly_answer_count({required Object count}) => '週間解答数: ${count}';
+	@override String monthly_answer_count({required Object count}) => '月間解答数: ${count}';
 }
 
 // Path: reviews
@@ -1281,6 +1290,11 @@ class _TranslationsReviewsJa implements TranslationsReviewsEn {
 	@override String get fix_error => 'エラーを修正する';
 	@override String get error_fixed => 'エラーを修正しました。';
 	@override String scheduled_at({required Object scheduled_date}) => '${scheduled_date}に復習予定';
+	@override String get delete_all_reviews_completed => '復習を全て削除しました。';
+	@override String get cancel => 'キャンセル';
+	@override String get confirm_deletion => '削除確認';
+	@override String get execute => '実行する';
+	@override String get delete_all_reviews_confirmation => '全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？';
 }
 
 // Path: schools
@@ -1320,6 +1334,11 @@ class _TranslationsSensesJa implements TranslationsSensesEn {
 	@override String get sense => '意味';
 	@override String get gloss => '意味';
 	@override String get add => '意味を追加する';
+	@override String get show_preview => 'プレビューを見る';
+	@override String get meaning_preview => '意味のプレビュー';
+	@override String get destroy => '削除する';
+	@override String get confirm_destroy => '削除確認';
+	@override String get confirm_destroy_message => 'この意味の削除申請を行います。よろしいですか？';
 }
 
 // Path: sentenceRequests
@@ -1666,6 +1685,8 @@ class _TranslationsUsersJa implements TranslationsUsersEn {
 	@override String get show => 'ユーザーページ';
 	@override String get menu => 'メニュー';
 	@override String get find_users => 'ユーザーを探す';
+	@override String get search => '検索する';
+	@override String get enter_keyword => 'キーワードを入力してください';
 	@override String get contract_details => 'ご契約内容';
 	@override String get edit => 'アカウント設定';
 	@override String get withdraw => 'DiQtから退会する';
@@ -2772,6 +2793,8 @@ extension on TranslationsJa {
 			case 'purchase.subscription_cancelled': return '解約済';
 			case 'purchase.renewal_date': return '契約更新日';
 			case 'purchase.expiry_date': return '有効期限日';
+			case 'purchase.no_contract': return 'ご契約プランがありません';
+			case 'purchase.subscribed_via_web': return 'Webで契約しています';
 			case 'quizRequests.quiz_requests': return '問題の編集履歴';
 			case 'quizRequests.edit_histories': return '編集履歴';
 			case 'quizRequests.pending_edits': return '審査中の編集';
@@ -2800,6 +2823,8 @@ extension on TranslationsJa {
 			case 'quizzes.lang_number_of_question': return '問題の言語';
 			case 'quizzes.reading_out_question': return '問題の読み上げ';
 			case 'quizzes.question_hidden': return '問題文の非表示';
+			case 'quizzes.question_preview': return '問題のプレビュー';
+			case 'quizzes.show_preview': return 'プレビューを見る';
 			case 'quizzes.correct_answer': return '正解';
 			case 'quizzes.correct_answer_placeholder': return '【必須】正解を入力してください。';
 			case 'quizzes.lang_number_of_answer': return '答えの言語';
@@ -2827,6 +2852,7 @@ extension on TranslationsJa {
 			case 'quizzes.modified': return '問題を修正しました。';
 			case 'quizzes.word_quiz_edit_prevention': return 'この問題は辞書の情報に基づいているため、変更するには辞書の項目の編集が必要です。';
 			case 'quizzes.sentence_quiz_edit_prevention': return 'この問題は例文の情報に基づいているため、変更するには例文の編集が必要です。';
+			case 'quizzes.do_not_know': return 'わからない';
 			case 'ranking.ranking': return 'ランキング';
 			case 'ranking.daily': return '日間';
 			case 'ranking.weekly': return '週間';
@@ -2835,6 +2861,10 @@ extension on TranslationsJa {
 			case 'ranking.weekly_answerer': return '週間解答者ランキング';
 			case 'ranking.monthly_answerer': return '月間解答者ランキング';
 			case 'ranking.rank': return ({required Object number}) => '第${number}位';
+			case 'ranking.user_ranking': return ({required Object rank, required Object name}) => '${rank}位: ${name}';
+			case 'ranking.daily_answer_count': return ({required Object count}) => '解答数: ${count}';
+			case 'ranking.weekly_answer_count': return ({required Object count}) => '週間解答数: ${count}';
+			case 'ranking.monthly_answer_count': return ({required Object count}) => '月間解答数: ${count}';
 			case 'reviews.reviews': return '復習';
 			case 'reviews.unreviewed': return '未復習';
 			case 'reviews.scheduled': return '予定';
@@ -2874,6 +2904,11 @@ extension on TranslationsJa {
 			case 'reviews.fix_error': return 'エラーを修正する';
 			case 'reviews.error_fixed': return 'エラーを修正しました。';
 			case 'reviews.scheduled_at': return ({required Object scheduled_date}) => '${scheduled_date}に復習予定';
+			case 'reviews.delete_all_reviews_completed': return '復習を全て削除しました。';
+			case 'reviews.cancel': return 'キャンセル';
+			case 'reviews.confirm_deletion': return '削除確認';
+			case 'reviews.execute': return '実行する';
+			case 'reviews.delete_all_reviews_confirmation': return '全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？';
 			case 'schools.schools': return '教室';
 			case 'schools.school': return '教室';
 			case 'schools.name': return '名前';
@@ -2895,6 +2930,11 @@ extension on TranslationsJa {
 			case 'senses.sense': return '意味';
 			case 'senses.gloss': return '意味';
 			case 'senses.add': return '意味を追加する';
+			case 'senses.show_preview': return 'プレビューを見る';
+			case 'senses.meaning_preview': return '意味のプレビュー';
+			case 'senses.destroy': return '削除する';
+			case 'senses.confirm_destroy': return '削除確認';
+			case 'senses.confirm_destroy_message': return 'この意味の削除申請を行います。よろしいですか？';
 			case 'sentenceRequests.sentence_requests': return '例文の編集履歴';
 			case 'sentenceRequests.edit_histories': return '編集履歴';
 			case 'sentenceRequests.pending_edits': return '審査中の編集';
@@ -3187,6 +3227,8 @@ extension on TranslationsJa {
 			case 'users.show': return 'ユーザーページ';
 			case 'users.menu': return 'メニュー';
 			case 'users.find_users': return 'ユーザーを探す';
+			case 'users.search': return '検索する';
+			case 'users.enter_keyword': return 'キーワードを入力してください';
 			case 'users.contract_details': return 'ご契約内容';
 			case 'users.edit': return 'アカウント設定';
 			case 'users.withdraw': return 'DiQtから退会する';
