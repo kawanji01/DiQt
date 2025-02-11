@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
@@ -43,7 +44,7 @@ class QuizItemSkipButtonState extends ConsumerState<QuizItemSkipButton> {
       onTap: () {
         // 振動フィードバック
         HapticFeedback.mediumImpact();
-        AnswerNotification('わからない', false, quiz, user!, true).dispatch(context);
+        AnswerNotification(t.quizzes.do_not_know, false, quiz, user!, true).dispatch(context);
         setState(() {
           _selected = true;
         });
