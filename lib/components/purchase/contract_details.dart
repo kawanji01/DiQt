@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/purchase/app_subscription.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
@@ -76,10 +77,10 @@ class _PurchaseContractDetailsState extends State<PurchaseContractDetails> {
               border: Border.all(color: Colors.green, width: 1),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('ご契約プランがありません', style: headingStyle),
+                Text(t.purchase.no_contract, style: headingStyle),
                 Text(
                   'entitlementInfo is Empty',
                   style: textStyle,

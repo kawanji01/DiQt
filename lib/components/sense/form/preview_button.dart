@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/sense/form/preview_screen.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
@@ -37,8 +38,8 @@ class SenseFormPreviewButton extends StatelessWidget {
                 word: word))
       },
       icon: const Icon(Icons.visibility, color: Colors.white),
-      label: const Text(
-        'プレビューを見る',
+      label: Text(
+        t.senses.show_preview,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
     );

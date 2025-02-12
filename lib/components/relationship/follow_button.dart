@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/remote/relationships.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/relationship.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/components/button/small_green_button.dart';
@@ -66,8 +67,8 @@ class RelationshipFollowButtonState
         onTap: () {
           follow();
         },
-        child: const SmallOutlineGrayButton(
-          label: 'フォローする',
+        child: SmallOutlineGrayButton(
+          label: t.users.follow,
           icon: Icons.person_add,
         ),
       );
@@ -77,7 +78,7 @@ class RelationshipFollowButtonState
       onTap: () {
         remove();
       },
-      child: const SmallGreenButton(label: 'フォロー中', icon: Icons.person),
+      child: SmallGreenButton(label: t.users.following, icon: Icons.person),
     );
   }
 }

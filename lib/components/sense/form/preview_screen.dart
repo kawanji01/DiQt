@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/sentence/preview.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
@@ -33,7 +34,7 @@ class SenseFormPreviewScreen extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          const Text('意味のプレビュー',
+          Text(t.senses.meaning_preview,
               style: TextStyle(
                   fontSize: 24,
                   color: Colors.black87,

@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/reviews.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/review/all.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class ReviewBulkDeletionScreenState
       final Map? resMap = await RemoteReviews.destroyAll();
       EasyLoading.dismiss();
       if (resMap == null) return;
-      const snackBar = SnackBar(content: Text('復習を全て削除しました。'));
+      final snackBar = SnackBar(content: Text(t.reviews.delete_all_reviews_completed));
       // currentUserの再読み込みでカウントをリセットする
       ref.invalidate(asyncCurrentUserProvider);
       if (!context.mounted) return;
@@ -41,8 +42,8 @@ class ReviewBulkDeletionScreenState
         Navigator.of(context).pop();
       },
       icon: const Icon(Icons.close, color: Colors.white),
-      label: const Text(
-        'キャンセル',
+      label: Text(
+        t.reviews.cancel,
         style: TextStyle(
             fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
       ),
@@ -57,7 +58,7 @@ class ReviewBulkDeletionScreenState
         size: 18,
         color: Colors.red,
       ),
-      label: const Text('実行する',
+      label: Text(t.reviews.execute,
           style: TextStyle(
               fontSize: 16, color: Colors.red, fontWeight: FontWeight.bold)),
       style: TextButton.styleFrom(
@@ -74,13 +75,13 @@ class ReviewBulkDeletionScreenState
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('削除確認',
+          Text(t.reviews.confirm_deletion,
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.black87)),
           const SizedBox(height: 16),
-          const Text('全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？',
+          Text(t.reviews.delete_all_reviews_confirmation,
               style: TextStyle(fontSize: 16, color: Colors.black87)),
           const SizedBox(height: 32),
           Wrap(

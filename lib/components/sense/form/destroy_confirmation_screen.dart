@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/remote/senses.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/sense.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -43,8 +44,8 @@ class _SenseFormDestroyConfirmationScreenState
         submit();
       },
       icon: const Icon(Icons.delete, color: Colors.white),
-      label: const Text(
-        '削除する',
+      label: Text(
+        t.senses.destroy,
         style: TextStyle(
             fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
       ),
@@ -57,13 +58,13 @@ class _SenseFormDestroyConfirmationScreenState
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('削除確認',
+          Text(t.senses.confirm_destroy,
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.black87)),
           const SizedBox(height: 16),
-          const Text('この意味の削除申請を行います。よろしいですか？',
+          Text(t.senses.confirm_destroy_message,
               style: TextStyle(fontSize: 16, color: Colors.black87)),
           const SizedBox(height: 32),
           submitButton

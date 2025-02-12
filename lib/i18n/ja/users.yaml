@@ -6,6 +6,8 @@ creating_account_succeeded: '会員登録が完了しました！ようこそDiQ
 show: 'ユーザーページ'
 menu: 'メニュー'
 find_users: 'ユーザーを探す'
+search: '検索する'
+enter_keyword: 'キーワードを入力してください'
 contract_details: 'ご契約内容'
 edit: 'アカウント設定'
 withdraw: 'DiQtから退会する'

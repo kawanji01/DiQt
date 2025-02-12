@@ -6,6 +6,8 @@ creating_account_succeeded: 'Your account registration has been completed! Welco
 show: 'User Page'
 menu: 'Menu'
 find_users: 'Find users'
+search: 'Search'
+enter_keyword: 'Enter keyword'
 contract_details: 'Contract details'
 edit: 'Account Setting'
 withdraw: 'Withdraw from DiQt'

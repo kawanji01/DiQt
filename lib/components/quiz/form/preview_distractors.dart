@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class QuizFormPreviewDistractors extends StatelessWidget {
@@ -99,7 +100,7 @@ class QuizFormPreviewDistractors extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SharedItemLabel(text: '誤りの選択肢'),
+        SharedItemLabel(text: t.quizzes.distractors),
         const SizedBox(
           height: 16,
         ),
