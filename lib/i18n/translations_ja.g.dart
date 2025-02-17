@@ -1748,6 +1748,7 @@ class _TranslationsUsersJa implements TranslationsUsersEn {
 	@override String continuous_goal_achievement_count({required Object count}) => '${count}日連続目標達成中！';
 	@override String continuous_review_completion_count({required Object count}) => '${count}日連続復習達成中！';
 	@override String get language_settings => '言語設定';
+	@override String get invite => '友達を招待する';
 	@override String invitation_message({required Object name}) => '${name}さんがあなたをDiQtに招待しました！✨\n新しい言語の世界へ飛び込もう！';
 }
 
@@ -3290,6 +3291,7 @@ extension on TranslationsJa {
 			case 'users.continuous_goal_achievement_count': return ({required Object count}) => '${count}日連続目標達成中！';
 			case 'users.continuous_review_completion_count': return ({required Object count}) => '${count}日連続復習達成中！';
 			case 'users.language_settings': return '言語設定';
+			case 'users.invite': return '友達を招待する';
 			case 'users.invitation_message': return ({required Object name}) => '${name}さんがあなたをDiQtに招待しました！✨\n新しい言語の世界へ飛び込もう！';
 			case 'weaknesses.weakness': return '弱点問題';
 			case 'weaknesses.weaknesses': return '弱点問題';

@@ -2,7 +2,6 @@ import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:booqs_mobile/components/achievement/unreceived_item_screen.dart';
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
-import 'package:booqs_mobile/components/user/invitation_button.dart';
 import 'package:booqs_mobile/components/user/notification_button.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
@@ -95,7 +94,6 @@ class UserMyPageState extends ConsumerState<UserMyPage> {
         // centerTitle: true,
         title: t.layouts.my_page,
         actions: const <Widget>[
-          UserInvitationButton(),
           UserNotificationButton(),
         ],
       ),

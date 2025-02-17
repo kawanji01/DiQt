@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/button/large_green_button.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -14,15 +15,10 @@ class UserInvitationButton extends ConsumerWidget {
     final User? user = ref.watch(currentUserProvider);
 
     if (user == null) {
-      return IconButton(
-        //iconSize: 28,
-        icon: const Icon(Icons.person_add_alt_1),
-        onPressed: () {},
-      );
+      return Container();
     }
 
-    final String url =
-        '${DiQtURL.root(locale: null)}/users/${user.publicUid}';
+    final String url = '${DiQtURL.root(locale: null)}/users/${user.publicUid}';
     final String sharedText =
         '${t.users.invitation_message(name: user.name)}\n$url';
 
@@ -30,10 +26,12 @@ class UserInvitationButton extends ConsumerWidget {
       await Share.share(text, subject: subject);
     }
 
-    return IconButton(
-      // iconSize: 28,
-      icon: const Icon(Icons.person_add_alt_1),
-      onPressed: () => {shareText(sharedText, 'DiQt')},
+    return InkWell(
+      onTap: () {
+        shareText(sharedText, 'DiQt');
+      },
+      child:
+          LargeGreenButton(label: t.users.invite, icon: Icons.person_add_alt_1),
     );
   }
 }

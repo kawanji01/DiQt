@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/components/user/drill_creator_button.dart';
+import 'package:booqs_mobile/components/user/invitation_button.dart';
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/user.dart';
@@ -186,6 +187,10 @@ class UserMenuPage extends ConsumerWidget {
                 height: 32,
               ),
               noteListButton(),
+              const SizedBox(
+                height: 32,
+              ),
+              UserInvitationButton(),
               const SizedBox(
                 height: 32,
               ),
