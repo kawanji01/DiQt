@@ -571,6 +571,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_app_badge_control:
+    dependency: "direct main"
+    description:
+      name: flutter_app_badge_control
+      sha256: a2e4f1490b533f2aa4fe02e5f15170bae33e6db70bbc3e7a2ddef54cb13828d2
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   flutter_cache_manager:
     dependency: transitive
     description:

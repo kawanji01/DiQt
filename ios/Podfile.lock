@@ -90,6 +90,8 @@ PODS:
     - PromisesSwift (~> 2.1)
   - FirebaseSharedSwift (11.6.0)
   - Flutter (1.0.0)
+  - flutter_app_badge_control (0.0.1):
+    - Flutter
   - flutter_keyboard_visibility (0.0.1):
     - Flutter
   - flutter_local_notifications (0.0.1):
@@ -211,6 +213,7 @@ DEPENDENCIES:
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - firebase_remote_config (from `.symlinks/plugins/firebase_remote_config/ios`)
   - Flutter (from `Flutter`)
+  - flutter_app_badge_control (from `.symlinks/plugins/flutter_app_badge_control/ios`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
@@ -280,6 +283,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_remote_config/ios"
   Flutter:
     :path: Flutter
+  flutter_app_badge_control:
+    :path: ".symlinks/plugins/flutter_app_badge_control/ios"
   flutter_keyboard_visibility:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   flutter_local_notifications:
@@ -345,6 +350,7 @@ SPEC CHECKSUMS:
   FirebaseSessions: 3f56f177d9e53a85021d16b31f9a111849d1dd8b
   FirebaseSharedSwift: a4e5dfca3e210633bb3a3dfb94176c019211948b
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_app_badge_control: 1f0ac37334d1a2da72bde7e4d3c6c8675517a471
   flutter_keyboard_visibility: 4625131e43015dbbe759d9b20daaf77e0e3f6619
   flutter_local_notifications: 395056b3175ba4f08480a7c5de30cd36d69827e4
   flutter_secure_storage: 1ed9476fba7e7a782b22888f956cce43e2c62f13
