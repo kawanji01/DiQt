@@ -38,6 +38,7 @@ class DictionaryAIPromptSelect extends ConsumerWidget {
           'explain_synonym',
           'explain_antonym',
           'explain_conjugation',
+          'explain_etymology',
           'explain_grammar',
           'proofread_sentence',
         ].map<DropdownMenuItem<String>>((String value) {

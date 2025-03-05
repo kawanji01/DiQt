@@ -722,6 +722,7 @@ class _TranslationsLangJa implements TranslationsLangEn {
 	@override String get explain_synonym => '類義語を教えてください';
 	@override String get explain_antonym => '反意語を教えてください';
 	@override String get explain_conjugation => '活用形を教えてください';
+	@override String get explain_etymology => '語源を教えてください';
 	@override String get explain_grammar => '文中の文法や構文を解説してください';
 	@override String get proofread_sentence => '文章を校正してください';
 	@override String get language => '言語';
@@ -2409,6 +2410,7 @@ extension on TranslationsJa {
 			case 'lang.explain_synonym': return '類義語を教えてください';
 			case 'lang.explain_antonym': return '反意語を教えてください';
 			case 'lang.explain_conjugation': return '活用形を教えてください';
+			case 'lang.explain_etymology': return '語源を教えてください';
 			case 'lang.explain_grammar': return '文中の文法や構文を解説してください';
 			case 'lang.proofread_sentence': return '文章を校正してください';
 			case 'lang.language': return '言語';

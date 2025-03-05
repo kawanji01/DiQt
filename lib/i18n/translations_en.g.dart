@@ -726,6 +726,7 @@ class TranslationsLangEn {
 	String get explain_synonym => 'Please explain the synonym.';
 	String get explain_antonym => 'Please explain the antonym.';
 	String get explain_conjugation => 'Please explain the conjugation.';
+	String get explain_etymology => 'Please explain the etymology.';
 	String get explain_grammar => 'Please explain the grammar and syntax in the sentence.';
 	String get proofread_sentence => 'Please proofread the sentence';
 	String get language => 'Language';
@@ -2413,6 +2414,7 @@ extension on Translations {
 			case 'lang.explain_synonym': return 'Please explain the synonym.';
 			case 'lang.explain_antonym': return 'Please explain the antonym.';
 			case 'lang.explain_conjugation': return 'Please explain the conjugation.';
+			case 'lang.explain_etymology': return 'Please explain the etymology.';
 			case 'lang.explain_grammar': return 'Please explain the grammar and syntax in the sentence.';
 			case 'lang.proofread_sentence': return 'Please proofread the sentence';
 			case 'lang.language': return 'Language';
