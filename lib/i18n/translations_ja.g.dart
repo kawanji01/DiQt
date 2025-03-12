@@ -1258,8 +1258,8 @@ class _TranslationsReviewsJa implements TranslationsReviewsEn {
 	@override String get all => 'すべて';
 	@override String get order => '順番';
 	@override String get random_random => 'ランダム';
-	@override String get scheduled_date_desc => '予定日が新しい順';
-	@override String get scheduled_date_asc => '予定日が古い順';
+	@override String get scheduled_date_desc => '予定日が遠い順';
+	@override String get scheduled_date_asc => '予定日が近い順';
 	@override String get empty => '復習問題はありません。';
 	@override String get memorize => '覚える';
 	@override String get word_label => '意味を覚える';
@@ -2874,8 +2874,8 @@ extension on TranslationsJa {
 			case 'reviews.all': return 'すべて';
 			case 'reviews.order': return '順番';
 			case 'reviews.random_random': return 'ランダム';
-			case 'reviews.scheduled_date_desc': return '予定日が新しい順';
-			case 'reviews.scheduled_date_asc': return '予定日が古い順';
+			case 'reviews.scheduled_date_desc': return '予定日が遠い順';
+			case 'reviews.scheduled_date_asc': return '予定日が近い順';
 			case 'reviews.empty': return '復習問題はありません。';
 			case 'reviews.memorize': return '覚える';
 			case 'reviews.word_label': return '意味を覚える';

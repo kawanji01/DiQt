@@ -1262,8 +1262,8 @@ class TranslationsReviewsEn {
 	String get all => 'All';
 	String get order => 'Order';
 	String get random_random => 'Random';
-	String get scheduled_date_desc => 'Latest scheduled';
-	String get scheduled_date_asc => 'Oldest scheduled';
+	String get scheduled_date_desc => 'Latest first';
+	String get scheduled_date_asc => 'Upcoming first';
 	String get empty => 'There are no review questions.';
 	String get memorize => 'Remember';
 	String get word_label => 'Remember the meaning';
@@ -2878,8 +2878,8 @@ extension on Translations {
 			case 'reviews.all': return 'All';
 			case 'reviews.order': return 'Order';
 			case 'reviews.random_random': return 'Random';
-			case 'reviews.scheduled_date_desc': return 'Latest scheduled';
-			case 'reviews.scheduled_date_asc': return 'Oldest scheduled';
+			case 'reviews.scheduled_date_desc': return 'Latest first';
+			case 'reviews.scheduled_date_asc': return 'Upcoming first';
 			case 'reviews.empty': return 'There are no review questions.';
 			case 'reviews.memorize': return 'Remember';
 			case 'reviews.word_label': return 'Remember the meaning';
