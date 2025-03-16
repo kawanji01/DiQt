@@ -38,16 +38,6 @@ class WordItemMeaning extends ConsumerWidget {
       );
     }
 
-    Widget pos() {
-      final String? pos = word.pos;
-      if (pos == null || pos == '') {
-        return Container();
-      }
-      return WordItemLabel(
-        text: pos,
-      );
-    }
-
     final int localeNumber = ref.watch(localeProvider.notifier).langNumber;
 
     return SizedBox(
@@ -55,7 +45,6 @@ class WordItemMeaning extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            pos(),
             meaningText(),
             LangSmallTranslationButtons(
               original: word.meaning,
