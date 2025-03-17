@@ -15,24 +15,40 @@ class DrillLapUpdateScreen extends ConsumerStatefulWidget {
 }
 
 class DrillLapUpdateScreenState extends ConsumerState<DrillLapUpdateScreen> {
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     final Drill? drill = ref.watch(drillProvider);
 
     Future<void> startNewLap() async {
-      Navigator.of(context).pop();
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      if (_isLoading) return;
+      setState(() {
+        _isLoading = true;
+      });
+
+      final navigatorContext = context;
+      ScaffoldMessenger.of(navigatorContext).hideCurrentSnackBar();
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       Map? resMap = await RemoteDrills.newLap(drill!.publicUid);
       EasyLoading.dismiss();
+
+      setState(() {
+        _isLoading = false;
+      });
+
       if (resMap == null) return;
-      if (!context.mounted) return;
+      if (!navigatorContext.mounted) return;
+
+      // ナビゲーション関連の処理をまとめて最後に実行
       final snackBar = SnackBar(content: Text(t.drills.new_lap_started));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      Navigator.of(context).pop();
+      ScaffoldMessenger.of(navigatorContext).showSnackBar(snackBar);
       ref.invalidate(asyncDrillUnsolvedQuizzesProvider);
-      DrillUnsolvedPage.push(context);
+
+      // 現在の画面を閉じて新しい画面に遷移
+      Navigator.of(navigatorContext).pop();
+      DrillUnsolvedPage.push(navigatorContext);
     }
 
     Widget updateButton() {
@@ -50,9 +66,7 @@ class DrillLapUpdateScreenState extends ConsumerState<DrillLapUpdateScreen> {
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 16)),
-            onPressed: () {
-              startNewLap();
-            },
+            onPressed: _isLoading ? null : startNewLap,
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(264, 48),
               backgroundColor: Colors.green,
