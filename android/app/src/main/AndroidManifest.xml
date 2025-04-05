@@ -20,17 +20,6 @@
             android:windowSoftInputMode="adjustResize">
             <!-- flutter local notifications 参考： https://zenn.dev/tomon9086/articles/d2624f6ab37c4c -->
 
-            <!-- Deep Linking Configuration: Enables the app to handle https://www.diqt.net/* URLs
-                when clicked in browsers or other apps. App Links verification is enabled for 
-                secure deep linking functionality. -->
-            <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="www.diqt.net" android:pathPattern=".*" />
-            </intent-filter>
-
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
