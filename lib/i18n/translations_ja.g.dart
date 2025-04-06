@@ -712,6 +712,7 @@ class _TranslationsLangJa implements TranslationsLangEn {
 	@override String get done => '完了';
 	@override String get translation_failed => '翻訳できませんでした。';
 	@override String translation_restricted({required Object number}) => '無料ユーザーが1日に翻訳できる回数は、${number}件までです。';
+	@override String ai_searches_restricted({required Object number}) => '無料ユーザーが１日にAIに聞ける数は、${number}件までです。';
 	@override String deepl_not_supported({required Object language}) => '${language}はDeepLが対応していない言語です。';
 	@override String google_not_supported({required Object language}) => '${language}はGoogleが対応していない言語です。';
 	@override String get need_to_login => '翻訳機能を利用するにはログインが必要です。';
@@ -2400,6 +2401,7 @@ extension on TranslationsJa {
 			case 'lang.done': return '完了';
 			case 'lang.translation_failed': return '翻訳できませんでした。';
 			case 'lang.translation_restricted': return ({required Object number}) => '無料ユーザーが1日に翻訳できる回数は、${number}件までです。';
+			case 'lang.ai_searches_restricted': return ({required Object number}) => '無料ユーザーが１日にAIに聞ける数は、${number}件までです。';
 			case 'lang.deepl_not_supported': return ({required Object language}) => '${language}はDeepLが対応していない言語です。';
 			case 'lang.google_not_supported': return ({required Object language}) => '${language}はGoogleが対応していない言語です。';
 			case 'lang.need_to_login': return '翻訳機能を利用するにはログインが必要です。';

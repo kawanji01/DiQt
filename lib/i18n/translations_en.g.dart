@@ -716,6 +716,7 @@ class TranslationsLangEn {
 	String get done => 'Done';
 	String get translation_failed => 'Translation Failed';
 	String translation_restricted({required Object number}) => 'Free users are limited to ${number} translations per day.';
+	String ai_searches_restricted({required Object number}) => 'Free users are limited to ${number} AI searches per day.';
 	String deepl_not_supported({required Object language}) => '${language} is not supported by DeepL.';
 	String google_not_supported({required Object language}) => '${language} is not supported by Google.';
 	String get need_to_login => 'You need to log in to use the translation.';
@@ -2404,6 +2405,7 @@ extension on Translations {
 			case 'lang.done': return 'Done';
 			case 'lang.translation_failed': return 'Translation Failed';
 			case 'lang.translation_restricted': return ({required Object number}) => 'Free users are limited to ${number} translations per day.';
+			case 'lang.ai_searches_restricted': return ({required Object number}) => 'Free users are limited to ${number} AI searches per day.';
 			case 'lang.deepl_not_supported': return ({required Object language}) => '${language} is not supported by DeepL.';
 			case 'lang.google_not_supported': return ({required Object language}) => '${language} is not supported by Google.';
 			case 'lang.need_to_login': return 'You need to log in to use the translation.';
