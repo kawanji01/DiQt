@@ -84,7 +84,11 @@ class _DictionaryAIFormState extends ConsumerState<DictionaryAIForm> {
             onPressed: () {
               if (_isRequesting) return;
 
-              aiSearchesLimited ? _moveToPremiumPlan : _performAISearch;
+              if (aiSearchesLimited) {
+                _moveToPremiumPlan();
+              } else {
+                _performAISearch();
+              }
             },
             child: Text(t.lang.ask_ai,
                 style: const TextStyle(fontWeight: FontWeight.bold)),
