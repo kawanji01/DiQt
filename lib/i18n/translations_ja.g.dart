@@ -1085,7 +1085,7 @@ class _TranslationsPurchaseJa implements TranslationsPurchaseEn {
 	// Translations
 	@override String get premium_plan => 'プレミアムプラン';
 	@override String get premium_plan_description => 'DiQtのすべての機能が使い放題になるプランです。';
-	@override String get trial_period_description => '今なら２週間の無料体験期間つき！';
+	@override String get trial_period_description => '今なら７日間の無料体験期間つき！';
 	@override String get free_plan => '無料プラン';
 	@override String get yen => '円';
 	@override String get answers_limit => '1日の解答数';
@@ -2740,7 +2740,7 @@ extension on TranslationsJa {
 			case 'notices.answer_times': return ({required Object count}) => '${count}回';
 			case 'purchase.premium_plan': return 'プレミアムプラン';
 			case 'purchase.premium_plan_description': return 'DiQtのすべての機能が使い放題になるプランです。';
-			case 'purchase.trial_period_description': return '今なら２週間の無料体験期間つき！';
+			case 'purchase.trial_period_description': return '今なら７日間の無料体験期間つき！';
 			case 'purchase.free_plan': return '無料プラン';
 			case 'purchase.yen': return '円';
 			case 'purchase.answers_limit': return '1日の解答数';

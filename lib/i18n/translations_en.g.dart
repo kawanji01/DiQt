@@ -1089,7 +1089,7 @@ class TranslationsPurchaseEn {
 	// Translations
 	String get premium_plan => 'Premium Plan';
 	String get premium_plan_description => 'This plan allows unlimited use of all DiQt features.';
-	String get trial_period_description => 'Now with a 2-week free trial period!';
+	String get trial_period_description => 'Start with a 7-day free trial.';
 	String get free_plan => 'Free';
 	String get yen => 'Yen';
 	String get answers_limit => 'Number of answers per day';
@@ -2744,7 +2744,7 @@ extension on Translations {
 			case 'notices.answer_times': return ({required Object count}) => '${count} times';
 			case 'purchase.premium_plan': return 'Premium Plan';
 			case 'purchase.premium_plan_description': return 'This plan allows unlimited use of all DiQt features.';
-			case 'purchase.trial_period_description': return 'Now with a 2-week free trial period!';
+			case 'purchase.trial_period_description': return 'Start with a 7-day free trial.';
 			case 'purchase.free_plan': return 'Free';
 			case 'purchase.yen': return 'Yen';
 			case 'purchase.answers_limit': return 'Number of answers per day';
