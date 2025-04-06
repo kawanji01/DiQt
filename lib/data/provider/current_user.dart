@@ -57,6 +57,10 @@ final todaysCorrectAnswersCountProvider = StateProvider<int>((ref) => ref.watch(
 final todaysTranslationsCountProvider = StateProvider<int>((ref) => ref.watch(
     currentUserProvider.select((user) => user?.todaysTranslationsCount ?? 0)));
 
+// その日にAI検索を行った数。無料ユーザーに制限をかけるために利用する。
+final todaysAiSearchesCountProvider = StateProvider<int>((ref) => ref.watch(
+    currentUserProvider.select((user) => user?.todaysAiSearchesCount ?? 0)));
+
 // 非同期でログイン済ユーザーを取得する
 final asyncCurrentUserProvider = FutureProvider<User?>((ref) async {
   Map? resMap = await RemoteUsers.current();
