@@ -716,6 +716,7 @@ class TranslationsLangEn {
 	String get done => 'Done';
 	String get translation_failed => 'Translation Failed';
 	String translation_restricted({required Object number}) => 'Free users are limited to ${number} translations per day.';
+	String ai_searches_restricted({required Object number}) => 'Free users are limited to ${number} AI searches per day.';
 	String deepl_not_supported({required Object language}) => '${language} is not supported by DeepL.';
 	String google_not_supported({required Object language}) => '${language} is not supported by Google.';
 	String get need_to_login => 'You need to log in to use the translation.';
@@ -1088,7 +1089,7 @@ class TranslationsPurchaseEn {
 	// Translations
 	String get premium_plan => 'Premium Plan';
 	String get premium_plan_description => 'This plan allows unlimited use of all DiQt features.';
-	String get trial_period_description => 'Now with a 2-week free trial period!';
+	String get trial_period_description => 'Start with a 7-day free trial.';
 	String get free_plan => 'Free';
 	String get yen => 'Yen';
 	String get answers_limit => 'Number of answers per day';
@@ -1124,6 +1125,8 @@ class TranslationsPurchaseEn {
 	String get premium_plan_benefits => 'Premium Plan Benefits';
 	String get unlimited_answers => 'Unlimited Answers';
 	String unlimited_answers_description({required Object number}) => 'Free users can only answer ${number} questions daily, but as a premium member, you can answer as many questions as you like in a day.';
+	String get unlimited_ai_searches => 'Unlimited AI Features';
+	String unlimited_ai_searches_description({required Object number}) => 'Free users are limited to ${number} AI queries per day, but with Premium membership, you can use AI features unlimited times.';
 	String get unlimited_translations => 'Unlimited Translations';
 	String unlimited_translations_description({required Object number}) => 'Free users can only translate ${number} times a day, but premium members can translate as many times a day as they like.';
 	String get weakness_description => 'Premium members can focus on questions with low percentage of correct answers.';
@@ -2404,6 +2407,7 @@ extension on Translations {
 			case 'lang.done': return 'Done';
 			case 'lang.translation_failed': return 'Translation Failed';
 			case 'lang.translation_restricted': return ({required Object number}) => 'Free users are limited to ${number} translations per day.';
+			case 'lang.ai_searches_restricted': return ({required Object number}) => 'Free users are limited to ${number} AI searches per day.';
 			case 'lang.deepl_not_supported': return ({required Object language}) => '${language} is not supported by DeepL.';
 			case 'lang.google_not_supported': return ({required Object language}) => '${language} is not supported by Google.';
 			case 'lang.need_to_login': return 'You need to log in to use the translation.';
@@ -2740,7 +2744,7 @@ extension on Translations {
 			case 'notices.answer_times': return ({required Object count}) => '${count} times';
 			case 'purchase.premium_plan': return 'Premium Plan';
 			case 'purchase.premium_plan_description': return 'This plan allows unlimited use of all DiQt features.';
-			case 'purchase.trial_period_description': return 'Now with a 2-week free trial period!';
+			case 'purchase.trial_period_description': return 'Start with a 7-day free trial.';
 			case 'purchase.free_plan': return 'Free';
 			case 'purchase.yen': return 'Yen';
 			case 'purchase.answers_limit': return 'Number of answers per day';
@@ -2776,6 +2780,8 @@ extension on Translations {
 			case 'purchase.premium_plan_benefits': return 'Premium Plan Benefits';
 			case 'purchase.unlimited_answers': return 'Unlimited Answers';
 			case 'purchase.unlimited_answers_description': return ({required Object number}) => 'Free users can only answer ${number} questions daily, but as a premium member, you can answer as many questions as you like in a day.';
+			case 'purchase.unlimited_ai_searches': return 'Unlimited AI Features';
+			case 'purchase.unlimited_ai_searches_description': return ({required Object number}) => 'Free users are limited to ${number} AI queries per day, but with Premium membership, you can use AI features unlimited times.';
 			case 'purchase.unlimited_translations': return 'Unlimited Translations';
 			case 'purchase.unlimited_translations_description': return ({required Object number}) => 'Free users can only translate ${number} times a day, but premium members can translate as many times a day as they like.';
 			case 'purchase.weakness_description': return 'Premium members can focus on questions with low percentage of correct answers.';

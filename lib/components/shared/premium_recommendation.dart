@@ -33,12 +33,14 @@ class SharedPremiumRecommendation extends StatelessWidget {
 
         Container(
             padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Text(
-              t.purchase.trial_period_description,
-              style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.green,
-                  fontWeight: FontWeight.bold),
+            child: Center(
+              child: Text(
+                t.purchase.trial_period_description,
+                style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold),
+              ),
             )),
 
         const SizedBox(height: 24),
@@ -64,8 +66,10 @@ class SharedPremiumRecommendation extends StatelessWidget {
               ),
               label: Text(
                 t.purchase.view_premium_plan,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.white),
               ),
             ),
           ),

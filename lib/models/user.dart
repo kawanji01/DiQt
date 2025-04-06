@@ -41,6 +41,7 @@ class User {
     required this.drillsCount,
     required this.rewardRemained,
     required this.todaysTranslationsCount,
+    required this.todaysAiSearchesCount,
     required this.appFavored,
     required this.appCancelReportSent,
     required this.langInitialized,
@@ -88,6 +89,7 @@ class User {
   int drillsCount;
   bool rewardRemained;
   int todaysTranslationsCount;
+  int todaysAiSearchesCount;
   bool appFavored;
   bool appCancelReportSent;
   bool langInitialized;
@@ -141,6 +143,7 @@ class User {
         drillsCount = json['drills_count'],
         rewardRemained = json['reward_remained'],
         todaysTranslationsCount = json['todays_translations_count'],
+        todaysAiSearchesCount = json['todays_ai_searches_count'],
         appFavored = json['app_favored'],
         appCancelReportSent = json['app_cancel_report_sent'],
         langInitialized = json['lang_initialized'],
@@ -214,6 +217,7 @@ class User {
         'weaknesses_count': weaknessesCount,
         'drills_count': drillsCount,
         'todays_translations_count': todaysTranslationsCount,
+        'todays_ai_searches_count': todaysAiSearchesCount,
         'app_favored': appFavored,
         'app_cancel_report_sent': appCancelReportSent,
         'lang_initialized': langInitialized,

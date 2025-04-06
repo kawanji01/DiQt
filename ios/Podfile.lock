@@ -105,7 +105,7 @@ PODS:
     - FirebaseSharedSwift (~> 11.0)
     - GoogleUtilities/Environment (~> 8.0)
     - "GoogleUtilities/NSData+zlib (~> 8.0)"
-  - FirebaseRemoteConfigInterop (11.9.0)
+  - FirebaseRemoteConfigInterop (11.11.0)
   - FirebaseSessions (11.8.0):
     - FirebaseCore (~> 11.8.0)
     - FirebaseCoreExtension (~> 11.8.0)
@@ -115,7 +115,7 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 8.0)
     - nanopb (~> 3.30910.0)
     - PromisesSwift (~> 2.1)
-  - FirebaseSharedSwift (11.9.0)
+  - FirebaseSharedSwift (11.11.0)
   - Flutter (1.0.0)
   - flutter_app_badge_control (0.0.1):
     - Flutter
@@ -166,7 +166,7 @@ PODS:
     - AppAuth (< 2.0, >= 1.7.3)
     - GTMAppAuth (< 5.0, >= 4.1.1)
     - GTMSessionFetcher/Core (~> 3.3)
-  - GoogleUserMessagingPlatform (2.7.0)
+  - GoogleUserMessagingPlatform (3.0.0)
   - GoogleUtilities/AppDelegateSwizzler (8.0.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -224,12 +224,12 @@ PODS:
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
     - PromisesObjC (= 2.4.0)
-  - purchases_flutter (8.4.0):
+  - purchases_flutter (8.7.1):
     - Flutter
-    - PurchasesHybridCommon (= 13.13.0)
-  - PurchasesHybridCommon (13.13.0):
-    - RevenueCat (= 5.14.0)
-  - RevenueCat (5.14.0)
+    - PurchasesHybridCommon (= 13.26.1)
+  - PurchasesHybridCommon (13.26.1):
+    - RevenueCat (= 5.20.2)
+  - RevenueCat (5.20.2)
   - rive_common (0.0.1):
     - Flutter
   - share_plus (0.0.1):
@@ -403,9 +403,9 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 6c963bd2a86aca0481eef4f48f5a4df783ae5917
   FirebaseMessaging: 487b634ccdf6f7b7ff180fdcb2a9935490f764e8
   FirebaseRemoteConfig: f63724461fd97f0d62f20021314b59388f3e8ef8
-  FirebaseRemoteConfigInterop: 710954a00e956c5fe5144a8e46164f0361389203
+  FirebaseRemoteConfigInterop: 85bdce8babed7814816496bb6f082bc05b0a45e1
   FirebaseSessions: c4d40a97f88f9eaff2834d61b4fea0a522d62123
-  FirebaseSharedSwift: 574e6a5602afe4397a55c8d4f767382d620285de
+  FirebaseSharedSwift: b1d32c3b29a911dc174bcf363f2f70bda9509d2f
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_app_badge_control: 1f0ac37334d1a2da72bde7e4d3c6c8675517a471
   flutter_keyboard_visibility: 4625131e43015dbbe759d9b20daaf77e0e3f6619
@@ -418,7 +418,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: fc0817122bd4d4189164f85374e06773b9561896
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
   GoogleSignIn: d4281ab6cf21542b1cfaff85c191f230b399d2db
-  GoogleUserMessagingPlatform: a8b56893477f67212fbc8411c139e61d463349f5
+  GoogleUserMessagingPlatform: f8d0cdad3ca835406755d0a69aa634f00e76d576
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
@@ -431,9 +431,9 @@ SPEC CHECKSUMS:
   pointer_interceptor_ios: ec847ef8b0915778bed2b2cef636f4d177fa8eed
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
-  purchases_flutter: 7fa39c345afbb5a33f6c9c13676bc6d6de96ca2a
-  PurchasesHybridCommon: a712dcce0d81fa39dada521292408816146ca58c
-  RevenueCat: 34f4147c8d26d2f3c691be4e3c9f033698e557f2
+  purchases_flutter: 017615776de2b6d42e01cbd49892ca78aabb4c10
+  PurchasesHybridCommon: aeebb5b2a956514f8f3ebde2a1574e07d2164ae8
+  RevenueCat: 9af6740f8629097fcacda9b3cb6b927319c53a26
   rive_common: dd421daaf9ae69f0125aa761dd96abd278399952
   share_plus: 50da8cb520a8f0f65671c6c6a99b3617ed10a58a
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
@@ -445,6 +445,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
   webview_flutter_wkwebview: 44d4dee7d7056d5ad185d25b38404436d56c547c
 
-PODFILE CHECKSUM: 4a4f98cb6dc672d0988f59af5b3cbba18c82d637
+PODFILE CHECKSUM: 5ca91b3ad215a47fad188e5ab80ddbb22b54065c
 
 COCOAPODS: 1.16.2

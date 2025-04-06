@@ -10,6 +10,7 @@ class LevelUpDialog {
       dialogType: DialogType.noHeader,
       bodyHeaderDistance: 0,
       padding: const EdgeInsets.all(0),
+      dialogBackgroundColor: Colors.white,
       body: ClipRRect(
         borderRadius: BorderRadius.circular(16),
         child: ExpLevelUpScreen(

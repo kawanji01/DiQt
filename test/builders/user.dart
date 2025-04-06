@@ -35,6 +35,7 @@ class UserBuilder {
         todaysAnswerHistoriesCount: 0,
         todaysCorrectAnswerHistoriesCount: 0,
         todaysTranslationsCount: 0,
+        todaysAiSearchesCount: 0,
         unreadNotificationsCount: 0,
         unsolvedReviewsCount: 0,
         unsolvedWeaknessesCount: 0,

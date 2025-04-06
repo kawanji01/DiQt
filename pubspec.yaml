@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
-version: 1.4.58+251
+version: 1.4.59+252
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -63,7 +63,7 @@ dependencies:
   flutter_typeahead: ^5.2.0 # 検索時のautocomplete
   percent_indicator: ^4.2.3 # 経験値のインジケーター
   eval_ex: ^1.1.7 # レベル実装のために、log10（ 10 を底とした対数を返すメソッド）が必要なため。
-  purchases_flutter: ^8.4.0 # 課金実装
+  purchases_flutter: ^8.7.1 # 課金実装
   google_mobile_ads: ^5.2.0 # 広告
   app_tracking_transparency: ^2.0.4 # iOSで広告表示のためにユーザー情報(IDFA（Identifier for Advertiser）)を収集するためのダイアログを表示する
   flutter_riverpod: ^2.3.6 # 状態管理

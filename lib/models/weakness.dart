@@ -35,7 +35,7 @@ class Weakness {
         solved = json['solved'],
         incorrectAnswersCount = json['incorrect_answers_count'],
         answersCount = json['answers_count'],
-        correctAnswerRate = json['correct_answer_rate'],
+        correctAnswerRate = json['correct_answer_rate'] ?? 0.0,
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         quiz = json['quiz'] == null ? null : Quiz.fromJson(json['quiz']),
