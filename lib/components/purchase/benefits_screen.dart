@@ -60,6 +60,12 @@ class PurchaseBenefitsScreen extends StatelessWidget {
                 number: answersCountLimitForFreeUsers),
           ),
           const SizedBox(height: 48),
+          title(t.purchase.unlimited_ai_searches),
+          description(
+            t.purchase.unlimited_ai_searches_description(
+                number: aiSearchesCountLimitForFreeUsers),
+          ),
+          const SizedBox(height: 48),
           title(t.purchase.unlimited_translations),
           description(
             t.purchase.unlimited_translations_description(

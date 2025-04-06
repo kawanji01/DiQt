@@ -1125,6 +1125,8 @@ class TranslationsPurchaseEn {
 	String get premium_plan_benefits => 'Premium Plan Benefits';
 	String get unlimited_answers => 'Unlimited Answers';
 	String unlimited_answers_description({required Object number}) => 'Free users can only answer ${number} questions daily, but as a premium member, you can answer as many questions as you like in a day.';
+	String get unlimited_ai_searches => 'Unlimited AI Features';
+	String unlimited_ai_searches_description({required Object number}) => 'Free users are limited to ${number} AI queries per day, but with Premium membership, you can use AI features unlimited times.';
 	String get unlimited_translations => 'Unlimited Translations';
 	String unlimited_translations_description({required Object number}) => 'Free users can only translate ${number} times a day, but premium members can translate as many times a day as they like.';
 	String get weakness_description => 'Premium members can focus on questions with low percentage of correct answers.';
@@ -2778,6 +2780,8 @@ extension on Translations {
 			case 'purchase.premium_plan_benefits': return 'Premium Plan Benefits';
 			case 'purchase.unlimited_answers': return 'Unlimited Answers';
 			case 'purchase.unlimited_answers_description': return ({required Object number}) => 'Free users can only answer ${number} questions daily, but as a premium member, you can answer as many questions as you like in a day.';
+			case 'purchase.unlimited_ai_searches': return 'Unlimited AI Features';
+			case 'purchase.unlimited_ai_searches_description': return ({required Object number}) => 'Free users are limited to ${number} AI queries per day, but with Premium membership, you can use AI features unlimited times.';
 			case 'purchase.unlimited_translations': return 'Unlimited Translations';
 			case 'purchase.unlimited_translations_description': return ({required Object number}) => 'Free users can only translate ${number} times a day, but premium members can translate as many times a day as they like.';
 			case 'purchase.weakness_description': return 'Premium members can focus on questions with low percentage of correct answers.';
