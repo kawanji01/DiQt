@@ -75,9 +75,18 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
     Future save() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
+      final Map<String, dynamic> params =
+          wordControllerMapNotifier.requestParams();
+      final String sentenceId = params['sentence_id'];
+      // 例文の設定が必須な場合には、スナックバーでエラーメッセージを表示する
+      if (widget.dictionary.sentenceRequired && sentenceId == '') {
+        final snackBar = SnackBar(content: Text(t.words.sentence_required));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        return;
+      }
+
       setState(() => _isRequesting = true);
 
-      Map<String, dynamic> params = wordControllerMapNotifier.requestParams();
       Map<String, dynamic> senseParams =
           ref.watch(senseControllerMapListProvider.notifier).requestParams();
       params['senses_attributes'] = senseParams;
