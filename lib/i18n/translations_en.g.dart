@@ -1922,6 +1922,7 @@ class TranslationsWordsEn {
 	String get details => 'Details';
 	String get not_found => 'Not Found';
 	String get pos_tag_required => 'Please select a part of speech.';
+	String get sentence_required => 'Please set an example sentence.';
 }
 
 /// Flat map(s) containing all translations.
@@ -3434,6 +3435,7 @@ extension on Translations {
 			case 'words.details': return 'Details';
 			case 'words.not_found': return 'Not Found';
 			case 'words.pos_tag_required': return 'Please select a part of speech.';
+			case 'words.sentence_required': return 'Please set an example sentence.';
 			default: return null;
 		}
 	}

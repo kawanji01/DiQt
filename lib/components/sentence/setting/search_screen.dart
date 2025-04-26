@@ -52,13 +52,16 @@ class SentenceSettingSearchScreen extends StatelessWidget {
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 40),
+                  backgroundColor: Colors.green,
                 ),
                 onPressed: additionPressed,
                 icon: const Icon(Icons.add, color: Colors.white),
                 label: Text(
                   t.sentences.add,
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 16),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.white),
                 ),
               ),
             ),

@@ -146,7 +146,6 @@ class _WordFormMeaningGeneratorScreenState
                   const SizedBox(
                     height: 48,
                   ),
-
                   // AIモデル
                   SentenceFormAIModel(
                     aiModelController: aiModelController,

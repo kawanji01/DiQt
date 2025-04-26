@@ -1918,6 +1918,7 @@ class _TranslationsWordsJa implements TranslationsWordsEn {
 	@override String get details => '詳細';
 	@override String get not_found => '該当する単語はありません。';
 	@override String get pos_tag_required => '品詞を設定してください。';
+	@override String get sentence_required => '例文を設定してください。';
 }
 
 /// Flat map(s) containing all translations.
@@ -3430,6 +3431,7 @@ extension on TranslationsJa {
 			case 'words.details': return '詳細';
 			case 'words.not_found': return '該当する単語はありません。';
 			case 'words.pos_tag_required': return '品詞を設定してください。';
+			case 'words.sentence_required': return '例文を設定してください。';
 			default: return null;
 		}
 	}
