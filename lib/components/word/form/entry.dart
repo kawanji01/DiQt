@@ -51,6 +51,7 @@ class WordFormEntry extends StatelessWidget {
           posTagIdController: posTagIdController,
           posTags: dictionary.posTags,
           enabled: true,
+          posTagRequired: dictionary.posTagRequired,
         ),
       ],
     );

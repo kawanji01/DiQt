@@ -28,6 +28,9 @@ class Dictionary {
     required this.pendingQuizRequestsCount,
     required this.createdAt,
     required this.updatedAt,
+    required this.sentenceRequired,
+    required this.ipaRequired,
+    required this.posTagRequired,
     // eager_loadでキャッシュしたdrillの情報
     this.drill,
     this.posTags,
@@ -55,6 +58,9 @@ class Dictionary {
   int pendingSentenceRequestsCount;
   int acceptedQuizRequestsCount;
   int pendingQuizRequestsCount;
+  bool sentenceRequired;
+  bool ipaRequired;
+  bool posTagRequired;
 
   DateTime createdAt;
   DateTime updatedAt;
@@ -98,6 +104,9 @@ class Dictionary {
         pendingSentenceRequestsCount = json['pending_sentence_requests_count'],
         acceptedQuizRequestsCount = json['accepted_quiz_requests_count'],
         pendingQuizRequestsCount = json['pending_quiz_requests_count'],
+        sentenceRequired = json['sentence_required'] ?? false,
+        ipaRequired = json['ipa_required'] ?? false,
+        posTagRequired = json['pos_tag_required'] ?? false,
         createdAt = DateTime.parse(json['created_at']),
         updatedAt = DateTime.parse(json['updated_at']),
         // テーブルを結合してキャッシュしたdrillの情報,
@@ -160,6 +169,9 @@ class Dictionary {
         'pending_sentence_requests_count': pendingSentenceRequestsCount,
         'accepted_quiz_requests_count': acceptedQuizRequestsCount,
         'pending_quiz_requests_count': pendingQuizRequestsCount,
+        'sentence_required': sentenceRequired,
+        'ipa_required': ipaRequired,
+        'pos_tag_required': posTagRequired,
         'created_at': createdAt,
         'updated_at': updatedAt,
         // テーブルを結合してキャッシュしたdrillの情報,

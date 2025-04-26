@@ -7,10 +7,12 @@ class WordFormPosTag extends StatefulWidget {
       {super.key,
       required this.posTagIdController,
       required this.posTags,
-      required this.enabled});
+      required this.enabled,
+      required this.posTagRequired});
   final TextEditingController posTagIdController;
   final List<PosTag>? posTags;
   final bool enabled;
+  final bool posTagRequired;
 
   @override
   State<WordFormPosTag> createState() => WordFormPosTagState();
@@ -59,6 +61,12 @@ class WordFormPosTagState extends State<WordFormPosTag> {
     dropDownItems.insert(0, undefinePosTag);
 
     //
+    String? validatePosTag(String? value) {
+      if (widget.posTagRequired && (value == null || value == 'null')) {
+        return t.words.pos_tag_required;
+      }
+      return null;
+    }
 
     if (widget.enabled) {
       return DropdownButtonFormField<String>(
@@ -67,6 +75,7 @@ class WordFormPosTagState extends State<WordFormPosTag> {
         value: dropDownValue,
         iconSize: 24,
         elevation: 16,
+        validator: validatePosTag,
         onChanged: (String? newValue) {
           setState(() {
             widget.posTagIdController.text = '$newValue';
@@ -83,6 +92,7 @@ class WordFormPosTagState extends State<WordFormPosTag> {
           value: dropDownValue,
           iconSize: 24,
           elevation: 16,
+          validator: validatePosTag,
           onChanged: (String? newValue) {},
           items: dropDownItems,
         ),

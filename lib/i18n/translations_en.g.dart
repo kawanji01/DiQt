@@ -1921,6 +1921,7 @@ class TranslationsWordsEn {
 	String get view_your_edit => 'View your edit';
 	String get details => 'Details';
 	String get not_found => 'Not Found';
+	String get pos_tag_required => 'Please select a part of speech.';
 }
 
 /// Flat map(s) containing all translations.
@@ -3432,6 +3433,7 @@ extension on Translations {
 			case 'words.view_your_edit': return 'View your edit';
 			case 'words.details': return 'Details';
 			case 'words.not_found': return 'Not Found';
+			case 'words.pos_tag_required': return 'Please select a part of speech.';
 			default: return null;
 		}
 	}

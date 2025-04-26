@@ -135,6 +135,7 @@ class _WordFormSentenceGeneratorScreenState
                     posTagIdController: widget.posTagIdController,
                     posTags: widget.dictionary.posTags,
                     enabled: false,
+                    posTagRequired: widget.dictionary.posTagRequired,
                   ),
                   const SizedBox(
                     height: 48,

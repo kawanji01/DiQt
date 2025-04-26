@@ -43,7 +43,7 @@ class WordFormReading extends StatelessWidget {
         controller: ipaController,
         label: t.words.ipa,
         hint: t.shared.please_enter(name: t.words.ipa),
-        emptyValidation: false,
+        emptyValidation: dictionary.ipaRequired,
         lineBreak: false,
       ),
       const SizedBox(height: 8),

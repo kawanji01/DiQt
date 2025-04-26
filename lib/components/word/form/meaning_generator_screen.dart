@@ -141,6 +141,7 @@ class _WordFormMeaningGeneratorScreenState
                     posTagIdController: widget.posTagIdController,
                     posTags: dictionary.posTags,
                     enabled: false,
+                    posTagRequired: dictionary.posTagRequired,
                   ),
                   const SizedBox(
                     height: 48,

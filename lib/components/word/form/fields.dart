@@ -55,7 +55,6 @@ class WordFormFields extends ConsumerWidget {
           dictionary: dictionary,
         ),
         const SizedBox(height: 48),
-
         // 例文設定
         SentenceSetting(
           sentenceIdController: sentenceIdController,
@@ -63,7 +62,6 @@ class WordFormFields extends ConsumerWidget {
           dictionary: dictionary,
           posTagIdController: posTagIdController,
         ),
-
         const SizedBox(height: 48),
         WordFormSenses(
           word: word,
