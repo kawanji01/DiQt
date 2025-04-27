@@ -1421,6 +1421,7 @@ class _TranslationsSentencesJa implements TranslationsSentencesEn {
 	@override String get review_label => '読めるようになる';
 	@override String get review_label_listening => '聞き取れるようになる';
 	@override String get reversed_review_label => '話せるようになる';
+	@override String get what_is_this_button => 'このボタンはなに？';
 }
 
 // Path: sessions
@@ -1920,6 +1921,7 @@ class _TranslationsWordsJa implements TranslationsWordsEn {
 	@override String get not_found => '該当する単語はありません。';
 	@override String get pos_tag_required => '品詞を設定してください。';
 	@override String get sentence_required => '例文を設定してください。';
+	@override String get what_is_this_button => 'このボタンはなに？';
 }
 
 /// Flat map(s) containing all translations.
@@ -3007,6 +3009,7 @@ extension on TranslationsJa {
 			case 'sentences.review_label': return '読めるようになる';
 			case 'sentences.review_label_listening': return '聞き取れるようになる';
 			case 'sentences.reversed_review_label': return '話せるようになる';
+			case 'sentences.what_is_this_button': return 'このボタンはなに？';
 			case 'sessions.log_in': return 'ログインする';
 			case 'sessions.sign_up': return '新規登録する';
 			case 'sessions.register': return '登録する';
@@ -3434,6 +3437,7 @@ extension on TranslationsJa {
 			case 'words.not_found': return '該当する単語はありません。';
 			case 'words.pos_tag_required': return '品詞を設定してください。';
 			case 'words.sentence_required': return '例文を設定してください。';
+			case 'words.what_is_this_button': return 'このボタンはなに？';
 			default: return null;
 		}
 	}

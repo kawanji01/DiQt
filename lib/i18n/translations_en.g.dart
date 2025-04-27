@@ -1425,6 +1425,7 @@ class TranslationsSentencesEn {
 	String get review_label => 'Be able to read';
 	String get review_label_listening => 'Be able to listen';
 	String get reversed_review_label => 'be able to speak';
+	String get what_is_this_button => 'What is this button?';
 }
 
 // Path: sessions
@@ -1924,6 +1925,7 @@ class TranslationsWordsEn {
 	String get not_found => 'Not Found';
 	String get pos_tag_required => 'Please select a part of speech.';
 	String get sentence_required => 'Please set an example sentence.';
+	String get what_is_this_button => 'What is this buttons?';
 }
 
 /// Flat map(s) containing all translations.
@@ -3011,6 +3013,7 @@ extension on Translations {
 			case 'sentences.review_label': return 'Be able to read';
 			case 'sentences.review_label_listening': return 'Be able to listen';
 			case 'sentences.reversed_review_label': return 'be able to speak';
+			case 'sentences.what_is_this_button': return 'What is this button?';
 			case 'sessions.log_in': return 'Log in';
 			case 'sessions.sign_up': return 'Sign up';
 			case 'sessions.register': return 'Register';
@@ -3438,6 +3441,7 @@ extension on Translations {
 			case 'words.not_found': return 'Not Found';
 			case 'words.pos_tag_required': return 'Please select a part of speech.';
 			case 'words.sentence_required': return 'Please set an example sentence.';
+			case 'words.what_is_this_button': return 'What is this buttons?';
 			default: return null;
 		}
 	}
