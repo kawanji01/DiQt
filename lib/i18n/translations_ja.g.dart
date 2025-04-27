@@ -667,6 +667,7 @@ class _TranslationsHomeJa implements TranslationsHomeEn {
 	@override String get welcome_description_2 => '使い方は簡単。辞書で調べて、';
 	@override String get welcome_description_3 => '覚えたい単語に復習を設定すれば、';
 	@override String get welcome_description_4 => '覚えるまで自動で復習できるようになります。';
+	@override String get help_page => 'ヘルプページ';
 	@override String get contact => 'お問い合わせ';
 	@override String get app_review => 'レビュー';
 	@override String get temrs_of_service => '利用規約';
@@ -674,7 +675,7 @@ class _TranslationsHomeJa implements TranslationsHomeEn {
 	@override String get legal => '特定商取引法に基づく表記';
 	@override String get company => '運営会社';
 	@override String get community => 'コミュニティ';
-	@override String get community_description => 'DiQt Community（ディクト・コミュニティ）は、DiQtユーザーのためのオンラインコミュニティです。';
+	@override String get community_description => 'DiQt Community（ディクト・コミュニティ）は、DiQtユーザーのためのオンラインコミュニティです。お問い合わせやご要望や不具合のご報告などはこちらで承っております。';
 	@override String get join_community => 'コミュニティに参加する';
 	@override String get inquiry => 'お問い合わせ';
 	@override String get maintenance_mode => 'メンテナンス中';
@@ -2378,6 +2379,7 @@ extension on TranslationsJa {
 			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';
 			case 'home.welcome_description_3': return '覚えたい単語に復習を設定すれば、';
 			case 'home.welcome_description_4': return '覚えるまで自動で復習できるようになります。';
+			case 'home.help_page': return 'ヘルプページ';
 			case 'home.contact': return 'お問い合わせ';
 			case 'home.app_review': return 'レビュー';
 			case 'home.temrs_of_service': return '利用規約';
@@ -2385,7 +2387,7 @@ extension on TranslationsJa {
 			case 'home.legal': return '特定商取引法に基づく表記';
 			case 'home.company': return '運営会社';
 			case 'home.community': return 'コミュニティ';
-			case 'home.community_description': return 'DiQt Community（ディクト・コミュニティ）は、DiQtユーザーのためのオンラインコミュニティです。';
+			case 'home.community_description': return 'DiQt Community（ディクト・コミュニティ）は、DiQtユーザーのためのオンラインコミュニティです。お問い合わせやご要望や不具合のご報告などはこちらで承っております。';
 			case 'home.join_community': return 'コミュニティに参加する';
 			case 'home.inquiry': return 'お問い合わせ';
 			case 'home.maintenance_mode': return 'メンテナンス中';

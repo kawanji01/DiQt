@@ -671,6 +671,7 @@ class TranslationsHomeEn {
 	String get welcome_description_2 => 'Easy to use. Look up the word in the dictionary,';
 	String get welcome_description_3 => 'set a review for the word you want to memorize,';
 	String get welcome_description_4 => 'and you can review it automatically until you learn it.';
+	String get help_page => 'Help Page';
 	String get contact => 'Contact';
 	String get app_review => 'App Review';
 	String get temrs_of_service => 'Terms of service';
@@ -2382,6 +2383,7 @@ extension on Translations {
 			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
 			case 'home.welcome_description_3': return 'set a review for the word you want to memorize,';
 			case 'home.welcome_description_4': return 'and you can review it automatically until you learn it.';
+			case 'home.help_page': return 'Help Page';
 			case 'home.contact': return 'Contact';
 			case 'home.app_review': return 'App Review';
 			case 'home.temrs_of_service': return 'Terms of service';

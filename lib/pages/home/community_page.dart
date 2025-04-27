@@ -7,6 +7,7 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:booqs_mobile/consts/sources.dart';
 
 class HomeCommunityPage extends StatelessWidget {
   const HomeCommunityPage({super.key});
@@ -29,7 +30,7 @@ class HomeCommunityPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const HeadingMediumGreen(
-              label: 'DiQt Community',
+              label: '　DiQt Community',
               icon: FontAwesomeIcons.discord,
             ),
             const SizedBox(height: 16),
@@ -39,8 +40,8 @@ class HomeCommunityPage extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             InkWell(
-                onTap: () => WebPageLauncher.openByExternalBrowser(
-                    "https://discord.gg/N7zUGMJ"),
+                onTap: () =>
+                    WebPageLauncher.openByExternalBrowser(discordCommunityUrl),
                 child: MediumGreenButton(
                   label: t.home.join_community,
                   icon: null,

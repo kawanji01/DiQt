@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/inquiry/screen.dart';
+import 'package:booqs_mobile/consts/sources.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -17,6 +18,7 @@ class DrawerMenu extends ConsumerWidget {
     final User? user = ref.watch(currentUserProvider);
 
     return Drawer(
+      backgroundColor: Colors.white,
       // Add a ListView to the drawer. This ensures the user can scroll
       // through the options in the drawer if there isn't enough vertical
       // space to fit everything.
@@ -37,6 +39,12 @@ class DrawerMenu extends ConsumerWidget {
             ),
           ),
           ListTile(
+            title: Text(t.home.help_page, style: const TextStyle(fontSize: 16)),
+            onTap: () {
+              WebPageLauncher.openByWebView(helpPageUrl);
+            },
+          ),
+          ListTile(
             title: Text(t.home.community, style: const TextStyle(fontSize: 16)),
             onTap: () {
               HomeCommunityPage.push(context);
@@ -47,7 +55,7 @@ class DrawerMenu extends ConsumerWidget {
             onTap: () {
               if (user == null) {
                 // ログインしていないなら、ブラウザ経由で問い合わせ方法を提示する
-                WebPageLauncher.openByWebView('https://www.diqt.net/contact');
+                WebPageLauncher.openByWebView(contactUrl);
               } else {
                 // ログインしているならお問い合わせフィームをモーダル表示
                 Dialogs.slideFromBottomFade(const InquiryScreen());
@@ -65,28 +73,26 @@ class DrawerMenu extends ConsumerWidget {
             title: Text(t.home.temrs_of_service,
                 style: const TextStyle(fontSize: 16)),
             onTap: () {
-              WebPageLauncher.openByWebView(
-                  'https://www.diqt.net/ja/terms_of_service');
+              WebPageLauncher.openByWebView(termsOfServiceUrl);
             },
           ),
           ListTile(
             title: Text(t.home.privacy_policy,
                 style: const TextStyle(fontSize: 16)),
             onTap: () {
-              WebPageLauncher.openByWebView(
-                  'https://www.diqt.net/ja/privacy_policy');
+              WebPageLauncher.openByWebView(privacyPolicyUrl);
             },
           ),
           ListTile(
             title: Text(t.home.legal, style: const TextStyle(fontSize: 16)),
             onTap: () {
-              WebPageLauncher.openByWebView('https://www.diqt.net/ja/legal');
+              WebPageLauncher.openByWebView(legalUrl);
             },
           ),
           ListTile(
             title: Text(t.home.company, style: const TextStyle(fontSize: 16)),
             onTap: () {
-              WebPageLauncher.openByWebView('https://www.booqs.net');
+              WebPageLauncher.openByWebView(companyUrl);
             },
           ),
         ],
