@@ -17,34 +17,34 @@ class WordItemReversedReviewButton extends StatelessWidget {
     if (quiz == null) return Container();
     final Review? review = quiz.review;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 16),
         ReviewSettingLargeButton(
             quizId: quiz.id,
             review: review,
             label: t.reviews.reversed_word_label),
-        Row(
-          children: [
-            // const SizedBox(width: 16),
-            TextButton.icon(
-              onPressed: () {
-                WebPageLauncher.openByWebView(introductionOfWordReviewUrl);
-              },
-              icon: const Icon(
-                Icons.help_outline,
-                size: 16,
-                color: Colors.green,
-              ),
-              label: Text(t.words.what_is_this_button,
-                  style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.green,
-                      fontWeight: FontWeight.normal)),
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.only(left: 0),
-              ),
-            ),
-          ],
+
+        // const SizedBox(width: 16),
+        TextButton.icon(
+          onPressed: () {
+            WebPageLauncher.openByWebView(introductionOfWordReviewUrl);
+          },
+          icon: const Icon(
+            Icons.help_outline,
+            size: 16,
+            color: Colors.green,
+          ),
+          label: Text(t.words.what_is_this_button,
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.green,
+                  fontWeight: FontWeight.normal,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.green)),
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.only(left: 0),
+          ),
         ),
       ],
     );

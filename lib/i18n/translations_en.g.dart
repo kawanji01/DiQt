@@ -361,6 +361,7 @@ class TranslationsAnswerSettingsEn {
 	String get set_review_notification => 'Set review time';
 	String get set_review_notification_description => 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
 	String review_notification_set({required Object hours}) => 'Review reminder set for ${hours}:00.';
+	String get adjust_difficulty => 'How to increase the difficulty of questions';
 }
 
 // Path: calendars
@@ -2165,6 +2166,7 @@ extension on Translations {
 			case 'answerSettings.set_review_notification': return 'Set review time';
 			case 'answerSettings.set_review_notification_description': return 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
 			case 'answerSettings.review_notification_set': return ({required Object hours}) => 'Review reminder set for ${hours}:00.';
+			case 'answerSettings.adjust_difficulty': return 'How to increase the difficulty of questions';
 			case 'calendars.sunday': return 'Sun.';
 			case 'calendars.monday': return 'Mon.';
 			case 'calendars.tuesday': return 'Tue.';

@@ -357,6 +357,7 @@ class _TranslationsAnswerSettingsJa implements TranslationsAnswerSettingsEn {
 	@override String get set_review_notification => '復習時刻を設定する';
 	@override String get set_review_notification_description => 'あなたが効率的に学習できるように、復習すべき問題があるときにリマインダーを送ります。あなたが学習できる時刻を設定してください。';
 	@override String review_notification_set({required Object hours}) => '${hours}時に復習リマインダーを設定しました。';
+	@override String get adjust_difficulty => '問題の難易度を上げる方法';
 }
 
 // Path: calendars
@@ -2161,6 +2162,7 @@ extension on TranslationsJa {
 			case 'answerSettings.set_review_notification': return '復習時刻を設定する';
 			case 'answerSettings.set_review_notification_description': return 'あなたが効率的に学習できるように、復習すべき問題があるときにリマインダーを送ります。あなたが学習できる時刻を設定してください。';
 			case 'answerSettings.review_notification_set': return ({required Object hours}) => '${hours}時に復習リマインダーを設定しました。';
+			case 'answerSettings.adjust_difficulty': return '問題の難易度を上げる方法';
 			case 'calendars.sunday': return '日';
 			case 'calendars.monday': return '月';
 			case 'calendars.tuesday': return '火';

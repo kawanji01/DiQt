@@ -19,34 +19,34 @@ class SentenceItemReversedReviewButton extends StatelessWidget {
     }
     final Review? review = quiz.review;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ReviewSettingMediumButton(
           quizId: quiz.id,
           review: review,
           label: t.sentences.reversed_review_label,
         ),
-        Row(
-          children: [
-            // const SizedBox(width: 16),
-            TextButton.icon(
-              onPressed: () {
-                WebPageLauncher.openByWebView(introductionOfSentenceReviewUrl);
-              },
-              icon: const Icon(
-                Icons.help_outline,
-                size: 16,
-                color: Colors.green,
-              ),
-              label: Text(t.sentences.what_is_this_button,
-                  style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.green,
-                      fontWeight: FontWeight.normal)),
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.only(left: 0),
-              ),
-            ),
-          ],
+
+        // const SizedBox(width: 16),
+        TextButton.icon(
+          onPressed: () {
+            WebPageLauncher.openByWebView(introductionOfSentenceReviewUrl);
+          },
+          icon: const Icon(
+            Icons.help_outline,
+            size: 16,
+            color: Colors.green,
+          ),
+          label: Text(t.sentences.what_is_this_button,
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.green,
+                  fontWeight: FontWeight.normal,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.green)),
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.only(left: 0),
+          ),
         ),
       ],
     );

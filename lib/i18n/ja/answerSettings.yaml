@@ -61,3 +61,4 @@ review_notification_enabled_description: 'その日に復習すべき問題が�
 set_review_notification: '復習時刻を設定する'
 set_review_notification_description: 'あなたが効率的に学習できるように、復習すべき問題があるときにリマインダーを送ります。あなたが学習できる時刻を設定してください。'
 review_notification_set: '${hours}時に復習リマインダーを設定しました。'
+adjust_difficulty: '問題の難易度を上げる方法'
