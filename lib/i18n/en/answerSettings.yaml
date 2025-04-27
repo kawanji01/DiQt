@@ -61,3 +61,4 @@ review_notification_enabled_description: 'Notification is sent at a specified ti
 set_review_notification: 'Set review time'
 set_review_notification_description: 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.'
 review_notification_set: 'Review reminder set for ${hours}:00.'
+adjust_difficulty: 'How to increase the difficulty of questions'

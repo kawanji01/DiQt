@@ -3,6 +3,8 @@ import 'package:booqs_mobile/components/answer_setting/screen.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:booqs_mobile/consts/sources.dart';
+import 'package:booqs_mobile/utils/web_page_launcher.dart';
 
 class DrillAnswerSettingButton extends ConsumerWidget {
   const DrillAnswerSettingButton({super.key});
@@ -29,21 +31,48 @@ class DrillAnswerSettingButton extends ConsumerWidget {
       ref.invalidate(asyncDrillUnsolvedQuizzesProvider);
     }
 
-    return ElevatedButton.icon(
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size(double.infinity, 40),
-        backgroundColor: const Color(0xfff3f3f4),
-      ),
-      onPressed: () => {moveToAnswerSetting()},
-      icon: const Icon(
-        Icons.settings,
-        color: Colors.black54,
-      ),
-      label: Text(
-        ' ${t.answerSettings.answer_setting}',
-        style: const TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ElevatedButton.icon(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size(double.infinity, 40),
+            backgroundColor: const Color(0xfff3f3f4),
+          ),
+          onPressed: () => {moveToAnswerSetting()},
+          icon: const Icon(
+            Icons.settings,
+            color: Colors.black54,
+          ),
+          label: Text(
+            ' ${t.answerSettings.answer_setting}',
+            style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: Colors.black54),
+          ),
+        ),
+        TextButton.icon(
+          onPressed: () {
+            WebPageLauncher.openByWebView(difficultyAdjustmentUrl);
+          },
+          icon: const Icon(
+            Icons.help_outline,
+            size: 16,
+            color: Colors.black54,
+          ),
+          label: Text(t.answerSettings.adjust_difficulty,
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.normal,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.black54)),
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.only(left: 0),
+          ),
+        ),
+      ],
     );
   }
 }

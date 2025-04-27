@@ -361,6 +361,7 @@ class TranslationsAnswerSettingsEn {
 	String get set_review_notification => 'Set review time';
 	String get set_review_notification_description => 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
 	String review_notification_set({required Object hours}) => 'Review reminder set for ${hours}:00.';
+	String get adjust_difficulty => 'How to increase the difficulty of questions';
 }
 
 // Path: calendars
@@ -671,6 +672,7 @@ class TranslationsHomeEn {
 	String get welcome_description_2 => 'Easy to use. Look up the word in the dictionary,';
 	String get welcome_description_3 => 'set a review for the word you want to memorize,';
 	String get welcome_description_4 => 'and you can review it automatically until you learn it.';
+	String get help_page => 'Help Page';
 	String get contact => 'Contact';
 	String get app_review => 'App Review';
 	String get temrs_of_service => 'Terms of service';
@@ -1424,6 +1426,7 @@ class TranslationsSentencesEn {
 	String get review_label => 'Be able to read';
 	String get review_label_listening => 'Be able to listen';
 	String get reversed_review_label => 'be able to speak';
+	String get what_is_this_button => 'What is this button?';
 }
 
 // Path: sessions
@@ -1923,6 +1926,7 @@ class TranslationsWordsEn {
 	String get not_found => 'Not Found';
 	String get pos_tag_required => 'Please select a part of speech.';
 	String get sentence_required => 'Please set an example sentence.';
+	String get what_is_this_button => 'What is this buttons?';
 }
 
 /// Flat map(s) containing all translations.
@@ -2162,6 +2166,7 @@ extension on Translations {
 			case 'answerSettings.set_review_notification': return 'Set review time';
 			case 'answerSettings.set_review_notification_description': return 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
 			case 'answerSettings.review_notification_set': return ({required Object hours}) => 'Review reminder set for ${hours}:00.';
+			case 'answerSettings.adjust_difficulty': return 'How to increase the difficulty of questions';
 			case 'calendars.sunday': return 'Sun.';
 			case 'calendars.monday': return 'Mon.';
 			case 'calendars.tuesday': return 'Tue.';
@@ -2382,6 +2387,7 @@ extension on Translations {
 			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
 			case 'home.welcome_description_3': return 'set a review for the word you want to memorize,';
 			case 'home.welcome_description_4': return 'and you can review it automatically until you learn it.';
+			case 'home.help_page': return 'Help Page';
 			case 'home.contact': return 'Contact';
 			case 'home.app_review': return 'App Review';
 			case 'home.temrs_of_service': return 'Terms of service';
@@ -3009,6 +3015,7 @@ extension on Translations {
 			case 'sentences.review_label': return 'Be able to read';
 			case 'sentences.review_label_listening': return 'Be able to listen';
 			case 'sentences.reversed_review_label': return 'be able to speak';
+			case 'sentences.what_is_this_button': return 'What is this button?';
 			case 'sessions.log_in': return 'Log in';
 			case 'sessions.sign_up': return 'Sign up';
 			case 'sessions.register': return 'Register';
@@ -3436,6 +3443,7 @@ extension on Translations {
 			case 'words.not_found': return 'Not Found';
 			case 'words.pos_tag_required': return 'Please select a part of speech.';
 			case 'words.sentence_required': return 'Please set an example sentence.';
+			case 'words.what_is_this_button': return 'What is this buttons?';
 			default: return null;
 		}
 	}
