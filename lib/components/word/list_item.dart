@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/word/item/forms_list.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/components/word/item/pos_tag.dart';
 import 'package:booqs_mobile/components/word/item/reversed_review_button.dart';
@@ -57,6 +58,7 @@ class WordListItem extends ConsumerWidget {
                   height: 24,
                 ),
                 WordItemSentence(word: word),
+                WordItemFormsList(word: word),
                 WordItemEditButton(
                   word: word,
                   isShow: false,
