@@ -1927,6 +1927,8 @@ class TranslationsWordsEn {
 	String get pos_tag_required => 'Please select a part of speech.';
 	String get sentence_required => 'Please set an example sentence.';
 	String get what_is_this_button => 'What is this buttons?';
+	String get ja_meaning => 'Japanese Meaning';
+	String get en_meaning => 'English Meaning';
 }
 
 /// Flat map(s) containing all translations.
@@ -3444,6 +3446,8 @@ extension on Translations {
 			case 'words.pos_tag_required': return 'Please select a part of speech.';
 			case 'words.sentence_required': return 'Please set an example sentence.';
 			case 'words.what_is_this_button': return 'What is this buttons?';
+			case 'words.ja_meaning': return 'Japanese Meaning';
+			case 'words.en_meaning': return 'English Meaning';
 			default: return null;
 		}
 	}

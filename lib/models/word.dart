@@ -14,6 +14,8 @@ class Word {
     required this.entry,
     required this.langNumberOfEntry,
     required this.meaning,
+    this.jaMeaning,
+    this.enMeaning,
     required this.langNumberOfMeaning,
     this.explanation = '',
     this.meaningImageUrl,
@@ -48,6 +50,8 @@ class Word {
   int langNumberOfEntry;
   String? entryAudioUrl;
   String meaning;
+  String? jaMeaning;
+  String? enMeaning;
   int langNumberOfMeaning;
   String? explanation;
   String? meaningImageUrl;
@@ -81,6 +85,8 @@ class Word {
         langNumberOfEntry = json['lang_number_of_entry'],
         entryAudioUrl = json['entry_audio_url'],
         meaning = json['meaning'],
+        jaMeaning = json['ja_meaning'],
+        enMeaning = json['en_meaning'],
         langNumberOfMeaning = json['lang_number_of_meaning'],
         explanation = json['explanation'],
         meaningImageUrl = json['meaning_image_url'],
@@ -130,6 +136,8 @@ class Word {
         'lang_number_of_entry': langNumberOfEntry,
         'entry_audio_url': entryAudioUrl,
         'meaning': meaning,
+        'ja_meaning': jaMeaning,
+        'en_meaning': enMeaning,
         'lang_number_of_meaning': langNumberOfMeaning,
         'explanation': explanation,
         'meaning_image_url': meaningImageUrl,
