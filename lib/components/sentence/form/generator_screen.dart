@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
-import 'package:booqs_mobile/components/sentence/form/ai_model.dart';
 import 'package:booqs_mobile/components/sentence/form/difficulty.dart';
 import 'package:booqs_mobile/components/sentence/form/keeping_form.dart';
 import 'package:booqs_mobile/components/sentence/form/keyword.dart';
@@ -27,7 +26,6 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
       required this.sentenceTypeController,
       required this.difficultyController,
       required this.keepingFormController,
-      required this.aiModelController,
       required this.temperatureController,
       required this.dictionary});
   final TextEditingController originalController;
@@ -38,7 +36,6 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
   final TextEditingController sentenceTypeController;
   final TextEditingController difficultyController;
   final TextEditingController keepingFormController;
-  final TextEditingController aiModelController;
   final TextEditingController temperatureController;
   final Dictionary dictionary;
 
@@ -83,7 +80,6 @@ class _SentenceFormGeneratorScreenState
           sentenceType: widget.sentenceTypeController.text,
           difficulty: widget.difficultyController.text,
           keepingForm: widget.keepingFormController.text,
-          model: widget.aiModelController.text,
           temperature: widget.temperatureController.text);
       EasyLoading.dismiss();
       // リクエストロック終了
@@ -181,10 +177,6 @@ class _SentenceFormGeneratorScreenState
                         ),
                         const SizedBox(
                           height: 48,
-                        ),
-                        // AIモデル
-                        SentenceFormAIModel(
-                          aiModelController: widget.aiModelController,
                         ),
                         const SizedBox(
                           height: 48,

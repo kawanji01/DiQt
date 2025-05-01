@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
-import 'package:booqs_mobile/components/sentence/form/ai_model.dart';
 import 'package:booqs_mobile/components/word/form/regional_pronounciation.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -17,12 +16,10 @@ class WordFormIPAGeneratorScreen extends StatefulWidget {
       required this.ipaController,
       required this.entryController,
       required this.regionalPronunciationController,
-      required this.aiModelController,
       required this.dictionary});
   final TextEditingController ipaController;
   final TextEditingController entryController;
   final TextEditingController regionalPronunciationController;
-  final TextEditingController aiModelController;
   final Dictionary dictionary;
 
   @override
@@ -51,8 +48,6 @@ class WordFormIPAGeneratorScreenState
     final TextEditingController regionalPronunciationController =
         widget.regionalPronunciationController;
 
-    final TextEditingController aiModelController = widget.aiModelController;
-
     Future generate() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
@@ -67,7 +62,6 @@ class WordFormIPAGeneratorScreenState
         keyword: entryController.text,
         dictionaryId: dictionaryId,
         regionalPronunciation: regionalPronunciationController.text,
-        model: aiModelController.text,
       );
       EasyLoading.dismiss();
       // リクエストロック終了
@@ -139,10 +133,6 @@ class WordFormIPAGeneratorScreenState
                   ),
                   const SizedBox(
                     height: 48,
-                  ),
-                  // AIモデル
-                  SentenceFormAIModel(
-                    aiModelController: aiModelController,
                   ),
                   const SizedBox(height: 64),
                   InkWell(

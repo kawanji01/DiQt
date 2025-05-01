@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
-import 'package:booqs_mobile/components/sentence/form/ai_model.dart';
 import 'package:booqs_mobile/components/sentence/form/difficulty.dart';
 import 'package:booqs_mobile/components/sentence/form/keeping_form.dart';
 import 'package:booqs_mobile/components/sentence/form/keyword.dart';
@@ -26,7 +25,6 @@ class SentenceSettingGeneratorScreen extends StatefulWidget {
       required this.sentenceTypeController,
       required this.difficultyController,
       required this.keepingFormController,
-      required this.aiModelController,
       required this.temperatureController,
       required this.dictionary});
   final TextEditingController keywordController;
@@ -35,7 +33,6 @@ class SentenceSettingGeneratorScreen extends StatefulWidget {
   final TextEditingController sentenceTypeController;
   final TextEditingController difficultyController;
   final TextEditingController keepingFormController;
-  final TextEditingController aiModelController;
   final TextEditingController temperatureController;
   final Dictionary dictionary;
 
@@ -80,7 +77,6 @@ class _WordFormSentenceGeneratorScreenState
         sentenceType: widget.sentenceTypeController.text,
         difficulty: widget.difficultyController.text,
         keepingForm: widget.keepingFormController.text,
-        model: widget.aiModelController.text,
         temperature: widget.temperatureController.text,
       );
       EasyLoading.dismiss();
@@ -180,10 +176,6 @@ class _WordFormSentenceGeneratorScreenState
                         ),
                         const SizedBox(
                           height: 48,
-                        ),
-                        // AIモデル
-                        SentenceFormAIModel(
-                          aiModelController: widget.aiModelController,
                         ),
                         const SizedBox(
                           height: 48,

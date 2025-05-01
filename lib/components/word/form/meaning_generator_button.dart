@@ -58,7 +58,6 @@ class _WordFormMeaningGeneratorButtonState
                 keywordController: _keywordController,
                 posTagIdController: widget.posTagIdController,
                 meaningController: widget.meaningController,
-                aiModelController: _aiModelController,
                 dictionary: widget.dictionary),
           );
         },
