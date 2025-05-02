@@ -108,15 +108,14 @@ class RemoteQuizzes {
     }
   }
 
-  static Future<Map> generateDistractors(
-      {required String question,
-      required String correctAnswer,
-      required String model}) async {
+  static Future<Map> generateDistractors({
+    required String question,
+    required String correctAnswer,
+  }) async {
     try {
       final Map<String, dynamic> body = {
         'question': question,
         'correct_answer': correctAnswer,
-        'model': model,
       };
 
       final Uri url = Uri.parse(

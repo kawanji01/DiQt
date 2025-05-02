@@ -14,6 +14,8 @@ class Word {
     required this.entry,
     required this.langNumberOfEntry,
     required this.meaning,
+    this.jaMeaning,
+    this.enMeaning,
     required this.langNumberOfMeaning,
     this.explanation = '',
     this.meaningImageUrl,
@@ -25,6 +27,8 @@ class Word {
     this.antonyms,
     this.related,
     this.sensesJson,
+    this.sensesTags,
+    this.formsList,
     required this.wordRequestsCount,
     required this.acceptedWordRequestsCount,
     required this.pendingWordRequestsCount,
@@ -46,6 +50,8 @@ class Word {
   int langNumberOfEntry;
   String? entryAudioUrl;
   String meaning;
+  String? jaMeaning;
+  String? enMeaning;
   int langNumberOfMeaning;
   String? explanation;
   String? meaningImageUrl;
@@ -57,6 +63,8 @@ class Word {
   String? antonyms;
   String? related;
   String? sensesJson;
+  List? sensesTags;
+  List? formsList;
   int wordRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
@@ -77,6 +85,8 @@ class Word {
         langNumberOfEntry = json['lang_number_of_entry'],
         entryAudioUrl = json['entry_audio_url'],
         meaning = json['meaning'],
+        jaMeaning = json['ja_meaning'],
+        enMeaning = json['en_meaning'],
         langNumberOfMeaning = json['lang_number_of_meaning'],
         explanation = json['explanation'],
         meaningImageUrl = json['meaning_image_url'],
@@ -88,6 +98,8 @@ class Word {
         antonyms = json['antonyms'],
         related = json['related'],
         sensesJson = json['senses_json'],
+        sensesTags = json['senses_tags'],
+        formsList = json['forms_list'],
         wordRequestsCount = json['word_requests_count'],
         acceptedWordRequestsCount = json['accepted_word_requests_count'],
         pendingWordRequestsCount = json['pending_word_requests_count'],
@@ -124,6 +136,8 @@ class Word {
         'lang_number_of_entry': langNumberOfEntry,
         'entry_audio_url': entryAudioUrl,
         'meaning': meaning,
+        'ja_meaning': jaMeaning,
+        'en_meaning': enMeaning,
         'lang_number_of_meaning': langNumberOfMeaning,
         'explanation': explanation,
         'meaning_image_url': meaningImageUrl,
@@ -135,6 +149,8 @@ class Word {
         'antonyms': antonyms,
         'related': related,
         'senses_json': sensesJson,
+        'senses_tags': sensesTags,
+        'forms_list': formsList,
         'word_requests_count': wordRequestsCount,
         'accepted_word_requests_count': acceptedWordRequestsCount,
         'pending_word_requests_count': pendingWordRequestsCount,

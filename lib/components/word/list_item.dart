@@ -1,12 +1,14 @@
+import 'package:booqs_mobile/components/word/item/forms_list.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
+import 'package:booqs_mobile/components/word/item/meanings.dart';
 import 'package:booqs_mobile/components/word/item/pos_tag.dart';
 import 'package:booqs_mobile/components/word/item/reversed_review_button.dart';
+import 'package:booqs_mobile/components/word/item/senses_tags.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/components/word/item/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
-import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/components/word/item/reading.dart';
 import 'package:booqs_mobile/components/word/item/review_button.dart';
 import 'package:booqs_mobile/components/word/item/sentence.dart';
@@ -36,8 +38,17 @@ class WordListItem extends ConsumerWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                WordItemPosTag(word: word),
-                WordItemMeaning(word: word),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    WordItemPosTag(word: word),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: WordItemSensesTags(word: word),
+                    ),
+                  ],
+                ),
+                WordItemMeanings(word: word),
                 const SizedBox(
                   height: 24,
                 ),
@@ -47,6 +58,7 @@ class WordListItem extends ConsumerWidget {
                   height: 24,
                 ),
                 WordItemSentence(word: word),
+                WordItemFormsList(word: word),
                 WordItemEditButton(
                   word: word,
                   isShow: false,

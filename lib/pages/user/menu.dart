@@ -1,15 +1,12 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
-import 'package:booqs_mobile/components/user/drill_creator_button.dart';
 import 'package:booqs_mobile/components/user/invitation_button.dart';
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
-import 'package:booqs_mobile/data/provider/user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
 import 'package:booqs_mobile/pages/user/contract_details.dart';
-import 'package:booqs_mobile/pages/user/drills.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
 import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
@@ -71,16 +68,16 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
-    Widget drillsButon() {
-      final String btnText = t.users.drills;
-      return InkWell(
-        onTap: () {
-          ref.read(userProvider.notifier).state = user;
-          UserDrillsPage.push(context);
-        },
-        child: LargeGreenButton(label: btnText, icon: Icons.question_mark),
-      );
-    }
+    // Widget drillsButon() {
+    //   final String btnText = t.users.drills;
+    //   return InkWell(
+    //     onTap: () {
+    //       ref.read(userProvider.notifier).state = user;
+    //       UserDrillsPage.push(context);
+    //     },
+    //     child: LargeGreenButton(label: btnText, icon: Icons.question_mark),
+    //   );
+    // }
 
     Widget noteListButton() {
       final String btnText = '${t.notes.notes}(${user.notesCount})';
@@ -176,16 +173,16 @@ class UserMenuPage extends ConsumerWidget {
               const SizedBox(
                 height: 32,
               ),
-              drillsButon(),
-              const SizedBox(
-                height: 32,
-              ),
-              UserDrillCreatorButton(
-                user: user,
-              ),
-              const SizedBox(
-                height: 32,
-              ),
+              // drillsButon(),
+              // const SizedBox(
+              //   height: 32,
+              // ),
+              // UserDrillCreatorButton(
+              //   user: user,
+              // ),
+              // const SizedBox(
+              //   height: 32,
+              // ),
               noteListButton(),
               const SizedBox(
                 height: 32,

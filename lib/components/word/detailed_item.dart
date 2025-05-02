@@ -1,14 +1,16 @@
 import 'package:booqs_mobile/components/word/item/explanation.dart';
+import 'package:booqs_mobile/components/word/item/forms_list.dart';
 import 'package:booqs_mobile/components/word/item/meaning_image.dart';
+import 'package:booqs_mobile/components/word/item/meanings.dart';
 import 'package:booqs_mobile/components/word/item/pos_tag.dart';
 import 'package:booqs_mobile/components/word/item/reversed_review_button.dart';
+import 'package:booqs_mobile/components/word/item/senses_tags.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/word/item/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
-import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/components/word/item/reading.dart';
 import 'package:booqs_mobile/components/word/item/review_button.dart';
 import 'package:booqs_mobile/components/word/item/sentence.dart';
@@ -40,8 +42,17 @@ class WordDetailedItem extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        WordItemPosTag(word: word),
-        WordItemMeaning(word: word),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            WordItemPosTag(word: word),
+            const SizedBox(width: 8),
+            Expanded(
+              child: WordItemSensesTags(word: word),
+            ),
+          ],
+        ),
+        WordItemMeanings(word: word),
         const SizedBox(
           height: 24,
         ),
@@ -51,6 +62,7 @@ class WordDetailedItem extends StatelessWidget {
           height: 24,
         ),
         WordItemSentence(word: word),
+        WordItemFormsList(word: word),
         const SizedBox(
           height: 16,
         ),

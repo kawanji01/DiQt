@@ -2,7 +2,6 @@ import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/components/quiz/form/correct_answer.dart';
 import 'package:booqs_mobile/components/quiz/form/question.dart';
-import 'package:booqs_mobile/components/sentence/form/ai_model.dart';
 import 'package:booqs_mobile/data/remote/quizzes.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
@@ -16,14 +15,12 @@ class QuizFormDistractorsGeneratorScreen extends StatefulWidget {
       {super.key,
       required this.questionController,
       required this.correctAnswerController,
-      required this.aiModelController,
       required this.distractor1Controller,
       required this.distractor2Controller,
       required this.distractor3Controller});
 
   final TextEditingController questionController;
   final TextEditingController correctAnswerController;
-  final TextEditingController aiModelController;
   final TextEditingController distractor1Controller;
   final TextEditingController distractor2Controller;
   final TextEditingController distractor3Controller;
@@ -50,7 +47,6 @@ class _QuizFormDistractorsGeneratorScreenState
     final TextEditingController questionController = widget.questionController;
     final TextEditingController correctAnswerController =
         widget.correctAnswerController;
-    final TextEditingController aiModelController = widget.aiModelController;
 
     Future generate() async {
       // 各Fieldのvalidatorを呼び出す
@@ -65,7 +61,6 @@ class _QuizFormDistractorsGeneratorScreenState
       final Map resMap = await RemoteQuizzes.generateDistractors(
         question: questionController.text,
         correctAnswer: correctAnswerController.text,
-        model: aiModelController.text,
       );
       EasyLoading.dismiss();
       // リクエストロック終了
@@ -118,11 +113,6 @@ class _QuizFormDistractorsGeneratorScreenState
                   const SizedBox(
                     height: 48,
                   ),
-                  // AIモデル
-                  SentenceFormAIModel(
-                    aiModelController: aiModelController,
-                  ),
-
                   const SizedBox(height: 64),
                   InkWell(
                     onTap: _isRequesting

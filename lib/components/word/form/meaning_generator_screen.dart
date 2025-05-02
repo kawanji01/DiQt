@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
-import 'package:booqs_mobile/components/sentence/form/ai_model.dart';
 import 'package:booqs_mobile/components/word/form/pos_tag.dart';
 import 'package:booqs_mobile/data/remote/words.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -17,12 +16,10 @@ class WordFormMeaningGeneratorScreen extends StatefulWidget {
       required this.keywordController,
       required this.posTagIdController,
       required this.meaningController,
-      required this.aiModelController,
       required this.dictionary});
   final TextEditingController keywordController;
   final TextEditingController posTagIdController;
   final TextEditingController meaningController;
-  final TextEditingController aiModelController;
   final Dictionary dictionary;
 
   @override
@@ -49,8 +46,6 @@ class _WordFormMeaningGeneratorScreenState
     final double height = grid * 80;
     final TextEditingController keywordController = widget.keywordController;
 
-    final TextEditingController aiModelController = widget.aiModelController;
-
     Future generate() async {
       // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
@@ -65,7 +60,6 @@ class _WordFormMeaningGeneratorScreenState
         keyword: keywordController.text,
         dictionaryId: dictionaryId,
         posTagId: widget.posTagIdController.text,
-        model: aiModelController.text,
       );
       EasyLoading.dismiss();
       // リクエストロック終了
@@ -146,11 +140,6 @@ class _WordFormMeaningGeneratorScreenState
                   const SizedBox(
                     height: 48,
                   ),
-                  // AIモデル
-                  SentenceFormAIModel(
-                    aiModelController: aiModelController,
-                  ),
-
                   const SizedBox(height: 64),
                   InkWell(
                     onTap: _isRequesting

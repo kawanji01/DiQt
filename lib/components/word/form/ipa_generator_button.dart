@@ -56,7 +56,6 @@ class _WordFormIPAGeneratorButtonState
                 entryController: widget.entryController,
                 regionalPronunciationController:
                     _regionalPronunciationController,
-                aiModelController: _aiModelController,
                 dictionary: widget.dictionary),
           );
         },

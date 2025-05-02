@@ -362,6 +362,7 @@ class TranslationsAnswerSettingsEn {
 	String get set_review_notification_description => 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
 	String review_notification_set({required Object hours}) => 'Review reminder set for ${hours}:00.';
 	String get adjust_difficulty => 'How to increase the difficulty of questions';
+	String get adjust_review_difficulty => 'How to increase the difficulty of reviews';
 }
 
 // Path: calendars
@@ -1305,6 +1306,7 @@ class TranslationsReviewsEn {
 	String get confirm_deletion => 'Delete Confirmation';
 	String get execute => 'Delete';
 	String get delete_all_reviews_confirmation => 'All reviews will be deleted. This operation cannot be undone. Are you sure you want to proceed?';
+	String get all_review_deletion_help_link_description => 'How to delete all reviews';
 }
 
 // Path: schools
@@ -1927,6 +1929,8 @@ class TranslationsWordsEn {
 	String get pos_tag_required => 'Please select a part of speech.';
 	String get sentence_required => 'Please set an example sentence.';
 	String get what_is_this_button => 'What is this buttons?';
+	String get ja_meaning => 'Japanese Meaning';
+	String get en_meaning => 'English Meaning';
 }
 
 /// Flat map(s) containing all translations.
@@ -2167,6 +2171,7 @@ extension on Translations {
 			case 'answerSettings.set_review_notification_description': return 'To help you learn more efficiently, we send you reminders when there are questions to review. Set a time when you are available to study.';
 			case 'answerSettings.review_notification_set': return ({required Object hours}) => 'Review reminder set for ${hours}:00.';
 			case 'answerSettings.adjust_difficulty': return 'How to increase the difficulty of questions';
+			case 'answerSettings.adjust_review_difficulty': return 'How to increase the difficulty of reviews';
 			case 'calendars.sunday': return 'Sun.';
 			case 'calendars.monday': return 'Mon.';
 			case 'calendars.tuesday': return 'Tue.';
@@ -2930,6 +2935,7 @@ extension on Translations {
 			case 'reviews.confirm_deletion': return 'Delete Confirmation';
 			case 'reviews.execute': return 'Delete';
 			case 'reviews.delete_all_reviews_confirmation': return 'All reviews will be deleted. This operation cannot be undone. Are you sure you want to proceed?';
+			case 'reviews.all_review_deletion_help_link_description': return 'How to delete all reviews';
 			case 'schools.schools': return 'Schools';
 			case 'schools.school': return 'School';
 			case 'schools.name': return 'Name';
@@ -3444,6 +3450,8 @@ extension on Translations {
 			case 'words.pos_tag_required': return 'Please select a part of speech.';
 			case 'words.sentence_required': return 'Please set an example sentence.';
 			case 'words.what_is_this_button': return 'What is this buttons?';
+			case 'words.ja_meaning': return 'Japanese Meaning';
+			case 'words.en_meaning': return 'English Meaning';
 			default: return null;
 		}
 	}

@@ -53,14 +53,13 @@ class SentenceEditPage extends ConsumerWidget {
     }
 
     return PopScope(
-      canPop: false, // 戻るキーの動作で戻ることを一旦防ぐ
-      onPopInvoked: (didPop) async {
-        if (didPop) {
-          return;
-        }
-        final bool? shouldPop = await showBackDialog(); // ダイアログで戻るか確認
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, dynamic result) async {
+        if (didPop) return;
+        final bool? shouldPop = await showBackDialog();
         if (shouldPop == true) {
-          navigator.pop(); // 戻るを選択した場合のみpopを明示的に呼ぶ
+          ref.read(sharedEditingContentProvider.notifier).offEdit();
+          navigator.pop();
         }
       },
       child: Scaffold(

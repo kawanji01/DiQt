@@ -75,7 +75,6 @@ class _SentenceFormGeneratorButtonState
                     sentenceTypeController: _sentenceTypeController,
                     difficultyController: _difficultyController,
                     keepingFormController: _keepingFormController,
-                    aiModelController: _aiModelController,
                     temperatureController: _temperatureController,
                     dictionary: widget.dictionary,
                   ));

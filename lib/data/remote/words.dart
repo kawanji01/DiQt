@@ -194,13 +194,11 @@ class RemoteWords {
   static Future<Map> generateMeaning(
       {required String keyword,
       required String posTagId,
-      required String model,
       required int dictionaryId}) async {
     try {
       final Map<String, dynamic> body = {
         'keyword': keyword,
         'pos_tag_id': posTagId,
-        'model': model,
         'dictionary_id': '$dictionaryId',
       };
 
@@ -226,13 +224,11 @@ class RemoteWords {
   static Future<Map> generateIpa(
       {required String keyword,
       required String regionalPronunciation,
-      required String model,
       required int dictionaryId}) async {
     try {
       final Map<String, dynamic> body = {
         'keyword': keyword,
         'regional_pronunciation': regionalPronunciation,
-        'model': model,
         'dictionary_id': '$dictionaryId',
       };
 

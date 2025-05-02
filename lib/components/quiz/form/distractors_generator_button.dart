@@ -27,15 +27,12 @@ class _QuizFormDistractorsGeneratorButtonState
   final TextEditingController _questionController = TextEditingController();
   final TextEditingController _correctAnswerController =
       TextEditingController();
-  final TextEditingController _aiModelController =
-      TextEditingController(text: '3');
 
   @override
   void dispose() {
     super.dispose();
     _questionController.dispose();
     _correctAnswerController.dispose();
-    _aiModelController.dispose();
   }
 
   @override
@@ -59,7 +56,6 @@ class _QuizFormDistractorsGeneratorButtonState
             builder: (context) => QuizFormDistractorsGeneratorScreen(
                 questionController: _questionController,
                 correctAnswerController: _correctAnswerController,
-                aiModelController: _aiModelController,
                 distractor1Controller: widget.distractor1Controller,
                 distractor2Controller: widget.distractor2Controller,
                 distractor3Controller: widget.distractor3Controller));
