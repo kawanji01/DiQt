@@ -115,7 +115,7 @@ class PushNotificationHandler {
 
       final String route = message?.data['route'] ?? '/';
       //print('route: $route');
-      if (message != null) {
+      if (message != null && context.mounted) {
         Navigator.of(context).pushNamed(route);
       }
     });
@@ -129,7 +129,9 @@ class PushNotificationHandler {
 
       final String route = message.data['route'] ?? '/';
       // print('route: $route');
-      Navigator.of(context).pushNamed(route);
+      if (context.mounted) {
+        Navigator.of(context).pushNamed(route);
+      }
     });
   }
   //// Android設定 END ////
