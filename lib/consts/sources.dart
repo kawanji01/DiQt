@@ -6,6 +6,8 @@ const String introductionOfSentenceReviewUrl =
     'https://abundant-galliform-71d.notion.site/1e2234a0842b8057a70ec995b5306ec7';
 const String difficultyAdjustmentUrl =
     'https://abundant-galliform-71d.notion.site/1e2234a0842b80d9b52ce5688e4b20f8';
+const String allReviewDeletionUrl =
+    'https://abundant-galliform-71d.notion.site/1d9234a0842b807da32ed91f11ece69d';
 
 const String contactUrl = 'https://www.diqt.net/contact';
 const String termsOfServiceUrl = 'https://www.diqt.net/ja/terms_of_service';

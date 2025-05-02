@@ -358,6 +358,7 @@ class _TranslationsAnswerSettingsJa implements TranslationsAnswerSettingsEn {
 	@override String get set_review_notification_description => 'あなたが効率的に学習できるように、復習すべき問題があるときにリマインダーを送ります。あなたが学習できる時刻を設定してください。';
 	@override String review_notification_set({required Object hours}) => '${hours}時に復習リマインダーを設定しました。';
 	@override String get adjust_difficulty => '問題の難易度を上げる方法';
+	@override String get adjust_review_difficulty => '復習の難易度を上げる方法';
 }
 
 // Path: calendars
@@ -1301,6 +1302,7 @@ class _TranslationsReviewsJa implements TranslationsReviewsEn {
 	@override String get confirm_deletion => '削除確認';
 	@override String get execute => '実行する';
 	@override String get delete_all_reviews_confirmation => '全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？';
+	@override String get all_review_deletion_help_link_description => '全ての復習を削除する方法';
 }
 
 // Path: schools
@@ -2165,6 +2167,7 @@ extension on TranslationsJa {
 			case 'answerSettings.set_review_notification_description': return 'あなたが効率的に学習できるように、復習すべき問題があるときにリマインダーを送ります。あなたが学習できる時刻を設定してください。';
 			case 'answerSettings.review_notification_set': return ({required Object hours}) => '${hours}時に復習リマインダーを設定しました。';
 			case 'answerSettings.adjust_difficulty': return '問題の難易度を上げる方法';
+			case 'answerSettings.adjust_review_difficulty': return '復習の難易度を上げる方法';
 			case 'calendars.sunday': return '日';
 			case 'calendars.monday': return '月';
 			case 'calendars.tuesday': return '火';
@@ -2928,6 +2931,7 @@ extension on TranslationsJa {
 			case 'reviews.confirm_deletion': return '削除確認';
 			case 'reviews.execute': return '実行する';
 			case 'reviews.delete_all_reviews_confirmation': return '全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？';
+			case 'reviews.all_review_deletion_help_link_description': return '全ての復習を削除する方法';
 			case 'schools.schools': return '教室';
 			case 'schools.school': return '教室';
 			case 'schools.name': return '名前';

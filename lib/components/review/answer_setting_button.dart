@@ -60,7 +60,7 @@ class ReviewAnswerSettingButton extends ConsumerWidget {
             size: 16,
             color: Colors.black54,
           ),
-          label: Text(t.answerSettings.adjust_difficulty,
+          label: Text(t.answerSettings.adjust_review_difficulty,
               style: const TextStyle(
                   fontSize: 14,
                   color: Colors.black54,
@@ -68,7 +68,39 @@ class ReviewAnswerSettingButton extends ConsumerWidget {
                   decoration: TextDecoration.underline,
                   decorationColor: Colors.black54)),
           style: TextButton.styleFrom(
-            padding: const EdgeInsets.only(left: 0),
+            padding: const EdgeInsets.only(
+              left: 0,
+              top: 12,
+              bottom: 4,
+            ),
+            minimumSize: Size.zero,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+        ),
+        TextButton.icon(
+          onPressed: () {
+            WebPageLauncher.openByWebView(allReviewDeletionUrl);
+          },
+          icon: const Icon(
+            Icons.help_outline,
+            size: 16,
+            color: Colors.black54,
+          ),
+          label: Text(t.reviews.all_review_deletion_help_link_description,
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.normal,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.black54)),
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.only(
+              left: 0,
+              top: 8,
+              bottom: 4,
+            ),
+            minimumSize: Size.zero,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
         ),
       ],
