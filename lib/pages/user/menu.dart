@@ -176,16 +176,16 @@ class UserMenuPage extends ConsumerWidget {
               const SizedBox(
                 height: 32,
               ),
-              drillsButon(),
-              const SizedBox(
-                height: 32,
-              ),
-              UserDrillCreatorButton(
-                user: user,
-              ),
-              const SizedBox(
-                height: 32,
-              ),
+              // drillsButon(),
+              // const SizedBox(
+              //   height: 32,
+              // ),
+              // UserDrillCreatorButton(
+              //   user: user,
+              // ),
+              // const SizedBox(
+              //   height: 32,
+              // ),
               noteListButton(),
               const SizedBox(
                 height: 32,
