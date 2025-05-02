@@ -77,10 +77,8 @@ class WordEditPageState extends ConsumerState<WordEditPage> {
     // ref: https://zenn.dev/yu1ro/articles/6d7db85990bb82
     return PopScope(
       canPop: false, // 戻るキーの動作で戻ることを一旦防ぐ
-      onPopInvoked: (didPop) async {
-        if (didPop) {
-          return;
-        }
+      onPopInvokedWithResult: (bool didPop, dynamic result) async {
+        if (didPop) return;
         final bool? shouldPop = await showBackDialog(); // ダイアログで戻るか確認
         if (shouldPop == true) {
           navigator.pop(); // 戻るを選択した場合のみpopを明示的に呼ぶ
