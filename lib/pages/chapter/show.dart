@@ -43,12 +43,23 @@ class ChapterShowPage extends ConsumerWidget {
         title: chapter.title,
       ),
       body: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: ResponsiveValues.horizontalMargin(context),
-          ),
-          child: SingleChildScrollView(
-            child: ChapterShow(chapter: chapter),
-          )),
+        margin: EdgeInsets.symmetric(
+          horizontal: ResponsiveValues.horizontalMargin(context),
+        ),
+        child: SingleChildScrollView(
+          child: ref.watch(asyncChapterFamily(chapter.publicUid)).when(
+                loading: () => ChapterShow(chapter: chapter),
+                error: (err, stack) => Text('Error: $err'),
+                data: (updatedChapter) {
+                  if (updatedChapter == null) {
+                    return Text(
+                        t.shared.no_items_found(name: t.chapters.chapters));
+                  }
+                  return ChapterShow(chapter: updatedChapter);
+                },
+              ),
+        ),
+      ),
       bottomNavigationBar: const BottomNavbar(),
     );
   }
