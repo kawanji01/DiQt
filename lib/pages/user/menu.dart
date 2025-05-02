@@ -1,5 +1,4 @@
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
-import 'package:booqs_mobile/components/user/drill_creator_button.dart';
 import 'package:booqs_mobile/components/user/invitation_button.dart';
 import 'package:booqs_mobile/data/provider/answer_analysis.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
@@ -71,16 +70,16 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
-    Widget drillsButon() {
-      final String btnText = t.users.drills;
-      return InkWell(
-        onTap: () {
-          ref.read(userProvider.notifier).state = user;
-          UserDrillsPage.push(context);
-        },
-        child: LargeGreenButton(label: btnText, icon: Icons.question_mark),
-      );
-    }
+    // Widget drillsButon() {
+    //   final String btnText = t.users.drills;
+    //   return InkWell(
+    //     onTap: () {
+    //       ref.read(userProvider.notifier).state = user;
+    //       UserDrillsPage.push(context);
+    //     },
+    //     child: LargeGreenButton(label: btnText, icon: Icons.question_mark),
+    //   );
+    // }
 
     Widget noteListButton() {
       final String btnText = '${t.notes.notes}(${user.notesCount})';
