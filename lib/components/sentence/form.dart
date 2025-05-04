@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/form/editor_comment.dart';
+import 'package:booqs_mobile/components/sentence/form/ja_translation.dart';
 import 'package:booqs_mobile/components/sentence/form/original_ssml.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -14,6 +15,7 @@ class SentenceForm extends StatelessWidget {
     required this.originalController,
     required this.originalSsmlController,
     required this.translationController,
+    required this.jaTranslationController,
     required this.explanationController,
     required this.commentController,
     required this.dictionary,
@@ -24,6 +26,7 @@ class SentenceForm extends StatelessWidget {
   final TextEditingController originalController;
   final TextEditingController originalSsmlController;
   final TextEditingController translationController;
+  final TextEditingController jaTranslationController;
   final TextEditingController explanationController;
   final TextEditingController commentController;
   final bool isNew;
@@ -84,7 +87,11 @@ class SentenceForm extends StatelessWidget {
           dictionary: dictionary,
           originalController: originalController,
         ),
-
+        const SizedBox(height: 40),
+        SentenceFormJaTranslation(
+          jaTranslationController: jaTranslationController,
+          dictionary: dictionary,
+        ),
         const SizedBox(height: 40),
         FormEditorComment(
             commentController: commentController, emptyValidation: false),

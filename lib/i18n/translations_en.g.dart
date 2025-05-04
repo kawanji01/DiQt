@@ -1392,6 +1392,7 @@ class TranslationsSentencesEn {
 	String get destroy => 'Delete sentence';
 	String get original => 'Original';
 	String get original_ssml => 'Original SSML';
+	String get ja_translation => 'Japanese translation';
 	String get translation => 'Translation';
 	String original_placeholder({required Object language}) => 'Please enter an example sentence in ${language}.';
 	String translation_placeholder({required Object language}) => 'Please enter a ${language} translation of the example sentence.';
@@ -2992,6 +2993,7 @@ extension on Translations {
 			case 'sentences.destroy': return 'Delete sentence';
 			case 'sentences.original': return 'Original';
 			case 'sentences.original_ssml': return 'Original SSML';
+			case 'sentences.ja_translation': return 'Japanese translation';
 			case 'sentences.translation': return 'Translation';
 			case 'sentences.original_placeholder': return ({required Object language}) => 'Please enter an example sentence in ${language}.';
 			case 'sentences.translation_placeholder': return ({required Object language}) => 'Please enter a ${language} translation of the example sentence.';

@@ -40,6 +40,7 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   final _originalController = TextEditingController();
   final _originalSsmlController = TextEditingController();
   final _translationController = TextEditingController();
+  final _jaTranslationController = TextEditingController();
   final _explanationController = TextEditingController();
   final _commentController = TextEditingController();
 
@@ -63,7 +64,9 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
   void dispose() {
     _originalController.dispose();
+    _originalSsmlController.dispose();
     _translationController.dispose();
+    _jaTranslationController.dispose();
     _explanationController.dispose();
     _commentController.dispose();
     super.dispose();
@@ -118,6 +121,7 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
                         originalController: _originalController,
                         originalSsmlController: _originalSsmlController,
                         translationController: _translationController,
+                        jaTranslationController: _jaTranslationController,
                         explanationController: _explanationController,
                         commentController: _commentController,
                         keyword: _keyword,

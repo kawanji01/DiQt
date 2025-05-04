@@ -28,10 +28,11 @@ class _SentenceSettingAdditionScreenState
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _originalController = TextEditingController();
+  final _originalSsmlController = TextEditingController();
   final _translationController = TextEditingController();
+  final _jaTranslationController = TextEditingController();
   final _explanationController = TextEditingController();
   final _commentController = TextEditingController();
-  final _originalSsmlController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -40,7 +41,9 @@ class _SentenceSettingAdditionScreenState
   @override
   void dispose() {
     _originalController.dispose();
+    _originalSsmlController.dispose();
     _translationController.dispose();
+    _jaTranslationController.dispose();
     _explanationController.dispose();
     _commentController.dispose();
     super.dispose();
@@ -56,7 +59,9 @@ class _SentenceSettingAdditionScreenState
 
     Map<String, dynamic> params = {
       'original': _originalController.text,
+      'original_ssml': _originalSsmlController.text,
       'translation': _translationController.text,
+      'ja_translation': _jaTranslationController.text,
       'explanation': _explanationController.text,
       'dictionary_id': widget.dictionary.id
     };
@@ -112,6 +117,7 @@ class _SentenceSettingAdditionScreenState
                     originalController: _originalController,
                     originalSsmlController: _originalSsmlController,
                     translationController: _translationController,
+                    jaTranslationController: _jaTranslationController,
                     explanationController: _explanationController,
                     commentController: _commentController,
                     dictionary: widget.dictionary,

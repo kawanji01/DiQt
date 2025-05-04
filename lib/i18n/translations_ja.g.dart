@@ -1388,6 +1388,7 @@ class _TranslationsSentencesJa implements TranslationsSentencesEn {
 	@override String get destroy => '例文を削除する';
 	@override String get original => '原文';
 	@override String get original_ssml => '原文のSSML';
+	@override String get ja_translation => '日本語訳';
 	@override String get translation => '翻訳';
 	@override String original_placeholder({required Object language}) => '【必須】${language}の例文を入力してください。';
 	@override String translation_placeholder({required Object language}) => '【必須】例文の${language}の訳を入力してください。';
@@ -2988,6 +2989,7 @@ extension on TranslationsJa {
 			case 'sentences.destroy': return '例文を削除する';
 			case 'sentences.original': return '原文';
 			case 'sentences.original_ssml': return '原文のSSML';
+			case 'sentences.ja_translation': return '日本語訳';
 			case 'sentences.translation': return '翻訳';
 			case 'sentences.original_placeholder': return ({required Object language}) => '【必須】${language}の例文を入力してください。';
 			case 'sentences.translation_placeholder': return ({required Object language}) => '【必須】例文の${language}の訳を入力してください。';
