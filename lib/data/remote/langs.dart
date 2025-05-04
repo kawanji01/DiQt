@@ -140,4 +140,24 @@ class RemoteLangs {
       return ErrorHandler.exceptionMap(e, s);
     }
   }
+
+  // SSMLのテンプレートを取得する
+  static Future<Map?> getSsmlTemplate(
+      {required String langCode, required String text}) async {
+    try {
+      final Uri url =
+          Uri.parse('${DiQtURL.root()}/api/v1/mobile/langs/ssml_template');
+      final Map<String, dynamic> params = {
+        'lang_code': langCode,
+        'text': text,
+      };
+      final Response res = await HttpService.post(url, params);
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } catch (e) {
+      print('getSsmlTemplate error: $e');
+      return null;
+    }
+  }
 }

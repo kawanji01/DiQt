@@ -48,3 +48,8 @@ image_alt: "${name}の画像"
 error_occurred: 'エラーが発生しました。'
 fix_error: 'エラーを修正する'
 error_fixed: 'エラーを修正しました。'
+ssml_template_generation_failed: 'SSMLテンプレートの生成に失敗しました。'
+how_to_write_ssml: 'SSMLの書き方'
+preview: 'プレビュー'
+audio_preview: '音声プレビュー'
+generate_template: 'テンプレートを生成する'

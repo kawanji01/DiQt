@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/components/word/item/en_meaning.dart';
 import 'package:booqs_mobile/components/word/item/ja_meaning.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/models/word.dart';
@@ -19,9 +18,8 @@ class WordItemMeanings extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          WordItemMeaning(word: word),
           WordItemJaMeaning(word: word),
-          const SizedBox(height: 16),
-          WordItemEnMeaning(word: word),
         ],
       );
     }

@@ -9,9 +9,11 @@ class Sentence {
     this.sentenceSourceId,
     required this.original,
     required this.langNumberOfOriginal,
+    this.originalSsml,
     this.originalAudioUrl,
     required this.translation,
     required this.langNumberOfTranslation,
+    this.jaTranslation,
     this.explanation,
     required this.acceptedSentenceRequestsCount,
     required this.pendingSentenceRequestsCount,
@@ -29,9 +31,11 @@ class Sentence {
   int? sentenceSourceId;
   String original;
   int langNumberOfOriginal;
+  String? originalSsml;
   String? originalAudioUrl;
   String translation;
   int langNumberOfTranslation;
+  String? jaTranslation;
   String? explanation;
   int acceptedSentenceRequestsCount;
   int pendingSentenceRequestsCount;
@@ -49,9 +53,11 @@ class Sentence {
         sentenceSourceId = json['sentence_source_id'],
         original = json['original'],
         langNumberOfOriginal = json['lang_number_of_original'],
+        originalSsml = json['original_ssml'],
         originalAudioUrl = json['original_audio_url'],
         translation = json['translation'] ?? '',
         langNumberOfTranslation = json['lang_number_of_translation'],
+        jaTranslation = json['ja_translation'],
         explanation = json['explanation'],
         acceptedSentenceRequestsCount =
             json['accepted_sentence_requests_count'],
@@ -83,9 +89,11 @@ class Sentence {
         'sentence_source_id': sentenceSourceId,
         'original': original,
         'lang_number_of_original': langNumberOfOriginal,
+        'original_ssml': originalSsml,
         'original_audio_url': originalAudioUrl,
         'translation': translation,
         'lang_number_of_translation': langNumberOfTranslation,
+        'ja_translation': jaTranslation,
         'accepted_sentence_requests_count': acceptedSentenceRequestsCount,
         'pending_sentence_requests_count': pendingSentenceRequestsCount,
         'sentence_requests_count': sentenceRequestsCount,

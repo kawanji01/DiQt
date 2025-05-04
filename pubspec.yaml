@@ -95,6 +95,7 @@ dependencies:
   diff_match_patch: ^0.4.1 # diffを取得する
   speech_to_text: ^7.0.0 # 音声認識
   html: ^0.15.4
+  path_provider: ^2.1.2 # 一時ファイルの保存 / ssmlの再生に利用
 dependency_overrides:
   macos_ui:
     git:

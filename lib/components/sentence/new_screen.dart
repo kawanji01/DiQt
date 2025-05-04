@@ -15,13 +15,17 @@ class SentenceNewScreen extends StatefulWidget {
   const SentenceNewScreen(
       {super.key,
       required this.originalController,
+      required this.originalSsmlController,
       required this.translationController,
+      required this.jaTranslationController,
       required this.explanationController,
       required this.commentController,
       required this.keyword,
       required this.dictionary});
   final TextEditingController originalController;
+  final TextEditingController originalSsmlController;
   final TextEditingController translationController;
+  final TextEditingController jaTranslationController;
   final TextEditingController explanationController;
   final TextEditingController commentController;
   final String keyword;
@@ -46,7 +50,9 @@ class _SentenceNewScreenState extends State<SentenceNewScreen> {
 
     Map<String, dynamic> params = {
       'original': widget.originalController.text,
+      'original_ssml': widget.originalSsmlController.text,
       'translation': widget.translationController.text,
+      'ja_translation': widget.jaTranslationController.text,
       'explanation': widget.explanationController.text,
       'dictionary_id': widget.dictionary.id
     };
@@ -88,7 +94,9 @@ class _SentenceNewScreenState extends State<SentenceNewScreen> {
             const SizedBox(height: 32),
             SentenceForm(
               originalController: widget.originalController,
+              originalSsmlController: widget.originalSsmlController,
               translationController: widget.translationController,
+              jaTranslationController: widget.jaTranslationController,
               explanationController: widget.explanationController,
               commentController: widget.commentController,
               dictionary: widget.dictionary,

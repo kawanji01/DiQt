@@ -36,8 +36,10 @@ class WordControllerMapState
       state = {
         'id': TextEditingController(),
         'entry': TextEditingController(text: keyword),
+        'entry_ssml': TextEditingController(),
         'reading': TextEditingController(),
         'meaning': TextEditingController(text: translation),
+        'ja_meaning': TextEditingController(),
         'pos_tag_id': TextEditingController(),
         'ipa': TextEditingController(),
         'sentence_id': TextEditingController(),
@@ -47,8 +49,10 @@ class WordControllerMapState
       state = {
         'id': TextEditingController(text: '${word.id}'),
         'entry': TextEditingController(text: word.entry),
+        'entry_ssml': TextEditingController(text: word.entrySsml),
         'reading': TextEditingController(text: word.reading),
         'meaning': TextEditingController(text: word.meaning),
+        'ja_meaning': TextEditingController(text: word.jaMeaning),
         'pos_tag_id': TextEditingController(
             text: word.posTagId == null ? '' : word.posTagId.toString()),
         'ipa': TextEditingController(text: word.ipa),

@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/form/editor_comment.dart';
 import 'package:booqs_mobile/components/sentence/setting/setting.dart';
 import 'package:booqs_mobile/components/word/form/entry.dart';
+import 'package:booqs_mobile/components/word/form/ja_meaning.dart';
 import 'package:booqs_mobile/components/word/form/meaning.dart';
 import 'package:booqs_mobile/components/word/form/senses.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
@@ -25,8 +26,12 @@ class WordFormFields extends ConsumerWidget {
         ref.watch(wordControllerMapProvider);
     final TextEditingController entryController =
         wordControllerMap['entry'] ?? TextEditingController();
+    final TextEditingController entrySsmlController =
+        wordControllerMap['entry_ssml'] ?? TextEditingController();
     final TextEditingController readingController =
         wordControllerMap['reading'] ?? TextEditingController();
+    final TextEditingController jaMeaningController =
+        wordControllerMap['ja_meaning'] ?? TextEditingController();
     final TextEditingController meaningController =
         wordControllerMap['meaning'] ?? TextEditingController();
     final TextEditingController posTagIdController =
@@ -42,6 +47,7 @@ class WordFormFields extends ConsumerWidget {
         // 項目フォーム
         WordFormEntry(
           entryController: entryController,
+          entrySsmlController: entrySsmlController,
           ipaController: ipaController,
           readingController: readingController,
           posTagIdController: posTagIdController,
@@ -52,6 +58,10 @@ class WordFormFields extends ConsumerWidget {
           meaningController: meaningController,
           entryController: entryController,
           posTagIdController: posTagIdController,
+          dictionary: dictionary,
+        ),
+        WordFormJaMeaning(
+          jaMeaningController: jaMeaningController,
           dictionary: dictionary,
         ),
         const SizedBox(height: 48),

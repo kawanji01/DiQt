@@ -27,7 +27,9 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
   // validatorを利用するために必要なkey
   final _formKey = GlobalKey<FormState>();
   final _originalController = TextEditingController();
+  final _originalSsmlController = TextEditingController();
   final _translationController = TextEditingController();
+  final _jaTranslationController = TextEditingController();
   final _explanationController = TextEditingController();
   final _commentController = TextEditingController();
 
@@ -36,7 +38,9 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
     super.initState();
     final Sentence sentence = widget.sentence;
     _originalController.text = sentence.original;
+    _originalSsmlController.text = sentence.originalSsml ?? '';
     _translationController.text = sentence.translation;
+    _jaTranslationController.text = sentence.jaTranslation ?? '';
     _explanationController.text = sentence.explanation ?? '';
   }
 
@@ -46,6 +50,8 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
   void dispose() {
     _originalController.dispose();
     _translationController.dispose();
+    _originalSsmlController.dispose();
+    _jaTranslationController.dispose();
     _explanationController.dispose();
     _commentController.dispose();
     super.dispose();
@@ -67,7 +73,9 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
       Map<String, dynamic> params = {
         'id': sentence.id,
         'original': _originalController.text,
+        'original_ssml': _originalSsmlController.text,
         'translation': _translationController.text,
+        'ja_translation': _jaTranslationController.text,
         'explanation': _explanationController.text
       };
       // 画面全体にローディングを表示
@@ -107,7 +115,9 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
               const SizedBox(height: 32),
               SentenceForm(
                 originalController: _originalController,
+                originalSsmlController: _originalSsmlController,
                 translationController: _translationController,
+                jaTranslationController: _jaTranslationController,
                 explanationController: _explanationController,
                 commentController: _commentController,
                 dictionary: sentence.dictionary!,
