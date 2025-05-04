@@ -1931,6 +1931,7 @@ class TranslationsWordsEn {
 	String get what_is_this_button => 'What is this buttons?';
 	String get ja_meaning => 'Japanese Meaning';
 	String get en_meaning => 'English Meaning';
+	String get entry_ssml => 'Entry SSML';
 }
 
 /// Flat map(s) containing all translations.
@@ -3452,6 +3453,7 @@ extension on Translations {
 			case 'words.what_is_this_button': return 'What is this buttons?';
 			case 'words.ja_meaning': return 'Japanese Meaning';
 			case 'words.en_meaning': return 'English Meaning';
+			case 'words.entry_ssml': return 'Entry SSML';
 			default: return null;
 		}
 	}

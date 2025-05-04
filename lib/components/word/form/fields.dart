@@ -25,8 +25,12 @@ class WordFormFields extends ConsumerWidget {
         ref.watch(wordControllerMapProvider);
     final TextEditingController entryController =
         wordControllerMap['entry'] ?? TextEditingController();
+    final TextEditingController entrySsmlController =
+        wordControllerMap['entry_ssml'] ?? TextEditingController();
     final TextEditingController readingController =
         wordControllerMap['reading'] ?? TextEditingController();
+    final TextEditingController jaMeaningController =
+        wordControllerMap['ja_meaning'] ?? TextEditingController();
     final TextEditingController meaningController =
         wordControllerMap['meaning'] ?? TextEditingController();
     final TextEditingController posTagIdController =
@@ -42,6 +46,7 @@ class WordFormFields extends ConsumerWidget {
         // 項目フォーム
         WordFormEntry(
           entryController: entryController,
+          entrySsmlController: entrySsmlController,
           ipaController: ipaController,
           readingController: readingController,
           posTagIdController: posTagIdController,

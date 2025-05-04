@@ -13,6 +13,7 @@ class Word {
     this.posTagId,
     required this.entry,
     required this.langNumberOfEntry,
+    this.entrySsml,
     required this.meaning,
     this.jaMeaning,
     this.enMeaning,
@@ -47,6 +48,7 @@ class Word {
   int? sentenceId;
   int? posTagId;
   String entry;
+  String? entrySsml;
   int langNumberOfEntry;
   String? entryAudioUrl;
   String meaning;
@@ -83,6 +85,7 @@ class Word {
         posTagId = json['pos_tag_id'],
         entry = json['entry'],
         langNumberOfEntry = json['lang_number_of_entry'],
+        entrySsml = json['entry_ssml'],
         entryAudioUrl = json['entry_audio_url'],
         meaning = json['meaning'],
         jaMeaning = json['ja_meaning'],
@@ -134,6 +137,7 @@ class Word {
         'pos_tag_id': posTagId,
         'entry': entry,
         'lang_number_of_entry': langNumberOfEntry,
+        'entry_ssml': entrySsml,
         'entry_audio_url': entryAudioUrl,
         'meaning': meaning,
         'ja_meaning': jaMeaning,

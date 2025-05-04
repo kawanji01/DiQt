@@ -1927,6 +1927,7 @@ class _TranslationsWordsJa implements TranslationsWordsEn {
 	@override String get what_is_this_button => 'このボタンはなに？';
 	@override String get ja_meaning => '日本語の意味';
 	@override String get en_meaning => '英語の意味';
+	@override String get entry_ssml => '見出し語のSSML';
 }
 
 /// Flat map(s) containing all translations.
@@ -3448,6 +3449,7 @@ extension on TranslationsJa {
 			case 'words.what_is_this_button': return 'このボタンはなに？';
 			case 'words.ja_meaning': return '日本語の意味';
 			case 'words.en_meaning': return '英語の意味';
+			case 'words.entry_ssml': return '見出し語のSSML';
 			default: return null;
 		}
 	}
