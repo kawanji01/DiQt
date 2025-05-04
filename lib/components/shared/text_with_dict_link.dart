@@ -101,6 +101,8 @@ class TextWithDictLink extends StatelessWidget {
     // LineWithDictLinkでは、リンク部分や通常テキストをWrapで横並びにしているため、リンク部分（TextButton）と通常テキスト（Text）が別Widgetになり、
     // 単語の途中や記号の直前で不自然な改行が発生しやすいです。
     // FlutterのWrapは、各Widget単位で折り返しを判断するため、「(well」のようなケースで「)」が次行に送られる」現象が起きます。
+    // 今後の方針
+    // SelectableText.richがリンクタップをサポートしたら、LineWithDictLinkをSelectableText.richに変更する。
     List<Widget> textWithLinkWidgetList(String text) {
       // テキストを行ごとに分けてリストにする。
       final lines = text.split('\n');
