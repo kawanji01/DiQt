@@ -1,30 +1,33 @@
 import 'dart:io';
-import 'package:booqs_mobile/components/shared/item_label.dart';
-import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:booqs_mobile/data/remote/azure_text_to_speech.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:booqs_mobile/data/remote/langs.dart';
+import 'package:booqs_mobile/data/remote/azure_text_to_speech.dart';
+import 'package:booqs_mobile/components/shared/item_label.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/models/dictionary.dart';
 
-class WordFormSSML extends StatefulWidget {
-  const WordFormSSML(
-      {super.key,
-      required this.ssmlController,
-      required this.entryController,
-      required this.dictionary});
+class SharedSsmlForm extends StatefulWidget {
+  const SharedSsmlForm({
+    super.key,
+    required this.ssmlController,
+    required this.textController,
+    required this.dictionary,
+    required this.label,
+  });
   final TextEditingController ssmlController;
-  final TextEditingController entryController;
+  final TextEditingController textController;
   final Dictionary dictionary;
+  final String label;
 
   @override
-  WordFormSSMLState createState() => WordFormSSMLState();
+  State<SharedSsmlForm> createState() => _SharedSsmlFormState();
 }
 
-class WordFormSSMLState extends State<WordFormSSML> {
+class _SharedSsmlFormState extends State<SharedSsmlForm> {
   late final AudioPlayer _player;
   bool _isPlaying = false;
 
@@ -60,14 +63,12 @@ class WordFormSSMLState extends State<WordFormSSML> {
     final audioBytes = result['audioBytes'];
     final error = result['error'];
     if (audioBytes == null) {
-      // print('AzureTTS error: $error');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('${t.shared.error_occurred}: $error')),
       );
       setState(() => _isPlaying = false);
       return;
     }
-    // 一時ファイルに保存して再生
     final tempDir = await getTemporaryDirectory();
     final tempFile = File('${tempDir.path}/azure_tts_preview.mp3');
     await tempFile.writeAsBytes(audioBytes, flush: true);
@@ -81,10 +82,9 @@ class WordFormSSMLState extends State<WordFormSSML> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // SSMLとは？リンク
         Row(
           children: [
-            SharedItemLabel(text: '${t.words.entry_ssml} '),
+            SharedItemLabel(text: widget.label),
             const SizedBox(width: 8),
             TextButton.icon(
               onPressed: () async {
@@ -109,7 +109,6 @@ class WordFormSSMLState extends State<WordFormSSML> {
           ],
         ),
         const SizedBox(height: 8),
-        // SSML入力欄
         TextField(
           controller: widget.ssmlController,
           maxLines: 6,
@@ -120,13 +119,12 @@ class WordFormSSMLState extends State<WordFormSSML> {
           ),
         ),
         const SizedBox(height: 8),
-        // プレビューボタンとテンプレート生成リンク
         Row(
           children: [
             ElevatedButton.icon(
               onPressed: _playPreview,
               icon: const Icon(Icons.volume_up, color: Colors.white),
-              label: Text(t.shared.preview,
+              label: Text(t.shared.audio_preview,
                   style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -140,7 +138,7 @@ class WordFormSSMLState extends State<WordFormSSML> {
             GestureDetector(
               onTap: () async {
                 final langCode = widget.dictionary.langCodeOfEntry();
-                final text = widget.entryController.text;
+                final text = widget.textController.text;
                 EasyLoading.show(status: 'loading...');
                 final res = await RemoteLangs.getSsmlTemplate(
                     langCode: langCode, text: text);

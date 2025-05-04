@@ -2,7 +2,7 @@ import 'package:booqs_mobile/components/form/white_text_form_field.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/components/word/form/pos_tag.dart';
 import 'package:booqs_mobile/components/word/form/reading.dart';
-import 'package:booqs_mobile/components/word/form/ssml.dart';
+import 'package:booqs_mobile/components/word/form/entry_ssml.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/utils/language_handler.dart';
@@ -48,8 +48,8 @@ class WordFormEntry extends StatelessWidget {
           dictionary: dictionary,
         ),
         const SizedBox(height: 24),
-        WordFormSSML(
-          ssmlController: entrySsmlController,
+        WordFormEntrySsml(
+          entrySsmlController: entrySsmlController,
           entryController: entryController,
           dictionary: dictionary,
         ),

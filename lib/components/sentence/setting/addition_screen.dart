@@ -31,7 +31,7 @@ class _SentenceSettingAdditionScreenState
   final _translationController = TextEditingController();
   final _explanationController = TextEditingController();
   final _commentController = TextEditingController();
-
+  final _originalSsmlController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -110,6 +110,7 @@ class _SentenceSettingAdditionScreenState
                   const SizedBox(height: 32),
                   SentenceForm(
                     originalController: _originalController,
+                    originalSsmlController: _originalSsmlController,
                     translationController: _translationController,
                     explanationController: _explanationController,
                     commentController: _commentController,

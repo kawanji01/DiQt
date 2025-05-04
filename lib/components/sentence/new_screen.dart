@@ -15,12 +15,14 @@ class SentenceNewScreen extends StatefulWidget {
   const SentenceNewScreen(
       {super.key,
       required this.originalController,
+      required this.originalSsmlController,
       required this.translationController,
       required this.explanationController,
       required this.commentController,
       required this.keyword,
       required this.dictionary});
   final TextEditingController originalController;
+  final TextEditingController originalSsmlController;
   final TextEditingController translationController;
   final TextEditingController explanationController;
   final TextEditingController commentController;
@@ -88,6 +90,7 @@ class _SentenceNewScreenState extends State<SentenceNewScreen> {
             const SizedBox(height: 32),
             SentenceForm(
               originalController: widget.originalController,
+              originalSsmlController: widget.originalSsmlController,
               translationController: widget.translationController,
               explanationController: widget.explanationController,
               commentController: widget.commentController,

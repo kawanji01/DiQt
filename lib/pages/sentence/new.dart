@@ -38,6 +38,7 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   late String _keyword;
   late int _dictionaryId;
   final _originalController = TextEditingController();
+  final _originalSsmlController = TextEditingController();
   final _translationController = TextEditingController();
   final _explanationController = TextEditingController();
   final _commentController = TextEditingController();
@@ -115,6 +116,7 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
                     }
                     return SentenceNewScreen(
                         originalController: _originalController,
+                        originalSsmlController: _originalSsmlController,
                         translationController: _translationController,
                         explanationController: _explanationController,
                         commentController: _commentController,

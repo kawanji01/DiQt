@@ -1387,6 +1387,7 @@ class _TranslationsSentencesJa implements TranslationsSentencesEn {
 	@override String get remove => '例文を取り除く';
 	@override String get destroy => '例文を削除する';
 	@override String get original => '原文';
+	@override String get original_ssml => '原文のSSML';
 	@override String get translation => '翻訳';
 	@override String original_placeholder({required Object language}) => '【必須】${language}の例文を入力してください。';
 	@override String translation_placeholder({required Object language}) => '【必須】例文の${language}の訳を入力してください。';
@@ -1520,6 +1521,7 @@ class _TranslationsSharedJa implements TranslationsSharedEn {
 	@override String get ssml_template_generation_failed => 'SSMLテンプレートの生成に失敗しました。';
 	@override String get how_to_write_ssml => 'SSMLの書き方';
 	@override String get preview => 'プレビュー';
+	@override String get audio_preview => '音声プレビュー';
 	@override String get generate_template => 'テンプレートを生成する';
 }
 
@@ -1884,6 +1886,7 @@ class _TranslationsWordsJa implements TranslationsWordsEn {
 	@override String get update_failed => '項目の更新に失敗しました。';
 	@override String get destroyed => '項目を削除しました。';
 	@override String get entry => '見出し語';
+	@override String get entry_ssml => '見出し語のSSML';
 	@override String get reading => '読み';
 	@override String get pos_tag_id => '品詞';
 	@override String get meaning => '意味';
@@ -1931,7 +1934,6 @@ class _TranslationsWordsJa implements TranslationsWordsEn {
 	@override String get what_is_this_button => 'このボタンはなに？';
 	@override String get ja_meaning => '日本語の意味';
 	@override String get en_meaning => '英語の意味';
-	@override String get entry_ssml => '見出し語のSSML';
 }
 
 /// Flat map(s) containing all translations.
@@ -2985,6 +2987,7 @@ extension on TranslationsJa {
 			case 'sentences.remove': return '例文を取り除く';
 			case 'sentences.destroy': return '例文を削除する';
 			case 'sentences.original': return '原文';
+			case 'sentences.original_ssml': return '原文のSSML';
 			case 'sentences.translation': return '翻訳';
 			case 'sentences.original_placeholder': return ({required Object language}) => '【必須】${language}の例文を入力してください。';
 			case 'sentences.translation_placeholder': return ({required Object language}) => '【必須】例文の${language}の訳を入力してください。';
@@ -3100,6 +3103,7 @@ extension on TranslationsJa {
 			case 'shared.ssml_template_generation_failed': return 'SSMLテンプレートの生成に失敗しました。';
 			case 'shared.how_to_write_ssml': return 'SSMLの書き方';
 			case 'shared.preview': return 'プレビュー';
+			case 'shared.audio_preview': return '音声プレビュー';
 			case 'shared.generate_template': return 'テンプレートを生成する';
 			case 'timeZone.international_date_line_west': return '国際日付変更線西';
 			case 'timeZone.american_samoa': return 'アメリカ領サモア';
@@ -3410,6 +3414,7 @@ extension on TranslationsJa {
 			case 'words.update_failed': return '項目の更新に失敗しました。';
 			case 'words.destroyed': return '項目を削除しました。';
 			case 'words.entry': return '見出し語';
+			case 'words.entry_ssml': return '見出し語のSSML';
 			case 'words.reading': return '読み';
 			case 'words.pos_tag_id': return '品詞';
 			case 'words.meaning': return '意味';
@@ -3457,7 +3462,6 @@ extension on TranslationsJa {
 			case 'words.what_is_this_button': return 'このボタンはなに？';
 			case 'words.ja_meaning': return '日本語の意味';
 			case 'words.en_meaning': return '英語の意味';
-			case 'words.entry_ssml': return '見出し語のSSML';
 			default: return null;
 		}
 	}

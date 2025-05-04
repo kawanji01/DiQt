@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/form/editor_comment.dart';
+import 'package:booqs_mobile/components/sentence/form/original_ssml.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/components/sentence/form/generator_button.dart';
@@ -11,6 +12,7 @@ class SentenceForm extends StatelessWidget {
   const SentenceForm({
     super.key,
     required this.originalController,
+    required this.originalSsmlController,
     required this.translationController,
     required this.explanationController,
     required this.commentController,
@@ -20,6 +22,7 @@ class SentenceForm extends StatelessWidget {
   });
 
   final TextEditingController originalController;
+  final TextEditingController originalSsmlController;
   final TextEditingController translationController;
   final TextEditingController explanationController;
   final TextEditingController commentController;
@@ -69,6 +72,12 @@ class SentenceForm extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         sentenceGeneratorButton(),
+        const SizedBox(height: 24),
+        SentenceFormOriginalSsml(
+          originalSsmlController: originalSsmlController,
+          originalController: originalController,
+          dictionary: dictionary,
+        ),
         const SizedBox(height: 40),
         SentenceFormTranslation(
           translationController: translationController,

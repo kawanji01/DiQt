@@ -1391,6 +1391,7 @@ class TranslationsSentencesEn {
 	String get remove => 'Remove sentence';
 	String get destroy => 'Delete sentence';
 	String get original => 'Original';
+	String get original_ssml => 'Original SSML';
 	String get translation => 'Translation';
 	String original_placeholder({required Object language}) => 'Please enter an example sentence in ${language}.';
 	String translation_placeholder({required Object language}) => 'Please enter a ${language} translation of the example sentence.';
@@ -1524,6 +1525,7 @@ class TranslationsSharedEn {
 	String get ssml_template_generation_failed => 'Failed to generate SSML template.';
 	String get how_to_write_ssml => 'How to write SSML';
 	String get preview => 'Preview';
+	String get audio_preview => 'Audio Preview';
 	String get generate_template => 'Generate template';
 }
 
@@ -1888,6 +1890,7 @@ class TranslationsWordsEn {
 	String get update_failed => 'Word Update Failed ';
 	String get destroyed => 'Word Destroyed';
 	String get entry => 'Headword';
+	String get entry_ssml => 'Entry SSML';
 	String get reading => 'Reading';
 	String get pos_tag_id => 'Part of speech';
 	String get meaning => 'Meaning';
@@ -1935,7 +1938,6 @@ class TranslationsWordsEn {
 	String get what_is_this_button => 'What is this buttons?';
 	String get ja_meaning => 'Japanese Meaning';
 	String get en_meaning => 'English Meaning';
-	String get entry_ssml => 'Entry SSML';
 }
 
 /// Flat map(s) containing all translations.
@@ -2989,6 +2991,7 @@ extension on Translations {
 			case 'sentences.remove': return 'Remove sentence';
 			case 'sentences.destroy': return 'Delete sentence';
 			case 'sentences.original': return 'Original';
+			case 'sentences.original_ssml': return 'Original SSML';
 			case 'sentences.translation': return 'Translation';
 			case 'sentences.original_placeholder': return ({required Object language}) => 'Please enter an example sentence in ${language}.';
 			case 'sentences.translation_placeholder': return ({required Object language}) => 'Please enter a ${language} translation of the example sentence.';
@@ -3104,6 +3107,7 @@ extension on Translations {
 			case 'shared.ssml_template_generation_failed': return 'Failed to generate SSML template.';
 			case 'shared.how_to_write_ssml': return 'How to write SSML';
 			case 'shared.preview': return 'Preview';
+			case 'shared.audio_preview': return 'Audio Preview';
 			case 'shared.generate_template': return 'Generate template';
 			case 'timeZone.international_date_line_west': return 'International Date Line West';
 			case 'timeZone.american_samoa': return 'American Samoa';
@@ -3414,6 +3418,7 @@ extension on Translations {
 			case 'words.update_failed': return 'Word Update Failed ';
 			case 'words.destroyed': return 'Word Destroyed';
 			case 'words.entry': return 'Headword';
+			case 'words.entry_ssml': return 'Entry SSML';
 			case 'words.reading': return 'Reading';
 			case 'words.pos_tag_id': return 'Part of speech';
 			case 'words.meaning': return 'Meaning';
@@ -3461,7 +3466,6 @@ extension on Translations {
 			case 'words.what_is_this_button': return 'What is this buttons?';
 			case 'words.ja_meaning': return 'Japanese Meaning';
 			case 'words.en_meaning': return 'English Meaning';
-			case 'words.entry_ssml': return 'Entry SSML';
 			default: return null;
 		}
 	}
