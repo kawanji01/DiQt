@@ -29,7 +29,40 @@ class TextWithDictLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 右横書き言語の場合はRichDictLinkTextで段落全体を表示
+    // selectable=false の場合は常にRichDictLinkText
+    if (!selectable) {
+      return RichDictLinkText(
+        text: text,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        fontColor: fontColor,
+        textDirection: textDirection ?? TextDirection.ltr,
+        textAlign: (textDirection == TextDirection.rtl)
+            ? TextAlign.right
+            : TextAlign.left,
+        autoLinkEnabled: autoLinkEnabled,
+        onLinkTap: (keyword) {
+          if (dictionaryId == null) return;
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            backgroundColor: Colors.white,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15.0),
+                topRight: Radius.circular(15.0),
+              ),
+            ),
+            builder: (context) => MarkdownDictLinkScreen(
+              dictionaryId: dictionaryId!,
+              keyword: keyword,
+            ),
+          );
+        },
+      );
+    }
+
+    // 右横書き言語でselectable=trueの場合のみRichDictLinkText
     if (textDirection == TextDirection.rtl) {
       return RichDictLinkText(
         text: text,
@@ -59,7 +92,15 @@ class TextWithDictLink extends StatelessWidget {
         },
       );
     }
-    // テキストWidgetの行ごとのリスト
+
+    // それ以外（selectable=trueかつ左横書き）は従来通り
+    // SelectableText.richはリンクタップができない制約があり、
+    // それを回避するために、LineWithDictLinkを使用する。
+    //
+    // 問題：
+    // LineWithDictLinkでは、リンク部分や通常テキストをWrapで横並びにしているため、リンク部分（TextButton）と通常テキスト（Text）が別Widgetになり、
+    // 単語の途中や記号の直前で不自然な改行が発生しやすいです。
+    // FlutterのWrapは、各Widget単位で折り返しを判断するため、「(well」のようなケースで「)」が次行に送られる」現象が起きます。
     List<Widget> textWithLinkWidgetList(String text) {
       // テキストを行ごとに分けてリストにする。
       final lines = text.split('\n');
