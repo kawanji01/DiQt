@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/form/editor_comment.dart';
 import 'package:booqs_mobile/components/sentence/setting/setting.dart';
 import 'package:booqs_mobile/components/word/form/entry.dart';
+import 'package:booqs_mobile/components/word/form/ja_meaning.dart';
 import 'package:booqs_mobile/components/word/form/meaning.dart';
 import 'package:booqs_mobile/components/word/form/senses.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
@@ -57,6 +58,10 @@ class WordFormFields extends ConsumerWidget {
           meaningController: meaningController,
           entryController: entryController,
           posTagIdController: posTagIdController,
+          dictionary: dictionary,
+        ),
+        WordFormJaMeaning(
+          jaMeaningController: jaMeaningController,
           dictionary: dictionary,
         ),
         const SizedBox(height: 48),

@@ -19,9 +19,8 @@ class WordItemMeanings extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          WordItemMeaning(word: word),
           WordItemJaMeaning(word: word),
-          const SizedBox(height: 16),
-          WordItemEnMeaning(word: word),
         ],
       );
     }
