@@ -8,10 +8,12 @@ class SentenceFormGeneratorButton extends StatefulWidget {
   const SentenceFormGeneratorButton(
       {super.key,
       required this.originalController,
+      required this.originalSsmlController,
       required this.translationController,
       required this.keyword,
       required this.dictionary});
   final TextEditingController originalController;
+  final TextEditingController originalSsmlController;
   final TextEditingController translationController;
   final String? keyword;
   final Dictionary dictionary;
@@ -68,6 +70,7 @@ class _SentenceFormGeneratorButtonState
               ),
               builder: (context) => SentenceFormGeneratorScreen(
                     originalController: widget.originalController,
+                    originalSsmlController: widget.originalSsmlController,
                     translationController: widget.translationController,
                     keywordController: _keywordController,
                     posTagIdController: _posTagIdController,

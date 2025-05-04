@@ -44,6 +44,7 @@ class SentenceFormFields extends ConsumerWidget {
       children: <Widget>[
         SentenceFormOriginal(
           originalController: originalController,
+          originalSsmlController: originalSsmlController,
           translationController: translationController,
           dictionary: dictionary,
           isNew: isNew,

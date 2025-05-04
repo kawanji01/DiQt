@@ -8,6 +8,7 @@ class SentenceFormOriginal extends StatelessWidget {
   const SentenceFormOriginal({
     super.key,
     required this.originalController,
+    required this.originalSsmlController,
     required this.translationController,
     required this.dictionary,
     this.isNew = false,
@@ -15,6 +16,7 @@ class SentenceFormOriginal extends StatelessWidget {
   });
 
   final TextEditingController originalController;
+  final TextEditingController originalSsmlController;
   final TextEditingController translationController;
   final Dictionary dictionary;
   final bool isNew;
@@ -26,6 +28,7 @@ class SentenceFormOriginal extends StatelessWidget {
       if (isNew) {
         return SentenceFormGeneratorButton(
           originalController: originalController,
+          originalSsmlController: originalSsmlController,
           translationController: translationController,
           keyword: keyword,
           dictionary: dictionary,
