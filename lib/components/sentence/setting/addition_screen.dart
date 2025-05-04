@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/button/small_outline_red_button.dart';
-import 'package:booqs_mobile/components/sentence/form.dart';
+import 'package:booqs_mobile/components/sentence/form/fields.dart';
+import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -10,71 +11,65 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceSettingAdditionScreen extends StatefulWidget {
+class SentenceSettingAdditionScreen extends ConsumerStatefulWidget {
   const SentenceSettingAdditionScreen(
       {super.key, required this.dictionary, required this.keyword});
   final Dictionary dictionary;
   final String keyword;
 
   @override
-  State<SentenceSettingAdditionScreen> createState() =>
+  ConsumerState<SentenceSettingAdditionScreen> createState() =>
       _SentenceSettingAdditionScreenState();
 }
 
 class _SentenceSettingAdditionScreenState
-    extends State<SentenceSettingAdditionScreen> {
+    extends ConsumerState<SentenceSettingAdditionScreen> {
+  late final sentenceControllerMapNotifier =
+      ref.read(sentenceControllerMapProvider.notifier);
   bool _isRequesting = false;
-  // validatorを利用するために必要なkey
+  bool _isLoading = true;
   final _formKey = GlobalKey<FormState>();
-  final _originalController = TextEditingController();
-  final _originalSsmlController = TextEditingController();
-  final _translationController = TextEditingController();
-  final _jaTranslationController = TextEditingController();
-  final _explanationController = TextEditingController();
-  final _commentController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      sentenceControllerMapNotifier.initialize(
+        dictionary: widget.dictionary,
+        keyword: widget.keyword,
+      );
+      setState(() {
+        _isLoading = false;
+      });
+    });
   }
 
   @override
   void dispose() {
-    _originalController.dispose();
-    _originalSsmlController.dispose();
-    _translationController.dispose();
-    _jaTranslationController.dispose();
-    _explanationController.dispose();
-    _commentController.dispose();
     super.dispose();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      sentenceControllerMapNotifier.disposeAllItems();
+    });
   }
 
   Future _save() async {
-    // 各Fieldのvalidatorを呼び出す
     if (!_formKey.currentState!.validate()) return;
-    // リクエストロック開始
     setState(() {
       _isRequesting = true;
     });
 
-    Map<String, dynamic> params = {
-      'original': _originalController.text,
-      'original_ssml': _originalSsmlController.text,
-      'translation': _translationController.text,
-      'ja_translation': _jaTranslationController.text,
-      'explanation': _explanationController.text,
-      'dictionary_id': widget.dictionary.id
-    };
-    // 画面全体にローディングを表示
+    final params = sentenceControllerMapNotifier.requestParams();
     EasyLoading.show(status: 'loading...');
     final Map resMap = await RemoteSentences.create(
-        params: params, comment: _commentController.text);
+        params: params, comment: params['comment'] ?? '');
     EasyLoading.dismiss();
-    // リクエストロック終了
     setState(() {
       _isRequesting = false;
     });
     if (!mounted) return;
+    if (!context.mounted) return;
     if (ErrorHandler.isErrorMap(resMap)) {
       ErrorHandler.showErrorSnackBar(context, resMap);
       return;
@@ -96,6 +91,10 @@ class _SentenceSettingAdditionScreenState
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     SizeConfig().init(context);
     final double grid = SizeConfig.blockSizeVertical ?? 0;
     final double height = grid * 80;
@@ -113,13 +112,7 @@ class _SentenceSettingAdditionScreenState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const SizedBox(height: 32),
-                  SentenceForm(
-                    originalController: _originalController,
-                    originalSsmlController: _originalSsmlController,
-                    translationController: _translationController,
-                    jaTranslationController: _jaTranslationController,
-                    explanationController: _explanationController,
-                    commentController: _commentController,
+                  SentenceFormFields(
                     dictionary: widget.dictionary,
                     isNew: true,
                     keyword: widget.keyword,

@@ -14,6 +14,8 @@ class SentenceFormJaTranslation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(dictionary.langCodeOfEntry());
+    print(dictionary.langCodeOfMeaning());
     if (dictionary.langCodeOfEntry() == 'ja' ||
         dictionary.langCodeOfMeaning() == 'ja') {
       return Container();

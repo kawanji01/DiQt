@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/dictionary/name.dart';
-import 'package:booqs_mobile/components/sentence/form.dart';
+import 'package:booqs_mobile/components/sentence/form/fields.dart';
+import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -10,62 +11,63 @@ import 'package:booqs_mobile/pages/sentence_request/show.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceNewScreen extends StatefulWidget {
+class SentenceNewScreen extends ConsumerStatefulWidget {
   const SentenceNewScreen(
-      {super.key,
-      required this.originalController,
-      required this.originalSsmlController,
-      required this.translationController,
-      required this.jaTranslationController,
-      required this.explanationController,
-      required this.commentController,
-      required this.keyword,
-      required this.dictionary});
-  final TextEditingController originalController;
-  final TextEditingController originalSsmlController;
-  final TextEditingController translationController;
-  final TextEditingController jaTranslationController;
-  final TextEditingController explanationController;
-  final TextEditingController commentController;
+      {super.key, required this.keyword, required this.dictionary});
   final String keyword;
   final Dictionary dictionary;
 
   @override
-  State<SentenceNewScreen> createState() => _SentenceNewScreenState();
+  ConsumerState<SentenceNewScreen> createState() => _SentenceNewScreenState();
 }
 
-class _SentenceNewScreenState extends State<SentenceNewScreen> {
+class _SentenceNewScreenState extends ConsumerState<SentenceNewScreen> {
+  late final sentenceControllerMapNotifier =
+      ref.read(sentenceControllerMapProvider.notifier);
   bool _isRequesting = false;
-  // validatorを利用するために必要なkey
+  bool _isLoading = true;
   final _formKey = GlobalKey<FormState>();
 
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      sentenceControllerMapNotifier.initialize(
+        dictionary: widget.dictionary,
+        keyword: widget.keyword,
+      );
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      sentenceControllerMapNotifier.disposeAllItems();
+    });
+  }
+
   Future save() async {
-    // 各Fieldのvalidatorを呼び出す
     if (!_formKey.currentState!.validate()) return;
-    // リクエストロック開始
     setState(() {
       _isRequesting = true;
     });
 
-    Map<String, dynamic> params = {
-      'original': widget.originalController.text,
-      'original_ssml': widget.originalSsmlController.text,
-      'translation': widget.translationController.text,
-      'ja_translation': widget.jaTranslationController.text,
-      'explanation': widget.explanationController.text,
-      'dictionary_id': widget.dictionary.id
-    };
-    // 画面全体にローディングを表示
+    final params = sentenceControllerMapNotifier.requestParams();
     EasyLoading.show(status: 'loading...');
     final Map resMap = await RemoteSentences.create(
-        params: params, comment: widget.commentController.text);
+        params: params, comment: params['comment'] ?? '');
     EasyLoading.dismiss();
-    // リクエストロック終了
     setState(() {
       _isRequesting = false;
     });
     if (!mounted) return;
+    if (!context.mounted) return;
     if (ErrorHandler.isErrorMap(resMap)) {
       ErrorHandler.showErrorSnackBar(context, resMap);
       return;
@@ -85,6 +87,10 @@ class _SentenceNewScreenState extends State<SentenceNewScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return Form(
       key: _formKey,
       child: Column(
@@ -92,13 +98,7 @@ class _SentenceNewScreenState extends State<SentenceNewScreen> {
           children: <Widget>[
             DictionaryName(dictionary: widget.dictionary, linked: false),
             const SizedBox(height: 32),
-            SentenceForm(
-              originalController: widget.originalController,
-              originalSsmlController: widget.originalSsmlController,
-              translationController: widget.translationController,
-              jaTranslationController: widget.jaTranslationController,
-              explanationController: widget.explanationController,
-              commentController: widget.commentController,
+            SentenceFormFields(
               dictionary: widget.dictionary,
               isNew: true,
               keyword: widget.keyword,
@@ -111,12 +111,7 @@ class _SentenceNewScreenState extends State<SentenceNewScreen> {
                   backgroundColor: Colors.green,
                   minimumSize: const Size(double.infinity, 40),
                 ),
-                // 二重リクエスト防止
-                onPressed: _isRequesting
-                    ? null
-                    : () async {
-                        save();
-                      },
+                onPressed: _isRequesting ? null : save,
                 icon: const Icon(Icons.update, color: Colors.white),
                 label: Text(
                   t.shared.create,

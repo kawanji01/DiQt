@@ -19,6 +19,7 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
   const SentenceFormGeneratorScreen(
       {super.key,
       required this.originalController,
+      required this.originalSsmlController,
       required this.translationController,
       required this.keywordController,
       required this.posTagIdController,
@@ -29,6 +30,7 @@ class SentenceFormGeneratorScreen extends StatefulWidget {
       required this.temperatureController,
       required this.dictionary});
   final TextEditingController originalController;
+  final TextEditingController originalSsmlController;
   final TextEditingController translationController;
   final TextEditingController keywordController;
   final TextEditingController posTagIdController;
@@ -93,6 +95,7 @@ class _SentenceFormGeneratorScreenState
       } else {
         widget.originalController.text = resMap['original'] ?? '';
         widget.translationController.text = resMap['translation'] ?? '';
+        widget.originalSsmlController.text = resMap['original_ssml'] ?? '';
         final snackBar =
             SnackBar(content: Text(t.sentences.sentence_generated));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
