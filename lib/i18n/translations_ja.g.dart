@@ -1517,6 +1517,10 @@ class _TranslationsSharedJa implements TranslationsSharedEn {
 	@override String get error_occurred => 'エラーが発生しました。';
 	@override String get fix_error => 'エラーを修正する';
 	@override String get error_fixed => 'エラーを修正しました。';
+	@override String get ssml_template_generation_failed => 'SSMLテンプレートの生成に失敗しました。';
+	@override String get how_to_write_ssml => 'SSMLの書き方';
+	@override String get preview => 'プレビュー';
+	@override String get generate_template => 'テンプレートを生成する';
 }
 
 // Path: timeZone
@@ -3093,6 +3097,10 @@ extension on TranslationsJa {
 			case 'shared.error_occurred': return 'エラーが発生しました。';
 			case 'shared.fix_error': return 'エラーを修正する';
 			case 'shared.error_fixed': return 'エラーを修正しました。';
+			case 'shared.ssml_template_generation_failed': return 'SSMLテンプレートの生成に失敗しました。';
+			case 'shared.how_to_write_ssml': return 'SSMLの書き方';
+			case 'shared.preview': return 'プレビュー';
+			case 'shared.generate_template': return 'テンプレートを生成する';
 			case 'timeZone.international_date_line_west': return '国際日付変更線西';
 			case 'timeZone.american_samoa': return 'アメリカ領サモア';
 			case 'timeZone.midway_island': return 'ミッドウェー島';

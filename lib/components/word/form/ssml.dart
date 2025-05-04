@@ -46,13 +46,13 @@ class WordFormSSMLState extends State<WordFormSSML> {
     final ssml = widget.ssmlController.text.trim();
     if (ssml.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('SSMLを入力してください')),
+        SnackBar(content: Text(t.shared.please_enter(name: 'SSML'))),
       );
       setState(() => _isPlaying = false);
       return;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('音声を生成しています...')),
+      SnackBar(content: Text(t.shared.processing)),
     );
     final result = await AzureTextToSpeech.synthesizeSSML(ssml);
     if (!mounted) return;
@@ -62,7 +62,7 @@ class WordFormSSMLState extends State<WordFormSSML> {
     if (audioBytes == null) {
       // print('AzureTTS error: $error');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('音声の生成に失敗しました: $error')),
+        SnackBar(content: Text('${t.shared.error_occurred}: $error')),
       );
       setState(() => _isPlaying = false);
       return;
@@ -89,15 +89,15 @@ class WordFormSSMLState extends State<WordFormSSML> {
             TextButton.icon(
               onPressed: () async {
                 const url =
-                    'https://cloud.google.com/text-to-speech/docs/ssml?hl=ja';
-                if (await canLaunch(url)) {
-                  await launch(url);
+                    'https://abundant-galliform-71d.notion.site/SSML-de4b05d1f73741488803faa3dd5c1af7';
+                if (await canLaunchUrl(Uri.parse(url))) {
+                  await launchUrl(Uri.parse(url));
                 }
               },
               icon:
                   const Icon(Icons.help_outline, size: 16, color: Colors.green),
-              label: const Text(
-                'SSMLの書き方',
+              label: Text(
+                t.shared.how_to_write_ssml,
                 style: TextStyle(fontSize: 12, color: Colors.green),
               ),
               style: TextButton.styleFrom(
@@ -126,8 +126,8 @@ class WordFormSSMLState extends State<WordFormSSML> {
             ElevatedButton.icon(
               onPressed: _playPreview,
               icon: const Icon(Icons.volume_up, color: Colors.white),
-              label: const Text('プレビュー',
-                  style: TextStyle(
+              label: Text(t.shared.preview,
+                  style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 14)),
@@ -148,7 +148,11 @@ class WordFormSSMLState extends State<WordFormSSML> {
                 if (!context.mounted) return;
                 if (res == null || res['ssml'] == null) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('テンプレートの取得に失敗しました')),
+                    SnackBar(
+                      content: Text(
+                        t.shared.ssml_template_generation_failed,
+                      ),
+                    ),
                   );
                   return;
                 }
@@ -156,8 +160,8 @@ class WordFormSSMLState extends State<WordFormSSML> {
                   widget.ssmlController.text = res['ssml'];
                 });
               },
-              child: const Text(
-                'テンプレートを生成する',
+              child: Text(
+                t.shared.generate_template,
                 style: TextStyle(
                   color: Colors.green,
                   decoration: TextDecoration.underline,

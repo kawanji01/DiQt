@@ -1521,6 +1521,10 @@ class TranslationsSharedEn {
 	String get error_occurred => 'An error occurred.';
 	String get fix_error => 'Fix error';
 	String get error_fixed => 'Error fixed.';
+	String get ssml_template_generation_failed => 'Failed to generate SSML template.';
+	String get how_to_write_ssml => 'How to write SSML';
+	String get preview => 'Preview';
+	String get generate_template => 'Generate template';
 }
 
 // Path: timeZone
@@ -3097,6 +3101,10 @@ extension on Translations {
 			case 'shared.error_occurred': return 'An error occurred.';
 			case 'shared.fix_error': return 'Fix error';
 			case 'shared.error_fixed': return 'Error fixed.';
+			case 'shared.ssml_template_generation_failed': return 'Failed to generate SSML template.';
+			case 'shared.how_to_write_ssml': return 'How to write SSML';
+			case 'shared.preview': return 'Preview';
+			case 'shared.generate_template': return 'Generate template';
 			case 'timeZone.international_date_line_west': return 'International Date Line West';
 			case 'timeZone.american_samoa': return 'American Samoa';
 			case 'timeZone.midway_island': return 'Midway Island';

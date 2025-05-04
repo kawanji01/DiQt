@@ -48,3 +48,7 @@ image_alt: "Image of ${name}"
 error_occurred: 'An error occurred.'
 fix_error: 'Fix error'
 error_fixed: 'Error fixed.'
+ssml_template_generation_failed: 'Failed to generate SSML template.'
+how_to_write_ssml: 'How to write SSML'
+preview: 'Preview'
+generate_template: 'Generate template'
