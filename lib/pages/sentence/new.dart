@@ -37,39 +37,13 @@ class SentenceNewPage extends ConsumerStatefulWidget {
 class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
   late String _keyword;
   late int _dictionaryId;
-  final _originalController = TextEditingController();
-  final _originalSsmlController = TextEditingController();
-  final _translationController = TextEditingController();
-  final _jaTranslationController = TextEditingController();
-  final _explanationController = TextEditingController();
-  final _commentController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  // initState() メソッドの中で context を使用して継承ウィジェットにアクセスすることは推奨されていない。
-  // 代わりに、このような初期化は didChangeDependencies() メソッドの中で行うのが良い。
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
     _keyword = arguments['keyword'];
     _dictionaryId = arguments['dictionaryId'];
-  }
-
-  @override
-  // widgetの破棄時にコントローラも破棄する。Controllerを使うなら必ず必要。
-  // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
-  void dispose() {
-    _originalController.dispose();
-    _originalSsmlController.dispose();
-    _translationController.dispose();
-    _jaTranslationController.dispose();
-    _explanationController.dispose();
-    _commentController.dispose();
-    super.dispose();
   }
 
   @override
@@ -118,14 +92,7 @@ class SentenceNewPageState extends ConsumerState<SentenceNewPage> {
                           .no_items_found(name: t.dictionaries.dictionary));
                     }
                     return SentenceNewScreen(
-                        originalController: _originalController,
-                        originalSsmlController: _originalSsmlController,
-                        translationController: _translationController,
-                        jaTranslationController: _jaTranslationController,
-                        explanationController: _explanationController,
-                        commentController: _commentController,
-                        keyword: _keyword,
-                        dictionary: dictionary);
+                        keyword: _keyword, dictionary: dictionary);
                   },
                   loading: () => const LoadingSpinner(),
                   error: (err, stack) => Text('$err'))),

@@ -1,6 +1,10 @@
 import 'package:booqs_mobile/components/form/editor_comment.dart';
+import 'package:booqs_mobile/components/sentence/form/original.dart';
+import 'package:booqs_mobile/components/sentence/form/original_ssml.dart';
+import 'package:booqs_mobile/components/sentence/form/preview_button.dart';
+import 'package:booqs_mobile/components/sentence/form/translation.dart';
+import 'package:booqs_mobile/components/sentence/form/ja_translation.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
-import 'package:booqs_mobile/components/shared/ssml/ssml_form.dart';
 import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -38,65 +42,28 @@ class SentenceFormFields extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SharedItemLabel(
-            text: '${t.sentences.original}(${dictionary.languageOfEntry()})'),
-        const SizedBox(height: 16),
-        TextFormField(
-          controller: originalController,
-          minLines: 3,
-          keyboardType: TextInputType.multiline,
-          maxLines: 8,
-          decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              labelText: t.sentences.original,
-              hintText: t.sentences.original_placeholder(
-                  language: dictionary.languageOfEntry())),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return t.errors.cant_be_blank;
-            }
-            return null;
-          },
-        ),
-        const SizedBox(height: 24),
-        SharedSsmlForm(
-          ssmlController: originalSsmlController,
-          textController: originalController,
+        SentenceFormOriginal(
+          originalController: originalController,
+          translationController: translationController,
           dictionary: dictionary,
-          label: t.sentences.original_ssml,
+          isNew: isNew,
+          keyword: keyword,
+        ),
+        SentenceFormOriginalSsml(
+          originalSsmlController: originalSsmlController,
+          originalController: originalController,
+          dictionary: dictionary,
         ),
         const SizedBox(height: 40),
-        SharedItemLabel(text: t.sentences.translation),
-        const SizedBox(height: 16),
-        TextFormField(
-          controller: translationController,
-          minLines: 3,
-          keyboardType: TextInputType.multiline,
-          maxLines: 8,
-          decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              labelText: t.sentences.translation,
-              hintText: t.sentences.translation_placeholder(
-                  language: dictionary.languageOfMeaning())),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return t.errors.cant_be_blank;
-            }
-            return null;
-          },
+        SentenceFormTranslation(
+          translationController: translationController,
+          dictionary: dictionary,
+          originalController: originalController,
         ),
         const SizedBox(height: 40),
-        SharedItemLabel(text: t.sentences.ja_translation),
-        const SizedBox(height: 16),
-        TextFormField(
-          controller: jaTranslationController,
-          minLines: 3,
-          keyboardType: TextInputType.multiline,
-          maxLines: 8,
-          decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              labelText: t.sentences.ja_translation,
-              hintText: ''),
+        SentenceFormJaTranslation(
+          jaTranslationController: jaTranslationController,
+          dictionary: dictionary,
         ),
         const SizedBox(height: 40),
         SharedItemLabel(text: t.sentences.explanation),
@@ -115,6 +82,12 @@ class SentenceFormFields extends ConsumerWidget {
         FormEditorComment(
             commentController: commentController, emptyValidation: false),
         const SizedBox(height: 40),
+        SentenceFormPreviewButton(
+          originalController: originalController,
+          translationController: translationController,
+          explanationController: explanationController,
+          dictionary: dictionary,
+        ),
       ],
     );
   }

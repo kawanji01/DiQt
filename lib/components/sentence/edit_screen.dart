@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/dictionary/name.dart';
-import 'package:booqs_mobile/components/sentence/form.dart';
+import 'package:booqs_mobile/components/sentence/form/fields.dart';
 import 'package:booqs_mobile/components/sentence/form/destroy_button.dart';
+import 'package:booqs_mobile/data/provider/sentence.dart';
 import 'package:booqs_mobile/data/remote/sentences.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
@@ -11,77 +12,65 @@ import 'package:booqs_mobile/pages/sentence_request/show.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SentenceEditScreen extends StatefulWidget {
+class SentenceEditScreen extends ConsumerStatefulWidget {
   const SentenceEditScreen(
       {super.key, required this.sentence, required this.dictionary});
   final Sentence sentence;
   final Dictionary dictionary;
 
   @override
-  State<SentenceEditScreen> createState() => _SentenceEditScreenState();
+  SentenceEditScreenState createState() => SentenceEditScreenState();
 }
 
-class _SentenceEditScreenState extends State<SentenceEditScreen> {
+class SentenceEditScreenState extends ConsumerState<SentenceEditScreen> {
+  late final sentenceControllerMapNotifier =
+      ref.read(sentenceControllerMapProvider.notifier);
   bool _isRequesting = false;
-  // validatorを利用するために必要なkey
+  bool _isLoading = true;
   final _formKey = GlobalKey<FormState>();
-  final _originalController = TextEditingController();
-  final _originalSsmlController = TextEditingController();
-  final _translationController = TextEditingController();
-  final _jaTranslationController = TextEditingController();
-  final _explanationController = TextEditingController();
-  final _commentController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    final Sentence sentence = widget.sentence;
-    _originalController.text = sentence.original;
-    _originalSsmlController.text = sentence.originalSsml ?? '';
-    _translationController.text = sentence.translation;
-    _jaTranslationController.text = sentence.jaTranslation ?? '';
-    _explanationController.text = sentence.explanation ?? '';
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      sentenceControllerMapNotifier.initialize(
+        sentence: widget.sentence,
+        dictionary: widget.dictionary,
+      );
+      setState(() {
+        _isLoading = false;
+      });
+    });
   }
 
   @override
-  // widgetの破棄時にコントローラも破棄する。Controllerを使うなら必ず必要。
-  // 参考： https://api.flutter.dev/flutter/widgets/TextEditingController-class.html
   void dispose() {
-    _originalController.dispose();
-    _translationController.dispose();
-    _originalSsmlController.dispose();
-    _jaTranslationController.dispose();
-    _explanationController.dispose();
-    _commentController.dispose();
     super.dispose();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      sentenceControllerMapNotifier.disposeAllItems();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final Sentence sentence = widget.sentence;
-    final Dictionary dictionary = widget.dictionary;
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    final sentence = widget.sentence;
+    final dictionary = widget.dictionary;
 
-    // 更新処理
     Future save() async {
-      // 各Fieldのvalidatorを呼び出す
       if (!_formKey.currentState!.validate()) return;
       setState(() {
         _isRequesting = true;
       });
-
-      Map<String, dynamic> params = {
-        'id': sentence.id,
-        'original': _originalController.text,
-        'original_ssml': _originalSsmlController.text,
-        'translation': _translationController.text,
-        'ja_translation': _jaTranslationController.text,
-        'explanation': _explanationController.text
-      };
-      // 画面全体にローディングを表示
+      final params = sentenceControllerMapNotifier.requestParams();
+      params['id'] = sentence.id;
       EasyLoading.show(status: 'loading...');
       final Map resMap = await RemoteSentences.update(
-          params: params, comment: _commentController.text);
+          params: params, comment: params['comment'] ?? '');
       EasyLoading.dismiss();
       setState(() {
         _isRequesting = false;
@@ -113,25 +102,14 @@ class _SentenceEditScreenState extends State<SentenceEditScreen> {
             children: <Widget>[
               DictionaryName(dictionary: dictionary, linked: false),
               const SizedBox(height: 32),
-              SentenceForm(
-                originalController: _originalController,
-                originalSsmlController: _originalSsmlController,
-                translationController: _translationController,
-                jaTranslationController: _jaTranslationController,
-                explanationController: _explanationController,
-                commentController: _commentController,
-                dictionary: sentence.dictionary!,
-                isNew: false,
-                keyword: '',
-              ),
+              SentenceFormFields(dictionary: dictionary),
               const SizedBox(height: 40),
               SizedBox(
                 height: 48,
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
-                    minimumSize: const Size(double.infinity,
-                        40), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                    minimumSize: const Size(double.infinity, 40),
                   ),
                   onPressed: _isRequesting
                       ? null
