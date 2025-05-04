@@ -14,6 +14,10 @@ const List<int> segmentationNeededLangNumbers = [
   97,
 ];
 
+// 右横書き文字
+// アラビア語、ヘブライ語、ペルシア語、ウルドゥー語
+const List<int> rightToLeftScriptsNumbers = [4, 35, 72, 101];
+
 // 言語コードと言語番号(ID)の対応づけ。
 // IDで管理しているのは、zh-CN と zh-Hans のように言語コードの表記揺れに対応するため。
 // localeの切り替え以外では、主に揺れのないIDを利用する

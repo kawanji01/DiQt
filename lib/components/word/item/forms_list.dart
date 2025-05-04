@@ -3,6 +3,7 @@ import 'package:booqs_mobile/components/word/item/label.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
+import 'package:booqs_mobile/consts/language.dart';
 
 class WordItemFormsList extends StatelessWidget {
   const WordItemFormsList({super.key, required this.word});
@@ -37,7 +38,7 @@ class WordItemFormsList extends StatelessWidget {
                   children: [
                     TextWithDictLink(
                       text: form['form']?.toString() ?? '',
-                      langNumber: word.langNumberOfMeaning,
+                      langNumber: word.langNumberOfEntry,
                       autoLinkEnabled: true,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       dictionaryId: word.dictionaryId,
@@ -45,6 +46,10 @@ class WordItemFormsList extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                       fontColor: Colors.black87,
                       selectable: true,
+                      textDirection: rightToLeftScriptsNumbers
+                              .contains(word.langNumberOfEntry)
+                          ? TextDirection.rtl
+                          : TextDirection.ltr,
                     ),
                     if (form['tags'] != null)
                       Container(

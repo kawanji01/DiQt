@@ -1,4 +1,6 @@
 import 'package:booqs_mobile/components/shared/line_with_dict_link.dart';
+import 'package:booqs_mobile/components/shared/rich_dict_link_text.dart';
+import 'package:booqs_mobile/components/markdown/dict_link_screen.dart';
 import 'package:flutter/material.dart';
 
 class TextWithDictLink extends StatelessWidget {
@@ -12,7 +14,8 @@ class TextWithDictLink extends StatelessWidget {
       required this.fontSize,
       required this.fontWeight,
       required this.fontColor,
-      required this.selectable});
+      required this.selectable,
+      this.textDirection});
   final String text;
   final int? langNumber;
   final int? dictionaryId;
@@ -22,9 +25,40 @@ class TextWithDictLink extends StatelessWidget {
   final FontWeight fontWeight;
   final Color fontColor;
   final bool selectable;
+  final TextDirection? textDirection;
 
   @override
   Widget build(BuildContext context) {
+    // 右横書き言語の場合はRichDictLinkTextで段落全体を表示
+    if (textDirection == TextDirection.rtl) {
+      return RichDictLinkText(
+        text: text,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        fontColor: fontColor,
+        textDirection: TextDirection.rtl,
+        textAlign: TextAlign.right,
+        autoLinkEnabled: autoLinkEnabled,
+        onLinkTap: (keyword) {
+          if (dictionaryId == null) return;
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            backgroundColor: Colors.white,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15.0),
+                topRight: Radius.circular(15.0),
+              ),
+            ),
+            builder: (context) => MarkdownDictLinkScreen(
+              dictionaryId: dictionaryId!,
+              keyword: keyword,
+            ),
+          );
+        },
+      );
+    }
     // テキストWidgetの行ごとのリスト
     List<Widget> textWithLinkWidgetList(String text) {
       // テキストを行ごとに分けてリストにする。
@@ -39,7 +73,14 @@ class TextWithDictLink extends StatelessWidget {
             fontSize: fontSize,
             fontWeight: fontWeight,
             fontColor: fontColor,
-            selectable: selectable);
+            selectable: selectable,
+            textDirection: textDirection);
+        if (textDirection == TextDirection.rtl) {
+          textWithLink = Align(
+            alignment: Alignment.centerRight,
+            child: textWithLink,
+          );
+        }
         textWithLinkWidgetList.add(textWithLink);
       }
       return textWithLinkWidgetList;
@@ -52,6 +93,7 @@ class TextWithDictLink extends StatelessWidget {
       child: Column(
         // 左寄せ。
         crossAxisAlignment: crossAxisAlignment,
+        textDirection: textDirection,
         children: textWithLinkWidgetList(text),
       ),
     );

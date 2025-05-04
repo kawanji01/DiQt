@@ -11,7 +11,8 @@ class LineWithDictLink extends StatelessWidget {
       required this.fontSize,
       required this.fontWeight,
       required this.fontColor,
-      required this.selectable});
+      required this.selectable,
+      this.textDirection});
   final String line;
   final int? dictionaryId;
   final bool autoLinkEnabled;
@@ -19,6 +20,7 @@ class LineWithDictLink extends StatelessWidget {
   final FontWeight fontWeight;
   final Color fontColor;
   final bool selectable;
+  final TextDirection? textDirection;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +68,10 @@ class LineWithDictLink extends StatelessWidget {
           onPressed: () => goToWordSearchPage(word),
           // splitで削除した空白を追加する
           child: Text('$word ',
+              textDirection: textDirection,
+              textAlign: textDirection == TextDirection.rtl
+                  ? TextAlign.right
+                  : TextAlign.left,
               style: TextStyle(
                 color: fontColor,
                 fontSize: fontSize,
@@ -99,6 +105,10 @@ class LineWithDictLink extends StatelessWidget {
           style: buttonStyle,
           onPressed: () => goToWordSearchPage(searchedWord),
           child: Text(displayedWord,
+              textDirection: textDirection,
+              textAlign: textDirection == TextDirection.rtl
+                  ? TextAlign.right
+                  : TextAlign.left,
               style: TextStyle(
                 color: textColor,
                 fontSize: fontSize,
@@ -115,6 +125,10 @@ class LineWithDictLink extends StatelessWidget {
         style: buttonStyle,
         onPressed: () => goToWordSearchPage(linkedWord),
         child: Text(linkedWord,
+            textDirection: textDirection,
+            textAlign: textDirection == TextDirection.rtl
+                ? TextAlign.right
+                : TextAlign.left,
             style: TextStyle(
               color: textColor,
               fontSize: fontSize,
@@ -184,7 +198,10 @@ class LineWithDictLink extends StatelessWidget {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 6),
         child: Wrap(
-          alignment: WrapAlignment.start,
+          textDirection: textDirection,
+          alignment: textDirection == TextDirection.rtl
+              ? WrapAlignment.end
+              : WrapAlignment.start,
           crossAxisAlignment: WrapCrossAlignment.end,
           children: wordWidgetList,
         ),

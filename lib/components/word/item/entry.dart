@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/shared/audio_button.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/shared/tts_button.dart';
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:flutter/material.dart';
 
 class WordItemEntry extends StatelessWidget {
@@ -20,14 +21,17 @@ class WordItemEntry extends StatelessWidget {
       }
     }
 
-    // 左寄せできない問題の解決策としてdouble.infinityを設定する。https://techsmeme.com/flutter-text-left-right/
+    final bool isRTL =
+        rightToLeftScriptsNumbers.contains(word!.langNumberOfEntry);
+
     return SizedBox(
       width: double.infinity,
       child: Wrap(
         children: <Widget>[
           SelectableText(
             word!.entry,
-            textAlign: TextAlign.left,
+            textAlign: isRTL ? TextAlign.right : TextAlign.left,
+            textDirection: isRTL ? TextDirection.rtl : TextDirection.ltr,
             style: TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
