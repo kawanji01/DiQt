@@ -1,9 +1,9 @@
 import 'package:booqs_mobile/components/word/item/forms_list.dart';
+import 'package:booqs_mobile/components/word/item/grammatical_tags.dart';
 import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/components/word/item/meanings.dart';
 import 'package:booqs_mobile/components/word/item/pos_tag.dart';
 import 'package:booqs_mobile/components/word/item/reversed_review_button.dart';
-import 'package:booqs_mobile/components/word/item/senses_tags.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
@@ -39,12 +39,12 @@ class WordListItem extends ConsumerWidget {
                   height: 10,
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     WordItemPosTag(word: word),
                     const SizedBox(width: 8),
                     Expanded(
-                      child: WordItemSensesTags(word: word),
+                      child: WordItemGrammaticalTags(word: word),
                     ),
                   ],
                 ),
