@@ -1,5 +1,6 @@
 import 'package:booqs_mobile/components/form/white_text_form_field.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
+import 'package:booqs_mobile/components/word/form/grammatical_tag_selector.dart';
 import 'package:booqs_mobile/components/word/form/pos_tag.dart';
 import 'package:booqs_mobile/components/word/form/reading.dart';
 import 'package:booqs_mobile/components/word/form/entry_ssml.dart';
@@ -62,6 +63,9 @@ class WordFormEntry extends StatelessWidget {
           enabled: true,
           posTagRequired: dictionary.posTagRequired,
         ),
+        const SizedBox(height: 16),
+        // 文法タグ設定
+        WordFormGrammaticalTagSelector(dictionaryId: dictionary.id),
       ],
     );
   }

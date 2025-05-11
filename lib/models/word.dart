@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/models/dictionary.dart';
+import 'package:booqs_mobile/models/grammatical_tag.dart';
 import 'package:booqs_mobile/models/pos_tag.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sense.dart';
@@ -41,6 +42,7 @@ class Word {
     this.reversedQuiz,
     this.wordTags,
     this.senses,
+    this.grammaticalTags,
   });
 
   int id;
@@ -77,6 +79,7 @@ class Word {
   Quiz? reversedQuiz;
   List<WordTag>? wordTags;
   List<Sense>? senses;
+  List<GrammaticalTag>? grammaticalTags;
 
   Word.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -125,7 +128,12 @@ class Word {
                 .toList(),
         senses = json['senses'] == null
             ? []
-            : json['senses'].map<Sense>((e) => Sense.fromJson(e)).toList();
+            : json['senses'].map<Sense>((e) => Sense.fromJson(e)).toList(),
+        grammaticalTags = json['grammatical_tags'] == null
+            ? []
+            : json['grammatical_tags']
+                .map<GrammaticalTag>((e) => GrammaticalTag.fromJson(e))
+                .toList();
 
   // 却下されたwordRequestのリクエストの数
   int rejectedWordRequestsCount() =>
@@ -164,5 +172,6 @@ class Word {
         'quiz': quiz,
         'reversed_quiz': reversedQuiz,
         'senses': senses,
+        'grammatical_tags': grammaticalTags,
       };
 }

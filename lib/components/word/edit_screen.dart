@@ -2,6 +2,7 @@ import 'package:booqs_mobile/components/dictionary/name.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
 import 'package:booqs_mobile/components/word/form/destroy_button.dart';
 import 'package:booqs_mobile/components/word/form/fields.dart';
+import 'package:booqs_mobile/data/provider/grammatical_tag.dart';
 import 'package:booqs_mobile/data/provider/sense.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/data/provider/word.dart';
@@ -46,6 +47,13 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
           dictionaryId: widget.dictionary.id, word: widget.word);
       // Wordの親の辞書を設定。
       ref.read(wordEditDictionaryProvider.notifier).state = widget.dictionary;
+      // 文法タグの選択状態を初期化する
+      if (widget.word.grammaticalTags != null) {
+        final ids = widget.word.grammaticalTags!.map((tag) => tag.id).toList();
+        ref.read(grammaticalTagIdsProvider.notifier).state = ids;
+      } else {
+        ref.read(grammaticalTagIdsProvider.notifier).state = [];
+      }
       setState(() {
         _isLoading = false;
       });
@@ -90,6 +98,9 @@ class WordEditScreenState extends ConsumerState<WordEditScreen> {
       Map<String, dynamic> senseParams =
           ref.watch(senseControllerMapListProvider.notifier).requestParams();
       params['senses_attributes'] = senseParams;
+      // 文法タグのパラメーターを追加する
+      final grammaticalTagIds = ref.watch(grammaticalTagIdsProvider);
+      params['new_grammatical_tag_ids'] = grammaticalTagIds;
       // 画面全体にローディングを表示
       EasyLoading.show(status: 'loading...');
       final Map resMap = await RemoteWords.update(

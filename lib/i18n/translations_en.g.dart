@@ -52,6 +52,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final TranslationsDrillsEn drills = TranslationsDrillsEn._(_root);
 	late final TranslationsErrorsEn errors = TranslationsErrorsEn._(_root);
 	late final TranslationsExperiencePointsEn experiencePoints = TranslationsExperiencePointsEn._(_root);
+	late final TranslationsGrammaticalTagsEn grammaticalTags = TranslationsGrammaticalTagsEn._(_root);
 	late final TranslationsHomeEn home = TranslationsHomeEn._(_root);
 	late final TranslationsInquiriesEn inquiries = TranslationsInquiriesEn._(_root);
 	late final TranslationsLangEn lang = TranslationsLangEn._(_root);
@@ -659,6 +660,18 @@ class TranslationsExperiencePointsEn {
 
 	// Translations
 	String to_the_next_level({required Object points}) => '${points} EXP to the next level.';
+}
+
+// Path: grammaticalTags
+class TranslationsGrammaticalTagsEn {
+	TranslationsGrammaticalTagsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get grammatical_tag => 'Grammatical Tag';
+	String get grammatical_tag_select => 'Select Grammatical Tag';
+	String get grammatical_tag_not_selected => 'No Grammatical Tag Selected';
 }
 
 // Path: home
@@ -1498,6 +1511,7 @@ class TranslationsSharedEn {
 	String get send => 'Send';
 	String get set_up => 'Set Up';
 	String get share => 'Share';
+	String get save => 'Save';
 	String get close => 'Close';
 	String get undefined => 'Undefined';
 	String get details => 'Details';
@@ -2395,6 +2409,9 @@ extension on Translations {
 			case 'errors.http_status_510': return '510 Not Extended: Further extensions to the request are required for the server to fulfill it.';
 			case 'errors.http_status_511': return '511 Network Authentication Required: You need to authenticate to gain network access. Please connect to the network and try again.';
 			case 'experiencePoints.to_the_next_level': return ({required Object points}) => '${points} EXP to the next level.';
+			case 'grammaticalTags.grammatical_tag': return 'Grammatical Tag';
+			case 'grammaticalTags.grammatical_tag_select': return 'Select Grammatical Tag';
+			case 'grammaticalTags.grammatical_tag_not_selected': return 'No Grammatical Tag Selected';
 			case 'home.welcome': return 'Welcome to DiQt!';
 			case 'home.welcome_description_1': return 'DiQt is a dictionary app to help you never forget vocabulary.';
 			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
@@ -3081,6 +3098,7 @@ extension on Translations {
 			case 'shared.send': return 'Send';
 			case 'shared.set_up': return 'Set Up';
 			case 'shared.share': return 'Share';
+			case 'shared.save': return 'Save';
 			case 'shared.close': return 'Close';
 			case 'shared.undefined': return 'Undefined';
 			case 'shared.details': return 'Details';

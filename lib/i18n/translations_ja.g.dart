@@ -48,6 +48,7 @@ class TranslationsJa implements Translations {
 	@override late final _TranslationsDrillsJa drills = _TranslationsDrillsJa._(_root);
 	@override late final _TranslationsErrorsJa errors = _TranslationsErrorsJa._(_root);
 	@override late final _TranslationsExperiencePointsJa experiencePoints = _TranslationsExperiencePointsJa._(_root);
+	@override late final _TranslationsGrammaticalTagsJa grammaticalTags = _TranslationsGrammaticalTagsJa._(_root);
 	@override late final _TranslationsHomeJa home = _TranslationsHomeJa._(_root);
 	@override late final _TranslationsInquiriesJa inquiries = _TranslationsInquiriesJa._(_root);
 	@override late final _TranslationsLangJa lang = _TranslationsLangJa._(_root);
@@ -655,6 +656,18 @@ class _TranslationsExperiencePointsJa implements TranslationsExperiencePointsEn 
 
 	// Translations
 	@override String to_the_next_level({required Object points}) => '次のレベルまであと${points}EXP';
+}
+
+// Path: grammaticalTags
+class _TranslationsGrammaticalTagsJa implements TranslationsGrammaticalTagsEn {
+	_TranslationsGrammaticalTagsJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get grammatical_tag => '文法タグ';
+	@override String get grammatical_tag_select => '文法タグを選択';
+	@override String get grammatical_tag_not_selected => '文法タグが選択されていません';
 }
 
 // Path: home
@@ -1494,6 +1507,7 @@ class _TranslationsSharedJa implements TranslationsSharedEn {
 	@override String get send => '送信する';
 	@override String get set_up => '設定する';
 	@override String get share => 'シェアする';
+	@override String get save => '保存する';
 	@override String get close => '閉じる';
 	@override String get undefined => '未定義';
 	@override String get details => '詳細';
@@ -2391,6 +2405,9 @@ extension on TranslationsJa {
 			case 'errors.http_status_510': return '510 Not Extended: サーバーがリクエストを満たすためには、リクエストにさらなる拡張が必要です。';
 			case 'errors.http_status_511': return '511 Network Authentication Required: ネットワークにアクセスするためには認証が必要です。ネットワークに接続して再試行してください。';
 			case 'experiencePoints.to_the_next_level': return ({required Object points}) => '次のレベルまであと${points}EXP';
+			case 'grammaticalTags.grammatical_tag': return '文法タグ';
+			case 'grammaticalTags.grammatical_tag_select': return '文法タグを選択';
+			case 'grammaticalTags.grammatical_tag_not_selected': return '文法タグが選択されていません';
 			case 'home.welcome': return 'DiQtへようこそ！';
 			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
 			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';
@@ -3077,6 +3094,7 @@ extension on TranslationsJa {
 			case 'shared.send': return '送信する';
 			case 'shared.set_up': return '設定する';
 			case 'shared.share': return 'シェアする';
+			case 'shared.save': return '保存する';
 			case 'shared.close': return '閉じる';
 			case 'shared.undefined': return '未定義';
 			case 'shared.details': return '詳細';

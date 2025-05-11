@@ -1,10 +1,10 @@
 import 'package:booqs_mobile/components/word/item/explanation.dart';
 import 'package:booqs_mobile/components/word/item/forms_list.dart';
+import 'package:booqs_mobile/components/word/item/grammatical_tags.dart';
 import 'package:booqs_mobile/components/word/item/meaning_image.dart';
 import 'package:booqs_mobile/components/word/item/meanings.dart';
 import 'package:booqs_mobile/components/word/item/pos_tag.dart';
 import 'package:booqs_mobile/components/word/item/reversed_review_button.dart';
-import 'package:booqs_mobile/components/word/item/senses_tags.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/components/dictionary/name.dart';
@@ -43,12 +43,12 @@ class WordDetailedItem extends StatelessWidget {
           height: 10,
         ),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             WordItemPosTag(word: word),
             const SizedBox(width: 8),
             Expanded(
-              child: WordItemSensesTags(word: word),
+              child: WordItemGrammaticalTags(word: word),
             ),
           ],
         ),
