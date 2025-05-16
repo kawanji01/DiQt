@@ -685,6 +685,7 @@ class _TranslationsHomeJa implements TranslationsHomeEn {
 	@override String get help_page => 'ヘルプページ';
 	@override String get contact => 'お問い合わせ';
 	@override String get app_review => 'レビュー';
+	@override String get cheer_app => 'アプリを応援する';
 	@override String get temrs_of_service => '利用規約';
 	@override String get privacy_policy => 'プライバシーポリシー';
 	@override String get legal => '特定商取引法に基づく表記';
@@ -2416,6 +2417,7 @@ extension on TranslationsJa {
 			case 'home.help_page': return 'ヘルプページ';
 			case 'home.contact': return 'お問い合わせ';
 			case 'home.app_review': return 'レビュー';
+			case 'home.cheer_app': return 'アプリを応援する';
 			case 'home.temrs_of_service': return '利用規約';
 			case 'home.privacy_policy': return 'プライバシーポリシー';
 			case 'home.legal': return '特定商取引法に基づく表記';

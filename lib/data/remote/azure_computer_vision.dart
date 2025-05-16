@@ -33,7 +33,7 @@ class AzureComputerVision {
       if (res.statusCode != 200) throw 'HTTP ${res.statusCode}: ${res.body}';
 
       final jsonBody = json.decode(res.body) as Map<String, dynamic>;
-      print(jsonBody);
+      // print(jsonBody);
 
       if (jsonBody['readResult'] == null) {
         throw 'Failed to analyze image: ${jsonBody.toString()}';
@@ -42,7 +42,7 @@ class AzureComputerVision {
 
       // blocksから全てのテキストを取得して結合
       final List<dynamic> blocks = readResult['blocks'] as List<dynamic>;
-      print(blocks);
+      // print(blocks);
       final String text = blocks
           .expand((block) => (block['lines'] as List<dynamic>))
           .map((line) => line['text'] as String)

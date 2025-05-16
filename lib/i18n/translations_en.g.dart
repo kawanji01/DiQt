@@ -689,6 +689,7 @@ class TranslationsHomeEn {
 	String get help_page => 'Help Page';
 	String get contact => 'Contact';
 	String get app_review => 'App Review';
+	String get cheer_app => 'Cheer for the app';
 	String get temrs_of_service => 'Terms of service';
 	String get privacy_policy => 'Privacy policy';
 	String get legal => 'Specified Commercial Transaction Act';
@@ -2420,6 +2421,7 @@ extension on Translations {
 			case 'home.help_page': return 'Help Page';
 			case 'home.contact': return 'Contact';
 			case 'home.app_review': return 'App Review';
+			case 'home.cheer_app': return 'Cheer for the app';
 			case 'home.temrs_of_service': return 'Terms of service';
 			case 'home.privacy_policy': return 'Privacy policy';
 			case 'home.legal': return 'Specified Commercial Transaction Act';
