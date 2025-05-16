@@ -103,13 +103,15 @@ class _DictionaryMapImageSearchScreenState
         compressQuality: 100,
         uiSettings: [
           AndroidUiSettings(
-              toolbarTitle: 'Cropper',
-              toolbarColor: Colors.deepOrange,
-              toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.original,
-              lockAspectRatio: false),
+            toolbarTitle: t.shared.edit,
+            toolbarColor: Colors.green,
+            toolbarWidgetColor: Colors.white,
+            statusBarColor: Colors.grey,
+            initAspectRatio: CropAspectRatioPreset.ratio16x9,
+            lockAspectRatio: false,
+          ),
           IOSUiSettings(
-            title: 'Cropper',
+            title: t.shared.edit,
           ),
           WebUiSettings(
             context: context,

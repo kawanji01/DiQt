@@ -91,6 +91,13 @@
                     android:value="ca-app-pub-9489251797522277~9865846180"/>
         <!-- AdMob END -->
 
+        <!-- image_cropperの設定 -->
+        <activity
+                    android:name="com.yalantis.ucrop.UCropActivity"
+                    android:screenOrientation="portrait"
+                    android:theme="@style/Ucrop.CropTheme"/>
+        <!-- image_cropperの設定（END） -->
+
     </application>
 
     <!-- local notification 参考： https://github.com/sajee1dw/Local-Notification/blob/master/android/app/src/main/AndroidManifest.xml -->
