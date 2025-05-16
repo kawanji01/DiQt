@@ -15,9 +15,9 @@ class DictionaryMapSpeechSearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Androidだと音声認識がない場合があるので表示しない。
-    if (Platform.isAndroid) {
-      return Container();
-    }
+    //if (Platform.isAndroid) {
+    //  return Container();
+    //}
     if (dictionary == null) {
       IconButton(
           // icon: const Icon(Icons.manage_search), // 使用するアイコンを指定
