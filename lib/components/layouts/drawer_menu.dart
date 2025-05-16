@@ -63,8 +63,7 @@ class DrawerMenu extends ConsumerWidget {
             },
           ),
           ListTile(
-            title:
-                Text(t.home.app_review, style: const TextStyle(fontSize: 16)),
+            title: Text(t.home.cheer_app, style: const TextStyle(fontSize: 16)),
             onTap: () async {
               await AppReviewService().request();
             },
