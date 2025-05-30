@@ -28,8 +28,8 @@ this_is_premium_plan_feature: 'This is a feature for premium members.'
 all_features_will_be_available: 'All features will be available.'
 notice: "Seven days' notice before the charge is made."
 cancel_at_any_time: 'You can cancel at any time.'
-monthly_plan_price: '¥500／Month'
-annual_plan_price: '¥5,000／Year'
+monthly_plan_price: '¥650／Month'
+annual_plan_price: '¥6,000／Year'
 purchase_succeded: 'You are now a premium member!'
 view_premium_plan_benefits: 'View Premium Plan benefits'
 view_premium_plan: 'View Premium Plan'
@@ -51,7 +51,7 @@ restore: 'Click here if you have previously purchased.'
 restore_success: 'Your purchase has been restored.'
 restore_error: 'Your purchase could not be restored.'
 footer_description: '・The premium subscription period is automatically renewed every month from the start date. \n
-・The first payment starts at the end of the two-week free trial period. \n
+・The first payment starts at the end of the free trial period. \n
 ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n 
 ・Please check the following before registering. \n'
 monthly_premium_plan: 'Monthly Premium Plan'

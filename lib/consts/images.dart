@@ -1,4 +1,4 @@
-const String bucketUrl = "https://diqt.s3.ap-northeast-1.amazonaws.com";
+const String bucketUrl = "https://cdn.diqt.net";
 const String assetsUrl = "$bucketUrl/assets";
 const String imagesUrl = "$assetsUrl/images";
 const String mainImagesUrl = "$imagesUrl/main";
