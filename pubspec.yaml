@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
-version: 1.4.64+260
+version: 1.4.64+261
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -120,9 +120,9 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icon/BooQs_icon.png"
-  adaptive_icon_background: '#273132'
-  adaptive_icon_foreground: "assets/icon/BooQs_icon.png"
+  image_path: "assets/icon/diqt_icon.png"
+  adaptive_icon_background: '#0D0D0D'
+  adaptive_icon_foreground: "assets/icon/diqt_icon.png"
 
 
 # For information on the generic Dart part of this file, see the
