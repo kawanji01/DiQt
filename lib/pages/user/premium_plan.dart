@@ -178,7 +178,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Icon(
@@ -221,7 +221,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
               borderRadius: BorderRadius.circular(40),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.orange.withOpacity(0.3),
+                  color: Colors.orange.withValues(alpha: 0.3),
                   blurRadius: 20,
                   offset: const Offset(0, 10),
                 ),
@@ -296,7 +296,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                         gradient: LinearGradient(
                           colors: [
                             Colors.transparent,
-                            Colors.white.withOpacity(0.3),
+                            Colors.white.withValues(alpha: 0.3),
                             Colors.transparent,
                           ],
                         ),
@@ -371,8 +371,8 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
             boxShadow: [
               BoxShadow(
                 color: isSelected
-                    ? const Color(0xFF4CAF50).withOpacity(0.2)
-                    : Colors.black.withOpacity(0.05),
+                    ? const Color(0xFF4CAF50).withValues(alpha: 0.2)
+                    : Colors.black.withValues(alpha: 0.05),
                 blurRadius: isSelected ? 15 : 5,
                 offset: const Offset(0, 5),
               ),
@@ -496,7 +496,8 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                             borderRadius: BorderRadius.circular(15),
                             boxShadow: [
                               BoxShadow(
-                                color: const Color(0xFFFF6B6B).withOpacity(0.3),
+                                color: const Color(0xFFFF6B6B)
+                                    .withValues(alpha: 0.3),
                                 blurRadius: 8,
                                 offset: const Offset(0, 4),
                               ),
@@ -550,7 +551,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 10,
                 offset: const Offset(0, 5),
               ),
@@ -729,7 +730,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF4CAF50).withOpacity(0.3),
+            color: const Color(0xFF4CAF50).withValues(alpha: 0.3),
             blurRadius: 15,
             offset: const Offset(0, 8),
           ),
@@ -759,7 +760,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                             gradient: LinearGradient(
                               colors: [
                                 Colors.transparent,
-                                Colors.white.withOpacity(0.2),
+                                Colors.white.withValues(alpha: 0.2),
                                 Colors.transparent,
                               ],
                             ),
