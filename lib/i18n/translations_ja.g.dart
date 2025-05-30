@@ -1130,8 +1130,8 @@ class _TranslationsPurchaseJa implements TranslationsPurchaseEn {
 	@override String get all_features_will_be_available => 'すべての機能が利用できるようになります。';
 	@override String get notice => '有料化の7日前にお知らせします。';
 	@override String get cancel_at_any_time => 'いつでもキャンセルできます。';
-	@override String get monthly_plan_price => '500円／月';
-	@override String get annual_plan_price => '5,000円／年';
+	@override String get monthly_plan_price => '650円／月';
+	@override String get annual_plan_price => '6,000円／年';
 	@override String get purchase_succeded => 'プレミアム会員になりました！';
 	@override String get view_premium_plan_benefits => 'プレミアムプランの特典を見る';
 	@override String get view_premium_plan => 'プレミアムプランを見る';
@@ -1152,7 +1152,7 @@ class _TranslationsPurchaseJa implements TranslationsPurchaseEn {
 	@override String get restore => '以前に購入された方はこちら';
 	@override String get restore_success => '購入が復元されました。';
 	@override String get restore_error => '購入の復元に失敗しました。';
-	@override String get footer_description => '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n ・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n ・以下をご確認の上、ご登録ください。\n';
+	@override String get footer_description => '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n ・無料お試し期間が終了すると、最初のお支払いが始まります。\n ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n ・以下をご確認の上、ご登録ください。\n';
 	@override String get monthly_premium_plan => '月額プレミアムプラン';
 	@override String get annual_premium_plan => '年額プレミアムプラン';
 	@override String get price => '価格';
@@ -2808,8 +2808,8 @@ extension on TranslationsJa {
 			case 'purchase.all_features_will_be_available': return 'すべての機能が利用できるようになります。';
 			case 'purchase.notice': return '有料化の7日前にお知らせします。';
 			case 'purchase.cancel_at_any_time': return 'いつでもキャンセルできます。';
-			case 'purchase.monthly_plan_price': return '500円／月';
-			case 'purchase.annual_plan_price': return '5,000円／年';
+			case 'purchase.monthly_plan_price': return '650円／月';
+			case 'purchase.annual_plan_price': return '6,000円／年';
 			case 'purchase.purchase_succeded': return 'プレミアム会員になりました！';
 			case 'purchase.view_premium_plan_benefits': return 'プレミアムプランの特典を見る';
 			case 'purchase.view_premium_plan': return 'プレミアムプランを見る';
@@ -2830,7 +2830,7 @@ extension on TranslationsJa {
 			case 'purchase.restore': return '以前に購入された方はこちら';
 			case 'purchase.restore_success': return '購入が復元されました。';
 			case 'purchase.restore_error': return '購入の復元に失敗しました。';
-			case 'purchase.footer_description': return '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n ・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n ・以下をご確認の上、ご登録ください。\n';
+			case 'purchase.footer_description': return '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n ・無料お試し期間が終了すると、最初のお支払いが始まります。\n ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n ・以下をご確認の上、ご登録ください。\n';
 			case 'purchase.monthly_premium_plan': return '月額プレミアムプラン';
 			case 'purchase.annual_premium_plan': return '年額プレミアムプラン';
 			case 'purchase.price': return '価格';

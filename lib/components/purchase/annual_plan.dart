@@ -85,7 +85,7 @@ class _PurchaseAnnualPlanState extends State<PurchaseAnnualPlan> {
                 color: Colors.redAccent,
               ),
               child: Text(
-                t.purchase.two_months_free,
+                'おすすめ！',
                 style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 12,

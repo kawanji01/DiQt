@@ -2,6 +2,8 @@ import 'package:booqs_mobile/components/purchase/annual_plan.dart';
 import 'package:booqs_mobile/components/purchase/benefits_button.dart';
 import 'package:booqs_mobile/components/purchase/heading.dart';
 import 'package:booqs_mobile/components/purchase/monthly_plan.dart';
+import 'package:booqs_mobile/components/purchase/features_table.dart';
+import 'package:booqs_mobile/components/purchase/benefits_list.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +32,11 @@ class PurchaseIntroduction extends StatelessWidget {
             style: const TextStyle(fontSize: 16, color: Colors.black54),
           ),
           const SizedBox(
-            height: 32,
+            height: 24,
+          ),
+          const PurchaseBenefitsList(),
+          const SizedBox(
+            height: 24,
           ),
           Container(
               padding: const EdgeInsets.symmetric(vertical: 8),
@@ -58,7 +64,11 @@ class PurchaseIntroduction extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 48,
+            height: 32,
+          ),
+          const PurchaseFeaturesTable(),
+          const SizedBox(
+            height: 32,
           ),
           const PurchaseBenefitsButton()
         ],

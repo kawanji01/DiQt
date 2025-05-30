@@ -1134,8 +1134,8 @@ class TranslationsPurchaseEn {
 	String get all_features_will_be_available => 'All features will be available.';
 	String get notice => 'Seven days\' notice before the charge is made.';
 	String get cancel_at_any_time => 'You can cancel at any time.';
-	String get monthly_plan_price => '¥500／Month';
-	String get annual_plan_price => '¥5,000／Year';
+	String get monthly_plan_price => '¥650／Month';
+	String get annual_plan_price => '¥6,000／Year';
 	String get purchase_succeded => 'You are now a premium member!';
 	String get view_premium_plan_benefits => 'View Premium Plan benefits';
 	String get view_premium_plan => 'View Premium Plan';
@@ -1156,7 +1156,7 @@ class TranslationsPurchaseEn {
 	String get restore => 'Click here if you have previously purchased.';
 	String get restore_success => 'Your purchase has been restored.';
 	String get restore_error => 'Your purchase could not be restored.';
-	String get footer_description => '・The premium subscription period is automatically renewed every month from the start date. \n ・The first payment starts at the end of the two-week free trial period. \n ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n ・Please check the following before registering. \n';
+	String get footer_description => '・The premium subscription period is automatically renewed every month from the start date. \n ・The first payment starts at the end of the free trial period. \n ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n ・Please check the following before registering. \n';
 	String get monthly_premium_plan => 'Monthly Premium Plan';
 	String get annual_premium_plan => 'Annual Premium Plan';
 	String get price => 'Price';
@@ -2812,8 +2812,8 @@ extension on Translations {
 			case 'purchase.all_features_will_be_available': return 'All features will be available.';
 			case 'purchase.notice': return 'Seven days\' notice before the charge is made.';
 			case 'purchase.cancel_at_any_time': return 'You can cancel at any time.';
-			case 'purchase.monthly_plan_price': return '¥500／Month';
-			case 'purchase.annual_plan_price': return '¥5,000／Year';
+			case 'purchase.monthly_plan_price': return '¥650／Month';
+			case 'purchase.annual_plan_price': return '¥6,000／Year';
 			case 'purchase.purchase_succeded': return 'You are now a premium member!';
 			case 'purchase.view_premium_plan_benefits': return 'View Premium Plan benefits';
 			case 'purchase.view_premium_plan': return 'View Premium Plan';
@@ -2834,7 +2834,7 @@ extension on Translations {
 			case 'purchase.restore': return 'Click here if you have previously purchased.';
 			case 'purchase.restore_success': return 'Your purchase has been restored.';
 			case 'purchase.restore_error': return 'Your purchase could not be restored.';
-			case 'purchase.footer_description': return '・The premium subscription period is automatically renewed every month from the start date. \n ・The first payment starts at the end of the two-week free trial period. \n ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n ・Please check the following before registering. \n';
+			case 'purchase.footer_description': return '・The premium subscription period is automatically renewed every month from the start date. \n ・The first payment starts at the end of the free trial period. \n ・Unless you cancel more than 24 hours before the end of the premium subscription period, the subscription period will be automatically renewed. \n ・Please check the following before registering. \n';
 			case 'purchase.monthly_premium_plan': return 'Monthly Premium Plan';
 			case 'purchase.annual_premium_plan': return 'Annual Premium Plan';
 			case 'purchase.price': return 'Price';

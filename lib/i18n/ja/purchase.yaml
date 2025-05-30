@@ -28,8 +28,8 @@ this_is_premium_plan_feature: 'プレミアム会員用の機能です'
 all_features_will_be_available: 'すべての機能が利用できるようになります。'
 notice: "有料化の7日前にお知らせします。"
 cancel_at_any_time: 'いつでもキャンセルできます。'
-monthly_plan_price: '500円／月'
-annual_plan_price: '5,000円／年'
+monthly_plan_price: '650円／月'
+annual_plan_price: '6,000円／年'
 purchase_succeded: 'プレミアム会員になりました！'
 view_premium_plan_benefits: 'プレミアムプランの特典を見る'
 view_premium_plan: 'プレミアムプランを見る'
@@ -51,7 +51,7 @@ restore: '以前に購入された方はこちら'
 restore_success: '購入が復元されました。'
 restore_error: '購入の復元に失敗しました。'
 footer_description: '・プレミアム契約期間は開始日から起算して1ヶ月ごとの自動更新となります。\n
-・２週間の無料お試し期間が終了すると、最初のお支払いが始まります。\n
+・無料お試し期間が終了すると、最初のお支払いが始まります。\n
 ・プレミアム契約期間の終了日の24時間以上前に解約しない限り契約期間が『自動更新』されます。\n
 ・以下をご確認の上、ご登録ください。\n'
 monthly_premium_plan: '月額プレミアムプラン'
