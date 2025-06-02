@@ -21,6 +21,8 @@ class HomeDictionaryScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeDictionaryScreenState extends ConsumerState<HomeDictionaryScreen> {
+  bool _isUserLangInitScreenShowing = false;
+
   @override
   void initState() {
     super.initState();
@@ -28,14 +30,23 @@ class _HomeDictionaryScreenState extends ConsumerState<HomeDictionaryScreen> {
       final User? user = ref.watch(currentUserProvider);
       if (user == null) return;
 
-      if (user.langInitialized == false) {
+      if (user.langInitialized == false && !_isUserLangInitScreenShowing) {
         // すでに言語設定画面が表示されている場合は表示しない
         final isUserLangInitScreenActive =
             ModalRoute.of(context)?.settings.name == 'UserLangInitScreen';
         if (isUserLangInitScreenActive) return;
+
+        setState(() {
+          _isUserLangInitScreenShowing = true;
+        });
+
         // 言語設定画面を表示
         const screen = UserLangInitScreen();
-        Dialogs.slideFromBottomFade(screen);
+        Dialogs.slideFromBottomFade(screen).then((_) {
+          setState(() {
+            _isUserLangInitScreenShowing = false;
+          });
+        });
       }
     });
   }
