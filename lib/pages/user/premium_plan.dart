@@ -334,10 +334,9 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
   Widget _buildPlanCards() {
     return Row(
       children: [
-        Expanded(child: _buildPlanCard(0, '月額プラン', '¥650', '/ 月', null)),
+        Expanded(child: _buildPlanCard(0, '月額プラン', '¥500', '/ 月', null)),
         const SizedBox(width: 16),
-        Expanded(
-            child: _buildPlanCard(1, '年額プラン', '¥6,000', '/ 年', '23% OFF！')),
+        Expanded(child: _buildPlanCard(1, '年額プラン', '¥5,000', '/ 年', '２ヶ月分無料！')),
       ],
     );
   }
@@ -425,7 +424,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                           //Icon(Icons.star, color: Color(0xFFFF9800), size: 18),
                           SizedBox(width: 4),
                           Text(
-                            '¥500/月',
+                            '¥417/月',
                             style: TextStyle(
                               color: Color(0xFFFF9800),
                               fontWeight: FontWeight.bold,
@@ -456,24 +455,6 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                         ),
                       ),
                     const SizedBox(height: 6),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFFFF9800), Color(0xFFF57C00)],
-                        ),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Text(
-                        '３ヶ月分無料！',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
                   ],
                 ],
               ),
