@@ -460,15 +460,18 @@ class RemoteUsers {
     }
   }
 
-  static Future<Map> updateLangs(
-      {required int langNumber,
-      required int learningLangNumber,
-      required String timeZoneName}) async {
+  static Future<Map> updateLangs({
+    required int langNumber,
+    required int learningLangNumber,
+  }) async {
     try {
       final url =
           Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/update_langs');
       final Map<String, dynamic> body = {
-        'user': {'lang_number': langNumber}
+        'user': {
+          'lang_number': langNumber,
+          'learning_lang_number': learningLangNumber,
+        }
       };
       final res = await HttpService.patch(url, body);
       final Map resMap = json.decode(res.body);
