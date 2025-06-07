@@ -2,6 +2,7 @@ import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/components/user/form/lang_settings.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/dictionary_map.dart';
 import 'package:booqs_mobile/data/remote/users.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -28,7 +29,6 @@ class _UserLangInitScreenState extends ConsumerState<UserLangInitScreen> {
     final Map resMap = await RemoteUsers.updateLangs(
       langNumber: ref.watch(userLangNumberProvider),
       learningLangNumber: ref.watch(userLearningLangNumberProvider),
-      timeZoneName: ref.watch(userTimeZoneNameProvider),
     );
     EasyLoading.dismiss();
     setState(() => _isReqeusting = false);
@@ -42,6 +42,7 @@ class _UserLangInitScreenState extends ConsumerState<UserLangInitScreen> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
     final User user = User.fromJson(resMap['user']);
     ref.read(currentUserProvider.notifier).update(user);
+    ref.invalidate(asyncMyDictionariesProvider);
     HomePage.push(context);
   }
 
