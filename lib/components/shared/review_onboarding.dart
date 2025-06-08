@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/consts/images.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class FullScreenImageDialog extends StatelessWidget {
@@ -22,16 +23,15 @@ class FullScreenImageDialog extends StatelessWidget {
   }
 }
 
-class ReversedReviewOnboarding extends StatefulWidget {
+class ReviewOnboarding extends StatefulWidget {
   final List<Map<String, String>>? pages;
-  const ReversedReviewOnboarding({super.key, this.pages});
+  const ReviewOnboarding({super.key, this.pages});
 
   @override
-  State<ReversedReviewOnboarding> createState() =>
-      _ReversedReviewOnboardingState();
+  State<ReviewOnboarding> createState() => _ReversedReviewOnboardingState();
 }
 
-class _ReversedReviewOnboardingState extends State<ReversedReviewOnboarding> {
+class _ReversedReviewOnboardingState extends State<ReviewOnboarding> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
@@ -39,15 +39,13 @@ class _ReversedReviewOnboardingState extends State<ReversedReviewOnboarding> {
       widget.pages ??
       [
         {
-          'title': '意味を覚える',
-          'description':
-              '「意味を覚える」ボタンを押すことで、後日、復習として「単語から意味を答える」問題を出題します。\n単語を読む力や聞く力を鍛えたい方におすすめです。',
+          'title': t.words.meaning_to_remember,
+          'description': t.words.meaning_to_remember_description,
           'image': '$onboardingImagesUrl/word_review_onboarding_1.png',
         },
         {
-          'title': '単語を覚える',
-          'description':
-              '「単語を覚える」ボタンを押すことで、後日、復習として「意味から見出し語を答える」問題を出題します。\n単語を話す力や書く力を鍛えたい方におすすめです。',
+          'title': t.words.word_to_remember,
+          'description': t.words.word_to_remember_description,
           'image': '$onboardingImagesUrl/word_review_onboarding_2.png',
         },
       ];
@@ -153,17 +151,73 @@ class _ReversedReviewOnboardingState extends State<ReversedReviewOnboarding> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _currentPage == index
-                        ? Theme.of(context).primaryColor
+                        ? Colors.green
                         : Colors.grey.shade300,
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (_currentPage > 0)
+            const SizedBox(height: 24),
+            // 最後のページの場合は完了ボタンを目立たせる
+            if (_currentPage == _pages.length - 1)
+              Column(
+                children: [
+                  // 完了ボタンを大きく目立たせる
+                  Container(
+                    width: double.infinity,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.green,
+                          Colors.green.withValues(alpha: 0.8),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(28),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.green.withValues(alpha: 0.3),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(28),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            t.shared.done,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Icon(
+                            Icons.check_circle,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  // 前へボタンを小さく表示
                   TextButton(
                     onPressed: () {
                       _pageController.previousPage(
@@ -171,29 +225,57 @@ class _ReversedReviewOnboardingState extends State<ReversedReviewOnboarding> {
                         curve: Curves.easeInOut,
                       );
                     },
-                    child: const Text('前へ'),
-                  )
-                else
-                  const SizedBox(width: 80),
-                if (_currentPage < _pages.length - 1)
-                  TextButton(
-                    onPressed: () {
-                      _pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    child: const Text('次へ'),
-                  )
-                else
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('完了'),
+                    child: Text(
+                      t.shared.previous,
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 14,
+                      ),
+                    ),
                   ),
-              ],
-            ),
+                ],
+              )
+            else
+              // 最初/中間のページの場合は従来のレイアウト
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  if (_currentPage > 0)
+                    TextButton(
+                      onPressed: () {
+                        _pageController.previousPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                      child: Text(t.shared.previous),
+                    )
+                  else
+                    const SizedBox(width: 80),
+                  // 次へボタンを少し目立たせる
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        _pageController.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                      child: Text(
+                        t.shared.next,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
           ],
         ),
       ),

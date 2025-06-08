@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/review/setting/large_button.dart';
-import 'package:booqs_mobile/components/shared/reversed_review_onboarding.dart';
-import 'package:booqs_mobile/consts/images.dart';
+import 'package:booqs_mobile/components/shared/review_onboarding.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
@@ -28,20 +27,7 @@ class WordItemReversedReviewButton extends StatelessWidget {
           onPressed: () {
             showDialog(
               context: context,
-              builder: (context) => const ReversedReviewOnboarding(pages: [
-                {
-                  'title': '意味を覚える',
-                  'description':
-                      '「意味を覚える」ボタンを押すことで、後日、復習として「単語から意味を答える」問題を出題します。\n単語を読む力や聞く力を鍛えたい方におすすめです。',
-                  'image': '$onboardingImagesUrl/word_review_onboarding_1.png',
-                },
-                {
-                  'title': '単語を覚える',
-                  'description':
-                      '「単語を覚える」ボタンを押すことで、後日、復習として「意味から見出し語を答える」問題を出題します。\n単語を話す力や書く力を鍛えたい方におすすめです。',
-                  'image': '$onboardingImagesUrl/word_review_onboarding_2.png',
-                },
-              ]),
+              builder: (context) => const ReviewOnboarding(),
             );
           },
           icon: const Icon(

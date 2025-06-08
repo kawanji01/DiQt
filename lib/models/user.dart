@@ -45,6 +45,7 @@ class User {
     required this.appFavored,
     required this.appCancelReportSent,
     required this.langInitialized,
+    required this.reviewOnboardingShown,
     required this.activated,
     this.authToken,
     this.schoolId,
@@ -93,6 +94,7 @@ class User {
   bool appFavored;
   bool appCancelReportSent;
   bool langInitialized;
+  bool reviewOnboardingShown;
   bool activated;
   int? schoolId;
   bool? schoolParticipation;
@@ -147,6 +149,7 @@ class User {
         appFavored = json['app_favored'],
         appCancelReportSent = json['app_cancel_report_sent'],
         langInitialized = json['lang_initialized'],
+        reviewOnboardingShown = json['review_onboarding_shown'],
         activated = json['activated'],
         authToken = json['token_for_native_app'],
         schoolId = json['school_id'],
@@ -221,6 +224,7 @@ class User {
         'app_favored': appFavored,
         'app_cancel_report_sent': appCancelReportSent,
         'lang_initialized': langInitialized,
+        'review_onboarding_shown': reviewOnboardingShown,
         'activated': activated,
         'token_for_native_app': authToken,
         'school_id': schoolId,

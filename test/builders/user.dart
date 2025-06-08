@@ -44,6 +44,7 @@ class UserBuilder {
         wholeWeekAnswerHistoriesCount: 0,
         drillsCount: 0,
         achievementMapsCount: 0,
-        notesCount: 0);
+        notesCount: 0,
+        reviewOnboardingShown: false);
   }
 }
