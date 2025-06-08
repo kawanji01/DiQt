@@ -1445,6 +1445,10 @@ class TranslationsSentencesEn {
 	String get review_label_listening => 'Be able to listen';
 	String get reversed_review_label => 'be able to speak';
 	String get what_is_this_button => 'What is this button?';
+	String get read_to_remember => 'Read to Remember';
+	String get read_to_remember_description => 'By pressing the "Read to Remember" button, you will be asked to answer the question "What is the translation of the sentence?" in the future. This is recommended for those who want to improve their reading and listening skills.';
+	String get speak_to_remember => 'Speak to Remember';
+	String get speak_to_remember_description => 'By pressing the "Speak to Remember" button, you will be asked to answer the question "What is the sentence?" in the future. This is recommended for those who want to improve their speaking and writing skills.';
 }
 
 // Path: sessions
@@ -1543,6 +1547,8 @@ class TranslationsSharedEn {
 	String get preview => 'Preview';
 	String get audio_preview => 'Audio Preview';
 	String get generate_template => 'Generate template';
+	String get next => 'Next';
+	String get previous => 'Previous';
 }
 
 // Path: timeZone
@@ -1952,6 +1958,10 @@ class TranslationsWordsEn {
 	String get pos_tag_required => 'Please select a part of speech.';
 	String get sentence_required => 'Please set an example sentence.';
 	String get what_is_this_button => 'What is this buttons?';
+	String get meaning_to_remember => 'Meaning to Remember';
+	String get word_to_remember => 'Word to Remember';
+	String get meaning_to_remember_description => 'By pressing the "Meaning to Remember" button, you will be asked to answer the question "What is the meaning of the word?" in the future. This is recommended for those who want to improve their reading and listening skills.';
+	String get word_to_remember_description => 'By pressing the "Word to Remember" button, you will be asked to answer the question "What is the word?" in the future. This is recommended for those who want to improve their speaking and writing skills.';
 	String get ja_meaning => 'Japanese Meaning';
 	String get en_meaning => 'English Meaning';
 }
@@ -3051,6 +3061,10 @@ extension on Translations {
 			case 'sentences.review_label_listening': return 'Be able to listen';
 			case 'sentences.reversed_review_label': return 'be able to speak';
 			case 'sentences.what_is_this_button': return 'What is this button?';
+			case 'sentences.read_to_remember': return 'Read to Remember';
+			case 'sentences.read_to_remember_description': return 'By pressing the "Read to Remember" button, you will be asked to answer the question "What is the translation of the sentence?" in the future. This is recommended for those who want to improve their reading and listening skills.';
+			case 'sentences.speak_to_remember': return 'Speak to Remember';
+			case 'sentences.speak_to_remember_description': return 'By pressing the "Speak to Remember" button, you will be asked to answer the question "What is the sentence?" in the future. This is recommended for those who want to improve their speaking and writing skills.';
 			case 'sessions.log_in': return 'Log in';
 			case 'sessions.sign_up': return 'Sign up';
 			case 'sessions.register': return 'Register';
@@ -3131,6 +3145,8 @@ extension on Translations {
 			case 'shared.preview': return 'Preview';
 			case 'shared.audio_preview': return 'Audio Preview';
 			case 'shared.generate_template': return 'Generate template';
+			case 'shared.next': return 'Next';
+			case 'shared.previous': return 'Previous';
 			case 'timeZone.international_date_line_west': return 'International Date Line West';
 			case 'timeZone.american_samoa': return 'American Samoa';
 			case 'timeZone.midway_island': return 'Midway Island';
@@ -3486,6 +3502,10 @@ extension on Translations {
 			case 'words.pos_tag_required': return 'Please select a part of speech.';
 			case 'words.sentence_required': return 'Please set an example sentence.';
 			case 'words.what_is_this_button': return 'What is this buttons?';
+			case 'words.meaning_to_remember': return 'Meaning to Remember';
+			case 'words.word_to_remember': return 'Word to Remember';
+			case 'words.meaning_to_remember_description': return 'By pressing the "Meaning to Remember" button, you will be asked to answer the question "What is the meaning of the word?" in the future. This is recommended for those who want to improve their reading and listening skills.';
+			case 'words.word_to_remember_description': return 'By pressing the "Word to Remember" button, you will be asked to answer the question "What is the word?" in the future. This is recommended for those who want to improve their speaking and writing skills.';
 			case 'words.ja_meaning': return 'Japanese Meaning';
 			case 'words.en_meaning': return 'English Meaning';
 			default: return null;

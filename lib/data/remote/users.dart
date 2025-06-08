@@ -508,4 +508,21 @@ class RemoteUsers {
       return ErrorHandler.exceptionMap(e, s);
     }
   }
+
+  // 復習のオンボーディングモーダルを表示したことを伝える
+  static Future<Map> updateReviewOnboardingShown() async {
+    try {
+      final url = Uri.parse(
+          '${DiQtURL.root()}/api/v1/mobile/users/update_review_onboarding_shown');
+      final res = await HttpService.patch(url, {});
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
 }

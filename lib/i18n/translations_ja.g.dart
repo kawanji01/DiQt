@@ -1441,6 +1441,10 @@ class _TranslationsSentencesJa implements TranslationsSentencesEn {
 	@override String get review_label_listening => '聞き取れるようになる';
 	@override String get reversed_review_label => '話せるようになる';
 	@override String get what_is_this_button => 'このボタンはなに？';
+	@override String get read_to_remember => '読めるようになる';
+	@override String get read_to_remember_description => '「読めるようになる」ボタンを押すことで、後日、復習として「例文から翻訳を答える」問題を出題します。\n例文を読む力や聞く力を鍛えたい方におすすめです。';
+	@override String get speak_to_remember => '話せるようになる';
+	@override String get speak_to_remember_description => '「話せるようになる」ボタンを押すことで、後日、復習として「翻訳から例文を答える」問題を出題します。\n例文を話す力や書く力を鍛えたい方におすすめです。';
 }
 
 // Path: sessions
@@ -1539,6 +1543,8 @@ class _TranslationsSharedJa implements TranslationsSharedEn {
 	@override String get preview => 'プレビュー';
 	@override String get audio_preview => '音声プレビュー';
 	@override String get generate_template => 'テンプレートを生成する';
+	@override String get next => '次へ';
+	@override String get previous => '前へ';
 }
 
 // Path: timeZone
@@ -1948,6 +1954,10 @@ class _TranslationsWordsJa implements TranslationsWordsEn {
 	@override String get pos_tag_required => '品詞を設定してください。';
 	@override String get sentence_required => '例文を設定してください。';
 	@override String get what_is_this_button => 'このボタンはなに？';
+	@override String get meaning_to_remember => '意味を覚える';
+	@override String get meaning_to_remember_description => '「意味を覚える」ボタンを押すことで、後日、復習として「単語から意味を答える」問題を出題します。\n単語を読む力や聞く力を鍛えたい方におすすめです。';
+	@override String get word_to_remember => '単語を覚える';
+	@override String get word_to_remember_description => '「単語を覚える」ボタンを押すことで、後日、復習として「意味から見出し語を答える」問題を出題します。\n単語を話す力や書く力を鍛えたい方におすすめです。';
 	@override String get ja_meaning => '日本語の意味';
 	@override String get en_meaning => '英語の意味';
 }
@@ -3047,6 +3057,10 @@ extension on TranslationsJa {
 			case 'sentences.review_label_listening': return '聞き取れるようになる';
 			case 'sentences.reversed_review_label': return '話せるようになる';
 			case 'sentences.what_is_this_button': return 'このボタンはなに？';
+			case 'sentences.read_to_remember': return '読めるようになる';
+			case 'sentences.read_to_remember_description': return '「読めるようになる」ボタンを押すことで、後日、復習として「例文から翻訳を答える」問題を出題します。\n例文を読む力や聞く力を鍛えたい方におすすめです。';
+			case 'sentences.speak_to_remember': return '話せるようになる';
+			case 'sentences.speak_to_remember_description': return '「話せるようになる」ボタンを押すことで、後日、復習として「翻訳から例文を答える」問題を出題します。\n例文を話す力や書く力を鍛えたい方におすすめです。';
 			case 'sessions.log_in': return 'ログインする';
 			case 'sessions.sign_up': return '新規登録する';
 			case 'sessions.register': return '登録する';
@@ -3127,6 +3141,8 @@ extension on TranslationsJa {
 			case 'shared.preview': return 'プレビュー';
 			case 'shared.audio_preview': return '音声プレビュー';
 			case 'shared.generate_template': return 'テンプレートを生成する';
+			case 'shared.next': return '次へ';
+			case 'shared.previous': return '前へ';
 			case 'timeZone.international_date_line_west': return '国際日付変更線西';
 			case 'timeZone.american_samoa': return 'アメリカ領サモア';
 			case 'timeZone.midway_island': return 'ミッドウェー島';
@@ -3482,6 +3498,10 @@ extension on TranslationsJa {
 			case 'words.pos_tag_required': return '品詞を設定してください。';
 			case 'words.sentence_required': return '例文を設定してください。';
 			case 'words.what_is_this_button': return 'このボタンはなに？';
+			case 'words.meaning_to_remember': return '意味を覚える';
+			case 'words.meaning_to_remember_description': return '「意味を覚える」ボタンを押すことで、後日、復習として「単語から意味を答える」問題を出題します。\n単語を読む力や聞く力を鍛えたい方におすすめです。';
+			case 'words.word_to_remember': return '単語を覚える';
+			case 'words.word_to_remember_description': return '「単語を覚える」ボタンを押すことで、後日、復習として「意味から見出し語を答える」問題を出題します。\n単語を話す力や書く力を鍛えたい方におすすめです。';
 			case 'words.ja_meaning': return '日本語の意味';
 			case 'words.en_meaning': return '英語の意味';
 			default: return null;

@@ -1,11 +1,10 @@
 import 'package:booqs_mobile/components/review/setting/large_button.dart';
-import 'package:booqs_mobile/consts/sources.dart';
+import 'package:booqs_mobile/components/shared/review_onboarding.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/review.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
-import 'package:booqs_mobile/utils/web_page_launcher.dart';
 
 class WordItemReversedReviewButton extends StatelessWidget {
   const WordItemReversedReviewButton({super.key, required this.word});
@@ -24,11 +23,12 @@ class WordItemReversedReviewButton extends StatelessWidget {
             quizId: quiz.id,
             review: review,
             label: t.reviews.reversed_word_label),
-
-        // const SizedBox(width: 16),
         TextButton.icon(
           onPressed: () {
-            WebPageLauncher.openByWebView(introductionOfWordReviewUrl);
+            showDialog(
+              context: context,
+              builder: (context) => const ReviewOnboarding(),
+            );
           },
           icon: const Icon(
             Icons.help_outline,
