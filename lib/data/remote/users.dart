@@ -333,7 +333,7 @@ class RemoteUsers {
 
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.root()}}/api/v1/mobile/users/get_or_create_subscriber');
+          '${DiQtURL.root()}/api/v1/mobile/users/get_or_create_subscriber');
       final Response res = await HttpService.post(url, {'platform': platform});
       if (res.statusCode != 200) return null;
       final Map resMap = json.decode(res.body);

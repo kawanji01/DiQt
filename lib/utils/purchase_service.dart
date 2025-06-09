@@ -117,15 +117,18 @@ class PurchaseService {
   // 購入が完了したらtrueを返す。購入がキャンセルされるか、DBの同期が失敗したらfalseを返す。
   Future<bool> purchasePachage(
       Package package, String entitlementIdentifier) async {
+    const entitlementId = 'Pro'; // ここを固定文字列 or enum に
     try {
       isExecuting = true;
+      // print('purchasePachage: package: $package');
+      // print('purchasePachage: entitlementIdentifier: $entitlementIdentifier');
       CustomerInfo purchaserInfo = await Purchases.purchasePackage(package);
-      if (purchaserInfo.entitlements.all[entitlementIdentifier]!.isActive) {
-        // DB側の購入情報を同期する
-        // パスワードの入力の不要なキャッシュから購入（Vending PurchaserInfo from cache.）された場合、
-        // syncSubscription(info)で契約処理を行なってしまうと、isActive: falseのinfoが引き渡されることによって、
-        // syncSubscription(info)内のinfo.entitlements.active.isNotEmptyをすり抜けて、契約処理ではなく、解約処理が実行されてしまう。
-        // そのため、あらかじめ購入とわかっている場合には、同期にはsyncSubscriptionではなく、getOrCreateSubscriberを使う。
+      // print('purchasePachage: purchaserInfo: ${purchaserInfo.toJson()}');
+      // print('purchasePachage: purchaserInfo.entitlements.all: ${purchaserInfo.entitlements.all}');
+      // print('purchasePachage: purchaserInfo.entitlements.all[entitlementIdentifier]: ${purchaserInfo.entitlements.all[entitlementIdentifier]}');
+      final entitlement = purchaserInfo.entitlements.active[entitlementId];
+      // print('purchasePachage: entitlement: $entitlement');
+      if (entitlement != null) {
         final isSubscribed = await getOrCreateSubscriber();
         return isSubscribed;
       } else {
