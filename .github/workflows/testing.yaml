@@ -1,31 +1,38 @@
-# ref: https://zenn.dev/okuzawats/books/say-hello-to-fluter-ci-cd-with-github-actions/viewer/1-test
+# .github/workflows/auto-testing.yml
 name: Auto Testing
 
 on:
   pull_request:
     types: [opened, synchronize]
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   testing:
     name: Unit & Widget test
     runs-on: ubuntu-latest
+
     steps:
-      - name: set up repository
-        uses: actions/checkout@v2
-      - name: set up java
-        uses: actions/setup-java@v1
+      # 1. Repository
+      - uses: actions/checkout@v4
+
+      # 2. Java (必要なければこのブロックごと削除 OK)
+      - name: Set up JDK 17 (Temurin)
+        uses: actions/setup-java@v4
         with:
-          java-version: '12.x'
-      - uses: subosito/flutter-action@v1
+          distribution: temurin   # ← Adoptium の安定ミラー
+          java-version: '17'      # または '21' LTS
+
+      # 3. Flutter
+      - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.1'
-      - name: set up .env # flutter pub get を成功させるために、空の.envを作成する。
-        run: |
-          echo 'VAR_NAME=${{ secrets.VAR_NAME }}' >> .env
-      - name: flutter pub get
-        run: flutter pub get
-      - name: flutter test
-        run: flutter test
+          flutter-version: '3.27.1'   # 任意
+          channel: stable             # 任意
+
+      # 4. .env を準備
+      - name: Create .env
+        run: echo "VAR_NAME=${{ secrets.VAR_NAME }}" > .env
+
+      # 5. 依存取得 & テスト実行
+      - run: flutter pub get
+      - run: flutter test
