@@ -661,6 +661,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
       // 年額
       subscriptionCompleted = await purchase.purchaseAnnualPlan();
     }
+    print('subscriptionCompleted: $subscriptionCompleted');
     EasyLoading.dismiss();
     if (!mounted) return;
     if (subscriptionCompleted) {

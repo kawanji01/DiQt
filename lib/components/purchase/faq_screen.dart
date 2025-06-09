@@ -2,7 +2,6 @@ import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:booqs_mobile/consts/images.dart';
-import 'package:booqs_mobile/i18n/translations.g.dart';
 
 class PurchaseFaqScreen extends StatelessWidget {
   const PurchaseFaqScreen({super.key});
