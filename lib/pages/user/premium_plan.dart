@@ -1,4 +1,5 @@
-import 'package:booqs_mobile/consts/images.dart';
+import 'package:booqs_mobile/components/purchase/benefits_screen.dart';
+import 'package:booqs_mobile/components/purchase/faq_screen.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/components/purchase/introduction_footer.dart';
 import 'package:booqs_mobile/components/purchase/restore_button.dart';
-import 'dart:io';
 
 class PremiumPlanPage extends StatefulWidget {
   const PremiumPlanPage({super.key});
@@ -31,27 +31,6 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
   late Animation<double> _pulseAnimation;
 
   int selectedPlan = 1; // 0: 月額, 1: 年額
-
-  String get storeName => Platform.isIOS ? 'AppStore' : 'Playストア';
-  String get howToCancelImageUrl => Platform.isIOS
-      ? '$mainImagesUrl/how_to_cancel_on_ios.png'
-      : '$mainImagesUrl/how_to_cancel_on_android.png';
-
-  List<Map<String, String>> get subscriptionFaqs => [
-        {
-          'question': '月の途中で契約したら損になりますか？',
-          'answer': 'プレミアムプランは契約した日から1ヶ月後に更新されるので、いつ契約をしても損することはありません。'
-        },
-        {
-          'question': '解約はいつでもできますか？',
-          'answer': 'プレミアムプランの解約は、$storeNameの設定からいつでも行うことができます。'
-        },
-        {
-          'question': 'プレミアムプランの解約は簡単ですか？',
-          'answer':
-              'はい。簡単です。$storeNameアプリから下記の方法で、いつでも解約が可能です。無料体験期間内であれば無料のまま解約ができます。'
-        },
-      ];
 
   @override
   void initState() {
@@ -132,21 +111,122 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                         const SizedBox(height: 24),
                         _buildTrialBanner(),
                         const SizedBox(height: 32),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: '通常は',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  )),
+                              TextSpan(
+                                text: '¥650/月',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                ),
+                              ),
+                              TextSpan(text: '、'),
+                              TextSpan(
+                                text: '¥7,800/年',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                ),
+                              ),
+                              TextSpan(
+                                  text: 'のところ、',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  )),
+                              TextSpan(
+                                  text: '今だけ！',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ],
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 32),
+                        SizedBox(height: 16),
                         _buildPlanCards(),
                         const SizedBox(height: 32),
-                        _buildBenefitsSection(),
-                        const SizedBox(height: 32),
-                        const Text(
-                          '今すぐ１週間無料体験してみましょう！',
-                          style: TextStyle(
-                            color: Color(0xFF2E7D32),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                        Align(
+                          alignment: Alignment.center,
+                          child: TextButton.icon(
+                            icon: Icon(Icons.star, color: Colors.green),
+                            label: const Text(
+                              'プレミアム機能をみる',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 16,
+                                decoration: TextDecoration.underline,
+                                fontWeight: FontWeight.bold,
+                                decorationColor: Colors.green,
+                              ),
+                            ),
+                            onPressed: () {
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(15.0),
+                                    topRight: Radius.circular(15.0),
+                                  ),
+                                ),
+                                builder: (context) =>
+                                    const PurchaseBenefitsScreen(),
+                              );
+                            },
                           ),
                         ),
-                        const SizedBox(height: 12),
-                        _buildCTAButton(),
+                        Align(
+                          alignment: Alignment.center,
+                          child: TextButton.icon(
+                            icon: Icon(Icons.help_outline, color: Colors.green),
+                            label: const Text(
+                              'よくあるご質問を見る',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline,
+                                decorationColor: Colors.green,
+                              ),
+                            ),
+                            onPressed: () {
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(15.0),
+                                    topRight: Radius.circular(15.0),
+                                  ),
+                                ),
+                                builder: (context) => const PurchaseFaqScreen(),
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 48),
+                        const Text(
+                          'まずは１週間、無料で試してみましょう！',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
+                        ),
                         const SizedBox(height: 16),
+                        _buildSubscribeButton(),
+                        const SizedBox(height: 32),
                         const PurchaseIntroductionFooter(),
                         const PurchaseRestoreButton(),
                       ],
@@ -158,10 +238,49 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
           ),
         ),
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: _buildCTAButton(),
+    );
+  }
+
+  Widget _buildSubscribeButton() {
+    return Container(
+      width: double.infinity,
+      height: 60,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF4CAF50), Color(0xFF81C784)],
+        ),
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xFF4CAF50).withValues(alpha: 0.4),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      child: ElevatedButton(
+        onPressed: _subscribe,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.rocket_launch, color: Colors.white, size: 24),
+            const SizedBox(width: 12),
+            const Text(
+              '無料トライアルを開始',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -260,7 +379,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: 16,
-        color: Colors.grey,
+        color: Colors.black87,
         height: 1.4,
       ),
     );
@@ -334,24 +453,39 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
   Widget _buildPlanCards() {
     return Row(
       children: [
-        Expanded(child: _buildPlanCard(0, '月額プラン', '¥500', '/ 月', null)),
+        Expanded(
+          child: SizedBox(
+            height: 260,
+            child: _buildPlanCard(0, '月額プラン', '¥500', '/ 月', '２３％OFF！',
+                originalPrice: '¥650/月'),
+          ),
+        ),
         const SizedBox(width: 16),
-        Expanded(child: _buildPlanCard(1, '年額プラン', '¥5,000', '/ 年', '２ヶ月分無料！')),
+        Expanded(
+          child: SizedBox(
+            height: 260,
+            child: _buildPlanCard(1, '年額プラン', '¥4,800', '/ 年', '3000円もお得！',
+                originalPrice: '¥7,800/年'),
+          ),
+        ),
       ],
     );
   }
 
   Widget _buildPlanCard(
-      int index, String title, String price, String period, String? discount) {
+      int index, String title, String price, String period, String? discount,
+      {String? originalPrice}) {
     final isSelected = selectedPlan == index;
     final isRecommended = index == 1;
 
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         HapticFeedback.lightImpact();
         setState(() {
           selectedPlan = index;
         });
+        await Future.delayed(const Duration(milliseconds: 100)); // 軽いアニメーション猶予
+        _subscribe();
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
@@ -363,8 +497,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
             color: isSelected ? const Color(0xFFF1F8E9) : Colors.white,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color:
-                  isSelected ? const Color(0xFF4CAF50) : Colors.grey.shade300,
+              color: const Color(0xFF4CAF50),
               width: isSelected ? 2 : 1,
             ),
             boxShadow: [
@@ -393,6 +526,18 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                     ),
                   ),
                   const SizedBox(height: 12),
+                  if (originalPrice != null) ...[
+                    Text(
+                      originalPrice,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        decoration: TextDecoration.lineThrough,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                  ],
                   Text(
                     price,
                     style: const TextStyle(
@@ -424,7 +569,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                           //Icon(Icons.star, color: Color(0xFFFF9800), size: 18),
                           SizedBox(width: 4),
                           Text(
-                            '¥417/月',
+                            '¥400/月',
                             style: TextStyle(
                               color: Color(0xFFFF9800),
                               fontWeight: FontWeight.bold,
@@ -435,27 +580,28 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                       ),
                     ),
                     const SizedBox(height: 4),
-                    if (discount != null)
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Color(0xFFFF9800), Color(0xFFF57C00)],
-                          ),
-                          borderRadius: BorderRadius.circular(12),
+                  ],
+                  if (discount != null)
+                    Container(
+                      margin: const EdgeInsets.only(top: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [Color(0xFFFF9800), Color(0xFFF57C00)],
                         ),
-                        child: Text(
-                          discount,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        discount,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    const SizedBox(height: 6),
-                  ],
+                    ),
+                  const SizedBox(height: 6),
                 ],
               ),
               if (isRecommended)
@@ -497,271 +643,6 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                     },
                   ),
                 ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBenefitsSection() {
-    return Column(
-      children: [
-        const Text(
-          'プレミアムプランなら',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF2E7D32),
-          ),
-        ),
-        const SizedBox(height: 8),
-        const Text(
-          '全機能を使い放題でお得！',
-          style: TextStyle(
-            fontSize: 28,
-            color: Color(0xFF4CAF50),
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 24),
-        Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 10,
-                offset: const Offset(0, 5),
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              _buildFeatureRow('機能', '無料', 'プレミアム', isHeader: true),
-              const Divider(height: 24),
-              _buildFeatureRow('解答数', '30回/日', '✓'),
-              _buildFeatureRow('翻訳数', '10回/日', '✓'),
-              _buildFeatureRow('AI機能', '10回/日', '✓'),
-              _buildFeatureRow(t.purchase.ad_free, '✗', '✓'),
-              _buildFeatureRow('問題作成', '✗', '✓'),
-              _buildFeatureRow(t.purchase.weakness, '✗', '✓'),
-              _buildFeatureRow(t.purchase.note, '✗', '✓'),
-              _buildFeatureRow(t.purchase.answer_analysis, '✗', '✓'),
-              _buildFeatureRow(t.purchase.answer_history, '✗', '✓'),
-              _buildFeatureRow(t.purchase.questions_you_got_wrong, '✗', '✓'),
-              _buildFeatureRow(t.purchase.deletion_of_all_reviews, '✗', '✓'),
-              _buildFeatureRow('優先サポート', '✗', '✓'),
-            ],
-          ),
-        ),
-        const SizedBox(height: 32),
-        const Text(
-          'プレミアムプランのよくあるご質問',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black87),
-        ),
-        SizedBox(height: 16),
-        for (final faq in subscriptionFaqs)
-          _buildFaqCard(faq['question']!, faq['answer']!),
-      ],
-    );
-  }
-
-  Widget _buildFeatureRow(String feature, String free, String premium,
-      {bool isHeader = false}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Text(
-              feature,
-              style: TextStyle(
-                fontWeight: isHeader ? FontWeight.bold : FontWeight.w600,
-                color: isHeader ? Colors.black87 : Colors.black87,
-                fontSize: isHeader ? 16 : 14,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Text(
-              free,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: isHeader
-                    ? Colors.grey.shade600
-                    : free == '✓'
-                        ? const Color(0xFF4CAF50)
-                        : free == '✗'
-                            ? Colors.red
-                            : Colors.grey.shade600,
-                fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
-                fontSize: isHeader ? 14 : 16,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Text(
-              premium,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: isHeader
-                    ? const Color(0xFF4CAF50)
-                    : const Color(0xFF4CAF50),
-                fontWeight: isHeader ? FontWeight.bold : FontWeight.bold,
-                fontSize: isHeader ? 14 : 16,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFaqCard(String question, String answer) {
-    final isHowToCancel = question.contains('解約は簡単ですか');
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade200),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 28,
-                height: 28,
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: const Center(
-                  child: Text('Q',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold)),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  question,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Container(
-                width: 28,
-                height: 28,
-                decoration: BoxDecoration(
-                  color: Color(0xFFFFD600),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: const Center(
-                  child: Text('A',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold)),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  answer,
-                  style: const TextStyle(fontSize: 15, color: Colors.black87),
-                ),
-              ),
-            ],
-          ),
-          if (isHowToCancel) ...[
-            const SizedBox(height: 16),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                howToCancelImageUrl,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCTAButton() {
-    return Container(
-      width: double.infinity,
-      height: 56,
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF4CAF50), Color(0xFF45a049)],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF4CAF50).withValues(alpha: 0.3),
-            blurRadius: 15,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(16),
-          onTap: () {
-            HapticFeedback.mediumImpact();
-            _subscribe();
-          },
-          child: Stack(
-            children: [
-              AnimatedBuilder(
-                animation: _shimmerAnimation,
-                builder: (context, child) {
-                  return Positioned.fill(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Transform.translate(
-                        offset: Offset(_shimmerAnimation.value * 300, 0),
-                        child: Container(
-                          width: 100,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.transparent,
-                                Colors.white.withValues(alpha: 0.2),
-                                Colors.transparent,
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-              Center(
-                child: Text(
-                  '${selectedPlan == 0 ? '月額' : '年額'}プランで契約する',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
             ],
           ),
         ),
