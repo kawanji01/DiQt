@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/components/ad/modal_bottom_banner.dart';
 import 'package:booqs_mobile/components/answer/effect_setting.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
@@ -101,6 +102,7 @@ class AnswerContinuousGoalAchievementScreenState
               const SizedBox(height: 16),
               const AnswerEffectSetting(),
               shareButton(user, counter),
+              const AdModalBottomBanner(),
             ]),
           ),
           const DialogCloseButton(),

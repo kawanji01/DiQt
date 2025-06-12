@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/components/answer/effect_setting.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
@@ -97,6 +98,8 @@ class AnswerContinuationAllMonthScreenState
               const SizedBox(height: 16),
               const AnswerEffectSetting(),
               shareButton(),
+              const AdBanner(),
+              const SizedBox(height: 80), // 閉じるボタンの余白
             ]),
           ),
           const DialogCloseButton(),

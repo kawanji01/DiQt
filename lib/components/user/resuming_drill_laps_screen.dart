@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/ad/modal_bottom_banner.dart';
 import 'package:booqs_mobile/components/drill_lap/item_list_view.dart';
 import 'package:booqs_mobile/components/heading/medium_green.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -32,6 +33,7 @@ class UserResumingDrillLapsScreenState
             type: 'all',
           ),
           const SizedBox(height: 48),
+          const AdModalBottomBanner(),
         ],
       )),
     );

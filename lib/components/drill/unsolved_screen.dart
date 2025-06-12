@@ -65,6 +65,7 @@ class DrillUnsolvedScreenState extends ConsumerState<DrillUnsolvedScreen> {
           unsolvedQuizzes(),
           const SizedBox(height: 80),
           const UserResumingDrillLap(),
+          const AdModalBottomBanner(),
         ],
       ),
     );
