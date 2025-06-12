@@ -38,8 +38,8 @@ class _HomeWalkthroughState extends State<HomeWalkthrough> {
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   Widget _buildDot(int index) {
