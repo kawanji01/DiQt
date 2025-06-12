@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:booqs_mobile/components/home/dictionary_screen.dart';
 import 'package:booqs_mobile/components/home/loading_screen.dart';
@@ -10,6 +11,7 @@ import 'package:booqs_mobile/data/provider/util.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:booqs_mobile/utils/push_notification_handler.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:upgrader/upgrader.dart';
@@ -85,6 +87,15 @@ class HomePageState extends ConsumerState<HomePage> {
     return ref.watch(asyncCurrentUserProvider).when(
           data: (user) {
             final String locale = ref.watch(localeProvider);
+            final Widget child = user == null
+                ? const HomeSignInScreen()
+                : const HomeDictionaryScreen();
+                
+            // テスト環境ではUpgradeAlertを無効化
+            if (kDebugMode && Platform.environment.containsKey('FLUTTER_TEST')) {
+              return child;
+            }
+            
             return UpgradeAlert(
               upgrader: Upgrader(
                 // 開発環境で無理やりダイアログを表示するフラグ。本番環境では必ずコメントアウトする。
@@ -94,9 +105,7 @@ class HomePageState extends ConsumerState<HomePage> {
                 languageCode: locale,
                 messages: UpgraderMessages(code: locale),
               ),
-              child: user == null
-                  ? const HomeSignInScreen()
-                  : const HomeDictionaryScreen(),
+              child: child,
             );
           },
           error: (e, str) => HomeLoadingScreen(

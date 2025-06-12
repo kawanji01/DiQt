@@ -13,11 +13,98 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import '../builders/user.dart';
 import 'package:mockito/annotations.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 
 import 'home_page_test.mocks.dart';
 
 @GenerateMocks([RemoteConfigService])
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  
+  setUpAll(() {
+    // テスト環境でGoogle Fontsを無効化
+    GoogleFonts.config.allowRuntimeFetching = false;
+    
+    // Stack trace demangling を無効化してテストエラーを防ぐ
+    FlutterError.demangleStackTrace = (StackTrace stack) => stack;
+    
+    // flutter_secure_storageのmocking
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+      const MethodChannel('plugins.it_nomads.com/flutter_secure_storage'),
+      (MethodCall methodCall) async {
+        switch (methodCall.method) {
+          case 'read':
+            return null; // テスト用のデフォルト値
+          case 'write':
+            return null;
+          case 'delete':
+            return null;
+          case 'deleteAll':
+            return null;
+          case 'readAll':
+            return <String, String>{};
+          default:
+            return null;
+        }
+      },
+    );
+    
+    // package_infoのmocking (upgraderが使用)
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+      const MethodChannel('flutter.baseflow.com/package_info'),
+      (MethodCall methodCall) async {
+        switch (methodCall.method) {
+          case 'getAll':
+            return {
+              'appName': 'DiQt',
+              'packageName': 'com.example.diqt',
+              'version': '1.0.0',
+              'buildNumber': '1',
+            };
+          default:
+            return null;
+        }
+      },
+    );
+    
+    // url_launcherのmocking (upgraderが使用)
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+      const MethodChannel('plugins.flutter.io/url_launcher'),
+      (MethodCall methodCall) async {
+        switch (methodCall.method) {
+          case 'canLaunch':
+            return true;
+          case 'launch':
+            return true;
+          default:
+            return null;
+        }
+      },
+    );
+    
+    // shared_preferencesのmocking
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+      const MethodChannel('plugins.flutter.io/shared_preferences'),
+      (MethodCall methodCall) async {
+        switch (methodCall.method) {
+          case 'getAll':
+            return <String, dynamic>{};
+          case 'remove':
+            return true;
+          case 'clear':
+            return true;
+          default:
+            return null;
+        }
+      },
+    );
+  });
+  
   group('HomePage test', () {
     final mockRemoteConfigService = MockRemoteConfigService();
     testWidgets('Display SignIn screen when user is NOT logged in',
@@ -34,18 +121,21 @@ void main() {
         (ref) async => null,
       );
 
-      await tester.pumpWidget(
-        ProviderScope(
-          overrides: [userProviderOverride, configProviderOverride],
-          child: TranslationProvider(
-            child: const MaterialApp(home: HomePage()),
+      await tester.runAsync(() async {
+        LocaleSettings.setLocale(AppLocale.ja);
+        await tester.pumpWidget(
+          ProviderScope(
+            overrides: [userProviderOverride, configProviderOverride],
+            child: TranslationProvider(
+              child: const MaterialApp(home: HomePage()),
+            ),
           ),
-        ),
-      );
-
-      // Flutterのすべてのアニメーションや非同期の操作が完了するまで待つ関数。
-      // これにより、ウィジェットが期待通りに更新されるまでテストを待機させることができる。
-      await tester.pumpAndSettle();
+        );
+        
+        // Flutterのすべてのアニメーションや非同期の操作が完了するまで待つ関数。
+        // これにより、ウィジェットが期待通りに更新されるまでテストを待機させることができる。
+        await tester.pumpAndSettle();
+      });
       expect(find.byType(HomeSignInScreen), findsOneWidget);
     });
 
@@ -65,14 +155,19 @@ void main() {
       );
       //
 
-      await tester.pumpWidget(
-        ProviderScope(
-          overrides: [userProviderOverride, configProviderOverride],
-          child: const MaterialApp(home: HomePage()),
-        ),
-      );
+      await tester.runAsync(() async {
+        LocaleSettings.setLocale(AppLocale.ja);
+        await tester.pumpWidget(
+          ProviderScope(
+            overrides: [userProviderOverride, configProviderOverride],
+            child: TranslationProvider(
+              child: const MaterialApp(home: HomePage()),
+            ),
+          ),
+        );
 
-      await tester.pumpAndSettle();
+        await tester.pumpAndSettle();
+      });
       expect(find.byType(HomeDictionaryScreen), findsOneWidget);
     });
 
@@ -89,14 +184,19 @@ void main() {
       final userProviderOverride = asyncCurrentUserProvider.overrideWith(
         (ref) async => user,
       );
-      await tester.pumpWidget(
-        ProviderScope(
-          overrides: [userProviderOverride, configProviderOverride],
-          child: const MaterialApp(home: HomePage()),
-        ),
-      );
+      await tester.runAsync(() async {
+        LocaleSettings.setLocale(AppLocale.ja);
+        await tester.pumpWidget(
+          ProviderScope(
+            overrides: [userProviderOverride, configProviderOverride],
+            child: TranslationProvider(
+              child: const MaterialApp(home: HomePage()),
+            ),
+          ),
+        );
 
-      await tester.pumpAndSettle();
+        await tester.pumpAndSettle();
+      });
       expect(find.byType(HomeMaintenanceScreen), findsOneWidget);
     });
   });
