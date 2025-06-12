@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/ad/modal_bottom_banner.dart';
 import 'package:booqs_mobile/components/dictionary/drill_part.dart';
 import 'package:booqs_mobile/components/dictionary/introduction.dart';
 import 'package:booqs_mobile/components/dictionary/sentence_part.dart';
@@ -59,6 +60,7 @@ class DictionaryShowScreen extends ConsumerWidget {
                       color: Colors.white),
                 ),
               ),
+              const AdModalBottomBanner(),
               const SizedBox(height: 120),
             ],
           ),

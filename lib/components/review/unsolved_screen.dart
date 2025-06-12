@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/ad/modal_bottom_banner.dart';
 import 'package:booqs_mobile/components/review/answer_setting_button.dart';
 import 'package:booqs_mobile/components/review/heading.dart';
 import 'package:booqs_mobile/data/provider/review.dart';
@@ -65,6 +66,7 @@ class ReviewUnsolvedScreenState extends ConsumerState<ReviewUnsolvedScreen> {
           unsolvedQuizzes(),
           const SizedBox(height: 80),
           const UserResumingDrillLap(),
+          const AdModalBottomBanner(),
         ],
       ),
     );

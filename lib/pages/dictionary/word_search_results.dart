@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/ad/modal_bottom_banner.dart';
 import 'package:booqs_mobile/components/dictionary/search_info.dart';
 import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/data/provider/dictionary.dart';
@@ -137,6 +138,7 @@ class DictionaryWordSearchResultsPageState
                   dictionaryId: dictionaryId,
                   keyword: keyword,
                 ),
+                const AdModalBottomBanner(),
               ],
             )),
       ),

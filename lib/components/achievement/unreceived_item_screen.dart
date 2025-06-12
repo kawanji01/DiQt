@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:booqs_mobile/components/ad/modal_bottom_banner.dart';
 import 'package:booqs_mobile/components/answer/share_button.dart';
 import 'package:booqs_mobile/components/button/dialog_close_button.dart';
 import 'package:booqs_mobile/components/exp/gained_exp_indicator.dart';
@@ -185,6 +186,7 @@ class _AchievementUnreceivedItemScreenState
                 explanation(),
                 const SizedBox(height: 24),
                 shareButton(),
+                const AdModalBottomBanner(),
               ],
             ),
           ),
