@@ -12,6 +12,23 @@ import 'package:http/http.dart';
 import 'package:purchases_flutter/object_wrappers.dart';
 
 class RemoteUsers {
+  // 安全なJSONデコード関数
+  static Map? _safeJsonDecode(String body, String methodName) {
+    if (body.isEmpty) {
+      return {};
+    }
+    
+    try {
+      return json.decode(body);
+    } on FormatException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(
+        'JSON parse error in $methodName. Response body: $body', 
+        s
+      );
+      return {};
+    }
+  }
+
   // 現在のログインユーザーの取得　　　users/current
   static Future<Map?> current() async {
     try {
@@ -378,8 +395,7 @@ class RemoteUsers {
       final url =
           Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/enable_premium');
       final res = await HttpService.post(url, null);
-      final Map resMap = json.decode(res.body);
-      return resMap;
+      return _safeJsonDecode(res.body, 'enablePremium');
     } on SocketException catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
       return null;
@@ -395,8 +411,7 @@ class RemoteUsers {
       final url =
           Uri.parse('${DiQtURL.root()}/api/v1/mobile/users/disable_premium');
       final res = await HttpService.post(url, null);
-      final Map resMap = json.decode(res.body);
-      return resMap;
+      return _safeJsonDecode(res.body, 'disablePremium');
     } on SocketException catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
       return null;
