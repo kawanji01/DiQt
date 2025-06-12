@@ -109,48 +109,59 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                         const SizedBox(height: 8),
                         _buildSubtitle(),
                         const SizedBox(height: 24),
-                        _buildTrialBanner(),
+                        // _buildTrialBanner(),
+                        // const SizedBox(height: 16),
+                        _buildDiscountBanner(),
                         const SizedBox(height: 32),
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                  text: '通常は',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  )),
-                              TextSpan(
-                                text: '¥650/月',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 24,
-                                ),
-                              ),
-                              TextSpan(text: '、'),
-                              TextSpan(
-                                text: '¥7,800/年',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 24,
-                                ),
-                              ),
-                              TextSpan(
-                                  text: 'のところ、',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  )),
-                              TextSpan(
-                                  text: '今だけ！',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
-                          ),
+                        const Text(
+                          'まずは１週間、無料で試してみましょう！',
                           textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
                         ),
+                        // Text.rich(
+                        //   TextSpan(
+                        //     children: [
+                        //       TextSpan(
+                        //           text: '通常は',
+                        //           style: TextStyle(
+                        //             fontSize: 18,
+                        //           )),
+                        //       TextSpan(
+                        //         text: '¥650/月',
+                        //         style: TextStyle(
+                        //           color: Colors.red,
+                        //           fontWeight: FontWeight.bold,
+                        //           fontSize: 24,
+                        //         ),
+                        //       ),
+                        //       TextSpan(text: '、'),
+                        //       TextSpan(
+                        //         text: '¥7,800/年',
+                        //         style: TextStyle(
+                        //           color: Colors.red,
+                        //           fontWeight: FontWeight.bold,
+                        //           fontSize: 24,
+                        //         ),
+                        //       ),
+                        //       TextSpan(
+                        //           text: 'のところ、',
+                        //           style: TextStyle(
+                        //             fontSize: 18,
+                        //           )),
+                        //       TextSpan(
+                        //           text: '今だけ！',
+                        //           style: TextStyle(
+                        //             fontSize: 24,
+                        //             fontWeight: FontWeight.bold,
+                        //           )),
+                        //     ],
+                        //   ),
+                        //   textAlign: TextAlign.center,
+                        // ),
                         const SizedBox(height: 32),
                         SizedBox(height: 16),
                         _buildPlanCards(),
@@ -215,17 +226,17 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                           ),
                         ),
                         const SizedBox(height: 48),
-                        const Text(
-                          'まずは１週間、無料で試してみましょう！',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
-                          ),
-                        ),
+                        // const Text(
+                        //   'まずは１週間、無料で試してみましょう！',
+                        //   textAlign: TextAlign.center,
+                        //   style: TextStyle(
+                        //     color: Colors.black87,
+                        //     fontWeight: FontWeight.bold,
+                        //     fontSize: 24,
+                        //   ),
+                        // ),
                         const SizedBox(height: 16),
-                        _buildSubscribeButton(),
+                        // _buildSubscribeButton(),
                         const SizedBox(height: 32),
                         const PurchaseIntroductionFooter(),
                         const PurchaseRestoreButton(),
@@ -241,50 +252,50 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
     );
   }
 
-  Widget _buildSubscribeButton() {
-    return Container(
-      width: double.infinity,
-      height: 60,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFF4CAF50), Color(0xFF81C784)],
-        ),
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0xFF4CAF50).withValues(alpha: 0.4),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      child: ElevatedButton(
-        onPressed: _subscribe,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.rocket_launch, color: Colors.white, size: 24),
-            const SizedBox(width: 12),
-            const Text(
-              '無料トライアルを開始',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget _buildSubscribeButton() {
+  //   return Container(
+  //     width: double.infinity,
+  //     height: 60,
+  //     decoration: BoxDecoration(
+  //       gradient: LinearGradient(
+  //         colors: [Color(0xFF4CAF50), Color(0xFF81C784)],
+  //       ),
+  //       borderRadius: BorderRadius.circular(30),
+  //       boxShadow: [
+  //         BoxShadow(
+  //           color: Color(0xFF4CAF50).withValues(alpha: 0.4),
+  //           blurRadius: 20,
+  //           offset: const Offset(0, 10),
+  //         ),
+  //       ],
+  //     ),
+  //     child: ElevatedButton(
+  //       onPressed: _subscribe,
+  //       style: ElevatedButton.styleFrom(
+  //         backgroundColor: Colors.transparent,
+  //         shadowColor: Colors.transparent,
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(30),
+  //         ),
+  //       ),
+  //       child: Row(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: [
+  //           Icon(Icons.rocket_launch, color: Colors.white, size: 24),
+  //           const SizedBox(width: 12),
+  //           const Text(
+  //             '無料トライアルを開始',
+  //             style: TextStyle(
+  //               color: Colors.white,
+  //               fontSize: 18,
+  //               fontWeight: FontWeight.bold,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildHeader() {
     return Container(
@@ -385,7 +396,72 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
     );
   }
 
-  Widget _buildTrialBanner() {
+  // Widget _buildTrialBanner() {
+  //   return AnimatedBuilder(
+  //     animation: _shimmerAnimation,
+  //     builder: (context, child) {
+  //       return Container(
+  //         padding: const EdgeInsets.all(16),
+  //         decoration: BoxDecoration(
+  //           gradient: LinearGradient(
+  //             colors: [
+  //               const Color(0xFFE8F5E8),
+  //               const Color(0xFFD4EDDA),
+  //             ],
+  //           ),
+  //           borderRadius: BorderRadius.circular(16),
+  //           border: Border.all(color: const Color(0xFF4CAF50), width: 2),
+  //         ),
+  //         child: Stack(
+  //           clipBehavior: Clip.none,
+  //           children: [
+  //             Positioned.fill(
+  //               child: ClipRRect(
+  //                 borderRadius: BorderRadius.circular(14),
+  //                 child: Transform.translate(
+  //                   offset: Offset(_shimmerAnimation.value * 200, 0),
+  //                   child: Container(
+  //                     width: 100,
+  //                     decoration: BoxDecoration(
+  //                       gradient: LinearGradient(
+  //                         colors: [
+  //                           Colors.transparent,
+  //                           Colors.white.withValues(alpha: 0.3),
+  //                           Colors.transparent,
+  //                         ],
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ),
+  //               ),
+  //             ),
+  //             Row(
+  //               mainAxisAlignment: MainAxisAlignment.center,
+  //               children: [
+  //                 Icon(
+  //                   Icons.access_time,
+  //                   color: const Color(0xFF2E7D32),
+  //                   size: 20,
+  //                 ),
+  //                 const SizedBox(width: 8),
+  //                 const Text(
+  //                   '今なら7日間の無料体験期間つき！',
+  //                   style: TextStyle(
+  //                     color: Color(0xFF2E7D32),
+  //                     fontWeight: FontWeight.bold,
+  //                     fontSize: 16,
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
+
+  Widget _buildDiscountBanner() {
     return AnimatedBuilder(
       animation: _shimmerAnimation,
       builder: (context, child) {
@@ -394,12 +470,12 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color(0xFFE8F5E8),
-                const Color(0xFFD4EDDA),
+                const Color(0xFFFFF3E0),
+                const Color(0xFFFFE0B2),
               ],
             ),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFF4CAF50), width: 2),
+            border: Border.all(color: const Color(0xFFFF9800), width: 2),
           ),
           child: Stack(
             clipBehavior: Clip.none,
@@ -429,14 +505,14 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
                 children: [
                   Icon(
                     Icons.access_time,
-                    color: const Color(0xFF2E7D32),
+                    color: const Color(0xFFE65100),
                     size: 20,
                   ),
                   const SizedBox(width: 8),
                   const Text(
-                    '今なら7日間の無料体験期間つき！',
+                    '期間限定！最大約40%OFF！',
                     style: TextStyle(
-                      color: Color(0xFF2E7D32),
+                      color: Color(0xFFE65100),
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -494,11 +570,13 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: isSelected ? const Color(0xFFF1F8E9) : Colors.white,
+            // color: isSelected ? const Color(0xFFF1F8E9) : Colors.white,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: const Color(0xFF4CAF50),
-              width: isSelected ? 2 : 1,
+              // width: isSelected ? 2 : 1,
+              width: 2,
             ),
             boxShadow: [
               BoxShadow(
