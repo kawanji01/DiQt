@@ -26,13 +26,15 @@ class OtherAppsButton extends StatelessWidget {
         Icons.lightbulb_outline,
         size: 18,
         color: Colors.green,
+        weight: 2.0,
       ),
       label: Text(t.layouts.other_apps,
           style: const TextStyle(
               fontSize: 16,
               color: Colors.green,
-              fontWeight: FontWeight.normal,
-              decoration: TextDecoration.underline)),
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.green)),
     );
   }
 }
