@@ -14,7 +14,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:booqs_mobile/utils/safe_google_fonts.dart';
 
 Future<void> main() async {
   // 環境変数の読み込み　ref： https://pub.dev/packages/flutter_dotenv
@@ -97,7 +97,7 @@ class DiQtState extends ConsumerState<DiQt> {
         // 背景を白にする
         scaffoldBackgroundColor: Colors.white,
         brightness: Brightness.light,
-        textTheme: GoogleFonts.notoSansTextTheme(
+        textTheme: SafeGoogleFonts.notoSansTextTheme(
           Theme.of(context).textTheme,
         ),
         // Dialogを完全に白にする ref: https://note.com/waiwai_waiyade/n/naa840028dc80

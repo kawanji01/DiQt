@@ -1,8 +1,8 @@
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
+import 'package:booqs_mobile/utils/safe_google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeWalkthrough3 extends ConsumerWidget {
   const HomeWalkthrough3({super.key});
@@ -28,7 +28,8 @@ class HomeWalkthrough3 extends ConsumerWidget {
               fontSize: 20.0,
               fontWeight: FontWeight.normal,
             ), */
-            style: GoogleFonts.mPlusRounded1c(
+            style: SafeGoogleFonts.mPlusRounded1c(
+              context: context,
               textStyle: Theme.of(context).textTheme.headlineSmall,
               color: Colors.white,
               fontSize: 20.0,
