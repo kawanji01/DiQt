@@ -1033,7 +1033,7 @@ class _TranslationsLayoutsJa implements TranslationsLayoutsEn {
 	@override String get other_apps_description => 'ディクトは、アプリだけでなく、ブラウザ拡張機能も提供しています。これを併用することで、より便利に、より効率的に語彙を覚えられるようになります。';
 	@override String get chrome_extension => 'ブラウザ拡張機能';
 	@override String get chrome_extension_description => 'Chromeウェブストアから、ディクトのブラウザ拡張機能をインストールすることで、Webページ上の単語をクリックするだけで、単語に復習を設定できるようになります。';
-	@override String get chrome_extension_description_2 => 'ブラウザ拡張はGoogleChromeだけでなく、FirefoxやEdgeなどのブラウザでも利用できます。ぜひ以下のリンクをパソコンから開いて、ブラウザ拡張をインストールしてみてください。';
+	@override String get chrome_extension_description_2 => 'ブラウザ拡張はGoogleChromeだけでなく、FirefoxやEdgeなどのブラウザでも利用できます。ぜひパソコンから「ディクト　ブラウザ拡張」で検索して、インストールしてみてください！';
 	@override String get open_diqt_extension => 'ディクト拡張機能を開く';
 	@override String get free => '無料';
 	@override String get app_store_url => 'https://apps.apple.com/jp/app/diqt/id1594559036?uo=4';
@@ -2752,7 +2752,7 @@ extension on TranslationsJa {
 			case 'layouts.other_apps_description': return 'ディクトは、アプリだけでなく、ブラウザ拡張機能も提供しています。これを併用することで、より便利に、より効率的に語彙を覚えられるようになります。';
 			case 'layouts.chrome_extension': return 'ブラウザ拡張機能';
 			case 'layouts.chrome_extension_description': return 'Chromeウェブストアから、ディクトのブラウザ拡張機能をインストールすることで、Webページ上の単語をクリックするだけで、単語に復習を設定できるようになります。';
-			case 'layouts.chrome_extension_description_2': return 'ブラウザ拡張はGoogleChromeだけでなく、FirefoxやEdgeなどのブラウザでも利用できます。ぜひ以下のリンクをパソコンから開いて、ブラウザ拡張をインストールしてみてください。';
+			case 'layouts.chrome_extension_description_2': return 'ブラウザ拡張はGoogleChromeだけでなく、FirefoxやEdgeなどのブラウザでも利用できます。ぜひパソコンから「ディクト　ブラウザ拡張」で検索して、インストールしてみてください！';
 			case 'layouts.open_diqt_extension': return 'ディクト拡張機能を開く';
 			case 'layouts.free': return '無料';
 			case 'layouts.app_store_url': return 'https://apps.apple.com/jp/app/diqt/id1594559036?uo=4';
