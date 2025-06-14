@@ -12,7 +12,7 @@ class UserFormLearningLangNumber extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // toSet で重複を削除する
-    List<int> langNumberItems = languageCodeMap.values.toSet().toList();
+    List<int> langNumberItems = cefrjLanguageCodeMap.values.toSet().toList();
     // 0は undefined なので削除する
     langNumberItems.remove(0);
 

@@ -65,7 +65,7 @@ class _HomeWalkthrough1State extends State<HomeWalkthrough1>
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(height: 24),
             Padding(
@@ -76,7 +76,7 @@ class _HomeWalkthrough1State extends State<HomeWalkthrough1>
                   context: context,
                   textStyle: Theme.of(context).textTheme.headlineMedium,
                   color: Colors.white,
-                  fontSize: 40.0,
+                  fontSize: 38.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),

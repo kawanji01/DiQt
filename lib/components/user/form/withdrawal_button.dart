@@ -59,6 +59,7 @@ class UserFormWithdrawalButtonState
           decoration: TextDecoration.underline,
           fontWeight: FontWeight.w400,
           color: Colors.red,
+          decorationColor: Colors.red,
           fontSize: 14,
         ),
       ),
