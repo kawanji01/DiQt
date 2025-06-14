@@ -2,6 +2,8 @@ import 'package:booqs_mobile/components/home/walkthrough_1.dart';
 import 'package:booqs_mobile/components/home/walkthrough_2.dart';
 import 'package:booqs_mobile/components/home/walkthrough_3.dart';
 import 'package:booqs_mobile/components/home/walkthrough_4.dart';
+import 'package:booqs_mobile/components/home/walkthrough_5.dart';
+import 'package:booqs_mobile/components/home/walkthrough_6.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -25,6 +27,8 @@ class _HomeWalkthroughState extends State<HomeWalkthrough> {
       const HomeWalkthrough2(),
       const HomeWalkthrough3(),
       const HomeWalkthrough4(),
+      const HomeWalkthrough5(),
+      const HomeWalkthrough6(),
     ];
     _controller.addListener(() {
       int next = _controller.page!.round();

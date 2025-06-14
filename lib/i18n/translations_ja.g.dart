@@ -677,11 +677,13 @@ class _TranslationsHomeJa implements TranslationsHomeEn {
 	final TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get welcome => 'DiQtへようこそ！';
-	@override String get welcome_description_1 => 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
+	@override String get welcome => 'ディクトへようこそ';
+	@override String get welcome_description_1 => 'DiQt（ディクト）は、絶対に忘れない辞書&単語帳アプリです。\n辞書で調べた単語に復習を設定することで、必ずその単語を覚えられます。';
 	@override String get welcome_description_2 => '使い方は簡単。辞書で調べて、';
 	@override String get welcome_description_3 => '覚えたい単語に復習を設定すれば、';
 	@override String get welcome_description_4 => '覚えるまで自動で復習できるようになります。';
+	@override String get welcome_description_5 => '調べた単語をAIが詳しく解説してくれるので、理解が深まります。';
+	@override String get welcome_description_6 => 'ブラウザ拡張を使えば、パソコンで調べた単語もアプリから復習できます。\nパソコンで「ディクト　ブラウザ拡張」で検索してイントールしましょう！';
 	@override String get help_page => 'ヘルプページ';
 	@override String get contact => 'お問い合わせ';
 	@override String get app_review => 'レビュー';
@@ -1031,7 +1033,7 @@ class _TranslationsLayoutsJa implements TranslationsLayoutsEn {
 	@override String get other_apps_description => 'ディクトは、アプリだけでなく、ブラウザ拡張機能も提供しています。これを併用することで、より便利に、より効率的に語彙を覚えられるようになります。';
 	@override String get chrome_extension => 'ブラウザ拡張機能';
 	@override String get chrome_extension_description => 'Chromeウェブストアから、ディクトのブラウザ拡張機能をインストールすることで、Webページ上の単語をクリックするだけで、単語に復習を設定できるようになります。';
-	@override String get chrome_extension_description_2 => 'ブラウザ拡張はGoogleChromeだけでなく、FirefoxやEdgeなどのブラウザでも利用できます。ぜひ以下のリンクをパソコンから開いて、ブラウザ拡張をインストールしてみてください。';
+	@override String get chrome_extension_description_2 => 'ブラウザ拡張はGoogleChromeだけでなく、FirefoxやEdgeなどのブラウザでも利用できます。ぜひパソコンから「ディクト　ブラウザ拡張」で検索して、インストールしてみてください！';
 	@override String get open_diqt_extension => 'ディクト拡張機能を開く';
 	@override String get free => '無料';
 	@override String get app_store_url => 'https://apps.apple.com/jp/app/diqt/id1594559036?uo=4';
@@ -2421,11 +2423,13 @@ extension on TranslationsJa {
 			case 'grammaticalTags.grammatical_tag': return '文法タグ';
 			case 'grammaticalTags.grammatical_tag_select': return '文法タグを選択';
 			case 'grammaticalTags.grammatical_tag_not_selected': return '文法タグが選択されていません';
-			case 'home.welcome': return 'DiQtへようこそ！';
-			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書アプリです。';
+			case 'home.welcome': return 'ディクトへようこそ';
+			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書&単語帳アプリです。\n辞書で調べた単語に復習を設定することで、必ずその単語を覚えられます。';
 			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';
 			case 'home.welcome_description_3': return '覚えたい単語に復習を設定すれば、';
 			case 'home.welcome_description_4': return '覚えるまで自動で復習できるようになります。';
+			case 'home.welcome_description_5': return '調べた単語をAIが詳しく解説してくれるので、理解が深まります。';
+			case 'home.welcome_description_6': return 'ブラウザ拡張を使えば、パソコンで調べた単語もアプリから復習できます。\nパソコンで「ディクト　ブラウザ拡張」で検索してイントールしましょう！';
 			case 'home.help_page': return 'ヘルプページ';
 			case 'home.contact': return 'お問い合わせ';
 			case 'home.app_review': return 'レビュー';
@@ -2748,7 +2752,7 @@ extension on TranslationsJa {
 			case 'layouts.other_apps_description': return 'ディクトは、アプリだけでなく、ブラウザ拡張機能も提供しています。これを併用することで、より便利に、より効率的に語彙を覚えられるようになります。';
 			case 'layouts.chrome_extension': return 'ブラウザ拡張機能';
 			case 'layouts.chrome_extension_description': return 'Chromeウェブストアから、ディクトのブラウザ拡張機能をインストールすることで、Webページ上の単語をクリックするだけで、単語に復習を設定できるようになります。';
-			case 'layouts.chrome_extension_description_2': return 'ブラウザ拡張はGoogleChromeだけでなく、FirefoxやEdgeなどのブラウザでも利用できます。ぜひ以下のリンクをパソコンから開いて、ブラウザ拡張をインストールしてみてください。';
+			case 'layouts.chrome_extension_description_2': return 'ブラウザ拡張はGoogleChromeだけでなく、FirefoxやEdgeなどのブラウザでも利用できます。ぜひパソコンから「ディクト　ブラウザ拡張」で検索して、インストールしてみてください！';
 			case 'layouts.open_diqt_extension': return 'ディクト拡張機能を開く';
 			case 'layouts.free': return '無料';
 			case 'layouts.app_store_url': return 'https://apps.apple.com/jp/app/diqt/id1594559036?uo=4';

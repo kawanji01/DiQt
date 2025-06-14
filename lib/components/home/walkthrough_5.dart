@@ -1,18 +1,15 @@
 import 'package:booqs_mobile/components/shared/review_onboarding.dart';
 import 'package:booqs_mobile/consts/images.dart';
-import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/utils/safe_google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:booqs_mobile/utils/safe_google_fonts.dart';
 
-class HomeWalkthrough2 extends ConsumerWidget {
-  const HomeWalkthrough2({super.key});
+class HomeWalkthrough5 extends ConsumerWidget {
+  const HomeWalkthrough5({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String langCode = ref.watch(localeProvider.notifier).langCode;
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -22,12 +19,12 @@ class HomeWalkthrough2 extends ConsumerWidget {
               showDialog(
                 context: context,
                 builder: (_) => FullScreenImageDialog(
-                  imageUrl: '$imagesUrl/onboarding/walkthrough_2_$langCode.png',
+                  imageUrl: '$imagesUrl/onboarding/walkthrough_5.png',
                 ),
               );
             },
             child: Image.network(
-              '$imagesUrl/onboarding/walkthrough_2_$langCode.png',
+              '$imagesUrl/onboarding/walkthrough_5.png',
               fit: BoxFit.contain,
               width: double.infinity,
               loadingBuilder: (context, child, loadingProgress) {
@@ -47,12 +44,12 @@ class HomeWalkthrough2 extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 32),
           child: Text(
-            t.home.welcome_description_2,
+            t.home.welcome_description_5,
             /* style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20.0,
-                fontWeight: FontWeight.normal,
-              ) */
+              color: Colors.white,
+              fontSize: 20.0,
+              fontWeight: FontWeight.normal,
+            ), */
             style: SafeGoogleFonts.mPlusRounded1c(
               context: context,
               textStyle: Theme.of(context).textTheme.headlineSmall,

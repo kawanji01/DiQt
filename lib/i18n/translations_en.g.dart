@@ -682,10 +682,12 @@ class TranslationsHomeEn {
 
 	// Translations
 	String get welcome => 'Welcome to DiQt!';
-	String get welcome_description_1 => 'DiQt is a dictionary app to help you never forget vocabulary.';
+	String get welcome_description_1 => 'DiQt is a dictionary app to help you never forget vocabulary.\nBy setting a review for a word you looked up in the dictionary, you can definitely memorize that word.';
 	String get welcome_description_2 => 'Easy to use. Look up the word in the dictionary,';
 	String get welcome_description_3 => 'set a review for the word you want to memorize,';
 	String get welcome_description_4 => 'and you can review it automatically until you learn it.';
+	String get welcome_description_5 => 'AI will explain it in detail, so you can understand it better.';
+	String get welcome_description_6 => 'With the browser extension, you can review words you looked up on the web from the app.\nPlease search for "DiQt browser extension" on your computer to install it!';
 	String get help_page => 'Help Page';
 	String get contact => 'Contact';
 	String get app_review => 'App Review';
@@ -1035,7 +1037,7 @@ class TranslationsLayoutsEn {
 	String get other_apps_description => 'DiQt offers not only an app, but also a browser extension. By using these together, you can learn vocabulary more conveniently and efficiently.';
 	String get chrome_extension => 'Browser Extension';
 	String get chrome_extension_description => 'By installing the DiQt browser extension from the Chrome Web Store, you can set reviews for words just by clicking on them on web pages.';
-	String get chrome_extension_description_2 => 'The browser extension is available not only for Google Chrome, but also for browsers such as Firefox and Edge. Please open the link below from your computer to install the browser extension.';
+	String get chrome_extension_description_2 => 'The browser extension is available not only for Google Chrome, but also for browsers such as Firefox and Edge. Please search for "DiQt browser extension" on your computer to install it!';
 	String get open_diqt_extension => 'Open DiQt Extension';
 	String get free => 'Free';
 	String get app_store_url => 'https://apps.apple.com/us/app/diqt/id1594559036?uo=4';
@@ -2426,10 +2428,12 @@ extension on Translations {
 			case 'grammaticalTags.grammatical_tag_select': return 'Select Grammatical Tag';
 			case 'grammaticalTags.grammatical_tag_not_selected': return 'No Grammatical Tag Selected';
 			case 'home.welcome': return 'Welcome to DiQt!';
-			case 'home.welcome_description_1': return 'DiQt is a dictionary app to help you never forget vocabulary.';
+			case 'home.welcome_description_1': return 'DiQt is a dictionary app to help you never forget vocabulary.\nBy setting a review for a word you looked up in the dictionary, you can definitely memorize that word.';
 			case 'home.welcome_description_2': return 'Easy to use. Look up the word in the dictionary,';
 			case 'home.welcome_description_3': return 'set a review for the word you want to memorize,';
 			case 'home.welcome_description_4': return 'and you can review it automatically until you learn it.';
+			case 'home.welcome_description_5': return 'AI will explain it in detail, so you can understand it better.';
+			case 'home.welcome_description_6': return 'With the browser extension, you can review words you looked up on the web from the app.\nPlease search for "DiQt browser extension" on your computer to install it!';
 			case 'home.help_page': return 'Help Page';
 			case 'home.contact': return 'Contact';
 			case 'home.app_review': return 'App Review';
@@ -2752,7 +2756,7 @@ extension on Translations {
 			case 'layouts.other_apps_description': return 'DiQt offers not only an app, but also a browser extension. By using these together, you can learn vocabulary more conveniently and efficiently.';
 			case 'layouts.chrome_extension': return 'Browser Extension';
 			case 'layouts.chrome_extension_description': return 'By installing the DiQt browser extension from the Chrome Web Store, you can set reviews for words just by clicking on them on web pages.';
-			case 'layouts.chrome_extension_description_2': return 'The browser extension is available not only for Google Chrome, but also for browsers such as Firefox and Edge. Please open the link below from your computer to install the browser extension.';
+			case 'layouts.chrome_extension_description_2': return 'The browser extension is available not only for Google Chrome, but also for browsers such as Firefox and Edge. Please search for "DiQt browser extension" on your computer to install it!';
 			case 'layouts.open_diqt_extension': return 'Open DiQt Extension';
 			case 'layouts.free': return 'Free';
 			case 'layouts.app_store_url': return 'https://apps.apple.com/us/app/diqt/id1594559036?uo=4';

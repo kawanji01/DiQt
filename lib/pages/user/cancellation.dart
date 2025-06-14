@@ -85,7 +85,8 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
       if (!context.mounted) return;
 
       if (resMap == null) {
-        final snackBar = SnackBar(content: Text(t.cancellation.communication_error));
+        final snackBar =
+            SnackBar(content: Text(t.cancellation.communication_error));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         UserMyPage.push(context);
@@ -167,7 +168,9 @@ class UserCancellationPageState extends ConsumerState<UserCancellationPage> {
                   child: Text(
                     t.cancellation.cancel_subscription,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.white),
                   ),
                 ),
               ],

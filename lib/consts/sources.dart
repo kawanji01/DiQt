@@ -15,3 +15,13 @@ const String privacyPolicyUrl = 'https://www.diqt.net/ja/privacy_policy';
 const String legalUrl = 'https://www.diqt.net/ja/legal';
 const String companyUrl = 'https://www.booqs.net';
 const String discordCommunityUrl = 'https://discord.gg/N7zUGMJ';
+
+// 復習の説明動画
+const String diqtReviewIntroductionYoutubeUrl =
+    'https://www.youtube.com/embed/h6dJQTLmOfY?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0';
+// AIの説明動画
+const String diqtAiIntroductionYoutubeUrl =
+    'https://www.youtube.com/embed/wXvV9OyURfc?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0';
+// ブラウザ拡張の説明動画
+const String diqtBrowserExtensionIntroductionYoutubeUrl =
+    'https://www.youtube.com/embed/_H-atLPdQSM?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0';

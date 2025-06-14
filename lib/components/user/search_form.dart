@@ -65,14 +65,17 @@ class _UserSearchFormState extends State<UserSearchForm> {
             margin: const EdgeInsets.only(top: 20, bottom: 40),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity,
-                    48), // 親要素まで横幅を広げる。参照： https://stackoverflow.com/questions/50014342/how-to-make-button-width-match-parent
+                minimumSize: const Size(double.infinity, 48),
+                backgroundColor: Colors.green,
               ),
               onPressed: search,
               icon: const Icon(Icons.search, color: Colors.white),
               label: Text(
                 t.users.search,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.white),
               ),
             ),
           ),

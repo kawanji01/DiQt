@@ -5,14 +5,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class HomeWalkthrough1 extends StatefulWidget {
-  const HomeWalkthrough1({super.key});
+class HomeWalkthrough6 extends StatefulWidget {
+  const HomeWalkthrough6({super.key});
 
   @override
-  State<HomeWalkthrough1> createState() => _HomeWalkthrough1State();
+  State<HomeWalkthrough6> createState() => _HomeWalkthrough6State();
 }
 
-class _HomeWalkthrough1State extends State<HomeWalkthrough1>
+class _HomeWalkthrough6State extends State<HomeWalkthrough6>
     with AutomaticKeepAliveClientMixin {
   WebViewController? _webViewController;
   bool _isWebViewSupported = true;
@@ -47,7 +47,7 @@ class _HomeWalkthrough1State extends State<HomeWalkthrough1>
               onWebResourceError: (WebResourceError error) {},
             ),
           )
-          ..loadRequest(Uri.parse(diqtReviewIntroductionYoutubeUrl));
+          ..loadRequest(Uri.parse(diqtBrowserExtensionIntroductionYoutubeUrl));
       } catch (e) {
         // WebViewがサポートされていない場合
         _isWebViewSupported = false;
@@ -65,32 +65,19 @@ class _HomeWalkthrough1State extends State<HomeWalkthrough1>
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.all(20),
               child: Text(
-                t.home.welcome,
+                'ブラウザ拡張でもっと便利に！',
                 style: SafeGoogleFonts.mPlusRounded1c(
                   context: context,
                   textStyle: Theme.of(context).textTheme.headlineMedium,
                   color: Colors.white,
-                  fontSize: 38.0,
+                  fontSize: 32.0,
                   fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                t.home.welcome_description_1,
-                style: SafeGoogleFonts.mPlusRounded1c(
-                  context: context,
-                  textStyle: Theme.of(context).textTheme.headlineSmall,
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.normal,
                 ),
               ),
             ),
@@ -108,7 +95,7 @@ class _HomeWalkthrough1State extends State<HomeWalkthrough1>
                     child: AspectRatio(
                       aspectRatio: 16 / 9, // 16:9のアスペクト比を維持
                       child: WebViewWidget(
-                        key: const Key('walkthrough_1_webview'),
+                        key: const Key('walkthrough_6_webview'),
                         controller: _webViewController!,
                       ),
                     ),
@@ -149,6 +136,19 @@ class _HomeWalkthrough1State extends State<HomeWalkthrough1>
                   ),
                 ),
               ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text(
+                t.home.welcome_description_6,
+                style: SafeGoogleFonts.mPlusRounded1c(
+                  context: context,
+                  textStyle: Theme.of(context).textTheme.headlineSmall,
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
           ],
         ),
       ),
