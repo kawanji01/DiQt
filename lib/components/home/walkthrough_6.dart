@@ -12,7 +12,8 @@ class HomeWalkthrough6 extends StatefulWidget {
   State<HomeWalkthrough6> createState() => _HomeWalkthrough6State();
 }
 
-class _HomeWalkthrough6State extends State<HomeWalkthrough6> {
+class _HomeWalkthrough6State extends State<HomeWalkthrough6>
+    with AutomaticKeepAliveClientMixin {
   WebViewController? _webViewController;
   bool _isWebViewSupported = true;
 
@@ -55,7 +56,11 @@ class _HomeWalkthrough6State extends State<HomeWalkthrough6> {
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context); // AutomaticKeepAliveClientMixinに必要
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),

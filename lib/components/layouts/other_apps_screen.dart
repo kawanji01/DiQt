@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/button/medium_green_button.dart';
 import 'package:booqs_mobile/components/shared/hero.dart';
 import 'package:booqs_mobile/consts/images.dart';
+import 'package:booqs_mobile/consts/sources.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
@@ -36,8 +37,7 @@ class _OtherAppsScreenState extends ConsumerState<OtherAppsScreen> {
           onWebResourceError: (WebResourceError error) {},
         ),
       )
-      ..loadRequest(Uri.parse(
-          'https://www.youtube.com/embed/_H-atLPdQSM?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0'));
+      ..loadRequest(Uri.parse(diqtBrowserExtensionIntroductionYoutubeUrl));
   }
 
   @override
