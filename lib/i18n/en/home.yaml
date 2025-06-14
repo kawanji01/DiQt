@@ -3,6 +3,8 @@ welcome_description_1: 'DiQt is a dictionary app to help you never forget vocabu
 welcome_description_2: 'Easy to use. Look up the word in the dictionary,'
 welcome_description_3: 'set a review for the word you want to memorize,'
 welcome_description_4: 'and you can review it automatically until you learn it.'
+welcome_description_5: 'AI will explain it in detail, so you can understand it better.'
+welcome_description_6: 'With the browser extension, you can review words you looked up on the web from the app.'
 help_page: 'Help Page'
 contact: 'Contact'
 app_review: 'App Review'

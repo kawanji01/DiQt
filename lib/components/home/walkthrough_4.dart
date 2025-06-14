@@ -1,3 +1,5 @@
+import 'package:booqs_mobile/components/shared/review_onboarding.dart';
+import 'package:booqs_mobile/consts/images.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +16,31 @@ class HomeWalkthrough4 extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
-          child: Container(
-            padding: const EdgeInsets.only(top: 32),
-            child: Image.asset('assets/images/walkthrough_4_$langCode.png'),
+          child: GestureDetector(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (_) => FullScreenImageDialog(
+                  imageUrl: '$imagesUrl/onboarding/walkthrough_4_$langCode.png',
+                ),
+              );
+            },
+            child: Image.network(
+              '$imagesUrl/onboarding/walkthrough_4_$langCode.png',
+              fit: BoxFit.contain,
+              width: double.infinity,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+              errorBuilder: (context, error, stackTrace) {
+                return const Center(
+                  child: Icon(Icons.error_outline, size: 50),
+                );
+              },
+            ),
           ),
         ),
         Padding(
