@@ -119,6 +119,7 @@ class PurchaseBenefitsScreen extends StatelessWidget {
           buildFeatureRow(t.purchase.note, '✗', '✓'),
           buildFeatureRow(t.purchase.answer_analysis, '✗', '✓'),
           buildFeatureRow(t.purchase.answer_history, '✗', '✓'),
+          buildFeatureRow('検索履歴', '✗', '✓'),
           buildFeatureRow(t.purchase.questions_you_got_wrong, '✗', '✓'),
           buildFeatureRow(t.purchase.deletion_of_all_reviews, '✗', '✓'),
           buildFeatureRow('優先サポート', '✗', '✓'),
@@ -185,6 +186,11 @@ class PurchaseBenefitsScreen extends StatelessWidget {
           title(t.purchase.answer_history),
           description(
             t.purchase.answer_history_description,
+          ),
+          const SizedBox(height: 48),
+          title('検索履歴機能'),
+          description(
+            'プレミアム会員になれば、過去の検索履歴を確認することができます。',
           ),
           const SizedBox(height: 48),
           title(t.purchase.questions_you_got_wrong),

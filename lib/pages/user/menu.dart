@@ -8,6 +8,7 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/answer_analysis/index.dart';
 import 'package:booqs_mobile/pages/note/index.dart';
+import 'package:booqs_mobile/pages/search_history/index.dart';
 import 'package:booqs_mobile/pages/user/contract_details.dart';
 import 'package:booqs_mobile/pages/user/drills.dart';
 import 'package:booqs_mobile/pages/user/edit.dart';
@@ -56,6 +57,16 @@ class UserMenuPage extends ConsumerWidget {
           AnswerAnalysisIndexPage.push(context);
         },
         child: LargeGreenButton(label: btnText, icon: Icons.history),
+      );
+    }
+
+    Widget searchHistoryButton() {
+      const String btnText = '検索履歴';
+      return InkWell(
+        onTap: () {
+          SearchHistoryIndexPage.push(context);
+        },
+        child: LargeGreenButton(label: btnText, icon: Icons.search),
       );
     }
 
@@ -168,11 +179,15 @@ class UserMenuPage extends ConsumerWidget {
               const SizedBox(
                 height: 32,
               ),
+              answerAnalysesButton(),
+              const SizedBox(
+                height: 32,
+              ),
               answerHistoriesButton(),
               const SizedBox(
                 height: 32,
               ),
-              answerAnalysesButton(),
+              searchHistoryButton(),
               const SizedBox(
                 height: 32,
               ),
