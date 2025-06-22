@@ -523,7 +523,7 @@ class TranslationsDictionaryMapsEn {
 	String get please_select => 'Please select a dictionary';
 	String get not_selected => 'Dictionary not selected';
 	String enter({required Object language}) => 'Please enter ${language}';
-	String get set_dictionaries => 'Set dictionaries';
+	String get set_dictionaries => 'Add or remove dictionaries';
 	String get add_dictionaries => 'Add dictionaries';
 	String get remove_dictionaries => 'Remove dictionaries';
 	String get select_dictionaries_to_use => 'Select dictionaries to add';
@@ -2323,7 +2323,7 @@ extension on Translations {
 			case 'dictionaryMaps.please_select': return 'Please select a dictionary';
 			case 'dictionaryMaps.not_selected': return 'Dictionary not selected';
 			case 'dictionaryMaps.enter': return ({required Object language}) => 'Please enter ${language}';
-			case 'dictionaryMaps.set_dictionaries': return 'Set dictionaries';
+			case 'dictionaryMaps.set_dictionaries': return 'Add or remove dictionaries';
 			case 'dictionaryMaps.add_dictionaries': return 'Add dictionaries';
 			case 'dictionaryMaps.remove_dictionaries': return 'Remove dictionaries';
 			case 'dictionaryMaps.select_dictionaries_to_use': return 'Select dictionaries to add';

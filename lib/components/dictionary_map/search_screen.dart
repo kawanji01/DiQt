@@ -1,5 +1,8 @@
+import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
 import 'package:booqs_mobile/components/dictionary_map/radio_list.dart';
 import 'package:booqs_mobile/components/dictionary_map/search_form.dart';
+import 'package:booqs_mobile/components/dictionary_map/setting_screen.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryMapSearchScreen extends StatelessWidget {
@@ -29,6 +32,34 @@ class DictionaryMapSearchScreen extends StatelessWidget {
               child: const DictionaryMapRadioList(),
             ),
           ),
+          const SizedBox(height: 16),
+          GestureDetector(
+            onTap: () {
+              // キーボードを閉じる
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              // フォーカスがすでにない状況でunfocus()を呼び出すと、エラーが発生する可能性がある
+              if (!currentFocus.hasPrimaryFocus) {
+                currentFocus.unfocus();
+              }
+              showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                // 丸み ref: https://www.codegrepper.com/code-examples/whatever/showmodalbottomsheet+rounded+corners
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15.0),
+                      topRight: Radius.circular(15.0)),
+                ),
+                // showModalBottomSheetで表示される中身
+                builder: (context) => const DictionaryMapSettingScreen(),
+              );
+            },
+            child: SmallOutlineGreenButton(
+              label: t.dictionaryMaps.set_dictionaries,
+              icon: Icons.settings,
+            ),
+          ),
+          const SizedBox(height: 16),
         ],
       ),
     );

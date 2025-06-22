@@ -1,7 +1,7 @@
 please_select: '辞書を選択してください'
 not_selected: '辞書が選択されていません'
 enter: '${language}を入力してください'
-set_dictionaries: '辞書を設定する'
+set_dictionaries: '辞書を追加・削除する'
 add_dictionaries: '辞書を追加する'
 remove_dictionaries: '辞書を削除する'
 select_dictionaries_to_use: '追加する辞書を選択してください'
