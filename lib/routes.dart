@@ -53,6 +53,7 @@ import 'package:booqs_mobile/pages/word_request/dictionary.dart';
 import 'package:booqs_mobile/pages/word_request/show.dart';
 import 'package:booqs_mobile/pages/word_request/word.dart';
 import 'package:booqs_mobile/pages/word_tag/show.dart';
+import 'package:booqs_mobile/pages/search_history/index.dart';
 
 // ホーム
 const indexPage = '/';
@@ -138,6 +139,8 @@ const weaknessSolvedPage = '/weakness/solved';
 const answerHistoryTodaysMistakesPage = '/answer_history/todays_mistakes';
 // 解答分析
 const answerAnalysisIndexPage = 'answer_analysis/index';
+// 検索履歴
+const searchHistoryIndexPage = 'search_history/index';
 // ノート
 const noteIndexPage = 'note/index';
 
@@ -220,6 +223,8 @@ final routes = {
   answerHistoryTodaysMistakesPage: (context) =>
       const AnswerHistoryTodaysMistakesPage(),
   answerAnalysisIndexPage: (context) => const AnswerAnalysisIndexPage(),
+  // SearchHistory
+  searchHistoryIndexPage: (context) => const SearchHistoryIndexPage(),
   // Note
   noteIndexPage: (context) => const NoteIndexPage(),
 };
