@@ -519,7 +519,7 @@ class _TranslationsDictionaryMapsJa implements TranslationsDictionaryMapsEn {
 	@override String get please_select => '辞書を選択してください';
 	@override String get not_selected => '辞書が選択されていません';
 	@override String enter({required Object language}) => '${language}を入力してください';
-	@override String get set_dictionaries => '辞書を設定する';
+	@override String get set_dictionaries => '辞書を追加・削除する';
 	@override String get add_dictionaries => '辞書を追加する';
 	@override String get remove_dictionaries => '辞書を削除する';
 	@override String get select_dictionaries_to_use => '追加する辞書を選択してください';
@@ -2319,7 +2319,7 @@ extension on TranslationsJa {
 			case 'dictionaryMaps.please_select': return '辞書を選択してください';
 			case 'dictionaryMaps.not_selected': return '辞書が選択されていません';
 			case 'dictionaryMaps.enter': return ({required Object language}) => '${language}を入力してください';
-			case 'dictionaryMaps.set_dictionaries': return '辞書を設定する';
+			case 'dictionaryMaps.set_dictionaries': return '辞書を追加・削除する';
 			case 'dictionaryMaps.add_dictionaries': return '辞書を追加する';
 			case 'dictionaryMaps.remove_dictionaries': return '辞書を削除する';
 			case 'dictionaryMaps.select_dictionaries_to_use': return '追加する辞書を選択してください';
