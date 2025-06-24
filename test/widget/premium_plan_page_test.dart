@@ -1,9 +1,51 @@
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/pages/user/premium_plan.dart';
+import 'package:booqs_mobile/utils/analytics_service.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+// テスト用のAnalyticsServiceモック
+class MockAnalyticsService extends AnalyticsService {
+  MockAnalyticsService() : super.forTest();
+
+  @override
+  FirebaseAnalytics get firebaseAnalyticsInstance {
+    throw UnimplementedError('テスト環境では使用しません');
+  }
+
+  @override
+  Future<void> logPremiumPlanView() async {
+    // テスト用の空実装
+  }
+
+  @override
+  Future<void> logPurchaseAttempt(String planType) async {
+    // テスト用の空実装
+  }
+
+  @override
+  Future<void> logPurchaseSuccess(String planType) async {
+    // テスト用の空実装
+  }
+
+  @override
+  Future<void> logPurchaseFailed(String planType) async {
+    // テスト用の空実装
+  }
+
+  @override
+  Future<void> setCurrentScreen(String screenName) async {
+    // テスト用の空実装
+  }
+
+  @override
+  Future<void> logBeginCheckout() async {
+    // テスト用の空実装
+  }
+}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -15,36 +57,48 @@ void main() {
     // Stack trace demangling を無効化してテストエラーを防ぐ
     FlutterError.demangleStackTrace = (StackTrace stack) => stack;
 
+    // AnalyticsServiceをテスト用のモックに設定
+    AnalyticsService.setTestInstance(MockAnalyticsService());
+
     // 全ての外部サービスをまとめてモック
     _setupMocks();
   });
 
+  tearDownAll(() {
+    // テスト後にAnalyticsServiceのモックをクリア
+    AnalyticsService.setTestInstance(null);
+  });
+
   group('PremiumPlanPage test', () {
     testWidgets('PremiumPlanPageが正しく表示される', (WidgetTester tester) async {
-      // UIテストに焦点を当てる
       await tester.runAsync(() async {
         LocaleSettings.setLocale(AppLocale.ja);
         
-        // 例外が発生してもUIの基本的な要素は確認する
-        try {
-          await tester.pumpWidget(
-            TranslationProvider(
-              child: MaterialApp(
-                home: const PremiumPlanPage(),
-              ),
+        await tester.pumpWidget(
+          TranslationProvider(
+            child: MaterialApp(
+              home: const PremiumPlanPage(),
             ),
-          );
-          await tester.pumpAndSettle();
-        } catch (e) {
-          // Firebase関連のエラーは無視してUIテストを続行
-          print('Expected Firebase error in test: $e');
-        }
+          ),
+        );
+        
+        // アニメーションが無限ループのため、pumpを使用してタイムアウトを避ける
+        await tester.pump();
+        await tester.pump(const Duration(seconds: 1));
       });
 
       // 基本的なUIコンポーネントの存在を確認
-      // エラーが発生してもScaffoldとAppBarは表示されるはず
       expect(find.byType(Scaffold), findsOneWidget);
       expect(find.byType(Container), findsWidgets);
+      
+      // プレミアムプランの主要テキストが表示されることを確認
+      expect(find.text('プレミアムプラン'), findsAtLeast(1));
+      expect(find.text('DiQtのすべての機能が使い放題になるプランです。'), findsOneWidget);
+      expect(find.text('まずは１週間、無料で試してみましょう！'), findsOneWidget);
+      
+      // プランカードが表示されることを確認
+      expect(find.text('月額プラン'), findsOneWidget);
+      expect(find.text('年額プラン'), findsOneWidget);
     });
 
     testWidgets('PremiumPlanPageのコンストラクタが正しく動作する', (WidgetTester tester) async {
