@@ -9,6 +9,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
 import 'package:booqs_mobile/components/purchase/introduction_footer.dart';
 import 'package:booqs_mobile/components/purchase/restore_button.dart';
+import 'package:booqs_mobile/utils/analytics_service.dart';
 
 class PremiumPlanPage extends StatefulWidget {
   const PremiumPlanPage({super.key});
@@ -31,10 +32,13 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
   late Animation<double> _pulseAnimation;
 
   int selectedPlan = 1; // 0: 月額, 1: 年額
+  late final AnalyticsService _analyticsService;
 
   @override
   void initState() {
     super.initState();
+    _analyticsService = AnalyticsService();
+    _logPremiumPlanView();
 
     _shimmerController = AnimationController(
       duration: const Duration(seconds: 2),
@@ -728,8 +732,16 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
     );
   }
 
+  void _logPremiumPlanView() async {
+    await _analyticsService.logPremiumPlanView();
+  }
+
   void _subscribe() async {
     final purchase = PurchaseService();
+    final planType = selectedPlan == 0 ? 'monthly' : 'annual';
+    
+    await _analyticsService.logPurchaseAttempt(planType);
+    
     EasyLoading.show(status: 'loading...');
     bool subscriptionCompleted = false;
     if (selectedPlan == 0) {
@@ -743,10 +755,12 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
     EasyLoading.dismiss();
     if (!mounted) return;
     if (subscriptionCompleted) {
+      await _analyticsService.logPurchaseSuccess(planType);
       final snackBar = SnackBar(content: Text(t.purchase.purchase_succeded));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       UserMyPage.push(context);
     } else {
+      await _analyticsService.logPurchaseFailed(planType);
       final snackBar = SnackBar(content: Text('購入に失敗しました。'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
