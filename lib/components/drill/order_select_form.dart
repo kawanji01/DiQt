@@ -21,6 +21,10 @@ class DrillOrderSelectForm extends ConsumerWidget {
     // 値に対応するフォームのラベル
     String label(String value) {
       switch (value) {
+        case 'order_number-asc':
+          return t.drills.order_number_asc;
+        case 'order_number-desc':
+          return t.drills.order_number_desc;
         case 'created_at-asc':
           return t.drills.created_at_asc;
         case 'created_at-desc':
@@ -51,6 +55,8 @@ class DrillOrderSelectForm extends ConsumerWidget {
           refresh();
         },
         items: <String>[
+          'order_number-asc',
+          'order_number-desc',
           'created_at-asc',
           'created_at-desc',
           'random-random',

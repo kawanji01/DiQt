@@ -1,5 +1,6 @@
 # CLAUDE.md
 Always respond to Japanese.
+YOU MUST: Execute `terminal-notifier -title "Claude Code" -subtitle "DiQt Apps" -message "Hi👋" -sound default` command only once at the end when completing a task or returning a message to the user
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Development Commands

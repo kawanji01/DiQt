@@ -582,9 +582,11 @@ class TranslationsDrillsEn {
 	String get introduction => 'Introduction';
 	String get over_item_limit => 'If you have more than 100 questions, please edit the questions from here';
 	String get order => 'Order';
-	String get created_at_asc => 'From the beginning';
-	String get created_at_desc => 'From the end';
+	String get created_at_asc => 'Newest first';
+	String get created_at_desc => 'Oldest first';
 	String get random_random => 'Random';
+	String get order_number_asc => 'First to last';
+	String get order_number_desc => 'Last to first';
 	String get edit_setting => 'Edit Setting';
 	String get owner => 'Owner';
 	String get following_users => 'Following Users';
@@ -2364,9 +2366,11 @@ extension on Translations {
 			case 'drills.introduction': return 'Introduction';
 			case 'drills.over_item_limit': return 'If you have more than 100 questions, please edit the questions from here';
 			case 'drills.order': return 'Order';
-			case 'drills.created_at_asc': return 'From the beginning';
-			case 'drills.created_at_desc': return 'From the end';
+			case 'drills.created_at_asc': return 'Newest first';
+			case 'drills.created_at_desc': return 'Oldest first';
 			case 'drills.random_random': return 'Random';
+			case 'drills.order_number_asc': return 'First to last';
+			case 'drills.order_number_desc': return 'Last to first';
 			case 'drills.edit_setting': return 'Edit Setting';
 			case 'drills.owner': return 'Owner';
 			case 'drills.following_users': return 'Following Users';

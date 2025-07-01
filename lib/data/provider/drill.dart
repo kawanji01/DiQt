@@ -11,7 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final drillProvider = StateProvider<Drill?>((ref) => null);
 
-final drillOrderProvider = StateProvider<String>((ref) => 'random-random');
+final drillOrderProvider = StateProvider<String>((ref) => 'order_number-asc');
 
 final drillSolvedQuizzesCountProvider = StateProvider<int>((ref) => 0);
 
