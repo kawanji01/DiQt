@@ -1321,8 +1321,8 @@ class _TranslationsReviewsJa implements TranslationsReviewsEn {
 	@override String get cancel => 'キャンセル';
 	@override String get confirm_deletion => '削除確認';
 	@override String get execute => '実行する';
-	@override String get delete_all_reviews_confirmation => '全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？';
-	@override String get all_review_deletion_help_link_description => '全ての復習を削除する方法';
+	@override String get delete_all_reviews_confirmation => '復習をすべてリセットいたします。この操作は取り消せません。実行してもよろしいですか？';
+	@override String get all_review_deletion_help_link_description => '復習をすべてリセットする方法';
 }
 
 // Path: schools
@@ -2979,8 +2979,8 @@ extension on TranslationsJa {
 			case 'reviews.cancel': return 'キャンセル';
 			case 'reviews.confirm_deletion': return '削除確認';
 			case 'reviews.execute': return '実行する';
-			case 'reviews.delete_all_reviews_confirmation': return '全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？';
-			case 'reviews.all_review_deletion_help_link_description': return '全ての復習を削除する方法';
+			case 'reviews.delete_all_reviews_confirmation': return '復習をすべてリセットいたします。この操作は取り消せません。実行してもよろしいですか？';
+			case 'reviews.all_review_deletion_help_link_description': return '復習をすべてリセットする方法';
 			case 'schools.schools': return '教室';
 			case 'schools.school': return '教室';
 			case 'schools.name': return '名前';

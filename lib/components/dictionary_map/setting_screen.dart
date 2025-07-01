@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/components/ad/modal_bottom_banner.dart';
 import 'package:booqs_mobile/components/dictionary_map/addition_button.dart';
 import 'package:booqs_mobile/components/dictionary_map/removal_button.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
@@ -35,7 +36,8 @@ class DictionaryMapSettingScreen extends StatelessWidget {
                 height: 24,
               ),
               const DictionaryMapRemovalButton(),
-              const SizedBox(height: 80),
+              const SizedBox(height: 40),
+              const AdModalBottomBanner(),
             ],
           ),
         ));

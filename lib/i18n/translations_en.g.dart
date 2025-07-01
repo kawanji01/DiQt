@@ -1325,8 +1325,8 @@ class TranslationsReviewsEn {
 	String get cancel => 'Cancel';
 	String get confirm_deletion => 'Delete Confirmation';
 	String get execute => 'Delete';
-	String get delete_all_reviews_confirmation => 'All reviews will be deleted. This operation cannot be undone. Are you sure you want to proceed?';
-	String get all_review_deletion_help_link_description => 'How to delete all reviews';
+	String get delete_all_reviews_confirmation => 'All reviews will be reset. This operation cannot be undone. Are you sure you want to proceed?';
+	String get all_review_deletion_help_link_description => 'How to reset all reviews';
 }
 
 // Path: schools
@@ -2983,8 +2983,8 @@ extension on Translations {
 			case 'reviews.cancel': return 'Cancel';
 			case 'reviews.confirm_deletion': return 'Delete Confirmation';
 			case 'reviews.execute': return 'Delete';
-			case 'reviews.delete_all_reviews_confirmation': return 'All reviews will be deleted. This operation cannot be undone. Are you sure you want to proceed?';
-			case 'reviews.all_review_deletion_help_link_description': return 'How to delete all reviews';
+			case 'reviews.delete_all_reviews_confirmation': return 'All reviews will be reset. This operation cannot be undone. Are you sure you want to proceed?';
+			case 'reviews.all_review_deletion_help_link_description': return 'How to reset all reviews';
 			case 'schools.schools': return 'Schools';
 			case 'schools.school': return 'School';
 			case 'schools.name': return 'Name';
