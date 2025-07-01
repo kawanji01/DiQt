@@ -578,9 +578,11 @@ class _TranslationsDrillsJa implements TranslationsDrillsEn {
 	@override String get introduction => '紹介';
 	@override String get over_item_limit => '100問を超える場合、問題の編集はこちらから行ってください。';
 	@override String get order => '並び順';
-	@override String get created_at_asc => '最初から';
-	@override String get created_at_desc => '最後から';
+	@override String get created_at_asc => '作成が新しい順';
+	@override String get created_at_desc => '作成が古い順';
 	@override String get random_random => 'ランダム';
+	@override String get order_number_asc => '最初から';
+	@override String get order_number_desc => '最後から';
 	@override String get edit_setting => 'Edit settings for quizzes';
 	@override String get owner => '作成者';
 	@override String get following_users => 'フォロー中のユーザー';
@@ -1319,8 +1321,8 @@ class _TranslationsReviewsJa implements TranslationsReviewsEn {
 	@override String get cancel => 'キャンセル';
 	@override String get confirm_deletion => '削除確認';
 	@override String get execute => '実行する';
-	@override String get delete_all_reviews_confirmation => '全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？';
-	@override String get all_review_deletion_help_link_description => '全ての復習を削除する方法';
+	@override String get delete_all_reviews_confirmation => '復習をすべてリセットいたします。この操作は取り消せません。実行してもよろしいですか？';
+	@override String get all_review_deletion_help_link_description => '復習をすべてリセットする方法';
 }
 
 // Path: schools
@@ -2360,9 +2362,11 @@ extension on TranslationsJa {
 			case 'drills.introduction': return '紹介';
 			case 'drills.over_item_limit': return '100問を超える場合、問題の編集はこちらから行ってください。';
 			case 'drills.order': return '並び順';
-			case 'drills.created_at_asc': return '最初から';
-			case 'drills.created_at_desc': return '最後から';
+			case 'drills.created_at_asc': return '作成が新しい順';
+			case 'drills.created_at_desc': return '作成が古い順';
 			case 'drills.random_random': return 'ランダム';
+			case 'drills.order_number_asc': return '最初から';
+			case 'drills.order_number_desc': return '最後から';
 			case 'drills.edit_setting': return 'Edit settings for quizzes';
 			case 'drills.owner': return '作成者';
 			case 'drills.following_users': return 'フォロー中のユーザー';
@@ -2975,8 +2979,8 @@ extension on TranslationsJa {
 			case 'reviews.cancel': return 'キャンセル';
 			case 'reviews.confirm_deletion': return '削除確認';
 			case 'reviews.execute': return '実行する';
-			case 'reviews.delete_all_reviews_confirmation': return '全ての復習を削除いたします。この操作は取り消せません。実行してもよろしいですか？';
-			case 'reviews.all_review_deletion_help_link_description': return '全ての復習を削除する方法';
+			case 'reviews.delete_all_reviews_confirmation': return '復習をすべてリセットいたします。この操作は取り消せません。実行してもよろしいですか？';
+			case 'reviews.all_review_deletion_help_link_description': return '復習をすべてリセットする方法';
 			case 'schools.schools': return '教室';
 			case 'schools.school': return '教室';
 			case 'schools.name': return '名前';

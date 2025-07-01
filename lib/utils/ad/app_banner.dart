@@ -15,8 +15,34 @@ class AppBanner extends ConsumerStatefulWidget {
   AppBannerState createState() => AppBannerState();
 }
 
-class AppBannerState extends ConsumerState<AppBanner> {
+class AppBannerState extends ConsumerState<AppBanner> with SingleTickerProviderStateMixin {
   BannerAd? bannerAd;
+  bool isLoading = true;
+  late AnimationController _shimmerController;
+  late Animation<double> _shimmerAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _shimmerController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    )..repeat();
+    _shimmerAnimation = Tween<double>(
+      begin: -1.0,
+      end: 2.0,
+    ).animate(CurvedAnimation(
+      parent: _shimmerController,
+      curve: Curves.linear,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _shimmerController.dispose();
+    bannerAd?.dispose();
+    super.dispose();
+  }
 
   @override
   // build を実行する前に実行されるメソッド ref: https://zenn.dev/sugitlab/articles/c38ef8d3035289
@@ -27,11 +53,20 @@ class AppBannerState extends ConsumerState<AppBanner> {
       adUnitId: getAdUnitId(),
       size: widget.adSize ?? AdSize.largeBanner,
       request: const AdRequest(),
-      listener: BannerAdListener(onAdLoaded: (Ad ad) {
-        setState(() {
-          bannerAd = ad as BannerAd;
-        });
-      }),
+      listener: BannerAdListener(
+        onAdLoaded: (Ad ad) {
+          setState(() {
+            bannerAd = ad as BannerAd;
+            isLoading = false;
+          });
+        },
+        onAdFailedToLoad: (Ad ad, LoadAdError error) {
+          setState(() {
+            isLoading = false;
+          });
+          ad.dispose();
+        },
+      ),
     ).load();
   }
 
@@ -54,8 +89,83 @@ class AppBannerState extends ConsumerState<AppBanner> {
     return '$androidBannerAdID';
   }
 
+  Widget _buildSkeleton(double width, double height) {
+    return AnimatedBuilder(
+      animation: _shimmerAnimation,
+      builder: (context, child) {
+        return Container(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Colors.grey[300]!,
+                          Colors.grey[100]!,
+                          Colors.grey[300]!,
+                        ],
+                        stops: const [0.0, 0.5, 1.0],
+                        transform: GradientRotation(_shimmerAnimation.value),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  child: Transform.translate(
+                    offset: Offset(_shimmerAnimation.value * width, 0),
+                    child: Container(
+                      width: width * 0.3,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            Colors.white.withValues(alpha: 0.0),
+                            Colors.white.withValues(alpha: 0.3),
+                            Colors.white.withValues(alpha: 0.0),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final adSize = widget.adSize ?? AdSize.largeBanner;
+    final height = adSize == AdSize.largeBanner ? 90.0 : adSize.height.toDouble();
+    final width = MediaQuery.of(context).size.width - 32;
+
+    if (isLoading) {
+      return Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: _buildSkeleton(width, height),
+      );
+    }
+
     if (bannerAd == null) {
       return Container(height: 0);
     }
