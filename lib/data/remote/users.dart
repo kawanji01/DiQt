@@ -10,7 +10,7 @@ import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:http/http.dart';
 import 'package:purchases_flutter/object_wrappers.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:booqs_mobile/utils/sentry_service.dart';
 
 class RemoteUsers {
   // 安全なJSONデコード関数
@@ -41,15 +41,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -67,15 +67,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -92,15 +92,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -117,15 +117,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -149,15 +149,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -178,15 +178,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -205,15 +205,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -233,15 +233,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -258,15 +258,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -285,15 +285,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -318,15 +318,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -354,15 +354,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -379,15 +379,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -410,15 +410,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -435,15 +435,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -457,11 +457,11 @@ class RemoteUsers {
       return _safeJsonDecode(res.body, 'enablePremium');
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -475,11 +475,11 @@ class RemoteUsers {
       return _safeJsonDecode(res.body, 'disablePremium');
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -494,15 +494,15 @@ class RemoteUsers {
       return {'status': res.statusCode, 'message': 'Upload Icon'};
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -518,15 +518,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -543,15 +543,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -574,15 +574,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -604,15 +604,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -627,15 +627,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
