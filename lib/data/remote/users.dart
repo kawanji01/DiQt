@@ -10,6 +10,7 @@ import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:http/http.dart';
 import 'package:purchases_flutter/object_wrappers.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class RemoteUsers {
   // 安全なJSONデコード関数
@@ -17,14 +18,12 @@ class RemoteUsers {
     if (body.isEmpty) {
       return {};
     }
-    
+
     try {
       return json.decode(body);
     } on FormatException catch (e, s) {
       FirebaseCrashlytics.instance.recordError(
-        'JSON parse error in $methodName. Response body: $body', 
-        s
-      );
+          'JSON parse error in $methodName. Response body: $body', s);
       return {};
     }
   }
@@ -42,12 +41,15 @@ class RemoteUsers {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -64,10 +66,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -83,13 +91,16 @@ class RemoteUsers {
       final Map<String, dynamic> resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -105,13 +116,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -134,10 +148,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -157,10 +177,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -178,10 +204,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -200,13 +232,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -222,10 +257,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -243,13 +284,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -273,13 +317,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -306,13 +353,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -328,13 +378,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -356,13 +409,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -378,13 +434,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -397,10 +456,12 @@ class RemoteUsers {
       final res = await HttpService.post(url, null);
       return _safeJsonDecode(res.body, 'enablePremium');
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -413,10 +474,12 @@ class RemoteUsers {
       final res = await HttpService.post(url, null);
       return _safeJsonDecode(res.body, 'disablePremium');
     } on SocketException catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
@@ -430,10 +493,16 @@ class RemoteUsers {
           url: url, image: image, body: null);
       return {'status': res.statusCode, 'message': 'Upload Icon'};
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -448,10 +517,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -467,10 +542,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -492,10 +573,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -516,10 +603,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }
@@ -533,10 +626,16 @@ class RemoteUsers {
       final Map resMap = json.decode(res.body);
       return resMap;
     } on TimeoutException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.timeoutMap(e, s);
     } on SocketException catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.socketExceptionMap(e, s);
     } catch (e, s) {
+      CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return ErrorHandler.exceptionMap(e, s);
     }
   }

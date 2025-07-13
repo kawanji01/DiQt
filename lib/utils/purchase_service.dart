@@ -7,6 +7,7 @@ import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 // RevenueCatのセットアップ
 // ref： https://docs.revenuecat.com/docs/getting-started-1#section-configure-purchases
@@ -56,6 +57,7 @@ class PurchaseService {
       await Purchases.logIn(userId);
     } catch (e) {
       CrashlyticsService.recordError(e, null);
+      Sentry.captureException(e, stackTrace: StackTrace.current);
     }
   }
 
@@ -65,6 +67,7 @@ class PurchaseService {
       Purchases.logOut();
     } catch (e) {
       CrashlyticsService.recordError(e, null);
+      Sentry.captureException(e, stackTrace: StackTrace.current);
     }
   }
 
@@ -86,6 +89,7 @@ class PurchaseService {
       return package;
     } on PlatformException catch (e, str) {
       CrashlyticsService.recordError(e, str);
+      Sentry.captureException(e, stackTrace: str);
       return null;
     }
   }
@@ -109,6 +113,7 @@ class PurchaseService {
       return package;
     } on PlatformException catch (e, str) {
       CrashlyticsService.recordError(e, str);
+      Sentry.captureException(e, stackTrace: str);
       return null;
     }
   }
@@ -136,13 +141,11 @@ class PurchaseService {
       }
     } on PlatformException catch (e, str) {
       CrashlyticsService.recordError(e, str);
-      /* var errorCode = PurchasesErrorHelper.getErrorCode(e);
-      if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
-        print('purchasePachage: error: $e');
-      } */
+      Sentry.captureException(e, stackTrace: str);
       return false;
     } catch (e, str) {
       CrashlyticsService.recordError(e, str);
+      Sentry.captureException(e, stackTrace: str);
       return false;
     } finally {
       // errorであれreturnで外部コードに抜ける前であれ、常に実行する。ref: https://ja.javascript.info/try-catch#ref-1685
@@ -188,6 +191,7 @@ class PurchaseService {
       }
     } on PlatformException catch (e, str) {
       CrashlyticsService.recordError(e, str);
+      Sentry.captureException(e, stackTrace: str);
       return '';
     }
     return '';
@@ -289,6 +293,7 @@ class PurchaseService {
       return result;
     } on PlatformException catch (e, str) {
       CrashlyticsService.recordError(e, str);
+      Sentry.captureException(e, stackTrace: str);
       return false;
     } finally {
       isExecuting = false;
