@@ -97,6 +97,7 @@ dependencies:
   speech_to_text: ^7.0.0 # 音声認識
   html: ^0.15.4
   path_provider: ^2.1.2 # 一時ファイルの保存 / ssmlの再生に利用
+  sentry_flutter: ^8.0.0 # エラートラッキング
 dependency_overrides:
   macos_ui:
     git:
@@ -107,6 +108,7 @@ dependency_overrides:
   
 
 dev_dependencies:
+  sentry_dart_plugin: ^3.1.0
   flutter_test:
     sdk: flutter
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -171,3 +173,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+sentry:
+  upload_debug_symbols: true
+  upload_source_maps: true
+  project: flutter
+  org: booqs-v3

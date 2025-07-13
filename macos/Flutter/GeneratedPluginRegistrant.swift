@@ -24,6 +24,7 @@ import package_info_plus
 import path_provider_foundation
 import purchases_flutter
 import rive_common
+import sentry_flutter
 import share_plus
 import shared_preferences_foundation
 import sign_in_with_apple
@@ -52,6 +53,7 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
   PurchasesFlutterPlugin.register(with: registry.registrar(forPlugin: "PurchasesFlutterPlugin"))
   RivePlugin.register(with: registry.registrar(forPlugin: "RivePlugin"))
+  SentryFlutterPlugin.register(with: registry.registrar(forPlugin: "SentryFlutterPlugin"))
   SharePlusMacosPlugin.register(with: registry.registrar(forPlugin: "SharePlusMacosPlugin"))
   SharedPreferencesPlugin.register(with: registry.registrar(forPlugin: "SharedPreferencesPlugin"))
   SignInWithApplePlugin.register(with: registry.registrar(forPlugin: "SignInWithApplePlugin"))

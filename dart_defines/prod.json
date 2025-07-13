@@ -2,5 +2,6 @@
     "flavor": "prod",
     "appName": "DiQt",
     "appIdSuffix": "",
-    "rootUrl": "https://www.diqt.net"
+    "rootUrl": "https://www.diqt.net",
+    "sentryDsn": ""
 }
