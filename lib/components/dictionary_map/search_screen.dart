@@ -1,6 +1,3 @@
-import 'package:booqs_mobile/components/ad/banner.dart';
-import 'package:booqs_mobile/components/ad/modal_bottom_banner.dart';
-import 'package:booqs_mobile/components/ad/small_banner.dart';
 import 'package:booqs_mobile/components/button/small_outline_green_button.dart';
 import 'package:booqs_mobile/components/dictionary_map/radio_list.dart';
 import 'package:booqs_mobile/components/dictionary_map/search_form.dart';
@@ -36,8 +33,8 @@ class DictionaryMapSearchScreen extends StatelessWidget {
             ),
           ),
 
-          const AdSmallBanner(),
-          const SizedBox(height: 16),
+          // const AdSmallBanner(),
+          // const SizedBox(height: 16),
           GestureDetector(
             onTap: () {
               // キーボードを閉じる
