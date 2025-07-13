@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
+import 'package:booqs_mobile/utils/sentry_service.dart';
 import 'package:booqs_mobile/utils/toasts.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 class ErrorHandler {
   // レスポンスがエラーか判別する
@@ -59,7 +59,7 @@ class ErrorHandler {
         'message': resMap['message'],
       };
     } catch (e, stack) {
-      Sentry.captureException(e, stackTrace: stack);
+      SentryService.captureException(e, stackTrace: stack);
       return {'status': res.statusCode, 'message': '$e'};
     }
   }
@@ -70,7 +70,7 @@ class ErrorHandler {
     StackTrace? stack,
   ) {
     CrashlyticsService.recordError(exception, stack);
-    Sentry.captureException(exception, stackTrace: stack);
+    SentryService.captureException(exception, stackTrace: stack);
     return {'status': 408, 'message': '$exception'};
   }
 
@@ -86,7 +86,7 @@ class ErrorHandler {
     StackTrace? stack,
   ) {
     CrashlyticsService.recordError(exception, stack);
-    Sentry.captureException(exception, stackTrace: stack);
+    SentryService.captureException(exception, stackTrace: stack);
     // 一番近いステータスコードとして、504 Gateway Timeout（リクエストを送ったサーバからの適切なレスポンスがなくタイムアウト）を返す。
     return {'status': 504, 'message': '$exception'};
   }
@@ -97,7 +97,7 @@ class ErrorHandler {
     StackTrace? stack,
   ) {
     CrashlyticsService.recordError(exception, stack);
-    Sentry.captureException(exception, stackTrace: stack);
+    SentryService.captureException(exception, stackTrace: stack);
     return {'status': 500, 'message': '$exception'};
   }
 }

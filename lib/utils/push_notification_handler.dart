@@ -5,10 +5,10 @@ import 'package:booqs_mobile/utils/device_info_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/env_handler.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
+import 'package:booqs_mobile/utils/sentry_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 class PushNotificationHandler {
   //// 初期化 START ////
@@ -163,7 +163,7 @@ class PushNotificationHandler {
       return true;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
-      Sentry.captureException(e, stackTrace: s);
+      await SentryService.captureException(e, stackTrace: s);
       return false;
     }
   }

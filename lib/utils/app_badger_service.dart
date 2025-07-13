@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_app_badge_control/flutter_app_badge_control.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:booqs_mobile/utils/sentry_service.dart';
 
 class AppBadgerService {
   //// 復習のバッジつける処理 ////
@@ -28,7 +28,7 @@ class AppBadgerService {
         updateReviewBadge(reviewsCount); //バッジの数を指定
       } catch (e, str) {
         CrashlyticsService.recordError(e, str);
-        Sentry.captureException(e, stackTrace: str);
+        SentryService.captureException(e, stackTrace: str);
       }
     });
     return;
@@ -48,7 +48,7 @@ class AppBadgerService {
       }
     } catch (e, str) {
       CrashlyticsService.recordError(e, str);
-      Sentry.captureException(e, stackTrace: str);
+      await SentryService.captureException(e, stackTrace: str);
     }
   }
 }
