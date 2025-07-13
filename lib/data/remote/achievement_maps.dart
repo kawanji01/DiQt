@@ -5,6 +5,7 @@ import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:http/http.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class RemoteAchievementMaps {
   static Future<Map?> update(int achievementMapId) async {
@@ -18,12 +19,15 @@ class RemoteAchievementMaps {
       return resMap;
     } on TimeoutException catch (e, s) {
       CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } on SocketException catch (e, s) {
       CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     } catch (e, s) {
       CrashlyticsService.recordError(e, s);
+      Sentry.captureException(e, stackTrace: s);
       return null;
     }
   }
