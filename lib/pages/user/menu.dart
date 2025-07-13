@@ -16,6 +16,7 @@ import 'package:booqs_mobile/pages/user/search.dart';
 import 'package:booqs_mobile/pages/weakness/unsolved.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
+import 'package:booqs_mobile/utils/sentry_service.dart';
 import 'package:booqs_mobile/components/answer_setting/screen.dart';
 import 'package:booqs_mobile/components/button/large_green_button.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
@@ -159,6 +160,70 @@ class UserMenuPage extends ConsumerWidget {
       );
     }
 
+    Widget sentryTestButton() {
+      return InkWell(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext dialogContext) {
+              return AlertDialog(
+                title: const Text('Sentry テスト'),
+                content: const Text('送信するテストデータを選択してください'),
+                actions: [
+                  TextButton(
+                    onPressed: () async {
+                      Navigator.of(dialogContext).pop();
+                      await SentryService.sendTestError();
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('テストエラーを送信しました')),
+                        );
+                      }
+                    },
+                    child: const Text('エラー'),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      Navigator.of(dialogContext).pop();
+                      await SentryService.sendTestMessage();
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('テストメッセージを送信しました')),
+                        );
+                      }
+                    },
+                    child: const Text('メッセージ'),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      Navigator.of(dialogContext).pop();
+                      await SentryService.sendTestWarning();
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('テスト警告を送信しました')),
+                        );
+                      }
+                    },
+                    child: const Text('警告'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(dialogContext).pop();
+                    },
+                    child: const Text('キャンセル'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        child: const LargeGreenButton(
+          label: 'Sentry テスト',
+          icon: Icons.bug_report,
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBarDefault(
         title: t.users.menu,
@@ -225,6 +290,13 @@ class UserMenuPage extends ConsumerWidget {
               const SizedBox(
                 height: 32,
               ),
+              // 開発環境でのみSentryテストボタンを表示
+              if (const String.fromEnvironment('flavor', defaultValue: '') == 'dev')
+                sentryTestButton(),
+              if (const String.fromEnvironment('flavor', defaultValue: '') == 'dev')
+                const SizedBox(
+                  height: 32,
+                ),
               const UserLogoutButton(),
               const SizedBox(
                 height: 64,

@@ -81,6 +81,35 @@ class SentryService {
     });
   }
 
+  /// テスト用のエラー送信
+  static Future<void> sendTestError() async {
+    try {
+      throw Exception('This is a test error for Sentry integration');
+    } catch (exception, stackTrace) {
+      await captureException(
+        exception,
+        stackTrace: stackTrace,
+        hint: 'Test error sent from DiQt app',
+      );
+    }
+  }
+
+  /// テスト用のメッセージ送信
+  static Future<void> sendTestMessage() async {
+    await captureMessage(
+      'Test message from DiQt app - Sentry integration working correctly',
+      level: SentryLevel.info,
+    );
+  }
+
+  /// テスト用の警告送信
+  static Future<void> sendTestWarning() async {
+    await captureMessage(
+      'Test warning from DiQt app - This is a warning level message',
+      level: SentryLevel.warning,
+    );
+  }
+
   /// 環境の取得
   static String _getEnvironment() {
     // dart-defineのflavorから環境を判定
