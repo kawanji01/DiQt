@@ -59,6 +59,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final TranslationsLayoutsEn layouts = TranslationsLayoutsEn._(_root);
 	late final TranslationsNotesEn notes = TranslationsNotesEn._(_root);
 	late final TranslationsNoticesEn notices = TranslationsNoticesEn._(_root);
+	late final TranslationsPosTagsEn posTags = TranslationsPosTagsEn._(_root);
 	late final TranslationsPurchaseEn purchase = TranslationsPurchaseEn._(_root);
 	late final TranslationsQuizRequestsEn quizRequests = TranslationsQuizRequestsEn._(_root);
 	late final TranslationsQuizzesEn quizzes = TranslationsQuizzesEn._(_root);
@@ -1101,6 +1102,54 @@ class TranslationsNoticesEn {
 	String ranking_position({required Object rank}) => '#${rank}';
 	String get answers_count => 'Total Answers';
 	String answer_times({required Object count}) => '${count} times';
+}
+
+// Path: posTags
+class TranslationsPosTagsEn {
+	TranslationsPosTagsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get abbrev => 'Abbreviation';
+	String get adj => 'Adjective';
+	String get adv => 'Adverb';
+	String get affix => 'Affix';
+	String get article => 'Article';
+	String get aux => 'Auxiliary verb';
+	String get character => 'Character';
+	String get circumfix => 'Circumfix';
+	String get circumpos => 'Circumposition';
+	String get classifier => 'Classifier';
+	String get combining_form => 'Combining form';
+	String get conj => 'Conjunction';
+	String get contraction => 'Contraction';
+	String get counter => 'Counter';
+	String get det => 'Determiner';
+	String get grammar => 'Grammar';
+	String get infix => 'Infix';
+	String get interfix => 'Interfix';
+	String get intj => 'Interjection';
+	String get name => 'Proper noun';
+	String get noun => 'Noun';
+	String get num => 'Numeral';
+	String get particle => 'Particle';
+	String get perp => 'Preposition/Postposition';
+	String get phrase => 'Phrase';
+	String get postp => 'Postposition';
+	String get prefix => 'Prefix';
+	String get prep => 'Preposition';
+	String get prep_phrase => 'Prepositional phrase';
+	String get preverb => 'Preverb';
+	String get pron => 'Pronoun';
+	String get proverb => 'Proverb';
+	String get punct => 'Punctuation';
+	String get romanization => 'Romanization';
+	String get root => 'Root';
+	String get suffix => 'Suffix';
+	String get syllable => 'Syllable';
+	String get symbol => 'Symbol';
+	String get verb => 'Verb';
 }
 
 // Path: purchase
@@ -2804,6 +2853,45 @@ extension on Translations {
 			case 'notices.ranking_position': return ({required Object rank}) => '#${rank}';
 			case 'notices.answers_count': return 'Total Answers';
 			case 'notices.answer_times': return ({required Object count}) => '${count} times';
+			case 'posTags.abbrev': return 'Abbreviation';
+			case 'posTags.adj': return 'Adjective';
+			case 'posTags.adv': return 'Adverb';
+			case 'posTags.affix': return 'Affix';
+			case 'posTags.article': return 'Article';
+			case 'posTags.aux': return 'Auxiliary verb';
+			case 'posTags.character': return 'Character';
+			case 'posTags.circumfix': return 'Circumfix';
+			case 'posTags.circumpos': return 'Circumposition';
+			case 'posTags.classifier': return 'Classifier';
+			case 'posTags.combining_form': return 'Combining form';
+			case 'posTags.conj': return 'Conjunction';
+			case 'posTags.contraction': return 'Contraction';
+			case 'posTags.counter': return 'Counter';
+			case 'posTags.det': return 'Determiner';
+			case 'posTags.grammar': return 'Grammar';
+			case 'posTags.infix': return 'Infix';
+			case 'posTags.interfix': return 'Interfix';
+			case 'posTags.intj': return 'Interjection';
+			case 'posTags.name': return 'Proper noun';
+			case 'posTags.noun': return 'Noun';
+			case 'posTags.num': return 'Numeral';
+			case 'posTags.particle': return 'Particle';
+			case 'posTags.perp': return 'Preposition/Postposition';
+			case 'posTags.phrase': return 'Phrase';
+			case 'posTags.postp': return 'Postposition';
+			case 'posTags.prefix': return 'Prefix';
+			case 'posTags.prep': return 'Preposition';
+			case 'posTags.prep_phrase': return 'Prepositional phrase';
+			case 'posTags.preverb': return 'Preverb';
+			case 'posTags.pron': return 'Pronoun';
+			case 'posTags.proverb': return 'Proverb';
+			case 'posTags.punct': return 'Punctuation';
+			case 'posTags.romanization': return 'Romanization';
+			case 'posTags.root': return 'Root';
+			case 'posTags.suffix': return 'Suffix';
+			case 'posTags.syllable': return 'Syllable';
+			case 'posTags.symbol': return 'Symbol';
+			case 'posTags.verb': return 'Verb';
 			case 'purchase.premium_plan': return 'Premium Plan';
 			case 'purchase.premium_plan_description': return 'This plan allows unlimited use of all DiQt features.';
 			case 'purchase.trial_period_description': return 'Start with a 7-day free trial.';

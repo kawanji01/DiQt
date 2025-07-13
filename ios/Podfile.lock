@@ -232,6 +232,11 @@ PODS:
   - RevenueCat (5.20.2)
   - rive_common (0.0.1):
     - Flutter
+  - Sentry/HybridSDK (8.46.0)
+  - sentry_flutter (8.14.2):
+    - Flutter
+    - FlutterMacOS
+    - Sentry/HybridSDK (= 8.46.0)
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
@@ -279,6 +284,7 @@ DEPENDENCIES:
   - pointer_interceptor_ios (from `.symlinks/plugins/pointer_interceptor_ios/ios`)
   - purchases_flutter (from `.symlinks/plugins/purchases_flutter/ios`)
   - rive_common (from `.symlinks/plugins/rive_common/ios`)
+  - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
@@ -316,6 +322,7 @@ SPEC REPOS:
     - PromisesSwift
     - PurchasesHybridCommon
     - RevenueCat
+    - Sentry
     - TOCropViewController
     - Try
 
@@ -368,6 +375,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/purchases_flutter/ios"
   rive_common:
     :path: ".symlinks/plugins/rive_common/ios"
+  sentry_flutter:
+    :path: ".symlinks/plugins/sentry_flutter/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   shared_preferences_foundation:
@@ -435,6 +444,8 @@ SPEC CHECKSUMS:
   PurchasesHybridCommon: aeebb5b2a956514f8f3ebde2a1574e07d2164ae8
   RevenueCat: 9af6740f8629097fcacda9b3cb6b927319c53a26
   rive_common: dd421daaf9ae69f0125aa761dd96abd278399952
+  Sentry: da60d980b197a46db0b35ea12cb8f39af48d8854
+  sentry_flutter: 27892878729f42701297c628eb90e7c6529f3684
   share_plus: 50da8cb520a8f0f65671c6c6a99b3617ed10a58a
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   sign_in_with_apple: c5dcc141574c8c54d5ac99dd2163c0c72ad22418

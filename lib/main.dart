@@ -7,6 +7,7 @@ import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/mobile_ad_service.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:booqs_mobile/utils/remote_config_service.dart';
+import 'package:booqs_mobile/utils/sentry_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,42 +16,55 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:booqs_mobile/utils/safe_google_fonts.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
-  // 環境変数の読み込み　ref： https://pub.dev/packages/flutter_dotenv
-  await dotenv.load(fileName: ".env");
-  // RevenueCatの初期化
-  final purchase = PurchaseService();
-  purchase.initPlatformState();
   // runApp()を実行する前に Flutter Engine の機能を使いたい場合に呼び出しておくおまじないコード。
   // AdMobの初期化 や 画面の向きの固定 に必要。 ref: https://zenn.dev/sugitlab/books/flutter_poke_app_handson/viewer/step7
   WidgetsFlutterBinding.ensureInitialized();
-  // プッシュ通知やfirebaseClashlyticsなど、firebase関連の機能を使うための初期化
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  // クラッシュレポートの設定
-  CrashlyticsService.initialize();
-  // Google Analyticsの設定
-  //await AnalyticsService().logBeginCheckout();
-  // remoteConfigの設定
-  await RemoteConfigService().initRemoteConfig();
-  // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
-  MobileAdsService.initilize();
-  // MobileAds.instance.initialize();
-  // 画面の向きの固定 ref: https://qiita.com/osamu1203/items/6172df89f5270060a44d
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp, //縦固定
-  ]);
+  
+  // 環境変数の読み込み　ref： https://pub.dev/packages/flutter_dotenv
+  await dotenv.load(fileName: ".env");
+  
+  // Sentryの初期化
+  await SentryService.initialize();
+  
+  await SentryFlutter.init(
+    (options) => SentryService.configure(options),
+    appRunner: () async {
+      // RevenueCatの初期化
+      final purchase = PurchaseService();
+      purchase.initPlatformState();
+      
+      // プッシュ通知やfirebaseClashlyticsなど、firebase関連の機能を使うための初期化
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      
+      // クラッシュレポートの設定
+      CrashlyticsService.initialize();
+      
+      // remoteConfigの設定
+      await RemoteConfigService().initRemoteConfig();
+      
+      // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
+      MobileAdsService.initilize();
+      
+      // 画面の向きの固定 ref: https://qiita.com/osamu1203/items/6172df89f5270060a44d
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp, //縦固定
+      ]);
 
-  runApp(
-    // Riverpodをアプリに適用
-    ProviderScope(
-      // i18n(slang)の適応 ref: https://pub.dev/packages/slang#getting-started
-      child: TranslationProvider(
-        child: const DiQt(),
-      ),
-    ),
+      runApp(
+        // Riverpodをアプリに適用
+        ProviderScope(
+          // i18n(slang)の適応 ref: https://pub.dev/packages/slang#getting-started
+          child: TranslationProvider(
+            child: const DiQt(),
+          ),
+        ),
+      );
+    },
   );
 }
 

@@ -55,6 +55,7 @@ class TranslationsJa implements Translations {
 	@override late final _TranslationsLayoutsJa layouts = _TranslationsLayoutsJa._(_root);
 	@override late final _TranslationsNotesJa notes = _TranslationsNotesJa._(_root);
 	@override late final _TranslationsNoticesJa notices = _TranslationsNoticesJa._(_root);
+	@override late final _TranslationsPosTagsJa posTags = _TranslationsPosTagsJa._(_root);
 	@override late final _TranslationsPurchaseJa purchase = _TranslationsPurchaseJa._(_root);
 	@override late final _TranslationsQuizRequestsJa quizRequests = _TranslationsQuizRequestsJa._(_root);
 	@override late final _TranslationsQuizzesJa quizzes = _TranslationsQuizzesJa._(_root);
@@ -1097,6 +1098,54 @@ class _TranslationsNoticesJa implements TranslationsNoticesEn {
 	@override String ranking_position({required Object rank}) => '${rank}位';
 	@override String get answers_count => '解答数';
 	@override String answer_times({required Object count}) => '${count}回';
+}
+
+// Path: posTags
+class _TranslationsPosTagsJa implements TranslationsPosTagsEn {
+	_TranslationsPosTagsJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get abbrev => '略語';
+	@override String get adj => '形容詞';
+	@override String get adv => '副詞';
+	@override String get affix => '接辞';
+	@override String get article => '冠詞';
+	@override String get aux => '助動詞';
+	@override String get character => '文字';
+	@override String get circumfix => '周辞';
+	@override String get circumpos => '周置詞';
+	@override String get classifier => '類別詞';
+	@override String get combining_form => '結合形';
+	@override String get conj => '接続詞';
+	@override String get contraction => '短縮形';
+	@override String get counter => '助数詞';
+	@override String get det => '限定詞';
+	@override String get grammar => '文法';
+	@override String get infix => '内辞';
+	@override String get interfix => '間辞';
+	@override String get intj => '間投詞';
+	@override String get name => '固有名詞';
+	@override String get noun => '名詞';
+	@override String get num => '数詞';
+	@override String get particle => '助詞';
+	@override String get perp => '前後置詞';
+	@override String get phrase => 'フレーズ';
+	@override String get postp => '後置詞';
+	@override String get prefix => '接頭辞';
+	@override String get prep => '前置詞';
+	@override String get prep_phrase => '前置詞句';
+	@override String get preverb => '前動詞';
+	@override String get pron => '代名詞';
+	@override String get proverb => 'ことわざ';
+	@override String get punct => '句読点';
+	@override String get romanization => 'ローマ字';
+	@override String get root => '語根';
+	@override String get suffix => '接尾辞';
+	@override String get syllable => '音節';
+	@override String get symbol => '記号';
+	@override String get verb => '動詞';
 }
 
 // Path: purchase
@@ -2800,6 +2849,45 @@ extension on TranslationsJa {
 			case 'notices.ranking_position': return ({required Object rank}) => '${rank}位';
 			case 'notices.answers_count': return '解答数';
 			case 'notices.answer_times': return ({required Object count}) => '${count}回';
+			case 'posTags.abbrev': return '略語';
+			case 'posTags.adj': return '形容詞';
+			case 'posTags.adv': return '副詞';
+			case 'posTags.affix': return '接辞';
+			case 'posTags.article': return '冠詞';
+			case 'posTags.aux': return '助動詞';
+			case 'posTags.character': return '文字';
+			case 'posTags.circumfix': return '周辞';
+			case 'posTags.circumpos': return '周置詞';
+			case 'posTags.classifier': return '類別詞';
+			case 'posTags.combining_form': return '結合形';
+			case 'posTags.conj': return '接続詞';
+			case 'posTags.contraction': return '短縮形';
+			case 'posTags.counter': return '助数詞';
+			case 'posTags.det': return '限定詞';
+			case 'posTags.grammar': return '文法';
+			case 'posTags.infix': return '内辞';
+			case 'posTags.interfix': return '間辞';
+			case 'posTags.intj': return '間投詞';
+			case 'posTags.name': return '固有名詞';
+			case 'posTags.noun': return '名詞';
+			case 'posTags.num': return '数詞';
+			case 'posTags.particle': return '助詞';
+			case 'posTags.perp': return '前後置詞';
+			case 'posTags.phrase': return 'フレーズ';
+			case 'posTags.postp': return '後置詞';
+			case 'posTags.prefix': return '接頭辞';
+			case 'posTags.prep': return '前置詞';
+			case 'posTags.prep_phrase': return '前置詞句';
+			case 'posTags.preverb': return '前動詞';
+			case 'posTags.pron': return '代名詞';
+			case 'posTags.proverb': return 'ことわざ';
+			case 'posTags.punct': return '句読点';
+			case 'posTags.romanization': return 'ローマ字';
+			case 'posTags.root': return '語根';
+			case 'posTags.suffix': return '接尾辞';
+			case 'posTags.syllable': return '音節';
+			case 'posTags.symbol': return '記号';
+			case 'posTags.verb': return '動詞';
 			case 'purchase.premium_plan': return 'プレミアムプラン';
 			case 'purchase.premium_plan_description': return 'DiQtのすべての機能が使い放題になるプランです。';
 			case 'purchase.trial_period_description': return '今なら７日間の無料体験期間つき！';
