@@ -35,50 +35,34 @@ class RemoteChapters {
       if (res.statusCode != 200) return null;
       final Map<String, dynamic> resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return null;
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }
 
-  static Future<Map?> activities(
-      String publicUid, int pageKey, int pageSize) async {
+  static Future<Map?> examDrills(String publicUid) async {
     try {
       final Uri url = Uri.parse(
-          '${DiQtURL.root()}/api/v1/mobile/chapters/$publicUid/activities?page=$pageKey&size=$pageSize');
+          '${DiQtURL.root()}/api/v1/mobile/chapters/$publicUid/exam_drills');
       final Response res = await HttpService.get(url);
-
       if (res.statusCode != 200) return null;
       final Map<String, dynamic> resMap = json.decode(res.body);
       return resMap;
-    } catch (e) {
+    } on TimeoutException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
-    }
-  }
-
-  static Future<Map?> ranking(String publicUid) async {
-    try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.root()}/api/v1/mobile/chapters/$publicUid/ranking');
-      final Response res = await HttpService.get(url);
-
-      if (res.statusCode != 200) return null;
-      final Map<String, dynamic> resMap = json.decode(res.body);
-      return resMap;
-    } catch (e) {
+    } on SocketException catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
-    }
-  }
-
-  static Future<Map?> school(String publicUid) async {
-    try {
-      final Uri url = Uri.parse(
-          '${DiQtURL.root()}/api/v1/mobile/chapters/school?uid=$publicUid');
-      final Response res = await HttpService.get(url);
-
-      if (res.statusCode != 200) return null;
-      final Map<String, dynamic> resMap = json.decode(res.body);
-      return resMap;
-    } catch (e) {
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
       return null;
     }
   }

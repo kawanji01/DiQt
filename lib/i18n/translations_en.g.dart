@@ -600,6 +600,7 @@ class TranslationsDrillsEn {
 	String get new_lap_description => 'Return all questions unanswered. Are you sure?';
 	String get new_lap_started => 'All questions were returned unanswered and a new round started.';
 	String get require_login => 'Please log in to solve problems.';
+	String get exam => 'Exam';
 }
 
 // Path: errors
@@ -2432,6 +2433,7 @@ extension on Translations {
 			case 'drills.new_lap_description': return 'Return all questions unanswered. Are you sure?';
 			case 'drills.new_lap_started': return 'All questions were returned unanswered and a new round started.';
 			case 'drills.require_login': return 'Please log in to solve problems.';
+			case 'drills.exam': return 'Exam';
 			case 'errors.error_message_404': return 'Page Not Found...';
 			case 'errors.error_message_505': return 'I\'m so sorry. This is internal server error.';
 			case 'errors.cant_be_blank': return 'This field can\'t be blank.';

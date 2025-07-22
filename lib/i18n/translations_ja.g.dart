@@ -596,6 +596,7 @@ class _TranslationsDrillsJa implements TranslationsDrillsEn {
 	@override String get new_lap_description => 'すべての問題を未解答に戻します。よろしいですか？';
 	@override String get new_lap_started => 'すべての問題を未解答に戻し、新たな周回を始めました。';
 	@override String get require_login => '問題を解くにはログインが必要です。';
+	@override String get exam => '試験';
 }
 
 // Path: errors
@@ -2428,6 +2429,7 @@ extension on TranslationsJa {
 			case 'drills.new_lap_description': return 'すべての問題を未解答に戻します。よろしいですか？';
 			case 'drills.new_lap_started': return 'すべての問題を未解答に戻し、新たな周回を始めました。';
 			case 'drills.require_login': return '問題を解くにはログインが必要です。';
+			case 'drills.exam': return '試験';
 			case 'errors.error_message_404': return 'ページが見つかりませんでした。';
 			case 'errors.error_message_505': return '大変申し訳ございません。サーバーでエラーが発生しました。';
 			case 'errors.cant_be_blank': return 'この項目は空欄にできません。';

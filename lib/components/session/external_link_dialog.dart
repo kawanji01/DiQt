@@ -60,6 +60,7 @@ class ExternalLinkDialogState extends ConsumerState<ExternalLinkDialog> {
         url =
             "${DiQtURL.root(locale: locale)}/api/v1/mobile/sessions/verify_onetime_passcode?onetime_passcode=$_onetimePasscode";
       }
+      print('url: $url');
       WebPageLauncher.openByExternalBrowser(url);
     }
 
@@ -88,7 +89,7 @@ class ExternalLinkDialogState extends ConsumerState<ExternalLinkDialog> {
         );
       } else {
         return Container(
-          margin: const EdgeInsets.only(left: 12, right: 12, bottom: 24),
+          margin: const EdgeInsets.only(bottom: 24),
           width: MediaQuery.of(context).size.width,
           height: 40,
           child: ElevatedButton(

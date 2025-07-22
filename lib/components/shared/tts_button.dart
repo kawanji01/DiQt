@@ -50,6 +50,7 @@ class TtsButton extends StatelessWidget {
       child: const Icon(
         Icons.volume_up,
         size: 28.0,
+        color: Colors.white,
       ),
     );
   }
