@@ -27,6 +27,18 @@ final asynChapterDrillsProvider = FutureProvider<List<Drill>?>((ref) async {
   return drills;
 });
 
+// 非同期でChapterのExamModeのDrillsを取得する
+final asyncChapterExamDrillsProvider =
+    FutureProvider<List<Drill>?>((ref) async {
+  final Chapter? chapter = ref.read(chapterProvider);
+  final Map? resMap = await RemoteChapters.examDrills(chapter!.publicUid);
+  if (resMap == null) return null;
+  List<Drill> drills = [];
+  resMap['drills'].forEach((e) => drills.add(Drill.fromJson(e)));
+
+  return drills;
+});
+
 // チャプターのリスト
 final chaptersProvider = StateProvider<List<Chapter>>((ref) => []);
 // 非同期でチャプターのリストを取得する（chaptersProviderも更新する）

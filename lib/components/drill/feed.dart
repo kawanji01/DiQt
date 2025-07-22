@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 
 class DrillFeed extends StatelessWidget {
   const DrillFeed({super.key, required this.drills});
-  final List<Drill> drills;
+  final List<Drill>? drills;
 
   @override
   Widget build(BuildContext context) {
-    if (drills.isEmpty) {
+    if (drills == null || drills!.isEmpty) {
       return Container(
           margin: const EdgeInsets.only(top: 32),
           child: Text(
@@ -21,7 +21,7 @@ class DrillFeed extends StatelessWidget {
           ));
     }
     return Column(
-      children: drills.map((drill) => DrillListItem(drill: drill)).toList(),
+      children: drills!.map((drill) => DrillListItem(drill: drill)).toList(),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/components/chapter/introduction.dart';
 import 'package:booqs_mobile/components/drill/feed.dart';
 import 'package:booqs_mobile/components/shared/loading_spinner.dart';
+import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,20 +20,62 @@ class ChapterDrillsState extends ConsumerState<ChapterDrills> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.invalidate(asynChapterDrillsProvider);
+      ref.invalidate(asyncChapterExamDrillsProvider);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final Chapter? chapter = ref.watch(chapterProvider);
-    final future = ref.watch(asynChapterDrillsProvider);
-
+    final drillFuture = ref.watch(asynChapterDrillsProvider);
+    final examFuture = ref.watch(asyncChapterExamDrillsProvider);
     //
-    Widget buildCards() {
-      return future.when(
+    Widget buildDrillsCards() {
+      return drillFuture.when(
           loading: () => const LoadingSpinner(),
           error: (err, stack) => Text('Error: $err'),
-          data: (drills) => DrillFeed(drills: drills!));
+          data: (drills) => drills == null || drills.isEmpty
+              ? const SizedBox.shrink()
+              : Column(
+                  children: [
+                    Text(
+                      t.chapters.drill,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    DrillFeed(drills: drills)
+                  ],
+                ));
+    }
+
+    Widget buildExamDrillsCards() {
+      return examFuture.when(
+          loading: () => const LoadingSpinner(),
+          error: (err, stack) => Text('Error: $err'),
+          data: (drills) => drills == null || drills.isEmpty
+              ? const SizedBox.shrink()
+              : Column(
+                  children: [
+                    Text(
+                      '試験',
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    DrillFeed(drills: drills)
+                  ],
+                ));
     }
 
     return SingleChildScrollView(
@@ -47,7 +90,8 @@ class ChapterDrillsState extends ConsumerState<ChapterDrills> {
             const SizedBox(
               height: 40,
             ),
-            buildCards(),
+            buildExamDrillsCards(),
+            buildDrillsCards(),
           ],
         ),
       ),

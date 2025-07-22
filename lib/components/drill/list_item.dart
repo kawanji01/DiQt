@@ -7,6 +7,7 @@ import 'package:booqs_mobile/models/drill_lap.dart';
 import 'package:booqs_mobile/models/user.dart';
 import 'package:booqs_mobile/pages/drill/unsolved.dart';
 import 'package:booqs_mobile/pages/user/mypage.dart';
+import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -36,8 +37,13 @@ class DrillListItem extends ConsumerWidget {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         UserMyPage.push(context);
       } else {
-        ref.read(drillProvider.notifier).state = drill;
-        DrillUnsolvedPage.push(context);
+        if (drill.examMode) {
+          DiQtBrowserDialog.open(
+              context, '/drills/${drill.publicUid}/unsolved');
+        } else {
+          ref.read(drillProvider.notifier).state = drill;
+          DrillUnsolvedPage.push(context);
+        }
       }
     }
 
@@ -69,9 +75,32 @@ class DrillListItem extends ConsumerWidget {
             ListTile(
               title: Container(
                 padding: const EdgeInsets.only(top: 8),
-                child: Text(drill.title,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18)),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(drill.title,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18)),
+                    ),
+                    if (drill.examMode)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Text(
+                          t.drills.exam,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
               subtitle: subtitle(),
             ),
