@@ -1,4 +1,4 @@
-import 'package:booqs_mobile/components/word/item/ja_meaning.dart';
+import 'package:booqs_mobile/components/word/item/meaning_ja.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +14,12 @@ class WordItemMeanings extends StatelessWidget {
     //    word.jaMeaning != '' &&
     //    word.enMeaning != null &&
     //    word.enMeaning != '') {
-    if (word.jaMeaning != null && word.jaMeaning != '') {
+    if (word.meaningJa != null && word.meaningJa != '') {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           WordItemMeaning(word: word),
-          WordItemJaMeaning(word: word),
+          WordItemMeaningJa(word: word),
         ],
       );
     }

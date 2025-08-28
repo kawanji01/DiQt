@@ -16,8 +16,8 @@ class Word {
     required this.langNumberOfEntry,
     this.entrySsml,
     required this.meaning,
-    this.jaMeaning,
-    this.enMeaning,
+    this.meaningJa,
+    this.meaningEn,
     required this.langNumberOfMeaning,
     this.explanation = '',
     this.meaningImageUrl,
@@ -54,8 +54,8 @@ class Word {
   int langNumberOfEntry;
   String? entryAudioUrl;
   String meaning;
-  String? jaMeaning;
-  String? enMeaning;
+  String? meaningJa;
+  String? meaningEn;
   int langNumberOfMeaning;
   String? explanation;
   String? meaningImageUrl;
@@ -91,8 +91,9 @@ class Word {
         entrySsml = json['entry_ssml'],
         entryAudioUrl = json['entry_audio_url'],
         meaning = json['meaning'],
-        jaMeaning = json['ja_meaning'],
-        enMeaning = json['en_meaning'],
+        // 後方互換性を保つため、新旧両方のカラム名に対応
+        meaningJa = json['meaning_ja'] ?? json['ja_meaning'],
+        meaningEn = json['meaning_en'] ?? json['en_meaning'],
         langNumberOfMeaning = json['lang_number_of_meaning'],
         explanation = json['explanation'],
         meaningImageUrl = json['meaning_image_url'],
@@ -148,8 +149,8 @@ class Word {
         'entry_ssml': entrySsml,
         'entry_audio_url': entryAudioUrl,
         'meaning': meaning,
-        'ja_meaning': jaMeaning,
-        'en_meaning': enMeaning,
+        'meaning_ja': meaningJa,
+        'meaning_en': meaningEn,
         'lang_number_of_meaning': langNumberOfMeaning,
         'explanation': explanation,
         'meaning_image_url': meaningImageUrl,

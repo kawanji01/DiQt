@@ -3,13 +3,13 @@ import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
 
-class WordItemJaMeaning extends StatelessWidget {
-  const WordItemJaMeaning({super.key, required this.word});
+class WordItemMeaningJa extends StatelessWidget {
+  const WordItemMeaningJa({super.key, required this.word});
   final Word word;
 
   @override
   Widget build(BuildContext context) {
-    if (word.jaMeaning == null) {
+    if (word.meaningJa == null) {
       return const SizedBox.shrink();
     }
     return Column(
@@ -19,7 +19,7 @@ class WordItemJaMeaning extends StatelessWidget {
         SharedItemLabel(text: t.words.ja_meaning),
         const SizedBox(height: 16),
         Text(
-          word.jaMeaning ?? '',
+          word.meaningJa ?? '',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
