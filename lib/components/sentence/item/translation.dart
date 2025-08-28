@@ -19,11 +19,11 @@ class SentenceItemTranslation extends StatelessWidget {
           sentence.translation,
           style: const TextStyle(fontSize: 16, color: Colors.black87),
         ),
-        if (sentence.jaTranslation != null &&
-            sentence.jaTranslation!.isNotEmpty) ...[
+        if (sentence.translationJa != null &&
+            sentence.translationJa!.isNotEmpty) ...[
           const SizedBox(height: 8),
           Text(
-            sentence.jaTranslation!,
+            sentence.translationJa!,
             style: const TextStyle(fontSize: 16, color: Colors.black87),
           ),
         ],
