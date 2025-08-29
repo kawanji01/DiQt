@@ -52,7 +52,7 @@ class WordControllerMapState
         'entry_ssml': TextEditingController(text: word.entrySsml),
         'reading': TextEditingController(text: word.reading),
         'meaning': TextEditingController(text: word.meaning),
-        'ja_meaning': TextEditingController(text: word.jaMeaning),
+        'meaning_ja': TextEditingController(text: word.meaningJa),
         'pos_tag_id': TextEditingController(
             text: word.posTagId == null ? '' : word.posTagId.toString()),
         'ipa': TextEditingController(text: word.ipa),

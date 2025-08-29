@@ -1,4 +1,5 @@
-import 'package:booqs_mobile/components/word/item/ja_meaning.dart';
+import 'package:booqs_mobile/components/word/item/meaning_en.dart';
+import 'package:booqs_mobile/components/word/item/meaning_ja.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
 import 'package:booqs_mobile/models/word.dart';
 import 'package:flutter/material.dart';
@@ -9,17 +10,25 @@ class WordItemMeanings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: en_meaningの転機が確実になった場合には、en_meaningの検証するようにする。
-    // if (word.jaMeaning != null &&
-    //    word.jaMeaning != '' &&
-    //    word.enMeaning != null &&
-    //    word.enMeaning != '') {
-    if (word.jaMeaning != null && word.jaMeaning != '') {
+    if (word.langCodeOfMeaning() == 'ja' &&
+        word.meaningEn != null &&
+        word.meaningEn != '') {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           WordItemMeaning(word: word),
-          WordItemJaMeaning(word: word),
+          WordItemMeaningEn(word: word),
+        ],
+      );
+    }
+    if (word.langCodeOfMeaning() == 'en' &&
+        word.meaningJa != null &&
+        word.meaningJa != '') {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          WordItemMeaning(word: word),
+          WordItemMeaningJa(word: word),
         ],
       );
     }

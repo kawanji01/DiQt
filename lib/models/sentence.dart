@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence_source.dart';
@@ -13,7 +14,8 @@ class Sentence {
     this.originalAudioUrl,
     required this.translation,
     required this.langNumberOfTranslation,
-    this.jaTranslation,
+    this.translationJa,
+    this.translationEn,
     this.explanation,
     required this.acceptedSentenceRequestsCount,
     required this.pendingSentenceRequestsCount,
@@ -35,7 +37,8 @@ class Sentence {
   String? originalAudioUrl;
   String translation;
   int langNumberOfTranslation;
-  String? jaTranslation;
+  String? translationJa;
+  String? translationEn;
   String? explanation;
   int acceptedSentenceRequestsCount;
   int pendingSentenceRequestsCount;
@@ -57,7 +60,9 @@ class Sentence {
         originalAudioUrl = json['original_audio_url'],
         translation = json['translation'] ?? '',
         langNumberOfTranslation = json['lang_number_of_translation'],
-        jaTranslation = json['ja_translation'],
+        // 後方互換性を保つため、新旧両方のカラム名に対応
+        translationJa = json['translation_ja'] ?? json['ja_translation'],
+        translationEn = json['translation_en'] ?? json['en_translation'],
         explanation = json['explanation'],
         acceptedSentenceRequestsCount =
             json['accepted_sentence_requests_count'],
@@ -76,6 +81,13 @@ class Sentence {
             ? null
             : Dictionary.fromJson(json['dictionary']);
 
+  // 言語番号から言語コードを取得
+  String langCodeOfTranslation() {
+    return languageCodeMap.entries
+        .firstWhere((entry) => entry.value == langNumberOfTranslation)
+        .key;
+  }
+
   // 却下されたwordRequestのリクエストの数
   int rejectedSentenceRequestsCount() =>
       sentenceRequestsCount -
@@ -93,7 +105,8 @@ class Sentence {
         'original_audio_url': originalAudioUrl,
         'translation': translation,
         'lang_number_of_translation': langNumberOfTranslation,
-        'ja_translation': jaTranslation,
+        'translation_ja': translationJa,
+        'translation_en': translationEn,
         'accepted_sentence_requests_count': acceptedSentenceRequestsCount,
         'pending_sentence_requests_count': pendingSentenceRequestsCount,
         'sentence_requests_count': sentenceRequestsCount,

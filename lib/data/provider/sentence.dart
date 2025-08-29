@@ -43,8 +43,10 @@ class SentenceControllerMapState
         'original_ssml':
             TextEditingController(text: sentence.originalSsml ?? ''),
         'translation': TextEditingController(text: sentence.translation),
-        'ja_translation':
-            TextEditingController(text: sentence.jaTranslation ?? ''),
+        'translation_ja':
+            TextEditingController(text: sentence.translationJa ?? ''),
+        'translation_en':
+            TextEditingController(text: sentence.translationEn ?? ''),
         'explanation': TextEditingController(text: sentence.explanation ?? ''),
         'comment': TextEditingController(),
         'dictionary_id':
