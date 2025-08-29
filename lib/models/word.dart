@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/grammatical_tag.dart';
 import 'package:booqs_mobile/models/pos_tag.dart';
@@ -135,6 +136,13 @@ class Word {
             : json['grammatical_tags']
                 .map<GrammaticalTag>((e) => GrammaticalTag.fromJson(e))
                 .toList();
+
+  // 言語番号から言語コードを取得
+  String langCodeOfMeaning() {
+    return languageCodeMap.entries
+        .firstWhere((entry) => entry.value == langNumberOfMeaning)
+        .key;
+  }
 
   // 却下されたwordRequestのリクエストの数
   int rejectedWordRequestsCount() =>
