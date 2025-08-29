@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/sentence_source.dart';
@@ -79,6 +80,13 @@ class Sentence {
         dictionary = json['dictionary'] == null
             ? null
             : Dictionary.fromJson(json['dictionary']);
+
+  // 言語番号から言語コードを取得
+  String langCodeOfTranslation() {
+    return languageCodeMap.entries
+        .firstWhere((entry) => entry.value == langNumberOfTranslation)
+        .key;
+  }
 
   // 却下されたwordRequestのリクエストの数
   int rejectedSentenceRequestsCount() =>

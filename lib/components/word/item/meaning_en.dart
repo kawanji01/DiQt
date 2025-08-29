@@ -1,10 +1,6 @@
-import 'package:booqs_mobile/components/lang/small_translation_buttons.dart';
-import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
-import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
