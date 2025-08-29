@@ -1,67 +1,48 @@
-// ✅ `plugins {}` は最上部に移動
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "dev.flutter.flutter-gradle-plugin"   // Flutter 本体の Gradle プラグイン
+    id "com.google.gms.google-services"
+    id "com.google.firebase.crashlytics"
 }
 
-// ✅ `local.properties` の読み込み
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
+    localPropertiesFile.withReader('UTF-8') { reader -> localProperties.load(reader) }
 }
 
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new FileNotFoundException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-}
-
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode') ?: '1'
+def flutterVersionCode = (localProperties.getProperty('flutter.versionCode') ?: '1').toInteger()
 def flutterVersionName = localProperties.getProperty('flutter.versionName') ?: '1.0'
 
-// ✅ ここを復元（Flutter Gradle スクリプトを適用）
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
-// ✅ キーストア設定の読み込み
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
-
 android {
+    namespace "com.booqs.booqs_mobile"
     compileSdk 35
-    namespace 'com.booqs.booqs_mobile'
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = '17'
-    }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
 
     defaultConfig {
         applicationId "com.booqs.booqs_mobile"
         minSdkVersion 23
         targetSdkVersion 35
-        versionCode flutterVersionCode.toInteger()
+        versionCode flutterVersionCode
         versionName flutterVersionName
     }
 
-    ndkVersion "25.1.8937393"
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
+    }
+    kotlinOptions { jvmTarget = "17" }
+
+    ndkVersion "26.1.10909125"
 
     signingConfigs {
         release {
+            def keystoreProperties = new Properties()
+            def keystorePropertiesFile = rootProject.file('key.properties')
+            if (keystorePropertiesFile.exists()) {
+                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+            }
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
             storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
@@ -78,7 +59,6 @@ android {
     }
 }
 
-// ✅ ここでエラーが出ていたので、`apply from:` を復元したことで問題解決
 flutter {
     source '../..'
 }
@@ -86,4 +66,5 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "com.google.firebase:firebase-messaging:21.0.1"
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.0.4"
 }
