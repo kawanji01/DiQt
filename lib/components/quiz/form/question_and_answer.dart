@@ -2,8 +2,7 @@ import 'package:booqs_mobile/components/quiz/form/correct_answer.dart';
 import 'package:booqs_mobile/components/quiz/form/question.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
-import 'package:booqs_mobile/pages/sentence/edit.dart';
-import 'package:booqs_mobile/pages/word/edit.dart';
+import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,7 +35,9 @@ class QuizFormQuestionAndAnswer extends ConsumerWidget {
           ),
           onPressed: () async {
             Navigator.of(context).pop();
-            WordEditPage.push(context, wordId);
+            // ２８言語対応でフォーム画面の仕様が複雑化したので、Web編集画面に一本化する。
+            DiQtBrowserDialog.open(context, '/words/$wordId/edit');
+            // WordEditPage.push(context, wordId);
           },
           child: Text(t.quizzes.word_quiz_edit_prevention,
               style: const TextStyle(
@@ -55,7 +56,9 @@ class QuizFormQuestionAndAnswer extends ConsumerWidget {
           ),
           onPressed: () {
             Navigator.of(context).pop();
-            SentenceEditPage.push(context, sentenceId);
+            // ２８言語対応でフォーム画面の仕様が複雑化したので、Web編集画面に一本化する。
+            DiQtBrowserDialog.open(context, '/sentences/$sentenceId/edit');
+            // SentenceEditPage.push(context, sentenceId);
           },
           child: Text(t.quizzes.sentence_quiz_edit_prevention,
               style: const TextStyle(

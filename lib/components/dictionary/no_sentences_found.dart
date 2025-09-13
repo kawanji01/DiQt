@@ -1,7 +1,7 @@
 import 'package:booqs_mobile/components/ad/banner.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/pages/sentence/new.dart';
 import 'package:booqs_mobile/components/button/small_outline_gray_button.dart';
+import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryNoSentencesFound extends StatelessWidget {
@@ -16,7 +16,10 @@ class DictionaryNoSentencesFound extends StatelessWidget {
     Widget newSentenceButton() {
       return InkWell(
         onTap: () {
-          SentenceNewPage.push(context, dictionaryId, keyword);
+          // ２８言語対応でフォーム画面の仕様が複雑化したので、Web編集画面に一本化する。
+          DiQtBrowserDialog.open(
+              context, '/sentences/new?dictionary_id=$dictionaryId');
+          // SentenceNewPage.push(context, dictionaryId, keyword);
         },
         child: SmallOutlineGrayButton(label: t.sentences.add, icon: Icons.add),
       );

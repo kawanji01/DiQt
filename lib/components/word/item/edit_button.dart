@@ -1,17 +1,17 @@
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
-import 'package:booqs_mobile/data/provider/word.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/word.dart';
-import 'package:booqs_mobile/pages/word/edit.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
+import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WordItemEditButton extends ConsumerWidget {
-  const WordItemEditButton({super.key, required this.word, required this.isShow});
+  const WordItemEditButton(
+      {super.key, required this.word, required this.isShow});
   final Word word;
   final bool isShow;
 
@@ -32,13 +32,15 @@ class WordItemEditButton extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 15),
           ),
           onPressed: () {
-            if (isEditing) {
-              // 画面遷移を防ぎ、フォーム情報の干渉を防ぐために、外部ブラウザでページを開く。
-              WebPageLauncher.openByExternalBrowser('$url/edit');
-            } else {
-              ref.read(wordProvider.notifier).state = word;
-              WordEditPage.push(context, word.id);
-            }
+            // ２８言語対応でフォーム画面の仕様が複雑化したので、Web編集画面に一本化する。
+            DiQtBrowserDialog.open(context, '/words/${word.id}/edit');
+            // if (isEditing) {
+            // 画面遷移を防ぎ、フォーム情報の干渉を防ぐために、外部ブラウザでページを開く。
+            //  WebPageLauncher.openByExternalBrowser('$url/edit');
+            // } else {
+            //  ref.read(wordProvider.notifier).state = word;
+            //  WordEditPage.push(context, word.id);
+            // }
           },
           child: Text(
             t.words.edit,
