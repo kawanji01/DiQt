@@ -2,8 +2,8 @@ import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/data/provider/shared.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/sentence.dart';
-import 'package:booqs_mobile/pages/sentence/edit.dart';
 import 'package:booqs_mobile/pages/sentence/show.dart';
+import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
@@ -33,11 +33,13 @@ class SentenceItemEditButton extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 15),
           ),
           onPressed: () {
-            if (isEditing) {
-              WebPageLauncher.openByExternalBrowser('$url/edit');
-            } else {
-              SentenceEditPage.push(context, sentence.id);
-            }
+            // ２８言語対応でフォーム画面の仕様が複雑化したので、Web編集画面に一本化する。
+            DiQtBrowserDialog.open(context, '/sentences/${sentence.id}/edit');
+            // if (isEditing) {
+            //  WebPageLauncher.openByExternalBrowser('$url/edit');
+            // } else {
+            //  SentenceEditPage.push(context, sentence.id);
+            // }
           },
           child: Text(
             t.sentences.edit,
@@ -64,6 +66,7 @@ class SentenceItemEditButton extends ConsumerWidget {
           onPressed: () {
             if (isEditing) {
               WebPageLauncher.openByExternalBrowser(url);
+              DiQtBrowserDialog.open(context, url);
             } else {
               SentenceShowPage.push(context, sentence.id);
             }

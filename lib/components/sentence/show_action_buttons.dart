@@ -1,6 +1,6 @@
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
-import 'package:booqs_mobile/pages/sentence/edit.dart';
+import 'package:booqs_mobile/utils/diqt_browser_dialog.dart';
 import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/web_page_launcher.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +19,10 @@ class SentenceShowActionButtons extends ConsumerWidget {
     Future pushPopup(int value, int sentenceId) async {
       switch (value) {
         case 0:
-          // 項目を編集する
-          SentenceEditPage.push(context, sentenceId);
+          // 例文を編集する
+          // ２８言語対応でフォーム画面の仕様が複雑化したので、Web編集画面に一本化する。
+          DiQtBrowserDialog.open(context, '/sentences/$sentenceId/edit');
+          // SentenceEditPage.push(context, sentenceId);
           break;
         case 1:
           // Webで開く

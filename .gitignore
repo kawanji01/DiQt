@@ -47,6 +47,11 @@ app.*.map.json
 /android/app/release
 /android/app/build
 
+# Xcode/Flutter iOS build artifacts
+ios/build/
+ios/**/build/
+ios/**/DerivedData/
+
 # Environmental variables
 .env
 .env.development

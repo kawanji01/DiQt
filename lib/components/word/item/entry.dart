@@ -15,7 +15,7 @@ class WordItemEntry extends StatelessWidget {
     Widget pronunciationButton() {
       if (word!.entryAudioUrl == null || word!.entryAudioUrl == '') {
         return TtsButton(
-            speechText: word!.ipa!, langNumber: word!.langNumberOfEntry);
+            speechText: word?.ipa ?? '', langNumber: word!.langNumberOfEntry);
       } else {
         return AudioButton(url: word!.entryAudioUrl!);
       }
