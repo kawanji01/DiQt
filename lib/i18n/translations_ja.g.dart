@@ -756,12 +756,12 @@ class _TranslationsLangJa implements TranslationsLangEn {
 	@override String get af => 'アフリカーンス語';
 	@override String get sq => 'アルバニア語';
 	@override String get am => 'アムハラ語';
-	@override String get ar => 'アラビア文字';
+	@override String get ar => 'アラビア語';
 	@override String get hy => 'アルメニア語';
 	@override String get az => 'アゼルバイジャン語';
 	@override String get eu => 'バスク語';
 	@override String get be => 'ベラルーシ語';
-	@override String get bn => 'ベンガル文字';
+	@override String get bn => 'ベンガル語';
 	@override String get bs => 'ボスニア語';
 	@override String get bg => 'ブルガリア語';
 	@override String get ca => 'カタロニア語';
@@ -2540,12 +2540,12 @@ extension on TranslationsJa {
 			case 'lang.af': return 'アフリカーンス語';
 			case 'lang.sq': return 'アルバニア語';
 			case 'lang.am': return 'アムハラ語';
-			case 'lang.ar': return 'アラビア文字';
+			case 'lang.ar': return 'アラビア語';
 			case 'lang.hy': return 'アルメニア語';
 			case 'lang.az': return 'アゼルバイジャン語';
 			case 'lang.eu': return 'バスク語';
 			case 'lang.be': return 'ベラルーシ語';
-			case 'lang.bn': return 'ベンガル文字';
+			case 'lang.bn': return 'ベンガル語';
 			case 'lang.bs': return 'ボスニア語';
 			case 'lang.bg': return 'ブルガリア語';
 			case 'lang.ca': return 'カタロニア語';
@@ -3620,3 +3620,4 @@ extension on TranslationsJa {
 		}
 	}
 }
+

@@ -2,7 +2,7 @@ import 'package:booqs_mobile/components/layouts/app_bar/default.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
-import 'package:booqs_mobile/components/chapter/index.dart';
+import 'package:booqs_mobile/components/chapter/word_book_index.dart';
 import 'package:booqs_mobile/components/layouts/bottom_navbar/bottom_navbar.dart';
 import 'package:booqs_mobile/components/layouts/drawer_menu.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ class ChapterIndexPage extends StatelessWidget {
           margin: EdgeInsets.symmetric(
               vertical: 20,
               horizontal: ResponsiveValues.horizontalMargin(context)),
-          child: const ChapterIndex(),
+          child: const WordBookIndex(),
         ),
       ),
       bottomNavigationBar: const BottomNavbar(),
