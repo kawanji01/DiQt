@@ -227,3 +227,34 @@ const Map<String, int> cefrjLanguageCodeMap = {
   'tr': 98, // トルコ語
   'uz': 103, // ウズベク語
 };
+// 単語帳で使用できる辞書ID
+const Map<String, int> wordBookSupportedDictIds = {
+  'en': 1,
+  'es': 10,
+  'it': 11,
+  'ru': 13,
+  'fr': 14,
+  'de': 12,
+  'pt': 15,
+  'zh': 18,
+  'pl': 19,
+  'ar': 21,
+  'ja': 7,
+  'cs': 32,
+  'ko': 33,
+  'vi': 38,
+  'tr': 39,
+  'tl': 41,
+  'th': 48,
+  'hi': 46,
+  'id': 45,
+  'fa': 51,
+  'km': 59,
+  'ms': 65,
+  'bn': 68,
+  'my': 72,
+  'ur': 62,
+  'mn': 73,
+  'uz': 149,
+  'lo': 151
+};

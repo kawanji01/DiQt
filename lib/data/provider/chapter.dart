@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/data/provider/dictionary.dart';
 import 'package:booqs_mobile/data/remote/chapters.dart';
 import 'package:booqs_mobile/models/chapter.dart';
 import 'package:booqs_mobile/models/drill.dart';
@@ -48,5 +49,16 @@ final asyncChaptersProvider = FutureProvider<List<Chapter>>((ref) async {
   if (resMap == null) return chapters;
   resMap['chapters'].forEach((e) => chapters.add(Chapter.fromJson(e)));
   ref.read(chaptersProvider.notifier).state = chapters;
+  return chapters;
+});
+
+// 非同期で辞書の単語帳としてのチャプターのリストを取得する
+final asyncChapterWordBookProvider =
+    FutureProvider<List<Chapter>?>((ref) async {
+  final int dictionaryId = ref.read(wordBookDictionaryIdProvider);
+  final Map? resMap = await RemoteChapters.wordBooks(dictionaryId);
+  if (resMap == null) return null;
+  List<Chapter> chapters = [];
+  resMap['chapters'].forEach((e) => chapters.add(Chapter.fromJson(e)));
   return chapters;
 });
