@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 検索用の辞書ID
 final dictionaryIdProvider = StateProvider<int>((ref) => 1);
-
+// 単語帳用の辞書ID
+final wordBookDictionaryIdProvider = StateProvider<int>((ref) => 1);
 //
 final dictionaryProvider = StateProvider<Dictionary?>((ref) => null);
 final secondDictionaryProvider = StateProvider<Dictionary?>((ref) => null);

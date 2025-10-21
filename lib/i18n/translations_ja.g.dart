@@ -870,6 +870,11 @@ class _TranslationsLangJa implements TranslationsLangEn {
 	@override String get yi => 'イディッシュ語';
 	@override String get yo => 'ヨルバ語';
 	@override String get zu => 'ズールー語';
+	@override String get ff => 'フラニ語';
+	@override String get sa => 'サンスクリット語';
+	@override String get bo => 'チベット語';
+	@override String get ban => 'バリ語';
+	@override String get yue => '広東語';
 	@override String get af_ZA => 'アフリカーンス語（南アフリカ）';
 	@override String get sq_AL => 'アルバニア語（アルバニア）';
 	@override String get am_ET => 'アムハラ語（エチオピア）';
@@ -2649,6 +2654,11 @@ extension on TranslationsJa {
 			case 'lang.yi': return 'イディッシュ語';
 			case 'lang.yo': return 'ヨルバ語';
 			case 'lang.zu': return 'ズールー語';
+			case 'lang.ff': return 'フラニ語';
+			case 'lang.sa': return 'サンスクリット語';
+			case 'lang.bo': return 'チベット語';
+			case 'lang.ban': return 'バリ語';
+			case 'lang.yue': return '広東語';
 			case 'lang.af_ZA': return 'アフリカーンス語（南アフリカ）';
 			case 'lang.sq_AL': return 'アルバニア語（アルバニア）';
 			case 'lang.am_ET': return 'アムハラ語（エチオピア）';
@@ -3610,4 +3620,3 @@ extension on TranslationsJa {
 		}
 	}
 }
-

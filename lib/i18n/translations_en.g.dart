@@ -874,6 +874,11 @@ class TranslationsLangEn {
 	String get yi => 'Yiddish';
 	String get yo => 'Yoruba';
 	String get zu => 'Zulu';
+	String get ff => 'Fulah';
+	String get sa => 'Sanskrit';
+	String get bo => 'Tibetan';
+	String get ban => 'Balinese';
+	String get yue => 'Cantonese';
 	String get af_ZA => 'Afrikaans (South Africa)';
 	String get sq_AL => 'Albanian (Albania)';
 	String get am_ET => 'Amharic (Ethiopia)';
@@ -2653,6 +2658,11 @@ extension on Translations {
 			case 'lang.yi': return 'Yiddish';
 			case 'lang.yo': return 'Yoruba';
 			case 'lang.zu': return 'Zulu';
+			case 'lang.ff': return 'Fulah';
+			case 'lang.sa': return 'Sanskrit';
+			case 'lang.bo': return 'Tibetan';
+			case 'lang.ban': return 'Balinese';
+			case 'lang.yue': return 'Cantonese';
 			case 'lang.af_ZA': return 'Afrikaans (South Africa)';
 			case 'lang.sq_AL': return 'Albanian (Albania)';
 			case 'lang.am_ET': return 'Amharic (Ethiopia)';
@@ -3614,4 +3624,3 @@ extension on Translations {
 		}
 	}
 }
-
