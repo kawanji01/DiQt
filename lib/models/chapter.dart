@@ -11,7 +11,6 @@ class Chapter {
       required this.thumbnailUrl,
       required this.publicUid,
       required this.schoolId,
-      required this.private,
       this.referenceUrl,
       this.referenceTitle,
       this.referenceOgp,
@@ -32,7 +31,6 @@ class Chapter {
   String thumbnailUrl;
   String publicUid;
   int? schoolId;
-  bool private;
   String? referenceUrl;
   String? referenceTitle;
   String? referenceOgp;
@@ -54,7 +52,6 @@ class Chapter {
         thumbnailUrl = json['thumbnail_url'] ?? '',
         publicUid = json['public_uid'],
         schoolId = json['school_id'],
-        private = json['private'],
         referenceUrl = json['reference_url'],
         referenceTitle = json['reference_title'],
         referenceOgp = json['reference_ogp'],
@@ -80,7 +77,6 @@ class Chapter {
         'thumbnail_url': thumbnailUrl,
         'public_uid': publicUid,
         'school_id': schoolId,
-        'private': private,
         'reference_url': referenceUrl,
         'reference_title': referenceTitle,
         'reference_ogp': referenceOgp,

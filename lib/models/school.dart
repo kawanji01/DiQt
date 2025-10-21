@@ -8,7 +8,6 @@ class School {
     required this.membersLimit,
     required this.memberMapsCount,
     required this.chaptersCount,
-    required this.private,
     required this.appliedDictionaryId,
     required this.userId,
   });
@@ -21,7 +20,6 @@ class School {
   final int membersLimit;
   final int memberMapsCount;
   final int chaptersCount;
-  final bool private;
   final int appliedDictionaryId;
   final int userId;
 
@@ -35,7 +33,6 @@ class School {
       membersLimit: json['members_limit'],
       memberMapsCount: json['member_maps_count'],
       chaptersCount: json['chapters_count'],
-      private: json['private'],
       appliedDictionaryId: json['applied_dictionary_id'],
       userId: json['user_id'],
     );
@@ -50,7 +47,6 @@ class School {
         'members_limit': membersLimit,
         'member_maps_count': memberMapsCount,
         'chapters_count': chaptersCount,
-        'private': private,
         'applied_dictionary_id': appliedDictionaryId,
         'user_id': userId,
       };
