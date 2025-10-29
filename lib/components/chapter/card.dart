@@ -39,10 +39,13 @@ class ChapterCard extends ConsumerWidget {
               title: Text(chapter.title,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 18)),
-              subtitle: Text(
-                t.drills.answers(number: answerHistoriesCount),
-                style: TextStyle(color: Colors.black.withValues(alpha: 0.6)),
-              ),
+              subtitle: (chapter.answerHistoriesCount ?? 0) > 10000
+                  ? Text(
+                      t.drills.answers(number: answerHistoriesCount),
+                      style:
+                          TextStyle(color: Colors.black.withValues(alpha: 0.6)),
+                    )
+                  : null,
             ),
             CachedNetworkImage(
               imageUrl: chapter.thumbnailUrl,
