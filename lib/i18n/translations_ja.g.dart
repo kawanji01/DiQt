@@ -682,7 +682,7 @@ class _TranslationsHomeJa implements TranslationsHomeEn {
 
 	// Translations
 	@override String get welcome => 'ディクトへようこそ';
-	@override String get welcome_description_1 => 'DiQt（ディクト）は、絶対に忘れない辞書&単語帳アプリです。\n辞書で調べた単語に復習を設定することで、必ずその単語を覚えられます。';
+	@override String get welcome_description_1 => 'DiQt（ディクト）は、絶対に忘れないAI辞書&単語帳アプリです。\n辞書で調べた単語に復習を設定することで、必ずその単語を覚えられます。';
 	@override String get welcome_description_2 => '使い方は簡単。辞書で調べて、';
 	@override String get welcome_description_3 => '覚えたい単語に復習を設定すれば、';
 	@override String get welcome_description_4 => '覚えるまで自動で復習できるようになります。';
@@ -2484,7 +2484,7 @@ extension on TranslationsJa {
 			case 'grammaticalTags.grammatical_tag_select': return '文法タグを選択';
 			case 'grammaticalTags.grammatical_tag_not_selected': return '文法タグが選択されていません';
 			case 'home.welcome': return 'ディクトへようこそ';
-			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れない辞書&単語帳アプリです。\n辞書で調べた単語に復習を設定することで、必ずその単語を覚えられます。';
+			case 'home.welcome_description_1': return 'DiQt（ディクト）は、絶対に忘れないAI辞書&単語帳アプリです。\n辞書で調べた単語に復習を設定することで、必ずその単語を覚えられます。';
 			case 'home.welcome_description_2': return '使い方は簡単。辞書で調べて、';
 			case 'home.welcome_description_3': return '覚えたい単語に復習を設定すれば、';
 			case 'home.welcome_description_4': return '覚えるまで自動で復習できるようになります。';

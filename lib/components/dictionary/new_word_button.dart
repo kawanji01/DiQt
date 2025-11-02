@@ -34,8 +34,8 @@ class DictionaryNewWordButton extends ConsumerWidget {
     return InkWell(
         onTap: () {
           // ２８言語対応でフォーム画面の仕様が複雑化したので、Web編集画面に一本化する。
-          DiQtBrowserDialog.open(context,
-              '/words/new?dictionary_id=${dictionaryId}&text=${keyword}');
+          DiQtBrowserDialog.open(
+              context, '/words/new?dictionary_id=$dictionaryId&text=$keyword');
           // if (isEditing) {
           //  WebPageLauncher.openByExternalBrowser(url);
           //} else {
