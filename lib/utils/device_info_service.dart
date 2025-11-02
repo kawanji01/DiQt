@@ -39,4 +39,17 @@ class DeviceInfoService {
     }
     return deviceName;
   }
+
+  // 物理端末かどうかを判定（シミュレータ回避用途）
+  Future<bool> isPhysicalDevice() async {
+    if (Platform.isAndroid) {
+      final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      return androidInfo.isPhysicalDevice;
+    } else if (Platform.isIOS) {
+      final IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      return iosInfo.isPhysicalDevice;
+    }
+    // その他のプラットフォームでは物理端末とみなす
+    return true;
+  }
 }
