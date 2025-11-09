@@ -1,0 +1,9 @@
+model = "gpt-5-codex"
+model_reasoning_effort = "high"
+hide_agent_reasoning = true
+network_access = true
+
+notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
+
+[tools]
+web_search = true
