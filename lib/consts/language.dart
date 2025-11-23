@@ -37,6 +37,7 @@ const Map<String, int> languageCodeMap = {
   'ca': 12,
   'ceb': 13,
   'zh': 110, // 繁体字も簡体字も含めた中国語
+  'yue': 115, // 広東語
   'zh-CN': 14,
   'zh-Hans': 14,
   'zh-TW': 15,
@@ -138,6 +139,10 @@ const Map<String, int> languageCodeMap = {
   'yo': 108,
   'zu': 109,
   // 110はzh（中国語）
+  'ff': 111, // フラニ語（フラ語） / TTS対応外
+  'sa': 112, // サンスクリット語 / TTS対応外
+  'ban': 113, // バリ語 / TTS対応外
+  'bo': 114, // チベット語 / TTS対応外
 };
 
 // Azure Computer Vision の Image Analysis API で使用できる言語コード

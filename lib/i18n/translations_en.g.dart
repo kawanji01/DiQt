@@ -2024,6 +2024,7 @@ class TranslationsWordsEn {
 	String get meaning_to_remember_description => 'By pressing the "Meaning to Remember" button, you will be asked to answer the question "What is the meaning of the word?" in the future. This is recommended for those who want to improve their reading and listening skills.';
 	String get word_to_remember_description => 'By pressing the "Word to Remember" button, you will be asked to answer the question "What is the word?" in the future. This is recommended for those who want to improve their speaking and writing skills.';
 	String get ja_meaning => 'Japanese Meaning';
+	String get easy_ja_meaning => 'Easy Japanese Meaning';
 	String get en_meaning => 'English Meaning';
 }
 
@@ -3619,6 +3620,7 @@ extension on Translations {
 			case 'words.meaning_to_remember_description': return 'By pressing the "Meaning to Remember" button, you will be asked to answer the question "What is the meaning of the word?" in the future. This is recommended for those who want to improve their reading and listening skills.';
 			case 'words.word_to_remember_description': return 'By pressing the "Word to Remember" button, you will be asked to answer the question "What is the word?" in the future. This is recommended for those who want to improve their speaking and writing skills.';
 			case 'words.ja_meaning': return 'Japanese Meaning';
+			case 'words.easy_ja_meaning': return 'Easy Japanese Meaning';
 			case 'words.en_meaning': return 'English Meaning';
 			default: return null;
 		}

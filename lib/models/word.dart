@@ -19,6 +19,7 @@ class Word {
     required this.meaning,
     this.meaningJa,
     this.meaningEn,
+    this.meaningEasyJa,
     required this.langNumberOfMeaning,
     this.explanation = '',
     this.meaningImageUrl,
@@ -57,6 +58,7 @@ class Word {
   String meaning;
   String? meaningJa;
   String? meaningEn;
+  String? meaningEasyJa;
   int langNumberOfMeaning;
   String? explanation;
   String? meaningImageUrl;
@@ -95,6 +97,7 @@ class Word {
         // 後方互換性を保つため、新旧両方のカラム名に対応
         meaningJa = json['meaning_ja'] ?? json['ja_meaning'],
         meaningEn = json['meaning_en'] ?? json['en_meaning'],
+        meaningEasyJa = json['meaning_easy_ja'],
         langNumberOfMeaning = json['lang_number_of_meaning'],
         explanation = json['explanation'],
         meaningImageUrl = json['meaning_image_url'],
@@ -159,6 +162,7 @@ class Word {
         'meaning': meaning,
         'meaning_ja': meaningJa,
         'meaning_en': meaningEn,
+        'meaning_easy_ja': meaningEasyJa,
         'lang_number_of_meaning': langNumberOfMeaning,
         'explanation': explanation,
         'meaning_image_url': meaningImageUrl,

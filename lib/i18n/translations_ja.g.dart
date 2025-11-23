@@ -2020,6 +2020,7 @@ class _TranslationsWordsJa implements TranslationsWordsEn {
 	@override String get word_to_remember => '単語を覚える';
 	@override String get word_to_remember_description => '「単語を覚える」ボタンを押すことで、後日、復習として「意味から見出し語を答える」問題を出題します。\n単語を話す力や書く力を鍛えたい方におすすめです。';
 	@override String get ja_meaning => '日本語の意味';
+	@override String get easy_ja_meaning => 'やさしい日本語の意味';
 	@override String get en_meaning => '英語の意味';
 }
 
@@ -3615,6 +3616,7 @@ extension on TranslationsJa {
 			case 'words.word_to_remember': return '単語を覚える';
 			case 'words.word_to_remember_description': return '「単語を覚える」ボタンを押すことで、後日、復習として「意味から見出し語を答える」問題を出題します。\n単語を話す力や書く力を鍛えたい方におすすめです。';
 			case 'words.ja_meaning': return '日本語の意味';
+			case 'words.easy_ja_meaning': return 'やさしい日本語の意味';
 			case 'words.en_meaning': return '英語の意味';
 			default: return null;
 		}

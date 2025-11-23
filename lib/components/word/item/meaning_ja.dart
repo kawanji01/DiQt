@@ -12,6 +12,14 @@ class WordItemMeaningJa extends StatelessWidget {
     if (word.meaningJa == null) {
       return const SizedBox.shrink();
     }
+    final String? easyMeaning = word.meaningEasyJa;
+    final bool hasEasyMeaning =
+        easyMeaning != null && easyMeaning.trim().isNotEmpty;
+    const textStyle = TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.bold,
+      color: Colors.black87,
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -20,12 +28,17 @@ class WordItemMeaningJa extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           word.meaningJa ?? '',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
+          style: textStyle,
         ),
+        if (hasEasyMeaning) ...[
+          const SizedBox(height: 16),
+          SharedItemLabel(text: t.words.easy_ja_meaning),
+          const SizedBox(height: 16),
+          Text(
+            easyMeaning!,
+            style: textStyle,
+          ),
+        ],
       ],
     );
   }
