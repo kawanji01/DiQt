@@ -741,8 +741,11 @@ class _TranslationsLangJa implements TranslationsLangEn {
 	@override String get need_to_login => '翻訳機能を利用するにはログインが必要です。';
 	@override String get ask_ai => 'AIに聞く';
 	@override String get explain_meaning => '意味を教えてください';
+	@override String get explain_pronunciation => '発音を教えてください';
 	@override String get explain_usage => '用法を教えてください';
+	@override String get explain_word_forms => '語形を教えてください';
 	@override String get explain_example => '用例を教えてください';
+	@override String get explain_in_detail => '詳しく解説してください';
 	@override String get explain_synonym => '類義語を教えてください';
 	@override String get explain_antonym => '反意語を教えてください';
 	@override String get explain_conjugation => '活用形を教えてください';
@@ -2532,8 +2535,11 @@ extension on TranslationsJa {
 			case 'lang.need_to_login': return '翻訳機能を利用するにはログインが必要です。';
 			case 'lang.ask_ai': return 'AIに聞く';
 			case 'lang.explain_meaning': return '意味を教えてください';
+			case 'lang.explain_pronunciation': return '発音を教えてください';
 			case 'lang.explain_usage': return '用法を教えてください';
+			case 'lang.explain_word_forms': return '語形を教えてください';
 			case 'lang.explain_example': return '用例を教えてください';
+			case 'lang.explain_in_detail': return '詳しく解説してください';
 			case 'lang.explain_synonym': return '類義語を教えてください';
 			case 'lang.explain_antonym': return '反意語を教えてください';
 			case 'lang.explain_conjugation': return '活用形を教えてください';
@@ -3634,3 +3640,4 @@ extension on TranslationsJa {
 		}
 	}
 }
+

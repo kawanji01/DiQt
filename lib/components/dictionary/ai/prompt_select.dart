@@ -33,12 +33,15 @@ class DictionaryAIPromptSelect extends ConsumerWidget {
         },
         items: <String>[
           'explain_meaning',
+          'explain_pronunciation',
           'explain_usage',
+          'explain_word_forms',
           'explain_example',
           'explain_synonym',
           'explain_antonym',
           'explain_conjugation',
           'explain_etymology',
+          'explain_in_detail',
           'explain_grammar',
           'proofread_sentence',
         ].map<DropdownMenuItem<String>>((String value) {

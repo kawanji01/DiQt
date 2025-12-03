@@ -745,8 +745,11 @@ class TranslationsLangEn {
 	String get need_to_login => 'You need to log in to use the translation.';
 	String get ask_ai => 'Ask AI';
 	String get explain_meaning => 'What does it mean?';
+	String get explain_pronunciation => 'Please explain the pronunciation.';
 	String get explain_usage => 'Please explain the usage.';
+	String get explain_word_forms => 'Please explain the word forms.';
 	String get explain_example => 'Please explain the example.';
+	String get explain_in_detail => 'Please explain in detail.';
 	String get explain_synonym => 'Please explain the synonym.';
 	String get explain_antonym => 'Please explain the antonym.';
 	String get explain_conjugation => 'Please explain the conjugation.';
@@ -2536,8 +2539,11 @@ extension on Translations {
 			case 'lang.need_to_login': return 'You need to log in to use the translation.';
 			case 'lang.ask_ai': return 'Ask AI';
 			case 'lang.explain_meaning': return 'What does it mean?';
+			case 'lang.explain_pronunciation': return 'Please explain the pronunciation.';
 			case 'lang.explain_usage': return 'Please explain the usage.';
+			case 'lang.explain_word_forms': return 'Please explain the word forms.';
 			case 'lang.explain_example': return 'Please explain the example.';
+			case 'lang.explain_in_detail': return 'Please explain in detail.';
 			case 'lang.explain_synonym': return 'Please explain the synonym.';
 			case 'lang.explain_antonym': return 'Please explain the antonym.';
 			case 'lang.explain_conjugation': return 'Please explain the conjugation.';
@@ -3638,3 +3644,4 @@ extension on Translations {
 		}
 	}
 }
+

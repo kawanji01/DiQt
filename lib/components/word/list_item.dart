@@ -32,6 +32,7 @@ class WordListItem extends ConsumerWidget {
               children: <Widget>[
                 const SizedBox(height: 10),
                 WordItemEntry(word: word),
+                const SizedBox(height: 10),
                 WordPronunciations(word: word),
                 const SizedBox(
                   height: 10,
