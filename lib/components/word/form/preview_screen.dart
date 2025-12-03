@@ -5,9 +5,8 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/utils/responsive_values.dart';
 import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
-import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/components/word/item/meaning.dart';
-import 'package:booqs_mobile/components/word/item/reading.dart';
+import 'package:booqs_mobile/components/word/item/pronunciations.dart';
 import 'package:flutter/material.dart';
 
 class WordFormPreviewScreen extends StatelessWidget {
@@ -42,8 +41,7 @@ class WordFormPreviewScreen extends StatelessWidget {
             height: 24,
           ),
           WordItemEntry(word: word),
-          WordItemReading(word: word),
-          WordItemIPA(word: word),
+          WordPronunciations(word: word),
           const SizedBox(
             height: 24,
           ),

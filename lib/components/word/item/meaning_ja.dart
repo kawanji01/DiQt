@@ -35,7 +35,7 @@ class WordItemMeaningJa extends StatelessWidget {
           SharedItemLabel(text: t.words.easy_ja_meaning),
           const SizedBox(height: 16),
           Text(
-            easyMeaning!,
+            easyMeaning,
             style: textStyle,
           ),
         ],
