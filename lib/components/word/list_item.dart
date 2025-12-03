@@ -1,6 +1,5 @@
 import 'package:booqs_mobile/components/word/item/forms_list.dart';
 import 'package:booqs_mobile/components/word/item/grammatical_tags.dart';
-import 'package:booqs_mobile/components/word/item/ipa.dart';
 import 'package:booqs_mobile/components/word/item/meanings.dart';
 import 'package:booqs_mobile/components/word/item/pos_tag.dart';
 import 'package:booqs_mobile/components/word/item/reversed_review_button.dart';
@@ -9,9 +8,9 @@ import 'package:booqs_mobile/models/word.dart';
 import 'package:booqs_mobile/pages/word/show.dart';
 import 'package:booqs_mobile/components/word/item/edit_button.dart';
 import 'package:booqs_mobile/components/word/item/entry.dart';
-import 'package:booqs_mobile/components/word/item/reading.dart';
 import 'package:booqs_mobile/components/word/item/review_button.dart';
 import 'package:booqs_mobile/components/word/item/sentence.dart';
+import 'package:booqs_mobile/components/word/item/pronunciations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -33,8 +32,7 @@ class WordListItem extends ConsumerWidget {
               children: <Widget>[
                 const SizedBox(height: 10),
                 WordItemEntry(word: word),
-                WordItemReading(word: word),
-                WordItemIPA(word: word),
+                WordPronunciations(word: word),
                 const SizedBox(
                   height: 10,
                 ),

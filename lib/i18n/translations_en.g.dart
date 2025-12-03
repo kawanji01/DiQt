@@ -1975,6 +1975,12 @@ class TranslationsWordsEn {
 	String get entry => 'Headword';
 	String get entry_ssml => 'Entry SSML';
 	String get reading => 'Reading';
+	String get hiragana => 'Hiragana';
+	String get kanji => 'Kanji';
+	String get kunyomi => 'Kunyomi';
+	String get onyomi => 'Onyomi';
+	String get pinyin => 'Pinyin';
+	String get jyutping => 'Jyutping';
 	String get pos_tag_id => 'Part of speech';
 	String get meaning => 'Meaning';
 	String get ipa => 'IPA(Pronunciation)';
@@ -3571,6 +3577,12 @@ extension on Translations {
 			case 'words.entry': return 'Headword';
 			case 'words.entry_ssml': return 'Entry SSML';
 			case 'words.reading': return 'Reading';
+			case 'words.hiragana': return 'Hiragana';
+			case 'words.kanji': return 'Kanji';
+			case 'words.kunyomi': return 'Kunyomi';
+			case 'words.onyomi': return 'Onyomi';
+			case 'words.pinyin': return 'Pinyin';
+			case 'words.jyutping': return 'Jyutping';
 			case 'words.pos_tag_id': return 'Part of speech';
 			case 'words.meaning': return 'Meaning';
 			case 'words.ipa': return 'IPA(Pronunciation)';
@@ -3626,4 +3638,3 @@ extension on Translations {
 		}
 	}
 }
-

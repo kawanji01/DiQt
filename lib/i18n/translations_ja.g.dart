@@ -1971,6 +1971,12 @@ class _TranslationsWordsJa implements TranslationsWordsEn {
 	@override String get entry => '見出し語';
 	@override String get entry_ssml => '見出し語のSSML';
 	@override String get reading => '読み';
+	@override String get hiragana => 'ひらがな';
+	@override String get kanji => '漢字';
+	@override String get kunyomi => '訓読み';
+	@override String get onyomi => '音読み';
+	@override String get pinyin => 'ピンイン';
+	@override String get jyutping => '広東語の発音（粤拼）';
 	@override String get pos_tag_id => '品詞';
 	@override String get meaning => '意味';
 	@override String get ipa => 'IPA（発音記号）';
@@ -3567,6 +3573,12 @@ extension on TranslationsJa {
 			case 'words.entry': return '見出し語';
 			case 'words.entry_ssml': return '見出し語のSSML';
 			case 'words.reading': return '読み';
+			case 'words.hiragana': return 'ひらがな';
+			case 'words.kanji': return '漢字';
+			case 'words.kunyomi': return '訓読み';
+			case 'words.onyomi': return '音読み';
+			case 'words.pinyin': return 'ピンイン';
+			case 'words.jyutping': return '広東語の発音（粤拼）';
 			case 'words.pos_tag_id': return '品詞';
 			case 'words.meaning': return '意味';
 			case 'words.ipa': return 'IPA（発音記号）';
@@ -3622,4 +3634,3 @@ extension on TranslationsJa {
 		}
 	}
 }
-

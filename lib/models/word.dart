@@ -26,6 +26,12 @@ class Word {
     this.pos,
     this.ipa,
     this.reading,
+    this.hiragana,
+    this.kanji,
+    this.kunyomi,
+    this.onyomi,
+    this.pinyin,
+    this.jyutping,
     this.etymologies,
     this.synonyms,
     this.antonyms,
@@ -65,6 +71,12 @@ class Word {
   String? pos;
   String? ipa;
   String? reading;
+  String? hiragana;
+  String? kanji;
+  String? kunyomi;
+  String? onyomi;
+  String? pinyin;
+  String? jyutping;
   String? etymologies;
   String? synonyms;
   String? antonyms;
@@ -104,6 +116,12 @@ class Word {
         pos = json['pos'],
         ipa = json['ipa'],
         reading = json['reading'],
+        hiragana = json['hiragana'],
+        kanji = json['kanji'],
+        kunyomi = json['kunyomi'],
+        onyomi = json['onyomi'],
+        pinyin = json['pinyin'],
+        jyutping = json['jyutping'],
         etymologies = json['etymologies'],
         synonyms = json['synonyms'],
         antonyms = json['antonyms'],
@@ -169,6 +187,12 @@ class Word {
         'pos': pos,
         'ipa': ipa,
         'reading': reading,
+        'hiragana': hiragana,
+        'kanji': kanji,
+        'kunyomi': kunyomi,
+        'onyomi': onyomi,
+        'pinyin': pinyin,
+        'jyutping': jyutping,
         'etymologies': etymologies,
         'synonyms': synonyms,
         'antonyms': antonyms,
