@@ -62,12 +62,12 @@ class LineWithDictLink extends StatelessWidget {
     // 記法なしの単語
     // 自動でリンクをつけるならtrue, 記法でのみリンクをつける場合はfalse
     Widget plainWord(String word) {
-      if (autoLinkEnabled) {
+      final bool isWhitespace = word.trim().isEmpty;
+      if (autoLinkEnabled && !isWhitespace) {
         return TextButton(
           style: buttonStyle,
           onPressed: () => goToWordSearchPage(word),
-          // splitで削除した空白を追加する
-          child: Text('$word ',
+          child: Text(word,
               textDirection: textDirection,
               textAlign: textDirection == TextDirection.rtl
                   ? TextAlign.right
@@ -84,8 +84,24 @@ class LineWithDictLink extends StatelessWidget {
         );
       }
 
+      if (isWhitespace) {
+        return Text(
+          word,
+          textDirection: textDirection,
+          textAlign:
+              textDirection == TextDirection.rtl ? TextAlign.right : TextAlign.left,
+          style: TextStyle(
+            color: fontColor,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            height: fontHeight,
+            decoration: TextDecoration.none,
+          ),
+        );
+      }
+
       return MarkdownWithoutDictLink(
-        text: '$word ',
+        text: word,
         fontSize: fontSize,
         fontWeight: fontWeight,
         fontColor: fontColor,
@@ -95,7 +111,7 @@ class LineWithDictLink extends StatelessWidget {
 
     Widget wordWithDictLink(String word) {
       final linkedWord = word.replaceFirst('[[', '').replaceFirst(']]', '');
-      Color textColor = Colors.green;
+      const Color textColor = Color.fromRGBO(0, 0, 0, 0.84);
 
       // [[diplayedWord|searchedWord]]の場合
       if (linkedWord.contains('|')) {
@@ -155,6 +171,25 @@ class LineWithDictLink extends StatelessWidget {
     // セパレーターを含んでテキストを分割する。参考： https://stackoverflow.com/questions/59547040/dart-split-string-using-regular-expression-and-include-delimiters?rq=1
     List<String> allMatchesWithSep(String text, RegExp exp, [int start = 0]) {
       var result = <String>[];
+
+      List<String> splitPreservingSpaces(String value) {
+        if (value.isEmpty) return <String>[];
+        final spaceExp = RegExp(r'(\s+)');
+        final parts = <String>[];
+        int splitStart = 0;
+        for (final match in spaceExp.allMatches(value)) {
+          if (match.start > splitStart) {
+            parts.add(value.substring(splitStart, match.start));
+          }
+          parts.add(match.group(0)!);
+          splitStart = match.end;
+        }
+        if (splitStart < value.length) {
+          parts.add(value.substring(splitStart));
+        }
+        return parts;
+      }
+
       // start（最初は0）で指定されたindex以降の文字列から、expの正規表現に一致するものを調べる。参考： https://api.flutter.dev/flutter/dart-core/String/substring.html
       for (var match in exp.allMatches(text, start)) {
         // (X): substring(前回に一致した文字列の最後のindex, 今回一致した文字列の最初のindex)を指定することで「一致しなかった文字列」を抜き出す。 参考： https://api.flutter.dev/flutter/dart-core/String/substring.html
@@ -162,9 +197,7 @@ class LineWithDictLink extends StatelessWidget {
         // 「一致しなかった文字列」をリストに加える。
         // result.add(notMatch);
         // 英単語に自動でLinkをつけられるように、スペースで文字列を区切ってリストに加える
-        notMatch.split(' ').forEach((element) {
-          result.add(element);
-        });
+        result.addAll(splitPreservingSpaces(notMatch));
         // 一致した文字列[[text]]をリストに追加する。
         result.add(match[0]!);
         // 一致した文字列の最後のindexをstartを書き換えて、(X)を機能させる。
@@ -172,9 +205,7 @@ class LineWithDictLink extends StatelessWidget {
       }
       // 文字列のうち、一致しなかった最後尾の部分をリストに加える。
       //result.add(text.substring(start));
-      text.substring(start).split(' ').forEach((element) {
-        result.add(element);
-      });
+      result.addAll(splitPreservingSpaces(text.substring(start)));
       return result;
     }
 
