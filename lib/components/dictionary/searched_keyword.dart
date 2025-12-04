@@ -75,11 +75,12 @@ class _DictionarySearchedKeywordState extends State<DictionarySearchedKeyword> {
           fontColor: Colors.black87,
           selectable: true,
         ),
-        DictionaryWordSegmentationButton(
-          langNumber: widget.dictionary.langNumberOfEntry,
-          separated: _separated,
-          performWordSegmentation: _performWordSegmentation,
-        ),
+        // 分書ボタン
+        // DictionaryWordSegmentationButton(
+        //   langNumber: widget.dictionary.langNumberOfEntry,
+        //   separated: _separated,
+        //   performWordSegmentation: _performWordSegmentation,
+        // ),
       ],
     );
   }
