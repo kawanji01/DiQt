@@ -24,7 +24,7 @@ class Chapter {
       this.customSections});
 
   int id;
-  int appliedDictionaryId;
+  int? appliedDictionaryId;
   String title;
   int langNumberOfTitle;
   String introduction;

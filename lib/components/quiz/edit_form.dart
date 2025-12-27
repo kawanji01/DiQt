@@ -47,7 +47,8 @@ class QuizEditFormState extends ConsumerState<QuizEditForm> {
     _distractor3Controller.text = _quiz.distractor3 ?? '';
     _hintController.text = _quiz.hint ?? '';
     _explanationController.text = _quiz.explanation ?? '';
-    _appliedDictionaryIdController.text = '${_quiz.appliedDictionaryId}';
+    _appliedDictionaryIdController.text =
+        _quiz.appliedDictionaryId?.toString() ?? '';
   }
 
   @override

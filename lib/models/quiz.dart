@@ -48,7 +48,7 @@ class Quiz {
   int id;
   int drillId;
   int? dictionaryId;
-  int appliedDictionaryId;
+  int? appliedDictionaryId;
   int? wordId;
   int? reversedWordId;
   int? syncedWordId;

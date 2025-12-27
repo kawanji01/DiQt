@@ -17,7 +17,7 @@ class QuizExplanationDistractors extends StatelessWidget {
 
     // 選択肢のテキスト
     Widget distractorContent(String distractor) {
-      if (quiz.autoDictLinkOfAnswer) {
+      if (quiz.autoDictLinkOfAnswer && quiz.appliedDictionaryId != null) {
         return TextWithDictLink(
             text: distractor,
             langNumber: quiz.langNumberOfAnswer,

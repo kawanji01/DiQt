@@ -13,7 +13,7 @@ class QuizExplanationAnswer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget answer() {
-      if (quiz.autoDictLinkOfAnswer) {
+      if (quiz.autoDictLinkOfAnswer && quiz.appliedDictionaryId != null) {
         return TextWithDictLink(
             text: quiz.correctAnswer,
             langNumber: quiz.langNumberOfAnswer,

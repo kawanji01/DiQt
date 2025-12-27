@@ -28,7 +28,7 @@ class Drill {
       this.dictionary});
 
   int id;
-  int appliedDictionaryId;
+  int? appliedDictionaryId;
   int? userId;
   int? chapterId;
   int? dictionaryId;
