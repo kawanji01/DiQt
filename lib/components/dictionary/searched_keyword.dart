@@ -1,4 +1,3 @@
-import 'package:booqs_mobile/components/dictionary/word_segmentation_button.dart';
 import 'package:booqs_mobile/components/shared/text_with_dict_link.dart';
 import 'package:booqs_mobile/data/remote/langs.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
