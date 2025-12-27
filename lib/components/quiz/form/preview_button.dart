@@ -28,7 +28,7 @@ class QuizFormPreviewButton extends StatelessWidget {
   final TextEditingController explanationController;
   final bool autoDictLinkOfQuestion;
   final bool autoDictLinkOfAnswer;
-  final int appliedDictionaryId;
+  final int? appliedDictionaryId;
 
   @override
   Widget build(BuildContext context) {

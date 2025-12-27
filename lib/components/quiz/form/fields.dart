@@ -30,19 +30,6 @@ class QuizFormFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /* final int langNumberOfQuestion = quiz?.langNumberOfQuestion ?? 0;
-    final int langNumberOfAnswer = quiz?.langNumberOfAnswer ?? 0;
-    bool autoDictLinkOfQuestion;
-    bool autoDictLinkOfAnswer; */
-
-    /*  if (quiz == null) {
-      autoDictLinkOfQuestion = false;
-      autoDictLinkOfAnswer = false;
-    } else {
-      autoDictLinkOfQuestion = quiz!.autoDictLinkOfQuestion;
-      autoDictLinkOfAnswer = quiz!.autoDictLinkOfAnswer;
-    } */
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -77,7 +64,8 @@ class QuizFormFields extends StatelessWidget {
           explanationController: explanationController,
           autoDictLinkOfQuestion: autoDictLinkOfQuestion,
           autoDictLinkOfAnswer: autoDictLinkOfAnswer,
-          appliedDictionaryId: int.parse(appliedDictionaryIdController.text),
+          appliedDictionaryId:
+              int.tryParse(appliedDictionaryIdController.text),
         ) */
       ],
     );
