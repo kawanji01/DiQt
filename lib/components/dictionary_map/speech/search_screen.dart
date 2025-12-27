@@ -85,23 +85,61 @@ class _DictionaryMapSpeechSearchScreenState
     // can be displayed in the UI for selection by the user.
     _localeNames = await speech.locales();
     final Dictionary dictionary = widget.dictionary;
-    final String langCode = dictionary.langCodeOfEntry();
+    final String langCode = dictionary.langCodeOfEntry().toLowerCase();
     LocaleName? currentLocale;
-    // firstWhereは、該当する要素がない場合にStateErrorがスローされる。
-    try {
-      currentLocale = _localeNames.firstWhere(
-        (element) => element.localeId.contains(langCode),
-      );
-    } catch (e) {
-      // print('No matching locale found: $e');
-      currentLocale = null;
-    }
+    currentLocale = _findLocaleByIds(_preferredLocaleIds(langCode));
+    currentLocale ??= _findLocaleByLangCode(langCode);
     if (currentLocale != null) {
       _currentLocaleId = currentLocale.localeId;
     } else {
       currentLocale = await speech.systemLocale();
       _currentLocaleId = currentLocale?.localeId ?? '';
     }
+  }
+
+  String _normalizeLocaleId(String localeId) {
+    return localeId.replaceAll('-', '_').toLowerCase();
+  }
+
+  List<String> _preferredLocaleIds(String langCode) {
+    switch (langCode) {
+      case 'en':
+        return ['en_US'];
+      case 'es':
+        return ['es_ES'];
+      case 'fr':
+        return ['fr_FR'];
+      case 'de':
+        return ['de_DE'];
+      default:
+        return [];
+    }
+  }
+
+  LocaleName? _findLocaleByIds(List<String> preferredLocaleIds) {
+    if (preferredLocaleIds.isEmpty) return null;
+    final Set<String> normalizedPreferredIds =
+        preferredLocaleIds.map(_normalizeLocaleId).toSet();
+    for (final localeName in _localeNames) {
+      if (normalizedPreferredIds
+          .contains(_normalizeLocaleId(localeName.localeId))) {
+        return localeName;
+      }
+    }
+    return null;
+  }
+
+  LocaleName? _findLocaleByLangCode(String langCode) {
+    final String normalizedLangCode = _normalizeLocaleId(langCode);
+    for (final localeName in _localeNames) {
+      final String normalizedLocaleId =
+          _normalizeLocaleId(localeName.localeId);
+      if (normalizedLocaleId == normalizedLangCode ||
+          normalizedLocaleId.startsWith('${normalizedLangCode}_')) {
+        return localeName;
+      }
+    }
+    return null;
   }
 
   // 画面が開いている場合にのみ、画面を閉じる（二重にpopして画面がホワイトアウトするのを防ぐ）
