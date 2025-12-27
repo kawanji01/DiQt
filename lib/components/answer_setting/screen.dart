@@ -23,6 +23,7 @@ class AnswerSettingScreen extends ConsumerStatefulWidget {
 class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
   final TextEditingController _dailyGoalController = TextEditingController();
   bool _isRequesting = false;
+  bool _didSetInitialDailyGoal = false;
 
   @override
   void dispose() {
@@ -35,7 +36,10 @@ class AnswerSettingScreenState extends ConsumerState<AnswerSettingScreen> {
     AnswerSetting? answerSetting = ref.watch(answerSettingProvider);
     if (answerSetting == null) return Container();
 
-    _dailyGoalController.text = '${answerSetting.dailyGoal}';
+    if (!_didSetInitialDailyGoal) {
+      _dailyGoalController.text = '${answerSetting.dailyGoal}';
+      _didSetInitialDailyGoal = true;
+    }
 
     Future<void> update() async {
       setState(() => _isRequesting = true);

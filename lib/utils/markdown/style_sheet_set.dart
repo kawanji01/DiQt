@@ -33,7 +33,7 @@ class MarkdownStyleSheetSet {
           color: Colors.green,
           decoration: TextDecoration.underline,
         ),
-        strong: TextStyle(color: fontColor),
+        strong: TextStyle(fontWeight: FontWeight.bold, color: fontColor),
         blockquoteDecoration: const BoxDecoration(
           color: Color(0xfff3f3f4),
         ),

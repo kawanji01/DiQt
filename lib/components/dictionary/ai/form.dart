@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:booqs_mobile/components/dictionary/ai/prompt_select.dart';
 import 'package:booqs_mobile/components/dictionary/ai/results.dart';
 import 'package:booqs_mobile/consts/validation.dart';
@@ -25,31 +26,46 @@ class DictionaryAIForm extends ConsumerStatefulWidget {
 class _DictionaryAIFormState extends ConsumerState<DictionaryAIForm> {
   bool _isRequesting = false;
   AISearcher? _aiSearcher;
+  StreamSubscription<String>? _aiSearchSubscription;
 
   Future<void> _performAISearch() async {
+    await _aiSearchSubscription?.cancel();
+    if (!mounted) return;
+    final String promptKey = ref.read(dictionaryAIPromptKeyProvider);
     setState(() {
+      _aiSearcher = AISearcher(promptKey: promptKey, results: '');
       _isRequesting = true;
     });
-    final Map resMap = await RemoteLangs.aiSearch(
+    bool hasError = false;
+    final Stream<String> stream = RemoteLangs.aiSearchStream(
       keyword: widget.keyword,
       sourceLangNumber: widget.dictionary.langNumberOfEntry,
       targetLangNumber: widget.dictionary.langNumberOfMeaning,
-      promptKey: ref.read(dictionaryAIPromptKeyProvider),
-      version: 3,
+      promptKey: promptKey,
     );
-    ref.read(todaysAiSearchesCountProvider.notifier).state += 1;
-    if (!mounted) return;
-    // エラーの場合の処理
-    if (ErrorHandler.isErrorMap(resMap)) {
-      ErrorHandler.showErrorToast(context, resMap);
-      return setState(() {
+    _aiSearchSubscription = stream.listen((String delta) {
+      if (!mounted) return;
+      setState(() {
+        _aiSearcher?.results = '${_aiSearcher?.results ?? ''}$delta';
+      });
+    }, onError: (Object error) {
+      hasError = true;
+      if (!mounted) return;
+      final Map<String, dynamic> errorMap = error is Map
+          ? Map<String, dynamic>.from(error)
+          : {'status': 500, 'message': '$error'};
+      ErrorHandler.showErrorToast(context, errorMap);
+      setState(() {
         _isRequesting = false;
       });
-    }
-    _aiSearcher = AISearcher.fromJson(resMap['ai_searcher']);
-    setState(() {
-      _aiSearcher;
-      _isRequesting = false;
+    }, onDone: () {
+      if (!mounted) return;
+      if (!hasError) {
+        ref.read(todaysAiSearchesCountProvider.notifier).state += 1;
+      }
+      setState(() {
+        _isRequesting = false;
+      });
     });
   }
 
@@ -60,6 +76,12 @@ class _DictionaryAIFormState extends ConsumerState<DictionaryAIForm> {
             .ai_searches_restricted(number: aiSearchesCountLimitForFreeUsers)));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
     PremiumPlanPage.push(context);
+  }
+
+  @override
+  void dispose() {
+    _aiSearchSubscription?.cancel();
+    super.dispose();
   }
 
   @override

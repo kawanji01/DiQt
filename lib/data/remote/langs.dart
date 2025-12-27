@@ -141,6 +141,124 @@ class RemoteLangs {
     }
   }
 
+  // AI検索（ストリーミング）
+  static Stream<String> aiSearchStream(
+      {required String keyword,
+      required int sourceLangNumber,
+      required int targetLangNumber,
+      required String promptKey,
+      int version = 4,
+      String? model}) {
+    late StreamController<String> controller;
+    final Client client = Client();
+    StreamSubscription<String>? subscription;
+    bool isClosed = false;
+
+    void closeStream() {
+      if (isClosed) return;
+      isClosed = true;
+      if (subscription != null) {
+        unawaited(subscription!.cancel());
+      }
+      client.close();
+      if (!controller.isClosed) {
+        unawaited(controller.close());
+      }
+    }
+
+    controller = StreamController<String>(onCancel: closeStream);
+
+    () async {
+      try {
+        final String sanitizedKeyword = Sanitizer.removeDiQtLink(keyword);
+        final Map<String, dynamic> body = {
+          'keyword': sanitizedKeyword,
+          'source_lang_number': sourceLangNumber,
+          'target_lang_number': targetLangNumber,
+          'prompt_key': promptKey,
+          'version': version,
+          'streaming': 1,
+        };
+        if (model != null && model.isNotEmpty) {
+          body['model'] = model;
+        }
+
+        final Uri url =
+            Uri.parse('${DiQtURL.root()}/api/v1/mobile/langs/ai_search');
+        final Request request = Request('POST', url);
+        final Map<String, String> headers = await HttpService.headers();
+        headers['Accept'] = 'text/event-stream';
+        request.headers.addAll(headers);
+        request.body = json.encode(body);
+
+        final StreamedResponse streamedResponse = await client.send(request);
+        if (streamedResponse.statusCode < 200 ||
+            streamedResponse.statusCode >= 300) {
+          final String errorBody =
+              await streamedResponse.stream.bytesToString();
+          final Response res =
+              Response(errorBody, streamedResponse.statusCode);
+          if (!controller.isClosed) {
+            controller.addError(ErrorHandler.errorMap(res));
+          }
+          closeStream();
+          return;
+        }
+
+        final Stream<String> lines = streamedResponse.stream
+            .transform(utf8.decoder)
+            .transform(const LineSplitter());
+
+        subscription = lines.listen((String line) {
+          if (!line.startsWith('data:')) return;
+          final String payload = line.substring(5).trimLeft();
+          if (payload.isEmpty) return;
+          Map<String, dynamic> decoded;
+          try {
+            decoded = json.decode(payload);
+          } catch (e, s) {
+            if (!controller.isClosed) {
+              controller.addError(ErrorHandler.exceptionMap(e, s));
+            }
+            closeStream();
+            return;
+          }
+          final String delta = decoded['delta']?.toString() ?? '';
+          if (delta.isEmpty) return;
+          if (delta == '[DONE]') {
+            closeStream();
+            return;
+          }
+          if (!controller.isClosed) {
+            controller.add(delta);
+          }
+        }, onError: (Object error, StackTrace stack) {
+          if (!controller.isClosed) {
+            controller.addError(ErrorHandler.exceptionMap(error, stack));
+          }
+          closeStream();
+        }, onDone: closeStream);
+      } on TimeoutException catch (e, s) {
+        if (!controller.isClosed) {
+          controller.addError(ErrorHandler.timeoutMap(e, s));
+        }
+        closeStream();
+      } on SocketException catch (e, s) {
+        if (!controller.isClosed) {
+          controller.addError(ErrorHandler.socketExceptionMap(e, s));
+        }
+        closeStream();
+      } catch (e, s) {
+        if (!controller.isClosed) {
+          controller.addError(ErrorHandler.exceptionMap(e, s));
+        }
+        closeStream();
+      }
+    }();
+
+    return controller.stream;
+  }
+
   // SSMLのテンプレートを取得する
   static Future<Map?> getSsmlTemplate(
       {required String langCode, required String text}) async {
