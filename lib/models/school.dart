@@ -8,7 +8,7 @@ class School {
     required this.membersLimit,
     required this.memberMapsCount,
     required this.chaptersCount,
-    required this.appliedDictionaryId,
+    this.appliedDictionaryId,
     required this.userId,
   });
 
@@ -20,7 +20,7 @@ class School {
   final int membersLimit;
   final int memberMapsCount;
   final int chaptersCount;
-  final int appliedDictionaryId;
+  final int? appliedDictionaryId;
   final int userId;
 
   factory School.fromJson(Map<String, dynamic> json) {
