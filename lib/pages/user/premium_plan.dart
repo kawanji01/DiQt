@@ -756,11 +756,13 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
     if (!mounted) return;
     if (subscriptionCompleted) {
       await _analyticsService.logPurchaseSuccess(planType);
+      if (!mounted) return;
       final snackBar = SnackBar(content: Text(t.purchase.purchase_succeded));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       UserMyPage.push(context);
     } else {
       await _analyticsService.logPurchaseFailed(planType);
+      if (!mounted) return;
       final snackBar = SnackBar(content: Text('購入に失敗しました。'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
