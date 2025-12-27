@@ -17,14 +17,25 @@ void main() {
     FlutterError.demangleStackTrace = (StackTrace stack) => stack;
     
     // Firebase初期化のより包括的なモッキング
-    ServicesBinding.instance.defaultBinaryMessenger.setMockMessageHandler(
-      'plugins.flutter.io/firebase_core', 
-      (message) async => null
+    const firebaseCoreChannel = BasicMessageChannel<dynamic>(
+      'plugins.flutter.io/firebase_core',
+      StandardMessageCodec(),
     );
-    
-    ServicesBinding.instance.defaultBinaryMessenger.setMockMessageHandler(
-      'plugins.flutter.io/firebase_crashlytics', 
-      (message) async => null
+    const firebaseCrashlyticsChannel = BasicMessageChannel<dynamic>(
+      'plugins.flutter.io/firebase_crashlytics',
+      StandardMessageCodec(),
+    );
+
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMessageHandler(
+      firebaseCoreChannel.name,
+      (message) async => null,
+    );
+
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMessageHandler(
+      firebaseCrashlyticsChannel.name,
+      (message) async => null,
     );
 
     // flutter_secure_storageのmocking
