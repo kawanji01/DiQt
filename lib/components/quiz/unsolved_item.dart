@@ -1,5 +1,5 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/consts/validation.dart';
+import 'package:booqs_mobile/data/provider/answer_read_aloud_audio_player.dart';
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
@@ -37,18 +37,6 @@ class QuizUnsolvedItem extends ConsumerStatefulWidget {
 class QuizUnsolvedItemState extends ConsumerState<QuizUnsolvedItem> {
   bool _isVisible = true;
   bool _isOpaque = true;
-  final AudioPlayer _audioPlayer = AudioPlayer();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _audioPlayer.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,12 +51,11 @@ class QuizUnsolvedItemState extends ConsumerState<QuizUnsolvedItem> {
       }
       if (quiz.answerAudioUrl != null && quiz.answerAudioUrl != '') {
         try {
-          _audioPlayer.play(
-            UrlSource(quiz.answerAudioUrl!),
-            volume: 2.0,
-          );
+          ref
+              .read(answerReadAloudAudioPlayerProvider.notifier)
+              .playUrl(quiz.answerAudioUrl!);
         } catch (e) {
-          print('Error playing audio: $e');
+          debugPrint('Error playing audio: $e');
         }
       } else {
         final int langNumber = quiz.langNumberOfAnswer;

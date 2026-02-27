@@ -1,13 +1,16 @@
+import 'package:booqs_mobile/data/provider/answer_read_aloud_audio_player.dart';
 import 'package:booqs_mobile/data/provider/locale.dart';
 import 'package:booqs_mobile/firebase_options.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/routes.dart';
 import 'package:booqs_mobile/route_generator.dart';
+import 'package:booqs_mobile/utils/answer_read_aloud_navigation_observer.dart';
 import 'package:booqs_mobile/utils/crashlytics_service.dart';
 import 'package:booqs_mobile/utils/mobile_ad_service.dart';
 import 'package:booqs_mobile/utils/purchase_service.dart';
 import 'package:booqs_mobile/utils/remote_config_service.dart';
 import 'package:booqs_mobile/utils/sentry_service.dart';
+import 'package:booqs_mobile/utils/text_to_speech.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,34 +25,34 @@ Future<void> main() async {
   // runApp()を実行する前に Flutter Engine の機能を使いたい場合に呼び出しておくおまじないコード。
   // AdMobの初期化 や 画面の向きの固定 に必要。 ref: https://zenn.dev/sugitlab/books/flutter_poke_app_handson/viewer/step7
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // 環境変数の読み込み　ref： https://pub.dev/packages/flutter_dotenv
   await dotenv.load(fileName: ".env");
-  
+
   // Sentryの初期化
   await SentryService.initialize();
-  
+
   await SentryFlutter.init(
     (options) => SentryService.configure(options),
     appRunner: () async {
       // RevenueCatの初期化
       final purchase = PurchaseService();
       purchase.initPlatformState();
-      
+
       // プッシュ通知やfirebaseClashlyticsなど、firebase関連の機能を使うための初期化
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
-      
+
       // クラッシュレポートの設定
       CrashlyticsService.initialize();
-      
+
       // remoteConfigの設定
       await RemoteConfigService().initRemoteConfig();
-      
+
       // 広告（AdMob）の初期化 ref: https://developers.google.cn/admob/flutter/quick-start?hl=ja#ios
       MobileAdsService.initilize();
-      
+
       // 画面の向きの固定 ref: https://qiita.com/osamu1203/items/6172df89f5270060a44d
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp, //縦固定
@@ -88,9 +91,18 @@ class DiQt extends ConsumerStatefulWidget {
 }
 
 class DiQtState extends ConsumerState<DiQt> {
+  late final AnswerReadAloudNavigationObserver
+      _answerReadAloudNavigationObserver;
+
   @override
   void initState() {
     super.initState();
+    _answerReadAloudNavigationObserver = AnswerReadAloudNavigationObserver(
+      onPageRouteChanged: () {
+        ref.read(answerReadAloudAudioPlayerProvider.notifier).stop();
+        TextToSpeech.stop();
+      },
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // localeを設定する
       await ref.read(localeProvider.notifier).setLocale();
@@ -103,6 +115,7 @@ class DiQtState extends ConsumerState<DiQt> {
       title: 'DiQt',
       // 上述の Unhandled Exception: Looking up a deactivated widget's ancestor is unsafe. 対策
       navigatorKey: navigatorKey,
+      navigatorObservers: [_answerReadAloudNavigationObserver],
       // 画面全体に被さるローディングの初期化　ref： https://pub.dev/packages/flutter_easyloading
       builder: EasyLoading.init(),
       theme: ThemeData(
