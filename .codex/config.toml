@@ -1,7 +1,28 @@
-hide_agent_reasoning = true
-network_access = true
+################################################################################
+# Max-performance (practical) repo config
+################################################################################
 
+model = "gpt-5.3-codex"
+review_model = "gpt-5.3-codex"
+
+# FIX: on-failure is deprecated → use on-request (interactive) or never (non-interactive)
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+model_reasoning_effort = "xhigh"
+model_reasoning_summary = "detailed"
+model_verbosity = "high"
+
+hide_agent_reasoning = true
 notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
 
+# Web search mode
+web_search = "live"   # "cached" (default) / "live" / "disabled"
+
 [features]
-web_search_request = true
+unified_exec = true
+shell_snapshot = true
+collaboration_modes = true
+
+[sandbox_workspace_write]
+network_access = true
