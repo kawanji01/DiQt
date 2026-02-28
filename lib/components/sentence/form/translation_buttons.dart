@@ -27,9 +27,8 @@ class SentenceFormTranslationButtonsState
     extends ConsumerState<SentenceFormTranslationButtons> {
   bool _isRequesting = false;
   bool _isGoogleTranslating = false;
-  bool _isDeeplTranslating = false;
 
-  // Google翻訳
+  // 翻訳
   Future _translateByGoogle(User user) async {
     // リクエストロック開始
     setState(() {
@@ -60,36 +59,6 @@ class SentenceFormTranslationButtonsState
     }
   }
 
-  // DeepL翻訳
-  Future _translateByDeepL(User user) async {
-    // リクエストロック開始
-    setState(() {
-      _isRequesting = true;
-      _isDeeplTranslating = true;
-    });
-    // 画面全体にローディングを表示
-    EasyLoading.show(status: 'loading...');
-    final Map? resMap = await RemoteLangs.deeplTranslation(
-      original: widget.originalController.text,
-      sourceLangNumber: widget.sourceLangNumber,
-      targetLangNumber: widget.targetLangNumber,
-    );
-    EasyLoading.dismiss();
-    // リクエストロック終了
-    setState(() {
-      _isRequesting = false;
-      _isDeeplTranslating = false;
-    });
-    if (resMap == null) {
-      if (!mounted) return;
-      final snackBar = SnackBar(content: Text(t.lang.translation_failed));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    } else {
-      final String translation = resMap['translation'] ?? '';
-      widget.translationController.text = translation;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     const TextStyle styleText = TextStyle(fontSize: 14, color: Colors.black87);
@@ -99,7 +68,7 @@ class SentenceFormTranslationButtonsState
       return Container();
     }
 
-    Widget googleButton() {
+    Widget translateButton() {
       if (_isGoogleTranslating) {
         return Text(
           t.lang.translating,
@@ -119,42 +88,13 @@ class SentenceFormTranslationButtonsState
             : () async {
                 _translateByGoogle(user);
               },
-        child: Text(t.lang.google_translation, style: buttonStyleText),
-      );
-    }
-
-    Widget deeplButton() {
-      if (_isDeeplTranslating) {
-        return Text(
-          t.lang.translating,
-          style: styleText,
-        );
-      }
-      return TextButton(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        onPressed: _isRequesting
-            ? null
-            : () async {
-                _translateByDeepL(user);
-              },
-        child: Text(t.lang.deepl_translation, style: buttonStyleText),
+        child: Text(t.lang.translation_action, style: buttonStyleText),
       );
     }
 
     return Row(
       children: [
-        googleButton(),
-        const Text(
-          ' / ',
-          style: styleText,
-        ),
-        deeplButton(),
+        translateButton(),
       ],
     );
   }

@@ -28,13 +28,10 @@ class LangLargeTranslationButtons extends ConsumerStatefulWidget {
 class LangLargeTranslationButtonsState
     extends ConsumerState<LangLargeTranslationButtons> {
   String? _translationByGoogle;
-  String? _translationByDeepl;
   bool _googleTranslating = false;
   bool _googleTranlsationDone = false;
-  bool _deeplTranslating = false;
-  bool _deeplTranslationDone = false;
 
-  // Google翻訳
+  // 翻訳
   Future<void> _googleTranslate(User user) async {
     setState(() => _googleTranslating = true);
     final Map? resMap = await RemoteLangs.googleTranslation(
@@ -48,22 +45,6 @@ class LangLargeTranslationButtonsState
       _translationByGoogle = resMap == null ? null : resMap['translation'];
       _googleTranslating = false;
       _googleTranlsationDone = true;
-    });
-  }
-
-  // DeepL翻訳
-  Future<void> _deeplTranslate(User user) async {
-    setState(() => _deeplTranslating = true);
-    final Map? resMap = await RemoteLangs.deeplTranslation(
-        original: widget.original,
-        sourceLangNumber: widget.sourceLangNumber,
-        targetLangNumber: widget.targetLangNumber);
-    ref.read(todaysTranslationsCountProvider.notifier).state += 1;
-
-    setState(() {
-      _translationByDeepl = resMap == null ? null : resMap['translation'];
-      _deeplTranslating = false;
-      _deeplTranslationDone = true;
     });
   }
 
@@ -109,24 +90,7 @@ class LangLargeTranslationButtonsState
               ? _moveToPremiumPlan()
               : _googleTranslate(user),
           child: MediumGreenButton(
-              label: t.lang.google_translation,
-              fontSize: 16,
-              icon: Icons.translate));
-    }
-
-    Widget deeplButton() {
-      if (_deeplTranslationDone) {
-        return Container();
-      }
-      if (_deeplTranslating) {
-        return loadingSpinner();
-      }
-      return InkWell(
-          onTap: () => translationsLimited
-              ? _moveToPremiumPlan()
-              : _deeplTranslate(user),
-          child: MediumGreenButton(
-              label: t.lang.deepl_translation,
+              label: t.lang.translation_action,
               fontSize: 16,
               icon: Icons.translate));
     }
@@ -136,18 +100,10 @@ class LangLargeTranslationButtonsState
       children: [
         googleButton(),
         LangTranslationResults(
-          label: t.lang.google_translation,
+          label: t.lang.translation_result,
           sourceLangNumber: widget.sourceLangNumber,
           targetLangNumber: widget.targetLangNumber,
           results: _translationByGoogle,
-        ),
-        const SizedBox(height: 16),
-        deeplButton(),
-        LangTranslationResults(
-          label: t.lang.deepl_translation,
-          sourceLangNumber: widget.sourceLangNumber,
-          targetLangNumber: widget.targetLangNumber,
-          results: _translationByDeepl,
         ),
       ],
     );

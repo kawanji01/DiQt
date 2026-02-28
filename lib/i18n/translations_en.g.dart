@@ -735,6 +735,8 @@ class TranslationsLangEn {
 	// Translations
 	String get google_translation => 'Google Translation';
 	String get deepl_translation => 'DeepL Translation';
+	String get translation_action => 'Translate';
+	String get translation_result => 'Translation Result';
 	String get translating => 'Translating...';
 	String get done => 'Done';
 	String get translation_failed => 'Translation Failed';
@@ -2529,6 +2531,8 @@ extension on Translations {
 			case 'inquiries.sending_inquiry_failed': return 'Failed to send inquiry.';
 			case 'lang.google_translation': return 'Google Translation';
 			case 'lang.deepl_translation': return 'DeepL Translation';
+			case 'lang.translation_action': return 'Translate';
+			case 'lang.translation_result': return 'Translation Result';
 			case 'lang.translating': return 'Translating...';
 			case 'lang.done': return 'Done';
 			case 'lang.translation_failed': return 'Translation Failed';

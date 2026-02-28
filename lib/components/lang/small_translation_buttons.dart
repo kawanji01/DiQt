@@ -27,11 +27,9 @@ class LangSmallTranslationButtons extends ConsumerStatefulWidget {
 class LangSmallTranslationButtonsState
     extends ConsumerState<LangSmallTranslationButtons> {
   String? _translationByGoogle;
-  String? _translationByDeepl;
   bool _googleTranslating = false;
-  bool _deeplTranslating = false;
 
-  // Google翻訳
+  // 翻訳
   Future<void> _googleTranslate() async {
     setState(() => _googleTranslating = true);
     final Map? resMap = await RemoteLangs.googleTranslation(
@@ -42,20 +40,6 @@ class LangSmallTranslationButtonsState
     ref.read(todaysTranslationsCountProvider.notifier).state += 1;
     setState(() {
       _translationByGoogle = resMap == null ? null : resMap['translation'];
-    });
-  }
-
-  // DeepL翻訳
-  Future<void> _deeplTranslate() async {
-    setState(() => _deeplTranslating = true);
-    final Map? resMap = await RemoteLangs.deeplTranslation(
-        original: widget.original,
-        sourceLangNumber: widget.sourceLangNumber,
-        targetLangNumber: widget.targetLangNumber);
-    ref.read(todaysTranslationsCountProvider.notifier).state += 1;
-
-    setState(() {
-      _translationByDeepl = resMap == null ? null : resMap['translation'];
     });
   }
 
@@ -82,34 +66,16 @@ class LangSmallTranslationButtonsState
                 translationsCountLimitForFreeUsers;
 
     Widget translationButtons() {
-      if (_translationByGoogle != null && _translationByDeepl != null) {
+      if (_translationByGoogle != null) {
         return Container();
       }
-      return Row(
-        children: [
-          // Google翻訳
-          LangTranslationButton(
-            label: t.lang.google_translation,
-            isTranslating: _googleTranslating,
-            translation: _translationByGoogle,
-            translationLmited: translationsLimited,
-            translate: _googleTranslate,
-            moveToPremiumPlan: _moveToPremiumPlan,
-          ),
-          const Text(
-            ' / ',
-            style: TextStyle(fontSize: 14, color: Colors.black87),
-          ),
-          // Deepl翻訳
-          LangTranslationButton(
-            label: t.lang.deepl_translation,
-            isTranslating: _deeplTranslating,
-            translation: _translationByDeepl,
-            translationLmited: translationsLimited,
-            translate: _deeplTranslate,
-            moveToPremiumPlan: _moveToPremiumPlan,
-          ),
-        ],
+      return LangTranslationButton(
+        label: t.lang.translation_action,
+        isTranslating: _googleTranslating,
+        translation: _translationByGoogle,
+        translationLmited: translationsLimited,
+        translate: _googleTranslate,
+        moveToPremiumPlan: _moveToPremiumPlan,
       );
     }
 
@@ -121,16 +87,10 @@ class LangSmallTranslationButtonsState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             LangTranslationResults(
-              label: t.lang.google_translation,
+              label: t.lang.translation_result,
               sourceLangNumber: widget.sourceLangNumber,
               targetLangNumber: widget.targetLangNumber,
               results: _translationByGoogle,
-            ),
-            LangTranslationResults(
-              label: t.lang.deepl_translation,
-              sourceLangNumber: widget.sourceLangNumber,
-              targetLangNumber: widget.targetLangNumber,
-              results: _translationByDeepl,
             ),
           ],
         ),

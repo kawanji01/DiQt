@@ -731,6 +731,8 @@ class _TranslationsLangJa implements TranslationsLangEn {
 	// Translations
 	@override String get google_translation => 'Google翻訳';
 	@override String get deepl_translation => 'DeepL翻訳';
+	@override String get translation_action => '翻訳する';
+	@override String get translation_result => '翻訳結果';
 	@override String get translating => '翻訳中...';
 	@override String get done => '完了';
 	@override String get translation_failed => '翻訳できませんでした。';
@@ -2525,6 +2527,8 @@ extension on TranslationsJa {
 			case 'inquiries.sending_inquiry_failed': return 'お問い合わせの送信に失敗しました。';
 			case 'lang.google_translation': return 'Google翻訳';
 			case 'lang.deepl_translation': return 'DeepL翻訳';
+			case 'lang.translation_action': return '翻訳する';
+			case 'lang.translation_result': return '翻訳結果';
 			case 'lang.translating': return '翻訳中...';
 			case 'lang.done': return '完了';
 			case 'lang.translation_failed': return '翻訳できませんでした。';

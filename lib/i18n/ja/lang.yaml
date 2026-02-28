@@ -1,5 +1,7 @@
 google_translation: 'Google翻訳'
 deepl_translation: 'DeepL翻訳'
+translation_action: '翻訳する'
+translation_result: '翻訳結果'
 translating: '翻訳中...'
 done: '完了'
 translation_failed: '翻訳できませんでした。'

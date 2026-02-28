@@ -1,5 +1,7 @@
 google_translation: 'Google Translation'
 deepl_translation: 'DeepL Translation'
+translation_action: 'Translate'
+translation_result: 'Translation Result'
 translating: 'Translating...'
 done: 'Done'
 translation_failed: 'Translation Failed'
