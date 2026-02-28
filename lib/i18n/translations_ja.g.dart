@@ -1292,6 +1292,11 @@ class _TranslationsQuizzesJa implements TranslationsQuizzesEn {
 	@override String get distractors_generated => '誤りの選択肢を自動生成しました。';
 	@override String get distractors_generation_failed => '誤りの選択肢を自動生成できませんでした。';
 	@override String get explanation => '解説';
+	@override String get ai_explanation => 'AI解説';
+	@override String get view_ai_explanation => 'AI解説を表示する';
+	@override String get generating_ai_explanation => 'AI解説を生成中です...';
+	@override String get cached_ai_explanation => 'キャッシュ済みの解説';
+	@override String get ai_explanation_generation_failed => 'AI解説を生成できませんでした。';
 	@override String get explanation_placeholder => '【空欄可】解説を設定できます。';
 	@override String get hint => 'ヒント';
 	@override String get hint_placeholder => '【空欄可】ヒントを設定できます。';
@@ -3025,6 +3030,11 @@ extension on TranslationsJa {
 			case 'quizzes.distractors_generated': return '誤りの選択肢を自動生成しました。';
 			case 'quizzes.distractors_generation_failed': return '誤りの選択肢を自動生成できませんでした。';
 			case 'quizzes.explanation': return '解説';
+			case 'quizzes.ai_explanation': return 'AI解説';
+			case 'quizzes.view_ai_explanation': return 'AI解説を表示する';
+			case 'quizzes.generating_ai_explanation': return 'AI解説を生成中です...';
+			case 'quizzes.cached_ai_explanation': return 'キャッシュ済みの解説';
+			case 'quizzes.ai_explanation_generation_failed': return 'AI解説を生成できませんでした。';
 			case 'quizzes.explanation_placeholder': return '【空欄可】解説を設定できます。';
 			case 'quizzes.hint': return 'ヒント';
 			case 'quizzes.hint_placeholder': return '【空欄可】ヒントを設定できます。';

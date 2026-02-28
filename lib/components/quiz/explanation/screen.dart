@@ -8,6 +8,7 @@ import 'package:booqs_mobile/utils/size_config.dart';
 import 'package:booqs_mobile/components/quiz/item/edit_button.dart';
 import 'package:booqs_mobile/components/quiz/explanation/answer.dart';
 import 'package:booqs_mobile/components/quiz/explanation/answer_analysis.dart';
+import 'package:booqs_mobile/components/quiz/explanation/ai_explanation.dart';
 import 'package:booqs_mobile/components/quiz/explanation/distractors.dart';
 import 'package:booqs_mobile/components/quiz/explanation/explanation.dart';
 import 'package:booqs_mobile/components/quiz/explanation/question.dart';
@@ -89,6 +90,14 @@ class QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
       );
     }
 
+    Widget aiExplanation() {
+      return future.when(
+        data: (date) => QuizExplanationAIExplanation(quiz: date!),
+        error: (err, stack) => Text('Error: $err'),
+        loading: () => QuizExplanationAIExplanation(quiz: quiz),
+      );
+    }
+
     Widget editButtons() {
       return future.when(
         data: (date) => QuizItemEditButton(
@@ -150,6 +159,7 @@ class QuizExplanationScreenState extends ConsumerState<QuizExplanationScreen> {
                   reviewButton(),
                   const SizedBox(height: 16),
                   explanation(),
+                  aiExplanation(),
                   editButtons(),
                   const SizedBox(height: 40),
                   answerAnalysis(),

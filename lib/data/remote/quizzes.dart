@@ -136,4 +136,23 @@ class RemoteQuizzes {
       return ErrorHandler.exceptionMap(e, s);
     }
   }
+
+  // AI解説を生成/取得する
+  static Future<Map> aiExplanation(int quizId) async {
+    try {
+      final Uri url = Uri.parse(
+          '${DiQtURL.root()}/api/v1/mobile/quizzes/$quizId/ai_explanation');
+      final Response res = await HttpService.post(url, null);
+
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
 }
