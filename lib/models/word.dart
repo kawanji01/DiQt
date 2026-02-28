@@ -39,6 +39,7 @@ class Word {
     this.sensesJson,
     this.sensesTags,
     this.formsList,
+    this.phrase = false,
     required this.wordRequestsCount,
     required this.acceptedWordRequestsCount,
     required this.pendingWordRequestsCount,
@@ -84,6 +85,7 @@ class Word {
   String? sensesJson;
   List? sensesTags;
   List? formsList;
+  bool phrase;
   int wordRequestsCount;
   int acceptedWordRequestsCount;
   int pendingWordRequestsCount;
@@ -129,6 +131,7 @@ class Word {
         sensesJson = json['senses_json'],
         sensesTags = json['senses_tags'],
         formsList = json['forms_list'],
+        phrase = json['phrase'] ?? false,
         wordRequestsCount = json['word_requests_count'],
         acceptedWordRequestsCount = json['accepted_word_requests_count'],
         pendingWordRequestsCount = json['pending_word_requests_count'],
@@ -200,6 +203,7 @@ class Word {
         'senses_json': sensesJson,
         'senses_tags': sensesTags,
         'forms_list': formsList,
+        'phrase': phrase,
         'word_requests_count': wordRequestsCount,
         'accepted_word_requests_count': acceptedWordRequestsCount,
         'pending_word_requests_count': pendingWordRequestsCount,

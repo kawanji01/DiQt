@@ -15,11 +15,19 @@ class QuizExplanationDistractors extends StatelessWidget {
       return Container();
     }
 
+    final bool shouldWrapWholeDistractor = quiz.autoDictLinkOfAnswer &&
+        quiz.appliedDictionaryId != null &&
+        quiz.word?.phrase == true &&
+        (quiz.syncedAnswerType == 'entry' ||
+            quiz.syncedAnswerType == 'entry_audio');
+
     // 選択肢のテキスト
     Widget distractorContent(String distractor) {
       if (quiz.autoDictLinkOfAnswer && quiz.appliedDictionaryId != null) {
+        final String distractorText =
+            shouldWrapWholeDistractor ? '[[$distractor]]' : distractor;
         return TextWithDictLink(
-            text: distractor,
+            text: distractorText,
             langNumber: quiz.langNumberOfAnswer,
             autoLinkEnabled: true,
             crossAxisAlignment: CrossAxisAlignment.start,

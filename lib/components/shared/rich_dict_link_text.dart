@@ -67,7 +67,7 @@ class RichDictLinkText extends StatelessWidget {
       spans.add(TextSpan(
         text: display,
         style: style.copyWith(
-          color: Colors.green,
+          color: style.color,
           decoration: TextDecoration.underline,
         ),
         recognizer: TapGestureRecognizer()
@@ -111,7 +111,7 @@ class RichDictLinkText extends StatelessWidget {
       spans.add(TextSpan(
         text: display,
         style: style.copyWith(
-          color: Colors.green,
+          color: style.color,
           decoration: TextDecoration.underline,
         ),
         recognizer: TapGestureRecognizer()

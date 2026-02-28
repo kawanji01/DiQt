@@ -12,10 +12,18 @@ class QuizExplanationQuestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool shouldWrapWholeQuestion = quiz.autoDictLinkOfQuestion &&
+        quiz.appliedDictionaryId != null &&
+        quiz.word?.phrase == true &&
+        (quiz.syncedQuestionType == 'entry' ||
+            quiz.syncedQuestionType == 'entry_audio');
+
     Widget question() {
       if (quiz.autoDictLinkOfQuestion && quiz.appliedDictionaryId != null) {
+        final String questionText =
+            shouldWrapWholeQuestion ? '[[${quiz.question}]]' : quiz.question;
         return TextWithDictLink(
-          text: quiz.question,
+          text: questionText,
           langNumber: quiz.langNumberOfQuestion,
           autoLinkEnabled: true,
           crossAxisAlignment: CrossAxisAlignment.center,

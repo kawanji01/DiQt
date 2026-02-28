@@ -17,12 +17,13 @@ void main() {
           acceptedWordRequestsCount: 0,
           pendingWordRequestsCount: 0,
         );
-        
+
         expect(word.id, 1);
         expect(word.dictionaryId, 1);
         expect(word.entry, 'test');
         expect(word.meaning, 'テスト');
         expect(word.explanation, '');
+        expect(word.phrase, isFalse);
         expect(word.wordRequestsCount, 0);
       });
 
@@ -42,7 +43,7 @@ void main() {
           ipa: '/ɪɡˈzæmpəl/',
           reading: 'イグザンプル',
         );
-        
+
         expect(word.explanation, 'Test explanation');
         expect(word.pos, 'noun');
         expect(word.ipa, '/ɪɡˈzæmpəl/');
@@ -57,7 +58,7 @@ void main() {
           acceptedWordRequestsCount: 5,
           pendingWordRequestsCount: 2,
         );
-        
+
         expect(word.rejectedWordRequestsCount(), 3);
       });
 
@@ -67,7 +68,7 @@ void main() {
           acceptedWordRequestsCount: 5,
           pendingWordRequestsCount: 2,
         );
-        
+
         expect(word.rejectedWordRequestsCount(), 0);
       });
 
@@ -77,7 +78,7 @@ void main() {
           acceptedWordRequestsCount: 0,
           pendingWordRequestsCount: 0,
         );
-        
+
         expect(word.rejectedWordRequestsCount(), 0);
       });
 
@@ -87,7 +88,7 @@ void main() {
           acceptedWordRequestsCount: 0,
           pendingWordRequestsCount: 0,
         );
-        
+
         expect(word.rejectedWordRequestsCount(), 5);
       });
 
@@ -97,7 +98,7 @@ void main() {
           acceptedWordRequestsCount: 300,
           pendingWordRequestsCount: 200,
         );
-        
+
         expect(word.rejectedWordRequestsCount(), 500);
       });
     });
@@ -114,10 +115,11 @@ void main() {
           'word_requests_count': 5,
           'accepted_word_requests_count': 3,
           'pending_word_requests_count': 1,
+          'phrase': true,
         };
 
         final word = Word.fromJson(json);
-        
+
         expect(word.id, 1);
         expect(word.dictionaryId, 2);
         expect(word.entry, 'hello');
@@ -125,6 +127,25 @@ void main() {
         expect(word.wordRequestsCount, 5);
         expect(word.acceptedWordRequestsCount, 3);
         expect(word.pendingWordRequestsCount, 1);
+        expect(word.phrase, isTrue);
+      });
+
+      test('should default phrase to false when omitted', () {
+        final json = {
+          'id': 1,
+          'dictionary_id': 2,
+          'entry': 'hello',
+          'lang_number_of_entry': 0,
+          'meaning': 'こんにちは',
+          'lang_number_of_meaning': 1,
+          'word_requests_count': 5,
+          'accepted_word_requests_count': 3,
+          'pending_word_requests_count': 1,
+        };
+
+        final word = Word.fromJson(json);
+
+        expect(word.phrase, isFalse);
       });
 
       test('should create instance from JSON with all optional fields', () {
@@ -159,7 +180,7 @@ void main() {
         };
 
         final word = Word.fromJson(json);
-        
+
         expect(word.sentenceId, 3);
         expect(word.posTagId, 4);
         expect(word.entrySsml, '<speak>beautiful</speak>');
@@ -191,7 +212,7 @@ void main() {
         };
 
         final word = Word.fromJson(json);
-        
+
         expect(word.sentenceId, isNull);
         expect(word.posTagId, isNull);
         expect(word.explanation, isNull);
@@ -216,7 +237,7 @@ void main() {
         };
 
         final word = Word.fromJson(json);
-        
+
         expect(word.wordTags, isEmpty);
         expect(word.senses, isEmpty);
         expect(word.grammaticalTags, isEmpty);
@@ -238,7 +259,7 @@ void main() {
         );
 
         final json = word.toJson();
-        
+
         expect(json['id'], 1);
         expect(json['dictionary_id'], 2);
         expect(json['entry'], 'example');
@@ -248,6 +269,7 @@ void main() {
         expect(json['pending_word_requests_count'], 1);
         expect(json['explanation'], 'Test explanation');
         expect(json['pos'], 'noun');
+        expect(json['phrase'], false);
       });
 
       test('should handle null values in toJson', () {
@@ -259,10 +281,10 @@ void main() {
         );
 
         final json = word.toJson();
-        
+
         expect(json['sentence_id'], isNull);
         expect(json['pos_tag_id'], isNull);
-        expect(json['explanation'], '');  // Default value
+        expect(json['explanation'], ''); // Default value
         expect(json['pos'], isNull);
       });
     });
@@ -286,14 +308,15 @@ void main() {
 
         final word = Word.fromJson(originalJson);
         final serializedJson = word.toJson();
-        
+
         expect(serializedJson['id'], originalJson['id']);
         expect(serializedJson['dictionary_id'], originalJson['dictionary_id']);
         expect(serializedJson['entry'], originalJson['entry']);
         expect(serializedJson['meaning'], originalJson['meaning']);
         expect(serializedJson['explanation'], originalJson['explanation']);
         expect(serializedJson['pos'], originalJson['pos']);
-        expect(serializedJson['word_requests_count'], originalJson['word_requests_count']);
+        expect(serializedJson['word_requests_count'],
+            originalJson['word_requests_count']);
       });
     });
 
@@ -305,7 +328,7 @@ void main() {
           acceptedWordRequestsCount: 4,
           pendingWordRequestsCount: 3,
         );
-        
+
         expect(word.rejectedWordRequestsCount(), -2);
       });
 
@@ -316,7 +339,7 @@ void main() {
           meaning: longString,
           explanation: longString,
         );
-        
+
         expect(word.entry, longString);
         expect(word.meaning, longString);
         expect(word.explanation, longString);
@@ -329,7 +352,7 @@ void main() {
           ipa: '/kæˈfeɪ/',
           reading: 'カフェ',
         );
-        
+
         expect(word.entry, 'café');
         expect(word.meaning, '咖啡館');
         expect(word.ipa, '/kæˈfeɪ/');
@@ -342,7 +365,7 @@ void main() {
           meaning: '',
           explanation: '',
         );
-        
+
         expect(word.entry, '');
         expect(word.meaning, '');
         expect(word.explanation, '');
