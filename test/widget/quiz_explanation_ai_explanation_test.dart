@@ -1,9 +1,12 @@
 import 'dart:async';
 
 import 'package:booqs_mobile/components/quiz/explanation/ai_explanation.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Quiz buildQuiz() {
@@ -32,15 +35,25 @@ Future<void> pumpScreen(
   WidgetTester tester, {
   required Quiz quiz,
   Future<Map> Function(int quizId)? requestAIExplanation,
+  bool premiumEnabled = true,
 }) async {
   LocaleSettings.setLocaleSync(AppLocale.en);
   await tester.pumpWidget(
-    TranslationProvider(
-      child: MaterialApp(
-        home: Scaffold(
-          body: QuizExplanationAIExplanation(
-            quiz: quiz,
-            requestAIExplanation: requestAIExplanation,
+    ProviderScope(
+      overrides: [
+        premiumEnabledProvider.overrideWith((ref) => premiumEnabled),
+      ],
+      child: TranslationProvider(
+        child: MaterialApp(
+          routes: {
+            userPremiumPlanPage: (context) =>
+                const Scaffold(body: Text('Premium Page')),
+          },
+          home: Scaffold(
+            body: QuizExplanationAIExplanation(
+              quiz: quiz,
+              requestAIExplanation: requestAIExplanation,
+            ),
           ),
         ),
       ),
@@ -59,7 +72,7 @@ void main() {
       expect(find.text('Generating AI explanation...'), findsNothing);
     });
 
-    testWidgets('shows loading then cached AI explanation on success',
+    testWidgets('shows loading then AI explanation on success',
         (WidgetTester tester) async {
       final completer = Completer<Map>();
       int requestCount = 0;
@@ -86,7 +99,7 @@ void main() {
       });
       await tester.pump();
 
-      expect(find.text('Cached explanation'), findsOneWidget);
+      expect(find.text('Cached explanation'), findsNothing);
       expect(find.text('Generated explanation'), findsOneWidget);
     });
 
@@ -113,6 +126,31 @@ void main() {
       expect(find.text('Show AI Explanation'), findsNothing);
       expect(find.text('AI explanation failed'), findsOneWidget);
       expect(find.byKey(const Key('quizAiExplanationButton')), findsNothing);
+    });
+
+    testWidgets('shows premium message and navigates for free user',
+        (WidgetTester tester) async {
+      int requestCount = 0;
+
+      await pumpScreen(
+        tester,
+        quiz: buildQuiz(),
+        premiumEnabled: false,
+        requestAIExplanation: (_) async {
+          requestCount += 1;
+          return {
+            'status': 200,
+            'ai_explanation': 'Generated explanation',
+            'cached': false,
+          };
+        },
+      );
+
+      await tester.tap(find.byKey(const Key('quizAiExplanationButton')));
+      await tester.pumpAndSettle();
+
+      expect(requestCount, 0);
+      expect(find.text('Premium Page'), findsOneWidget);
     });
   });
 }

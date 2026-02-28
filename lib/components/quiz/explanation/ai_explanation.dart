@@ -1,12 +1,15 @@
 import 'package:booqs_mobile/components/markdown/markdown_with_dict_link.dart';
 import 'package:booqs_mobile/components/shared/item_label.dart';
+import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/remote/quizzes.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
+import 'package:booqs_mobile/pages/user/premium_plan.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class QuizExplanationAIExplanation extends StatefulWidget {
+class QuizExplanationAIExplanation extends ConsumerStatefulWidget {
   const QuizExplanationAIExplanation({
     super.key,
     required this.quiz,
@@ -16,15 +19,14 @@ class QuizExplanationAIExplanation extends StatefulWidget {
   final Future<Map> Function(int quizId)? requestAIExplanation;
 
   @override
-  State<QuizExplanationAIExplanation> createState() =>
+  ConsumerState<QuizExplanationAIExplanation> createState() =>
       _QuizExplanationAIExplanationState();
 }
 
 class _QuizExplanationAIExplanationState
-    extends State<QuizExplanationAIExplanation> {
+    extends ConsumerState<QuizExplanationAIExplanation> {
   bool _requested = false;
   bool _isRequesting = false;
-  bool _cached = false;
   String? _aiExplanationText;
   String? _errorMessage;
 
@@ -34,7 +36,6 @@ class _QuizExplanationAIExplanationState
     setState(() {
       _requested = true;
       _isRequesting = true;
-      _cached = false;
       _aiExplanationText = null;
       _errorMessage = null;
     });
@@ -63,7 +64,6 @@ class _QuizExplanationAIExplanationState
 
     setState(() {
       _isRequesting = false;
-      _cached = resMap['cached'] == true;
       _aiExplanationText = explanation;
     });
   }
@@ -81,6 +81,8 @@ class _QuizExplanationAIExplanationState
 
   @override
   Widget build(BuildContext context) {
+    final bool isPremium = ref.watch(premiumEnabledProvider);
+
     Widget contents() {
       if (_requested == false) {
         return SizedBox(
@@ -92,7 +94,16 @@ class _QuizExplanationAIExplanationState
               foregroundColor: Colors.green,
               side: const BorderSide(color: Colors.green),
             ),
-            onPressed: _loadAIExplanation,
+            onPressed: () async {
+              if (isPremium == false) {
+                final snackBar =
+                    SnackBar(content: Text(t.shared.premium_recommendation));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                await PremiumPlanPage.push(context);
+                return;
+              }
+              await _loadAIExplanation();
+            },
             child: Text(
               t.quizzes.view_ai_explanation,
               style: const TextStyle(fontWeight: FontWeight.bold),
@@ -113,7 +124,6 @@ class _QuizExplanationAIExplanationState
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (_cached) _buildMessage(t.quizzes.cached_ai_explanation),
           MarkdownWithDictLink(
             text: _aiExplanationText ?? '',
             dictionaryId: widget.quiz.appliedDictionaryId,
