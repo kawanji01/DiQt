@@ -27,6 +27,8 @@ class Quiz {
     this.distractor1,
     this.distractor2,
     this.distractor3,
+    this.syncedQuestionType,
+    this.syncedAnswerType,
     required this.shortAnswerEnabled,
     required this.questionHidden,
     this.explanation,
@@ -66,6 +68,8 @@ class Quiz {
   String? distractor1;
   String? distractor2;
   String? distractor3;
+  String? syncedQuestionType;
+  String? syncedAnswerType;
   bool shortAnswerEnabled;
   String? explanation;
   String? hint;
@@ -104,6 +108,8 @@ class Quiz {
         distractor1 = json['distractor_1'],
         distractor2 = json['distractor_2'],
         distractor3 = json['distractor_3'],
+        syncedQuestionType = json['synced_question_type'],
+        syncedAnswerType = json['synced_answer_type'],
         shortAnswerEnabled = json['short_answer_enabled'],
         questionHidden = json['question_hidden'],
         explanation = json['explanation'],
@@ -160,6 +166,8 @@ class Quiz {
         'distractor_1': distractor1,
         'distractor_2': distractor2,
         'distractor_3': distractor3,
+        'synced_question_type': syncedQuestionType,
+        'synced_answer_type': syncedAnswerType,
         'short_answer_enabled': shortAnswerEnabled,
         'question_hidden': questionHidden,
         'explanation': explanation,

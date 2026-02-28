@@ -12,10 +12,19 @@ class QuizExplanationAnswer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool shouldWrapWholeAnswer = quiz.autoDictLinkOfAnswer &&
+        quiz.appliedDictionaryId != null &&
+        quiz.word?.phrase == true &&
+        (quiz.syncedAnswerType == 'entry' ||
+            quiz.syncedAnswerType == 'entry_audio');
+
     Widget answer() {
       if (quiz.autoDictLinkOfAnswer && quiz.appliedDictionaryId != null) {
+        final String answerText = shouldWrapWholeAnswer
+            ? '[[${quiz.correctAnswer}]]'
+            : quiz.correctAnswer;
         return TextWithDictLink(
-            text: quiz.correctAnswer,
+            text: answerText,
             langNumber: quiz.langNumberOfAnswer,
             autoLinkEnabled: true,
             crossAxisAlignment: CrossAxisAlignment.center,
