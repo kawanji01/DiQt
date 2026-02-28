@@ -1296,6 +1296,11 @@ class TranslationsQuizzesEn {
 	String get distractors_generated => 'Distractors generated';
 	String get distractors_generation_failed => 'Distractors generation failed';
 	String get explanation => 'Explanation';
+	String get ai_explanation => 'AI Explanation';
+	String get view_ai_explanation => 'Show AI Explanation';
+	String get generating_ai_explanation => 'Generating AI explanation...';
+	String get cached_ai_explanation => 'Cached explanation';
+	String get ai_explanation_generation_failed => 'Failed to generate AI explanation.';
 	String get explanation_placeholder => 'You can input a explanation.';
 	String get hint => 'Hint';
 	String get hint_placeholder => 'You can input a hint for the question.';
@@ -3029,6 +3034,11 @@ extension on Translations {
 			case 'quizzes.distractors_generated': return 'Distractors generated';
 			case 'quizzes.distractors_generation_failed': return 'Distractors generation failed';
 			case 'quizzes.explanation': return 'Explanation';
+			case 'quizzes.ai_explanation': return 'AI Explanation';
+			case 'quizzes.view_ai_explanation': return 'Show AI Explanation';
+			case 'quizzes.generating_ai_explanation': return 'Generating AI explanation...';
+			case 'quizzes.cached_ai_explanation': return 'Cached explanation';
+			case 'quizzes.ai_explanation_generation_failed': return 'Failed to generate AI explanation.';
 			case 'quizzes.explanation_placeholder': return 'You can input a explanation.';
 			case 'quizzes.hint': return 'Hint';
 			case 'quizzes.hint_placeholder': return 'You can input a hint for the question.';
