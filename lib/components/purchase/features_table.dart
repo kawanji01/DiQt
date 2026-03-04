@@ -31,6 +31,11 @@ class PurchaseFeaturesTable extends StatelessWidget {
         'premium': t.purchase.unlimited,
       },
       {
+        'label': t.purchase.quiz_ai_explanation,
+        'free': crossIcon(),
+        'premium': checkIcon(),
+      },
+      {
         'label': t.purchase.ad_free,
         'free': crossIcon(),
         'premium': checkIcon(),

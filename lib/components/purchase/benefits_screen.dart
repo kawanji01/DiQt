@@ -113,6 +113,7 @@ class PurchaseBenefitsScreen extends StatelessWidget {
           buildFeatureRow('解答数', '$answersCountLimitForFreeUsers回/日', '✓'),
           buildFeatureRow('翻訳数', '$translationsCountLimitForFreeUsers回/日', '✓'),
           buildFeatureRow('AI機能', '$aiSearchesCountLimitForFreeUsers回/日', '✓'),
+          buildFeatureRow(t.purchase.quiz_ai_explanation, '✗', '✓'),
           buildFeatureRow(t.purchase.ad_free, '✗', '✓'),
           buildFeatureRow('問題作成', '✗', '✓'),
           buildFeatureRow(t.purchase.weakness, '✗', '✓'),
@@ -155,6 +156,11 @@ class PurchaseBenefitsScreen extends StatelessWidget {
           description(
             t.purchase.unlimited_ai_searches_description(
                 number: aiSearchesCountLimitForFreeUsers),
+          ),
+          const SizedBox(height: 48),
+          title(t.purchase.quiz_ai_explanation),
+          description(
+            t.purchase.quiz_ai_explanation_description,
           ),
           const SizedBox(height: 48),
           title(t.purchase.unlimited_translations),

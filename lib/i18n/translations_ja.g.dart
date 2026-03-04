@@ -1208,6 +1208,8 @@ class _TranslationsPurchaseJa implements TranslationsPurchaseEn {
 	@override String unlimited_translations_description({required Object number}) => '無料ユーザーが1日に翻訳できる回数は${number}回ですが、プレミアム会員になれば、1日に何回でも翻訳できるようになります。';
 	@override String get unlimited_ai_searches => '無制限のAI機能';
 	@override String unlimited_ai_searches_description({required Object number}) => '無料ユーザーが１日にAIに聞ける数は${number}回ですが、プレミアム会員になれば、1日に何回でもAIに聞けるようになります。';
+	@override String get quiz_ai_explanation => '問題のAI解説機能';
+	@override String get quiz_ai_explanation_description => 'プレミアム会員になれば、問題ごとのAI解説を表示して学習できるようになります。';
 	@override String get weakness_description => 'プレミアム会員になれば、正答率が低い問題を重点的に学習できるようになります。';
 	@override String get note_description => 'プレミアム会員になれば、解いた問題にメモを残すことができるようになります。';
 	@override String get answer_analysis_description => 'プレミアム会員になれば、正答率や間違えた回数で解いた問題を分析できるようになります。';
@@ -2964,6 +2966,8 @@ extension on TranslationsJa {
 			case 'purchase.unlimited_translations_description': return ({required Object number}) => '無料ユーザーが1日に翻訳できる回数は${number}回ですが、プレミアム会員になれば、1日に何回でも翻訳できるようになります。';
 			case 'purchase.unlimited_ai_searches': return '無制限のAI機能';
 			case 'purchase.unlimited_ai_searches_description': return ({required Object number}) => '無料ユーザーが１日にAIに聞ける数は${number}回ですが、プレミアム会員になれば、1日に何回でもAIに聞けるようになります。';
+			case 'purchase.quiz_ai_explanation': return '問題のAI解説機能';
+			case 'purchase.quiz_ai_explanation_description': return 'プレミアム会員になれば、問題ごとのAI解説を表示して学習できるようになります。';
 			case 'purchase.weakness_description': return 'プレミアム会員になれば、正答率が低い問題を重点的に学習できるようになります。';
 			case 'purchase.note_description': return 'プレミアム会員になれば、解いた問題にメモを残すことができるようになります。';
 			case 'purchase.answer_analysis_description': return 'プレミアム会員になれば、正答率や間違えた回数で解いた問題を分析できるようになります。';

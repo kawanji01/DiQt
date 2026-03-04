@@ -20,6 +20,10 @@ class PurchaseBenefitsList extends StatelessWidget {
         'label': t.purchase.unlimited_ai_searches_description(number: '3'),
       },
       {
+        'icon': Icons.auto_awesome,
+        'label': t.purchase.quiz_ai_explanation_description,
+      },
+      {
         'icon': Icons.visibility_off,
         'label': t.purchase.ad_free_description,
       },

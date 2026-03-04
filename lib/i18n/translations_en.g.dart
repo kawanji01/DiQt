@@ -1210,6 +1210,8 @@ class TranslationsPurchaseEn {
 	String unlimited_answers_description({required Object number}) => 'Free users can only answer ${number} questions daily, but as a premium member, you can answer as many questions as you like in a day.';
 	String get unlimited_ai_searches => 'Unlimited AI Features';
 	String unlimited_ai_searches_description({required Object number}) => 'Free users are limited to ${number} AI queries per day, but with Premium membership, you can use AI features unlimited times.';
+	String get quiz_ai_explanation => 'AI Explanations for Questions';
+	String get quiz_ai_explanation_description => 'Premium members can view AI explanations for each question while learning.';
 	String get unlimited_translations => 'Unlimited Translations';
 	String unlimited_translations_description({required Object number}) => 'Free users can only translate ${number} times a day, but premium members can translate as many times a day as they like.';
 	String get weakness_description => 'Premium members can focus on questions with low percentage of correct answers.';
@@ -2966,6 +2968,8 @@ extension on Translations {
 			case 'purchase.unlimited_answers_description': return ({required Object number}) => 'Free users can only answer ${number} questions daily, but as a premium member, you can answer as many questions as you like in a day.';
 			case 'purchase.unlimited_ai_searches': return 'Unlimited AI Features';
 			case 'purchase.unlimited_ai_searches_description': return ({required Object number}) => 'Free users are limited to ${number} AI queries per day, but with Premium membership, you can use AI features unlimited times.';
+			case 'purchase.quiz_ai_explanation': return 'AI Explanations for Questions';
+			case 'purchase.quiz_ai_explanation_description': return 'Premium members can view AI explanations for each question while learning.';
 			case 'purchase.unlimited_translations': return 'Unlimited Translations';
 			case 'purchase.unlimited_translations_description': return ({required Object number}) => 'Free users can only translate ${number} times a day, but premium members can translate as many times a day as they like.';
 			case 'purchase.weakness_description': return 'Premium members can focus on questions with low percentage of correct answers.';
