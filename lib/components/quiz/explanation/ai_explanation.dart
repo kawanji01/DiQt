@@ -81,6 +81,12 @@ class _QuizExplanationAIExplanationState
 
   @override
   Widget build(BuildContext context) {
+    final bool hideAIExplanation =
+        widget.quiz.question.trim() == widget.quiz.correctAnswer.trim();
+    if (hideAIExplanation) {
+      return const SizedBox.shrink();
+    }
+
     final bool isPremium = ref.watch(premiumEnabledProvider);
 
     Widget contents() {
