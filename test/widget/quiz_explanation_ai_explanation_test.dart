@@ -9,15 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Quiz buildQuiz() {
+Quiz buildQuiz({
+  String question = 'question',
+  String correctAnswer = 'answer',
+}) {
   return Quiz(
     id: 1,
     drillId: 1,
     appliedDictionaryId: 1,
-    question: 'question',
+    question: question,
     langNumberOfQuestion: 1,
     questionReadAloud: false,
-    correctAnswer: 'answer',
+    correctAnswer: correctAnswer,
     langNumberOfAnswer: 0,
     answerReadAloud: false,
     shortAnswerEnabled: false,
@@ -151,6 +154,20 @@ void main() {
 
       expect(requestCount, 0);
       expect(find.text('Premium Page'), findsOneWidget);
+    });
+
+    testWidgets('hides AI explanation section when question equals answer',
+        (WidgetTester tester) async {
+      await pumpScreen(
+        tester,
+        quiz: buildQuiz(
+          question: ' same text ',
+          correctAnswer: 'same text',
+        ),
+      );
+
+      expect(find.byKey(const Key('quizAiExplanationButton')), findsNothing);
+      expect(find.text('AI Explanation'), findsNothing);
     });
   });
 }
