@@ -1,0 +1,3 @@
+interface:
+  display_name: "Review Fix Pass"
+  short_description: "Iteratively fix high-confidence review findings in the current diff"

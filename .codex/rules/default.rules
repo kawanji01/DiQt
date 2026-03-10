@@ -1,0 +1,5 @@
+prefix_rule(pattern=["git", "status"], decision="allow")
+prefix_rule(pattern=["git", "diff"], decision="allow")
+prefix_rule(pattern=["flutter", "analyze"], decision="allow")
+prefix_rule(pattern=["flutter", "test"], decision="allow")
+prefix_rule(pattern=["terminal-notifier"], decision="allow")

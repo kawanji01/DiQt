@@ -26,3 +26,15 @@ collaboration_modes = true
 
 [sandbox_workspace_write]
 network_access = true
+
+[agents]
+max_threads = 4
+max_depth = 1
+
+[agents.explorer]
+description = "Read-only codebase explorer for gathering evidence before the review fix pass edits files."
+config_file = "agents/explorer.toml"
+
+[agents.reviewer]
+description = "Read-only reviewer focused on correctness, security, regressions, and missing tests."
+config_file = "agents/reviewer.toml"
