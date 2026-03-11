@@ -30,6 +30,9 @@ class Quiz {
     this.syncedQuestionType,
     this.syncedAnswerType,
     required this.shortAnswerEnabled,
+    this.answerMode = 'text',
+    this.pronunciationAccuracyThreshold,
+    this.pronunciationCompletenessThreshold,
     required this.questionHidden,
     this.explanation,
     this.hint,
@@ -71,6 +74,9 @@ class Quiz {
   String? syncedQuestionType;
   String? syncedAnswerType;
   bool shortAnswerEnabled;
+  String answerMode;
+  int? pronunciationAccuracyThreshold;
+  int? pronunciationCompletenessThreshold;
   String? explanation;
   String? hint;
   bool autoDictLinkOfQuestion;
@@ -111,6 +117,11 @@ class Quiz {
         syncedQuestionType = json['synced_question_type'],
         syncedAnswerType = json['synced_answer_type'],
         shortAnswerEnabled = json['short_answer_enabled'],
+        answerMode = json['answer_mode'] ?? 'text',
+        pronunciationAccuracyThreshold =
+            json['pronunciation_accuracy_threshold'],
+        pronunciationCompletenessThreshold =
+            json['pronunciation_completeness_threshold'],
         questionHidden = json['question_hidden'],
         explanation = json['explanation'],
         hint = json['hint'],
@@ -169,6 +180,10 @@ class Quiz {
         'synced_question_type': syncedQuestionType,
         'synced_answer_type': syncedAnswerType,
         'short_answer_enabled': shortAnswerEnabled,
+        'answer_mode': answerMode,
+        'pronunciation_accuracy_threshold': pronunciationAccuracyThreshold,
+        'pronunciation_completeness_threshold':
+            pronunciationCompletenessThreshold,
         'question_hidden': questionHidden,
         'explanation': explanation,
         'hint': hint,

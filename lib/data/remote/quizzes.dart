@@ -39,6 +39,40 @@ class RemoteQuizzes {
     }
   }
 
+  static Future<Map> answerPronunciation({
+    required Quiz quiz,
+    required File audioFile,
+    String? answerType,
+  }) async {
+    try {
+      final Map<String, String> body = {};
+      if (answerType != null && answerType.isNotEmpty) {
+        body['answer_type'] = answerType;
+      }
+
+      final Uri url = Uri.parse(
+          '${DiQtURL.root()}/api/v1/mobile/quizzes/${quiz.id}/pronunciation_answer');
+      final streamedRes = await HttpService.multipartRequest(
+        url: url,
+        file: audioFile,
+        fileField: 'audio',
+        fileContentType: 'audio/wav',
+        body: body,
+      );
+      final Response res = await Response.fromStream(streamedRes);
+
+      if (ErrorHandler.isErrorResponse(res)) return ErrorHandler.errorMap(res);
+      final Map resMap = json.decode(res.body);
+      return resMap;
+    } on TimeoutException catch (e, s) {
+      return ErrorHandler.timeoutMap(e, s);
+    } on SocketException catch (e, s) {
+      return ErrorHandler.socketExceptionMap(e, s);
+    } catch (e, s) {
+      return ErrorHandler.exceptionMap(e, s);
+    }
+  }
+
   // 問題のソース（辞書の項目、例文）を取得する
   static Future<Map?> source(int quizId) async {
     try {

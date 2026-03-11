@@ -280,6 +280,31 @@ class TranslationsAnswerAnalysesEn {
 	String incorrect_answers_count({required Object count}) => '${count} Incorrect';
 	String get last_answer => 'Last Answer';
 	String get status => 'Status';
+	String get pronunciation_incorrect_reason => 'Why this speech answer was incorrect';
+	late final TranslationsAnswerAnalysesPronunciationReasonEn pronunciation_reason = TranslationsAnswerAnalysesPronunciationReasonEn._(_root);
+	late final TranslationsAnswerAnalysesPronunciationErrorTypesEn pronunciation_error_types = TranslationsAnswerAnalysesPronunciationErrorTypesEn._(_root);
+	String get pronunciation_word_feedback_title => 'Word-level feedback';
+	String pronunciation_word_feedback({required Object word, required Object score}) => '${word}: accuracy ${score}/100';
+	String pronunciation_word_feedback_with_error({required Object word, required Object score, required Object error_type}) => '${word}: accuracy ${score}/100 (type: ${error_type})';
+	String get pronunciation_phoneme_feedback_title => 'Phoneme-level feedback';
+	String pronunciation_phoneme_feedback({required Object word, required Object phoneme, required Object score}) => '${word} / ${phoneme}: accuracy ${score}/100';
+	String pronunciation_phoneme_feedback_with_error({required Object word, required Object phoneme, required Object score, required Object error_type}) => '${word} / ${phoneme}: accuracy ${score}/100 (type: ${error_type})';
+	String get pronunciation_phoneme_comparison_title => 'Phoneme comparison (expected phoneme)';
+	String get pronunciation_phoneme_word => 'Word';
+	String get pronunciation_phoneme_expected => 'Expected';
+	String get pronunciation_phoneme_actual => 'Actual';
+	String get pronunciation_phoneme_score => 'Score';
+	String get pronunciation_phoneme_status => 'Status';
+	String get pronunciation_phoneme_status_mismatch => 'Mismatch';
+	String get pronunciation_phoneme_status_low_score => 'Low score';
+	String get pronunciation_phoneme_not_available => 'N/A';
+	String get pronunciation_phoneme_status_not_available => 'No observed phoneme';
+	String get pronunciation_word_highlight_title => 'Failed segment';
+	String get pronunciation_word_highlight_note => 'In the correct answer, bold text indicates the segment likely pronounced incorrectly.';
+	String get connected_speech_feedback_title => 'English connected speech feedback';
+	String get connected_speech_feedback_note => 'These are supportive hints about natural English connected speech and are shown as possibilities, not certainty.';
+	late final TranslationsAnswerAnalysesConnectedSpeechCategoriesEn connected_speech_categories = TranslationsAnswerAnalysesConnectedSpeechCategoriesEn._(_root);
+	late final TranslationsAnswerAnalysesConnectedSpeechMessagesEn connected_speech_messages = TranslationsAnswerAnalysesConnectedSpeechMessagesEn._(_root);
 }
 
 // Path: answerHistories
@@ -1315,6 +1340,25 @@ class TranslationsQuizzesEn {
 	String get choices_cover_text => 'Show choices';
 	String get choices_cover_keys => 'Tap or Enter key';
 	String get please_input_answer => 'Please input an answer.';
+	String get pronunciation_hold_to_speak => 'Hold to Speak';
+	String get pronunciation_wait_for_ready => 'Preparing...';
+	String get pronunciation_speak_now => 'Speak now';
+	String get pronunciation_idle => 'Pronunciation: idle';
+	String get pronunciation_starting => 'Pronunciation: starting... (wait for the beep before speaking)';
+	String get pronunciation_listening => 'Pronunciation: listening...';
+	String get pronunciation_stopping => 'Pronunciation: stopping...';
+	String get pronunciation_passed => 'Pronunciation: OK';
+	String get pronunciation_failed => 'Pronunciation: NG';
+	String pronunciation_pass_threshold({required Object accuracy_threshold, required Object completeness_threshold}) => 'Pass threshold: Accuracy ${accuracy_threshold} / Completeness ${completeness_threshold}';
+	String get pronunciation_no_result => 'Pronunciation: no result';
+	String get pronunciation_finalize_error => 'Pronunciation: failed to parse result';
+	String get pronunciation_canceled_prefix => 'Pronunciation: canceled ';
+	String get pronunciation_start_error_prefix => 'Pronunciation: start error ';
+	String get pronunciation_stop_error_prefix => 'Pronunciation: stop error ';
+	String get pronunciation_error_prefix => 'Pronunciation: error ';
+	String get pronunciation_auto_submit => 'Your answer is submitted automatically after pronunciation is evaluated.';
+	String get pronunciation_unavailable => 'Pronunciation is unavailable. Check your login status and language settings.';
+	String get pronunciation_runtime_fallback => 'Speech initialization failed, switched to text input.';
 	String get modified => 'Modified the quiz.';
 	String get word_quiz_edit_prevention => 'This quiz is based on the information of the dictionary, so you need to edit the dictionary item to change it.';
 	String get sentence_quiz_edit_prevention => 'This quiz is based on the information of the sentence, so you need to edit the sentence to change it.';
@@ -2046,6 +2090,79 @@ class TranslationsWordsEn {
 	String get en_meaning => 'English Meaning';
 }
 
+// Path: answerAnalyses.pronunciation_reason
+class TranslationsAnswerAnalysesPronunciationReasonEn {
+	TranslationsAnswerAnalysesPronunciationReasonEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get mode_not_enabled => 'Speech mode was not enabled.';
+	String recognized_text_mismatch({required Object expected, required Object actual}) => 'Recognized text differs from the expected answer (expected: ${expected} / recognized: ${actual}).';
+	String accuracy_low({required Object score, required Object threshold}) => 'Pronunciation accuracy score is below the threshold (${score}/${threshold}).';
+	String completeness_low({required Object score, required Object threshold}) => 'Pronunciation completeness score is below the threshold (${score}/${threshold}).';
+	String get word_errors_detected => 'Word-level pronunciation errors were detected.';
+	String word_errors_detected_with_type({required Object error_types}) => 'Word-level pronunciation errors were detected (${error_types}).';
+	String get recognized_text_blank => 'No speech was recognized.';
+	String get unknown => 'The speech result did not meet the passing criteria.';
+}
+
+// Path: answerAnalyses.pronunciation_error_types
+class TranslationsAnswerAnalysesPronunciationErrorTypesEn {
+	TranslationsAnswerAnalysesPronunciationErrorTypesEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get mispronunciation => 'Mispronunciation';
+	String get unexpected_break => 'Unexpected break';
+	String get missing_break => 'Missing break';
+	String get monotone => 'Monotone';
+	String get omission => 'Omission';
+	String get insertion => 'Insertion';
+}
+
+// Path: answerAnalyses.connected_speech_categories
+class TranslationsAnswerAnalysesConnectedSpeechCategoriesEn {
+	TranslationsAnswerAnalysesConnectedSpeechCategoriesEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get linking => 'Linking';
+	String get assimilation => 'Assimilation';
+	String get reduction => 'Reduction';
+	String get flapping => 'Flapping';
+	String get contraction => 'Contraction';
+}
+
+// Path: answerAnalyses.connected_speech_messages
+class TranslationsAnswerAnalysesConnectedSpeechMessagesEn {
+	TranslationsAnswerAnalysesConnectedSpeechMessagesEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String linking_unexpected_break({required Object boundary}) => '"${boundary}" may sound more natural if the words are linked more smoothly.';
+	String linking_missing_break({required Object boundary}) => '"${boundary}" may sound more natural if the words are linked more smoothly.';
+	String linking_cv({required Object boundary}) => '"${boundary}" may sound more natural if the final consonant links into the next vowel.';
+	String linking_cc({required Object boundary}) => '"${boundary}" may sound more natural if the first consonant stays short and connects into the next consonant.';
+	String linking_vv_y_glide({required Object boundary}) => '"${boundary}" may sound more natural if the vowels connect with a light /y/-like glide.';
+	String linking_vv_w_glide({required Object boundary}) => '"${boundary}" may sound more natural if the vowels connect with a light /w/-like glide.';
+	String linking_vv_generic({required Object boundary}) => '"${boundary}" may sound more natural if the vowels connect without a strong break.';
+	String linking_general({required Object boundary}) => '"${boundary}" may sound more natural if the words are linked more smoothly.';
+	String assimilation_bilabial({required Object boundary}) => 'In "${boundary}", the previous sound may be shifting toward the following bilabial sound.';
+	String assimilation_velar({required Object boundary}) => 'In "${boundary}", the previous sound may be shifting toward the following velar sound.';
+	String assimilation_palatal_t({required Object boundary}) => 'In "${boundary}", /t/ may be shifting toward a following /y/-like sound.';
+	String assimilation_palatal_d({required Object boundary}) => 'In "${boundary}", /d/ may be shifting toward a following /y/-like sound.';
+	String assimilation_palatal_s({required Object boundary}) => 'In "${boundary}", /s/ may be shifting toward a following /y/-like sound.';
+	String assimilation_palatal_z({required Object boundary}) => 'In "${boundary}", /z/ may be shifting toward a following /y/-like sound.';
+	String reduction_function_word({required Object target_word}) => '"${target_word}" is often reduced in connected speech and may be moving toward a weak form or schwa.';
+	String flapping_internal({required Object target_word}) => 'In "${target_word}", /t/ or /d/ may be moving toward a light flap sound.';
+	String flapping_boundary({required Object boundary}) => 'Across "${boundary}", /t/ or /d/ may be moving toward a light flap sound.';
+	String contraction_pair({required Object boundary, required Object example}) => '"${boundary}" may sound closer to the contracted form "${example}" in natural speech.';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 extension on Translations {
@@ -2218,6 +2335,64 @@ extension on Translations {
 			case 'answerAnalyses.incorrect_answers_count': return ({required Object count}) => '${count} Incorrect';
 			case 'answerAnalyses.last_answer': return 'Last Answer';
 			case 'answerAnalyses.status': return 'Status';
+			case 'answerAnalyses.pronunciation_incorrect_reason': return 'Why this speech answer was incorrect';
+			case 'answerAnalyses.pronunciation_reason.mode_not_enabled': return 'Speech mode was not enabled.';
+			case 'answerAnalyses.pronunciation_reason.recognized_text_mismatch': return ({required Object expected, required Object actual}) => 'Recognized text differs from the expected answer (expected: ${expected} / recognized: ${actual}).';
+			case 'answerAnalyses.pronunciation_reason.accuracy_low': return ({required Object score, required Object threshold}) => 'Pronunciation accuracy score is below the threshold (${score}/${threshold}).';
+			case 'answerAnalyses.pronunciation_reason.completeness_low': return ({required Object score, required Object threshold}) => 'Pronunciation completeness score is below the threshold (${score}/${threshold}).';
+			case 'answerAnalyses.pronunciation_reason.word_errors_detected': return 'Word-level pronunciation errors were detected.';
+			case 'answerAnalyses.pronunciation_reason.word_errors_detected_with_type': return ({required Object error_types}) => 'Word-level pronunciation errors were detected (${error_types}).';
+			case 'answerAnalyses.pronunciation_reason.recognized_text_blank': return 'No speech was recognized.';
+			case 'answerAnalyses.pronunciation_reason.unknown': return 'The speech result did not meet the passing criteria.';
+			case 'answerAnalyses.pronunciation_error_types.mispronunciation': return 'Mispronunciation';
+			case 'answerAnalyses.pronunciation_error_types.unexpected_break': return 'Unexpected break';
+			case 'answerAnalyses.pronunciation_error_types.missing_break': return 'Missing break';
+			case 'answerAnalyses.pronunciation_error_types.monotone': return 'Monotone';
+			case 'answerAnalyses.pronunciation_error_types.omission': return 'Omission';
+			case 'answerAnalyses.pronunciation_error_types.insertion': return 'Insertion';
+			case 'answerAnalyses.pronunciation_word_feedback_title': return 'Word-level feedback';
+			case 'answerAnalyses.pronunciation_word_feedback': return ({required Object word, required Object score}) => '${word}: accuracy ${score}/100';
+			case 'answerAnalyses.pronunciation_word_feedback_with_error': return ({required Object word, required Object score, required Object error_type}) => '${word}: accuracy ${score}/100 (type: ${error_type})';
+			case 'answerAnalyses.pronunciation_phoneme_feedback_title': return 'Phoneme-level feedback';
+			case 'answerAnalyses.pronunciation_phoneme_feedback': return ({required Object word, required Object phoneme, required Object score}) => '${word} / ${phoneme}: accuracy ${score}/100';
+			case 'answerAnalyses.pronunciation_phoneme_feedback_with_error': return ({required Object word, required Object phoneme, required Object score, required Object error_type}) => '${word} / ${phoneme}: accuracy ${score}/100 (type: ${error_type})';
+			case 'answerAnalyses.pronunciation_phoneme_comparison_title': return 'Phoneme comparison (expected phoneme)';
+			case 'answerAnalyses.pronunciation_phoneme_word': return 'Word';
+			case 'answerAnalyses.pronunciation_phoneme_expected': return 'Expected';
+			case 'answerAnalyses.pronunciation_phoneme_actual': return 'Actual';
+			case 'answerAnalyses.pronunciation_phoneme_score': return 'Score';
+			case 'answerAnalyses.pronunciation_phoneme_status': return 'Status';
+			case 'answerAnalyses.pronunciation_phoneme_status_mismatch': return 'Mismatch';
+			case 'answerAnalyses.pronunciation_phoneme_status_low_score': return 'Low score';
+			case 'answerAnalyses.pronunciation_phoneme_not_available': return 'N/A';
+			case 'answerAnalyses.pronunciation_phoneme_status_not_available': return 'No observed phoneme';
+			case 'answerAnalyses.pronunciation_word_highlight_title': return 'Failed segment';
+			case 'answerAnalyses.pronunciation_word_highlight_note': return 'In the correct answer, bold text indicates the segment likely pronounced incorrectly.';
+			case 'answerAnalyses.connected_speech_feedback_title': return 'English connected speech feedback';
+			case 'answerAnalyses.connected_speech_feedback_note': return 'These are supportive hints about natural English connected speech and are shown as possibilities, not certainty.';
+			case 'answerAnalyses.connected_speech_categories.linking': return 'Linking';
+			case 'answerAnalyses.connected_speech_categories.assimilation': return 'Assimilation';
+			case 'answerAnalyses.connected_speech_categories.reduction': return 'Reduction';
+			case 'answerAnalyses.connected_speech_categories.flapping': return 'Flapping';
+			case 'answerAnalyses.connected_speech_categories.contraction': return 'Contraction';
+			case 'answerAnalyses.connected_speech_messages.linking_unexpected_break': return ({required Object boundary}) => '"${boundary}" may sound more natural if the words are linked more smoothly.';
+			case 'answerAnalyses.connected_speech_messages.linking_missing_break': return ({required Object boundary}) => '"${boundary}" may sound more natural if the words are linked more smoothly.';
+			case 'answerAnalyses.connected_speech_messages.linking_cv': return ({required Object boundary}) => '"${boundary}" may sound more natural if the final consonant links into the next vowel.';
+			case 'answerAnalyses.connected_speech_messages.linking_cc': return ({required Object boundary}) => '"${boundary}" may sound more natural if the first consonant stays short and connects into the next consonant.';
+			case 'answerAnalyses.connected_speech_messages.linking_vv_y_glide': return ({required Object boundary}) => '"${boundary}" may sound more natural if the vowels connect with a light /y/-like glide.';
+			case 'answerAnalyses.connected_speech_messages.linking_vv_w_glide': return ({required Object boundary}) => '"${boundary}" may sound more natural if the vowels connect with a light /w/-like glide.';
+			case 'answerAnalyses.connected_speech_messages.linking_vv_generic': return ({required Object boundary}) => '"${boundary}" may sound more natural if the vowels connect without a strong break.';
+			case 'answerAnalyses.connected_speech_messages.linking_general': return ({required Object boundary}) => '"${boundary}" may sound more natural if the words are linked more smoothly.';
+			case 'answerAnalyses.connected_speech_messages.assimilation_bilabial': return ({required Object boundary}) => 'In "${boundary}", the previous sound may be shifting toward the following bilabial sound.';
+			case 'answerAnalyses.connected_speech_messages.assimilation_velar': return ({required Object boundary}) => 'In "${boundary}", the previous sound may be shifting toward the following velar sound.';
+			case 'answerAnalyses.connected_speech_messages.assimilation_palatal_t': return ({required Object boundary}) => 'In "${boundary}", /t/ may be shifting toward a following /y/-like sound.';
+			case 'answerAnalyses.connected_speech_messages.assimilation_palatal_d': return ({required Object boundary}) => 'In "${boundary}", /d/ may be shifting toward a following /y/-like sound.';
+			case 'answerAnalyses.connected_speech_messages.assimilation_palatal_s': return ({required Object boundary}) => 'In "${boundary}", /s/ may be shifting toward a following /y/-like sound.';
+			case 'answerAnalyses.connected_speech_messages.assimilation_palatal_z': return ({required Object boundary}) => 'In "${boundary}", /z/ may be shifting toward a following /y/-like sound.';
+			case 'answerAnalyses.connected_speech_messages.reduction_function_word': return ({required Object target_word}) => '"${target_word}" is often reduced in connected speech and may be moving toward a weak form or schwa.';
+			case 'answerAnalyses.connected_speech_messages.flapping_internal': return ({required Object target_word}) => 'In "${target_word}", /t/ or /d/ may be moving toward a light flap sound.';
+			case 'answerAnalyses.connected_speech_messages.flapping_boundary': return ({required Object boundary}) => 'Across "${boundary}", /t/ or /d/ may be moving toward a light flap sound.';
+			case 'answerAnalyses.connected_speech_messages.contraction_pair': return ({required Object boundary, required Object example}) => '"${boundary}" may sound closer to the contracted form "${example}" in natural speech.';
 			case 'answerHistories.answer_histories': return 'Answer Histories';
 			case 'answerHistories.todays_mistakes': return 'Today\'s Mistakes';
 			case 'answerSettings.title': return 'Answer & Review Setting';
@@ -3055,6 +3230,25 @@ extension on Translations {
 			case 'quizzes.choices_cover_text': return 'Show choices';
 			case 'quizzes.choices_cover_keys': return 'Tap or Enter key';
 			case 'quizzes.please_input_answer': return 'Please input an answer.';
+			case 'quizzes.pronunciation_hold_to_speak': return 'Hold to Speak';
+			case 'quizzes.pronunciation_wait_for_ready': return 'Preparing...';
+			case 'quizzes.pronunciation_speak_now': return 'Speak now';
+			case 'quizzes.pronunciation_idle': return 'Pronunciation: idle';
+			case 'quizzes.pronunciation_starting': return 'Pronunciation: starting... (wait for the beep before speaking)';
+			case 'quizzes.pronunciation_listening': return 'Pronunciation: listening...';
+			case 'quizzes.pronunciation_stopping': return 'Pronunciation: stopping...';
+			case 'quizzes.pronunciation_passed': return 'Pronunciation: OK';
+			case 'quizzes.pronunciation_failed': return 'Pronunciation: NG';
+			case 'quizzes.pronunciation_pass_threshold': return ({required Object accuracy_threshold, required Object completeness_threshold}) => 'Pass threshold: Accuracy ${accuracy_threshold} / Completeness ${completeness_threshold}';
+			case 'quizzes.pronunciation_no_result': return 'Pronunciation: no result';
+			case 'quizzes.pronunciation_finalize_error': return 'Pronunciation: failed to parse result';
+			case 'quizzes.pronunciation_canceled_prefix': return 'Pronunciation: canceled ';
+			case 'quizzes.pronunciation_start_error_prefix': return 'Pronunciation: start error ';
+			case 'quizzes.pronunciation_stop_error_prefix': return 'Pronunciation: stop error ';
+			case 'quizzes.pronunciation_error_prefix': return 'Pronunciation: error ';
+			case 'quizzes.pronunciation_auto_submit': return 'Your answer is submitted automatically after pronunciation is evaluated.';
+			case 'quizzes.pronunciation_unavailable': return 'Pronunciation is unavailable. Check your login status and language settings.';
+			case 'quizzes.pronunciation_runtime_fallback': return 'Speech initialization failed, switched to text input.';
 			case 'quizzes.modified': return 'Modified the quiz.';
 			case 'quizzes.word_quiz_edit_prevention': return 'This quiz is based on the information of the dictionary, so you need to edit the dictionary item to change it.';
 			case 'quizzes.sentence_quiz_edit_prevention': return 'This quiz is based on the information of the sentence, so you need to edit the sentence to change it.';

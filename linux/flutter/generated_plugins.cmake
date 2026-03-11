@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   audioplayers_linux
   file_selector_linux
   flutter_secure_storage_linux
+  record_linux
   rive_common
   sentry_flutter
   url_launcher_linux
