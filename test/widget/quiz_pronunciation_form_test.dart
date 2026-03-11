@@ -31,6 +31,38 @@ class FakePronunciationRecorder implements QuizPronunciationRecorder {
   void dispose() {}
 }
 
+class DelayedPronunciationRecorder implements QuizPronunciationRecorder {
+  DelayedPronunciationRecorder(this.startCompleter);
+
+  final Completer<void> startCompleter;
+  String? lastPath;
+
+  @override
+  Future<bool> hasPermission() async => true;
+
+  @override
+  Future<void> start({required String path}) async {
+    lastPath = path;
+    await startCompleter.future;
+  }
+
+  @override
+  Future<String?> stop() async => lastPath;
+
+  @override
+  void dispose() {}
+}
+
+class FakePronunciationReadyCue {
+  int playCount = 0;
+
+  Future<void> call() async {
+    playCount += 1;
+  }
+}
+
+Future<void> noopReadyCue() async {}
+
 Quiz buildQuiz({
   int id = 1,
   required int langNumberOfAnswer,
@@ -331,6 +363,7 @@ void main() {
           unsolved: true,
           answerType: 'drill',
           recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
           submitAnswer: (_, __) async => {
             'status': 422,
             'message': 'assessment failed',
@@ -369,6 +402,7 @@ void main() {
           unsolved: true,
           answerType: 'drill',
           recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
           submitAnswer: (_, __) async => {
             'status': 401,
             'message': 'unauthorized',
@@ -407,6 +441,7 @@ void main() {
           unsolved: true,
           answerType: 'drill',
           recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
           submitAnswer: (_, __) async {
             submitCount += 1;
             return successfulPronunciationResponse();
@@ -453,6 +488,7 @@ void main() {
           unsolved: true,
           answerType: 'drill',
           recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
           submitAnswer: (_, __) async =>
               successfulPronunciationResponse(quizId: quiz.id),
           dispatchNotification: (_, notification) {
@@ -516,6 +552,7 @@ void main() {
           unsolved: true,
           answerType: 'drill',
           recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
           submitAnswer: (_, __) => submission.future,
           dispatchNotification: (_, __) {
             notificationDispatched = true;
@@ -574,6 +611,124 @@ void main() {
       expect(container.read(drillLapProvider)?.id, 5);
     });
 
+    testWidgets('plays the ready cue once when recording becomes active',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+      final FakePronunciationReadyCue readyCue = FakePronunciationReadyCue();
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+          recorder: FakePronunciationRecorder(),
+          playReadyCue: readyCue.call,
+          submitAnswer: (_, __) async => successfulPronunciationResponse(),
+          dispatchNotification: (_, __) {},
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(readyCue.playCount, 1);
+      expect(find.text(t.quizzes.pronunciation_speak_now), findsOneWidget);
+    });
+
+    testWidgets(
+        'skips the ready cue when the press is released before startup finishes',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+      final Completer<void> recorderStart = Completer<void>();
+      final FakePronunciationReadyCue readyCue = FakePronunciationReadyCue();
+      int submitCount = 0;
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+          recorder: DelayedPronunciationRecorder(recorderStart),
+          playReadyCue: readyCue.call,
+          submitAnswer: (_, __) async {
+            submitCount += 1;
+            return successfulPronunciationResponse();
+          },
+          dispatchNotification: (_, __) {},
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+      detector.onLongPressEnd!(
+        const LongPressEndDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      recorderStart.complete();
+      await tester.pump();
+      await tester.pump();
+
+      expect(readyCue.playCount, 0);
+      expect(submitCount, 1);
+    });
+
+    testWidgets('shows inline loading while waiting for pronunciation feedback',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+      final Completer<Map> submission = Completer<Map>();
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+          recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
+          submitAnswer: (_, __) => submission.future,
+          dispatchNotification: (_, __) {},
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+      detector.onLongPressEnd!(
+        const LongPressEndDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(find.text(t.quizzes.pronunciation_submitting), findsNWidgets(2));
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+
+      submission.complete(successfulPronunciationResponse());
+      await tester.pump();
+      await tester.pump();
+
+      expect(find.text(t.quizzes.pronunciation_submitting), findsNothing);
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+    });
+
     testWidgets(
         'reserves the last free answer slot while a request is in flight',
         (WidgetTester tester) async {
@@ -596,6 +751,7 @@ void main() {
               unsolved: true,
               answerType: 'drill',
               recorder: FakePronunciationRecorder(),
+              playReadyCue: noopReadyCue,
               submitAnswer: (_, __) => firstSubmission.future,
               dispatchNotification: (_, __) {},
               showPaywallOnAnswerLimit: false,
@@ -605,6 +761,7 @@ void main() {
               unsolved: true,
               answerType: 'drill',
               recorder: FakePronunciationRecorder(),
+              playReadyCue: noopReadyCue,
               submitAnswer: (_, __) async {
                 secondSubmitCount += 1;
                 return successfulPronunciationResponse();
@@ -688,6 +845,7 @@ void main() {
           unsolved: true,
           answerType: 'drill',
           recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
           submitAnswer: (_, __) => submission.future,
           dispatchNotification: (_, __) {
             notificationDispatched = true;

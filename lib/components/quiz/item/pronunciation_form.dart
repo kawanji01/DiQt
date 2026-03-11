@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:booqs_mobile/components/quiz/item/short_answer_form.dart';
 import 'package:booqs_mobile/consts/language.dart';
+import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
 import 'package:booqs_mobile/data/provider/drill_lap.dart';
@@ -103,6 +105,7 @@ class QuizItemPronunciationForm extends ConsumerStatefulWidget {
     this.submitAnswer,
     this.showError,
     this.dispatchNotification,
+    this.playReadyCue,
     this.showPaywallOnAnswerLimit = true,
   });
 
@@ -114,6 +117,7 @@ class QuizItemPronunciationForm extends ConsumerStatefulWidget {
   final void Function(BuildContext context, Map resMap)? showError;
   final void Function(BuildContext context, AnswerNotification notification)?
       dispatchNotification;
+  final Future<void> Function()? playReadyCue;
   final bool showPaywallOnAnswerLimit;
 
   @override
@@ -124,6 +128,7 @@ class QuizItemPronunciationForm extends ConsumerStatefulWidget {
 class _QuizItemPronunciationFormState
     extends ConsumerState<QuizItemPronunciationForm> {
   late final QuizPronunciationRecorder _recorder;
+  late final AudioPlayer _readyCuePlayer;
   QuizPronunciationStatus _status = QuizPronunciationStatus.idle;
   String? _fallbackMessage;
   bool _stopRequestedWhileStarting = false;
@@ -132,11 +137,13 @@ class _QuizItemPronunciationFormState
   void initState() {
     super.initState();
     _recorder = widget.recorder ?? RecordQuizPronunciationRecorder();
+    _readyCuePlayer = AudioPlayer();
   }
 
   @override
   void dispose() {
     _recorder.dispose();
+    unawaited(_readyCuePlayer.dispose());
     super.dispose();
   }
 
@@ -182,6 +189,7 @@ class _QuizItemPronunciationFormState
         _status == QuizPronunciationStatus.submitting ||
         _status == QuizPronunciationStatus.completed;
     final bool listening = _status == QuizPronunciationStatus.listening;
+    final bool submitting = _status == QuizPronunciationStatus.submitting;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -209,9 +217,19 @@ class _QuizItemPronunciationFormState
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  listening ? Icons.mic : Icons.mic_none,
-                  color: Colors.white,
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: submitting
+                      ? const CircularProgressIndicator(
+                          strokeWidth: 2.4,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                        )
+                      : Icon(
+                          listening ? Icons.mic : Icons.mic_none,
+                          color: Colors.white,
+                        ),
                 ),
                 const SizedBox(width: 8),
                 Flexible(
@@ -261,6 +279,7 @@ class _QuizItemPronunciationFormState
       case QuizPronunciationStatus.listening:
         return t.quizzes.pronunciation_speak_now;
       case QuizPronunciationStatus.submitting:
+        return t.quizzes.pronunciation_submitting;
       case QuizPronunciationStatus.completed:
         return t.quizzes.pronunciation_stopping;
       case QuizPronunciationStatus.fallback:
@@ -276,6 +295,7 @@ class _QuizItemPronunciationFormState
       case QuizPronunciationStatus.listening:
         return t.quizzes.pronunciation_listening;
       case QuizPronunciationStatus.submitting:
+        return t.quizzes.pronunciation_submitting;
       case QuizPronunciationStatus.completed:
         return t.quizzes.pronunciation_stopping;
       case QuizPronunciationStatus.fallback:
@@ -309,13 +329,13 @@ class _QuizItemPronunciationFormState
 
       final String path = await _buildRecordingPath();
       await _recorder.start(path: path);
-      HapticFeedback.mediumImpact();
       if (!mounted) return;
       if (_stopRequestedWhileStarting) {
         await _submitCurrentRecording();
         return;
       }
       setState(() => _status = QuizPronunciationStatus.listening);
+      unawaited(_notifyReadyToSpeak());
     } catch (_) {
       _switchToTextFallback(t.quizzes.pronunciation_runtime_fallback);
     }
@@ -454,6 +474,24 @@ class _QuizItemPronunciationFormState
       audioFile: audioFile,
       answerType: widget.answerType,
     );
+  }
+
+  Future<void> _notifyReadyToSpeak() async {
+    final playReadyCue = widget.playReadyCue;
+    if (playReadyCue != null) {
+      try {
+        await playReadyCue();
+      } catch (_) {}
+      return;
+    }
+
+    try {
+      await _readyCuePlayer.stop();
+      await _readyCuePlayer.play(AssetSource(micStartSound), volume: 0.8);
+      if (Platform.isIOS) {
+        await HapticFeedback.mediumImpact();
+      }
+    } catch (_) {}
   }
 
   bool _shouldSwitchToTextFallback(Map resMap) {
