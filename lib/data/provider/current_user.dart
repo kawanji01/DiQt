@@ -52,6 +52,16 @@ final todaysAnswersCountProvider = StateProvider<int>((ref) => ref.watch(
 final todaysCorrectAnswersCountProvider = StateProvider<int>((ref) => ref.watch(
     currentUserProvider
         .select((user) => user?.todaysCorrectAnswerHistoriesCount ?? 0)));
+final pendingUnsolvedAnswersCountByUserProvider =
+    StateProvider<Map<int, int>>((ref) => <int, int>{});
+final pendingUnsolvedAnswersCountProvider = Provider<int>((ref) {
+  final int? userId = ref.watch(currentUserProvider.select((user) => user?.id));
+  final Map<int, int> pendingByUser =
+      ref.watch(pendingUnsolvedAnswersCountByUserProvider);
+  if (userId == null) return 0;
+
+  return pendingByUser[userId] ?? 0;
+});
 
 // その日に翻訳した数。無料ユーザーに制限をかけるために利用する。
 final todaysTranslationsCountProvider = StateProvider<int>((ref) => ref.watch(

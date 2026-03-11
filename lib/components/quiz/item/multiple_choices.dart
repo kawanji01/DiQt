@@ -1,6 +1,7 @@
 import 'package:booqs_mobile/components/quiz/item/answer_cover.dart';
 import 'package:booqs_mobile/data/provider/answer_setting.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/unsolved_answer_block.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -46,6 +47,18 @@ class QuizItemMultipleChoicesState
     final Quiz quiz = widget.quiz;
     final String correctAnswer = quiz.correctAnswer;
     final List<String> answerTextList = widget.answerTextList;
+    ref.listen<int?>(
+      blockedUnsolvedQuizIdProvider,
+      (_, blockedQuizId) {
+        if (!widget.unsolved || blockedQuizId != quiz.id || !_isDisabled) {
+          return;
+        }
+        setState(() {
+          _selectedAnswer = null;
+          _isDisabled = false;
+        });
+      },
+    );
 
     // 解答ボタン
     Widget answerButton(answerText) {
@@ -56,16 +69,15 @@ class QuizItemMultipleChoicesState
         onTap: _isDisabled
             ? null
             : () async {
-                _selectedAnswer = answerText;
-                final bool correct = _selectedAnswer == correctAnswer;
+                final bool correct = answerText == correctAnswer;
+                setState(() {
+                  _selectedAnswer = answerText;
+                  _isDisabled = true;
+                });
                 AnswerNotification(answerText, correct, quiz, user, true)
                     .dispatch(context);
                 // 振動フィードバック
                 HapticFeedback.mediumImpact();
-                setState(() {
-                  _selectedAnswer;
-                  _isDisabled = true;
-                });
                 if (widget.unsolved) {
                   return;
                 }

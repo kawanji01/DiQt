@@ -15,6 +15,12 @@ class AnswerNotification extends Notification {
   final User? user;
   // 問題をフェイドアウトさせるか否か
   final bool fadeOut;
+  final Map<String, dynamic>? responseMap;
+  final bool skipAnswerAccessGuard;
+  final bool countUpdatedLocally;
   AnswerNotification(
-      this.usersAnswer, this.correct, this.quiz, this.user, this.fadeOut);
+      this.usersAnswer, this.correct, this.quiz, this.user, this.fadeOut,
+      {this.responseMap,
+      this.skipAnswerAccessGuard = false,
+      this.countUpdatedLocally = false});
 }
