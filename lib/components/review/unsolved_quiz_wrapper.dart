@@ -31,6 +31,7 @@ class ReviewUnsolvedQuizWrapper extends ConsumerWidget {
     final answer = QuizItemAnswerPart(
       quiz: quiz,
       unsolved: true,
+      answerType: 'review',
     );
     final footer = QuizItemUnsolvedFooter(quiz: quiz, review: review);
 

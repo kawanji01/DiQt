@@ -23,6 +23,7 @@ class DrillUnsolvedQuizWrapper extends ConsumerWidget {
     final answer = QuizItemAnswerPart(
       quiz: quiz,
       unsolved: true,
+      answerType: 'drill',
     );
     final footer = QuizItemUnsolvedFooter(quiz: quiz, review: review);
 

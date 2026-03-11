@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
-version: 1.4.84+296
+version: 1.4.85+297
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -42,6 +42,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   webview_flutter: ^4.9.0  # WebView implementation
   http: ^1.1.0 # APIへのリクエスト
+  http_parser: ^4.0.2 # multipart の content-type 指定
   google_fonts: ^6.2.1  # フォント  / mac appで読み込めない問題を解決する
   flutter_secure_storage: ^9.2.2 # セキュアなローカルストレージ（取得は非同期）
   shared_preferences: ^2.1.2 # 同期的に取得できる平文のローカルストレージ
@@ -95,6 +96,7 @@ dependencies:
   # uni_links: ^0.5.1 # DeepLinksの実装 # 画面がフリーズする問題がiOSでもAndroidでも発生するので、一旦コメントアウト。詳しくは #609の issueを参照
   diff_match_patch: ^0.4.1 # diffを取得する
   speech_to_text: ^7.0.0 # 音声認識
+  record: ^5.2.1 # 発音問題の録音
   html: ^0.15.4
   path_provider: ^2.1.2 # 一時ファイルの保存 / ssmlの再生に利用
   sentry_flutter: ^8.0.0 # エラートラッキング

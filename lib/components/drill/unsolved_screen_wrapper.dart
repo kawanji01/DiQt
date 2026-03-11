@@ -36,7 +36,8 @@ class DrillUnsolvedScreenWrapper extends ConsumerWidget {
 
     // 解答をサーバーへリクエストして、結果に応じて報酬を表示する。
     Future<void> requestReview(notification) async {
-      final Map resMap = await RemoteQuizzes.answer(notification, 'drill');
+      final Map resMap = notification.responseMap ??
+          await RemoteQuizzes.answer(notification, 'drill');
       if (ErrorHandler.isErrorMap(resMap)) {
         // ネットワーク接続が切れたり、エラーが発生した場合には通知
         if (context.mounted) {

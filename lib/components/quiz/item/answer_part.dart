@@ -1,19 +1,28 @@
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/components/quiz/item/flashcard.dart';
+import 'package:booqs_mobile/components/quiz/item/pronunciation_form.dart';
 import 'package:booqs_mobile/components/quiz/item/short_answer_form.dart';
 import 'package:booqs_mobile/components/quiz/item/multiple_choices.dart';
 import 'package:flutter/material.dart';
 
 class QuizItemAnswerPart extends StatelessWidget {
   const QuizItemAnswerPart(
-      {super.key, required this.quiz, required this.unsolved});
+      {super.key, required this.quiz, required this.unsolved, this.answerType});
   final Quiz quiz;
   final bool unsolved;
+  final String? answerType;
 
   @override
   Widget build(BuildContext context) {
     Widget answerForm() {
       if (quiz.shortAnswerEnabled) {
+        if (unsolved && quiz.answerMode == 'speech') {
+          return QuizItemPronunciationForm(
+            quiz: quiz,
+            unsolved: unsolved,
+            answerType: answerType,
+          );
+        }
         // 入力型
         return QuizItemShortAnswerForm(
           quiz: quiz,

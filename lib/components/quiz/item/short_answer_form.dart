@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/unsolved_answer_block.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
@@ -33,6 +34,15 @@ class QuizItemShortAnswerFormState
   Widget build(BuildContext context) {
     final Quiz quiz = widget.quiz;
     final User? user = ref.watch(currentUserProvider);
+    ref.listen<int?>(
+      blockedUnsolvedQuizIdProvider,
+      (_, blockedQuizId) {
+        if (!widget.unsolved || blockedQuizId != quiz.id || !_isDisabled) {
+          return;
+        }
+        setState(() => _isDisabled = false);
+      },
+    );
 
     // ユーザーの入力と正解を一致させるために正規化する。
     String sanitizedText(String text) {

@@ -276,6 +276,31 @@ class _TranslationsAnswerAnalysesJa implements TranslationsAnswerAnalysesEn {
 	@override String incorrect_answers_count({required Object count}) => '${count}回不正解';
 	@override String get last_answer => '最後の解答';
 	@override String get status => '状態';
+	@override String get pronunciation_incorrect_reason => '発話で不正解になった理由';
+	@override late final _TranslationsAnswerAnalysesPronunciationReasonJa pronunciation_reason = _TranslationsAnswerAnalysesPronunciationReasonJa._(_root);
+	@override late final _TranslationsAnswerAnalysesPronunciationErrorTypesJa pronunciation_error_types = _TranslationsAnswerAnalysesPronunciationErrorTypesJa._(_root);
+	@override String get pronunciation_word_feedback_title => '単語ごとの判定';
+	@override String pronunciation_word_feedback({required Object word, required Object score}) => '${word}: 正確性 ${score}/100';
+	@override String pronunciation_word_feedback_with_error({required Object word, required Object score, required Object error_type}) => '${word}: 正確性 ${score}/100（判定: ${error_type}）';
+	@override String get pronunciation_phoneme_feedback_title => '音素ごとの判定';
+	@override String pronunciation_phoneme_feedback({required Object word, required Object phoneme, required Object score}) => '${word} / ${phoneme}: 正確性 ${score}/100';
+	@override String pronunciation_phoneme_feedback_with_error({required Object word, required Object phoneme, required Object score, required Object error_type}) => '${word} / ${phoneme}: 正確性 ${score}/100（判定: ${error_type}）';
+	@override String get pronunciation_phoneme_comparison_title => '音素比較（期待音素）';
+	@override String get pronunciation_phoneme_word => '単語';
+	@override String get pronunciation_phoneme_expected => '期待音素';
+	@override String get pronunciation_phoneme_actual => '実際音素';
+	@override String get pronunciation_phoneme_score => 'スコア';
+	@override String get pronunciation_phoneme_status => '判定';
+	@override String get pronunciation_phoneme_status_mismatch => '不一致';
+	@override String get pronunciation_phoneme_status_low_score => '低スコア';
+	@override String get pronunciation_phoneme_not_available => '取得不可';
+	@override String get pronunciation_phoneme_status_not_available => '実際音素なし';
+	@override String get pronunciation_word_highlight_title => '失敗箇所';
+	@override String get pronunciation_word_highlight_note => '正解のうち、太字は失敗した可能性が高い部分です。';
+	@override String get connected_speech_feedback_title => '英語のつながりフィードバック';
+	@override String get connected_speech_feedback_note => '英語の自然なつながり方に関する補助的なヒントです。断定ではなく可能性として表示します。';
+	@override late final _TranslationsAnswerAnalysesConnectedSpeechCategoriesJa connected_speech_categories = _TranslationsAnswerAnalysesConnectedSpeechCategoriesJa._(_root);
+	@override late final _TranslationsAnswerAnalysesConnectedSpeechMessagesJa connected_speech_messages = _TranslationsAnswerAnalysesConnectedSpeechMessagesJa._(_root);
 }
 
 // Path: answerHistories
@@ -1311,6 +1336,25 @@ class _TranslationsQuizzesJa implements TranslationsQuizzesEn {
 	@override String get choices_cover_text => '選択肢を表示する';
 	@override String get choices_cover_keys => 'タップまたはEnterキー';
 	@override String get please_input_answer => '解答を入力してください。';
+	@override String get pronunciation_hold_to_speak => '押している間だけ話す';
+	@override String get pronunciation_wait_for_ready => '準備中...';
+	@override String get pronunciation_speak_now => 'いま話してください';
+	@override String get pronunciation_idle => '発音判定: 待機中';
+	@override String get pronunciation_starting => '発音判定: 開始中...（合図音が鳴ってから話してください）';
+	@override String get pronunciation_listening => '発音判定: 録音中...';
+	@override String get pronunciation_stopping => '発音判定: 停止中...';
+	@override String get pronunciation_passed => '発音判定: OK';
+	@override String get pronunciation_failed => '発音判定: NG';
+	@override String pronunciation_pass_threshold({required Object accuracy_threshold, required Object completeness_threshold}) => '合格基準: 正確性${accuracy_threshold} / 完全性${completeness_threshold}';
+	@override String get pronunciation_no_result => '発音判定: 結果を取得できませんでした';
+	@override String get pronunciation_finalize_error => '発音判定: 結果の解析に失敗しました';
+	@override String get pronunciation_canceled_prefix => '発音判定: キャンセル ';
+	@override String get pronunciation_start_error_prefix => '発音判定: 開始エラー ';
+	@override String get pronunciation_stop_error_prefix => '発音判定: 停止エラー ';
+	@override String get pronunciation_error_prefix => '発音判定: エラー ';
+	@override String get pronunciation_auto_submit => '発話結果を取得すると自動で解答を送信します。';
+	@override String get pronunciation_unavailable => '発話機能を利用できません。ログイン状態と言語設定を確認してください。';
+	@override String get pronunciation_runtime_fallback => '発話機能を開始できなかったため、テキスト入力に切り替えました。';
 	@override String get modified => '問題を修正しました。';
 	@override String get word_quiz_edit_prevention => 'この問題は辞書の情報に基づいているため、変更するには辞書の項目の編集が必要です。';
 	@override String get sentence_quiz_edit_prevention => 'この問題は例文の情報に基づいているため、変更するには例文の編集が必要です。';
@@ -2042,6 +2086,79 @@ class _TranslationsWordsJa implements TranslationsWordsEn {
 	@override String get en_meaning => '英語の意味';
 }
 
+// Path: answerAnalyses.pronunciation_reason
+class _TranslationsAnswerAnalysesPronunciationReasonJa implements TranslationsAnswerAnalysesPronunciationReasonEn {
+	_TranslationsAnswerAnalysesPronunciationReasonJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get mode_not_enabled => '発話モードが有効になっていませんでした。';
+	@override String recognized_text_mismatch({required Object expected, required Object actual}) => '認識結果が期待語と一致しません（期待: ${expected} / 認識: ${actual}）。';
+	@override String accuracy_low({required Object score, required Object threshold}) => '発音の正確性スコアが基準未満です（${score}/${threshold}）。';
+	@override String completeness_low({required Object score, required Object threshold}) => '発話の完全性スコアが基準未満です（${score}/${threshold}）。';
+	@override String get word_errors_detected => '単語単位の発音エラーが検出されました。';
+	@override String word_errors_detected_with_type({required Object error_types}) => '単語単位の発音エラーが検出されました（${error_types}）。';
+	@override String get recognized_text_blank => '音声を認識できませんでした。';
+	@override String get unknown => '発話結果が合格基準を満たしませんでした。';
+}
+
+// Path: answerAnalyses.pronunciation_error_types
+class _TranslationsAnswerAnalysesPronunciationErrorTypesJa implements TranslationsAnswerAnalysesPronunciationErrorTypesEn {
+	_TranslationsAnswerAnalysesPronunciationErrorTypesJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get mispronunciation => '発音誤り';
+	@override String get unexpected_break => '不自然な区切り';
+	@override String get missing_break => '区切り不足';
+	@override String get monotone => '抑揚不足';
+	@override String get omission => '脱落';
+	@override String get insertion => '余分な発音';
+}
+
+// Path: answerAnalyses.connected_speech_categories
+class _TranslationsAnswerAnalysesConnectedSpeechCategoriesJa implements TranslationsAnswerAnalysesConnectedSpeechCategoriesEn {
+	_TranslationsAnswerAnalysesConnectedSpeechCategoriesJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get linking => 'Linking';
+	@override String get assimilation => 'Assimilation';
+	@override String get reduction => 'Reduction';
+	@override String get flapping => 'Flapping';
+	@override String get contraction => 'Contraction';
+}
+
+// Path: answerAnalyses.connected_speech_messages
+class _TranslationsAnswerAnalysesConnectedSpeechMessagesJa implements TranslationsAnswerAnalysesConnectedSpeechMessagesEn {
+	_TranslationsAnswerAnalysesConnectedSpeechMessagesJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String linking_unexpected_break({required Object boundary}) => '「${boundary}」は、語を切らずになめらかにつなげると自然に聞こえる可能性があります。';
+	@override String linking_missing_break({required Object boundary}) => '「${boundary}」は、語を切らずになめらかにつなげると自然に聞こえる可能性があります。';
+	@override String linking_cv({required Object boundary}) => '「${boundary}」は、前の語末子音を次の語頭母音につなげると自然に聞こえる可能性があります。';
+	@override String linking_cc({required Object boundary}) => '「${boundary}」は、最初の子音を短く保って次の子音へつなげると自然に聞こえる可能性があります。';
+	@override String linking_vv_y_glide({required Object boundary}) => '「${boundary}」は、母音どうしの間に /y/ をはさむようにつなげると自然に聞こえる可能性があります。';
+	@override String linking_vv_w_glide({required Object boundary}) => '「${boundary}」は、母音どうしの間に /w/ をはさむようにつなげると自然に聞こえる可能性があります。';
+	@override String linking_vv_generic({required Object boundary}) => '「${boundary}」は、母音どうしを切り離さず滑らかにつなげると自然に聞こえる可能性があります。';
+	@override String linking_general({required Object boundary}) => '「${boundary}」は、語を切らずになめらかにつなげると自然に聞こえる可能性があります。';
+	@override String assimilation_bilabial({required Object boundary}) => '「${boundary}」では、前の音が次の唇音に引っぱられて変化している可能性があります。';
+	@override String assimilation_velar({required Object boundary}) => '「${boundary}」では、前の音が次の軟口蓋音に引っぱられて変化している可能性があります。';
+	@override String assimilation_palatal_t({required Object boundary}) => '「${boundary}」では、/t/ が /y/ 系の音に近づいて変化している可能性があります。';
+	@override String assimilation_palatal_d({required Object boundary}) => '「${boundary}」では、/d/ が /y/ 系の音に近づいて変化している可能性があります。';
+	@override String assimilation_palatal_s({required Object boundary}) => '「${boundary}」では、/s/ が /y/ 系の音に近づいて変化している可能性があります。';
+	@override String assimilation_palatal_z({required Object boundary}) => '「${boundary}」では、/z/ が /y/ 系の音に近づいて変化している可能性があります。';
+	@override String reduction_function_word({required Object target_word}) => '「${target_word}」は弱く短く読まれることが多く、弱形・曖昧母音になっている可能性があります。';
+	@override String flapping_internal({required Object target_word}) => '「${target_word}」では、/t/ や /d/ が軽い弾き音に近づいている可能性があります。';
+	@override String flapping_boundary({required Object boundary}) => '「${boundary}」では、語のつながりで /t/ や /d/ が軽い弾き音に近づいている可能性があります。';
+	@override String contraction_pair({required Object boundary, required Object example}) => '「${boundary}」は会話では「${example}」のように短縮して聞こえやすい可能性があります。';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 extension on TranslationsJa {
@@ -2214,6 +2331,64 @@ extension on TranslationsJa {
 			case 'answerAnalyses.incorrect_answers_count': return ({required Object count}) => '${count}回不正解';
 			case 'answerAnalyses.last_answer': return '最後の解答';
 			case 'answerAnalyses.status': return '状態';
+			case 'answerAnalyses.pronunciation_incorrect_reason': return '発話で不正解になった理由';
+			case 'answerAnalyses.pronunciation_reason.mode_not_enabled': return '発話モードが有効になっていませんでした。';
+			case 'answerAnalyses.pronunciation_reason.recognized_text_mismatch': return ({required Object expected, required Object actual}) => '認識結果が期待語と一致しません（期待: ${expected} / 認識: ${actual}）。';
+			case 'answerAnalyses.pronunciation_reason.accuracy_low': return ({required Object score, required Object threshold}) => '発音の正確性スコアが基準未満です（${score}/${threshold}）。';
+			case 'answerAnalyses.pronunciation_reason.completeness_low': return ({required Object score, required Object threshold}) => '発話の完全性スコアが基準未満です（${score}/${threshold}）。';
+			case 'answerAnalyses.pronunciation_reason.word_errors_detected': return '単語単位の発音エラーが検出されました。';
+			case 'answerAnalyses.pronunciation_reason.word_errors_detected_with_type': return ({required Object error_types}) => '単語単位の発音エラーが検出されました（${error_types}）。';
+			case 'answerAnalyses.pronunciation_reason.recognized_text_blank': return '音声を認識できませんでした。';
+			case 'answerAnalyses.pronunciation_reason.unknown': return '発話結果が合格基準を満たしませんでした。';
+			case 'answerAnalyses.pronunciation_error_types.mispronunciation': return '発音誤り';
+			case 'answerAnalyses.pronunciation_error_types.unexpected_break': return '不自然な区切り';
+			case 'answerAnalyses.pronunciation_error_types.missing_break': return '区切り不足';
+			case 'answerAnalyses.pronunciation_error_types.monotone': return '抑揚不足';
+			case 'answerAnalyses.pronunciation_error_types.omission': return '脱落';
+			case 'answerAnalyses.pronunciation_error_types.insertion': return '余分な発音';
+			case 'answerAnalyses.pronunciation_word_feedback_title': return '単語ごとの判定';
+			case 'answerAnalyses.pronunciation_word_feedback': return ({required Object word, required Object score}) => '${word}: 正確性 ${score}/100';
+			case 'answerAnalyses.pronunciation_word_feedback_with_error': return ({required Object word, required Object score, required Object error_type}) => '${word}: 正確性 ${score}/100（判定: ${error_type}）';
+			case 'answerAnalyses.pronunciation_phoneme_feedback_title': return '音素ごとの判定';
+			case 'answerAnalyses.pronunciation_phoneme_feedback': return ({required Object word, required Object phoneme, required Object score}) => '${word} / ${phoneme}: 正確性 ${score}/100';
+			case 'answerAnalyses.pronunciation_phoneme_feedback_with_error': return ({required Object word, required Object phoneme, required Object score, required Object error_type}) => '${word} / ${phoneme}: 正確性 ${score}/100（判定: ${error_type}）';
+			case 'answerAnalyses.pronunciation_phoneme_comparison_title': return '音素比較（期待音素）';
+			case 'answerAnalyses.pronunciation_phoneme_word': return '単語';
+			case 'answerAnalyses.pronunciation_phoneme_expected': return '期待音素';
+			case 'answerAnalyses.pronunciation_phoneme_actual': return '実際音素';
+			case 'answerAnalyses.pronunciation_phoneme_score': return 'スコア';
+			case 'answerAnalyses.pronunciation_phoneme_status': return '判定';
+			case 'answerAnalyses.pronunciation_phoneme_status_mismatch': return '不一致';
+			case 'answerAnalyses.pronunciation_phoneme_status_low_score': return '低スコア';
+			case 'answerAnalyses.pronunciation_phoneme_not_available': return '取得不可';
+			case 'answerAnalyses.pronunciation_phoneme_status_not_available': return '実際音素なし';
+			case 'answerAnalyses.pronunciation_word_highlight_title': return '失敗箇所';
+			case 'answerAnalyses.pronunciation_word_highlight_note': return '正解のうち、太字は失敗した可能性が高い部分です。';
+			case 'answerAnalyses.connected_speech_feedback_title': return '英語のつながりフィードバック';
+			case 'answerAnalyses.connected_speech_feedback_note': return '英語の自然なつながり方に関する補助的なヒントです。断定ではなく可能性として表示します。';
+			case 'answerAnalyses.connected_speech_categories.linking': return 'Linking';
+			case 'answerAnalyses.connected_speech_categories.assimilation': return 'Assimilation';
+			case 'answerAnalyses.connected_speech_categories.reduction': return 'Reduction';
+			case 'answerAnalyses.connected_speech_categories.flapping': return 'Flapping';
+			case 'answerAnalyses.connected_speech_categories.contraction': return 'Contraction';
+			case 'answerAnalyses.connected_speech_messages.linking_unexpected_break': return ({required Object boundary}) => '「${boundary}」は、語を切らずになめらかにつなげると自然に聞こえる可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.linking_missing_break': return ({required Object boundary}) => '「${boundary}」は、語を切らずになめらかにつなげると自然に聞こえる可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.linking_cv': return ({required Object boundary}) => '「${boundary}」は、前の語末子音を次の語頭母音につなげると自然に聞こえる可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.linking_cc': return ({required Object boundary}) => '「${boundary}」は、最初の子音を短く保って次の子音へつなげると自然に聞こえる可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.linking_vv_y_glide': return ({required Object boundary}) => '「${boundary}」は、母音どうしの間に /y/ をはさむようにつなげると自然に聞こえる可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.linking_vv_w_glide': return ({required Object boundary}) => '「${boundary}」は、母音どうしの間に /w/ をはさむようにつなげると自然に聞こえる可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.linking_vv_generic': return ({required Object boundary}) => '「${boundary}」は、母音どうしを切り離さず滑らかにつなげると自然に聞こえる可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.linking_general': return ({required Object boundary}) => '「${boundary}」は、語を切らずになめらかにつなげると自然に聞こえる可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.assimilation_bilabial': return ({required Object boundary}) => '「${boundary}」では、前の音が次の唇音に引っぱられて変化している可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.assimilation_velar': return ({required Object boundary}) => '「${boundary}」では、前の音が次の軟口蓋音に引っぱられて変化している可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.assimilation_palatal_t': return ({required Object boundary}) => '「${boundary}」では、/t/ が /y/ 系の音に近づいて変化している可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.assimilation_palatal_d': return ({required Object boundary}) => '「${boundary}」では、/d/ が /y/ 系の音に近づいて変化している可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.assimilation_palatal_s': return ({required Object boundary}) => '「${boundary}」では、/s/ が /y/ 系の音に近づいて変化している可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.assimilation_palatal_z': return ({required Object boundary}) => '「${boundary}」では、/z/ が /y/ 系の音に近づいて変化している可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.reduction_function_word': return ({required Object target_word}) => '「${target_word}」は弱く短く読まれることが多く、弱形・曖昧母音になっている可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.flapping_internal': return ({required Object target_word}) => '「${target_word}」では、/t/ や /d/ が軽い弾き音に近づいている可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.flapping_boundary': return ({required Object boundary}) => '「${boundary}」では、語のつながりで /t/ や /d/ が軽い弾き音に近づいている可能性があります。';
+			case 'answerAnalyses.connected_speech_messages.contraction_pair': return ({required Object boundary, required Object example}) => '「${boundary}」は会話では「${example}」のように短縮して聞こえやすい可能性があります。';
 			case 'answerHistories.answer_histories': return '解答履歴';
 			case 'answerHistories.todays_mistakes': return '今日間違えた問題';
 			case 'answerSettings.title': return '解答・復習設定';
@@ -3051,6 +3226,25 @@ extension on TranslationsJa {
 			case 'quizzes.choices_cover_text': return '選択肢を表示する';
 			case 'quizzes.choices_cover_keys': return 'タップまたはEnterキー';
 			case 'quizzes.please_input_answer': return '解答を入力してください。';
+			case 'quizzes.pronunciation_hold_to_speak': return '押している間だけ話す';
+			case 'quizzes.pronunciation_wait_for_ready': return '準備中...';
+			case 'quizzes.pronunciation_speak_now': return 'いま話してください';
+			case 'quizzes.pronunciation_idle': return '発音判定: 待機中';
+			case 'quizzes.pronunciation_starting': return '発音判定: 開始中...（合図音が鳴ってから話してください）';
+			case 'quizzes.pronunciation_listening': return '発音判定: 録音中...';
+			case 'quizzes.pronunciation_stopping': return '発音判定: 停止中...';
+			case 'quizzes.pronunciation_passed': return '発音判定: OK';
+			case 'quizzes.pronunciation_failed': return '発音判定: NG';
+			case 'quizzes.pronunciation_pass_threshold': return ({required Object accuracy_threshold, required Object completeness_threshold}) => '合格基準: 正確性${accuracy_threshold} / 完全性${completeness_threshold}';
+			case 'quizzes.pronunciation_no_result': return '発音判定: 結果を取得できませんでした';
+			case 'quizzes.pronunciation_finalize_error': return '発音判定: 結果の解析に失敗しました';
+			case 'quizzes.pronunciation_canceled_prefix': return '発音判定: キャンセル ';
+			case 'quizzes.pronunciation_start_error_prefix': return '発音判定: 開始エラー ';
+			case 'quizzes.pronunciation_stop_error_prefix': return '発音判定: 停止エラー ';
+			case 'quizzes.pronunciation_error_prefix': return '発音判定: エラー ';
+			case 'quizzes.pronunciation_auto_submit': return '発話結果を取得すると自動で解答を送信します。';
+			case 'quizzes.pronunciation_unavailable': return '発話機能を利用できません。ログイン状態と言語設定を確認してください。';
+			case 'quizzes.pronunciation_runtime_fallback': return '発話機能を開始できなかったため、テキスト入力に切り替えました。';
 			case 'quizzes.modified': return '問題を修正しました。';
 			case 'quizzes.word_quiz_edit_prevention': return 'この問題は辞書の情報に基づいているため、変更するには辞書の項目の編集が必要です。';
 			case 'quizzes.sentence_quiz_edit_prevention': return 'この問題は例文の情報に基づいているため、変更するには例文の編集が必要です。';

@@ -1,16 +1,15 @@
-import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/provider/answer_read_aloud_audio_player.dart';
 import 'package:booqs_mobile/data/provider/loaded_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
+import 'package:booqs_mobile/data/provider/unsolved_answer_block.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/notifications/loading_unsolved_quizzes.dart';
+import 'package:booqs_mobile/utils/answer/answer_access_guard.dart';
 import 'package:booqs_mobile/utils/sanitizer.dart';
 import 'package:booqs_mobile/utils/answer/answer_interaction.dart';
-import 'package:booqs_mobile/utils/dialogs.dart';
 import 'package:booqs_mobile/utils/text_to_speech.dart';
-import 'package:booqs_mobile/components/answer/paywall_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,13 +21,15 @@ class QuizUnsolvedItem extends ConsumerStatefulWidget {
       required this.header,
       required this.question,
       required this.answer,
-      required this.footer});
+      required this.footer,
+      this.showPaywallOnAnswerLimit = true});
 
   final Quiz quiz;
   final Widget header;
   final Widget question;
   final Widget answer;
   final Widget footer;
+  final bool showPaywallOnAnswerLimit;
 
   @override
   QuizUnsolvedItemState createState() => QuizUnsolvedItemState();
@@ -67,24 +68,31 @@ class QuizUnsolvedItemState extends ConsumerState<QuizUnsolvedItem> {
 
     return NotificationListener<AnswerNotification>(
       onNotification: (notification) {
-        final int todaysAnswersCount = ref.watch(todaysAnswersCountProvider);
-        final int todaysCorrectAnswersCount =
-            ref.watch(todaysCorrectAnswersCountProvider);
-        final bool premiumEnabled = ref.watch(premiumEnabledProvider);
         // 指定解答数を超えて解いた無料ユーザーにペイウォールを表示する
-        if (todaysAnswersCount >= answersCountLimitForFreeUsers &&
-            premiumEnabled == false) {
-          Dialogs.slideFromBottomFade(const AnswerPaywallScreen());
+        if (!notification.skipAnswerAccessGuard &&
+            AnswerAccessGuard.interceptIfNeeded(
+              ref,
+              showPaywall: widget.showPaywallOnAnswerLimit,
+            )) {
+          final blockedQuizNotifier =
+              ref.read(blockedUnsolvedQuizIdProvider.notifier);
+          blockedQuizNotifier.state = null;
+          blockedQuizNotifier.state = quiz.id;
           // trueを返すことで通知がこれ以上親に伝わらない。
           return true;
         }
-        // 今日の解答数のカウンターを+1する。
-        ref.read(todaysAnswersCountProvider.notifier).state =
-            todaysAnswersCount + 1;
-        // 正解なら正解数を+1する
-        if (notification.correct) {
-          ref.read(todaysCorrectAnswersCountProvider.notifier).state =
-              todaysCorrectAnswersCount + 1;
+        if (!notification.countUpdatedLocally) {
+          final int todaysAnswersCount = ref.read(todaysAnswersCountProvider);
+          final int todaysCorrectAnswersCount =
+              ref.read(todaysCorrectAnswersCountProvider);
+          // 今日の解答数のカウンターを+1する。
+          ref.read(todaysAnswersCountProvider.notifier).state =
+              todaysAnswersCount + 1;
+          // 正解なら正解数を+1する
+          if (notification.correct) {
+            ref.read(todaysCorrectAnswersCountProvider.notifier).state =
+                todaysCorrectAnswersCount + 1;
+          }
         }
 
         // 正解を読み上げる

@@ -36,6 +36,7 @@ class WeaknessUnsolvedQuizWrapper extends StatelessWidget {
     final answer = QuizItemAnswerPart(
       quiz: quiz,
       unsolved: true,
+      answerType: 'weakness',
     );
     final footer = QuizItemUnsolvedFooter(quiz: quiz, review: review);
 
