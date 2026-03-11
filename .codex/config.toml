@@ -2,8 +2,8 @@
 # Max-performance (practical) repo config
 ################################################################################
 
-model = "gpt-5.3-codex"
-review_model = "gpt-5.3-codex"
+model = "gpt-5.4"
+review_model = "gpt-5.4"
 
 # FIX: on-failure is deprecated → use on-request (interactive) or never (non-interactive)
 approval_policy = "on-request"
