@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 echo "🧹 Cleaning Flutter project..."
 flutter clean
 
