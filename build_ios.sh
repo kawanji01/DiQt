@@ -2,9 +2,6 @@
 
 set -euo pipefail
 
-echo "🧹 Cleaning Flutter project..."
-flutter clean
-
 echo "📦 Getting Flutter dependencies..."
 flutter pub get
 

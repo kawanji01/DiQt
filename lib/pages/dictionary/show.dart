@@ -55,7 +55,7 @@ class DictionaryShowPageState extends ConsumerState<DictionaryShowPage> {
         title: future.when(
           data: (date) => '${date?.typeName()}',
           error: (err, stack) {
-            print('Error: $err stack: $stack');
+            debugPrint('Error: $err stack: $stack');
             return 'Error: $err';
           },
           loading: () => '${dictionary?.typeName()}',

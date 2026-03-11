@@ -739,9 +739,9 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
   void _subscribe() async {
     final purchase = PurchaseService();
     final planType = selectedPlan == 0 ? 'monthly' : 'annual';
-    
+
     await _analyticsService.logPurchaseAttempt(planType);
-    
+
     EasyLoading.show(status: 'loading...');
     bool subscriptionCompleted = false;
     if (selectedPlan == 0) {
@@ -751,7 +751,7 @@ class _PremiumPlanScreenState extends State<PremiumPlanPage>
       // 年額
       subscriptionCompleted = await purchase.purchaseAnnualPlan();
     }
-    print('subscriptionCompleted: $subscriptionCompleted');
+    debugPrint('subscriptionCompleted: $subscriptionCompleted');
     EasyLoading.dismiss();
     if (!mounted) return;
     if (subscriptionCompleted) {

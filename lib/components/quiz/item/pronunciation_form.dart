@@ -20,6 +20,7 @@ import 'package:booqs_mobile/notifications/answer.dart';
 import 'package:booqs_mobile/utils/answer/answer_access_guard.dart';
 import 'package:booqs_mobile/utils/answer/pronunciation_notification.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -335,7 +336,7 @@ class _QuizItemPronunciationFormState
         return;
       }
       setState(() => _status = QuizPronunciationStatus.listening);
-      unawaited(_notifyReadyToSpeak());
+      _notifyReadyToSpeak();
     } catch (_) {
       _switchToTextFallback(t.quizzes.pronunciation_runtime_fallback);
     }
@@ -476,22 +477,38 @@ class _QuizItemPronunciationFormState
     );
   }
 
-  Future<void> _notifyReadyToSpeak() async {
+  void _notifyReadyToSpeak() {
+    unawaited(_playReadyCue());
+    unawaited(_triggerReadyHaptics());
+  }
+
+  Future<void> _playReadyCue() async {
     final playReadyCue = widget.playReadyCue;
     if (playReadyCue != null) {
       try {
         await playReadyCue();
-      } catch (_) {}
+      } catch (e) {
+        debugPrint('Error playing pronunciation ready cue: $e');
+      }
       return;
     }
 
     try {
       await _readyCuePlayer.stop();
       await _readyCuePlayer.play(AssetSource(micStartSound), volume: 0.8);
-      if (Platform.isIOS) {
-        await HapticFeedback.mediumImpact();
-      }
-    } catch (_) {}
+    } catch (e) {
+      debugPrint('Error playing pronunciation ready cue: $e');
+    }
+  }
+
+  Future<void> _triggerReadyHaptics() async {
+    if (defaultTargetPlatform != TargetPlatform.iOS) return;
+
+    try {
+      await HapticFeedback.mediumImpact();
+    } catch (e) {
+      debugPrint('Error triggering pronunciation ready haptics: $e');
+    }
   }
 
   bool _shouldSwitchToTextFallback(Map resMap) {

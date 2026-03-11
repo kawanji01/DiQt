@@ -60,7 +60,7 @@ class ExternalLinkDialogState extends ConsumerState<ExternalLinkDialog> {
         url =
             "${DiQtURL.root(locale: locale)}/api/v1/mobile/sessions/verify_onetime_passcode?onetime_passcode=$_onetimePasscode";
       }
-      print('url: $url');
+      debugPrint('url: $url');
       WebPageLauncher.openByExternalBrowser(url);
     }
 
