@@ -1342,6 +1342,7 @@ class _TranslationsQuizzesJa implements TranslationsQuizzesEn {
 	@override String get pronunciation_idle => '発音判定: 待機中';
 	@override String get pronunciation_starting => '発音判定: 開始中...（合図音が鳴ってから話してください）';
 	@override String get pronunciation_listening => '発音判定: 録音中...';
+	@override String get pronunciation_submitting => '発音判定: 判定中...';
 	@override String get pronunciation_stopping => '発音判定: 停止中...';
 	@override String get pronunciation_passed => '発音判定: OK';
 	@override String get pronunciation_failed => '発音判定: NG';
@@ -3232,6 +3233,7 @@ extension on TranslationsJa {
 			case 'quizzes.pronunciation_idle': return '発音判定: 待機中';
 			case 'quizzes.pronunciation_starting': return '発音判定: 開始中...（合図音が鳴ってから話してください）';
 			case 'quizzes.pronunciation_listening': return '発音判定: 録音中...';
+			case 'quizzes.pronunciation_submitting': return '発音判定: 判定中...';
 			case 'quizzes.pronunciation_stopping': return '発音判定: 停止中...';
 			case 'quizzes.pronunciation_passed': return '発音判定: OK';
 			case 'quizzes.pronunciation_failed': return '発音判定: NG';

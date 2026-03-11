@@ -1,7 +1,6 @@
 #!/bin/bash
 
-echo "🧹 Cleaning Flutter project..."
-flutter clean
+set -euo pipefail
 
 echo "📦 Getting Flutter dependencies..."
 flutter pub get

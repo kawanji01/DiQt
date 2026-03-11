@@ -5,6 +5,7 @@ import 'package:booqs_mobile/utils/diqt_url.dart';
 import 'package:booqs_mobile/utils/error_handler.dart';
 import 'package:booqs_mobile/utils/http_service.dart';
 import 'package:booqs_mobile/utils/sanitizer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
 class RemoteLangs {
@@ -196,8 +197,7 @@ class RemoteLangs {
             streamedResponse.statusCode >= 300) {
           final String errorBody =
               await streamedResponse.stream.bytesToString();
-          final Response res =
-              Response(errorBody, streamedResponse.statusCode);
+          final Response res = Response(errorBody, streamedResponse.statusCode);
           if (!controller.isClosed) {
             controller.addError(ErrorHandler.errorMap(res));
           }
@@ -274,7 +274,7 @@ class RemoteLangs {
       final Map resMap = json.decode(res.body);
       return resMap;
     } catch (e) {
-      print('getSsmlTemplate error: $e');
+      debugPrint('getSsmlTemplate error: $e');
       return null;
     }
   }

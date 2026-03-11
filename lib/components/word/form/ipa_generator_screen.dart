@@ -73,7 +73,7 @@ class WordFormIPAGeneratorScreenState
         ErrorHandler.showErrorSnackBar(context, resMap);
         Navigator.pop(context);
       } else {
-        print(resMap);
+        debugPrint('$resMap');
         final String ipa = resMap['ipa'] ?? '';
         widget.ipaController.text = ipa;
         final snackBar =

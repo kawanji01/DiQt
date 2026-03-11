@@ -30,7 +30,7 @@ class AudioButton extends ConsumerWidget {
           await audioPlayerNotifier.setVolume(2.0);
           await audioPlayerNotifier.play();
         } catch (e) {
-          print('Error playing audio: $e');
+          debugPrint('Error playing audio: $e');
         }
       },
       child: const Icon(

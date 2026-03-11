@@ -1346,6 +1346,7 @@ class TranslationsQuizzesEn {
 	String get pronunciation_idle => 'Pronunciation: idle';
 	String get pronunciation_starting => 'Pronunciation: starting... (wait for the beep before speaking)';
 	String get pronunciation_listening => 'Pronunciation: listening...';
+	String get pronunciation_submitting => 'Pronunciation: checking...';
 	String get pronunciation_stopping => 'Pronunciation: stopping...';
 	String get pronunciation_passed => 'Pronunciation: OK';
 	String get pronunciation_failed => 'Pronunciation: NG';
@@ -3236,6 +3237,7 @@ extension on Translations {
 			case 'quizzes.pronunciation_idle': return 'Pronunciation: idle';
 			case 'quizzes.pronunciation_starting': return 'Pronunciation: starting... (wait for the beep before speaking)';
 			case 'quizzes.pronunciation_listening': return 'Pronunciation: listening...';
+			case 'quizzes.pronunciation_submitting': return 'Pronunciation: checking...';
 			case 'quizzes.pronunciation_stopping': return 'Pronunciation: stopping...';
 			case 'quizzes.pronunciation_passed': return 'Pronunciation: OK';
 			case 'quizzes.pronunciation_failed': return 'Pronunciation: NG';
