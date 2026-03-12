@@ -342,6 +342,7 @@ class _QuizItemPronunciationFormState
   Future<void> _startRecording() async {
     if (_status != QuizPronunciationStatus.idle) return;
 
+    final Future<void> pressHaptics = _triggerPressHaptics();
     final int recordingAttemptToken = ++_recordingAttemptToken;
     _stopRequestedWhileStarting = false;
     setState(() => _status = QuizPronunciationStatus.starting);
@@ -361,7 +362,7 @@ class _QuizItemPronunciationFormState
         return;
       }
       setState(() => _status = QuizPronunciationStatus.listening);
-      unawaited(_notifyReadyToSpeak(recordingAttemptToken));
+      unawaited(_notifyReadyToSpeak(recordingAttemptToken, pressHaptics));
     } catch (_) {
       _switchToTextFallback(t.quizzes.pronunciation_runtime_fallback);
     }
@@ -502,8 +503,11 @@ class _QuizItemPronunciationFormState
     );
   }
 
-  Future<void> _notifyReadyToSpeak(int recordingAttemptToken) async {
-    await _triggerReadyHaptics();
+  Future<void> _notifyReadyToSpeak(
+    int recordingAttemptToken,
+    Future<void> pressHaptics,
+  ) async {
+    await pressHaptics;
     if (!mounted ||
         _status != QuizPronunciationStatus.listening ||
         recordingAttemptToken != _recordingAttemptToken) {
@@ -531,15 +535,15 @@ class _QuizItemPronunciationFormState
     }
   }
 
-  Future<void> _triggerReadyHaptics() async {
+  Future<void> _triggerPressHaptics() async {
     if (defaultTargetPlatform != TargetPlatform.iOS) return;
 
     try {
-      // iOS impact haptics are flaky in this recording flow, so prefer
-      // the generic vibration path for a reliable ready signal.
+      // The generic vibration path has been more reliable here than impact
+      // haptics when long-press recording starts.
       await HapticFeedback.vibrate();
     } catch (e) {
-      debugPrint('Error triggering pronunciation ready haptics: $e');
+      debugPrint('Error triggering pronunciation press haptics: $e');
     }
   }
 

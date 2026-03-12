@@ -769,7 +769,7 @@ void main() {
     });
 
     testWidgets(
-        'plays the ready cue once and triggers haptics when recording becomes active on iOS',
+        'triggers haptics on press and plays the ready cue when recording becomes active on iOS',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
       final FakePronunciationReadyCue readyCue = FakePronunciationReadyCue();
@@ -801,7 +801,7 @@ void main() {
       expect(find.text(t.quizzes.pronunciation_speak_now), findsOneWidget);
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
-    testWidgets('dispatches the iOS ready vibration before the ready cue',
+    testWidgets('dispatches the iOS press vibration before the ready cue',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
 
@@ -834,7 +834,7 @@ void main() {
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
     testWidgets(
-        'does not play the ready cue after the press is released during delayed haptics',
+        'does not play the ready cue after the press is released while press haptics are delayed',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
       final FakePronunciationReadyCue readyCue = FakePronunciationReadyCue();
@@ -889,7 +889,7 @@ void main() {
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
     testWidgets(
-        'ignores a delayed ready cue from an earlier recording attempt on iOS',
+        'ignores a delayed ready cue from an earlier press after a second recording attempt on iOS',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
       final FakePronunciationReadyCue readyCue = FakePronunciationReadyCue();
@@ -960,7 +960,8 @@ void main() {
       expect(readyEventLog, ['haptic', 'haptic', 'readyCue']);
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
-    testWidgets('triggers haptics on iOS with the built-in ready cue path',
+    testWidgets(
+        'triggers press haptics on iOS with the built-in ready cue path',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
 
@@ -991,7 +992,8 @@ void main() {
       expect(tester.takeException(), isNull);
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
-    testWidgets('keeps iOS haptics even when the injected ready cue fails',
+    testWidgets(
+        'keeps iOS press haptics even when the injected ready cue fails',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
       final ThrowingPronunciationReadyCue readyCue =
@@ -1068,7 +1070,7 @@ void main() {
       await tester.pump();
 
       expect(readyCue.playCount, 0);
-      expect(readyVibrateCount, 0);
+      expect(readyVibrateCount, 1);
       expect(submitCount, 1);
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
