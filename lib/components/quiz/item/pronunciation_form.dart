@@ -152,10 +152,14 @@ class _QuizItemPronunciationFormState
   Widget build(BuildContext context) {
     final Quiz quiz = widget.quiz;
     final String? locale = _pronunciationLocale(quiz);
-    final bool useTextFallback =
-        _status == QuizPronunciationStatus.fallback || locale == null;
+    final bool directAzureSupported = _supportsDirectAzurePronunciation();
+    final bool useTextFallback = _status == QuizPronunciationStatus.fallback ||
+        locale == null ||
+        !directAzureSupported;
     final String? fallbackMessage = _fallbackMessage ??
-        (locale == null ? t.quizzes.pronunciation_unavailable : null);
+        (locale == null || !directAzureSupported
+            ? t.quizzes.pronunciation_unavailable
+            : null);
 
     if (useTextFallback) {
       return Column(
@@ -191,6 +195,11 @@ class _QuizItemPronunciationFormState
         _status == QuizPronunciationStatus.completed;
     final bool listening = _status == QuizPronunciationStatus.listening;
     final bool submitting = _status == QuizPronunciationStatus.submitting;
+    final Color buttonColor = submitting
+        ? Colors.grey
+        : listening
+            ? Colors.red
+            : Colors.green;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -204,12 +213,11 @@ class _QuizItemPronunciationFormState
             duration: const Duration(milliseconds: 120),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
-              color: listening ? Colors.red : Colors.green,
+              color: buttonColor,
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: (listening ? Colors.red : Colors.green)
-                      .withValues(alpha: busy ? 0.15 : 0.25),
+                  color: buttonColor.withValues(alpha: busy ? 0.15 : 0.25),
                   blurRadius: listening ? 18 : 12,
                   spreadRadius: listening ? 1 : 0,
                 ),
@@ -313,6 +321,21 @@ class _QuizItemPronunciationFormState
       return 'ja-JP';
     }
     return null;
+  }
+
+  bool _supportsDirectAzurePronunciation() {
+    if (kIsWeb) return false;
+
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.android:
+      case TargetPlatform.iOS:
+      case TargetPlatform.macOS:
+      case TargetPlatform.windows:
+      case TargetPlatform.linux:
+        return true;
+      case TargetPlatform.fuchsia:
+        return false;
+    }
   }
 
   Future<void> _startRecording() async {
@@ -513,7 +536,19 @@ class _QuizItemPronunciationFormState
 
   bool _shouldSwitchToTextFallback(Map resMap) {
     final int? status = resMap['status'] as int?;
-    return status != 401 && status != 403;
+    if (status == null) return true;
+
+    final String? message = resMap['message'] as String?;
+    if (message == t.quizzes.pronunciation_unavailable ||
+        message == t.quizzes.pronunciation_no_result) {
+      return false;
+    }
+
+    if (status == 401 || status == 403 || status == 429) {
+      return false;
+    }
+
+    return status < 500;
   }
 
   bool _correctFromResponse(Map resMap) {

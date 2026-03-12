@@ -89,9 +89,12 @@ class QuizExplanationAnswerAnalysis extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SharedItemLabel(
+        Center(
+          child: SharedItemLabel(
             text: t.answerAnalyses.answer_analyses,
-            icon: Icons.analytics_outlined),
+            icon: Icons.analytics_outlined,
+          ),
+        ),
         const SizedBox(height: 8),
         answersCount(),
         const SizedBox(height: 4),

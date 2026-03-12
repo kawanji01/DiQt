@@ -368,6 +368,28 @@ void main() {
       expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsNothing);
     });
 
+    testWidgets('keeps pronunciation mode enabled on macOS',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+          recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
+          submitAnswer: (_, __) async => successfulPronunciationResponse(),
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      expect(find.byType(TextField), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
+    }, variant: TargetPlatformVariant.only(TargetPlatform.macOS));
+
     testWidgets('falls back to text input when pronunciation assessment fails',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
@@ -423,6 +445,121 @@ void main() {
           submitAnswer: (_, __) async => {
             'status': 401,
             'message': 'unauthorized',
+          },
+          showError: (_, __) {},
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+      detector.onLongPressEnd!(
+        const LongPressEndDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(find.byType(TextField), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_runtime_fallback), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
+    });
+
+    testWidgets('keeps the pronunciation form active on no-result failures',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+          recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
+          submitAnswer: (_, __) async => {
+            'status': 422,
+            'message': t.quizzes.pronunciation_no_result,
+          },
+          showError: (_, __) {},
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+      detector.onLongPressEnd!(
+        const LongPressEndDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(find.byType(TextField), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_runtime_fallback), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
+    });
+
+    testWidgets('keeps the pronunciation form active on service failures',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+          recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
+          submitAnswer: (_, __) async => {
+            'status': 503,
+            'message': t.quizzes.pronunciation_unavailable,
+          },
+          showError: (_, __) {},
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+      detector.onLongPressEnd!(
+        const LongPressEndDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(find.byType(TextField), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_runtime_fallback), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
+    });
+
+    testWidgets(
+        'keeps the pronunciation form active on unavailable 4xx failures',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+          recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
+          submitAnswer: (_, __) async => {
+            'status': 404,
+            'message': t.quizzes.pronunciation_unavailable,
           },
           showError: (_, __) {},
           showPaywallOnAnswerLimit: false,
@@ -804,8 +941,13 @@ void main() {
       );
       await tester.pump();
 
+      final AnimatedContainer button =
+          tester.widget(find.byType(AnimatedContainer).first);
+      final BoxDecoration decoration = button.decoration! as BoxDecoration;
+
       expect(find.text(t.quizzes.pronunciation_submitting), findsNWidgets(2));
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      expect(decoration.color, Colors.grey);
 
       submission.complete(successfulPronunciationResponse());
       await tester.pump();
