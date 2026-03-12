@@ -133,6 +133,7 @@ class _QuizItemPronunciationFormState
   QuizPronunciationStatus _status = QuizPronunciationStatus.idle;
   String? _fallbackMessage;
   bool _stopRequestedWhileStarting = false;
+  int _recordingAttemptToken = 0;
 
   @override
   void initState() {
@@ -341,6 +342,7 @@ class _QuizItemPronunciationFormState
   Future<void> _startRecording() async {
     if (_status != QuizPronunciationStatus.idle) return;
 
+    final int recordingAttemptToken = ++_recordingAttemptToken;
     _stopRequestedWhileStarting = false;
     setState(() => _status = QuizPronunciationStatus.starting);
 
@@ -359,7 +361,7 @@ class _QuizItemPronunciationFormState
         return;
       }
       setState(() => _status = QuizPronunciationStatus.listening);
-      _notifyReadyToSpeak();
+      unawaited(_notifyReadyToSpeak(recordingAttemptToken));
     } catch (_) {
       _switchToTextFallback(t.quizzes.pronunciation_runtime_fallback);
     }
@@ -500,9 +502,14 @@ class _QuizItemPronunciationFormState
     );
   }
 
-  void _notifyReadyToSpeak() {
+  Future<void> _notifyReadyToSpeak(int recordingAttemptToken) async {
+    await _triggerReadyHaptics();
+    if (!mounted ||
+        _status != QuizPronunciationStatus.listening ||
+        recordingAttemptToken != _recordingAttemptToken) {
+      return;
+    }
     unawaited(_playReadyCue());
-    unawaited(_triggerReadyHaptics());
   }
 
   Future<void> _playReadyCue() async {
@@ -528,7 +535,9 @@ class _QuizItemPronunciationFormState
     if (defaultTargetPlatform != TargetPlatform.iOS) return;
 
     try {
-      await HapticFeedback.mediumImpact();
+      // iOS impact haptics are flaky in this recording flow, so prefer
+      // the generic vibration path for a reliable ready signal.
+      await HapticFeedback.vibrate();
     } catch (e) {
       debugPrint('Error triggering pronunciation ready haptics: $e');
     }

@@ -311,18 +311,21 @@ Future<ProviderContainer> pumpWidgetWithProviders(
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  int mediumImpactCount = 0;
+  int readyVibrateCount = 0;
+  List<String> readyEventLog = <String>[];
 
   group('QuizItemPronunciationForm', () {
     setUp(() {
-      mediumImpactCount = 0;
+      readyVibrateCount = 0;
+      readyEventLog = <String>[];
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
           .setMockMethodCallHandler(
         SystemChannels.platform,
         (MethodCall methodCall) async {
           if (methodCall.method == 'HapticFeedback.vibrate' &&
-              methodCall.arguments == 'HapticFeedbackType.mediumImpact') {
-            mediumImpactCount += 1;
+              methodCall.arguments == null) {
+            readyVibrateCount += 1;
+            readyEventLog.add('haptic');
           }
           return null;
         },
@@ -794,8 +797,167 @@ void main() {
       await tester.pump();
 
       expect(readyCue.playCount, 1);
-      expect(mediumImpactCount, 1);
+      expect(readyVibrateCount, 1);
       expect(find.text(t.quizzes.pronunciation_speak_now), findsOneWidget);
+    }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
+
+    testWidgets('dispatches the iOS ready vibration before the ready cue',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+          recorder: FakePronunciationRecorder(),
+          playReadyCue: () async {
+            readyEventLog.add('readyCue');
+          },
+          submitAnswer: (_, __) async => successfulPronunciationResponse(),
+          dispatchNotification: (_, __) {},
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      readyEventLog.clear();
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(readyEventLog, ['haptic', 'readyCue']);
+    }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
+
+    testWidgets(
+        'does not play the ready cue after the press is released during delayed haptics',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+      final FakePronunciationReadyCue readyCue = FakePronunciationReadyCue();
+      final Completer<void> hapticCompletion = Completer<void>();
+
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(
+        SystemChannels.platform,
+        (MethodCall methodCall) async {
+          if (methodCall.method == 'HapticFeedback.vibrate' &&
+              methodCall.arguments == null) {
+            readyVibrateCount += 1;
+            readyEventLog.add('haptic');
+            await hapticCompletion.future;
+          }
+          return null;
+        },
+      );
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+          recorder: FakePronunciationRecorder(),
+          playReadyCue: readyCue.call,
+          submitAnswer: (_, __) async => successfulPronunciationResponse(),
+          dispatchNotification: (_, __) {},
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+      detector.onLongPressEnd!(
+        const LongPressEndDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      hapticCompletion.complete();
+      await tester.pump();
+      await tester.pump();
+
+      expect(readyVibrateCount, 1);
+      expect(readyCue.playCount, 0);
+    }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
+
+    testWidgets(
+        'ignores a delayed ready cue from an earlier recording attempt on iOS',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+      final FakePronunciationReadyCue readyCue = FakePronunciationReadyCue();
+      final Completer<void> firstHapticCompletion = Completer<void>();
+
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(
+        SystemChannels.platform,
+        (MethodCall methodCall) async {
+          if (methodCall.method == 'HapticFeedback.vibrate' &&
+              methodCall.arguments == null) {
+            readyVibrateCount += 1;
+            readyEventLog.add('haptic');
+            if (readyVibrateCount == 1) {
+              await firstHapticCompletion.future;
+            }
+          }
+          return null;
+        },
+      );
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: false,
+          answerType: 'drill',
+          recorder: FakePronunciationRecorder(),
+          playReadyCue: () async {
+            readyCue.playCount += 1;
+            readyEventLog.add('readyCue');
+          },
+          submitAnswer: (_, __) async => successfulPronunciationResponse(),
+          dispatchNotification: (_, __) {},
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+      detector.onLongPressEnd!(
+        const LongPressEndDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+      await tester.pump();
+
+      expect(readyCue.playCount, 0);
+
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(readyCue.playCount, 1);
+      expect(readyVibrateCount, 2);
+
+      firstHapticCompletion.complete();
+      await tester.pump();
+      await tester.pump();
+
+      expect(readyCue.playCount, 1);
+      expect(readyEventLog, ['haptic', 'haptic', 'readyCue']);
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
     testWidgets('triggers haptics on iOS with the built-in ready cue path',
@@ -824,7 +986,7 @@ void main() {
       await tester.pump();
       await tester.pump();
 
-      expect(mediumImpactCount, 1);
+      expect(readyVibrateCount, 1);
       expect(find.text(t.quizzes.pronunciation_speak_now), findsOneWidget);
       expect(tester.takeException(), isNull);
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
@@ -859,7 +1021,7 @@ void main() {
       await tester.pump();
 
       expect(readyCue.playCount, 1);
-      expect(mediumImpactCount, 1);
+      expect(readyVibrateCount, 1);
       expect(find.text(t.quizzes.pronunciation_speak_now), findsOneWidget);
       expect(tester.takeException(), isNull);
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
@@ -906,7 +1068,7 @@ void main() {
       await tester.pump();
 
       expect(readyCue.playCount, 0);
-      expect(mediumImpactCount, 0);
+      expect(readyVibrateCount, 0);
       expect(submitCount, 1);
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
