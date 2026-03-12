@@ -1,4 +1,5 @@
 import 'package:booqs_mobile/components/quiz/explanation/answer_analysis.dart';
+import 'package:booqs_mobile/components/shared/item_label.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/quiz.dart';
@@ -109,6 +110,13 @@ void main() {
     );
     await tester.pump();
 
+    expect(
+      find.ancestor(
+        of: find.byType(SharedItemLabel),
+        matching: find.byType(Center),
+      ),
+      findsOneWidget,
+    );
     expect(find.text(t.answerAnalyses.pronunciation_incorrect_reason),
         findsOneWidget);
     expect(find.text(t.answerAnalyses.pronunciation_word_feedback_title),
