@@ -311,6 +311,7 @@ Future<ProviderContainer> pumpWidgetWithProviders(
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  const String mediumImpactHaptic = 'HapticFeedbackType.mediumImpact';
   int readyVibrateCount = 0;
   List<String> readyEventLog = <String>[];
 
@@ -323,7 +324,7 @@ void main() {
         SystemChannels.platform,
         (MethodCall methodCall) async {
           if (methodCall.method == 'HapticFeedback.vibrate' &&
-              methodCall.arguments == null) {
+              methodCall.arguments == mediumImpactHaptic) {
             readyVibrateCount += 1;
             readyEventLog.add('haptic');
           }
@@ -845,7 +846,7 @@ void main() {
         SystemChannels.platform,
         (MethodCall methodCall) async {
           if (methodCall.method == 'HapticFeedback.vibrate' &&
-              methodCall.arguments == null) {
+              methodCall.arguments == mediumImpactHaptic) {
             readyVibrateCount += 1;
             readyEventLog.add('haptic');
             await hapticCompletion.future;
@@ -900,7 +901,7 @@ void main() {
         SystemChannels.platform,
         (MethodCall methodCall) async {
           if (methodCall.method == 'HapticFeedback.vibrate' &&
-              methodCall.arguments == null) {
+              methodCall.arguments == mediumImpactHaptic) {
             readyVibrateCount += 1;
             readyEventLog.add('haptic');
             if (readyVibrateCount == 1) {

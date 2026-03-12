@@ -539,9 +539,7 @@ class _QuizItemPronunciationFormState
     if (defaultTargetPlatform != TargetPlatform.iOS) return;
 
     try {
-      // The generic vibration path has been more reliable here than impact
-      // haptics when long-press recording starts.
-      await HapticFeedback.vibrate();
+      await HapticFeedback.mediumImpact();
     } catch (e) {
       debugPrint('Error triggering pronunciation press haptics: $e');
     }
