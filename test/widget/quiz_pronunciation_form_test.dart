@@ -339,7 +339,7 @@ void main() {
           .setMockMethodCallHandler(SystemChannels.platform, null);
     });
 
-    testWidgets('falls back to text input for unsupported locales',
+    testWidgets('shows a disabled pronunciation form for unsupported locales',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 25);
 
@@ -353,7 +353,13 @@ void main() {
       );
 
       expect(find.text(t.quizzes.pronunciation_unavailable), findsOneWidget);
-      expect(find.byType(TextField), findsOneWidget);
+      expect(find.byType(TextField), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      expect(detector.onLongPressDown, isNull);
+      expect(detector.onLongPressStart, isNull);
+      expect(detector.onLongPressEnd, isNull);
     });
 
     testWidgets(
@@ -395,7 +401,7 @@ void main() {
       expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
     }, variant: TargetPlatformVariant.only(TargetPlatform.macOS));
 
-    testWidgets('falls back to text input when pronunciation assessment fails',
+    testWidgets('keeps the pronunciation form active when assessment fails',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
 
@@ -429,9 +435,10 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 200));
 
-      expect(find.byType(TextField), findsOneWidget);
+      expect(find.byType(TextField), findsNothing);
       expect(
           find.text(t.quizzes.pronunciation_runtime_fallback), findsOneWidget);
+      expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
     });
 
     testWidgets('keeps the pronunciation form active on auth failures',
@@ -468,7 +475,8 @@ void main() {
       await tester.pump();
 
       expect(find.byType(TextField), findsNothing);
-      expect(find.text(t.quizzes.pronunciation_runtime_fallback), findsNothing);
+      expect(
+          find.text(t.quizzes.pronunciation_runtime_fallback), findsOneWidget);
       expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
     });
 
@@ -506,7 +514,7 @@ void main() {
       await tester.pump();
 
       expect(find.byType(TextField), findsNothing);
-      expect(find.text(t.quizzes.pronunciation_runtime_fallback), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_no_result), findsOneWidget);
       expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
     });
 
@@ -544,7 +552,7 @@ void main() {
       await tester.pump();
 
       expect(find.byType(TextField), findsNothing);
-      expect(find.text(t.quizzes.pronunciation_runtime_fallback), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_unavailable), findsOneWidget);
       expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
     });
 
@@ -583,8 +591,54 @@ void main() {
       await tester.pump();
 
       expect(find.byType(TextField), findsNothing);
-      expect(find.text(t.quizzes.pronunciation_runtime_fallback), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_unavailable), findsOneWidget);
       expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
+    });
+
+    testWidgets('clears the inline failure banner when retrying',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
+
+      await pumpWidgetWithProviders(
+        tester,
+        user: buildUser(),
+        child: QuizItemPronunciationForm(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+          recorder: FakePronunciationRecorder(),
+          playReadyCue: noopReadyCue,
+          submitAnswer: (_, __) async => {
+            'status': 422,
+            'message': 'assessment failed',
+          },
+          showError: (_, __) {},
+          showPaywallOnAnswerLimit: false,
+        ),
+      );
+
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressStart!(
+        const LongPressStartDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+      detector.onLongPressEnd!(
+        const LongPressEndDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(
+          find.text(t.quizzes.pronunciation_runtime_fallback), findsOneWidget);
+
+      detector.onLongPressDown!(
+        const LongPressDownDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(find.text(t.quizzes.pronunciation_runtime_fallback), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_wait_for_ready), findsOneWidget);
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
     testWidgets('does not allow a second submission after success',

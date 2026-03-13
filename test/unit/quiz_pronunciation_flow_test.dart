@@ -40,7 +40,7 @@ void main() {
       );
       expect(
         QuizPronunciationFlow.stopActionForStatus(
-          QuizPronunciationStatus.fallback,
+          QuizPronunciationStatus.completed,
         ),
         QuizPronunciationStopAction.ignore,
       );
