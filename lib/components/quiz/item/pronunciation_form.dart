@@ -29,6 +29,7 @@ import 'package:record/record.dart';
 
 enum QuizPronunciationStatus {
   idle,
+  pressing,
   starting,
   listening,
   submitting,
@@ -43,6 +44,8 @@ class QuizPronunciationFlow {
     QuizPronunciationStatus status,
   ) {
     switch (status) {
+      case QuizPronunciationStatus.pressing:
+        return QuizPronunciationStopAction.ignore;
       case QuizPronunciationStatus.starting:
         return QuizPronunciationStopAction.defer;
       case QuizPronunciationStatus.listening:
@@ -191,7 +194,9 @@ class _QuizItemPronunciationFormState
     final int accuracyThreshold = quiz.pronunciationAccuracyThreshold ?? 80;
     final int completenessThreshold =
         quiz.pronunciationCompletenessThreshold ?? 80;
-    final bool busy = _status == QuizPronunciationStatus.starting ||
+    final bool preparing = _status == QuizPronunciationStatus.pressing ||
+        _status == QuizPronunciationStatus.starting;
+    final bool busy = preparing ||
         _status == QuizPronunciationStatus.submitting ||
         _status == QuizPronunciationStatus.completed;
     final bool listening = _status == QuizPronunciationStatus.listening;
@@ -207,9 +212,10 @@ class _QuizItemPronunciationFormState
       children: [
         GestureDetector(
           behavior: HitTestBehavior.opaque,
+          onLongPressDown: (_) => _handlePressDown(),
           onLongPressStart: (_) => _startRecording(),
           onLongPressEnd: (_) => _stopAndSubmit(),
-          onLongPressCancel: _stopAndSubmit,
+          onLongPressCancel: _handlePressCancel,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 120),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -230,7 +236,7 @@ class _QuizItemPronunciationFormState
                 SizedBox(
                   width: 20,
                   height: 20,
-                  child: submitting
+                  child: preparing || submitting
                       ? const CircularProgressIndicator(
                           strokeWidth: 2.4,
                           valueColor:
@@ -284,6 +290,7 @@ class _QuizItemPronunciationFormState
 
   String _buttonLabel() {
     switch (_status) {
+      case QuizPronunciationStatus.pressing:
       case QuizPronunciationStatus.starting:
         return t.quizzes.pronunciation_wait_for_ready;
       case QuizPronunciationStatus.listening:
@@ -300,6 +307,7 @@ class _QuizItemPronunciationFormState
 
   String _statusLabel() {
     switch (_status) {
+      case QuizPronunciationStatus.pressing:
       case QuizPronunciationStatus.starting:
         return t.quizzes.pronunciation_starting;
       case QuizPronunciationStatus.listening:
@@ -340,9 +348,11 @@ class _QuizItemPronunciationFormState
   }
 
   Future<void> _startRecording() async {
-    if (_status != QuizPronunciationStatus.idle) return;
+    if (_status != QuizPronunciationStatus.idle &&
+        _status != QuizPronunciationStatus.pressing) {
+      return;
+    }
 
-    final Future<void> pressHaptics = _triggerPressHaptics();
     final int recordingAttemptToken = ++_recordingAttemptToken;
     _stopRequestedWhileStarting = false;
     setState(() => _status = QuizPronunciationStatus.starting);
@@ -362,10 +372,27 @@ class _QuizItemPronunciationFormState
         return;
       }
       setState(() => _status = QuizPronunciationStatus.listening);
-      unawaited(_notifyReadyToSpeak(recordingAttemptToken, pressHaptics));
+      _notifyReadyToSpeak(recordingAttemptToken);
     } catch (_) {
       _switchToTextFallback(t.quizzes.pronunciation_runtime_fallback);
     }
+  }
+
+  void _handlePressDown() {
+    if (_status != QuizPronunciationStatus.idle) return;
+
+    _stopRequestedWhileStarting = false;
+    setState(() => _status = QuizPronunciationStatus.pressing);
+    unawaited(_triggerPressHaptics());
+  }
+
+  Future<void> _handlePressCancel() async {
+    if (_status == QuizPronunciationStatus.pressing) {
+      _resetToIdle();
+      return;
+    }
+
+    await _stopAndSubmit();
   }
 
   Future<void> _stopAndSubmit() async {
@@ -503,11 +530,7 @@ class _QuizItemPronunciationFormState
     );
   }
 
-  Future<void> _notifyReadyToSpeak(
-    int recordingAttemptToken,
-    Future<void> pressHaptics,
-  ) async {
-    await pressHaptics;
+  void _notifyReadyToSpeak(int recordingAttemptToken) {
     if (!mounted ||
         _status != QuizPronunciationStatus.listening ||
         recordingAttemptToken != _recordingAttemptToken) {

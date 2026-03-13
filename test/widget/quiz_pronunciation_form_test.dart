@@ -10,6 +10,7 @@ import 'package:booqs_mobile/data/provider/solved_quiz_ids.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:booqs_mobile/models/user.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
@@ -770,7 +771,7 @@ void main() {
     });
 
     testWidgets(
-        'triggers haptics on press and plays the ready cue when recording becomes active on iOS',
+        'triggers haptics on touch down and plays the ready cue when recording becomes active on iOS',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
       final FakePronunciationReadyCue readyCue = FakePronunciationReadyCue();
@@ -792,6 +793,17 @@ void main() {
 
       final GestureDetector detector =
           tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressDown!(
+        const LongPressDownDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(readyCue.playCount, 0);
+      expect(readyVibrateCount, 1);
+      expect(find.text(t.quizzes.pronunciation_wait_for_ready), findsOneWidget);
+      expect(find.text(t.quizzes.pronunciation_starting), findsOneWidget);
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+
       detector.onLongPressStart!(
         const LongPressStartDetails(globalPosition: Offset.zero),
       );
@@ -826,6 +838,13 @@ void main() {
       readyEventLog.clear();
       final GestureDetector detector =
           tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressDown!(
+        const LongPressDownDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
+
+      expect(readyEventLog, ['haptic']);
+
       detector.onLongPressStart!(
         const LongPressStartDetails(globalPosition: Offset.zero),
       );
@@ -835,7 +854,7 @@ void main() {
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
     testWidgets(
-        'does not play the ready cue after the press is released while press haptics are delayed',
+        'does not wait for delayed press haptics before playing the ready cue',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
       final FakePronunciationReadyCue readyCue = FakePronunciationReadyCue();
@@ -872,45 +891,30 @@ void main() {
 
       final GestureDetector detector =
           tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressDown!(
+        const LongPressDownDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
       detector.onLongPressStart!(
         const LongPressStartDetails(globalPosition: Offset.zero),
       );
       await tester.pump();
-      detector.onLongPressEnd!(
-        const LongPressEndDetails(globalPosition: Offset.zero),
-      );
       await tester.pump();
+
+      expect(readyVibrateCount, 1);
+      expect(readyCue.playCount, 1);
+      expect(readyEventLog, ['haptic']);
 
       hapticCompletion.complete();
       await tester.pump();
       await tester.pump();
-
-      expect(readyVibrateCount, 1);
-      expect(readyCue.playCount, 0);
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
     testWidgets(
-        'ignores a delayed ready cue from an earlier press after a second recording attempt on iOS',
+        'shows loading on touch down and resets when the long press is cancelled on iOS',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 21);
       final FakePronunciationReadyCue readyCue = FakePronunciationReadyCue();
-      final Completer<void> firstHapticCompletion = Completer<void>();
-
-      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMethodCallHandler(
-        SystemChannels.platform,
-        (MethodCall methodCall) async {
-          if (methodCall.method == 'HapticFeedback.vibrate' &&
-              methodCall.arguments == mediumImpactHaptic) {
-            readyVibrateCount += 1;
-            readyEventLog.add('haptic');
-            if (readyVibrateCount == 1) {
-              await firstHapticCompletion.future;
-            }
-          }
-          return null;
-        },
-      );
 
       await pumpWidgetWithProviders(
         tester,
@@ -932,33 +936,24 @@ void main() {
 
       final GestureDetector detector =
           tester.widget(find.byType(GestureDetector).first);
-
-      detector.onLongPressStart!(
-        const LongPressStartDetails(globalPosition: Offset.zero),
+      detector.onLongPressDown!(
+        const LongPressDownDetails(globalPosition: Offset.zero),
       );
-      await tester.pump();
-      detector.onLongPressEnd!(
-        const LongPressEndDetails(globalPosition: Offset.zero),
-      );
-      await tester.pump();
       await tester.pump();
 
       expect(readyCue.playCount, 0);
+      expect(readyVibrateCount, 1);
+      expect(readyEventLog, ['haptic']);
+      expect(find.text(t.quizzes.pronunciation_wait_for_ready), findsOneWidget);
+      expect(find.text(t.quizzes.pronunciation_starting), findsOneWidget);
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
-      detector.onLongPressStart!(
-        const LongPressStartDetails(globalPosition: Offset.zero),
-      );
+      detector.onLongPressCancel!();
       await tester.pump();
 
-      expect(readyCue.playCount, 1);
-      expect(readyVibrateCount, 2);
-
-      firstHapticCompletion.complete();
-      await tester.pump();
-      await tester.pump();
-
-      expect(readyCue.playCount, 1);
-      expect(readyEventLog, ['haptic', 'haptic', 'readyCue']);
+      expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
+      expect(find.text(t.quizzes.pronunciation_wait_for_ready), findsNothing);
+      expect(find.byType(CircularProgressIndicator), findsNothing);
     }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
     testWidgets(
@@ -982,6 +977,10 @@ void main() {
 
       final GestureDetector detector =
           tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressDown!(
+        const LongPressDownDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
       detector.onLongPressStart!(
         const LongPressStartDetails(globalPosition: Offset.zero),
       );
@@ -1017,6 +1016,10 @@ void main() {
 
       final GestureDetector detector =
           tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressDown!(
+        const LongPressDownDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
       detector.onLongPressStart!(
         const LongPressStartDetails(globalPosition: Offset.zero),
       );
@@ -1057,6 +1060,10 @@ void main() {
 
       final GestureDetector detector =
           tester.widget(find.byType(GestureDetector).first);
+      detector.onLongPressDown!(
+        const LongPressDownDetails(globalPosition: Offset.zero),
+      );
+      await tester.pump();
       detector.onLongPressStart!(
         const LongPressStartDetails(globalPosition: Offset.zero),
       );
