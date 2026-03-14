@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:booqs_mobile/components/quiz/item/short_answer_form.dart';
 import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
@@ -29,11 +28,11 @@ import 'package:record/record.dart';
 
 enum QuizPronunciationStatus {
   idle,
+  pressing,
   starting,
   listening,
   submitting,
   completed,
-  fallback,
 }
 
 enum QuizPronunciationStopAction { ignore, defer, submit }
@@ -43,6 +42,8 @@ class QuizPronunciationFlow {
     QuizPronunciationStatus status,
   ) {
     switch (status) {
+      case QuizPronunciationStatus.pressing:
+        return QuizPronunciationStopAction.ignore;
       case QuizPronunciationStatus.starting:
         return QuizPronunciationStopAction.defer;
       case QuizPronunciationStatus.listening:
@@ -50,7 +51,6 @@ class QuizPronunciationFlow {
       case QuizPronunciationStatus.idle:
       case QuizPronunciationStatus.completed:
       case QuizPronunciationStatus.submitting:
-      case QuizPronunciationStatus.fallback:
         return QuizPronunciationStopAction.ignore;
     }
   }
@@ -131,7 +131,7 @@ class _QuizItemPronunciationFormState
   late final QuizPronunciationRecorder _recorder;
   late final AudioPlayer _readyCuePlayer;
   QuizPronunciationStatus _status = QuizPronunciationStatus.idle;
-  String? _fallbackMessage;
+  String? _inlineMessage;
   bool _stopRequestedWhileStarting = false;
   int _recordingAttemptToken = 0;
 
@@ -152,64 +152,54 @@ class _QuizItemPronunciationFormState
   @override
   Widget build(BuildContext context) {
     final Quiz quiz = widget.quiz;
-    final String? locale = _pronunciationLocale(quiz);
-    final bool directAzureSupported = _supportsDirectAzurePronunciation();
-    final bool useTextFallback = _status == QuizPronunciationStatus.fallback ||
-        locale == null ||
-        !directAzureSupported;
-    final String? fallbackMessage = _fallbackMessage ??
-        (locale == null || !directAzureSupported
-            ? t.quizzes.pronunciation_unavailable
-            : null);
-
-    if (useTextFallback) {
-      return Column(
-        children: [
-          if (fallbackMessage != null) ...[
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.only(bottom: 8),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.red.shade50,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                fallbackMessage,
-                style: TextStyle(color: Colors.red.shade700),
-              ),
-            ),
-          ],
-          QuizItemShortAnswerForm(
-            quiz: quiz,
-            unsolved: widget.unsolved,
-          ),
-        ],
-      );
-    }
-
+    final bool pronunciationAvailable = _pronunciationAvailable(quiz);
+    final String? inlineMessage = _inlineMessage ??
+        (pronunciationAvailable ? null : t.quizzes.pronunciation_unavailable);
     final int accuracyThreshold = quiz.pronunciationAccuracyThreshold ?? 80;
     final int completenessThreshold =
         quiz.pronunciationCompletenessThreshold ?? 80;
-    final bool busy = _status == QuizPronunciationStatus.starting ||
+    final bool preparing = _status == QuizPronunciationStatus.pressing ||
+        _status == QuizPronunciationStatus.starting;
+    final bool busy = preparing ||
         _status == QuizPronunciationStatus.submitting ||
         _status == QuizPronunciationStatus.completed;
     final bool listening = _status == QuizPronunciationStatus.listening;
     final bool submitting = _status == QuizPronunciationStatus.submitting;
-    final Color buttonColor = submitting
+    final Color buttonColor = !pronunciationAvailable
         ? Colors.grey
-        : listening
-            ? Colors.red
-            : Colors.green;
+        : submitting
+            ? Colors.grey
+            : listening
+                ? Colors.red
+                : Colors.green;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        if (inlineMessage != null) ...[
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(bottom: 8),
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.red.shade50,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              inlineMessage,
+              style: TextStyle(color: Colors.red.shade700),
+            ),
+          ),
+        ],
         GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onLongPressStart: (_) => _startRecording(),
-          onLongPressEnd: (_) => _stopAndSubmit(),
-          onLongPressCancel: _stopAndSubmit,
+          onLongPressDown:
+              pronunciationAvailable ? (_) => _handlePressDown() : null,
+          onLongPressStart:
+              pronunciationAvailable ? (_) => _startRecording() : null,
+          onLongPressEnd:
+              pronunciationAvailable ? (_) => _stopAndSubmit() : null,
+          onLongPressCancel: pronunciationAvailable ? _handlePressCancel : null,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 120),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -230,7 +220,7 @@ class _QuizItemPronunciationFormState
                 SizedBox(
                   width: 20,
                   height: 20,
-                  child: submitting
+                  child: preparing || submitting
                       ? const CircularProgressIndicator(
                           strokeWidth: 2.4,
                           valueColor:
@@ -284,6 +274,7 @@ class _QuizItemPronunciationFormState
 
   String _buttonLabel() {
     switch (_status) {
+      case QuizPronunciationStatus.pressing:
       case QuizPronunciationStatus.starting:
         return t.quizzes.pronunciation_wait_for_ready;
       case QuizPronunciationStatus.listening:
@@ -292,7 +283,6 @@ class _QuizItemPronunciationFormState
         return t.quizzes.pronunciation_submitting;
       case QuizPronunciationStatus.completed:
         return t.quizzes.pronunciation_stopping;
-      case QuizPronunciationStatus.fallback:
       case QuizPronunciationStatus.idle:
         return t.quizzes.pronunciation_hold_to_speak;
     }
@@ -300,6 +290,7 @@ class _QuizItemPronunciationFormState
 
   String _statusLabel() {
     switch (_status) {
+      case QuizPronunciationStatus.pressing:
       case QuizPronunciationStatus.starting:
         return t.quizzes.pronunciation_starting;
       case QuizPronunciationStatus.listening:
@@ -308,10 +299,14 @@ class _QuizItemPronunciationFormState
         return t.quizzes.pronunciation_submitting;
       case QuizPronunciationStatus.completed:
         return t.quizzes.pronunciation_stopping;
-      case QuizPronunciationStatus.fallback:
       case QuizPronunciationStatus.idle:
         return t.quizzes.pronunciation_idle;
     }
+  }
+
+  bool _pronunciationAvailable(Quiz quiz) {
+    return _pronunciationLocale(quiz) != null &&
+        _supportsDirectAzurePronunciation();
   }
 
   String? _pronunciationLocale(Quiz quiz) {
@@ -340,7 +335,10 @@ class _QuizItemPronunciationFormState
   }
 
   Future<void> _startRecording() async {
-    if (_status != QuizPronunciationStatus.idle) return;
+    if (_status != QuizPronunciationStatus.idle &&
+        _status != QuizPronunciationStatus.pressing) {
+      return;
+    }
 
     final int recordingAttemptToken = ++_recordingAttemptToken;
     _stopRequestedWhileStarting = false;
@@ -349,7 +347,7 @@ class _QuizItemPronunciationFormState
     try {
       final bool hasPermission = await _recorder.hasPermission();
       if (!hasPermission) {
-        _switchToTextFallback(t.quizzes.pronunciation_runtime_fallback);
+        _showInlineMessage(t.quizzes.pronunciation_runtime_fallback);
         return;
       }
 
@@ -361,10 +359,30 @@ class _QuizItemPronunciationFormState
         return;
       }
       setState(() => _status = QuizPronunciationStatus.listening);
-      unawaited(_notifyReadyToSpeak(recordingAttemptToken));
+      _notifyReadyToSpeak(recordingAttemptToken);
     } catch (_) {
-      _switchToTextFallback(t.quizzes.pronunciation_runtime_fallback);
+      _showInlineMessage(t.quizzes.pronunciation_runtime_fallback);
     }
+  }
+
+  void _handlePressDown() {
+    if (_status != QuizPronunciationStatus.idle) return;
+
+    _stopRequestedWhileStarting = false;
+    setState(() {
+      _status = QuizPronunciationStatus.pressing;
+      _inlineMessage = null;
+    });
+    unawaited(_triggerPressHaptics());
+  }
+
+  Future<void> _handlePressCancel() async {
+    if (_status == QuizPronunciationStatus.pressing) {
+      _resetToIdle();
+      return;
+    }
+
+    await _stopAndSubmit();
   }
 
   Future<void> _stopAndSubmit() async {
@@ -415,11 +433,7 @@ class _QuizItemPronunciationFormState
       if (ErrorHandler.isErrorMap(resMap)) {
         if (!mounted) return;
         _showError(resMap);
-        if (_shouldSwitchToTextFallback(resMap)) {
-          _switchToTextFallback(t.quizzes.pronunciation_runtime_fallback);
-        } else {
-          _resetToIdle();
-        }
+        _showInlineMessage(_inlineMessageForError(resMap));
         return;
       }
 
@@ -464,7 +478,7 @@ class _QuizItemPronunciationFormState
       if (!mounted) return;
       final Map resMap = ErrorHandler.exceptionMap(e, s);
       _showError(resMap);
-      _switchToTextFallback(t.quizzes.pronunciation_runtime_fallback);
+      _showInlineMessage(t.quizzes.pronunciation_runtime_fallback);
     } finally {
       if (reservedUnsolvedAnswer) {
         AnswerAccessGuard.releaseReservedUnsolvedAnswerFromContainer(
@@ -502,8 +516,7 @@ class _QuizItemPronunciationFormState
     );
   }
 
-  Future<void> _notifyReadyToSpeak(int recordingAttemptToken) async {
-    await _triggerReadyHaptics();
+  void _notifyReadyToSpeak(int recordingAttemptToken) {
     if (!mounted ||
         _status != QuizPronunciationStatus.listening ||
         recordingAttemptToken != _recordingAttemptToken) {
@@ -531,33 +544,24 @@ class _QuizItemPronunciationFormState
     }
   }
 
-  Future<void> _triggerReadyHaptics() async {
+  Future<void> _triggerPressHaptics() async {
     if (defaultTargetPlatform != TargetPlatform.iOS) return;
 
     try {
-      // iOS impact haptics are flaky in this recording flow, so prefer
-      // the generic vibration path for a reliable ready signal.
-      await HapticFeedback.vibrate();
+      await HapticFeedback.mediumImpact();
     } catch (e) {
-      debugPrint('Error triggering pronunciation ready haptics: $e');
+      debugPrint('Error triggering pronunciation press haptics: $e');
     }
   }
 
-  bool _shouldSwitchToTextFallback(Map resMap) {
-    final int? status = resMap['status'] as int?;
-    if (status == null) return true;
-
+  String _inlineMessageForError(Map resMap) {
     final String? message = resMap['message'] as String?;
     if (message == t.quizzes.pronunciation_unavailable ||
         message == t.quizzes.pronunciation_no_result) {
-      return false;
+      return message!;
     }
 
-    if (status == 401 || status == 403 || status == 429) {
-      return false;
-    }
-
-    return status < 500;
+    return t.quizzes.pronunciation_runtime_fallback;
   }
 
   bool _correctFromResponse(Map resMap) {
@@ -817,13 +821,13 @@ class _QuizItemPronunciationFormState
     notification.dispatch(context);
   }
 
-  void _switchToTextFallback(String message) {
+  void _showInlineMessage(String message) {
     if (!mounted) return;
 
     _stopRequestedWhileStarting = false;
     setState(() {
-      _status = QuizPronunciationStatus.fallback;
-      _fallbackMessage = message;
+      _status = QuizPronunciationStatus.idle;
+      _inlineMessage = message;
     });
   }
 

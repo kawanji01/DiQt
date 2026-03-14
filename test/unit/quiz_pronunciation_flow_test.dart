@@ -23,6 +23,12 @@ void main() {
 
     test('ignores stop requests outside active recording states', () {
       expect(
+        QuizPronunciationFlow.stopActionForStatus(
+          QuizPronunciationStatus.pressing,
+        ),
+        QuizPronunciationStopAction.ignore,
+      );
+      expect(
         QuizPronunciationFlow.stopActionForStatus(QuizPronunciationStatus.idle),
         QuizPronunciationStopAction.ignore,
       );
@@ -34,7 +40,7 @@ void main() {
       );
       expect(
         QuizPronunciationFlow.stopActionForStatus(
-          QuizPronunciationStatus.fallback,
+          QuizPronunciationStatus.completed,
         ),
         QuizPronunciationStopAction.ignore,
       );
