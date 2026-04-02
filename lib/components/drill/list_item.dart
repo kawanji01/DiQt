@@ -12,9 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+enum _ExamAccessStatus { notStarted, ongoing, expired }
+
 class DrillListItem extends ConsumerWidget {
   const DrillListItem({super.key, required this.drill});
   final Drill drill;
+
+  static const Duration _tokyoOffset = Duration(hours: 9);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,6 +32,7 @@ class DrillListItem extends ConsumerWidget {
       answerHistoriesCountText = t.drills.answers(number: answerHistoriesCount);
     }
     final DrillLap? drillLap = drill.drillLap;
+    final _ExamAccessStatus? examAccessStatus = _buildExamAccessStatus();
 
     // Drillページに遷移
     void moveToDrillPage(drill) {
@@ -47,16 +52,99 @@ class DrillListItem extends ConsumerWidget {
       }
     }
 
-    Widget subtitle() {
-      if (drillLap == null) {
-        return Text(
-          answerHistoriesCountText,
-          style: TextStyle(color: Colors.black.withValues(alpha: 0.6)),
+    Widget? subtitle() {
+      final String clearsCountText = drillLap == null
+          ? ''
+          : t.drills.clears_count(number: drillLap.clearsCount);
+      final String subtitleText;
+
+      if (answerHistoriesCountText.isNotEmpty && clearsCountText.isNotEmpty) {
+        subtitleText = '$answerHistoriesCountText / $clearsCountText';
+      } else if (answerHistoriesCountText.isNotEmpty) {
+        subtitleText = answerHistoriesCountText;
+      } else {
+        subtitleText = clearsCountText;
+      }
+
+      if (subtitleText.isEmpty) return null;
+
+      return Text(
+        subtitleText,
+        style: TextStyle(color: Colors.black.withValues(alpha: 0.6)),
+      );
+    }
+
+    Widget? examInfo() {
+      if (!drill.examMode) return null;
+
+      final List<Widget> children = [];
+      final TextStyle metaTextStyle =
+          TextStyle(color: Colors.black.withValues(alpha: 0.7), fontSize: 13);
+
+      if (drill.examQuestionsCount != null) {
+        children.add(
+          Text(
+            '${t.drills.exam_question_count}: ${t.drills.exam_question_count_details(count: drill.examQuestionsCount!, total: drill.quizzesCount)}',
+            style: metaTextStyle,
+          ),
         );
       }
-      return Text(
-        '${answerHistoriesCountText == '' ? '' : '$answerHistoriesCountText / '}${t.drills.clears_count(number: drillLap.clearsCount)}',
-        style: TextStyle(color: Colors.black.withValues(alpha: 0.6)),
+
+      if (examAccessStatus != null) {
+        final String statusLabel = switch (examAccessStatus) {
+          _ExamAccessStatus.notStarted => t.drills.not_started,
+          _ExamAccessStatus.ongoing => t.drills.access_status.ongoing,
+          _ExamAccessStatus.expired => t.drills.access_status.unavailable,
+        };
+
+        children.add(
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 8,
+            runSpacing: 4,
+            children: [
+              Text('${t.drills.access_status_label}:', style: metaTextStyle),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  color: _statusColor(examAccessStatus),
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: Text(
+                  statusLabel,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+
+        final String examPeriodText = _buildExamPeriodText();
+        if (examPeriodText.isNotEmpty) {
+          children.add(
+            Text(
+              '${t.drills.access_period}: $examPeriodText',
+              style: metaTextStyle,
+            ),
+          );
+        }
+      }
+
+      if (children.isEmpty) return null;
+
+      return Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: children
+              .expand((child) => [child, const SizedBox(height: 4)])
+              .toList()
+            ..removeLast(),
+        ),
       );
     }
 
@@ -104,6 +192,7 @@ class DrillListItem extends ConsumerWidget {
               ),
               subtitle: subtitle(),
             ),
+            if (examInfo() != null) examInfo()!,
             DrillThumbnail(drill: drill, drillLap: drillLap),
             Padding(
               padding: const EdgeInsets.only(
@@ -117,5 +206,70 @@ class DrillListItem extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  _ExamAccessStatus? _buildExamAccessStatus() {
+    if (!drill.examMode) return null;
+    if (drill.accessStartsAt == null && drill.accessEndsAt == null) return null;
+
+    final DateTime now = DateTime.now().toUtc().add(_tokyoOffset);
+    final DateTime? startsAt = _toTokyoTime(drill.accessStartsAt);
+    final DateTime? endsAt = _toTokyoTime(drill.accessEndsAt);
+
+    if (startsAt != null && now.isBefore(startsAt)) {
+      return _ExamAccessStatus.notStarted;
+    }
+    if (endsAt != null && now.isAfter(endsAt)) {
+      return _ExamAccessStatus.expired;
+    }
+    return _ExamAccessStatus.ongoing;
+  }
+
+  String _buildExamPeriodText() {
+    final DateTime? startsAt = _toTokyoTime(drill.accessStartsAt);
+    final DateTime? endsAt = _toTokyoTime(drill.accessEndsAt);
+    if (startsAt == null && endsAt == null) return '';
+
+    if (startsAt != null && endsAt != null) {
+      final String startText = DateFormat('yyyy/MM/dd HH:mm').format(startsAt);
+      final String endText;
+      if (_isSameDate(startsAt, endsAt)) {
+        endText = DateFormat('HH:mm').format(endsAt);
+      } else if (startsAt.year == endsAt.year) {
+        endText = DateFormat('MM/dd HH:mm').format(endsAt);
+      } else {
+        endText = DateFormat('yyyy/MM/dd HH:mm').format(endsAt);
+      }
+      return '$startText ～ $endText';
+    }
+
+    if (startsAt != null) {
+      final String startText = DateFormat('yyyy/MM/dd HH:mm').format(startsAt);
+      return '${t.drills.access_starts_at}: $startText';
+    }
+
+    final String endText = DateFormat('yyyy/MM/dd HH:mm').format(endsAt!);
+    return '${t.drills.access_ends_at}: $endText';
+  }
+
+  DateTime? _toTokyoTime(DateTime? dateTime) {
+    if (dateTime == null) return null;
+    if (dateTime.isUtc) return dateTime.add(_tokyoOffset);
+    return dateTime;
+  }
+
+  bool _isSameDate(DateTime lhs, DateTime rhs) {
+    return lhs.year == rhs.year && lhs.month == rhs.month && lhs.day == rhs.day;
+  }
+
+  Color _statusColor(_ExamAccessStatus status) {
+    switch (status) {
+      case _ExamAccessStatus.notStarted:
+        return Colors.grey;
+      case _ExamAccessStatus.ongoing:
+        return Colors.green;
+      case _ExamAccessStatus.expired:
+        return Colors.red;
+    }
   }
 }
