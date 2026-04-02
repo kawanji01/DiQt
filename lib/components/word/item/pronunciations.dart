@@ -51,6 +51,7 @@ class WordPronunciations extends StatelessWidget {
     addLine(t.words.kunyomi, word.kunyomi);
     addLine(t.words.onyomi, word.onyomi);
     addLine(t.words.pinyin, word.pinyin);
+    addLine(t.words.bopomofo, word.bopomofo);
     addLine(t.words.jyutping, word.jyutping);
     addLine(t.words.ipa, word.ipa, small: true);
 
