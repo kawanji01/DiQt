@@ -18,6 +18,9 @@ class Drill {
       required this.publicUid,
       required this.strictSolvingMode,
       required this.examMode,
+      this.examQuestionsCount,
+      this.accessStartsAt,
+      this.accessEndsAt,
       required this.archivedAt,
       required this.answerHistoriesCount,
       required this.quizzesCount,
@@ -41,6 +44,9 @@ class Drill {
   String publicUid;
   bool strictSolvingMode;
   bool examMode;
+  int? examQuestionsCount;
+  DateTime? accessStartsAt;
+  DateTime? accessEndsAt;
   DateTime? archivedAt;
   DateTime createdAt;
   DateTime updatedAt;
@@ -65,6 +71,13 @@ class Drill {
         publicUid = json['public_uid'],
         strictSolvingMode = json['strict_solving_mode'],
         examMode = json['exam_mode'],
+        examQuestionsCount = json['exam_questions_count'],
+        accessStartsAt = json['access_starts_at'] == null
+            ? null
+            : DateTime.parse(json['access_starts_at']),
+        accessEndsAt = json['access_ends_at'] == null
+            ? null
+            : DateTime.parse(json['access_ends_at']),
         archivedAt = json['archived_at'] == null
             ? null
             : DateTime.parse(json['archived_at']),
@@ -96,6 +109,9 @@ class Drill {
         'public_uid': publicUid,
         'strict_solving_mode': strictSolvingMode,
         'exam_mode': examMode,
+        'exam_questions_count': examQuestionsCount,
+        'access_starts_at': accessStartsAt?.toIso8601String(),
+        'access_ends_at': accessEndsAt?.toIso8601String(),
         'archived_at': archivedAt,
         'created_at': createdAt,
         'updated_at': updatedAt,

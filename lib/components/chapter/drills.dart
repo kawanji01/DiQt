@@ -63,7 +63,7 @@ class ChapterDrillsState extends ConsumerState<ChapterDrills> {
               : Column(
                   children: [
                     Text(
-                      '試験',
+                      t.drills.exam,
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
