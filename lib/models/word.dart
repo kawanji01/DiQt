@@ -31,6 +31,7 @@ class Word {
     this.kunyomi,
     this.onyomi,
     this.pinyin,
+    this.bopomofo,
     this.jyutping,
     this.etymologies,
     this.synonyms,
@@ -77,6 +78,7 @@ class Word {
   String? kunyomi;
   String? onyomi;
   String? pinyin;
+  String? bopomofo;
   String? jyutping;
   String? etymologies;
   String? synonyms;
@@ -123,6 +125,7 @@ class Word {
         kunyomi = json['kunyomi'],
         onyomi = json['onyomi'],
         pinyin = json['pinyin'],
+        bopomofo = json['bopomofo'],
         jyutping = json['jyutping'],
         etymologies = json['etymologies'],
         synonyms = json['synonyms'],
@@ -195,6 +198,7 @@ class Word {
         'kunyomi': kunyomi,
         'onyomi': onyomi,
         'pinyin': pinyin,
+        'bopomofo': bopomofo,
         'jyutping': jyutping,
         'etymologies': etymologies,
         'synonyms': synonyms,

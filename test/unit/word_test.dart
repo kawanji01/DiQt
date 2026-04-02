@@ -42,12 +42,18 @@ void main() {
           pos: 'noun',
           ipa: '/ɪɡˈzæmpəl/',
           reading: 'イグザンプル',
+          pinyin: 'nǐ hǎo',
+          bopomofo: 'ㄋㄧˇ ㄏㄠˇ',
+          jyutping: 'nei5 hou2',
         );
 
         expect(word.explanation, 'Test explanation');
         expect(word.pos, 'noun');
         expect(word.ipa, '/ɪɡˈzæmpəl/');
         expect(word.reading, 'イグザンプル');
+        expect(word.pinyin, 'nǐ hǎo');
+        expect(word.bopomofo, 'ㄋㄧˇ ㄏㄠˇ');
+        expect(word.jyutping, 'nei5 hou2');
       });
     });
 
@@ -167,6 +173,9 @@ void main() {
           'pos': 'adjective',
           'ipa': '/ˈbjuːtɪfʊl/',
           'reading': 'ビューティフル',
+          'pinyin': 'nǐ hǎo',
+          'bopomofo': 'ㄋㄧˇ ㄏㄠˇ',
+          'jyutping': 'nei5 hou2',
           'etymologies': 'Middle English',
           'synonyms': 'pretty, lovely',
           'antonyms': 'ugly, hideous',
@@ -189,6 +198,9 @@ void main() {
         expect(word.pos, 'adjective');
         expect(word.ipa, '/ˈbjuːtɪfʊl/');
         expect(word.reading, 'ビューティフル');
+        expect(word.pinyin, 'nǐ hǎo');
+        expect(word.bopomofo, 'ㄋㄧˇ ㄏㄠˇ');
+        expect(word.jyutping, 'nei5 hou2');
         expect(word.synonyms, 'pretty, lovely');
         expect(word.antonyms, 'ugly, hideous');
       });
@@ -256,6 +268,7 @@ void main() {
           pendingWordRequestsCount: 1,
           explanation: 'Test explanation',
           pos: 'noun',
+          bopomofo: 'ㄋㄧˇ ㄏㄠˇ',
         );
 
         final json = word.toJson();
@@ -269,6 +282,7 @@ void main() {
         expect(json['pending_word_requests_count'], 1);
         expect(json['explanation'], 'Test explanation');
         expect(json['pos'], 'noun');
+        expect(json['bopomofo'], 'ㄋㄧˇ ㄏㄠˇ');
         expect(json['phrase'], false);
       });
 
@@ -301,6 +315,7 @@ void main() {
           'explanation': 'Test explanation',
           'pos': 'noun',
           'ipa': '/test/',
+          'bopomofo': 'ㄋㄧˇ ㄏㄠˇ',
           'word_requests_count': 10,
           'accepted_word_requests_count': 5,
           'pending_word_requests_count': 2,
@@ -315,6 +330,7 @@ void main() {
         expect(serializedJson['meaning'], originalJson['meaning']);
         expect(serializedJson['explanation'], originalJson['explanation']);
         expect(serializedJson['pos'], originalJson['pos']);
+        expect(serializedJson['bopomofo'], originalJson['bopomofo']);
         expect(serializedJson['word_requests_count'],
             originalJson['word_requests_count']);
       });
