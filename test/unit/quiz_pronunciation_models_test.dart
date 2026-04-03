@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/quiz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -30,6 +31,99 @@ void main() {
       expect(quiz.answerMode, 'speech');
       expect(quiz.pronunciationAccuracyThreshold, 91);
       expect(quiz.pronunciationCompletenessThreshold, 87);
+    });
+
+    test('Quiz resolves an explicit pronunciation locale as-is', () {
+      final Quiz quiz = Quiz.fromJson({
+        'id': 1,
+        'drill_id': 1,
+        'applied_dictionary_id': 1,
+        'question': 'question',
+        'lang_number_of_question': 44,
+        'question_read_aloud': false,
+        'correct_answer': 'spoken answer',
+        'lang_number_of_answer': languageCodeMap['en'],
+        'answer_read_aloud': false,
+        'short_answer_enabled': true,
+        'answer_mode': 'speech',
+        'effective_pronunciation_assessment_locale': 'en-GB',
+        'question_hidden': false,
+        'auto_dict_link_of_question': false,
+        'auto_dict_link_of_answer': false,
+        'accepted_quiz_requests_count': 0,
+        'pending_quiz_requests_count': 0,
+        'quiz_requests_count': 0,
+      });
+
+      expect(quiz.resolvedPronunciationAssessmentLocale, 'en-GB');
+    });
+
+    test('Quiz falls back to the legacy English and Japanese locales', () {
+      final Quiz englishQuiz = Quiz.fromJson({
+        'id': 1,
+        'drill_id': 1,
+        'applied_dictionary_id': 1,
+        'question': 'question',
+        'lang_number_of_question': 44,
+        'question_read_aloud': false,
+        'correct_answer': 'spoken answer',
+        'lang_number_of_answer': languageCodeMap['en'],
+        'answer_read_aloud': false,
+        'short_answer_enabled': true,
+        'answer_mode': 'speech',
+        'question_hidden': false,
+        'auto_dict_link_of_question': false,
+        'auto_dict_link_of_answer': false,
+        'accepted_quiz_requests_count': 0,
+        'pending_quiz_requests_count': 0,
+        'quiz_requests_count': 0,
+      });
+      final Quiz japaneseQuiz = Quiz.fromJson({
+        'id': 2,
+        'drill_id': 1,
+        'applied_dictionary_id': 1,
+        'question': 'question',
+        'lang_number_of_question': 44,
+        'question_read_aloud': false,
+        'correct_answer': 'spoken answer',
+        'lang_number_of_answer': languageCodeMap['ja'],
+        'answer_read_aloud': false,
+        'short_answer_enabled': true,
+        'answer_mode': 'speech',
+        'question_hidden': false,
+        'auto_dict_link_of_question': false,
+        'auto_dict_link_of_answer': false,
+        'accepted_quiz_requests_count': 0,
+        'pending_quiz_requests_count': 0,
+        'quiz_requests_count': 0,
+      });
+
+      expect(englishQuiz.resolvedPronunciationAssessmentLocale, 'en-US');
+      expect(japaneseQuiz.resolvedPronunciationAssessmentLocale, 'ja-JP');
+    });
+
+    test('Quiz keeps unsupported languages unresolved without API locale', () {
+      final Quiz quiz = Quiz.fromJson({
+        'id': 1,
+        'drill_id': 1,
+        'applied_dictionary_id': 1,
+        'question': 'question',
+        'lang_number_of_question': 44,
+        'question_read_aloud': false,
+        'correct_answer': 'spoken answer',
+        'lang_number_of_answer': languageCodeMap['fr'],
+        'answer_read_aloud': false,
+        'short_answer_enabled': true,
+        'answer_mode': 'speech',
+        'question_hidden': false,
+        'auto_dict_link_of_question': false,
+        'auto_dict_link_of_answer': false,
+        'accepted_quiz_requests_count': 0,
+        'pending_quiz_requests_count': 0,
+        'quiz_requests_count': 0,
+      });
+
+      expect(quiz.resolvedPronunciationAssessmentLocale, isNull);
     });
 
     test('AnswerAnalysis.fromJson parses pronunciation payloads', () {

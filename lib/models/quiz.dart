@@ -1,3 +1,4 @@
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/models/answer_analysis.dart';
 import 'package:booqs_mobile/models/dictionary.dart';
 import 'package:booqs_mobile/models/drill.dart';
@@ -33,6 +34,7 @@ class Quiz {
     this.answerMode = 'text',
     this.pronunciationAccuracyThreshold,
     this.pronunciationCompletenessThreshold,
+    this.effectivePronunciationAssessmentLocale,
     required this.questionHidden,
     this.explanation,
     this.hint,
@@ -77,6 +79,7 @@ class Quiz {
   String answerMode;
   int? pronunciationAccuracyThreshold;
   int? pronunciationCompletenessThreshold;
+  String? effectivePronunciationAssessmentLocale;
   String? explanation;
   String? hint;
   bool autoDictLinkOfQuestion;
@@ -122,6 +125,8 @@ class Quiz {
             json['pronunciation_accuracy_threshold'],
         pronunciationCompletenessThreshold =
             json['pronunciation_completeness_threshold'],
+        effectivePronunciationAssessmentLocale =
+            json['effective_pronunciation_assessment_locale'],
         questionHidden = json['question_hidden'],
         explanation = json['explanation'],
         hint = json['hint'],
@@ -157,6 +162,21 @@ class Quiz {
   // 却下されたQuizRequestのリクエストの数
   int rejectedQuizRequestsCount() =>
       quizRequestsCount - acceptedQuizRequestsCount - pendingQuizRequestsCount;
+
+  String? get resolvedPronunciationAssessmentLocale {
+    final String? locale = effectivePronunciationAssessmentLocale?.trim();
+    if (locale != null && locale.isNotEmpty) return locale;
+
+    if (langNumberOfAnswer == languageCodeMap['en']) {
+      return 'en-US';
+    }
+    if (langNumberOfAnswer == languageCodeMap['ja']) {
+      return 'ja-JP';
+    }
+
+    return null;
+  }
+
   Map<String, dynamic> toJson() => {
         'id': id,
         'drill_id': drillId,
@@ -184,6 +204,8 @@ class Quiz {
         'pronunciation_accuracy_threshold': pronunciationAccuracyThreshold,
         'pronunciation_completeness_threshold':
             pronunciationCompletenessThreshold,
+        'effective_pronunciation_assessment_locale':
+            effectivePronunciationAssessmentLocale,
         'question_hidden': questionHidden,
         'explanation': explanation,
         'hint': hint,

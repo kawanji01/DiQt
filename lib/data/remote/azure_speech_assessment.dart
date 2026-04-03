@@ -16,6 +16,149 @@ class AzureSpeechAssessmentException implements Exception {
   String toString() => message;
 }
 
+class WavAudioMetadata {
+  const WavAudioMetadata({
+    required this.sampleRate,
+    required this.channels,
+    required this.audioFormat,
+    required this.bitsPerSample,
+  });
+
+  final int sampleRate;
+  final int channels;
+  final int audioFormat;
+  final int bitsPerSample;
+
+  bool get isPcm => audioFormat == 1;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'sample_rate': sampleRate,
+      'channels': channels,
+      'audio_format': audioFormat,
+      'bits_per_sample': bitsPerSample,
+    };
+  }
+}
+
+class WavAudioInspectionResult {
+  const WavAudioInspectionResult._({
+    required this.audioBytes,
+    this.metadata,
+    this.failureReason,
+  });
+
+  final List<int> audioBytes;
+  final WavAudioMetadata? metadata;
+  final String? failureReason;
+
+  bool get isSupportedPcm => metadata?.isPcm == true;
+
+  static Future<WavAudioInspectionResult> inspectFile(File audioFile) async {
+    final List<int> audioBytes = await audioFile.readAsBytes();
+    return inspectBytes(audioBytes);
+  }
+
+  static WavAudioInspectionResult inspectBytes(List<int> audioBytes) {
+    try {
+      final WavAudioMetadata metadata = _parseMetadata(audioBytes);
+      if (!metadata.isPcm) {
+        return WavAudioInspectionResult._(
+          audioBytes: audioBytes,
+          metadata: metadata,
+          failureReason: 'Pronunciation audio must use PCM WAV encoding.',
+        );
+      }
+
+      return WavAudioInspectionResult._(
+        audioBytes: audioBytes,
+        metadata: metadata,
+      );
+    } on FormatException catch (e) {
+      return WavAudioInspectionResult._(
+        audioBytes: audioBytes,
+        failureReason: e.message,
+      );
+    }
+  }
+
+  static WavAudioMetadata _parseMetadata(List<int> audioBytes) {
+    if (audioBytes.length < 12) {
+      throw const FormatException('WAV header is too short.');
+    }
+    if (!_matchesChunkId(audioBytes, 0, 'RIFF') ||
+        !_matchesChunkId(audioBytes, 8, 'WAVE')) {
+      throw const FormatException('Audio file is not a RIFF/WAVE file.');
+    }
+
+    int offset = 12;
+    while (offset + 8 <= audioBytes.length) {
+      final String chunkId = ascii.decode(
+        audioBytes.sublist(offset, offset + 4),
+        allowInvalid: true,
+      );
+      final int chunkSize = _readUint32LE(audioBytes, offset + 4);
+      final int chunkDataOffset = offset + 8;
+      if (chunkDataOffset + chunkSize > audioBytes.length) {
+        throw const FormatException('WAV chunk size exceeds file length.');
+      }
+
+      if (chunkId == 'fmt ') {
+        if (chunkSize < 16) {
+          throw const FormatException('WAV fmt chunk is too short.');
+        }
+
+        final int audioFormat = _readUint16LE(audioBytes, chunkDataOffset);
+        final int channels = _readUint16LE(audioBytes, chunkDataOffset + 2);
+        final int sampleRate = _readUint32LE(audioBytes, chunkDataOffset + 4);
+        final int bitsPerSample =
+            _readUint16LE(audioBytes, chunkDataOffset + 14);
+
+        if (channels <= 0 || sampleRate <= 0 || bitsPerSample <= 0) {
+          throw const FormatException(
+            'WAV fmt chunk contains invalid audio metadata.',
+          );
+        }
+
+        return WavAudioMetadata(
+          sampleRate: sampleRate,
+          channels: channels,
+          audioFormat: audioFormat,
+          bitsPerSample: bitsPerSample,
+        );
+      }
+
+      offset = chunkDataOffset + chunkSize;
+      if (chunkSize.isOdd) offset += 1;
+    }
+
+    throw const FormatException('WAV fmt chunk was not found.');
+  }
+
+  static bool _matchesChunkId(List<int> bytes, int offset, String expected) {
+    if (offset + expected.length > bytes.length) return false;
+
+    for (int index = 0; index < expected.length; index += 1) {
+      if (bytes[offset + index] != expected.codeUnitAt(index)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  static int _readUint16LE(List<int> bytes, int offset) {
+    return bytes[offset] | (bytes[offset + 1] << 8);
+  }
+
+  static int _readUint32LE(List<int> bytes, int offset) {
+    return bytes[offset] |
+        (bytes[offset + 1] << 8) |
+        (bytes[offset + 2] << 16) |
+        (bytes[offset + 3] << 24);
+  }
+}
+
 class AzureSpeechAssessmentClient {
   AzureSpeechAssessmentClient({
     http.Client? backendClient,
@@ -51,6 +194,7 @@ class AzureSpeechAssessmentClient {
     required File audioFile,
     required String locale,
     required String referenceText,
+    WavAudioInspectionResult? audioInspection,
   }) async {
     final String normalizedReferenceText = referenceText.trim();
     if (normalizedReferenceText.isEmpty) {
@@ -60,9 +204,20 @@ class AzureSpeechAssessmentClient {
       );
     }
 
-    final List<int> audioBytes = await audioFile.readAsBytes();
+    final WavAudioInspectionResult resolvedAudioInspection = audioInspection ??
+        await WavAudioInspectionResult.inspectFile(audioFile);
+    if (!resolvedAudioInspection.isSupportedPcm ||
+        resolvedAudioInspection.metadata == null) {
+      throw AzureSpeechAssessmentException(
+        422,
+        resolvedAudioInspection.failureReason ??
+            'Pronunciation audio must be a PCM WAV file.',
+      );
+    }
+
     final http.Response res = await _postAssessmentWithTokenRetry(
-      audioBytes: audioBytes,
+      audioBytes: resolvedAudioInspection.audioBytes,
+      contentType: _contentType,
       locale: locale,
       referenceText: normalizedReferenceText,
     );
@@ -76,6 +231,7 @@ class AzureSpeechAssessmentClient {
 
   Future<http.Response> _postAssessmentWithTokenRetry({
     required List<int> audioBytes,
+    required String contentType,
     required String locale,
     required String referenceText,
   }) async {
@@ -83,6 +239,7 @@ class AzureSpeechAssessmentClient {
     http.Response res = await _postAssessment(
       token: token,
       audioBytes: audioBytes,
+      contentType: contentType,
       locale: locale,
       referenceText: referenceText,
     );
@@ -91,6 +248,7 @@ class AzureSpeechAssessmentClient {
       res = await _postAssessment(
         token: token,
         audioBytes: audioBytes,
+        contentType: contentType,
         locale: locale,
         referenceText: referenceText,
       );
@@ -101,6 +259,7 @@ class AzureSpeechAssessmentClient {
   Future<http.Response> _postAssessment({
     required _AzureSpeechToken token,
     required List<int> audioBytes,
+    required String contentType,
     required String locale,
     required String referenceText,
   }) {
@@ -119,7 +278,7 @@ class AzureSpeechAssessmentClient {
       url,
       headers: <String, String>{
         'Accept': 'application/json',
-        'Content-Type': _contentType,
+        'Content-Type': contentType,
         'Authorization': 'Bearer ${token.token}',
         'Pronunciation-Assessment': _buildPronunciationAssessmentHeader(
           locale: locale,

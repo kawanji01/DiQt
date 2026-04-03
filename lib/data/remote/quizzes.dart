@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/data/remote/azure_speech_assessment.dart';
 import 'package:booqs_mobile/i18n/translations.g.dart';
 import 'package:booqs_mobile/models/quiz.dart';
@@ -52,10 +51,18 @@ class RemoteQuizzes {
     String? answerType,
     AzureSpeechAssessmentClient? assessmentClient,
   }) async {
+    String? locale;
+    String referenceText = '';
+    WavAudioInspectionResult? audioInspection;
+
     try {
-      final String? locale = _pronunciationLocale(quiz);
-      final String referenceText = _primaryPronunciationReferenceText(quiz);
+      locale = _pronunciationLocale(quiz);
+      referenceText = _primaryPronunciationReferenceText(quiz);
+      audioInspection = await WavAudioInspectionResult.inspectFile(audioFile);
       if (locale == null || referenceText.isEmpty) {
+        return _pronunciationUnavailableError();
+      }
+      if (!audioInspection.isSupportedPcm) {
         return _pronunciationUnavailableError();
       }
 
@@ -66,6 +73,7 @@ class RemoteQuizzes {
         audioFile: audioFile,
         locale: locale,
         referenceText: referenceText,
+        audioInspection: audioInspection,
       );
 
       final Map<String, dynamic> body = <String, dynamic>{
@@ -86,23 +94,17 @@ class RemoteQuizzes {
       return resMap;
     } on AzureSpeechAssessmentException catch (e) {
       return _mapPronunciationAssessmentError(e);
-    } on TimeoutException catch (e, s) {
-      return ErrorHandler.timeoutMap(e, s);
-    } on SocketException catch (e, s) {
-      return ErrorHandler.socketExceptionMap(e, s);
-    } catch (e, s) {
-      return ErrorHandler.exceptionMap(e, s);
+    } on TimeoutException catch (e) {
+      return _timeoutError(e);
+    } on SocketException catch (e) {
+      return _socketError(e);
+    } catch (e) {
+      return _unexpectedError(e);
     }
   }
 
   static String? _pronunciationLocale(Quiz quiz) {
-    if (quiz.langNumberOfAnswer == languageCodeMap['en']) {
-      return 'en-US';
-    }
-    if (quiz.langNumberOfAnswer == languageCodeMap['ja']) {
-      return 'ja-JP';
-    }
-    return null;
+    return quiz.resolvedPronunciationAssessmentLocale;
   }
 
   static String _primaryPronunciationReferenceText(Quiz quiz) {
@@ -157,6 +159,27 @@ class RemoteQuizzes {
     return <String, dynamic>{
       'status': status,
       'message': t.quizzes.pronunciation_no_result,
+    };
+  }
+
+  static Map<String, dynamic> _timeoutError(TimeoutException exception) {
+    return <String, dynamic>{
+      'status': 408,
+      'message': '$exception',
+    };
+  }
+
+  static Map<String, dynamic> _socketError(SocketException exception) {
+    return <String, dynamic>{
+      'status': 504,
+      'message': '$exception',
+    };
+  }
+
+  static Map<String, dynamic> _unexpectedError(Object exception) {
+    return <String, dynamic>{
+      'status': 500,
+      'message': '$exception',
     };
   }
 

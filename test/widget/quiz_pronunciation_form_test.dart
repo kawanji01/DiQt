@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:booqs_mobile/components/quiz/item/answer_part.dart';
 import 'package:booqs_mobile/components/quiz/item/pronunciation_form.dart';
+import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/consts/validation.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
@@ -76,7 +77,19 @@ Future<void> noopReadyCue() async {}
 Quiz buildQuiz({
   int id = 1,
   required int langNumberOfAnswer,
+  String? effectivePronunciationAssessmentLocale,
+  bool backfillEffectivePronunciationAssessmentLocale = true,
 }) {
+  String? resolvedLocale = effectivePronunciationAssessmentLocale;
+  if (resolvedLocale == null &&
+      backfillEffectivePronunciationAssessmentLocale) {
+    if (langNumberOfAnswer == languageCodeMap['en']) {
+      resolvedLocale = 'en-US';
+    } else if (langNumberOfAnswer == languageCodeMap['ja']) {
+      resolvedLocale = 'ja-JP';
+    }
+  }
+
   return Quiz(
     id: id,
     drillId: 1,
@@ -89,6 +102,7 @@ Quiz buildQuiz({
     answerReadAloud: false,
     shortAnswerEnabled: true,
     answerMode: 'speech',
+    effectivePronunciationAssessmentLocale: resolvedLocale,
     questionHidden: false,
     autoDictLinkOfQuestion: false,
     autoDictLinkOfAnswer: false,
@@ -339,7 +353,8 @@ void main() {
           .setMockMethodCallHandler(SystemChannels.platform, null);
     });
 
-    testWidgets('shows a disabled pronunciation form for unsupported locales',
+    testWidgets(
+        'shows a disabled pronunciation form when locale data is missing',
         (WidgetTester tester) async {
       final Quiz quiz = buildQuiz(langNumberOfAnswer: 25);
 
@@ -360,6 +375,71 @@ void main() {
       expect(detector.onLongPressDown, isNull);
       expect(detector.onLongPressStart, isNull);
       expect(detector.onLongPressEnd, isNull);
+    });
+
+    testWidgets(
+        'keeps the pronunciation form enabled for legacy English and Japanese locales when the API field is absent',
+        (WidgetTester tester) async {
+      final List<Quiz> quizzes = <Quiz>[
+        buildQuiz(
+          id: 1,
+          langNumberOfAnswer: languageCodeMap['en']!,
+          backfillEffectivePronunciationAssessmentLocale: false,
+        ),
+        buildQuiz(
+          id: 2,
+          langNumberOfAnswer: languageCodeMap['ja']!,
+          backfillEffectivePronunciationAssessmentLocale: false,
+        ),
+      ];
+
+      for (final Quiz quiz in quizzes) {
+        await pumpWidgetWithProviders(
+          tester,
+          child: QuizItemAnswerPart(
+            quiz: quiz,
+            unsolved: true,
+            answerType: 'drill',
+          ),
+        );
+
+        expect(find.text(t.quizzes.pronunciation_unavailable), findsNothing);
+        expect(find.byType(TextField), findsNothing);
+        expect(
+            find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
+        final GestureDetector detector =
+            tester.widget(find.byType(GestureDetector).first);
+        expect(detector.onLongPressDown, isNotNull);
+        expect(detector.onLongPressStart, isNotNull);
+        expect(detector.onLongPressEnd, isNotNull);
+      }
+    });
+
+    testWidgets(
+        'keeps the pronunciation form enabled for newly supported locales',
+        (WidgetTester tester) async {
+      final Quiz quiz = buildQuiz(
+        langNumberOfAnswer: 25,
+        effectivePronunciationAssessmentLocale: 'fr-FR',
+      );
+
+      await pumpWidgetWithProviders(
+        tester,
+        child: QuizItemAnswerPart(
+          quiz: quiz,
+          unsolved: true,
+          answerType: 'drill',
+        ),
+      );
+
+      expect(find.text(t.quizzes.pronunciation_unavailable), findsNothing);
+      expect(find.byType(TextField), findsNothing);
+      expect(find.text(t.quizzes.pronunciation_hold_to_speak), findsOneWidget);
+      final GestureDetector detector =
+          tester.widget(find.byType(GestureDetector).first);
+      expect(detector.onLongPressDown, isNotNull);
+      expect(detector.onLongPressStart, isNotNull);
+      expect(detector.onLongPressEnd, isNotNull);
     });
 
     testWidgets(

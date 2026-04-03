@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:booqs_mobile/consts/language.dart';
 import 'package:booqs_mobile/consts/sounds.dart';
 import 'package:booqs_mobile/data/provider/current_user.dart';
 import 'package:booqs_mobile/data/provider/drill.dart';
@@ -310,13 +309,7 @@ class _QuizItemPronunciationFormState
   }
 
   String? _pronunciationLocale(Quiz quiz) {
-    if (quiz.langNumberOfAnswer == languageCodeMap['en']) {
-      return 'en-US';
-    }
-    if (quiz.langNumberOfAnswer == languageCodeMap['ja']) {
-      return 'ja-JP';
-    }
-    return null;
+    return quiz.resolvedPronunciationAssessmentLocale;
   }
 
   bool _supportsDirectAzurePronunciation() {
