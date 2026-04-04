@@ -20,6 +20,8 @@ class QuizAnswerInteraction extends ConsumerWidget {
     final Quiz quiz = notification.quiz;
     final String correctAnswer = quiz.correctAnswer;
     final String usersAnswer = notification.usersAnswer;
+    final bool pronunciationSubmission =
+        notification.responseMap != null && quiz.answerMode == 'speech';
     // initialExpにProviderを使うと、サーバーのレスポンス速度によっては解答報酬獲得後の総合経験値が入ってしまう
     final int initialExp = notification.user!.amountOfExp;
 
@@ -59,6 +61,12 @@ class QuizAnswerInteraction extends ConsumerWidget {
     Widget incorrectFeedback() {
       if (correct) return Container();
 
+      final IconData feedbackIcon =
+          pronunciationSubmission ? Icons.mic : Icons.clear;
+      final String feedbackText = pronunciationSubmission
+          ? t.quizzes.pronunciation_recognized_result(text: usersAnswer)
+          : usersAnswer;
+
       return Container(
         margin: const EdgeInsets.only(bottom: 16),
         child: Row(
@@ -66,11 +74,11 @@ class QuizAnswerInteraction extends ConsumerWidget {
           children: [
             Container(
               margin: const EdgeInsets.only(right: 8),
-              child: const Icon(Icons.clear, color: Colors.white, size: 24),
+              child: Icon(feedbackIcon, color: Colors.white, size: 24),
             ),
             Flexible(
               child: MarkdownWithoutDictLink(
-                text: usersAnswer,
+                text: feedbackText,
                 fontSize: fontSize,
                 fontColor: fontColor,
                 fontWeight: fontWeight,

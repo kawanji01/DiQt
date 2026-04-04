@@ -374,6 +374,8 @@ class _PronunciationAnalysisSections extends StatelessWidget {
           score: params['score'] ?? '-',
           threshold: params['threshold'] ?? '-',
         );
+      case 'completeness_unavailable':
+        return t.answerAnalyses.pronunciation_reason.completeness_unavailable;
       case 'word_errors_detected':
         return t.answerAnalyses.pronunciation_reason.word_errors_detected;
       case 'word_errors_detected_with_type':

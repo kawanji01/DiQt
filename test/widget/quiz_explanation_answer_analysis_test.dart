@@ -154,4 +154,36 @@ void main() {
     expect(find.text(t.answerAnalyses.pronunciation_word_feedback_title),
         findsOneWidget);
   });
+
+  testWidgets('renders completeness unavailable reason',
+      (WidgetTester tester) async {
+    LocaleSettings.setLocaleSync(AppLocale.en);
+    final Quiz quiz = buildQuizWithAnalysis(
+      pronunciationIncorrectReasons: const [
+        {'key': 'completeness_unavailable'}
+      ],
+    );
+
+    await tester.pumpWidget(
+      ProviderScope(
+        child: TranslationProvider(
+          child: MaterialApp(
+            home: Scaffold(
+              body: SingleChildScrollView(
+                child: QuizExplanationAnswerAnalysis(quiz: quiz),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+
+    expect(
+      find.textContaining(
+        t.answerAnalyses.pronunciation_reason.completeness_unavailable,
+      ),
+      findsOneWidget,
+    );
+  });
 }
