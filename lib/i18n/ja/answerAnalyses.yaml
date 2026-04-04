@@ -28,6 +28,7 @@ pronunciation_reason:
   recognized_text_mismatch: '認識結果が期待語と一致しません（期待: ${expected} / 認識: ${actual}）。'
   accuracy_low: '発音の正確性スコアが基準未満です（${score}/${threshold}）。'
   completeness_low: '発話の完全性スコアが基準未満です（${score}/${threshold}）。'
+  completeness_unavailable: '発話の完全性スコアを取得できなかったため、判定結果を詳細化できませんでした。'
   word_errors_detected: '単語単位の発音エラーが検出されました。'
   word_errors_detected_with_type: '単語単位の発音エラーが検出されました（${error_types}）。'
   recognized_text_blank: '音声を認識できませんでした。'

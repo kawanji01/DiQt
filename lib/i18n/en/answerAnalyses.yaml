@@ -28,6 +28,7 @@ pronunciation_reason:
   recognized_text_mismatch: 'Recognized text differs from the expected answer (expected: ${expected} / recognized: ${actual}).'
   accuracy_low: 'Pronunciation accuracy score is below the threshold (${score}/${threshold}).'
   completeness_low: 'Pronunciation completeness score is below the threshold (${score}/${threshold}).'
+  completeness_unavailable: 'Pronunciation completeness score was unavailable, so the failure could not be explained in more detail.'
   word_errors_detected: 'Word-level pronunciation errors were detected.'
   word_errors_detected_with_type: 'Word-level pronunciation errors were detected (${error_types}).'
   recognized_text_blank: 'No speech was recognized.'
